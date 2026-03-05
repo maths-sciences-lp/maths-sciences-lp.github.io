@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loi d'Ohm - Laboratoire Virtuel Complet</title>
+    <title>Loi d'Ohm - Laboratoire Virtuel Multi-Séries</title>
     
     <!-- Moteur de rendu MathJax (LaTeX) -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -39,14 +39,14 @@
 
         .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 20px;
-            max-width: 1200px;
+            max-width: 1300px;
             width: 100%;
             animation: fadeIn 0.6s ease-out;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
             .container { grid-template-columns: 1fr; }
         }
 
@@ -58,35 +58,22 @@
             border-top: 5px solid var(--primary);
         }
 
-        .full-width { grid-column: 1 / -1; }
+        h2 { color: var(--primary); margin-top: 0; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
 
-        h2 { color: var(--primary); margin-top: 0; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
-
-        /* Schéma */
         .schematic-container {
             background: #fff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 10px;
-            position: relative;
+            margin-bottom: 20px;
         }
 
         .electron { fill: #fbbf24; visibility: hidden; }
-        .label-val { font-weight: bold; font-size: 14px; fill: var(--secondary); }
+        .label-val { font-weight: bold; font-size: 14px; fill: var(--secondary); transition: all 0.2s; }
 
-        /* Contrôles */
-        .controls {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 20px;
-        }
+        .controls { display: flex; flex-direction: column; gap: 15px; }
 
-        .slider-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .slider-group { display: flex; flex-direction: column; gap: 5px; }
 
         .slider-header {
             display: flex;
@@ -110,33 +97,45 @@
             transition: all 0.2s;
             color: white;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .btn-save { background: var(--secondary); }
         .btn-ai { background: var(--ai); }
-        .btn-save:hover { opacity: 0.9; transform: scale(1.02); }
+        .btn-save:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-        /* Table & Graph */
         .table-container {
-            max-height: 250px;
+            max-height: 200px;
             overflow-y: auto;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
+            margin-top: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         th, td {
-            padding: 10px;
+            padding: 8px;
             text-align: center;
             border-bottom: 1px solid #e2e8f0;
         }
 
         th { background: #f1f5f9; position: sticky; top: 0; }
+
+        .color-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
 
         #aiResponse {
             background: #f5f3ff;
@@ -144,20 +143,21 @@
             padding: 15px;
             border-radius: 8px;
             margin-top: 15px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             display: none;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
 
-    <h1 style="color: var(--primary); margin-bottom: 20px;">⚡ Laboratoire Virtuel : Loi d'Ohm</h1>
+    <h1 style="color: var(--primary); margin-bottom: 20px;">⚡ Labo Ohm : Comparaison de Résistances</h1>
 
     <div class="container">
         
-        <!-- Colonne Gauche : Circuit et Contrôles -->
+        <!-- Panneau de Gauche : Simulation -->
         <div class="card">
-            <h2>Circuit Interactif</h2>
+            <h2>Circuit & Réglages</h2>
             <div class="schematic-container">
                 <svg viewBox="0 0 300 200" width="100%">
                     <path id="electron-path" d="M 50 100 L 50 50 L 250 50 L 250 150 L 50 150 L 50 100" fill="none" />
@@ -171,14 +171,14 @@
                     <!-- Composants -->
                     <circle cx="50" cy="100" r="20" fill="white" stroke="var(--wire)" stroke-width="2" />
                     <text x="42" y="105" font-size="12">G</text>
-                    <text x="35" y="70" class="label-val" id="val-u">0V</text>
+                    <text x="30" y="70" class="label-val" id="val-u">0V</text>
 
                     <circle cx="150" cy="50" r="15" fill="white" stroke="var(--wire)" stroke-width="2" />
                     <text x="144" y="55" font-size="10">A</text>
                     <text x="135" y="30" class="label-val" id="val-i">0A</text>
 
-                    <rect x="230" y="85" width="40" height="30" fill="white" stroke="var(--wire)" stroke-width="2" />
-                    <text x="235" y="75" class="label-val" id="val-r">0Ω</text>
+                    <rect x="225" y="85" width="50" height="30" fill="white" stroke="var(--wire)" stroke-width="2" />
+                    <text x="230" y="75" class="label-val" id="val-r" fill="var(--primary) !important">0Ω</text>
                 </svg>
             </div>
 
@@ -186,7 +186,7 @@
                 <div class="slider-group">
                     <div class="slider-header">
                         <span>Tension (U)</span>
-                        <span id="label-u-slider">12 V</span>
+                        <span id="label-u-slider">12.0 V</span>
                     </div>
                     <input type="range" id="slider-u" min="0" max="30" step="0.5" value="12" oninput="updateCalcul()">
                 </div>
@@ -199,63 +199,71 @@
                     <input type="range" id="slider-r" min="10" max="1000" step="10" value="100" oninput="updateCalcul()">
                 </div>
 
-                <button class="btn-action btn-save" onclick="saveMeasure()">📥 Ajouter au registre de mesures</button>
-                <button class="btn-action btn-ai" onclick="analyserAI()">✨ Analyse intelligente (Gemini)</button>
+                <button class="btn-action btn-save" onclick="saveMeasure()">
+                    <span>📥 Enregistrer la mesure</span>
+                </button>
+                
+                <button class="btn-action btn-ai" onclick="analyserAI()">
+                    <span>✨ Analyse Pédagogique (AI)</span>
+                </button>
                 
                 <div id="aiResponse"></div>
             </div>
         </div>
 
-        <!-- Colonne Droite : Graphique et Registre -->
-        <div class="card">
-            <h2>Graphique : \( U = f(I) \)</h2>
-            <canvas id="ohmChart" height="200"></canvas>
+        <!-- Panneau de Droite : Graphique & Table -->
+        <div class="card" style="border-top-color: var(--secondary);">
+            <h2>Caractéristique \( U = f(I) \)</h2>
+            <canvas id="ohmChart" height="180"></canvas>
             
-            <h2 style="margin-top:20px;">Registre de mesures</h2>
+            <h2 style="margin-top:20px; font-size: 1.1rem;">Registre des mesures</h2>
             <div class="table-container">
                 <table id="measureTable">
                     <thead>
                         <tr>
-                            <th>Mesure</th>
+                            <th>Série</th>
                             <th>U (V)</th>
                             <th>I (mA)</th>
                             <th>R (Ω)</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Rempli par JS -->
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
-            <button class="btn-action" style="background:#64748b; margin-top:10px; width:auto; font-size:0.8rem;" onclick="clearMeasures()">Effacer tout</button>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button class="btn-action" style="background:#64748b; font-size:0.8rem; padding: 8px;" onclick="clearMeasures()">Réinitialiser le labo</button>
+            </div>
         </div>
 
     </div>
 
     <script>
         const apiKey = "";
-        let measures = [];
         let chart;
+        const colors = ['#e91e63', '#2563eb', '#16a34a', '#8b5cf6', '#f59e0b', '#06b6d4'];
+        let colorIndex = 0;
 
-        // Initialisation du graphique
         function initChart() {
             const ctx = document.getElementById('ohmChart').getContext('2d');
             chart = new Chart(ctx, {
                 type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Points de mesure',
-                        data: [],
-                        backgroundColor: '#e91e63',
-                        borderColor: '#e91e63',
-                        showLine: true,
-                        tension: 0.1
-                    }]
-                },
+                data: { datasets: [] },
                 options: {
+                    responsive: true,
                     scales: {
-                        x: { title: { display: true, text: 'Intensité I (mA)' }, min: 0 },
-                        y: { title: { display: true, text: 'Tension U (V)' }, min: 0 }
+                        x: { 
+                            title: { display: true, text: 'Intensité I (mA)' }, 
+                            min: 0,
+                            grid: { color: '#e2e8f0' }
+                        },
+                        y: { 
+                            title: { display: true, text: 'Tension U (V)' }, 
+                            min: 0,
+                            grid: { color: '#e2e8f0' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: true, position: 'top', labels: { boxWidth: 12 } }
                     }
                 }
             });
@@ -266,16 +274,13 @@
             const r = parseFloat(document.getElementById('slider-r').value);
             const i = u / r;
 
-            // Update Labels
-            document.getElementById('label-u-slider').innerText = u + " V";
+            document.getElementById('label-u-slider').innerText = u.toFixed(1) + " V";
             document.getElementById('label-r-slider').innerText = r + " Ω";
             
-            // Update Circuit SVG
-            document.getElementById('val-u').textContent = u + "V";
-            document.getElementById('val-r').textContent = r + "Ω";
-            document.getElementById('val-i').textContent = (i < 1 ? (i * 1000).toFixed(1) + "mA" : i.toFixed(2) + "A");
+            document.getElementById('val-u').textContent = u.toFixed(1) + " V";
+            document.getElementById('val-r').textContent = r + " Ω";
+            document.getElementById('val-i').textContent = (i < 1 ? (i * 1000).toFixed(1) + " mA" : i.toFixed(2) + " A");
 
-            // Update Electrons Speed
             const electrons = document.querySelectorAll('.electron');
             const anims = [document.getElementById('anim1'), document.getElementById('anim2'), document.getElementById('anim3')];
             
@@ -292,40 +297,59 @@
         function saveMeasure() {
             const u = parseFloat(document.getElementById('slider-u').value);
             const r = parseFloat(document.getElementById('slider-r').value);
-            const i_ma = (u / r) * 1000;
+            const i_ma = parseFloat(((u / r) * 1000).toFixed(1));
 
-            const m = { x: i_ma.toFixed(1), y: u };
-            measures.push({ u, r, i: i_ma.toFixed(1) });
-            
-            // Update Table
+            // Trouver ou créer le dataset pour cette résistance spécifique
+            let label = `Série R = ${r} Ω`;
+            let dataset = chart.data.datasets.find(ds => ds.label === label);
+
+            if (!dataset) {
+                const color = colors[colorIndex % colors.length];
+                colorIndex++;
+                dataset = {
+                    label: label,
+                    data: [],
+                    backgroundColor: color,
+                    borderColor: color,
+                    showLine: true,
+                    tension: 0,
+                    pointRadius: 5
+                };
+                chart.data.datasets.push(dataset);
+            }
+
+            dataset.data.push({ x: i_ma, y: u });
+            dataset.data.sort((a, b) => a.x - b.x);
+            chart.update();
+
+            // Ajouter à la table
             const tbody = document.querySelector('#measureTable tbody');
             const row = tbody.insertRow(0);
-            row.innerHTML = `<td>#${measures.length}</td><td>${u}V</td><td>${i_ma.toFixed(1)}</td><td>${r}</td>`;
-
-            // Update Chart
-            chart.data.datasets[0].data.push(m);
-            chart.data.datasets[0].data.sort((a, b) => a.x - b.x); // Trier pour tracer la ligne
-            chart.update();
+            const colorCircle = `<span class="color-dot" style="background:${dataset.borderColor}"></span>`;
+            row.innerHTML = `<td>${colorCircle} R=${r}</td><td>${u.toFixed(1)}</td><td>${i_ma}</td><td>${r}</td>`;
         }
 
         function clearMeasures() {
-            measures = [];
-            document.querySelector('#measureTable tbody').innerHTML = "";
-            chart.data.datasets[0].data = [];
+            chart.data.datasets = [];
+            colorIndex = 0;
             chart.update();
+            document.querySelector('#measureTable tbody').innerHTML = "";
         }
 
         async function analyserAI() {
             const respBox = document.getElementById('aiResponse');
-            const u = document.getElementById('slider-u').value;
-            const r = document.getElementById('slider-r').value;
-            const i = (u/r).toFixed(4);
+            if (chart.data.datasets.length === 0) {
+                respBox.style.display = "block";
+                respBox.innerText = "Ajoutez d'abord quelques points de mesure pour que je puisse les analyser !";
+                return;
+            }
 
             respBox.style.display = "block";
-            respBox.innerHTML = "<em>L'IA analyse vos données...</em>";
+            respBox.innerHTML = "<em>L'IA analyse vos graphiques...</em>";
 
-            const prompt = `L'élève a configuré U = ${u}V et R = ${r}Ω, ce qui donne I = ${i}A. 
-            Explique brièvement (en tant que prof) si ce courant est fort ou faible pour un circuit scolaire, et donne un exemple d'objet du quotidien qui utiliserait de telles valeurs.`;
+            const infoSeries = chart.data.datasets.map(ds => ds.label).join(", ");
+            const prompt = `L'élève utilise un simulateur de loi d'Ohm. Il a tracé les séries suivantes : ${infoSeries}. 
+            Explique-lui brièvement (3 phrases max) comment la pente de la droite change quand la résistance augmente, et ce que cela signifie physiquement pour le passage du courant.`;
 
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
@@ -336,7 +360,7 @@
                 const data = await response.json();
                 respBox.innerText = data.candidates[0].content.parts[0].text;
             } catch (e) {
-                respBox.innerText = "Erreur lors de l'appel à l'IA.";
+                respBox.innerText = "Désolé, l'analyseur est momentanément indisponible.";
             }
         }
 
