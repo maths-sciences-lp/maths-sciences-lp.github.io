@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation - Constructeur d'Atomes</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; text-align: center; background-color: #f4f4f9; margin: 0; padding: 20px; }
+        .sim-container { max-width: 600px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #6f42c1; }
+        .display-area { display: flex; justify-content: space-around; align-items: center; margin: 20px 0; background: #f8f9fa; padding: 15px; border-radius: 10px; border: 2px solid #eee; }
+        .notation-chimique { font-size: 2.5em; font-weight: bold; position: relative; width: 100px; }
+        .mass-a { font-size: 0.4em; position: absolute; top: 0; left: 0; }
+        .atomic-z { font-size: 0.4em; position: absolute; bottom: 0; left: 0; }
+        .charge { font-size: 0.4em; position: absolute; top: 0; right: 0; color: #e34c26; }
+        .info-panel { text-align: left; background: #eef2ff; padding: 10px; border-radius: 8px; font-weight: bold; }
+        .control-group { margin: 15px 0; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type=range] { width: 100%; accent-color: #6f42c1; }
+        .val-display { float: right; color: #6f42c1; }
+        .btn-retour { display: inline-block; margin-top: 20px; text-decoration: none; color: #6f42c1; font-weight: bold; border: 2px solid #6f42c1; padding: 8px 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="sim-container">
+        <h2>🛠️ Constructeur d'Atomes & Ions</h2>
+        <p>Modifiez la composition pour identifier l'élément.</p>
+
+        <div class="display-area">
+            <div class="notation-chimique">
+                <span id="label-a" class="mass-a">1</span>
+                <span id="label-z" class="atomic-z">1</span>
+                <span id="symbol">H</span>
+                <span id="label-charge" class="charge"></span>
+            </div>
+            <div class="info-panel">
+                Nom : <span id="el-name" style="color:#6f42c1;">Hydrogène</span><br>
+                Type : <span id="atome-type">Atome Neutre</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Protons (+) <span id="v-p" class="val-display">1</span></label>
+            <input type="range" id="protons" min="1" max="18" value="1" oninput="update()">
+        </div>
+        <div class="control-group">
+            <label>Neutrons (0) <span id="v-n" class="val-display">0</span></label>
+            <input type="range" id="neutrons" min="0" max="22" value="0" oninput="update()">
+        </div>
+        <div class="control-group">
+            <label>Électrons (-) <span id="v-e" class="val-display">1</span></label>
+            <input type="range" id="electrons" min="0" max="18" value="1" oninput="update()">
+        </div>
+
+        <a href="simulations.html" class="btn-retour">← Retour au Labo</a>
+    </div>
+
+    <script>
+        const elements = ["","H","He","Li","Be","B","C","N","O","F","Ne","Na","Mg","Al","Si","P","S","Cl","Ar"];
+        const names = ["","Hydrogène","Hélium","Lithium","Béryllium","Bore","Carbone","Azote","Oxygène","Fluor","Néon","Sodium","Magnésium","Aluminium","Silicium","Phosphore","Soufre","Chlore","Argon"];
+
+        function update() {
+            let p = parseInt(document.getElementById('protons').value);
+            let n = parseInt(document.getElementById('neutrons').value);
+            let e = parseInt(document.getElementById('electrons').value);
+
+            document.getElementById('v-p').innerText = p;
+            document.getElementById('v-n').innerText = n;
+            document.getElementById('v-e').innerText = e;
+
+            let a = p + n;
+            let charge = p - e;
+            
+            document.getElementById('label-a').innerText = a;
+            document.getElementById('label-z').innerText = p;
+            document.getElementById('symbol').innerText = elements[p];
+            document.getElementById('el-name').innerText = names[p];
+
+            // Affichage de la charge
+            let chargeTxt = "";
+            if(charge > 0) chargeTxt = charge == 1 ? "+" : charge + "+";
+            if(charge < 0) chargeTxt = charge == -1 ? "-" : Math.abs(charge) + "-";
+            document.getElementById('label-charge').innerText = chargeTxt;
+
+            // Type d'espèce
+            let type = "Atome Neutre";
+            if(charge > 0) type = "Cation (Ion positif)";
+            if(charge < 0) type = "Anion (Ion négatif)";
+            document.getElementById('atome-type').innerText = type;
+        }
+    </script>
+</body>
+</html>
