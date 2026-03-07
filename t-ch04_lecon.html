@@ -1,23 +1,1010 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cours — Ch04 Fonctions polynômes de degré 3</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: #f6f8fa; color: #1f2328; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: auto; text-align: center; padding: 80px 20px; }
-        .back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #0969da; }
-        h1 { font-size: 1.4em; font-weight: 600; margin-bottom: 8px; }
-        p { color: #6e7781; font-size: 0.95em; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch04 – Fonctions polynômes de degré 3 — Terminale Bac Pro</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root{--p:#0969da;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
+    body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
+    .c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
+    h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
+    .sous-titre{color:#718096;font-size:.95em;margin:0}
+    h2{font-size:1.15em;color:var(--p);border-left:4px solid var(--p);padding-left:12px;margin-top:34px;margin-bottom:12px}
+    h3{font-size:1em;color:#4a5568;margin-top:20px;margin-bottom:8px}
+    .def{background:#ebf5ff;border-left:5px solid var(--p);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+    .prop{background:#f0fff4;border-left:5px solid var(--s);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+    .att{background:#fff5f5;border-left:5px solid var(--d);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+    .meth{background:#fffbeb;border-left:5px solid var(--o);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+    .ex{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:14px 0}
+    .biv{background:#fdf4ff;border-left:5px solid #9333ea;padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+    .label{display:inline-block;font-size:.75em;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+    .label-def{background:#dbeafe;color:#1e40af}
+    .label-prop{background:#d1fae5;color:#065f46}
+    .label-att{background:#fee2e2;color:#991b1b}
+    .label-meth{background:#fef3c7;color:#92400e}
+    .label-ex{background:#e2e8f0;color:#4a5568}
+    .label-biv{background:#f3e8ff;color:#7c3aed}
+    table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92em}
+    th,td{border:1px solid #e2e8f0;padding:10px 12px;text-align:center}
+    th{background:#eef2f7;font-weight:600}
+    .nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
+    .retenir{background:#dbeafe;border:2px solid var(--p);border-radius:8px;padding:16px 20px;margin:18px 0}
+    .objectifs{background:#ebf5ff;border-radius:8px;padding:14px 18px;margin-bottom:28px;border:1px solid #93c5fd}
+    .objectifs ul{margin:6px 0 0 0;padding-left:20px}
+    .exo{background:#fafafa;border:1px dashed #cbd5e0;border-radius:8px;padding:16px;margin:14px 0}
+    details summary{cursor:pointer;font-weight:600;color:var(--p);margin-top:8px}
+    details p{margin:6px 0 0 0;color:#4a5568}
+    .anim-wrap{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:18px 0;text-align:center}
+    .anim-wrap button{background:var(--p);color:#fff;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;margin:6px 4px;font-size:.85em}
+    .chart-wrap{max-width:620px;margin:18px auto}
+    /* Tableau de variations */
+    .tv-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92em}
+    .tv-table th,.tv-table td{border:1px solid #c0ccd8;padding:10px 8px;text-align:center;vertical-align:middle}
+    .tv-table th{background:#eef2f7}
+    .tv-plus{color:var(--s);font-weight:700;font-size:1.1em}
+    .tv-minus{color:var(--d);font-weight:700;font-size:1.1em}
+    .tv-arrow-up{display:inline-block;font-size:1.4em;color:var(--s)}
+    .tv-arrow-down{display:inline-block;font-size:1.4em;color:var(--d)}
+    .tv-val{font-weight:700;color:var(--t)}
+    .slider-row{display:flex;align-items:center;gap:12px;margin:8px 0;flex-wrap:wrap}
+    .slider-row label{min-width:40px;font-weight:600;color:var(--t)}
+    .slider-row input[type=range]{flex:1;min-width:120px}
+    .slider-row span{min-width:48px;text-align:right;font-family:monospace;color:var(--p);font-weight:700}
+    .tag-metier{display:inline-block;background:#e0f2fe;color:#0369a1;border-radius:4px;padding:1px 8px;font-size:.78em;font-weight:700;margin-left:6px;vertical-align:middle}
+    .tag-iccer{background:#dcfce7;color:#166534}
+    .formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+    @media(max-width:600px){.formula-grid{grid-template-columns:1fr}.slider-row{flex-direction:column;align-items:flex-start}}
+    .formula-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;text-align:center}
+    .formula-card .fc-label{font-size:.78em;color:#718096;margin-bottom:4px}
+    .formula-card .fc-formula{font-size:1em;color:var(--t)}
+  </style>
 </head>
 <body>
-<div class="container">
-    <a href="maths-term-iccer.html" class="back">← Retour</a>
-    <h1>Cours — Fonctions polynômes de degré 3</h1>
-    <p>Page en construction.</p>
-</div>
+<div class="c">
+
+  <a href="maths-term-iccer.html" class="nb">&larr; Retour au sommaire</a>
+
+  <header>
+    <h1>Ch04 &ndash; Fonctions polynômes de degré 3</h1>
+    <p class="sous-titre">Terminale Bac Pro &mdash; ERA &bull; TMA &bull; ICCER</p>
+  </header>
+
+  <!-- OBJECTIFS -->
+  <div class="objectifs">
+    <strong>Objectifs du chapitre :</strong>
+    <ul>
+      <li>Reconnaître et définir une fonction polynôme de degré 3.</li>
+      <li>Calculer la dérivée d'un polynôme de degré 3.</li>
+      <li>Dresser le tableau de variations à l'aide du signe de la dérivée.</li>
+      <li>Tracer la courbe représentative (allure, point d'inflexion).</li>
+      <li>Résoudre graphiquement \(f(x)=k\) à la calculatrice.</li>
+      <li>Optimiser une quantité modélisée par un polynôme de degré 3.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>1. Rappels sur les dérivées</h2>
+
+  <div class="def">
+    <span class="label label-def">Définition</span><br>
+    La <strong>dérivée</strong> \(f'(x)\) d'une fonction \(f\) mesure le taux de variation instantané de \(f\) en \(x\).
+    Géométriquement, \(f'(a)\) est le coefficient directeur de la tangente à la courbe au point d'abscisse \(a\).
+  </div>
+
+  <h3>Tableau des dérivées usuelles</h3>
+  <table>
+    <tr>
+      <th>Fonction \(f(x)\)</th>
+      <th>Dérivée \(f'(x)\)</th>
+      <th>Exemple</th>
+    </tr>
+    <tr>
+      <td>\(k\) (constante)</td>
+      <td>\(0\)</td>
+      <td>\(f(x)=5 \Rightarrow f'(x)=0\)</td>
+    </tr>
+    <tr>
+      <td>\(x\)</td>
+      <td>\(1\)</td>
+      <td>\(f(x)=x \Rightarrow f'(x)=1\)</td>
+    </tr>
+    <tr>
+      <td>\(x^2\)</td>
+      <td>\(2x\)</td>
+      <td>\(f(x)=x^2 \Rightarrow f'(x)=2x\)</td>
+    </tr>
+    <tr>
+      <td>\(x^3\)</td>
+      <td>\(3x^2\)</td>
+      <td>\(f(x)=x^3 \Rightarrow f'(x)=3x^2\)</td>
+    </tr>
+    <tr>
+      <td>\(ax^n\)</td>
+      <td>\(nax^{n-1}\)</td>
+      <td>\(f(x)=4x^3 \Rightarrow f'(x)=12x^2\)</td>
+    </tr>
+  </table>
+
+  <div class="prop">
+    <span class="label label-prop">Règles de calcul</span><br>
+    Pour toutes fonctions dérivables \(u\) et \(v\) et toute constante \(k\) :
+    \[
+      (u+v)' = u'+v' \qquad\text{et}\qquad (ku)' = k\,u'
+    \]
+    <em>On dérive terme par terme et on peut sortir les constantes multiplicatives.</em>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>2. Définition d'une fonction polynôme de degré 3</h2>
+
+  <div class="def">
+    <span class="label label-def">Définition</span><br>
+    Une <strong>fonction polynôme de degré 3</strong> (ou <em>cubique</em>) est une fonction de la forme :
+    \[
+      f(x) = ax^3 + bx^2 + cx + d
+    \]
+    où \(a,\,b,\,c,\,d\) sont des réels avec \(\mathbf{a \neq 0}\).<br>
+    Son domaine de définition est \(\mathbb{R}\) tout entier.
+  </div>
+
+  <div class="ex">
+    <span class="label label-ex">Exemples</span>
+    <ul>
+      <li>\(f(x) = 2x^3 - 3x^2 + x - 5\) &nbsp;&mdash;&nbsp; \(a=2,\;b=-3,\;c=1,\;d=-5\)</li>
+      <li>\(g(x) = -x^3 + 4x\) &nbsp;&mdash;&nbsp; \(a=-1,\;b=0,\;c=4,\;d=0\)</li>
+      <li>\(V(x) = 4x^3 - 140x^2 + 1200x\) &nbsp;&mdash;&nbsp; modèle de volume <span class="tag-metier">ERA/TMA</span></li>
+    </ul>
+  </div>
+
+  <div class="att">
+    <span class="label label-att">Attention</span><br>
+    Le coefficient \(a\) (devant \(x^3\)) doit être <strong>non nul</strong>.
+    Si \(a=0\), la fonction est un polynôme de degré 2 (ou moins), pas de degré 3.
+  </div>
+
+  <h3>Allure générale de la courbe</h3>
+  <p>Selon le signe de \(a\), la courbe adopte des comportements opposés aux extrêmes :</p>
+  <div class="formula-grid">
+    <div class="formula-card">
+      <div class="fc-label">\(a > 0\)</div>
+      <div class="fc-formula">Courbe « en S » montante &nearr; (bas-gauche vers haut-droit)</div>
+    </div>
+    <div class="formula-card">
+      <div class="fc-label">\(a &lt; 0\)</div>
+      <div class="fc-formula">Courbe « en S inversé » descendante &searr; (haut-gauche vers bas-droit)</div>
+    </div>
+  </div>
+  <p>La courbe présente toujours un <strong>point d'inflexion</strong> (changement de concavité), contrairement aux paraboles de degré 2.</p>
+
+  <!-- ============================================================ -->
+  <h2>3. Dérivée d'un polynôme de degré 3</h2>
+
+  <div class="prop">
+    <span class="label label-prop">Propriété</span><br>
+    Si \(f(x) = ax^3 + bx^2 + cx + d\), alors :
+    \[
+      \boxed{f'(x) = 3ax^2 + 2bx + c}
+    \]
+    La dérivée d'un polynôme de degré 3 est un <strong>polynôme de degré 2</strong>.
+  </div>
+
+  <div class="meth">
+    <span class="label label-meth">Méthode pas à pas</span><br>
+    On dérive terme par terme :
+    \[
+      f(x) = \underbrace{ax^3}_{\text{terme }x^3} + \underbrace{bx^2}_{\text{terme }x^2} + \underbrace{cx}_{\text{terme }x} + \underbrace{d}_{\text{constante}}
+    \]
+    \[
+      f'(x) = \underbrace{3ax^2}_{(ax^3)'=3ax^2} \;+\; \underbrace{2bx}_{(bx^2)'=2bx} \;+\; \underbrace{c}_{(cx)'=c} \;+\; \underbrace{0}_{(d)'=0}
+    \]
+  </div>
+
+  <div class="ex">
+    <span class="label label-ex">Exemple détaillé 1</span>
+    <p>Calculer \(f'(x)\) pour \(f(x) = 2x^3 - 3x^2 + 5x - 1\).</p>
+    <p>
+      \((2x^3)' = 3 \times 2 \cdot x^{2} = 6x^2\)<br>
+      \((-3x^2)' = 2 \times (-3) \cdot x^{1} = -6x\)<br>
+      \((5x)' = 5\)<br>
+      \((-1)' = 0\)
+    </p>
+    <p>Donc : \(\displaystyle f'(x) = 6x^2 - 6x + 5\)</p>
+  </div>
+
+  <div class="ex">
+    <span class="label label-ex">Exemple détaillé 2 — Volume boîte</span> <span class="tag-metier">ERA/TMA</span>
+    <p>Calculer \(V'(x)\) pour \(V(x) = 4x^3 - 140x^2 + 1200x\).</p>
+    <p>
+      \((4x^3)' = 12x^2\)<br>
+      \((-140x^2)' = -280x\)<br>
+      \((1200x)' = 1200\)
+    </p>
+    <p>Donc : \(\displaystyle V'(x) = 12x^2 - 280x + 1200\)</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>4. Tableau de variations</h2>
+
+  <div class="prop">
+    <span class="label label-prop">Lien dérivée – variations</span>
+    <ul style="margin:6px 0 0 0;padding-left:20px">
+      <li>Si \(f'(x) > 0\) sur un intervalle, alors \(f\) est <strong>strictement croissante</strong> sur cet intervalle.</li>
+      <li>Si \(f'(x) &lt; 0\) sur un intervalle, alors \(f\) est <strong>strictement décroissante</strong> sur cet intervalle.</li>
+      <li>Si \(f'(x_0) = 0\) et que le signe de \(f'\) change, alors \(f\) a un <strong>extremum local</strong> en \(x_0\).</li>
+    </ul>
+  </div>
+
+  <div class="meth">
+    <span class="label label-meth">Méthode — dresser le tableau de variations</span>
+    <ol style="margin:8px 0 0 0;padding-left:22px">
+      <li>Calculer \(f'(x)\).</li>
+      <li>Résoudre \(f'(x) = 0\) (équation du 2nd degré, calcul du discriminant \(\Delta\)).</li>
+      <li>Dresser le tableau de signe de \(f'(x)\).</li>
+      <li>En déduire le tableau de variations de \(f\).</li>
+      <li>Calculer les valeurs de \(f\) aux extrema si demandé.</li>
+    </ol>
+  </div>
+
+  <h3>Exemple complet — \(f(x) = x^3 - 3x^2 - 9x + 2\)</h3>
+
+  <p><strong>Étape 1 :</strong> Dérivée.</p>
+  <p>\[f'(x) = 3x^2 - 6x - 9\]</p>
+
+  <p><strong>Étape 2 :</strong> Résoudre \(f'(x) = 0\), soit \(3x^2 - 6x - 9 = 0\), i.e. \(x^2 - 2x - 3 = 0\).</p>
+  <p>\[\Delta = (-2)^2 - 4\times 1 \times (-3) = 4 + 12 = 16\]</p>
+  <p>\[x_1 = \frac{2 - 4}{2} = -1 \qquad x_2 = \frac{2 + 4}{2} = 3\]</p>
+
+  <p><strong>Étape 3 :</strong> Tableau de signe de \(f'(x) = 3(x+1)(x-3)\) :</p>
+
+  <table class="tv-table">
+    <tr>
+      <th>\(x\)</th>
+      <td>\(-\infty\)</td>
+      <td></td>
+      <td>\(-1\)</td>
+      <td></td>
+      <td>\(3\)</td>
+      <td></td>
+      <td>\(+\infty\)</td>
+    </tr>
+    <tr>
+      <th>\(x+1\)</th>
+      <td></td>
+      <td class="tv-minus">\(-\)</td>
+      <td style="font-weight:700">0</td>
+      <td class="tv-plus">\(+\)</td>
+      <td></td>
+      <td class="tv-plus">\(+\)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>\(x-3\)</th>
+      <td></td>
+      <td class="tv-minus">\(-\)</td>
+      <td></td>
+      <td class="tv-minus">\(-\)</td>
+      <td style="font-weight:700">0</td>
+      <td class="tv-plus">\(+\)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>\(f'(x)\)</th>
+      <td></td>
+      <td class="tv-plus">\(+\)</td>
+      <td style="font-weight:700">0</td>
+      <td class="tv-minus">\(-\)</td>
+      <td style="font-weight:700">0</td>
+      <td class="tv-plus">\(+\)</td>
+      <td></td>
+    </tr>
+  </table>
+
+  <p><strong>Étape 4 :</strong> Valeurs aux extrema :</p>
+  <p>\[f(-1) = (-1)^3 - 3(-1)^2 - 9(-1)+2 = -1-3+9+2 = 7\]</p>
+  <p>\[f(3) = 27 - 27 - 27 + 2 = -25\]</p>
+
+  <p><strong>Tableau de variations complet :</strong></p>
+
+  <table class="tv-table">
+    <tr>
+      <th>\(x\)</th>
+      <td>\(-\infty\)</td>
+      <td></td>
+      <td><strong>\(-1\)</strong></td>
+      <td></td>
+      <td><strong>\(3\)</strong></td>
+      <td></td>
+      <td>\(+\infty\)</td>
+    </tr>
+    <tr>
+      <th>\(f'(x)\)</th>
+      <td></td>
+      <td class="tv-plus">\(+\)</td>
+      <td>0</td>
+      <td class="tv-minus">\(-\)</td>
+      <td>0</td>
+      <td class="tv-plus">\(+\)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>\(f(x)\)</th>
+      <td>\(-\infty\)</td>
+      <td><span class="tv-arrow-up">&#8599;</span></td>
+      <td class="tv-val"><strong>7</strong><br><em style="font-size:.8em;font-weight:400">(max local)</em></td>
+      <td><span class="tv-arrow-down">&#8600;</span></td>
+      <td class="tv-val"><strong>&minus;25</strong><br><em style="font-size:.8em;font-weight:400">(min local)</em></td>
+      <td><span class="tv-arrow-up">&#8599;</span></td>
+      <td>\(+\infty\)</td>
+    </tr>
+  </table>
+
+  <div class="att">
+    <span class="label label-att">Cas particuliers</span><br>
+    <strong>Si \(\Delta = 0\) :</strong> la dérivée a une racine double, la courbe a un point d'inflexion horizontal (pas d'extremum).<br>
+    <strong>Si \(\Delta &lt; 0\) :</strong> \(f'(x)\) garde un signe constant, \(f\) est <strong>strictement monotone</strong> sur \(\mathbb{R}\).
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>5. Graphique interactif — Explorer \(f(x) = ax^3+bx^2+cx+d\)</h2>
+
+  <div class="anim-wrap">
+    <p style="margin:0 0 10px 0;font-weight:600;">Choisir un exemple prédéfini :</p>
+    <button onclick="predef(1)">Exemple 1 : x&sup3;&minus;3x&sup2;&minus;9x+2</button>
+    <button onclick="predef(2)">Exemple 2 : &minus;x&sup3;+3x+1</button>
+    <button onclick="predef(3)">Exemple 3 : Volume boîte ERA/TMA</button>
+    <button onclick="predef(4)">Exemple 4 : Énergie ICCER</button>
+
+    <div style="margin-top:14px;background:#fff;border-radius:8px;padding:14px;text-align:left;border:1px solid #e2e8f0">
+      <div class="slider-row">
+        <label>\(a\)</label>
+        <input type="range" id="sa" min="-3" max="3" step="0.5" value="1" oninput="updateChart()">
+        <span id="va">1</span>
+      </div>
+      <div class="slider-row">
+        <label>\(b\)</label>
+        <input type="range" id="sb" min="-10" max="10" step="1" value="-3" oninput="updateChart()">
+        <span id="vb">-3</span>
+      </div>
+      <div class="slider-row">
+        <label>\(c\)</label>
+        <input type="range" id="sc" min="-15" max="15" step="1" value="-9" oninput="updateChart()">
+        <span id="vc">-9</span>
+      </div>
+      <div class="slider-row">
+        <label>\(d\)</label>
+        <input type="range" id="sd" min="-20" max="20" step="1" value="2" oninput="updateChart()">
+        <span id="vd">2</span>
+      </div>
+      <p id="formulaDisplay" style="margin:8px 0 0 0;font-size:.9em;color:#4a5568">
+        f(x) = x³ − 3x² − 9x + 2
+      </p>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="polyChart" height="320"></canvas>
+    </div>
+    <p style="margin:6px 0 0 0;font-size:.82em;color:#718096;">
+      La <span style="color:#0969da;font-weight:700;">courbe bleue</span> est \(f(x)\) et la <span style="color:#d97706;font-weight:700;">courbe orange en pointillés</span> est \(f'(x)\).
+    </p>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>6. Résolution de \(f(x)=k\) à la calculatrice</h2>
+
+  <div class="meth">
+    <span class="label label-meth">Méthode — Lecture graphique</span>
+    <ol style="margin:8px 0 0 0;padding-left:22px">
+      <li>Tracer \(y_1 = f(x)\) et \(y_2 = k\) (droite horizontale) sur la calculatrice.</li>
+      <li>Utiliser la fonction <strong>Intersection</strong> (ou <em>Trace + Zoom</em>) pour trouver les abscisses des points d'intersection.</li>
+      <li>Vérifier en calculant \(f(\text{valeur trouvée})\).</li>
+    </ol>
+  </div>
+
+  <div class="meth">
+    <span class="label label-meth">Méthode — Tableau de valeurs</span>
+    <ol style="margin:8px 0 0 0;padding-left:22px">
+      <li>Entrer \(f(x)\) dans la calculatrice.</li>
+      <li>Afficher le tableau de valeurs avec un pas adapté.</li>
+      <li>Repérer les changements de signe de \(f(x) - k\) pour encadrer les solutions.</li>
+      <li>Affiner le pas pour obtenir la précision souhaitée.</li>
+    </ol>
+  </div>
+
+  <div class="ex">
+    <span class="label label-ex">Exemple</span>
+    <p>Résoudre \(f(x) = -10\) avec \(f(x) = x^3 - 3x^2 - 9x + 2\).</p>
+    <p>
+      D'après le tableau de variations : \(f\) décroît de \(7\) à \(-25\) sur \([-1\,;\,3]\),
+      donc il existe une unique solution dans \([-1\,;\,3]\) telle que \(f(x)=-10\).
+      De plus, \(f\) croît depuis \(-\infty\) jusqu'à \(7\) pour \(x \in ]-\infty\,;\,-1[\,\),
+      donc il existe une solution dans \((-\infty, -1)\).
+    </p>
+    <p>À la calculatrice, les solutions approchées sont \(x \approx -3{,}2\) et \(x \approx 1{,}5\).</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>7. Problème d'optimisation — Boîte découpée <span class="tag-metier">ERA / TMA</span></h2>
+
+  <div class="biv">
+    <span class="label label-biv">Contexte professionnel</span><br>
+    Un menuisier dispose d'une plaque de bois rectangulaire de <strong>40 cm &times; 30 cm</strong>.
+    Il découpe des carrés de côté \(x\) aux quatre coins, puis plie les bords pour former une boîte ouverte.<br>
+    <strong>Objectif :</strong> déterminer la valeur de \(x\) qui maximise le volume de la boîte.
+  </div>
+
+  <h3>Mise en équation</h3>
+  <p>Après découpage des carrés de côté \(x\) :</p>
+  <ul>
+    <li>Longueur de la base : \(40 - 2x\)</li>
+    <li>Largeur de la base : \(30 - 2x\)</li>
+    <li>Hauteur : \(x\)</li>
+  </ul>
+  <p>Le volume s'écrit :</p>
+  \[V(x) = x(40-2x)(30-2x)\]
+  <p>Développons :</p>
+  \[(40-2x)(30-2x) = 1200 - 80x - 60x + 4x^2 = 4x^2 - 140x + 1200\]
+  \[\boxed{V(x) = 4x^3 - 140x^2 + 1200x}\]
+
+  <div class="att">
+    <span class="label label-att">Contrainte</span><br>
+    Pour que la boîte soit physiquement réalisable : \(x > 0\) et \(30 - 2x > 0\), soit \(0 &lt; x &lt; 15\).
+  </div>
+
+  <h3>Calcul de la dérivée et recherche du maximum</h3>
+  \[V'(x) = 12x^2 - 280x + 1200\]
+  <p>Résolvons \(V'(x) = 0\) :</p>
+  \[\Delta = 280^2 - 4 \times 12 \times 1200 = 78\,400 - 57\,600 = 20\,800\]
+  \[\sqrt{\Delta} = \sqrt{20\,800} = 40\sqrt{13} \approx 144{,}2\]
+  \[x_1 = \frac{280 - 144{,}2}{24} \approx \frac{135{,}8}{24} \approx 5{,}66 \qquad
+     x_2 = \frac{280 + 144{,}2}{24} \approx \frac{424{,}2}{24} \approx 17{,}7\]
+  <p>
+    Comme \(0 &lt; x &lt; 15\), seule la valeur \(x_1 \approx 5{,}66\) cm appartient au domaine physique.
+  </p>
+
+  <h3>Tableau de variations de V sur \([0\,;\,15]\)</h3>
+
+  <table class="tv-table">
+    <tr>
+      <th>\(x\)</th>
+      <td>0</td>
+      <td></td>
+      <td><strong>5,66</strong></td>
+      <td></td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>\(V'(x)\)</th>
+      <td></td>
+      <td class="tv-plus">\(+\)</td>
+      <td>0</td>
+      <td class="tv-minus">\(-\)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>\(V(x)\) (cm³)</th>
+      <td class="tv-val">0</td>
+      <td><span class="tv-arrow-up">&#8599;</span></td>
+      <td class="tv-val"><strong>&#8776; 3 033</strong><br><em style="font-size:.8em;font-weight:400">(maximum)</em></td>
+      <td><span class="tv-arrow-down">&#8600;</span></td>
+      <td class="tv-val">0</td>
+    </tr>
+  </table>
+
+  <p>Vérification :</p>
+  \[V(5{,}66) \approx 4(5{,}66)^3 - 140(5{,}66)^2 + 1200 \times 5{,}66 \approx 726 - 4\,485 + 6\,792 \approx 3\,033 \text{ cm}^3\]
+
+  <div class="retenir">
+    <strong>Conclusion :</strong> Le volume est maximal pour \(x \approx 5{,}66\) cm.
+    Le menuisier doit découper des carrés de côté environ <strong>5,7 cm</strong> aux quatre coins
+    pour obtenir un volume maximal d'environ <strong>3 033 cm³</strong>.
+  </div>
+
+  <h3>Graphique du volume V(x)</h3>
+  <div class="anim-wrap">
+    <div class="chart-wrap">
+      <canvas id="volChart" height="300"></canvas>
+    </div>
+    <p style="font-size:.82em;color:#718096;margin:6px 0 0 0;">
+      La <span style="color:#2f855a;font-weight:700;">courbe verte</span> représente \(V(x)\) sur \([0\,;\,15]\).
+      Le maximum est atteint en <strong>x ≈ 5,66 cm</strong>.
+    </p>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>8. Application ICCER — Consommation d'énergie <span class="tag-metier tag-iccer">ICCER</span></h2>
+
+  <div class="biv">
+    <span class="label label-biv">Contexte professionnel</span><br>
+    Un technicien en chauffage modélise la consommation mensuelle d'énergie (en MWh) d'un bâtiment
+    par la fonction :
+    \[C(t) = -0{,}5t^3 + 6t^2 - 18t + 30 \qquad t \in [0\,;\,8]\]
+    où \(t\) représente les mois (\(t=0\) : janvier, \(t=8\) : septembre).
+  </div>
+
+  <h3>Calcul de la dérivée et étude des variations</h3>
+  \[C'(t) = -1{,}5t^2 + 12t - 18\]
+  <p>Résolvons \(C'(t) = 0\) :</p>
+  \[-1{,}5t^2 + 12t - 18 = 0 \implies t^2 - 8t + 12 = 0\]
+  \[\Delta = 64 - 48 = 16 \qquad t_1 = \frac{8-4}{2} = 2 \qquad t_2 = \frac{8+4}{2} = 6\]
+
+  <table class="tv-table">
+    <tr>
+      <th>\(t\)</th>
+      <td>0</td>
+      <td></td>
+      <td><strong>2</strong></td>
+      <td></td>
+      <td><strong>6</strong></td>
+      <td></td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>\(C'(t)\)</th>
+      <td></td>
+      <td class="tv-minus">\(-\)</td>
+      <td>0</td>
+      <td class="tv-plus">\(+\)</td>
+      <td>0</td>
+      <td class="tv-minus">\(-\)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>\(C(t)\) (MWh)</th>
+      <td class="tv-val">30</td>
+      <td><span class="tv-arrow-down">&#8600;</span></td>
+      <td class="tv-val"><strong>10</strong><br><em style="font-size:.8em;font-weight:400">(minimum)</em></td>
+      <td><span class="tv-arrow-up">&#8599;</span></td>
+      <td class="tv-val"><strong>42</strong><br><em style="font-size:.8em;font-weight:400">(maximum)</em></td>
+      <td><span class="tv-arrow-down">&#8600;</span></td>
+      <td class="tv-val">22</td>
+    </tr>
+  </table>
+
+  <div class="retenir">
+    <strong>Interprétation :</strong>
+    La consommation est minimale en <strong>mars (\(t=2\))</strong> avec 10 MWh,
+    et maximale en <strong>juillet (\(t=6\))</strong> avec 42 MWh.
+    La courbe présente une forme caractéristique d'un modèle saisonnier d'énergie.
+  </div>
+
+  <h3>Exemple 2 — Bénéfice d'une entreprise de chauffage</h3>
+
+  <div class="biv">
+    <span class="label label-biv">Contexte professionnel</span><br>
+    Le bénéfice mensuel (en milliers d'euros) d'une entreprise spécialisée en pompes à chaleur
+    est modélisé par :
+    \[B(n) = -n^3 + 9n^2 - 15n + 7 \qquad n \in [0\,;\,7]\]
+    où \(n\) est le nombre de contrats (en dizaines).
+  </div>
+
+  \[B'(n) = -3n^2 + 18n - 15 = -3(n^2 - 6n + 5) = -3(n-1)(n-5)\]
+
+  <table class="tv-table">
+    <tr>
+      <th>\(n\)</th>
+      <td>0</td>
+      <td></td>
+      <td><strong>1</strong></td>
+      <td></td>
+      <td><strong>5</strong></td>
+      <td></td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>\(B'(n)\)</th>
+      <td></td>
+      <td class="tv-minus">\(-\)</td>
+      <td>0</td>
+      <td class="tv-plus">\(+\)</td>
+      <td>0</td>
+      <td class="tv-minus">\(-\)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>\(B(n)\) (k€)</th>
+      <td class="tv-val">7</td>
+      <td><span class="tv-arrow-down">&#8600;</span></td>
+      <td class="tv-val"><strong>0</strong></td>
+      <td><span class="tv-arrow-up">&#8599;</span></td>
+      <td class="tv-val"><strong>32</strong><br><em style="font-size:.8em;font-weight:400">(maximum)</em></td>
+      <td><span class="tv-arrow-down">&#8600;</span></td>
+      <td class="tv-val">14</td>
+    </tr>
+  </table>
+
+  <div class="retenir">
+    <strong>Conclusion :</strong> Le bénéfice est maximal pour <strong>50 contrats (\(n=5\))</strong>,
+    avec un bénéfice de <strong>32 000 €</strong>.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>9. Tableau récapitulatif des formules</h2>
+
+  <table>
+    <tr>
+      <th>Objet</th>
+      <th>Formule</th>
+    </tr>
+    <tr>
+      <td>Polynôme degré 3</td>
+      <td>\(f(x) = ax^3 + bx^2 + cx + d\quad (a\neq 0)\)</td>
+    </tr>
+    <tr>
+      <td>Dérivée</td>
+      <td>\(f'(x) = 3ax^2 + 2bx + c\)</td>
+    </tr>
+    <tr>
+      <td>Dérivée d'une constante</td>
+      <td>\((k)' = 0\)</td>
+    </tr>
+    <tr>
+      <td>Dérivée de \(x^n\)</td>
+      <td>\((x^n)' = nx^{n-1}\)</td>
+    </tr>
+    <tr>
+      <td>Dérivée de \(ax^n\)</td>
+      <td>\((ax^n)' = nax^{n-1}\)</td>
+    </tr>
+    <tr>
+      <td>Linéarité</td>
+      <td>\((u+v)' = u'+v'\quad;\quad (ku)' = ku'\)</td>
+    </tr>
+    <tr>
+      <td>\(f'(x) > 0\) sur \(I\)</td>
+      <td>\(f\) strictement croissante sur \(I\)</td>
+    </tr>
+    <tr>
+      <td>\(f'(x) &lt; 0\) sur \(I\)</td>
+      <td>\(f\) strictement décroissante sur \(I\)</td>
+    </tr>
+    <tr>
+      <td>Maximum local en \(x_0\)</td>
+      <td>\(f'(x_0)=0\) et \(f'\) passe de \(+\) à \(-\)</td>
+    </tr>
+    <tr>
+      <td>Minimum local en \(x_0\)</td>
+      <td>\(f'(x_0)=0\) et \(f'\) passe de \(-\) à \(+\)</td>
+    </tr>
+  </table>
+
+  <!-- ============================================================ -->
+  <h2>10. À retenir</h2>
+
+  <div class="retenir">
+    <strong>Essentiel du chapitre :</strong>
+    <ul style="margin:8px 0 0 0;padding-left:22px">
+      <li>Un polynôme de degré 3 s'écrit \(f(x)=ax^3+bx^2+cx+d\) avec \(a\neq 0\).</li>
+      <li>Sa dérivée est \(f'(x)=3ax^2+2bx+c\) (polynôme de degré 2).</li>
+      <li>Le signe de \(f'\) donne les variations de \(f\) (tableau de variations).</li>
+      <li>La courbe a toujours un point d'inflexion ; elle peut avoir 0, 1 ou 2 extrema locaux.</li>
+      <li>Pour optimiser sur un intervalle, on cherche où \(f'(x)=0\) puis on vérifie le signe de \(f'\).</li>
+      <li>La calculatrice permet de résoudre \(f(x)=k\) graphiquement ou par tableau de valeurs.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>11. Exercices</h2>
+
+  <!-- Exercice 1 -->
+  <div class="exo">
+    <strong>Exercice 1 — Calcul de dérivée</strong><br>
+    Calculer la dérivée de \(g(x) = -2x^3 + 6x^2 - 4x + 1\).
+    <details>
+      <summary>Voir la correction</summary>
+      <p>
+        On dérive terme par terme :<br>
+        \((-2x^3)' = -6x^2\)<br>
+        \((6x^2)' = 12x\)<br>
+        \((-4x)' = -4\)<br>
+        \((1)' = 0\)<br>
+        <strong>Donc : \(g'(x) = -6x^2 + 12x - 4\)</strong>
+      </p>
+    </details>
+  </div>
+
+  <!-- Exercice 2 -->
+  <div class="exo">
+    <strong>Exercice 2 — Tableau de variations</strong><br>
+    Soit \(h(x) = x^3 - 6x^2 + 9x + 1\).
+    <ol style="margin:8px 0 0 0;padding-left:22px">
+      <li>Calculer \(h'(x)\).</li>
+      <li>Résoudre \(h'(x) = 0\).</li>
+      <li>Dresser le tableau de variations de \(h\) sur \(\mathbb{R}\).</li>
+    </ol>
+    <details>
+      <summary>Voir la correction</summary>
+      <p>
+        <strong>1.</strong> \(h'(x) = 3x^2 - 12x + 9 = 3(x^2 - 4x + 3)\)<br><br>
+        <strong>2.</strong> \(x^2 - 4x + 3 = 0 \Rightarrow \Delta = 16 - 12 = 4\)<br>
+        \(x_1 = \dfrac{4-2}{2} = 1\) et \(x_2 = \dfrac{4+2}{2} = 3\)<br><br>
+        <strong>3.</strong> Valeurs aux extrema :<br>
+        \(h(1) = 1 - 6 + 9 + 1 = 5\) (maximum local)<br>
+        \(h(3) = 27 - 54 + 27 + 1 = 1\) (minimum local)<br>
+        <em>h croît de \(-\infty\) jusqu'en \(x=1\) (max = 5), décroît jusqu'en \(x=3\) (min = 1), puis croît vers \(+\infty\).</em>
+      </p>
+    </details>
+  </div>
+
+  <!-- Exercice 3 -->
+  <div class="exo">
+    <strong>Exercice 3 — Optimisation ERA/TMA</strong> <span class="tag-metier">ERA/TMA</span><br>
+    Un artisan fabrique des boîtes à partir de plaques de bois de <strong>60 cm &times; 20 cm</strong>.
+    Il découpe des carrés de côté \(x\) aux quatre coins.
+    <ol style="margin:8px 0 0 0;padding-left:22px">
+      <li>Exprimer le volume \(V(x)\) de la boîte.</li>
+      <li>Développer pour obtenir un polynôme de degré 3.</li>
+      <li>Calculer \(V'(x)\) et résoudre \(V'(x) = 0\).</li>
+      <li>Quelle est la valeur de \(x\) qui maximise \(V(x)\) sur \(]0\,;\,10[\,\)?</li>
+    </ol>
+    <details>
+      <summary>Voir la correction</summary>
+      <p>
+        <strong>1.</strong> \(V(x) = x(60-2x)(20-2x)\), avec \(0 &lt; x &lt; 10\).<br><br>
+        <strong>2.</strong> \((60-2x)(20-2x) = 1200 - 120x - 40x + 4x^2 = 4x^2 - 160x + 1200\)<br>
+        Donc \(V(x) = 4x^3 - 160x^2 + 1200x\).<br><br>
+        <strong>3.</strong> \(V'(x) = 12x^2 - 320x + 1200\)<br>
+        \(\Delta = 320^2 - 4 \times 12 \times 1200 = 102\,400 - 57\,600 = 44\,800\), \(\sqrt{\Delta} \approx 211{,}7\)<br>
+        \(x_1 = \dfrac{320-211{,}7}{24} \approx 4{,}51\) et \(x_2 \approx 22{,}2\).<br><br>
+        <strong>4.</strong> Seule \(x_1 \approx 4{,}51 \in ]0\,;\,10[\,\).<br>
+        \(V(4{,}51) \approx 4(4{,}51)^3 - 160(4{,}51)^2 + 1200 \times 4{,}51 \approx 366 - 3\,251 + 5\,412 \approx 2\,527 \text{ cm}^3\)<br>
+        <strong>Le volume est maximal pour \(x \approx 4{,}5\) cm, soit environ 2 527 cm³.</strong>
+      </p>
+    </details>
+  </div>
+
+  <!-- Exercice 4 -->
+  <div class="exo">
+    <strong>Exercice 4 — Modèle énergétique</strong> <span class="tag-metier tag-iccer">ICCER</span><br>
+    La puissance consommée (en kW) par une installation de climatisation est modélisée par :
+    \[P(t) = 0{,}2t^3 - 2{,}4t^2 + 8t + 1 \qquad t\in[0\,;\,8]\]
+    où \(t\) est le nombre d'heures après le démarrage.
+    <ol style="margin:8px 0 0 0;padding-left:22px">
+      <li>Calculer \(P'(t)\).</li>
+      <li>Résoudre \(P'(t) = 0\) sur \([0\,;\,8]\).</li>
+      <li>Déterminer si \(P\) admet un maximum ou un minimum local, et la valeur associée.</li>
+    </ol>
+    <details>
+      <summary>Voir la correction</summary>
+      <p>
+        <strong>1.</strong> \(P'(t) = 0{,}6t^2 - 4{,}8t + 8\)<br><br>
+        <strong>2.</strong> \(0{,}6t^2 - 4{,}8t + 8 = 0 \Rightarrow t^2 - 8t + \dfrac{40}{3} = 0\)<br>
+        \(\Delta = 64 - \dfrac{160}{3} = \dfrac{32}{3} \approx 10{,}67\), \(\sqrt{\Delta} \approx 3{,}27\)<br>
+        \(t_1 \approx \dfrac{8 - 3{,}27}{2} \approx 2{,}37\) et \(t_2 \approx \dfrac{8 + 3{,}27}{2} \approx 5{,}63\) (tous les deux dans \([0\,;\,8]\)).<br><br>
+        <strong>3.</strong> \(P'(t) = 0{,}6(t - 2{,}37)(t - 5{,}63)\), coefficient de \(t^2\) positif :<br>
+        — \(P'\) positive sur \(]-\infty\,;\,2{,}37[\,\) et \(]\,5{,}63\,;\,+\infty[\,\)<br>
+        — \(P'\) négative sur \(]\,2{,}37\,;\,5{,}63[\,\)<br>
+        Donc \(P\) a un <strong>maximum local</strong> en \(t \approx 2{,}37\) h : \(P(2{,}37) \approx 9{,}15\) kW<br>
+        et un <strong>minimum local</strong> en \(t \approx 5{,}63\) h : \(P(5{,}63) \approx 5{,}6\) kW.
+      </p>
+    </details>
+  </div>
+
+</div><!-- fin .c -->
+
+<script>
+// ====== GRAPHIQUE INTERACTIF (polynôme quelconque) ======
+var polyChartInstance = null;
+
+function getCoeffs() {
+  var a = parseFloat(document.getElementById('sa').value);
+  var b = parseFloat(document.getElementById('sb').value);
+  var c = parseFloat(document.getElementById('sc').value);
+  var d = parseFloat(document.getElementById('sd').value);
+  return {a: a, b: b, c: c, d: d};
+}
+
+function polyF(x, a, b, c, d) {
+  return a*x*x*x + b*x*x + c*x + d;
+}
+
+function polyDeriv(x, a, b, c) {
+  return 3*a*x*x + 2*b*x + c;
+}
+
+function clamp(val, lo, hi) {
+  return val < lo ? lo : val > hi ? hi : val;
+}
+
+function round2(v) {
+  return Math.round(v * 100) / 100;
+}
+
+function buildFormulaText(a, b, c, d) {
+  function term(coef, xpart, isFirst) {
+    if (coef === 0) return '';
+    var sign = '';
+    var absC = Math.abs(coef);
+    if (isFirst) {
+      sign = coef < 0 ? '-' : '';
+    } else {
+      sign = coef < 0 ? ' - ' : ' + ';
+    }
+    var num = (absC === 1 && xpart !== '') ? '' : String(absC);
+    return sign + num + xpart;
+  }
+  var s = 'f(x) = ';
+  var parts = [];
+  var t3 = term(a, 'x\u00b3', true);
+  var t2 = term(b, 'x\u00b2', parts.length === 0 && t3 === '');
+  var t1 = term(c, 'x', parts.length === 0 && t3 === '' && t2 === '');
+  var t0 = (d !== 0) ? (parts.length === 0 && t3 === '' && t2 === '' && t1 === '' ? String(d) : (d > 0 ? ' + ' : ' - ') + Math.abs(d)) : '';
+  // Build manually for clarity
+  s = 'f(x) = ';
+  var written = false;
+  if (a !== 0) {
+    s += (a === 1 ? '' : a === -1 ? '-' : String(a)) + 'x\u00b3';
+    written = true;
+  }
+  if (b !== 0) {
+    if (written) s += (b > 0 ? ' + ' : ' - ') + (Math.abs(b) === 1 ? '' : Math.abs(b)) + 'x\u00b2';
+    else s += (b === 1 ? '' : b === -1 ? '-' : String(b)) + 'x\u00b2';
+    written = true;
+  }
+  if (c !== 0) {
+    if (written) s += (c > 0 ? ' + ' : ' - ') + (Math.abs(c) === 1 ? '' : Math.abs(c)) + 'x';
+    else s += (c === 1 ? '' : c === -1 ? '-' : String(c)) + 'x';
+    written = true;
+  }
+  if (d !== 0) {
+    if (written) s += (d > 0 ? ' + ' : ' - ') + Math.abs(d);
+    else s += String(d);
+    written = true;
+  }
+  if (!written) s += '0';
+  return s;
+}
+
+function updateChart() {
+  var co = getCoeffs();
+  document.getElementById('va').textContent = co.a;
+  document.getElementById('vb').textContent = co.b;
+  document.getElementById('vc').textContent = co.c;
+  document.getElementById('vd').textContent = co.d;
+  document.getElementById('formulaDisplay').textContent = buildFormulaText(co.a, co.b, co.c, co.d);
+
+  if (!polyChartInstance) return;
+
+  var xs = polyChartInstance.data.labels;
+  var ys = [];
+  var yd = [];
+  for (var i = 0; i < xs.length; i++) {
+    var x = xs[i];
+    ys.push(clamp(round2(polyF(x, co.a, co.b, co.c, co.d)), -200, 200));
+    yd.push(clamp(round2(polyDeriv(x, co.a, co.b, co.c)), -200, 200));
+  }
+  polyChartInstance.data.datasets[0].data = ys;
+  polyChartInstance.data.datasets[1].data = yd;
+  polyChartInstance.update();
+}
+
+function predef(n) {
+  var defs = {
+    1: {a: 1,    b: -3,    c: -9,   d: 2},
+    2: {a: -1,   b: 0,     c: 3,    d: 1},
+    3: {a: 4,    b: -14,   c: 120,  d: 0},
+    4: {a: -0.5, b: 6,     c: -18,  d: 30}
+  };
+  var co = defs[n];
+  document.getElementById('sa').value = co.a;
+  document.getElementById('sb').value = co.b;
+  document.getElementById('sc').value = co.c;
+  document.getElementById('sd').value = co.d;
+  updateChart();
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+
+  // ---- Graphique interactif ----
+  var ctx = document.getElementById('polyChart').getContext('2d');
+  var co = getCoeffs();
+  var xs = [], ys = [], yd = [];
+  for (var x = -6; x <= 6.01; x += 0.15) {
+    var rx = Math.round(x * 100) / 100;
+    xs.push(rx);
+    ys.push(clamp(round2(polyF(rx, co.a, co.b, co.c, co.d)), -200, 200));
+    yd.push(clamp(round2(polyDeriv(rx, co.a, co.b, co.c)), -200, 200));
+  }
+
+  polyChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: xs,
+      datasets: [
+        {
+          label: 'f(x)',
+          data: ys,
+          borderColor: '#0969da',
+          backgroundColor: 'rgba(9,105,218,0.06)',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          tension: 0.35
+        },
+        {
+          label: "f'(x)",
+          data: yd,
+          borderColor: '#d97706',
+          backgroundColor: 'rgba(217,119,6,0.05)',
+          borderWidth: 2,
+          pointRadius: 0,
+          tension: 0.35,
+          borderDash: [6, 3]
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, position: 'top' }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'x' },
+          ticks: {
+            maxTicksLimit: 13,
+            callback: function(val, index) { return xs[index]; }
+          }
+        },
+        y: {
+          title: { display: true, text: 'y' },
+          suggestedMin: -50,
+          suggestedMax: 50
+        }
+      }
+    }
+  });
+
+  // ---- Graphique volume boîte ----
+  var ctxV = document.getElementById('volChart').getContext('2d');
+  var xsV = [], ysV = [], xMaxV = 0, yMaxV = 0;
+  for (var xv = 0; xv <= 15.01; xv += 0.1) {
+    var rxv = Math.round(xv * 10) / 10;
+    var vol = 4*rxv*rxv*rxv - 140*rxv*rxv + 1200*rxv;
+    var volR = Math.round(vol * 10) / 10;
+    xsV.push(rxv);
+    ysV.push(volR);
+    if (volR > yMaxV) { yMaxV = volR; xMaxV = rxv; }
+  }
+
+  new Chart(ctxV, {
+    type: 'line',
+    data: {
+      labels: xsV,
+      datasets: [
+        {
+          label: 'V(x) = 4x\u00b3 \u2212 140x\u00b2 + 1200x',
+          data: ysV,
+          borderColor: '#2f855a',
+          backgroundColor: 'rgba(47,133,90,0.08)',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          tension: 0.3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, position: 'top' }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'x (cm)' },
+          ticks: { maxTicksLimit: 16 }
+        },
+        y: {
+          title: { display: true, text: 'Volume (cm\u00b3)' },
+          min: 0,
+          suggestedMax: 3500
+        }
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>
