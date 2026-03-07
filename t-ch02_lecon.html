@@ -1,23 +1,661 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cours — Ch02 Probabilités</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: #f6f8fa; color: #1f2328; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: auto; text-align: center; padding: 80px 20px; }
-        .back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #0969da; }
-        h1 { font-size: 1.4em; font-weight: 600; margin-bottom: 8px; }
-        p { color: #6e7781; font-size: 0.95em; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Probabilités – Cours</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--p:#0969da;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
+.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
+h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
+.sous-titre{color:#718096;font-size:.95em;margin:0}
+h2{font-size:1.15em;color:var(--p);border-left:4px solid var(--p);padding-left:12px;margin-top:34px;margin-bottom:12px}
+h3{font-size:1em;color:#4a5568;margin-top:20px;margin-bottom:8px}
+.def{background:#ebf5ff;border-left:5px solid var(--p);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.prop{background:#f0fff4;border-left:5px solid var(--s);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.att{background:#fff5f5;border-left:5px solid var(--d);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.meth{background:#fffbeb;border-left:5px solid var(--o);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.ex{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:14px 0}
+.biv{background:#fdf4ff;border-left:5px solid #9333ea;padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.label{display:inline-block;font-size:.75em;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.label-def{background:#dbeafe;color:#1e40af}
+.label-prop{background:#d1fae5;color:#065f46}
+.label-att{background:#fee2e2;color:#991b1b}
+.label-meth{background:#fef3c7;color:#92400e}
+.label-ex{background:#e2e8f0;color:#4a5568}
+.label-biv{background:#f3e8ff;color:#7c3aed}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92em}
+th,td{border:1px solid #e2e8f0;padding:10px 12px;text-align:center}
+th{background:#eef2f7;font-weight:600}
+.nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
+.retenir{background:#dbeafe;border:2px solid var(--p);border-radius:8px;padding:16px 20px;margin:18px 0}
+.retenir strong{color:var(--p)}
+.objectifs{background:#ebf5ff;border-radius:8px;padding:14px 18px;margin-bottom:28px;border:1px solid #93c5fd}
+.objectifs ul{margin:6px 0 0 0;padding-left:20px}
+.exo{background:#fafafa;border:1px dashed #cbd5e0;border-radius:8px;padding:16px;margin:14px 0}
+details summary{cursor:pointer;font-weight:600;color:var(--p);margin-top:8px}
+details p{margin:6px 0 0 0;color:#4a5568}
+.anim-wrap{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:18px 0;text-align:center}
+.anim-wrap button{background:var(--p);color:#fff;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;margin:6px 4px;font-size:.85em}
+.anim-wrap button:hover{opacity:.85}
+.chart-wrap{max-width:620px;margin:18px auto}
+.svg-wrap{text-align:center;margin:18px 0;overflow-x:auto}
+.formule-box{text-align:center;background:#ebf5ff;border:2px solid var(--p);border-radius:8px;padding:14px 20px;margin:14px 0;font-size:1.05em}
+.formule-box small{display:block;margin-top:4px;color:#718096;font-size:.82em}
+</style>
 </head>
 <body>
-<div class="container">
-    <a href="maths-term-iccer.html" class="back">← Retour</a>
-    <h1>Cours — Probabilités</h1>
-    <p>Page en construction.</p>
+<div class="c">
+<a href="maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Chapitre 2 – Probabilités</h1>
+  <p class="sous-titre">Terminale Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ERA · TMA · ICCER &nbsp;|&nbsp; Groupements 1 et 3</p>
+</header>
+
+<div class="objectifs">
+  <strong>Je vais apprendre à :</strong>
+  <ul>
+    <li>Utiliser le vocabulaire des probabilités : expérience aléatoire, univers, événement, probabilité</li>
+    <li>Calculer des probabilités conditionnelles \(P(A|B)\) et appliquer la formule \(P(A \cap B) = P(B) \times P(A|B)\)</li>
+    <li>Lire et construire un <strong>arbre de probabilités pondéré</strong></li>
+    <li>Reconnaître deux événements <strong>indépendants</strong></li>
+    <li>Définir une <strong>variable aléatoire discrète</strong>, calculer son espérance \(E(X)\), sa variance \(V(X)\) et son écart-type \(\sigma\)</li>
+    <li>Utiliser la <strong>loi binomiale</strong> \(\mathcal{B}(n,p)\) et calculer \(P(X=k)\) à la calculatrice</li>
+    <li>Déterminer un <strong>intervalle de fluctuation</strong> à 95 %</li>
+  </ul>
 </div>
+
+<!-- ==================== 1. VOCABULAIRE ==================== -->
+<h2>1. Vocabulaire des probabilités</h2>
+
+<div class="def">
+  <span class="label label-def">Définitions fondamentales</span><br>
+  <ul>
+    <li>Une <strong>expérience aléatoire</strong> est une expérience dont on ne peut pas prévoir le résultat à l'avance, mais dont on connaît tous les résultats possibles.</li>
+    <li>L'<strong>univers</strong> \(\Omega\) est l'ensemble de tous les résultats possibles (issues).</li>
+    <li>Un <strong>événement</strong> est un sous-ensemble de \(\Omega\). L'événement contraire de \(A\) se note \(\bar{A}\).</li>
+    <li>La <strong>probabilité</strong> \(P(A)\) est un nombre compris entre 0 et 1 qui mesure la chance que \(A\) se réalise.</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriétés</span><br>
+  Pour tout événement \(A\) :
+  \[0 \leq P(A) \leq 1 \qquad P(\Omega) = 1 \qquad P(\emptyset) = 0 \qquad P(\bar{A}) = 1 - P(A)\]
+  Si \(A\) et \(B\) sont deux événements incompatibles (\(A \cap B = \emptyset\)) :
+  \[P(A \cup B) = P(A) + P(B)\]
+  En général : \(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — ICCER</span>
+  <p>Sur un chantier, on inspecte des chauffe-eaux. On sait que :</p>
+  <ul>
+    <li>2 % des chauffe-eaux ont un défaut électrique (événement \(E\))</li>
+    <li>3 % ont un défaut d'étanchéité (événement \(T\))</li>
+    <li>0,5 % ont les deux défauts</li>
+  </ul>
+  <p>La probabilité d'avoir au moins un défaut :</p>
+  <p>\(P(E \cup T) = P(E) + P(T) - P(E \cap T) = 0{,}02 + 0{,}03 - 0{,}005 = \mathbf{0{,}045}\)</p>
+  <p>La probabilité de n'avoir aucun défaut : \(P(\overline{E \cup T}) = 1 - 0{,}045 = \mathbf{0{,}955}\)</p>
+</div>
+
+<!-- ==================== 2. PROBABILITÉS CONDITIONNELLES ==================== -->
+<h2>2. Probabilités conditionnelles</h2>
+
+<div class="def">
+  <span class="label label-def">Définition</span><br>
+  La <strong>probabilité conditionnelle</strong> de \(A\) sachant \(B\) est la probabilité que \(A\) se réalise, sachant que \(B\) est déjà réalisé. Elle se note \(P(A|B)\) et se calcule par :
+  \[P(A|B) = \frac{P(A \cap B)}{P(B)} \quad \text{(avec } P(B) > 0\text{)}\]
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Formule des probabilités composées</span><br>
+  On en déduit immédiatement la formule fondamentale :
+  \[\boxed{P(A \cap B) = P(B) \times P(A|B)}\]
+  Symétriquement : \(P(A \cap B) = P(A) \times P(B|A)\)
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — ERA / TMA</span>
+  <p>Dans une menuiserie industrielle, 10 % des panneaux livrés sont issus du fournisseur F2. Parmi les panneaux de F2, 8 % présentent un défaut de surface. Parmi les panneaux des autres fournisseurs, 3 % présentent ce défaut.</p>
+  <p>On note \(F_2\) : « le panneau vient de F2 » et \(D\) : « le panneau est défectueux ».</p>
+  <p>\(P(F_2) = 0{,}10\) &nbsp;;&nbsp; \(P(D|F_2) = 0{,}08\)</p>
+  <p>Probabilité qu'un panneau soit de F2 <em>et</em> défectueux :</p>
+  <p>\(P(F_2 \cap D) = P(F_2) \times P(D|F_2) = 0{,}10 \times 0{,}08 = \mathbf{0{,}008}\)</p>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  \(P(A|B)\) est différent de \(P(B|A)\). Ne pas confondre la probabilité de \(A\) sachant \(B\) avec la probabilité de \(B\) sachant \(A\).
+</div>
+
+<!-- ==================== 3. ARBRE DE PROBABILITÉS ==================== -->
+<h2>3. Arbre de probabilités</h2>
+
+<div class="def">
+  <span class="label label-def">Définition</span><br>
+  Un <strong>arbre de probabilités</strong> est un schéma en forme d'arbre où chaque branche représente un événement. On note la probabilité de chaque branche. Pour calculer la probabilité d'un chemin, on <strong>multiplie</strong> les probabilités des branches. Pour calculer la probabilité d'un événement qui correspond à plusieurs chemins, on <strong>additionne</strong> les probabilités de ces chemins.
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Règles de lecture</span><br>
+  <ul>
+    <li>Sur chaque nœud, la somme des probabilités des branches qui en partent vaut <strong>1</strong>.</li>
+    <li>La probabilité d'une <strong>issue</strong> (feuille) = produit des probabilités le long du chemin.</li>
+    <li>La somme de toutes les probabilités des feuilles vaut <strong>1</strong>.</li>
+  </ul>
+</div>
+
+<p>Situation : On contrôle des panneaux de bois. 5 % sont défectueux (D). On en prélève 2 successivement et on les remet dans le lot (tirage avec remise).</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 700 380" width="680" height="380" font-family="'Segoe UI',sans-serif" font-size="13">
+  <!-- Racine -->
+  <circle cx="60" cy="190" r="8" fill="#0969da"/>
+  <text x="30" y="195" text-anchor="middle" fill="#2d3748" font-weight="bold">Start</text>
+
+  <!-- ===== NIVEAU 1 : branches D et ND ===== -->
+  <!-- Branche D (haut) -->
+  <line x1="68" y1="185" x2="250" y2="90" stroke="#0969da" stroke-width="2"/>
+  <text x="145" y="118" fill="#c53030" font-weight="bold">D</text>
+  <text x="145" y="133" fill="#c53030">0,05</text>
+  <circle cx="258" cy="88" r="8" fill="#0969da"/>
+  <text x="275" y="93" fill="#c53030" font-weight="bold">D</text>
+
+  <!-- Branche ND (bas) -->
+  <line x1="68" y1="195" x2="250" y2="292" stroke="#0969da" stroke-width="2"/>
+  <text x="145" y="262" fill="#2f855a" font-weight="bold">ND</text>
+  <text x="145" y="277" fill="#2f855a">0,95</text>
+  <circle cx="258" cy="292" r="8" fill="#0969da"/>
+  <text x="275" y="297" fill="#2f855a" font-weight="bold">ND</text>
+
+  <!-- ===== NIVEAU 2 depuis D ===== -->
+  <!-- D puis D -->
+  <line x1="266" y1="83" x2="440" y2="40" stroke="#0969da" stroke-width="2"/>
+  <text x="345" y="48" fill="#c53030" font-weight="bold">D</text>
+  <text x="345" y="62" fill="#c53030">0,05</text>
+  <circle cx="448" cy="38" r="6" fill="#c53030"/>
+  <text x="462" y="32" fill="#2d3748" font-size="12">D ∩ D</text>
+  <text x="462" y="47" fill="#718096" font-size="11">0,05 × 0,05 = 0,0025</text>
+
+  <!-- D puis ND -->
+  <line x1="266" y1="93" x2="440" y2="138" stroke="#0969da" stroke-width="2"/>
+  <text x="345" y="104" fill="#2f855a" font-weight="bold">ND</text>
+  <text x="345" y="118" fill="#2f855a">0,95</text>
+  <circle cx="448" cy="140" r="6" fill="#2f855a"/>
+  <text x="462" y="134" fill="#2d3748" font-size="12">D ∩ ND</text>
+  <text x="462" y="149" fill="#718096" font-size="11">0,05 × 0,95 = 0,0475</text>
+
+  <!-- ===== NIVEAU 2 depuis ND ===== -->
+  <!-- ND puis D -->
+  <line x1="266" y1="287" x2="440" y2="242" stroke="#0969da" stroke-width="2"/>
+  <text x="345" y="253" fill="#c53030" font-weight="bold">D</text>
+  <text x="345" y="267" fill="#c53030">0,05</text>
+  <circle cx="448" cy="240" r="6" fill="#c53030"/>
+  <text x="462" y="234" fill="#2d3748" font-size="12">ND ∩ D</text>
+  <text x="462" y="249" fill="#718096" font-size="11">0,95 × 0,05 = 0,0475</text>
+
+  <!-- ND puis ND -->
+  <line x1="266" y1="297" x2="440" y2="340" stroke="#0969da" stroke-width="2"/>
+  <text x="345" y="333" fill="#2f855a" font-weight="bold">ND</text>
+  <text x="345" y="347" fill="#2f855a">0,95</text>
+  <circle cx="448" cy="340" r="6" fill="#2f855a"/>
+  <text x="462" y="334" fill="#2d3748" font-size="12">ND ∩ ND</text>
+  <text x="462" y="349" fill="#718096" font-size="11">0,95 × 0,95 = 0,9025</text>
+
+  <!-- Titre -->
+  <text x="350" y="375" text-anchor="middle" fill="#718096" font-size="11" font-style="italic">Contrôle de 2 panneaux — tirage avec remise — D : défectueux (5%), ND : non défectueux (95%)</text>
+
+  <!-- Vérification -->
+  <text x="350" y="12" text-anchor="middle" fill="#2f855a" font-size="11">Vérif. : 0,0025 + 0,0475 + 0,0475 + 0,9025 = 1 ✓</text>
+</svg>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — calcul à partir de l'arbre</span>
+  <p>Soit \(A\) : « au moins un panneau est défectueux ».</p>
+  <p>Il est plus facile de calculer \(P(\bar{A})\) = probabilité qu'aucun panneau ne soit défectueux :</p>
+  <p>\(P(\bar{A}) = P(\text{ND} \cap \text{ND}) = 0{,}95 \times 0{,}95 = 0{,}9025\)</p>
+  <p>Donc : \(P(A) = 1 - 0{,}9025 = \mathbf{0{,}0975}\)</p>
+  <p>Il y a environ 9,75 % de chances qu'au moins un panneau du lot de deux soit défectueux.</p>
+</div>
+
+<!-- ==================== 4. INDÉPENDANCE ==================== -->
+<h2>4. Indépendance de deux événements</h2>
+
+<div class="def">
+  <span class="label label-def">Définition</span><br>
+  Deux événements \(A\) et \(B\) sont <strong>indépendants</strong> si la réalisation de l'un n'influence pas la probabilité de l'autre. Formellement :
+  \[\boxed{A \text{ et } B \text{ indépendants} \iff P(A \cap B) = P(A) \times P(B)}\]
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Conséquence</span><br>
+  Si \(A\) et \(B\) sont indépendants, alors \(P(A|B) = P(A)\) et \(P(B|A) = P(B)\).<br>
+  La connaissance de la réalisation de \(B\) ne modifie pas la probabilité de \(A\).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — ICCER</span>
+  <p>Un technicien intervient sur deux équipements indépendants : une pompe à chaleur et un chauffe-eau solaire.</p>
+  <p>La probabilité que la pompe tombe en panne dans l'année est \(P(P) = 0{,}06\).</p>
+  <p>La probabilité que le chauffe-eau tombe en panne est \(P(C) = 0{,}04\).</p>
+  <p>Les pannes sont indépendantes. Probabilité que les deux tombent en panne la même année :</p>
+  <p>\(P(P \cap C) = P(P) \times P(C) = 0{,}06 \times 0{,}04 = \mathbf{0{,}0024}\)</p>
+  <p>Probabilité qu'aucun des deux ne tombe en panne :</p>
+  <p>\(P(\bar{P} \cap \bar{C}) = (1 - 0{,}06)(1 - 0{,}04) = 0{,}94 \times 0{,}96 = \mathbf{0{,}9024}\)</p>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Incompatibilité et indépendance sont deux notions différentes et contraires. Si \(A\) et \(B\) sont <strong>incompatibles</strong> (ils ne peuvent pas se produire ensemble), ils ne peuvent pas être indépendants (sauf si l'un a probabilité 0).
+</div>
+
+<!-- ==================== 5. VARIABLE ALÉATOIRE DISCRÈTE ==================== -->
+<h2>5. Variable aléatoire discrète</h2>
+
+<div class="def">
+  <span class="label label-def">Définition</span><br>
+  Une <strong>variable aléatoire discrète</strong> \(X\) est une fonction qui associe à chaque issue de \(\Omega\) un nombre réel. La <strong>loi de probabilité</strong> de \(X\) est donnée par un tableau indiquant les valeurs \(x_i\) prises par \(X\) et les probabilités \(p_i = P(X = x_i)\) correspondantes.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Espérance, variance, écart-type</span><br>
+  Soit \(X\) une variable aléatoire prenant les valeurs \(x_1, x_2, \ldots, x_k\) avec les probabilités \(p_1, p_2, \ldots, p_k\) :
+  \[E(X) = \sum_{i} x_i \cdot p_i \qquad \text{(espérance — valeur moyenne attendue)}\]
+  \[V(X) = \sum_{i} x_i^2 \cdot p_i - [E(X)]^2 \qquad \text{(variance)}\]
+  \[\sigma(X) = \sqrt{V(X)} \qquad \text{(écart-type — mesure de la dispersion)}\]
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — ERA / TMA</span>
+  <p>On contrôle 3 panneaux. On note \(X\) le nombre de panneaux défectueux. Chaque panneau a une probabilité 0,1 d'être défectueux (indépendamment des autres). La loi de probabilité de \(X\) est :</p>
+  <table>
+    <tr>
+      <th>\(x_i\)</th><td>0</td><td>1</td><td>2</td><td>3</td>
+    </tr>
+    <tr>
+      <th>\(P(X = x_i)\)</th>
+      <td>\(0{,}9^3 = 0{,}729\)</td>
+      <td>\(3 \times 0{,}1 \times 0{,}9^2 = 0{,}243\)</td>
+      <td>\(3 \times 0{,}1^2 \times 0{,}9 = 0{,}027\)</td>
+      <td>\(0{,}1^3 = 0{,}001\)</td>
+    </tr>
+  </table>
+  <p>Vérification : \(0{,}729 + 0{,}243 + 0{,}027 + 0{,}001 = 1\) ✓</p>
+  <p>\(E(X) = 0 \times 0{,}729 + 1 \times 0{,}243 + 2 \times 0{,}027 + 3 \times 0{,}001 = 0 + 0{,}243 + 0{,}054 + 0{,}003 = \mathbf{0{,}3}\)</p>
+  <p>En moyenne, on s'attend à 0,3 panneau défectueux sur 3 contrôlés (soit 10 %, ce qui est cohérent avec le taux de défaut).</p>
+</div>
+
+<!-- ==================== 6. LOI BINOMIALE ==================== -->
+<h2>6. Loi binomiale \(\mathcal{B}(n, p)\)</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Schéma de Bernoulli</span><br>
+  On répète \(n\) fois, de manière <strong>indépendante</strong>, une même expérience ayant deux issues : « succès » (probabilité \(p\)) et « échec » (probabilité \(1-p\)).<br>
+  La variable \(X\) = « nombre de succès en \(n\) répétitions » suit la <strong>loi binomiale</strong> \(\mathcal{B}(n, p)\).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Formule de la loi binomiale</span><br>
+  \[\boxed{P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}}\]
+  avec \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\) le coefficient binomial (« \(k\) parmi \(n\) »).<br><br>
+  <strong>Espérance et écart-type :</strong>
+  \[E(X) = np \qquad \sigma(X) = \sqrt{np(1-p)}\]
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Calculatrice (CASIO fx-92+)</span><br>
+  <ol>
+    <li>Appuyer sur <kbd>MENU</kbd> → choisir <kbd>STAT</kbd> ou <kbd>DIST</kbd> selon le modèle</li>
+    <li>Sélectionner <kbd>DIST</kbd> → <kbd>BINOMIAL</kbd></li>
+    <li>Pour \(P(X = k)\) : choisir <kbd>Bpd</kbd> — entrer \(k\), \(n\), \(p\)</li>
+    <li>Pour \(P(X \leq k)\) : choisir <kbd>Bcd</kbd> — entrer \(k\), \(n\), \(p\)</li>
+  </ol>
+  <p><strong>Sur TI-83/84 :</strong> <kbd>2nd</kbd> + <kbd>VARS</kbd> → <kbd>binompdf(n,p,k)</kbd> ou <kbd>binomcdf(n,p,k)</kbd></p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — ICCER</span>
+  <p>Sur une installation de chauffage, la probabilité qu'un robinet thermostatique soit défaillant est \(p = 0{,}08\). On contrôle \(n = 10\) robinets. Soit \(X\) le nombre de robinets défaillants.</p>
+  <p>\(X \sim \mathcal{B}(10\,;\,0{,}08)\)</p>
+  <p><strong>1.</strong> Probabilité qu'exactement 2 robinets soient défaillants :</p>
+  <p>\(P(X=2) = \binom{10}{2} \times 0{,}08^2 \times 0{,}92^8 = 45 \times 0{,}0064 \times 0{,}5132 \approx \mathbf{0{,}1478}\)</p>
+  <p><strong>2.</strong> Espérance : \(E(X) = 10 \times 0{,}08 = \mathbf{0{,}8}\) robinet défaillant en moyenne</p>
+  <p><strong>3.</strong> Écart-type : \(\sigma = \sqrt{10 \times 0{,}08 \times 0{,}92} = \sqrt{0{,}736} \approx \mathbf{0{,}858}\)</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — ERA / TMA</span>
+  <p>Un atelier produit des profilés aluminium. Le taux de non-conformité est \(p = 0{,}05\). On prélève \(n = 20\) profilés. Soit \(X\) le nombre de pièces non conformes. \(X \sim \mathcal{B}(20\,;\,0{,}05)\)</p>
+  <p>\(E(X) = 20 \times 0{,}05 = 1\) pièce non conforme en moyenne.</p>
+  <p>\(P(X = 0) = 0{,}95^{20} \approx 0{,}3585\) : il y a 35,85 % de chances que le lot soit parfait.</p>
+  <p>\(P(X \geq 2) = 1 - P(X=0) - P(X=1)\)</p>
+  <p>\(P(X=1) = 20 \times 0{,}05 \times 0{,}95^{19} \approx 20 \times 0{,}05 \times 0{,}3774 \approx 0{,}3774\)</p>
+  <p>\(P(X \geq 2) \approx 1 - 0{,}3585 - 0{,}3774 \approx \mathbf{0{,}2641}\)</p>
+</div>
+
+<!-- ===== GRAPHIQUE CHART.JS – LOI BINOMIALE ===== -->
+<h2>7. Visualisation de la loi binomiale</h2>
+
+<p>Le graphique ci-dessous représente les probabilités \(P(X = k)\) pour \(X \sim \mathcal{B}(n, p)\). Utilisez les boutons pour faire varier \(n\) et \(p\).</p>
+
+<div class="chart-wrap">
+  <canvas id="chartBinom"></canvas>
+</div>
+<p style="text-align:center;font-size:.85em;color:#718096" id="legendBinom">Loi binomiale \(\mathcal{B}(20\,;\,0{,}08)\) — Contrôle de robinets défaillants</p>
+
+<div class="anim-wrap">
+  <p><strong>Modifier les paramètres de la loi binomiale</strong></p>
+  <p>
+    <label>n = <strong id="valN">20</strong></label> &nbsp;
+    <button onclick="changeParam(10, 0.08)">n=10, p=0,08</button>
+    <button onclick="changeParam(20, 0.05)">n=20, p=0,05</button>
+    <button onclick="changeParam(20, 0.08)">n=20, p=0,08</button>
+    <button onclick="changeParam(30, 0.1)">n=30, p=0,10</button>
+    <button onclick="changeParam(50, 0.05)">n=50, p=0,05</button>
+  </p>
+  <p id="statsBinom" style="color:var(--p);font-weight:600;font-size:.9em;margin-top:6px"></p>
+</div>
+
+<!-- ==================== 8. INTERVALLE DE FLUCTUATION ==================== -->
+<h2>8. Intervalle de fluctuation à 95 %</h2>
+
+<div class="def">
+  <span class="label label-def">Définition</span><br>
+  Si \(X \sim \mathcal{B}(n, p)\), l'<strong>intervalle de fluctuation à 95 %</strong> est l'intervalle centré sur l'espérance \(np\) dans lequel \(X\) a au moins 95 % de chances de se trouver.<br>
+  On utilise la formule approchée :
+  \[\boxed{I_{0{,}95} = \left[np - 2\sigma \,;\, np + 2\sigma\right]}\]
+  avec \(\sigma = \sqrt{np(1-p)}\).
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode</span><br>
+  <ol>
+    <li>Identifier \(n\) (taille de l'échantillon) et \(p\) (probabilité de succès)</li>
+    <li>Calculer l'espérance : \(\mu = np\)</li>
+    <li>Calculer l'écart-type : \(\sigma = \sqrt{np(1-p)}\)</li>
+    <li>Écrire l'intervalle : \([np - 2\sigma \,;\, np + 2\sigma]\)</li>
+    <li>Si la valeur observée est hors de cet intervalle, c'est suspect : le taux \(p\) a peut-être changé.</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — ERA / TMA</span>
+  <p>Une chaîne de production de fenêtres a un taux de défaut habituel de \(p = 0{,}05\). On contrôle un lot de \(n = 100\) fenêtres. Soit \(X\) le nombre de pièces défectueuses.</p>
+  <p>\(E(X) = np = 100 \times 0{,}05 = 5\)</p>
+  <p>\(\sigma = \sqrt{100 \times 0{,}05 \times 0{,}95} = \sqrt{4{,}75} \approx 2{,}18\)</p>
+  <p>Intervalle de fluctuation à 95 % :</p>
+  <p>\(I_{0{,}95} = [5 - 2 \times 2{,}18 \,;\, 5 + 2 \times 2{,}18] = [0{,}64 \,;\, 9{,}36]\)</p>
+  <p>Soit, en nombres entiers : \([1 \,;\, 9]\)</p>
+  <p>Si on observe 12 pièces défectueuses dans ce lot, c'est hors de l'intervalle : le <strong>taux de défaut a probablement augmenté</strong>, il faut investiguer.</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — ICCER</span>
+  <p>Un installateur sait que 4 % des capteurs solaires thermiques présentent une anomalie après 5 ans. Il inspecte \(n = 200\) capteurs. Soit \(X\) le nombre d'anomalies.</p>
+  <p>\(np = 200 \times 0{,}04 = 8\)</p>
+  <p>\(\sigma = \sqrt{200 \times 0{,}04 \times 0{,}96} = \sqrt{7{,}68} \approx 2{,}77\)</p>
+  <p>\(I_{0{,}95} = [8 - 5{,}54 \,;\, 8 + 5{,}54] = [2{,}46 \,;\, 13{,}54]\)</p>
+  <p>En pratique : entre 3 et 13 anomalies est une fourchette normale. Au-delà de 13, une alerte doit être déclenchée.</p>
+</div>
+
+<!-- ==================== TABLEAU RÉCAP ==================== -->
+<h2>Tableau récapitulatif des formules</h2>
+
+<table>
+  <tr><th>Notion</th><th>Formule</th><th>Remarque</th></tr>
+  <tr>
+    <td>Probabilité de l'événement contraire</td>
+    <td>\(P(\bar{A}) = 1 - P(A)\)</td>
+    <td>Toujours utile</td>
+  </tr>
+  <tr>
+    <td>Probabilité conditionnelle</td>
+    <td>\(P(A|B) = \dfrac{P(A \cap B)}{P(B)}\)</td>
+    <td>\(P(B) \neq 0\)</td>
+  </tr>
+  <tr>
+    <td>Probabilités composées</td>
+    <td>\(P(A \cap B) = P(B) \times P(A|B)\)</td>
+    <td>Formule clé de l'arbre</td>
+  </tr>
+  <tr>
+    <td>Événements indépendants</td>
+    <td>\(P(A \cap B) = P(A) \times P(B)\)</td>
+    <td>Critère d'indépendance</td>
+  </tr>
+  <tr>
+    <td>Espérance</td>
+    <td>\(E(X) = \sum x_i p_i\)</td>
+    <td>Valeur moyenne sur le long terme</td>
+  </tr>
+  <tr>
+    <td>Loi binomiale \(\mathcal{B}(n,p)\)</td>
+    <td>\(P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}\)</td>
+    <td>Calculatrice : binompdf</td>
+  </tr>
+  <tr>
+    <td>Espérance binomiale</td>
+    <td>\(E(X) = np\)</td>
+    <td>Nombre moyen de succès</td>
+  </tr>
+  <tr>
+    <td>Écart-type binomiale</td>
+    <td>\(\sigma = \sqrt{np(1-p)}\)</td>
+    <td>Mesure de la dispersion</td>
+  </tr>
+  <tr>
+    <td>Intervalle de fluctuation à 95 %</td>
+    <td>\([np - 2\sigma \,;\, np + 2\sigma]\)</td>
+    <td>Formule approchée</td>
+  </tr>
+</table>
+
+<!-- ==================== À RETENIR ==================== -->
+<div class="retenir">
+  <strong>A retenir — l'essentiel du chapitre</strong>
+  <ul>
+    <li>La <strong>probabilité conditionnelle</strong> \(P(A|B)\) se lit sur les branches d'un arbre et se combine par multiplication.</li>
+    <li>Deux événements sont <strong>indépendants</strong> si \(P(A \cap B) = P(A) \times P(B)\).</li>
+    <li>La <strong>loi binomiale</strong> \(\mathcal{B}(n, p)\) modélise le nombre de succès en \(n\) épreuves identiques et indépendantes.</li>
+    <li>Son espérance est \(E(X) = np\) et son écart-type est \(\sigma = \sqrt{np(1-p)}\).</li>
+    <li>L'<strong>intervalle de fluctuation à 95 %</strong> est \([np - 2\sigma \,;\, np + 2\sigma]\). Une valeur en dehors de cet intervalle signale une anomalie possible.</li>
+    <li>On utilise la calculatrice pour calculer les probabilités binomiales (fonctions <kbd>binompdf</kbd> et <kbd>binomcdf</kbd>).</li>
+  </ul>
+</div>
+
+<!-- ==================== LIEN PROFESSIONNEL ==================== -->
+<div class="biv">
+  <span class="label label-biv">Lien avec les enseignements professionnels</span><br>
+  <ul>
+    <li><strong>ERA / TMA (Groupement 3)</strong> : contrôle qualité sur les chaînes de production de menuiseries et d'agencements, vérification de conformité de lots de panneaux ou de profilés, acceptation ou refus d'un lot selon le taux de non-conformité observé.</li>
+    <li><strong>ICCER (Groupement 1)</strong> : fiabilité des équipements de chauffage et de climatisation, probabilité de panne d'une installation, taux de défaillance sur une flotte d'équipements, décision de maintenance préventive basée sur les intervalles de fluctuation.</li>
+    <li><strong>Transversal</strong> : en gestion de projet, évaluation du risque ; en physique-chimie, traitement statistique de mesures répétées.</li>
+  </ul>
+</div>
+
+<!-- ==================== MINI EXERCICES ==================== -->
+<h2>Mini exercices</h2>
+
+<div class="exo">
+  <strong>Exercice 1 — Arbre de probabilités (ERA / TMA)</strong>
+  <p>Un lot contient des portes intérieures fabriquées sur deux lignes de production : 60 % viennent de la ligne A, 40 % de la ligne B. Sur la ligne A, 4 % des portes sont non conformes. Sur la ligne B, 7 % sont non conformes. On prélève une porte au hasard.</p>
+  <p>1. Construire un arbre de probabilités.</p>
+  <p>2. Calculer la probabilité que la porte soit non conforme.</p>
+  <p>3. Sachant qu'une porte est non conforme, quelle est la probabilité qu'elle vienne de la ligne B ?</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <p><strong>1. Arbre :</strong> Branche A (0,6) : NC (0,04) / C (0,96) &nbsp;; Branche B (0,4) : NC (0,07) / C (0,93)</p>
+    <p><strong>2.</strong> \(P(\text{NC}) = P(A) \times P(\text{NC}|A) + P(B) \times P(\text{NC}|B)\)<br>
+    \(= 0{,}6 \times 0{,}04 + 0{,}4 \times 0{,}07 = 0{,}024 + 0{,}028 = \mathbf{0{,}052}\)</p>
+    <p><strong>3.</strong> \(P(B|\text{NC}) = \dfrac{P(B \cap \text{NC})}{P(\text{NC})} = \dfrac{0{,}4 \times 0{,}07}{0{,}052} = \dfrac{0{,}028}{0{,}052} \approx \mathbf{0{,}538}\)</p>
+    <p>Il y a environ 53,8 % de chances que la porte non conforme vienne de la ligne B.</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 2 — Loi binomiale (ICCER)</strong>
+  <p>Un technicien installe 15 vannes de régulation. La probabilité qu'une vanne soit mal réglée est \(p = 0{,}06\). Soit \(X\) le nombre de vannes mal réglées.</p>
+  <p>1. Quelle loi suit \(X\) ? Préciser les paramètres.</p>
+  <p>2. Calculer \(P(X = 0)\) et \(P(X = 1)\).</p>
+  <p>3. Calculer \(P(X \geq 2)\).</p>
+  <p>4. Donner l'espérance et l'écart-type de \(X\).</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <p><strong>1.</strong> \(X \sim \mathcal{B}(15 \,;\, 0{,}06)\)</p>
+    <p><strong>2.</strong> \(P(X=0) = 0{,}94^{15} \approx \mathbf{0{,}3953}\)</p>
+    <p>\(P(X=1) = \binom{15}{1} \times 0{,}06 \times 0{,}94^{14} = 15 \times 0{,}06 \times 0{,}4205 \approx \mathbf{0{,}3785}\)</p>
+    <p><strong>3.</strong> \(P(X \geq 2) = 1 - P(X=0) - P(X=1) \approx 1 - 0{,}3953 - 0{,}3785 = \mathbf{0{,}2262}\)</p>
+    <p><strong>4.</strong> \(E(X) = 15 \times 0{,}06 = \mathbf{0{,}9}\) &nbsp;;&nbsp; \(\sigma = \sqrt{15 \times 0{,}06 \times 0{,}94} = \sqrt{0{,}846} \approx \mathbf{0{,}92}\)</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 3 — Intervalle de fluctuation (ERA / TMA)</strong>
+  <p>Un contrôleur qualité sait que le taux habituel de défauts sur les joints de vitrage est \(p = 0{,}03\). Il inspecte un lot de \(n = 150\) joints.</p>
+  <p>1. Calculer l'espérance et l'écart-type du nombre de joints défectueux.</p>
+  <p>2. Déterminer l'intervalle de fluctuation à 95 % (donner des valeurs entières).</p>
+  <p>3. On observe 10 joints défectueux. Faut-il déclencher une alerte qualité ?</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <p><strong>1.</strong> \(E(X) = np = 150 \times 0{,}03 = \mathbf{4{,}5}\)</p>
+    <p>\(\sigma = \sqrt{150 \times 0{,}03 \times 0{,}97} = \sqrt{4{,}365} \approx \mathbf{2{,}09}\)</p>
+    <p><strong>2.</strong> \(I_{0{,}95} = [4{,}5 - 2 \times 2{,}09 \,;\, 4{,}5 + 2 \times 2{,}09] = [0{,}32 \,;\, 8{,}68]\)</p>
+    <p>En nombres entiers : \(\mathbf{[1 \,;\, 8]}\)</p>
+    <p><strong>3.</strong> 10 est en dehors de l'intervalle \([1 ; 8]\). Oui, il faut déclencher une alerte : le taux de défauts semble avoir augmenté.</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 4 — Variable aléatoire et espérance (ICCER)</strong>
+  <p>Un technicien effectue des diagnostics sur des chaudières. La durée d'une intervention suit la loi suivante :</p>
+  <table>
+    <tr>
+      <th>Durée \(x_i\) (heures)</th><td>1</td><td>2</td><td>3</td><td>4</td>
+    </tr>
+    <tr>
+      <th>\(P(X = x_i)\)</th><td>0,30</td><td>0,45</td><td>0,20</td><td>0,05</td>
+    </tr>
+  </table>
+  <p>1. Vérifier que cette distribution est bien une loi de probabilité.</p>
+  <p>2. Calculer l'espérance \(E(X)\). Interpréter.</p>
+  <p>3. Calculer la variance \(V(X)\) et l'écart-type \(\sigma(X)\).</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <p><strong>1.</strong> \(0{,}30 + 0{,}45 + 0{,}20 + 0{,}05 = 1{,}00\) ✓ — de plus, toutes les probabilités sont positives.</p>
+    <p><strong>2.</strong> \(E(X) = 1 \times 0{,}30 + 2 \times 0{,}45 + 3 \times 0{,}20 + 4 \times 0{,}05\)<br>
+    \(= 0{,}30 + 0{,}90 + 0{,}60 + 0{,}20 = \mathbf{2{,}00}\) heures<br>
+    En moyenne, une intervention dure 2 heures.</p>
+    <p><strong>3.</strong> \(E(X^2) = 1^2 \times 0{,}30 + 2^2 \times 0{,}45 + 3^2 \times 0{,}20 + 4^2 \times 0{,}05\)<br>
+    \(= 0{,}30 + 1{,}80 + 1{,}80 + 0{,}80 = 4{,}70\)<br>
+    \(V(X) = E(X^2) - [E(X)]^2 = 4{,}70 - 4{,}00 = \mathbf{0{,}70}\)<br>
+    \(\sigma(X) = \sqrt{0{,}70} \approx \mathbf{0{,}84}\) heure</p>
+  </details>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+// ===== LOI BINOMIALE — UTILITAIRES =====
+function coeff(n, k) {
+  if (k === 0 || k === n) return 1;
+  if (k > n) return 0;
+  let res = 1;
+  for (let i = 0; i < k; i++) {
+    res = res * (n - i) / (i + 1);
+  }
+  return Math.round(res);
+}
+
+function binomPdf(n, p, k) {
+  return coeff(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+}
+
+// ===== GRAPHIQUE CHART.JS =====
+let currentN = 20, currentP = 0.08;
+const ctxB = document.getElementById('chartBinom').getContext('2d');
+
+function buildData(n, p) {
+  const labels = [], values = [], colors = [];
+  const mu = n * p;
+  const sigma = Math.sqrt(n * p * (1 - p));
+  const lo = mu - 2 * sigma, hi = mu + 2 * sigma;
+  for (let k = 0; k <= n; k++) {
+    const prob = binomPdf(n, p, k);
+    if (prob < 1e-6 && k > mu + 4 * sigma) break;
+    labels.push(k);
+    values.push(parseFloat(prob.toFixed(6)));
+    if (k >= lo && k <= hi) {
+      colors.push('rgba(9,105,218,0.75)');
+    } else {
+      colors.push('rgba(197,48,48,0.65)');
+    }
+  }
+  return { labels, values, colors, mu, sigma, lo, hi };
+}
+
+const initData = buildData(currentN, currentP);
+const binomChart = new Chart(ctxB, {
+  type: 'bar',
+  data: {
+    labels: initData.labels,
+    datasets: [{
+      label: 'P(X = k)',
+      data: initData.values,
+      backgroundColor: initData.colors,
+      borderColor: initData.colors.map(c => c.replace('0.75','1').replace('0.65','1')),
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => `P(X = ${ctx.label}) = ${ctx.raw.toFixed(4)}`
+        }
+      }
+    },
+    scales: {
+      x: { title: { display: true, text: 'k (nombre de succès)' } },
+      y: { title: { display: true, text: 'P(X = k)' }, beginAtZero: true }
+    }
+  }
+});
+
+function updateStats(n, p) {
+  const mu = n * p;
+  const sigma = Math.sqrt(n * p * (1 - p));
+  const lo = Math.max(0, mu - 2 * sigma);
+  const hi = Math.min(n, mu + 2 * sigma);
+  document.getElementById('statsBinom').textContent =
+    `E(X) = np = ${mu.toFixed(2)} | σ = ${sigma.toFixed(3)} | Intervalle 95% : [${lo.toFixed(1)} ; ${hi.toFixed(1)}]`;
+  document.getElementById('legendBinom').textContent =
+    `Loi binomiale B(${n} ; ${p}) — en bleu : dans l'intervalle de fluctuation à 95% | en rouge : hors intervalle`;
+  document.getElementById('valN').textContent = n;
+}
+
+function changeParam(n, p) {
+  currentN = n; currentP = p;
+  const d = buildData(n, p);
+  binomChart.data.labels = d.labels;
+  binomChart.data.datasets[0].data = d.values;
+  binomChart.data.datasets[0].backgroundColor = d.colors;
+  binomChart.data.datasets[0].borderColor = d.colors.map(c => c.replace('0.75','1').replace('0.65','1'));
+  binomChart.update();
+  updateStats(n, p);
+}
+
+// Init
+updateStats(currentN, currentP);
+</script>
 </body>
 </html>
