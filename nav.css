@@ -1,0 +1,136 @@
+/* =====================================================================
+   nav.css  —  Navigation automatique du site pédagogique
+   Charger via : <link rel="stylesheet" href="nav.css">
+   ===================================================================== */
+
+/* ── Bloc supérieur ─────────────────────────────────────────────────── */
+.sn-top-block  { margin-bottom: 18px; }
+.sn-footer-block {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ── Fil d'Ariane ───────────────────────────────────────────────────── */
+.sn-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: .80em;
+  color: #718096;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+.sn-breadcrumb a { color: #0969da; text-decoration: none; }
+.sn-breadcrumb a:hover { text-decoration: underline; }
+.sn-sep { color: #cbd5e0; font-size: .9em; }
+.sn-bc-current { font-weight: 700; color: #2d3748; }
+
+/* ── Menu du chapitre (onglets) ─────────────────────────────────────── */
+.sn-ch-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 14px;
+}
+.sn-tab {
+  text-decoration: none;
+  font-size: .82em;
+  font-weight: 600;
+  padding: 5px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #e2e8f0;
+  color: #0969da;
+  background: #fff;
+  transition: background .15s, border-color .15s;
+}
+.sn-tab:hover {
+  background: #ebf5ff;
+  border-color: #93c5fd;
+}
+.sn-tab-active {
+  background: #0969da;
+  color: #fff;
+  border-color: #0969da;
+}
+.sn-tab-active:hover { background: #0851b0; }
+
+/* ── Navigation précédent / suivant ─────────────────────────────────── */
+.sn-ch-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 8px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+.sn-btn, .sn-btn-disabled {
+  display: inline-block;
+  font-size: .81em;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1.5px solid #e2e8f0;
+  text-decoration: none;
+  text-align: center;
+  transition: background .15s, border-color .15s;
+  max-width: 40%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sn-btn { color: #0969da; background: #fff; }
+.sn-btn:hover { background: #ebf5ff; border-color: #93c5fd; }
+
+.sn-btn-summary {
+  max-width: none;
+  color: #4a5568;
+  border-color: #cbd5e0;
+  background: #f8fafc;
+  flex-shrink: 0;
+}
+.sn-btn-summary:hover { background: #eef2f7; color: #2d3748; }
+
+.sn-btn-disabled {
+  color: #a0aec0;
+  background: #f8fafc;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Bouton retour en haut ───────────────────────────────────────────── */
+#sn-back-top {
+  position: fixed;
+  bottom: 26px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0969da;
+  color: #fff;
+  font-size: 1.5em;
+  line-height: 44px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(0,0,0,.20);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s, background .15s;
+  z-index: 999;
+}
+#sn-back-top:hover { background: #0851b0; }
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .sn-btn, .sn-btn-disabled {
+    max-width: 44%;
+    font-size: .74em;
+    padding: 6px 8px;
+  }
+  .sn-btn-summary { font-size: .74em; padding: 6px 8px; }
+  .sn-breadcrumb  { font-size: .76em; }
+}
