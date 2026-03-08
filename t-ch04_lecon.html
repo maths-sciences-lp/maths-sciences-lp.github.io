@@ -1,102 +1,240 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ch04 – Fonctions polynômes de degré 3 — Terminale Bac Pro</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <style>
-    :root{--p:#0969da;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
-    body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
-    .c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-    header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
-    h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
-    .sous-titre{color:#718096;font-size:.95em;margin:0}
-    h2{font-size:1.15em;color:var(--p);border-left:4px solid var(--p);padding-left:12px;margin-top:34px;margin-bottom:12px}
-    h3{font-size:1em;color:#4a5568;margin-top:20px;margin-bottom:8px}
-    .def{background:#ebf5ff;border-left:5px solid var(--p);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-    .prop{background:#f0fff4;border-left:5px solid var(--s);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-    .att{background:#fff5f5;border-left:5px solid var(--d);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-    .meth{background:#fffbeb;border-left:5px solid var(--o);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-    .ex{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:14px 0}
-    .biv{background:#fdf4ff;border-left:5px solid #9333ea;padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-    .label{display:inline-block;font-size:.75em;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:6px}
-    .label-def{background:#dbeafe;color:#1e40af}
-    .label-prop{background:#d1fae5;color:#065f46}
-    .label-att{background:#fee2e2;color:#991b1b}
-    .label-meth{background:#fef3c7;color:#92400e}
-    .label-ex{background:#e2e8f0;color:#4a5568}
-    .label-biv{background:#f3e8ff;color:#7c3aed}
-    table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92em}
-    th,td{border:1px solid #e2e8f0;padding:10px 12px;text-align:center}
-    th{background:#eef2f7;font-weight:600}
-    .nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
-    .retenir{background:#dbeafe;border:2px solid var(--p);border-radius:8px;padding:16px 20px;margin:18px 0}
-    .objectifs{background:#ebf5ff;border-radius:8px;padding:14px 18px;margin-bottom:28px;border:1px solid #93c5fd}
-    .objectifs ul{margin:6px 0 0 0;padding-left:20px}
-    .exo{background:#fafafa;border:1px dashed #cbd5e0;border-radius:8px;padding:16px;margin:14px 0}
-    details summary{cursor:pointer;font-weight:600;color:var(--p);margin-top:8px}
-    details p{margin:6px 0 0 0;color:#4a5568}
-    .anim-wrap{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:18px 0;text-align:center}
-    .anim-wrap button{background:var(--p);color:#fff;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;margin:6px 4px;font-size:.85em}
-    .chart-wrap{max-width:620px;margin:18px auto}
-    /* Tableau de variations */
-    .tv-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92em}
-    .tv-table th,.tv-table td{border:1px solid #c0ccd8;padding:10px 8px;text-align:center;vertical-align:middle}
-    .tv-table th{background:#eef2f7}
-    .tv-plus{color:var(--s);font-weight:700;font-size:1.1em}
-    .tv-minus{color:var(--d);font-weight:700;font-size:1.1em}
-    .tv-arrow-up{display:inline-block;font-size:1.4em;color:var(--s)}
-    .tv-arrow-down{display:inline-block;font-size:1.4em;color:var(--d)}
-    .tv-val{font-weight:700;color:var(--t)}
-    .slider-row{display:flex;align-items:center;gap:12px;margin:8px 0;flex-wrap:wrap}
-    .slider-row label{min-width:40px;font-weight:600;color:var(--t)}
-    .slider-row input[type=range]{flex:1;min-width:120px}
-    .slider-row span{min-width:48px;text-align:right;font-family:monospace;color:var(--p);font-weight:700}
-    .tag-metier{display:inline-block;background:#e0f2fe;color:#0369a1;border-radius:4px;padding:1px 8px;font-size:.78em;font-weight:700;margin-left:6px;vertical-align:middle}
-    .tag-iccer{background:#dcfce7;color:#166534}
-    .formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-    @media(max-width:600px){.formula-grid{grid-template-columns:1fr}.slider-row{flex-direction:column;align-items:flex-start}}
-    .formula-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;text-align:center}
-    .formula-card .fc-label{font-size:.78em;color:#718096;margin-bottom:4px}
-    .formula-card .fc-formula{font-size:1em;color:var(--t)}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 &ndash; Fonctions polyn&ocirc;mes de degr&eacute; 3 &mdash; Terminale Bac Pro</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--p:#0969da;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
+.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
+h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
+.sous-titre{color:#718096;font-size:.95em;margin:0}
+.maj{color:#a0aec0;font-size:.75em;margin:5px 0 0 0;font-style:italic}
+h2{font-size:1.15em;color:var(--p);border-left:4px solid var(--p);padding-left:12px;margin-top:36px;margin-bottom:12px}
+h3{font-size:1em;color:#4a5568;margin-top:22px;margin-bottom:8px}
+.def{background:#ebf5ff;border-left:5px solid var(--p);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.prop{background:#f0fff4;border-left:5px solid var(--s);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.att{background:#fff5f5;border-left:5px solid var(--d);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.meth{background:#fffbeb;border-left:5px solid var(--o);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.ex{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:14px 0}
+.biv{background:#fdf4ff;border-left:5px solid #9333ea;padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.hprog{background:#fdf4ff;border-left:5px solid #9333ea;padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.label{display:inline-block;font-size:.75em;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.label-def{background:#dbeafe;color:#1e40af}
+.label-prop{background:#d1fae5;color:#065f46}
+.label-att{background:#fee2e2;color:#991b1b}
+.label-meth{background:#fef3c7;color:#92400e}
+.label-ex{background:#e2e8f0;color:#4a5568}
+.label-biv{background:#f3e8ff;color:#7c3aed}
+.label-hprog{background:#f3e8ff;color:#7c3aed}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92em}
+th,td{border:1px solid #e2e8f0;padding:10px 12px;text-align:center}
+th{background:#eef2f7;font-weight:600}
+.nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
+.retenir{background:#dbeafe;border:2px solid var(--p);border-radius:8px;padding:16px 20px;margin:18px 0}
+.objectifs{background:#ebf5ff;border-radius:8px;padding:14px 18px;margin-bottom:28px;border:1px solid #93c5fd}
+.objectifs ul{margin:6px 0 0 0;padding-left:20px}
+.exo{background:#fafafa;border:1px dashed #cbd5e0;border-radius:8px;padding:16px;margin:14px 0}
+details summary{cursor:pointer;font-weight:600;color:var(--p);margin-top:8px;background:#ebf5ff;padding:7px 12px;border-radius:6px;user-select:none}
+details summary:hover{background:#dbeafe}
+details[open] summary{margin-bottom:8px}
+details p,details li{margin:5px 0;color:#4a5568}
+.corr-detail{background:#f0fff4;border-left:4px solid var(--s);padding:12px 16px;border-radius:0 8px 8px 0;margin-top:8px;font-size:.93em}
+.anim-wrap{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:18px 0;text-align:center}
+.anim-wrap button{background:var(--p);color:#fff;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;margin:6px 4px;font-size:.85em}
+.anim-wrap button:hover{opacity:.85}
+.chart-wrap{max-width:620px;margin:18px auto}
+.tv-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92em}
+.tv-table th,.tv-table td{border:1px solid #c0ccd8;padding:10px 8px;text-align:center;vertical-align:middle}
+.tv-table th{background:#eef2f7}
+.tv-plus{color:var(--s);font-weight:700;font-size:1.1em}
+.tv-minus{color:var(--d);font-weight:700;font-size:1.1em}
+.tv-arrow-up{display:inline-block;font-size:1.4em;color:var(--s)}
+.tv-arrow-down{display:inline-block;font-size:1.4em;color:var(--d)}
+.tv-val{font-weight:700;color:var(--t)}
+.slider-row{display:flex;align-items:center;gap:12px;margin:8px 0;flex-wrap:wrap}
+.slider-row label{min-width:40px;font-weight:600;color:var(--t)}
+.slider-row input[type=range]{flex:1;min-width:120px}
+.slider-row span{min-width:48px;text-align:right;font-family:monospace;color:var(--p);font-weight:700}
+.tag-metier{display:inline-block;background:#e0f2fe;color:#0369a1;border-radius:4px;padding:1px 8px;font-size:.78em;font-weight:700;margin-left:6px;vertical-align:middle}
+.tag-iccer{background:#dcfce7;color:#166534}
+.formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+@media(max-width:600px){.formula-grid{grid-template-columns:1fr}.slider-row{flex-direction:column;align-items:flex-start}}
+.formula-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;text-align:center}
+.formula-card .fc-label{font-size:.78em;color:#718096;margin-bottom:4px}
+.formula-card .fc-formula{font-size:1em;color:var(--t)}
+.mini-exo-box{background:#fafafa;border:2px dashed #93c5fd;border-radius:10px;padding:16px 20px;margin:20px 0}
+.mini-exo-box strong{color:var(--p)}
+.section-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:var(--p);color:#fff;border-radius:50%;font-weight:700;font-size:.9em;margin-right:8px;flex-shrink:0;vertical-align:middle}
+.erreur-box{background:#fff5f5;border:2px solid var(--d);border-radius:8px;padding:14px 18px;margin:14px 0}
+.erreur-box strong{color:var(--d)}
+.tableur-ex{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;margin:14px 0}
+.tableur-ex table{margin:0;font-size:.88em}
+.tableur-ex th{background:#0969da;color:#fff;font-size:.82em}
+.tableur-ex td.formule{font-family:monospace;color:#2f855a;font-size:.85em;background:#f0fff4}
+.chemin{background:#fffbeb;border:1.5px solid var(--o);border-radius:6px;padding:8px 14px;margin:8px 0;font-size:.93em}
+.nav-footer{display:flex;justify-content:space-between;align-items:center;margin-top:36px;padding-top:18px;border-top:1px solid #e2e8f0;font-size:.88em}
+.nav-footer a{text-decoration:none;color:var(--p);font-weight:600}
+.nav-footer a:hover{text-decoration:underline}
+</style>
 </head>
 <body>
 <div class="c">
 
-  <a href="maths-term-iccer.html" class="nb">&larr; Retour au sommaire</a>
+<a href="maths-term-iccer.html" class="nb">&larr; Retour au sommaire</a>
 
-  <header>
-    <h1>Ch04 &ndash; Fonctions polynômes de degré 3</h1>
-    <p class="sous-titre">Terminale Bac Pro &mdash; ERA &bull; TMA &bull; ICCER</p>
-  </header>
+<header>
+  <h1>Ch04 &ndash; Fonctions polyn&ocirc;mes de degr&eacute; 3</h1>
+  <p class="sous-titre">Terminale Bac Pro &mdash; ERA &bull; TMA &bull; ICCER</p>
+  <p class="maj">Derni&egrave;re mise &agrave; jour&nbsp;: 8 mars 2026</p>
+</header>
 
-  <!-- OBJECTIFS -->
-  <div class="objectifs">
-    <strong>Objectifs du chapitre :</strong>
+<!-- OBJECTIFS -->
+<div class="objectifs">
+  <strong>Je vais apprendre &agrave;&nbsp;:</strong>
+  <ul>
+    <li>Reconna&icirc;tre et d&eacute;finir une <strong>fonction polyn&ocirc;me de degr&eacute; 3</strong>.</li>
+    <li>Calculer la <strong>d&eacute;riv&eacute;e</strong> d&rsquo;un polyn&ocirc;me de degr&eacute; 3.</li>
+    <li>Dresser le <strong>tableau de variations</strong> &agrave; l&rsquo;aide du signe de la d&eacute;riv&eacute;e.</li>
+    <li>Identifier les <strong>extremums locaux</strong> (maximum, minimum).</li>
+    <li>Lire et interpr&eacute;ter une <strong>courbe</strong> de polyn&ocirc;me de degr&eacute; 3.</li>
+    <li>D&eacute;terminer le nombre de solutions de \(f(x) = c\) graphiquement.</li>
+    <li>Utiliser la calculatrice ou un tableur pour r&eacute;soudre des &eacute;quations.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">&#9733;</span> Introduction &mdash; D&rsquo;o&ugrave; viennent les polyn&ocirc;mes de degr&eacute; 3 ?</h2>
+
+<p>En <strong>Premi&egrave;re</strong>, vous avez &eacute;tudi&eacute; les <strong>fonctions polyn&ocirc;mes de degr&eacute; 2</strong>, appel&eacute;es <em>fonctions du second degr&eacute;</em>&nbsp;:</p>
+
+<div class="ex">
+  <span class="label label-ex">Rappel &mdash; Degr&eacute; 2</span>
+  <p style="margin:6px 0">Une fonction du second degr&eacute; s&rsquo;&eacute;crit \(f(x) = ax^2 + bx + c\) avec \(a \neq 0\).<br>
+  Sa courbe est une <strong>parabole</strong>. Sa d&eacute;riv&eacute;e est \(f'(x) = 2ax + b\) (degr&eacute; 1).</p>
+</div>
+
+<p>En <strong>Terminale</strong>, on monte d&rsquo;un cran&nbsp;: on &eacute;tudie les fonctions de <strong>degr&eacute; 3</strong>. Ces fonctions apparaissent dans de nombreuses situations professionnelles&nbsp;:</p>
+
+<div class="formula-grid">
+  <div class="formula-card">
+    <div class="fc-label"><span class="tag-metier">ERA / TMA</span></div>
+    <div class="fc-formula">Volume d&rsquo;une bo&icirc;te d&eacute;coup&eacute;e dans une planche<br><small style="color:#718096">V(x) = x(L&minus;2x)(l&minus;2x)</small></div>
+  </div>
+  <div class="formula-card">
+    <div class="fc-label"><span class="tag-metier tag-iccer">ICCER</span></div>
+    <div class="fc-formula">Consommation &eacute;nerg&eacute;tique saisonni&egrave;re<br><small style="color:#718096">C(t) = at&sup3; + bt&sup2; + ct + d</small></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">1</span> La fonction cube</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span><br>
+  La <strong>fonction cube</strong> est la fonction d&eacute;finie sur \(\mathbb{R}\) par&nbsp;:
+  \[\boxed{f(x) = x^3}\]
+  C&rsquo;est le cas le plus simple des polyn&ocirc;mes de degr&eacute; 3.
+</div>
+
+<h3>Tableau de valeurs</h3>
+<table>
+  <tr><th>\(x\)</th><td>\(-3\)</td><td>\(-2\)</td><td>\(-1\)</td><td>\(0\)</td><td>\(1\)</td><td>\(2\)</td><td>\(3\)</td></tr>
+  <tr><th>\(f(x)=x^3\)</th><td>\(-27\)</td><td>\(-8\)</td><td>\(-1\)</td><td>\(0\)</td><td>\(1\)</td><td>\(8\)</td><td>\(27\)</td></tr>
+</table>
+
+<h3>Repr&eacute;sentation graphique de \(f(x)=x^3\)</h3>
+<div class="anim-wrap">
+  <div class="chart-wrap"><canvas id="cubChart" height="280"></canvas></div>
+  <p style="font-size:.82em;color:#718096;margin:6px 0 0">La courbe de \(f(x) = x^3\) passe par l&rsquo;origine et a une forme en &laquo;&nbsp;S&nbsp;&raquo; caract&eacute;ristique.</p>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute;s de la fonction cube</span>
+  <ul style="margin:6px 0 0;padding-left:20px">
+    <li>D&eacute;finie sur \(\mathbb{R}\) tout entier.</li>
+    <li><strong>Strictement croissante</strong> sur \(\mathbb{R}\) : plus \(x\) augmente, plus \(x^3\) augmente.</li>
+    <li>Passe par l&rsquo;origine&nbsp;: \(f(0) = 0\).</li>
+    <li>Sym&eacute;trique par rapport &agrave; l&rsquo;origine (fonction <em>impaire</em>)&nbsp;: \(f(-x) = -f(x)\).</li>
+    <li>Sa <strong>d&eacute;riv&eacute;e</strong> est \(f'(x) = 3x^2\), qui est toujours \(\geq 0\).</li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label label-att">Point important</span><br>
+  M&ecirc;me si \(f'(0) = 0\), la fonction cube <strong>n&rsquo;a pas d&rsquo;extremum en \(x=0\)</strong>&nbsp;: elle continue de cro&icirc;tre de chaque c&ocirc;t&eacute; de 0. Le point \((0,0)\) est appel&eacute; <strong>point d&rsquo;inflexion</strong> (changement de concavit&eacute;).
+</div>
+
+<!-- Mini-exercice 1 -->
+<div class="mini-exo-box">
+  <strong>&#10003; Mini-exercice 1 &mdash; Tester sa compr&eacute;hension</strong>
+  <p style="margin:8px 0">Calculer \(f(-2)\), \(f(0)\) et \(f(3)\) pour \(f(x) = x^3\).</p>
+  <details>
+    <summary>Voir la r&eacute;ponse</summary>
+    <div class="corr-detail">
+      \(f(-2) = (-2)^3 = -8\) &nbsp;; &nbsp;\(f(0) = 0^3 = 0\) &nbsp;; &nbsp;\(f(3) = 3^3 = 27\).<br>
+      Attention&nbsp;: \((-2)^3 = -8\) et non \(+8\). Le cube d&rsquo;un nombre n&eacute;gatif est n&eacute;gatif.
+    </div>
+  </details>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">2</span> D&eacute;finition d&rsquo;une fonction polyn&ocirc;me de degr&eacute; 3</h2>
+
+  <div class="def">
+    <span class="label label-def">D&eacute;finition</span><br>
+    Une <strong>fonction polyn&ocirc;me de degr&eacute; 3</strong> (ou <em>cubique</em>) est une fonction de la forme&nbsp;:
+    \[
+      f(x) = ax^3 + bx^2 + cx + d
+    \]
+    o&ugrave; \(a,\,b,\,c,\,d\) sont des r&eacute;els avec \(\mathbf{a \neq 0}\).<br>
+    Son domaine de d&eacute;finition est \(\mathbb{R}\) tout entier.
+  </div>
+
+  <div class="ex">
+    <span class="label label-ex">Exemples</span>
     <ul>
-      <li>Reconnaître et définir une fonction polynôme de degré 3.</li>
-      <li>Calculer la dérivée d'un polynôme de degré 3.</li>
-      <li>Dresser le tableau de variations à l'aide du signe de la dérivée.</li>
-      <li>Tracer la courbe représentative (allure, point d'inflexion).</li>
-      <li>Résoudre graphiquement \(f(x)=k\) à la calculatrice.</li>
-      <li>Optimiser une quantité modélisée par un polynôme de degré 3.</li>
+      <li>\(f(x) = 2x^3 - 3x^2 + x - 5\) &nbsp;&mdash;&nbsp; \(a=2,\;b=-3,\;c=1,\;d=-5\)</li>
+      <li>\(g(x) = -x^3 + 4x\) &nbsp;&mdash;&nbsp; \(a=-1,\;b=0,\;c=4,\;d=0\)</li>
+      <li>\(V(x) = 4x^3 - 140x^2 + 1200x\) &nbsp;&mdash;&nbsp; mod&egrave;le de volume <span class="tag-metier">ERA/TMA</span></li>
     </ul>
   </div>
 
-  <!-- ============================================================ -->
-  <h2>1. Rappels sur les dérivées</h2>
-
-  <div class="def">
-    <span class="label label-def">Définition</span><br>
-    La <strong>dérivée</strong> \(f'(x)\) d'une fonction \(f\) mesure le taux de variation instantané de \(f\) en \(x\).
-    Géométriquement, \(f'(a)\) est le coefficient directeur de la tangente à la courbe au point d'abscisse \(a\).
+  <div class="att">
+    <span class="label label-att">Attention</span><br>
+    Le coefficient \(a\) (devant \(x^3\)) doit &ecirc;tre <strong>non nul</strong>.
+    Si \(a=0\), la fonction est un polyn&ocirc;me de degr&eacute; 2 (ou moins), pas de degr&eacute; 3.
   </div>
 
-  <h3>Tableau des dérivées usuelles</h3>
+  <h3>Allure g&eacute;n&eacute;rale de la courbe</h3>
+  <p>Selon le signe de \(a\), la courbe adopte des comportements oppos&eacute;s aux extr&ecirc;mes&nbsp;:</p>
+  <div class="formula-grid">
+    <div class="formula-card">
+      <div class="fc-label">\(a > 0\)</div>
+      <div class="fc-formula">Courbe &laquo;&nbsp;en S&nbsp;&raquo; montante &nearr;<br><small style="color:#718096">bas-gauche vers haut-droit</small></div>
+    </div>
+    <div class="formula-card">
+      <div class="fc-label">\(a &lt; 0\)</div>
+      <div class="fc-formula">Courbe &laquo;&nbsp;en S invers&eacute;&nbsp;&raquo; descendante &searr;<br><small style="color:#718096">haut-gauche vers bas-droit</small></div>
+    </div>
+  </div>
+  <p>La courbe pr&eacute;sente toujours un <strong>point d&rsquo;inflexion</strong> (changement de concavit&eacute;), contrairement aux paraboles de degr&eacute; 2.</p>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">3</span> Rappels sur les d&eacute;riv&eacute;es</h2>
+
+  <div class="def">
+    <span class="label label-def">D&eacute;finition</span><br>
+    La <strong>d&eacute;riv&eacute;e</strong> \(f'(x)\) d&rsquo;une fonction \(f\) mesure la <em>vitesse de variation</em> de \(f\) en \(x\).<br>
+    G&eacute;om&eacute;triquement, \(f'(a)\) est le <strong>coefficient directeur de la tangente</strong> &agrave; la courbe au point d&rsquo;abscisse \(a\).
+  </div>
+
+  <h3>Tableau des d&eacute;riv&eacute;es usuelles</h3>
   <table>
     <tr>
       <th>Fonction \(f(x)\)</th>
@@ -139,50 +277,8 @@
     <em>On dérive terme par terme et on peut sortir les constantes multiplicatives.</em>
   </div>
 
-  <!-- ============================================================ -->
-  <h2>2. Définition d'une fonction polynôme de degré 3</h2>
-
-  <div class="def">
-    <span class="label label-def">Définition</span><br>
-    Une <strong>fonction polynôme de degré 3</strong> (ou <em>cubique</em>) est une fonction de la forme :
-    \[
-      f(x) = ax^3 + bx^2 + cx + d
-    \]
-    où \(a,\,b,\,c,\,d\) sont des réels avec \(\mathbf{a \neq 0}\).<br>
-    Son domaine de définition est \(\mathbb{R}\) tout entier.
-  </div>
-
-  <div class="ex">
-    <span class="label label-ex">Exemples</span>
-    <ul>
-      <li>\(f(x) = 2x^3 - 3x^2 + x - 5\) &nbsp;&mdash;&nbsp; \(a=2,\;b=-3,\;c=1,\;d=-5\)</li>
-      <li>\(g(x) = -x^3 + 4x\) &nbsp;&mdash;&nbsp; \(a=-1,\;b=0,\;c=4,\;d=0\)</li>
-      <li>\(V(x) = 4x^3 - 140x^2 + 1200x\) &nbsp;&mdash;&nbsp; modèle de volume <span class="tag-metier">ERA/TMA</span></li>
-    </ul>
-  </div>
-
-  <div class="att">
-    <span class="label label-att">Attention</span><br>
-    Le coefficient \(a\) (devant \(x^3\)) doit être <strong>non nul</strong>.
-    Si \(a=0\), la fonction est un polynôme de degré 2 (ou moins), pas de degré 3.
-  </div>
-
-  <h3>Allure générale de la courbe</h3>
-  <p>Selon le signe de \(a\), la courbe adopte des comportements opposés aux extrêmes :</p>
-  <div class="formula-grid">
-    <div class="formula-card">
-      <div class="fc-label">\(a > 0\)</div>
-      <div class="fc-formula">Courbe « en S » montante &nearr; (bas-gauche vers haut-droit)</div>
-    </div>
-    <div class="formula-card">
-      <div class="fc-label">\(a &lt; 0\)</div>
-      <div class="fc-formula">Courbe « en S inversé » descendante &searr; (haut-gauche vers bas-droit)</div>
-    </div>
-  </div>
-  <p>La courbe présente toujours un <strong>point d'inflexion</strong> (changement de concavité), contrairement aux paraboles de degré 2.</p>
-
-  <!-- ============================================================ -->
-  <h2>3. Dérivée d'un polynôme de degré 3</h2>
+<!-- ============================================================ -->
+<h2><span class="section-num">4</span> D&eacute;riv&eacute;e d&rsquo;un polyn&ocirc;me de degr&eacute; 3</h2>
 
   <div class="prop">
     <span class="label label-prop">Propriété</span><br>
@@ -227,8 +323,23 @@
     <p>Donc : \(\displaystyle V'(x) = 12x^2 - 280x + 1200\)</p>
   </div>
 
-  <!-- ============================================================ -->
-  <h2>4. Tableau de variations</h2>
+
+<!-- Mini-exercice 2 -->
+<div class="mini-exo-box">
+  <strong>&#10003; Mini-exercice 2 &mdash; Calculer une d&eacute;riv&eacute;e</strong>
+  <p style="margin:8px 0">Calculer \(f'(x)\) pour \(f(x) = 3x^3 - 2x^2 + 7x - 4\).</p>
+  <details>
+    <summary>Voir la r&eacute;ponse</summary>
+    <div class="corr-detail">
+      On d&eacute;rive terme par terme&nbsp;:<br>
+      \((3x^3)' = 9x^2\) &nbsp;; &nbsp;\((-2x^2)' = -4x\) &nbsp;; &nbsp;\((7x)' = 7\) &nbsp;; &nbsp;\((-4)' = 0\)<br>
+      <strong>R&eacute;ponse&nbsp;: \(f'(x) = 9x^2 - 4x + 7\)</strong>
+    </div>
+  </details>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">5</span> &Eacute;tude des variations &mdash; Tableau de variations</h2>
 
   <div class="prop">
     <span class="label label-prop">Lien dérivée – variations</span>
@@ -349,8 +460,79 @@
     <strong>Si \(\Delta &lt; 0\) :</strong> \(f'(x)\) garde un signe constant, \(f\) est <strong>strictement monotone</strong> sur \(\mathbb{R}\).
   </div>
 
-  <!-- ============================================================ -->
-  <h2>5. Graphique interactif — Explorer \(f(x) = ax^3+bx^2+cx+d\)</h2>
+
+<!-- Mini-exercice 3 -->
+<div class="mini-exo-box">
+  <strong>&#10003; Mini-exercice 3 &mdash; Lire un tableau de variations</strong>
+  <p style="margin:8px 0">Soit \(f(x) = x^3 - 6x^2 + 9x + 1\). On a \(f'(x) = 3(x-1)(x-3)\).<br>
+  Indiquer le sens de variation de \(f\) sur chacun des intervalles \(]-\infty\,;\,1[\), \(]1\,;\,3[\) et \(]3\,;\,+\infty[\).</p>
+  <details>
+    <summary>Voir la r&eacute;ponse</summary>
+    <div class="corr-detail">
+      \(f'(x) = 3(x-1)(x-3)\)&nbsp;:<br>
+      &bull; Sur \(]-\infty\,;\,1[\)&nbsp;: les deux facteurs sont n&eacute;gatifs &rarr; \(f' > 0\) &rarr; <strong>\(f\) croissante</strong>.<br>
+      &bull; Sur \(]1\,;\,3[\)&nbsp;: \((x-1)>0\) et \((x-3)<0\) &rarr; \(f' < 0\) &rarr; <strong>\(f\) d&eacute;croissante</strong>.<br>
+      &bull; Sur \(]3\,;\,+\infty[\)&nbsp;: les deux facteurs sont positifs &rarr; \(f' > 0\) &rarr; <strong>\(f\) croissante</strong>.
+    </div>
+  </details>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">6</span> Les extremums locaux</h2>
+
+<div class="prop">
+  <span class="label label-prop">D&eacute;finition &mdash; Extremums locaux</span><br>
+  Un <strong>maximum local</strong> en \(x_0\) signifie que \(f(x_0)\) est la valeur la plus grande dans un voisinage de \(x_0\).<br>
+  Un <strong>minimum local</strong> en \(x_0\) signifie que \(f(x_0)\) est la valeur la plus petite dans un voisinage de \(x_0\).<br><br>
+  On reconna&icirc;t un extremum &agrave; partir du tableau de variations&nbsp;:
+  <ul style="margin:6px 0 0;padding-left:20px">
+    <li>\(f'(x_0) = 0\) et \(f'\) passe de \(+\) &agrave; \(-\) &rarr; <strong>maximum local</strong></li>
+    <li>\(f'(x_0) = 0\) et \(f'\) passe de \(-\) &agrave; \(+\) &rarr; <strong>minimum local</strong></li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label label-att">Cas o&ugrave; \(f'(x_0) = 0\) ne suffit pas</span><br>
+  <strong>Si \(\Delta = 0\)&nbsp;:</strong> la d&eacute;riv&eacute;e a une racine double, le signe de \(f'\) ne change <em>pas</em>. La courbe a un <strong>point d&rsquo;inflexion horizontal</strong> mais <strong>pas d&rsquo;extremum</strong>.<br>
+  <strong>Si \(\Delta &lt; 0\)&nbsp;:</strong> \(f'(x)\) garde un signe constant sur \(\mathbb{R}\) (toujours positif ou toujours n&eacute;gatif). La fonction est alors <strong>strictement monotone</strong> sur \(\mathbb{R}\) &mdash; sans extremum.
+</div>
+
+<div class="formula-grid">
+  <div class="formula-card">
+    <div class="fc-label">\(\Delta > 0\) : deux racines</div>
+    <div class="fc-formula">La courbe a <strong>1 max local et 1 min local</strong></div>
+  </div>
+  <div class="formula-card">
+    <div class="fc-label">\(\Delta \leq 0\) : aucune racine r&eacute;elle distincte</div>
+    <div class="fc-formula">Pas d&rsquo;extremum &mdash; <strong>fonction strictement monotone</strong></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">7</span> Interpr&eacute;tation graphique &mdash; Nombre de solutions de \(f(x) = c\)</h2>
+
+<p>Graphiquement, les solutions de \(f(x) = c\) sont les <strong>abscisses des points d&rsquo;intersection</strong> de la courbe \(\mathcal{C}_f\) avec la droite horizontale \(y = c\).</p>
+
+<div class="prop">
+  <span class="label label-prop">Lecture graphique du nombre de solutions</span>
+  <ul style="margin:6px 0 0;padding-left:20px">
+    <li>Si la droite \(y = c\) est <strong>au-dessus du max local</strong> ou <strong>en-dessous du min local</strong> &rarr; <strong>1 seule solution</strong></li>
+    <li>Si la droite \(y = c\) est <strong>&eacute;gale au max ou min local</strong> &rarr; <strong>2 solutions</strong></li>
+    <li>Si la droite \(y = c\) est <strong>strictement entre le max et le min</strong> &rarr; <strong>3 solutions</strong></li>
+    <li>Si \(f\) est strictement monotone (pas d&rsquo;extremum) &rarr; <strong>toujours 1 solution</strong></li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">8</span> Exemple complet &mdash; Graphique interactif</h2>
+
+<p>L&rsquo;exemple de r&eacute;f&eacute;rence du chapitre est \(f(x) = x^3 - 3x^2 - 9x + 2\). V&eacute;rifions toutes les &eacute;tapes&nbsp;:</p>
+
+<h3>Rappel du tableau de variations de \(f(x) = x^3 - 3x^2 - 9x + 2\)</h3>
+<p>\(f'(x) = 3x^2 - 6x - 9 = 3(x+1)(x-3)\) &nbsp;&rarr;&nbsp; racines&nbsp;: \(x_1 = -1\) et \(x_2 = 3\).</p>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">9</span> Graphique interactif &mdash; Explorer \(f(x) = ax^3+bx^2+cx+d\)</h2>
 
   <div class="anim-wrap">
     <p style="margin:0 0 10px 0;font-weight:600;">Choisir un exemple prédéfini :</p>
@@ -393,8 +575,8 @@
     </p>
   </div>
 
-  <!-- ============================================================ -->
-  <h2>6. Résolution de \(f(x)=k\) à la calculatrice</h2>
+<!-- ============================================================ -->
+<h2><span class="section-num">10</span> R&eacute;solution de \(f(x)=k\) &agrave; la calculatrice ou au tableur</h2>
 
   <div class="meth">
     <span class="label label-meth">Méthode — Lecture graphique</span>
@@ -427,8 +609,52 @@
     <p>À la calculatrice, les solutions approchées sont \(x \approx -3{,}2\) et \(x \approx 1{,}5\).</p>
   </div>
 
-  <!-- ============================================================ -->
-  <h2>7. Problème d'optimisation — Boîte découpée <span class="tag-metier">ERA / TMA</span></h2>
+<!-- ============================================================ -->
+<h2><span class="section-num">11</span> Activit&eacute; num&eacute;rique &mdash; Balayage graphique <span class="tag-metier">Calculatrice / Tableur</span></h2>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Balayage</span><br>
+  Le <strong>balayage</strong> consiste &agrave; se rapprocher progressivement d&rsquo;une solution en r&eacute;duisant l&rsquo;intervalle de recherche.
+  <ol style="margin:8px 0 0;padding-left:22px">
+    <li>On r&eacute;duit l&rsquo;intervalle de recherche jusqu&rsquo;&agrave; obtenir la pr&eacute;cision voulue (ex. : au dixi&egrave;me).</li>
+    <li>On &eacute;value \(f(x)\) et on cherche les valeurs qui &laquo;&nbsp;encadrent&nbsp;&raquo; \(c\).</li>
+    <li>On affine le pas pour gagner en pr&eacute;cision.</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; R&eacute;soudre \(f(x) = -10\) avec \(f(x) = x^3 - 3x^2 - 9x + 2\)</span>
+  <p>D&rsquo;apr&egrave;s le tableau de variations, il existe une solution dans \([-1\,;\,3]\) (o&ugrave; \(f\) va de 7 &agrave; \(-25\)).</p>
+  <p><strong>&Eacute;tape 1 &mdash; Balayage au pas 0,5 sur \([0\,;\,2]\)&nbsp;:</strong></p>
+  <table style="font-size:.88em">
+    <tr><th>\(x\)</th><td>0,0</td><td>0,5</td><td>1,0</td><td>1,5</td><td>2,0</td></tr>
+    <tr><th>\(f(x)\)</th><td>2</td><td>&minus;2,6</td><td>&minus;9</td><td>&minus;16,1</td><td>&minus;20</td></tr>
+  </table>
+  <p>On voit que \(f(0{,}5) \approx -2{,}6 > -10\) et \(f(1{,}0) = -9 > -10\) et \(f(1{,}5) \approx -16{,}1 < -10\).<br>
+  La solution est donc dans \([1{,}0\,;\,1{,}5]\).</p>
+  <p><strong>&Eacute;tape 2 &mdash; Balayage au pas 0,1 sur \([1{,}0\,;\,1{,}5]\)&nbsp;:</strong></p>
+  <table style="font-size:.88em">
+    <tr><th>\(x\)</th><td>1,0</td><td>1,1</td><td>1,2</td><td>1,3</td><td>1,4</td><td>1,5</td></tr>
+    <tr><th>\(f(x)\)</th><td>&minus;9</td><td>&minus;9,8</td><td>&minus;10,6</td><td>&minus;11,4</td><td>&minus;12,3</td><td>&minus;13,1</td></tr>
+  </table>
+  <p>&rarr; Solution approch&eacute;e&nbsp;: <strong>\(x \approx 1{,}1\)</strong> (au dixi&egrave;me).</p>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Avec la calculatrice TI ou Casio</span>
+  <ol style="margin:8px 0 0;padding-left:22px">
+    <li>Entrer \(Y_1 = f(x)\) et \(Y_2 = c\) (valeur constante).</li>
+    <li>Afficher le graphique et utiliser la fonction <strong>Intersection</strong> (<kbd>Calc</kbd> &rarr; <kbd>Intersect</kbd> ou <kbd>G&ucirc;&#x1F441;</kbd>).</li>
+    <li>La calculatrice donne directement la valeur approch&eacute;e.</li>
+  </ol>
+</div>
+
+<div class="chemin" style="background:#fffbeb;border:1.5px solid var(--o);border-radius:6px;padding:8px 14px;margin:8px 0;font-size:.93em">
+  <strong>Sur Calc&nbsp;:</strong> &nbsp;<code>Y=</code> &rarr; entrer \(f(x)\) dans Y1 et \(c\) dans Y2 &rarr; <code>GRAPH</code> &rarr; <code>2nd CALC</code> &rarr; <code>5:intersect</code> &rarr; valider
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">12</span> Probl&egrave;me d&rsquo;optimisation &mdash; Bo&icirc;te d&eacute;coup&eacute;e <span class="tag-metier">ERA / TMA</span></h2>
 
   <div class="biv">
     <span class="label label-biv">Contexte professionnel</span><br>
@@ -515,8 +741,8 @@
     </p>
   </div>
 
-  <!-- ============================================================ -->
-  <h2>8. Application ICCER — Consommation d'énergie <span class="tag-metier tag-iccer">ICCER</span></h2>
+<!-- ============================================================ -->
+<h2><span class="section-num">13</span> Application ICCER &mdash; Consommation d&rsquo;&eacute;nergie <span class="tag-metier tag-iccer">ICCER</span></h2>
 
   <div class="biv">
     <span class="label label-biv">Contexte professionnel</span><br>
@@ -622,8 +848,8 @@
     avec un bénéfice de <strong>32 000 €</strong>.
   </div>
 
-  <!-- ============================================================ -->
-  <h2>9. Tableau récapitulatif des formules</h2>
+<!-- ============================================================ -->
+<h2><span class="section-num">14</span> Tableau r&eacute;capitulatif des formules</h2>
 
   <table>
     <tr>
@@ -672,23 +898,36 @@
     </tr>
   </table>
 
-  <!-- ============================================================ -->
-  <h2>10. À retenir</h2>
+<!-- ============================================================ -->
+<h2><span class="section-num">15</span> &Agrave; retenir &mdash; L&rsquo;essentiel du chapitre</h2>
 
   <div class="retenir">
-    <strong>Essentiel du chapitre :</strong>
-    <ul style="margin:8px 0 0 0;padding-left:22px">
-      <li>Un polynôme de degré 3 s'écrit \(f(x)=ax^3+bx^2+cx+d\) avec \(a\neq 0\).</li>
-      <li>Sa dérivée est \(f'(x)=3ax^2+2bx+c\) (polynôme de degré 2).</li>
-      <li>Le signe de \(f'\) donne les variations de \(f\) (tableau de variations).</li>
-      <li>La courbe a toujours un point d'inflexion ; elle peut avoir 0, 1 ou 2 extrema locaux.</li>
-      <li>Pour optimiser sur un intervalle, on cherche où \(f'(x)=0\) puis on vérifie le signe de \(f'\).</li>
-      <li>La calculatrice permet de résoudre \(f(x)=k\) graphiquement ou par tableau de valeurs.</li>
+    <strong>&#10003; Ce qu&rsquo;il faut ma&icirc;triser absolument&nbsp;:</strong>
+    <ul style="margin:8px 0 0;padding-left:22px">
+      <li>La <strong>fonction cube</strong>&nbsp;: \(f(x) = x^3\), d&eacute;riv&eacute;e \(f'(x) = 3x^2\), strictement croissante sur \(\mathbb{R}\).</li>
+      <li>Un polyn&ocirc;me de degr&eacute; 3 s&rsquo;&eacute;crit \(f(x)=ax^3+bx^2+cx+d\) avec \(a\neq 0\).</li>
+      <li>Sa d&eacute;riv&eacute;e est \(f'(x)=3ax^2+2bx+c\) (polyn&ocirc;me de degr&eacute; 2).</li>
+      <li>Le signe de \(f'\) donne les <strong>variations</strong> de \(f\) (tableau de variations).</li>
+      <li>Si \(\Delta > 0\)&nbsp;: la courbe a un <strong>maximum local et un minimum local</strong>.</li>
+      <li>Si \(\Delta \leq 0\)&nbsp;: la fonction est <strong>strictement monotone</strong>, sans extremum.</li>
+      <li>Graphiquement, les solutions de \(f(x)=c\) = les intersections de la courbe avec \(y=c\).</li>
+      <li>La calculatrice ou le tableur permettent de r&eacute;soudre \(f(x)=k\) par balayage.</li>
     </ul>
   </div>
 
-  <!-- ============================================================ -->
-  <h2>11. Exercices</h2>
+<div class="erreur-box">
+  <strong>&#9888; Erreurs fr&eacute;quentes &agrave; &eacute;viter</strong>
+  <ul style="margin:8px 0 0;padding-left:22px">
+    <li><strong>Oublier le signe de \(a\)</strong> lors du calcul du discriminant \(\Delta = b^2 - 4ac\) pour \(f'\). Ne pas confondre les coefficients de \(f\) et ceux de \(f'\).</li>
+    <li><strong>Croire que \(f'(x_0)=0\) implique toujours un extremum.</strong> Si \(\Delta = 0\), il n&rsquo;y a qu&rsquo;un point d&rsquo;inflexion, pas d&rsquo;extremum.</li>
+    <li><strong>Confondre extremum et z&eacute;ro de \(f\).</strong> Un extremum est l&agrave; o&ugrave; \(f'\) s&rsquo;annule, pas o&ugrave; \(f\) s&rsquo;annule.</li>
+    <li><strong>Ne pas v&eacute;rifier la contrainte de l&rsquo;intervalle</strong> dans les probl&egrave;mes concrets (ex.&nbsp;: \(0 < x < 15\) pour la bo&icirc;te).</li>
+    <li><strong>Calculer \((-2)^3 = 8\)</strong> au lieu de \(-8\). Le cube d&rsquo;un n&eacute;gatif est n&eacute;gatif.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="section-num">16</span> Mini-exercices de v&eacute;rification</h2>
 
   <!-- Exercice 1 -->
   <div class="exo">
@@ -783,6 +1022,28 @@
       </p>
     </details>
   </div>
+
+
+<!-- ============================================================ -->
+<h2><span class="section-num" style="background:#9333ea">&#8734;</span> Pour aller plus loin <em>(hors programme)</em></h2>
+
+<div class="hprog">
+  <span class="label label-hprog">Hors programme Bac Pro</span><br>
+  Les notions suivantes <strong>d&eacute;passent le programme</strong> de Terminale Bac Professionnel. Elles sont mentionn&eacute;es ici pour les &eacute;l&egrave;ves curieux.
+  <ul style="margin:8px 0 0;padding-left:22px">
+    <li><strong>D&eacute;riv&eacute;es d&rsquo;ordre sup&eacute;rieur</strong>&nbsp;: la d&eacute;riv&eacute;e seconde \(f''(x)\) permet d&rsquo;&eacute;tudier la <em>concavit&eacute;</em> de la courbe (lycée g&eacute;n&eacute;ral, BTS).</li>
+    <li><strong>Factorisation compl&egrave;te</strong>&nbsp;: tout polyn&ocirc;me de degr&eacute; 3 peut se factoriser en \(a(x-r_1)(x-r_2)(x-r_3)\) si les racines sont r&eacute;elles (lycée g&eacute;n&eacute;ral).</li>
+    <li><strong>Int&eacute;gration</strong>&nbsp;: le calcul d&rsquo;aire sous la courbe (int&eacute;grale) d&rsquo;un polyn&ocirc;me de degr&eacute; 3 est &eacute;tudi&eacute; en Terminale g&eacute;n&eacute;rale et en BTS.</li>
+    <li><strong>M&eacute;thode de Newton</strong>&nbsp;: algorithme it&eacute;ratif permettant de trouver tr&egrave;s pr&eacute;cis&eacute;ment les z&eacute;ros d&rsquo;une fonction (BTS, informatique).</li>
+  </ul>
+</div>
+
+<!-- NAV FOOTER -->
+<div class="nav-footer">
+  <a href="t-ch03_lecon.html">&#8592; Ch03 &mdash; Suites g&eacute;om&eacute;triques</a>
+  <a href="t-ch04_exos.html">&#128221; Exercices Ch04</a>
+  <a href="maths-term-iccer.html">&#128218; Sommaire</a>
+</div>
 
 </div><!-- fin .c -->
 
@@ -898,6 +1159,42 @@ function predef(n) {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
+
+  // ---- Graphique fonction cube ----
+  (function(){
+    var xs = [], ys = [];
+    for (var x = -3; x <= 3.01; x += 0.1) {
+      var rx = Math.round(x * 10) / 10;
+      xs.push(rx);
+      ys.push(Math.round(rx*rx*rx * 100) / 100);
+    }
+    new Chart(document.getElementById('cubChart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: xs,
+        datasets: [{
+          label: 'f(x) = x\u00b3',
+          data: ys,
+          borderColor: '#0969da',
+          backgroundColor: 'rgba(9,105,218,0.07)',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'top' } },
+        scales: {
+          x: {
+            title: { display: true, text: 'x' },
+            ticks: { maxTicksLimit: 13, callback: function(val,i){ return xs[i]; } }
+          },
+          y: { title: { display: true, text: 'f(x)' }, suggestedMin: -28, suggestedMax: 28 }
+        }
+      }
+    });
+  })();
 
   // ---- Graphique interactif ----
   var ctx = document.getElementById('polyChart').getContext('2d');
