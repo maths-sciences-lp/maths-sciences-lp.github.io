@@ -52,6 +52,12 @@ td:first-child{text-align:left}
 .nav-footer{display:flex;justify-content:space-between;margin-top:36px;padding-top:16px;border-top:1px solid #e2e8f0;flex-wrap:wrap;gap:10px}
 .nav-btn{text-decoration:none;font-size:.85em;font-weight:600;padding:8px 18px;border-radius:6px;color:var(--p);border:1px solid var(--p);transition:.2s}
 .nav-btn:hover{background:var(--p);color:#fff}
+canvas.anim{display:block;margin:12px auto;border-radius:10px;border:1px solid #e2e8f0;background:#fff}
+.ctrl-vis{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:10px 0;align-items:center;font-size:.92em}
+.ctrl-vis input[type=range]{width:140px;accent-color:var(--p)}
+.anim-result{text-align:center;font-size:.98em;font-weight:700;color:var(--p);min-height:1.6em;margin-top:6px}
+.anim-box{background:#f0f7ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 20px;margin:20px 0}
+.anim-box h3{color:var(--p);margin:0 0 10px;font-size:.95em}
 .organi{background:#f0f7ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 20px;margin:16px 0}
 .organi h3{color:var(--p);margin:0 0 10px;font-size:.95em}
 .org-step{display:flex;gap:10px;margin:6px 0;align-items:center;font-size:.9em}
@@ -210,6 +216,79 @@ td:first-child{text-align:left}
 </div>
 
 <!-- ══════════════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>6. Animation — Visualiser le théorème de Pythagore</h2>
+
+<div class="anim-box">
+  <h3>🎮 Simulation interactive — Modifie les côtés et vérifie l'hypoténuse</h3>
+  <p style="font-size:.9em;margin:0 0 8px;color:#718096">Le triangle rectangle en A est dessiné en temps réel. Les carrés construits sur les côtés illustrent l'égalité BC² = AB² + AC².</p>
+  <div class="ctrl-vis">
+    <label>AB = <input type="range" id="slAB" min="1" max="10" step="0.5" value="3"> <strong id="lblAB">3</strong> cm</label>
+    <label>AC = <input type="range" id="slAC" min="1" max="10" step="0.5" value="4"> <strong id="lblAC">4</strong> cm</label>
+  </div>
+  <canvas id="canvasPyth" class="anim" width="560" height="260"></canvas>
+  <div class="anim-result" id="resuPyth"></div>
+</div>
+
+<script>
+(function(){
+  const slAB=document.getElementById('slAB'),
+        slAC=document.getElementById('slAC'),
+        lblAB=document.getElementById('lblAB'),
+        lblAC=document.getElementById('lblAC'),
+        cv=document.getElementById('canvasPyth'),
+        ctx=cv.getContext('2d'),
+        res=document.getElementById('resuPyth');
+
+  function draw(){
+    const ab=parseFloat(slAB.value), ac=parseFloat(slAC.value);
+    lblAB.textContent=ab; lblAC.textContent=ac;
+    const bc=Math.sqrt(ab*ab+ac*ac);
+    const W=cv.width, H=cv.height;
+    ctx.clearRect(0,0,W,H);
+    // Échelle
+    const maxSide=Math.max(ab,ac,bc);
+    const sc=Math.min(120/maxSide, 18);
+    // Coin droit en A
+    const ax=160, ay=H-50;
+    const bx=ax+ab*sc, by=ay;
+    const cx2=ax, cy2=ay-ac*sc;
+    // Triangle
+    ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by); ctx.lineTo(cx2,cy2); ctx.closePath();
+    ctx.fillStyle='rgba(0,86,179,0.12)'; ctx.fill();
+    ctx.strokeStyle='#0056b3'; ctx.lineWidth=2.5; ctx.stroke();
+    // Angle droit en A
+    const sq=8;
+    ctx.strokeStyle='#c53030'; ctx.lineWidth=1.5;
+    ctx.strokeRect(ax, ay-sq, sq, sq);
+    // Étiquettes sommets
+    ctx.font='bold 14px Segoe UI'; ctx.fillStyle='#2d3748'; ctx.textAlign='center';
+    ctx.fillText('A',ax-12,ay+6); ctx.fillText('B',bx+12,by+6); ctx.fillText('C',cx2-12,cy2-4);
+    // Carré sur AB (bleu clair)
+    ctx.fillStyle='rgba(0,86,179,0.18)';
+    ctx.fillRect(ax, ay, ab*sc, 10);
+    ctx.strokeStyle='#0056b3'; ctx.lineWidth=1;
+    ctx.strokeRect(ax, ay, ab*sc, 10);
+    ctx.fillStyle='#0056b3'; ctx.font='11px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText('AB²='+ab+'²='+(ab*ab).toFixed(1), ax+ab*sc/2, ay+22);
+    // Carré sur AC (vert)
+    ctx.fillStyle='rgba(47,133,90,0.18)';
+    ctx.fillRect(ax-10, cy2, 10, ac*sc);
+    ctx.strokeStyle='#2f855a'; ctx.lineWidth=1;
+    ctx.strokeRect(ax-10, cy2, 10, ac*sc);
+    ctx.save(); ctx.translate(ax-22, cy2+ac*sc/2); ctx.rotate(-Math.PI/2);
+    ctx.fillStyle='#2f855a'; ctx.font='11px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText('AC²='+ac+'²='+(ac*ac).toFixed(1),0,0); ctx.restore();
+    // Hypoténuse étiquette
+    const mx=(bx+cx2)/2, my=(by+cy2)/2;
+    ctx.fillStyle='#c53030'; ctx.font='bold 12px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText('BC = √('+ab+'²+'+ac+'²) = '+bc.toFixed(2)+' cm', mx+30, my-8);
+    res.innerHTML='<span style="color:#0056b3">AB² = '+(ab*ab).toFixed(2)+'</span> + <span style="color:#2f855a">AC² = '+(ac*ac).toFixed(2)+'</span> = <span style="color:#c53030">BC² = '+(bc*bc).toFixed(2)+'</span> → BC = <strong>'+bc.toFixed(3)+' cm</strong>';
+  }
+  slAB.oninput=slAC.oninput=draw; draw();
+})();
+</script>
+
 <div class="retenir">
   <h3>📌 L'essentiel du chapitre</h3>
   <p><strong>Théorème de Pythagore</strong> (triangle rectangle en A) :</p>

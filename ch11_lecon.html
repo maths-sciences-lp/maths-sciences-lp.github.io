@@ -62,6 +62,12 @@ td:first-child{text-align:left}
 .nav-footer{display:flex;justify-content:space-between;margin-top:36px;padding-top:16px;border-top:1px solid #e2e8f0;flex-wrap:wrap;gap:10px}
 .nav-btn{text-decoration:none;font-size:.85em;font-weight:600;padding:8px 18px;border-radius:6px;color:var(--p);border:1px solid var(--p);transition:.2s}
 .nav-btn:hover{background:var(--p);color:#fff}
+canvas.anim{display:block;margin:12px auto;border-radius:10px;border:1px solid #e2e8f0;background:#fff}
+.ctrl-vis{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:10px 0;align-items:center;font-size:.92em}
+.ctrl-vis input[type=range]{width:160px;accent-color:var(--p)}
+.anim-result{text-align:center;font-size:.98em;font-weight:700;color:var(--p);min-height:1.6em;margin-top:6px}
+.anim-box{background:#f0f7ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 20px;margin:20px 0}
+.anim-box h3{color:var(--p);margin:0 0 10px;font-size:.95em}
 </style>
 </head>
 <body>
@@ -293,6 +299,61 @@ td:first-child{text-align:left}
   <div class="etape"><div class="nc">2</div><div>Rayon demi-cercle : \(r = 40\,\text{cm}\). Aire demi-disque : \(\mathcal{A}_2 = \dfrac{\pi \times 40^2}{2} \approx 2\,513\,\text{cm}^2\)</div></div>
   <div class="etape"><div class="nc">3</div><div>Aire totale : \(\mathcal{A} = 9\,600 + 2\,513 = \mathbf{12\,113\,\text{cm}^2} \approx 1{,}21\,\text{m}^2\)</div></div>
 </div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>7. Animation — Explorer périmètre et aire d'un rectangle</h2>
+
+<div class="anim-box">
+  <h3>🎮 Simulation interactive — Change les dimensions et observe !</h3>
+  <div class="ctrl-vis">
+    <label>Longueur \(L\) = <input type="range" id="slL" min="1" max="12" step="0.5" value="6"> <strong id="lblL">6</strong> cm</label>
+    <label>Largeur \(l\) = <input type="range" id="sll" min="1" max="8" step="0.5" value="3"> <strong id="lbll">3</strong> cm</label>
+  </div>
+  <canvas id="canvasRect" class="anim" width="560" height="200"></canvas>
+  <div class="anim-result" id="resuRect"></div>
+</div>
+
+<script>
+(function(){
+  const slL=document.getElementById('slL'),
+        sll=document.getElementById('sll'),
+        lblL=document.getElementById('lblL'),
+        lbll=document.getElementById('lbll'),
+        cv=document.getElementById('canvasRect'),
+        ctx=cv.getContext('2d'),
+        res=document.getElementById('resuRect');
+
+  function draw(){
+    const L=parseFloat(slL.value), l=parseFloat(sll.value);
+    lblL.textContent=L; lbll.textContent=l;
+    const P=2*(L+l), A=L*l;
+    const W=cv.width, H=cv.height;
+    ctx.clearRect(0,0,W,H);
+    const scale=Math.min((W-120)/(L), (H-80)/(l));
+    const rw=L*scale, rh=l*scale;
+    const ox=(W-rw)/2, oy=(H-rh)/2;
+    // Rectangle rempli
+    ctx.fillStyle='rgba(0,86,179,0.10)';
+    ctx.fillRect(ox,oy,rw,rh);
+    ctx.strokeStyle='#0056b3'; ctx.lineWidth=2.5;
+    ctx.strokeRect(ox,oy,rw,rh);
+    // Flèches dimensions
+    ctx.fillStyle='#d97706'; ctx.font='bold 13px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText('L = '+L+' cm', ox+rw/2, oy+rh+20);
+    ctx.save(); ctx.translate(ox-20, oy+rh/2); ctx.rotate(-Math.PI/2);
+    ctx.fillText('l = '+l+' cm',0,0); ctx.restore();
+    // Angles droits
+    const sq=10;
+    ctx.strokeStyle='#c53030'; ctx.lineWidth=1.5;
+    [[ox,oy],[ox+rw,oy],[ox,oy+rh],[ox+rw,oy+rh]].forEach(([cx,cy],i)=>{
+      const dx=i%2===0?sq:-sq, dy=i<2?sq:-sq;
+      ctx.beginPath(); ctx.moveTo(cx+dx,cy); ctx.lineTo(cx+dx,cy+dy); ctx.lineTo(cx,cy+dy); ctx.stroke();
+    });
+    res.innerHTML='Périmètre : <span style="color:#0056b3">P = 2×('+L+'+'+l+') = <strong>'+P.toFixed(1)+' cm</strong></span> &nbsp;|&nbsp; Aire : <span style="color:#2f855a">A = '+L+'×'+l+' = <strong>'+A.toFixed(2)+' cm²</strong></span>';
+  }
+  slL.oninput=sll.oninput=draw; draw();
+})();
+</script>
 
 <!-- ══════════════════════════════════════════════════════ -->
 <div class="retenir">

@@ -49,6 +49,12 @@ td:first-child{text-align:left}
 .nav-footer{display:flex;justify-content:space-between;margin-top:36px;padding-top:16px;border-top:1px solid #e2e8f0;flex-wrap:wrap;gap:10px}
 .nav-btn{text-decoration:none;font-size:.85em;font-weight:600;padding:8px 18px;border-radius:6px;color:var(--p);border:1px solid var(--p);transition:.2s}
 .nav-btn:hover{background:var(--p);color:#fff}
+canvas.anim{display:block;margin:12px auto;border-radius:10px;border:1px solid #e2e8f0;background:#fff}
+.ctrl-vis{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:10px 0;align-items:center;font-size:.92em}
+.ctrl-vis input[type=range]{width:180px;accent-color:var(--p)}
+.anim-result{text-align:center;font-size:.95em;font-weight:700;color:var(--p);min-height:2em;margin-top:6px;line-height:1.6}
+.anim-box{background:#f0f7ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 20px;margin:20px 0}
+.anim-box h3{color:var(--p);margin:0 0 10px;font-size:.95em}
 .fraction{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.9em}
 .fraction .num{border-bottom:1px solid currentColor;padding:0 4px}
 .fraction .den{padding:0 4px}
@@ -216,6 +222,88 @@ td:first-child{text-align:left}
 </div>
 
 <!-- ══════════════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>5. Animation — Explorer la configuration de Thalès</h2>
+
+<div class="anim-box">
+  <h3>🎮 Simulation interactive — Déplace D sur [AB] et observe les rapports</h3>
+  <p style="font-size:.9em;margin:0 0 8px;color:#718096">Le point D se déplace sur [AB]. La droite DE reste parallèle à BC. Les trois rapports AD/AB, AE/AC, DE/BC sont toujours égaux.</p>
+  <div class="ctrl-vis">
+    <label>Rapport \(k = AD/AB\) = <input type="range" id="slK13" min="0.15" max="0.95" step="0.01" value="0.5"> <strong id="lblK13">0.50</strong></label>
+  </div>
+  <canvas id="canvasThales" class="anim" width="560" height="300"></canvas>
+  <div class="anim-result" id="resuThales"></div>
+</div>
+
+<script>
+(function(){
+  const sl=document.getElementById('slK13'),
+        lbl=document.getElementById('lblK13'),
+        cv=document.getElementById('canvasThales'),
+        ctx=cv.getContext('2d'),
+        res=document.getElementById('resuThales');
+
+  // Triangle ABC fixe (coordonnées dans le canvas)
+  const AX=280, AY=30;
+  const BX=90,  BY=260;
+  const CX=470, CY=260;
+  const AB_len=Math.sqrt((BX-AX)**2+(BY-AY)**2);
+  const AC_len=Math.sqrt((CX-AX)**2+(CY-AY)**2);
+  const BC_len=Math.sqrt((CX-BX)**2+(CY-BY)**2);
+
+  function draw(){
+    const k=parseFloat(sl.value);
+    lbl.textContent=k.toFixed(2);
+    ctx.clearRect(0,0,cv.width,cv.height);
+
+    // Triangle ABC
+    ctx.beginPath(); ctx.moveTo(AX,AY); ctx.lineTo(BX,BY); ctx.lineTo(CX,CY); ctx.closePath();
+    ctx.fillStyle='rgba(0,86,179,0.07)'; ctx.fill();
+    ctx.strokeStyle='#0056b3'; ctx.lineWidth=2; ctx.stroke();
+
+    // Points D et E
+    const DX=AX+k*(BX-AX), DY=AY+k*(BY-AY);
+    const EX=AX+k*(CX-AX), EY=AY+k*(CY-AY);
+
+    // Droite DE (parallèle à BC)
+    ctx.beginPath(); ctx.moveTo(DX,DY); ctx.lineTo(EX,EY);
+    ctx.strokeStyle='#c53030'; ctx.lineWidth=2.5; ctx.stroke();
+
+    // Marques parallèles sur DE et BC
+    [[DX,DY,EX,EY],[BX,BY,CX,CY]].forEach(([x1,y1,x2,y2])=>{
+      const mx=(x1+x2)/2, my=(y1+y2)/2;
+      const ang=Math.atan2(y2-y1,x2-x1);
+      ctx.save(); ctx.translate(mx,my); ctx.rotate(ang);
+      ctx.strokeStyle='#d97706'; ctx.lineWidth=1.5;
+      ctx.beginPath(); ctx.moveTo(-6,-5); ctx.lineTo(0,0); ctx.lineTo(-6,5); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-10,-5); ctx.lineTo(-4,0); ctx.lineTo(-10,5); ctx.stroke();
+      ctx.restore();
+    });
+
+    // Points et étiquettes
+    [[AX,AY,'A','#0056b3'],[BX,BY,'B','#0056b3'],[CX,CY,'C','#0056b3'],
+     [DX,DY,'D','#c53030'],[EX,EY,'E','#c53030']].forEach(([x,y,name,col])=>{
+      ctx.beginPath(); ctx.arc(x,y,5,0,Math.PI*2);
+      ctx.fillStyle=col; ctx.fill();
+      ctx.font='bold 14px Segoe UI'; ctx.fillStyle=col; ctx.textAlign='center';
+      const off=name==='A'?-12:name==='B'?-10:name==='C'?10:name==='D'?-12:12;
+      ctx.fillText(name,x+off,y+(name==='A'?-8:12));
+    });
+
+    // Longueurs calculées
+    const AD=k*AB_len, DB=(1-k)*AB_len;
+    const AE=k*AC_len, EC=(1-k)*AC_len;
+    const DE=k*BC_len;
+    res.innerHTML=
+      'AD/AB = '+AD.toFixed(1)+'/'+AB_len.toFixed(1)+' = <strong style="color:#c53030">'+k.toFixed(2)+'</strong> &nbsp;|&nbsp; '+
+      'AE/AC = '+AE.toFixed(1)+'/'+AC_len.toFixed(1)+' = <strong style="color:#c53030">'+k.toFixed(2)+'</strong> &nbsp;|&nbsp; '+
+      'DE/BC = '+DE.toFixed(1)+'/'+BC_len.toFixed(1)+' = <strong style="color:#c53030">'+k.toFixed(2)+'</strong><br>'+
+      '<span style="color:#2f855a">Les trois rapports sont toujours égaux !</span>';
+  }
+  sl.oninput=draw; draw();
+})();
+</script>
+
 <div class="retenir">
   <h3>📌 L'essentiel du chapitre</h3>
   <p><strong>Théorème de Thalès</strong> (DE ∥ BC, D ∈ [AB], E ∈ [AC]) :</p>

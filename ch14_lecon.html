@@ -47,6 +47,12 @@ td:first-child{text-align:left}
 .solide-card svg{display:block;margin:0 auto 8px}
 .solide-card strong{display:block;color:var(--p);font-size:.9em;margin-bottom:6px}
 .solide-card .v{font-size:.82em;background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:5px 8px;margin-top:4px}
+canvas.anim{display:block;margin:12px auto;border-radius:10px;border:1px solid #e2e8f0;background:#fff}
+.ctrl-vis{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:10px 0;align-items:center;font-size:.92em}
+.ctrl-vis input[type=range]{width:180px;accent-color:var(--p)}
+.anim-result{text-align:center;font-size:.95em;font-weight:700;color:var(--p);min-height:2.5em;margin-top:6px;line-height:1.7}
+.anim-box{background:#f0f7ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 20px;margin:20px 0}
+.anim-box h3{color:var(--p);margin:0 0 10px;font-size:.95em}
 .aggrand-table td:nth-child(2){color:var(--s);font-weight:700}
 .conv-vol{text-align:center}
 .conv-vol td,.conv-vol th{padding:8px 10px;font-size:.88em}
@@ -246,6 +252,81 @@ td:first-child{text-align:left}
 
 <!-- ══════════════════════════════════════════════════════ -->
 <div class="retenir">
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>5. Animation — Effets d'un agrandissement sur les grandeurs</h2>
+
+<div class="anim-box">
+  <h3>🎮 Simulation interactive — Agrandis ou réduis un cylindre et observe les effets</h3>
+  <p style="font-size:.9em;margin:0 0 8px;color:#718096">Le cylindre de référence a r₀ = 3 cm et h₀ = 8 cm. Fais varier k et observe comment les longueurs, les aires et le volume évoluent.</p>
+  <div class="ctrl-vis">
+    <label>Rapport \(k\) = <input type="range" id="slK14" min="0.3" max="3" step="0.1" value="1"> <strong id="lblK14">1.0</strong></label>
+  </div>
+  <canvas id="canvasSolide" class="anim" width="560" height="240"></canvas>
+  <div class="anim-result" id="resuSolide"></div>
+</div>
+
+<script>
+(function(){
+  const sl=document.getElementById('slK14'),
+        lbl=document.getElementById('lblK14'),
+        cv=document.getElementById('canvasSolide'),
+        ctx=cv.getContext('2d'),
+        res=document.getElementById('resuSolide');
+  const r0=3, h0=8;
+
+  function drawCylinder(cx,cy,r,h,col,label){
+    const ry=r*0.3; // ellipse y
+    ctx.save();
+    // Corps
+    ctx.beginPath(); ctx.rect(cx-r,cy-h/2,2*r,h);
+    ctx.fillStyle=col+'22'; ctx.fill();
+    ctx.strokeStyle=col; ctx.lineWidth=2; ctx.stroke();
+    // Ellipse haut
+    ctx.beginPath(); ctx.ellipse(cx,cy-h/2,r,ry,0,0,Math.PI*2);
+    ctx.fillStyle=col+'44'; ctx.fill();
+    ctx.strokeStyle=col; ctx.lineWidth=2; ctx.stroke();
+    // Ellipse bas (demi visible)
+    ctx.beginPath(); ctx.ellipse(cx,cy+h/2,r,ry,0,0,Math.PI);
+    ctx.strokeStyle=col; ctx.lineWidth=2; ctx.stroke();
+    // Lignes latérales
+    ctx.beginPath(); ctx.moveTo(cx-r,cy-h/2); ctx.lineTo(cx-r,cy+h/2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx+r,cy-h/2); ctx.lineTo(cx+r,cy+h/2); ctx.stroke();
+    // Label
+    ctx.fillStyle=col; ctx.font='bold 12px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText(label, cx, cy+h/2+18);
+    ctx.restore();
+  }
+
+  function draw(){
+    const k=parseFloat(sl.value);
+    lbl.textContent=k.toFixed(1);
+    ctx.clearRect(0,0,cv.width,cv.height);
+    const W=cv.width, H=cv.height;
+    const sc=16; // pixels par cm
+    const r1=r0, h1=h0;
+    const r2=r0*k, h2=h0*k;
+    // Cylindre original (gauche)
+    drawCylinder(150, H/2, r1*sc, h1*sc, '#0056b3', 'Original (k=1)');
+    // Flèche ×k
+    ctx.fillStyle='#d97706'; ctx.font='bold 14px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText('× '+k.toFixed(1), W/2, H/2+4);
+    ctx.beginPath(); ctx.moveTo(W/2-28,H/2); ctx.lineTo(W/2+28,H/2);
+    ctx.strokeStyle='#d97706'; ctx.lineWidth=2; ctx.stroke();
+    // Cylindre agrandi (droite)
+    const col2=k>1?'#c53030':'#2f855a';
+    drawCylinder(410, H/2, Math.min(r2*sc,80), Math.min(h2*sc,180), col2, k>1?'Agrandi':'Réduit');
+    // Résultats
+    const V0=Math.PI*r0*r0*h0, V2=Math.PI*r2*r2*h2;
+    const A0=Math.PI*r0*r0, A2=Math.PI*r2*r2;
+    res.innerHTML=
+      'Longueurs : r = <strong>'+r2.toFixed(1)+' cm</strong>, h = <strong>'+h2.toFixed(1)+' cm</strong> (×k = ×'+k.toFixed(1)+') &nbsp;|&nbsp; '+
+      'Aire base : <strong>'+A2.toFixed(1)+' cm²</strong> (×k² = ×'+(k*k).toFixed(2)+') &nbsp;|&nbsp; '+
+      'Volume : <strong>'+V2.toFixed(1)+' cm³</strong> (×k³ = ×'+(k*k*k).toFixed(2)+')';
+  }
+  sl.oninput=draw; draw();
+})();
+</script>
+
   <h3>📌 L'essentiel du chapitre</h3>
   <table class="full" style="margin-top:6px">
     <tr><th>Solide</th><th>Volume</th></tr>
