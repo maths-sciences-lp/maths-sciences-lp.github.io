@@ -1,23 +1,402 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Ch08 PC – Exercices – Optique</title><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><style>:root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--t:#2d3748}body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}h1{margin:0 0 6px;color:var(--p);font-size:1.7em}.sous-titre{color:#718096;font-size:.95em;margin:0}.nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}.exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.9em;padding:4px 12px;border-radius:20px}.exo-title{font-weight:600}.diff{font-size:.8em;padding:2px 8px;border-radius:4px;font-weight:600}.diff-1{background:#d1fae5;color:#065f46}.diff-2{background:#fef3c7;color:#92400e}.q{margin:10px 0 6px;padding-left:4px}.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}.corr p{margin:6px 0}.bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}.bc:hover{background:#5a32a3}.intro-box{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em}</style></head><body><div class="c"><a href="pc-2nde-pro.html" class="nb">&larr; RETOUR SOMMAIRE</a>
-<header><h1>Chapitre 8 – Exercices</h1><p class="sous-titre">Réflexion et réfraction &nbsp;|&nbsp; 2<sup>de</sup> Pro</p></header>
-<div class="intro-box"><strong>Compétences :</strong> lois de la réflexion, loi de Snell-Descartes, tracé de rayons.</div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Réflexion</span><span class="diff diff-1">&#9733; Facile</span></div>
-<div class="q"><strong>1.</strong> Un rayon frappe un miroir avec un angle d'incidence de 35°. Quel est l'angle de réflexion ?</div>
-<div class="q"><strong>2.</strong> Un rayon arrive perpendiculairement à un miroir (angle d'incidence = 0°). Où repart-il ?</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> Angle réflexion = angle incidence = 35°</p><p><strong>2.</strong> Le rayon repart dans la même direction (réfléchi sur lui-même).</p></div></div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Réfraction air→eau</span><span class="diff diff-2">&#9733;&#9733; Intermédiaire</span></div>
-<p>Un rayon passe de l'air (n₁=1) vers l'eau (n₂=1,33) avec un angle d'incidence de 45°.</p>
-<div class="q"><strong>1.</strong> Écrire la relation de Snell-Descartes.</div>
-<div class="q"><strong>2.</strong> Calculer sin(i₂), puis i₂ (calculatrice).</div>
-<div class="q"><strong>3.</strong> Le rayon se rapproche ou s'éloigne de la normale en entrant dans l'eau ?</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> \(1 \times \sin(45°) = 1{,}33 \times \sin(i_2)\)</p><p><strong>2.</strong> \(\sin(i_2) = \sin(45°)/1{,}33 \approx 0{,}532\) → \(i_2 \approx 32°\)</p><p><strong>3.</strong> Se rapproche (32° &lt; 45°)</p></div></div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Application : paille dans l'eau</span><span class="diff diff-2">&#9733;&#9733; Intermédiaire</span></div>
-<div class="q"><strong>1.</strong> Pourquoi une paille semble-t-elle brisée dans un verre d'eau ?</div>
-<div class="q"><strong>2.</strong> Quel phénomène explique aussi le fonctionnement des fibres optiques ?</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> Réfraction : les rayons lumineux changent de direction en passant de l'eau à l'air → illusion d'optique.</p><p><strong>2.</strong> Réflexion totale interne.</p></div></div>
-<script>function toggle(btn){const c=btn.nextElementSibling;if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}else{c.style.display='block';btn.textContent='Masquer la correction';}}</script></div><script src="nav.js"></script>
-</body></html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 PC – Exercices – Réflexion et réfraction</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
+.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
+h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
+h2{color:var(--p);border-left:4px solid var(--p);padding-left:10px;margin-top:36px}
+.sous-titre{color:#718096;font-size:.95em;margin:0}
+.nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
+.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
+.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.9em;padding:4px 12px;border-radius:20px}
+.exo-title{font-weight:600;flex:1}
+.diff{font-size:.8em;padding:2px 8px;border-radius:4px;font-weight:600}
+.diff-1{background:#d1fae5;color:#065f46}
+.diff-2{background:#fef3c7;color:#92400e}
+.diff-3{background:#fee2e2;color:#991b1b}
+.q{margin:10px 0 6px;padding-left:4px}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}
+.corr p{margin:6px 0}
+.bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}
+.bc:hover{background:#5a32a3}
+.intro-box{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em}
+.methode{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;margin:16px 0}
+.methode strong{color:#d97706}
+.attention{background:#fff1f2;border:1px solid #fda4af;border-radius:8px;padding:14px;margin:16px 0}
+.attention strong{color:#be123c}
+.retenir{background:#f0f9ff;border:1px solid #7dd3fc;border-radius:8px;padding:14px;margin:16px 0}
+.retenir strong{color:#0369a1}
+.section-intro{background:#f8f4ff;border-radius:8px;padding:10px 16px;margin-bottom:18px;font-size:.92em;color:#4a1d96;border:1px solid #ddd6fe}
+.mama-tag{display:inline-block;background:#e6f0ff;border:1px solid #bfdbfe;border-radius:4px;font-size:.75em;font-weight:700;color:#1a4a8a;padding:2px 8px;margin-bottom:6px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:var(--p);color:#fff;padding:8px 12px;text-align:left}
+td{border:1px solid #e2e8f0;padding:8px 12px}
+tr:nth-child(even) td{background:#f8fafc}
+.svg-wrap{text-align:center;margin:20px 0}
+.chart-wrap{max-width:580px;margin:20px auto}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="pc-2nde-pro.html" class="nb">&larr; RETOUR SOMMAIRE</a>
+<header>
+  <h1>Chapitre 8 – Exercices</h1>
+  <p class="sous-titre">Réflexion et réfraction &nbsp;|&nbsp; 2<sup>de</sup> Pro</p>
+</header>
+
+<div class="intro-box">
+  <strong>Compétences travaillées :</strong> Appliquer les lois de la réflexion, utiliser la loi de Snell-Descartes (\(n_1 \sin i_1 = n_2 \sin i_2\)), identifier la réflexion totale interne, tracer des rayons lumineux.
+</div>
+
+<!-- SVG pédagogique -->
+<div class="svg-wrap">
+<svg width="480" height="260" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-label="Réfraction à l'interface air/eau">
+  <!-- Interface air/eau -->
+  <line x1="40" y1="130" x2="440" y2="130" stroke="#3b82f6" stroke-width="2" stroke-dasharray="8,4"/>
+  <!-- Labels milieux -->
+  <text x="50" y="50" font-family="Segoe UI" font-size="14" fill="#6f42c1" font-weight="bold">AIR (n₁ = 1)</text>
+  <text x="50" y="220" font-family="Segoe UI" font-size="14" fill="#2563eb" font-weight="bold">EAU (n₂ = 1,33)</text>
+  <!-- Normale -->
+  <line x1="240" y1="20" x2="240" y2="240" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="248" y="18" font-family="Segoe UI" font-size="11" fill="#6b7280">normale</text>
+  <!-- Rayon incident -->
+  <line x1="110" y1="30" x2="240" y2="130" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arr1)"/>
+  <!-- Rayon réfléchi -->
+  <line x1="240" y1="130" x2="370" y2="30" stroke="#f97316" stroke-width="2" stroke-dasharray="6,3"/>
+  <!-- Rayon réfracté -->
+  <line x1="240" y1="130" x2="300" y2="240" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arr2)"/>
+  <!-- Arc angle i1 -->
+  <path d="M 240 90 A 40 40 0 0 0 208 62" stroke="#ef4444" fill="none" stroke-width="1.5"/>
+  <text x="200" y="85" font-family="Segoe UI" font-size="13" fill="#ef4444" font-style="italic">i₁</text>
+  <!-- Arc angle i2 -->
+  <path d="M 240 170 A 40 40 0 0 1 265 193" stroke="#2563eb" fill="none" stroke-width="1.5"/>
+  <text x="262" y="178" font-family="Segoe UI" font-size="13" fill="#2563eb" font-style="italic">i₂</text>
+  <!-- Légende interface -->
+  <text x="390" y="124" font-family="Segoe UI" font-size="11" fill="#3b82f6">interface</text>
+  <!-- Flèches -->
+  <defs>
+    <marker id="arr1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <!-- Légende -->
+  <rect x="10" y="235" width="460" height="22" fill="#f5f0ff" rx="4"/>
+  <text x="20" y="250" font-family="Segoe UI" font-size="11" fill="#4a1d96">
+    Rouge = rayon incident  |  Orange = rayon réfléchi  |  Bleu = rayon réfracté  |  i₂ &lt; i₁ (milieu plus dense)
+  </text>
+</svg>
+</div>
+
+<!-- SECTION 1 : BASE -->
+<h2>Section 1 – Lois de la réflexion</h2>
+<div class="section-intro">Rappel : l'angle de réflexion est toujours égal à l'angle d'incidence, mesurés par rapport à la normale à la surface.</div>
+
+<!-- Exercice 1 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Angles de réflexion — calculs directs</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <p>Un rayon lumineux frappe une surface réfléchissante (miroir plan). On donne l'angle d'incidence \(i\).</p>
+  <div class="q"><strong>1.</strong> Un rayon arrive avec \(i = 35°\). Quel est l'angle de réflexion \(r\) ?</div>
+  <div class="q"><strong>2.</strong> Un rayon arrive avec \(i = 0°\) (perpendiculaire à la surface). Vers où repart-il ?</div>
+  <div class="q"><strong>3.</strong> Un rayon fait un angle de 50° avec la surface du miroir (et non avec la normale). Calculer l'angle d'incidence et l'angle de réflexion.</div>
+  <div class="methode"><strong>Méthode :</strong> Les angles sont toujours mesurés par rapport à la <em>normale</em>, pas par rapport à la surface. Si l'angle avec la surface est \(\alpha\), alors l'angle avec la normale est \(i = 90° - \alpha\).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Loi de réflexion : \(r = i\). Donc \(r = 35°\).</p>
+    <p><strong>2.</strong> Si \(i = 0°\), le rayon est perpendiculaire au miroir. Il repart dans la direction exactement inverse (réfléchi sur lui-même), \(r = 0°\).</p>
+    <p><strong>3.</strong> Angle avec la surface = 50°, donc angle avec la normale : \(i = 90° - 50° = 40°\).</p>
+    <p>Angle de réflexion : \(r = i = 40°\).</p>
+  </div>
+</div>
+
+<!-- Exercice 2 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Réflexion vs réfraction dans la vie courante</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <p>Pour chaque phénomène, indiquer s'il s'agit principalement de <strong>réflexion</strong> ou de <strong>réfraction</strong>, et justifier brièvement.</p>
+  <div class="q"><strong>1.</strong> Une paille semble brisée dans un verre d'eau.</div>
+  <div class="q"><strong>2.</strong> On voit son image dans un miroir de salle de bain.</div>
+  <div class="q"><strong>3.</strong> Un prisme décompose la lumière blanche en arc-en-ciel.</div>
+  <div class="q"><strong>4.</strong> On voit le reflet d'un immeuble dans une flaque d'eau.</div>
+  <div class="q"><strong>5.</strong> Un poisson dans un aquarium semble plus proche qu'il ne l'est.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1. Réfraction :</strong> les rayons changent de direction en passant de l'eau à l'air → illusion de rupture.</p>
+    <p><strong>2. Réflexion :</strong> le miroir renvoie la lumière selon les lois de la réflexion.</p>
+    <p><strong>3. Réfraction :</strong> chaque longueur d'onde est réfractée avec un angle différent → dispersion.</p>
+    <p><strong>4. Réflexion :</strong> la surface de l'eau agit comme un miroir pour les rayons à faible angle.</p>
+    <p><strong>5. Réfraction :</strong> les rayons issus du poisson sont déviés en sortant de l'eau, modifiant la position apparente.</p>
+  </div>
+</div>
+
+<!-- Exercice 3 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Indices de réfraction — lecture de tableau</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <table>
+    <tr><th>Milieu</th><th>Indice de réfraction \(n\)</th></tr>
+    <tr><td>Vide / Air</td><td>1,00</td></tr>
+    <tr><td>Eau</td><td>1,33</td></tr>
+    <tr><td>Verre ordinaire</td><td>1,50</td></tr>
+    <tr><td>Verre crown</td><td>1,52</td></tr>
+    <tr><td>Diamant</td><td>2,42</td></tr>
+    <tr><td>Plexiglas (PMMA)</td><td>1,49</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Quel est le milieu le plus réfringent (plus grand indice) de ce tableau ?</div>
+  <div class="q"><strong>2.</strong> La vitesse de la lumière dans un milieu d'indice \(n\) est \(v = c/n\) avec \(c = 3 \times 10^8\) m/s. Calculer la vitesse dans le verre ordinaire et dans le diamant.</div>
+  <div class="q"><strong>3.</strong> Pourquoi un diamant « brille-t-il » autant ? (En lien avec l'indice élevé)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Le diamant avec \(n = 2,42\).</p>
+    <p><strong>2.</strong> Verre ordinaire : \(v = \frac{3 \times 10^8}{1{,}50} = 2 \times 10^8\) m/s.</p>
+    <p>Diamant : \(v = \frac{3 \times 10^8}{2{,}42} \approx 1{,}24 \times 10^8\) m/s.</p>
+    <p><strong>3.</strong> Son grand indice (\(n = 2,42\)) donne un angle critique très petit (~24°), favorisant la réflexion totale interne. La lumière est piégée à l'intérieur et ressort par les faces taillées, créant les reflets brillants caractéristiques.</p>
+  </div>
+</div>
+
+<!-- SECTION 2 : GUIDÉ -->
+<h2>Section 2 – Loi de Snell-Descartes (guidé)</h2>
+<div class="section-intro">La loi de Snell-Descartes relie les angles d'incidence et de réfraction : \(n_1 \sin i_1 = n_2 \sin i_2\)</div>
+
+<!-- Exercice 4 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Appliquer Snell-Descartes : air → eau</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>Un rayon lumineux passe de l'air (\(n_1 = 1\)) dans l'eau (\(n_2 = 1{,}33\)). Compléter le tableau pour chaque angle d'incidence.</p>
+  <div class="methode">
+    <strong>Méthode :</strong><br>
+    1. Écrire : \(n_1 \sin i_1 = n_2 \sin i_2\)<br>
+    2. Isoler \(\sin i_2 = \dfrac{n_1 \sin i_1}{n_2}\)<br>
+    3. Calculer \(i_2 = \arcsin(\sin i_2)\) à la calculatrice
+  </div>
+  <table>
+    <tr><th>Angle d'incidence \(i_1\)</th><th>\(\sin i_1\)</th><th>\(\sin i_2 = \sin i_1 / 1{,}33\)</th><th>Angle réfracté \(i_2\)</th></tr>
+    <tr><td>30°</td><td>0,500</td><td>…</td><td>…</td></tr>
+    <tr><td>45°</td><td>0,707</td><td>…</td><td>…</td></tr>
+    <tr><td>60°</td><td>0,866</td><td>…</td><td>…</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Compléter le tableau (montrer les calculs pour 45°).</div>
+  <div class="q"><strong>2.</strong> Dans tous les cas, est-ce que \(i_2 &lt; i_1\) ou \(i_2 &gt; i_1\) ? Expliquer pourquoi.</div>
+  <div class="q"><strong>3.</strong> Que se passerait-il si le rayon allait dans l'autre sens (eau → air) avec \(i_1 = 32°\) ?</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Pour \(i_1 = 30°\) : \(\sin i_2 = 0{,}500/1{,}33 = 0{,}376\) → \(i_2 = \arcsin(0{,}376) \approx 22°\)</p>
+    <p>Pour \(i_1 = 45°\) : \(\sin i_2 = 0{,}707/1{,}33 = 0{,}532\) → \(i_2 = \arcsin(0{,}532) \approx 32°\)</p>
+    <p>Pour \(i_1 = 60°\) : \(\sin i_2 = 0{,}866/1{,}33 = 0{,}651\) → \(i_2 = \arcsin(0{,}651) \approx 41°\)</p>
+    <p><strong>2.</strong> Toujours \(i_2 &lt; i_1\) : en entrant dans l'eau (milieu plus dense, \(n_2 &gt; n_1\)), le rayon se rapproche de la normale.</p>
+    <p><strong>3.</strong> Eau → air avec \(i_1 = 32°\) : \(1{,}33 \sin(32°) = 1 \times \sin i_2\) → \(\sin i_2 = 1{,}33 \times 0{,}530 = 0{,}705\) → \(i_2 \approx 45°\). Le rayon s'éloigne de la normale en sortant dans un milieu moins dense.</p>
+  </div>
+</div>
+
+<!-- Exercice 5 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">Angle limite de réflexion totale interne</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>Lorsqu'un rayon passe d'un milieu dense vers un milieu moins dense (\(n_1 &gt; n_2\)), il peut se produire une <strong>réflexion totale interne</strong> si l'angle d'incidence dépasse l'angle critique \(i_c\).</p>
+  <div class="retenir"><strong>À retenir :</strong> L'angle critique est donné par \(\sin i_c = \dfrac{n_2}{n_1}\)</div>
+  <div class="q"><strong>1.</strong> Calculer l'angle critique pour l'interface verre (\(n=1{,}50\)) → air (\(n=1\)).</div>
+  <div class="q"><strong>2.</strong> Un rayon dans le verre frappe l'interface à \(i = 38°\). Est-ce qu'il sort ou est totalement réfléchi ?</div>
+  <div class="q"><strong>3.</strong> Calculer l'angle critique pour l'interface eau (\(n=1{,}33\)) → air.</div>
+  <div class="q"><strong>4.</strong> Expliquer qualitativement ce qui se passe exactement à \(i = i_c\) (que vaut \(i_2\) ?).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\sin i_c = \dfrac{n_2}{n_1} = \dfrac{1}{1{,}50} = 0{,}667\) → \(i_c = \arcsin(0{,}667) \approx 41{,}8°\)</p>
+    <p><strong>2.</strong> \(i = 38° &lt; i_c = 41{,}8°\) : le rayon sort du verre (réfraction partielle), il n'y a pas encore réflexion totale.</p>
+    <p><strong>3.</strong> \(\sin i_c = \dfrac{1}{1{,}33} = 0{,}752\) → \(i_c = \arcsin(0{,}752) \approx 48{,}8°\)</p>
+    <p><strong>4.</strong> Exactement à \(i = i_c\), le rayon réfracté rase la surface (\(i_2 = 90°\)). Au-delà, aucun rayon ne sort : toute l'énergie est réfléchie à l'intérieur.</p>
+  </div>
+</div>
+
+<!-- SECTION 3 : APPLICATION -->
+<h2>Section 3 – Applications</h2>
+<div class="section-intro">On applique les lois vues aux situations plus complexes : lame à faces parallèles, fibre optique.</div>
+
+<!-- Exercice 6 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">Rayon traversant une lame de verre à faces parallèles</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>Un rayon lumineux (dans l'air) arrive sur une lame de verre (\(n = 1{,}50\)) avec un angle d'incidence \(i_1 = 40°\). La lame a des faces parallèles (entrée et sortie parallèles).</p>
+  <div class="q"><strong>1.</strong> Calculer l'angle de réfraction \(i_2\) à l'entrée dans le verre.</div>
+  <div class="q"><strong>2.</strong> À la sortie du verre (verre → air), l'angle d'incidence sur la face de sortie est égal à \(i_2\). Calculer l'angle de sortie \(i_3\).</div>
+  <div class="q"><strong>3.</strong> Comparer \(i_3\) et \(i_1\). Que peut-on conclure sur la direction du rayon sortant ?</div>
+  <div class="q"><strong>4.</strong> Le rayon sortant est-il décalé par rapport au rayon entrant ? Justifier.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(n_{air} \sin i_1 = n_{verre} \sin i_2\) → \(1 \times \sin(40°) = 1{,}50 \times \sin i_2\)</p>
+    <p>\(\sin i_2 = \frac{\sin 40°}{1{,}50} = \frac{0{,}643}{1{,}50} = 0{,}429\) → \(i_2 \approx 25{,}4°\)</p>
+    <p><strong>2.</strong> \(1{,}50 \times \sin(25{,}4°) = 1 \times \sin i_3\) → \(\sin i_3 = 1{,}50 \times 0{,}429 = 0{,}643\) → \(i_3 = 40°\)</p>
+    <p><strong>3.</strong> \(i_3 = i_1 = 40°\) : le rayon sortant est parallèle au rayon entrant.</p>
+    <p><strong>4.</strong> Oui, il y a un décalage latéral car le rayon a été dévié à l'entrée et redévié à la sortie. Les deux rayons sont parallèles mais pas sur la même droite.</p>
+  </div>
+</div>
+
+<!-- Exercice 7 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 7</span>
+    <span class="exo-title">Fibre optique — principe et angle critique</span>
+    <span class="diff diff-3">&#9733;&#9733;&#9733; Difficile</span>
+  </div>
+  <p>Une fibre optique est composée d'un cœur en verre (\(n_{cœur} = 1{,}50\)) entouré d'une gaine (\(n_{gaine} = 1{,}46\)). La lumière se propage en se réfléchissant totalement à l'interface cœur/gaine.</p>
+  <div class="q"><strong>1.</strong> Vérifier que la réflexion totale interne est possible à l'interface cœur/gaine (comparer les indices).</div>
+  <div class="q"><strong>2.</strong> Calculer l'angle critique \(i_c\) à l'interface cœur (\(n=1{,}50\)) → gaine (\(n=1{,}46\)).</div>
+  <div class="q"><strong>3.</strong> Un rayon frappe l'interface cœur/gaine avec un angle de 76°. Est-il totalement réfléchi ?</div>
+  <div class="q"><strong>4.</strong> Citer deux avantages des fibres optiques par rapport aux câbles électriques pour transmettre de l'information.</div>
+  <div class="attention"><strong>Attention :</strong> Dans une fibre, l'angle d'incidence à l'interface est mesuré par rapport à la normale à la paroi de la fibre (donc proche de 90° pour des rayons quasi parallèles à l'axe).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(n_{cœur} = 1{,}50 &gt; n_{gaine} = 1{,}46\) : oui, le cœur est plus dense que la gaine, la réflexion totale interne est possible.</p>
+    <p><strong>2.</strong> \(\sin i_c = \frac{n_{gaine}}{n_{cœur}} = \frac{1{,}46}{1{,}50} = 0{,}973\) → \(i_c = \arcsin(0{,}973) \approx 76{,}7°\)</p>
+    <p><strong>3.</strong> \(i = 76° &lt; i_c = 76{,}7°\) : le rayon n'est pas totalement réfléchi, il sort partiellement de la fibre (cas limite).</p>
+    <p><strong>4.</strong> Avantages des fibres optiques : très large bande passante (débit élevé) ; insensibles aux interférences électromagnétiques ; faibles pertes sur de longues distances.</p>
+  </div>
+</div>
+
+<!-- SECTION 4 : MAMA -->
+<h2>Section 4 – Contexte professionnel MAMA</h2>
+<div class="section-intro">Ces exercices situent les notions dans des contextes de la maintenance automobile, matériels, et des aides à la mobilité (MAMA).</div>
+
+<!-- Exercice 8 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 8</span>
+    <span class="exo-title">Rétroviseur d'atelier — coin de cube réfléchissant</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+    <div class="mama-tag">MAMA</div>
+  </div>
+  <p>Dans un atelier de mécanique, un <strong>coin de cube réfléchissant</strong> (trihèdre de miroirs à 90°) est utilisé pour surveiller un angle mort. La propriété remarquable de ce dispositif est qu'il renvoie tout rayon incident dans sa direction exactement opposée, quel que soit l'angle d'arrivée.</p>
+  <div class="q"><strong>1.</strong> Un rayon arrive avec un angle d'incidence \(i = 30°\) sur le premier miroir. Il se réfléchit, puis frappe un deuxième miroir perpendiculaire au premier. Calculer l'angle d'incidence sur ce deuxième miroir.</div>
+  <div class="q"><strong>2.</strong> Vérifier que la somme des angles dans le triangle formé par les deux réflexions confirme le renvoi à 180°.</div>
+  <div class="q"><strong>3.</strong> Quel est l'avantage pratique d'un coin de cube par rapport à un miroir plan dans un atelier ?</div>
+  <div class="q"><strong>4.</strong> Citer un autre équipement de sécurité routière ou ferroviaire qui utilise ce principe.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Sur le premier miroir : \(r_1 = i_1 = 30°\).</p>
+    <p>Dans le coin de cube, les deux miroirs sont perpendiculaires. L'angle du rayon réfléchi avec l'axe vertical est 30°. En frappant le miroir perpendiculaire, l'angle d'incidence est \(i_2 = 90° - 30° = 60°\).</p>
+    <p><strong>2.</strong> Après la 2e réflexion : \(r_2 = 60°\). La direction finale fait 60° avec la normale du 2e miroir = 30° avec l'horizontale, donc exactement opposée à la direction initiale (180°). ✓</p>
+    <p><strong>3.</strong> Avec un miroir plan, l'orientation précise est cruciale. Le coin de cube renvoie le rayon dans la direction exacte d'où il vient, quel que soit l'angle, ce qui facilite l'installation et la surveillance des angles morts.</p>
+    <p><strong>4.</strong> Les <em>catadioptres</em> (réflecteurs) sur les véhicules, panneaux routiers, balises de piste d'aéroport utilisent ce principe pour renvoyer la lumière des phares vers le conducteur.</p>
+  </div>
+</div>
+
+<!-- Exercice 9 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 9</span>
+    <span class="exo-title">Endoscope industriel — inspection moteur par fibre optique</span>
+    <span class="diff diff-3">&#9733;&#9733;&#9733; Difficile</span>
+    <div class="mama-tag">MAMA</div>
+  </div>
+  <p>Un technicien de maintenance utilise un <strong>endoscope industriel à fibre optique</strong> pour inspecter l'intérieur d'un moteur (cylindres, soupapes) sans démontage. L'endoscope contient des milliers de fibres de verre (\(n_{cœur} = 1{,}62\), \(n_{gaine} = 1{,}52\)).</p>
+  <div class="q"><strong>1.</strong> Calculer l'angle critique \(i_c\) pour ces fibres.</div>
+  <div class="q"><strong>2.</strong> La lumière est injectée dans la fibre avec un angle de 80° par rapport à la paroi (donc 10° par rapport à l'axe). L'angle par rapport à la normale à la paroi est donc 80°. Ce rayon est-il guidé dans la fibre ?</div>
+  <div class="q"><strong>3.</strong> L'endoscope a un diamètre de 4 mm et une longueur de 50 cm. Pourquoi les pertes lumineuses restent-elles faibles malgré la longueur ?</div>
+  <div class="q"><strong>4.</strong> Quels sont les avantages de l'inspection endoscopique par rapport au démontage complet du moteur ? (Donner au moins 3 avantages)</div>
+  <div class="q"><strong>5.</strong> Le faisceau de fibres transmettant l'image doit être <em>cohérent</em> (fibres dans le même ordre aux deux extrémités). Pourquoi cette contrainte est-elle nécessaire ?</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\sin i_c = \frac{n_{gaine}}{n_{cœur}} = \frac{1{,}52}{1{,}62} = 0{,}938\) → \(i_c = \arcsin(0{,}938) \approx 69{,}6°\)</p>
+    <p><strong>2.</strong> L'angle par rapport à la normale à la paroi est 80°. On compare : \(i = 80° &gt; i_c = 69{,}6°\) → le rayon est totalement réfléchi et guidé dans la fibre. ✓</p>
+    <p><strong>3.</strong> Grâce à la réflexion totale interne, pratiquement aucune énergie n'est perdue à chaque rebond sur la paroi. Le signal se propage sans atténuation significative sur quelques décimètres.</p>
+    <p><strong>4.</strong> Avantages : gain de temps (pas de démontage) ; économie de pièces de joint et de main-d'œuvre ; moteur non dégradé par le démontage ; diagnostic possible moteur chaud ou assemblé ; image haute résolution en temps réel.</p>
+    <p><strong>5.</strong> Si les fibres ne sont pas dans le même ordre aux deux extrémités, les pixels de l'image sont mélangés : l'image est illisible (brouillée). Le maintien de l'ordre spatial (cohérence) garantit que chaque fibre transmet le bon point de l'image.</p>
+  </div>
+</div>
+
+<!-- Graphique Chart.js -->
+<h2>Graphique — Angle de réfraction air/eau</h2>
+<p>Ce graphique montre l'angle de réfraction \(i_2\) dans l'eau en fonction de l'angle d'incidence \(i_1\) dans l'air, selon la loi de Snell-Descartes (\(n_{eau} = 1{,}33\)).</p>
+<div class="chart-wrap">
+  <canvas id="snellChart"></canvas>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+function toggle(btn){
+  var c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+
+// Chart Snell-Descartes air/eau
+(function(){
+  var labels=[], data=[];
+  for(var i=0;i<=90;i+=5){
+    var sinI2 = Math.sin(i*Math.PI/180)/1.33;
+    if(sinI2<=1){
+      labels.push(i+'°');
+      data.push(Math.round(Math.asin(sinI2)*180/Math.PI*10)/10);
+    }
+  }
+  var ctx=document.getElementById('snellChart').getContext('2d');
+  new Chart(ctx,{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[{
+        label:'Angle réfracté i₂ (eau, n=1,33)',
+        data:data,
+        borderColor:'#3b82f6',
+        backgroundColor:'rgba(59,130,246,0.1)',
+        fill:true,
+        tension:0.3,
+        pointRadius:4,
+        pointBackgroundColor:'#6f42c1'
+      },{
+        label:'Droite i₂ = i₁ (référence)',
+        data:labels.map(function(l){return parseFloat(l);}),
+        borderColor:'#e5e7eb',
+        borderDash:[6,4],
+        fill:false,
+        pointRadius:0
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        title:{display:true,text:'Snell-Descartes : air (n=1) → eau (n=1,33)',font:{size:14}},
+        legend:{position:'bottom'}
+      },
+      scales:{
+        x:{title:{display:true,text:"Angle d'incidence i₁ (°)"}},
+        y:{title:{display:true,text:'Angle réfracté i₂ (°)'},min:0,max:90}
+      }
+    }
+  });
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

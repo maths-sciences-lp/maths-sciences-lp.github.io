@@ -1,22 +1,407 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Ch09 PC – Exercices – Composition lumière</title><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><style>:root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--t:#2d3748}body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}h1{margin:0 0 6px;color:var(--p);font-size:1.7em}.sous-titre{color:#718096;font-size:.95em;margin:0}.nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}.exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.9em;padding:4px 12px;border-radius:20px}.exo-title{font-weight:600}.diff{font-size:.8em;padding:2px 8px;border-radius:4px;font-weight:600}.diff-1{background:#d1fae5;color:#065f46}.diff-2{background:#fef3c7;color:#92400e}.q{margin:10px 0 6px;padding-left:4px}.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}.corr p{margin:6px 0}.bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}.bc:hover{background:#5a32a3}.intro-box{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em}</style></head><body><div class="c"><a href="pc-2nde-pro.html" class="nb">&larr; RETOUR SOMMAIRE</a>
-<header><h1>Chapitre 9 – Exercices</h1><p class="sous-titre">Composition de la lumière &nbsp;|&nbsp; 2<sup>de</sup> Pro</p></header>
-<div class="intro-box"><strong>Compétences :</strong> spectre visible, synthèse additive et soustractive, couleur des objets.</div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Spectre visible</span><span class="diff diff-1">&#9733; Facile</span></div>
-<div class="q"><strong>1.</strong> Ranger les couleurs du visible du plus court au plus long : Orange, Violet, Vert, Rouge, Bleu.</div>
-<div class="q"><strong>2.</strong> Quelles longueurs d'onde sont visibles par l'œil humain ?</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> Violet &lt; Bleu &lt; Vert &lt; Orange &lt; Rouge</p><p><strong>2.</strong> 400 nm à 700 nm environ.</p></div></div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Synthèse additive</span><span class="diff diff-1">&#9733; Facile</span></div>
-<div class="q"><strong>1.</strong> Quelles sont les 3 couleurs primaires additives ?</div>
-<div class="q"><strong>2.</strong> Quelle couleur obtient-on en mélangeant Rouge + Vert ?</div>
-<div class="q"><strong>3.</strong> Quelle couleur obtient-on avec Rouge + Vert + Bleu ?</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> Rouge, Vert, Bleu (RVB)</p><p><strong>2.</strong> Jaune</p><p><strong>3.</strong> Blanc</p></div></div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Couleur des objets</span><span class="diff diff-2">&#9733;&#9733; Intermédiaire</span></div>
-<div class="q"><strong>1.</strong> Un objet paraît rouge sous lumière blanche. Que fait-il avec les autres couleurs ?</div>
-<div class="q"><strong>2.</strong> Quel est l'aspect d'un objet rouge éclairé uniquement en bleu ?</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> Il absorbe toutes les couleurs sauf le rouge qu'il réfléchit.</p><p><strong>2.</strong> L'objet paraît noir : il absorbe le bleu, il n'y a aucun rouge à réfléchir.</p></div></div>
-<script>function toggle(btn){const c=btn.nextElementSibling;if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}else{c.style.display='block';btn.textContent='Masquer la correction';}}</script></div><script src="nav.js"></script>
-</body></html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 PC – Exercices – Composition de la lumière</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
+.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
+h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
+h2{color:var(--p);border-left:4px solid var(--p);padding-left:10px;margin-top:36px}
+.sous-titre{color:#718096;font-size:.95em;margin:0}
+.nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
+.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
+.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.9em;padding:4px 12px;border-radius:20px}
+.exo-title{font-weight:600;flex:1}
+.diff{font-size:.8em;padding:2px 8px;border-radius:4px;font-weight:600}
+.diff-1{background:#d1fae5;color:#065f46}
+.diff-2{background:#fef3c7;color:#92400e}
+.diff-3{background:#fee2e2;color:#991b1b}
+.q{margin:10px 0 6px;padding-left:4px}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}
+.corr p{margin:6px 0}
+.bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}
+.bc:hover{background:#5a32a3}
+.intro-box{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em}
+.methode{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;margin:16px 0}
+.methode strong{color:#d97706}
+.attention{background:#fff1f2;border:1px solid #fda4af;border-radius:8px;padding:14px;margin:16px 0}
+.attention strong{color:#be123c}
+.retenir{background:#f0f9ff;border:1px solid #7dd3fc;border-radius:8px;padding:14px;margin:16px 0}
+.retenir strong{color:#0369a1}
+.section-intro{background:#f8f4ff;border-radius:8px;padding:10px 16px;margin-bottom:18px;font-size:.92em;color:#4a1d96;border:1px solid #ddd6fe}
+.mama-tag{display:inline-block;background:#e6f0ff;border:1px solid #bfdbfe;border-radius:4px;font-size:.75em;font-weight:700;color:#1a4a8a;padding:2px 8px;margin-bottom:6px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:var(--p);color:#fff;padding:8px 12px;text-align:left}
+td{border:1px solid #e2e8f0;padding:8px 12px}
+tr:nth-child(even) td{background:#f8fafc}
+.svg-wrap{text-align:center;margin:20px 0}
+.chart-wrap{max-width:580px;margin:20px auto}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="pc-2nde-pro.html" class="nb">&larr; RETOUR SOMMAIRE</a>
+<header>
+  <h1>Chapitre 9 – Exercices</h1>
+  <p class="sous-titre">Composition de la lumière &nbsp;|&nbsp; 2<sup>de</sup> Pro</p>
+</header>
+
+<div class="intro-box">
+  <strong>Compétences travaillées :</strong> Identifier les couleurs du spectre visible et leur longueur d'onde, maîtriser la synthèse additive (RVB) et soustractive (CMJ), expliquer la couleur des objets par absorption/réflexion, calculer fréquence et longueur d'onde.
+</div>
+
+<!-- SVG pédagogique : cercle synthèse additive -->
+<div class="svg-wrap">
+<svg width="380" height="320" viewBox="0 0 380 320" xmlns="http://www.w3.org/2000/svg" aria-label="Cercle de synthèse additive RVB">
+  <text x="190" y="22" font-family="Segoe UI" font-size="14" font-weight="bold" fill="#2d3748" text-anchor="middle">Synthèse additive — RVB</text>
+  <!-- Cercle Rouge -->
+  <circle cx="155" cy="130" r="70" fill="red" opacity="0.55"/>
+  <!-- Cercle Vert -->
+  <circle cx="225" cy="130" r="70" fill="lime" opacity="0.55"/>
+  <!-- Cercle Bleu -->
+  <circle cx="190" cy="195" r="70" fill="blue" opacity="0.55"/>
+  <!-- Labels primaires -->
+  <text x="100" y="108" font-family="Segoe UI" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">Rouge</text>
+  <text x="280" y="108" font-family="Segoe UI" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">Vert</text>
+  <text x="190" y="265" font-family="Segoe UI" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">Bleu</text>
+  <!-- Labels secondaires -->
+  <text x="190" y="118" font-family="Segoe UI" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Jaune</text>
+  <text x="140" y="198" font-family="Segoe UI" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">Magenta</text>
+  <text x="240" y="198" font-family="Segoe UI" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">Cyan</text>
+  <!-- Blanc au centre -->
+  <text x="190" y="162" font-family="Segoe UI" font-size="12" fill="#1a1a1a" text-anchor="middle" font-weight="bold">Blanc</text>
+  <!-- Légende -->
+  <rect x="10" y="295" width="360" height="20" fill="#f5f0ff" rx="4"/>
+  <text x="190" y="309" font-family="Segoe UI" font-size="11" fill="#4a1d96" text-anchor="middle">R+V+B = Blanc · R+V = Jaune · R+B = Magenta · V+B = Cyan</text>
+</svg>
+</div>
+
+<!-- SECTION 1 : BASE -->
+<h2>Section 1 – Spectre visible et notions de base</h2>
+<div class="section-intro">Le spectre visible s'étend de 400 nm (violet) à 700 nm (rouge). Les couleurs primaires additives sont le Rouge, le Vert et le Bleu (RVB).</div>
+
+<!-- Exercice 1 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Classer les couleurs du spectre visible</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <p>Le spectre visible est la partie du rayonnement électromagnétique perceptible par l'œil humain.</p>
+  <div class="q"><strong>1.</strong> Classer ces couleurs par longueur d'onde croissante : Orange, Violet, Vert, Rouge, Bleu, Jaune, Indigo.</div>
+  <div class="q"><strong>2.</strong> Donner la plage de longueurs d'onde du spectre visible (en nm).</div>
+  <div class="q"><strong>3.</strong> Une radiation a une longueur d'onde de 550 nm. De quelle couleur s'agit-il ?</div>
+  <div class="q"><strong>4.</strong> Le rayonnement UV (ultraviolet) est-il visible ? Et l'infrarouge (IR) ? Justifier.</div>
+  <table>
+    <tr><th>Couleur</th><th>Longueur d'onde approximative</th></tr>
+    <tr><td>Violet</td><td>380 – 450 nm</td></tr>
+    <tr><td>Bleu</td><td>450 – 490 nm</td></tr>
+    <tr><td>Vert</td><td>490 – 560 nm</td></tr>
+    <tr><td>Jaune</td><td>560 – 590 nm</td></tr>
+    <tr><td>Orange</td><td>590 – 620 nm</td></tr>
+    <tr><td>Rouge</td><td>620 – 700 nm</td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Violet &lt; Indigo &lt; Bleu &lt; Vert &lt; Jaune &lt; Orange &lt; Rouge (longueur d'onde croissante).</p>
+    <p><strong>2.</strong> De 380-400 nm (violet) à 700 nm (rouge).</p>
+    <p><strong>3.</strong> 550 nm correspond au vert (dans la plage 490-560 nm, proche du jaune-vert).</p>
+    <p><strong>4.</strong> UV : λ &lt; 380 nm, non visible (mais peut bronzer la peau). IR : λ &gt; 700 nm, non visible (perçu comme chaleur). L'œil ne détecte que 380-700 nm environ.</p>
+  </div>
+</div>
+
+<!-- Exercice 2 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Synthèse additive — tableau des mélanges RVB</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <p>En synthèse additive, on superpose des lumières colorées. Les trois couleurs primaires sont le <strong>Rouge (R)</strong>, le <strong>Vert (V)</strong> et le <strong>Bleu (B)</strong>.</p>
+  <div class="q"><strong>1.</strong> Compléter le tableau des mélanges en synthèse additive :</div>
+  <table>
+    <tr><th>Mélange</th><th>Couleur obtenue</th></tr>
+    <tr><td>Rouge + Vert</td><td>…</td></tr>
+    <tr><td>Rouge + Bleu</td><td>…</td></tr>
+    <tr><td>Vert + Bleu</td><td>…</td></tr>
+    <tr><td>Rouge + Vert + Bleu</td><td>…</td></tr>
+    <tr><td>Aucune lumière</td><td>…</td></tr>
+  </table>
+  <div class="q"><strong>2.</strong> Comment s'appelle la couleur opposée au Rouge dans le cercle chromatique additif ? Et au Vert ? Et au Bleu ?</div>
+  <div class="q"><strong>3.</strong> Un écran de téléphone utilise la synthèse additive. Comment reproduit-il la couleur blanche ? Et le noir ?</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> R+V = <strong>Jaune</strong> ; R+B = <strong>Magenta</strong> ; V+B = <strong>Cyan</strong> ; R+V+B = <strong>Blanc</strong> ; Aucune = <strong>Noir</strong>.</p>
+    <p><strong>2.</strong> Couleur complémentaire du Rouge = Cyan ; du Vert = Magenta ; du Bleu = Jaune.</p>
+    <p><strong>3.</strong> Blanc : les trois sous-pixels (R, V, B) sont allumés au maximum. Noir : les trois sous-pixels sont éteints (aucune lumière émise).</p>
+  </div>
+</div>
+
+<!-- Exercice 3 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Couleur des objets — absorption et réflexion</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <p>La couleur d'un objet dépend des radiations qu'il <strong>absorbe</strong> et de celles qu'il <strong>réfléchit</strong> (ou transmet). L'objet réfléchit les couleurs qu'on voit.</p>
+  <div class="q"><strong>1.</strong> Sous lumière blanche, un objet paraît rouge. Quelles couleurs absorbe-t-il ? Laquelle réfléchit-il ?</div>
+  <div class="q"><strong>2.</strong> Un objet paraît noir sous lumière blanche. Que fait-il avec toute la lumière ?</div>
+  <div class="q"><strong>3.</strong> Un objet paraît blanc sous lumière blanche. Que fait-il avec toute la lumière ?</div>
+  <div class="q"><strong>4.</strong> Un tissu vert est éclairé uniquement en rouge. De quelle couleur apparaît-il ?</div>
+  <div class="q"><strong>5.</strong> Un tissu jaune est éclairé uniquement en vert. De quelle couleur apparaît-il ? Justifier.</div>
+  <div class="methode"><strong>Méthode :</strong> Un objet ne peut réfléchir QUE les couleurs présentes dans la lumière qui l'éclaire ET qu'il est capable de réfléchir (selon sa pigmentation).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Absorbe : violet, bleu, vert, jaune, orange. Réfléchit : rouge.</p>
+    <p><strong>2.</strong> Il absorbe toutes les longueurs d'onde : aucune lumière n'est réfléchie vers l'œil.</p>
+    <p><strong>3.</strong> Il réfléchit toutes les longueurs d'onde : toute la lumière blanche est renvoyée.</p>
+    <p><strong>4.</strong> Le tissu vert réfléchit le vert mais absorbe le rouge. Éclairé en rouge, il n'a rien à réfléchir → il paraît <strong>noir</strong>.</p>
+    <p><strong>5.</strong> Le jaune = R+V. Le tissu jaune réfléchit R et V. Éclairé uniquement en vert, il peut réfléchir le vert (présent dans sa réflexion). Il paraît <strong>vert</strong>.</p>
+  </div>
+</div>
+
+<!-- SECTION 2 : GUIDÉ -->
+<h2>Section 2 – Filtres et éclairage coloré (guidé)</h2>
+<div class="section-intro">Un filtre coloré laisse passer les radiations de sa propre couleur et absorbe les autres. On peut déduire ce que l'œil perçoit en combinant filtre et objet.</div>
+
+<!-- Exercice 4 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Filtres colorés — ce qui passe et ce qui est bloqué</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>Lumière blanche (contient R, V, B) passe à travers différents filtres.</p>
+  <div class="methode">
+    <strong>Règle :</strong> Un filtre de couleur X laisse passer uniquement les radiations de la couleur X (et les couleurs proches). Il absorbe toutes les autres.
+  </div>
+  <div class="q"><strong>1.</strong> Qu'obtient-on après un filtre rouge ? Après un filtre bleu ?</div>
+  <div class="q"><strong>2.</strong> Un filtre cyan laisse passer V et B (pas R). Qu'obtient-on après un filtre cyan sur lumière blanche ?</div>
+  <div class="q"><strong>3.</strong> Lumière blanche → filtre rouge → filtre bleu. Quelle couleur sort ?</div>
+  <div class="q"><strong>4.</strong> Lumière blanche → filtre jaune → filtre cyan. Quelle couleur sort ? (Rappel : jaune laisse R+V ; cyan laisse V+B)</div>
+  <div class="q"><strong>5.</strong> On superpose un filtre magenta (laisse R+B) et un filtre vert. Que sort-il ?</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Filtre rouge → lumière rouge (R). Filtre bleu → lumière bleue (B).</p>
+    <p><strong>2.</strong> Filtre cyan sur blanc : R est bloqué, V et B passent → lumière <strong>cyan</strong>.</p>
+    <p><strong>3.</strong> Après filtre rouge : R seulement. Après filtre bleu : le rouge est bloqué par le filtre bleu. Rien ne sort → <strong>noir</strong>.</p>
+    <p><strong>4.</strong> Filtre jaune laisse R+V. Filtre cyan laisse V+B. L'intersection : seul V passe les deux → <strong>vert</strong>.</p>
+    <p><strong>5.</strong> Filtre magenta laisse R+B. Filtre vert laisse V. Intersection : aucune couleur n'est commune → <strong>noir</strong>.</p>
+  </div>
+</div>
+
+<!-- Exercice 5 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">Objet éclairé par une lumière colorée</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>Des objets colorés sont éclairés par des sources de lumière non blanches. Déterminer la couleur perçue par l'œil dans chaque cas.</p>
+  <table>
+    <tr><th>Objet (couleur sous blanc)</th><th>Éclairage</th><th>Couleur perçue ?</th></tr>
+    <tr><td>Rouge</td><td>Lumière verte</td><td>…</td></tr>
+    <tr><td>Bleu</td><td>Lumière bleue</td><td>…</td></tr>
+    <tr><td>Jaune (réfléchit R+V)</td><td>Lumière rouge</td><td>…</td></tr>
+    <tr><td>Blanc</td><td>Lumière rouge</td><td>…</td></tr>
+    <tr><td>Cyan (réfléchit V+B)</td><td>Lumière bleue</td><td>…</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Compléter le tableau en justifiant chaque réponse.</div>
+  <div class="q"><strong>2.</strong> Pourquoi les éclairages à vapeur de sodium (jaune) dans certains parkings rendaient-ils les voitures de couleurs indistinctes ?</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong></p>
+    <p>Rouge éclairé en vert : l'objet n'a que du vert à absorber ou réfléchir. L'objet rouge absorbe le vert → <strong>noir</strong>.</p>
+    <p>Bleu éclairé en bleu : l'objet réfléchit le bleu, qui est présent → <strong>bleu</strong>.</p>
+    <p>Jaune éclairé en rouge : le jaune réfléchit R+V. Le rouge est présent, il est réfléchi → <strong>rouge</strong>.</p>
+    <p>Blanc éclairé en rouge : le blanc réfléchit tout, donc réfléchit le rouge → <strong>rouge</strong>.</p>
+    <p>Cyan éclairé en bleu : le cyan réfléchit V+B. Le bleu est présent et réfléchi → <strong>bleu</strong>.</p>
+    <p><strong>2.</strong> La lampe à vapeur de sodium n'émet qu'un jaune quasi-monochromatique. Les objets ne peuvent réfléchir que du jaune, quelle que soit leur vraie couleur → tout paraît jaune ou noir. Les couleurs réelles sont perdues (IRC très bas).</p>
+  </div>
+</div>
+
+<!-- SECTION 3 : APPLICATION -->
+<h2>Section 3 – Applications</h2>
+<div class="section-intro">Synthèse soustractive pour l'impression, calcul fréquence/longueur d'onde.</div>
+
+<!-- Exercice 6 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">Synthèse soustractive CMJ pour l'impression</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>L'imprimerie utilise la synthèse <strong>soustractive</strong> avec les encres <strong>Cyan (C)</strong>, <strong>Magenta (M)</strong> et <strong>Jaune (J)</strong>. Chaque encre absorbe (soustrait) une couleur primaire de la lumière blanche réfléchie par le papier.</p>
+  <div class="retenir">
+    <strong>Rappel :</strong><br>
+    Cyan absorbe le Rouge · Magenta absorbe le Vert · Jaune absorbe le Bleu<br>
+    C+M+J = toutes absorbées → Noir théorique
+  </div>
+  <div class="q"><strong>1.</strong> Quelle encre (C, M ou J) utilise-t-on pour imprimer du rouge ? Expliquer.</div>
+  <div class="q"><strong>2.</strong> Quelles encres mélange-t-on pour obtenir du vert à l'impression ?</div>
+  <div class="q"><strong>3.</strong> Pourquoi les imprimantes ont-elles souvent une cartouche noire (K) séparée, bien que C+M+J donne théoriquement du noir ?</div>
+  <div class="q"><strong>4.</strong> Compléter le tableau des mélanges soustractifs :</div>
+  <table>
+    <tr><th>Mélange d'encres</th><th>Couleur produite</th></tr>
+    <tr><td>Cyan + Magenta</td><td>…</td></tr>
+    <tr><td>Cyan + Jaune</td><td>…</td></tr>
+    <tr><td>Magenta + Jaune</td><td>…</td></tr>
+    <tr><td>Cyan + Magenta + Jaune</td><td>…</td></tr>
+    <tr><td>Aucune encre (papier blanc)</td><td>…</td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Pour du rouge : on veut que seul le rouge soit réfléchi. Il faut absorber V et B. Cyan absorbe R (non voulu ici). On utilise Magenta (absorbe V) + Jaune (absorbe B) → ne reste que R → rouge imprimé.</p>
+    <p><strong>2.</strong> Vert : absorber R et B. Cyan (absorbe R) + Magenta (absorbe V)... non. Cyan + Jaune : Cyan absorbe R, Jaune absorbe B → reste V → <strong>vert</strong>. ✓</p>
+    <p><strong>3.</strong> En pratique, C+M+J donne un brun-gris foncé (les encres ne sont pas parfaites). La cartouche noire donne un noir plus profond, et économise les encres couleur pour les zones noires.</p>
+    <p><strong>4.</strong> C+M = Bleu · C+J = Vert · M+J = Rouge · C+M+J = Noir · Aucune = Blanc.</p>
+  </div>
+</div>
+
+<!-- Exercice 7 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 7</span>
+    <span class="exo-title">Longueur d'onde, fréquence et vitesse — calculs</span>
+    <span class="diff diff-3">&#9733;&#9733;&#9733; Difficile</span>
+  </div>
+  <p>La relation entre la vitesse de la lumière, la longueur d'onde \(\lambda\) et la fréquence \(f\) est : \(c = \lambda \times f\), avec \(c = 3 \times 10^8\) m/s.</p>
+  <div class="q"><strong>1.</strong> Calculer la fréquence d'une radiation rouge (\(\lambda = 650\) nm).</div>
+  <div class="q"><strong>2.</strong> Calculer la fréquence d'une radiation violette (\(\lambda = 400\) nm).</div>
+  <div class="q"><strong>3.</strong> Un laser émet à \(f = 5{,}09 \times 10^{14}\) Hz. Calculer \(\lambda\) et déterminer la couleur.</div>
+  <div class="q"><strong>4.</strong> Laquelle a la plus grande énergie : une radiation rouge ou une radiation violette ? (Rappel : \(E = h \cdot f\) avec \(h = 6{,}63 \times 10^{-34}\) J·s)</div>
+  <div class="methode">
+    <strong>Méthode pour 1 nm → m :</strong> \(1 \text{ nm} = 10^{-9}\) m. Donc 650 nm = \(650 \times 10^{-9}\) m = \(6{,}50 \times 10^{-7}\) m.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Rouge \(\lambda = 650 \times 10^{-9}\) m : \(f = \dfrac{c}{\lambda} = \dfrac{3 \times 10^8}{650 \times 10^{-9}} = \dfrac{3 \times 10^8}{6{,}5 \times 10^{-7}} \approx 4{,}62 \times 10^{14}\) Hz</p>
+    <p><strong>2.</strong> Violet \(\lambda = 400 \times 10^{-9}\) m : \(f = \dfrac{3 \times 10^8}{4 \times 10^{-7}} = 7{,}50 \times 10^{14}\) Hz</p>
+    <p><strong>3.</strong> \(\lambda = \dfrac{c}{f} = \dfrac{3 \times 10^8}{5{,}09 \times 10^{14}} \approx 5{,}89 \times 10^{-7}\) m = 589 nm → couleur <strong>jaune-orange</strong> (raie du sodium).</p>
+    <p><strong>4.</strong> \(E = hf\) : plus la fréquence est grande, plus l'énergie est grande. Le violet (\(f \approx 7{,}5 \times 10^{14}\) Hz) a une énergie plus grande que le rouge (\(f \approx 4{,}6 \times 10^{14}\) Hz).</p>
+  </div>
+</div>
+
+<!-- SECTION 4 : MAMA -->
+<h2>Section 4 – Contexte professionnel MAMA</h2>
+<div class="section-intro">Ces exercices situent la lumière colorée dans des contextes professionnels : cabine de peinture et tableau de bord.</div>
+
+<!-- Exercice 8 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 8</span>
+    <span class="exo-title">Cabine de peinture — IRC élevé pour correspondance de teinte</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+    <div class="mama-tag">MAMA</div>
+  </div>
+  <p>Dans une carrosserie automobile, la cabine de peinture doit être équipée de sources lumineuses à <strong>IRC (Indice de Rendu des Couleurs)</strong> élevé pour que le peintre puisse assortir correctement la teinte du véhicule.</p>
+  <div class="retenir"><strong>IRC (Ra) :</strong> valeur de 0 à 100. Plus il est élevé, mieux les couleurs sont restituées. IRC &gt; 90 recommandé pour la peinture carrosserie. Lumière du jour : IRC = 100.</div>
+  <table>
+    <tr><th>Source lumineuse</th><th>IRC (Ra)</th><th>Commentaire</th></tr>
+    <tr><td>Vapeur de sodium (ancienne)</td><td>25</td><td>Très mauvais rendu</td></tr>
+    <tr><td>Fluorescent standard</td><td>70</td><td>Rendu moyen</td></tr>
+    <tr><td>LED IRC standard</td><td>80</td><td>Acceptable</td></tr>
+    <tr><td>LED IRC+ (Ra90)</td><td>92</td><td>Excellent</td></tr>
+    <tr><td>Lumière du jour</td><td>100</td><td>Référence</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Pourquoi un éclairage à vapeur de sodium (IRC=25) est-il totalement inadapté à la cabine de peinture ?</div>
+  <div class="q"><strong>2.</strong> Un peintre assortit la teinte d'une carrosserie rouge bordeaux sous un éclairage fluorescent standard (IRC=70). Il constate une différence de teinte en plein soleil. Expliquer ce phénomène (métamérisme).</div>
+  <div class="q"><strong>3.</strong> Quelle source recommander pour la cabine ? Justifier.</div>
+  <div class="q"><strong>4.</strong> La norme AFNOR NF X 08-010 recommande un IRC ≥ 90 pour les postes de contrôle de teinte. L'atelier utilise des tubes LED Ra80. Est-il conforme ?</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> La lampe à sodium émet presque uniquement dans le jaune. Elle ne restitue pas les autres couleurs du spectre : un rouge bordeaux paraîtra brun-jaune indistinct. Impossibilité de comparer correctement les teintes.</p>
+    <p><strong>2.</strong> Le <em>métamérisme</em> : deux peintures peuvent paraître identiques sous un éclairage (IRC=70 qui déforme le spectre) mais différentes sous un autre éclairage (soleil, IRC=100 spectre complet). Les spectres de réflexion des peintures ne sont pas identiques même si le rendu est visuellement proche sous lumière pauvre en couleurs.</p>
+    <p><strong>3.</strong> LED IRC+ (Ra ≥ 90), idéalement Ra92 ou plus. Elle restitue fidèlement le spectre, proche de la lumière du jour, pour une comparaison de teinte fiable.</p>
+    <p><strong>4.</strong> Non conforme : Ra80 &lt; Ra90 requis par la norme. L'atelier doit remplacer par des sources Ra ≥ 90.</p>
+  </div>
+</div>
+
+<!-- Exercice 9 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 9</span>
+    <span class="exo-title">Voyants de tableau de bord — couleurs et signification</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+    <div class="mama-tag">MAMA</div>
+  </div>
+  <p>Les voyants du tableau de bord d'un véhicule utilisent un code couleur standardisé pour communiquer l'état du véhicule au conducteur. Ce code est défini par la norme ISO 2575.</p>
+  <table>
+    <tr><th>Couleur</th><th>Signification normalisée</th><th>Exemples de voyants</th></tr>
+    <tr><td style="background:#ef4444;color:#fff;font-weight:bold">Rouge</td><td>Danger immédiat — arrêt nécessaire</td><td>Température moteur, pression huile, charge batterie</td></tr>
+    <tr><td style="background:#f59e0b;color:#fff;font-weight:bold">Jaune/Orange</td><td>Attention — intervention à prévoir</td><td>Moteur (check engine), pression pneus</td></tr>
+    <tr><td style="background:#22c55e;color:#fff;font-weight:bold">Vert</td><td>Système en fonctionnement normal</td><td>Clignotants, feux de croisement allumés</td></tr>
+    <tr><td style="background:#3b82f6;color:#fff;font-weight:bold">Bleu</td><td>Information — feux de route</td><td>Feux de route (pleins phares)</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Un technicien voit le voyant de température moteur (rouge) s'allumer. Quelle décision doit-il prendre immédiatement ?</div>
+  <div class="q"><strong>2.</strong> En lien avec la synthèse additive, comment l'électronique du tableau de bord produit-elle différentes couleurs avec des LED ou un afficheur LCD ?</div>
+  <div class="q"><strong>3.</strong> Le voyant "check engine" est jaune sur certains véhicules, orange sur d'autres. Sont-ils perçus différemment ? Pourquoi utilise-t-on la même couleur famille ?</div>
+  <div class="q"><strong>4.</strong> Un nouveau véhicule hybride possède un voyant blanc (READY) qui s'allume quand le moteur électrique est prêt. D'après vos connaissances sur la synthèse additive, comment obtient-on du blanc avec des LED RVB ?</div>
+  <div class="q"><strong>5.</strong> Expliquer pourquoi le rouge est utilisé pour les alertes critiques en faisant référence à la longueur d'onde et à la visibilité humaine.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Arrêter le moteur immédiatement et en toute sécurité. Un voyant rouge de température signale un risque de surchauffe grave (casse moteur possible en moins d'une minute).</p>
+    <p><strong>2.</strong> Les écrans LCD et afficheurs utilisent des pixels RVB (Rouge, Vert, Bleu). En modulant l'intensité de chaque sous-pixel, on mélange les lumières par synthèse additive pour obtenir n'importe quelle couleur : R+V = jaune, R seul = rouge, etc.</p>
+    <p><strong>3.</strong> Jaune et orange sont proches dans le spectre (560-620 nm). Les deux signalent "attention" selon la norme ISO. La perception est similaire : couleur chaude, intermédiaire entre le vert rassurant et le rouge d'alerte. La famille "ambre" est reconnue universellement comme signal de vigilance.</p>
+    <p><strong>4.</strong> Blanc par synthèse additive : allumer simultanément les LED Rouge, Verte et Bleue à intensité maximale. R+V+B = blanc.</p>
+    <p><strong>5.</strong> Le rouge a la plus grande longueur d'onde visible (~620-700 nm). Il est très visible dans la vision périphérique, traverse mieux la brume et les conditions de faible visibilité. De plus, il est culturellement associé au danger (stop, interdiction), ce qui renforce la réaction d'alerte.</p>
+  </div>
+</div>
+
+<!-- Graphique Chart.js : spectre visible -->
+<h2>Graphique — Spectre visible et longueurs d'onde</h2>
+<p>Ce graphique montre les longueurs d'onde caractéristiques des principales couleurs du spectre visible (400–700 nm).</p>
+<div class="chart-wrap">
+  <canvas id="spectrumChart"></canvas>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+function toggle(btn){
+  var c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+
+// Graphique spectre visible
+(function(){
+  var ctx=document.getElementById('spectrumChart').getContext('2d');
+  new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:['Violet\n400 nm','Indigo\n430 nm','Bleu\n470 nm','Cyan\n500 nm','Vert\n530 nm','Jaune-Vert\n560 nm','Jaune\n580 nm','Orange\n610 nm','Rouge\n650 nm'],
+      datasets:[{
+        label:'Longueur d\'onde (nm)',
+        data:[400,430,470,500,530,560,580,610,650],
+        backgroundColor:['#8b00ff','#4b0082','#0000ff','#00bfff','#00c800','#adff2f','#ffff00','#ff8000','#ff0000'],
+        borderColor:'#2d3748',
+        borderWidth:1
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        title:{display:true,text:'Longueurs d\'onde des couleurs du spectre visible',font:{size:14}},
+        legend:{display:false}
+      },
+      scales:{
+        x:{title:{display:true,text:'Couleur'}},
+        y:{title:{display:true,text:'Longueur d\'onde (nm)'},min:350,max:700}
+      }
+    }
+  });
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
