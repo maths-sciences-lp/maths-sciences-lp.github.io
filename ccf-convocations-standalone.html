@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de convocations CCF</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f5f7fa;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      color: #fff;
+      text-align: center;
+      padding: 32px 20px 24px;
+    }
+    header h1 {
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    header p { font-size: .92rem; opacity: .85; }
+
+    /* ── Layout ── */
+    main { max-width: 900px; margin: 0 auto; padding: 28px 16px 64px; }
+
+    /* ── Formulaire ── */
+    .form-section {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .form-section h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      border-left: 4px solid #2563eb;
+      padding-left: 12px;
+      margin-bottom: 18px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: .82rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 9px 12px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 7px;
+      font-size: .92rem;
+      font-family: inherit;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-hint { font-size: .76rem; color: #94a3b8; margin-top: 3px; }
+
+    /* ── Boutons ── */
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+    .btn-primary, .btn-secondary {
+      padding: 11px 24px;
+      border-radius: 7px;
+      font-weight: 700;
+      font-size: .92rem;
+      cursor: pointer;
+      border: none;
+      transition: background .2s, transform .1s;
+    }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .btn-secondary { background: #f1f5f9; color: #475569; border: 1.5px solid #e2e8f0; }
+    .btn-secondary:hover { background: #e2e8f0; }
+
+    /* ── Aperçu ── */
+    #preview-zone { display: none; margin-top: 8px; }
+    #preview-zone.visible { display: block; }
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .preview-header h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      border-left: 4px solid #2563eb;
+      padding-left: 12px;
+    }
+    .convoc-count {
+      font-size: .85rem;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+
+    /* ── Convocation ── */
+    .convocation {
+      background: #fff;
+      border: 2px solid #1e3a5f;
+      border-radius: 4px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      page-break-inside: avoid;
+    }
+    .convoc-header {
+      text-align: center;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #1e3a5f;
+    }
+    .convoc-etab {
+      font-size: .88rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .convoc-annee { font-size: .78rem; color: #64748b; margin-top: 2px; }
+    .convoc-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+    }
+    .convoc-body { font-size: .88rem; line-height: 1.7; }
+    .convoc-body .field { margin-bottom: 4px; }
+    .convoc-body .field-label { font-weight: 700; color: #334155; }
+    .convoc-student {
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 10px 16px;
+      margin: 14px 0;
+      text-align: center;
+    }
+    .convoc-student-name { font-size: 1.05rem; font-weight: 800; color: #1e3a5f; }
+    .convoc-student-class { font-size: .82rem; color: #64748b; }
+    .convoc-note {
+      font-size: .78rem;
+      color: #64748b;
+      font-style: italic;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .convoc-signature {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      font-size: .82rem;
+      color: #475569;
+    }
+    .convoc-signature div { text-align: center; }
+    .convoc-signature .sig-line {
+      display: block;
+      width: 160px;
+      border-bottom: 1px solid #94a3b8;
+      margin: 28px auto 4px;
+    }
+
+    /* ── Impression ── */
+    @media print {
+      body { background: #fff; }
+      header, .form-section, .preview-header, .btn-row, #btn-print-zone { display: none !important; }
+      main { padding: 0; max-width: 100%; }
+      #preview-zone { display: block !important; }
+      .convocation {
+        border: 1.5px solid #000;
+        margin-bottom: 12px;
+        padding: 18px 22px;
+        page-break-inside: avoid;
+      }
+      .convoc-header { border-bottom-color: #000; }
+      .convoc-etab, .convoc-title { color: #000; }
+      .convoc-student { background: #f0f0f0; border-color: #999; }
+      .convoc-student-name { color: #000; }
+    }
+
+    @media (max-width: 600px) {
+      .form-section { padding: 16px; }
+      .convocation { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Générateur de convocations CCF</h1>
+    <p>Contrôle en Cours de Formation – Baccalauréat Professionnel</p>
+  </header>
+
+  <main>
+
+    <div class="form-section">
+      <h2>Informations générales</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="etab">Établissement</label>
+          <input type="text" id="etab" placeholder="Nom du lycée">
+        </div>
+        <div class="form-group">
+          <label for="ville">Ville</label>
+          <input type="text" id="ville" placeholder="Ville">
+        </div>
+        <div class="form-group">
+          <label for="annee">Année scolaire</label>
+          <input type="text" id="annee" placeholder="20XX – 20XX">
+        </div>
+        <div class="form-group">
+          <label for="classe">Classe</label>
+          <input type="text" id="classe" placeholder="Ex : T ICCER">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Informations de l'épreuve</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="discipline">Discipline</label>
+          <select id="discipline">
+            <option value="Mathématiques">Mathématiques</option>
+            <option value="Physique-Chimie">Physique-Chimie</option>
+            <option value="Mathématiques – Physique-Chimie">Maths – Physique-Chimie</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sous-epreuve">Sous-épreuve</label>
+          <input type="text" id="sous-epreuve" placeholder="Ex : E1-sous-épreuve 2">
+        </div>
+        <div class="form-group">
+          <label for="date-epreuve">Date de l'épreuve</label>
+          <input type="date" id="date-epreuve">
+        </div>
+        <div class="form-group">
+          <label for="heure">Heure de convocation</label>
+          <input type="time" id="heure">
+        </div>
+        <div class="form-group">
+          <label for="duree">Durée</label>
+          <input type="text" id="duree" placeholder="Ex : 45 min">
+        </div>
+        <div class="form-group">
+          <label for="salle">Salle</label>
+          <input type="text" id="salle" placeholder="Ex : Salle 204">
+        </div>
+        <div class="form-group full">
+          <label for="materiel">Matériel autorisé</label>
+          <input type="text" id="materiel" value="Calculatrice, règle, matériel de géométrie" placeholder="Ex : Calculatrice, règle...">
+        </div>
+        <div class="form-group">
+          <label for="examinateur">Examinateur</label>
+          <input type="text" id="examinateur" placeholder="Nom de l'examinateur">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Liste des élèves</h2>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label for="eleves">Noms des élèves (un par ligne)</label>
+          <textarea id="eleves" placeholder="DUPONT Marie&#10;MARTIN Lucas&#10;BERNARD Léa&#10;..."></textarea>
+          <span class="form-hint">Collez la liste depuis un tableur ou saisissez un nom par ligne. Les lignes vides seront ignorées.</span>
+        </div>
+        <div class="form-group">
+          <label for="csv-upload">Ou importer un fichier CSV / TXT</label>
+          <input type="file" id="csv-upload" accept=".csv,.txt,.tsv">
+          <span class="form-hint">Fichier texte avec un nom par ligne, ou CSV (la première colonne sera utilisée).</span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" onclick="generer()">Générer les convocations</button>
+        <button class="btn-secondary" onclick="effacer()">Effacer l'aperçu</button>
+      </div>
+    </div>
+
+    <div id="preview-zone">
+      <div class="preview-header">
+        <h2>Aperçu des convocations</h2>
+        <span class="convoc-count" id="convoc-count"></span>
+      </div>
+      <div class="btn-row" id="btn-print-zone">
+        <button class="btn-primary" onclick="window.print()">Imprimer / Enregistrer en PDF</button>
+      </div>
+      <div id="convocations-output"></div>
+    </div>
+
+  </main>
+
+  <script>
+    document.getElementById('csv-upload').addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(ev) {
+        var lines = ev.target.result.split(/\r?\n/).filter(function(l) { return l.trim(); });
+        var names = [];
+        for (var i = 0; i < lines.length; i++) {
+          var cols = lines[i].split(/[;\t,]/);
+          var name = cols[0].replace(/^["']|["']$/g, '').trim();
+          if (name && !/^(nom|name|eleve|élève)/i.test(name)) names.push(name);
+        }
+        if (names.length > 0) document.getElementById('eleves').value = names.join('\n');
+      };
+      reader.readAsText(file, 'UTF-8');
+    });
+
+    function formaterDate(d) {
+      if (!d) return '_______________';
+      var p = d.split('-');
+      var m = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+      return parseInt(p[2], 10) + ' ' + m[parseInt(p[1], 10) - 1] + ' ' + p[0];
+    }
+
+    function formaterHeure(h) {
+      if (!h) return '______';
+      var p = h.split(':');
+      return p[0] + 'h' + p[1];
+    }
+
+    function esc(s) {
+      var d = document.createElement('div');
+      d.appendChild(document.createTextNode(s));
+      return d.innerHTML;
+    }
+
+    function generer() {
+      var etab = document.getElementById('etab').value.trim();
+      var ville = document.getElementById('ville').value.trim();
+      var annee = document.getElementById('annee').value.trim();
+      var classe = document.getElementById('classe').value.trim();
+      var discipline = document.getElementById('discipline').value;
+      var sousEpreuve = document.getElementById('sous-epreuve').value.trim();
+      var dateEpreuve = document.getElementById('date-epreuve').value;
+      var heure = document.getElementById('heure').value;
+      var duree = document.getElementById('duree').value.trim();
+      var salle = document.getElementById('salle').value.trim();
+      var materiel = document.getElementById('materiel').value.trim();
+      var examinateur = document.getElementById('examinateur').value.trim();
+
+      var eleves = document.getElementById('eleves').value
+        .split(/\r?\n/).map(function(n) { return n.trim(); }).filter(function(n) { return n.length > 0; });
+
+      if (eleves.length === 0) { alert('Veuillez saisir au moins un nom d\'élève.'); return; }
+
+      var dateFmt = formaterDate(dateEpreuve);
+      var heureFmt = formaterHeure(heure);
+      var html = '';
+
+      for (var i = 0; i < eleves.length; i++) {
+        html += '<div class="convocation">';
+        html += '<div class="convoc-header">';
+        html += '<div class="convoc-etab">' + esc(etab) + '</div>';
+        if (ville) html += '<div class="convoc-annee">' + esc(ville) + '</div>';
+        if (annee) html += '<div class="convoc-annee">Année scolaire ' + esc(annee) + '</div>';
+        html += '<div class="convoc-title">Convocation CCF</div>';
+        html += '</div>';
+
+        html += '<div class="convoc-student">';
+        html += '<div class="convoc-student-name">' + esc(eleves[i]) + '</div>';
+        if (classe) html += '<div class="convoc-student-class">Classe : ' + esc(classe) + '</div>';
+        html += '</div>';
+
+        html += '<div class="convoc-body">';
+        html += '<div class="field"><span class="field-label">Discipline :</span> ' + esc(discipline) + '</div>';
+        if (sousEpreuve) html += '<div class="field"><span class="field-label">Sous-épreuve :</span> ' + esc(sousEpreuve) + '</div>';
+        html += '<div class="field"><span class="field-label">Date :</span> ' + esc(dateFmt) + '</div>';
+        html += '<div class="field"><span class="field-label">Heure de convocation :</span> ' + esc(heureFmt) + '</div>';
+        if (duree) html += '<div class="field"><span class="field-label">Durée :</span> ' + esc(duree) + '</div>';
+        if (salle) html += '<div class="field"><span class="field-label">Salle :</span> ' + esc(salle) + '</div>';
+        if (materiel) html += '<div class="field"><span class="field-label">Matériel autorisé :</span> ' + esc(materiel) + '</div>';
+        if (examinateur) html += '<div class="field"><span class="field-label">Examinateur :</span> ' + esc(examinateur) + '</div>';
+
+        html += '<div class="convoc-note">';
+        html += 'La présence à cette épreuve est obligatoire. En cas d\'absence non justifiée, ';
+        html += 'la note de zéro sera attribuée. Tout retard pourra entraîner le refus d\'accès à la salle d\'examen.';
+        html += '</div>';
+
+        html += '<div class="convoc-signature">';
+        html += '<div>Le chef d\'établissement<span class="sig-line"></span></div>';
+        html += '<div>Signature de l\'élève<span class="sig-line"></span></div>';
+        html += '</div>';
+
+        html += '</div></div>';
+      }
+
+      document.getElementById('convocations-output').innerHTML = html;
+      document.getElementById('convoc-count').textContent = eleves.length + ' convocation' + (eleves.length > 1 ? 's' : '');
+      document.getElementById('preview-zone').classList.add('visible');
+      document.getElementById('preview-zone').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function effacer() {
+      document.getElementById('convocations-output').innerHTML = '';
+      document.getElementById('preview-zone').classList.remove('visible');
+    }
+  </script>
+
+</body>
+</html>
