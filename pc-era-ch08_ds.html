@@ -48,6 +48,10 @@ tr:nth-child(even) td{background:#f8fafc}
 .comp-legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;font-size:.82em}
 .comp-legend span{padding:3px 9px;border-radius:4px;font-weight:600}
 @media print{.nb{display:none}.rep-zone{background:#fff}}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:6px;margin-bottom:14px;border-radius:0 10px 10px 0;display:none}
+.corr p{margin:6px 0}
+.bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:4px}
+.bc:hover{opacity:.85}
 </style>
 </head>
 <body><div class="c">
@@ -105,6 +109,10 @@ tr:nth-child(even) td{background:#f8fafc}
     <span class="pts-q">2 pts</span>
   </p>
   <div class="rep-zone" style="min-height:75px">…</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(L = 10 \times \log\!\left(\dfrac{I}{I_0}\right)\) &nbsp; avec \(L\) en dB, \(I\) intensité sonore en W/m², \(I_0 = 10^{-12}\,\text{W/m}^2\) (seuil d'audibilité)</p>
+  </div>
 
   <p class="q">
     <span class="q-num">2.</span>
@@ -113,6 +121,10 @@ tr:nth-child(even) td{background:#f8fafc}
     <span class="pts-q">2 pts</span>
   </p>
   <div class="rep-zone" style="min-height:80px">…</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(L = 10 \times \log\!\left(\dfrac{10^{-4}}{10^{-12}}\right) = 10 \times \log(10^8) = 10 \times 8 = 80\,\text{dB}\)</p>
+  </div>
 
   <p class="q">
     <span class="q-num">3.</span>
@@ -123,6 +135,11 @@ tr:nth-child(even) td{background:#f8fafc}
     <span class="pts-q">2 pts</span>
   </p>
   <div class="rep-zone" style="min-height:90px">…</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Pour deux sources identiques (\(L_1 = L_2 = 85\,\text{dB}\)) :</p>
+    <p>\(L_{total} = 10 \times \log(2 \times 10^{8{,}5}) = 10 \times (\log 2 + 8{,}5) = 10 \times (0{,}30 + 8{,}5) = 10 \times 8{,}8 = 88\,\text{dB}\)</p>
+  </div>
 
   <p class="q">
     <span class="q-num">4.</span>
@@ -133,6 +150,12 @@ tr:nth-child(even) td{background:#f8fafc}
     <span class="pts-q">4 pts</span>
   </p>
   <div class="rep-zone" style="min-height:100px">…</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(L_{total} = 88\,\text{dB} &gt; 87\,\text{dB}\) (seuil réglementaire)</p>
+    <p>La cabine n'est <strong>PAS conforme</strong>.</p>
+    <p><strong>Propositions :</strong> ajouter une paroi absorbante pour réduire de 1 à 2 dB, mettre en place des EPI (bouchons d'oreilles SNR ≥ 3 dB), réduire le niveau à la source (paramètres de soudage), éloigner les postes de travail.</p>
+  </div>
 </div>
 
 <!-- EXERCICE 2 -->
@@ -191,6 +214,11 @@ tr:nth-child(even) td{background:#f8fafc}
     <span class="pts-q">2 pts</span>
   </p>
   <div class="rep-zone" style="min-height:70px">…</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(L_2 = L_1 - R\) &nbsp; avec \(L_1\) niveau incident (dB), \(R\) indice d'affaiblissement de la cloison (dB), \(L_2\) niveau transmis (dB)</p>
+    <p>Un \(R\) élevé signifie que la cloison est très isolante : elle atténue fortement le bruit qui la traverse.</p>
+  </div>
 
   <p class="q">
     <span class="q-num">2.</span>
@@ -199,6 +227,11 @@ tr:nth-child(even) td{background:#f8fafc}
     <span class="pts-q">2 pts</span>
   </p>
   <div class="rep-zone" style="min-height:75px">…</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(L_2 = L_1 - R = 95 - 30 = 65\,\text{dB}\)</p>
+    <p>65 dB ≤ 80 dB → Cette cloison hypothétique (R=30 dB) serait suffisante pour atteindre l'objectif.</p>
+  </div>
 
   <p class="q">
     <span class="q-num">3.</span>
@@ -215,6 +248,14 @@ tr:nth-child(even) td{background:#f8fafc}
       <tr><td>Verre feuilleté 10 mm</td><td>34</td><td>&nbsp;</td><td>&nbsp;</td></tr>
     </table>
   </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Plaque de plâtre simple : R=32 dB → \(L_2 = 95-32 = 63\,\text{dB}\) ✓ conforme</p>
+    <p>Béton 15 cm : R=48 dB → \(L_2 = 95-48 = 47\,\text{dB}\) ✓ très efficace</p>
+    <p>Double paroi laine de roche : R=55 dB → \(L_2 = 95-55 = 40\,\text{dB}\) ✓ la plus efficace</p>
+    <p>Verre feuilleté 10 mm : R=34 dB → \(L_2 = 95-34 = 61\,\text{dB}\) ✓ conforme</p>
+    <p>Toutes les cloisons permettent d'atteindre l'objectif \(L_2 \leq 80\,\text{dB}\).</p>
+  </div>
 
   <p class="q">
     <span class="q-num">4.</span>
@@ -223,9 +264,18 @@ tr:nth-child(even) td{background:#f8fafc}
     <span class="pts-q">3 pts</span>
   </p>
   <div class="rep-zone" style="min-height:100px">…</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Double paroi laine de roche</strong> (R=55 dB, 25 kg/m², 65 €/m²) :</p>
+    <p>— Meilleur affaiblissement acoustique (55 dB) → grande marge de sécurité</p>
+    <p>— Masse surfacique faible (25 kg/m²) → facile à installer, pas de renforcement de structure nécessaire</p>
+    <p>— Coût modéré (65 €/m²) inférieur au béton (80 €/m²) et au verre (120 €/m²)</p>
+    <p><strong>Conclusion :</strong> la double paroi laine de roche offre le meilleur compromis efficacité/masse/coût.</p>
+  </div>
 </div>
 
 </div>
+<script>function toggle(b){var d=b.nextElementSibling;if(d.style.display==='block'){d.style.display='none';b.textContent='Voir la correction'}else{d.style.display='block';b.textContent='Masquer la correction'}}</script>
 <script src="nav.js"></script>
 </body>
 </html>
