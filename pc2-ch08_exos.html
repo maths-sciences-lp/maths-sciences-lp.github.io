@@ -2,346 +2,360 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch08 PC – Exercices – Réflexion et réfraction</title>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercices – Ch.8 Solutions chimiques et concentration</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
-body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
 .c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
 h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
-h2{color:var(--p);border-left:4px solid var(--p);padding-left:10px;margin-top:36px}
 .sous-titre{color:#718096;font-size:.95em;margin:0}
+h2{font-size:1.15em;color:var(--p);border-left:4px solid var(--p);padding-left:12px;margin-top:30px;margin-bottom:12px}
+.def{background:#f5f0ff;border-left:5px solid var(--p);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.prop{background:#f0fff4;border-left:5px solid var(--s);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.att{background:#fff5f5;border-left:5px solid var(--d);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.meth{background:#fffbeb;border-left:5px solid var(--o);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.methode{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;margin:16px 0}
+.attention{background:#fff1f2;border:1px solid #fda4af;border-radius:8px;padding:14px;margin:16px 0}
+.retenir{background:#f0f9ff;border:1px solid #7dd3fc;border-radius:8px;padding:14px;margin:16px 0}
+.section-intro{background:#f8f4ff;border-radius:8px;padding:10px 16px;margin-bottom:18px;font-size:.92em;color:#4a1d96;border:1px solid #ddd6fe}
+.mama-tag{display:inline-block;background:#e6f0ff;border:1px solid #bfdbfe;border-radius:4px;font-size:.75em;font-weight:700;color:#1a4a8a;padding:2px 8px;margin-bottom:6px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92em}
+th,td{border:1px solid #e2e8f0;padding:10px 12px;text-align:center}
+th{background:#eef2f7;font-weight:600}
 .nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
-.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
-.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0;background:#fff}
+.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.9em;padding:4px 12px;border-radius:20px}
-.exo-title{font-weight:600;flex:1}
+.exo-title{font-weight:600;font-size:1.05em;color:var(--t)}
 .diff{font-size:.8em;padding:2px 8px;border-radius:4px;font-weight:600}
 .diff-1{background:#d1fae5;color:#065f46}
 .diff-2{background:#fef3c7;color:#92400e}
 .diff-3{background:#fee2e2;color:#991b1b}
 .q{margin:10px 0 6px;padding-left:4px}
-.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none;font-size:.95em}
 .corr p{margin:6px 0}
 .bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}
 .bc:hover{background:#5a32a3}
 .intro-box{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em}
-.methode{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;margin:16px 0}
-.methode strong{color:#d97706}
-.attention{background:#fff1f2;border:1px solid #fda4af;border-radius:8px;padding:14px;margin:16px 0}
-.attention strong{color:#be123c}
-.retenir{background:#f0f9ff;border:1px solid #7dd3fc;border-radius:8px;padding:14px;margin:16px 0}
-.retenir strong{color:#0369a1}
-.section-intro{background:#f8f4ff;border-radius:8px;padding:10px 16px;margin-bottom:18px;font-size:.92em;color:#4a1d96;border:1px solid #ddd6fe}
-.mama-tag{display:inline-block;background:#e6f0ff;border:1px solid #bfdbfe;border-radius:4px;font-size:.75em;font-weight:700;color:#1a4a8a;padding:2px 8px;margin-bottom:6px;text-transform:uppercase}
-table{width:100%;border-collapse:collapse;margin:14px 0}
-th{background:var(--p);color:#fff;padding:8px 12px;text-align:left}
-td{border:1px solid #e2e8f0;padding:8px 12px}
-tr:nth-child(even) td{background:#f8fafc}
-.svg-wrap{text-align:center;margin:20px 0}
-.chart-wrap{max-width:580px;margin:20px auto}
+.chart-container{max-width:600px;margin:20px auto;padding:10px}
+svg text{font-family:'Segoe UI',sans-serif}
 </style>
 </head>
 <body>
 <div class="c">
-<a href="pc-2nde-pro.html" class="nb">&larr; RETOUR SOMMAIRE</a>
 <header>
-  <h1>Chapitre 8 – Exercices</h1>
-  <p class="sous-titre">Réflexion et réfraction &nbsp;|&nbsp; 2<sup>de</sup> Pro</p>
+  <div class="mama-tag">PC2 - Chapitre 8</div>
+  <h1>Solutions chimiques et concentration</h1>
+  <p class="sous-titre">Exercices – Terminale Bac Pro MAMA | Dissolution, dilution, pH</p>
+  <a class="nb" href="pc2-ch08.html">← Retour au cours</a>
 </header>
 
 <div class="intro-box">
-  <strong>Compétences travaillées :</strong> Appliquer les lois de la réflexion, utiliser la loi de Snell-Descartes (\(n_1 \sin i_1 = n_2 \sin i_2\)), identifier la réflexion totale interne, tracer des rayons lumineux.
+  <strong>Rappel des formules clés :</strong><br>
+  Concentration massique : \( C_m = \dfrac{m}{V} \) (g/L) &nbsp;|&nbsp;
+  Dilution : \( C_1 V_1 = C_2 V_2 \) &nbsp;|&nbsp;
+  Concentration molaire : \( C_{mol} = \dfrac{n}{V} \) (mol/L) &nbsp;|&nbsp;
+  pH : 0–14 (acide &lt; 7, neutre = 7, basique &gt; 7)
 </div>
 
-<!-- SVG pédagogique -->
-<div class="svg-wrap">
-<svg width="480" height="260" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-label="Réfraction à l'interface air/eau">
-  <!-- Interface air/eau -->
-  <line x1="40" y1="130" x2="440" y2="130" stroke="#3b82f6" stroke-width="2" stroke-dasharray="8,4"/>
-  <!-- Labels milieux -->
-  <text x="50" y="50" font-family="Segoe UI" font-size="14" fill="#6f42c1" font-weight="bold">AIR (n₁ = 1)</text>
-  <text x="50" y="220" font-family="Segoe UI" font-size="14" fill="#2563eb" font-weight="bold">EAU (n₂ = 1,33)</text>
-  <!-- Normale -->
-  <line x1="240" y1="20" x2="240" y2="240" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="5,4"/>
-  <text x="248" y="18" font-family="Segoe UI" font-size="11" fill="#6b7280">normale</text>
-  <!-- Rayon incident -->
-  <line x1="110" y1="30" x2="240" y2="130" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arr1)"/>
-  <!-- Rayon réfléchi -->
-  <line x1="240" y1="130" x2="370" y2="30" stroke="#f97316" stroke-width="2" stroke-dasharray="6,3"/>
-  <!-- Rayon réfracté -->
-  <line x1="240" y1="130" x2="300" y2="240" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arr2)"/>
-  <!-- Arc angle i1 -->
-  <path d="M 240 90 A 40 40 0 0 0 208 62" stroke="#ef4444" fill="none" stroke-width="1.5"/>
-  <text x="200" y="85" font-family="Segoe UI" font-size="13" fill="#ef4444" font-style="italic">i₁</text>
-  <!-- Arc angle i2 -->
-  <path d="M 240 170 A 40 40 0 0 1 265 193" stroke="#2563eb" fill="none" stroke-width="1.5"/>
-  <text x="262" y="178" font-family="Segoe UI" font-size="13" fill="#2563eb" font-style="italic">i₂</text>
-  <!-- Légende interface -->
-  <text x="390" y="124" font-family="Segoe UI" font-size="11" fill="#3b82f6">interface</text>
-  <!-- Flèches -->
-  <defs>
-    <marker id="arr1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
-    </marker>
-    <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#2563eb"/>
-    </marker>
-  </defs>
-  <!-- Légende -->
-  <rect x="10" y="235" width="460" height="22" fill="#f5f0ff" rx="4"/>
-  <text x="20" y="250" font-family="Segoe UI" font-size="11" fill="#4a1d96">
-    Rouge = rayon incident  |  Orange = rayon réfléchi  |  Bleu = rayon réfracté  |  i₂ &lt; i₁ (milieu plus dense)
-  </text>
-</svg>
-</div>
+<!-- ===== SECTION 1 ===== -->
+<h2>Exercices de base</h2>
+<div class="section-intro">Maîtriser le vocabulaire et les calculs fondamentaux de concentration.</div>
 
-<!-- SECTION 1 : BASE -->
-<h2>Section 1 – Lois de la réflexion</h2>
-<div class="section-intro">Rappel : l'angle de réflexion est toujours égal à l'angle d'incidence, mesurés par rapport à la normale à la surface.</div>
-
-<!-- Exercice 1 -->
+<!-- EXO 1 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 1</span>
-    <span class="exo-title">Angles de réflexion — calculs directs</span>
-    <span class="diff diff-1">&#9733; Facile</span>
+    <span class="exo-title">Vocabulaire – Solvant et soluté</span>
+    <span class="diff diff-1">Facile</span>
   </div>
-  <p>Un rayon lumineux frappe une surface réfléchissante (miroir plan). On donne l'angle d'incidence \(i\).</p>
-  <div class="q"><strong>1.</strong> Un rayon arrive avec \(i = 35°\). Quel est l'angle de réflexion \(r\) ?</div>
-  <div class="q"><strong>2.</strong> Un rayon arrive avec \(i = 0°\) (perpendiculaire à la surface). Vers où repart-il ?</div>
-  <div class="q"><strong>3.</strong> Un rayon fait un angle de 50° avec la surface du miroir (et non avec la normale). Calculer l'angle d'incidence et l'angle de réflexion.</div>
-  <div class="methode"><strong>Méthode :</strong> Les angles sont toujours mesurés par rapport à la <em>normale</em>, pas par rapport à la surface. Si l'angle avec la surface est \(\alpha\), alors l'angle avec la normale est \(i = 90° - \alpha\).</div>
+  <div class="def"><strong>Rappel :</strong> Dans une solution, le <em>solvant</em> est le composant en plus grande quantité (souvent un liquide). Le <em>soluté</em> est ce qui est dissous.</div>
+  <p class="q">Pour chaque mélange, identifier le solvant et le soluté :</p>
+  <table>
+    <tr><th>Mélange</th><th>Solvant</th><th>Soluté</th></tr>
+    <tr><td>Eau + sel (eau de mer)</td><td>?</td><td>?</td></tr>
+    <tr><td>Essence + huile moteur</td><td>?</td><td>?</td></tr>
+    <tr><td>Acide sulfurique + eau distillée</td><td>?</td><td>?</td></tr>
+  </table>
+  <p class="q">Ce qu'est une solution : un mélange <em>homogène</em> (on ne distingue pas les constituants à l'œil nu).</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> Loi de réflexion : \(r = i\). Donc \(r = 35°\).</p>
-    <p><strong>2.</strong> Si \(i = 0°\), le rayon est perpendiculaire au miroir. Il repart dans la direction exactement inverse (réfléchi sur lui-même), \(r = 0°\).</p>
-    <p><strong>3.</strong> Angle avec la surface = 50°, donc angle avec la normale : \(i = 90° - 50° = 40°\).</p>
-    <p>Angle de réflexion : \(r = i = 40°\).</p>
+    <p><strong>Eau + sel :</strong> solvant = eau ; soluté = sel (NaCl).</p>
+    <p><strong>Essence + huile moteur :</strong> solvant = essence (composant majoritaire) ; soluté = huile moteur.</p>
+    <p><strong>Acide sulfurique + eau distillée :</strong> solvant = eau distillée ; soluté = acide sulfurique (H₂SO₄).</p>
+    <p>Note : l'acide sulfurique se <em>dissocie</em> dans l'eau (ionisation) : H₂SO₄ → 2 H⁺ + SO₄²⁻</p>
   </div>
 </div>
 
-<!-- Exercice 2 -->
+<!-- EXO 2 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 2</span>
-    <span class="exo-title">Réflexion vs réfraction dans la vie courante</span>
-    <span class="diff diff-1">&#9733; Facile</span>
+    <span class="exo-title">Calcul de concentration massique</span>
+    <span class="diff diff-1">Facile</span>
   </div>
-  <p>Pour chaque phénomène, indiquer s'il s'agit principalement de <strong>réflexion</strong> ou de <strong>réfraction</strong>, et justifier brièvement.</p>
-  <div class="q"><strong>1.</strong> Une paille semble brisée dans un verre d'eau.</div>
-  <div class="q"><strong>2.</strong> On voit son image dans un miroir de salle de bain.</div>
-  <div class="q"><strong>3.</strong> Un prisme décompose la lumière blanche en arc-en-ciel.</div>
-  <div class="q"><strong>4.</strong> On voit le reflet d'un immeuble dans une flaque d'eau.</div>
-  <div class="q"><strong>5.</strong> Un poisson dans un aquarium semble plus proche qu'il ne l'est.</div>
+  <div class="meth"><strong>Formule :</strong> \( C_m = \dfrac{m}{V} \) avec m en grammes et V en litres → \( C_m \) en g/L</div>
+  <p class="q"><strong>a)</strong> On dissout m = 50 g de sucre dans V = 500 mL d'eau. Calculer \( C_m \).</p>
+  <p class="q"><strong>b)</strong> Une solution a \( C_m \) = 100 g/L. Quel volume V = 2 L contient quelle masse ?</p>
+  <p class="q"><strong>c)</strong> \( C_m \) = 5 g/L et m = 25 g de soluté. Quel volume V faut-il ?</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1. Réfraction :</strong> les rayons changent de direction en passant de l'eau à l'air → illusion de rupture.</p>
-    <p><strong>2. Réflexion :</strong> le miroir renvoie la lumière selon les lois de la réflexion.</p>
-    <p><strong>3. Réfraction :</strong> chaque longueur d'onde est réfractée avec un angle différent → dispersion.</p>
-    <p><strong>4. Réflexion :</strong> la surface de l'eau agit comme un miroir pour les rayons à faible angle.</p>
-    <p><strong>5. Réfraction :</strong> les rayons issus du poisson sont déviés en sortant de l'eau, modifiant la position apparente.</p>
+    <p><strong>a)</strong> V = 500 mL = 0,5 L &nbsp;→&nbsp; \( C_m = \dfrac{50}{0{,}5} = \mathbf{100 \text{ g/L}} \)</p>
+    <p><strong>b)</strong> \( m = C_m \times V = 100 \times 2 = \mathbf{200 \text{ g}} \)</p>
+    <p><strong>c)</strong> \( V = \dfrac{m}{C_m} = \dfrac{25}{5} = \mathbf{5 \text{ L}} \)</p>
   </div>
 </div>
 
-<!-- Exercice 3 -->
+<!-- EXO 3 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 3</span>
-    <span class="exo-title">Indices de réfraction — lecture de tableau</span>
-    <span class="diff diff-1">&#9733; Facile</span>
+    <span class="exo-title">Protocole de dissolution</span>
+    <span class="diff diff-1">Facile</span>
   </div>
-  <table>
-    <tr><th>Milieu</th><th>Indice de réfraction \(n\)</th></tr>
-    <tr><td>Vide / Air</td><td>1,00</td></tr>
-    <tr><td>Eau</td><td>1,33</td></tr>
-    <tr><td>Verre ordinaire</td><td>1,50</td></tr>
-    <tr><td>Verre crown</td><td>1,52</td></tr>
-    <tr><td>Diamant</td><td>2,42</td></tr>
-    <tr><td>Plexiglas (PMMA)</td><td>1,49</td></tr>
-  </table>
-  <div class="q"><strong>1.</strong> Quel est le milieu le plus réfringent (plus grand indice) de ce tableau ?</div>
-  <div class="q"><strong>2.</strong> La vitesse de la lumière dans un milieu d'indice \(n\) est \(v = c/n\) avec \(c = 3 \times 10^8\) m/s. Calculer la vitesse dans le verre ordinaire et dans le diamant.</div>
-  <div class="q"><strong>3.</strong> Pourquoi un diamant « brille-t-il » autant ? (En lien avec l'indice élevé)</div>
+  <p>On souhaite préparer 500 mL d'une solution de dégraissant à \( C_m \) = 20 g/L.</p>
+
+  <!-- SVG DISSOLUTION PROTOCOL -->
+  <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;margin:16px 0;display:block">
+    <!-- Step 1: Balance -->
+    <rect x="10" y="60" width="110" height="120" rx="6" fill="#f5f0ff" stroke="#6f42c1" stroke-width="1.5"/>
+    <text x="65" y="55" text-anchor="middle" font-size="12" fill="#4a1d96" font-weight="bold">1. Peser</text>
+    <rect x="30" y="100" width="70" height="10" fill="#aaa" rx="2"/>
+    <rect x="40" y="80" width="50" height="20" rx="3" fill="#ddd6fe"/>
+    <text x="65" y="95" text-anchor="middle" font-size="10" fill="#4a1d96">10 g</text>
+    <polygon points="65,110 55,130 75,130" fill="#888"/>
+    <rect x="20" y="130" width="90" height="10" rx="3" fill="#6f42c1"/>
+    <text x="65" y="175" text-anchor="middle" font-size="10" fill="#555">Peser 10 g</text>
+    <text x="65" y="188" text-anchor="middle" font-size="10" fill="#555">de soluté</text>
+
+    <!-- Arrow 1 -->
+    <text x="130" y="115" font-size="20" fill="#6f42c1">→</text>
+
+    <!-- Step 2: Flask with solute -->
+    <rect x="150" y="60" width="110" height="120" rx="6" fill="#f5f0ff" stroke="#6f42c1" stroke-width="1.5"/>
+    <text x="205" y="55" text-anchor="middle" font-size="12" fill="#4a1d96" font-weight="bold">2. Introduire</text>
+    <ellipse cx="205" cy="140" rx="30" ry="10" fill="#c4b5fd"/>
+    <rect x="175" y="100" width="60" height="40" fill="#ddd6fe" rx="2"/>
+    <rect x="195" y="82" width="20" height="20" fill="#ddd6fe" rx="2"/>
+    <text x="205" y="175" text-anchor="middle" font-size="10" fill="#555">Soluté dans</text>
+    <text x="205" y="188" text-anchor="middle" font-size="10" fill="#555">la fiole 500 mL</text>
+
+    <!-- Arrow 2 -->
+    <text x="270" y="115" font-size="20" fill="#6f42c1">→</text>
+
+    <!-- Step 3: Adding water -->
+    <rect x="290" y="60" width="110" height="120" rx="6" fill="#f5f0ff" stroke="#6f42c1" stroke-width="1.5"/>
+    <text x="345" y="55" text-anchor="middle" font-size="12" fill="#4a1d96" font-weight="bold">3. Ajouter eau</text>
+    <ellipse cx="345" cy="140" rx="30" ry="10" fill="#93c5fd"/>
+    <rect x="315" y="105" width="60" height="35" fill="#bfdbfe" rx="2"/>
+    <rect x="335" y="87" width="20" height="20" fill="#bfdbfe" rx="2"/>
+    <path d="M 345 70 Q 355 80 345 90" stroke="#3b82f6" stroke-width="2" fill="none"/>
+    <text x="345" y="175" text-anchor="middle" font-size="10" fill="#555">Eau distillée</text>
+    <text x="345" y="188" text-anchor="middle" font-size="10" fill="#555">aux 2/3</text>
+
+    <!-- Arrow 3 -->
+    <text x="410" y="115" font-size="20" fill="#6f42c1">→</text>
+
+    <!-- Step 4: Agitate -->
+    <rect x="430" y="60" width="110" height="120" rx="6" fill="#f5f0ff" stroke="#6f42c1" stroke-width="1.5"/>
+    <text x="485" y="55" text-anchor="middle" font-size="12" fill="#4a1d96" font-weight="bold">4. Agiter</text>
+    <ellipse cx="485" cy="142" rx="30" ry="10" fill="#a5f3fc"/>
+    <rect x="455" y="107" width="60" height="35" fill="#cffafe" rx="2"/>
+    <rect x="475" y="89" width="20" height="20" fill="#cffafe" rx="2"/>
+    <path d="M 470 100 Q 480 95 490 100 Q 500 105 490 110" stroke="#0891b2" stroke-width="2" fill="none"/>
+    <text x="485" y="175" text-anchor="middle" font-size="10" fill="#555">Agiter pour</text>
+    <text x="485" y="188" text-anchor="middle" font-size="10" fill="#555">dissoudre</text>
+
+    <!-- Arrow 4 -->
+    <text x="550" y="115" font-size="20" fill="#6f42c1">→</text>
+
+    <!-- Step 5: Fill to mark -->
+    <rect x="570" y="60" width="110" height="120" rx="6" fill="#f5f0ff" stroke="#6f42c1" stroke-width="1.5"/>
+    <text x="625" y="55" text-anchor="middle" font-size="12" fill="#4a1d96" font-weight="bold">5. Jauger</text>
+    <ellipse cx="625" cy="142" rx="30" ry="10" fill="#86efac"/>
+    <rect x="595" y="100" width="60" height="42" fill="#dcfce7" rx="2"/>
+    <rect x="615" y="82" width="20" height="20" fill="#dcfce7" rx="2"/>
+    <line x1="595" y1="100" x2="655" y2="100" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="665" y="103" font-size="9" fill="#16a34a">trait</text>
+    <text x="625" y="175" text-anchor="middle" font-size="10" fill="#555">Compléter au</text>
+    <text x="625" y="188" text-anchor="middle" font-size="10" fill="#555">trait de jauge</text>
+  </svg>
+
+  <p class="q"><strong>a)</strong> Quelle masse de soluté faut-il peser ?</p>
+  <p class="q"><strong>b)</strong> Remettre dans l'ordre les étapes du protocole de dissolution : agiter – compléter au trait de jauge – introduire le soluté – peser – ajouter de l'eau distillée aux 2/3.</p>
+  <p class="q"><strong>c)</strong> Pourquoi faut-il utiliser une fiole jaugée et pas un simple bécher ?</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> Le diamant avec \(n = 2,42\).</p>
-    <p><strong>2.</strong> Verre ordinaire : \(v = \frac{3 \times 10^8}{1{,}50} = 2 \times 10^8\) m/s.</p>
-    <p>Diamant : \(v = \frac{3 \times 10^8}{2{,}42} \approx 1{,}24 \times 10^8\) m/s.</p>
-    <p><strong>3.</strong> Son grand indice (\(n = 2,42\)) donne un angle critique très petit (~24°), favorisant la réflexion totale interne. La lumière est piégée à l'intérieur et ressort par les faces taillées, créant les reflets brillants caractéristiques.</p>
+    <p><strong>a)</strong> \( m = C_m \times V = 20 \times 0{,}5 = \mathbf{10 \text{ g}} \)</p>
+    <p><strong>b)</strong> Ordre : 1) Peser → 2) Introduire le soluté → 3) Ajouter eau aux 2/3 → 4) Agiter → 5) Compléter au trait de jauge.</p>
+    <p><strong>c)</strong> La fiole jaugée permet un volume précis (ici exactement 500,0 mL). Un bécher n'a pas de graduation de précision.</p>
   </div>
 </div>
 
-<!-- SECTION 2 : GUIDÉ -->
-<h2>Section 2 – Loi de Snell-Descartes (guidé)</h2>
-<div class="section-intro">La loi de Snell-Descartes relie les angles d'incidence et de réfraction : \(n_1 \sin i_1 = n_2 \sin i_2\)</div>
+<!-- ===== SECTION 2 ===== -->
+<h2>Exercices guidés</h2>
+<div class="section-intro">Applications guidées pas à pas – dilution et contexte automobile.</div>
 
-<!-- Exercice 4 -->
+<!-- EXO 4 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 4</span>
-    <span class="exo-title">Appliquer Snell-Descartes : air → eau</span>
-    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+    <span class="exo-title">Dilution – Loi de conservation</span>
+    <span class="diff diff-2">Guidé</span>
   </div>
-  <p>Un rayon lumineux passe de l'air (\(n_1 = 1\)) dans l'eau (\(n_2 = 1{,}33\)). Compléter le tableau pour chaque angle d'incidence.</p>
+  <div class="retenir"><strong>À retenir :</strong> Lors d'une dilution, on ajoute du solvant. La quantité de soluté est conservée : \( C_1 V_1 = C_2 V_2 \)</div>
+  <p>On dispose d'une solution mère de dégraissant à \( C_1 \) = 200 g/L. On veut préparer 1 L de solution fille à \( C_2 \) = 50 g/L.</p>
+
   <div class="methode">
-    <strong>Méthode :</strong><br>
-    1. Écrire : \(n_1 \sin i_1 = n_2 \sin i_2\)<br>
-    2. Isoler \(\sin i_2 = \dfrac{n_1 \sin i_1}{n_2}\)<br>
-    3. Calculer \(i_2 = \arcsin(\sin i_2)\) à la calculatrice
+    <strong>Méthode guidée :</strong><br>
+    Étape 1 : Identifier \( C_1 \), \( C_2 \), \( V_2 \). Chercher \( V_1 \).<br>
+    Étape 2 : Écrire \( C_1 V_1 = C_2 V_2 \).<br>
+    Étape 3 : Isoler \( V_1 = \dfrac{C_2 V_2}{C_1} \).<br>
+    Étape 4 : Calculer et exprimer en mL.
   </div>
-  <table>
-    <tr><th>Angle d'incidence \(i_1\)</th><th>\(\sin i_1\)</th><th>\(\sin i_2 = \sin i_1 / 1{,}33\)</th><th>Angle réfracté \(i_2\)</th></tr>
-    <tr><td>30°</td><td>0,500</td><td>…</td><td>…</td></tr>
-    <tr><td>45°</td><td>0,707</td><td>…</td><td>…</td></tr>
-    <tr><td>60°</td><td>0,866</td><td>…</td><td>…</td></tr>
-  </table>
-  <div class="q"><strong>1.</strong> Compléter le tableau (montrer les calculs pour 45°).</div>
-  <div class="q"><strong>2.</strong> Dans tous les cas, est-ce que \(i_2 &lt; i_1\) ou \(i_2 &gt; i_1\) ? Expliquer pourquoi.</div>
-  <div class="q"><strong>3.</strong> Que se passerait-il si le rayon allait dans l'autre sens (eau → air) avec \(i_1 = 32°\) ?</div>
+
+  <p class="q"><strong>a)</strong> Appliquer la méthode pour trouver \( V_1 \) (volume de solution mère à prélever).</p>
+  <p class="q"><strong>b)</strong> Quel volume d'eau distillée faut-il ajouter ?</p>
+  <p class="q"><strong>c)</strong> Vérifier : est-ce bien une dilution (facteur de dilution &gt; 1) ?</p>
+
+  <!-- CHART dilution -->
+  <div class="chart-container">
+    <canvas id="chartDilution"></canvas>
+  </div>
+  <p style="font-size:.85em;color:#555;text-align:center">Courbe de dilution : concentration en fonction du volume final (pour C₁V₁ = 100 g·L)</p>
+
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> Pour \(i_1 = 30°\) : \(\sin i_2 = 0{,}500/1{,}33 = 0{,}376\) → \(i_2 = \arcsin(0{,}376) \approx 22°\)</p>
-    <p>Pour \(i_1 = 45°\) : \(\sin i_2 = 0{,}707/1{,}33 = 0{,}532\) → \(i_2 = \arcsin(0{,}532) \approx 32°\)</p>
-    <p>Pour \(i_1 = 60°\) : \(\sin i_2 = 0{,}866/1{,}33 = 0{,}651\) → \(i_2 = \arcsin(0{,}651) \approx 41°\)</p>
-    <p><strong>2.</strong> Toujours \(i_2 &lt; i_1\) : en entrant dans l'eau (milieu plus dense, \(n_2 &gt; n_1\)), le rayon se rapproche de la normale.</p>
-    <p><strong>3.</strong> Eau → air avec \(i_1 = 32°\) : \(1{,}33 \sin(32°) = 1 \times \sin i_2\) → \(\sin i_2 = 1{,}33 \times 0{,}530 = 0{,}705\) → \(i_2 \approx 45°\). Le rayon s'éloigne de la normale en sortant dans un milieu moins dense.</p>
+    <p><strong>a)</strong> \( V_1 = \dfrac{C_2 \times V_2}{C_1} = \dfrac{50 \times 1}{200} = \mathbf{0{,}25 \text{ L} = 250 \text{ mL}} \)</p>
+    <p><strong>b)</strong> Volume d'eau à ajouter = \( V_2 - V_1 = 1000 - 250 = \mathbf{750 \text{ mL}} \)</p>
+    <p><strong>c)</strong> Facteur de dilution \( F = \dfrac{C_1}{C_2} = \dfrac{200}{50} = 4 \) → On a bien dilué 4 fois (F &gt; 1). ✓</p>
   </div>
 </div>
 
-<!-- Exercice 5 -->
+<!-- EXO 5 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 5</span>
-    <span class="exo-title">Angle limite de réflexion totale interne</span>
-    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+    <span class="exo-title">Antigel automobile – Dilution au 1/2</span>
+    <span class="diff diff-2">Guidé</span>
   </div>
-  <p>Lorsqu'un rayon passe d'un milieu dense vers un milieu moins dense (\(n_1 &gt; n_2\)), il peut se produire une <strong>réflexion totale interne</strong> si l'angle d'incidence dépasse l'angle critique \(i_c\).</p>
-  <div class="retenir"><strong>À retenir :</strong> L'angle critique est donné par \(\sin i_c = \dfrac{n_2}{n_1}\)</div>
-  <div class="q"><strong>1.</strong> Calculer l'angle critique pour l'interface verre (\(n=1{,}50\)) → air (\(n=1\)).</div>
-  <div class="q"><strong>2.</strong> Un rayon dans le verre frappe l'interface à \(i = 38°\). Est-ce qu'il sort ou est totalement réfléchi ?</div>
-  <div class="q"><strong>3.</strong> Calculer l'angle critique pour l'interface eau (\(n=1{,}33\)) → air.</div>
-  <div class="q"><strong>4.</strong> Expliquer qualitativement ce qui se passe exactement à \(i = i_c\) (que vaut \(i_2\) ?).</div>
+  <div class="mama-tag">Contexte MAMA</div>
+  <p>Un antigel concentré pur a une concentration massique de \( C_1 \) = 1 060 g/L (densité ≈ 1,06). Pour une utilisation hivernale, le fabricant préconise une dilution au 1/2 (50 % eau, 50 % antigel).</p>
+  <p class="q"><strong>a)</strong> Quelle est la concentration \( C_2 \) du mélange final au 1/2 ?</p>
+  <p class="q"><strong>b)</strong> On veut préparer 5 L de mélange final. Quel volume \( V_1 \) d'antigel concentré faut-il ?</p>
+  <p class="q"><strong>c)</strong> Quel volume d'eau distillée doit-on ajouter ?</p>
+  <div class="attention"><strong>Attention :</strong> Ne jamais utiliser l'antigel pur dans le circuit de refroidissement ! Ses propriétés thermiques sont moins bonnes que le mélange eau/antigel. Utiliser de l'eau déminéralisée.</div>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(\sin i_c = \dfrac{n_2}{n_1} = \dfrac{1}{1{,}50} = 0{,}667\) → \(i_c = \arcsin(0{,}667) \approx 41{,}8°\)</p>
-    <p><strong>2.</strong> \(i = 38° &lt; i_c = 41{,}8°\) : le rayon sort du verre (réfraction partielle), il n'y a pas encore réflexion totale.</p>
-    <p><strong>3.</strong> \(\sin i_c = \dfrac{1}{1{,}33} = 0{,}752\) → \(i_c = \arcsin(0{,}752) \approx 48{,}8°\)</p>
-    <p><strong>4.</strong> Exactement à \(i = i_c\), le rayon réfracté rase la surface (\(i_2 = 90°\)). Au-delà, aucun rayon ne sort : toute l'énergie est réfléchie à l'intérieur.</p>
+    <p><strong>a)</strong> Dilution au 1/2 → \( C_2 = \dfrac{C_1}{2} = \dfrac{1060}{2} = \mathbf{530 \text{ g/L}} \)</p>
+    <p><strong>b)</strong> \( C_1 V_1 = C_2 V_2 \) → \( V_1 = \dfrac{C_2 V_2}{C_1} = \dfrac{530 \times 5}{1060} = \mathbf{2{,}5 \text{ L}} \)</p>
+    <p><strong>c)</strong> Volume d'eau = \( 5 - 2{,}5 = \mathbf{2{,}5 \text{ L}} \) → bien 50 % / 50 % ✓</p>
   </div>
 </div>
 
-<!-- SECTION 3 : APPLICATION -->
-<h2>Section 3 – Applications</h2>
-<div class="section-intro">On applique les lois vues aux situations plus complexes : lame à faces parallèles, fibre optique.</div>
+<!-- ===== SECTION 3 ===== -->
+<h2>Exercices d'application</h2>
+<div class="section-intro">Situations plus complexes combinant plusieurs notions.</div>
 
-<!-- Exercice 6 -->
+<!-- EXO 6 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 6</span>
-    <span class="exo-title">Rayon traversant une lame de verre à faces parallèles</span>
-    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+    <span class="exo-title">Électrolyte de batterie acide</span>
+    <span class="diff diff-2">Application</span>
   </div>
-  <p>Un rayon lumineux (dans l'air) arrive sur une lame de verre (\(n = 1{,}50\)) avec un angle d'incidence \(i_1 = 40°\). La lame a des faces parallèles (entrée et sortie parallèles).</p>
-  <div class="q"><strong>1.</strong> Calculer l'angle de réfraction \(i_2\) à l'entrée dans le verre.</div>
-  <div class="q"><strong>2.</strong> À la sortie du verre (verre → air), l'angle d'incidence sur la face de sortie est égal à \(i_2\). Calculer l'angle de sortie \(i_3\).</div>
-  <div class="q"><strong>3.</strong> Comparer \(i_3\) et \(i_1\). Que peut-on conclure sur la direction du rayon sortant ?</div>
-  <div class="q"><strong>4.</strong> Le rayon sortant est-il décalé par rapport au rayon entrant ? Justifier.</div>
+  <div class="mama-tag">Contexte MAMA</div>
+  <p>L'électrolyte d'une batterie automobile est une solution d'acide sulfurique H₂SO₄ de concentration massique \( C_m \) = 370 g/L. Le volume interne de la batterie est V = 1,5 L.</p>
+  <p class="q"><strong>a)</strong> Calculer la masse totale d'acide sulfurique contenue dans la batterie.</p>
+  <p class="q"><strong>b)</strong> On souhaite diluer cet acide à \( C_2 \) = 100 g/L. Quel volume total \( V_2 \) obtiendrait-on ?</p>
+  <p class="q"><strong>c)</strong> Le pH de cet électrolyte est très faible (environ 0). L'électrolyte est-il acide, neutre ou basique ? Quelles précautions s'imposent ?</p>
+  <div class="attention"><strong>Danger :</strong> L'acide sulfurique est corrosif. Toujours porter des lunettes de protection, des gants et une blouse en atelier. En cas de projection, rincer abondamment à l'eau.</div>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(n_{air} \sin i_1 = n_{verre} \sin i_2\) → \(1 \times \sin(40°) = 1{,}50 \times \sin i_2\)</p>
-    <p>\(\sin i_2 = \frac{\sin 40°}{1{,}50} = \frac{0{,}643}{1{,}50} = 0{,}429\) → \(i_2 \approx 25{,}4°\)</p>
-    <p><strong>2.</strong> \(1{,}50 \times \sin(25{,}4°) = 1 \times \sin i_3\) → \(\sin i_3 = 1{,}50 \times 0{,}429 = 0{,}643\) → \(i_3 = 40°\)</p>
-    <p><strong>3.</strong> \(i_3 = i_1 = 40°\) : le rayon sortant est parallèle au rayon entrant.</p>
-    <p><strong>4.</strong> Oui, il y a un décalage latéral car le rayon a été dévié à l'entrée et redévié à la sortie. Les deux rayons sont parallèles mais pas sur la même droite.</p>
+    <p><strong>a)</strong> \( m = C_m \times V = 370 \times 1{,}5 = \mathbf{555 \text{ g}} \) d'acide sulfurique.</p>
+    <p><strong>b)</strong> \( C_1 V_1 = C_2 V_2 \) → \( V_2 = \dfrac{C_1 V_1}{C_2} = \dfrac{370 \times 1{,}5}{100} = \mathbf{5{,}55 \text{ L}} \)</p>
+    <p><strong>c)</strong> pH = 0 &lt; 7 → solution <strong>très acide</strong>. Précautions : gants nitrile, lunettes de protection, tablier imperméable, ne jamais verser l'eau dans l'acide (toujours l'acide dans l'eau).</p>
   </div>
 </div>
 
-<!-- Exercice 7 -->
+<!-- EXO 7 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 7</span>
-    <span class="exo-title">Fibre optique — principe et angle critique</span>
-    <span class="diff diff-3">&#9733;&#9733;&#9733; Difficile</span>
+    <span class="exo-title">Nettoyant dégraissant et pH</span>
+    <span class="diff diff-2">Application</span>
   </div>
-  <p>Une fibre optique est composée d'un cœur en verre (\(n_{cœur} = 1{,}50\)) entouré d'une gaine (\(n_{gaine} = 1{,}46\)). La lumière se propage en se réfléchissant totalement à l'interface cœur/gaine.</p>
-  <div class="q"><strong>1.</strong> Vérifier que la réflexion totale interne est possible à l'interface cœur/gaine (comparer les indices).</div>
-  <div class="q"><strong>2.</strong> Calculer l'angle critique \(i_c\) à l'interface cœur (\(n=1{,}50\)) → gaine (\(n=1{,}46\)).</div>
-  <div class="q"><strong>3.</strong> Un rayon frappe l'interface cœur/gaine avec un angle de 76°. Est-il totalement réfléchi ?</div>
-  <div class="q"><strong>4.</strong> Citer deux avantages des fibres optiques par rapport aux câbles électriques pour transmettre de l'information.</div>
-  <div class="attention"><strong>Attention :</strong> Dans une fibre, l'angle d'incidence à l'interface est mesuré par rapport à la normale à la paroi de la fibre (donc proche de 90° pour des rayons quasi parallèles à l'axe).</div>
+  <div class="mama-tag">Contexte MAMA</div>
+  <p>Un dégraissant atelier affiche un pH = 11.</p>
+  <table>
+    <tr><th>pH</th><th>0–2</th><th>3–6</th><th>7</th><th>8–11</th><th>12–14</th></tr>
+    <tr><td>Nature</td><td>Très acide</td><td>Acide</td><td>Neutre</td><td>Basique</td><td>Très basique</td></tr>
+  </table>
+  <p class="q"><strong>a)</strong> Ce dégraissant est-il acide, neutre ou basique ? Justifier.</p>
+  <p class="q"><strong>b)</strong> Comment un produit basique agit-il sur les graisses moteur ? (saponification)</p>
+  <p class="q"><strong>c)</strong> Lister les EPI (Équipements de Protection Individuelle) nécessaires pour l'utiliser.</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(n_{cœur} = 1{,}50 &gt; n_{gaine} = 1{,}46\) : oui, le cœur est plus dense que la gaine, la réflexion totale interne est possible.</p>
-    <p><strong>2.</strong> \(\sin i_c = \frac{n_{gaine}}{n_{cœur}} = \frac{1{,}46}{1{,}50} = 0{,}973\) → \(i_c = \arcsin(0{,}973) \approx 76{,}7°\)</p>
-    <p><strong>3.</strong> \(i = 76° &lt; i_c = 76{,}7°\) : le rayon n'est pas totalement réfléchi, il sort partiellement de la fibre (cas limite).</p>
-    <p><strong>4.</strong> Avantages des fibres optiques : très large bande passante (débit élevé) ; insensibles aux interférences électromagnétiques ; faibles pertes sur de longues distances.</p>
+    <p><strong>a)</strong> pH = 11 &gt; 7 → solution <strong>basique</strong>. Plus le pH est élevé au-dessus de 7, plus la solution est basique.</p>
+    <p><strong>b)</strong> Les bases provoquent la <em>saponification</em> des graisses : elles hydrolysent les liaisons ester des huiles et graisses pour former du savon soluble dans l'eau. Cela décroche les dépôts de graisse moteur.</p>
+    <p><strong>c)</strong> EPI nécessaires : gants en nitrile (résistants aux bases), lunettes de protection, blouse ou tablier, ventilation du local. Éviter le contact avec la peau (risque de brûlure chimique).</p>
   </div>
 </div>
 
-<!-- SECTION 4 : MAMA -->
-<h2>Section 4 – Contexte professionnel MAMA</h2>
-<div class="section-intro">Ces exercices situent les notions dans des contextes de la maintenance automobile, matériels, et des aides à la mobilité (MAMA).</div>
+<!-- ===== SECTION 4 ===== -->
+<h2>Contexte MAMA</h2>
+<div class="section-intro">Problèmes professionnels avancés – situations d'atelier réelles.</div>
 
-<!-- Exercice 8 -->
+<!-- EXO 8 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 8</span>
-    <span class="exo-title">Rétroviseur d'atelier — coin de cube réfléchissant</span>
-    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
-    <div class="mama-tag">MAMA</div>
+    <span class="exo-title">Bain de dégraissage atelier</span>
+    <span class="diff diff-3">MAMA Avancé</span>
   </div>
-  <p>Dans un atelier de mécanique, un <strong>coin de cube réfléchissant</strong> (trihèdre de miroirs à 90°) est utilisé pour surveiller un angle mort. La propriété remarquable de ce dispositif est qu'il renvoie tout rayon incident dans sa direction exactement opposée, quel que soit l'angle d'arrivée.</p>
-  <div class="q"><strong>1.</strong> Un rayon arrive avec un angle d'incidence \(i = 30°\) sur le premier miroir. Il se réfléchit, puis frappe un deuxième miroir perpendiculaire au premier. Calculer l'angle d'incidence sur ce deuxième miroir.</div>
-  <div class="q"><strong>2.</strong> Vérifier que la somme des angles dans le triangle formé par les deux réflexions confirme le renvoi à 180°.</div>
-  <div class="q"><strong>3.</strong> Quel est l'avantage pratique d'un coin de cube par rapport à un miroir plan dans un atelier ?</div>
-  <div class="q"><strong>4.</strong> Citer un autre équipement de sécurité routière ou ferroviaire qui utilise ce principe.</div>
+  <div class="mama-tag">Contexte MAMA</div>
+  <p>Un atelier dispose d'une cuve de dégraissage de volume V = 200 L. La concentration initiale en dégraissant est \( C_{m0} \) = 30 g/L.</p>
+  <p class="q"><strong>a)</strong> Calculer la masse de dégraissant à dissoudre pour préparer le bain.</p>
+  <p class="q"><strong>b)</strong> Après une semaine d'utilisation, la concentration tombe à \( C_m \) = 20 g/L (le volume reste 200 L). Calculer la masse de dégraissant perdue.</p>
+  <p class="q"><strong>c)</strong> Pour "recharger" le bain à 30 g/L sans changer tout le bain, quelle masse de dégraissant concentré faut-il ajouter ? (Supposer qu'on ajoute directement la poudre dans la cuve de 200 L.)</p>
+  <p class="q"><strong>d)</strong> Quel est l'intérêt économique de recharger plutôt que de vider et refaire un bain complet ?</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> Sur le premier miroir : \(r_1 = i_1 = 30°\).</p>
-    <p>Dans le coin de cube, les deux miroirs sont perpendiculaires. L'angle du rayon réfléchi avec l'axe vertical est 30°. En frappant le miroir perpendiculaire, l'angle d'incidence est \(i_2 = 90° - 30° = 60°\).</p>
-    <p><strong>2.</strong> Après la 2e réflexion : \(r_2 = 60°\). La direction finale fait 60° avec la normale du 2e miroir = 30° avec l'horizontale, donc exactement opposée à la direction initiale (180°). ✓</p>
-    <p><strong>3.</strong> Avec un miroir plan, l'orientation précise est cruciale. Le coin de cube renvoie le rayon dans la direction exacte d'où il vient, quel que soit l'angle, ce qui facilite l'installation et la surveillance des angles morts.</p>
-    <p><strong>4.</strong> Les <em>catadioptres</em> (réflecteurs) sur les véhicules, panneaux routiers, balises de piste d'aéroport utilisent ce principe pour renvoyer la lumière des phares vers le conducteur.</p>
+    <p><strong>a)</strong> \( m_0 = C_{m0} \times V = 30 \times 200 = \mathbf{6000 \text{ g} = 6 \text{ kg}} \)</p>
+    <p><strong>b)</strong> Masse restante = \( 20 \times 200 = 4000 \) g &nbsp;→&nbsp; Masse perdue = \( 6000 - 4000 = \mathbf{2000 \text{ g} = 2 \text{ kg}} \)</p>
+    <p><strong>c)</strong> Pour revenir à 30 g/L dans 200 L, il manque \( \Delta m = 2000 \text{ g} \). Il faut ajouter <strong>2 kg</strong> de dégraissant dans la cuve et agiter.</p>
+    <p><strong>d)</strong> Intérêt économique : on économise les 4 kg de dégraissant encore présents dans le bain usagé, le coût de traitement des déchets liquides, et le temps de vidange/remplissage. La recharge est plus rapide et moins polluante.</p>
   </div>
 </div>
 
-<!-- Exercice 9 -->
+<!-- EXO 9 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 9</span>
-    <span class="exo-title">Endoscope industriel — inspection moteur par fibre optique</span>
-    <span class="diff diff-3">&#9733;&#9733;&#9733; Difficile</span>
-    <div class="mama-tag">MAMA</div>
+    <span class="exo-title">Liquide de refroidissement – Analyse du mélange</span>
+    <span class="diff diff-3">MAMA Avancé</span>
   </div>
-  <p>Un technicien de maintenance utilise un <strong>endoscope industriel à fibre optique</strong> pour inspecter l'intérieur d'un moteur (cylindres, soupapes) sans démontage. L'endoscope contient des milliers de fibres de verre (\(n_{cœur} = 1{,}62\), \(n_{gaine} = 1{,}52\)).</p>
-  <div class="q"><strong>1.</strong> Calculer l'angle critique \(i_c\) pour ces fibres.</div>
-  <div class="q"><strong>2.</strong> La lumière est injectée dans la fibre avec un angle de 80° par rapport à la paroi (donc 10° par rapport à l'axe). L'angle par rapport à la normale à la paroi est donc 80°. Ce rayon est-il guidé dans la fibre ?</div>
-  <div class="q"><strong>3.</strong> L'endoscope a un diamètre de 4 mm et une longueur de 50 cm. Pourquoi les pertes lumineuses restent-elles faibles malgré la longueur ?</div>
-  <div class="q"><strong>4.</strong> Quels sont les avantages de l'inspection endoscopique par rapport au démontage complet du moteur ? (Donner au moins 3 avantages)</div>
-  <div class="q"><strong>5.</strong> Le faisceau de fibres transmettant l'image doit être <em>cohérent</em> (fibres dans le même ordre aux deux extrémités). Pourquoi cette contrainte est-elle nécessaire ?</div>
+  <div class="mama-tag">Contexte MAMA</div>
+  <p>Le liquide de refroidissement d'un véhicule est un mélange 50 % eau / 50 % antigel (éthylène glycol). La densité du mélange est d = 1,06 kg/L. Le réservoir a une contenance de V = 6 L.</p>
+  <p class="q"><strong>a)</strong> Calculer la masse totale du mélange dans le réservoir.</p>
+  <p class="q"><strong>b)</strong> Le mélange étant 50/50, quelle est la masse d'antigel dans le réservoir ?</p>
+  <p class="q"><strong>c)</strong> Calculer la concentration massique \( C_m \) en antigel du mélange. Exprimer en g/L.</p>
+  <p class="q"><strong>d)</strong> La masse molaire de l'éthylène glycol est M = 62 g/mol. Calculer la quantité de matière n d'antigel (en mol) et la concentration molaire \( C_{mol} \) en mol/L.</p>
+  <div class="retenir"><strong>Méthode :</strong> \( n = \dfrac{m}{M} \) (mol) &nbsp;|&nbsp; \( C_{mol} = \dfrac{n}{V} \) (mol/L)</div>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(\sin i_c = \frac{n_{gaine}}{n_{cœur}} = \frac{1{,}52}{1{,}62} = 0{,}938\) → \(i_c = \arcsin(0{,}938) \approx 69{,}6°\)</p>
-    <p><strong>2.</strong> L'angle par rapport à la normale à la paroi est 80°. On compare : \(i = 80° &gt; i_c = 69{,}6°\) → le rayon est totalement réfléchi et guidé dans la fibre. ✓</p>
-    <p><strong>3.</strong> Grâce à la réflexion totale interne, pratiquement aucune énergie n'est perdue à chaque rebond sur la paroi. Le signal se propage sans atténuation significative sur quelques décimètres.</p>
-    <p><strong>4.</strong> Avantages : gain de temps (pas de démontage) ; économie de pièces de joint et de main-d'œuvre ; moteur non dégradé par le démontage ; diagnostic possible moteur chaud ou assemblé ; image haute résolution en temps réel.</p>
-    <p><strong>5.</strong> Si les fibres ne sont pas dans le même ordre aux deux extrémités, les pixels de l'image sont mélangés : l'image est illisible (brouillée). Le maintien de l'ordre spatial (cohérence) garantit que chaque fibre transmet le bon point de l'image.</p>
+    <p><strong>a)</strong> \( m_{total} = d \times V = 1{,}06 \times 6 = \mathbf{6{,}36 \text{ kg}} \)</p>
+    <p><strong>b)</strong> Mélange 50/50 en volume → \( V_{antigel} = 3 \text{ L} \). Mais on peut aussi prendre 50% de la masse : \( m_{antigel} = \dfrac{6{,}36}{2} \approx \mathbf{3{,}18 \text{ kg} = 3180 \text{ g}} \)</p>
+    <p><strong>c)</strong> \( C_m = \dfrac{m_{antigel}}{V_{mélange}} = \dfrac{3180}{6} = \mathbf{530 \text{ g/L}} \)</p>
+    <p><strong>d)</strong> \( n = \dfrac{m}{M} = \dfrac{3180}{62} \approx 51{,}3 \text{ mol} \) &nbsp;→&nbsp; \( C_{mol} = \dfrac{51{,}3}{6} \approx \mathbf{8{,}5 \text{ mol/L}} \)</p>
   </div>
 </div>
 
-<!-- Graphique Chart.js -->
-<h2>Graphique — Angle de réfraction air/eau</h2>
-<p>Ce graphique montre l'angle de réfraction \(i_2\) dans l'eau en fonction de l'angle d'incidence \(i_1\) dans l'air, selon la loi de Snell-Descartes (\(n_{eau} = 1{,}33\)).</p>
-<div class="chart-wrap">
-  <canvas id="snellChart"></canvas>
 </div>
-
-</div><!-- fin .c -->
 
 <script>
 function toggle(btn){
@@ -350,52 +364,38 @@ function toggle(btn){
   else{c.style.display='block';btn.textContent='Masquer la correction';}
 }
 
-// Chart Snell-Descartes air/eau
-(function(){
-  var labels=[], data=[];
-  for(var i=0;i<=90;i+=5){
-    var sinI2 = Math.sin(i*Math.PI/180)/1.33;
-    if(sinI2<=1){
-      labels.push(i+'°');
-      data.push(Math.round(Math.asin(sinI2)*180/Math.PI*10)/10);
+// Chart.js – Courbe de dilution
+const ctx = document.getElementById('chartDilution').getContext('2d');
+const volumes = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
+const concentrations = volumes.map(v => (100 / v).toFixed(1));
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: volumes.map(v => v + ' L'),
+    datasets: [{
+      label: 'Cm (g/L) pour C₁V₁ = 100 g',
+      data: concentrations,
+      borderColor: '#6f42c1',
+      backgroundColor: 'rgba(111,66,193,0.08)',
+      borderWidth: 2.5,
+      pointBackgroundColor: '#6f42c1',
+      pointRadius: 5,
+      tension: 0.3,
+      fill: true
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: true, text: 'Courbe de dilution : Cm = f(Vfinal)', font: { size: 14 } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Volume final V₂ (L)' } },
+      y: { title: { display: true, text: 'Concentration Cm (g/L)' }, beginAtZero: true }
     }
   }
-  var ctx=document.getElementById('snellChart').getContext('2d');
-  new Chart(ctx,{
-    type:'line',
-    data:{
-      labels:labels,
-      datasets:[{
-        label:'Angle réfracté i₂ (eau, n=1,33)',
-        data:data,
-        borderColor:'#3b82f6',
-        backgroundColor:'rgba(59,130,246,0.1)',
-        fill:true,
-        tension:0.3,
-        pointRadius:4,
-        pointBackgroundColor:'#6f42c1'
-      },{
-        label:'Droite i₂ = i₁ (référence)',
-        data:labels.map(function(l){return parseFloat(l);}),
-        borderColor:'#e5e7eb',
-        borderDash:[6,4],
-        fill:false,
-        pointRadius:0
-      }]
-    },
-    options:{
-      responsive:true,
-      plugins:{
-        title:{display:true,text:'Snell-Descartes : air (n=1) → eau (n=1,33)',font:{size:14}},
-        legend:{position:'bottom'}
-      },
-      scales:{
-        x:{title:{display:true,text:"Angle d'incidence i₁ (°)"}},
-        y:{title:{display:true,text:'Angle réfracté i₂ (°)'},min:0,max:90}
-      }
-    }
-  });
-})();
+});
 </script>
 <script src="nav.js"></script>
 </body>

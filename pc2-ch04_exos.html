@@ -2,436 +2,369 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch04 PC – Exercices – Composition chimique d'un liquide</title>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercices – Signaux électriques alternatifs | PC2 Ch.4</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
-body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
 .c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
 h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
-h2{color:var(--p);border-left:4px solid var(--p);padding-left:10px;margin-top:36px}
 .sous-titre{color:#718096;font-size:.95em;margin:0}
+h2{font-size:1.15em;color:var(--p);border-left:4px solid var(--p);padding-left:12px;margin-top:30px;margin-bottom:12px}
+.def{background:#f5f0ff;border-left:5px solid var(--p);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.prop{background:#f0fff4;border-left:5px solid var(--s);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.att{background:#fff5f5;border-left:5px solid var(--d);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.meth{background:#fffbeb;border-left:5px solid var(--o);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.methode{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;margin:16px 0}
+.attention{background:#fff1f2;border:1px solid #fda4af;border-radius:8px;padding:14px;margin:16px 0}
+.retenir{background:#f0f9ff;border:1px solid #7dd3fc;border-radius:8px;padding:14px;margin:16px 0}
+.section-intro{background:#f8f4ff;border-radius:8px;padding:10px 16px;margin-bottom:18px;font-size:.92em;color:#4a1d96;border:1px solid #ddd6fe}
+.mama-tag{display:inline-block;background:#e6f0ff;border:1px solid #bfdbfe;border-radius:4px;font-size:.75em;font-weight:700;color:#1a4a8a;padding:2px 8px;margin-bottom:6px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92em}
+th,td{border:1px solid #e2e8f0;padding:10px 12px;text-align:center}
+th{background:#eef2f7;font-weight:600}
 .nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
-.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
-.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0;background:#fff}
+.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.9em;padding:4px 12px;border-radius:20px}
-.exo-title{font-weight:600;flex:1}
+.exo-title{font-weight:600;font-size:1.05em;color:var(--t)}
 .diff{font-size:.8em;padding:2px 8px;border-radius:4px;font-weight:600}
 .diff-1{background:#d1fae5;color:#065f46}
 .diff-2{background:#fef3c7;color:#92400e}
 .diff-3{background:#fee2e2;color:#991b1b}
 .q{margin:10px 0 6px;padding-left:4px}
-.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none;font-size:.95em}
 .corr p{margin:6px 0}
 .bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}
 .bc:hover{background:#5a32a3}
 .intro-box{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em}
-.methode{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;margin:16px 0}
-.methode strong{color:#d97706}
-.attention{background:#fff1f2;border:1px solid #fda4af;border-radius:8px;padding:14px;margin:16px 0}
-.attention strong{color:#be123c}
-.retenir{background:#f0f9ff;border:1px solid #7dd3fc;border-radius:8px;padding:14px;margin:16px 0}
-.retenir strong{color:#0369a1}
-.section-intro{background:#f8f4ff;border-radius:8px;padding:10px 16px;margin-bottom:18px;font-size:.92em;color:#4a1d96;border:1px solid #ddd6fe}
-.mama-tag{display:inline-block;background:#e6f0ff;border:1px solid #bfdbfe;border-radius:4px;font-size:.75em;font-weight:700;color:#1a4a8a;padding:2px 8px;margin-bottom:6px;text-transform:uppercase}
-table{width:100%;border-collapse:collapse;margin:14px 0}
-th{background:var(--p);color:#fff;padding:8px 12px;text-align:left}
-td{border:1px solid #e2e8f0;padding:8px 12px}
-tr:nth-child(even) td{background:#f8fafc}
-.svg-wrap{text-align:center;margin:20px 0}
-.chart-wrap{max-width:580px;margin:20px auto}
 </style>
 </head>
 <body>
 <div class="c">
-<a href="pc-2nde-pro.html" class="nb">← Retour au sommaire</a>
 <header>
-  <h1>Chapitre 4 – Exercices</h1>
-  <p class="sous-titre">Composition chimique d'un liquide &nbsp;|&nbsp; 2<sup>de</sup> Pro &nbsp;|&nbsp; Physique-Chimie</p>
+  <div class="mama-tag">MAMA – 2nde Pro</div>
+  <h1>Chapitre 4 – Signaux électriques alternatifs</h1>
+  <p class="sous-titre">Physique-Chimie 2 &nbsp;|&nbsp; Exercices d'application</p>
 </header>
 
+<a class="nb" href="pc2-ch04.html">← Retour au cours</a>
+
 <div class="intro-box">
-  <strong>Compétences travaillées :</strong> calculer une concentration massique \(C_m = m/V\), appliquer la relation de dilution \(C_1 V_1 = C_2 V_2\), distinguer corps pur, mélange homogène et hétérogène, calculer une densité et une fraction massique.
+  <strong>Rappels essentiels :</strong> Courant continu (CC) : sens constant (pile, batterie). Courant alternatif (CA) : sens variable périodiquement.
+  Signal sinusoïdal : période \(T\) (s), fréquence \(f = \frac{1}{T}\) (Hz), amplitude \(U_{max}\) (V),
+  tension efficace \(U_{eff} = \frac{U_{max}}{\sqrt{2}}\). Réseau France : \(f = 50\,\text{Hz}\), \(U_{eff} = 230\,\text{V}\), \(U_{max} \approx 325\,\text{V}\).
 </div>
 
-<div class="retenir">
-  <strong>À retenir</strong><br>
-  <strong>Concentration massique :</strong> \(C_m = \dfrac{m}{V}\) (en g/L, avec \(m\) en g et \(V\) en L).<br>
-  <strong>Dilution :</strong> \(C_1 \times V_1 = C_2 \times V_2\) (la quantité de soluté est conservée).<br>
-  <strong>Densité :</strong> \(d = \dfrac{\rho}{\rho_{eau}}\) avec \(\rho_{eau} = 1\,000\) g/L = 1 g/mL.<br>
-  Un <strong>mélange homogène</strong> a une composition uniforme (une seule phase visible).
-</div>
-
-<!-- SVG pédagogique : préparation d'une solution -->
-<div class="svg-wrap">
-<svg width="520" height="200" viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif" font-size="12">
-  <!-- Étape 1 : pipette -->
-  <rect x="30" y="40" width="80" height="130" rx="6" fill="#ddd6fe" stroke="#6f42c1" stroke-width="1.5"/>
-  <rect x="55" y="80" width="30" height="70" rx="3" fill="#a78bfa" opacity="0.5"/>
-  <text x="70" y="30" fill="#4a1d96" font-weight="700" text-anchor="middle">1. Prélever</text>
-  <text x="70" y="185" fill="#4a5568" text-anchor="middle">Pipette</text>
-  <text x="70" y="115" fill="#4a1d96" font-weight="600" text-anchor="middle">C₁ V₁</text>
-
-  <!-- Flèche -->
-  <line x1="120" y1="110" x2="165" y2="110" stroke="#6f42c1" stroke-width="2" marker-end="url(#arrow4)"/>
-
-  <!-- Étape 2 : fiole jaugée -->
-  <ellipse cx="215" cy="155" rx="45" ry="18" fill="#ddd6fe" stroke="#6f42c1" stroke-width="1.5"/>
-  <rect x="195" y="80" width="40" height="76" fill="#ddd6fe" stroke="#6f42c1" stroke-width="1.5"/>
-  <rect x="207" y="55" width="16" height="30" rx="3" fill="#c4b5fd" stroke="#6f42c1" stroke-width="1"/>
-  <!-- trait de jauge -->
-  <line x1="195" y1="100" x2="235" y2="100" stroke="#c53030" stroke-width="1.5" stroke-dasharray="4"/>
-  <text x="240" y="104" fill="#c53030" font-size="11">trait de jauge</text>
-  <text x="215" y="30" fill="#4a1d96" font-weight="700" text-anchor="middle">2. Transvaser</text>
-  <text x="215" y="185" fill="#4a5568" text-anchor="middle">Fiole jaugée</text>
-  <text x="215" y="130" fill="#4a1d96" font-weight="600" text-anchor="middle">V₂</text>
-
-  <!-- Flèche -->
-  <line x1="268" y1="110" x2="315" y2="110" stroke="#6f42c1" stroke-width="2" marker-end="url(#arrow4)"/>
-
-  <!-- Étape 3 : agitation -->
-  <ellipse cx="395" cy="155" rx="45" ry="18" fill="#d1fae5" stroke="#2f855a" stroke-width="1.5"/>
-  <rect x="375" y="80" width="40" height="76" fill="#d1fae5" stroke="#2f855a" stroke-width="1.5"/>
-  <rect x="387" y="55" width="16" height="30" rx="3" fill="#a7f3d0" stroke="#2f855a" stroke-width="1"/>
-  <!-- Spirale agitation -->
-  <path d="M383,120 Q395,108 407,120 Q395,132 383,120" fill="none" stroke="#2f855a" stroke-width="1.5"/>
-  <text x="395" y="30" fill="#065f46" font-weight="700" text-anchor="middle">3. Compléter</text>
-  <text x="395" y="185" fill="#4a5568" text-anchor="middle">+ agiter</text>
-  <text x="395" y="148" fill="#065f46" font-weight="600" text-anchor="middle">C₂ V₂</text>
-
-  <defs>
-    <marker id="arrow4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#6f42c1"/>
-    </marker>
-  </defs>
+<!-- SVG Signal sinusoïdal annoté -->
+<div style="margin:24px 0;text-align:center;">
+<svg width="680" height="200" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;border:1px solid #e2e8f0;border-radius:8px;background:#fafafa;">
+  <!-- Axes -->
+  <line x1="30" y1="100" x2="660" y2="100" stroke="#aaa" stroke-width="1.5"/>
+  <line x1="50" y1="10" x2="50" y2="190" stroke="#aaa" stroke-width="1.5"/>
+  <!-- Flèches axes -->
+  <polygon points="660,96 670,100 660,104" fill="#aaa"/>
+  <polygon points="46,10 50,0 54,10" fill="#aaa"/>
+  <!-- Labels axes -->
+  <text x="672" y="104" font-size="12" fill="#555">t</text>
+  <text x="54" y="10" font-size="12" fill="#555">u(V)</text>
+  <!-- Signal sinusoïdal (2 périodes) -->
+  <path d="M50,100 C90,10 130,10 170,100 C210,190 250,190 290,100 C330,10 370,10 410,100 C450,190 490,190 530,100 C570,10 610,10 650,100" stroke="#6f42c1" stroke-width="2.5" fill="none"/>
+  <!-- Amplitude U_max -->
+  <line x1="170" y1="100" x2="170" y2="10" stroke="#c53030" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="145" y1="10" x2="200" y2="10" stroke="#c53030" stroke-width="1.5"/>
+  <text x="202" y="14" font-size="11" fill="#c53030" font-weight="bold">U_max</text>
+  <!-- -U_max -->
+  <line x1="350" y1="100" x2="350" y2="190" stroke="#c53030" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="325" y1="190" x2="375" y2="190" stroke="#c53030" stroke-width="1.5"/>
+  <text x="377" y="194" font-size="11" fill="#c53030" font-weight="bold">-U_max</text>
+  <!-- Ligne U_eff -->
+  <line x1="50" y1="37" x2="640" y2="37" stroke="#2f855a" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="645" y="41" font-size="11" fill="#2f855a" font-weight="bold">U_eff</text>
+  <!-- Période T -->
+  <line x1="50" y1="170" x2="290" y2="170" stroke="#d97706" stroke-width="1.5"/>
+  <line x1="50" y1="162" x2="50" y2="178" stroke="#d97706" stroke-width="1.5"/>
+  <line x1="290" y1="162" x2="290" y2="178" stroke="#d97706" stroke-width="1.5"/>
+  <text x="155" y="185" font-size="12" fill="#d97706" font-weight="bold" text-anchor="middle">T (une période)</text>
 </svg>
-<p style="font-size:.85em;color:#718096;">Protocole de dilution : prélever un volume \(V_1\) de solution mère, transvaser dans une fiole jaugée de volume \(V_2\), compléter avec le solvant jusqu'au trait de jauge.</p>
+<p style="font-size:.82em;color:#718096;margin-top:6px;">Signal sinusoïdal : annotations de la période T, de l'amplitude U_max et de la tension efficace U_eff</p>
 </div>
 
-<!-- ========== SECTION BASE ========== -->
-<h2>Partie A – Exercices de base</h2>
-<div class="section-intro">Maîtrisez les calculs fondamentaux de concentration, et la distinction corps pur / mélange.</div>
+<!-- Chart.js : signal sinusoïdal 50 Hz -->
+<div style="margin:24px 0;">
+<canvas id="signalChart" height="90"></canvas>
+</div>
 
-<!-- Exercice 1 -->
+<!-- ===================== SECTION 1 ===================== -->
+<h2>Exercices de base</h2>
+<div class="section-intro">Maîtriser les notions fondamentales : CC / CA, période, fréquence, lecture d'oscilloscope.</div>
+
+<!-- EXO 1 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 1</span>
-    <span class="exo-title">Concentration massique — calculs directs</span>
-    <span class="diff diff-1">★ Facile</span>
+    <span class="exo-title">Courant continu et courant alternatif</span>
+    <span class="diff diff-1">Facile</span>
+  </div>
+  <div class="retenir">Un courant <strong>continu (CC)</strong> circule toujours dans le même sens (ex. : pile, batterie 12 V).
+  Un courant <strong>alternatif (CA)</strong> change de sens périodiquement (ex. : secteur 230 V, alternateur).</div>
+  <p class="q"><strong>1.</strong> Pour chaque appareil ou source ci-dessous, indiquer s'il produit ou utilise un courant <strong>CC</strong> ou <strong>CA</strong> :</p>
+  <table>
+    <tr><th>Source / appareil</th><th>CC ou CA ?</th></tr>
+    <tr><td>Pile 1,5 V</td><td>&nbsp;</td></tr>
+    <tr><td>Batterie automobile 12 V</td><td>&nbsp;</td></tr>
+    <tr><td>Prise secteur (230 V)</td><td>&nbsp;</td></tr>
+    <tr><td>Alternateur d'automobile</td><td>&nbsp;</td></tr>
+    <tr><td>Lampe LED alimentée par pile</td><td>&nbsp;</td></tr>
+    <tr><td>Réseau EDF / Enedis</td><td>&nbsp;</td></tr>
+  </table>
+  <p class="q"><strong>2.</strong> Sur un oscilloscope, quel type de signal observe-t-on pour un courant continu ? Pour un courant alternatif sinusoïdal ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong></p>
+    <table>
+      <tr><th>Source / appareil</th><th>Type</th></tr>
+      <tr><td>Pile 1,5 V</td><td>CC</td></tr>
+      <tr><td>Batterie automobile 12 V</td><td>CC</td></tr>
+      <tr><td>Prise secteur (230 V)</td><td>CA</td></tr>
+      <tr><td>Alternateur d'automobile</td><td>CA</td></tr>
+      <tr><td>Lampe LED alimentée par pile</td><td>CC</td></tr>
+      <tr><td>Réseau EDF / Enedis</td><td>CA</td></tr>
+    </table>
+    <p><strong>2.</strong> Courant continu → ligne horizontale droite sur l'oscilloscope. Courant alternatif sinusoïdal → courbe sinusoïde (oscillations régulières).</p>
+  </div>
+</div>
+
+<!-- EXO 2 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Période et fréquence – réseau France</span>
+    <span class="diff diff-1">Facile</span>
   </div>
   <div class="methode">
-    <strong>Méthode :</strong> \(C_m = \dfrac{m}{V}\) avec \(m\) en grammes et \(V\) en litres → \(C_m\) en g/L.<br>
-    On peut aussi trouver \(m = C_m \times V\) ou \(V = m / C_m\).
+    <strong>Formules :</strong> \(f = \dfrac{1}{T}\) &nbsp; et &nbsp; \(T = \dfrac{1}{f}\)<br>
+    Unités : \(f\) en hertz (Hz), \(T\) en secondes (s).
   </div>
-  <div class="q"><strong>1.</strong> On dissout 30 g de sel dans 1,5 L d'eau. Calculer la concentration massique \(C_m\).</div>
-  <div class="q"><strong>2.</strong> Une solution de nettoyage a une concentration massique de 50 g/L. Quelle masse de produit contient-elle dans 3 L ?</div>
-  <div class="q"><strong>3.</strong> On veut préparer une solution à \(C_m = 40\) g/L avec 20 g de produit. Quel volume faut-il ?</div>
-  <div class="q"><strong>4.</strong> Compléter le tableau :</div>
+  <p class="q"><strong>1.</strong> Le réseau électrique français a une fréquence \(f = 50\,\text{Hz}\). Calculer la période \(T\).</p>
+  <p class="q"><strong>2.</strong> Un signal a une période \(T = 0{,}02\,\text{s}\). Calculer sa fréquence \(f\).</p>
+  <p class="q"><strong>3.</strong> Compléter le tableau des caractéristiques du réseau France :</p>
   <table>
-    <tr><th>Situation</th><th>Masse \(m\) (g)</th><th>Volume \(V\) (L)</th><th>\(C_m\) (g/L)</th></tr>
-    <tr><td>Liquide de refroidissement</td><td>200</td><td>2</td><td>?</td></tr>
-    <tr><td>Dégraissant atelier</td><td>?</td><td>5</td><td>30</td></tr>
-    <tr><td>Antigel dilué</td><td>150</td><td>?</td><td>25</td></tr>
+    <tr><th>Grandeur</th><th>Symbole</th><th>Valeur</th><th>Unité</th></tr>
+    <tr><td>Fréquence</td><td>\(f\)</td><td>50</td><td>Hz</td></tr>
+    <tr><td>Période</td><td>\(T\)</td><td>?</td><td>s</td></tr>
+    <tr><td>Tension efficace</td><td>\(U_{eff}\)</td><td>230</td><td>V</td></tr>
+    <tr><td>Tension maximale</td><td>\(U_{max}\)</td><td>?</td><td>V</td></tr>
   </table>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(C_m = 30 / 1{,}5 = \mathbf{20 \text{ g/L}}\)</p>
-    <p><strong>2.</strong> \(m = C_m \times V = 50 \times 3 = \mathbf{150 \text{ g}}\)</p>
-    <p><strong>3.</strong> \(V = m / C_m = 20 / 40 = \mathbf{0{,}5 \text{ L} = 500 \text{ mL}}\)</p>
-    <p><strong>4.</strong> Tableau :</p>
+    <p><strong>1.</strong> \(T = \dfrac{1}{f} = \dfrac{1}{50} = 0{,}02\,\text{s} = 20\,\text{ms}\)</p>
+    <p><strong>2.</strong> \(f = \dfrac{1}{T} = \dfrac{1}{0{,}02} = 50\,\text{Hz}\)</p>
+    <p><strong>3.</strong> \(T = 0{,}02\,\text{s}\) &nbsp;; &nbsp;\(U_{max} = U_{eff} \times \sqrt{2} = 230 \times \sqrt{2} \approx 325\,\text{V}\)</p>
+  </div>
+</div>
+
+<!-- EXO 3 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Lecture d'un oscilloscope</span>
+    <span class="diff diff-1">Facile</span>
+  </div>
+  <p>Un oscilloscope affiche un signal sinusoïdal. On observe <strong>2 périodes complètes</strong> sur l'écran.
+  Ces 2 périodes occupent exactement <strong>4 divisions</strong> horizontales.</p>
+  <p>La sensibilité temporelle (base de temps) est réglée à <strong>5 ms/div</strong>.</p>
+  <p>La sensibilité verticale est réglée à <strong>3 V/div</strong>. L'amplitude du signal occupe <strong>2,5 divisions</strong> de haut en bas (soit 1,25 div depuis l'axe).</p>
+  <div class="attention"><strong>Attention :</strong> U_max correspond à l'amplitude crête (depuis l'axe central jusqu'au sommet), donc la moitié de l'amplitude totale crête-à-crête.</div>
+  <p class="q"><strong>1.</strong> Calculer la durée totale correspondant aux 4 divisions.</p>
+  <p class="q"><strong>2.</strong> En déduire la période \(T\) du signal (rappel : 2 périodes = 4 divisions).</p>
+  <p class="q"><strong>3.</strong> Calculer la fréquence \(f\).</p>
+  <p class="q"><strong>4.</strong> Calculer \(U_{max}\) (amplitude crête).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Durée totale = \(4 \times 5\,\text{ms} = 20\,\text{ms}\)</p>
+    <p><strong>2.</strong> 2 périodes → \(2T = 20\,\text{ms}\) donc \(T = 10\,\text{ms} = 0{,}01\,\text{s}\)</p>
+    <p><strong>3.</strong> \(f = \dfrac{1}{T} = \dfrac{1}{0{,}01} = 100\,\text{Hz}\)</p>
+    <p><strong>4.</strong> Amplitude crête = \(1{,}25\,\text{div} \times 3\,\text{V/div} = 3{,}75\,\text{V}\) → \(U_{max} = 3{,}75\,\text{V}\)</p>
+  </div>
+</div>
+
+<!-- ===================== SECTION 2 ===================== -->
+<h2>Exercices guidés</h2>
+<div class="section-intro">Des exercices avec les étapes détaillées pour progresser vers les calculs de tension efficace et les applications en atelier automobile.</div>
+
+<!-- EXO 4 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Valeur efficace – calcul guidé</span>
+    <span class="diff diff-2">Intermédiaire</span>
+  </div>
+  <div class="methode">
+    <strong>Relation tension efficace / tension maximale :</strong><br>
+    \(U_{eff} = \dfrac{U_{max}}{\sqrt{2}} \approx \dfrac{U_{max}}{1{,}414}\)
+    &nbsp; &nbsp;
+    \(U_{max} = U_{eff} \times \sqrt{2} \approx U_{eff} \times 1{,}414\)
+  </div>
+  <p class="q"><strong>Partie A – De \(U_{max}\) vers \(U_{eff}\) :</strong></p>
+  <p class="q"><strong>1.</strong> Le réseau secteur a \(U_{max} = 325\,\text{V}\). Calculer \(U_{eff}\).</p>
+  <p class="q"><strong>2.</strong> Un transformateur délivre \(U_{max} = 20\,\text{V}\). Calculer \(U_{eff}\).</p>
+  <p class="q"><strong>Partie B – De \(U_{eff}\) vers \(U_{max}\) :</strong></p>
+  <p class="q"><strong>3.</strong> Le voltmètre indique \(U_{eff} = 230\,\text{V}\). Retrouver \(U_{max}\). Cela correspond-il à la valeur connue ?</p>
+  <p class="q"><strong>4.</strong> Un voltmètre mesure \(U_{eff} = 12\,\text{V}\) CA. Calculer \(U_{max}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(U_{eff} = \dfrac{325}{\sqrt{2}} \approx \dfrac{325}{1{,}414} \approx 229{,}8\,\text{V} \approx 230\,\text{V}\) ✓</p>
+    <p><strong>2.</strong> \(U_{eff} = \dfrac{20}{1{,}414} \approx 14{,}1\,\text{V}\)</p>
+    <p><strong>3.</strong> \(U_{max} = 230 \times \sqrt{2} \approx 230 \times 1{,}414 \approx 325\,\text{V}\) — cohérent avec la valeur connue du secteur français.</p>
+    <p><strong>4.</strong> \(U_{max} = 12 \times 1{,}414 \approx 16{,}97\,\text{V} \approx 17\,\text{V}\)</p>
+  </div>
+</div>
+
+<!-- EXO 5 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">Alternateur automobile</span>
+    <span class="diff diff-2">Intermédiaire</span>
+  </div>
+  <div class="mama-tag">MAMA – Alternateur</div>
+  <p>L'alternateur d'un véhicule tourne à <strong>1 800 tr/min</strong> et produit un signal alternatif sinusoïdal de fréquence \(f = 60\,\text{Hz}\) et d'amplitude \(U_{max} = 17\,\text{V}\).</p>
+  <p class="q"><strong>1.</strong> Calculer la période \(T\) du signal produit par l'alternateur.</p>
+  <p class="q"><strong>2.</strong> Calculer la tension efficace \(U_{eff}\) en sortie de l'alternateur (avant redressement).</p>
+  <p class="q"><strong>3.</strong> La batterie est chargée à 12 V (CC). Comparer avec \(U_{eff}\) trouvée. Que doit-on faire pour charger la batterie ?</p>
+  <p class="q"><strong>4.</strong> Nommer le composant qui transforme le CA de l'alternateur en CC pour la batterie.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(T = \dfrac{1}{f} = \dfrac{1}{60} \approx 0{,}0167\,\text{s} = 16{,}7\,\text{ms}\)</p>
+    <p><strong>2.</strong> \(U_{eff} = \dfrac{U_{max}}{\sqrt{2}} = \dfrac{17}{1{,}414} \approx 12{,}0\,\text{V}\)</p>
+    <p><strong>3.</strong> \(U_{eff} \approx 12\,\text{V}\) = tension de la batterie. Pour charger la batterie, il faut convertir le CA en CC : c'est le rôle du redresseur (pont de diodes).</p>
+    <p><strong>4.</strong> Le composant s'appelle un <strong>redresseur</strong> (ou pont de Graëtz / pont de diodes).</p>
+  </div>
+</div>
+
+<!-- ===================== SECTION 3 ===================== -->
+<h2>Exercices d'application</h2>
+<div class="section-intro">Appliquer les connaissances à des situations plus complexes : oscilloscope en diagnostic, moteur triphasé.</div>
+
+<!-- EXO 6 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">Oscilloscope en diagnostic automobile</span>
+    <span class="diff diff-2">Intermédiaire</span>
+  </div>
+  <div class="mama-tag">MAMA – Diagnostic</div>
+  <p>Lors d'un diagnostic, un technicien branche un oscilloscope sur le circuit de charge du véhicule. Il observe un signal sinusoïdal présentant les caractéristiques suivantes :</p>
+  <ul>
+    <li>Base de temps : <strong>5 ms/div</strong></li>
+    <li>Le signal complète <strong>1 période en 4 divisions</strong></li>
+    <li>Sensibilité verticale : <strong>4 V/div</strong></li>
+    <li>L'amplitude crête-à-crête occupe <strong>4 divisions</strong> (donc 2 div depuis l'axe)</li>
+  </ul>
+  <p class="q"><strong>1.</strong> Calculer la période \(T\) du signal.</p>
+  <p class="q"><strong>2.</strong> Calculer la fréquence \(f\).</p>
+  <p class="q"><strong>3.</strong> Calculer \(U_{max}\) (amplitude crête).</p>
+  <p class="q"><strong>4.</strong> Calculer \(U_{eff}\).</p>
+  <p class="q"><strong>5.</strong> Ce signal ressemble-t-il au signal de charge d'une batterie 12 V ? Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(T = 4\,\text{div} \times 5\,\text{ms/div} = 20\,\text{ms} = 0{,}020\,\text{s}\)</p>
+    <p><strong>2.</strong> \(f = \dfrac{1}{T} = \dfrac{1}{0{,}020} = 50\,\text{Hz}\)</p>
+    <p><strong>3.</strong> \(U_{max} = 2\,\text{div} \times 4\,\text{V/div} = 8\,\text{V}\)</p>
+    <p><strong>4.</strong> \(U_{eff} = \dfrac{8}{\sqrt{2}} \approx 5{,}66\,\text{V}\)</p>
+    <p><strong>5.</strong> Non. La tension efficace (~5,7 V) est inférieure aux 12 V attendus. L'alternateur/redresseur semble défaillant. Il faudrait vérifier le pont de diodes et l'alternateur.</p>
+  </div>
+</div>
+
+<!-- EXO 7 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 7</span>
+    <span class="exo-title">Moteur triphasé en atelier</span>
+    <span class="diff diff-2">Intermédiaire</span>
+  </div>
+  <div class="mama-tag">MAMA – Moteur 3 phases</div>
+  <p>Le compresseur de l'atelier est entraîné par un moteur triphasé alimenté par le réseau (\(f = 50\,\text{Hz}\), \(U_{eff} = 230\,\text{V}\) par phase).</p>
+  <p class="q"><strong>1.</strong> Calculer la période \(T\) du réseau.</p>
+  <p class="q"><strong>2.</strong> Calculer \(U_{max}\) de chaque phase.</p>
+  <p class="q"><strong>3.</strong> Les 3 phases sont déphasées de \(T/3\) les unes par rapport aux autres. Si la phase 1 passe par zéro à \(t = 0\), à quel instant la phase 2 passe-t-elle par zéro ?</p>
+  <p class="q"><strong>4.</strong> Un moteur triphasé 4 pôles (2 paires de pôles) tourne à la fréquence \(n = \frac{f}{p}\) où \(p\) est le nombre de paires de pôles. Calculer la vitesse de rotation en tr/s puis en tr/min.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(T = \dfrac{1}{50} = 0{,}02\,\text{s} = 20\,\text{ms}\)</p>
+    <p><strong>2.</strong> \(U_{max} = 230 \times \sqrt{2} \approx 325\,\text{V}\)</p>
+    <p><strong>3.</strong> Déphasage = \(\dfrac{T}{3} = \dfrac{20\,\text{ms}}{3} \approx 6{,}67\,\text{ms}\). La phase 2 passe par zéro à \(t \approx 6{,}67\,\text{ms}\).</p>
+    <p><strong>4.</strong> \(p = 2\) paires de pôles. \(n = \dfrac{50}{2} = 25\,\text{tr/s} = 1\,500\,\text{tr/min}\).</p>
+  </div>
+</div>
+
+<!-- ===================== SECTION 4 ===================== -->
+<h2>Contexte MAMA</h2>
+<div class="section-intro">Exercices avancés directement liés aux équipements et situations de l'atelier automobile.</div>
+
+<!-- EXO 8 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 8</span>
+    <span class="exo-title">Redresseur et chargeur de batterie</span>
+    <span class="diff diff-3">Avancé</span>
+  </div>
+  <div class="mama-tag">MAMA – Redresseur / Chargeur</div>
+  <p>Un chargeur de batterie est branché sur le secteur 230 V CA. Il contient un transformateur qui abaisse la tension, puis un redresseur (pont de diodes) qui transforme le CA en CC. En sortie, la tension de charge est de <strong>14 V CC</strong>.</p>
+  <div class="attention">Le transformateur agit sur les tensions efficaces. Le redresseur ne change pas la valeur de la tension mais change CA→CC.</div>
+  <p class="q"><strong>1.</strong> Quelle est la tension efficace \(U_{eff}\) en entrée du chargeur ?</p>
+  <p class="q"><strong>2.</strong> Calculer \(U_{max}\) correspondant à 230 V efficaces.</p>
+  <p class="q"><strong>3.</strong> Le transformateur abaisse la tension à 14 V efficaces (pour avoir ~14 V CC après redressement). Calculer \(U_{max}\) en sortie du transformateur.</p>
+  <p class="q"><strong>4.</strong> Décrire schématiquement les 3 étapes de conversion : CA 230 V → transformateur → redresseur → batterie. Préciser la nature (CA/CC) et la valeur à chaque étape.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(U_{eff,entrée} = 230\,\text{V}\)</p>
+    <p><strong>2.</strong> \(U_{max,entrée} = 230 \times \sqrt{2} \approx 325\,\text{V}\)</p>
+    <p><strong>3.</strong> \(U_{max,sortie\,transfo} = 14 \times \sqrt{2} \approx 19{,}8\,\text{V} \approx 20\,\text{V}\)</p>
+    <p><strong>4.</strong> Schéma de conversion :</p>
     <table>
-      <tr><th>Situation</th><th>m (g)</th><th>V (L)</th><th>Cm (g/L)</th></tr>
-      <tr><td>Liquide refroidissement</td><td>200</td><td>2</td><td>100 g/L</td></tr>
-      <tr><td>Dégraissant</td><td>150 g</td><td>5</td><td>30 g/L</td></tr>
-      <tr><td>Antigel</td><td>150</td><td>6 L</td><td>25 g/L</td></tr>
+      <tr><th>Étape</th><th>Composant</th><th>Tension entrée</th><th>Tension sortie</th><th>Type</th></tr>
+      <tr><td>1</td><td>Entrée secteur</td><td>–</td><td>230 V eff</td><td>CA</td></tr>
+      <tr><td>2</td><td>Transformateur</td><td>230 V CA eff</td><td>14 V CA eff</td><td>CA → CA</td></tr>
+      <tr><td>3</td><td>Redresseur (pont diodes)</td><td>14 V CA eff</td><td>~14 V CC</td><td>CA → CC</td></tr>
+      <tr><td>4</td><td>Batterie</td><td>14 V CC</td><td>–</td><td>CC (charge)</td></tr>
     </table>
   </div>
 </div>
 
-<!-- Exercice 2 -->
-<div class="exo">
-  <div class="exo-header">
-    <span class="exo-num">Exercice 2</span>
-    <span class="exo-title">Corps pur ou mélange — classer des substances d'atelier</span>
-    <span class="diff diff-1">★ Facile</span>
-  </div>
-  <p>Voici une liste de substances couramment utilisées en atelier automobile :</p>
-  <ul>
-    <li>Eau distillée</li>
-    <li>Huile moteur (huile minérale pure)</li>
-    <li>Liquide de refroidissement (eau + éthylène glycol)</li>
-    <li>Liquide de frein (mélange de glycols)</li>
-    <li>Essence (mélange d'hydrocarbures)</li>
-    <li>Éthanol pur</li>
-    <li>Vinaigre blanc (eau + acide acétique)</li>
-  </ul>
-  <div class="q"><strong>1.</strong> Classer ces substances en deux catégories : corps pur / mélange.</div>
-  <div class="q"><strong>2.</strong> Parmi les mélanges, lesquels sont homogènes ? lesquels sont hétérogènes ? Justifier.</div>
-  <div class="q"><strong>3.</strong> L'huile moteur et l'eau se mélangent-elles ? Comment appelle-t-on ce type de mélange ?</div>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
-  <div class="corr">
-    <p><strong>1.</strong></p>
-    <p>— <strong>Corps purs :</strong> Eau distillée, Huile minérale pure, Éthanol pur.</p>
-    <p>— <strong>Mélanges :</strong> Liquide de refroidissement, Liquide de frein, Essence, Vinaigre blanc.</p>
-    <p><strong>2.</strong></p>
-    <p>— <strong>Homogènes</strong> (une seule phase visible) : Liquide de refroidissement, Liquide de frein, Vinaigre blanc. L'essence est aussi homogène (mélange d'hydrocarbures miscibles).</p>
-    <p>— <strong>Hétérogène :</strong> Si on mélangeait l'huile et l'eau, on obtiendrait un mélange hétérogène (deux phases distinctes).</p>
-    <p><strong>3.</strong> L'huile et l'eau ne se mélangent pas (non miscibles). On obtient un mélange <strong>hétérogène</strong>. C'est pourquoi on utilise des émulsifiants dans les produits nettoyants.</p>
-  </div>
-</div>
-
-<!-- Exercice 3 -->
-<div class="exo">
-  <div class="exo-header">
-    <span class="exo-num">Exercice 3</span>
-    <span class="exo-title">Lire une étiquette de produit</span>
-    <span class="diff diff-1">★ Facile</span>
-  </div>
-  <p>L'étiquette d'un produit dégraissant indique :</p>
-  <ul>
-    <li>Volume du bidon : 5 L</li>
-    <li>Fraction massique en solvant actif : 15 %</li>
-    <li>Densité du produit : \(d = 0{,}95\)</li>
-  </ul>
-  <div class="methode">
-    <strong>Rappel :</strong> La <strong>fraction massique</strong> \(w\) est le rapport de la masse du soluté sur la masse totale de solution : \(w = m_{soluté} / m_{solution}\). La masse de solution se calcule à partir de la densité et du volume : \(m = d \times \rho_{eau} \times V\), avec \(\rho_{eau} = 1\,000\) g/L.
-  </div>
-  <div class="q"><strong>1.</strong> Calculer la masse totale de produit dans le bidon.</div>
-  <div class="q"><strong>2.</strong> Calculer la masse de solvant actif (fraction massique 15 %).</div>
-  <div class="q"><strong>3.</strong> En déduire la concentration massique \(C_m\) en solvant actif (en g/L).</div>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
-  <div class="corr">
-    <p><strong>1.</strong> \(m_{solution} = d \times \rho_{eau} \times V = 0{,}95 \times 1\,000 \times 5 = \mathbf{4\,750 \text{ g}}\)</p>
-    <p><strong>2.</strong> \(m_{soluté} = w \times m_{solution} = 0{,}15 \times 4\,750 = \mathbf{712{,}5 \text{ g}}\)</p>
-    <p><strong>3.</strong> \(C_m = m_{soluté} / V = 712{,}5 / 5 = \mathbf{142{,}5 \text{ g/L}}\)</p>
-  </div>
-</div>
-
-<!-- ========== SECTION GUIDÉ ========== -->
-<h2>Partie B – Exercices guidés</h2>
-<div class="section-intro">Des exercices intermédiaires avec des aides pour appliquer la dilution et les dosages.</div>
-
-<!-- Exercice 4 -->
-<div class="exo">
-  <div class="exo-header">
-    <span class="exo-num">Exercice 4</span>
-    <span class="exo-title">Dilution — calculer la concentration de la solution fille</span>
-    <span class="diff diff-2">★★ Intermédiaire</span>
-  </div>
-  <p>Dans un atelier, on dispose d'une solution mère de dégraissant de concentration \(C_1 = 120\) g/L. On prélève \(V_1 = 100\) mL de cette solution mère, et on la verse dans une fiole jaugée de \(V_2 = 1\) L. On complète avec de l'eau distillée jusqu'au trait de jauge.</p>
-  <div class="methode">
-    <strong>Aide :</strong> La relation de dilution est \(C_1 \times V_1 = C_2 \times V_2\). Attention : exprimer \(V_1\) et \(V_2\) dans la même unité (en L ici). La quantité de soluté est conservée lors d'une dilution.
-  </div>
-  <div class="q"><strong>1.</strong> Convertir \(V_1 = 100\) mL en litres.</div>
-  <div class="q"><strong>2.</strong> Calculer la masse de dégraissant prélevée dans la solution mère.</div>
-  <div class="q"><strong>3.</strong> Appliquer la relation \(C_1 V_1 = C_2 V_2\) pour calculer \(C_2\), la concentration de la solution fille.</div>
-  <div class="q"><strong>4.</strong> Quel est le facteur de dilution \(F = V_2/V_1\) ? Interpréter ce résultat.</div>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
-  <div class="corr">
-    <p><strong>1.</strong> \(V_1 = 100 \text{ mL} = 0{,}1 \text{ L}\)</p>
-    <p><strong>2.</strong> Masse prélevée : \(m = C_1 \times V_1 = 120 \times 0{,}1 = \mathbf{12 \text{ g}}\)</p>
-    <p><strong>3.</strong> \(C_2 = \dfrac{C_1 \times V_1}{V_2} = \dfrac{120 \times 0{,}1}{1} = \mathbf{12 \text{ g/L}}\)</p>
-    <p><strong>4.</strong> \(F = V_2/V_1 = 1/0{,}1 = \mathbf{10}\). On a dilué 10 fois (dilution au dixième). La concentration est 10 fois plus faible.</p>
-  </div>
-</div>
-
-<!-- Exercice 5 -->
-<div class="exo">
-  <div class="exo-header">
-    <span class="exo-num">Exercice 5</span>
-    <span class="exo-title">Préparer une solution de nettoyage à concentration donnée</span>
-    <span class="diff diff-2">★★ Intermédiaire</span>
-  </div>
-  <p>Un technicien doit préparer 2 L d'une solution de nettoyage à \(C_m = 25\) g/L à partir d'un produit concentré à \(C_1 = 500\) g/L.</p>
-  <div class="methode">
-    <strong>Aide :</strong><br>
-    Étape 1 : Calculer le volume \(V_1\) à prélever avec \(C_1 V_1 = C_2 V_2\).<br>
-    Étape 2 : Calculer le volume d'eau à ajouter = \(V_2 - V_1\).<br>
-    Étape 3 : Rédiger le protocole (ordre : <em>toujours ajouter l'eau sur le concentré, jamais l'inverse</em>).
-  </div>
-  <div class="q"><strong>1.</strong> Identifier \(C_1\), \(C_2\), \(V_2\). Quelle est l'inconnue ?</div>
-  <div class="q"><strong>2.</strong> Calculer le volume \(V_1\) de solution concentrée à prélever.</div>
-  <div class="q"><strong>3.</strong> Calculer le volume d'eau distillée à ajouter pour compléter à 2 L.</div>
-  <div class="q"><strong>4.</strong> Rédiger le protocole de préparation en 4 étapes.</div>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
-  <div class="corr">
-    <p><strong>1.</strong> \(C_1 = 500\) g/L, \(C_2 = 25\) g/L, \(V_2 = 2\) L. Inconnue : \(V_1\).</p>
-    <p><strong>2.</strong> \(V_1 = \dfrac{C_2 \times V_2}{C_1} = \dfrac{25 \times 2}{500} = 0{,}1 \text{ L} = \mathbf{100 \text{ mL}}\)</p>
-    <p><strong>3.</strong> Volume d'eau = \(V_2 - V_1 = 2{,}0 - 0{,}1 = \mathbf{1{,}9 \text{ L} = 1\,900 \text{ mL}}\)</p>
-    <p><strong>4.</strong> Protocole :</p>
-    <p>1. Prélever 100 mL de solution concentrée avec une éprouvette graduée.</p>
-    <p>2. Verser dans un récipient de 2 L.</p>
-    <p>3. Ajouter progressivement 1 900 mL d'eau distillée (toujours eau sur concentré).</p>
-    <p>4. Agiter doucement. Étiqueter le flacon (concentration, date, nom du produit).</p>
-  </div>
-</div>
-
-<!-- ========== SECTION APPLICATION ========== -->
-<h2>Partie C – Exercices d'application</h2>
-<div class="section-intro">Des situations plus complexes intégrant plusieurs notions.</div>
-
-<!-- Exercice 6 -->
-<div class="exo">
-  <div class="exo-header">
-    <span class="exo-num">Exercice 6</span>
-    <span class="exo-title">Calcul de densité — huile moteur et antigel</span>
-    <span class="diff diff-2">★★ Intermédiaire</span>
-  </div>
-  <div class="methode">
-    <strong>Rappel :</strong> La densité \(d = \rho / \rho_{eau}\) est un nombre sans unité. Elle compare la masse volumique d'un liquide à celle de l'eau (\(\rho_{eau} = 1\,000\) g/L = 1 g/mL). Si \(d < 1\) : le liquide flotte sur l'eau.
-  </div>
-  <p>Des mesures donnent les résultats suivants :</p>
-  <table>
-    <tr><th>Liquide</th><th>Masse (g) pour 1 L</th><th>Densité \(d\)</th><th>Flotte sur l'eau ?</th></tr>
-    <tr><td>Huile moteur 5W30</td><td>870</td><td>?</td><td>?</td></tr>
-    <tr><td>Antigel pur (éthylène glycol)</td><td>1 113</td><td>?</td><td>?</td></tr>
-    <tr><td>Liquide de frein DOT4</td><td>1 050</td><td>?</td><td>?</td></tr>
-  </table>
-  <div class="q"><strong>1.</strong> Calculer la densité de chacun de ces liquides.</div>
-  <div class="q"><strong>2.</strong> Lesquels flottent sur l'eau ? Justifier.</div>
-  <div class="q"><strong>3.</strong> L'huile moteur fuit dans le radiateur : vers où va-t-elle ? Expliquer à partir des densités.</div>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
-  <div class="corr">
-    <p><strong>1.</strong></p>
-    <p>— Huile : \(d = 870/1\,000 = \mathbf{0{,}87}\)</p>
-    <p>— Antigel pur : \(d = 1\,113/1\,000 = \mathbf{1{,}113}\)</p>
-    <p>— Liquide de frein : \(d = 1\,050/1\,000 = \mathbf{1{,}05}\)</p>
-    <p><strong>2.</strong> Seule l'<strong>huile</strong> (\(d = 0{,}87 < 1\)) flotte sur l'eau. L'antigel (\(d = 1{,}113 > 1\)) et le liquide de frein (\(d = 1{,}05 > 1\)) coulent.</p>
-    <p><strong>3.</strong> L'huile, de densité inférieure à celle de l'eau, <strong>remonte à la surface</strong> du liquide de refroidissement. Elle forme une couche en haut du radiateur. C'est pourquoi une fuite d'huile dans le circuit d'eau est visible en surface.</p>
-  </div>
-</div>
-
-<!-- Exercice 7 -->
-<div class="exo">
-  <div class="exo-header">
-    <span class="exo-num">Exercice 7</span>
-    <span class="exo-title">Concentration d'un antigel — masse d'éthylène glycol</span>
-    <span class="diff diff-3">★★★ Avancé</span>
-  </div>
-  <p>Un technicien prépare un liquide de refroidissement antigel pour une voiture. Le circuit contient 6 L. La concentration recommandée en éthylène glycol est \(C_m = 300\) g/L. La solution est préparée à partir d'antigel pur (éthylène glycol à 100 %).</p>
-  <div class="q"><strong>1.</strong> Calculer la masse totale d'éthylène glycol à introduire dans 6 L de solution.</div>
-  <div class="q"><strong>2.</strong> La densité de l'éthylène glycol est \(d = 1{,}113\). Calculer le volume d'antigel pur à utiliser.</div>
-  <div class="q"><strong>3.</strong> Quel volume d'eau distillée faut-il ajouter pour compléter à 6 L ? (On néglige les variations de volume lors du mélange.)</div>
-  <div class="q"><strong>4.</strong> Calculer la fraction massique en éthylène glycol dans la solution finale. (\(\rho_{solution} \approx 1\,060\) g/L)</div>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
-  <div class="corr">
-    <p><strong>1.</strong> \(m = C_m \times V = 300 \times 6 = \mathbf{1\,800 \text{ g}}\)</p>
-    <p><strong>2.</strong> Masse volumique antigel pur : \(\rho_{antigel} = d \times 1\,000 = 1\,113\) g/L.</p>
-    <p>\(V_{antigel} = m / \rho_{antigel} = 1\,800 / 1\,113 = \mathbf{1{,}617 \text{ L} \approx 1{,}62 \text{ L}}\)</p>
-    <p><strong>3.</strong> \(V_{eau} = 6 - 1{,}62 = \mathbf{4{,}38 \text{ L}}\)</p>
-    <p><strong>4.</strong> Masse solution = \(\rho_{solution} \times V = 1\,060 \times 6 = 6\,360\) g.</p>
-    <p>\(w = m_{glycol} / m_{solution} = 1\,800 / 6\,360 = \mathbf{0{,}283 = 28{,}3\%}\)</p>
-  </div>
-</div>
-
-<!-- ========== SECTION MAMA ========== -->
-<h2>Partie D – Exercices contextualisés MAMA</h2>
-<div class="section-intro">Situations professionnelles liées à la Maintenance Automobile, Mécanique et Atelier.</div>
-
-<!-- Exercice 8 -->
-<div class="exo">
-  <div class="exo-header">
-    <span class="exo-num">Exercice 8</span>
-    <span class="exo-title">Bain de dégraissage en atelier</span>
-    <span class="diff diff-3">★★★ MAMA</span>
-  </div>
-  <div class="mama-tag">MAMA – Atelier mécanique</div>
-  <p>Dans un atelier de mécanique, on prépare un bain de dégraissage pour nettoyer des pièces métalliques. La cuve de dégraissage a un volume utile de 20 L. Le détergent dégraissant doit être utilisé à une concentration de \(C_m = 60\) g/L. Le produit commercial se présente sous forme de poudre concentrée.</p>
-  <div class="methode">
-    <strong>Contexte professionnel :</strong> Une concentration trop faible ne dégraisse pas suffisamment. Une concentration trop forte est un gaspillage coûteux et peut être corrosive. Il faut doser avec précision.
-  </div>
-  <div class="q"><strong>1.</strong> Calculer la masse de détergent à peser pour préparer les 20 L de bain.</div>
-  <div class="q"><strong>2.</strong> On ne dispose que de seaux de 5 L. Combien faut-il de seaux pour remplir la cuve ?</div>
-  <div class="q"><strong>3.</strong> Après utilisation, la concentration du bain chute à \(C = 15\) g/L. On prélève 5 L de bain usagé et on complète à 20 L avec du bain neuf à 60 g/L. Calculer la nouvelle concentration \(C_3\) du bain reconstitué.</div>
-  <div class="q"><strong>4.</strong> Est-il préférable de jeter et refaire un bain neuf ou de reconstituer ? Argumenter.</div>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
-  <div class="corr">
-    <p><strong>1.</strong> \(m = C_m \times V = 60 \times 20 = \mathbf{1\,200 \text{ g} = 1{,}2 \text{ kg}}\)</p>
-    <p><strong>2.</strong> Volume total = 20 L ; seaux de 5 L → \(20 / 5 = \mathbf{4 \text{ seaux}}\)</p>
-    <p><strong>3.</strong> Après prélèvement de 5 L, il reste 15 L à \(C = 15\) g/L. On ajoute 5 L à 60 g/L.</p>
-    <p>Masse totale de détergent : \(m_3 = 15 \times 15 + 5 \times 60 = 225 + 300 = 525\) g.</p>
-    <p>\(C_3 = 525 / 20 = \mathbf{26{,}25 \text{ g/L}}\)</p>
-    <p><strong>4.</strong> La concentration obtenue (26,25 g/L) est bien inférieure à la cible (60 g/L). Il vaut mieux <strong>jeter et refaire un bain neuf</strong> pour garantir l'efficacité du dégraissage. Reconstituer est insuffisant ici.</p>
-  </div>
-</div>
-
-<!-- Exercice 9 -->
+<!-- EXO 9 -->
 <div class="exo">
   <div class="exo-header">
     <span class="exo-num">Exercice 9</span>
-    <span class="exo-title">Contrôle du liquide de batterie</span>
-    <span class="diff diff-3">★★★ MAMA</span>
+    <span class="exo-title">Diagnostic d'alternateur à l'oscilloscope</span>
+    <span class="diff diff-3">Avancé</span>
   </div>
-  <div class="mama-tag">MAMA – Batterie automobile</div>
-  <p>L'électrolyte d'une batterie automobile est une solution d'acide sulfurique (H₂SO₄) dans l'eau. La densité de l'électrolyte renseigne sur l'état de charge de la batterie :</p>
-  <table>
-    <tr><th>État de la batterie</th><th>Densité \(d\)</th><th>Concentration approximative en H₂SO₄</th></tr>
-    <tr><td>Chargée (bonne)</td><td>1,28</td><td>environ 380 g/L</td></tr>
-    <tr><td>À moitié déchargée</td><td>1,20</td><td>environ 280 g/L</td></tr>
-    <tr><td>Déchargée</td><td>1,12</td><td>environ 180 g/L</td></tr>
-  </table>
-  <div class="attention">
-    <strong>Attention SÉCURITÉ :</strong> L'acide sulfurique est très corrosif. Porter des lunettes de protection et des gants lors de la manipulation de l'électrolyte de batterie.
+  <div class="mama-tag">MAMA – Diagnostic alternateur</div>
+  <p>Un technicien mesure avec un oscilloscope le signal de sortie d'un alternateur. Le moteur tourne à <strong>2 700 tr/min</strong>.
+  L'oscilloscope montre un signal sinusoïdal de fréquence <strong>90 Hz</strong> et de tension efficace <strong>13,8 V</strong>.</p>
+  <div class="methode">
+    <strong>Relation fréquence – vitesse rotation :</strong>
+    \(f = p \times \dfrac{n}{60}\)
+    où \(p\) = nombre de paires de pôles, \(n\) = vitesse en tr/min.
   </div>
-  <div class="q"><strong>1.</strong> Un densimètre indique \(d = 1{,}20\) pour l'électrolyte d'une batterie. Quel est l'état de la batterie ?</div>
-  <div class="q"><strong>2.</strong> Une batterie chargée contient 1,5 L d'électrolyte de densité 1,28. Calculer la masse totale d'électrolyte.</div>
-  <div class="q"><strong>3.</strong> Calculer la masse de H₂SO₄ contenu dans cet électrolyte (concentration ≈ 380 g/L).</div>
-  <div class="q"><strong>4.</strong> Si l'électrolyte s'évapore partiellement et que le volume passe de 1,5 L à 1,2 L (avec la même masse de H₂SO₄), calculer la nouvelle concentration. Commenter.</div>
+  <p class="q"><strong>1.</strong> Calculer la période \(T\) du signal observé.</p>
+  <p class="q"><strong>2.</strong> Calculer \(U_{max}\) correspondant à \(U_{eff} = 13{,}8\,\text{V}\).</p>
+  <p class="q"><strong>3.</strong> En utilisant la formule \(f = p \times \dfrac{n}{60}\), calculer le nombre de paires de pôles \(p\) de cet alternateur.</p>
+  <p class="q"><strong>4.</strong> La valeur de \(U_{eff} = 13{,}8\,\text{V}\) est-elle normale pour un système de charge ? Que conclure sur l'état de l'alternateur ?</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(d = 1{,}20\) → batterie <strong>à moitié déchargée</strong>. Il faut la recharger.</p>
-    <p><strong>2.</strong> \(m_{élec} = d \times \rho_{eau} \times V = 1{,}28 \times 1\,000 \times 1{,}5 = \mathbf{1\,920 \text{ g}}\)</p>
-    <p><strong>3.</strong> \(m_{H_2SO_4} = C_m \times V = 380 \times 1{,}5 = \mathbf{570 \text{ g}}\)</p>
-    <p><strong>4.</strong> \(C_{nouvelle} = m_{H_2SO_4} / V_{nouveau} = 570 / 1{,}2 = \mathbf{475 \text{ g/L}}\)</p>
-    <p>La concentration a augmenté (l'eau s'est évaporée, pas l'acide). Il faut <strong>compléter avec de l'eau distillée</strong> pour retrouver le niveau et la densité nominale. Ne jamais ajouter d'acide concentré dans une batterie à compléter.</p>
+    <p><strong>1.</strong> \(T = \dfrac{1}{f} = \dfrac{1}{90} \approx 0{,}0111\,\text{s} \approx 11{,}1\,\text{ms}\)</p>
+    <p><strong>2.</strong> \(U_{max} = 13{,}8 \times \sqrt{2} \approx 13{,}8 \times 1{,}414 \approx 19{,}5\,\text{V}\)</p>
+    <p><strong>3.</strong> \(p = \dfrac{f \times 60}{n} = \dfrac{90 \times 60}{2700} = \dfrac{5400}{2700} = 2\) paires de pôles (soit 4 pôles au total).</p>
+    <p><strong>4.</strong> La tension de charge normale est comprise entre 13,5 V et 14,8 V. Ici, 13,8 V est dans la plage normale. L'alternateur fonctionne correctement à cette vitesse.</p>
   </div>
 </div>
 
-<!-- Chart.js : Cm vs V -->
-<h2>Graphique — Concentration massique en fonction du volume</h2>
-<div class="retenir">
-  <strong>À retenir :</strong> Pour une masse fixe de soluté (\(m = 50\) g), la concentration \(C_m = m/V\) diminue quand le volume augmente. C'est la relation de dilution : plus on dilue, moins la solution est concentrée.
-</div>
-<div class="chart-wrap">
-  <canvas id="chartCmV"></canvas>
-</div>
-<p style="font-size:.85em;color:#718096;text-align:center;">Relation \(C_m\) vs \(V\) pour \(m = 50\) g de soluté fixe</p>
-
-<script>
-const ctxCm = document.getElementById('chartCmV').getContext('2d');
-const volumes = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 5.0];
-const concentrations = volumes.map(v => +(50/v).toFixed(1));
-new Chart(ctxCm, {
-  type: 'line',
-  data: {
-    labels: volumes.map(v => v + ' L'),
-    datasets: [{
-      label: 'Cm (g/L)',
-      data: concentrations,
-      borderColor: '#6f42c1',
-      backgroundColor: 'rgba(111,66,193,0.1)',
-      pointBackgroundColor: '#6f42c1',
-      pointRadius: 5,
-      fill: true,
-      tension: 0.4
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      title: {display: true, text: 'Concentration massique en fonction du volume (m = 50 g)', font: {size: 13}},
-      legend: {display: false}
-    },
-    scales: {
-      x: {title: {display: true, text: 'Volume V (L)'}},
-      y: {title: {display: true, text: 'Cm (g/L)'}, beginAtZero: true}
-    }
-  }
-});
-</script>
+</div><!-- fin .c -->
 
 <script>
 function toggle(btn){
@@ -439,8 +372,45 @@ function toggle(btn){
   if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
   else{c.style.display='block';btn.textContent='Masquer la correction';}
 }
+
+// Chart.js – Signal sinusoïdal 50 Hz simulé
+(function(){
+  const pts = 200;
+  const labels = [];
+  const data = [];
+  for(let i=0;i<pts;i++){
+    const t = i * (2/pts); // 0 to 2 périodes, en unité T
+    labels.push((i*(40/pts)).toFixed(1)); // temps en ms (0 à 40ms pour 2 périodes à 50Hz)
+    data.push(325 * Math.sin(2*Math.PI*50 * (t*0.02))); // U_max=325V, f=50Hz
+  }
+  new Chart(document.getElementById('signalChart'),{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[{
+        label:'Tension secteur u(t) [V] – f=50 Hz, U_max=325 V',
+        data:data,
+        borderColor:'#6f42c1',
+        borderWidth:2,
+        pointRadius:0,
+        tension:0.4,
+        fill:false
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{position:'top'},
+        title:{display:true,text:'Signal CA sinusoïdal – Réseau France (50 Hz, 325 V crête)'}
+      },
+      scales:{
+        x:{title:{display:true,text:'Temps (ms)'},ticks:{maxTicksLimit:10}},
+        y:{title:{display:true,text:'Tension u(t) (V)'},min:-340,max:340}
+      }
+    }
+  });
+})();
 </script>
-</div>
 <script src="nav.js"></script>
 </body>
 </html>

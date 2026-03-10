@@ -1,23 +1,443 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Ch10 PC – Exercices – Éclairement</title><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><style>:root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--t:#2d3748}body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}h1{margin:0 0 6px;color:var(--p);font-size:1.7em}.sous-titre{color:#718096;font-size:.95em;margin:0}.nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}.exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.9em;padding:4px 12px;border-radius:20px}.exo-title{font-weight:600}.diff{font-size:.8em;padding:2px 8px;border-radius:4px;font-weight:600}.diff-1{background:#d1fae5;color:#065f46}.diff-2{background:#fef3c7;color:#92400e}.q{margin:10px 0 6px;padding-left:4px}.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}.corr p{margin:6px 0}.bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}.bc:hover{background:#5a32a3}.intro-box{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em}</style></head><body><div class="c"><a href="pc-2nde-pro.html" class="nb">&larr; RETOUR SOMMAIRE</a>
-<header><h1>Chapitre 10 – Exercices</h1><p class="sous-titre">Éclairement et photocomposants &nbsp;|&nbsp; 2<sup>de</sup> Pro</p></header>
-<div class="intro-box"><strong>Compétences :</strong> calculer flux, éclairement, surface ; connaître les photocomposants.</div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Calculs d'éclairement</span><span class="diff diff-1">&#9733; Facile</span></div>
-<div class="q"><strong>1.</strong> Une lampe émet 800 lm sur une surface de 4 m². Calculer l'éclairement.</div>
-<div class="q"><strong>2.</strong> Un éclairement de 200 lx est reçu sur 10 m². Calculer le flux lumineux total.</div>
-<div class="q"><strong>3.</strong> 1200 lm éclairent uniformément un bureau avec E=300 lx. Quelle est la surface du bureau ?</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> E=800/4=200 lx</p><p><strong>2.</strong> Φ=200×10=2000 lm</p><p><strong>3.</strong> S=1200/300=4 m²</p></div></div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Photocomposants</span><span class="diff diff-1">&#9733; Facile</span></div>
-<div class="q"><strong>1.</strong> Qu'est-ce qu'une photorésistance ? Comment sa résistance varie-t-elle avec l'éclairement ?</div>
-<div class="q"><strong>2.</strong> Donner un exemple d'utilisation d'une photodiode.</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> Composant dont la résistance diminue quand l'éclairement augmente. Ex : cellule LDR.</p><p><strong>2.</strong> Panneau solaire photovoltaïque.</p></div></div>
-<div class="exo"><div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Comparaison de sources</span><span class="diff diff-2">&#9733;&#9733; Intermédiaire</span></div>
-<p>Ampoule A : 800 lm, 60 W. Ampoule B (LED) : 800 lm, 10 W.</p>
-<div class="q"><strong>1.</strong> Ces deux ampoules donnent-elles le même éclairement ? Justifier.</div>
-<div class="q"><strong>2.</strong> Laquelle est plus économique ? Pourquoi ?</div>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr"><p><strong>1.</strong> Oui, même flux lumineux (800 lm) → même éclairement à surface égale.</p><p><strong>2.</strong> La LED (10 W) consomme 6 fois moins d'électricité pour le même flux.</p></div></div>
-<script>function toggle(btn){const c=btn.nextElementSibling;if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}else{c.style.display='block';btn.textContent='Masquer la correction';}}</script></div><script src="nav.js"></script>
-</body></html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 PC – Exercices – Éclairement et photocomposants</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
+.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
+h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
+h2{color:var(--p);border-left:4px solid var(--p);padding-left:10px;margin-top:36px}
+.sous-titre{color:#718096;font-size:.95em;margin:0}
+.nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
+.exo{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
+.exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.9em;padding:4px 12px;border-radius:20px}
+.exo-title{font-weight:600;flex:1}
+.diff{font-size:.8em;padding:2px 8px;border-radius:4px;font-weight:600}
+.diff-1{background:#d1fae5;color:#065f46}
+.diff-2{background:#fef3c7;color:#92400e}
+.diff-3{background:#fee2e2;color:#991b1b}
+.q{margin:10px 0 6px;padding-left:4px}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}
+.corr p{margin:6px 0}
+.bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}
+.bc:hover{background:#5a32a3}
+.intro-box{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em}
+.methode{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;margin:16px 0}
+.methode strong{color:#d97706}
+.attention{background:#fff1f2;border:1px solid #fda4af;border-radius:8px;padding:14px;margin:16px 0}
+.attention strong{color:#be123c}
+.retenir{background:#f0f9ff;border:1px solid #7dd3fc;border-radius:8px;padding:14px;margin:16px 0}
+.retenir strong{color:#0369a1}
+.section-intro{background:#f8f4ff;border-radius:8px;padding:10px 16px;margin-bottom:18px;font-size:.92em;color:#4a1d96;border:1px solid #ddd6fe}
+.mama-tag{display:inline-block;background:#e6f0ff;border:1px solid #bfdbfe;border-radius:4px;font-size:.75em;font-weight:700;color:#1a4a8a;padding:2px 8px;margin-bottom:6px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:var(--p);color:#fff;padding:8px 12px;text-align:left}
+td{border:1px solid #e2e8f0;padding:8px 12px}
+tr:nth-child(even) td{background:#f8fafc}
+.svg-wrap{text-align:center;margin:20px 0}
+.chart-wrap{max-width:580px;margin:20px auto}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="pc-2nde-pro.html" class="nb">&larr; RETOUR SOMMAIRE</a>
+<header>
+  <h1>Chapitre 10 – Exercices</h1>
+  <p class="sous-titre">Éclairement et photocomposants &nbsp;|&nbsp; 2<sup>de</sup> Pro</p>
+</header>
+
+<div class="intro-box">
+  <strong>Compétences travaillées :</strong> Calculer flux lumineux, éclairement et surface (\(E = \Phi / S\)), identifier les photocomposants (LDR, photodiode, phototransistor) et leurs utilisations, comparer les sources lumineuses, appliquer les normes d'éclairage.
+</div>
+
+<!-- SVG pédagogique : lampe éclairant une surface -->
+<div class="svg-wrap">
+<svg width="460" height="260" viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg" aria-label="Flux lumineux et surface éclairée">
+  <!-- Lampe -->
+  <ellipse cx="230" cy="40" rx="22" ry="16" fill="#fef08a" stroke="#f59e0b" stroke-width="2"/>
+  <circle cx="230" cy="40" r="12" fill="#fde047"/>
+  <text x="260" y="44" font-family="Segoe UI" font-size="12" fill="#d97706" font-weight="bold">Lampe (Φ lm)</text>
+  <!-- Rayons lumineux (flux) -->
+  <line x1="220" y1="56" x2="160" y2="200" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="225" y1="56" x2="190" y2="200" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="230" y1="56" x2="230" y2="200" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5,3"/>
+  <line x1="235" y1="56" x2="270" y2="200" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="240" y1="56" x2="300" y2="200" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- Surface éclairée -->
+  <rect x="140" y="200" width="180" height="14" fill="#ddd6fe" stroke="#6f42c1" stroke-width="1.5" rx="2"/>
+  <text x="230" y="211" font-family="Segoe UI" font-size="11" fill="#4a1d96" text-anchor="middle" font-weight="bold">Surface S (m²)</text>
+  <!-- Flèche de hauteur -->
+  <line x1="330" y1="56" x2="330" y2="200" stroke="#6f42c1" stroke-width="1.5" marker-end="url(#arrH)"/>
+  <text x="338" y="130" font-family="Segoe UI" font-size="11" fill="#6f42c1">hauteur h</text>
+  <!-- Formule -->
+  <rect x="10" y="228" width="440" height="28" fill="#f5f0ff" rx="6"/>
+  <text x="230" y="246" font-family="Segoe UI" font-size="13" fill="#4a1d96" text-anchor="middle" font-weight="bold">
+    E = Φ / S   (lux = lumen / m²)   —   Plus S est grand, plus E est faible
+  </text>
+  <!-- Légende flux -->
+  <text x="60" y="140" font-family="Segoe UI" font-size="11" fill="#d97706" font-style="italic">flux Φ (lm)</text>
+  <defs>
+    <marker id="arrH" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#6f42c1"/>
+    </marker>
+  </defs>
+</svg>
+</div>
+
+<!-- SECTION 1 : BASE -->
+<h2>Section 1 – Calculs d'éclairement E = Φ / S</h2>
+<div class="section-intro">
+  L'éclairement \(E\) (en lux, lx) est le flux lumineux \(\Phi\) (en lumens, lm) reçu par unité de surface \(S\) (en m²).
+  \[E = \frac{\Phi}{S} \quad \Leftrightarrow \quad \Phi = E \times S \quad \Leftrightarrow \quad S = \frac{\Phi}{E}\]
+</div>
+
+<!-- Exercice 1 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Calculs directs E = Φ / S</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <p>Appliquer la formule \(E = \Phi / S\) dans les trois sens possibles.</p>
+  <div class="q"><strong>1.</strong> Une lampe émet un flux \(\Phi = 800\) lm sur une surface \(S = 4\) m². Calculer l'éclairement \(E\).</div>
+  <div class="q"><strong>2.</strong> Un bureau reçoit un éclairement \(E = 300\) lx sur une surface \(S = 6\) m². Calculer le flux lumineux \(\Phi\) total nécessaire.</div>
+  <div class="q"><strong>3.</strong> Un luminaire délivre \(\Phi = 2400\) lm. On veut un éclairement de \(E = 400\) lx. Quelle surface \(S\) peut-on éclairer ?</div>
+  <div class="q"><strong>4.</strong> Un couloir de 12 m² reçoit un flux de 960 lm. Calculer l'éclairement. Est-ce suffisant pour circuler (norme : 100 lx minimum) ?</div>
+  <div class="methode">
+    <strong>Triangle magique :</strong><br>
+    \(\Phi\) en haut, \(E \times S\) en bas. Pour trouver E : couvrir E → Φ/S. Pour Φ : E×S. Pour S : Φ/E.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(E = \dfrac{\Phi}{S} = \dfrac{800}{4} = 200\) lx</p>
+    <p><strong>2.</strong> \(\Phi = E \times S = 300 \times 6 = 1800\) lm</p>
+    <p><strong>3.</strong> \(S = \dfrac{\Phi}{E} = \dfrac{2400}{400} = 6\) m²</p>
+    <p><strong>4.</strong> \(E = \dfrac{960}{12} = 80\) lx. Non conforme : 80 lx &lt; 100 lx. Il faut augmenter le flux (changer la lampe) ou diminuer la hauteur d'installation.</p>
+  </div>
+</div>
+
+<!-- Exercice 2 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Identifier les photocomposants et leurs usages</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <p>Les photocomposants sont des composants électroniques dont le comportement change en fonction de la lumière reçue.</p>
+  <table>
+    <tr><th>Composant</th><th>Symbole / Description</th><th>Comportement selon l'éclairement</th></tr>
+    <tr><td><strong>LDR</strong> (photorésistance)</td><td>Résistance variable à lumière</td><td>Résistance diminue quand lumière augmente</td></tr>
+    <tr><td><strong>Photodiode</strong></td><td>Diode sensible à la lumière</td><td>Génère un courant proportionnel à la lumière</td></tr>
+    <tr><td><strong>Phototransistor</strong></td><td>Transistor commandé par la lumière</td><td>Courant collecteur amplifié par la lumière</td></tr>
+    <tr><td><strong>Cellule solaire</strong></td><td>Grande photodiode</td><td>Génère une tension (effet photovoltaïque)</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Quelle est la résistance d'une LDR dans l'obscurité totale : très grande ou très petite ?</div>
+  <div class="q"><strong>2.</strong> Citer un usage concret d'une LDR dans la vie courante (en dehors du cours).</div>
+  <div class="q"><strong>3.</strong> Quel photocomposant est utilisé dans les panneaux solaires photovoltaïques ? Pourquoi ?</div>
+  <div class="q"><strong>4.</strong> Un phototransistor est utilisé dans un capteur de présence par barrière lumineuse. Expliquer le principe.</div>
+  <div class="q"><strong>5.</strong> On dispose d'une LDR de 10 kΩ à l'obscurité et 500 Ω en pleine lumière, alimentée par 5 V. Calculer le courant dans les deux cas.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Dans l'obscurité, la LDR a une résistance très grande (peut atteindre 1 MΩ).</p>
+    <p><strong>2.</strong> Exemples : allumage automatique des lampadaires à la tombée de la nuit ; capteur d'ambiance dans un smartphone pour adapter la luminosité de l'écran.</p>
+    <p><strong>3.</strong> Cellule solaire (photodiode grande surface). Elle convertit directement la lumière en énergie électrique par effet photovoltaïque.</p>
+    <p><strong>4.</strong> Une LED émet un faisceau infrarouge. Un phototransistor le reçoit en face. Quand un objet (ou personne) passe, il coupe le faisceau → le phototransistor ne reçoit plus de lumière → il se bloque → le circuit détecte l'interruption.</p>
+    <p><strong>5.</strong> Loi d'Ohm \(I = U/R\) :<br>
+    Obscurité : \(I = 5/10000 = 0{,}5\) mA<br>
+    Pleine lumière : \(I = 5/500 = 10\) mA (20 fois plus grand)</p>
+  </div>
+</div>
+
+<!-- Exercice 3 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Comparer ampoule incandescente et LED</span>
+    <span class="diff diff-1">&#9733; Facile</span>
+  </div>
+  <p>Deux ampoules produisent le même flux lumineux mais avec des puissances différentes.</p>
+  <table>
+    <tr><th>Caractéristique</th><th>Ampoule incandescente</th><th>Ampoule LED équivalente</th></tr>
+    <tr><td>Flux lumineux</td><td>800 lm</td><td>800 lm</td></tr>
+    <tr><td>Puissance électrique</td><td>60 W</td><td>9 W</td></tr>
+    <tr><td>Durée de vie</td><td>1 000 h</td><td>15 000 h</td></tr>
+    <tr><td>Prix unitaire</td><td>1,50 €</td><td>5,00 €</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Ces deux ampoules éclairent-elles pareil ? Justifier en utilisant la notion de flux lumineux.</div>
+  <div class="q"><strong>2.</strong> Calculer l'efficacité lumineuse (en lm/W) de chaque ampoule. Laquelle est plus efficace ?</div>
+  <div class="q"><strong>3.</strong> Quelle quantité d'énergie (en kWh) consomme chaque ampoule pendant 1000 heures ?</div>
+  <div class="q"><strong>4.</strong> À 0,20 €/kWh, calculer le coût en électricité sur 1 000 h pour chaque ampoule. En déduire les économies réalisées avec la LED sur cette période.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Oui, l'éclairage est identique : même flux lumineux (800 lm), donc même éclairement \(E\) pour une même surface. La puissance électrique ne mesure pas la quantité de lumière produite.</p>
+    <p><strong>2.</strong> Efficacité lumineuse = Φ/P<br>
+    Incandescente : 800/60 ≈ <strong>13 lm/W</strong><br>
+    LED : 800/9 ≈ <strong>89 lm/W</strong> (7 fois plus efficace)</p>
+    <p><strong>3.</strong> Énergie = P × t (en W·h)<br>
+    Incandescente : 60 W × 1000 h = 60 000 Wh = <strong>60 kWh</strong><br>
+    LED : 9 W × 1000 h = 9 000 Wh = <strong>9 kWh</strong></p>
+    <p><strong>4.</strong> Coût = énergie × prix unitaire<br>
+    Incandescente : 60 × 0,20 = <strong>12,00 €</strong><br>
+    LED : 9 × 0,20 = <strong>1,80 €</strong><br>
+    Économie en électricité : 12,00 − 1,80 = <strong>10,20 €</strong> sur 1000 h (sans compter le remplacement des ampoules).</p>
+  </div>
+</div>
+
+<!-- SECTION 2 : GUIDÉ -->
+<h2>Section 2 – Dimensionnement d'éclairage et LDR (guidé)</h2>
+<div class="section-intro">On applique les formules pour dimensionner un éclairage adapté à un local et pour comprendre le fonctionnement d'un circuit à LDR.</div>
+
+<!-- Exercice 4 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Choisir la puissance d'éclairage pour un atelier</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>Un responsable d'atelier souhaite équiper un local de 8 m × 6 m = 48 m². Les normes recommandent 300 lx pour un atelier de montage. Les luminaires LED disponibles émettent 4 000 lm par unité, avec un rendement d'utilisation \(\eta = 0{,}65\) (tient compte des réflexions et pertes).</p>
+  <div class="methode">
+    <strong>Méthode :</strong> Flux total nécessaire = E × S. Flux réellement utile d'un luminaire = Φ × η. Nombre de luminaires = Flux total / Flux utile par luminaire.
+  </div>
+  <div class="q"><strong>1.</strong> Calculer le flux lumineux total \(\Phi_{total}\) nécessaire pour atteindre 300 lx dans cet atelier.</div>
+  <div class="q"><strong>2.</strong> Calculer le flux utile de chaque luminaire (en tenant compte de η = 0,65).</div>
+  <div class="q"><strong>3.</strong> Calculer le nombre de luminaires nécessaires. Arrondir au supérieur.</div>
+  <div class="q"><strong>4.</strong> Si chaque luminaire consomme 40 W, calculer la puissance électrique totale installée.</div>
+  <div class="q"><strong>5.</strong> Ces luminaires fonctionnent 8 h/jour, 220 jours/an. Calculer la consommation annuelle en kWh.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Surface : S = 8 × 6 = 48 m². \(\Phi_{total} = E \times S = 300 \times 48 = 14\,400\) lm</p>
+    <p><strong>2.</strong> Flux utile par luminaire : \(\Phi_{utile} = 4000 \times 0{,}65 = 2600\) lm</p>
+    <p><strong>3.</strong> Nombre = \(\dfrac{14\,400}{2600} = 5{,}54\) → arrondi à <strong>6 luminaires</strong></p>
+    <p><strong>4.</strong> Puissance totale : 6 × 40 = <strong>240 W</strong></p>
+    <p><strong>5.</strong> Durée annuelle : 8 × 220 = 1760 h/an. Consommation : 240 W × 1760 h = 422 400 Wh = <strong>422 kWh/an</strong></p>
+  </div>
+</div>
+
+<!-- Exercice 5 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">LDR — variation de résistance et circuit simple</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>Une LDR (photorésistance) est montée en série avec une résistance fixe \(R_0 = 2\,200\) Ω dans un circuit alimenté sous \(U = 9\) V. On note \(R_{LDR}\) la résistance de la LDR.</p>
+  <table>
+    <tr><th>Éclairement (lx)</th><th>\(R_{LDR}\) (Ω)</th><th>Courant I (mA)</th><th>Tension \(U_{LDR}\) (V)</th></tr>
+    <tr><td>0 (obscurité)</td><td>50 000</td><td>…</td><td>…</td></tr>
+    <tr><td>100</td><td>10 000</td><td>…</td><td>…</td></tr>
+    <tr><td>500</td><td>2 000</td><td>…</td><td>…</td></tr>
+    <tr><td>1000</td><td>500</td><td>…</td><td>…</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Rappeler la formule du courant dans un circuit série : \(I = U / (R_0 + R_{LDR})\).</div>
+  <div class="q"><strong>2.</strong> Compléter le tableau (calculer I en mA et \(U_{LDR}\) en V pour chaque ligne).</div>
+  <div class="q"><strong>3.</strong> Quand l'éclairement augmente, que se passe-t-il à la tension \(U_{LDR}\) ? Et à la tension \(U_{R0}\) ?</div>
+  <div class="q"><strong>4.</strong> On connecte un relais (seuil 6 V) aux bornes de \(R_0\). À quel éclairement environ le relais se déclenche-t-il ? (Trouver quand \(U_{R0} \geq 6\) V)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(I = \dfrac{U}{R_0 + R_{LDR}} = \dfrac{9}{2200 + R_{LDR}}\)</p>
+    <p><strong>2.</strong> Calculs :</p>
+    <p>Obscurité : \(I = 9/(2200+50000) = 9/52200 \approx 0{,}172\) mA ; \(U_{LDR} = 0{,}172 \times 10^{-3} \times 50000 \approx 8{,}63\) V</p>
+    <p>100 lx : \(I = 9/12200 \approx 0{,}738\) mA ; \(U_{LDR} = 0{,}738 \times 10^{-3} \times 10000 \approx 7{,}38\) V</p>
+    <p>500 lx : \(I = 9/4200 \approx 2{,}14\) mA ; \(U_{LDR} = 2{,}14 \times 10^{-3} \times 2000 \approx 4{,}29\) V</p>
+    <p>1000 lx : \(I = 9/2700 \approx 3{,}33\) mA ; \(U_{LDR} = 3{,}33 \times 10^{-3} \times 500 \approx 1{,}67\) V</p>
+    <p><strong>3.</strong> Quand l'éclairement augmente : \(R_{LDR}\) diminue → \(U_{LDR}\) diminue. À l'inverse, \(U_{R0} = U - U_{LDR}\) augmente.</p>
+    <p><strong>4.</strong> On veut \(U_{R0} \geq 6\) V, soit \(U_{LDR} \leq 3\) V. Entre 500 lx (\(U_{LDR} \approx 4{,}3\) V) et 1000 lx (\(U_{LDR} \approx 1{,}7\) V), le relais se déclenche vers 700-800 lx environ.</p>
+  </div>
+</div>
+
+<!-- SECTION 3 : APPLICATION -->
+<h2>Section 3 – Applications</h2>
+<div class="section-intro">Calculs d'économies d'énergie sur une année, conformité aux normes d'éclairage pour différents locaux.</div>
+
+<!-- Exercice 6 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">Économies d'énergie — calcul sur 1 an, coût et bilan</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+  </div>
+  <p>Une entreprise souhaite remplacer ses 20 tubes fluorescents de 58 W (1 800 lm chacun) par des tubes LED de 22 W (2 200 lm chacun). Fonctionnement : 10 h/jour, 250 jours/an. Prix de l'électricité : 0,22 €/kWh. Coût d'un tube LED : 12 €.</p>
+  <div class="q"><strong>1.</strong> Calculer la puissance totale installée avant et après remplacement.</div>
+  <div class="q"><strong>2.</strong> Calculer la consommation annuelle (en kWh) avant et après.</div>
+  <div class="q"><strong>3.</strong> Calculer le coût annuel en électricité avant et après. Déduire l'économie annuelle.</div>
+  <div class="q"><strong>4.</strong> Calculer le coût total du remplacement (20 tubes LED). En déduire le temps de retour sur investissement (en mois).</div>
+  <div class="q"><strong>5.</strong> Comparer l'efficacité lumineuse (lm/W) des deux types de tubes. Quelle technologie est la plus efficace ?</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Avant : 20 × 58 = <strong>1 160 W</strong>. Après : 20 × 22 = <strong>440 W</strong>.</p>
+    <p><strong>2.</strong> Durée annuelle : 10 × 250 = 2 500 h/an.<br>
+    Avant : 1160 W × 2500 h = 2 900 000 Wh = <strong>2 900 kWh/an</strong><br>
+    Après : 440 W × 2500 h = 1 100 000 Wh = <strong>1 100 kWh/an</strong></p>
+    <p><strong>3.</strong> Coût avant : 2900 × 0,22 = <strong>638 €/an</strong>. Coût après : 1100 × 0,22 = <strong>242 €/an</strong>.<br>
+    Économie annuelle : 638 − 242 = <strong>396 €/an</strong></p>
+    <p><strong>4.</strong> Investissement : 20 × 12 = <strong>240 €</strong>.<br>
+    Retour sur investissement : 240 / 396 × 12 = <strong>7,3 mois</strong> ≈ moins d'un an.</p>
+    <p><strong>5.</strong> Fluorescent : 1800/58 ≈ 31 lm/W. LED : 2200/22 = <strong>100 lm/W</strong>. La LED est 3 fois plus efficace et produit plus de lumière pour moins d'énergie.</p>
+  </div>
+</div>
+
+<!-- Exercice 7 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 7</span>
+    <span class="exo-title">Conformité à la norme NF EN 12464-1</span>
+    <span class="diff diff-3">&#9733;&#9733;&#9733; Difficile</span>
+  </div>
+  <p>La norme NF EN 12464-1 définit les niveaux d'éclairement minimum selon le type de local et d'activité.</p>
+  <table>
+    <tr><th>Type de local / Activité</th><th>Éclairement minimum (lux)</th></tr>
+    <tr><td>Couloir, escalier, zone de passage</td><td>100 lx</td></tr>
+    <tr><td>Bureau, lecture, travail de bureau</td><td>500 lx</td></tr>
+    <tr><td>Atelier de montage (tâches peu précises)</td><td>300 lx</td></tr>
+    <tr><td>Atelier de montage fin, électronique</td><td>500 lx</td></tr>
+    <tr><td>Dessin technique, contrôle qualité</td><td>750 lx</td></tr>
+    <tr><td>Chirurgie, microélectronique</td><td>1 000 lx</td></tr>
+  </table>
+  <p>Un technicien mesure les éclairements suivants dans différentes zones d'un lycée professionnel :</p>
+  <table>
+    <tr><th>Zone</th><th>Surface</th><th>Flux installé (lm)</th><th>E mesuré (lx)</th><th>Conforme ?</th></tr>
+    <tr><td>Couloir</td><td>30 m²</td><td>3 600 lm</td><td>120 lx</td><td>…</td></tr>
+    <tr><td>Salle de classe</td><td>50 m²</td><td>20 000 lm</td><td>400 lx</td><td>…</td></tr>
+    <tr><td>Atelier montage</td><td>80 m²</td><td>28 000 lm</td><td>350 lx</td><td>…</td></tr>
+    <tr><td>Salle de dessin</td><td>40 m²</td><td>28 000 lm</td><td>700 lx</td><td>…</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> Vérifier (en calculant E = Φ/S) les éclairements mesurés. Les valeurs sont-elles cohérentes ?</div>
+  <div class="q"><strong>2.</strong> Compléter la colonne "Conforme ?" pour chaque zone.</div>
+  <div class="q"><strong>3.</strong> Pour la salle de classe non conforme, calculer le flux total à installer pour atteindre 500 lx.</div>
+  <div class="q"><strong>4.</strong> Pour la salle de dessin, l'éclairement est insuffisant. Calculer le flux manquant.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Vérification :<br>
+    Couloir : E = 3600/30 = 120 lx ✓<br>
+    Salle classe : E = 20000/50 = 400 lx ✓<br>
+    Atelier montage : E = 28000/80 = 350 lx ✓<br>
+    Salle dessin : E = 28000/40 = 700 lx ✓</p>
+    <p><strong>2.</strong> Conformité :<br>
+    Couloir : 120 lx ≥ 100 lx → <strong>Conforme ✓</strong><br>
+    Salle classe : 400 lx &lt; 500 lx → <strong>Non conforme ✗</strong><br>
+    Atelier montage : 350 lx ≥ 300 lx → <strong>Conforme ✓</strong><br>
+    Salle dessin : 700 lx &lt; 750 lx → <strong>Non conforme ✗</strong></p>
+    <p><strong>3.</strong> Salle classe (50 m², besoin 500 lx) : Φ = E × S = 500 × 50 = <strong>25 000 lm</strong>. Flux manquant : 25 000 − 20 000 = 5 000 lm supplémentaires.</p>
+    <p><strong>4.</strong> Salle dessin (40 m², besoin 750 lx) : Φ = 750 × 40 = 30 000 lm. Flux manquant : 30 000 − 28 000 = <strong>2 000 lm</strong> à ajouter.</p>
+  </div>
+</div>
+
+<!-- SECTION 4 : MAMA -->
+<h2>Section 4 – Contexte professionnel MAMA</h2>
+<div class="section-intro">Ces exercices appliquent les notions d'éclairement et de photocomposants dans des contextes de maintenance automobile et industrielle.</div>
+
+<!-- Exercice 8 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 8</span>
+    <span class="exo-title">Dimensionner l'éclairage d'un atelier MAMA de 40 m²</span>
+    <span class="diff diff-2">&#9733;&#9733; Intermédiaire</span>
+    <div class="mama-tag">MAMA</div>
+  </div>
+  <p>Un atelier de maintenance automobile (MAMA) de <strong>40 m²</strong> doit être éclairé selon la norme NF EN 12464-1 avec <strong>E = 300 lx minimum</strong>. La hauteur sous plafond est 4 m. On dispose de luminaires LED industriels de 5 000 lm chacun (consommation 50 W). Coefficient d'utilisation η = 0,60 (tient compte de la hauteur et des réflexions).</p>
+  <div class="q"><strong>1.</strong> Calculer le flux lumineux total nécessaire pour 300 lx sur 40 m².</div>
+  <div class="q"><strong>2.</strong> En tenant compte de η = 0,60, calculer le flux réellement utilisable par luminaire.</div>
+  <div class="q"><strong>3.</strong> Calculer le nombre de luminaires et la puissance totale installée.</div>
+  <div class="q"><strong>4.</strong> Les luminaires sont disposés en rangées de 2. Combien de rangées ? Quelle disposition optimale sur 8 m × 5 m ?</div>
+  <div class="q"><strong>5.</strong> Le chef d'atelier souhaite un éclairage d'appoint de 500 lx sur un poste de contrôle de 4 m². Quel flux supplémentaire doit-on ajouter sur ce poste ?</div>
+  <div class="q"><strong>6.</strong> Estimer le surcoût mensuel en électricité du poste de contrôle (LED 30 W, 8 h/j, 22 j/mois, 0,22 €/kWh).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\Phi_{total} = E \times S = 300 \times 40 = 12\,000\) lm</p>
+    <p><strong>2.</strong> Flux utile par luminaire : \(5000 \times 0{,}60 = 3000\) lm</p>
+    <p><strong>3.</strong> Nombre = \(12000 / 3000 = 4\) luminaires. Puissance totale : \(4 \times 50 = 200\) W</p>
+    <p><strong>4.</strong> 4 luminaires en 2 rangées de 2. Sur 8 m × 5 m : 2 rangées espacées de ~2,5 m dans la largeur (5/2), 2 luminaires par rangée espacés de ~4 m (8/2). Disposition équilibrée ✓</p>
+    <p><strong>5.</strong> Poste de contrôle : besoin 500 lx sur 4 m² = 2 000 lm. L'éclairage général apporte déjà 300 lx sur ce poste. Flux supplémentaire : \((500-300) \times 4 = 200 \times 4 = 800\) lm supplémentaires.</p>
+    <p><strong>6.</strong> Énergie mensuelle : 30 W × 8 h × 22 j = 5 280 Wh = 5,28 kWh. Coût : \(5{,}28 \times 0{,}22 \approx 1{,}16\) €/mois — très faible grâce à la LED.</p>
+  </div>
+</div>
+
+<!-- Exercice 9 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 9</span>
+    <span class="exo-title">Capteur photoélectrique sur ligne de production — choix et câblage</span>
+    <span class="diff diff-3">&#9733;&#9733;&#9733; Difficile</span>
+    <div class="mama-tag">MAMA</div>
+  </div>
+  <p>Sur une ligne d'assemblage automobile, on doit détecter la présence de pièces (boîtes de vitesses) défilant sur un convoyeur. La distance entre émetteur et récepteur est de 80 cm. On dispose de plusieurs technologies :</p>
+  <table>
+    <tr><th>Type de capteur</th><th>Principe</th><th>Portée max</th><th>Avantages</th><th>Inconvénients</th></tr>
+    <tr><td>Barrière réflexion directe</td><td>Émetteur face récepteur</td><td>10 m</td><td>Très fiable, longue portée</td><td>Câblage des deux côtés</td></tr>
+    <tr><td>Réflexion sur cible</td><td>Émetteur+récepteur côté, renvoi sur cible</td><td>3 m</td><td>Câblage un seul côté</td><td>Dépend de la réflectivité</td></tr>
+    <tr><td>Diffusion (proximité)</td><td>Réflexion sur l'objet détecté</td><td>0,5 m</td><td>Simple, pas de cible</td><td>Portée limitée, sensible à la couleur</td></tr>
+  </table>
+  <div class="q"><strong>1.</strong> La distance est 80 cm. Quel(s) type(s) de capteur(s) peuvent couvrir cette portée ?</div>
+  <div class="q"><strong>2.</strong> La ligne est difficile d'accès du côté opposé au convoyeur. Quel capteur choisir ? Justifier.</div>
+  <div class="q"><strong>3.</strong> Le capteur retenu est à sortie NPN (transistor de sortie côté 0 V). Sur le schéma de câblage, entre quelles bornes branche-t-on la charge (relais ou automate) ? (bornes : Vcc, sortie, 0 V)</div>
+  <div class="q"><strong>4.</strong> Ce capteur a un temps de réponse de 2 ms. La ligne produit 30 pièces/minute. Chaque pièce a une longueur de 20 cm et une vitesse de défilement de 0,5 m/s. Calculer le temps de passage de chaque pièce devant le capteur. Ce temps est-il compatible avec le temps de réponse ?</div>
+  <div class="q"><strong>5.</strong> Le capteur utilise une LED infrarouge (λ = 940 nm) comme émetteur. Pourquoi l'infrarouge plutôt que le visible ?</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> 80 cm = 0,8 m. La barrière réflexion directe (10 m) et la réflexion sur cible (3 m) couvrent cette portée. La diffusion (0,5 m max) est insuffisante.</p>
+    <p><strong>2.</strong> Choisir <strong>réflexion sur cible (réflex)</strong> : émetteur et récepteur sont du même côté, un réflecteur passif (catadioptrique) est placé en face. Câblage un seul côté = solution adaptée à l'accès difficile.</p>
+    <p><strong>3.</strong> En sortie NPN : la charge est branchée entre <strong>Vcc et la borne de sortie</strong>. La sortie tire vers 0 V quand le capteur est activé. (Vcc → charge → sortie NPN → 0 V)</p>
+    <p><strong>4.</strong> Temps de passage = longueur / vitesse = 0,20 m / 0,5 m·s⁻¹ = <strong>0,4 s = 400 ms</strong>. Le temps de réponse est 2 ms &lt;&lt; 400 ms : largement compatible, la détection est fiable.</p>
+    <p><strong>5.</strong> L'infrarouge (940 nm, invisible à l'œil) n'est pas perturbé par les éclairages ambiants visibles (lumière industrielle, projecteurs). Il est insensible aux fréquences secteur (50 Hz) car les capteurs utilisent une modulation de l'IR à haute fréquence. Plus discret et plus robuste en milieu industriel.</p>
+  </div>
+</div>
+
+<!-- Graphique Chart.js : efficacité lumineuse comparée -->
+<h2>Graphique — Efficacité lumineuse comparée (lm/W)</h2>
+<p>Ce graphique compare l'efficacité lumineuse (lumen par watt) des principales technologies d'éclairage.</p>
+<div class="chart-wrap">
+  <canvas id="efficaciteChart"></canvas>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+function toggle(btn){
+  var c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+
+// Graphique efficacité lumineuse
+(function(){
+  var ctx=document.getElementById('efficaciteChart').getContext('2d');
+  new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:['Incandescente','Halogène','Fluorescente\n(tube)','LED standard','LED haute\nefficacité'],
+      datasets:[{
+        label:'Efficacité lumineuse (lm/W)',
+        data:[13,20,60,90,150],
+        backgroundColor:['#f87171','#fb923c','#fbbf24','#60a5fa','#6f42c1'],
+        borderColor:['#dc2626','#ea580c','#d97706','#2563eb','#4a1d96'],
+        borderWidth:2,
+        borderRadius:6
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        title:{display:true,text:'Comparaison des efficacités lumineuses (lm/W)',font:{size:14}},
+        legend:{display:false},
+        tooltip:{callbacks:{label:function(c){return c.raw+' lm/W';}}}
+      },
+      scales:{
+        x:{title:{display:true,text:'Technologie'}},
+        y:{title:{display:true,text:'Efficacité lumineuse (lm/W)'},min:0,max:170,
+           ticks:{callback:function(v){return v+' lm/W';}}}
+      }
+    }
+  });
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
