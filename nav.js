@@ -254,6 +254,26 @@
   topBlock.innerHTML = buildBreadcrumb() + buildChMenu() + buildChNav();
   container.insertBefore(topBlock, container.firstChild);
 
+  /* ── Sommaire automatique (pages Cours uniquement) ─────────────────── */
+  if (pageType === 'lecon') {
+    var h2s = container.querySelectorAll('h2');
+    if (h2s.length >= 3) {
+      var tocItems = [];
+      for (var k = 0; k < h2s.length; k++) {
+        var h = h2s[k];
+        if (!h.id) h.id = 'sn-sec-' + k;
+        tocItems.push('<li><a href="#' + h.id + '">' + esc(h.textContent.trim()) + '</a></li>');
+      }
+      var tocEl = document.createElement('details');
+      tocEl.className = 'sn-toc';
+      tocEl.setAttribute('open', '');
+      tocEl.innerHTML =
+        '<summary class="sn-toc-title">&#9776;&nbsp; Sommaire</summary>' +
+        '<ol class="sn-toc-list">' + tocItems.join('') + '</ol>';
+      container.insertBefore(tocEl, topBlock.nextSibling);
+    }
+  }
+
   /* Masquer l'ancien lien "← Retour au sommaire" s'il existe */
   var oldBack = container.querySelector('.nb');
   if (oldBack) oldBack.style.display = 'none';
