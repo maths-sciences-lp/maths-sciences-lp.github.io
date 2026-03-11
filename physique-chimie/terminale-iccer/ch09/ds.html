@@ -6,35 +6,18 @@
   <title>Ch09 – Décrire un fluide en mouvement – DS</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <style>
-    :root{--p:#6f42c1;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
-    body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
-    .c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-    header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:30px;padding-bottom:18px}
-    h1{margin:0 0 6px;color:var(--p);font-size:1.7em}
-    .sous-titre{color:#718096;font-size:.95em;margin:0}
-    .nb{margin-bottom:20px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
-    h2{font-size:1.1em;color:var(--p);margin-top:30px;margin-bottom:10px;border-left:4px solid var(--p);padding-left:10px}
-    .info-ds{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em;display:flex;gap:30px;flex-wrap:wrap}
+  <link rel="stylesheet" href="../../../styles.css">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.info-ds{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em;display:flex;gap:30px;flex-wrap:wrap}
     .info-ds div{flex:1;min-width:150px}
     .info-ds strong{display:block;color:var(--p);margin-bottom:2px}
-    .exo{border:1px solid #e2e8f0;border-radius:10px;padding:22px;margin:22px 0}
-    .exo-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
-    .exo-num{background:var(--p);color:#fff;font-weight:700;font-size:.88em;padding:4px 12px;border-radius:20px}
-    .exo-title{font-weight:600;font-size:1em}
+
     .pts{font-size:.8em;background:#ede9fe;color:#5b21b6;padding:2px 8px;border-radius:4px;font-weight:600}
-    .q{margin:10px 0 4px;padding-left:4px}
+
     .q-pts{color:#718096;font-size:.85em;font-style:italic}
     .enonce{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93em}
-    .corr{background:#f0fff4;border-left:4px solid var(--s);padding:14px 18px;margin-top:14px;border-radius:0 10px 10px 0;display:none}
-    .corr p{margin:6px 0}
-    .bc{background:var(--p);color:#fff;border:none;padding:7px 16px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:10px}
-    .bc:hover{background:#5a32a3}
-    table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.91em}
-    th,td{border:1px solid #e2e8f0;padding:8px 10px;text-align:center}
-    th{background:#eef2f7;font-weight:600}
-    .total-bar{background:#6f42c1;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px}
-  </style>
+
+    .total-bar{background:#6f42c1;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px}</style>
 </head>
 <body>
 <div class="c">

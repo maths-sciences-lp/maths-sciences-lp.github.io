@@ -7,63 +7,22 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-:root{--p:#0056b3;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748;--mama:#6b5c00}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
-.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:28px;padding-bottom:16px}
-h1{margin:0 0 6px;color:var(--p);font-size:1.65em}
-.sous-titre{color:#718096;font-size:.93em;margin:0}
-h2{font-size:1.18em;color:var(--p);border-left:4px solid var(--p);padding-left:12px;margin-top:36px;margin-bottom:12px}
-h3{font-size:1em;color:#4a5568;margin-top:20px;margin-bottom:8px;font-weight:700}
-
-.def{background:#ebf5ff;border-left:5px solid var(--p);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-.prop{background:#f0fff4;border-left:5px solid var(--s);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-.att{background:#fff5f5;border-left:5px solid var(--d);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-.meth{background:#fffbeb;border-left:5px solid var(--o);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
-.ex{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:14px 0}
-.retenir{background:#dbeafe;border:2px solid var(--p);border-radius:10px;padding:16px 22px;margin:22px 0}
-.exo{background:#fafafa;border:1px dashed #cbd5e0;border-radius:8px;padding:16px;margin:14px 0}
-
-.label{display:inline-block;font-size:.75em;font-weight:700;text-transform:uppercase;padding:2px 9px;border-radius:4px;margin-bottom:6px;letter-spacing:.03em}
-.label-def{background:#dbeafe;color:#1e40af}
-.label-prop{background:#d1fae5;color:#065f46}
-.label-att{background:#fee2e2;color:#991b1b}
-.label-meth{background:#fef3c7;color:#92400e}
-.label-ex{background:#e2e8f0;color:#4a5568}
-.label-ret{background:#bfdbfe;color:#1e3a8a}
-
+<link rel="stylesheet" href="../../../styles.css">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}
 .situation-pro{background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);border:2px solid #d97706;border-radius:10px;padding:18px 22px;margin:20px 0}
 .situation-pro::before{content:"Situation professionnelle MAMA";display:block;font-weight:700;color:#92400e;font-size:.93em;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
 .sp-grid{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:.92em;margin-bottom:12px}
 .sp-label{font-weight:600;color:#4a5568;white-space:nowrap}
 
-.objectifs{background:#ebf5ff;border-radius:8px;padding:14px 18px;margin-bottom:28px;border:1px solid #93c5fd}
-.objectifs ul{margin:6px 0 0;padding-left:20px}
 .objectifs li{margin:4px 0}
-
-.formule-box{text-align:center;background:#ebf5ff;border:2px solid var(--p);border-radius:8px;padding:14px 20px;margin:14px 0;font-size:1.05em}
-.formule-box small{display:block;margin-top:5px;color:#718096;font-size:.82em}
 
 ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
 .step{counter-increment:step;padding:8px 10px 8px 2.4em;position:relative;margin:5px 0;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0}
 .step::before{content:counter(step);position:absolute;left:.6em;font-weight:700;color:#fff;background:var(--p);width:1.3em;height:1.3em;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.88em;top:50%;transform:translateY(-50%)}
 
-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92em}
-th,td{border:1px solid #e2e8f0;padding:10px 12px;text-align:center}
-th{background:#eef2f7;font-weight:600}
 td.tl{text-align:left}
 
-.nb{margin-bottom:16px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
-.nav-footer{display:flex;justify-content:space-between;margin-top:36px;padding-top:16px;border-top:1px solid #e2e8f0;flex-wrap:wrap;gap:10px}
-.nav-btn{text-decoration:none;font-size:.85em;font-weight:600;padding:8px 16px;border-radius:6px;color:var(--p);border:1px solid var(--p);transition:.2s}
-.nav-btn:hover{background:var(--p);color:#fff}
-
-details summary{cursor:pointer;font-weight:600;color:var(--p);padding:6px 0;margin-top:8px}
-details summary:hover{text-decoration:underline}
 details[open] summary{margin-bottom:6px}
-
-.maj{font-size:.78em;color:#a0aec0;text-align:center;margin-top:4px}
 
 .erreur-item{display:flex;gap:12px;align-items:flex-start;margin:10px 0;background:#fff5f5;border-radius:6px;padding:12px}
 .erreur-item .ico{font-size:1.3em;flex-shrink:0;margin-top:1px}
@@ -77,17 +36,12 @@ details[open] summary{margin-bottom:6px}
 
 .schema{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin:10px 0;text-align:center}
 .schema figcaption{font-size:.8em;color:#718096;margin-top:6px}
-.chart-wrapper{max-width:580px;margin:16px auto;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px}
-canvas.anim{display:block;margin:12px auto;border-radius:10px;border:1px solid #e2e8f0;background:#fff}
-.ctrl-vis{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0;align-items:center;font-size:.9em}
-.ctrl-vis input[type=range]{width:140px;accent-color:var(--p)}
-.ctrl-vis input[type=number]{width:60px;padding:4px 8px;border:1px solid #e2e8f0;border-radius:6px;font-family:inherit}
-.anim-result{text-align:center;font-size:.95em;font-weight:700;color:var(--p);min-height:1.5em;margin-top:6px}
-</style>
+
+.ctrl-vis input[type=number]{width:60px;padding:4px 8px;border:1px solid #e2e8f0;border-radius:6px;font-family:inherit}</style>
 </head>
 <body>
 <div class="c">
-<a href="maths-2nde-mama.html" class="nb">&larr; RETOUR SOMMAIRE</a>
+<a href="../../../maths-2nde-mama.html" class="nb">&larr; RETOUR SOMMAIRE</a>
 
 <header>
   <h1>Chapitre 4 &ndash; Probabilit&eacute;s et fluctuation des fr&eacute;quences</h1>
@@ -702,7 +656,7 @@ canvas.anim{display:block;margin:12px auto;border-radius:10px;border:1px solid #
 <!-- NAV -->
 <div class="nav-footer">
   <a href="ch03_lecon.html" class="nav-btn">&larr; Ch03</a>
-  <a href="maths-2nde-mama.html" class="nav-btn">Sommaire</a>
+  <a href="../../../maths-2nde-mama.html" class="nav-btn">Sommaire</a>
   <a href="ch04_exos.html" class="nav-btn">Exercices Ch04 &rarr;</a>
 </div>
 

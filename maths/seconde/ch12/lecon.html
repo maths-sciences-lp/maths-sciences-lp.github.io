@@ -6,67 +6,22 @@
 <title>Ch12 – Théorème de Pythagore et réciproque – 2nde MAMA</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<style>
-:root{--p:#0056b3;--s:#2f855a;--d:#c53030;--o:#d97706;--t:#2d3748}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:var(--t);line-height:1.7;margin:0;padding:20px}
-.c{max-width:860px;margin:auto;background:#fff;padding:35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:28px;padding-bottom:16px}
-h1{margin:0 0 6px;color:var(--p);font-size:1.65em}
-.sous-titre{color:#718096;font-size:.93em;margin:0}
-.maj{font-size:.78em;color:#a0aec0;text-align:center;margin-top:4px}
-h2{font-size:1.15em;color:var(--p);border-left:4px solid var(--p);padding-left:12px;margin-top:36px;margin-bottom:14px}
-h3{font-size:1em;color:var(--t);margin-top:20px;margin-bottom:8px;font-weight:700}
-.def{background:#ebf5ff;border-left:5px solid var(--p);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
-.def strong{color:var(--p)}
-.prop{background:#f0fff4;border-left:5px solid var(--s);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
-.prop strong{color:var(--s)}
-.att{background:#fff5f5;border-left:5px solid var(--d);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
-.att strong{color:var(--d)}
-.meth{background:#fffbeb;border-left:5px solid var(--o);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
-.meth strong{color:var(--o)}
-.retenir{background:#f0fff4;border:2px solid var(--s);border-radius:10px;padding:18px 22px;margin:24px 0}
-.retenir h3{color:var(--s);margin:0 0 10px}
-.situation{background:#fdf4ff;border:2px dashed #a855f7;border-radius:10px;padding:16px 20px;margin:16px 0}
-.situation h3{color:#7c3aed;margin:0 0 8px;font-size:1em}
-.ex{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:18px 22px;margin:16px 0}
-.ex-titre{font-weight:700;color:var(--p);margin-bottom:10px}
-.etape{display:flex;gap:12px;margin:8px 0;align-items:flex-start}
-.nc{background:var(--p);color:#fff;border-radius:50%;width:24px;height:24px;min-width:24px;display:flex;align-items:center;justify-content:center;font-size:.8em;font-weight:700;margin-top:2px;flex-shrink:0}
-details.corr-wrap{margin-top:10px}
-summary.corr-btn{cursor:pointer;font-size:.85em;font-weight:700;color:var(--s);padding:6px 12px;background:#f0fff4;border-radius:6px;border:1px solid #a7f3d0;display:inline-block;list-style:none}
-summary.corr-btn::-webkit-details-marker{display:none}
-.corr-body{background:#f0fff4;border-left:4px solid var(--s);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:8px;font-size:.92em;line-height:1.8}
-.corr-rep{background:#065f46;color:#fff;border-radius:5px;padding:2px 8px;font-weight:700;display:inline-block;font-size:.95em}
-table{border-collapse:collapse;margin:12px 0;font-size:.93em}
-table.full{width:100%}
-th,td{border:1px solid #e2e8f0;padding:9px 14px;text-align:center}
-th{background:#ebf5ff;color:var(--p);font-weight:700}
-td:first-child{text-align:left}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
-@media(max-width:600px){.grid2{grid-template-columns:1fr}}
-.svg-wrap{text-align:center;margin:16px 0}
+<link rel="stylesheet" href="../../../styles.css">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}
 .triplet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
 .triplet-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;text-align:center;font-size:.9em}
 .triplet-card strong{color:var(--p);display:block;font-size:1.1em;margin-bottom:4px}
-.nb{margin-bottom:16px;display:block;text-decoration:none;color:var(--p);font-size:.85em;font-weight:700}
-.nav-footer{display:flex;justify-content:space-between;margin-top:36px;padding-top:16px;border-top:1px solid #e2e8f0;flex-wrap:wrap;gap:10px}
-.nav-btn{text-decoration:none;font-size:.85em;font-weight:600;padding:8px 18px;border-radius:6px;color:var(--p);border:1px solid var(--p);transition:.2s}
-.nav-btn:hover{background:var(--p);color:#fff}
-canvas.anim{display:block;margin:12px auto;border-radius:10px;border:1px solid #e2e8f0;background:#fff}
-.ctrl-vis{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:10px 0;align-items:center;font-size:.92em}
-.ctrl-vis input[type=range]{width:140px;accent-color:var(--p)}
-.anim-result{text-align:center;font-size:.98em;font-weight:700;color:var(--p);min-height:1.6em;margin-top:6px}
+
 .anim-box{background:#f0f7ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 20px;margin:20px 0}
 .anim-box h3{color:var(--p);margin:0 0 10px;font-size:.95em}
 .organi{background:#f0f7ff;border:1px solid #bfdbfe;border-radius:10px;padding:16px 20px;margin:16px 0}
 .organi h3{color:var(--p);margin:0 0 10px;font-size:.95em}
 .org-step{display:flex;gap:10px;margin:6px 0;align-items:center;font-size:.9em}
-.org-num{background:var(--p);color:#fff;border-radius:4px;padding:2px 8px;font-weight:700;font-size:.8em;white-space:nowrap}
-</style>
+.org-num{background:var(--p);color:#fff;border-radius:4px;padding:2px 8px;font-weight:700;font-size:.8em;white-space:nowrap}</style>
 </head>
 <body>
 <div class="c">
-<a href="maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
 <header>
   <h1>Chapitre 12 – Théorème de Pythagore et réciproque</h1>
