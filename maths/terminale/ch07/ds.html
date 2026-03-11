@@ -1,23 +1,162 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devoir surveillé — Ch07 Trigonométrie</title>
-    <link rel="stylesheet" href="../../../styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DS Ch07 – Trigonométrie</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #0969da; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
-  <link rel="stylesheet" href="/nav.css">
+.dh{display:flex;flex-wrap:wrap;gap:10px;background:#eef2f7;padding:14px 18px;border-radius:8px;margin-bottom:28px;font-size:.9em}
+.dh-item{display:flex;align-items:center;gap:6px}
+.dh-item strong{color:var(--p)}
+.partie{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
+.partie-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--p)}
+.partie-title{font-weight:700;font-size:1.1em;color:var(--p)}
+.pts{background:var(--p);color:#fff;font-weight:700;font-size:.85em;padding:3px 10px;border-radius:12px}
+.answer-line{border-bottom:1px solid #aaa;margin:6px 0;height:28px;display:block}
+.bareme{font-style:italic;color:#718096;font-size:.85em}</style>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
-<div class="container">
-    <a href="maths-term-iccer.html" class="back">← Retour</a>
-    <h1>Devoir surveillé — Trigonométrie</h1>
-    <p>Page en construction.</p>
+<div class="c">
+<a href="../../sommaire.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Devoir Surveill&eacute; &ndash; Chapitre 7</h1>
+  <p class="sous-titre">Trigonom&eacute;trie &nbsp;|&nbsp; T<sup>le</sup> Bac Pro</p>
+</header>
+
+<div class="dh">
+  <div class="dh-item">&#128337; <strong>Dur&eacute;e :</strong> 1 heure</div>
+  <div class="dh-item">&#129518; <strong>Calculatrice :</strong> autoris&eacute;e</div>
+  <div class="dh-item">&#9997; <strong>Bar&egrave;me :</strong> 20 points</div>
+  <div class="dh-item">&#128196; <strong>Documents :</strong> non autoris&eacute;s</div>
 </div>
+
+<!-- ===== EXERCICE 1 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 1 &ndash; Triangle rectangle : c&ocirc;t&eacute;s et angles</span>
+    <span class="pts">7 points</span>
+  </div>
+
+  <p>Le triangle \(ABC\) est rectangle en \(A\), avec \(AB = 5\) cm et \(\widehat{ABC} = 37°\).</p>
+
+  <div class="q"><strong>1. (1,5 pt)</strong> Calculer la longueur \(AC\). Arrondir au dixi&egrave;me.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (1,5 pt)</strong> Calculer la longueur \(BC\) (l'hypot&eacute;nuse). Arrondir au dixi&egrave;me.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (1 pt)</strong> En d&eacute;duire la mesure de l'angle \(\widehat{ACB}\).</div>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>4. (1,5 pt)</strong> On consid&egrave;re un second triangle \(DEF\) rectangle en \(D\), avec \(DE = 8\) cm et \(EF = 10\) cm. Calculer l'angle \(\widehat{DEF}\) en degr&eacute;s. Arrondir au degr&eacute;.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>5. (1,5 pt)</strong> Compl&eacute;ter sans calculatrice : \(\cos(60°) = \ldots\), \(\sin(30°) = \ldots\), \(\tan(45°) = \ldots\)</div>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Dans le triangle \(ABC\) rectangle en \(A\), l'angle \(\widehat{ABC} = 37°\). Par rapport &agrave; cet angle, \(AC\) est le c&ocirc;t&eacute; oppos&eacute; et \(AB = 5\) cm est le c&ocirc;t&eacute; adjacent.<br>
+    \(\tan(37°) = \dfrac{AC}{AB}\) donc \(AC = AB \times \tan(37°) = 5 \times \tan(37°) = 5 \times 0{,}7536 \approx 3{,}8\) cm.</p>
+    <p><strong>2.</strong> \(\cos(37°) = \dfrac{AB}{BC}\) donc \(BC = \dfrac{AB}{\cos(37°)} = \dfrac{5}{0{,}7986} \approx 6{,}3\) cm.</p>
+    <p><strong>3.</strong> La somme des angles d'un triangle vaut \(180°\). Donc \(\widehat{ACB} = 180° - 90° - 37° = 53°\).</p>
+    <p><strong>4.</strong> Dans le triangle \(DEF\) rectangle en \(D\) : \(\cos(\widehat{DEF}) = \dfrac{DE}{EF} = \dfrac{8}{10} = 0{,}8\).<br>
+    \(\widehat{DEF} = \arccos(0{,}8) \approx 37°\).</p>
+    <p><strong>5.</strong> \(\cos(60°) = \dfrac{1}{2}\), \(\sin(30°) = \dfrac{1}{2}\), \(\tan(45°) = 1\).</p>
+  </div>
+</div>
+
+<!-- ===== EXERCICE 2 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 2 &ndash; Coupe en onglet et chevron (contexte ERA)</span>
+    <span class="pts">7 points</span>
+  </div>
+
+  <div class="situation">
+    <strong>Contexte :</strong> Un menuisier agenceur r&eacute;alise la charpente d'un auvent. Le chevron repose sur une panne horizontale de 3,60 m de port&eacute;e et doit atteindre une hauteur de 1,20 m au fa&icirc;tage.
+  </div>
+
+  <div class="q"><strong>1. (2 pts)</strong> Repr&eacute;senter la situation par un triangle rectangle dont l'horizontale mesure 3,60 m et la hauteur 1,20 m. Calculer l'angle de pente \(\alpha\) du chevron par rapport &agrave; l'horizontale. Arrondir au degr&eacute;.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (2 pts)</strong> Calculer la longueur du chevron (l'hypot&eacute;nuse du triangle). Arrondir au centim&egrave;tre.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (1,5 pt)</strong> Pour assembler deux plinthes dans un angle de pi&egrave;ce &agrave; \(90°\), le menuisier r&eacute;alise une coupe en onglet. Quel est l'angle de coupe de chaque plinthe ?</div>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>4. (1,5 pt)</strong> Un second auvent a un chevron de 4,50 m et un angle de pente de \(25°\). Calculer la hauteur atteinte au fa&icirc;tage. Arrondir au centim&egrave;tre.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> On a un triangle rectangle avec le c&ocirc;t&eacute; horizontal = 3,60 m (adjacent) et la hauteur = 1,20 m (oppos&eacute;).<br>
+    \(\tan(\alpha) = \dfrac{1{,}20}{3{,}60} = \dfrac{1}{3} \approx 0{,}3333\)<br>
+    \(\alpha = \arctan(0{,}3333) \approx 18°\).</p>
+    <p><strong>2.</strong> Longueur du chevron \(L\) par Pythagore :<br>
+    \(L = \sqrt{3{,}60^2 + 1{,}20^2} = \sqrt{12{,}96 + 1{,}44} = \sqrt{14{,}40} \approx 3{,}79\) m.<br>
+    V&eacute;rification par trigonom&eacute;trie : \(L = \dfrac{3{,}60}{\cos(18°)} = \dfrac{3{,}60}{0{,}9511} \approx 3{,}78\) m (coh&eacute;rent aux arrondis pr&egrave;s).</p>
+    <p><strong>3.</strong> Pour un angle de pi&egrave;ce &agrave; \(90°\), chaque plinthe est coup&eacute;e &agrave; \(\dfrac{90°}{2} = 45°\).</p>
+    <p><strong>4.</strong> Hauteur \(h = L \times \sin(25°) = 4{,}50 \times 0{,}4226 \approx 1{,}90\) m.</p>
+  </div>
+</div>
+
+<!-- ===== EXERCICE 3 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 3 &ndash; &Eacute;quations trigonom&eacute;triques et formules</span>
+    <span class="pts">6 points</span>
+  </div>
+
+  <p class="bareme">2 pts par question.</p>
+
+  <div class="q"><strong>1. (2 pts)</strong> R&eacute;soudre l'&eacute;quation \(\cos(x) = \dfrac{\sqrt{3}}{2}\) pour \(x \in [0°\,;\,360°]\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (2 pts)</strong> R&eacute;soudre l'&eacute;quation \(\sin(x) = \dfrac{1}{2}\) pour \(x \in [0°\,;\,360°]\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (2 pts)</strong> En utilisant la formule \(\cos^2(x) + \sin^2(x) = 1\), calculer \(\sin(x)\) sachant que \(\cos(x) = \dfrac{3}{5}\) et que \(x \in [0°\,;\,90°]\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\cos(x) = \dfrac{\sqrt{3}}{2}\). On sait que \(\cos(30°) = \dfrac{\sqrt{3}}{2}\).<br>
+    Sur \([0°\,;\,360°]\), les solutions sont \(x = 30°\) et \(x = 360° - 30° = 330°\).</p>
+    <p><strong>2.</strong> \(\sin(x) = \dfrac{1}{2}\). On sait que \(\sin(30°) = \dfrac{1}{2}\).<br>
+    Sur \([0°\,;\,360°]\), les solutions sont \(x = 30°\) et \(x = 180° - 30° = 150°\).</p>
+    <p><strong>3.</strong> \(\cos^2(x) + \sin^2(x) = 1\) donc \(\sin^2(x) = 1 - \cos^2(x) = 1 - \left(\dfrac{3}{5}\right)^2 = 1 - \dfrac{9}{25} = \dfrac{16}{25}\).<br>
+    Comme \(x \in [0°\,;\,90°]\), \(\sin(x) \geq 0\), donc \(\sin(x) = \dfrac{4}{5} = 0{,}8\).</p>
+  </div>
+</div>
+
+<div class="total-bar" style="background:var(--p);color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px">TOTAL : 20 points</div>
+
+</div>
+
+<script>
+function toggle(btn){
+  const corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

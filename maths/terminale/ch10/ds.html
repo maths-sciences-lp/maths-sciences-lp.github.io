@@ -1,23 +1,167 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devoir surveillé — Ch10 Nombres complexes</title>
-    <link rel="stylesheet" href="../../../styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DS Ch10 – Nombres complexes</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #0969da; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
-  <link rel="stylesheet" href="/nav.css">
+.dh{display:flex;flex-wrap:wrap;gap:10px;background:#eef2f7;padding:14px 18px;border-radius:8px;margin-bottom:28px;font-size:.9em}
+.dh-item{display:flex;align-items:center;gap:6px}
+.dh-item strong{color:var(--p)}
+.partie{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
+.partie-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--p)}
+.partie-title{font-weight:700;font-size:1.1em;color:var(--p)}
+.pts{background:var(--p);color:#fff;font-weight:700;font-size:.85em;padding:3px 10px;border-radius:12px}
+.answer-line{border-bottom:1px solid #aaa;margin:6px 0;height:28px;display:block}
+.bareme{font-style:italic;color:#718096;font-size:.85em}</style>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
-<div class="container">
-    <a href="maths-term-iccer.html" class="back">← Retour</a>
-    <h1>Devoir surveillé — Nombres complexes</h1>
-    <p>Page en construction.</p>
+<div class="c">
+<a href="../../sommaire.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Devoir Surveill&eacute; &ndash; Chapitre 10</h1>
+  <p class="sous-titre">Nombres complexes &nbsp;|&nbsp; T<sup>le</sup> Bac Pro</p>
+</header>
+
+<div class="dh">
+  <div class="dh-item">&#128337; <strong>Dur&eacute;e :</strong> 1 heure</div>
+  <div class="dh-item">&#129518; <strong>Calculatrice :</strong> autoris&eacute;e</div>
+  <div class="dh-item">&#9997; <strong>Bar&egrave;me :</strong> 20 points</div>
+  <div class="dh-item">&#128196; <strong>Documents :</strong> non autoris&eacute;s</div>
 </div>
+
+<!-- ===== EXERCICE 1 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 1 &ndash; Op&eacute;rations en forme alg&eacute;brique</span>
+    <span class="pts">7 points</span>
+  </div>
+
+  <p>On donne \(z_1 = 3 + 2i\) et \(z_2 = 1 - 4i\).</p>
+
+  <div class="q"><strong>1. (1 pt)</strong> Calculer \(z_1 + z_2\).</div>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (1,5 pt)</strong> Calculer \(z_1 \times z_2\). &Eacute;crire le r&eacute;sultat sous forme alg&eacute;brique \(a + bi\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (1 pt)</strong> D&eacute;terminer le conjugu&eacute; \(\bar{z}_1\) de \(z_1\).</div>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>4. (1,5 pt)</strong> Calculer le module \(|z_1|\) et le module \(|z_2|\). Donner les valeurs exactes.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>5. (2 pts)</strong> Calculer le quotient \(\dfrac{z_1}{z_2}\). Donner le r&eacute;sultat sous forme alg&eacute;brique.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(z_1 + z_2 = (3 + 1) + (2 - 4)i = 4 - 2i\).</p>
+    <p><strong>2.</strong> \(z_1 \times z_2 = (3 + 2i)(1 - 4i) = 3 - 12i + 2i - 8i^2 = 3 - 10i - 8 \times (-1) = 3 - 10i + 8 = 11 - 10i\).</p>
+    <p><strong>3.</strong> \(\bar{z}_1 = 3 - 2i\).</p>
+    <p><strong>4.</strong> \(|z_1| = \sqrt{3^2 + 2^2} = \sqrt{9 + 4} = \sqrt{13}\).<br>
+    \(|z_2| = \sqrt{1^2 + (-4)^2} = \sqrt{1 + 16} = \sqrt{17}\).</p>
+    <p><strong>5.</strong> On multiplie le num&eacute;rateur et le d&eacute;nominateur par le conjugu&eacute; de \(z_2\) :<br>
+    \(\dfrac{z_1}{z_2} = \dfrac{3 + 2i}{1 - 4i} = \dfrac{(3 + 2i)(1 + 4i)}{(1 - 4i)(1 + 4i)} = \dfrac{3 + 12i + 2i + 8i^2}{1 + 16}\)<br>
+    \(= \dfrac{3 + 14i - 8}{17} = \dfrac{-5 + 14i}{17} = -\dfrac{5}{17} + \dfrac{14}{17}i\).</p>
+  </div>
+</div>
+
+<!-- ===== EXERCICE 2 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 2 &ndash; Forme trigonom&eacute;trique et plan complexe</span>
+    <span class="pts">7 points</span>
+  </div>
+
+  <div class="q"><strong>1. (2 pts)</strong> &Eacute;crire le nombre complexe \(z = 1 + i\) sous forme trigonom&eacute;trique \(r(\cos\theta + i\sin\theta)\). Pr&eacute;ciser le module \(r\) et l'argument \(\theta\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (2 pts)</strong> &Eacute;crire le nombre complexe \(w = 2(\cos 60° + i\sin 60°)\) sous forme alg&eacute;brique.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (1,5 pt)</strong> Placer dans le plan complexe les points \(M_1\), \(M_2\) et \(M_3\) d'affixes respectives \(z_1 = 2 + 3i\), \(z_2 = -1 + 2i\) et \(z_3 = 3 - i\). Pr&eacute;ciser leurs coordonn&eacute;es cart&eacute;siennes.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>4. (1,5 pt)</strong> En utilisant la formule d'Euler \(e^{i\theta} = \cos\theta + i\sin\theta\), &eacute;crire \(z = 1 + i\) sous la forme exponentielle \(re^{i\theta}\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Module : \(r = |z| = \sqrt{1^2 + 1^2} = \sqrt{2}\).<br>
+    Argument : \(\cos\theta = \dfrac{1}{\sqrt{2}}\) et \(\sin\theta = \dfrac{1}{\sqrt{2}}\), donc \(\theta = 45° = \dfrac{\pi}{4}\).<br>
+    Forme trigonom&eacute;trique : \(z = \sqrt{2}\left(\cos 45° + i\sin 45°\right)\).</p>
+    <p><strong>2.</strong> \(w = 2(\cos 60° + i\sin 60°) = 2\left(\dfrac{1}{2} + i\,\dfrac{\sqrt{3}}{2}\right) = 1 + i\sqrt{3}\).</p>
+    <p><strong>3.</strong> \(M_1(2\,;\,3)\), \(M_2(-1\,;\,2)\), \(M_3(3\,;\,-1)\). L'abscisse est la partie r&eacute;elle et l'ordonn&eacute;e est la partie imaginaire.</p>
+    <p><strong>4.</strong> D'apr&egrave;s la question 1, \(r = \sqrt{2}\) et \(\theta = \dfrac{\pi}{4}\).<br>
+    Forme exponentielle : \(z = \sqrt{2}\,e^{i\pi/4}\).</p>
+  </div>
+</div>
+
+<!-- ===== EXERCICE 3 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 3 &ndash; Imp&eacute;dance d'un circuit RL (contexte ICCER)</span>
+    <span class="pts">6 points</span>
+  </div>
+
+  <div class="situation">
+    <strong>Contexte :</strong> Un technicien en installation climatique &eacute;tudie un circuit &eacute;lectrique alimentant le moteur d'une pompe &agrave; chaleur. Le circuit comporte une r&eacute;sistance \(R = 30\;\Omega\) et une bobine d'inductance \(L\) telle que la r&eacute;actance inductive vaut \(X_L = 40\;\Omega\). L'imp&eacute;dance complexe du circuit est :
+    \[\underline{Z} = R + jX_L = 30 + 40j \quad (\text{en } \Omega)\]
+    o&ugrave; \(j\) d&eacute;signe l'unit&eacute; imaginaire (notation &eacute;lectrique).
+  </div>
+
+  <div class="q"><strong>1. (2 pts)</strong> Calculer le module \(|\underline{Z}|\) de l'imp&eacute;dance. Quelle est sa signification physique ?</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (2 pts)</strong> Calculer l'argument \(\varphi\) (d&eacute;phasage) de \(\underline{Z}\) en degr&eacute;s. Arrondir au degr&eacute;. Interpr&eacute;ter : le courant est-il en avance ou en retard sur la tension ?</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (2 pts)</strong> La tension d'alimentation est \(U = 230\) V (valeur efficace). Calculer l'intensit&eacute; efficace \(I = \dfrac{U}{|\underline{Z}|}\) et la puissance active \(P = UI\cos\varphi\). Arrondir au dixi&egrave;me.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(|\underline{Z}| = \sqrt{R^2 + X_L^2} = \sqrt{30^2 + 40^2} = \sqrt{900 + 1600} = \sqrt{2500} = 50\;\Omega\).<br>
+    Le module repr&eacute;sente l'imp&eacute;dance totale du circuit, c'est-&agrave;-dire le rapport entre la tension efficace et l'intensit&eacute; efficace.</p>
+    <p><strong>2.</strong> \(\tan(\varphi) = \dfrac{X_L}{R} = \dfrac{40}{30} = \dfrac{4}{3} \approx 1{,}333\).<br>
+    \(\varphi = \arctan\!\left(\dfrac{4}{3}\right) \approx 53°\).<br>
+    Le d&eacute;phasage est positif (circuit inductif) : le courant est en retard sur la tension de 53&deg;.</p>
+    <p><strong>3.</strong> \(I = \dfrac{U}{|\underline{Z}|} = \dfrac{230}{50} = 4{,}6\) A.<br>
+    \(P = UI\cos\varphi = 230 \times 4{,}6 \times \cos(53°) = 1\,058 \times 0{,}6018 \approx 636{,}7\) W.<br>
+    La puissance active consomm&eacute;e par le circuit est d'environ <strong>636,7 W</strong>.</p>
+  </div>
+</div>
+
+<div class="total-bar" style="background:var(--p);color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px">TOTAL : 20 points</div>
+
+</div>
+
+<script>
+function toggle(btn){
+  const corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

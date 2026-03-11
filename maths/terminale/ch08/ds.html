@@ -1,23 +1,163 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devoir surveillé — Ch08 Calcul intégral</title>
-    <link rel="stylesheet" href="../../../styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DS Ch08 – Calcul intégral</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #0969da; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
-  <link rel="stylesheet" href="/nav.css">
+.dh{display:flex;flex-wrap:wrap;gap:10px;background:#eef2f7;padding:14px 18px;border-radius:8px;margin-bottom:28px;font-size:.9em}
+.dh-item{display:flex;align-items:center;gap:6px}
+.dh-item strong{color:var(--p)}
+.partie{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
+.partie-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--p)}
+.partie-title{font-weight:700;font-size:1.1em;color:var(--p)}
+.pts{background:var(--p);color:#fff;font-weight:700;font-size:.85em;padding:3px 10px;border-radius:12px}
+.answer-line{border-bottom:1px solid #aaa;margin:6px 0;height:28px;display:block}
+.bareme{font-style:italic;color:#718096;font-size:.85em}</style>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
-<div class="container">
-    <a href="maths-term-iccer.html" class="back">← Retour</a>
-    <h1>Devoir surveillé — Calcul intégral</h1>
-    <p>Page en construction.</p>
+<div class="c">
+<a href="../../sommaire.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Devoir Surveill&eacute; &ndash; Chapitre 8</h1>
+  <p class="sous-titre">Calcul int&eacute;gral &nbsp;|&nbsp; T<sup>le</sup> Bac Pro</p>
+</header>
+
+<div class="dh">
+  <div class="dh-item">&#128337; <strong>Dur&eacute;e :</strong> 1 heure</div>
+  <div class="dh-item">&#129518; <strong>Calculatrice :</strong> autoris&eacute;e</div>
+  <div class="dh-item">&#9997; <strong>Bar&egrave;me :</strong> 20 points</div>
+  <div class="dh-item">&#128196; <strong>Documents :</strong> non autoris&eacute;s</div>
 </div>
+
+<!-- ===== EXERCICE 1 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 1 &ndash; Primitives et int&eacute;grales d&eacute;finies</span>
+    <span class="pts">7 points</span>
+  </div>
+
+  <div class="q"><strong>1. (3 pts)</strong> D&eacute;terminer une primitive \(F(x)\) de chacune des fonctions suivantes :</div>
+  <p><strong>a)</strong> \(f(x) = 3x^2 - 4x + 1\)</p>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <p><strong>b)</strong> \(g(x) = \dfrac{1}{x}\) sur \(]0\,;\,+\infty[\)</p>
+  <span class="answer-line"></span>
+  <p><strong>c)</strong> \(h(x) = 2e^{x}\)</p>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (2 pts)</strong> Calculer l'int&eacute;grale \(\displaystyle\int_1^3 (3x^2 - 4x + 1)\,dx\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (2 pts)</strong> Calculer l'int&eacute;grale \(\displaystyle\int_0^1 2e^{x}\,dx\). Donner la valeur exacte puis la valeur approch&eacute;e au centi&egrave;me.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.a)</strong> \(F(x) = x^3 - 2x^2 + x\) (on v&eacute;rifie : \(F'(x) = 3x^2 - 4x + 1 = f(x)\) &check;).</p>
+    <p><strong>1.b)</strong> \(G(x) = \ln(x)\) sur \(]0\,;\,+\infty[\).</p>
+    <p><strong>1.c)</strong> \(H(x) = 2e^{x}\) (la d&eacute;riv&eacute;e de \(e^x\) est \(e^x\)).</p>
+    <p><strong>2.</strong> \(\displaystyle\int_1^3 (3x^2 - 4x + 1)\,dx = \Big[x^3 - 2x^2 + x\Big]_1^3\)<br>
+    \(= (27 - 18 + 3) - (1 - 2 + 1) = 12 - 0 = 12\).</p>
+    <p><strong>3.</strong> \(\displaystyle\int_0^1 2e^{x}\,dx = \Big[2e^{x}\Big]_0^1 = 2e^1 - 2e^0 = 2e - 2 = 2(e-1)\).<br>
+    Valeur approch&eacute;e : \(2(e-1) \approx 2 \times 1{,}7183 \approx 3{,}44\).</p>
+  </div>
+</div>
+
+<!-- ===== EXERCICE 2 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 2 &ndash; Aire sous une courbe et entre deux courbes</span>
+    <span class="pts">7 points</span>
+  </div>
+
+  <div class="q"><strong>1. (3 pts)</strong> On consid&egrave;re la fonction \(f(x) = x^2\) sur l'intervalle \([0\,;\,3]\). Calculer l'aire \(\mathcal{A}_1\), en unit&eacute;s d'aire, de la surface comprise entre la courbe de \(f\), l'axe des abscisses et les droites \(x = 0\) et \(x = 3\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (4 pts)</strong> On consid&egrave;re les fonctions \(f(x) = x^2\) et \(g(x) = 2x\) sur \([0\,;\,2]\).</div>
+  <p><strong>a)</strong> V&eacute;rifier que les courbes se croisent en \(x = 0\) et \(x = 2\).</p>
+  <span class="answer-line"></span>
+  <p><strong>b)</strong> &Eacute;tudier le signe de \(g(x) - f(x)\) sur \([0\,;\,2]\).</p>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <p><strong>c)</strong> Calculer l'aire \(\mathcal{A}_2\) comprise entre les deux courbes sur \([0\,;\,2]\).</p>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\mathcal{A}_1 = \displaystyle\int_0^3 x^2\,dx = \left[\dfrac{x^3}{3}\right]_0^3 = \dfrac{27}{3} - 0 = 9\) u.a.</p>
+    <p><strong>2.a)</strong> En \(x = 0\) : \(f(0) = 0\) et \(g(0) = 0\) &check;. En \(x = 2\) : \(f(2) = 4\) et \(g(2) = 4\) &check;.</p>
+    <p><strong>2.b)</strong> \(g(x) - f(x) = 2x - x^2 = x(2 - x)\). Pour \(x \in [0\,;\,2]\), on a \(x \geq 0\) et \(2-x \geq 0\), donc \(g(x) - f(x) \geq 0\) : la courbe de \(g\) est au-dessus de celle de \(f\).</p>
+    <p><strong>2.c)</strong> \(\mathcal{A}_2 = \displaystyle\int_0^2 (g(x) - f(x))\,dx = \int_0^2 (2x - x^2)\,dx = \left[x^2 - \dfrac{x^3}{3}\right]_0^2\)<br>
+    \(= \left(4 - \dfrac{8}{3}\right) - 0 = \dfrac{12 - 8}{3} = \dfrac{4}{3} \approx 1{,}33\) u.a.</p>
+  </div>
+</div>
+
+<!-- ===== EXERCICE 3 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 3 &ndash; &Eacute;nergie consomm&eacute;e par une chaudi&egrave;re (contexte ICCER)</span>
+    <span class="pts">6 points</span>
+  </div>
+
+  <div class="situation">
+    <strong>Contexte :</strong> Un technicien chauffagiste &eacute;tudie la consommation d'une chaudi&egrave;re au gaz pendant une journ&eacute;e d'hiver. La puissance en kW absorb&eacute;e par la chaudi&egrave;re entre \(t = 0\) h et \(t = 8\) h (p&eacute;riode de chauffage matinal) est mod&eacute;lis&eacute;e par :
+    \[P(t) = -0{,}5t^2 + 4t + 12 \quad \text{(en kW, pour } t \in [0\,;\,8]\text{)}\]
+  </div>
+
+  <div class="q"><strong>1. (1,5 pt)</strong> Calculer la puissance &agrave; \(t = 0\) h et &agrave; \(t = 4\) h. Interpr&eacute;ter.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (1,5 pt)</strong> V&eacute;rifier que la puissance maximale est atteinte &agrave; \(t = 4\) h en calculant \(P'(t)\) et en cherchant quand \(P'(t) = 0\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (3 pts)</strong> L'&eacute;nergie totale consomm&eacute;e (en kWh) sur les 8 heures est donn&eacute;e par \(\displaystyle E = \int_0^8 P(t)\,dt\). Calculer cette &eacute;nergie. Arrondir au dixi&egrave;me.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(P(0) = 0 + 0 + 12 = 12\) kW : la chaudi&egrave;re d&eacute;marre &agrave; 12 kW.<br>
+    \(P(4) = -0{,}5 \times 16 + 16 + 12 = -8 + 16 + 12 = 20\) kW : la puissance maximale est de 20 kW &agrave; 4 h.</p>
+    <p><strong>2.</strong> \(P'(t) = -t + 4\). On r&eacute;sout \(P'(t) = 0\) : \(-t + 4 = 0\) soit \(t = 4\).<br>
+    Pour \(t &lt; 4\), \(P'(t) &gt; 0\) (croissante) et pour \(t &gt; 4\), \(P'(t) &lt; 0\) (d&eacute;croissante). Le maximum est bien atteint en \(t = 4\).</p>
+    <p><strong>3.</strong> Une primitive de \(P(t) = -0{,}5t^2 + 4t + 12\) est :<br>
+    \(F(t) = -\dfrac{0{,}5}{3}t^3 + 2t^2 + 12t = -\dfrac{t^3}{6} + 2t^2 + 12t\).<br>
+    \(E = \Big[F(t)\Big]_0^8 = F(8) - F(0)\)<br>
+    \(F(8) = -\dfrac{512}{6} + 2 \times 64 + 96 = -85{,}33 + 128 + 96 = 138{,}67\)<br>
+    \(F(0) = 0\)<br>
+    \(E \approx 138{,}7\) kWh.<br>
+    La chaudi&egrave;re consomme environ <strong>138,7 kWh</strong> sur les 8 heures de chauffage matinal.</p>
+  </div>
+</div>
+
+<div class="total-bar" style="background:var(--p);color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px">TOTAL : 20 points</div>
+
+</div>
+
+<script>
+function toggle(btn){
+  const corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

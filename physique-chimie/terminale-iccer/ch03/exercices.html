@@ -1,22 +1,287 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercices — Ch03 Étudier le moteur électrique</title>
-    <link rel="stylesheet" href="../../../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ch03 – Obtenir de l'énergie mécanique à l'aide d'un moteur électrique – Exercices</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #6f42c1; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
+.enonce{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93em}</style>
 </head>
 <body>
-<div class="container">
-    <a href="pc-term-iccer.html" class="back">← Retour</a>
-    <h1>Exercices — Étudier le moteur électrique</h1>
-    <p>Page en construction.</p>
+<div class="c">
+  <a href="pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+  <header>
+    <h1>Chapitre 3 – Exercices</h1>
+    <p class="sous-titre">Obtenir de l'énergie mécanique à l'aide d'un moteur électrique &nbsp;|&nbsp; Terminale Bac Pro ICCER</p>
+  </header>
+  <div class="intro-box">
+    <strong>Compétences travaillées :</strong> établir le bilan de puissance d'un moteur &nbsp;|&nbsp; calculer un rendement &nbsp;|&nbsp; exploiter la vitesse de synchronisme &nbsp;|&nbsp; lire une plaque signalétique &nbsp;|&nbsp; appliquer la loi cubique des ventilateurs.
+  </div>
+
+  <h2>Je teste mes acquis – QCM</h2>
+  <p style="font-size:.9em;color:#718096">Cocher la (ou les) bonne(s) réponse(s), puis vérifier.</p>
+  <div class="qcm-grid">
+    <div class="qcm-item">
+      <strong>1. La puissance absorbée par un moteur est :</strong>
+      <ul>
+        <li>a. la puissance mécanique fournie à la charge</li>
+        <li class="ok">b. la puissance électrique consommée par le moteur ✓</li>
+        <li>c. la puissance perdue par échauffement</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,1)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm1">Réponse b — P<sub>a</sub> est la puissance électrique que le moteur consomme sur le réseau.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>2. Le rendement d'un moteur est toujours :</strong>
+      <ul>
+        <li>a. supérieur à 1</li>
+        <li>b. égal à 1</li>
+        <li class="ok">c. compris entre 0 et 1 ✓</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,2)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm2">Réponse c — η = P<sub>u</sub> / P<sub>a</sub>. La puissance utile est toujours inférieure à la puissance absorbée (pertes), donc η &lt; 1.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>3. La vitesse de synchronisme d'un moteur asynchrone dépend de :</strong>
+      <ul>
+        <li>a. la tension d'alimentation</li>
+        <li class="ok">b. la fréquence et du nombre de paires de pôles ✓</li>
+        <li>c. la charge mécanique entraînée</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,3)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm3">Réponse b — \(n_s = \dfrac{60 \times f}{p}\). La vitesse de synchronisme ne dépend que de f et p.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>4. Sur la plaque signalétique d'un moteur, « cos φ = 0,85 » représente :</strong>
+      <ul>
+        <li>a. le rendement du moteur</li>
+        <li class="ok">b. le facteur de puissance ✓</li>
+        <li>c. le glissement</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,4)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm4">Réponse b — cos φ est le facteur de puissance. Il traduit le déphasage entre le courant et la tension.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>5. La puissance absorbée par un moteur asynchrone triphasé est :</strong>
+      <ul>
+        <li>a. \(P_a = U \times I\)</li>
+        <li class="ok">b. \(P_a = \sqrt{3} \times U \times I \times \cos\varphi\) ✓</li>
+        <li>c. \(P_a = 3 \times U \times I\)</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,5)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm5">Réponse b — En triphasé, la puissance active est \(P_a = \sqrt{3} \times U \times I \times \cos\varphi\).</div>
+    </div>
+    <div class="qcm-item">
+      <strong>6. Un variateur de fréquence permet de :</strong>
+      <ul>
+        <li>a. augmenter le rendement du moteur au-dessus de 100 %</li>
+        <li class="ok">b. adapter la vitesse du moteur au besoin réel ✓</li>
+        <li>c. supprimer les pertes mécaniques</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,6)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm6">Réponse b — Le variateur de fréquence modifie f, donc n<sub>s</sub>, ce qui adapte la vitesse du moteur aux besoins.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>7. Pour un moteur à courant continu, la vitesse de rotation :</strong>
+      <ul>
+        <li class="ok">a. est proportionnelle à la tension d'alimentation ✓</li>
+        <li>b. est proportionnelle au courant</li>
+        <li>c. ne dépend pas de la tension</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,7)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm7">Réponse a — Pour un moteur CC : n est proportionnel à U. En augmentant la tension, on augmente la vitesse.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>8. D'après la loi cubique des ventilateurs, si la vitesse est divisée par 2, la puissance est divisée par :</strong>
+      <ul>
+        <li>a. 2</li>
+        <li>b. 4</li>
+        <li class="ok">c. 8 ✓</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,8)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm8">Réponse c — \(P \propto n^3\), donc si n est divisée par 2 : \(P_2 = P_1 \times (1/2)^3 = P_1/8\).</div>
+    </div>
+  </div>
+
+  <hr class="section-sep">
+  <div class="section-label">Je m'exerce – exercices guidés</div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 1</span>
+      <span class="exo-title">Bilan de puissance d'un moteur CC</span>
+      <span class="diff diff-1">★ Facile</span>
+    </div>
+    <p class="enonce">Un petit moteur à courant continu entraîne le circulateur d'un plancher chauffant. Il est alimenté sous U = 24 V et absorbe un courant I = 3,5 A. La puissance utile mécanique fournie au circulateur est P<sub>u</sub> = 68 W.</p>
+    <div class="q"><strong>1.</strong> Calculer la puissance absorbée par le moteur : \(P_a = U \times I\).</div>
+    <div class="q"><strong>2.</strong> Calculer les pertes du moteur : \(P_{pertes} = P_a - P_u\).</div>
+    <div class="q"><strong>3.</strong> Calculer le rendement du moteur : \(\eta = \dfrac{P_u}{P_a}\).</div>
+    <div class="q"><strong>4.</strong> Exprimer ce rendement en pourcentage.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(P_a = U \times I = 24 \times 3{,}5 = \mathbf{84\text{ W}}\)</p>
+      <p><strong>2.</strong> \(P_{pertes} = P_a - P_u = 84 - 68 = \mathbf{16\text{ W}}\)</p>
+      <p><strong>3.</strong> \(\eta = \dfrac{P_u}{P_a} = \dfrac{68}{84} \approx \mathbf{0{,}81}\)</p>
+      <p><strong>4.</strong> \(\eta = 0{,}81 \times 100 = \mathbf{81\text{ \%}}\). Le moteur convertit 81 % de la puissance électrique en puissance mécanique ; les 19 % restants sont dissipés sous forme de chaleur (pertes par effet Joule et frottements).</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 2</span>
+      <span class="exo-title">Vitesse de synchronisme</span>
+      <span class="diff diff-1">★ Facile</span>
+    </div>
+    <p class="enonce">Un installateur thermique doit choisir un moteur asynchrone pour entraîner un ventilateur. Il hésite entre deux moteurs alimentés en 50 Hz :<br>
+    – Moteur A : 1 paire de pôles (p = 1)<br>
+    – Moteur B : 3 paires de pôles (p = 3)</p>
+    <div class="q"><strong>1.</strong> Rappeler la formule de la vitesse de synchronisme \(n_s\).</div>
+    <div class="q"><strong>2.</strong> Calculer \(n_s\) pour le moteur A.</div>
+    <div class="q"><strong>3.</strong> Calculer \(n_s\) pour le moteur B.</div>
+    <div class="q"><strong>4.</strong> Le ventilateur doit tourner à environ 1 000 tr/min. Quel moteur est le plus adapté ? Justifier.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(n_s = \dfrac{60 \times f}{p}\) avec f la fréquence (en Hz) et p le nombre de paires de pôles.</p>
+      <p><strong>2.</strong> Moteur A : \(n_s = \dfrac{60 \times 50}{1} = \mathbf{3\,000\text{ tr/min}}\)</p>
+      <p><strong>3.</strong> Moteur B : \(n_s = \dfrac{60 \times 50}{3} = \mathbf{1\,000\text{ tr/min}}\)</p>
+      <p><strong>4.</strong> Le <strong>moteur B</strong> (p = 3) est le plus adapté. Sa vitesse de synchronisme est de 1 000 tr/min, ce qui correspond au besoin. La vitesse réelle du rotor sera légèrement inférieure (glissement), par exemple 960 tr/min, ce qui reste adapté au ventilateur.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 3</span>
+      <span class="exo-title">Exploiter une plaque signalétique</span>
+      <span class="diff diff-2">★★ Intermédiaire</span>
+    </div>
+    <p class="enonce">Un technicien chauffagiste relève la plaque signalétique d'un moteur asynchrone triphasé entraînant un compresseur de pompe à chaleur :<br><br>
+    <strong>400 V / 50 Hz / 1 450 tr/min / 7,5 kW / 15,2 A / cos φ = 0,84 / η = 0,88</strong></p>
+    <div class="q"><strong>1.</strong> Quelle est la puissance utile mécanique du moteur ?</div>
+    <div class="q"><strong>2.</strong> Calculer la puissance absorbée : \(P_a = \sqrt{3} \times U \times I \times \cos\varphi\).</div>
+    <div class="q"><strong>3.</strong> Vérifier la cohérence avec le rendement : calculer \(\eta = \dfrac{P_u}{P_a}\).</div>
+    <div class="q"><strong>4.</strong> Déterminer le nombre de paires de pôles du moteur à partir de la vitesse nominale.</div>
+    <div class="q"><strong>5.</strong> Calculer le glissement : \(g = \dfrac{n_s - n}{n_s}\).</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> La puissance indiquée sur la plaque (7,5 kW) est la <strong>puissance utile mécanique</strong> sur l'arbre du moteur : \(P_u = \mathbf{7\,500\text{ W}}\).</p>
+      <p><strong>2.</strong> \(P_a = \sqrt{3} \times U \times I \times \cos\varphi = 1{,}732 \times 400 \times 15{,}2 \times 0{,}84\)<br>
+      \(P_a = 1{,}732 \times 400 \times 12{,}768 = \mathbf{8\,846\text{ W}} \approx 8{,}85\text{ kW}\)</p>
+      <p><strong>3.</strong> \(\eta = \dfrac{P_u}{P_a} = \dfrac{7\,500}{8\,846} \approx \mathbf{0{,}85}\)<br>
+      La valeur calculée (0,85) est très proche de la valeur indiquée sur la plaque (0,88). Le léger écart provient des arrondis de calcul. La cohérence est vérifiée.</p>
+      <p><strong>4.</strong> La vitesse nominale est 1 450 tr/min, légèrement inférieure à 1 500 tr/min.<br>
+      \(n_s = 1\,500\text{ tr/min}\) correspond à \(p = \dfrac{60 \times f}{n_s} = \dfrac{60 \times 50}{1\,500} = \mathbf{2\text{ paires de pôles}}\).</p>
+      <p><strong>5.</strong> \(g = \dfrac{n_s - n}{n_s} = \dfrac{1\,500 - 1\,450}{1\,500} = \dfrac{50}{1\,500} \approx \mathbf{0{,}033} = 3{,}3\text{ \%}\)<br>
+      Le glissement de 3,3 % est une valeur typique pour un moteur asynchrone en charge.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 4</span>
+      <span class="exo-title">Rendement global d'une installation de pompage</span>
+      <span class="diff diff-2">★★ Intermédiaire</span>
+    </div>
+    <p class="enonce">Un installateur de pompes à chaleur met en service un circulateur pour un réseau de chauffage. Le moteur asynchrone du circulateur absorbe une puissance électrique \(P_a = 550\text{ W}\) avec un rendement \(\eta_{moteur} = 0{,}85\). La pompe (partie hydraulique) a un rendement \(\eta_{pompe} = 0{,}65\).</p>
+    <div class="q"><strong>1.</strong> Calculer la puissance mécanique sur l'arbre du moteur : \(P_{meca} = \eta_{moteur} \times P_a\).</div>
+    <div class="q"><strong>2.</strong> Calculer la puissance hydraulique utile fournie au fluide : \(P_{hydr} = \eta_{pompe} \times P_{meca}\).</div>
+    <div class="q"><strong>3.</strong> Calculer le rendement global de l'installation : \(\eta_{global} = \dfrac{P_{hydr}}{P_a}\).</div>
+    <div class="q"><strong>4.</strong> Montrer que \(\eta_{global} = \eta_{moteur} \times \eta_{pompe}\) et vérifier numériquement.</div>
+    <div class="q"><strong>5.</strong> Calculer les pertes totales de l'installation.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(P_{meca} = \eta_{moteur} \times P_a = 0{,}85 \times 550 = \mathbf{467{,}5\text{ W}}\)</p>
+      <p><strong>2.</strong> \(P_{hydr} = \eta_{pompe} \times P_{meca} = 0{,}65 \times 467{,}5 = \mathbf{303{,}9\text{ W}}\)</p>
+      <p><strong>3.</strong> \(\eta_{global} = \dfrac{P_{hydr}}{P_a} = \dfrac{303{,}9}{550} \approx \mathbf{0{,}553} = 55{,}3\text{ \%}\)</p>
+      <p><strong>4.</strong> \(\eta_{moteur} \times \eta_{pompe} = 0{,}85 \times 0{,}65 = \mathbf{0{,}5525} \approx 0{,}553\)<br>
+      Le rendement global est bien égal au produit des rendements. Cela se démontre : \(\eta_{global} = \dfrac{P_{hydr}}{P_a} = \dfrac{\eta_{pompe} \times P_{meca}}{P_a} = \dfrac{\eta_{pompe} \times \eta_{moteur} \times P_a}{P_a} = \eta_{moteur} \times \eta_{pompe}\).</p>
+      <p><strong>5.</strong> \(P_{pertes} = P_a - P_{hydr} = 550 - 303{,}9 = \mathbf{246{,}1\text{ W}}\)<br>
+      Dont 82,5 W de pertes dans le moteur et 163,6 W de pertes dans la pompe.</p>
+    </div>
+  </div>
+
+  <hr class="section-sep">
+  <div class="section-label">J'approfondis – exercices avancés</div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 5</span>
+      <span class="exo-title">Variateur de fréquence et loi cubique pour une CTA</span>
+      <span class="diff diff-3">★★★ Avancé</span>
+    </div>
+    <p class="enonce">Un technicien CVC installe un variateur de fréquence sur le ventilateur d'une centrale de traitement d'air (CTA). Le moteur asynchrone a les caractéristiques suivantes : 400 V / 50 Hz / 2 paires de pôles / puissance absorbée nominale P<sub>a</sub> = 4 000 W.<br><br>
+    En mi-saison, le débit d'air nécessaire n'est que de 60 % du débit nominal. Le technicien règle la fréquence à 30 Hz.</p>
+    <div class="q"><strong>1.</strong> Calculer la vitesse de synchronisme à 50 Hz puis à 30 Hz.</div>
+    <div class="q"><strong>2.</strong> Calculer le rapport des vitesses \(\dfrac{n_2}{n_1}\).</div>
+    <div class="q"><strong>3.</strong> En appliquant la loi cubique \(P_2 = P_1 \times \left(\dfrac{n_2}{n_1}\right)^3\), calculer la puissance absorbée à 30 Hz.</div>
+    <div class="q"><strong>4.</strong> Calculer l'économie de puissance réalisée (en watts et en pourcentage).</div>
+    <div class="q"><strong>5.</strong> Si la CTA fonctionne en mi-saison 4 000 heures par an, calculer l'économie d'énergie annuelle en kWh.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> À 50 Hz : \(n_{s1} = \dfrac{60 \times 50}{2} = \mathbf{1\,500\text{ tr/min}}\)<br>
+      À 30 Hz : \(n_{s2} = \dfrac{60 \times 30}{2} = \mathbf{900\text{ tr/min}}\)</p>
+      <p><strong>2.</strong> \(\dfrac{n_2}{n_1} = \dfrac{900}{1\,500} = \mathbf{0{,}6}\)</p>
+      <p><strong>3.</strong> \(P_2 = P_1 \times \left(\dfrac{n_2}{n_1}\right)^3 = 4\,000 \times (0{,}6)^3 = 4\,000 \times 0{,}216 = \mathbf{864\text{ W}}\)</p>
+      <p><strong>4.</strong> Économie de puissance : \(\Delta P = 4\,000 - 864 = \mathbf{3\,136\text{ W}}\)<br>
+      En pourcentage : \(\dfrac{3\,136}{4\,000} \times 100 = \mathbf{78{,}4\text{ \%}}\) d'économie.</p>
+      <p><strong>5.</strong> Économie d'énergie annuelle :<br>
+      \(\Delta E = \Delta P \times t = 3{,}136 \times 4\,000 = \mathbf{12\,544\text{ kWh/an}}\)<br>
+      C'est une économie considérable, qui justifie largement l'investissement dans un variateur de fréquence.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 6</span>
+      <span class="exo-title">Comparaison du coût énergétique avec et sans variateur</span>
+      <span class="diff diff-3">★★★ Avancé</span>
+    </div>
+    <p class="enonce">Un bureau d'études compare deux solutions pour le circulateur d'un réseau de chauffage collectif :<br><br>
+    <strong>Solution A (sans variateur) :</strong> le circulateur fonctionne en permanence à pleine vitesse. P<sub>a</sub> = 1 500 W. Durée de fonctionnement : 5 500 h/an.<br><br>
+    <strong>Solution B (avec variateur) :</strong> le variateur adapte la vitesse selon les besoins :<br>
+    – 2 000 h/an à 100 % de la vitesse (grand froid)<br>
+    – 2 000 h/an à 75 % de la vitesse (mi-saison)<br>
+    – 1 500 h/an à 50 % de la vitesse (intersaison)<br><br>
+    Le prix de l'électricité est de 0,18 €/kWh. Le variateur coûte 850 €.</p>
+    <div class="q"><strong>1.</strong> Calculer l'énergie consommée par la solution A en un an (en kWh).</div>
+    <div class="q"><strong>2.</strong> Pour la solution B, calculer la puissance absorbée à chaque régime de vitesse en utilisant la loi cubique \(P \propto n^3\).</div>
+    <div class="q"><strong>3.</strong> Calculer l'énergie totale consommée par la solution B en un an.</div>
+    <div class="q"><strong>4.</strong> Calculer l'économie d'énergie annuelle (en kWh) et le gain financier annuel.</div>
+    <div class="q"><strong>5.</strong> Calculer le temps de retour sur investissement du variateur.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> Solution A :<br>
+      \(E_A = P_a \times t = 1{,}5 \times 5\,500 = \mathbf{8\,250\text{ kWh/an}}\)</p>
+      <p><strong>2.</strong> Solution B — puissances à chaque régime :<br>
+      – À 100 % : \(P_{100} = 1\,500 \times 1^3 = \mathbf{1\,500\text{ W}}\)<br>
+      – À 75 % : \(P_{75} = 1\,500 \times (0{,}75)^3 = 1\,500 \times 0{,}4219 = \mathbf{632{,}8\text{ W}}\)<br>
+      – À 50 % : \(P_{50} = 1\,500 \times (0{,}5)^3 = 1\,500 \times 0{,}125 = \mathbf{187{,}5\text{ W}}\)</p>
+      <p><strong>3.</strong> Énergie totale solution B :<br>
+      \(E_B = (1{,}5 \times 2\,000) + (0{,}6328 \times 2\,000) + (0{,}1875 \times 1\,500)\)<br>
+      \(E_B = 3\,000 + 1\,265{,}6 + 281{,}3 = \mathbf{4\,546{,}9\text{ kWh/an}}\)</p>
+      <p><strong>4.</strong> Économie d'énergie :<br>
+      \(\Delta E = E_A - E_B = 8\,250 - 4\,546{,}9 = \mathbf{3\,703{,}1\text{ kWh/an}}\)<br>
+      Gain financier : \(3\,703{,}1 \times 0{,}18 = \mathbf{666{,}56\text{ €/an}}\)</p>
+      <p><strong>5.</strong> Temps de retour sur investissement :<br>
+      \(t_{retour} = \dfrac{850}{666{,}56} \approx \mathbf{1{,}3\text{ an}}\)<br>
+      Le variateur est rentabilisé en environ <strong>15 mois</strong>. C'est un investissement très rentable pour une installation de chauffage collectif.</p>
+    </div>
+  </div>
 </div>
+<script>
+function toggle(btn){
+  const c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+function showQcm(btn,n){
+  const d=document.getElementById('qcm'+n);
+  if(d.style.display==='block'){d.style.display='none';btn.textContent='Voir la réponse';}
+  else{d.style.display='block';btn.textContent='Masquer la réponse';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

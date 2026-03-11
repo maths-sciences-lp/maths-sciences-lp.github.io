@@ -1,22 +1,132 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devoir surveillé — Ch02 Convertir un courant continu en alternatif et inversement</title>
-    <link rel="stylesheet" href="../../../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ch02 – Obtenir un courant continu à partir d'un courant alternatif et inversement – DS</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #6f42c1; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
+.info-ds{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em;display:flex;gap:30px;flex-wrap:wrap}
+    .info-ds div{flex:1;min-width:150px}
+    .info-ds strong{display:block;color:var(--p);margin-bottom:2px}
+    .pts{font-size:.8em;background:#ede9fe;color:#5b21b6;padding:2px 8px;border-radius:4px;font-weight:600}
+    .q-pts{color:#718096;font-size:.85em;font-style:italic}
+    .enonce{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93em}
+    .total-bar{background:#6f42c1;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px}</style>
 </head>
 <body>
-<div class="container">
-    <a href="pc-term-iccer.html" class="back">← Retour</a>
-    <h1>Devoir surveillé — Convertir un courant continu en alternatif et inversement</h1>
-    <p>Page en construction.</p>
+<div class="c">
+  <a href="pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+  <header>
+    <h1>Chapitre 2 – Devoir Surveillé</h1>
+    <p class="sous-titre">Obtenir un courant continu à partir d'un courant alternatif et inversement &nbsp;|&nbsp; Terminale Bac Pro ICCER</p>
+  </header>
+  <div class="info-ds">
+    <div><strong>Durée</strong>55 minutes</div>
+    <div><strong>Barème</strong>20 points</div>
+    <div><strong>Documents</strong>Non autorisés (sauf fiche de formules fournie)</div>
+    <div><strong>Calculatrice</strong>Autorisée</div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 1</span>
+      <span class="exo-title">Alimentation d'un moteur à courant continu</span>
+      <span class="pts">8 points</span>
+    </div>
+    <p class="enonce">
+      Un technicien chauffagiste installe un moteur à courant continu qui entraîne une vanne de régulation motorisée. Ce moteur est alimenté par le secteur 230 V / 50 Hz via un bloc d'alimentation. Le bloc d'alimentation comprend successivement : un transformateur, un pont de Graetz, et un condensateur de filtrage.<br>
+      Le transformateur abaisse la tension de 230 V à une tension secondaire de valeur efficace U<sub>2</sub> = 24 V.
+    </p>
+    <div class="q"><strong>1.</strong> Donner le rôle de chacun des trois éléments du bloc d'alimentation (transformateur, pont de Graetz, condensateur). <span class="q-pts">(3 pts)</span></div>
+    <div class="q"><strong>2.</strong> Calculer la valeur maximale (amplitude) \(\hat{U}_2\) de la tension en sortie du transformateur. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>3.</strong> Après le pont de Graetz (redressement double alternance, sans filtrage), calculer la tension moyenne \(U_{moy}\). On rappelle que \(U_{moy} = \dfrac{2\hat{U}}{\pi}\). <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>4.</strong> Dessiner l'allure de la tension en sortie du pont de Graetz (sans filtrage) sur deux périodes. Indiquer \(\hat{U}_2\) et T sur le graphique. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>5.</strong> Quel est l'effet du condensateur de filtrage sur cette tension ? Dessiner l'allure de la tension filtrée sur le même graphique. <span class="q-pts">(1 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong></p>
+      <ul>
+        <li><strong>Transformateur</strong> : il abaisse (ou élève) la tension alternative du secteur à la valeur souhaitée (ici de 230 V à 24 V).</li>
+        <li><strong>Pont de Graetz</strong> (pont de diodes) : il redresse le courant alternatif en courant pulsé positif (redressement double alternance). Les alternances négatives sont « retournées ».</li>
+        <li><strong>Condensateur de filtrage</strong> : il lisse la tension redressée pour obtenir une tension quasi continue, en se chargeant lors des maxima et en se déchargeant entre deux maxima.</li>
+      </ul>
+      <p><strong>2.</strong> \(\hat{U}_2 = U_2 \times \sqrt{2} = 24 \times \sqrt{2} = 24 \times 1{,}414 \approx \mathbf{33{,}9\text{ V}}\)</p>
+      <p><strong>3.</strong> \(U_{moy} = \dfrac{2\hat{U}_2}{\pi} = \dfrac{2 \times 33{,}9}{3{,}14} = \dfrac{67{,}8}{3{,}14} \approx \mathbf{21{,}6\text{ V}}\)</p>
+      <p><strong>4.</strong> Le signal en sortie du pont de Graetz est une succession d'arches sinusoïdales positives. Chaque arche a une amplitude de \(\hat{U}_2 = 33{,}9\text{ V}\) et la période des arches est T/2 = 10 ms (car les alternances négatives sont redressées).</p>
+      <p><strong>5.</strong> Le condensateur de filtrage <strong>lisse</strong> la tension : il se charge au sommet de chaque arche et se décharge lentement entre deux arches. La tension obtenue est quasi continue, oscillant légèrement autour de \(\hat{U}_2\) avec une <strong>ondulation résiduelle</strong> (ripple) d'autant plus faible que la capacité du condensateur est grande.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 2</span>
+      <span class="exo-title">Commande d'une vanne motorisée</span>
+      <span class="pts">7 points</span>
+    </div>
+    <p class="enonce">
+      Une vanne motorisée trois voies est alimentée par un bloc d'alimentation similaire à celui de l'exercice 1. Le moteur de la vanne consomme un courant I = 0,5 A sous une tension continue de 24 V. Le condensateur de filtrage a une capacité C = 4 700 µF. La fréquence du secteur est f = 50 Hz.<br>
+      On rappelle que l'ondulation résiduelle vaut : \(\Delta U = \dfrac{I}{2fC}\)
+    </p>
+    <div class="q"><strong>1.</strong> Convertir la capacité C en farads. <span class="q-pts">(0,5 pt)</span></div>
+    <div class="q"><strong>2.</strong> Calculer l'ondulation résiduelle ΔU en sortie du condensateur. <span class="q-pts">(2 pts)</span></div>
+    <div class="q"><strong>3.</strong> Calculer le taux d'ondulation \(\tau = \dfrac{\Delta U}{\hat{U}_2}\) en pourcentage. Le filtrage est-il satisfaisant si on exige τ &lt; 5 % ? <span class="q-pts">(2 pts)</span></div>
+    <div class="q"><strong>4.</strong> Pour réduire l'ondulation de moitié, quelle nouvelle capacité C' faudrait-il installer ? <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>5.</strong> Citer un avantage et un inconvénient d'augmenter la capacité du condensateur. <span class="q-pts">(1 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(C = 4\,700\text{ µF} = 4\,700 \times 10^{-6}\text{ F} = \mathbf{4{,}7 \times 10^{-3}\text{ F}}\)</p>
+      <p><strong>2.</strong> On utilise f' = 2f = 100 Hz (fréquence de l'ondulation après redressement double alternance) :<br>
+        \(\Delta U = \dfrac{I}{2fC} = \dfrac{0{,}5}{2 \times 50 \times 4{,}7 \times 10^{-3}} = \dfrac{0{,}5}{0{,}47} \approx \mathbf{1{,}06\text{ V}}\)</p>
+      <p><strong>3.</strong> Avec \(\hat{U}_2 = 33{,}9\text{ V}\) (cf. exercice 1) :<br>
+        \(\tau = \dfrac{\Delta U}{\hat{U}_2} = \dfrac{1{,}06}{33{,}9} \approx 0{,}031 = \mathbf{3{,}1\,\%}\)<br>
+        3,1 % &lt; 5 % → <strong>le filtrage est satisfaisant</strong>.</p>
+      <p><strong>4.</strong> Pour diviser ΔU par 2, il faut multiplier C par 2 :<br>
+        \(C' = 2 \times C = 2 \times 4\,700 = \mathbf{9\,400\text{ µF}}\)<br>
+        On choisirait un condensateur standard de 10 000 µF.</p>
+      <p><strong>5.</strong><br>
+        – <strong>Avantage</strong> : meilleur lissage de la tension (ondulation plus faible), donc tension plus stable.<br>
+        – <strong>Inconvénient</strong> : coût plus élevé, encombrement plus important, et courant d'appel à la mise sous tension plus élevé.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 3</span>
+      <span class="exo-title">Onduleur pour panneau solaire</span>
+      <span class="pts">5 points</span>
+    </div>
+    <p class="enonce">
+      Un installateur thermique pose des panneaux solaires photovoltaïques sur le toit d'un bâtiment tertiaire. Les panneaux délivrent une tension continue de 360 V. Un onduleur est raccordé pour injecter l'énergie sur le réseau EDF (230 V / 50 Hz).
+    </p>
+    <div class="q"><strong>1.</strong> Quel est le rôle d'un onduleur ? <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>2.</strong> Quelle est la nature du courant en entrée de l'onduleur ? En sortie ? <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>3.</strong> Quelle doit être la fréquence du signal en sortie de l'onduleur pour être compatible avec le réseau EDF ? <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>4.</strong> Quelle doit être la valeur efficace de la tension en sortie de l'onduleur ? En déduire la valeur maximale \(\hat{U}\) du signal sinusoïdal produit. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>5.</strong> Expliquer pourquoi l'onduleur doit être synchronisé avec le réseau EDF pour l'injection. <span class="q-pts">(1 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> Un onduleur <strong>convertit un courant continu (DC) en courant alternatif (AC)</strong>. C'est l'opération inverse du redressement.</p>
+      <p><strong>2.</strong> En entrée : <strong>courant continu</strong> (DC) fourni par les panneaux solaires.<br>
+        En sortie : <strong>courant alternatif sinusoïdal</strong> (AC) compatible avec le réseau.</p>
+      <p><strong>3.</strong> La fréquence en sortie doit être \(f = \mathbf{50\text{ Hz}}\), identique à celle du réseau EDF français.</p>
+      <p><strong>4.</strong> La tension efficace en sortie doit être \(U = \mathbf{230\text{ V}}\).<br>
+        \(\hat{U} = U \times \sqrt{2} = 230 \times 1{,}414 \approx \mathbf{325{,}3\text{ V}}\)</p>
+      <p><strong>5.</strong> L'onduleur doit être <strong>synchronisé</strong> avec le réseau EDF (même fréquence, même phase) pour éviter des <strong>courants de court-circuit</strong> ou des perturbations sur le réseau. Si les signaux ne sont pas en phase, les tensions s'opposent et provoquent des dysfonctionnements dangereux.</p>
+    </div>
+  </div>
+
+  <div class="total-bar">TOTAL : 20 points</div>
 </div>
+<script>
+function toggle(btn){
+  const c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

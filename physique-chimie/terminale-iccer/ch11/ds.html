@@ -1,22 +1,149 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devoir surveillé — Ch11 Caractériser la propagation d'un son</title>
-    <link rel="stylesheet" href="../../../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ch11 – Caractériser la propagation d'un signal sonore – DS</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #6f42c1; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
+.info-ds{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em;display:flex;gap:30px;flex-wrap:wrap}
+    .info-ds div{flex:1;min-width:150px}
+    .info-ds strong{display:block;color:var(--p);margin-bottom:2px}
+    .pts{font-size:.8em;background:#ede9fe;color:#5b21b6;padding:2px 8px;border-radius:4px;font-weight:600}
+    .q-pts{color:#718096;font-size:.85em;font-style:italic}
+    .enonce{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93em}
+    .total-bar{background:#6f42c1;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px}</style>
 </head>
 <body>
-<div class="container">
-    <a href="pc-term-iccer.html" class="back">← Retour</a>
-    <h1>Devoir surveillé — Caractériser la propagation d'un son</h1>
-    <p>Page en construction.</p>
+<div class="c">
+  <a href="pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+  <header>
+    <h1>Chapitre 11 – Devoir Surveillé</h1>
+    <p class="sous-titre">Caractériser la propagation d'un signal sonore &nbsp;|&nbsp; Terminale Bac Pro ICCER</p>
+  </header>
+  <div class="info-ds">
+    <div><strong>Durée</strong>55 minutes</div>
+    <div><strong>Barème</strong>20 points</div>
+    <div><strong>Documents</strong>Non autorisés (sauf fiche de formules fournie)</div>
+    <div><strong>Calculatrice</strong>Autorisée</div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 1</span>
+      <span class="exo-title">Bruit d'un compresseur de climatisation</span>
+      <span class="pts">7 points</span>
+    </div>
+    <p class="enonce">
+      Un technicien CVC mesure le bruit émis par un compresseur de climatisation installé sur le toit d'un immeuble de bureaux. Le compresseur émet un son de fréquence principale f = 500 Hz. La vitesse du son dans l'air est v = 340 m/s.<br>
+      Données :
+      <ul>
+        <li>Intensité sonore de référence : I₀ = 10⁻¹² W/m²</li>
+        <li>Intensité sonore mesurée à 1 m du compresseur : I = 10⁻³ W/m²</li>
+        <li>log(10ⁿ) = n</li>
+      </ul>
+    </p>
+    <div class="q"><strong>1.</strong> Rappeler la relation entre la longueur d'onde λ, la vitesse v et la fréquence f. Calculer λ. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>2.</strong> Calculer la période T du signal sonore. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>3.</strong> Le domaine audible s'étend de 20 Hz à 20 000 Hz. Ce son est-il audible ? À quelle catégorie appartient-il (grave, médium, aigu) ? <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>4.</strong> Calculer le niveau sonore L en décibels à 1 m du compresseur. On rappelle : \(L = 10 \times \log\left(\dfrac{I}{I_0}\right)\). <span class="q-pts">(2 pts)</span></div>
+    <div class="q"><strong>5.</strong> Le seuil de douleur est à 120 dB. Le compresseur dépasse-t-il ce seuil à 1 m ? Quel risque cela représente-t-il ? <span class="q-pts">(1,5 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(\lambda = \dfrac{v}{f} = \dfrac{340}{500} = \mathbf{0{,}68\text{ m}}\)</p>
+      <p><strong>2.</strong> \(T = \dfrac{1}{f} = \dfrac{1}{500} = \mathbf{2 \times 10^{-3}\text{ s} = 2\text{ ms}}\)</p>
+      <p><strong>3.</strong> f = 500 Hz est comprise entre 20 Hz et 20 000 Hz → le son est <strong>audible</strong>.<br>
+        500 Hz se situe dans le registre <strong>médium</strong> (les graves vont de 20 à 200 Hz environ, les médiums de 200 à 2 000 Hz, les aigus au-delà).</p>
+      <p><strong>4.</strong> \(L = 10 \times \log\left(\dfrac{I}{I_0}\right) = 10 \times \log\left(\dfrac{10^{-3}}{10^{-12}}\right) = 10 \times \log(10^{9}) = 10 \times 9 = \mathbf{90\text{ dB}}\)</p>
+      <p><strong>5.</strong> L = 90 dB &lt; 120 dB → le compresseur <strong>ne dépasse pas le seuil de douleur</strong> à 1 m.<br>
+        Cependant, 90 dB dépasse le <strong>seuil de risque de 85 dB</strong> (réglementation du travail). Une exposition prolongée à ce niveau sonore peut provoquer des <strong>lésions auditives irréversibles</strong> (surdité professionnelle). Le port d'EPI auditifs est obligatoire.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 2</span>
+      <span class="exo-title">Atténuation sonore sur un chantier ICCER</span>
+      <span class="pts">7 points</span>
+    </div>
+    <p class="enonce">
+      Sur un chantier d'installation de chauffage, un marteau perforateur émet un niveau sonore L<sub>1</sub> = 105 dB à une distance d<sub>1</sub> = 1 m. Un installateur thermique travaille à une distance d<sub>2</sub> = 4 m de la source.<br>
+      On rappelle que l'atténuation due à la distance vaut :<br>
+      \(\Delta L = 20 \times \log\left(\dfrac{d_2}{d_1}\right)\)<br>
+      et le niveau sonore à la distance d<sub>2</sub> : \(L_2 = L_1 - \Delta L\)<br>
+      Données : log(2) = 0,301 &nbsp;|&nbsp; log(4) = 0,602 &nbsp;|&nbsp; log(8) = 0,903 &nbsp;|&nbsp; log(10) = 1
+    </p>
+    <div class="q"><strong>1.</strong> Calculer l'atténuation ΔL due à la distance entre 1 m et 4 m. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>2.</strong> En déduire le niveau sonore L<sub>2</sub> perçu par l'installateur à 4 m. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>3.</strong> La réglementation impose le port de protections auditives au-delà de 85 dB. L'installateur doit-il porter des protections ? <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>4.</strong> À quelle distance minimale d<sub>3</sub> faudrait-il se trouver pour que le niveau sonore soit inférieur ou égal à 85 dB ? <span class="q-pts">(2,5 pt)</span></div>
+    <div class="q"><strong>5.</strong> En pratique, est-il réaliste de s'éloigner à cette distance sur un chantier ? Quelle autre solution existe-t-il ? <span class="q-pts">(1 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(\Delta L = 20 \times \log\left(\dfrac{d_2}{d_1}\right) = 20 \times \log\left(\dfrac{4}{1}\right) = 20 \times \log(4) = 20 \times 0{,}602 = \mathbf{12{,}0\text{ dB}}\)</p>
+      <p><strong>2.</strong> \(L_2 = L_1 - \Delta L = 105 - 12{,}0 = \mathbf{93\text{ dB}}\)</p>
+      <p><strong>3.</strong> L<sub>2</sub> = 93 dB &gt; 85 dB → <strong>oui, l'installateur doit obligatoirement porter des protections auditives</strong>.</p>
+      <p><strong>4.</strong> On cherche d<sub>3</sub> tel que L<sub>3</sub> = 85 dB.<br>
+        \(\Delta L_3 = L_1 - L_3 = 105 - 85 = 20\text{ dB}\)<br>
+        \(20 = 20 \times \log\left(\dfrac{d_3}{1}\right)\)<br>
+        \(\log(d_3) = 1\)<br>
+        \(d_3 = 10^{1} = \mathbf{10\text{ m}}\)<br>
+        Il faut se trouver à au moins 10 m de la source pour être en dessous de 85 dB.</p>
+      <p><strong>5.</strong> Sur un chantier en intérieur (appartement, local technique), il est souvent <strong>impossible</strong> de s'éloigner à 10 m de la source de bruit. La solution est d'utiliser des <strong>équipements de protection individuelle (EPI)</strong> : casque anti-bruit ou bouchons d'oreilles. On peut aussi limiter la durée d'exposition.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 3</span>
+      <span class="exo-title">Choix d'EPI auditifs</span>
+      <span class="pts">6 points</span>
+    </div>
+    <p class="enonce">
+      Un technicien chauffagiste intervient dans une chaufferie où le niveau sonore ambiant est de 96 dB (bruit de la chaudière et des brûleurs). Il doit choisir un EPI auditif parmi deux options :<br>
+      <ul>
+        <li><strong>Option A</strong> — Bouchons d'oreilles en mousse : atténuation SNR = 28 dB</li>
+        <li><strong>Option B</strong> — Casque anti-bruit professionnel : atténuation SNR = 35 dB</li>
+      </ul>
+      On admet que le niveau sonore résultant est : L<sub>résultant</sub> = L<sub>ambiant</sub> − SNR.<br>
+      La réglementation fixe la limite d'exposition quotidienne à 85 dB (seuil d'action) et 87 dB (valeur limite en tenant compte de l'atténuation des EPI).
+    </p>
+    <div class="q"><strong>1.</strong> Calculer le niveau sonore résultant avec les bouchons d'oreilles (option A). <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>2.</strong> Calculer le niveau sonore résultant avec le casque anti-bruit (option B). <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>3.</strong> Les bouchons d'oreilles permettent-ils de respecter la valeur limite de 87 dB ? Et le seuil d'action de 85 dB ? <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>4.</strong> Le casque anti-bruit permet-il de respecter les deux seuils ? <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>5.</strong> Quel EPI recommandez-vous ? Donner un avantage et un inconvénient de chaque option pour un technicien travaillant en chaufferie. <span class="q-pts">(1,5 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(L_A = 96 - 28 = \mathbf{68\text{ dB}}\)</p>
+      <p><strong>2.</strong> \(L_B = 96 - 35 = \mathbf{61\text{ dB}}\)</p>
+      <p><strong>3.</strong> Avec les bouchons : L<sub>A</sub> = 68 dB.<br>
+        68 dB &lt; 87 dB → <strong>oui, la valeur limite est respectée</strong>.<br>
+        68 dB &lt; 85 dB → <strong>oui, le seuil d'action est également respecté</strong>.<br>
+        Les bouchons d'oreilles suffisent dans cette situation.</p>
+      <p><strong>4.</strong> Avec le casque : L<sub>B</sub> = 61 dB.<br>
+        61 dB &lt; 87 dB et 61 dB &lt; 85 dB → <strong>oui, les deux seuils sont largement respectés</strong>.</p>
+      <p><strong>5.</strong> Les deux EPI conviennent réglementairement. Recommandation : les <strong>bouchons d'oreilles (option A)</strong> sont suffisants et plus pratiques pour un travail en chaufferie.<br><br>
+        <strong>Bouchons d'oreilles</strong> :<br>
+        – Avantage : légers, peu encombrants, compatibles avec le port d'un casque de chantier.<br>
+        – Inconvénient : atténuation plus faible, mise en place parfois délicate, hygiène (usage unique).<br><br>
+        <strong>Casque anti-bruit</strong> :<br>
+        – Avantage : meilleure atténuation, facile à mettre et à retirer, réutilisable.<br>
+        – Inconvénient : encombrant, peut gêner dans les espaces restreints d'une chaufferie, inconfort en cas de chaleur.</p>
+    </div>
+  </div>
+
+  <div class="total-bar">TOTAL : 20 points</div>
 </div>
+<script>
+function toggle(btn){
+  const c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

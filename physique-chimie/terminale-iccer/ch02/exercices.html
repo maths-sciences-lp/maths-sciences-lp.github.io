@@ -1,22 +1,271 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercices — Ch02 Convertir un courant continu en alternatif et inversement</title>
-    <link rel="stylesheet" href="../../../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ch02 – Obtenir un courant continu à partir d'un courant alternatif et inversement – Exercices</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #6f42c1; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
+.enonce{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93em}</style>
 </head>
 <body>
-<div class="container">
-    <a href="pc-term-iccer.html" class="back">← Retour</a>
-    <h1>Exercices — Convertir un courant continu en alternatif et inversement</h1>
-    <p>Page en construction.</p>
+<div class="c">
+  <a href="pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+  <header>
+    <h1>Chapitre 2 – Exercices</h1>
+    <p class="sous-titre">Obtenir un courant continu à partir d'un courant alternatif et inversement &nbsp;|&nbsp; Terminale Bac Pro ICCER</p>
+  </header>
+  <div class="intro-box">
+    <strong>Compétences travaillées :</strong> identifier le rôle d'une diode &nbsp;|&nbsp; calculer une tension moyenne après redressement &nbsp;|&nbsp; dimensionner un condensateur de filtrage &nbsp;|&nbsp; décrire la chaîne complète de conversion AC/DC &nbsp;|&nbsp; exploiter le rôle d'un variateur de fréquence.
+  </div>
+
+  <h2>Je teste mes acquis – QCM</h2>
+  <p style="font-size:.9em;color:#718096">Cocher la (ou les) bonne(s) réponse(s), puis vérifier.</p>
+  <div class="qcm-grid">
+    <div class="qcm-item">
+      <strong>1. Sur le symbole de la diode, le triangle pointe vers :</strong>
+      <ul>
+        <li>a. l'anode</li>
+        <li class="ok">b. la cathode ✓</li>
+        <li>c. la masse du circuit</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,1)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm1">Réponse b — Le triangle pointe vers la cathode ; le courant circule de l'anode vers la cathode en sens passant.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>2. Une diode est passante lorsque :</strong>
+      <ul>
+        <li>a. la tension à ses bornes est nulle</li>
+        <li class="ok">b. la tension anode-cathode dépasse environ 0,6-0,7 V ✓</li>
+        <li>c. elle est parcourue par un courant négatif</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,2)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm2">Réponse b — La diode au silicium devient passante lorsque V<sub>AK</sub> ≥ 0,6 à 0,7 V (tension de seuil).</div>
+    </div>
+    <div class="qcm-item">
+      <strong>3. Le redressement simple alternance utilise :</strong>
+      <ul>
+        <li class="ok">a. une seule diode ✓</li>
+        <li>b. deux diodes</li>
+        <li>c. quatre diodes</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,3)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm3">Réponse a — Le redressement simple alternance ne laisse passer qu'une alternance sur deux grâce à une seule diode.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>4. La tension moyenne après un pont de Graetz vaut :</strong>
+      <ul>
+        <li>a. \(U_{moy} = \dfrac{U_{max}}{2}\)</li>
+        <li class="ok">b. \(U_{moy} = \dfrac{2 \times U_{max}}{\pi}\) ✓</li>
+        <li>c. \(U_{moy} = U_{max}\)</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,4)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm4">Réponse b — Le pont de Graetz réalise un redressement double alternance : \(U_{moy} = \dfrac{2 \times U_{max}}{\pi}\).</div>
+    </div>
+    <div class="qcm-item">
+      <strong>5. Le rôle du condensateur de filtrage est de :</strong>
+      <ul>
+        <li>a. augmenter la fréquence du signal</li>
+        <li>b. amplifier la tension</li>
+        <li class="ok">c. lisser la tension redressée ✓</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,5)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm5">Réponse c — Le condensateur se charge puis se décharge lentement, ce qui réduit les ondulations et lisse la tension.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>6. Un onduleur transforme :</strong>
+      <ul>
+        <li>a. le courant alternatif en courant continu</li>
+        <li class="ok">b. le courant continu en courant alternatif ✓</li>
+        <li>c. la tension 230 V en 400 V</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,6)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm6">Réponse b — L'onduleur (ou inverseur) convertit le courant continu (DC) en courant alternatif (AC).</div>
+    </div>
+    <div class="qcm-item">
+      <strong>7. Un variateur de fréquence permet de :</strong>
+      <ul>
+        <li>a. modifier la tension d'alimentation uniquement</li>
+        <li>b. protéger le moteur contre les courts-circuits</li>
+        <li class="ok">c. régler la vitesse d'un moteur asynchrone ✓</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,7)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm7">Réponse c — Le variateur de fréquence modifie la fréquence et la tension d'alimentation du moteur, ce qui permet de régler sa vitesse.</div>
+    </div>
+    <div class="qcm-item">
+      <strong>8. Dans un variateur de fréquence, la chaîne de conversion est :</strong>
+      <ul>
+        <li>a. AC → AC directement</li>
+        <li class="ok">b. AC → DC → AC ✓</li>
+        <li>c. DC → AC → DC</li>
+      </ul>
+      <button class="bcq" onclick="showQcm(this,8)">Voir la réponse</button>
+      <div class="qcm-corr" id="qcm8">Réponse b — Le variateur redresse d'abord le courant (AC→DC) puis le reconvertit en AC à la fréquence souhaitée (DC→AC).</div>
+    </div>
+  </div>
+
+  <hr class="section-sep">
+  <div class="section-label">Je m'exerce – exercices guidés</div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 1</span>
+      <span class="exo-title">Identifier les composants d'un circuit redresseur</span>
+      <span class="diff diff-1">★ Facile</span>
+    </div>
+    <p class="enonce">Un technicien chauffagiste installe une carte électronique de commande pour une chaudière murale. Cette carte est alimentée par le secteur 230 V AC et doit fournir une tension continue de 12 V. Il observe sur le circuit imprimé les composants suivants : un transformateur, une diode, un condensateur.</p>
+    <div class="q"><strong>1.</strong> Quel est le rôle du transformateur dans ce circuit ?</div>
+    <div class="q"><strong>2.</strong> Rappeler le symbole d'une diode et indiquer le sens du courant en mode passant (de l'anode vers la cathode ou inversement ?).</div>
+    <div class="q"><strong>3.</strong> Quel type de redressement réalise une seule diode ? Décrire l'allure du signal obtenu.</div>
+    <div class="q"><strong>4.</strong> Quel est le rôle du condensateur placé après la diode ?</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> Le transformateur abaisse la tension du secteur (230 V AC) à une tension plus faible adaptée au circuit (ici environ 12 à 15 V AC).</p>
+      <p><strong>2.</strong> La diode est représentée par un triangle suivi d'un trait vertical (cathode). En mode passant, le courant circule <strong>de l'anode vers la cathode</strong> (dans le sens du triangle).</p>
+      <p><strong>3.</strong> Une seule diode réalise un <strong>redressement simple alternance</strong> : seules les alternances positives passent, les alternances négatives sont bloquées. Le signal obtenu est une succession de demi-sinusoïdes séparées par des intervalles à zéro.</p>
+      <p><strong>4.</strong> Le condensateur <strong>lisse la tension redressée</strong> : il se charge pendant les demi-sinusoïdes puis se décharge lentement pendant les intervalles, réduisant ainsi les ondulations pour obtenir une tension quasi continue.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 2</span>
+      <span class="exo-title">Calculer la tension moyenne après redressement</span>
+      <span class="diff diff-1">★ Facile</span>
+    </div>
+    <p class="enonce">Un installateur thermique dispose d'un transformateur délivrant une tension sinusoïdale de valeur maximale \(U_{max} = 18\text{ V}\).</p>
+    <div class="q"><strong>1.</strong> Calculer la tension moyenne \(U_{moy}\) obtenue après un redressement simple alternance (une diode). On rappelle : \(U_{moy} = \dfrac{U_{max}}{\pi}\).</div>
+    <div class="q"><strong>2.</strong> Calculer la tension moyenne \(U_{moy}\) obtenue après un redressement double alternance (pont de Graetz). On rappelle : \(U_{moy} = \dfrac{2 \times U_{max}}{\pi}\).</div>
+    <div class="q"><strong>3.</strong> Comparer les deux résultats. Quel type de redressement est le plus efficace ?</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> Redressement simple alternance :<br>
+      \(U_{moy} = \dfrac{U_{max}}{\pi} = \dfrac{18}{\pi} = \dfrac{18}{3{,}14} \approx \mathbf{5{,}73\text{ V}}\)</p>
+      <p><strong>2.</strong> Redressement double alternance (pont de Graetz) :<br>
+      \(U_{moy} = \dfrac{2 \times U_{max}}{\pi} = \dfrac{2 \times 18}{\pi} = \dfrac{36}{3{,}14} \approx \mathbf{11{,}46\text{ V}}\)</p>
+      <p><strong>3.</strong> La tension moyenne est deux fois plus élevée avec le pont de Graetz (11,46 V contre 5,73 V). Le redressement double alternance est <strong>plus efficace</strong> car il utilise les deux alternances du signal.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 3</span>
+      <span class="exo-title">Dimensionner un condensateur de filtrage</span>
+      <span class="diff diff-2">★★ Intermédiaire</span>
+    </div>
+    <p class="enonce">Un technicien CVC répare l'alimentation d'une vanne motorisée. Après le pont de Graetz, la tension redressée a une fréquence de 100 Hz. La charge a une résistance équivalente R = 470 Ω. Pour un bon filtrage, la constante de temps τ = R × C doit vérifier \(\tau \gg \dfrac{T}{2}\), soit en pratique τ ≥ 5 × T/2.</p>
+    <div class="q"><strong>1.</strong> Calculer la période T du signal redressé double alternance (f = 100 Hz).</div>
+    <div class="q"><strong>2.</strong> Calculer la valeur minimale de la constante de temps \(\tau_{min}\) pour que le filtrage soit efficace.</div>
+    <div class="q"><strong>3.</strong> En déduire la capacité minimale C du condensateur.</div>
+    <div class="q"><strong>4.</strong> Le technicien dispose de condensateurs de 47 µF, 100 µF et 470 µF. Lequel doit-il choisir ? Justifier.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(T = \dfrac{1}{f} = \dfrac{1}{100} = \mathbf{0{,}01\text{ s}} = 10\text{ ms}\)</p>
+      <p><strong>2.</strong> \(\tau_{min} = 5 \times \dfrac{T}{2} = 5 \times \dfrac{0{,}01}{2} = 5 \times 0{,}005 = \mathbf{0{,}025\text{ s}} = 25\text{ ms}\)</p>
+      <p><strong>3.</strong> \(\tau = R \times C\) donc \(C = \dfrac{\tau}{R} = \dfrac{0{,}025}{470} \approx 5{,}32 \times 10^{-5}\text{ F} \approx \mathbf{53{,}2\text{ µF}}\)</p>
+      <p><strong>4.</strong> Le condensateur de 47 µF est insuffisant (47 < 53,2). Le technicien doit choisir le <strong>condensateur de 100 µF</strong>, qui est le premier à dépasser la valeur minimale calculée. Le condensateur de 470 µF fonctionnerait aussi, mais il est surdimensionné et plus volumineux.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 4</span>
+      <span class="exo-title">Chaîne complète de conversion pour un moteur CC</span>
+      <span class="diff diff-2">★★ Intermédiaire</span>
+    </div>
+    <p class="enonce">Un installateur de pompes à chaleur doit alimenter un petit moteur à courant continu (24 V DC, 2 A) qui entraîne une vanne trois voies. L'alimentation est réalisée à partir du secteur 230 V / 50 Hz, grâce à la chaîne : transformateur → pont de Graetz → condensateur de filtrage.</p>
+    <div class="q"><strong>1.</strong> Le transformateur a un rapport de transformation m = 0,10. Calculer la tension efficace au secondaire : \(U_2 = m \times U_1\).</div>
+    <div class="q"><strong>2.</strong> En déduire la tension maximale au secondaire : \(U_{max} = U_2 \times \sqrt{2}\).</div>
+    <div class="q"><strong>3.</strong> Calculer la tension moyenne après le pont de Graetz : \(U_{moy} = \dfrac{2 \times U_{max}}{\pi}\).</div>
+    <div class="q"><strong>4.</strong> Cette tension moyenne est-elle compatible avec le moteur 24 V DC ? Justifier.</div>
+    <div class="q"><strong>5.</strong> Calculer la puissance consommée par le moteur : P = U × I.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(U_2 = m \times U_1 = 0{,}10 \times 230 = \mathbf{23\text{ V}}\) (valeur efficace)</p>
+      <p><strong>2.</strong> \(U_{max} = U_2 \times \sqrt{2} = 23 \times 1{,}414 = \mathbf{32{,}5\text{ V}}\)</p>
+      <p><strong>3.</strong> \(U_{moy} = \dfrac{2 \times U_{max}}{\pi} = \dfrac{2 \times 32{,}5}{3{,}14} = \dfrac{65}{3{,}14} \approx \mathbf{20{,}7\text{ V}}\)</p>
+      <p><strong>4.</strong> La tension moyenne obtenue (20,7 V) est <strong>inférieure</strong> aux 24 V requis par le moteur. Le transformateur avec m = 0,10 n'est pas adapté : il faudrait un rapport de transformation légèrement plus élevé (par exemple m ≈ 0,12) pour obtenir une tension moyenne d'environ 24 V après filtrage.</p>
+      <p><strong>5.</strong> \(P = U \times I = 24 \times 2 = \mathbf{48\text{ W}}\)</p>
+    </div>
+  </div>
+
+  <hr class="section-sep">
+  <div class="section-label">J'approfondis – exercices avancés</div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 5</span>
+      <span class="exo-title">Variateur de fréquence pour une CTA</span>
+      <span class="diff diff-3">★★★ Avancé</span>
+    </div>
+    <p class="enonce">Un technicien CVC installe un variateur de fréquence sur le ventilateur d'une centrale de traitement d'air (CTA). Le moteur asynchrone triphasé du ventilateur possède 2 paires de pôles (p = 2). La vitesse de synchronisme est donnée par \(n_s = \dfrac{60 \times f}{p}\). Le variateur permet de modifier la fréquence d'alimentation entre 20 Hz et 50 Hz.</p>
+    <div class="q"><strong>1.</strong> Calculer la vitesse de synchronisme \(n_s\) pour f = 50 Hz.</div>
+    <div class="q"><strong>2.</strong> Calculer la vitesse de synchronisme \(n_s\) pour f = 35 Hz.</div>
+    <div class="q"><strong>3.</strong> Calculer la vitesse de synchronisme \(n_s\) pour f = 20 Hz.</div>
+    <div class="q"><strong>4.</strong> Le technicien souhaite que le ventilateur tourne à environ 900 tr/min. À quelle fréquence doit-il régler le variateur ?</div>
+    <div class="q"><strong>5.</strong> Expliquer pourquoi le variateur de fréquence est particulièrement intéressant pour la ventilation en chauffage/climatisation.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(n_s = \dfrac{60 \times f}{p} = \dfrac{60 \times 50}{2} = \mathbf{1\,500\text{ tr/min}}\)</p>
+      <p><strong>2.</strong> \(n_s = \dfrac{60 \times 35}{2} = \dfrac{2\,100}{2} = \mathbf{1\,050\text{ tr/min}}\)</p>
+      <p><strong>3.</strong> \(n_s = \dfrac{60 \times 20}{2} = \dfrac{1\,200}{2} = \mathbf{600\text{ tr/min}}\)</p>
+      <p><strong>4.</strong> On cherche f telle que \(n_s = 900\) tr/min :<br>
+      \(f = \dfrac{n_s \times p}{60} = \dfrac{900 \times 2}{60} = \mathbf{30\text{ Hz}}\)<br>
+      Le technicien doit régler le variateur à <strong>30 Hz</strong>.</p>
+      <p><strong>5.</strong> En chauffage/climatisation, les besoins en débit d'air varient selon la saison, l'occupation des locaux et la température extérieure. Le variateur de fréquence permet d'<strong>adapter la vitesse du ventilateur au besoin réel</strong>, ce qui réduit considérablement la consommation électrique (la puissance varie avec le cube de la vitesse : diviser la vitesse par 2 divise la puissance par 8).</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 6</span>
+      <span class="exo-title">Chaîne de conversion pour une installation de chauffage</span>
+      <span class="diff diff-3">★★★ Avancé</span>
+    </div>
+    <p class="enonce">Une installation de chauffage collectif comprend un circulateur (pompe) alimenté par un variateur de fréquence. Le variateur est branché sur le réseau triphasé 400 V / 50 Hz. La chaîne de conversion interne du variateur comprend trois étages : redresseur (pont de Graetz triphasé), bus continu avec condensateurs de filtrage, et onduleur.</p>
+    <div class="q"><strong>1.</strong> Décrire la nature du signal électrique (AC ou DC) à chaque étape de la chaîne :<br>
+    a. en entrée du variateur (réseau) ;<br>
+    b. après le redresseur ;<br>
+    c. après le bus continu (filtrage) ;<br>
+    d. en sortie de l'onduleur.</div>
+    <div class="q"><strong>2.</strong> La tension maximale entre phases du réseau vaut \(U_{max} = U \times \sqrt{2} = 400 \times \sqrt{2}\). Calculer cette valeur.</div>
+    <div class="q"><strong>3.</strong> La tension du bus continu est approximativement égale à \(U_{max}\). Donner sa valeur.</div>
+    <div class="q"><strong>4.</strong> L'onduleur reconvertit cette tension continue en tension alternative de fréquence réglable. Si le technicien règle la fréquence de sortie à 25 Hz au lieu de 50 Hz, par quel facteur la vitesse du circulateur est-elle divisée ?</div>
+    <div class="q"><strong>5.</strong> En appliquant la loi cubique \(P \propto n^3\), par quel facteur la puissance consommée est-elle divisée ?</div>
+    <div class="q"><strong>6.</strong> Le circulateur consomme 750 W à 50 Hz. Estimer sa consommation à 25 Hz.</div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong><br>
+      a. En entrée : <strong>AC triphasé</strong> (3 tensions sinusoïdales déphasées de 120°).<br>
+      b. Après le redresseur : <strong>DC pulsé</strong> (tension positive avec ondulations).<br>
+      c. Après le bus continu : <strong>DC lissé</strong> (tension quasi constante grâce aux condensateurs).<br>
+      d. En sortie de l'onduleur : <strong>AC à fréquence variable</strong> (signal reconstitué par commutation rapide, de forme quasi sinusoïdale).</p>
+      <p><strong>2.</strong> \(U_{max} = 400 \times \sqrt{2} = 400 \times 1{,}414 = \mathbf{565{,}7\text{ V}}\)</p>
+      <p><strong>3.</strong> La tension du bus continu vaut environ <strong>565 V DC</strong>.</p>
+      <p><strong>4.</strong> La vitesse de synchronisme est proportionnelle à la fréquence : \(n_s \propto f\).<br>
+      Si f passe de 50 Hz à 25 Hz, la vitesse est divisée par \(\dfrac{50}{25} = \mathbf{2}\).</p>
+      <p><strong>5.</strong> D'après la loi cubique : \(P \propto n^3\), donc si n est divisée par 2 :<br>
+      \(\dfrac{P_2}{P_1} = \left(\dfrac{n_2}{n_1}\right)^3 = \left(\dfrac{1}{2}\right)^3 = \dfrac{1}{8}\)<br>
+      La puissance est divisée par <strong>8</strong>.</p>
+      <p><strong>6.</strong> \(P_2 = \dfrac{P_1}{8} = \dfrac{750}{8} = \mathbf{93{,}75\text{ W}}\)<br>
+      Le circulateur ne consomme plus qu'environ <strong>94 W</strong> à 25 Hz, soit une économie de 656 W, ce qui illustre l'intérêt majeur du variateur de fréquence en génie climatique.</p>
+    </div>
+  </div>
 </div>
+<script>
+function toggle(btn){
+  const c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+function showQcm(btn,n){
+  const d=document.getElementById('qcm'+n);
+  if(d.style.display==='block'){d.style.display='none';btn.textContent='Voir la réponse';}
+  else{d.style.display='block';btn.textContent='Masquer la réponse';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

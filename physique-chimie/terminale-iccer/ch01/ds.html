@@ -1,22 +1,148 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devoir surveillé — Ch01 Évaluer la puissance consommée</title>
-    <link rel="stylesheet" href="../../../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ch01 – Évaluer la puissance consommée – DS</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #6f42c1; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
+.info-ds{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em;display:flex;gap:30px;flex-wrap:wrap}
+    .info-ds div{flex:1;min-width:150px}
+    .info-ds strong{display:block;color:var(--p);margin-bottom:2px}
+    .pts{font-size:.8em;background:#ede9fe;color:#5b21b6;padding:2px 8px;border-radius:4px;font-weight:600}
+    .q-pts{color:#718096;font-size:.85em;font-style:italic}
+    .enonce{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93em}
+    .total-bar{background:#6f42c1;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px}</style>
 </head>
 <body>
-<div class="container">
-    <a href="pc-term-iccer.html" class="back">← Retour</a>
-    <h1>Devoir surveillé — Évaluer la puissance consommée</h1>
-    <p>Page en construction.</p>
+<div class="c">
+  <a href="pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+  <header>
+    <h1>Chapitre 1 – Devoir Surveillé</h1>
+    <p class="sous-titre">Évaluer la puissance consommée &nbsp;|&nbsp; Terminale Bac Pro ICCER</p>
+  </header>
+  <div class="info-ds">
+    <div><strong>Durée</strong>55 minutes</div>
+    <div><strong>Barème</strong>20 points</div>
+    <div><strong>Documents</strong>Non autorisés (sauf fiche de formules fournie)</div>
+    <div><strong>Calculatrice</strong>Autorisée</div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 1</span>
+      <span class="exo-title">Installation électrique d'un local chaufferie</span>
+      <span class="pts">8 points</span>
+    </div>
+    <p class="enonce">
+      Un technicien chauffagiste intervient sur l'installation électrique d'un local chaufferie alimenté en monophasé 230 V / 50 Hz. L'ensemble des équipements (brûleur, circulateurs, régulation) consomme un courant d'intensité I = 18 A avec un déphasage φ = 35° par rapport à la tension.<br>
+      Données :
+      <ul>
+        <li>Tension efficace : U = 230 V</li>
+        <li>Intensité efficace : I = 18 A</li>
+        <li>Déphasage : φ = 35°</li>
+        <li>cos(35°) = 0,819 &nbsp;|&nbsp; sin(35°) = 0,574</li>
+      </ul>
+    </p>
+    <div class="q"><strong>1.</strong> Rappeler la relation entre la période T et la fréquence f du courant alternatif. Calculer T pour f = 50 Hz. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>2.</strong> Calculer la puissance apparente S de l'installation. Préciser son unité. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>3.</strong> Calculer la puissance active P consommée par l'installation. Préciser son unité. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>4.</strong> Calculer la puissance réactive Q. Préciser son unité. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>5.</strong> Tracer le triangle des puissances en indiquant les valeurs de P, Q et S. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>6.</strong> Le fournisseur d'électricité demande un facteur de puissance supérieur à 0,93. L'installation est-elle conforme ? Proposer une solution pour améliorer le facteur de puissance. <span class="q-pts">(1 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(T = \dfrac{1}{f} = \dfrac{1}{50} = \mathbf{0{,}02\text{ s} = 20\text{ ms}}\)</p>
+      <p><strong>2.</strong> \(S = U \times I = 230 \times 18 = \mathbf{4\,140\text{ VA}}\)<br>L'unité de la puissance apparente est le <strong>voltampère (VA)</strong>.</p>
+      <p><strong>3.</strong> \(P = U \times I \times \cos(\varphi) = 230 \times 18 \times 0{,}819 = \mathbf{3\,390{,}7\text{ W}} \approx 3{,}39\text{ kW}\)<br>L'unité de la puissance active est le <strong>watt (W)</strong>.</p>
+      <p><strong>4.</strong> \(Q = U \times I \times \sin(\varphi) = 230 \times 18 \times 0{,}574 = \mathbf{2\,376{,}4\text{ var}}\)<br>L'unité de la puissance réactive est le <strong>voltampère réactif (var)</strong>.</p>
+      <p><strong>5.</strong> Triangle des puissances :<br>
+        – côté horizontal : P = 3 390,7 W<br>
+        – côté vertical : Q = 2 376,4 var<br>
+        – hypoténuse : S = 4 140 VA<br>
+        – angle φ = 35° entre P et S<br>
+        Vérification : \(S^2 = P^2 + Q^2 = 3\,390{,}7^2 + 2\,376{,}4^2 \approx 11\,496\,847 + 5\,647\,277 \approx 17\,144\,124\)<br>
+        \(\sqrt{17\,144\,124} \approx 4\,140\text{ VA}\) ✓</p>
+      <p><strong>6.</strong> Le facteur de puissance est cos(φ) = cos(35°) = <strong>0,819</strong>.<br>
+        Or 0,819 &lt; 0,93 → <strong>l'installation n'est pas conforme</strong>.<br>
+        Solution : installer une <strong>batterie de condensateurs</strong> en parallèle pour compenser la puissance réactive et relever le facteur de puissance au-dessus de 0,93.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 2</span>
+      <span class="exo-title">Dimensionnement d'un disjoncteur pour une pompe à chaleur</span>
+      <span class="pts">7 points</span>
+    </div>
+    <p class="enonce">
+      Un installateur thermique doit raccorder une pompe à chaleur (PAC) air/eau dans un pavillon. La PAC fonctionne en monophasé 230 V et sa plaque signalétique indique :<br>
+      <ul>
+        <li>Puissance active nominale : P = 2 800 W</li>
+        <li>Facteur de puissance : cos(φ) = 0,85</li>
+        <li>Courant de démarrage : I<sub>d</sub> = 3 × I<sub>n</sub></li>
+      </ul>
+      Calibres de disjoncteurs disponibles : 10 A, 16 A, 20 A, 25 A, 32 A, 40 A.
+    </p>
+    <div class="q"><strong>1.</strong> Calculer l'intensité nominale I<sub>n</sub> absorbée par la PAC. <span class="q-pts">(2 pts)</span></div>
+    <div class="q"><strong>2.</strong> En déduire le courant de démarrage I<sub>d</sub>. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>3.</strong> Choisir le calibre du disjoncteur adapté. Justifier. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>4.</strong> Calculer la puissance apparente S de la PAC. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>5.</strong> Un câble en cuivre de section 4 mm² supporte 27 A en installation encastrée. Ce câble convient-il ? Justifier. <span class="q-pts">(1,5 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(P = U \times I_n \times \cos(\varphi)\) donc \(I_n = \dfrac{P}{U \times \cos(\varphi)} = \dfrac{2\,800}{230 \times 0{,}85} = \dfrac{2\,800}{195{,}5} \approx \mathbf{14{,}3\text{ A}}\)</p>
+      <p><strong>2.</strong> \(I_d = 3 \times I_n = 3 \times 14{,}3 = \mathbf{42{,}9\text{ A}}\)</p>
+      <p><strong>3.</strong> Le calibre du disjoncteur doit être supérieur à I<sub>n</sub> = 14,3 A.<br>
+        On choisit un disjoncteur de <strong>16 A</strong> (premier calibre supérieur à 14,3 A).<br>
+        Un disjoncteur courbe D tolère les pointes de démarrage (jusqu'à 10 × I<sub>n</sub>), donc le courant de démarrage de 42,9 A ne déclenchera pas la protection.</p>
+      <p><strong>4.</strong> \(S = U \times I_n = 230 \times 14{,}3 = \mathbf{3\,289\text{ VA}} \approx 3{,}29\text{ kVA}\)</p>
+      <p><strong>5.</strong> Le câble supporte 27 A &gt; I<sub>n</sub> = 14,3 A → <strong>oui, le câble de 4 mm² convient</strong>.<br>
+        Il assure une marge de sécurité suffisante (27 − 14,3 = 12,7 A de marge).</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 3</span>
+      <span class="exo-title">Coût énergétique annuel d'un circulateur de chauffage</span>
+      <span class="pts">5 points</span>
+    </div>
+    <p class="enonce">
+      Un technicien CVC effectue un audit énergétique d'une installation de chauffage collectif. Le circulateur primaire fonctionne en continu pendant la saison de chauffe.<br>
+      Données :
+      <ul>
+        <li>Puissance active du circulateur : P = 180 W</li>
+        <li>Durée de fonctionnement : 16 h/jour pendant 200 jours par an</li>
+        <li>Prix du kWh : 0,2276 € TTC</li>
+      </ul>
+    </p>
+    <div class="q"><strong>1.</strong> Calculer la durée totale de fonctionnement annuel en heures. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>2.</strong> Calculer l'énergie consommée W en kWh sur une année. <span class="q-pts">(2 pts)</span></div>
+    <div class="q"><strong>3.</strong> En déduire le coût annuel de fonctionnement du circulateur. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>4.</strong> Un circulateur à vitesse variable consomme 65 W en moyenne. Calculer l'économie annuelle réalisée en euros. <span class="q-pts">(1 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> Durée annuelle = 16 × 200 = <strong>3 200 h</strong></p>
+      <p><strong>2.</strong> \(W = P \times t = 180 \times 3\,200 = 576\,000\text{ Wh} = \mathbf{576\text{ kWh}}\)</p>
+      <p><strong>3.</strong> Coût = W × prix = 576 × 0,2276 = <strong>131,10 €</strong></p>
+      <p><strong>4.</strong> Énergie avec circulateur variable : \(W' = 65 \times 3\,200 = 208\,000\text{ Wh} = 208\text{ kWh}\)<br>
+        Coût' = 208 × 0,2276 = 47,34 €<br>
+        Économie = 131,10 − 47,34 = <strong>83,76 € par an</strong></p>
+    </div>
+  </div>
+
+  <div class="total-bar">TOTAL : 20 points</div>
 </div>
+<script>
+function toggle(btn){
+  const c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

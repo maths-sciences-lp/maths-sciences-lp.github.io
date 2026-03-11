@@ -1,23 +1,160 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devoir surveillé — Ch11 Produit scalaire</title>
-    <link rel="stylesheet" href="../../../styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DS Ch11 – Produit scalaire</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #0969da; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
-  <link rel="stylesheet" href="/nav.css">
+.dh{display:flex;flex-wrap:wrap;gap:10px;background:#eef2f7;padding:14px 18px;border-radius:8px;margin-bottom:28px;font-size:.9em}
+.dh-item{display:flex;align-items:center;gap:6px}
+.dh-item strong{color:var(--p)}
+.partie{border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin:24px 0}
+.partie-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--p)}
+.partie-title{font-weight:700;font-size:1.1em;color:var(--p)}
+.pts{background:var(--p);color:#fff;font-weight:700;font-size:.85em;padding:3px 10px;border-radius:12px}
+.answer-line{border-bottom:1px solid #aaa;margin:6px 0;height:28px;display:block}
+.bareme{font-style:italic;color:#718096;font-size:.85em}</style>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
-<div class="container">
-    <a href="maths-term-iccer.html" class="back">← Retour</a>
-    <h1>Devoir surveillé — Produit scalaire</h1>
-    <p>Page en construction.</p>
+<div class="c">
+<a href="../../sommaire.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Devoir Surveill&eacute; &ndash; Chapitre 11</h1>
+  <p class="sous-titre">Produit scalaire &nbsp;|&nbsp; T<sup>le</sup> Bac Pro</p>
+</header>
+
+<div class="dh">
+  <div class="dh-item">&#128337; <strong>Dur&eacute;e :</strong> 1 heure</div>
+  <div class="dh-item">&#129518; <strong>Calculatrice :</strong> autoris&eacute;e</div>
+  <div class="dh-item">&#9997; <strong>Bar&egrave;me :</strong> 20 points</div>
+  <div class="dh-item">&#128196; <strong>Documents :</strong> non autoris&eacute;s</div>
 </div>
+
+<!-- ===== EXERCICE 1 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 1 &ndash; Produit scalaire, norme et angle</span>
+    <span class="pts">7 points</span>
+  </div>
+
+  <p>On donne les vecteurs \(\vec{u}\begin{pmatrix}3\\4\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}2\\-1\end{pmatrix}\).</p>
+
+  <div class="q"><strong>1. (1,5 pt)</strong> Calculer le produit scalaire \(\vec{u} \cdot \vec{v}\).</div>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (1,5 pt)</strong> Calculer les normes \(\|\vec{u}\|\) et \(\|\vec{v}\|\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (2 pts)</strong> En d&eacute;duire la mesure de l'angle \(\theta\) entre \(\vec{u}\) et \(\vec{v}\). Arrondir au degr&eacute;.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>4. (2 pts)</strong> On donne \(\vec{w}\begin{pmatrix}4\\-3\end{pmatrix}\). V&eacute;rifier que \(\vec{w}\) est orthogonal &agrave; \(\vec{u}\). Justifier par le produit scalaire.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\vec{u} \cdot \vec{v} = 3 \times 2 + 4 \times (-1) = 6 - 4 = 2\).</p>
+    <p><strong>2.</strong> \(\|\vec{u}\| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5\).<br>
+    \(\|\vec{v}\| = \sqrt{2^2 + (-1)^2} = \sqrt{4 + 1} = \sqrt{5} \approx 2{,}24\).</p>
+    <p><strong>3.</strong> \(\cos\theta = \dfrac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \times \|\vec{v}\|} = \dfrac{2}{5\sqrt{5}} = \dfrac{2}{5 \times 2{,}236} = \dfrac{2}{11{,}18} \approx 0{,}1789\).<br>
+    \(\theta = \arccos(0{,}1789) \approx 80°\).</p>
+    <p><strong>4.</strong> \(\vec{u} \cdot \vec{w} = 3 \times 4 + 4 \times (-3) = 12 - 12 = 0\).<br>
+    Le produit scalaire est nul, donc \(\vec{w}\) est orthogonal &agrave; \(\vec{u}\).</p>
+  </div>
+</div>
+
+<!-- ===== EXERCICE 2 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 2 &ndash; Droites : &eacute;quation cart&eacute;sienne, vecteur normal et distance</span>
+    <span class="pts">7 points</span>
+  </div>
+
+  <div class="q"><strong>1. (2 pts)</strong> La droite \((d_1)\) passe par \(A(1\,;\,3)\) et admet \(\vec{n}\begin{pmatrix}2\\-5\end{pmatrix}\) comme vecteur normal. D&eacute;terminer l'&eacute;quation cart&eacute;sienne de \((d_1)\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (2 pts)</strong> La droite \((d_2)\) a pour &eacute;quation \(3x + 4y - 12 = 0\). Donner un vecteur normal et un vecteur directeur de \((d_2)\). V&eacute;rifier que le point \(B(0\,;\,3)\) appartient &agrave; \((d_2)\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (3 pts)</strong> Calculer la distance du point \(P(5\,;\,1)\) &agrave; la droite \((d_2)\) d'&eacute;quation \(3x + 4y - 12 = 0\). Interpr&eacute;ter le r&eacute;sultat.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> L'&eacute;quation cart&eacute;sienne d'une droite de vecteur normal \(\vec{n}\begin{pmatrix}a\\b\end{pmatrix}\) passant par \(A(x_A\,;\,y_A)\) est \(a(x - x_A) + b(y - y_A) = 0\).<br>
+    \(2(x - 1) + (-5)(y - 3) = 0\) &rarr; \(2x - 2 - 5y + 15 = 0\) &rarr; \(2x - 5y + 13 = 0\).</p>
+    <p><strong>2.</strong> Vecteur normal : \(\vec{n}\begin{pmatrix}3\\4\end{pmatrix}\). Vecteur directeur : \(\vec{d}\begin{pmatrix}4\\-3\end{pmatrix}\) (ou \(\begin{pmatrix}-4\\3\end{pmatrix}\)).<br>
+    V&eacute;rification : \(3 \times 0 + 4 \times 3 - 12 = 0 + 12 - 12 = 0\) &check; : \(B\) appartient &agrave; \((d_2)\).</p>
+    <p><strong>3.</strong> Formule : \(d(P, (d_2)) = \dfrac{|ax_0 + by_0 + c|}{\sqrt{a^2 + b^2}}\).<br>
+    \(d(P, (d_2)) = \dfrac{|3 \times 5 + 4 \times 1 - 12|}{\sqrt{3^2 + 4^2}} = \dfrac{|15 + 4 - 12|}{\sqrt{25}} = \dfrac{7}{5} = 1{,}4\) unit&eacute;s.<br>
+    Le point \(P\) se trouve &agrave; 1,4 unit&eacute;s de la droite \((d_2)\).</p>
+  </div>
+</div>
+
+<!-- ===== EXERCICE 3 ===== -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Exercice 3 &ndash; V&eacute;rification de perpendicularit&eacute; (contexte ERA)</span>
+    <span class="pts">6 points</span>
+  </div>
+
+  <div class="situation">
+    <strong>Contexte :</strong> Un agenceur d'espace r&eacute;alise le plan d'am&eacute;nagement d'un local commercial. Sur le plan (unit&eacute; : 1 m), les coins de la pi&egrave;ce principale sont \(A(0\,;\,0)\), \(B(7\,;\,0)\), \(C(7\,;\,5)\) et \(D(0\,;\,5)\). Une cloison part de \(E(3\,;\,0)\) et rejoint \(F(3\,;\,4)\).
+  </div>
+
+  <div class="q"><strong>1. (1,5 pt)</strong> Calculer les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{EF}\). V&eacute;rifier par le produit scalaire que la cloison \([EF]\) est perpendiculaire au mur \([AB]\).</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>2. (1,5 pt)</strong> L'agenceur trace un second mur allant de \(G(3\,;\,4)\) &agrave; \(H(7\,;\,4)\). Ce mur est-il perpendiculaire &agrave; la cloison \([EF]\) ? Justifier par le produit scalaire.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>3. (1,5 pt)</strong> L'agenceur v&eacute;rifie l'&eacute;querrage par la m&eacute;thode 3-4-5. Il mesure 3 m le long de \([EF]\) depuis \(E\) et 4 m le long de \([AB]\) depuis \(E\). La diagonale devrait mesurer 5 m. Justifier math&eacute;matiquement cette m&eacute;thode.</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q"><strong>4. (1,5 pt)</strong> D&eacute;terminer l'&eacute;quation de la droite support de la cloison \((EF)\). Le point \(K(3\,;\,6)\) est-il dans le prolongement de cette cloison ?</div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\overrightarrow{AB} = \begin{pmatrix}7\\0\end{pmatrix}\) et \(\overrightarrow{EF} = \begin{pmatrix}0\\4\end{pmatrix}\).<br>
+    \(\overrightarrow{AB} \cdot \overrightarrow{EF} = 7 \times 0 + 0 \times 4 = 0\). Le produit scalaire est nul : la cloison est perpendiculaire au mur.</p>
+    <p><strong>2.</strong> \(\overrightarrow{GH} = \begin{pmatrix}4\\0\end{pmatrix}\).<br>
+    \(\overrightarrow{EF} \cdot \overrightarrow{GH} = 0 \times 4 + 4 \times 0 = 0\). Le produit scalaire est nul : le mur \([GH]\) est perpendiculaire &agrave; la cloison \([EF]\).</p>
+    <p><strong>3.</strong> Depuis \(E(3\,;\,0)\), 3 m le long de \([EF]\) m&egrave;ne au point \(P(3\,;\,3)\). 4 m le long de \([AB]\) depuis \(E\) m&egrave;ne au point \(Q(7\,;\,0)\).<br>
+    \(PQ = \sqrt{(7-3)^2 + (0-3)^2} = \sqrt{16 + 9} = \sqrt{25} = 5\) m.<br>
+    C'est le triplet pythagoricien \(3^2 + 4^2 = 5^2\). Si la diagonale mesure bien 5 m, l'angle en \(E\) est droit.</p>
+    <p><strong>4.</strong> La droite \((EF)\) passe par \(E(3\,;\,0)\) avec un vecteur directeur \(\begin{pmatrix}0\\4\end{pmatrix}\). Comme les abscisses sont constantes, l'&eacute;quation est \(x = 3\).<br>
+    Le point \(K(3\,;\,6)\) v&eacute;rifie \(x = 3\), donc \(K\) appartient au prolongement de la cloison.</p>
+  </div>
+</div>
+
+<div class="total-bar" style="background:var(--p);color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px">TOTAL : 20 points</div>
+
+</div>
+
+<script>
+function toggle(btn){
+  const corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>

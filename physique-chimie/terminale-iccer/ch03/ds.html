@@ -1,22 +1,143 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devoir surveillé — Ch03 Étudier le moteur électrique</title>
-    <link rel="stylesheet" href="../../../styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ch03 – Obtenir de l'énergie mécanique à l'aide d'un moteur électrique – DS</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="../../../styles.css">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.back { display: inline-block; margin-bottom: 40px; text-decoration: none; color: #6e7781; font-size: 0.9em; }
-        .back:hover { color: #6f42c1; }
-
-        p { color: #6e7781; font-size: 0.95em; }</style>
+.info-ds{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em;display:flex;gap:30px;flex-wrap:wrap}
+    .info-ds div{flex:1;min-width:150px}
+    .info-ds strong{display:block;color:var(--p);margin-bottom:2px}
+    .pts{font-size:.8em;background:#ede9fe;color:#5b21b6;padding:2px 8px;border-radius:4px;font-weight:600}
+    .q-pts{color:#718096;font-size:.85em;font-style:italic}
+    .enonce{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93em}
+    .plaque{background:#1e3a5f;color:#fff;border-radius:8px;display:inline-block;padding:10px 24px;font-family:'Courier New',monospace;font-size:.93em;margin:10px 0;line-height:1.9}
+    .plaque strong{color:#ffd700}
+    .total-bar{background:#6f42c1;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px}</style>
 </head>
 <body>
-<div class="container">
-    <a href="pc-term-iccer.html" class="back">← Retour</a>
-    <h1>Devoir surveillé — Étudier le moteur électrique</h1>
-    <p>Page en construction.</p>
+<div class="c">
+  <a href="pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+  <header>
+    <h1>Chapitre 3 – Devoir Surveillé</h1>
+    <p class="sous-titre">Obtenir de l'énergie mécanique à l'aide d'un moteur électrique &nbsp;|&nbsp; Terminale Bac Pro ICCER</p>
+  </header>
+  <div class="info-ds">
+    <div><strong>Durée</strong>55 minutes</div>
+    <div><strong>Barème</strong>20 points</div>
+    <div><strong>Documents</strong>Non autorisés (sauf fiche de formules fournie)</div>
+    <div><strong>Calculatrice</strong>Autorisée</div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 1</span>
+      <span class="exo-title">Ventilateur d'une centrale de traitement d'air</span>
+      <span class="pts">7 points</span>
+    </div>
+    <p class="enonce">
+      Un technicien CVC intervient sur le moteur asynchrone triphasé d'un ventilateur équipant une centrale de traitement d'air (CTA). Il relève la plaque signalétique suivante :
+    </p>
+    <div class="plaque">
+      <strong>MOTEUR ASYNCHRONE TRIPHASÉ</strong><br>
+      P = 5,5 kW &nbsp;|&nbsp; 400 V / 50 Hz<br>
+      I = 11,2 A &nbsp;|&nbsp; cos φ = 0,82<br>
+      n = 1 440 tr/min &nbsp;|&nbsp; η = 0,87
+    </div>
+    <p></p>
+    <div class="q"><strong>1.</strong> Identifier la puissance P = 5,5 kW indiquée sur la plaque : s'agit-il de la puissance absorbée ou de la puissance utile ? Justifier. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>2.</strong> Calculer la puissance absorbée P<sub>a</sub> par le moteur à partir de la tension, de l'intensité et du facteur de puissance. On rappelle : \(P_a = U \times I \times \sqrt{3} \times \cos(\varphi)\). <span class="q-pts">(2 pts)</span></div>
+    <div class="q"><strong>3.</strong> Vérifier la valeur du rendement η à partir du rapport P<sub>u</sub>/P<sub>a</sub>. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>4.</strong> Calculer les pertes totales du moteur : P<sub>pertes</sub> = P<sub>a</sub> − P<sub>u</sub>. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>5.</strong> La vitesse de synchronisme d'un moteur à 2 paires de pôles alimenté en 50 Hz est n<sub>s</sub> = 1 500 tr/min. Calculer le glissement g du moteur. On rappelle : \(g = \dfrac{n_s - n}{n_s}\). <span class="q-pts">(1,5 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> La puissance P = 5,5 kW est la <strong>puissance utile</strong> (mécanique) délivrée sur l'arbre du moteur. Sur une plaque signalétique, la puissance indiquée est toujours la puissance utile.</p>
+      <p><strong>2.</strong> \(P_a = U \times I \times \sqrt{3} \times \cos(\varphi) = 400 \times 11{,}2 \times 1{,}732 \times 0{,}82\)<br>
+        \(P_a = 400 \times 11{,}2 \times 1{,}732 \times 0{,}82 \approx \mathbf{6\,362\text{ W}} \approx 6{,}36\text{ kW}\)</p>
+      <p><strong>3.</strong> \(\eta = \dfrac{P_u}{P_a} = \dfrac{5\,500}{6\,362} \approx \mathbf{0{,}865 \approx 0{,}87}\)<br>
+        On retrouve bien la valeur η = 0,87 de la plaque signalétique. ✓</p>
+      <p><strong>4.</strong> \(P_{pertes} = P_a - P_u = 6\,362 - 5\,500 = \mathbf{862\text{ W}}\)<br>
+        Ces pertes se dissipent sous forme de chaleur (pertes Joule, pertes fer, pertes mécaniques).</p>
+      <p><strong>5.</strong> \(g = \dfrac{n_s - n}{n_s} = \dfrac{1\,500 - 1\,440}{1\,500} = \dfrac{60}{1\,500} = \mathbf{0{,}04 = 4\,\%}\)<br>
+        Le glissement de 4 % est une valeur normale pour un moteur asynchrone en charge.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 2</span>
+      <span class="exo-title">Bilan de puissance d'un circulateur</span>
+      <span class="pts">7 points</span>
+    </div>
+    <p class="enonce">
+      Un installateur thermique réalise le bilan énergétique d'un circulateur de chauffage entraîné par un moteur asynchrone monophasé.<br>
+      Données :
+      <ul>
+        <li>Puissance électrique absorbée par le moteur : P<sub>a</sub> = 850 W</li>
+        <li>Rendement du moteur : η<sub>m</sub> = 0,82</li>
+        <li>Rendement de la pompe (circulateur) : η<sub>p</sub> = 0,65</li>
+      </ul>
+    </p>
+    <div class="q"><strong>1.</strong> Calculer la puissance mécanique P<sub>méca</sub> transmise par le moteur à la pompe. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>2.</strong> Calculer les pertes dans le moteur. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>3.</strong> Calculer la puissance hydraulique P<sub>hydr</sub> utile fournie par le circulateur au fluide. <span class="q-pts">(1,5 pt)</span></div>
+    <div class="q"><strong>4.</strong> Calculer les pertes dans la pompe. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>5.</strong> Calculer le rendement global η<sub>g</sub> de l'ensemble moteur + pompe. Vérifier que η<sub>g</sub> = η<sub>m</sub> × η<sub>p</sub>. <span class="q-pts">(2 pts)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(P_{m\acute{e}ca} = P_a \times \eta_m = 850 \times 0{,}82 = \mathbf{697\text{ W}}\)</p>
+      <p><strong>2.</strong> Pertes moteur = P<sub>a</sub> − P<sub>méca</sub> = 850 − 697 = <strong>153 W</strong></p>
+      <p><strong>3.</strong> \(P_{hydr} = P_{m\acute{e}ca} \times \eta_p = 697 \times 0{,}65 = \mathbf{453\text{ W}}\)</p>
+      <p><strong>4.</strong> Pertes pompe = P<sub>méca</sub> − P<sub>hydr</sub> = 697 − 453 = <strong>244 W</strong></p>
+      <p><strong>5.</strong> \(\eta_g = \dfrac{P_{hydr}}{P_a} = \dfrac{453}{850} \approx \mathbf{0{,}533}\)<br>
+        Vérification : \(\eta_m \times \eta_p = 0{,}82 \times 0{,}65 = 0{,}533\) ✓<br>
+        Le rendement global est bien le produit des rendements individuels. Seulement 53 % de l'énergie électrique est convertie en énergie hydraulique utile.</p>
+    </div>
+  </div>
+
+  <div class="exo">
+    <div class="exo-header">
+      <span class="exo-num">Exercice 3</span>
+      <span class="exo-title">Économie d'énergie avec un variateur de fréquence</span>
+      <span class="pts">6 points</span>
+    </div>
+    <p class="enonce">
+      Un technicien chauffagiste propose d'installer un variateur de fréquence sur le ventilateur d'extraction d'une chaufferie collective. Le ventilateur tourne actuellement à pleine vitesse en permanence (n = 1 440 tr/min) et sa puissance absorbée est P<sub>100%</sub> = 5 500 W.<br>
+      Avec le variateur, la vitesse sera réduite à 70 % de la vitesse nominale pendant 80 % du temps de fonctionnement.<br>
+      On rappelle la <strong>loi cubique</strong> : \(P_{r\acute{e}duit} = P_{100\%} \times \left(\dfrac{n'}{n}\right)^3\)<br>
+      Durée de fonctionnement : 6 000 h/an. Prix du kWh : 0,2276 €.
+    </p>
+    <div class="q"><strong>1.</strong> Calculer la puissance absorbée lorsque le ventilateur tourne à 70 % de sa vitesse. <span class="q-pts">(2 pts)</span></div>
+    <div class="q"><strong>2.</strong> Calculer l'énergie annuelle consommée sans variateur. <span class="q-pts">(1 pt)</span></div>
+    <div class="q"><strong>3.</strong> Calculer l'énergie annuelle consommée avec variateur (80 % du temps à 70 % de vitesse, 20 % à pleine vitesse). <span class="q-pts">(2 pts)</span></div>
+    <div class="q"><strong>4.</strong> En déduire l'économie annuelle en euros. <span class="q-pts">(1 pt)</span></div>
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
+      <p><strong>1.</strong> \(P_{70\%} = P_{100\%} \times \left(\dfrac{70}{100}\right)^3 = 5\,500 \times 0{,}7^3 = 5\,500 \times 0{,}343 = \mathbf{1\,886{,}5\text{ W}}\)</p>
+      <p><strong>2.</strong> Sans variateur : \(W_1 = P_{100\%} \times t = 5\,500 \times 6\,000 = 33\,000\,000\text{ Wh} = \mathbf{33\,000\text{ kWh}}\)</p>
+      <p><strong>3.</strong> Avec variateur :<br>
+        – 80 % du temps à vitesse réduite : \(W_{70\%} = 1\,886{,}5 \times (0{,}8 \times 6\,000) = 1\,886{,}5 \times 4\,800 = 9\,055\,200\text{ Wh}\)<br>
+        – 20 % du temps à pleine vitesse : \(W_{100\%} = 5\,500 \times (0{,}2 \times 6\,000) = 5\,500 \times 1\,200 = 6\,600\,000\text{ Wh}\)<br>
+        Total : \(W_2 = 9\,055\,200 + 6\,600\,000 = 15\,655\,200\text{ Wh} = \mathbf{15\,655\text{ kWh}}\)</p>
+      <p><strong>4.</strong> Économie en énergie : 33 000 − 15 655 = 17 345 kWh<br>
+        Économie en euros : 17 345 × 0,2276 = <strong>3 947,72 €/an</strong><br>
+        Le variateur de fréquence permet une économie considérable grâce à la loi cubique : réduire la vitesse de 30 % divise la puissance par presque 3.</p>
+    </div>
+  </div>
+
+  <div class="total-bar">TOTAL : 20 points</div>
 </div>
+<script>
+function toggle(btn){
+  const c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="/nav.js"></script>
 </body>
 </html>
