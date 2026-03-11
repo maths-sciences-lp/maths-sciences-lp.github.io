@@ -1,68 +1,91 @@
 # Prompt de référence — Génération de pages de cours
 
-## Rôle
-Ce fichier définit les règles à appliquer pour générer les pages de cours du site pédagogique du lycée professionnel.
+Je veux que tu rédiges une page de cours complète, très pédagogique et bien structurée, destinée à des élèves de lycée professionnel.
+
+Objectif : produire une page HTML prête à être intégrée dans un site pédagogique.
+
+Le cours doit être clair, progressif et accessible, avec beaucoup d'explications et des éléments visuels.
 
 ---
 
-## Niveau cible
-**Bac Professionnel** (Seconde, Première, Terminale)
+## STRUCTURE DU COURS
+
+### 1. Titre du chapitre
+
+### 2. Introduction
+- expliquer la notion simplement
+- donner un exemple concret lié à la vie réelle ou au domaine professionnel
+
+### 3. Notions essentielles
+- explication détaillée des concepts
+- vocabulaire scientifique expliqué simplement
+- encadrés pour les définitions importantes
+
+### 4. Exemples expliqués
+- plusieurs exemples détaillés
+- raisonnement étape par étape
+- explications pédagogiques
+
+### 5. Illustrations visuelles
+- proposer des schémas explicatifs
+- proposer des images pédagogiques
+- décrire précisément les images à générer
+
+Pour chaque image, ajouter :
+
+> **Prompt image :** description détaillée de l'image à générer
+
+### 6. Graphiques
+- produire des graphiques scientifiques clairs
+- si possible générer le code pour :
+  - Chart.js
+  - SVG
+  - ou Canvas
+
+### 7. Animations pédagogiques
+Si c'est pertinent, créer une petite animation ou simulation pour illustrer la notion.
+
+Utiliser par exemple :
+- JavaScript
+- Canvas
+- SVG animé
+
+L'animation doit illustrer un phénomène scientifique.
+
+### 8. Encadrés importants
+Ajouter des encadrés pédagogiques :
+- À retenir
+- Attention aux erreurs fréquentes
+
+### 9. Applications concrètes
+Relier la notion à :
+- la vie quotidienne
+- les métiers professionnels
+
+### 10. Mini exercices
+Ajouter quelques questions simples pour vérifier la compréhension.
 
 ---
 
-## Structure obligatoire d'une page de cours
+## CONTRAINTES PÉDAGOGIQUES
 
-Une page de cours doit comporter les sections suivantes dans cet ordre :
-
-1. **Titre du cours** — clair et explicite, en lien avec le programme
-2. **Objectifs pédagogiques** — liste des compétences visées (3 à 5 points)
-3. **Introduction / Mise en situation** — contexte professionnel concret, ancré dans la filière
-4. **Contenu du cours** — découpé en parties numérotées avec titres
-5. **Points clés à retenir** — résumé synthétique en fin de cours
-6. **Vers les exercices** — lien ou invitation à pratiquer
+- niveau lycée professionnel
+- phrases simples
+- vocabulaire accessible
+- progression logique
+- explications détaillées
 
 ---
 
-## Contraintes de contenu
+## CONTRAINTES TECHNIQUES
 
-- Langage **clair et accessible**, adapté au niveau Bac Pro
-- Éviter le jargon mathématique non défini
-- Chaque notion nouvelle doit être **définie avant d'être utilisée**
-- Exemples **concrets et contextualisés** selon la filière (voir prompts de filière)
-- Formules mathématiques présentées avec explication de chaque variable
-- Progression logique : du simple vers le complexe
+- produire une page HTML propre
+- utiliser des sections bien structurées
+- utiliser des classes CSS simples
+- intégrer les graphiques et animations directement dans la page
 
 ---
 
-## Contraintes techniques HTML
+## OBJECTIF FINAL
 
-- Structure HTML valide et sémantique (`<section>`, `<article>`, `<h1>` à `<h3>`, etc.)
-- Utilisation des classes CSS existantes du site
-- Formules mathématiques rendues avec **MathJax** ou **KaTeX**
-- Tableaux structurés avec `<thead>` et `<tbody>`
-- Accessibilité : attributs `alt` sur les images, contrastes respectés
-
----
-
-## Graphiques et animations
-
-- Inclure des graphiques ou animations **si cela aide la compréhension**
-- Utiliser **Chart.js** ou **Desmos** pour les représentations graphiques
-- Animations légères en CSS ou JavaScript pour illustrer des variations
-- Chaque graphique doit comporter : titre, légendes des axes, unités
-
----
-
-## Cohérence pédagogique
-
-- Le cours doit s'inscrire dans la **progression annuelle** du lycée
-- Les exemples doivent être tirés des **situations professionnelles** de la filière concernée
-- Ne pas introduire de contenu hors programme sans le signaler explicitement
-
----
-
-## Références à combiner
-
-Avant de générer un cours, lire aussi :
-- `prompt-exercices.md` pour anticiper les exercices associés
-- Le prompt de filière correspondant (`prompt-filiere-ticcer.md`, `prompt-filiere-era-ma.md` ou `prompt-filiere-2mama.md`)
+Produire une page de cours riche, visuelle, claire et très pédagogique, utilisable directement sur un site éducatif.
