@@ -160,6 +160,8 @@ KNOWN_SELECTORS = [
     r"\.intro-box", r"\.result-box", r"\.ds-head",
     r"\.section-titre", r"\.section-ligne", r"\.section-label",
     r"ul\.styled\s+li",
+    # Classes DS
+    r"\.b", r"\.r", r"\.m", r"\.e", r"\.dh",
 ]
 
 # Construire les patterns regex à partir des sélecteurs
