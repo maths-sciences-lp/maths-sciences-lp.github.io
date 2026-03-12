@@ -1,30 +1,370 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Automatismes – Calcul mental 2nde</title><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><style>:root{--p:#0056b3;--d:#c53030;--s:#2f855a;--t:#2d3748}body{font-family:'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:var(--t);line-height:1.6;margin:0;padding:20px}.c{max-width:800px;margin:auto;background:#fff;padding:30px;border-radius:12px;border:1px solid #e2e8f0}header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:25px;padding-bottom:15px}h1{margin:0;color:var(--p);font-size:1.6em}h2{font-size:1.1em;color:var(--p);border-left:4px solid var(--p);padding-left:10px;margin-top:25px}.b{padding:15px;border-radius:8px;margin:15px 0;border:1px solid #e2e8f0}.r{background:#fff5f5;border-left:5px solid var(--d)}.m{background:#f0f7ff;border-left:5px solid var(--p)}.e{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:15px;margin:15px 0}.corr{background:#f0fff4;border-left:4px solid var(--s);padding:10px 15px;margin-top:10px;border-radius:0 8px 8px 0;display:none}.bc{background:var(--p);color:#fff;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.85em;margin-top:8px}table{width:100%;border-collapse:collapse;margin:15px 0;font-size:.9em}th,td{border:1px solid #e2e8f0;padding:10px;text-align:center}th{background:#f7fafc}.nb{margin-bottom:15px;display:block;text-decoration:none;color:var(--p);font-size:.8em;font-weight:bold}.timer{font-size:2em;font-weight:bold;color:var(--p);text-align:center;padding:20px;background:#eef2f7;border-radius:8px;margin:15px 0}.qbox{background:#f0f7ff;border:2px solid var(--p);border-radius:8px;padding:15px;margin:10px 0}.correct{background:#f0fff4;border-color:var(--s)}.wrong{background:#fff5f5;border-color:var(--d)}</style></head><body><div class="c"><a href="maths-2nde-mama.html" class="nb">&larr; RETOUR SOMMAIRE</a><header><h1>&#x26A1; Automatismes &ndash; Calcul mental</h1></header>
-<p>Entra&icirc;nement quotidien : calcul rapide pour automatiser les r&eacute;flexes math&eacute;matiques.</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Automatismes – Lycée Professionnel – Seconde, Première, Terminale</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="styles.css">
+<style>
+:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}
 
-<h2>S&eacute;rie 1 – Calcul num&eacute;rique rapide</h2>
-<div class="e">Calculer mentalement (sans calculatrice) :<br>
-1. 15% de 80 &nbsp;&nbsp; 2. 0,25 × 120 &nbsp;&nbsp; 3. \(\sqrt{49}\) &nbsp;&nbsp; 4. 3² + 4²<br>
-5. 1/4 de 96 &nbsp;&nbsp; 6. 20% de 350 &nbsp;&nbsp; 7. \(\sqrt{144}\) &nbsp;&nbsp; 8. 5² &times; 4
-<button class="bc" onclick="this.nextElementSibling.style.display='block'">R&eacute;ponses</button>
-<div class="corr">1.12 &nbsp; 2.30 &nbsp; 3.7 &nbsp; 4.25 &nbsp; 5.24 &nbsp; 6.70 &nbsp; 7.12 &nbsp; 8.100</div></div>
+.level-tab{display:flex;gap:0;margin:30px 0 0;border-bottom:3px solid var(--p)}
+.level-tab button{flex:1;padding:12px 8px;border:none;background:#f1f5f9;color:#64748b;font-size:.95em;font-weight:600;cursor:pointer;border-radius:8px 8px 0 0;transition:all .2s}
+.level-tab button.active{background:var(--p);color:#fff}
+.level-tab button:hover:not(.active){background:#e2e8f0}
 
-<h2>S&eacute;rie 2 – Fractions et d&eacute;cimaux</h2>
-<div class="e">Simplifier ou convertir :<br>
-1. 3/6 &nbsp;&nbsp; 2. 0,75 en fraction &nbsp;&nbsp; 3. 2/5 en d&eacute;cimal &nbsp;&nbsp; 4. 125% en d&eacute;cimal<br>
-5. 8/4 &nbsp;&nbsp; 6. 1/8 en d&eacute;cimal &nbsp;&nbsp; 7. 0,3 en fraction &nbsp;&nbsp; 8. 150% en fraction
-<button class="bc" onclick="this.nextElementSibling.style.display='block'">R&eacute;ponses</button>
-<div class="corr">1.1/2 &nbsp; 2.3/4 &nbsp; 3.0,4 &nbsp; 4.1,25 &nbsp; 5.2 &nbsp; 6.0,125 &nbsp; 7.3/10 &nbsp; 8.3/2</div></div>
+.level-panel{display:none;padding:20px 0}
+.level-panel.active{display:block}
 
-<h2>S&eacute;rie 3 – &Eacute;quations imm&eacute;diates</h2>
-<div class="e">R&eacute;soudre en 10 secondes :<br>
-1. 2x=10 &nbsp;&nbsp; 2. x+7=15 &nbsp;&nbsp; 3. x-3=8 &nbsp;&nbsp; 4. x/4=3<br>
-5. 3x=21 &nbsp;&nbsp; 6. x+12=5 &nbsp;&nbsp; 7. 2x-1=7 &nbsp;&nbsp; 8. x/2=9
-<button class="bc" onclick="this.nextElementSibling.style.display='block'">R&eacute;ponses</button>
-<div class="corr">1.5 &nbsp; 2.8 &nbsp; 3.11 &nbsp; 4.12 &nbsp; 5.7 &nbsp; 6.-7 &nbsp; 7.4 &nbsp; 8.18</div></div>
+.auto-domain{margin:20px 0;padding:0}
+.auto-domain h3{font-size:1.05em;color:#fff;background:var(--p);padding:10px 16px;border-radius:8px 8px 0 0;margin:0}
+.auto-domain ul{background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 8px 8px;padding:16px 16px 16px 36px;margin:0}
+.auto-domain li{margin:6px 0;line-height:1.5}
 
-<h2>S&eacute;rie 4 – G&eacute;om&eacute;trie express</h2>
-<div class="e">Calculer :<br>
-1. Aire carré c=5 &nbsp;&nbsp; 2. P&eacute;rim&egrave;tre rectangle 3×7 &nbsp;&nbsp; 3. Hyp. triangle 3-4-? &nbsp;&nbsp; 4. Aire triangle b=6 h=4<br>
-5. Volume cube a=3 &nbsp;&nbsp; 6. Diam&egrave;tre si r=7 &nbsp;&nbsp; 7. cos 0° &nbsp;&nbsp; 8. sin 90°
-<button class="bc" onclick="this.nextElementSibling.style.display='block'">R&eacute;ponses</button>
-<div class="corr">1.25 &nbsp; 2.20 &nbsp; 3.5 &nbsp; 4.12 &nbsp; 5.27 &nbsp; 6.14 &nbsp; 7.1 &nbsp; 8.1</div></div></div></body></html>
+.auto-domain.calc h3{background:#0056b3}
+.auto-domain.alg h3{background:#7c3aed}
+.auto-domain.fonc h3{background:#0891b2}
+.auto-domain.geom h3{background:#059669}
+.auto-domain.gm h3{background:#d97706}
+.auto-domain.stat h3{background:#dc2626}
+.auto-domain.comm h3{background:#6366f1}
+
+.level-intro{background:#f0f7ff;border-left:4px solid var(--p);padding:14px 18px;border-radius:0 8px 8px 0;margin:15px 0;font-size:.92em;color:#334155}
+.level-intro strong{color:var(--p)}
+
+.note-cumul{background:#f0fff4;border:1px dashed #86efac;border-radius:8px;padding:12px 16px;margin:15px 0;font-size:.88em;color:#166534}
+
+.print-only{display:none}
+@media print{
+  .level-tab{display:none}
+  .level-panel{display:block!important;page-break-before:always}
+  .print-only{display:block}
+  .no-print{display:none}
+}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">← Retour à l'accueil</a>
+
+<header>
+  <h1>Automatismes — Mathématiques Bac Pro</h1>
+  <p class="sous-titre">Programmes officiels — Seconde, Première et Terminale</p>
+  <p class="maj">Dernière mise à jour : 12 mars 2026</p>
+</header>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>Présentation</h2>
+
+<div class="def">
+  <strong>Qu'est-ce qu'un automatisme ?</strong><br>
+  Les automatismes sont des <strong>procédures, méthodes et stratégies</strong> dont la maîtrise doit devenir
+  réflexe. Ils sont travaillés tout au long de l'année sous forme de <strong>rituels de début de séance</strong>
+  (« questions flash ») et ne font pas l'objet d'un cours spécifique.<br><br>
+  <em>Objectifs :</em> consolider les acquis, développer l'esprit critique, favoriser la confiance et la réussite
+  en mathématiques et dans les autres disciplines.
+</div>
+
+<div class="meth">
+  <strong>Modalités de mise en œuvre :</strong>
+  <ul class="styled">
+    <li>Activité mentale privilégiée (sans calculatrice)</li>
+    <li>Supports variés : oral, écrit, individuel, en groupe</li>
+    <li>Outils numériques : vidéoprojection, recensement instantané des réponses</li>
+    <li>Entraînement régulier sur l'ensemble de l'année</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>Automatismes par niveau</h2>
+
+<div class="att">
+  <strong>Principe de cumul :</strong> Les automatismes des années précédentes continuent à être entretenus.
+  En Première, on travaille les automatismes de Seconde + ceux de Première.
+  En Terminale, on travaille ceux de Seconde + Première + Terminale.
+</div>
+
+<!-- Onglets -->
+<div class="level-tab no-print">
+  <button class="active" onclick="showLevel('seconde',this)">Seconde</button>
+  <button onclick="showLevel('premiere',this)">Première</button>
+  <button onclick="showLevel('terminale',this)">Terminale</button>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- SECONDE -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div id="seconde" class="level-panel active">
+
+<h2 class="print-only">Seconde professionnelle</h2>
+
+<div class="level-intro">
+  <strong>Source :</strong> Programme de mathématiques — Classe de seconde professionnelle (2019).<br>
+  Liste non exhaustive d'automatismes à travailler.
+</div>
+
+<div class="auto-domain calc">
+  <h3>Calcul numérique</h3>
+  <ul>
+    <li>Calcul d'une <strong>fréquence</strong></li>
+    <li>Utilisation des <strong>pourcentages</strong></li>
+    <li>Expression d'un nombre en écriture décimale ou fractionnaire sous forme de pourcentage, et réciproquement</li>
+    <li>Calcul d'une <strong>moyenne</strong></li>
+    <li>Calculs avec les <strong>puissances de 10</strong></li>
+    <li>Écriture d'un nombre en <strong>notation scientifique</strong></li>
+    <li>Comparaison de fractions simples entre elles ou avec des nombres décimaux</li>
+    <li>Additions de fractions, multiplication de fractions</li>
+    <li>Détermination d'un <strong>arrondi</strong>, d'une valeur approchée</li>
+  </ul>
+</div>
+
+<div class="auto-domain alg">
+  <h3>Calcul littéral</h3>
+  <ul>
+    <li>Développement, factorisation, réduction d'<strong>expressions littérales</strong></li>
+    <li>Transformation de formules (ex : \(U = RI\), \(d = vt\)…), expression d'une variable en fonction des autres</li>
+    <li>Résolution d'équations du type \(ax = b\) et \(a + x = b\), avec \(a\) et \(b\) entiers relatifs</li>
+  </ul>
+</div>
+
+<div class="auto-domain fonc">
+  <h3>Proportionnalité et fonctions</h3>
+  <ul>
+    <li>Utilisation des différentes procédures de calcul d'une <strong>quatrième proportionnelle</strong></li>
+    <li>Application et calcul d'un <strong>pourcentage</strong> ou d'une <strong>échelle</strong></li>
+    <li>Repérage dans un plan rapporté à un <strong>repère orthogonal</strong></li>
+    <li>Recherche d'<strong>image</strong> et d'<strong>antécédents</strong> d'un nombre par une fonction</li>
+    <li>Utilisation des procédures de <strong>résolution graphique</strong> d'équations</li>
+  </ul>
+</div>
+
+<div class="auto-domain gm">
+  <h3>Grandeurs et mesures</h3>
+  <ul>
+    <li><strong>Conversions d'unités</strong> de longueur, d'aire et de volume</li>
+    <li>Expression d'un résultat dans une <strong>unité adaptée</strong></li>
+    <li>Vérification de la <strong>cohérence grandeur — unité</strong> d'une mesure</li>
+  </ul>
+</div>
+
+<div class="auto-domain geom">
+  <h3>Géométrie</h3>
+  <ul>
+    <li>Reconnaissance des configurations de <strong>Pythagore</strong> et de <strong>Thalès</strong></li>
+    <li>Calcul de l'aire d'un <strong>carré</strong>, d'un <strong>rectangle</strong>, d'un <strong>disque</strong></li>
+  </ul>
+</div>
+
+</div><!-- /seconde -->
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- PREMIÈRE -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div id="premiere" class="level-panel">
+
+<h2 class="print-only">Première professionnelle</h2>
+
+<div class="level-intro">
+  <strong>Source :</strong> Programme de mathématiques — Classe de première professionnelle (2020).<br>
+  Liste non exhaustive d'automatismes à travailler (groupements A, B et C).
+</div>
+
+<div class="note-cumul">
+  Les automatismes figurant dans le programme de seconde professionnelle continuent à être entretenus.
+</div>
+
+<div class="auto-domain stat">
+  <h3>Statistiques et probabilités</h3>
+  <ul>
+    <li>Calcul de la <strong>probabilité d'un événement</strong> dans le cas d'une situation aléatoire simple</li>
+    <li><strong>Dénombrements</strong> à l'aide de tableaux à double entrée ou d'arbres donnés</li>
+    <li>Lecture d'un graphique, d'un <strong>diagramme</strong> (en secteurs, en bâtons, en colonnes, en boîte à moustaches) ou toute autre représentation (repérage de l'origine, unités, échelles)</li>
+    <li>Association d'un graphique avec des <strong>données</strong> et vice-versa</li>
+    <li>Calcul d'<strong>indicateurs de position ou de dispersion</strong> à l'aide d'outils numériques</li>
+  </ul>
+</div>
+
+<div class="auto-domain alg">
+  <h3>Algèbre</h3>
+  <ul>
+    <li>Résolution algébrique d'une <strong>équation du premier degré</strong> à une inconnue du type \(ax + b = c\) où \(a\), \(b\) et \(c\) sont des entiers relatifs</li>
+    <li>Résolution algébrique d'une <strong>inéquation du premier degré</strong> à une inconnue du type \(ax + b < c\) où \(a\), \(b\) et \(c\) sont des entiers relatifs</li>
+    <li>Reconnaissance d'une situation de <strong>proportionnalité</strong> et détermination de la fonction linéaire qui la modélise</li>
+    <li><strong>Factorisation</strong> de \(x^2 - a^2\), \(a\) étant un entier naturel donné</li>
+    <li><strong>Développement</strong> de \(a(x + b)\), où \(a\) et \(b\) sont des entiers relatifs donnés</li>
+    <li><strong>Développement</strong> de \((x + a)(x + b)\), où \(a\) et \(b\) sont des entiers relatifs donnés</li>
+  </ul>
+</div>
+
+<div class="auto-domain fonc">
+  <h3>Fonctions</h3>
+  <ul>
+    <li>Reconnaissance de l'<strong>allure d'une représentation graphique</strong> à partir d'un tableau de variations donné</li>
+    <li>Établissement du <strong>tableau de variations</strong> d'une fonction dont la courbe représentative est donnée</li>
+    <li>Détermination graphique, lorsqu'ils existent, des <strong>extremums globaux</strong> d'une fonction sur un intervalle</li>
+    <li>Calcul de l'ordonnée d'un point de la courbe représentative d'une fonction connaissant son abscisse et l'expression de la fonction</li>
+    <li>Détermination graphique du <strong>coefficient directeur</strong> d'une droite non verticale</li>
+    <li>Reconnaissance du <strong>parallélisme</strong> de deux droites d'équations réduites données</li>
+    <li><strong>Résolution graphique</strong> d'une équation du type \(f(x) = c\) ou d'une inéquation du type \(f(x) < c\), où \(c\) est un réel donné et \(f\) une fonction dont la représentation graphique est donnée</li>
+  </ul>
+</div>
+
+<div class="auto-domain geom">
+  <h3>Géométrie</h3>
+  <ul>
+    <li>Distinction entre <strong>cercle, disque, sphère et boule</strong></li>
+    <li>Reconnaissance du <strong>cube</strong>, du <strong>pavé droit</strong>, de la <strong>pyramide</strong>, du <strong>cylindre droit</strong>, du <strong>cône</strong> et de la <strong>boule</strong></li>
+    <li>Calcul de l'aire d'un <strong>triangle</strong>, d'un <strong>carré</strong>, d'un <strong>rectangle</strong>, d'un <strong>disque</strong></li>
+    <li>Calcul du volume d'un <strong>cube</strong>, d'un <strong>pavé droit</strong> et d'un <strong>cylindre</strong></li>
+  </ul>
+</div>
+
+<div class="auto-domain comm">
+  <h3>Calculs commerciaux (spécialités sans physique-chimie)</h3>
+  <ul>
+    <li>Calcul du montant d'un <strong>intérêt simple</strong> et d'une valeur acquise</li>
+  </ul>
+</div>
+
+</div><!-- /premiere -->
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- TERMINALE -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div id="terminale" class="level-panel">
+
+<h2 class="print-only">Terminale professionnelle</h2>
+
+<div class="level-intro">
+  <strong>Source :</strong> Programme de mathématiques — Classe terminale professionnelle (2020).<br>
+  Liste non exhaustive d'automatismes à travailler (groupements A, B et C).
+</div>
+
+<div class="note-cumul">
+  Les automatismes figurant dans les programmes de seconde et de première professionnelles continuent à être entretenus.
+</div>
+
+<div class="auto-domain stat">
+  <h3>Probabilités</h3>
+  <ul>
+    <li>Calcul de la <strong>probabilité d'un événement</strong>, de l'événement contraire \(\bar{A}\) connaissant celle de l'événement \(A\)</li>
+    <li>Calcul de la probabilité de la <strong>réunion d'événements incompatibles</strong></li>
+    <li>Calcul de la probabilité de la <strong>réunion de deux événements</strong></li>
+    <li>Calcul de la probabilité de l'<strong>intersection de deux événements</strong></li>
+    <li>Exploitation de représentations de données : <strong>tableaux croisés d'effectifs</strong>, diagrammes</li>
+    <li>Calcul de <strong>probabilités conditionnelles</strong></li>
+  </ul>
+</div>
+
+<div class="auto-domain alg">
+  <h3>Algèbre – Suites</h3>
+  <ul>
+    <li>Calcul du terme de rang donné d'une <strong>suite arithmétique</strong> dont le premier terme et la raison sont donnés</li>
+    <li>Écriture de la <strong>forme factorisée</strong> d'un polynôme de degré 2 dont les racines et le coefficient dominant sont connus</li>
+  </ul>
+</div>
+
+<div class="auto-domain fonc">
+  <h3>Fonctions – Dérivation</h3>
+  <ul>
+    <li>Visualisation, à partir de la représentation graphique donnée d'une fonction polynôme \(f\) de degré 2, du <strong>nombre possible de solutions</strong> de l'équation \(f(x) = 0\)</li>
+    <li>Utilisation des <strong>formules et des règles de dérivation</strong> pour déterminer la dérivée d'une fonction polynôme de degré \(\leq 2\)</li>
+  </ul>
+</div>
+
+<div class="auto-domain geom">
+  <h3>Géométrie – Vecteurs (groupements A et B)</h3>
+  <ul>
+    <li>Construction d'un vecteur du plan obtenu comme <strong>somme de deux vecteurs</strong></li>
+    <li>Construction d'un vecteur du plan obtenu comme <strong>produit d'un vecteur par un réel</strong> non nul</li>
+  </ul>
+</div>
+
+</div><!-- /terminale -->
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2>Vue synthétique — Progression sur 3 ans</h2>
+
+<div class="prop">
+  <strong>Les grandes familles d'automatismes et leur évolution :</strong>
+  <table class="full">
+    <tr>
+      <th style="width:28%">Domaine</th>
+      <th>Seconde</th>
+      <th>Première</th>
+      <th>Terminale</th>
+    </tr>
+    <tr>
+      <td><strong>Calcul numérique</strong></td>
+      <td>Fractions, pourcentages, puissances de 10, notation scientifique, arrondis</td>
+      <td style="text-align:center;color:#94a3b8"><em>(entretien)</em></td>
+      <td style="text-align:center;color:#94a3b8"><em>(entretien)</em></td>
+    </tr>
+    <tr>
+      <td><strong>Algèbre</strong></td>
+      <td>Développer, factoriser, résoudre \(ax=b\)</td>
+      <td>Résoudre \(ax+b=c\), inéquations, développements \((x+a)(x+b)\), factorisation \(x^2-a^2\)</td>
+      <td>Suites arithmétiques, forme factorisée degré 2</td>
+    </tr>
+    <tr>
+      <td><strong>Fonctions</strong></td>
+      <td>Images, antécédents, résolution graphique</td>
+      <td>Tableaux de variations, extremums, coefficient directeur, parallélisme</td>
+      <td>Dérivation polynômes degré \(\leq 2\), solutions \(f(x)=0\)</td>
+    </tr>
+    <tr>
+      <td><strong>Proportionnalité</strong></td>
+      <td>4e proportionnelle, pourcentages, échelles</td>
+      <td>Fonction linéaire associée</td>
+      <td style="text-align:center;color:#94a3b8"><em>(entretien)</em></td>
+    </tr>
+    <tr>
+      <td><strong>Probabilités</strong></td>
+      <td style="text-align:center;color:#94a3b8">—</td>
+      <td>Probabilité simple, dénombrements, lecture de diagrammes</td>
+      <td>Événement contraire, réunion, intersection, probabilités conditionnelles</td>
+    </tr>
+    <tr>
+      <td><strong>Géométrie</strong></td>
+      <td>Pythagore, Thalès, aires (carré, rectangle, disque)</td>
+      <td>Solides, aires (triangle), volumes (cube, pavé, cylindre)</td>
+      <td>Vecteurs du plan (somme, produit par un réel)</td>
+    </tr>
+    <tr>
+      <td><strong>Grandeurs / Mesures</strong></td>
+      <td>Conversions, unités adaptées, cohérence grandeur-unité</td>
+      <td style="text-align:center;color:#94a3b8"><em>(entretien)</em></td>
+      <td style="text-align:center;color:#94a3b8"><em>(entretien)</em></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>Ressources</h2>
+
+<div class="retenir">
+  <h3>Pour aller plus loin</h3>
+  <ul class="styled">
+    <li><strong>Programme officiel Seconde (2019) :</strong> BO spécial n°5 du 11 avril 2019</li>
+    <li><strong>Programme officiel Première (2020) :</strong> BO spécial n°1 du 6 février 2020</li>
+    <li><strong>Programme officiel Terminale (2020) :</strong> BO spécial n°1 du 6 février 2020</li>
+    <li>Les automatismes se pratiquent sous forme de <strong>questions flash</strong> en début de séance (3 à 5 minutes)</li>
+    <li>Varier les supports : oral, écrit, QCM, vidéoprojection, ardoises, outils numériques</li>
+  </ul>
+</div>
+
+</div><!-- /.c -->
+
+<script>
+function showLevel(id, btn){
+  document.querySelectorAll('.level-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.level-tab button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
