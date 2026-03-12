@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Exercices d'automatismes en mathématiques pour Bac Professionnel (Seconde, Première, Terminale) – QCM et exercices corrigés par thème et par niveau.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 <title>Automatismes – Mathématiques Bac Professionnel</title>
 <style>
 :root{--p:#0056b3;--s:#2f855a;--t:#2d3748}
@@ -93,29 +95,31 @@ header p{margin:0;opacity:.85;font-size:.95em}
 
   <nav class="nav-haut">
     <a href="../index.html">← Accueil du site</a>
-    <a href="../automatismes.html">↗ Automatismes (référence)</a>
   </nav>
 
   <header id="main-header">
     <div style="font-size:2.4em;margin-bottom:8px">⚡</div>
     <h1>Automatismes – Mathématiques</h1>
     <p>Seconde, Première et Terminale Bac Professionnel</p>
-    <div class="date">Mise à jour : 12 mars 2026</div>
+    <div class="date" id="date-maj"></div>
   </header>
 
   <!-- Pourquoi -->
-  <div class="pourquoi">
-    <h2>Pourquoi s'entraîner aux automatismes ?</h2>
-    <ul>
+  <details class="pourquoi">
+    <summary style="cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between">
+      <h2 style="margin:0">Pourquoi s'entraîner aux automatismes ?</h2>
+      <span style="font-size:1.2em;color:#94a3b8;transition:transform .2s">▼</span>
+    </summary>
+    <ul style="margin-top:12px">
       <li><strong>Gagner du temps</strong> lors des épreuves en reconnaissant immédiatement les situations classiques.</li>
       <li><strong>Consolider les bases</strong> : certains calculs doivent devenir des réflexes.</li>
       <li><strong>Progresser régulièrement</strong> avec des séances courtes et fréquentes plutôt qu'une longue révision rare.</li>
       <li><strong>Réduire les erreurs</strong> sur des calculs simples qui peuvent coûter des points.</li>
     </ul>
     <div class="conseil">
-      💡 <strong>Conseil d'utilisation :</strong> Travaillez un thème par séance, 10 à 15 minutes. Essayez de répondre sans aide avant de vérifier. Recommencez les questions ratées.
+      <strong>Conseil :</strong> Travaillez un thème par séance, 10 à 15 minutes. Essayez de répondre sans aide avant de vérifier.
     </div>
-  </div>
+  </details>
 
   <!-- Tabs -->
   <div class="tabs">
@@ -211,7 +215,7 @@ header p{margin:0;opacity:.85;font-size:.95em}
         <div>
           <div class="card-icon">🎲</div>
           <h3>Statistiques & probabilités</h3>
-          <p>Calculer moyenne, médiane, écart-type, interpréter un diagramme et résoudre des problèmes de probabilités.</p>
+          <p>Calculer moyenne, médiane, étendue, interpréter un diagramme et résoudre des problèmes de probabilités simples.</p>
           <div class="niveaux">
             <span class="nbadge n1">Bases</span>
             <span class="nbadge n2">Entraînement</span>
@@ -225,7 +229,7 @@ header p{margin:0;opacity:.85;font-size:.95em}
         <div>
           <div class="card-icon">✖️</div>
           <h3>Algèbre</h3>
-          <p>Résoudre des équations et inéquations du premier degré, manipuler des expressions algébriques.</p>
+          <p>Résoudre des équations et inéquations du 1er degré, développer et factoriser avec les identités remarquables.</p>
           <div class="niveaux">
             <span class="nbadge n1">Bases</span>
             <span class="nbadge n2">Entraînement</span>
@@ -239,7 +243,7 @@ header p{margin:0;opacity:.85;font-size:.95em}
         <div>
           <div class="card-icon">📈</div>
           <h3>Fonctions</h3>
-          <p>Lire un graphique, déterminer image et antécédent, étudier les variations d'une fonction affine ou du second degré.</p>
+          <p>Calculer un coefficient directeur, lire un tableau de variations, résoudre graphiquement des équations et inéquations.</p>
           <div class="niveaux">
             <span class="nbadge n1">Bases</span>
             <span class="nbadge n2">Entraînement</span>
@@ -253,7 +257,7 @@ header p{margin:0;opacity:.85;font-size:.95em}
         <div>
           <div class="card-icon">📐</div>
           <h3>Géométrie</h3>
-          <p>Travailler avec les vecteurs, utiliser les coordonnées dans le plan, calculer distances et milieux.</p>
+          <p>Calculer des aires (triangle, rectangle, disque) et des volumes (cube, pavé, cylindre, pyramide, cône, sphère).</p>
           <div class="niveaux">
             <span class="nbadge n1">Bases</span>
             <span class="nbadge n2">Entraînement</span>
@@ -267,7 +271,7 @@ header p{margin:0;opacity:.85;font-size:.95em}
         <div>
           <div class="card-icon">💰</div>
           <h3>Calculs commerciaux</h3>
-          <p>Calculer des pourcentages, des taux d'évolution, des prix HT/TTC et des remises successives.</p>
+          <p>Calculer un intérêt simple, une valeur acquise, retrouver un taux ou un capital, comparer des placements.</p>
           <div class="niveaux">
             <span class="nbadge n1">Bases</span>
             <span class="nbadge n2">Entraînement</span>
@@ -406,6 +410,11 @@ header p{margin:0;opacity:.85;font-size:.95em}
       switchTab(this.dataset.tab);
     });
   });
+
+  // Date dynamique
+  var MOIS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  var d = new Date();
+  document.getElementById('date-maj').textContent = 'Mise à jour : ' + d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
 })();
 </script>
 <script src="../nav.js"></script>

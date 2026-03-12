@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cours de mathématiques et physique-chimie pour les élèves de Bac Professionnel (2nde, 1ère, Terminale) – Lycée Eugène Hénaff, Bagnolet – Exercices, devoirs et simulations interactives.">
+  <meta name="author" content="Naïm Azzouz">
+  <meta property="og:title" content="Maths – Sciences en Lycée Professionnel">
+  <meta property="og:description" content="Cours, exercices et simulations pour les élèves de Bac Pro – Lycée Eugène Hénaff, Bagnolet.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
   <title>Maths – Sciences en Lycée Professionnel</title>
   <style>
     /* ── Base ── */
@@ -25,7 +31,10 @@
       display: flex;
       max-width: 960px;
       margin: 0 auto;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
+    nav li { flex-shrink: 0; }
     nav a {
       display: block;
       padding: 14px 22px;
@@ -33,12 +42,14 @@
       text-decoration: none;
       font-weight: 600;
       font-size: .95rem;
+      white-space: nowrap;
       transition: background .2s, color .2s;
     }
     nav a:hover, nav a.active { background: #2563eb; color: #fff; }
     @media (max-width: 600px) {
-      nav a { padding: 11px 13px; font-size: .82rem; }
+      nav a { padding: 11px 14px; font-size: .82rem; }
     }
+    html { scroll-behavior: smooth; }
 
     /* ── Hero ── */
     header {
@@ -128,12 +139,6 @@
     .card-simu .card-title { color: #15803d; }
     .btn-simu-link { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
     .btn-simu-link:hover { background: #16a34a; color: #fff; border-color: transparent; }
-
-    /* Outils — ambre */
-    .card-outils .card-header { background: #fffbeb; border-bottom: 3px solid #d97706; }
-    .card-outils .card-title { color: #b45309; }
-    .btn-outils { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
-    .btn-outils:hover { background: #d97706; color: #fff; border-color: transparent; }
 
     /* Outils élèves — cyan */
     .card-eleve .card-header { background: #ecfeff; border-bottom: 3px solid #0891b2; }
@@ -256,8 +261,7 @@
       margin-bottom: 52px;
       position: relative;
     }
-    .encours::before {
-      content: 'Mis à jour le 12 mars 2025';
+    .encours-date {
       position: absolute;
       top: -11px;
       right: 20px;
@@ -340,8 +344,9 @@
   <nav>
     <ul>
       <li><a href="index.html" class="active">Accueil</a></li>
-      <li><a href="maths-term-iccer.html">Mathématiques</a></li>
-      <li><a href="pc-term-iccer.html">Physique-Chimie</a></li>
+      <li><a href="#disciplines">Mathématiques</a></li>
+      <li><a href="#disciplines">Physique-Chimie</a></li>
+      <li><a href="#classes">Par classe</a></li>
       <li><a href="simulations.html">Simulations</a></li>
     </ul>
   </nav>
@@ -353,17 +358,11 @@
     <p class="credit">M. Azzouz &middot; Lycée Eugène Hénaff &middot; Académie de Créteil</p>
   </header>
 
-  <!-- ── Météo bandeau ── -->
-  <div class="meteo-banner" id="meteo-banner">
-    <div class="meteo-banner-inner" id="meteo-container">
-      <span class="meteo-banner-loading">Chargement météo...</span>
-    </div>
-  </div>
-
   <main>
 
     <!-- ── Chapitres en cours ── -->
     <div class="encours">
+      <span class="encours-date" id="encours-date"></span>
       <h2>Chapitres en cours</h2>
       <div class="encours-grid">
 
@@ -413,7 +412,7 @@
     </div>
 
     <!-- ── Disciplines ── -->
-    <section>
+    <section id="disciplines">
       <h2 class="section-title">Accès par discipline</h2>
       <div class="disciplines">
 
@@ -485,26 +484,11 @@
           </div>
         </div>
 
-        <div class="card card-outils">
-          <div class="card-header">
-            <span class="card-icon">🛠️</span>
-            <div>
-              <div class="card-title">Outils enseignant</div>
-              <div class="card-desc">Générateurs de documents administratifs</div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="btn-group">
-              <a href="ccf-convocations.html" class="btn btn-outils">Convocations CCF</a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
     <!-- ── Classes ── -->
-    <section>
+    <section id="classes">
       <h2 class="section-title">Accès par classe</h2>
       <div class="classes-grid">
 
@@ -552,17 +536,25 @@
       <div class="about-box">
         <span class="about-icon">ℹ️</span>
         <div class="about-text">
-          <p>Ce site propose des ressources de mathématiques et de physique-chimie pour les élèves de lycée professionnel.</p>
-          <p>Les cours sont accompagnés d'exercices et d'activités interactives pour faciliter la compréhension et la mémorisation.</p>
-          <p>Toutes les ressources sont librement accessibles, sans inscription ni connexion.</p>
+          <p>Ce site propose des ressources de <strong>mathématiques</strong> et de <strong>physique-chimie</strong> pour les élèves de Bac Professionnel du lycée Eugène Hénaff (Bagnolet, 93).</p>
+          <p>Tous les cours sont accompagnés d'exercices corrigés, de devoirs surveillés et de simulations interactives.</p>
+          <p>Les ressources sont <strong>librement accessibles</strong>, sans inscription ni connexion. Elles peuvent être consultées en classe ou à la maison, sur ordinateur comme sur téléphone.</p>
         </div>
       </div>
     </section>
 
   </main>
 
+  <!-- ── Météo bandeau ── -->
+  <div class="meteo-banner" id="meteo-banner">
+    <div class="meteo-banner-inner" id="meteo-container">
+      <span class="meteo-banner-loading">Chargement météo...</span>
+    </div>
+  </div>
+
   <footer>
     <p>Site pédagogique &mdash; Na&iuml;m Azzouz &mdash; Lycée Eugène Hénaff &mdash; Académie de Créteil</p>
+    <p style="margin-top:8px"><a href="ccf-convocations.html" style="color:#64748b;text-decoration:none;font-size:.75rem">Espace enseignant</a></p>
   </footer>
 
   <script>
@@ -614,7 +606,15 @@
           document.getElementById('meteo-banner').style.display = 'none';
         });
     })();
+
+    // Date dynamique chapitres en cours
+    (function() {
+      var MOIS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+      var d = new Date();
+      document.getElementById('encours-date').textContent = 'Mis à jour le ' + d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
+    })();
   </script>
+  <script src="nav.js"></script>
 
 </body>
 </html>
