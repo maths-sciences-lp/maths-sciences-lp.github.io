@@ -258,7 +258,7 @@
     <li>Un panneau est d&eacute;fectueux. Calculer la probabilit&eacute; qu&rsquo;il provienne de chaque machine.</li>
     <li>On pr&eacute;l&egrave;ve 15 panneaux au hasard. Soit \(X\) le nombre de d&eacute;fectueux. Justifier que \(X \sim B(15\,;\,0{,}029)\).</li>
     <li>Calculer \(P(X = 0)\), \(P(X \geqslant 1)\) et \(E(X)\).</li>
-    <li>Peut-on approcher \(X\) par une loi de Poisson ? Si oui, laquelle ? Recalculer \(P(X = 0)\) et comparer.</li>
+    <li>Calculer \(\sigma(X)\). En d&eacute;duire un intervalle dans lequel le nombre de d&eacute;fectueux se trouve avec une probabilit&eacute; d&rsquo;environ 95&nbsp;%.</li>
   </ol>
   <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
   <div class="corr">
@@ -274,9 +274,9 @@
       <li>\(P(X=0) = (0{,}971)^{15} \approx 0{,}6422\)<br>
       \(P(X \geqslant 1) = 1 - 0{,}6422 = 0{,}3578\)<br>
       \(E(X) = 15 \times 0{,}029 = 0{,}435\)</li>
-      <li>On a \(n = 15 < 30\), donc la condition \(n \geqslant 30\) n&rsquo;est pas strictement remplie. Cependant, \(p = 0{,}029\) est petit et \(\lambda = np = 0{,}435\) est faible. On peut tenter l&rsquo;approximation \(\mathcal{P}(0{,}435)\) :<br>
-      \(P(X=0) \approx e^{-0{,}435} \approx 0{,}6471\)<br>
-      Comparaison : binomiale 0,6422 vs Poisson 0,6471 &mdash; l&rsquo;&eacute;cart est faible (0,8&nbsp;%), l&rsquo;approximation est raisonnable m&ecirc;me si \(n\) est un peu petit.</li>
+      <li>\(V(X) = 15 \times 0{,}029 \times 0{,}971 = 0{,}4224\), \(\sigma(X) = \sqrt{0{,}4224} \approx 0{,}650\).<br>
+      Intervalle &agrave; 95&nbsp;% (r&egrave;gle \(\mu \pm 2\sigma\)) : \([0{,}435 - 1{,}30\;;\;0{,}435 + 1{,}30] = [-0{,}87\;;\;1{,}74]\).<br>
+      Comme \(X\) est entier et positif, on s&rsquo;attend &agrave; observer 0 ou 1 d&eacute;fectueux dans la quasi-totalit&eacute; des &eacute;chantillons de 15 panneaux.</li>
     </ol>
   </div>
 </div>
@@ -425,54 +425,67 @@
 
 <!-- --- Exercice 4.3 --- -->
 <div class="exo">
-  <strong>Exercice 4.3 &mdash; Probl&egrave;me de synth&egrave;se &mdash; D&eacute;fauts dans une production</strong>
-  <p>Une scierie automatique d&eacute;bite des planches de bois. En moyenne, on observe 1,5 d&eacute;faut par planche (n&oelig;uds, fentes). On mod&eacute;lise le nombre de d&eacute;fauts par planche par une loi de Poisson \(X \sim \mathcal{P}(1{,}5)\).</p>
-  <p>Les planches sont class&eacute;es en trois cat&eacute;gories :</p>
-  <ul>
-    <li><strong>Cat&eacute;gorie A</strong> (premium) : 0 d&eacute;faut &mdash; prix de vente 15 &euro;</li>
-    <li><strong>Cat&eacute;gorie B</strong> (standard) : 1 ou 2 d&eacute;fauts &mdash; prix de vente 10 &euro;</li>
-    <li><strong>Cat&eacute;gorie C</strong> (d&eacute;class&eacute;) : 3 d&eacute;fauts ou plus &mdash; prix de vente 4 &euro;</li>
-  </ul>
+  <strong>Exercice 4.3 &mdash; Approximation binomiale &rarr; normale &mdash; Contr&ocirc;le qualit&eacute;</strong>
+  <p>Un fabricant de briques isolantes pour la construction de chemin&eacute;es produit de grands lots. Le taux de d&eacute;faut est \(p = 0{,}06\). Un technicien pr&eacute;l&egrave;ve un &eacute;chantillon de \(n = 150\) briques et compte le nombre \(X\) de briques d&eacute;fectueuses.</p>
   <ol>
-    <li>Calculer la probabilit&eacute; qu&rsquo;une planche soit en cat&eacute;gorie A, B, C.</li>
-    <li>Sur une production de 2000 planches, combien attend-on dans chaque cat&eacute;gorie ?</li>
-    <li>Soit \(Y\) le prix de vente d&rsquo;une planche prise au hasard. D&eacute;terminer la loi de \(Y\).</li>
-    <li>Calculer le chiffre d&rsquo;affaires moyen \(E(Y)\) par planche, puis pour la production de 2000 planches.</li>
-    <li>La scierie investit dans un meilleur affutage des lames, r&eacute;duisant le nombre moyen de d&eacute;fauts &agrave; \(\lambda = 0{,}8\). Recalculer la r&eacute;partition et le chiffre d&rsquo;affaires. L&rsquo;investissement est-il rentable si son co&ucirc;t est de 3000 &euro; pour une production de 2000 planches ?</li>
+    <li>Quelle loi suit \(X\) ? V&eacute;rifier que l&rsquo;on peut approcher par une loi normale et donner ses param&egrave;tres.</li>
+    <li>Calculer \(P(X \leqslant 12)\) avec l&rsquo;approximation normale (avec correction de continuit&eacute;).</li>
+    <li>Calculer \(P(5 \leqslant X \leqslant 15)\) avec l&rsquo;approximation normale.</li>
+    <li>D&eacute;terminer le seuil \(c\) tel que \(P(X > c) \leqslant 0{,}05\). Le technicien rejette le lot si \(X > c\).</li>
+    <li>Si le vrai taux de d&eacute;faut monte &agrave; \(p = 0{,}10\), quelle est la probabilit&eacute; que le lot soit accept&eacute; (risque client) ?</li>
   </ol>
   <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
   <div class="corr">
-    <p><strong>Avec \(\lambda = 1{,}5\) :</strong> \(e^{-1{,}5} \approx 0{,}2231\)</p>
     <ol>
-      <li>\(P(A) = P(X=0) = e^{-1{,}5} \approx 0{,}2231\)<br>
-      \(P(X=1) = e^{-1{,}5} \times 1{,}5 \approx 0{,}3347\)<br>
-      \(P(X=2) = e^{-1{,}5} \times \frac{1{,}5^2}{2} \approx 0{,}2510\)<br>
-      \(P(B) = P(X=1) + P(X=2) \approx 0{,}3347 + 0{,}2510 = 0{,}5857\)<br>
-      \(P(C) = 1 - P(A) - P(B) = 1 - 0{,}2231 - 0{,}5857 = 0{,}1912\)</li>
-      <li>Cat&eacute;gorie A : \(2000 \times 0{,}2231 \approx 446\) planches<br>
-      Cat&eacute;gorie B : \(2000 \times 0{,}5857 \approx 1171\) planches<br>
-      Cat&eacute;gorie C : \(2000 \times 0{,}1912 \approx 383\) planches</li>
-      <li>Loi de \(Y\) :
-      <table>
-        <tr><th>\(y_i\)</th><td>15</td><td>10</td><td>4</td></tr>
-        <tr><th>\(P(Y=y_i)\)</th><td>0,2231</td><td>0,5857</td><td>0,1912</td></tr>
-      </table>
-      </li>
-      <li>\(E(Y) = 15 \times 0{,}2231 + 10 \times 0{,}5857 + 4 \times 0{,}1912\)<br>
-      \(E(Y) = 3{,}347 + 5{,}857 + 0{,}765 = 9{,}969\) &euro; par planche<br>
-      CA total : \(2000 \times 9{,}969 \approx 19\,938\) &euro;</li>
-      <li><strong>Avec \(\lambda = 0{,}8\) :</strong> \(e^{-0{,}8} \approx 0{,}4493\)<br>
-      \(P(A) = 0{,}4493\)<br>
-      \(P(X=1) = 0{,}4493 \times 0{,}8 = 0{,}3595\)<br>
-      \(P(X=2) = 0{,}4493 \times \frac{0{,}64}{2} = 0{,}1438\)<br>
-      \(P(B) = 0{,}3595 + 0{,}1438 = 0{,}5033\)<br>
-      \(P(C) = 1 - 0{,}4493 - 0{,}5033 = 0{,}0474\)<br><br>
-      \(E(Y) = 15 \times 0{,}4493 + 10 \times 0{,}5033 + 4 \times 0{,}0474\)<br>
-      \(E(Y) = 6{,}740 + 5{,}033 + 0{,}190 = 11{,}963\) &euro; par planche<br>
-      CA total : \(2000 \times 11{,}963 \approx 23\,926\) &euro;<br><br>
-      Gain : \(23\,926 - 19\,938 = 3\,988\) &euro;<br>
-      Co&ucirc;t de l&rsquo;investissement : 3000 &euro;<br>
-      <strong>B&eacute;n&eacute;fice net : \(3\,988 - 3\,000 = 988\) &euro;</strong>. L&rsquo;investissement est rentable.</li>
+      <li>\(X \sim B(150\,;\,0{,}06)\).<br>
+      V&eacute;rification : \(n = 150 \geqslant 30\) &check; ; \(np = 9 \geqslant 5\) &check; ; \(n(1-p) = 141 \geqslant 5\) &check;.<br>
+      On approche par \(Y \sim \mathcal{N}(\mu,\,\sigma^2)\) avec \(\mu = np = 9\) et \(\sigma^2 = np(1-p) = 8{,}46\), soit \(\sigma \approx 2{,}91\).</li>
+      <li>Avec correction de continuit&eacute; : \(P(X \leqslant 12) \approx P(Y \leqslant 12{,}5)\)<br>
+      \(= \Phi\!\left(\dfrac{12{,}5 - 9}{2{,}91}\right) = \Phi(1{,}20) \approx 0{,}885\)<br>
+      Environ <strong>88,5&nbsp;%</strong>.</li>
+      <li>\(P(5 \leqslant X \leqslant 15) \approx P(4{,}5 \leqslant Y \leqslant 15{,}5)\)<br>
+      \(= \Phi\!\left(\dfrac{15{,}5-9}{2{,}91}\right) - \Phi\!\left(\dfrac{4{,}5-9}{2{,}91}\right) = \Phi(2{,}23) - \Phi(-1{,}55)\)<br>
+      \(\approx 0{,}9871 - 0{,}0606 = 0{,}9265\)<br>
+      Environ <strong>92,7&nbsp;%</strong>.</li>
+      <li>On cherche \(c\) tel que \(P(X > c) \leqslant 0{,}05\), soit \(P(Y > c + 0{,}5) \leqslant 0{,}05\).<br>
+      \(P(Y \leqslant c + 0{,}5) \geqslant 0{,}95\), donc \(\dfrac{c+0{,}5-9}{2{,}91} \geqslant 1{,}645\).<br>
+      \(c + 0{,}5 \geqslant 9 + 1{,}645 \times 2{,}91 = 9 + 4{,}79 = 13{,}79\)<br>
+      \(c \geqslant 13{,}29\), donc \(c = 13\) (plus petit entier : on prend \(c = 13\)).<br>
+      <strong>Le lot est rejet&eacute; si plus de 13 briques sont d&eacute;fectueuses.</strong></li>
+      <li>Avec \(p = 0{,}10\) : \(\mu' = 150 \times 0{,}10 = 15\), \(\sigma' = \sqrt{150 \times 0{,}10 \times 0{,}90} = \sqrt{13{,}5} \approx 3{,}67\).<br>
+      \(P(X \leqslant 13) \approx P(Y' \leqslant 13{,}5) = \Phi\!\left(\dfrac{13{,}5 - 15}{3{,}67}\right) = \Phi(-0{,}41) \approx 0{,}341\)<br>
+      Le risque client (accepter un mauvais lot) est d&rsquo;environ <strong>34,1&nbsp;%</strong>. C&rsquo;est &eacute;lev&eacute; ; il faudrait augmenter la taille de l&rsquo;&eacute;chantillon pour mieux discriminer.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- --- Exercice 4.4 --- -->
+<div class="exo">
+  <strong>Exercice 4.4 &mdash; Th&eacute;or&egrave;me de la limite centr&eacute;e &mdash; Moyennes d&rsquo;&eacute;chantillons</strong>
+  <p>Une entreprise de menuiserie agencement produit des tasseaux dont la longueur a pour esp&eacute;rance \(\mu = 250\) mm et &eacute;cart-type \(\sigma = 5\) mm. On pr&eacute;l&egrave;ve des &eacute;chantillons de \(n = 50\) tasseaux et on mesure la longueur moyenne \(\bar{X}\) de chaque &eacute;chantillon.</p>
+  <ol>
+    <li>Justifier que le TLC s&rsquo;applique. Donner la loi approximative de \(\bar{X}\).</li>
+    <li>Calculer \(P(249 \leqslant \bar{X} \leqslant 251)\).</li>
+    <li>La production est consid&eacute;r&eacute;e &laquo;&nbsp;d&eacute;r&eacute;gl&eacute;e&nbsp;&raquo; si \(\bar{X}\) s&rsquo;&eacute;carte de plus de 1,5 mm de la cible 250 mm. Calculer la probabilit&eacute; d&rsquo;une fausse alerte (production conforme mais \(\bar{X} \notin [248{,}5\,;\,251{,}5]\)).</li>
+    <li>On souhaite que la probabilit&eacute; de fausse alerte soit inf&eacute;rieure &agrave; 1&nbsp;%. Quelle taille d&rsquo;&eacute;chantillon minimale faut-il utiliser (en gardant le seuil de 1,5 mm) ?</li>
+  </ol>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <ol>
+      <li>Les mesures sont i.i.d., \(n = 50 \geqslant 30\). Par le TLC :<br>
+      \(\bar{X} \sim \mathcal{N}\!\left(250\;;\;\dfrac{25}{50}\right) = \mathcal{N}(250\;;\;0{,}5)\)<br>
+      soit \(\sigma_{\bar{X}} = \dfrac{5}{\sqrt{50}} \approx 0{,}707\) mm.</li>
+      <li>\(P(249 \leqslant \bar{X} \leqslant 251) = P\!\left(\dfrac{249-250}{0{,}707} \leqslant Z \leqslant \dfrac{251-250}{0{,}707}\right) = P(-1{,}41 \leqslant Z \leqslant 1{,}41)\)<br>
+      \(= 2\Phi(1{,}41) - 1 \approx 2 \times 0{,}9207 - 1 = 0{,}8414\)<br>
+      Environ <strong>84,1&nbsp;%</strong>.</li>
+      <li>\(P(|\bar{X} - 250| > 1{,}5) = P\!\left(|Z| > \dfrac{1{,}5}{0{,}707}\right) = P(|Z| > 2{,}12)\)<br>
+      \(= 2(1 - \Phi(2{,}12)) \approx 2(1 - 0{,}9830) = 2 \times 0{,}0170 = 0{,}034\)<br>
+      Probabilit&eacute; de fausse alerte : environ <strong>3,4&nbsp;%</strong>.</li>
+      <li>On veut \(P\!\left(|Z| > \dfrac{1{,}5}{5/\sqrt{n}}\right) \leqslant 0{,}01\), soit \(P(|Z| > z_0) \leqslant 0{,}01\).<br>
+      Cela donne \(z_0 \geqslant 2{,}576\) (quantile 0,995).<br>
+      \(\dfrac{1{,}5}{5/\sqrt{n}} \geqslant 2{,}576\), soit \(\dfrac{1{,}5\sqrt{n}}{5} \geqslant 2{,}576\).<br>
+      \(\sqrt{n} \geqslant \dfrac{2{,}576 \times 5}{1{,}5} = 8{,}587\), donc \(n \geqslant 73{,}7\).<br>
+      Il faut un &eacute;chantillon d&rsquo;au moins <strong>\(n = 74\) tasseaux</strong>.</li>
     </ol>
   </div>
 </div>
