@@ -31,7 +31,10 @@
       display: flex;
       max-width: 960px;
       margin: 0 auto;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
+    nav li { flex-shrink: 0; }
     nav a {
       display: block;
       padding: 14px 22px;
@@ -39,12 +42,14 @@
       text-decoration: none;
       font-weight: 600;
       font-size: .95rem;
+      white-space: nowrap;
       transition: background .2s, color .2s;
     }
     nav a:hover, nav a.active { background: #2563eb; color: #fff; }
     @media (max-width: 600px) {
-      nav a { padding: 11px 13px; font-size: .82rem; }
+      nav a { padding: 11px 14px; font-size: .82rem; }
     }
+    html { scroll-behavior: smooth; }
 
     /* ── Hero ── */
     header {
@@ -559,9 +564,9 @@
       <div class="about-box">
         <span class="about-icon">ℹ️</span>
         <div class="about-text">
-          <p>Ce site propose des ressources de mathématiques et de physique-chimie pour les élèves de lycée professionnel.</p>
-          <p>Les cours sont accompagnés d'exercices et d'activités interactives pour faciliter la compréhension et la mémorisation.</p>
-          <p>Toutes les ressources sont librement accessibles, sans inscription ni connexion.</p>
+          <p>Ce site propose des ressources de <strong>mathématiques</strong> et de <strong>physique-chimie</strong> pour les élèves de Bac Professionnel du lycée Eugène Hénaff (Bagnolet, 93).</p>
+          <p>Tous les cours sont accompagnés d'exercices corrigés, de devoirs surveillés et de simulations interactives.</p>
+          <p>Les ressources sont <strong>librement accessibles</strong>, sans inscription ni connexion. Elles peuvent être consultées en classe ou à la maison, sur ordinateur comme sur téléphone.</p>
         </div>
       </div>
     </section>
@@ -629,6 +634,7 @@
       document.getElementById('encours-date').textContent = 'Mis à jour le ' + d.getDate() + ' ' + MOIS[d.getMonth()] + ' ' + d.getFullYear();
     })();
   </script>
+  <script src="nav.js"></script>
 
 </body>
 </html>
