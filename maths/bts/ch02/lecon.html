@@ -30,6 +30,8 @@
     <li>Dériver des fonctions composées et appliquer les règles opératoires</li>
     <li>Connaître les propriétés des fonctions \(\ln\), \(\exp\) et puissances</li>
     <li>Mener une étude complète de fonction (variations, asymptotes, représentation)</li>
+    <li>Déterminer un développement limité et l'exploiter (tangente, position de la courbe)</li>
+    <li>Étudier et tracer une courbe paramétrée (fonctions polynomiales de degré \(\leq 2\))</li>
     <li>Modéliser des phénomènes physiques par des fonctions (décroissance, optimisation)</li>
   </ul>
 </div>
@@ -454,8 +456,240 @@
   <canvas id="chartXeX" height="280"></canvas>
 </div>
 
-<!-- ==================== 8. APPLICATIONS ==================== -->
-<h2>8. Applications — Modélisation</h2>
+<!-- ==================== 8. DÉVELOPPEMENTS LIMITÉS ==================== -->
+<h2>8. Développements limités en 0 (Approximation locale)</h2>
+
+<h3>8.1. Définition</h3>
+
+<div class="def">
+  <span class="label label-def">Définition — Développement limité en 0</span><br>
+  Soit \(f\) une fonction définie au voisinage de \(0\). On dit que \(f\) admet un <strong>développement limité (DL) d'ordre \(n\)</strong> en \(0\) s'il existe des réels \(a_0, a_1, \ldots, a_n\) tels que :
+  \[f(x) = a_0 + a_1\,x + a_2\,x^2 + \cdots + a_n\,x^n + x^n\,\varepsilon(x)\]
+  où \(\varepsilon(x) \to 0\) quand \(x \to 0\).
+  <br>Le polynôme \(a_0 + a_1\,x + \cdots + a_n\,x^n\) est la <strong>partie régulière</strong> du DL, et \(x^n\,\varepsilon(x)\) est le <strong>reste</strong>.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Interprétation</span><br>
+  Au voisinage de \(0\), la fonction \(f(x)\) est <strong>approchée par un polynôme</strong>. Plus l'ordre \(n\) est élevé, meilleure est l'approximation. Le DL d'ordre 1 donne l'<strong>approximation affine</strong> (tangente).
+</div>
+
+<h3>8.2. DL usuels à connaître</h3>
+
+<div class="formule-box">
+  <strong>Développements limités usuels au voisinage de \(0\) :</strong>
+  \[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots + \frac{x^n}{n!} + x^n\,\varepsilon(x)\]
+  \[\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots + (-1)^{n+1}\frac{x^n}{n} + x^n\,\varepsilon(x)\]
+  \[\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots\]
+  \[\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\]
+  \[\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots + x^n + x^n\,\varepsilon(x)\]
+  \[(1+x)^{\alpha} = 1 + \alpha\,x + \frac{\alpha(\alpha-1)}{2!}\,x^2 + \cdots \qquad (\alpha \in \mathbb{R})\]
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Les DL ci-dessus sont valables <strong>au voisinage de \(0\)</strong> uniquement. Pour un DL au voisinage d'un point \(a \neq 0\), on pose \(h = x - a\) et on écrit le DL en \(h\) au voisinage de \(0\).
+</div>
+
+<h3>8.3. Application : équation de la tangente</h3>
+
+<div class="prop">
+  <span class="label label-prop">Tangente par DL</span><br>
+  Le DL d'ordre 1 de \(f\) en \(0\) est \(f(x) = f(0) + f'(0)\,x + x\,\varepsilon(x)\).
+  <br>L'équation de la <strong>tangente</strong> à la courbe de \(f\) au point d'abscisse \(0\) est donc :
+  \[\boxed{y = f(0) + f'(0)\,x}\]
+  C'est la partie régulière du DL d'ordre 1.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Trouver l'équation de la tangente à \(f(x) = e^x\) en \(x = 0\).</p>
+  <p>DL d'ordre 1 : \(e^x = 1 + x + x\,\varepsilon(x)\).</p>
+  <p>Tangente : \(y = 1 + x\).</p>
+</div>
+
+<h3>8.4. Position de la courbe par rapport à la tangente</h3>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Position courbe/tangente</span><br>
+  On écrit le DL d'ordre 2 (ou plus) de \(f(x)\). La différence \(f(x) - y_T(x)\) (où \(y_T\) est la tangente) est donnée par les termes de degré \(\geq 2\) du DL :
+  <ul>
+    <li>Si le premier terme non nul après la tangente est \(a_2\,x^2\) avec \(a_2 > 0\) : la courbe est <strong>au-dessus</strong> de la tangente au voisinage de \(0\)</li>
+    <li>Si \(a_2 < 0\) : la courbe est <strong>en dessous</strong> de la tangente</li>
+    <li>Si \(a_2 = 0\) et le premier terme non nul est de degré impair : <strong>point d'inflexion</strong> (la courbe traverse la tangente)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Position pour \(e^x\)</span>
+  <p>DL d'ordre 2 : \(e^x = 1 + x + \dfrac{x^2}{2} + x^2\,\varepsilon(x)\).</p>
+  <p>Tangente : \(y = 1 + x\). Donc \(f(x) - y_T = \dfrac{x^2}{2} + x^2\,\varepsilon(x) \approx \dfrac{x^2}{2} > 0\) au voisinage de \(0\).</p>
+  <p>La courbe de \(e^x\) est <strong>au-dessus</strong> de sa tangente en \(0\) (ce qui est cohérent avec la convexité de l'exponentielle).</p>
+</div>
+
+<h3>8.5. Utilisation d'un logiciel de calcul formel</h3>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Déterminer un DL avec un logiciel</span><br>
+  En pratique, les développements limités se calculent à l'aide d'un <strong>logiciel de calcul formel</strong> (CAS) :
+  <ul>
+    <li><strong>Python (SymPy)</strong> : <code>from sympy import *; x = symbols('x'); series(exp(x), x, 0, 5)</code></li>
+    <li><strong>GeoGebra CAS</strong> : commande <code>TaylorPolynomial(f, 0, n)</code></li>
+    <li><strong>Calculatrice</strong> : menu <em>Calcul formel → Développement de Taylor</em></li>
+  </ul>
+  Le logiciel fournit la partie régulière du DL à l'ordre souhaité, que l'on peut ensuite exploiter pour l'étude locale.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Vérification par logiciel</span>
+  <p>On souhaite le DL d'ordre 4 de \(f(x) = \dfrac{1}{1+x^2}\) en \(0\).</p>
+  <p>On sait que \(\dfrac{1}{1-u} = 1 + u + u^2 + \cdots\). En posant \(u = -x^2\) :</p>
+  <p>\(\dfrac{1}{1+x^2} = 1 - x^2 + x^4 - \cdots\)</p>
+  <p>Un logiciel confirme : <code>series(1/(1+x**2), x, 0, 5)</code> donne \(1 - x^2 + x^4 + O(x^5)\).</p>
+</div>
+
+<h3>8.6. Visualisation : fonction et ses approximations</h3>
+
+<div class="chart-wrap">
+  <canvas id="chartDL" height="300"></canvas>
+</div>
+<p style="text-align:center;font-size:0.9em;color:#555;">Comparaison de \(e^x\) avec ses DL d'ordre 1, 2 et 3 au voisinage de \(0\).</p>
+
+<div class="retenir">
+  <strong>À retenir sur les DL :</strong>
+  <ul>
+    <li>Un DL d'ordre \(n\) approche \(f(x)\) par un polynôme de degré \(n\) au voisinage de \(0\)</li>
+    <li>DL d'ordre 1 = tangente ; DL d'ordre 2 = position courbe/tangente</li>
+    <li>Connaître les DL usuels de \(e^x\), \(\ln(1+x)\), \(\sin x\), \(\cos x\), \(\frac{1}{1-x}\), \((1+x)^\alpha\)</li>
+  </ul>
+</div>
+
+<!-- ==================== 9. COURBES PARAMÉTRÉES ==================== -->
+<h2>9. Courbes paramétrées</h2>
+
+<h3>9.1. Définition</h3>
+
+<div class="def">
+  <span class="label label-def">Définition — Courbe paramétrée</span><br>
+  Une <strong>courbe paramétrée</strong> dans le plan est définie par :
+  \[\begin{cases} x = f(t) \\ y = g(t) \end{cases} \qquad t \in I\]
+  où \(f\) et \(g\) sont des fonctions d'une variable réelle \(t\) (le <strong>paramètre</strong>) et \(I\) est un intervalle de \(\mathbb{R}\).
+  <br>À chaque valeur de \(t\), on associe le point \(M(t) = \big(f(t)\,,\,g(t)\big)\) du plan.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Remarque</span><br>
+  Contrairement à une courbe \(y = f(x)\), une courbe paramétrée peut se recouper et ne passe pas nécessairement le « test de la droite verticale ». Le paramètre \(t\) représente souvent le <strong>temps</strong> (trajectoire d'un objet).
+</div>
+
+<h3>9.2. Tableau de variation conjoint</h3>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Construire un tableau de variation conjoint</span><br>
+  <ol>
+    <li>Calculer \(f'(t)\) et \(g'(t)\)</li>
+    <li>Étudier le signe de \(f'(t)\) (variations de \(x\)) et de \(g'(t)\) (variations de \(y\))</li>
+    <li>Construire un tableau à trois lignes :
+      <ul>
+        <li>Ligne 1 : valeurs de \(t\)</li>
+        <li>Ligne 2 : variations de \(x = f(t)\) (flèches ↗ ou ↘)</li>
+        <li>Ligne 3 : variations de \(y = g(t)\) (flèches ↗ ou ↘)</li>
+      </ul>
+    </li>
+    <li>En combinant les deux lignes, on déduit la <strong>direction de parcours</strong> de la courbe</li>
+  </ol>
+</div>
+
+<h3>9.3. Vecteur tangent</h3>
+
+<div class="def">
+  <span class="label label-def">Définition — Vecteur tangent</span><br>
+  En un point \(M(t)\) de la courbe, le <strong>vecteur tangent</strong> (ou vecteur dérivé) est :
+  \[\vec{V}(t) = \begin{pmatrix} f'(t) \\ g'(t) \end{pmatrix}\]
+  Ce vecteur indique la direction de la tangente à la courbe et le sens de parcours.
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention — Point singulier</span><br>
+  Si \(f'(t_0) = 0\) et \(g'(t_0) = 0\) simultanément, le vecteur tangent est nul : on parle de <strong>point singulier</strong>. L'étude de la tangente nécessite alors un calcul plus approfondi (DL du paramétrage).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Équation de la tangente</span><br>
+  Si \(f'(t_0) \neq 0\), la tangente au point \(M(t_0) = \big(x_0, y_0\big)\) a pour pente :
+  \[p = \frac{g'(t_0)}{f'(t_0)}\]
+  et son équation est :
+  \[y - y_0 = \frac{g'(t_0)}{f'(t_0)}\,(x - x_0)\]
+</div>
+
+<h3>9.4. Construction pas à pas</h3>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Tracer une courbe paramétrée</span><br>
+  <ol>
+    <li><strong>Déterminer l'intervalle d'étude</strong> et les éventuelles symétries</li>
+    <li><strong>Calculer les dérivées</strong> \(f'(t)\) et \(g'(t)\), trouver leurs zéros</li>
+    <li><strong>Construire le tableau de variation conjoint</strong></li>
+    <li><strong>Calculer les coordonnées</strong> des points remarquables (extrémités, points où \(f'=0\) ou \(g'=0\))</li>
+    <li><strong>Tracer les vecteurs tangents</strong> en quelques points clés</li>
+    <li><strong>Relier les points</strong> en respectant le sens de parcours et les tangentes</li>
+  </ol>
+</div>
+
+<h3>9.5. Exemple : trajectoire parabolique</h3>
+
+<div class="situation">
+  <h3>Contexte BTS — Arc parabolique en architecture</h3>
+  <p>Un architecte dessine un <strong>arc parabolique</strong> pour la structure d'un hangar de stockage. La forme de l'arc est décrite par un paramétrage où \(t\) représente un paramètre de position le long de l'arc.</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Courbe paramétrée polynomiale</span>
+  <p>On considère la courbe paramétrée :</p>
+  <p>\[\begin{cases} x(t) = 2t \\ y(t) = -t^2 + 4 \end{cases} \qquad t \in [-3\,;\,3]\]</p>
+
+  <p><strong>1. Dérivées :</strong> \(x'(t) = 2\) et \(y'(t) = -2t\).</p>
+  <p>\(x'(t) = 2 > 0\) pour tout \(t\) : \(x\) est toujours croissante.</p>
+  <p>\(y'(t) = 0 \Leftrightarrow t = 0\). \(y'(t) > 0\) si \(t < 0\), \(y'(t) < 0\) si \(t > 0\).</p>
+
+  <p><strong>2. Points remarquables :</strong></p>
+  <table>
+    <tr><th>\(t\)</th><td>\(-3\)</td><td>\(-2\)</td><td>\(-1\)</td><td>\(0\)</td><td>\(1\)</td><td>\(2\)</td><td>\(3\)</td></tr>
+    <tr><th>\(x\)</th><td>\(-6\)</td><td>\(-4\)</td><td>\(-2\)</td><td>\(0\)</td><td>\(2\)</td><td>\(4\)</td><td>\(6\)</td></tr>
+    <tr><th>\(y\)</th><td>\(-5\)</td><td>\(0\)</td><td>\(3\)</td><td>\(4\)</td><td>\(3\)</td><td>\(0\)</td><td>\(-5\)</td></tr>
+  </table>
+
+  <p><strong>3. Vecteur tangent en \(t = 0\) :</strong> \(\vec{V}(0) = \begin{pmatrix} 2 \\ 0 \end{pmatrix}\) — tangente horizontale au sommet.</p>
+  <p><strong>Vecteur tangent en \(t = 1\) :</strong> \(\vec{V}(1) = \begin{pmatrix} 2 \\ -2 \end{pmatrix}\) — pente \(\frac{-2}{2} = -1\).</p>
+
+  <p><strong>4. Équation cartésienne :</strong> De \(x = 2t\), on tire \(t = \frac{x}{2}\), d'où \(y = -\frac{x^2}{4} + 4\). C'est bien une <strong>parabole</strong> de sommet \((0\,;\,4)\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Trajectoire d'un matériau en chute</span>
+  <p>Un charpentier laisse tomber une pièce de bois depuis une passerelle en mouvement. La trajectoire est modélisée par :</p>
+  <p>\[\begin{cases} x(t) = 1{,}5\,t \\ y(t) = 3 - 4{,}9\,t^2 \end{cases} \qquad t \geq 0\]</p>
+  <p>C'est une courbe paramétrée polynomiale (\(\deg \leq 2\)). Le vecteur tangent est \(\vec{V}(t) = \begin{pmatrix} 1{,}5 \\ -9{,}8\,t \end{pmatrix}\).</p>
+  <p>En \(t = 0\) : \(\vec{V}(0) = \begin{pmatrix} 1{,}5 \\ 0 \end{pmatrix}\) (départ horizontal). La composante verticale augmente en valeur absolue : la trajectoire s'incurve vers le bas.</p>
+</div>
+
+<div class="chart-wrap">
+  <canvas id="chartParam" height="300"></canvas>
+</div>
+<p style="text-align:center;font-size:0.9em;color:#555;">Courbe paramétrée \(x = 2t\), \(y = -t^2 + 4\) pour \(t \in [-3\,;\,3]\).</p>
+
+<div class="retenir">
+  <strong>À retenir sur les courbes paramétrées :</strong>
+  <ul>
+    <li>Définies par \(\begin{cases} x = f(t) \\ y = g(t) \end{cases}\), le paramètre \(t\) parcourt un intervalle</li>
+    <li>Le vecteur tangent est \(\vec{V}(t) = \begin{pmatrix} f'(t) \\ g'(t) \end{pmatrix}\)</li>
+    <li>Le tableau de variation conjoint permet de reconstituer le tracé</li>
+    <li>En BTS, on se limite aux fonctions polynomiales de degré \(\leq 2\)</li>
+  </ul>
+</div>
+
+<!-- ==================== 10. APPLICATIONS ==================== -->
+<h2>10. Applications — Modélisation</h2>
 
 <h3>8.1. Décroissance radioactive / Loi de refroidissement de Newton</h3>
 
@@ -519,6 +753,8 @@
     <li>\(\ln\) et \(\exp\) : fonctions réciproques, propriétés algébriques, limites</li>
     <li>Fonctions puissances : \(x^{\alpha} = e^{\alpha\ln x}\)</li>
     <li>Étude de fonction : domaine, limites, dérivée, tableau de variations, graphique</li>
+    <li>Développements limités : approximation locale, tangente, position courbe/tangente</li>
+    <li>Courbes paramétrées : vecteur tangent, tableau de variation conjoint, tracé</li>
     <li>Applications : refroidissement de Newton, dépréciation, optimisation de coûts</li>
   </ul>
 </div>
@@ -589,6 +825,76 @@
         x: {type: 'linear', min: -2, max: 8, title: {display: true, text: 'x'}},
         y: {min: -1, max: 1, title: {display: true, text: 'f(x)'}}
       }
+    }
+  });
+})();
+
+// Graphique DL de e^x
+(function(){
+  const ctx = document.getElementById('chartDL');
+  if(!ctx) return;
+  const xs = [];
+  const yF = [], yDL1 = [], yDL2 = [], yDL3 = [];
+  for(let x = -3; x <= 3; x += 0.05){
+    const xr = Math.round(x*100)/100;
+    xs.push(xr);
+    yF.push(Math.round(Math.exp(x)*1000)/1000);
+    yDL1.push(Math.round((1 + x)*1000)/1000);
+    yDL2.push(Math.round((1 + x + x*x/2)*1000)/1000);
+    yDL3.push(Math.round((1 + x + x*x/2 + x*x*x/6)*1000)/1000);
+  }
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: xs,
+      datasets: [
+        {label: 'f(x) = eˣ', data: yF, borderColor: '#1e3a5f', borderWidth: 2.5, pointRadius: 0, fill: false},
+        {label: 'DL ordre 1 : 1 + x', data: yDL1, borderColor: '#c53030', borderWidth: 1.5, borderDash: [6,4], pointRadius: 0, fill: false},
+        {label: 'DL ordre 2 : 1 + x + x²/2', data: yDL2, borderColor: '#2da44e', borderWidth: 1.5, borderDash: [4,3], pointRadius: 0, fill: false},
+        {label: 'DL ordre 3 : 1 + x + x²/2 + x³/6', data: yDL3, borderColor: '#d97706', borderWidth: 1.5, borderDash: [2,2], pointRadius: 0, fill: false}
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {title: {display: true, text: 'eˣ et ses développements limités en 0'}},
+      scales: {
+        x: {type: 'linear', min: -3, max: 3, title: {display: true, text: 'x'}},
+        y: {min: -2, max: 10, title: {display: true, text: 'y'}}
+      }
+    }
+  });
+})();
+
+// Graphique courbe paramétrée
+(function(){
+  const ctx = document.getElementById('chartParam');
+  if(!ctx) return;
+  const xPts = [], yPts = [];
+  for(let t = -3; t <= 3; t += 0.05){
+    xPts.push(Math.round(2*t*100)/100);
+    yPts.push(Math.round((-t*t+4)*100)/100);
+  }
+  const data = xPts.map((x,i) => ({x: x, y: yPts[i]}));
+  // Points remarquables
+  const pts = [{x:0,y:4},{x:-4,y:0},{x:4,y:0},{x:-6,y:-5},{x:6,y:-5}];
+  // Tangent vectors (as line segments)
+  new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [
+        {label: 'x=2t, y=−t²+4', data: data, borderColor: '#1e3a5f', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 0, showLine: true, fill: false},
+        {label: 'Points remarquables', data: pts, borderColor: '#c53030', backgroundColor: '#c53030', pointRadius: 5, showLine: false},
+        {label: 'Tangente horizontale (sommet)', data: [{x:-1.5,y:4},{x:1.5,y:4}], borderColor: '#2da44e', borderWidth: 1.5, borderDash: [5,3], pointRadius: 0, showLine: true, fill: false}
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {title: {display: true, text: 'Courbe paramétrée : x = 2t, y = −t² + 4'}},
+      scales: {
+        x: {min: -7, max: 7, title: {display: true, text: 'x'}},
+        y: {min: -6, max: 6, title: {display: true, text: 'y'}}
+      },
+      aspectRatio: 1.5
     }
   });
 })();

@@ -443,6 +443,120 @@
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- ALGORITHME ET TABLEUR — Recherche de seuil        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="niveau-header niv2">
+  <span class="badge-niv badge-2">Niveau 2</span>
+  <h2>Algorithme et tableur — Recherche de seuil</h2>
+</div>
+
+<!-- ── Exercice 16 ── -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num-badge">Exercice 16</span>
+    <span class="exo-title">Seuil d'une suite géométrique — Tableur et algorithme</span>
+  </div>
+  <p>Un technicien en génie climatique modélise la concentration résiduelle d'un produit de traitement dans un circuit de chauffage. Après chaque purge hebdomadaire, la concentration est multipliée par \(0{,}88\). La concentration initiale est de 500 mg/L.</p>
+  <p>On pose \(C_n = 500 \times 0{,}88^n\) la concentration après \(n\) purges.</p>
+  <p>1) Recopier et compléter le tableau de valeurs suivant (arrondir au dixième) :</p>
+  <table>
+    <tr><th>\(n\)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th><th>30</th></tr>
+    <tr><td>\(C_n\)</td><td>500</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+  </table>
+  <p>2) La norme impose que la concentration soit inférieure à 50 mg/L avant le rejet. Déterminer, à l'aide d'un tableur ou d'un algorithme, le nombre minimal de purges nécessaires.</p>
+  <p>3) <strong>Tableur :</strong> Décrire la feuille de calcul que vous utiliseriez (contenu des cellules A1, B1, A2, B2, formule à recopier).</p>
+  <p>4) <strong>Algorithme :</strong> Écrire un programme Python qui affiche le rang \(n\) cherché.</p>
+  <p>5) Vérifier le résultat par le calcul algébrique (logarithme).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1)</strong></p>
+    <table>
+      <tr><th>\(n\)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th><th>30</th></tr>
+      <tr><td>\(C_n\)</td><td>500,0</td><td>263,7</td><td>139,0</td><td>73,3</td><td>38,6</td><td>20,4</td><td>10,7</td></tr>
+    </table>
+    <p><strong>2)</strong> On cherche le plus petit \(n\) tel que \(C_n < 50\).</p>
+    <p>En testant : \(C_{17} = 500 \times 0{,}88^{17} \approx 55{,}6\) et \(C_{18} = 500 \times 0{,}88^{18} \approx 48{,}9 < 50\).</p>
+    <p>Il faut au minimum <strong>18 purges</strong>.</p>
+    <p><strong>3)</strong> Tableur :</p>
+    <table>
+      <tr><td>A1 : <code>n</code></td><td>B1 : <code>C_n</code></td></tr>
+      <tr><td>A2 : <code>0</code></td><td>B2 : <code>500</code></td></tr>
+      <tr><td>A3 : <code>=A2+1</code></td><td>B3 : <code>=500*0,88^A3</code></td></tr>
+    </table>
+    <p>On recopie la ligne 3 vers le bas et on cherche la première valeur de B inférieure à 50.</p>
+    <p><strong>4)</strong> Programme Python :</p>
+    <pre><code>n = 0
+C = 500
+while C >= 50:
+    n = n + 1
+    C = 500 * 0.88**n
+print("Nombre minimal de purges :", n)</code></pre>
+    <p>Résultat affiché : <code>Nombre minimal de purges : 18</code></p>
+    <p><strong>5)</strong> \(500 \times 0{,}88^n < 50 \Leftrightarrow 0{,}88^n < 0{,}1 \Leftrightarrow n > \dfrac{\ln(0{,}1)}{\ln(0{,}88)} = \dfrac{-2{,}3026}{-0{,}1278} \approx 18{,}02\).</p>
+    <p>On retrouve bien \(n = 18\). ✓</p>
+  </div>
+</div>
+
+<!-- ── Exercice 17 ── -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num-badge">Exercice 17</span>
+    <span class="exo-title">Seuil d'une suite définie par récurrence — Algorithme</span>
+  </div>
+  <p>Un bassin de rétention contient initialement 400 mg/L de polluant. Chaque jour, un système de filtration élimine 12 % du polluant, mais l'apport quotidien est de 15 mg/L. On modélise la concentration par :</p>
+  <p>\[P_0 = 400 \quad \text{et} \quad P_{n+1} = 0{,}88\,P_n + 15\]</p>
+  <p>1) Calculer \(P_1\), \(P_2\) et \(P_3\) (arrondir au dixième).</p>
+  <p>2) Déterminer la limite \(\ell\) de cette suite (en admettant sa convergence).</p>
+  <p>3) Cette suite n'étant pas explicite, on ne peut pas résoudre algébriquement \(P_n < 150\). Écrire un algorithme en Python qui détermine à partir de quel jour \(n\) la concentration passe sous 150 mg/L.</p>
+  <p>4) Adapter l'algorithme pour afficher le tableau des valeurs \(P_0, P_1, \ldots\) jusqu'au rang trouvé.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1)</strong> \(P_1 = 0{,}88 \times 400 + 15 = 367{,}0\), \(P_2 = 0{,}88 \times 367 + 15 = 338{,}0\), \(P_3 = 0{,}88 \times 338 + 15 \approx 312{,}4\).</p>
+    <p><strong>2)</strong> \(\ell = 0{,}88\,\ell + 15 \Rightarrow 0{,}12\,\ell = 15 \Rightarrow \ell = 125\) mg/L.</p>
+    <p><strong>3)</strong> Programme Python :</p>
+    <pre><code>n = 0
+P = 400
+while P >= 150:
+    n = n + 1
+    P = 0.88 * P + 15
+print("La concentration passe sous 150 mg/L au jour", n)</code></pre>
+    <p>Résultat affiché : <code>La concentration passe sous 150 mg/L au jour 19</code></p>
+    <p><strong>4)</strong> Algorithme avec affichage du tableau :</p>
+    <pre><code>n = 0
+P = 400
+print(f"n = {n}, P = {P:.1f}")
+while P >= 150:
+    n = n + 1
+    P = 0.88 * P + 15
+    print(f"n = {n}, P = {P:.1f}")
+print("Seuil atteint au jour", n)</code></pre>
+    <p>Résultat :</p>
+    <pre><code>n = 0, P = 400.0
+n = 1, P = 367.0
+n = 2, P = 338.0
+n = 3, P = 312.4
+n = 4, P = 289.9
+n = 5, P = 270.1
+n = 6, P = 252.7
+n = 7, P = 237.4
+n = 8, P = 223.9
+n = 9, P = 212.0
+n = 10, P = 201.6
+n = 11, P = 192.4
+n = 12, P = 184.3
+n = 13, P = 177.2
+n = 14, P = 170.9
+n = 15, P = 165.4
+n = 16, P = 160.6
+n = 17, P = 156.3
+n = 18, P = 152.5
+n = 19, P = 149.2
+Seuil atteint au jour 19</code></pre>
+    <p><em>Note : La suite définie par récurrence nécessite de calculer chaque terme l'un après l'autre. C'est pourquoi l'approche algorithmique est indispensable ici, contrairement à une suite explicite où on peut utiliser le logarithme.</em></p>
+  </div>
+</div>
+
 </div>
 <script src="../../../nav.js"></script>
 </body>

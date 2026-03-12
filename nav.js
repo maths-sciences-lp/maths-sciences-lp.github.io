@@ -88,7 +88,14 @@
         { id: '15', title: 'Calcul vectoriel' },
         { id: '16', title: 'Matrices et systèmes linéaires' },
         { id: '17', title: 'Calcul et algorithmique' },
-        { id: '18', title: 'Fiabilité' }
+        { id: '18', title: 'Fiabilité' },
+        { id: '19', title: 'Transformation en z' },
+        { id: '20', title: 'Plans d\'expérience' },
+        { id: '21', title: 'Représentation de l\'espace' },
+        { id: '22', title: 'Algèbres de Boole' },
+        { id: '23', title: 'Éléments de théorie des ensembles' },
+        { id: '24', title: 'Graphes et ordonnancement' },
+        { id: '25', title: 'Algorithmique appliquée' }
       ]
     },
 
@@ -364,4 +371,16 @@
   /* ── Chargement de nav.css ─────────────────────────────────────────── */
   injectCss();
 
+})();
+
+/* ── GoatCounter — Statistiques de visites ─────────────────────────── */
+/* Créer un compte gratuit sur https://www.goatcounter.com              */
+/* Remplacer VOTRE-IDENTIFIANT par votre code site (ex: maths-sciences) */
+(function () {
+  if (window.location.host.indexOf('github.io') === -1) return; // skip en local
+  var s = document.createElement('script');
+  s.async = true;
+  s.dataset.goatcounter = 'https://maths-sciences.goatcounter.com/count';
+  s.src = '//gc.zgo.at/count.js';
+  document.head.appendChild(s);
 })();

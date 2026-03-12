@@ -26,7 +26,12 @@
     <li>Utiliser les probabilit&eacute;s conditionnelles et la formule de Bayes</li>
     <li>D&eacute;terminer si deux &eacute;v&eacute;nements sont ind&eacute;pendants</li>
     <li>D&eacute;finir une variable al&eacute;atoire discr&egrave;te, calculer esp&eacute;rance, variance et &eacute;cart-type</li>
-    <li>Reconna&icirc;tre et utiliser la loi binomiale \(B(n,p)\) et la loi de Poisson \(P(\lambda)\)</li>
+    <li>Reconna&icirc;tre et utiliser la loi binomiale \(B(n,p)\)</li>
+    <li>D&eacute;finir et utiliser la loi uniforme sur \([a\,;\,b]\)</li>
+    <li>D&eacute;finir et utiliser la loi normale \(\mathcal{N}(\mu,\sigma^2)\) et la loi normale centr&eacute;e r&eacute;duite</li>
+    <li>Approcher une loi binomiale par une loi normale</li>
+    <li>Calculer esp&eacute;rance et variance de combinaisons lin&eacute;aires de v.a.</li>
+    <li>Appliquer le th&eacute;or&egrave;me de la limite centrée (TLC)</li>
     <li>Appliquer ces outils au contr&ocirc;le qualit&eacute; et &agrave; la fiabilit&eacute; industrielle</li>
   </ul>
 </div>
@@ -37,7 +42,7 @@
 <div class="situation">
   <h3>Contr&ocirc;le qualit&eacute; dans une production de panneaux</h3>
   <p>Un technicien en agencement r&eacute;ceptionne un lot de 500 panneaux de bois m&eacute;lamin&eacute;. Le fournisseur annonce un taux de d&eacute;faut de 3&nbsp;%. Pour v&eacute;rifier cette affirmation, le technicien pr&eacute;l&egrave;ve un &eacute;chantillon de 20 panneaux et compte le nombre de panneaux d&eacute;fectueux.</p>
-  <p><strong>Probl&egrave;me :</strong> Quelle est la probabilit&eacute; de trouver au moins 2 panneaux d&eacute;fectueux dans l&rsquo;&eacute;chantillon ? &Agrave; partir de quel nombre de d&eacute;fauts le technicien doit-il rejeter le lot ? La r&eacute;ponse passe par les <em>probabilit&eacute;s</em> et la <em>loi binomiale</em>.</p>
+  <p><strong>Probl&egrave;me :</strong> Quelle est la probabilit&eacute; de trouver au moins 2 panneaux d&eacute;fectueux dans l&rsquo;&eacute;chantillon ? &Agrave; partir de quel nombre de d&eacute;fauts le technicien doit-il rejeter le lot ? La r&eacute;ponse passe par les <em>probabilit&eacute;s</em>, la <em>loi binomiale</em> et, pour de grands &eacute;chantillons, son <em>approximation par la loi normale</em>.</p>
 </div>
 
 <!-- ==================== 1. EXPÉRIENCE ALÉATOIRE ==================== -->
@@ -335,56 +340,232 @@
   La loi binomiale suppose des tirages <strong>ind&eacute;pendants</strong> (avec remise). Si l&rsquo;on tire sans remise dans un petit lot, on utilise la <strong>loi hyperg&eacute;om&eacute;trique</strong>. Cependant, si la taille du lot est grande devant la taille de l&rsquo;&eacute;chantillon (au moins 10 fois), l&rsquo;approximation binomiale reste acceptable.
 </div>
 
-<!-- ==================== 10. LOI DE POISSON ==================== -->
-<h2>10. Loi de Poisson \(\mathcal{P}(\lambda)\)</h2>
+<!-- ==================== 10. LOI UNIFORME SUR [a,b] ==================== -->
+<h2>10. Loi uniforme sur \([a\,;\,b]\)</h2>
 
 <div class="def">
-  <span class="label label-def">D&eacute;finition &mdash; Loi de Poisson</span><br>
-  Une variable al&eacute;atoire \(X\) suit la <strong>loi de Poisson</strong> de param&egrave;tre \(\lambda > 0\), not&eacute;e \(X \sim \mathcal{P}(\lambda)\), si pour tout entier \(k \geqslant 0\) :
-  \[P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!}\]
+  <span class="label label-def">D&eacute;finition &mdash; Loi uniforme continue</span><br>
+  Une variable al&eacute;atoire \(X\) suit la <strong>loi uniforme</strong> sur \([a\,;\,b]\), not&eacute;e \(X \sim \mathcal{U}([a\,;\,b])\), si sa <strong>fonction de densit&eacute;</strong> est constante sur \([a\,;\,b]\) :
+  \[f(x) = \begin{cases} \dfrac{1}{b-a} & \text{si } x \in [a\,;\,b] \\ 0 & \text{sinon} \end{cases}\]
+  Intuitivement, toutes les valeurs de l&rsquo;intervalle sont &laquo;&nbsp;&eacute;quiprobables&nbsp;&raquo;.
 </div>
 
 <div class="formula-box">
-  <strong>Loi de Poisson \(\mathcal{P}(\lambda)\) &mdash; Param&egrave;tres</strong>
+  <strong>Loi uniforme \(\mathcal{U}([a\,;\,b])\) &mdash; Param&egrave;tres</strong>
   <ul>
-    <li>Esp&eacute;rance : \(E(X) = \lambda\)</li>
-    <li>Variance : \(V(X) = \lambda\)</li>
-    <li>&Eacute;cart-type : \(\sigma(X) = \sqrt{\lambda}\)</li>
+    <li>Esp&eacute;rance : \(E(X) = \dfrac{a+b}{2}\)</li>
+    <li>Variance : \(V(X) = \dfrac{(b-a)^2}{12}\)</li>
+    <li>&Eacute;cart-type : \(\sigma(X) = \dfrac{b-a}{\sqrt{12}} = \dfrac{b-a}{2\sqrt{3}}\)</li>
   </ul>
 </div>
 
 <div class="prop">
-  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Approximation de la loi binomiale par la loi de Poisson</span><br>
-  Lorsque \(n\) est grand (\(n \geqslant 30\)) et \(p\) est petit (\(p \leqslant 0{,}1\)), avec \(\lambda = np\) mod&eacute;r&eacute; (\(\lambda \leqslant 10\)), on peut approcher :
-  \[B(n,p) \approx \mathcal{P}(\lambda = np)\]
-  On retient la r&egrave;gle pratique : \(n \geqslant 30\), \(p \leqslant 0{,}1\), \(np \leqslant 10\).
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Calcul de probabilit&eacute;</span><br>
+  Pour \([c\,;\,d] \subset [a\,;\,b]\) :
+  \[P(c \leqslant X \leqslant d) = \frac{d - c}{b - a}\]
+  La probabilit&eacute; est proportionnelle &agrave; la longueur de l&rsquo;intervalle.
 </div>
 
 <div class="ex">
-  <span class="label label-ex">Exemple &mdash; Fiabilit&eacute; d&rsquo;un syst&egrave;me de chauffage</span>
-  <p>Un installateur de syst&egrave;mes de chauffage constate en moyenne \(\lambda = 2{,}5\) pannes par mois sur l&rsquo;ensemble de son parc. Soit \(X\) le nombre de pannes par mois : \(X \sim \mathcal{P}(2{,}5)\).</p>
-  <p><strong>Probabilit&eacute; d&rsquo;aucune panne :</strong></p>
-  <p>\(P(X = 0) = e^{-2{,}5} \frac{(2{,}5)^0}{0!} = e^{-2{,}5} \approx 0{,}0821\)</p>
-  <p><strong>Probabilit&eacute; d&rsquo;au plus 2 pannes :</strong></p>
-  <p>\(P(X \leqslant 2) = P(X=0) + P(X=1) + P(X=2)\)</p>
-  <p>\(P(X=1) = e^{-2{,}5} \times 2{,}5 \approx 0{,}2052\)</p>
-  <p>\(P(X=2) = e^{-2{,}5} \times \frac{(2{,}5)^2}{2} \approx 0{,}2565\)</p>
-  <p>\(P(X \leqslant 2) \approx 0{,}0821 + 0{,}2052 + 0{,}2565 = 0{,}5438\)</p>
+  <span class="label label-ex">Exemple &mdash; Temps d&rsquo;attente d&rsquo;un ascenseur de chantier</span>
+  <p>Sur un chantier de construction, un ascenseur de chantier effectue un cycle complet toutes les 8 minutes. Un menuisier arrive &agrave; un instant al&eacute;atoire. Son temps d&rsquo;attente \(X\) (en minutes) suit une loi uniforme sur \([0\,;\,8]\).</p>
+  <p>\(E(X) = \dfrac{0 + 8}{2} = 4\) min (attente moyenne : 4 minutes)</p>
+  <p>\(\sigma(X) = \dfrac{8 - 0}{2\sqrt{3}} \approx 2{,}31\) min</p>
+  <p>Probabilit&eacute; d&rsquo;attendre moins de 2 minutes :</p>
+  <p>\(P(X \leqslant 2) = \dfrac{2 - 0}{8 - 0} = \dfrac{2}{8} = 0{,}25 = 25\,\%\)</p>
+  <p>Probabilit&eacute; d&rsquo;attendre entre 3 et 6 minutes :</p>
+  <p>\(P(3 \leqslant X \leqslant 6) = \dfrac{6 - 3}{8 - 0} = \dfrac{3}{8} = 0{,}375 = 37{,}5\,\%\)</p>
+</div>
+
+<!-- ==================== 11. LOI NORMALE ==================== -->
+<h2>11. Loi normale \(\mathcal{N}(\mu,\sigma^2)\)</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Loi normale (loi de Gauss)</span><br>
+  Une variable al&eacute;atoire \(X\) suit la <strong>loi normale</strong> de param&egrave;tres \(\mu\) (esp&eacute;rance) et \(\sigma^2\) (variance), not&eacute;e \(X \sim \mathcal{N}(\mu,\sigma^2)\), si sa fonction de densit&eacute; est :
+  \[f(x) = \frac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]
+  La courbe repr&eacute;sentative est la c&eacute;l&egrave;bre <strong>courbe de Gauss</strong> (courbe en cloche).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute;s de la courbe de Gauss</span><br>
+  <ul>
+    <li>La courbe est <strong>sym&eacute;trique</strong> par rapport &agrave; la droite \(x = \mu\)</li>
+    <li>Le maximum est atteint en \(x = \mu\)</li>
+    <li>Les points d&rsquo;inflexion sont en \(x = \mu - \sigma\) et \(x = \mu + \sigma\)</li>
+    <li>L&rsquo;aire totale sous la courbe vaut 1</li>
+    <li>Plus \(\sigma\) est petit, plus la courbe est resserr&eacute;e autour de \(\mu\)</li>
+  </ul>
+</div>
+
+<div class="formula-box">
+  <strong>R&egrave;gle des 68-95-99,7</strong>
+  <ul>
+    <li>\(P(\mu - \sigma \leqslant X \leqslant \mu + \sigma) \approx 0{,}6827\) &mdash; environ <strong>68&nbsp;%</strong></li>
+    <li>\(P(\mu - 2\sigma \leqslant X \leqslant \mu + 2\sigma) \approx 0{,}9545\) &mdash; environ <strong>95&nbsp;%</strong></li>
+    <li>\(P(\mu - 3\sigma \leqslant X \leqslant \mu + 3\sigma) \approx 0{,}9973\) &mdash; environ <strong>99,7&nbsp;%</strong></li>
+  </ul>
+</div>
+
+<!-- Graphique Chart.js : courbe de Gauss avec règle 68-95-99,7 -->
+<div class="chart-wrap">
+  <canvas id="gaussChart" width="700" height="380"></canvas>
+</div>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Loi normale centr&eacute;e r&eacute;duite</span><br>
+  La <strong>loi normale centr&eacute;e r&eacute;duite</strong> est la loi \(\mathcal{N}(0,1)\) : elle a pour esp&eacute;rance 0 et pour &eacute;cart-type 1. On la note souvent \(Z\).
+  <p>Si \(X \sim \mathcal{N}(\mu,\sigma^2)\), alors la variable :</p>
+  \[Z = \frac{X - \mu}{\sigma}\]
+  suit la loi \(\mathcal{N}(0,1)\). Cette transformation s&rsquo;appelle la <strong>r&eacute;duction</strong> (ou centrage-r&eacute;duction).
 </div>
 
 <div class="meth">
-  <span class="label label-meth">M&eacute;thode &mdash; Choisir entre binomiale et Poisson</span><br>
-  <table>
-    <tr><th>Crit&egrave;re</th><th>Loi binomiale \(B(n,p)\)</th><th>Loi de Poisson \(\mathcal{P}(\lambda)\)</th></tr>
-    <tr><td>Nombre d&rsquo;&eacute;preuves</td><td>Fixe (\(n\))</td><td>Pas de nombre fixe (comptage)</td></tr>
-    <tr><td>\(p\)</td><td>Quelconque</td><td>Petit (\(\leqslant 0{,}1\))</td></tr>
-    <tr><td>Contexte typique</td><td>Contr&ocirc;le d&rsquo;un &eacute;chantillon</td><td>Nombre d&rsquo;&eacute;v&eacute;nements rares</td></tr>
-    <tr><td>Param&egrave;tres</td><td>\(n\) et \(p\)</td><td>\(\lambda\) (nombre moyen)</td></tr>
-  </table>
+  <span class="label label-meth">M&eacute;thode &mdash; Calculer \(P(a \leqslant X \leqslant b)\) avec la table de la loi normale</span><br>
+  <ol>
+    <li>Centrer-r&eacute;duire : \(P(a \leqslant X \leqslant b) = P\!\left(\dfrac{a - \mu}{\sigma} \leqslant Z \leqslant \dfrac{b - \mu}{\sigma}\right)\)</li>
+    <li>Utiliser la table de \(\mathcal{N}(0,1)\) ou la calculatrice pour lire \(\Phi(z) = P(Z \leqslant z)\)</li>
+    <li>Appliquer : \(P(z_1 \leqslant Z \leqslant z_2) = \Phi(z_2) - \Phi(z_1)\)</li>
+  </ol>
+  <p>Propri&eacute;t&eacute; de sym&eacute;trie : \(\Phi(-z) = 1 - \Phi(z)\)</p>
 </div>
 
-<!-- ==================== 11. APPLICATIONS ==================== -->
-<h2>11. Applications au contr&ocirc;le qualit&eacute; et &agrave; la fiabilit&eacute;</h2>
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Longueur de tasseaux de bois</span>
+  <p>Un menuisier agenceur d&eacute;bite des tasseaux dont la longueur \(X\) (en mm) suit la loi \(\mathcal{N}(500\,;\,4)\) (soit \(\mu = 500\) mm et \(\sigma = 2\) mm).</p>
+  <p><strong>Probabilit&eacute; qu&rsquo;un tasseau mesure entre 497 et 503 mm :</strong></p>
+  <p>\(P(497 \leqslant X \leqslant 503) = P\!\left(\dfrac{497 - 500}{2} \leqslant Z \leqslant \dfrac{503 - 500}{2}\right) = P(-1{,}5 \leqslant Z \leqslant 1{,}5)\)</p>
+  <p>\(= \Phi(1{,}5) - \Phi(-1{,}5) = 2\Phi(1{,}5) - 1 \approx 2 \times 0{,}9332 - 1 = 0{,}8664\)</p>
+  <p>Environ <strong>86,6&nbsp;%</strong> des tasseaux sont dans la tol&eacute;rance \(\pm 3\) mm.</p>
+  <p><strong>Probabilit&eacute; qu&rsquo;un tasseau d&eacute;passe 505 mm :</strong></p>
+  <p>\(P(X > 505) = P\!\left(Z > \dfrac{505-500}{2}\right) = P(Z > 2{,}5) = 1 - \Phi(2{,}5) \approx 1 - 0{,}9938 = 0{,}0062\)</p>
+  <p>Moins de <strong>0,6&nbsp;%</strong> des tasseaux d&eacute;passent 505 mm.</p>
+</div>
+
+<!-- ==================== 12. APPROXIMATION BINOMIALE → NORMALE ==================== -->
+<h2>12. Approximation d&rsquo;une loi binomiale par une loi normale</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Approximation normale de la binomiale</span><br>
+  Lorsque \(n\) est assez grand, la loi binomiale \(B(n,p)\) peut &ecirc;tre approch&eacute;e par une loi normale :
+  \[X \sim B(n,p) \;\approx\; \mathcal{N}(np,\;np(1-p))\]
+  <strong>Conditions d&rsquo;application</strong> (r&egrave;gle pratique) :
+  <ul>
+    <li>\(n \geqslant 30\)</li>
+    <li>\(np \geqslant 5\)</li>
+    <li>\(n(1-p) \geqslant 5\)</li>
+  </ul>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Correction de continuit&eacute;</span><br>
+  La loi binomiale est discr&egrave;te (valeurs enti&egrave;res), la loi normale est continue. Pour am&eacute;liorer l&rsquo;approximation, on applique une <strong>correction de continuit&eacute;</strong> :
+  <ul>
+    <li>\(P(X = k) \approx P(k - 0{,}5 \leqslant Y \leqslant k + 0{,}5)\) o&ugrave; \(Y \sim \mathcal{N}(np,\,np(1-p))\)</li>
+    <li>\(P(X \leqslant k) \approx P(Y \leqslant k + 0{,}5)\)</li>
+    <li>\(P(X \geqslant k) \approx P(Y \geqslant k - 0{,}5)\)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Contr&ocirc;le qualit&eacute; de briques r&eacute;fractaires</span>
+  <p>Une usine produit des briques r&eacute;fractaires pour des chemin&eacute;es et po&ecirc;les. Le taux de d&eacute;faut est \(p = 0{,}08\). On pr&eacute;l&egrave;ve un &eacute;chantillon de \(n = 200\) briques. Soit \(X\) le nombre de briques d&eacute;fectueuses.</p>
+  <p>\(X \sim B(200\,;\,0{,}08)\). V&eacute;rifions les conditions :</p>
+  <ul>
+    <li>\(n = 200 \geqslant 30\) &check;</li>
+    <li>\(np = 200 \times 0{,}08 = 16 \geqslant 5\) &check;</li>
+    <li>\(n(1-p) = 200 \times 0{,}92 = 184 \geqslant 5\) &check;</li>
+  </ul>
+  <p>On approche par \(Y \sim \mathcal{N}(16\,;\,14{,}72)\), soit \(\mu = 16\) et \(\sigma = \sqrt{14{,}72} \approx 3{,}84\).</p>
+  <p><strong>Probabilit&eacute; d&rsquo;avoir au plus 20 briques d&eacute;fectueuses</strong> (avec correction de continuit&eacute;) :</p>
+  <p>\(P(X \leqslant 20) \approx P(Y \leqslant 20{,}5) = \Phi\!\left(\dfrac{20{,}5 - 16}{3{,}84}\right) = \Phi(1{,}17) \approx 0{,}879\)</p>
+  <p>Environ <strong>87,9&nbsp;%</strong> de chances d&rsquo;observer au plus 20 d&eacute;fauts.</p>
+</div>
+
+<!-- ==================== 13. ESPÉRANCE ET VARIANCE DE COMBINAISONS LINÉAIRES ==================== -->
+<h2>13. Esp&eacute;rance et variance de combinaisons lin&eacute;aires</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Lin&eacute;arit&eacute; de l&rsquo;esp&eacute;rance</span><br>
+  Pour toutes variables al&eacute;atoires \(X\) et \(Y\), et pour \(a, b \in \mathbb{R}\) :
+  <ul>
+    <li>\(E(aX + b) = aE(X) + b\)</li>
+    <li>\(E(X + Y) = E(X) + E(Y)\) <em>(toujours vraie, m&ecirc;me si \(X\) et \(Y\) ne sont pas ind&eacute;pendantes)</em></li>
+    <li>Plus g&eacute;n&eacute;ralement : \(E\!\left(\displaystyle\sum_{i=1}^n a_i X_i + b\right) = \sum_{i=1}^n a_i\,E(X_i) + b\)</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Variance d&rsquo;une combinaison lin&eacute;aire</span><br>
+  Pour \(a, b \in \mathbb{R}\) :
+  <ul>
+    <li>\(V(aX + b) = a^2\,V(X)\)</li>
+    <li>Si \(X\) et \(Y\) sont <strong>ind&eacute;pendantes</strong> : \(V(X + Y) = V(X) + V(Y)\)</li>
+    <li>Plus g&eacute;n&eacute;ralement, si \(X_1, \ldots, X_n\) sont mutuellement ind&eacute;pendantes :<br>
+    \(V\!\left(\displaystyle\sum_{i=1}^n a_i X_i\right) = \sum_{i=1}^n a_i^2\,V(X_i)\)</li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  La formule \(V(X+Y) = V(X) + V(Y)\) n&rsquo;est valable que si \(X\) et \(Y\) sont <strong>ind&eacute;pendantes</strong>. Sans ind&eacute;pendance, il faut ajouter un terme de covariance : \(V(X+Y) = V(X) + V(Y) + 2\,\text{Cov}(X,Y)\).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Co&ucirc;t total d&rsquo;une installation</span>
+  <p>Un technicien chauffagiste installe des radiateurs. Le temps d&rsquo;installation d&rsquo;un radiateur est une variable al&eacute;atoire \(X\) d&rsquo;esp&eacute;rance \(E(X) = 45\) min et d&rsquo;&eacute;cart-type \(\sigma(X) = 8\) min. Le co&ucirc;t d&rsquo;une installation est \(C = 30X + 50\) (en euros, avec 30 &euro;/h de main-d&rsquo;&oelig;uvre et 50 &euro; de mat&eacute;riel fixe).</p>
+  <p>\(E(C) = 30\,E(X) + 50 = 30 \times 45 + 50 = 1400\) &euro;</p>
+  <p>\(V(C) = 30^2\,V(X) = 900 \times 64 = 57\,600\)</p>
+  <p>\(\sigma(C) = \sqrt{57\,600} = 240\) &euro;</p>
+  <p><strong>Installation de 4 radiateurs ind&eacute;pendants :</strong> soit \(S = X_1 + X_2 + X_3 + X_4\).</p>
+  <p>\(E(S) = 4 \times 45 = 180\) min ; \(V(S) = 4 \times 64 = 256\) ; \(\sigma(S) = 16\) min.</p>
+</div>
+
+<!-- ==================== 14. THÉORÈME DE LA LIMITE CENTRÉE ==================== -->
+<h2>14. Th&eacute;or&egrave;me de la limite centr&eacute;e (TLC)</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Th&eacute;or&egrave;me de la limite centr&eacute;e</span><br>
+  Soient \(X_1, X_2, \ldots, X_n\) des variables al&eacute;atoires <strong>ind&eacute;pendantes et identiquement distribu&eacute;es</strong> (i.i.d.) d&rsquo;esp&eacute;rance \(\mu\) et de variance \(\sigma^2\). On pose :
+  \[S_n = X_1 + X_2 + \cdots + X_n \qquad\text{et}\qquad \bar{X}_n = \frac{S_n}{n}\]
+  Alors, pour \(n\) assez grand :
+  <ul>
+    <li>La <strong>somme</strong> : \(S_n \approx \mathcal{N}(n\mu,\;n\sigma^2)\)</li>
+    <li>La <strong>moyenne</strong> : \(\bar{X}_n \approx \mathcal{N}\!\left(\mu,\;\dfrac{\sigma^2}{n}\right)\)</li>
+  </ul>
+  En pratique, l&rsquo;approximation est bonne d&egrave;s que \(n \geqslant 30\).
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir &mdash; TLC en version centr&eacute;e r&eacute;duite</strong>
+  \[\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \;\xrightarrow{\;\mathcal{L}\;}\; \mathcal{N}(0,1)\]
+  <p>Plus l&rsquo;&eacute;chantillon est grand, plus la moyenne \(\bar{X}_n\) se concentre autour de \(\mu\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; R&eacute;sistance thermique de panneaux isolants</span>
+  <p>Un fabricant de panneaux isolants sait que la r&eacute;sistance thermique \(R\) d&rsquo;un panneau a pour esp&eacute;rance \(\mu = 3{,}5\) m&sup2;&middot;K/W et &eacute;cart-type \(\sigma = 0{,}4\) m&sup2;&middot;K/W. On mesure un &eacute;chantillon de \(n = 36\) panneaux.</p>
+  <p>Par le TLC, la moyenne \(\bar{R}\) suit approximativement :</p>
+  <p>\(\bar{R} \sim \mathcal{N}\!\left(3{,}5\;;\;\dfrac{0{,}16}{36}\right) = \mathcal{N}(3{,}5\;;\;0{,}00444)\)</p>
+  <p>Soit \(\sigma_{\bar{R}} = \dfrac{0{,}4}{\sqrt{36}} = \dfrac{0{,}4}{6} \approx 0{,}0667\) m&sup2;&middot;K/W.</p>
+  <p><strong>Probabilit&eacute; que la moyenne de l&rsquo;&eacute;chantillon soit inf&eacute;rieure &agrave; 3,4 :</strong></p>
+  <p>\(P(\bar{R} < 3{,}4) = P\!\left(Z < \dfrac{3{,}4 - 3{,}5}{0{,}0667}\right) = P(Z < -1{,}50) = 1 - \Phi(1{,}50) \approx 1 - 0{,}9332 = 0{,}0668\)</p>
+  <p>Il n&rsquo;y a qu&rsquo;environ <strong>6,7&nbsp;%</strong> de chances que la moyenne de l&rsquo;&eacute;chantillon soit inf&eacute;rieure &agrave; 3,4.</p>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Appliquer le TLC</span><br>
+  <ol>
+    <li>Identifier les v.a. \(X_i\) ind&eacute;pendantes et de m&ecirc;me loi, avec \(\mu = E(X_i)\) et \(\sigma^2 = V(X_i)\)</li>
+    <li>V&eacute;rifier que \(n \geqslant 30\)</li>
+    <li>Pour la <strong>somme</strong> \(S_n\) : utiliser \(\mathcal{N}(n\mu,\,n\sigma^2)\)</li>
+    <li>Pour la <strong>moyenne</strong> \(\bar{X}_n\) : utiliser \(\mathcal{N}\!\left(\mu,\,\dfrac{\sigma^2}{n}\right)\)</li>
+    <li>Centrer-r&eacute;duire et utiliser la table de \(\mathcal{N}(0,1)\)</li>
+  </ol>
+</div>
+
+<!-- ==================== 15. APPLICATIONS ==================== -->
+<h2>15. Applications au contr&ocirc;le qualit&eacute; et &agrave; la fiabilit&eacute;</h2>
 
 <div class="def">
   <span class="label label-def">D&eacute;finition &mdash; Contr&ocirc;le par &eacute;chantillonnage</span><br>
@@ -418,11 +599,106 @@
     <tr><td>Probabilit&eacute;s totales</td><td>\(P(A) = \displaystyle\sum P(A \mid B_k) \, P(B_k)\)</td></tr>
     <tr><td>Bayes</td><td>\(P(B_k \mid A) = \dfrac{P(A \mid B_k) \, P(B_k)}{P(A)}\)</td></tr>
     <tr><td>Binomiale \(B(n,p)\)</td><td>\(P(X=k) = \dbinom{n}{k} p^k (1-p)^{n-k}\)</td></tr>
-    <tr><td>Poisson \(\mathcal{P}(\lambda)\)</td><td>\(P(X=k) = e^{-\lambda}\dfrac{\lambda^k}{k!}\)</td></tr>
+    <tr><td>Uniforme \(\mathcal{U}([a,b])\)</td><td>\(P(c \leqslant X \leqslant d) = \dfrac{d-c}{b-a}\), \(E(X) = \dfrac{a+b}{2}\)</td></tr>
+    <tr><td>Normale \(\mathcal{N}(\mu,\sigma^2)\)</td><td>Centrage-r&eacute;duction : \(Z = \dfrac{X - \mu}{\sigma} \sim \mathcal{N}(0,1)\)</td></tr>
+    <tr><td>Approximation \(B \to \mathcal{N}\)</td><td>\(B(n,p) \approx \mathcal{N}(np,\,np(1-p))\) si \(n \geqslant 30\), \(np \geqslant 5\), \(n(1-p) \geqslant 5\)</td></tr>
+    <tr><td>Combinaisons lin&eacute;aires</td><td>\(E(X+Y) = E(X)+E(Y)\) ; \(V(X+Y) = V(X)+V(Y)\) (si ind&eacute;p.)</td></tr>
+    <tr><td>TLC</td><td>\(\bar{X}_n \approx \mathcal{N}\!\left(\mu,\,\dfrac{\sigma^2}{n}\right)\) pour \(n\) grand</td></tr>
   </table>
 </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Courbe de Gauss avec règle 68-95-99,7
+(function(){
+  var ctx = document.getElementById('gaussChart');
+  if(!ctx) return;
+  ctx = ctx.getContext('2d');
+
+  // Fonction densité normale centrée réduite
+  function phi(x){ return Math.exp(-0.5*x*x)/Math.sqrt(2*Math.PI); }
+
+  // Générer les points de la courbe
+  var xs = [], ys = [];
+  for(var i=-4; i<=4; i+=0.05){
+    xs.push(Math.round(i*100)/100);
+    ys.push(phi(i));
+  }
+
+  // Données pour les zones colorées
+  function areaData(xmin, xmax, color){
+    var d = [];
+    for(var j=0; j<xs.length; j++){
+      if(xs[j]>=xmin && xs[j]<=xmax) d.push({x:xs[j],y:ys[j]});
+      else d.push({x:xs[j],y:0});
+    }
+    return {
+      type:'line', data:d, fill:true,
+      backgroundColor:color, borderWidth:0, pointRadius:0, tension:0.1
+    };
+  }
+
+  new Chart(ctx, {
+    type:'scatter',
+    data:{
+      datasets:[
+        areaData(-3,3,'rgba(76,175,80,0.15)'),
+        areaData(-2,2,'rgba(33,150,243,0.2)'),
+        areaData(-1,1,'rgba(30,58,95,0.25)'),
+        {
+          type:'line',
+          data: xs.map(function(x,i){return {x:x,y:ys[i]};}),
+          borderColor:'#1e3a5f', borderWidth:2.5,
+          fill:false, pointRadius:0, tension:0.1
+        }
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{display:false},
+        title:{display:true, text:'Courbe de Gauss — Règle 68-95-99,7', font:{size:15}},
+        tooltip:{enabled:false}
+      },
+      scales:{
+        x:{
+          type:'linear', min:-4, max:4,
+          title:{display:true, text:'Nombre d\'écarts-types par rapport à μ'},
+          ticks:{stepSize:1, callback:function(v){
+            if(v===0) return 'μ';
+            return (v>0?'μ+':'μ')+v+'σ';
+          }}
+        },
+        y:{min:0, max:0.45, display:false}
+      },
+      animation:false
+    },
+    plugins:[{
+      afterDraw:function(chart){
+        var ca = chart.ctx;
+        var xScale = chart.scales.x, yScale = chart.scales.y;
+        ca.save();
+        ca.font = 'bold 13px sans-serif';
+        ca.textAlign = 'center';
+        // Annotations
+        var labels = [
+          {x:0, y:0.15, text:'68,3 %', color:'#1e3a5f'},
+          {x:0, y:0.06, text:'95,4 %', color:'#2196f3'},
+          {x:0, y:0.02, text:'99,7 %', color:'#4caf50'}
+        ];
+        labels.forEach(function(l){
+          var px = xScale.getPixelForValue(l.x);
+          var py = yScale.getPixelForValue(l.y);
+          ca.fillStyle = l.color;
+          ca.fillText(l.text, px, py);
+        });
+        ca.restore();
+      }
+    }]
+  });
+})();
+</script>
 <script src="../../../nav.js"></script>
 </body>
 </html>

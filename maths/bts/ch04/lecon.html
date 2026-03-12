@@ -6,24 +6,849 @@
 <title>Ch04 – Calcul intégral – BTS</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#1e3a5f;--p-bg:#eef2f7;--p-border:#93a5c0}</style>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
 <div class="c">
 <a href="../../sommaire.html" class="nb">← Retour au sommaire</a>
+
 <header>
-  <h1>Chapitre 04 – Calcul intégral</h1>
-  <p class="sous-titre">BTS — Groupements B1, B2, C1, D1, D2</p>
+  <h1>Chapitre 4 – Calcul intégral</h1>
+  <p class="sous-titre">BTS &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; Groupements B1, B2, C1, D1, D2</p>
+  <p class="maj">Dernière mise à jour : mars 2026</p>
 </header>
 
 <div class="objectifs">
-  <strong>Ce chapitre est en cours de rédaction.</strong><br>
-  Le contenu sera disponible prochainement.
+  <strong>Objectifs du chapitre :</strong>
+  <ul>
+    <li>Déterminer les primitives des fonctions usuelles et des fonctions composées</li>
+    <li>Calculer une intégrale définie et en donner l'interprétation graphique</li>
+    <li>Connaître et appliquer les propriétés de l'intégrale (linéarité, Chasles, positivité)</li>
+    <li>Calculer des aires entre courbes et l'axe des abscisses</li>
+    <li>Calculer la valeur moyenne d'une fonction sur un intervalle</li>
+    <li>Maîtriser l'intégration par parties (IPP)</li>
+    <li>Approcher une intégrale par les méthodes des rectangles et des trapèzes</li>
+    <li>Appliquer le calcul intégral à des problèmes professionnels (signaux, inertie, volumes)</li>
+  </ul>
+</div>
+
+<!-- ==================== SITUATION PROFESSIONNELLE ==================== -->
+<h2>Situation professionnelle</h2>
+
+<div class="situation">
+  <h3>Dimensionnement d'une installation électrique et calcul de section</h3>
+  <p>Un technicien en Fluides, Énergies, Domotique (FED) doit déterminer la <strong>valeur efficace</strong> d'un courant alternatif non sinusoïdal pour dimensionner un disjoncteur. Cette valeur efficace se calcule à l'aide d'une intégrale sur une période du signal.</p>
+  <p>Par ailleurs, un dessinateur-projeteur en charpente bois doit calculer le <strong>centre d'inertie</strong> d'une section en T pour vérifier la résistance d'une poutre. Ce calcul nécessite des intégrales de moments statiques.</p>
+  <p>Ces deux problèmes se résolvent grâce au <strong>calcul intégral</strong>.</p>
+</div>
+
+<!-- ==================== 1. PRIMITIVES ==================== -->
+<h2>1. Primitives</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Primitive</span><br>
+  Soit \(f\) une fonction continue sur un intervalle \(I\). On appelle <strong>primitive de \(f\) sur \(I\)</strong> toute fonction \(F\) dérivable sur \(I\) telle que :
+  \[F'(x) = f(x) \quad \text{pour tout } x \in I\]
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Ensemble des primitives</span><br>
+  Si \(F\) est une primitive de \(f\) sur \(I\), alors <strong>toutes les primitives</strong> de \(f\) sont de la forme :
+  \[F(x) + C \quad \text{où } C \in \mathbb{R}\]
+  Deux primitives d'une même fonction diffèrent d'une constante.
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Primitiver est l'opération « inverse » de dériver, mais elle n'est pas unique : on obtient toujours une <strong>famille de fonctions</strong> (à une constante près). Pour fixer la constante, il faut une condition initiale (par exemple \(F(0) = 3\)).
+</div>
+
+<h3>1.1 Primitives des fonctions de référence</h3>
+
+<div class="formula-box">
+  <div class="fb-label">Table des primitives usuelles</div>
+  <table>
+    <tr><th>Fonction \(f(x)\)</th><th>Primitive \(F(x)\)</th><th>Domaine</th></tr>
+    <tr><td>\(k\) (constante)</td><td>\(kx\)</td><td>\(\mathbb{R}\)</td></tr>
+    <tr><td>\(x^n\) (\(n \neq -1\))</td><td>\(\dfrac{x^{n+1}}{n+1}\)</td><td>selon \(n\)</td></tr>
+    <tr><td>\(\dfrac{1}{x}\)</td><td>\(\ln|x|\)</td><td>\(\mathbb{R}^*\)</td></tr>
+    <tr><td>\(\dfrac{1}{x^2} = x^{-2}\)</td><td>\(-\dfrac{1}{x}\)</td><td>\(\mathbb{R}^*\)</td></tr>
+    <tr><td>\(\dfrac{1}{\sqrt{x}} = x^{-1/2}\)</td><td>\(2\sqrt{x}\)</td><td>\(\mathbb{R}_+^*\)</td></tr>
+    <tr><td>\(e^x\)</td><td>\(e^x\)</td><td>\(\mathbb{R}\)</td></tr>
+    <tr><td>\(\cos x\)</td><td>\(\sin x\)</td><td>\(\mathbb{R}\)</td></tr>
+    <tr><td>\(\sin x\)</td><td>\(-\cos x\)</td><td>\(\mathbb{R}\)</td></tr>
+  </table>
+  <p><em>(+ constante \(C\) dans chaque cas)</em></p>
+</div>
+
+<h3>1.2 Opérations algébriques sur les primitives</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Linéarité de la primitivation</span><br>
+  Si \(F\) est une primitive de \(f\) et \(G\) une primitive de \(g\), alors :
+  <ul>
+    <li>Une primitive de \(f + g\) est \(F + G\)</li>
+    <li>Une primitive de \(\lambda\,f\) (avec \(\lambda \in \mathbb{R}\)) est \(\lambda\,F\)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Déterminer une primitive de \(f(x) = 3x^2 - 5x + \dfrac{2}{x}\) sur \(]0\,;+\infty[\).</p>
+  <p>\(F(x) = 3 \times \dfrac{x^3}{3} - 5 \times \dfrac{x^2}{2} + 2\ln x = x^3 - \dfrac{5x^2}{2} + 2\ln x\).</p>
+</div>
+
+<h3>1.3 Primitives de fonctions composées</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Primitives composées fondamentales</span><br>
+  Soit \(u\) une fonction dérivable sur un intervalle \(I\).
+  <table>
+    <tr><th>Fonction</th><th>Primitive</th><th>Condition</th></tr>
+    <tr><td>\(u'(x)\,\big[u(x)\big]^n\)</td><td>\(\dfrac{\big[u(x)\big]^{n+1}}{n+1}\)</td><td>\(n \neq -1\)</td></tr>
+    <tr><td>\(\dfrac{u'(x)}{u(x)}\)</td><td>\(\ln|u(x)|\)</td><td>\(u(x) \neq 0\)</td></tr>
+    <tr><td>\(u'(x)\,e^{u(x)}\)</td><td>\(e^{u(x)}\)</td><td></td></tr>
+  </table>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Reconnaître une primitive composée</span><br>
+  <ol>
+    <li>Identifier la « fonction intérieure » \(u(x)\) et calculer \(u'(x)\).</li>
+    <li>Vérifier que \(u'(x)\) apparaît en facteur (éventuellement à un coefficient près).</li>
+    <li>Appliquer la formule correspondante.</li>
+    <li>Ajuster le coefficient si nécessaire.</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Type \(u'\,u^n\)</span>
+  <p>Trouver une primitive de \(f(x) = 6x(x^2 + 1)^2\).</p>
+  <p>On pose \(u(x) = x^2 + 1\), donc \(u'(x) = 2x\).</p>
+  <p>On écrit \(f(x) = 3 \times 2x \times (x^2+1)^2 = 3\,u'(x)\,[u(x)]^2\).</p>
+  <p>Une primitive est \(3 \times \dfrac{(x^2+1)^3}{3} = (x^2 + 1)^3\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Type \(u'/u\)</span>
+  <p>Trouver une primitive de \(f(x) = \dfrac{2x}{x^2 + 4}\).</p>
+  <p>On pose \(u(x) = x^2 + 4\), \(u'(x) = 2x\). On reconnaît \(\dfrac{u'}{u}\).</p>
+  <p>Une primitive est \(\ln(x^2 + 4)\). (Pas de valeur absolue car \(x^2+4 > 0\).)</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Type \(u'\,e^u\)</span>
+  <p>Trouver une primitive de \(f(x) = 4x\,e^{2x^2}\).</p>
+  <p>On pose \(u(x) = 2x^2\), \(u'(x) = 4x\). On reconnaît \(u'\,e^u\).</p>
+  <p>Une primitive est \(e^{2x^2}\).</p>
+</div>
+
+<h3>1.4 Primitives des fonctions trigonométriques composées</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span><br>
+  Pour \(\omega \neq 0\) et \(\varphi\) réels :
+  <ul>
+    <li>Une primitive de \(\cos(\omega t + \varphi)\) est \(\dfrac{1}{\omega}\sin(\omega t + \varphi)\)</li>
+    <li>Une primitive de \(\sin(\omega t + \varphi)\) est \(-\dfrac{1}{\omega}\cos(\omega t + \varphi)\)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Trouver une primitive de \(f(t) = 3\cos(2t + \pi/4)\).</p>
+  <p>\(F(t) = 3 \times \dfrac{1}{2}\sin\!\left(2t + \dfrac{\pi}{4}\right) = \dfrac{3}{2}\sin\!\left(2t + \dfrac{\pi}{4}\right)\).</p>
+</div>
+
+<div class="exo">
+  <span class="exo-num">Mini-exercice 1</span>
+  <p class="exo-titre">Primitives directes et composées</p>
+  <p>Déterminer une primitive de chacune des fonctions suivantes :</p>
+  <p>a) \(f(x) = 4x^3 - 6x + 1\) &emsp; b) \(g(x) = \dfrac{3}{x^2} + \dfrac{1}{x}\) sur \(]0\,;+\infty[\)</p>
+  <p>c) \(h(x) = (2x+1)^4\) &emsp; d) \(k(t) = 5\sin(3t - \pi/6)\)</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> \(F(x) = x^4 - 3x^2 + x\).</p>
+    <p><strong>b)</strong> \(G(x) = -\dfrac{3}{x} + \ln x\).</p>
+    <p><strong>c)</strong> On pose \(u = 2x+1\), \(u' = 2\). On écrit \(h(x) = \frac{1}{2} \times 2 \times (2x+1)^4 = \frac{1}{2}\,u'\,u^4\). Donc \(H(x) = \dfrac{1}{2} \times \dfrac{(2x+1)^5}{5} = \dfrac{(2x+1)^5}{10}\).</p>
+    <p><strong>d)</strong> \(K(t) = 5 \times \dfrac{1}{3}\cos\!\left(3t - \dfrac{\pi}{6}\right) \times (-1) = -\dfrac{5}{3}\cos\!\left(3t - \dfrac{\pi}{6}\right)\).</p>
+  </div>
+</div>
+
+<!-- ==================== 2. INTÉGRALE DÉFINIE ==================== -->
+<h2>2. Intégrale définie</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Intégrale de \(a\) à \(b\)</span><br>
+  Soit \(f\) une fonction continue sur \([a\,;\,b]\) et \(F\) une primitive de \(f\) sur \([a\,;\,b]\). L'<strong>intégrale de \(f\) de \(a\) à \(b\)</strong> est le nombre réel :
+  \[\boxed{\int_a^b f(x)\,dx = F(b) - F(a) = \big[F(x)\big]_a^b}\]
+</div>
+
+<div class="formula-box">
+  <div class="fb-label">Formule fondamentale du calcul intégral</div>
+  <div class="fb-formula">\(\displaystyle\int_a^b f(x)\,dx = \big[F(x)\big]_a^b = F(b) - F(a)\)</div>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Le résultat ne dépend pas de la primitive choisie : la constante \(C\) s'annule dans la différence \(F(b) - F(a)\). La variable \(x\) est dite « muette » : \(\int_a^b f(x)\,dx = \int_a^b f(t)\,dt\).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Calculer \(\displaystyle\int_1^3 (2x + 1)\,dx\).</p>
+  <p>Une primitive de \(2x+1\) est \(F(x) = x^2 + x\).</p>
+  <p>\(\displaystyle\int_1^3 (2x+1)\,dx = \big[x^2 + x\big]_1^3 = (9+3) - (1+1) = 12 - 2 = 10\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Calculer \(\displaystyle\int_0^1 e^{2x}\,dx\).</p>
+  <p>Une primitive de \(e^{2x}\) est \(\dfrac{1}{2}e^{2x}\).</p>
+  <p>\(\displaystyle\int_0^1 e^{2x}\,dx = \left[\frac{1}{2}e^{2x}\right]_0^1 = \frac{1}{2}e^2 - \frac{1}{2} = \frac{e^2 - 1}{2} \approx 3{,}19\).</p>
+</div>
+
+<h3>2.1 Interprétation graphique</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Lien intégrale et aire</span><br>
+  Si \(f\) est <strong>continue et positive</strong> sur \([a\,;\,b]\), alors \(\displaystyle\int_a^b f(x)\,dx\) représente l'<strong>aire</strong> (en unités d'aire) de la surface comprise entre la courbe de \(f\), l'axe des abscisses et les droites \(x = a\) et \(x = b\).
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention — Fonction négative</span><br>
+  Si \(f\) est <strong>négative</strong> sur \([a\,;\,b]\), alors \(\int_a^b f(x)\,dx < 0\). L'aire géométrique est \(-\int_a^b f(x)\,dx\) (valeur absolue).
+  <br>Si \(f\) change de signe, il faut découper l'intervalle pour calculer l'aire totale.
+</div>
+
+<div class="chart-wrap">
+  <h3>Interprétation graphique : aire sous la courbe \(f(x) = -0{,}5x^2 + 3\) sur \([0\,;\,2]\)</h3>
+  <canvas id="chartAire" height="300"></canvas>
+</div>
+
+<div class="exo">
+  <span class="exo-num">Mini-exercice 2</span>
+  <p class="exo-titre">Calculs d'intégrales</p>
+  <p>Calculer les intégrales suivantes :</p>
+  <p>a) \(\displaystyle\int_0^2 (3x^2 - 4x + 1)\,dx\) &emsp; b) \(\displaystyle\int_1^e \dfrac{1}{x}\,dx\) &emsp; c) \(\displaystyle\int_0^{\pi} \sin(x)\,dx\)</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> \(\big[x^3 - 2x^2 + x\big]_0^2 = (8 - 8 + 2) - 0 = 2\).</p>
+    <p><strong>b)</strong> \(\big[\ln x\big]_1^e = \ln e - \ln 1 = 1 - 0 = 1\).</p>
+    <p><strong>c)</strong> \(\big[-\cos x\big]_0^{\pi} = -\cos\pi - (-\cos 0) = -(-1) + 1 = 2\).</p>
+  </div>
+</div>
+
+<!-- ==================== 3. PROPRIÉTÉS DE L'INTÉGRALE ==================== -->
+<h2>3. Propriétés de l'intégrale</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Relation de Chasles</span><br>
+  Pour tous réels \(a\), \(b\), \(c\) :
+  \[\boxed{\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx}\]
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Linéarité</span><br>
+  Pour toutes fonctions continues \(f\) et \(g\) sur \([a\,;\,b]\), et pour tout \(\lambda \in \mathbb{R}\) :
+  <ul>
+    <li>\(\displaystyle\int_a^b \big[f(x) + g(x)\big]\,dx = \int_a^b f(x)\,dx + \int_a^b g(x)\,dx\)</li>
+    <li>\(\displaystyle\int_a^b \lambda\,f(x)\,dx = \lambda\int_a^b f(x)\,dx\)</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Positivité</span><br>
+  Si \(f(x) \geq 0\) pour tout \(x \in [a\,;\,b]\) (avec \(a \leq b\)), alors :
+  \[\int_a^b f(x)\,dx \geq 0\]
+  Si \(f(x) \geq g(x)\) sur \([a\,;\,b]\), alors \(\displaystyle\int_a^b f(x)\,dx \geq \int_a^b g(x)\,dx\).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Conventions</span><br>
+  <ul>
+    <li>\(\displaystyle\int_a^a f(x)\,dx = 0\)</li>
+    <li>\(\displaystyle\int_b^a f(x)\,dx = -\int_a^b f(x)\,dx\)</li>
+  </ul>
+</div>
+
+<!-- ==================== 4. CALCUL D'AIRES ==================== -->
+<h2>4. Calcul d'aires</h2>
+
+<h3>4.1 Aire entre une courbe et l'axe des abscisses</h3>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Calcul d'aire</span><br>
+  <ol>
+    <li>Déterminer le signe de \(f\) sur \([a\,;\,b]\).</li>
+    <li>Si \(f \geq 0\) sur \([a\,;\,b]\), l'aire est \(\mathcal{A} = \displaystyle\int_a^b f(x)\,dx\).</li>
+    <li>Si \(f\) change de signe, découper l'intervalle aux zéros de \(f\) et additionner les valeurs absolues :
+    \[\mathcal{A} = \int_a^b |f(x)|\,dx\]</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Calculer l'aire entre la courbe de \(f(x) = x^2 - 1\) et l'axe des abscisses sur \([0\,;\,2]\).</p>
+  <p>\(f(x) = 0 \Leftrightarrow x = 1\) (sur \([0\,;\,2]\)). On a \(f \leq 0\) sur \([0\,;\,1]\) et \(f \geq 0\) sur \([1\,;\,2]\).</p>
+  <p>\(\mathcal{A} = -\displaystyle\int_0^1 (x^2-1)\,dx + \int_1^2 (x^2-1)\,dx\)</p>
+  <p>\(= -\left[\dfrac{x^3}{3} - x\right]_0^1 + \left[\dfrac{x^3}{3} - x\right]_1^2\)</p>
+  <p>\(= -\left(\dfrac{1}{3} - 1\right) + \left(\dfrac{8}{3} - 2 - \dfrac{1}{3} + 1\right) = \dfrac{2}{3} + \dfrac{4}{3} = 2\) u.a.</p>
+</div>
+
+<h3>4.2 Aire entre deux courbes</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span><br>
+  L'aire de la surface comprise entre les courbes de \(f\) et \(g\) sur \([a\,;\,b]\) est :
+  \[\boxed{\mathcal{A} = \int_a^b |f(x) - g(x)|\,dx}\]
+  Si \(f(x) \geq g(x)\) sur tout l'intervalle, cela se simplifie en \(\int_a^b \big[f(x) - g(x)\big]\,dx\).
+</div>
+
+<div class="exo">
+  <span class="exo-num">Mini-exercice 3</span>
+  <p class="exo-titre">Aire entre deux courbes</p>
+  <p>Calculer l'aire comprise entre les courbes de \(f(x) = x^2\) et \(g(x) = x\) sur \([0\,;\,1]\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p>Sur \([0\,;\,1]\), \(g(x) = x \geq x^2 = f(x)\) (car \(0 \leq x \leq 1\)).</p>
+    <p>\(\mathcal{A} = \displaystyle\int_0^1 (x - x^2)\,dx = \left[\dfrac{x^2}{2} - \dfrac{x^3}{3}\right]_0^1 = \dfrac{1}{2} - \dfrac{1}{3} = \dfrac{1}{6}\) u.a.</p>
+  </div>
+</div>
+
+<!-- ==================== 5. VALEUR MOYENNE ==================== -->
+<h2>5. Valeur moyenne d'une fonction</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Valeur moyenne</span><br>
+  La <strong>valeur moyenne</strong> de \(f\) sur l'intervalle \([a\,;\,b]\) est le nombre réel :
+  \[\boxed{\mu = \frac{1}{b-a}\int_a^b f(t)\,dt}\]
+</div>
+
+<div class="formula-box">
+  <div class="fb-label">Valeur moyenne</div>
+  <div class="fb-formula">\(\mu = \dfrac{1}{b-a}\displaystyle\int_a^b f(t)\,dt\)</div>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Interprétation graphique</span><br>
+  La valeur moyenne \(\mu\) est la hauteur du rectangle de base \([a\,;\,b]\) ayant la <strong>même aire</strong> que la surface sous la courbe de \(f\). Autrement dit, l'aire sous la courbe est égale à \(\mu \times (b - a)\).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Calculer la valeur moyenne de \(f(x) = x^2\) sur \([0\,;\,3]\).</p>
+  <p>\(\mu = \dfrac{1}{3-0}\displaystyle\int_0^3 x^2\,dx = \dfrac{1}{3}\left[\dfrac{x^3}{3}\right]_0^3 = \dfrac{1}{3} \times 9 = 3\).</p>
+</div>
+
+<h3>5.1 Application : valeur moyenne et valeur efficace d'un signal</h3>
+
+<div class="def">
+  <span class="label label-def">Définition — Valeur moyenne d'un signal périodique</span><br>
+  Pour un signal \(s(t)\) de période \(T\), la <strong>valeur moyenne</strong> est :
+  \[\langle s \rangle = \frac{1}{T}\int_0^T s(t)\,dt\]
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Valeur efficace</span><br>
+  La <strong>valeur efficace</strong> (ou valeur RMS) d'un signal \(s(t)\) de période \(T\) est :
+  \[\boxed{S_{\text{eff}} = \sqrt{\frac{1}{T}\int_0^T \big[s(t)\big]^2\,dt}}\]
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Valeur efficace d'un signal sinusoïdal</span>
+  <p>Soit \(u(t) = U_m\sin(\omega t)\) de période \(T = \dfrac{2\pi}{\omega}\).</p>
+  <p><strong>Valeur moyenne :</strong> \(\langle u \rangle = \dfrac{1}{T}\displaystyle\int_0^T U_m\sin(\omega t)\,dt = \dfrac{U_m}{T}\left[-\dfrac{\cos(\omega t)}{\omega}\right]_0^T = 0\).</p>
+  <p><strong>Valeur efficace :</strong></p>
+  <p>On calcule \(\dfrac{1}{T}\displaystyle\int_0^T U_m^2\sin^2(\omega t)\,dt\). En utilisant \(\sin^2(\theta) = \dfrac{1 - \cos(2\theta)}{2}\) :</p>
+  <p>\(= \dfrac{U_m^2}{T}\displaystyle\int_0^T \dfrac{1 - \cos(2\omega t)}{2}\,dt = \dfrac{U_m^2}{2T}\left[t - \dfrac{\sin(2\omega t)}{2\omega}\right]_0^T = \dfrac{U_m^2}{2}\).</p>
+  <p>Donc \(U_{\text{eff}} = \dfrac{U_m}{\sqrt{2}}\). Pour le secteur (\(U_{\text{eff}} = 230\) V), on a \(U_m = 230\sqrt{2} \approx 325\) V.</p>
+</div>
+
+<div class="chart-wrap">
+  <h3>Signal sinusoïdal : tension secteur \(u(t) = 325\sin(100\pi t)\)</h3>
+  <canvas id="chartSignal" height="300"></canvas>
+</div>
+
+<div class="exo">
+  <span class="exo-num">Mini-exercice 4</span>
+  <p class="exo-titre">Valeur moyenne d'un signal</p>
+  <p>Un technicien FED mesure un courant modélisé par \(i(t) = 2 + 3\sin(100\pi t)\) (en ampères, \(t\) en secondes). La période est \(T = 0{,}02\) s.</p>
+  <p>1) Calculer la valeur moyenne de \(i\) sur une période.</p>
+  <p>2) Interpréter physiquement ce résultat.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1)</strong> \(\langle i \rangle = \dfrac{1}{0{,}02}\displaystyle\int_0^{0{,}02}\big(2 + 3\sin(100\pi t)\big)\,dt\)</p>
+    <p>\(= 50\left[2t - \dfrac{3}{100\pi}\cos(100\pi t)\right]_0^{0{,}02}\)</p>
+    <p>\(= 50\left[\left(0{,}04 - \dfrac{3}{100\pi}\cos(2\pi)\right) - \left(0 - \dfrac{3}{100\pi}\cos(0)\right)\right]\)</p>
+    <p>\(= 50\left[0{,}04 - \dfrac{3}{100\pi} + \dfrac{3}{100\pi}\right] = 50 \times 0{,}04 = 2\) A.</p>
+    <p><strong>2)</strong> La valeur moyenne est de 2 A. C'est la composante continue du signal. La partie sinusoïdale (moyenne nulle) est la composante alternative superposée.</p>
+  </div>
+</div>
+
+<!-- ==================== 6. INTÉGRATION PAR PARTIES ==================== -->
+<h2>6. Intégration par parties (IPP)</h2>
+
+<div class="prop">
+  <span class="label label-prop">Théorème — Intégration par parties</span><br>
+  Soient \(u\) et \(v\) deux fonctions de classe \(\mathcal{C}^1\) (dérivables à dérivées continues) sur \([a\,;\,b]\). Alors :
+  \[\boxed{\int_a^b u'(x)\,v(x)\,dx = \big[u(x)\,v(x)\big]_a^b - \int_a^b u(x)\,v'(x)\,dx}\]
+</div>
+
+<div class="formula-box">
+  <div class="fb-label">Intégration par parties</div>
+  <div class="fb-formula">\(\displaystyle\int_a^b u'\,v = \big[u\,v\big]_a^b - \int_a^b u\,v'\)</div>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Choisir \(u'\) et \(v\)</span><br>
+  <p>L'objectif est que la nouvelle intégrale \(\int u\,v'\) soit <strong>plus simple</strong> que la première.</p>
+  <p><strong>Règle pratique (LATE) :</strong> on choisit comme \(v\) (à dériver) la fonction qui se simplifie en la dérivant, dans l'ordre de priorité :</p>
+  <ul>
+    <li><strong>L</strong>ogarithme > <strong>A</strong>lgébrique (polynôme) > <strong>T</strong>rigonométrique > <strong>E</strong>xponentielle</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 1 — \(\int x\,e^x\,dx\)</span>
+  <p>On pose \(v(x) = x\) (à dériver) et \(u'(x) = e^x\) (à primitiver).</p>
+  <table>
+    <tr><td>\(v = x\)</td><td>\(\Rightarrow\) \(v' = 1\)</td></tr>
+    <tr><td>\(u' = e^x\)</td><td>\(\Rightarrow\) \(u = e^x\)</td></tr>
+  </table>
+  <p>\(\displaystyle\int x\,e^x\,dx = x\,e^x - \int 1 \times e^x\,dx = x\,e^x - e^x + C = (x-1)\,e^x + C\).</p>
+  <p><strong>Vérification :</strong> \(\big[(x-1)e^x\big]' = e^x + (x-1)e^x = x\,e^x\). Correct.</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 2 — \(\int_0^{\pi} x\cos(x)\,dx\)</span>
+  <p>On pose \(v = x\), \(u' = \cos x\), donc \(v' = 1\), \(u = \sin x\).</p>
+  <p>\(\displaystyle\int_0^{\pi} x\cos x\,dx = \big[x\sin x\big]_0^{\pi} - \int_0^{\pi} \sin x\,dx\)</p>
+  <p>\(= (\pi\sin\pi - 0) - \big[-\cos x\big]_0^{\pi} = 0 - [-\cos\pi + \cos 0] = -(1+1) = -2\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 3 — \(\int_1^e \ln(x)\,dx\)</span>
+  <p>On écrit \(\ln(x) = 1 \times \ln(x)\). On pose \(v = \ln x\), \(u' = 1\), donc \(v' = \frac{1}{x}\), \(u = x\).</p>
+  <p>\(\displaystyle\int_1^e \ln x\,dx = \big[x\ln x\big]_1^e - \int_1^e x \times \frac{1}{x}\,dx = (e \times 1 - 1 \times 0) - \int_1^e 1\,dx\)</p>
+  <p>\(= e - \big[x\big]_1^e = e - (e - 1) = 1\).</p>
+</div>
+
+<div class="exo">
+  <span class="exo-num">Mini-exercice 5</span>
+  <p class="exo-titre">Intégration par parties</p>
+  <p>Calculer par IPP : \(\displaystyle\int_0^1 x\,e^{2x}\,dx\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p>On pose \(v = x\), \(u' = e^{2x}\), donc \(v' = 1\), \(u = \frac{1}{2}e^{2x}\).</p>
+    <p>\(\displaystyle\int_0^1 x\,e^{2x}\,dx = \left[\dfrac{x}{2}e^{2x}\right]_0^1 - \int_0^1 \dfrac{1}{2}e^{2x}\,dx\)</p>
+    <p>\(= \dfrac{1}{2}e^2 - 0 - \dfrac{1}{2}\left[\dfrac{e^{2x}}{2}\right]_0^1 = \dfrac{e^2}{2} - \dfrac{1}{4}(e^2 - 1) = \dfrac{e^2}{4} + \dfrac{1}{4} = \dfrac{e^2 + 1}{4} \approx 2{,}10\).</p>
+  </div>
+</div>
+
+<!-- ==================== 7. MÉTHODES D'APPROXIMATION NUMÉRIQUE ==================== -->
+<h2>7. Méthodes d'approximation numérique</h2>
+
+<p>Lorsqu'on ne dispose pas d'une primitive explicite de \(f\), ou lorsque \(f\) est donnée par un tableau de mesures, on approche \(\int_a^b f(x)\,dx\) par des méthodes numériques.</p>
+
+<h3>7.1 Méthode des rectangles (point milieu)</h3>
+
+<div class="def">
+  <span class="label label-def">Principe</span><br>
+  On découpe \([a\,;\,b]\) en \(n\) sous-intervalles de largeur \(h = \dfrac{b-a}{n}\). Sur chaque sous-intervalle, on approche \(f\) par sa valeur au <strong>point milieu</strong> :
+  \[\boxed{\int_a^b f(x)\,dx \approx h\sum_{k=0}^{n-1} f\!\left(a + \left(k + \tfrac{1}{2}\right)h\right)}\]
+</div>
+
+<h3>7.2 Méthode des trapèzes</h3>
+
+<div class="def">
+  <span class="label label-def">Principe</span><br>
+  Sur chaque sous-intervalle \([x_k\,;\,x_{k+1}]\), on remplace la courbe par le segment reliant les points \(\big(x_k, f(x_k)\big)\) et \(\big(x_{k+1}, f(x_{k+1})\big)\) :
+  \[\boxed{\int_a^b f(x)\,dx \approx \frac{h}{2}\Big[f(a) + f(b) + 2\sum_{k=1}^{n-1} f(x_k)\Big]}\]
+  avec \(x_k = a + kh\) et \(h = \dfrac{b-a}{n}\).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Comparaison des méthodes</span><br>
+  <table>
+    <tr><th>Méthode</th><th>Ordre de convergence</th><th>Erreur en \(O(…)\)</th></tr>
+    <tr><td>Rectangles (point milieu)</td><td>2</td><td>\(O(h^2)\)</td></tr>
+    <tr><td>Trapèzes</td><td>2</td><td>\(O(h^2)\)</td></tr>
+  </table>
+  <p>Plus \(n\) est grand (donc \(h\) petit), plus l'approximation est précise.</p>
+</div>
+
+<div class="chart-wrap">
+  <h3>Méthode des trapèzes — Approximation de \(\int_0^2 e^{-x^2/2}\,dx\) avec \(n = 5\)</h3>
+  <canvas id="chartTrapezes" height="300"></canvas>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Méthode des trapèzes</span>
+  <p>Approcher \(\displaystyle\int_0^1 e^{-x^2}\,dx\) avec \(n = 4\) sous-intervalles (méthode des trapèzes).</p>
+  <p>\(h = \frac{1}{4} = 0{,}25\). Points : \(x_0 = 0\), \(x_1 = 0{,}25\), \(x_2 = 0{,}5\), \(x_3 = 0{,}75\), \(x_4 = 1\).</p>
+  <table>
+    <tr><th>\(x_k\)</th><td>0</td><td>0,25</td><td>0,50</td><td>0,75</td><td>1</td></tr>
+    <tr><th>\(f(x_k)\)</th><td>1</td><td>0,9394</td><td>0,7788</td><td>0,5698</td><td>0,3679</td></tr>
+  </table>
+  <p>\(I \approx \dfrac{0{,}25}{2}\big[1 + 0{,}3679 + 2(0{,}9394 + 0{,}7788 + 0{,}5698)\big]\)</p>
+  <p>\(= 0{,}125 \times [1{,}3679 + 2 \times 2{,}2880] = 0{,}125 \times 5{,}9439 \approx 0{,}7430\).</p>
+  <p>(Valeur exacte : \(\approx 0{,}7468\). Erreur relative : \(\approx 0{,}5\,\%\).)</p>
+</div>
+
+<h3>7.3 Méthode de Monte-Carlo (aperçu)</h3>
+
+<div class="def">
+  <span class="label label-def">Principe</span><br>
+  On tire aléatoirement \(N\) points dans un rectangle contenant la courbe. La proportion de points sous la courbe fournit une estimation de l'aire :
+  \[\int_a^b f(x)\,dx \approx (b-a) \times M \times \frac{\text{nombre de points sous la courbe}}{N}\]
+  où \(M\) est une borne supérieure de \(f\) sur \([a\,;\,b]\). Cette méthode est <strong>moins précise</strong> (convergence en \(O(1/\sqrt{N})\)) mais utile pour les intégrales en grande dimension.
+</div>
+
+<div class="exo">
+  <span class="exo-num">Mini-exercice 6</span>
+  <p class="exo-titre">Méthode des trapèzes</p>
+  <p>Un technicien mesure le débit d'eau \(Q(t)\) (en L/min) dans une canalisation toutes les 10 minutes :</p>
+  <table>
+    <tr><th>\(t\) (min)</th><td>0</td><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td><td>60</td></tr>
+    <tr><th>\(Q(t)\)</th><td>12</td><td>15</td><td>18</td><td>20</td><td>17</td><td>14</td><td>11</td></tr>
+  </table>
+  <p>Estimer le volume total d'eau écoulé en 1 heure par la méthode des trapèzes.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p>\(h = 10\) min, \(n = 6\) intervalles.</p>
+    <p>\(V \approx \dfrac{10}{2}\big[12 + 11 + 2(15 + 18 + 20 + 17 + 14)\big]\)</p>
+    <p>\(= 5 \times [23 + 2 \times 84] = 5 \times 191 = 955\) litres.</p>
+    <p>Le volume d'eau écoulé en 1 heure est d'environ <strong>955 litres</strong>.</p>
+  </div>
+</div>
+
+<!-- ==================== 8. APPLICATIONS PROFESSIONNELLES ==================== -->
+<h2>8. Applications professionnelles</h2>
+
+<h3>8.1 Valeur efficace d'un signal — contexte FED/électricité</h3>
+
+<div class="situation">
+  <h3>Dimensionnement d'un disjoncteur</h3>
+  <p>Un technicien en Fluides, Énergies, Domotique doit vérifier le calibre d'un disjoncteur protégeant un circuit alimenté par un courant dont la forme d'onde est modélisée par \(i(t) = 10\sin(100\pi t) + 3\sin(300\pi t)\) (en ampères). Il a besoin de la valeur efficace \(I_{\text{eff}}\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Résolution</span>
+  <p>La période est \(T = 0{,}02\) s. On calcule :</p>
+  <p>\(I_{\text{eff}}^2 = \dfrac{1}{T}\displaystyle\int_0^T i(t)^2\,dt\).</p>
+  <p>En développant \(i(t)^2\) et en utilisant le fait que les termes croisés \(\sin(\omega_1 t)\sin(\omega_2 t)\) ont une intégrale nulle sur une période (propriété d'orthogonalité) :</p>
+  <p>\(I_{\text{eff}}^2 = \dfrac{10^2}{2} + \dfrac{3^2}{2} = 50 + 4{,}5 = 54{,}5\)</p>
+  <p>\(I_{\text{eff}} = \sqrt{54{,}5} \approx 7{,}38\) A.</p>
+  <p>Le disjoncteur devra avoir un calibre supérieur à 7,38 A, soit un calibre normalisé de <strong>10 A</strong>.</p>
+</div>
+
+<h3>8.2 Centre d'inertie d'une section — contexte bâtiment/charpente</h3>
+
+<div class="situation">
+  <h3>Position du centre de gravité d'une poutre en T</h3>
+  <p>Un dessinateur-projeteur en charpente bois doit déterminer la position du centre de gravité d'une section en T pour calculer les contraintes de flexion. La section est composée d'une semelle (rectangulaire, \(b \times e_1\)) et d'une âme (rectangulaire, \(h \times e_2\)).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Résolution — Moment statique</span>
+  <p>Le centre de gravité d'une surface plane se calcule par :</p>
+  <p>\[\bar{y} = \frac{\displaystyle\int y\,dA}{\displaystyle\int dA} = \frac{\text{moment statique}}{\text{aire totale}}\]</p>
+  <p><strong>Données :</strong> Semelle : \(b = 120\) mm, \(e_1 = 30\) mm. Âme : \(h = 200\) mm, \(e_2 = 40\) mm. L'âme est centrée sous la semelle.</p>
+  <p>En prenant l'origine en bas de l'âme :</p>
+  <ul>
+    <li>Aire âme : \(A_1 = 200 \times 40 = 8\,000\) mm², centre à \(y_1 = 100\) mm</li>
+    <li>Aire semelle : \(A_2 = 120 \times 30 = 3\,600\) mm², centre à \(y_2 = 200 + 15 = 215\) mm</li>
+  </ul>
+  <p>\(\bar{y} = \dfrac{8\,000 \times 100 + 3\,600 \times 215}{8\,000 + 3\,600} = \dfrac{800\,000 + 774\,000}{11\,600} = \dfrac{1\,574\,000}{11\,600} \approx 135{,}7\) mm.</p>
+  <p>Le centre de gravité se situe à <strong>135,7 mm</strong> de la base de l'âme.</p>
+</div>
+
+<h3>8.3 Calcul de volume par intégration — contexte BTS bois</h3>
+
+<div class="situation">
+  <h3>Volume d'un fût de colonne tourné</h3>
+  <p>Un ébéniste tourne un pied de table dont le profil est défini par la fonction \(r(x) = 2 + \sin\!\left(\dfrac{\pi x}{20}\right)\) (rayon en cm, \(x\) en cm, pour \(x \in [0\,;\,40]\)).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Résolution</span>
+  <p>Le volume d'un solide de révolution est :</p>
+  <p>\[V = \pi\int_0^{40} \big[r(x)\big]^2\,dx = \pi\int_0^{40}\left(2 + \sin\frac{\pi x}{20}\right)^2 dx\]</p>
+  <p>On développe : \(\left(2 + \sin\frac{\pi x}{20}\right)^2 = 4 + 4\sin\frac{\pi x}{20} + \sin^2\frac{\pi x}{20}\).</p>
+  <p>En utilisant \(\sin^2\theta = \frac{1-\cos 2\theta}{2}\) :</p>
+  <p>\(= 4 + 4\sin\frac{\pi x}{20} + \frac{1}{2} - \frac{1}{2}\cos\frac{\pi x}{10}\)</p>
+  <p>\(= \frac{9}{2} + 4\sin\frac{\pi x}{20} - \frac{1}{2}\cos\frac{\pi x}{10}\)</p>
+  <p>\(\displaystyle\int_0^{40}\left(\frac{9}{2} + 4\sin\frac{\pi x}{20} - \frac{1}{2}\cos\frac{\pi x}{10}\right)dx\)</p>
+  <p>\(= \left[\frac{9x}{2} - \frac{80}{\pi}\cos\frac{\pi x}{20} - \frac{5}{\pi}\sin\frac{\pi x}{10}\right]_0^{40}\)</p>
+  <p>\(= \left(180 - \frac{80}{\pi}\cos 2\pi - 0\right) - \left(0 - \frac{80}{\pi}\cos 0 - 0\right) = 180 - \frac{80}{\pi} + \frac{80}{\pi} = 180\).</p>
+  <p>\(V = 180\pi \approx 565{,}5\) cm³ \(\approx 0{,}57\) litre.</p>
+</div>
+
+<!-- ==================== RÉSUMÉ ==================== -->
+<hr class="sep">
+
+<div class="retenir">
+  <h3>L'essentiel du chapitre</h3>
+  <div class="grid2">
+    <div>
+      <p><strong>Primitives</strong></p>
+      <ul>
+        <li>\(F' = f\) (à une constante près)</li>
+        <li>Types composés : \(u'u^n\), \(u'/u\), \(u'e^u\)</li>
+        <li>Trigo : primitive de \(\cos(\omega t + \varphi)\) est \(\frac{1}{\omega}\sin(\omega t + \varphi)\)</li>
+      </ul>
+      <p><strong>Intégrale définie</strong></p>
+      <ul>
+        <li>\(\int_a^b f(x)\,dx = F(b) - F(a)\)</li>
+        <li>Linéarité, relation de Chasles, positivité</li>
+        <li>Aire : \(\int_a^b |f(x)|\,dx\)</li>
+      </ul>
+    </div>
+    <div>
+      <p><strong>Valeur moyenne</strong></p>
+      <ul>
+        <li>\(\mu = \frac{1}{b-a}\int_a^b f(t)\,dt\)</li>
+        <li>Valeur efficace : \(S_{\text{eff}} = \sqrt{\frac{1}{T}\int_0^T s^2\,dt}\)</li>
+      </ul>
+      <p><strong>IPP et méthodes numériques</strong></p>
+      <ul>
+        <li>\(\int u'v = [uv] - \int uv'\)</li>
+        <li>Rectangles (milieu), trapèzes : convergence en \(O(h^2)\)</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 </div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+// Graphique 1 : Aire sous la courbe
+(function(){
+  const ctx = document.getElementById('chartAire');
+  if(!ctx) return;
+
+  const xs = [], ys = [], fillX = [], fillY = [];
+  for(let x = -0.5; x <= 3; x += 0.05){
+    xs.push(Math.round(x*100)/100);
+    ys.push(Math.round((-0.5*x*x + 3)*1000)/1000);
+  }
+  // Points pour la zone remplie
+  for(let x = 0; x <= 2; x += 0.05){
+    fillX.push(Math.round(x*100)/100);
+    fillY.push(Math.round((-0.5*x*x + 3)*1000)/1000);
+  }
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: xs,
+      datasets: [
+        {
+          label: 'f(x) = -0,5x² + 3',
+          data: ys,
+          borderColor: '#1e3a5f',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          fill: false
+        },
+        {
+          label: 'Aire ∫₀² f(x) dx',
+          data: xs.map((x,i) => (x >= 0 && x <= 2) ? ys[i] : null),
+          borderColor: 'rgba(30,58,95,0.3)',
+          backgroundColor: 'rgba(30,58,95,0.15)',
+          borderWidth: 0,
+          pointRadius: 0,
+          fill: {target: {value: 0}}
+        },
+        {
+          label: 'y = 0',
+          data: xs.map(() => 0),
+          borderColor: '#aaa',
+          borderWidth: 1,
+          borderDash: [4,4],
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {display: true, position: 'top'},
+        title: {display: false}
+      },
+      scales: {
+        x: {type: 'linear', min: -0.5, max: 3, title: {display: true, text: 'x'}},
+        y: {min: -0.5, max: 3.5, title: {display: true, text: 'f(x)'}}
+      }
+    }
+  });
+})();
+
+// Graphique 2 : Méthode des trapèzes
+(function(){
+  const ctx = document.getElementById('chartTrapezes');
+  if(!ctx) return;
+
+  const a = 0, b = 2, n = 5;
+  const h = (b - a) / n;
+  const f = x => Math.exp(-x*x/2);
+
+  // Courbe lisse
+  const xs = [], ys = [];
+  for(let x = -0.3; x <= 2.5; x += 0.02){
+    xs.push(Math.round(x*1000)/1000);
+    ys.push(Math.round(f(x)*10000)/10000);
+  }
+
+  // Points des trapèzes
+  const trapX = [], trapY = [];
+  for(let k = 0; k <= n; k++){
+    const xk = a + k * h;
+    trapX.push(Math.round(xk*1000)/1000);
+    trapY.push(Math.round(f(xk)*10000)/10000);
+  }
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: xs,
+      datasets: [
+        {
+          label: 'f(x) = e^(-x²/2)',
+          data: ys,
+          borderColor: '#1e3a5f',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          fill: false
+        },
+        {
+          label: 'Trapèzes (n = 5)',
+          data: xs.map(x => {
+            const k = Math.floor((x - a) / h);
+            if(x < a || x > b || k >= n) return null;
+            const xk = a + k * h;
+            const xk1 = a + (k+1) * h;
+            const t = (x - xk) / h;
+            return Math.round((f(xk) * (1-t) + f(xk1) * t)*10000)/10000;
+          }),
+          borderColor: '#c53030',
+          backgroundColor: 'rgba(197,48,48,0.12)',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          fill: {target: {value: 0}}
+        },
+        {
+          label: 'Points nodaux',
+          data: xs.map(x => {
+            for(let k = 0; k <= n; k++){
+              if(Math.abs(x - (a + k*h)) < 0.015) return Math.round(f(a+k*h)*10000)/10000;
+            }
+            return null;
+          }),
+          borderColor: '#c53030',
+          backgroundColor: '#c53030',
+          pointRadius: 5,
+          pointStyle: 'circle',
+          showLine: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {legend: {display: true, position: 'top'}},
+      scales: {
+        x: {type: 'linear', min: -0.3, max: 2.5, title: {display: true, text: 'x'}},
+        y: {min: 0, max: 1.2, title: {display: true, text: 'f(x)'}}
+      }
+    }
+  });
+})();
+
+// Graphique 3 : Signal sinusoïdal (tension secteur)
+(function(){
+  const ctx = document.getElementById('chartSignal');
+  if(!ctx) return;
+
+  const ts = [], ys = [], yEff = [], yMoy = [];
+  const Um = 325, f0 = 50, T = 1/f0;
+  const Ueff = Um / Math.sqrt(2);
+
+  for(let t = 0; t <= 3*T; t += T/200){
+    ts.push(Math.round(t*100000)/100000);
+    ys.push(Math.round(Um * Math.sin(2*Math.PI*f0*t)*10)/10);
+    yEff.push(Math.round(Ueff*10)/10);
+    yMoy.push(0);
+  }
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ts,
+      datasets: [
+        {
+          label: 'u(t) = 325·sin(100πt)',
+          data: ys,
+          borderColor: '#1e3a5f',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false
+        },
+        {
+          label: 'U_eff = 230 V',
+          data: yEff,
+          borderColor: '#c53030',
+          borderWidth: 1.5,
+          borderDash: [6,4],
+          pointRadius: 0,
+          fill: false
+        },
+        {
+          label: '-U_eff = -230 V',
+          data: ts.map(() => -Ueff),
+          borderColor: '#c53030',
+          borderWidth: 1.5,
+          borderDash: [6,4],
+          pointRadius: 0,
+          fill: false
+        },
+        {
+          label: 'Valeur moyenne = 0',
+          data: yMoy,
+          borderColor: '#16a34a',
+          borderWidth: 1,
+          borderDash: [3,3],
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {legend: {display: true, position: 'top'}},
+      scales: {
+        x: {
+          type: 'linear',
+          min: 0,
+          max: 3*T,
+          title: {display: true, text: 'Temps (s)'},
+          ticks: {
+            callback: function(val){ return (val*1000).toFixed(0) + ' ms'; },
+            maxTicksLimit: 8
+          }
+        },
+        y: {min: -380, max: 380, title: {display: true, text: 'Tension (V)'}}
+      }
+    }
+  });
+})();
+</script>
 <script src="../../../nav.js"></script>
 </body>
 </html>

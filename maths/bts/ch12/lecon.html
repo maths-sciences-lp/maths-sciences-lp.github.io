@@ -6,24 +6,771 @@
 <title>Ch12 – Nombres complexes – BTS</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#1e3a5f;--p-bg:#eef2f7;--p-border:#93a5c0}</style>
 </head>
 <body>
 <div class="c">
-<a href="../../sommaire.html" class="nb">← Retour au sommaire</a>
+<a href="../../sommaire.html" class="nb">&larr; Retour au sommaire</a>
+
 <header>
-  <h1>Chapitre 12 – Nombres complexes</h1>
-  <p class="sous-titre">BTS — Groupements B1, B2, C1</p>
+  <h1>Chapitre 12 &ndash; Nombres complexes</h1>
+  <p class="sous-titre">BTS &mdash; Groupements B1, B2, C1</p>
 </header>
 
 <div class="objectifs">
-  <strong>Ce chapitre est en cours de rédaction.</strong><br>
-  Le contenu sera disponible prochainement.
+  <strong>Je vais apprendre &agrave; :</strong>
+  <ul>
+    <li>Ma&icirc;triser les diff&eacute;rentes formes d'un nombre complexe (alg&eacute;brique, trigonom&eacute;trique, exponentielle)</li>
+    <li>Repr&eacute;senter un nombre complexe dans le plan et calculer son module et son argument</li>
+    <li>R&eacute;soudre des &eacute;quations du second degr&eacute; &agrave; discriminant n&eacute;gatif</li>
+    <li>Effectuer des op&eacute;rations en forme exponentielle (produit, quotient, puissance)</li>
+    <li>D&eacute;terminer des ensembles de points d&eacute;finis par module ou argument</li>
+    <li>Appliquer les nombres complexes &agrave; l'&eacute;lectricit&eacute; : imp&eacute;dance complexe, signaux sinuso&iuml;daux</li>
+  </ul>
 </div>
 
+<!-- ==================== SITUATION PROFESSIONNELLE ==================== -->
+<h2>Situation professionnelle</h2>
+
+<div class="situation">
+  <h3>Analyse d'un circuit &eacute;lectrique RLC</h3>
+  <p>Un technicien en &eacute;lectrotechnique doit calculer l'imp&eacute;dance totale d'un circuit comportant une r&eacute;sistance \(R = 100\;\Omega\), une bobine d'inductance \(L = 0{,}2\;\text{H}\) et un condensateur de capacit&eacute; \(C = 10\;\mu\text{F}\), aliment&eacute; par un signal sinuso&iuml;dal de fr&eacute;quence \(f = 50\;\text{Hz}\).</p>
+  <p><strong>Probl&egrave;me :</strong> Comment d&eacute;terminer le courant dans le circuit et le d&eacute;phasage entre tension et courant ? La r&eacute;ponse passe par les <em>nombres complexes</em> et la notation \(Z = R + jL\omega - \dfrac{j}{C\omega}\).</p>
 </div>
+
+<!-- ==================== 1. FORME ALGÉBRIQUE ==================== -->
+<h2>1. Forme alg&eacute;brique et repr&eacute;sentation g&eacute;om&eacute;trique</h2>
+
+<h3>1.1 L'unit&eacute; imaginaire \(j\)</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Unit&eacute; imaginaire</span><br>
+  On note \(j\) le nombre tel que :
+  \[\boxed{j^2 = -1}\]
+  <p><strong>Convention BTS :</strong> en sciences de l'ing&eacute;nieur, on utilise \(j\) (et non \(i\)) pour &eacute;viter la confusion avec l'intensit&eacute; du courant &eacute;lectrique.</p>
+</div>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Nombre complexe, forme alg&eacute;brique</span><br>
+  Un <strong>nombre complexe</strong> est un nombre de la forme :
+  \[z = a + jb\]
+  o&ugrave; \(a\) et \(b\) sont des r&eacute;els. On note \(\mathbb{C}\) l'ensemble des nombres complexes.
+  <ul>
+    <li>\(a = \text{Re}(z)\) est la <strong>partie r&eacute;elle</strong> de \(z\)</li>
+    <li>\(b = \text{Im}(z)\) est la <strong>partie imaginaire</strong> de \(z\)</li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  La partie imaginaire de \(z = 3 + 5j\) est \(5\) (un r&eacute;el), et non \(5j\). On &eacute;crit \(\text{Im}(z) = 5\).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; &Eacute;galit&eacute; de deux complexes</span><br>
+  Deux nombres complexes sont &eacute;gaux si et seulement si leurs parties r&eacute;elles sont &eacute;gales <strong>et</strong> leurs parties imaginaires sont &eacute;gales :
+  \[a + jb = c + jd \iff a = c \;\text{ et }\; b = d\]
+</div>
+
+<h3>1.2 Plan complexe et affixe</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Plan complexe, affixe</span><br>
+  Le <strong>plan complexe</strong> est un rep&egrave;re \((O\,;\,\vec{u}\,,\,\vec{v})\) dans lequel tout nombre complexe \(z = a + jb\) est repr&eacute;sent&eacute; par le point \(M(a\,;\,b)\).
+  <ul>
+    <li>L'axe des abscisses est l'<strong>axe r&eacute;el</strong></li>
+    <li>L'axe des ordonn&eacute;es est l'<strong>axe imaginaire</strong></li>
+    <li>\(z\) est l'<strong>affixe</strong> du point \(M\), et \(M\) est l'<strong>image</strong> de \(z\)</li>
+  </ul>
+</div>
+
+<!-- Canvas : plan complexe interactif -->
+<div class="anim-wrap">
+  <p><strong>Plan complexe &mdash; Repr&eacute;sentation de nombres complexes</strong></p>
+  <canvas id="canvasPlanComplexe" width="560" height="420"></canvas>
+  <p style="font-size:.82em;color:#718096;margin-top:6px">Les points repr&eacute;sentent les complexes \(z_1 = 3 + 2j\), \(z_2 = -2 + 4j\), \(z_3 = -3 - j\), \(z_4 = 1 - 3j\) et \(z_5 = 4j\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Placer des nombres complexes</span>
+  <p>Repr&eacute;sentons dans le plan complexe : \(z_1 = 3 + 2j\), \(z_2 = -2 + 4j\), \(z_3 = -3 - j\), \(z_4 = 1 - 3j\).</p>
+  <ul>
+    <li>\(z_1\) : point \(M_1(3\,;\,2)\) &rarr; 3 vers la droite, 2 vers le haut</li>
+    <li>\(z_2\) : point \(M_2(-2\,;\,4)\) &rarr; 2 vers la gauche, 4 vers le haut</li>
+    <li>\(z_3\) : point \(M_3(-3\,;\,-1)\) &rarr; 3 vers la gauche, 1 vers le bas</li>
+    <li>\(z_4\) : point \(M_4(1\,;\,-3)\) &rarr; 1 vers la droite, 3 vers le bas</li>
+  </ul>
+</div>
+
+<h3>1.3 Conjugu&eacute;</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Conjugu&eacute;</span><br>
+  Le <strong>conjugu&eacute;</strong> du nombre complexe \(z = a + jb\) est le nombre :
+  \[\boxed{\bar{z} = a - jb}\]
+  G&eacute;om&eacute;triquement, \(\bar{z}\) est le sym&eacute;trique de \(z\) par rapport &agrave; l'axe r&eacute;el.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute;s du conjugu&eacute;</span><br>
+  Pour tous \(z, z_1, z_2 \in \mathbb{C}\) :
+  <ul>
+    <li>\(\overline{z_1 + z_2} = \bar{z}_1 + \bar{z}_2\)</li>
+    <li>\(\overline{z_1 \cdot z_2} = \bar{z}_1 \cdot \bar{z}_2\)</li>
+    <li>\(\overline{\left(\frac{z_1}{z_2}\right)} = \frac{\bar{z}_1}{\bar{z}_2}\) (si \(z_2 \neq 0\))</li>
+    <li>\(z \cdot \bar{z} = a^2 + b^2\) (toujours r&eacute;el positif)</li>
+    <li>\(z + \bar{z} = 2\,\text{Re}(z)\) et \(z - \bar{z} = 2j\,\text{Im}(z)\)</li>
+    <li>\(\bar{\bar{z}} = z\)</li>
+  </ul>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Extraire partie r&eacute;elle et imaginaire</span><br>
+  <ol>
+    <li>\(\text{Re}(z) = \dfrac{z + \bar{z}}{2}\)</li>
+    <li>\(\text{Im}(z) = \dfrac{z - \bar{z}}{2j}\)</li>
+  </ol>
+</div>
+
+<h3>1.4 Module</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Module</span><br>
+  Le <strong>module</strong> de \(z = a + jb\) est le r&eacute;el positif :
+  \[\boxed{|z| = \sqrt{a^2 + b^2}}\]
+  G&eacute;om&eacute;triquement, \(|z|\) est la distance du point \(M\) &agrave; l'origine \(O\).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute;s du module</span><br>
+  <ul>
+    <li>\(|z| = 0 \iff z = 0\)</li>
+    <li>\(|z|^2 = z \cdot \bar{z}\)</li>
+    <li>\(|z_1 \cdot z_2| = |z_1| \cdot |z_2|\)</li>
+    <li>\(\left|\dfrac{z_1}{z_2}\right| = \dfrac{|z_1|}{|z_2|}\)</li>
+    <li>\(|\bar{z}| = |z|\)</li>
+    <li>In&eacute;galit&eacute; triangulaire : \(|z_1 + z_2| \leq |z_1| + |z_2|\)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Calculs de modules</span>
+  <p>\(z_1 = 3 + 4j\) &rarr; \(|z_1| = \sqrt{9 + 16} = \sqrt{25} = 5\)</p>
+  <p>\(z_2 = -1 + j\) &rarr; \(|z_2| = \sqrt{1 + 1} = \sqrt{2}\)</p>
+  <p>\(z_3 = 6j\) &rarr; \(|z_3| = \sqrt{0 + 36} = 6\)</p>
+</div>
+
+<!-- Mini-exercice 1 -->
+<div class="exo">
+  <div class="exo-titre"><span class="num">1</span>Mini-exercice &mdash; Module et conjugu&eacute;</div>
+  <p>Soit \(z = -5 + 12j\). Calculer \(\bar{z}\), \(|z|\) et \(z \cdot \bar{z}\).</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <div class="corr">
+      <p>\(\bar{z} = -5 - 12j\)</p>
+      <p>\(|z| = \sqrt{(-5)^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13\)</p>
+      <p>\(z \cdot \bar{z} = |z|^2 = 169\)</p>
+      <p>V&eacute;rification : \((-5 + 12j)(-5 - 12j) = 25 - 144j^2 = 25 + 144 = 169\) &checkmark;</p>
+    </div>
+  </details>
+</div>
+
+<!-- ==================== 2. ÉQUATIONS DU 2ND DEGRÉ ==================== -->
+<h2>2. &Eacute;quations du second degr&eacute; &agrave; coefficients r&eacute;els</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Discriminant n&eacute;gatif</span><br>
+  Soit l'&eacute;quation \(az^2 + bz + c = 0\) avec \(a, b, c \in \mathbb{R}\) et \(a \neq 0\).
+  <p>Si le discriminant \(\Delta = b^2 - 4ac < 0\), l'&eacute;quation admet <strong>deux solutions complexes conjugu&eacute;es</strong> :</p>
+  \[\boxed{z_1 = \frac{-b + j\sqrt{|\Delta|}}{2a} \qquad z_2 = \frac{-b - j\sqrt{|\Delta|}}{2a} = \bar{z}_1}\]
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Ne pas oublier que \(\sqrt{-k} = j\sqrt{k}\) pour \(k > 0\). Le \(j\) sort de la racine, on &eacute;crit \(j\sqrt{|\Delta|}\).
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; R&eacute;soudre dans \(\mathbb{C}\) une &eacute;quation du 2nd degr&eacute;</span><br>
+  <ol>
+    <li>Calculer \(\Delta = b^2 - 4ac\)</li>
+    <li>Si \(\Delta \geq 0\) : solutions r&eacute;elles classiques</li>
+    <li>Si \(\Delta < 0\) : poser \(\Delta' = |\Delta|\) et &eacute;crire :
+    \[z_1 = \frac{-b + j\sqrt{\Delta'}}{2a}, \quad z_2 = \frac{-b - j\sqrt{\Delta'}}{2a}\]</li>
+    <li>V&eacute;rifier que \(z_1\) et \(z_2\) sont bien conjugu&eacute;s</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple r&eacute;solu &mdash; &Eacute;quation du 2nd degr&eacute;</span>
+  <p>R&eacute;soudre \(z^2 - 4z + 13 = 0\).</p>
+  <p>\(\Delta = 16 - 52 = -36 < 0\), donc \(\Delta' = 36\) et \(\sqrt{\Delta'} = 6\).</p>
+  <p>\(z_1 = \dfrac{4 + 6j}{2} = 2 + 3j \qquad z_2 = \dfrac{4 - 6j}{2} = 2 - 3j\)</p>
+  <p>V&eacute;rification : \(z_1 + z_2 = 4 = -\dfrac{b}{a}\) &checkmark; et \(z_1 \cdot z_2 = (2+3j)(2-3j) = 4 + 9 = 13 = \dfrac{c}{a}\) &checkmark;</p>
+</div>
+
+<!-- Mini-exercice 2 -->
+<div class="exo">
+  <div class="exo-titre"><span class="num">2</span>Mini-exercice &mdash; &Eacute;quation du 2nd degr&eacute;</div>
+  <p>R&eacute;soudre dans \(\mathbb{C}\) : \(z^2 + 2z + 5 = 0\).</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <div class="corr">
+      <p>\(\Delta = 4 - 20 = -16 < 0\), donc \(\Delta' = 16\) et \(\sqrt{\Delta'} = 4\).</p>
+      <p>\(z_1 = \dfrac{-2 + 4j}{2} = -1 + 2j\)</p>
+      <p>\(z_2 = \dfrac{-2 - 4j}{2} = -1 - 2j = \bar{z}_1\)</p>
+    </div>
+  </details>
+</div>
+
+<!-- ==================== 3. FORME TRIGONOMÉTRIQUE ET EXPONENTIELLE ==================== -->
+<h2>3. Forme trigonom&eacute;trique et exponentielle</h2>
+
+<h3>3.1 Argument d'un nombre complexe</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Argument</span><br>
+  L'<strong>argument</strong> d'un nombre complexe non nul \(z\), not&eacute; \(\arg(z)\), est l'angle \(\theta\) (en radians) entre l'axe r&eacute;el positif et le vecteur \(\overrightarrow{OM}\), mesur&eacute; dans le sens trigonom&eacute;trique.
+  <p>L'argument est d&eacute;fini <strong>modulo \(2\pi\)</strong>.</p>
+  <p>Si \(z = a + jb\) avec \(|z| = r\), alors :
+  \[\cos\theta = \frac{a}{r}, \quad \sin\theta = \frac{b}{r}\]</p>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Trouver l'argument</span><br>
+  <ol>
+    <li>Calculer \(|z| = r\)</li>
+    <li>Calculer \(\cos\theta = \frac{a}{r}\) et \(\sin\theta = \frac{b}{r}\)</li>
+    <li>D&eacute;terminer \(\theta\) &agrave; l'aide du cercle trigonom&eacute;trique (attention au quadrant !)</li>
+  </ol>
+</div>
+
+<h3>3.2 Forme trigonom&eacute;trique</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Forme trigonom&eacute;trique</span><br>
+  Tout nombre complexe non nul \(z\) peut s'&eacute;crire sous <strong>forme trigonom&eacute;trique</strong> :
+  \[\boxed{z = r(\cos\theta + j\sin\theta)}\]
+  o&ugrave; \(r = |z|\) (module) et \(\theta = \arg(z)\) (argument).
+</div>
+
+<h3>3.3 Forme exponentielle et formule d'Euler</h3>
+
+<div class="retenir">
+  <strong>&Agrave; retenir &mdash; Formule d'Euler</strong><br>
+  \[\boxed{e^{j\theta} = \cos\theta + j\sin\theta}\]
+  Cette formule fondamentale permet de passer de la forme trigonom&eacute;trique &agrave; la forme exponentielle.
+</div>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Forme exponentielle</span><br>
+  Tout nombre complexe non nul \(z\) peut s'&eacute;crire sous <strong>forme exponentielle</strong> :
+  \[\boxed{z = r\,e^{j\theta}}\]
+  o&ugrave; \(r = |z| > 0\) et \(\theta = \arg(z)\).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Cons&eacute;quences de la formule d'Euler</span><br>
+  <ul>
+    <li>\(e^{j\pi} = -1\) (formule d'Euler remarquable)</li>
+    <li>\(e^{j\pi/2} = j\)</li>
+    <li>\(e^{-j\theta} = \cos\theta - j\sin\theta\)</li>
+    <li>\(\cos\theta = \dfrac{e^{j\theta} + e^{-j\theta}}{2}\) et \(\sin\theta = \dfrac{e^{j\theta} - e^{-j\theta}}{2j}\)</li>
+  </ul>
+</div>
+
+<h3>3.4 Passage entre les trois formes</h3>
+
+<div class="formule-box">
+  <strong>R&eacute;sum&eacute; &mdash; Les 3 formes d'un nombre complexe</strong>
+  <table>
+    <tr><th>Forme</th><th>&Eacute;criture</th><th>Param&egrave;tres</th></tr>
+    <tr><td>Alg&eacute;brique</td><td>\(z = a + jb\)</td><td>\(a = \text{Re}(z)\), \(b = \text{Im}(z)\)</td></tr>
+    <tr><td>Trigonom&eacute;trique</td><td>\(z = r(\cos\theta + j\sin\theta)\)</td><td>\(r = |z|\), \(\theta = \arg(z)\)</td></tr>
+    <tr><td>Exponentielle</td><td>\(z = r\,e^{j\theta}\)</td><td>\(r = |z|\), \(\theta = \arg(z)\)</td></tr>
+  </table>
+  <p style="margin-top:8px"><strong>Conversions :</strong></p>
+  <ul>
+    <li>Alg&eacute;brique &rarr; Trigonom&eacute;trique/exponentielle : \(r = \sqrt{a^2+b^2}\), \(\theta\) tel que \(\cos\theta = a/r\) et \(\sin\theta = b/r\)</li>
+    <li>Trigonom&eacute;trique/exponentielle &rarr; Alg&eacute;brique : \(a = r\cos\theta\), \(b = r\sin\theta\)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple r&eacute;solu &mdash; Passage entre formes</span>
+  <p><strong>a)</strong> &Eacute;crire \(z = 1 + j\) sous forme exponentielle.</p>
+  <p>\(|z| = \sqrt{1 + 1} = \sqrt{2}\).</p>
+  <p>\(\cos\theta = \frac{1}{\sqrt{2}}\) et \(\sin\theta = \frac{1}{\sqrt{2}}\), donc \(\theta = \frac{\pi}{4}\).</p>
+  <p>\(\boxed{z = \sqrt{2}\,e^{j\pi/4}}\)</p>
+
+  <p><strong>b)</strong> &Eacute;crire \(z = 3\,e^{j\pi/3}\) sous forme alg&eacute;brique.</p>
+  <p>\(z = 3\left(\cos\frac{\pi}{3} + j\sin\frac{\pi}{3}\right) = 3\left(\frac{1}{2} + j\frac{\sqrt{3}}{2}\right) = \frac{3}{2} + \frac{3\sqrt{3}}{2}\,j\)</p>
+</div>
+
+<!-- Mini-exercice 3 -->
+<div class="exo">
+  <div class="exo-titre"><span class="num">3</span>Mini-exercice &mdash; Formes d'un complexe</div>
+  <p>&Eacute;crire \(z = -\sqrt{3} + j\) sous forme trigonom&eacute;trique puis exponentielle.</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <div class="corr">
+      <p>\(|z| = \sqrt{3 + 1} = 2\).</p>
+      <p>\(\cos\theta = \frac{-\sqrt{3}}{2}\) et \(\sin\theta = \frac{1}{2}\), donc \(\theta = \frac{5\pi}{6}\).</p>
+      <p>Forme trigonom&eacute;trique : \(z = 2\left(\cos\frac{5\pi}{6} + j\sin\frac{5\pi}{6}\right)\)</p>
+      <p>Forme exponentielle : \(z = 2\,e^{j5\pi/6}\)</p>
+    </div>
+  </details>
+</div>
+
+<!-- ==================== 4. OPÉRATIONS EN FORME EXPONENTIELLE ==================== -->
+<h2>4. Op&eacute;rations en forme exponentielle</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Produit</span><br>
+  Si \(z_1 = r_1\,e^{j\theta_1}\) et \(z_2 = r_2\,e^{j\theta_2}\), alors :
+  \[\boxed{z_1 \cdot z_2 = r_1 r_2 \, e^{j(\theta_1 + \theta_2)}}\]
+  <ul>
+    <li>Les modules se multiplient : \(|z_1 z_2| = |z_1| \cdot |z_2|\)</li>
+    <li>Les arguments s'additionnent : \(\arg(z_1 z_2) = \arg(z_1) + \arg(z_2)\; [2\pi]\)</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Quotient</span><br>
+  \[\boxed{\frac{z_1}{z_2} = \frac{r_1}{r_2}\,e^{j(\theta_1 - \theta_2)}}\]
+  <ul>
+    <li>Les modules se divisent : \(\left|\frac{z_1}{z_2}\right| = \frac{|z_1|}{|z_2|}\)</li>
+    <li>Les arguments se soustraient : \(\arg\!\left(\frac{z_1}{z_2}\right) = \arg(z_1) - \arg(z_2)\; [2\pi]\)</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Puissance</span><br>
+  \[\boxed{z^n = r^n\,e^{jn\theta}}\]
+  Le module est &eacute;lev&eacute; &agrave; la puissance \(n\), l'argument est multipli&eacute; par \(n\).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple r&eacute;solu &mdash; Op&eacute;rations</span>
+  <p>Soient \(z_1 = 2\,e^{j\pi/6}\) et \(z_2 = 3\,e^{j\pi/4}\).</p>
+  <p>\(z_1 \cdot z_2 = 6\,e^{j(\pi/6 + \pi/4)} = 6\,e^{j \cdot 5\pi/12}\)</p>
+  <p>\(\dfrac{z_1}{z_2} = \dfrac{2}{3}\,e^{j(\pi/6 - \pi/4)} = \dfrac{2}{3}\,e^{-j\pi/12}\)</p>
+  <p>\(z_1^3 = 8\,e^{j \cdot 3\pi/6} = 8\,e^{j\pi/2} = 8j\)</p>
+</div>
+
+<!-- Mini-exercice 4 -->
+<div class="exo">
+  <div class="exo-titre"><span class="num">4</span>Mini-exercice &mdash; Calcul en forme exponentielle</div>
+  <p>Soient \(z_1 = 4\,e^{j\pi/3}\) et \(z_2 = 2\,e^{-j\pi/6}\). Calculer \(z_1 \cdot z_2\), \(\dfrac{z_1}{z_2}\) et \(z_2^4\).</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <div class="corr">
+      <p>\(z_1 \cdot z_2 = 4 \times 2\,e^{j(\pi/3 - \pi/6)} = 8\,e^{j\pi/6}\)</p>
+      <p>\(\dfrac{z_1}{z_2} = \dfrac{4}{2}\,e^{j(\pi/3 + \pi/6)} = 2\,e^{j\pi/2} = 2j\)</p>
+      <p>\(z_2^4 = 2^4\,e^{j \cdot 4 \cdot (-\pi/6)} = 16\,e^{-j2\pi/3}\)</p>
+      <p>Forme alg&eacute;brique de \(z_2^4\) : \(16\left(\cos\frac{-2\pi}{3} + j\sin\frac{-2\pi}{3}\right) = 16\left(-\frac{1}{2} - \frac{\sqrt{3}}{2}j\right) = -8 - 8\sqrt{3}\,j\)</p>
+    </div>
+  </details>
+</div>
+
+<!-- ==================== 5. ENSEMBLES DE POINTS ==================== -->
+<h2>5. Ensembles de points dans le plan complexe</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Cercle</span><br>
+  L'ensemble des points \(M\) d'affixe \(z\) tels que :
+  \[\boxed{|z - a| = k \quad (k > 0)}\]
+  est le <strong>cercle</strong> de centre \(A\) (d'affixe \(a\)) et de rayon \(k\).
+  <p>En effet, \(|z - a|\) repr&eacute;sente la distance \(AM\).</p>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Demi-droite</span><br>
+  L'ensemble des points \(M\) d'affixe \(z\) (\(z \neq a\)) tels que :
+  \[\boxed{\arg(z - a) = \alpha}\]
+  est la <strong>demi-droite</strong> d'origine \(A\) (d'affixe \(a\)), faisant un angle \(\alpha\) avec l'axe r&eacute;el.
+</div>
+
+<!-- Canvas : cercle |z-a|=k -->
+<div class="anim-wrap">
+  <p><strong>Ensemble \(|z - (2+j)| = 3\) &mdash; Cercle de centre \(A(2\,;\,1)\) et de rayon 3</strong></p>
+  <canvas id="canvasCercle" width="560" height="420"></canvas>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Ensembles de points</span>
+  <p><strong>a)</strong> \(|z - 3| = 2\) : cercle de centre \(A(3\,;\,0)\) et de rayon 2.</p>
+  <p><strong>b)</strong> \(|z + 1 - 2j| = 4\) : on &eacute;crit \(|z - (-1 + 2j)| = 4\), cercle de centre \(B(-1\,;\,2)\) et de rayon 4.</p>
+  <p><strong>c)</strong> \(\arg(z - 1) = \frac{\pi}{4}\) : demi-droite d'origine \(C(1\,;\,0)\), formant un angle de 45&deg; avec l'axe r&eacute;el.</p>
+</div>
+
+<!-- Mini-exercice 5 -->
+<div class="exo">
+  <div class="exo-titre"><span class="num">5</span>Mini-exercice &mdash; Ensembles de points</div>
+  <p>D&eacute;crire g&eacute;om&eacute;triquement les ensembles suivants :</p>
+  <p><strong>a)</strong> \(|z - 2 + 3j| = 5\) &emsp; <strong>b)</strong> \(|z| = |z - 4|\) &emsp; <strong>c)</strong> \(\arg(z + 1) = \frac{\pi}{3}\)</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <div class="corr">
+      <p><strong>a)</strong> \(|z - (2 - 3j)| = 5\) : cercle de centre \((2\,;\,-3)\) et de rayon 5.</p>
+      <p><strong>b)</strong> \(|z| = |z - 4|\) signifie \(OM = AM\) avec \(A(4\,;\,0)\) : m&eacute;diatrice du segment \([OA]\), soit la droite \(x = 2\).</p>
+      <p><strong>c)</strong> \(\arg(z - (-1)) = \frac{\pi}{3}\) : demi-droite d'origine \((-1\,;\,0)\), faisant un angle de \(\frac{\pi}{3}\) avec l'axe r&eacute;el.</p>
+    </div>
+  </details>
+</div>
+
+<!-- ==================== 6. TRANSFORMATIONS ==================== -->
+<h2>6. Transformations du plan complexe</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Translation</span><br>
+  La <strong>translation</strong> de vecteur \(\vec{w}\) (d'affixe \(b\)) est la transformation \(z \mapsto z' = z + b\).
+  <p>Chaque point se d&eacute;place du m&ecirc;me vecteur.</p>
+</div>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Rotation-homoth&eacute;tie</span><br>
+  La transformation \(z \mapsto z' = a \cdot z\) avec \(a = r\,e^{j\alpha}\) est une :
+  <ul>
+    <li><strong>Rotation</strong> d'angle \(\alpha\) (si \(r = 1\))</li>
+    <li><strong>Homoth&eacute;tie</strong> de rapport \(r\) (si \(\alpha = 0\))</li>
+    <li><strong>Similitude directe</strong> (cas g&eacute;n&eacute;ral) : rotation d'angle \(\alpha\) combin&eacute;e &agrave; une homoth&eacute;tie de rapport \(r\)</li>
+  </ul>
+</div>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Sym&eacute;trie par rapport &agrave; l'axe r&eacute;el</span><br>
+  La transformation \(z \mapsto z' = \bar{z}\) est la <strong>sym&eacute;trie</strong> par rapport &agrave; l'axe r&eacute;el (axe des abscisses).
+</div>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Inversion</span><br>
+  La transformation \(z \mapsto z' = \dfrac{1}{z}\) (pour \(z \neq 0\)) est l'<strong>inversion</strong>.
+  <p>En forme exponentielle : si \(z = r\,e^{j\theta}\), alors \(\frac{1}{z} = \frac{1}{r}\,e^{-j\theta}\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Rotation d'un motif</span>
+  <p>Un agenceur doit faire tourner un motif de 90&deg; autour de l'origine. Si un sommet est au point d'affixe \(z = 3 + 2j\), l'image par la rotation de \(\pi/2\) est :</p>
+  <p>\(z' = e^{j\pi/2} \cdot z = j \cdot (3 + 2j) = 3j + 2j^2 = -2 + 3j\)</p>
+  <p>Le point \((3\,;\,2)\) a pour image \((-2\,;\,3)\) : rotation d'un quart de tour dans le sens trigonom&eacute;trique. &checkmark;</p>
+</div>
+
+<!-- ==================== 7. APPLICATIONS PROFESSIONNELLES ==================== -->
+<h2>7. Applications professionnelles</h2>
+
+<h3>7.1 Imp&eacute;dance complexe en &eacute;lectricit&eacute;</h3>
+
+<div class="retenir">
+  <strong>&Agrave; retenir &mdash; Imp&eacute;dance complexe</strong><br>
+  En r&eacute;gime sinuso&iuml;dal permanent de pulsation \(\omega = 2\pi f\), l'imp&eacute;dance complexe d'un circuit est :
+  <ul>
+    <li>R&eacute;sistance : \(\underline{Z}_R = R\)</li>
+    <li>Bobine : \(\underline{Z}_L = jL\omega\)</li>
+    <li>Condensateur : \(\underline{Z}_C = \dfrac{1}{jC\omega} = -\dfrac{j}{C\omega}\)</li>
+  </ul>
+  <p><strong>Circuit RLC s&eacute;rie</strong> :</p>
+  \[\boxed{\underline{Z} = R + jL\omega - \frac{j}{C\omega} = R + j\!\left(L\omega - \frac{1}{C\omega}\right)}\]
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Module et argument de l'imp&eacute;dance</span><br>
+  <ul>
+    <li>Le <strong>module</strong> \(|\underline{Z}|\) donne l'imp&eacute;dance en ohms : \(|\underline{Z}| = \sqrt{R^2 + \left(L\omega - \frac{1}{C\omega}\right)^2}\)</li>
+    <li>L'<strong>argument</strong> \(\varphi = \arg(\underline{Z})\) donne le d&eacute;phasage tension/courant : \(\tan\varphi = \frac{L\omega - \frac{1}{C\omega}}{R}\)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple r&eacute;solu &mdash; Circuit RLC (situation de d&eacute;part)</span>
+  <p>Reprenons la situation professionnelle : \(R = 100\;\Omega\), \(L = 0{,}2\;\text{H}\), \(C = 10\;\mu\text{F}\), \(f = 50\;\text{Hz}\).</p>
+  <p>\(\omega = 2\pi \times 50 = 100\pi \approx 314{,}2\;\text{rad/s}\)</p>
+  <p>\(L\omega = 0{,}2 \times 100\pi \approx 62{,}8\;\Omega\)</p>
+  <p>\(\frac{1}{C\omega} = \frac{1}{10 \times 10^{-6} \times 100\pi} \approx 318{,}3\;\Omega\)</p>
+  <p>\(\underline{Z} = 100 + j(62{,}8 - 318{,}3) = 100 - 255{,}5j\;\;\Omega\)</p>
+  <p>\(|\underline{Z}| = \sqrt{100^2 + 255{,}5^2} = \sqrt{10\,000 + 65\,280} \approx 274{,}4\;\Omega\)</p>
+  <p>\(\varphi = \arctan\!\left(\frac{-255{,}5}{100}\right) \approx -1{,}20\;\text{rad} \approx -68{,}6°\)</p>
+  <p><strong>Interpr&eacute;tation :</strong> le d&eacute;phasage est n&eacute;gatif (\(\varphi < 0\)), donc le circuit est <strong>capacitif</strong> : le courant est en avance sur la tension. L'effet du condensateur domine celui de la bobine.</p>
+</div>
+
+<!-- Canvas : diagramme d'impédance -->
+<div class="anim-wrap">
+  <p><strong>Repr&eacute;sentation de l'imp&eacute;dance \(\underline{Z} = 100 - 255{,}5j\) dans le plan complexe</strong></p>
+  <canvas id="canvasImpedance" width="560" height="420"></canvas>
+  <p style="font-size:.82em;color:#718096;margin-top:6px">L'imp&eacute;dance est repr&eacute;sent&eacute;e comme un vecteur. La partie r&eacute;elle (R) est sur l'axe horizontal, la partie imaginaire (r&eacute;actance X) sur l'axe vertical.</p>
+</div>
+
+<h3>7.2 Repr&eacute;sentation de signaux sinuso&iuml;daux</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Signal sinuso&iuml;dal et notation complexe</span><br>
+  Un signal sinuso&iuml;dal \(u(t) = U_m \cos(\omega t + \varphi)\) est repr&eacute;sent&eacute; par le nombre complexe :
+  \[\underline{U} = U_m\,e^{j\varphi}\]
+  La valeur instantan&eacute;e se retrouve par : \(u(t) = \text{Re}\!\left(\underline{U}\,e^{j\omega t}\right)\).
+  <p>Cette repr&eacute;sentation simplifie consid&eacute;rablement les calculs de circuits en r&eacute;gime sinuso&iuml;dal (diagrammes de Nyquist, Bode).</p>
+</div>
+
+<h3>7.3 G&eacute;om&eacute;trie et transformations</h3>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Rotation d'un panneau en agencement</span>
+  <p>Un technicien agenceur dessine un panneau rectangulaire dont les quatre sommets ont pour affixes : \(z_1 = 0\), \(z_2 = 4\), \(z_3 = 4 + 2j\), \(z_4 = 2j\).</p>
+  <p>Il doit faire pivoter le panneau de 30&deg; autour de l'origine. La rotation correspond &agrave; la multiplication par \(e^{j\pi/6}\).</p>
+  <p>\(z'_2 = 4\,e^{j\pi/6} = 4\left(\frac{\sqrt{3}}{2} + \frac{j}{2}\right) = 2\sqrt{3} + 2j \approx 3{,}46 + 2j\)</p>
+  <p>Les dimensions du panneau sont conserv&eacute;es (la rotation ne d&eacute;forme pas la figure).</p>
+</div>
+
+<!-- Mini-exercice 6 -->
+<div class="exo">
+  <div class="exo-titre"><span class="num">6</span>Mini-exercice &mdash; Imp&eacute;dance complexe</div>
+  <p>Un circuit s&eacute;rie RL comporte \(R = 47\;\Omega\) et \(L = 0{,}15\;\text{H}\). La fr&eacute;quence est \(f = 50\;\text{Hz}\).</p>
+  <p><strong>a)</strong> &Eacute;crire l'imp&eacute;dance complexe \(\underline{Z}\).</p>
+  <p><strong>b)</strong> Calculer \(|\underline{Z}|\) et \(\varphi = \arg(\underline{Z})\).</p>
+  <details>
+    <summary>Voir la correction</summary>
+    <div class="corr">
+      <p><strong>a)</strong> \(\omega = 2\pi \times 50 = 100\pi\). \(\underline{Z} = R + jL\omega = 47 + j \times 0{,}15 \times 100\pi = 47 + 47{,}1j\;\Omega\)</p>
+      <p><strong>b)</strong> \(|\underline{Z}| = \sqrt{47^2 + 47{,}1^2} = \sqrt{2\,209 + 2\,218} = \sqrt{4\,427} \approx 66{,}5\;\Omega\)</p>
+      <p>\(\varphi = \arctan\!\left(\frac{47{,}1}{47}\right) = \arctan(1{,}002) \approx 0{,}786\;\text{rad} \approx 45{,}1°\)</p>
+      <p>Le circuit est inductif (\(\varphi > 0\)) : la tension est en avance sur le courant.</p>
+    </div>
+  </details>
+</div>
+
+</div><!-- fin .c -->
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+// ===== Plan complexe =====
+(function(){
+  const cv = document.getElementById('canvasPlanComplexe');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const ox = W/2, oy = H/2;
+  const scale = 50; // pixels per unit
+
+  function drawGrid(){
+    ctx.clearRect(0,0,W,H);
+    // grid
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 0.5;
+    for(let x = ox % scale; x < W; x += scale){
+      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
+    }
+    for(let y = oy % scale; y < H; y += scale){
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+    }
+    // axes
+    ctx.strokeStyle = '#4a5568'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(W,oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,H); ctx.stroke();
+    // labels
+    ctx.fillStyle = '#4a5568'; ctx.font = '13px sans-serif';
+    ctx.fillText('Re', W - 24, oy - 8);
+    ctx.fillText('Im', ox + 8, 16);
+    // ticks
+    ctx.font = '11px sans-serif'; ctx.fillStyle = '#718096';
+    for(let i = -5; i <= 5; i++){
+      if(i === 0) continue;
+      let px = ox + i*scale;
+      ctx.beginPath(); ctx.moveTo(px, oy-3); ctx.lineTo(px, oy+3); ctx.stroke();
+      ctx.fillText(i, px - 4, oy + 16);
+    }
+    for(let i = -4; i <= 4; i++){
+      if(i === 0) continue;
+      let py = oy - i*scale;
+      ctx.beginPath(); ctx.moveTo(ox-3, py); ctx.lineTo(ox+3, py); ctx.stroke();
+      ctx.fillText(i, ox + 8, py + 4);
+    }
+    ctx.fillText('O', ox - 14, oy + 16);
+  }
+
+  function plotPoint(a, b, label, color){
+    let px = ox + a*scale, py = oy - b*scale;
+    // vector from origin
+    ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(px,py); ctx.stroke();
+    ctx.setLineDash([]);
+    // dot
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(px,py,5,0,2*Math.PI); ctx.fill();
+    // label
+    ctx.font = 'bold 13px sans-serif';
+    ctx.fillText(label, px + 8, py - 8);
+  }
+
+  drawGrid();
+  plotPoint(3, 2, 'z₁ = 3+2j', '#2563eb');
+  plotPoint(-2, 4, 'z₂ = −2+4j', '#059669');
+  plotPoint(-3, -1, 'z₃ = −3−j', '#dc2626');
+  plotPoint(1, -3, 'z₄ = 1−3j', '#d97706');
+  plotPoint(0, 4, 'z₅ = 4j', '#7c3aed');
+})();
+
+// ===== Cercle |z-a|=k =====
+(function(){
+  const cv = document.getElementById('canvasCercle');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const ox = W/2, oy = H/2;
+  const scale = 50;
+
+  // grid + axes
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 0.5;
+  for(let x = ox % scale; x < W; x += scale){
+    ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
+  }
+  for(let y = oy % scale; y < H; y += scale){
+    ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+  }
+  ctx.strokeStyle = '#4a5568'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0,oy); ctx.lineTo(W,oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox,0); ctx.lineTo(ox,H); ctx.stroke();
+  ctx.fillStyle = '#4a5568'; ctx.font = '13px sans-serif';
+  ctx.fillText('Re', W - 24, oy - 8);
+  ctx.fillText('Im', ox + 8, 16);
+  // ticks
+  ctx.font = '11px sans-serif'; ctx.fillStyle = '#718096';
+  for(let i = -5; i <= 5; i++){
+    if(i === 0) continue;
+    let px = ox + i*scale;
+    ctx.beginPath(); ctx.moveTo(px, oy-3); ctx.lineTo(px, oy+3); ctx.stroke();
+    ctx.fillText(i, px - 4, oy + 16);
+  }
+  for(let i = -4; i <= 4; i++){
+    if(i === 0) continue;
+    let py = oy - i*scale;
+    ctx.beginPath(); ctx.moveTo(ox-3, py); ctx.lineTo(ox+3, py); ctx.stroke();
+    ctx.fillText(i, ox + 8, py + 4);
+  }
+
+  // centre A(2,1)
+  const cx = 2, cy = 1, r = 3;
+  const cpx = ox + cx*scale, cpy = oy - cy*scale;
+  // circle
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(cpx, cpy, r*scale, 0, 2*Math.PI); ctx.stroke();
+  // fill
+  ctx.fillStyle = 'rgba(37,99,235,0.08)';
+  ctx.beginPath(); ctx.arc(cpx, cpy, r*scale, 0, 2*Math.PI); ctx.fill();
+  // centre
+  ctx.fillStyle = '#dc2626';
+  ctx.beginPath(); ctx.arc(cpx, cpy, 5, 0, 2*Math.PI); ctx.fill();
+  ctx.font = 'bold 13px sans-serif';
+  ctx.fillText('A(2 ; 1)', cpx + 8, cpy - 10);
+  // radius line
+  const rpx = ox + (cx+r)*scale, rpy = oy - cy*scale;
+  ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(cpx, cpy); ctx.lineTo(rpx, rpy); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#dc2626'; ctx.font = '12px sans-serif';
+  ctx.fillText('r = 3', (cpx+rpx)/2, cpy - 8);
+  // sample point M on circle
+  const angle = Math.PI/4;
+  const mx = cx + r*Math.cos(angle), my = cy + r*Math.sin(angle);
+  const mpx = ox + mx*scale, mpy = oy - my*scale;
+  ctx.fillStyle = '#059669';
+  ctx.beginPath(); ctx.arc(mpx, mpy, 5, 0, 2*Math.PI); ctx.fill();
+  ctx.font = 'bold 13px sans-serif';
+  ctx.fillText('M(z)', mpx + 8, mpy - 8);
+})();
+
+// ===== Impédance =====
+(function(){
+  const cv = document.getElementById('canvasImpedance');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const ox = 80, oy = 60;
+  const scaleX = 3; // pixels per ohm (horizontal)
+  const scaleY = 1.2; // pixels per ohm (vertical, inverted for neg)
+
+  ctx.clearRect(0,0,W,H);
+
+  // axes
+  ctx.strokeStyle = '#4a5568'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(40,oy); ctx.lineTo(W-20,oy); ctx.stroke(); // Re axis
+  ctx.beginPath(); ctx.moveTo(ox,20); ctx.lineTo(ox,H-20); ctx.stroke(); // Im axis
+  ctx.fillStyle = '#4a5568'; ctx.font = '13px sans-serif';
+  ctx.fillText('Re (R)', W - 60, oy - 10);
+  ctx.fillText('Im (X)', ox + 8, 32);
+
+  // R = 100, X = -255.5
+  const R = 100, X = -255.5;
+  const px = ox + R*scaleX, py = oy - X*scaleY;
+
+  // components
+  // R component (horizontal)
+  ctx.strokeStyle = '#059669'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(px, oy); ctx.stroke();
+  ctx.fillStyle = '#059669'; ctx.font = '12px sans-serif';
+  ctx.fillText('R = 100 Ω', ox + R*scaleX/2 - 30, oy - 10);
+
+  // X component (vertical)
+  ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(px, oy); ctx.lineTo(px, py); ctx.stroke();
+  ctx.fillStyle = '#d97706';
+  ctx.fillText('X = −255,5 Ω', px + 8, (oy + py)/2);
+
+  // Z vector
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(px, py); ctx.stroke();
+  // arrowhead
+  const ang = Math.atan2(py - oy, px - ox);
+  ctx.beginPath();
+  ctx.moveTo(px, py);
+  ctx.lineTo(px - 12*Math.cos(ang - 0.3), py - 12*Math.sin(ang - 0.3));
+  ctx.moveTo(px, py);
+  ctx.lineTo(px - 12*Math.cos(ang + 0.3), py - 12*Math.sin(ang + 0.3));
+  ctx.stroke();
+  // dot
+  ctx.fillStyle = '#2563eb';
+  ctx.beginPath(); ctx.arc(px, py, 5, 0, 2*Math.PI); ctx.fill();
+  ctx.font = 'bold 14px sans-serif';
+  ctx.fillText('Z = 100 − 255,5j', px - 50, py + 22);
+  ctx.font = '12px sans-serif';
+  ctx.fillText('|Z| ≈ 274,4 Ω', px - 130, (oy+py)/2 - 10);
+
+  // angle arc
+  ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(ox, oy, 40, 0, ang, ang < 0);
+  ctx.stroke();
+  ctx.fillStyle = '#dc2626'; ctx.font = '13px sans-serif';
+  ctx.fillText('φ ≈ −68,6°', ox + 45, oy + 30);
+
+  // labels for zones
+  ctx.fillStyle = '#718096'; ctx.font = '11px sans-serif';
+  ctx.fillText('Zone inductive (X > 0)', ox + 10, oy - 20);
+  ctx.fillText('Zone capacitive (X < 0)', ox + 10, H - 30);
+
+  // dashed line at X=0
+  ctx.strokeStyle = '#cbd5e0'; ctx.lineWidth = 0.5; ctx.setLineDash([3,3]);
+  ctx.setLineDash([]);
+
+  // scale markers
+  ctx.fillStyle = '#718096'; ctx.font = '10px sans-serif';
+  for(let v = 50; v <= 150; v += 50){
+    let xp = ox + v*scaleX;
+    ctx.beginPath(); ctx.moveTo(xp, oy-3); ctx.lineTo(xp, oy+3); ctx.stroke();
+    ctx.fillText(v, xp - 8, oy + 16);
+  }
+  for(let v = -300; v <= 100; v += 100){
+    if(v === 0) continue;
+    let yp = oy - v*scaleY;
+    if(yp > 20 && yp < H - 20){
+      ctx.beginPath(); ctx.moveTo(ox-3, yp); ctx.lineTo(ox+3, yp); ctx.stroke();
+      ctx.fillText(v, ox - 35, yp + 4);
+    }
+  }
+})();
+</script>
+
 <script src="../../../nav.js"></script>
 </body>
 </html>

@@ -6,24 +6,720 @@
 <title>Ch05 – Équations différentielles – BTS</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#1e3a5f;--p-bg:#eef2f7;--p-border:#93a5c0}</style>
 </head>
 <body>
 <div class="c">
-<a href="../../sommaire.html" class="nb">← Retour au sommaire</a>
+<a href="../../sommaire.html" class="nb">&larr; Retour au sommaire</a>
+
 <header>
-  <h1>Chapitre 05 – Équations différentielles</h1>
-  <p class="sous-titre">BTS — Groupements B1, B2</p>
+  <h1>Chapitre 5 &ndash; Équations différentielles</h1>
+  <p class="sous-titre">BTS &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; Groupements B1, B2</p>
+  <p class="maj">Dernière mise à jour : mars 2026</p>
 </header>
 
 <div class="objectifs">
-  <strong>Ce chapitre est en cours de rédaction.</strong><br>
-  Le contenu sera disponible prochainement.
+  <strong>Objectifs du chapitre :</strong>
+  <ul>
+    <li>Résoudre une équation différentielle linéaire du premier ordre à coefficients constants</li>
+    <li>Déterminer la solution vérifiant une condition initiale donnée</li>
+    <li>Appliquer la méthode d'Euler pour approcher une solution</li>
+    <li>Rappeler les nombres complexes (forme algébrique, module, conjugué) et résoudre une équation du second degré à discriminant négatif</li>
+    <li>Résoudre une équation différentielle linéaire du second ordre à coefficients constants</li>
+    <li>Identifier les régimes apériodique, critique et pseudo-périodique</li>
+    <li>Modéliser des phénomènes physiques : circuits RC, RLC, thermique, amortisseurs</li>
+  </ul>
 </div>
 
+<!-- ==================== SITUATION PROFESSIONNELLE ==================== -->
+<h2>Situation professionnelle</h2>
+
+<div class="situation">
+  <h3>Charge d'un condensateur et confort thermique</h3>
+  <p>Un technicien en électronique étudie la charge d'un condensateur dans un circuit RC alimenté par une source de tension continue de 12 V. Il constate que la tension aux bornes du condensateur augmente progressivement avant de se stabiliser. Comment modéliser mathématiquement cette évolution ?</p>
+  <p>Par ailleurs, un ingénieur en génie climatique souhaite modéliser le refroidissement d'un bâtiment après l'arrêt du chauffage. La température intérieure décroît selon une loi qui dépend de l'isolation et de la température extérieure.</p>
+  <p>Ces deux phénomènes se modélisent à l'aide d'<strong>équations différentielles</strong> : des équations reliant une fonction inconnue à ses dérivées.</p>
 </div>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗ -->
+<!-- ║  PARTIE I — ÉQUATIONS DU PREMIER ORDRE                          ║ -->
+<!-- ╚═══════════════════════════════════════════════════════════════════╝ -->
+
+<h2>1. Équations différentielles linéaires du premier ordre</h2>
+
+<h3>1.1 Définition et forme générale</h3>
+
+<div class="def">
+  <span class="label label-def">Définition — Équation différentielle du premier ordre</span><br>
+  Une <strong>équation différentielle linéaire du premier ordre à coefficients constants</strong> est une équation de la forme :
+  \[a\,y'(t) + b\,y(t) = c(t)\]
+  où \(a\) et \(b\) sont des constantes réelles (\(a \neq 0\)) et \(c(t)\) est une fonction donnée appelée <strong>second membre</strong>.
+  <ul>
+    <li>Si \(c(t) = 0\) : l'équation est dite <strong>homogène</strong> (ou sans second membre).</li>
+    <li>Si \(c(t) \neq 0\) : l'équation est dite <strong>avec second membre</strong>.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemples</span>
+  <ul>
+    <li>\(2y' + 3y = 0\) &mdash; équation homogène (\(a=2\), \(b=3\))</li>
+    <li>\(y' + 5y = 10\) &mdash; second membre constant</li>
+    <li>\(3y' - y = 6t + 1\) &mdash; second membre polynôme</li>
+    <li>\(y' + 2y = 4e^{-t}\) &mdash; second membre exponentielle</li>
+  </ul>
+</div>
+
+<h3>1.2 Solution de l'équation homogène</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Solution homogène</span><br>
+  L'équation homogène \(a\,y' + b\,y = 0\) admet pour solution générale :
+  \[\boxed{y_H(t) = C\,e^{-\frac{b}{a}\,t}}\]
+  où \(C\) est une constante réelle quelconque.
+</div>
+
+<div class="formula-box">
+  <div class="fb-label">Solution de \(a\,y' + b\,y = 0\)</div>
+  <div class="fb-formula">\(y_H(t) = C\,e^{-\frac{b}{a}\,t}\)</div>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Résoudre l'équation homogène</span><br>
+  <ol>
+    <li>Identifier les coefficients \(a\) et \(b\).</li>
+    <li>Calculer \(-\dfrac{b}{a}\).</li>
+    <li>Écrire la solution : \(y_H(t) = C\,e^{-\frac{b}{a}\,t}\).</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Résoudre \(3y' + 6y = 0\).</p>
+  <p>On a \(a = 3\), \(b = 6\), donc \(-\dfrac{b}{a} = -\dfrac{6}{3} = -2\).</p>
+  <p>Solution : \(y_H(t) = C\,e^{-2t}\), avec \(C \in \mathbb{R}\).</p>
+</div>
+
+<h3>1.3 Solution particulière selon le second membre</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Structure de la solution générale</span><br>
+  La solution générale de \(a\,y' + b\,y = c(t)\) est :
+  \[\boxed{y(t) = y_H(t) + y_P(t)}\]
+  où \(y_H\) est la solution générale de l'équation homogène et \(y_P\) est <strong>une</strong> solution particulière de l'équation complète.
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Trouver une solution particulière</span><br>
+  On cherche \(y_P\) de la <strong>même forme</strong> que le second membre \(c(t)\) :
+  <table>
+    <thead><tr><th>Second membre \(c(t)\)</th><th>Forme de \(y_P(t)\)</th></tr></thead>
+    <tbody>
+      <tr><td>Constante \(k\)</td><td>\(y_P = \alpha\) (constante)</td></tr>
+      <tr><td>Polynôme de degré \(n\)</td><td>Polynôme de degré \(n\)</td></tr>
+      <tr><td>\(k\,e^{\lambda t}\) (avec \(\lambda \neq -b/a\))</td><td>\(y_P = \alpha\,e^{\lambda t}\)</td></tr>
+    </tbody>
+  </table>
+  <p>On injecte \(y_P\) dans l'équation et on identifie les coefficients.</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 1 — Second membre constant</span>
+  <p>Résoudre \(y' + 5y = 10\).</p>
+  <p><strong>Homogène :</strong> \(y_H = C\,e^{-5t}\).</p>
+  <p><strong>Particulière :</strong> on cherche \(y_P = \alpha\). Alors \(y_P' = 0\), d'où \(0 + 5\alpha = 10\), soit \(\alpha = 2\).</p>
+  <p><strong>Solution générale :</strong> \(y(t) = C\,e^{-5t} + 2\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 2 — Second membre polynôme</span>
+  <p>Résoudre \(y' + 2y = 4t + 6\).</p>
+  <p><strong>Homogène :</strong> \(y_H = C\,e^{-2t}\).</p>
+  <p><strong>Particulière :</strong> on cherche \(y_P = \alpha t + \beta\). Alors \(y_P' = \alpha\).</p>
+  <p>En substituant : \(\alpha + 2(\alpha t + \beta) = 4t + 6\), soit \(2\alpha\,t + (\alpha + 2\beta) = 4t + 6\).</p>
+  <p>Par identification : \(2\alpha = 4 \Rightarrow \alpha = 2\) et \(\alpha + 2\beta = 6 \Rightarrow 2 + 2\beta = 6 \Rightarrow \beta = 2\).</p>
+  <p>Donc \(y_P(t) = 2t + 2\) et <strong>solution générale :</strong> \(y(t) = C\,e^{-2t} + 2t + 2\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 3 — Second membre exponentiel</span>
+  <p>Résoudre \(y' + 3y = 2e^{t}\).</p>
+  <p><strong>Homogène :</strong> \(y_H = C\,e^{-3t}\).</p>
+  <p><strong>Particulière :</strong> on cherche \(y_P = \alpha\,e^{t}\). Alors \(y_P' = \alpha\,e^{t}\).</p>
+  <p>En substituant : \(\alpha\,e^{t} + 3\alpha\,e^{t} = 2e^{t}\), soit \(4\alpha = 2\), d'où \(\alpha = \frac{1}{2}\).</p>
+  <p><strong>Solution générale :</strong> \(y(t) = C\,e^{-3t} + \dfrac{1}{2}e^{t}\).</p>
+</div>
+
+<h3>1.4 Détermination de la constante par condition initiale</h3>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Utiliser la condition initiale</span><br>
+  <ol>
+    <li>Écrire la solution générale \(y(t) = C\,e^{-\frac{b}{a}\,t} + y_P(t)\).</li>
+    <li>Remplacer \(t\) par la valeur initiale (souvent \(t = 0\)) et \(y\) par \(y(0)\) donné.</li>
+    <li>Résoudre l'équation obtenue pour trouver \(C\).</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Résoudre \(y' + 5y = 10\) avec \(y(0) = 0\).</p>
+  <p>Solution générale : \(y(t) = C\,e^{-5t} + 2\).</p>
+  <p>Condition initiale : \(y(0) = C\,e^{0} + 2 = C + 2 = 0\), donc \(C = -2\).</p>
+  <p><strong>Solution :</strong> \(y(t) = -2\,e^{-5t} + 2 = 2\left(1 - e^{-5t}\right)\).</p>
+</div>
+
+<div class="retenir">
+  <strong>À retenir &mdash; Résolution complète d'une ED du 1er ordre</strong>
+  <ol>
+    <li>Résoudre l'équation homogène \(\to y_H = C\,e^{-\frac{b}{a}\,t}\)</li>
+    <li>Trouver une solution particulière \(y_P\) de même forme que \(c(t)\)</li>
+    <li>Solution générale : \(y = y_H + y_P\)</li>
+    <li>Déterminer \(C\) avec la condition initiale</li>
+  </ol>
+</div>
+
+<!-- Mini-exercice 1 -->
+<div class="exo">
+  <span class="exo-num">Mini-exercice 1</span>
+  <p class="exo-titre">Résoudre une ED du 1er ordre</p>
+  <p>Résoudre l'équation différentielle \(2y' + 4y = 12\) avec la condition initiale \(y(0) = 1\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Homogène :</strong> \(2y' + 4y = 0 \Rightarrow y_H = C\,e^{-2t}\).</p>
+    <p><strong>Particulière :</strong> \(y_P = \alpha\), \(4\alpha = 12\), \(\alpha = 3\).</p>
+    <p><strong>Solution générale :</strong> \(y(t) = C\,e^{-2t} + 3\).</p>
+    <p><strong>Condition initiale :</strong> \(y(0) = C + 3 = 1\), donc \(C = -2\).</p>
+    <p><strong>Solution :</strong> \(y(t) = -2\,e^{-2t} + 3 = 3 - 2e^{-2t}\).</p>
+  </div>
+</div>
+
+<!-- Mini-exercice 2 -->
+<div class="exo">
+  <span class="exo-num">Mini-exercice 2</span>
+  <p class="exo-titre">Second membre polynomial</p>
+  <p>Résoudre \(y' - y = 2t\) avec \(y(0) = 3\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Homogène :</strong> \(y' - y = 0 \Rightarrow y_H = C\,e^{t}\).</p>
+    <p><strong>Particulière :</strong> on cherche \(y_P = \alpha t + \beta\). Alors \(y_P' = \alpha\).</p>
+    <p>\(\alpha - (\alpha t + \beta) = 2t \Rightarrow -\alpha\,t + (\alpha - \beta) = 2t\).</p>
+    <p>Identification : \(-\alpha = 2 \Rightarrow \alpha = -2\) et \(\alpha - \beta = 0 \Rightarrow \beta = -2\).</p>
+    <p>\(y_P(t) = -2t - 2\). Solution générale : \(y(t) = C\,e^{t} - 2t - 2\).</p>
+    <p>\(y(0) = C - 2 = 3 \Rightarrow C = 5\).</p>
+    <p><strong>Solution :</strong> \(y(t) = 5e^{t} - 2t - 2\).</p>
+  </div>
+</div>
+
+<h3>1.5 Représentation graphique des solutions</h3>
+
+<p>Observons l'allure des solutions du premier ordre pour l'équation \(y' + 2y = 6\) avec différentes conditions initiales :</p>
+
+<div class="chart-wrap">
+  <canvas id="chartED1" width="700" height="380"></canvas>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Quelle que soit la condition initiale, la solution tend toujours vers la solution particulière constante \(y_P = 3\) lorsque \(t \to +\infty\). Le terme \(C\,e^{-2t}\) s'appelle le <strong>régime transitoire</strong> et \(y_P\) le <strong>régime permanent</strong>.
+</div>
+
+<!-- ==================== 1.6 MÉTHODE D'EULER ==================== -->
+<h3>1.6 Méthode d'Euler</h3>
+
+<div class="def">
+  <span class="label label-def">Définition — Méthode d'Euler</span><br>
+  La <strong>méthode d'Euler</strong> est une méthode numérique qui permet d'approcher la solution d'une équation différentielle \(y' = f(t, y)\) pas à pas, à partir d'une condition initiale \(y(t_0) = y_0\).
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Algorithme d'Euler</span><br>
+  On choisit un <strong>pas</strong> \(h > 0\) et on construit une suite de points \((t_n, y_n)\) :
+  \[\boxed{t_{n+1} = t_n + h \qquad \text{et} \qquad y_{n+1} = y_n + h \cdot f(t_n, y_n)}\]
+  À chaque étape, on avance le long de la tangente sur une distance \(h\).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Euler sur \(y' = 3 - 2y\), \(y(0) = 0\), \(h = 0{,}5\)</span>
+  <p>On a \(f(t, y) = 3 - 2y\).</p>
+  <table>
+    <thead><tr><th>\(n\)</th><th>\(t_n\)</th><th>\(y_n\)</th><th>\(f(t_n, y_n) = 3 - 2y_n\)</th><th>\(y_{n+1} = y_n + 0{,}5 \times f\)</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>0</td><td>0</td><td>3</td><td>1,5</td></tr>
+      <tr><td>1</td><td>0,5</td><td>1,5</td><td>0</td><td>1,5</td></tr>
+      <tr><td>2</td><td>1,0</td><td>1,5</td><td>0</td><td>1,5</td></tr>
+      <tr><td>3</td><td>1,5</td><td>1,5</td><td>0</td><td>1,5</td></tr>
+    </tbody>
+  </table>
+  <p>La solution exacte est \(y(t) = \frac{3}{2}(1 - e^{-2t})\). En \(t = 0{,}5\), \(y(0{,}5) \approx 1{,}13\), tandis qu'Euler donne 1,5. L'erreur diminue si l'on réduit le pas \(h\).</p>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Plus le pas \(h\) est petit, plus l'approximation est précise, mais plus le nombre de calculs augmente. En pratique, on utilise un tableur ou un programme informatique.
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗ -->
+<!-- ║  PARTIE II — RAPPELS NOMBRES COMPLEXES                          ║ -->
+<!-- ╚═══════════════════════════════════════════════════════════════════╝ -->
+
+<h2>2. Rappels sur les nombres complexes (forme algébrique)</h2>
+
+<p>Les nombres complexes interviennent dans la résolution des équations du second ordre lorsque le discriminant est négatif.</p>
+
+<div class="def">
+  <span class="label label-def">Définition — Unité imaginaire</span><br>
+  On note \(j\) le nombre tel que :
+  \[\boxed{j^2 = -1}\]
+  <em>(En BTS, on utilise la notation \(j\) au lieu de \(i\) pour éviter la confusion avec l'intensité électrique.)</em>
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Forme algébrique</span><br>
+  Tout <strong>nombre complexe</strong> \(z\) peut s'écrire sous la forme :
+  \[z = a + jb\]
+  où \(a = \text{Re}(z)\) est la <strong>partie réelle</strong> et \(b = \text{Im}(z)\) est la <strong>partie imaginaire</strong>.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Module et conjugué</span><br>
+  Soit \(z = a + jb\).
+  <ul>
+    <li>Le <strong>conjugué</strong> de \(z\) est \(\bar{z} = a - jb\).</li>
+    <li>Le <strong>module</strong> de \(z\) est \(|z| = \sqrt{a^2 + b^2}\).</li>
+    <li>Propriété utile : \(z \cdot \bar{z} = a^2 + b^2 = |z|^2\).</li>
+  </ul>
+</div>
+
+<h3>2.1 Équation du second degré à discriminant négatif</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Résolution dans \(\mathbb{C}\)</span><br>
+  Soit \(ar^2 + br + c = 0\) avec \(a, b, c \in \mathbb{R}\) et \(\Delta = b^2 - 4ac < 0\).<br>
+  En posant \(\Delta' = |\Delta| = 4ac - b^2 > 0\), les deux racines <strong>complexes conjuguées</strong> sont :
+  \[\boxed{r_1 = \frac{-b + j\sqrt{\Delta'}}{2a} \qquad \text{et} \qquad r_2 = \frac{-b - j\sqrt{\Delta'}}{2a} = \bar{r_1}}\]
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Résoudre \(r^2 + 2r + 5 = 0\).</p>
+  <p>\(\Delta = 4 - 20 = -16 < 0\), donc \(\Delta' = 16\), \(\sqrt{\Delta'} = 4\).</p>
+  <p>\(r_1 = \dfrac{-2 + 4j}{2} = -1 + 2j\) et \(r_2 = -1 - 2j\).</p>
+</div>
+
+<!-- Mini-exercice 3 -->
+<div class="exo">
+  <span class="exo-num">Mini-exercice 3</span>
+  <p class="exo-titre">Résoudre dans \(\mathbb{C}\)</p>
+  <p>Résoudre l'équation \(r^2 + 4r + 13 = 0\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p>\(\Delta = 16 - 52 = -36 < 0\), \(\Delta' = 36\), \(\sqrt{\Delta'} = 6\).</p>
+    <p>\(r_1 = \dfrac{-4 + 6j}{2} = -2 + 3j\) et \(r_2 = -2 - 3j\).</p>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗ -->
+<!-- ║  PARTIE III — ÉQUATIONS DU SECOND ORDRE                         ║ -->
+<!-- ╚═══════════════════════════════════════════════════════════════════╝ -->
+
+<h2>3. Équations différentielles linéaires du second ordre</h2>
+
+<h3>3.1 Définition et équation caractéristique</h3>
+
+<div class="def">
+  <span class="label label-def">Définition — ED du second ordre</span><br>
+  Une <strong>équation différentielle linéaire du second ordre à coefficients constants</strong> est de la forme :
+  \[a\,y''(t) + b\,y'(t) + c\,y(t) = d(t)\]
+  où \(a\), \(b\), \(c\) sont des constantes réelles (\(a \neq 0\)) et \(d(t)\) est le second membre.
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Équation caractéristique</span><br>
+  L'<strong>équation caractéristique</strong> associée à \(a\,y'' + b\,y' + c\,y = 0\) est l'équation algébrique :
+  \[\boxed{a\,r^2 + b\,r + c = 0}\]
+  Son discriminant \(\Delta = b^2 - 4ac\) détermine la nature des solutions.
+</div>
+
+<h3>3.2 Résolution de l'équation homogène : les trois cas</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Solution homogène selon le signe de &Delta;</span><br>
+  Soit \(a\,y'' + b\,y' + c\,y = 0\) et \(\Delta = b^2 - 4ac\).
+  <table>
+    <thead><tr><th>Cas</th><th>Racines</th><th>Solution générale</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>&Delta; &gt; 0</strong></td>
+        <td>\(r_1 = \dfrac{-b - \sqrt{\Delta}}{2a}\), \(r_2 = \dfrac{-b + \sqrt{\Delta}}{2a}\)</td>
+        <td>\(y_H = A\,e^{r_1 t} + B\,e^{r_2 t}\)</td>
+      </tr>
+      <tr>
+        <td><strong>&Delta; = 0</strong></td>
+        <td>\(r_0 = \dfrac{-b}{2a}\) (racine double)</td>
+        <td>\(y_H = (A + Bt)\,e^{r_0 t}\)</td>
+      </tr>
+      <tr>
+        <td><strong>&Delta; &lt; 0</strong></td>
+        <td>\(r = \alpha \pm j\omega\) avec \(\alpha = \dfrac{-b}{2a}\), \(\omega = \dfrac{\sqrt{|\Delta|}}{2a}\)</td>
+        <td>\(y_H = e^{\alpha t}\left(A\cos(\omega t) + B\sin(\omega t)\right)\)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>où \(A\) et \(B\) sont des constantes réelles déterminées par les conditions initiales.</p>
+</div>
+
+<div class="formula-box">
+  <div class="fb-label">Les trois formes de la solution homogène du 2nd ordre</div>
+  <div class="fb-formula">
+    <strong>&Delta; &gt; 0 :</strong> \(y_H = A\,e^{r_1 t} + B\,e^{r_2 t}\)<br>
+    <strong>&Delta; = 0 :</strong> \(y_H = (A + Bt)\,e^{r_0 t}\)<br>
+    <strong>&Delta; &lt; 0 :</strong> \(y_H = e^{\alpha t}(A\cos\omega t + B\sin\omega t)\)
+  </div>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 1 — &Delta; &gt; 0 (régime apériodique)</span>
+  <p>Résoudre \(y'' + 5y' + 6y = 0\).</p>
+  <p>Équation caractéristique : \(r^2 + 5r + 6 = 0\), \(\Delta = 25 - 24 = 1 > 0\).</p>
+  <p>\(r_1 = \dfrac{-5 - 1}{2} = -3\) et \(r_2 = \dfrac{-5 + 1}{2} = -2\).</p>
+  <p>Solution : \(y(t) = A\,e^{-3t} + B\,e^{-2t}\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 2 — &Delta; = 0 (régime critique)</span>
+  <p>Résoudre \(y'' + 4y' + 4y = 0\).</p>
+  <p>Équation caractéristique : \(r^2 + 4r + 4 = 0\), \(\Delta = 16 - 16 = 0\).</p>
+  <p>Racine double : \(r_0 = \dfrac{-4}{2} = -2\).</p>
+  <p>Solution : \(y(t) = (A + Bt)\,e^{-2t}\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 3 — &Delta; &lt; 0 (régime pseudo-périodique)</span>
+  <p>Résoudre \(y'' + 2y' + 5y = 0\).</p>
+  <p>Équation caractéristique : \(r^2 + 2r + 5 = 0\), \(\Delta = 4 - 20 = -16 < 0\).</p>
+  <p>\(\alpha = \dfrac{-2}{2} = -1\), \(\omega = \dfrac{\sqrt{16}}{2} = 2\).</p>
+  <p>Solution : \(y(t) = e^{-t}\left(A\cos(2t) + B\sin(2t)\right)\).</p>
+</div>
+
+<h3>3.3 Les trois régimes</h3>
+
+<p>Le graphique suivant illustre les trois types de solutions pour des conditions initiales \(y(0)=1\), \(y'(0)=0\) :</p>
+
+<div class="chart-wrap">
+  <canvas id="chartRegimes" width="700" height="400"></canvas>
+</div>
+
+<div class="retenir">
+  <strong>À retenir &mdash; Les trois régimes du second ordre</strong>
+  <ul>
+    <li><strong>Apériodique</strong> (&Delta; &gt; 0) : retour lent à l'équilibre, sans oscillation.</li>
+    <li><strong>Critique</strong> (&Delta; = 0) : retour le plus rapide possible sans oscillation.</li>
+    <li><strong>Pseudo-périodique</strong> (&Delta; &lt; 0) : oscillations amorties autour de l'équilibre.</li>
+  </ul>
+</div>
+
+<h3>3.4 Solution particulière du second ordre</h3>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Solution particulière de \(a\,y'' + b\,y' + c\,y = d(t)\)</span><br>
+  On cherche \(y_P\) de la même forme que le second membre \(d(t)\) :
+  <table>
+    <thead><tr><th>Second membre \(d(t)\)</th><th>Forme de \(y_P(t)\)</th></tr></thead>
+    <tbody>
+      <tr><td>Constante \(k\)</td><td>\(y_P = \alpha\)</td></tr>
+      <tr><td>Polynôme de degré \(n\)</td><td>Polynôme de degré \(n\)</td></tr>
+      <tr><td>\(k\,e^{\lambda t}\)</td><td>\(y_P = \alpha\,e^{\lambda t}\) (si \(\lambda\) n'est pas racine)</td></tr>
+      <tr><td>\(A\cos(\omega t) + B\sin(\omega t)\)</td><td>\(y_P = \alpha\cos(\omega t) + \beta\sin(\omega t)\)</td></tr>
+    </tbody>
+  </table>
+  <p>La solution générale est toujours \(y = y_H + y_P\).</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple — Second membre constant</span>
+  <p>Résoudre \(y'' + 2y' + 5y = 15\) avec \(y(0) = 0\) et \(y'(0) = 0\).</p>
+  <p><strong>Homogène :</strong> \(y_H = e^{-t}(A\cos 2t + B\sin 2t)\) (vu précédemment).</p>
+  <p><strong>Particulière :</strong> \(y_P = \alpha\), \(5\alpha = 15\), \(\alpha = 3\).</p>
+  <p><strong>Solution générale :</strong> \(y(t) = e^{-t}(A\cos 2t + B\sin 2t) + 3\).</p>
+  <p><strong>Conditions initiales :</strong></p>
+  <ul>
+    <li>\(y(0) = A + 3 = 0 \Rightarrow A = -3\).</li>
+    <li>\(y'(t) = e^{-t}\big[(-A + 2B)\cos 2t + (-B - 2A)\sin 2t\big]\).</li>
+    <li>\(y'(0) = -A + 2B = 3 + 2B = 0 \Rightarrow B = -\frac{3}{2}\).</li>
+  </ul>
+  <p><strong>Solution :</strong> \(y(t) = e^{-t}\left(-3\cos 2t - \frac{3}{2}\sin 2t\right) + 3\).</p>
+</div>
+
+<h3>3.5 Conditions initiales \(y(0)\) et \(y'(0)\)</h3>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Déterminer A et B</span><br>
+  <ol>
+    <li>Écrire la solution générale \(y(t) = y_H(t) + y_P(t)\) contenant \(A\) et \(B\).</li>
+    <li>Calculer \(y'(t)\) (dérivée de la solution générale).</li>
+    <li>Utiliser \(y(0) = y_0\) pour obtenir une première équation en \(A\) et \(B\).</li>
+    <li>Utiliser \(y'(0) = y_0'\) pour obtenir une seconde équation.</li>
+    <li>Résoudre le système de 2 équations à 2 inconnues.</li>
+  </ol>
+</div>
+
+<!-- Mini-exercice 4 -->
+<div class="exo">
+  <span class="exo-num">Mini-exercice 4</span>
+  <p class="exo-titre">Équation caractéristique et solution homogène</p>
+  <p>Pour chaque équation, déterminer la nature des racines et écrire la solution homogène :</p>
+  <p>1) \(y'' + 3y' + 2y = 0\) &emsp; 2) \(y'' + 6y' + 9y = 0\) &emsp; 3) \(y'' + y' + y = 0\)</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1)</strong> \(r^2 + 3r + 2 = 0\), \(\Delta = 9 - 8 = 1 > 0\), \(r_1 = -2\), \(r_2 = -1\). Solution : \(y = A\,e^{-2t} + B\,e^{-t}\).</p>
+    <p><strong>2)</strong> \(r^2 + 6r + 9 = 0\), \(\Delta = 36 - 36 = 0\), \(r_0 = -3\). Solution : \(y = (A + Bt)\,e^{-3t}\).</p>
+    <p><strong>3)</strong> \(r^2 + r + 1 = 0\), \(\Delta = 1 - 4 = -3 < 0\), \(\alpha = -\frac{1}{2}\), \(\omega = \frac{\sqrt{3}}{2}\). Solution : \(y = e^{-t/2}\!\left(A\cos\frac{\sqrt{3}}{2}t + B\sin\frac{\sqrt{3}}{2}t\right)\).</p>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗ -->
+<!-- ║  PARTIE IV — APPLICATIONS                                       ║ -->
+<!-- ╚═══════════════════════════════════════════════════════════════════╝ -->
+
+<h2>4. Applications professionnelles</h2>
+
+<h3>4.1 Circuit RC &mdash; Charge d'un condensateur</h3>
+
+<div class="situation">
+  <h3>Contexte FED (Fluides, Énergies, Domotique)</h3>
+  <p>Un technicien en domotique réalise un circuit RC série composé d'une résistance \(R = 10\;\text{k}\Omega\) et d'un condensateur \(C = 100\;\mu\text{F}\), alimenté par une tension continue \(E = 12\;\text{V}\).</p>
+</div>
+
+<p>La loi des mailles donne l'équation différentielle vérifiée par la tension \(u_C(t)\) aux bornes du condensateur :</p>
+
+<div class="formula-box">
+  <div class="fb-label">Équation du circuit RC</div>
+  <div class="fb-formula">\(RC\,u_C'(t) + u_C(t) = E\)</div>
+</div>
+
+<p>C'est une ED du 1er ordre avec \(a = RC\), \(b = 1\), \(c(t) = E\).</p>
+
+<div class="ex">
+  <span class="label label-ex">Résolution</span>
+  <p>On pose \(\tau = RC = 10 \times 10^3 \times 100 \times 10^{-6} = 1\;\text{s}\) (constante de temps).</p>
+  <p>L'équation devient : \(u_C' + u_C = 12\).</p>
+  <p><strong>Homogène :</strong> \(u_{C,H} = K\,e^{-t/\tau} = K\,e^{-t}\).</p>
+  <p><strong>Particulière :</strong> \(u_{C,P} = 12\).</p>
+  <p><strong>Avec</strong> \(u_C(0) = 0\) (condensateur initialement déchargé) : \(K + 12 = 0\), \(K = -12\).</p>
+  <p><strong>Solution :</strong> \(\boxed{u_C(t) = 12\left(1 - e^{-t}\right)}\)</p>
+</div>
+
+<div class="chart-wrap">
+  <canvas id="chartRC" width="700" height="350"></canvas>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Après \(t = 5\tau\), le condensateur est chargé à plus de 99 %. On considère en pratique que le régime permanent est atteint.
+</div>
+
+<!-- Mini-exercice 5 -->
+<div class="exo">
+  <span class="exo-num">Mini-exercice 5</span>
+  <p class="exo-titre">Décharge d'un condensateur</p>
+  <p>On décharge le condensateur précédent (initialement chargé à 12 V) à travers la même résistance (sans source de tension). L'équation devient \(u_C' + u_C = 0\) avec \(u_C(0) = 12\). Déterminer \(u_C(t)\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p>Équation homogène : \(u_C' + u_C = 0\), solution : \(u_C(t) = K\,e^{-t}\).</p>
+    <p>\(u_C(0) = K = 12\).</p>
+    <p><strong>Solution :</strong> \(u_C(t) = 12\,e^{-t}\).</p>
+    <p>Le condensateur se décharge exponentiellement. Après \(t = 5\;\text{s} = 5\tau\), \(u_C \approx 0{,}08\;\text{V} \approx 0\).</p>
+  </div>
+</div>
+
+<h3>4.2 Circuit RLC &mdash; Oscillations</h3>
+
+<div class="situation">
+  <h3>Contexte électricité</h3>
+  <p>Un technicien en électricité étudie un circuit RLC série (\(R\), \(L\), \(C\) en série) soumis à un échelon de tension \(E\). Les oscillations dans ce circuit apparaissent naturellement et sont modélisées par une ED du second ordre.</p>
+</div>
+
+<div class="formula-box">
+  <div class="fb-label">Équation du circuit RLC</div>
+  <div class="fb-formula">\(LC\,u_C'' + RC\,u_C' + u_C = E\)</div>
+</div>
+
+<p>L'équation caractéristique est \(LC\,r^2 + RC\,r + 1 = 0\). Selon la valeur de \(R\) (amortissement), on retrouve les trois régimes :</p>
+<ul>
+  <li><strong>Apériodique</strong> (\(R\) grand) : \(\Delta > 0\), retour lent sans oscillation.</li>
+  <li><strong>Critique</strong> (\(R = R_c = 2\sqrt{L/C}\)) : \(\Delta = 0\), retour le plus rapide possible.</li>
+  <li><strong>Pseudo-périodique</strong> (\(R\) petit) : \(\Delta < 0\), oscillations amorties.</li>
+</ul>
+
+<div class="ex">
+  <span class="label label-ex">Exemple numérique</span>
+  <p>Avec \(L = 0{,}1\;\text{H}\), \(C = 100\;\mu\text{F}\), \(E = 10\;\text{V}\) :</p>
+  <ul>
+    <li>Résistance critique : \(R_c = 2\sqrt{\frac{L}{C}} = 2\sqrt{\frac{0{,}1}{10^{-4}}} = 2 \times \sqrt{1000} \approx 63{,}2\;\Omega\).</li>
+    <li>Pour \(R = 200\;\Omega > R_c\) : régime apériodique.</li>
+    <li>Pour \(R = 63{,}2\;\Omega = R_c\) : régime critique.</li>
+    <li>Pour \(R = 10\;\Omega < R_c\) : régime pseudo-périodique (oscillations).</li>
+  </ul>
+</div>
+
+<h3>4.3 Refroidissement d'un bâtiment</h3>
+
+<div class="situation">
+  <h3>Contexte bâtiment / thermique</h3>
+  <p>Un ingénieur en génie climatique étudie le refroidissement d'un local après coupure du chauffage. La température intérieure \(T(t)\) vérifie la loi de Newton :</p>
+</div>
+
+<div class="formula-box">
+  <div class="fb-label">Loi de refroidissement de Newton</div>
+  <div class="fb-formula">\(\tau\,T'(t) + T(t) = T_{\text{ext}}\)</div>
+</div>
+
+<p>où \(\tau\) est la constante de temps thermique du bâtiment (en heures) et \(T_{\text{ext}}\) la température extérieure (constante).</p>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Un local est à \(T(0) = 20\;°\text{C}\), température extérieure \(T_{\text{ext}} = 5\;°\text{C}\), constante de temps \(\tau = 10\;\text{h}\).</p>
+  <p>L'ED s'écrit : \(10\,T' + T = 5\), soit \(T' + 0{,}1\,T = 0{,}5\).</p>
+  <p><strong>Solution :</strong> \(T(t) = K\,e^{-0{,}1\,t} + 5\).</p>
+  <p>Avec \(T(0) = 20\) : \(K + 5 = 20\), \(K = 15\).</p>
+  <p>\(\boxed{T(t) = 15\,e^{-0{,}1\,t} + 5}\)</p>
+  <p>Après 10 h : \(T(10) = 15\,e^{-1} + 5 \approx 15 \times 0{,}368 + 5 \approx 10{,}5\;°\text{C}\).</p>
+</div>
+
+<h3>4.4 Amortisseur mécanique</h3>
+
+<div class="situation">
+  <h3>Contexte maintenance</h3>
+  <p>Un technicien de maintenance étudie un système masse-ressort-amortisseur. La position \(x(t)\) de la masse par rapport à l'équilibre vérifie :</p>
+</div>
+
+<div class="formula-box">
+  <div class="fb-label">Système masse-ressort-amortisseur</div>
+  <div class="fb-formula">\(m\,x'' + f\,x' + k\,x = 0\)</div>
+</div>
+
+<p>où \(m\) est la masse, \(f\) le coefficient de frottement visqueux et \(k\) la raideur du ressort.</p>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  <p>Avec \(m = 1\;\text{kg}\), \(f = 2\;\text{N.s/m}\), \(k = 5\;\text{N/m}\).</p>
+  <p>Équation caractéristique : \(r^2 + 2r + 5 = 0\), \(\Delta = 4 - 20 = -16 < 0\).</p>
+  <p>\(\alpha = -1\), \(\omega = 2\;\text{rad/s}\).</p>
+  <p>Le système oscille en s'amortissant : \(x(t) = e^{-t}(A\cos 2t + B\sin 2t)\).</p>
+  <p>C'est le régime <strong>pseudo-périodique</strong> : le mouvement est oscillant amorti.</p>
+</div>
+
+<!-- Mini-exercice 6 -->
+<div class="exo">
+  <span class="exo-num">Mini-exercice 6</span>
+  <p class="exo-titre">Amortisseur critique</p>
+  <p>Quelle valeur du coefficient de frottement \(f\) rend le système précédent (\(m = 1\;\text{kg}\), \(k = 5\;\text{N/m}\)) critique ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr">
+    <p>L'équation caractéristique est \(r^2 + fr + 5 = 0\). Pour le régime critique, \(\Delta = 0\) :</p>
+    <p>\(f^2 - 4 \times 1 \times 5 = 0 \Rightarrow f^2 = 20 \Rightarrow f = 2\sqrt{5} \approx 4{,}47\;\text{N.s/m}\).</p>
+  </div>
+</div>
+
+</div><!-- fin .c -->
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+// --- Graphique 1 : Solutions du 1er ordre y' + 2y = 6 ---
+(function(){
+  const labels = [];
+  const dataCI0 = [], dataCI5 = [], dataCI_neg = [], dataYP = [];
+  for (let t = 0; t <= 4; t += 0.05){
+    labels.push(t.toFixed(2));
+    dataCI0.push(3 - 3*Math.exp(-2*t));          // y(0)=0
+    dataCI5.push(3 + 2*Math.exp(-2*t));           // y(0)=5
+    dataCI_neg.push(3 - 5*Math.exp(-2*t));        // y(0)=-2
+    dataYP.push(3);                                // régime permanent
+  }
+  new Chart(document.getElementById('chartED1'),{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'y(0) = 0',data:dataCI0,borderColor:'#0969da',backgroundColor:'transparent',pointRadius:0,borderWidth:2},
+        {label:'y(0) = 5',data:dataCI5,borderColor:'#d1242f',backgroundColor:'transparent',pointRadius:0,borderWidth:2},
+        {label:'y(0) = −2',data:dataCI_neg,borderColor:'#2da44e',backgroundColor:'transparent',pointRadius:0,borderWidth:2},
+        {label:'Régime permanent y = 3',data:dataYP,borderColor:'#666',backgroundColor:'transparent',pointRadius:0,borderWidth:1.5,borderDash:[6,4]}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{title:{display:true,text:"Solutions de y' + 2y = 6 (différentes conditions initiales)",font:{size:14}}},
+      scales:{x:{title:{display:true,text:'t'},ticks:{maxTicksLimit:10}},y:{title:{display:true,text:'y(t)'}}}
+    }
+  });
+})();
+
+// --- Graphique 2 : Les trois régimes du 2nd ordre ---
+(function(){
+  const labels = [];
+  const dataAper = [], dataCrit = [], dataPseudo = [];
+  for (let t = 0; t <= 6; t += 0.03){
+    labels.push(t.toFixed(2));
+    // Apériodique : y'' + 5y' + 6y = 0, y(0)=1, y'(0)=0 => y = 3e^{-2t} - 2e^{-3t}
+    dataAper.push(3*Math.exp(-2*t) - 2*Math.exp(-3*t));
+    // Critique : y'' + 4y' + 4y = 0, y(0)=1, y'(0)=0 => y = (1+2t)e^{-2t}
+    dataCrit.push((1 + 2*t)*Math.exp(-2*t));
+    // Pseudo-périodique : y'' + y' + 5y = 0, y(0)=1, y'(0)=0
+    // alpha=-0.5, omega=sqrt(19)/2 ≈ 2.179, A=1, B=0.5/omega
+    var alpha = -0.5, omega = Math.sqrt(19)/2;
+    dataPseudo.push(Math.exp(alpha*t)*(Math.cos(omega*t) + (0.5/omega)*Math.sin(omega*t)));
+  }
+  new Chart(document.getElementById('chartRegimes'),{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'Apériodique (Δ > 0)',data:dataAper,borderColor:'#0969da',backgroundColor:'transparent',pointRadius:0,borderWidth:2},
+        {label:'Critique (Δ = 0)',data:dataCrit,borderColor:'#d1242f',backgroundColor:'transparent',pointRadius:0,borderWidth:2},
+        {label:'Pseudo-périodique (Δ < 0)',data:dataPseudo,borderColor:'#2da44e',backgroundColor:'transparent',pointRadius:0,borderWidth:2},
+        {label:'Équilibre y = 0',data:labels.map(()=>0),borderColor:'#999',backgroundColor:'transparent',pointRadius:0,borderWidth:1,borderDash:[5,4]}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{title:{display:true,text:'Les trois régimes du second ordre (y(0)=1, y\'(0)=0)',font:{size:14}}},
+      scales:{x:{title:{display:true,text:'t'},ticks:{maxTicksLimit:12}},y:{title:{display:true,text:'y(t)'},min:-0.6,max:1.2}}
+    }
+  });
+})();
+
+// --- Graphique 3 : Charge du condensateur RC ---
+(function(){
+  const labels = [];
+  const dataCharge = [], dataTau = [];
+  for (let t = 0; t <= 6; t += 0.05){
+    labels.push(t.toFixed(2));
+    dataCharge.push(12*(1 - Math.exp(-t)));
+    dataTau.push(12);
+  }
+  new Chart(document.getElementById('chartRC'),{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'u_C(t) = 12(1 − e^(−t/τ))',data:dataCharge,borderColor:'#0969da',backgroundColor:'rgba(9,105,218,0.08)',fill:true,pointRadius:0,borderWidth:2.5},
+        {label:'E = 12 V (régime permanent)',data:dataTau,borderColor:'#d1242f',backgroundColor:'transparent',pointRadius:0,borderWidth:1.5,borderDash:[6,4]}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{title:{display:true,text:'Charge d\'un condensateur — Circuit RC (τ = 1 s)',font:{size:14}}},
+      scales:{x:{title:{display:true,text:'t (s)'},ticks:{maxTicksLimit:10}},y:{title:{display:true,text:'u_C (V)'},min:0,max:14}}
+    }
+  });
+})();
+</script>
+
 <script src="../../../nav.js"></script>
 </body>
 </html>

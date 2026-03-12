@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch13 – Configurations géométriques – BTS</title>
+<title>Ch13 – Exercices : Configurations géométriques – BTS</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
@@ -12,16 +12,509 @@
 </head>
 <body>
 <div class="c">
-<a href="../../sommaire.html" class="nb">← Retour au sommaire</a>
+<a href="../../sommaire.html" class="nb">&larr; Retour au sommaire</a>
+
 <header>
-  <h1>Chapitre 13 – Configurations géométriques</h1>
-  <p class="sous-titre">BTS — Groupements B1, C1</p>
+  <h1>Chapitre 13 &ndash; Exercices</h1>
+  <p class="sous-titre">Configurations g&eacute;om&eacute;triques &nbsp;|&nbsp; BTS &mdash; Groupements B1, C1</p>
 </header>
 
+<!-- INTRODUCTION -->
 <div class="objectifs">
-  <strong>Ce chapitre est en cours de rédaction.</strong><br>
-  Le contenu sera disponible prochainement.
+  <strong>Au programme :</strong> solides usuels (volumes, aires), sections par un plan, surfaces de r&eacute;volution, agrandissement/r&eacute;duction, coordonn&eacute;es (cart&eacute;siennes, polaires, cylindriques, sph&eacute;riques), th&eacute;or&egrave;me d'Al-Kashi, applications professionnelles (charpente, BTP, bois).<br>
+  <em>Les exercices sont progressifs : du calcul direct aux probl&egrave;mes professionnels complets.</em>
 </div>
+
+<div class="retenir">
+  <h3>Formulaire de r&eacute;f&eacute;rence</h3>
+  <table>
+    <thead><tr><th>Solide</th><th>Volume</th><th>Aire lat&eacute;rale</th></tr></thead>
+    <tbody>
+      <tr><td>Cube (ar&ecirc;te \(a\))</td><td>\(a^3\)</td><td>\(6a^2\) (totale)</td></tr>
+      <tr><td>Pav&eacute; droit (\(L \times l \times h\))</td><td>\(Llh\)</td><td>\(2(Ll+Lh+lh)\) (totale)</td></tr>
+      <tr><td>Cylindre (\(r, h\))</td><td>\(\pi r^2 h\)</td><td>\(2\pi rh\)</td></tr>
+      <tr><td>C&ocirc;ne (\(r, h, \ell\))</td><td>\(\frac{1}{3}\pi r^2 h\)</td><td>\(\pi r\ell\)</td></tr>
+      <tr><td>Sph&egrave;re (\(R\))</td><td>\(\frac{4}{3}\pi R^3\)</td><td>\(4\pi R^2\)</td></tr>
+      <tr><td>Pyramide (base \(\mathcal{B}\), \(h\))</td><td>\(\frac{1}{3}\mathcal{B}h\)</td><td>&mdash;</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Al-Kashi :</strong> \(a^2 = b^2 + c^2 - 2bc\cos(\widehat{A})\)</p>
+  <p><strong>Polaires :</strong> \(x = r\cos\theta,\; y = r\sin\theta\) &nbsp;|&nbsp; \(r = \sqrt{x^2+y^2},\; \tan\theta = y/x\)</p>
+  <p><strong>Agrandissement \(k\) :</strong> longueurs \(\times k\), aires \(\times k^2\), volumes \(\times k^3\)</p>
+</div>
+
+
+<!-- ============================================================
+     NIVEAU 1 — VOLUMES, AIRES, SECTIONS SIMPLES
+============================================================ -->
+<div class="niveau-header niv1">
+  <span class="badge-niv badge-1">Niveau 1</span>
+  <h2>Volumes, aires et sections de solides simples</h2>
+</div>
+
+<!-- EXERCICE 1 -->
+<div class="exo">
+  <div class="exo-num">Exercice 1</div>
+  <div class="exo-titre">Volume et aire d'un cylindre &mdash; R&eacute;servoir d'eau</div>
+  <p>Un r&eacute;servoir d'eau cylindrique a un diam&egrave;tre de 2,40 m et une hauteur de 3,00 m.</p>
+  <div class="q"><strong>1.</strong> Calculer le volume du r&eacute;servoir en m&sup3;, puis en litres (1 m&sup3; = 1 000 L).</div>
+  <div class="q"><strong>2.</strong> Calculer l'aire lat&eacute;rale du r&eacute;servoir (sans les bases).</div>
+  <div class="q"><strong>3.</strong> Calculer l'aire totale (lat&eacute;rale + deux disques).</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Volume :</span>
+    <p>Rayon : \(r = \frac{2{,}40}{2} = 1{,}20\) m.</p>
+    <p>\(V = \pi r^2 h = \pi \times 1{,}20^2 \times 3{,}00 = \pi \times 1{,}44 \times 3 = 4{,}32\pi \approx 13{,}57\) m&sup3;.</p>
+    <p>En litres : \(13{,}57 \times 1\,000 \approx 13\,570\) L.</p>
+
+    <span class="etape">2. Aire lat&eacute;rale :</span>
+    <p>\(\mathcal{A}_{\text{lat}} = 2\pi r h = 2\pi \times 1{,}20 \times 3{,}00 = 7{,}2\pi \approx 22{,}62\) m&sup2;.</p>
+
+    <span class="etape">3. Aire totale :</span>
+    <p>\(\mathcal{A}_{\text{tot}} = 2\pi rh + 2\pi r^2 = 7{,}2\pi + 2\pi \times 1{,}44 = 7{,}2\pi + 2{,}88\pi = 10{,}08\pi \approx 31{,}67\) m&sup2;.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 2 -->
+<div class="exo">
+  <div class="exo-num">Exercice 2</div>
+  <div class="exo-titre">Pyramide &agrave; base carr&eacute;e &mdash; &Eacute;l&eacute;ment de toiture</div>
+  <p>Un &eacute;l&eacute;ment d&eacute;coratif de toiture a la forme d'une pyramide &agrave; base carr&eacute;e. La base a un c&ocirc;t&eacute; de 60 cm et la hauteur de la pyramide est de 40 cm.</p>
+  <div class="q"><strong>1.</strong> Calculer le volume de cette pyramide.</div>
+  <div class="q"><strong>2.</strong> Calculer la hauteur d'une face triangulaire lat&eacute;rale (apoth&egrave;me de la pyramide).</div>
+  <div class="q"><strong>3.</strong> En d&eacute;duire l'aire lat&eacute;rale de la pyramide.</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Volume :</span>
+    <p>Aire de la base : \(\mathcal{B} = 60^2 = 3\,600\) cm&sup2;.</p>
+    <p>\(V = \frac{1}{3} \times \mathcal{B} \times h = \frac{1}{3} \times 3\,600 \times 40 = 48\,000\) cm&sup3; = 48 dm&sup3;.</p>
+
+    <span class="etape">2. Apoth&egrave;me :</span>
+    <p>Le pied de l'apoth&egrave;me est au milieu d'un c&ocirc;t&eacute; de la base, &agrave; une distance \(\frac{60}{2} = 30\) cm du centre. Par Pythagore :</p>
+    <p>\(a = \sqrt{h^2 + 30^2} = \sqrt{1\,600 + 900} = \sqrt{2\,500} = 50\) cm.</p>
+
+    <span class="etape">3. Aire lat&eacute;rale :</span>
+    <p>Chaque face lat&eacute;rale est un triangle de base 60 cm et de hauteur 50 cm (apoth&egrave;me).</p>
+    <p>Aire d'une face : \(\frac{1}{2} \times 60 \times 50 = 1\,500\) cm&sup2;.</p>
+    <p>Aire lat&eacute;rale (4 faces) : \(4 \times 1\,500 = 6\,000\) cm&sup2; = 0,6 m&sup2;.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 3 -->
+<div class="exo">
+  <div class="exo-num">Exercice 3</div>
+  <div class="exo-titre">Sph&egrave;re &mdash; Boule d&eacute;corative</div>
+  <p>Une boule d&eacute;corative en bois a un diam&egrave;tre de 18 cm.</p>
+  <div class="q"><strong>1.</strong> Calculer le volume de bois n&eacute;cessaire.</div>
+  <div class="q"><strong>2.</strong> Calculer l'aire de la surface &agrave; peindre.</div>
+  <div class="q"><strong>3.</strong> On coupe la sph&egrave;re par un plan situ&eacute; &agrave; 3 cm du centre. Quel est le rayon de la section obtenue ?</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Volume :</span>
+    <p>Rayon : \(R = 9\) cm.</p>
+    <p>\(V = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi \times 729 = 972\pi \approx 3\,053{,}6\) cm&sup3;.</p>
+
+    <span class="etape">2. Aire :</span>
+    <p>\(\mathcal{A} = 4\pi R^2 = 4\pi \times 81 = 324\pi \approx 1\,017{,}9\) cm&sup2;.</p>
+
+    <span class="etape">3. Section de la sph&egrave;re :</span>
+    <p>Si le plan passe &agrave; une distance \(d = 3\) cm du centre et que \(R = 9\) cm, le rayon de la section circulaire est :</p>
+    <p>\(r = \sqrt{R^2 - d^2} = \sqrt{81 - 9} = \sqrt{72} = 6\sqrt{2} \approx 8{,}49\) cm.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 4 -->
+<div class="exo">
+  <div class="exo-num">Exercice 4</div>
+  <div class="exo-titre">Sections d'un pav&eacute; droit</div>
+  <p>Un parall&eacute;l&eacute;pip&egrave;de rectangle \(ABCDEFGH\) a pour dimensions : \(AB = 6\) cm, \(BC = 4\) cm, \(AE = 5\) cm.</p>
+  <div class="q"><strong>1.</strong> Quelle est la forme de la section par un plan parall&egrave;le &agrave; la face \(ABCD\) passant &agrave; 3 cm de celle-ci ? Donner ses dimensions.</div>
+  <div class="q"><strong>2.</strong> On coupe le pav&eacute; par le plan passant par \(A\), \(C\) et le milieu \(M\) de \([EG]\). D&eacute;crire la section obtenue.</div>
+  <div class="q"><strong>3.</strong> Calculer le volume du pav&eacute; et la longueur de la diagonale \(AG\).</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Section parall&egrave;le &agrave; ABCD :</span>
+    <p>Un plan parall&egrave;le &agrave; la face \(ABCD\) coupe le pav&eacute; selon un rectangle de m&ecirc;mes dimensions : <strong>6 cm &times; 4 cm</strong>.</p>
+
+    <span class="etape">2. Section par le plan (A, C, M) :</span>
+    <p>\(M\) est le milieu de \([EG]\), qui est aussi le centre de la face sup&eacute;rieure \(EFGH\). Le plan passe par la diagonale \(AC\) de la base et le centre \(M\) de la face sup&eacute;rieure.</p>
+    <p>Ce plan coupe les ar&ecirc;tes \([EF]\) et \([GH]\) (ou \([EH]\) et \([FG]\)) selon une logique de parall&eacute;lisme. La section est un <strong>quadrilat&egrave;re</strong> passant par \(A\), \(C\) et deux points sur les ar&ecirc;tes verticales.</p>
+    <p>Diagonale de la base : \(AC = \sqrt{6^2 + 4^2} = \sqrt{52} = 2\sqrt{13} \approx 7{,}21\) cm.</p>
+
+    <span class="etape">3. Volume et diagonale :</span>
+    <p>\(V = 6 \times 4 \times 5 = 120\) cm&sup3;.</p>
+    <p>\(AG = \sqrt{AB^2 + BC^2 + AE^2} = \sqrt{36 + 16 + 25} = \sqrt{77} \approx 8{,}77\) cm.</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     NIVEAU 2 — SECTIONS OBLIQUES, COORDONNÉES, AGRANDISSEMENT
+============================================================ -->
+<div class="niveau-header niv2">
+  <span class="badge-niv badge-2">Niveau 2</span>
+  <h2>Sections obliques, coordonn&eacute;es, agrandissement-r&eacute;duction</h2>
+</div>
+
+<!-- EXERCICE 5 -->
+<div class="exo">
+  <div class="exo-num">Exercice 5</div>
+  <div class="exo-titre">Section d'un c&ocirc;ne &mdash; R&eacute;duction</div>
+  <p>Un c&ocirc;ne de r&eacute;volution a un rayon de base \(R = 12\) cm et une hauteur \(H = 20\) cm. On le coupe par un plan parall&egrave;le &agrave; la base situ&eacute; &agrave; une hauteur \(h = 15\) cm de la base.</p>
+  <div class="q"><strong>1.</strong> &Agrave; quelle distance du sommet se trouve le plan de coupe ?</div>
+  <div class="q"><strong>2.</strong> D&eacute;terminer le rayon \(r\) du cercle de section.</div>
+  <div class="q"><strong>3.</strong> Calculer le volume du tronc de c&ocirc;ne compris entre la base et le plan de coupe.</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Distance au sommet :</span>
+    <p>Le plan de coupe est &agrave; \(h = 15\) cm de la base, donc &agrave; \(H - h = 20 - 15 = 5\) cm du sommet.</p>
+
+    <span class="etape">2. Rayon de la section :</span>
+    <p>Par le th&eacute;or&egrave;me de Thal&egrave;s (section parall&egrave;le &agrave; la base), le rapport de r&eacute;duction est \(k = \frac{5}{20} = \frac{1}{4}\).</p>
+    <p>\(r = k \times R = \frac{1}{4} \times 12 = 3\) cm.</p>
+
+    <span class="etape">3. Volume du tronc :</span>
+    <p>Volume du grand c&ocirc;ne : \(V = \frac{1}{3}\pi R^2 H = \frac{1}{3}\pi \times 144 \times 20 = 960\pi\) cm&sup3;.</p>
+    <p>Volume du petit c&ocirc;ne (retir&eacute;) : \(v = \frac{1}{3}\pi r^2 \times 5 = \frac{1}{3}\pi \times 9 \times 5 = 15\pi\) cm&sup3;.</p>
+    <p>Volume du tronc : \(V_{\text{tronc}} = 960\pi - 15\pi = 945\pi \approx 2\,968{,}8\) cm&sup3;.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 6 -->
+<div class="exo">
+  <div class="exo-num">Exercice 6</div>
+  <div class="exo-titre">Coordonn&eacute;es polaires et cart&eacute;siennes</div>
+  <p>On travaille dans le plan muni d'un rep&egrave;re orthonorm&eacute;.</p>
+  <div class="q"><strong>1.</strong> Convertir en coordonn&eacute;es polaires les points suivants :
+    <br>a) \(A(4, 0)\) &nbsp;&nbsp; b) \(B(0, -5)\) &nbsp;&nbsp; c) \(C(-3, 3)\)</div>
+  <div class="q"><strong>2.</strong> Convertir en coordonn&eacute;es cart&eacute;siennes les points suivants :
+    <br>a) \(D\left(6, \frac{\pi}{4}\right)\) &nbsp;&nbsp; b) \(E\left(10, \frac{2\pi}{3}\right)\) &nbsp;&nbsp; c) \(F\left(4, \frac{7\pi}{6}\right)\)</div>
+  <div class="q"><strong>3.</strong> Quelle est la nature de la courbe d'&eacute;quation polaire \(r = 5\) ?</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Cart&eacute;siennes &rarr; polaires :</span>
+    <p>a) \(A(4, 0)\) : \(r = 4\), \(\theta = 0\). Donc \(A(4, 0)\).</p>
+    <p>b) \(B(0, -5)\) : \(r = 5\), \(\theta = -\frac{\pi}{2}\) (ou \(\frac{3\pi}{2}\)). Donc \(B\left(5, \frac{3\pi}{2}\right)\).</p>
+    <p>c) \(C(-3, 3)\) : \(r = \sqrt{9 + 9} = 3\sqrt{2}\), \(\tan\theta = \frac{3}{-3} = -1\) avec \(x < 0, y > 0\) (2e quadrant), donc \(\theta = \frac{3\pi}{4}\). Ainsi \(C\left(3\sqrt{2}, \frac{3\pi}{4}\right)\).</p>
+
+    <span class="etape">2. Polaires &rarr; cart&eacute;siennes :</span>
+    <p>a) \(D\) : \(x = 6\cos\frac{\pi}{4} = 3\sqrt{2}\), \(y = 6\sin\frac{\pi}{4} = 3\sqrt{2}\). Donc \(D(3\sqrt{2}, 3\sqrt{2})\).</p>
+    <p>b) \(E\) : \(x = 10\cos\frac{2\pi}{3} = -5\), \(y = 10\sin\frac{2\pi}{3} = 5\sqrt{3}\). Donc \(E(-5, 5\sqrt{3})\).</p>
+    <p>c) \(F\) : \(x = 4\cos\frac{7\pi}{6} = -2\sqrt{3}\), \(y = 4\sin\frac{7\pi}{6} = -2\). Donc \(F(-2\sqrt{3}, -2)\).</p>
+
+    <span class="etape">3. Courbe \(r = 5\) :</span>
+    <p>C'est l'ensemble des points &agrave; distance 5 de l'origine : un <strong>cercle</strong> centr&eacute; en \(O\) de rayon 5.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 7 -->
+<div class="exo">
+  <div class="exo-num">Exercice 7</div>
+  <div class="exo-titre">Coordonn&eacute;es cylindriques &mdash; Point dans un tuyau</div>
+  <p>Un point \(P\) &agrave; l'int&eacute;rieur d'un tuyau cylindrique a pour coordonn&eacute;es cylindriques \(\left(3, \frac{\pi}{3}, 7\right)\).</p>
+  <div class="q"><strong>1.</strong> D&eacute;terminer les coordonn&eacute;es cart&eacute;siennes \((x, y, z)\) de \(P\).</div>
+  <div class="q"><strong>2.</strong> Calculer la distance de \(P\) &agrave; l'axe du cylindre (axe \(Oz\)).</div>
+  <div class="q"><strong>3.</strong> Un second point \(Q\) a pour coordonn&eacute;es cart&eacute;siennes \((-2, 2\sqrt{3}, 5)\). D&eacute;terminer ses coordonn&eacute;es cylindriques.</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Cylindriques &rarr; cart&eacute;siennes :</span>
+    <p>\(x = r\cos\theta = 3\cos\frac{\pi}{3} = 3 \times \frac{1}{2} = 1{,}5\)</p>
+    <p>\(y = r\sin\theta = 3\sin\frac{\pi}{3} = 3 \times \frac{\sqrt{3}}{2} = \frac{3\sqrt{3}}{2} \approx 2{,}60\)</p>
+    <p>\(z = 7\)</p>
+    <p>Donc \(P\left(\frac{3}{2},\; \frac{3\sqrt{3}}{2},\; 7\right)\).</p>
+
+    <span class="etape">2. Distance &agrave; l'axe :</span>
+    <p>La distance &agrave; l'axe \(Oz\) est simplement \(r = 3\).</p>
+
+    <span class="etape">3. Cart&eacute;siennes &rarr; cylindriques pour \(Q(-2, 2\sqrt{3}, 5)\) :</span>
+    <p>\(r = \sqrt{(-2)^2 + (2\sqrt{3})^2} = \sqrt{4 + 12} = 4\)</p>
+    <p>\(\tan\theta = \frac{2\sqrt{3}}{-2} = -\sqrt{3}\) avec \(x < 0, y > 0\) (2e quadrant), donc \(\theta = \frac{2\pi}{3}\).</p>
+    <p>\(z = 5\)</p>
+    <p>Donc \(Q\left(4, \frac{2\pi}{3}, 5\right)\).</p>
+  </div>
+</div>
+
+<!-- EXERCICE 8 -->
+<div class="exo">
+  <div class="exo-num">Exercice 8</div>
+  <div class="exo-titre">Agrandissement-r&eacute;duction &mdash; Maquette de b&acirc;timent</div>
+  <p>Un architecte r&eacute;alise une maquette d'un b&acirc;timent &agrave; l'&eacute;chelle \(\frac{1}{100}\).</p>
+  <div class="q"><strong>1.</strong> Le b&acirc;timent r&eacute;el mesure 25 m de haut. Quelle est la hauteur de la maquette ?</div>
+  <div class="q"><strong>2.</strong> La fa&ccedil;ade du b&acirc;timent r&eacute;el a une aire de 450 m&sup2;. Quelle est l'aire de la fa&ccedil;ade sur la maquette ?</div>
+  <div class="q"><strong>3.</strong> Le volume int&eacute;rieur du b&acirc;timent est de 8 000 m&sup3;. Quel est le volume de la maquette en cm&sup3; ?</div>
+  <div class="q"><strong>4.</strong> On souhaite doubler les dimensions de la maquette. Par combien sont multipli&eacute;s le volume et l'aire de la nouvelle maquette ?</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Hauteur de la maquette :</span>
+    <p>Facteur d'&eacute;chelle : \(k = \frac{1}{100}\). Hauteur maquette : \(25 \times \frac{1}{100} = 0{,}25\) m = <strong>25 cm</strong>.</p>
+
+    <span class="etape">2. Aire de la fa&ccedil;ade :</span>
+    <p>Les aires sont multipli&eacute;es par \(k^2 = \frac{1}{10\,000}\).</p>
+    <p>Aire maquette : \(450 \times \frac{1}{10\,000} = 0{,}045\) m&sup2; = <strong>450 cm&sup2;</strong>.</p>
+
+    <span class="etape">3. Volume :</span>
+    <p>Les volumes sont multipli&eacute;s par \(k^3 = \frac{1}{1\,000\,000}\).</p>
+    <p>Volume maquette : \(8\,000 \times \frac{1}{1\,000\,000} = 0{,}008\) m&sup3; = <strong>8 000 cm&sup3;</strong>.</p>
+
+    <span class="etape">4. Doublement des dimensions :</span>
+    <p>Si on double (\(k' = 2\)) : l'aire est multipli&eacute;e par \(2^2 = \mathbf{4}\), le volume par \(2^3 = \mathbf{8}\).</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     NIVEAU 3 — INTERSECTIONS, SURFACES DE RÉVOLUTION, AL-KASHI
+============================================================ -->
+<div class="niveau-header niv3">
+  <span class="badge-niv badge-3">Niveau 3</span>
+  <h2>Intersections, surfaces de r&eacute;volution, Al-Kashi</h2>
+</div>
+
+<!-- EXERCICE 9 -->
+<div class="exo">
+  <div class="exo-num">Exercice 9</div>
+  <div class="exo-titre">Th&eacute;or&egrave;me d'Al-Kashi &mdash; Ferme triangulaire</div>
+  <p>Une ferme de charpente triangulaire \(ABC\) (le triangle porteur d'un toit) a les dimensions suivantes :</p>
+  <ul>
+    <li>Entrait : \(BC = 8{,}00\) m</li>
+    <li>Arbal&eacute;trier gauche : \(AB = 5{,}50\) m</li>
+    <li>Arbal&eacute;trier droit : \(AC = 5{,}50\) m</li>
+  </ul>
+  <div class="q"><strong>1.</strong> Calculer l'angle au sommet \(\widehat{A}\) en utilisant le th&eacute;or&egrave;me d'Al-Kashi.</div>
+  <div class="q"><strong>2.</strong> En d&eacute;duire la hauteur \(h\) de la ferme (distance de \(A\) &agrave; \(BC\)).</div>
+  <div class="q"><strong>3.</strong> Calculer la pente du toit (angle \(\widehat{B}\)).</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Angle au sommet \(\widehat{A}\) :</span>
+    <p>Al-Kashi : \(BC^2 = AB^2 + AC^2 - 2 \cdot AB \cdot AC \cdot \cos(\widehat{A})\)</p>
+    <p>\(64 = 30{,}25 + 30{,}25 - 2 \times 5{,}5 \times 5{,}5 \times \cos(\widehat{A})\)</p>
+    <p>\(64 = 60{,}5 - 60{,}5\cos(\widehat{A})\)</p>
+    <p>\(\cos(\widehat{A}) = \frac{60{,}5 - 64}{60{,}5} = \frac{-3{,}5}{60{,}5} \approx -0{,}0579\)</p>
+    <p>\(\widehat{A} = \arccos(-0{,}0579) \approx 93{,}3°\)</p>
+
+    <span class="etape">2. Hauteur \(h\) :</span>
+    <p>Le triangle est isoc&egrave;le (\(AB = AC\)), donc la hauteur issue de \(A\) tombe au milieu \(M\) de \([BC]\). \(BM = 4\) m.</p>
+    <p>Par Pythagore dans \(ABM\) : \(h = \sqrt{AB^2 - BM^2} = \sqrt{30{,}25 - 16} = \sqrt{14{,}25} \approx 3{,}78\) m.</p>
+
+    <span class="etape">3. Pente (angle \(\widehat{B}\)) :</span>
+    <p>\(\cos(\widehat{B}) = \frac{BM}{AB} = \frac{4}{5{,}5} \approx 0{,}7273\), donc \(\widehat{B} \approx 43{,}3°\).</p>
+    <p>La pente du toit est d'environ <strong>43,3&deg;</strong> (soit environ 94 %).</p>
+  </div>
+</div>
+
+<!-- EXERCICE 10 -->
+<div class="exo">
+  <div class="exo-num">Exercice 10</div>
+  <div class="exo-titre">Surface de r&eacute;volution &mdash; Vase en bois tourn&eacute;</div>
+  <p>Un tourneur sur bois r&eacute;alise un vase en faisant tourner un profil autour de l'axe vertical. Le profil est constitu&eacute; de :</p>
+  <ul>
+    <li>Une portion de cylindre : rayon \(r_1 = 5\) cm, hauteur \(h_1 = 12\) cm (le corps du vase)</li>
+    <li>Un tronc de c&ocirc;ne : passage de \(r_1 = 5\) cm &agrave; \(r_2 = 3\) cm sur une hauteur \(h_2 = 4\) cm (le col)</li>
+  </ul>
+  <div class="q"><strong>1.</strong> Calculer le volume int&eacute;rieur du vase (on n&eacute;glige l'&eacute;paisseur du bois).</div>
+  <div class="q"><strong>2.</strong> Calculer l'aire de la surface lat&eacute;rale ext&eacute;rieure du vase.</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Volume :</span>
+    <p>Volume du cylindre : \(V_1 = \pi r_1^2 h_1 = \pi \times 25 \times 12 = 300\pi\) cm&sup3;.</p>
+    <p>Volume du tronc de c&ocirc;ne : \(V_2 = \frac{\pi h_2}{3}(r_1^2 + r_1 r_2 + r_2^2) = \frac{4\pi}{3}(25 + 15 + 9) = \frac{4\pi \times 49}{3} = \frac{196\pi}{3}\) cm&sup3;.</p>
+    <p>Volume total : \(V = 300\pi + \frac{196\pi}{3} = \frac{900\pi + 196\pi}{3} = \frac{1096\pi}{3} \approx 1\,147{,}1\) cm&sup3; \(\approx 1{,}15\) L.</p>
+
+    <span class="etape">2. Aire lat&eacute;rale ext&eacute;rieure :</span>
+    <p>Cylindre : \(\mathcal{A}_1 = 2\pi r_1 h_1 = 2\pi \times 5 \times 12 = 120\pi\) cm&sup2;.</p>
+    <p>Tronc de c&ocirc;ne : l'apoth&egrave;me est \(\ell = \sqrt{h_2^2 + (r_1 - r_2)^2} = \sqrt{16 + 4} = \sqrt{20} = 2\sqrt{5}\) cm.</p>
+    <p>\(\mathcal{A}_2 = \pi(r_1 + r_2)\ell = \pi(5 + 3) \times 2\sqrt{5} = 16\sqrt{5}\,\pi \approx 112{,}3\) cm&sup2;.</p>
+    <p>Aire lat&eacute;rale totale : \(\mathcal{A} = 120\pi + 16\sqrt{5}\pi \approx 377{,}0 + 112{,}3 \approx 489{,}3\) cm&sup2;.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 11 -->
+<div class="exo">
+  <div class="exo-num">Exercice 11</div>
+  <div class="exo-titre">Intersection de plans &mdash; Ar&ecirc;tier de toiture</div>
+  <p>On se place dans un rep&egrave;re orthonorm&eacute; \((O, \vec{i}, \vec{j}, \vec{k})\). Deux pans de toiture sont mod&eacute;lis&eacute;s par les plans :</p>
+  <ul>
+    <li>\(\mathcal{P}_1\) : \(z = -\frac{1}{2}x + 6\) (pour \(x \geq 0\))</li>
+    <li>\(\mathcal{P}_2\) : \(z = \frac{1}{2}y + 3\) (pour \(y \geq 0\))</li>
+  </ul>
+  <div class="q"><strong>1.</strong> V&eacute;rifier que le point \(A(4, 2, 4)\) appartient &agrave; \(\mathcal{P}_1\). Appartient-il &agrave; \(\mathcal{P}_2\) ?</div>
+  <div class="q"><strong>2.</strong> D&eacute;terminer l'&eacute;quation de la droite d'intersection des deux plans (l'ar&ecirc;tier) en &eacute;liminant \(z\).</div>
+  <div class="q"><strong>3.</strong> Trouver deux points de cette droite d'intersection et en d&eacute;duire un vecteur directeur.</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. V&eacute;rification :</span>
+    <p>\(\mathcal{P}_1\) : \(-\frac{1}{2} \times 4 + 6 = -2 + 6 = 4 = z_A\). Oui, \(A \in \mathcal{P}_1\). &#10003;</p>
+    <p>\(\mathcal{P}_2\) : \(\frac{1}{2} \times 2 + 3 = 1 + 3 = 4 = z_A\). Oui, \(A \in \mathcal{P}_2\) aussi. &#10003;</p>
+    <p>Donc \(A\) est sur l'ar&ecirc;tier.</p>
+
+    <span class="etape">2. Droite d'intersection :</span>
+    <p>&Agrave; l'intersection, \(z\) satisfait les deux &eacute;quations :</p>
+    <p>\(-\frac{1}{2}x + 6 = \frac{1}{2}y + 3\), soit \(-\frac{1}{2}x - \frac{1}{2}y = -3\), d'o&ugrave; \(x + y = 6\).</p>
+    <p>La droite d'intersection est d&eacute;finie par : \(\begin{cases} x + y = 6 \\ z = -\frac{1}{2}x + 6 \end{cases}\)</p>
+
+    <span class="etape">3. Deux points et vecteur directeur :</span>
+    <p>Pour \(x = 0\) : \(y = 6\), \(z = 6\) &rarr; \(B(0, 6, 6)\).</p>
+    <p>Pour \(x = 4\) : \(y = 2\), \(z = 4\) &rarr; \(A(4, 2, 4)\).</p>
+    <p>Vecteur directeur : \(\overrightarrow{BA} = (4, -4, -2)\), soit \(\vec{u} = (2, -2, -1)\) apr&egrave;s simplification.</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     NIVEAU 4 — PROBLÈMES PROFESSIONNELS COMPLETS
+============================================================ -->
+<div class="niveau-header niv4">
+  <span class="badge-niv badge-4">Niveau 4</span>
+  <h2>Probl&egrave;mes professionnels complets</h2>
+</div>
+
+<!-- EXERCICE 12 -->
+<div class="exo">
+  <div class="exo-num">Exercice 12</div>
+  <div class="exo-titre">Probl&egrave;me &mdash; Charpente &agrave; quatre pans</div>
+  <p>Un charpentier doit r&eacute;aliser un toit &agrave; quatre pans (toit en croupe) sur un b&acirc;timent rectangulaire de 12 m &times; 8 m. La hauteur du fa&icirc;tage est de 4 m au-dessus du plan des murs. Le fa&icirc;tage mesure 4 m et est centr&eacute; sur la longueur.</p>
+
+  <div class="q"><strong>1.</strong> Faire un sch&eacute;ma en perspective de la charpente et identifier les diff&eacute;rents &eacute;l&eacute;ments : fa&icirc;tage, arbal&eacute;triers, ar&ecirc;tiers, entraits.</div>
+
+  <div class="q"><strong>2.</strong> Calculer la longueur d'un arbal&eacute;trier (du fa&icirc;tage au milieu d'un mur gouttereau de 8 m). On prendra le triangle rectangle form&eacute; par la demi-largeur (4 m) et la hauteur (4 m).</div>
+
+  <div class="q"><strong>3.</strong> Calculer la longueur d'un ar&ecirc;tier (du bout du fa&icirc;tage &agrave; un angle du b&acirc;timent). Utiliser le th&eacute;or&egrave;me de Pythagore dans l'espace.</div>
+
+  <div class="q"><strong>4.</strong> Calculer l'angle que fait l'ar&ecirc;tier avec le plan horizontal.</div>
+
+  <div class="q"><strong>5.</strong> Calculer l'aire totale de la toiture (somme des quatre pans).</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Sch&eacute;ma :</span>
+    <p>La base est un rectangle \(ABCD\) de 12 m &times; 8 m. Le fa&icirc;tage \(EF\) est &agrave; 4 m de hauteur, centr&eacute;, de longueur 4 m. Les projections au sol de \(E\) et \(F\) se trouvent sur l'axe de sym&eacute;trie longitudinal, &agrave; 4 m des petits c&ocirc;t&eacute;s.</p>
+
+    <span class="etape">2. Arbal&eacute;trier :</span>
+    <p>Distance horizontale (demi-largeur) = 4 m, hauteur = 4 m.</p>
+    <p>\(\ell_{\text{arb}} = \sqrt{4^2 + 4^2} = \sqrt{32} = 4\sqrt{2} \approx 5{,}66\) m.</p>
+
+    <span class="etape">3. Ar&ecirc;tier :</span>
+    <p>Du bout du fa&icirc;tage \(E\) (projet&eacute; au sol en \(E'\)) &agrave; l'angle \(A\) du b&acirc;timent. Distance horizontale : \(E'A = \sqrt{4^2 + 4^2} = 4\sqrt{2}\) m.</p>
+    <p>Longueur de l'ar&ecirc;tier : \(\ell_{\text{arr}} = \sqrt{(4\sqrt{2})^2 + 4^2} = \sqrt{32 + 16} = \sqrt{48} = 4\sqrt{3} \approx 6{,}93\) m.</p>
+
+    <span class="etape">4. Angle avec l'horizontale :</span>
+    <p>\(\tan\alpha = \frac{4}{4\sqrt{2}} = \frac{1}{\sqrt{2}}\), donc \(\alpha = \arctan\left(\frac{1}{\sqrt{2}}\right) \approx 35{,}3°\).</p>
+
+    <span class="etape">5. Aire de la toiture :</span>
+    <p><strong>Deux pans longs</strong> (trap&egrave;zes) : bases 4 m (fa&icirc;tage) et 12 m (mur), hauteur inclin&eacute;e = \(4\sqrt{2}\) m.</p>
+    <p>Aire d'un pan long = \(\frac{(4 + 12)}{2} \times 4\sqrt{2} = 32\sqrt{2}\) m&sup2;.</p>
+    <p><strong>Deux pans courts</strong> (triangles) : base = 8 m, hauteur inclin&eacute;e = \(4\sqrt{2}\) m.</p>
+    <p>Aire d'un pan court = \(\frac{1}{2} \times 8 \times 4\sqrt{2} = 16\sqrt{2}\) m&sup2;.</p>
+    <p>Aire totale : \(2 \times 32\sqrt{2} + 2 \times 16\sqrt{2} = 96\sqrt{2} \approx 135{,}8\) m&sup2;.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 13 -->
+<div class="exo">
+  <div class="exo-num">Exercice 13</div>
+  <div class="exo-titre">Probl&egrave;me &mdash; Tr&eacute;mie de chantier</div>
+  <p>Sur un chantier, un silo &agrave; granulats est constitu&eacute; de trois parties :</p>
+  <ul>
+    <li><strong>Cylindre</strong> (partie centrale) : rayon \(R = 2{,}5\) m, hauteur \(h_c = 6\) m</li>
+    <li><strong>C&ocirc;ne sup&eacute;rieur</strong> (couvercle) : m&ecirc;me rayon de base \(R\), hauteur \(h_s = 1{,}5\) m</li>
+    <li><strong>Tr&eacute;mie</strong> (tronc de c&ocirc;ne invers&eacute;, en bas) : passage de \(R = 2{,}5\) m &agrave; \(r = 0{,}5\) m, hauteur \(h_t = 2\) m</li>
+  </ul>
+
+  <div class="q"><strong>1.</strong> Calculer le volume de chaque partie et le volume total du silo.</div>
+  <div class="q"><strong>2.</strong> Le granulat a une masse volumique de 1 500 kg/m&sup3;. Quelle est la masse maximale de granulat stockable ?</div>
+  <div class="q"><strong>3.</strong> On souhaite construire un silo semblable avec des dimensions multipli&eacute;es par 1,2. Quel sera le gain de volume en pourcentage ?</div>
+  <div class="q"><strong>4.</strong> Calculer l'aire de la surface lat&eacute;rale de la tr&eacute;mie (tronc de c&ocirc;ne).</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Volumes :</span>
+    <p><strong>Cylindre :</strong> \(V_c = \pi R^2 h_c = \pi \times 6{,}25 \times 6 = 37{,}5\pi \approx 117{,}81\) m&sup3;.</p>
+    <p><strong>C&ocirc;ne sup&eacute;rieur :</strong> \(V_s = \frac{1}{3}\pi R^2 h_s = \frac{1}{3}\pi \times 6{,}25 \times 1{,}5 = 3{,}125\pi \approx 9{,}82\) m&sup3;.</p>
+    <p><strong>Tr&eacute;mie (tronc de c&ocirc;ne) :</strong></p>
+    <p>\(V_t = \frac{\pi h_t}{3}(R^2 + Rr + r^2) = \frac{2\pi}{3}(6{,}25 + 1{,}25 + 0{,}25) = \frac{2\pi \times 7{,}75}{3} = \frac{15{,}5\pi}{3} \approx 16{,}23\) m&sup3;.</p>
+    <p><strong>Volume total :</strong> \(V = 37{,}5\pi + 3{,}125\pi + \frac{15{,}5\pi}{3} = \frac{112{,}5\pi + 9{,}375\pi + 15{,}5\pi}{3} = \frac{137{,}375\pi}{3} \approx 143{,}8\) m&sup3;.</p>
+
+    <span class="etape">2. Masse maximale :</span>
+    <p>\(m = \rho \times V \approx 1\,500 \times 143{,}8 \approx 215\,700\) kg \(\approx 215{,}7\) tonnes.</p>
+
+    <span class="etape">3. Gain de volume :</span>
+    <p>Facteur \(k = 1{,}2\). Le volume est multipli&eacute; par \(k^3 = 1{,}728\).</p>
+    <p>Gain : \((1{,}728 - 1) \times 100 = \mathbf{72{,}8\,\%}\).</p>
+
+    <span class="etape">4. Aire lat&eacute;rale de la tr&eacute;mie :</span>
+    <p>Apoth&egrave;me : \(\ell = \sqrt{h_t^2 + (R - r)^2} = \sqrt{4 + 4} = \sqrt{8} = 2\sqrt{2} \approx 2{,}83\) m.</p>
+    <p>\(\mathcal{A}_{\text{lat}} = \pi(R + r)\ell = \pi(2{,}5 + 0{,}5) \times 2\sqrt{2} = 6\sqrt{2}\,\pi \approx 26{,}7\) m&sup2;.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 14 -->
+<div class="exo">
+  <div class="exo-num">Exercice 14</div>
+  <div class="exo-titre">Probl&egrave;me &mdash; Pi&egrave;ce de bois tourn&eacute;e et rep&eacute;rage</div>
+  <p>Un menuisier-agenceur r&eacute;alise un pied de table au tour &agrave; bois. La pi&egrave;ce est de r&eacute;volution autour de l'axe \((Oz)\). Le profil est d&eacute;crit par le rayon \(r\) en fonction de la hauteur \(z\) :</p>
+  <ul>
+    <li>De \(z = 0\) &agrave; \(z = 5\) cm : cylindre de rayon \(r = 4\) cm (patin)</li>
+    <li>De \(z = 5\) &agrave; \(z = 15\) cm : tronc de c&ocirc;ne de \(r = 4\) cm &agrave; \(r = 2{,}5\) cm (f&ucirc;t conique)</li>
+    <li>De \(z = 15\) &agrave; \(z = 55\) cm : cylindre de rayon \(r = 2{,}5\) cm (f&ucirc;t principal)</li>
+    <li>De \(z = 55\) &agrave; \(z = 60\) cm : tronc de c&ocirc;ne de \(r = 2{,}5\) cm &agrave; \(r = 3{,}5\) cm (col)</li>
+    <li>De \(z = 60\) &agrave; \(z = 65\) cm : cylindre de rayon \(r = 3{,}5\) cm (t&ecirc;te)</li>
+  </ul>
+
+  <div class="q"><strong>1.</strong> Calculer le volume de bois total de la pi&egrave;ce.</div>
+  <div class="q"><strong>2.</strong> Le bois utilis&eacute; (ch&ecirc;ne) a une masse volumique de 0,72 g/cm&sup3;. Calculer la masse de la pi&egrave;ce.</div>
+  <div class="q"><strong>3.</strong> Calculer l'aire de la surface lat&eacute;rale totale de la pi&egrave;ce (surface &agrave; poncer).</div>
+  <div class="q"><strong>4.</strong> Un point \(P\) sur la surface du patin est rep&eacute;r&eacute; en coordonn&eacute;es cylindriques par \(P\left(4, \frac{\pi}{4}, 3\right)\). Donner ses coordonn&eacute;es cart&eacute;siennes.</div>
+  <div class="q"><strong>5.</strong> Le menuisier souhaite r&eacute;aliser le m&ecirc;me pied &agrave; l'&eacute;chelle \(\frac{3}{4}\) pour une table basse. Quel sera le volume de bois n&eacute;cessaire ?</div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <span class="etape">1. Volume total :</span>
+    <p><strong>Patin</strong> (cylindre, \(r = 4\), \(h = 5\)) : \(V_1 = \pi \times 16 \times 5 = 80\pi\) cm&sup3;.</p>
+    <p><strong>F&ucirc;t conique</strong> (tronc de c&ocirc;ne, \(R = 4\), \(r = 2{,}5\), \(h = 10\)) :</p>
+    <p>\(V_2 = \frac{10\pi}{3}(16 + 10 + 6{,}25) = \frac{10\pi \times 32{,}25}{3} = 107{,}5\pi\) cm&sup3;.</p>
+    <p><strong>F&ucirc;t principal</strong> (cylindre, \(r = 2{,}5\), \(h = 40\)) : \(V_3 = \pi \times 6{,}25 \times 40 = 250\pi\) cm&sup3;.</p>
+    <p><strong>Col</strong> (tronc de c&ocirc;ne, \(R = 2{,}5\), \(r' = 3{,}5\), \(h = 5\)) :</p>
+    <p>\(V_4 = \frac{5\pi}{3}(6{,}25 + 8{,}75 + 12{,}25) = \frac{5\pi \times 27{,}25}{3} = \frac{136{,}25\pi}{3} \approx 45{,}42\pi\) cm&sup3;.</p>
+    <p><strong>T&ecirc;te</strong> (cylindre, \(r = 3{,}5\), \(h = 5\)) : \(V_5 = \pi \times 12{,}25 \times 5 = 61{,}25\pi\) cm&sup3;.</p>
+    <p><strong>Total :</strong></p>
+    <p>\(V = 80\pi + 107{,}5\pi + 250\pi + 45{,}42\pi + 61{,}25\pi = 544{,}17\pi \approx 1\,709\) cm&sup3;.</p>
+
+    <span class="etape">2. Masse :</span>
+    <p>\(m = 0{,}72 \times 1\,709 \approx 1\,231\) g \(\approx 1{,}23\) kg.</p>
+
+    <span class="etape">3. Aire lat&eacute;rale totale :</span>
+    <p><strong>Patin :</strong> \(\mathcal{A}_1 = 2\pi \times 4 \times 5 = 40\pi\) cm&sup2;.</p>
+    <p><strong>F&ucirc;t conique :</strong> apoth&egrave;me \(\ell_2 = \sqrt{10^2 + 1{,}5^2} = \sqrt{102{,}25} \approx 10{,}11\) cm.</p>
+    <p>\(\mathcal{A}_2 = \pi(4 + 2{,}5) \times 10{,}11 = 65{,}72\pi\) cm&sup2;.</p>
+    <p><strong>F&ucirc;t principal :</strong> \(\mathcal{A}_3 = 2\pi \times 2{,}5 \times 40 = 200\pi\) cm&sup2;.</p>
+    <p><strong>Col :</strong> apoth&egrave;me \(\ell_4 = \sqrt{5^2 + 1^2} = \sqrt{26} \approx 5{,}10\) cm.</p>
+    <p>\(\mathcal{A}_4 = \pi(2{,}5 + 3{,}5) \times 5{,}10 = 30{,}6\pi\) cm&sup2;.</p>
+    <p><strong>T&ecirc;te :</strong> \(\mathcal{A}_5 = 2\pi \times 3{,}5 \times 5 = 35\pi\) cm&sup2;.</p>
+    <p>\(\mathcal{A}_{\text{totale}} = (40 + 65{,}72 + 200 + 30{,}6 + 35)\pi = 371{,}3\pi \approx 1\,167\) cm&sup2;.</p>
+
+    <span class="etape">4. Coordonn&eacute;es cart&eacute;siennes de \(P\) :</span>
+    <p>\(x = 4\cos\frac{\pi}{4} = 4 \times \frac{\sqrt{2}}{2} = 2\sqrt{2} \approx 2{,}83\) cm</p>
+    <p>\(y = 4\sin\frac{\pi}{4} = 2\sqrt{2} \approx 2{,}83\) cm</p>
+    <p>\(z = 3\) cm</p>
+    <p>Donc \(P(2\sqrt{2},\; 2\sqrt{2},\; 3)\).</p>
+
+    <span class="etape">5. &Eacute;chelle \(\frac{3}{4}\) :</span>
+    <p>Le volume est multipli&eacute; par \(k^3 = \left(\frac{3}{4}\right)^3 = \frac{27}{64} \approx 0{,}422\).</p>
+    <p>\(V' = 1\,709 \times 0{,}422 \approx \mathbf{721}\) cm&sup3;.</p>
+  </div>
+</div>
+
 
 </div>
 <script src="../../../nav.js"></script>
