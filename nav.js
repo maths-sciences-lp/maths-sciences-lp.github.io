@@ -369,7 +369,8 @@
         document.body.classList.remove('print-corr');
         window.removeEventListener('afterprint', cleanup);
       });
-      window.print();
+      /* Délai pour laisser le navigateur appliquer la classe avant l'impression */
+      setTimeout(function () { window.print(); }, 100);
     });
   }
 
