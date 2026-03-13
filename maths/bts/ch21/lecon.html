@@ -4,21 +4,667 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Ch21 – Représentation de l'espace – BTS</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#1e3a5f;--p-bg:#eef2f7;--p-border:#93a5c0}</style>
 </head>
 <body>
 <div class="c">
-<a href="../../../maths-bts.html" class="nb">← Retour au sommaire BTS</a>
+<a href="../../../maths-bts.html" class="nb">← Retour au sommaire</a>
+
 <header>
   <h1>Chapitre 21 – Représentation de l'espace</h1>
-  <p class="sous-titre">BTS — Mathématiques</p>
+  <p class="sous-titre">BTS | Mathématiques | Groupement B3</p>
 </header>
+
+<!-- OBJECTIFS -->
 <div class="objectifs">
-  <h3>🚧 En cours de rédaction</h3>
-  <p>Ce chapitre sera bientôt disponible. Revenez prochainement !</p>
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Maîtriser les repères, droites et plans dans l'espace \(\mathbb{R}^3\)</li>
+    <li>Décrire les transformations géométriques par des matrices en 2D et 3D</li>
+    <li>Utiliser les coordonnées homogènes pour représenter les transformations affines</li>
+    <li>Calculer et composer des rotations autour des axes de coordonnées</li>
+    <li>Connaître les projections orthogonale et perspective</li>
+    <li>Appliquer les matrices de transfert ABCD en optique géométrique</li>
+  </ul>
 </div>
+
+<!-- SITUATION PROFESSIONNELLE -->
+<div class="situation">
+  <strong>Situation professionnelle — Optique et photonique</strong>
+  <p>
+    Un ingénieur en photonique conçoit un système de vision par caméra pour un robot industriel.
+    Pour que le robot puisse localiser des pièces sur un convoyeur, il doit convertir les
+    coordonnées des objets dans le repère de la caméra vers le repère du robot, effectuer
+    des calculs de trajectoire dans l'espace, et modéliser la déformation optique introduite
+    par la lentille de la caméra.
+  </p>
+  <p>
+    Tous ces problèmes font appel à la <strong>géométrie de l'espace</strong> et aux
+    <strong>matrices de transformation</strong>. En optique géométrique, les systèmes centrés
+    (lentilles, miroirs, fibres) sont décrits par des matrices \(2\times 2\) appelées
+    <strong>matrices ABCD</strong> ou matrices de transfert.
+  </p>
+</div>
+
+<!-- SECTION 1 : GÉOMÉTRIE DANS L'ESPACE -->
+<h2>1. Géométrie dans l'espace \(\mathbb{R}^3\)</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Repère orthonormé de l'espace</span>
+  <p>
+    Un <strong>repère orthonormé</strong> de \(\mathbb{R}^3\) est un triplet
+    \((O, \vec{e}_1, \vec{e}_2, \vec{e}_3)\) où \(O\) est l'origine et
+    \((\vec{e}_1, \vec{e}_2, \vec{e}_3)\) est une base orthonormée directe :
+  </p>
+  \[\vec{e}_i \cdot \vec{e}_j = \delta_{ij}, \quad \vec{e}_1 \times \vec{e}_2 = \vec{e}_3\]
+  <p>
+    Tout point \(M\) a des coordonnées \((x, y, z)\) telles que
+    \(\overrightarrow{OM} = x\vec{e}_1 + y\vec{e}_2 + z\vec{e}_3\).
+  </p>
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Droite et plan dans l'espace</span>
+  <p>
+    <strong>Droite</strong> passant par \(A(x_0, y_0, z_0)\) de direction \(\vec{v} = (a, b, c)\) :
+    \[(x, y, z) = (x_0 + at,\ y_0 + bt,\ z_0 + ct), \quad t \in \mathbb{R}\]
+  </p>
+  <p>
+    <strong>Plan</strong> passant par \(A(x_0, y_0, z_0)\) de vecteur normal \(\vec{n} = (a, b, c)\) :
+    \[a(x - x_0) + b(y - y_0) + c(z - z_0) = 0 \iff ax + by + cz = d\]
+  </p>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Distance et produits vectoriels</span>
+  <p>Distance d'un point \(M(x_1,y_1,z_1)\) au plan \(ax+by+cz = d\) :</p>
+  <div class="formule-box">
+    \[d(M, \pi) = \frac{|ax_1 + by_1 + cz_1 - d|}{\sqrt{a^2 + b^2 + c^2}}\]
+  </div>
+  <p>Produit vectoriel dans \(\mathbb{R}^3\) :</p>
+  <div class="formule-box">
+    \[\vec{u} \times \vec{v} = \begin{vmatrix} \vec{e}_1 & \vec{e}_2 & \vec{e}_3 \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{vmatrix} = (u_2 v_3 - u_3 v_2,\ u_3 v_1 - u_1 v_3,\ u_1 v_2 - u_2 v_1)\]
+  </div>
+  <p>
+    Application : le vecteur normal à deux vecteurs coplanaires est leur produit vectoriel.
+  </p>
+</div>
+
+<!-- SECTION 2 : TRANSFORMATIONS EN 2D -->
+<h2>2. Transformations géométriques en 2D</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Matrices de transformation 2D</span>
+  <p>
+    Toute transformation linéaire du plan est représentée par une matrice \(2\times 2\)
+    agissant sur le vecteur colonne \(\begin{pmatrix} x \\ y \end{pmatrix}\).
+  </p>
+  <table style="width:100%;border-collapse:collapse;margin:1em 0">
+    <thead>
+      <tr style="background:var(--p);color:#fff">
+        <th style="padding:0.5em 0.8em;border:1px solid #aaa">Transformation</th>
+        <th style="padding:0.5em 0.8em;border:1px solid #aaa">Matrice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Rotation d'angle \(\theta\)</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}\)
+        </td>
+      </tr>
+      <tr style="background:#f5f7fb">
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Réflexion / axe \(Ox\)</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\)
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Réflexion / axe \(Oy\)</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}\)
+        </td>
+      </tr>
+      <tr style="background:#f5f7fb">
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Homothétie de rapport \(k\)</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix}\)
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Mise à l'échelle \((s_x, s_y)\)</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} s_x & 0 \\ 0 & s_y \end{pmatrix}\)
+        </td>
+      </tr>
+      <tr style="background:#f5f7fb">
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Cisaillement horizontal</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} 1 & h \\ 0 & 1 \end{pmatrix}\)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Composition de transformations</span>
+  <p>
+    La composition de deux transformations linéaires \(T_1\) (matrice \(M_1\)) puis \(T_2\) (matrice \(M_2\))
+    est représentée par le produit matriciel \(M_2 \cdot M_1\) :
+  </p>
+  <div class="formule-box">
+    \[\vec{v}' = T_2(T_1(\vec{v})) = M_2\,(M_1\,\vec{v}) = (M_2 M_1)\,\vec{v}\]
+  </div>
+  <p>
+    L'ordre des facteurs est important : \(M_2 M_1 \neq M_1 M_2\) en général (non-commutativité).
+  </p>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Inverse d'une rotation</span>
+  <p>
+    La matrice de rotation \(R(\theta)\) est orthogonale : \(R(\theta)^{-1} = R(\theta)^T = R(-\theta)\).
+    En particulier :
+    \[R(\theta) R(-\theta) = I_2\]
+  </p>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple — Composition de rotation et d'homothétie</span>
+  <p>
+    On applique successivement une rotation de \(90°\) puis une homothétie de rapport 2.
+  </p>
+  \[R(90°) = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}, \quad H(2) = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}\]
+  <p>Transformation composée :</p>
+  \[M = H(2)\cdot R(90°) = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}\]
+  <p>
+    Le point \(P(1, 0)\) est envoyé sur
+    \(M\begin{pmatrix}1\\0\end{pmatrix} = \begin{pmatrix}0\\2\end{pmatrix}\).
+  </p>
+</div>
+
+<!-- SECTION 3 : COORDONNÉES HOMOGÈNES -->
+<h2>3. Coordonnées homogènes et transformations affines</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Coordonnées homogènes</span>
+  <p>
+    En 2D, un point \((x, y)\) est représenté en <strong>coordonnées homogènes</strong> par
+    le triplet \((x, y, 1)\). Plus généralement, tout triplet \((\lambda x, \lambda y, \lambda)\)
+    avec \(\lambda \neq 0\) représente le même point.
+  </p>
+  <p>
+    En 3D, un point \((x, y, z)\) est représenté par le quadruplet \((x, y, z, 1)\).
+  </p>
+  <p>
+    L'intérêt est que les <strong>transformations affines</strong> (incluant les translations)
+    se représentent par des matrices carrées, et les compositions se calculent par produits matriciels.
+  </p>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Transformations affines en coordonnées homogènes (2D)</span>
+  <p>
+    En coordonnées homogènes, toute transformation affine du plan est représentée par
+    une matrice \(3\times 3\) :
+  </p>
+  <table style="width:100%;border-collapse:collapse;margin:1em 0">
+    <thead>
+      <tr style="background:var(--p);color:#fff">
+        <th style="padding:0.5em 0.8em;border:1px solid #aaa">Transformation</th>
+        <th style="padding:0.5em 0.8em;border:1px solid #aaa">Matrice homogène \(3\times 3\)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Translation de vecteur \((t_x, t_y)\)</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} 1 & 0 & t_x \\ 0 & 1 & t_y \\ 0 & 0 & 1 \end{pmatrix}\)
+        </td>
+      </tr>
+      <tr style="background:#f5f7fb">
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Rotation d'angle \(\theta\)</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{pmatrix}\)
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Mise à l'échelle</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} s_x & 0 & 0 \\ 0 & s_y & 0 \\ 0 & 0 & 1 \end{pmatrix}\)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    La composition est le produit des matrices correspondantes (dans l'ordre).
+    Par exemple, une rotation <em>autour d'un point</em> \(C(c_x, c_y)\) s'écrit :
+    \[M = T(c_x,c_y)\cdot R(\theta)\cdot T(-c_x,-c_y)\]
+  </p>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple — Rotation autour d'un point \(C(2, 1)\) d'angle \(90°\)</span>
+  \[T(2,1) = \begin{pmatrix}1&0&2\\0&1&1\\0&0&1\end{pmatrix},\quad R(90°) = \begin{pmatrix}0&-1&0\\1&0&0\\0&0&1\end{pmatrix},\quad T(-2,-1) = \begin{pmatrix}1&0&-2\\0&1&-1\\0&0&1\end{pmatrix}\]
+  \[M = T(2,1)\cdot R(90°)\cdot T(-2,-1) = \begin{pmatrix}0&-1&3\\1&0&-1\\0&0&1\end{pmatrix}\]
+  <p>
+    Vérification : \(C(2,1)\) doit être fixe.
+    \(M\begin{pmatrix}2\\1\\1\end{pmatrix} = \begin{pmatrix}0\cdot2-1\cdot1+3\\1\cdot2+0\cdot1-1\\1\end{pmatrix} = \begin{pmatrix}2\\1\\1\end{pmatrix}\). Correct.
+  </p>
+</div>
+
+<!-- SECTION 4 : ROTATIONS 3D -->
+<h2>4. Matrices de rotation en 3D</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Rotations élémentaires en 3D</span>
+  <p>
+    Les rotations autour des axes de coordonnées dans \(\mathbb{R}^3\) sont :
+  </p>
+  <p><strong>Rotation d'angle \(\theta\) autour de l'axe \(Oz\) :</strong></p>
+  <div class="formule-box">
+    \[R_z(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{pmatrix}\]
+  </div>
+  <p><strong>Rotation d'angle \(\phi\) autour de l'axe \(Ox\) :</strong></p>
+  <div class="formule-box">
+    \[R_x(\phi) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \cos\phi & -\sin\phi \\ 0 & \sin\phi & \cos\phi \end{pmatrix}\]
+  </div>
+  <p><strong>Rotation d'angle \(\psi\) autour de l'axe \(Oy\) :</strong></p>
+  <div class="formule-box">
+    \[R_y(\psi) = \begin{pmatrix} \cos\psi & 0 & \sin\psi \\ 0 & 1 & 0 \\ -\sin\psi & 0 & \cos\psi \end{pmatrix}\]
+  </div>
+  <p>
+    Ces matrices sont toutes <strong>orthogonales</strong> :
+    \(R^{-1} = R^T\), \(\det(R) = +1\).
+  </p>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Angles d'Euler et composition de rotations</span>
+  <p>
+    Toute rotation de l'espace peut être décomposée en trois rotations élémentaires
+    (angles de roulis, tangage, lacet en robotique et aéronautique).
+    La rotation générale s'écrit :
+    \[R = R_z(\psi)\cdot R_y(\theta)\cdot R_x(\phi)\]
+  </p>
+  <p>
+    L'ordre des rotations est crucial car les rotations 3D ne commutent pas :
+    \(R_x \cdot R_y \neq R_y \cdot R_x\) en général.
+  </p>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Transformations affines en 3D (coordonnées homogènes)</span>
+  <p>
+    En coordonnées homogènes \((x, y, z, 1)^T\), la translation de vecteur \((t_x, t_y, t_z)\) est :
+  </p>
+  <div class="formule-box">
+    \[T(t_x,t_y,t_z) = \begin{pmatrix} 1 & 0 & 0 & t_x \\ 0 & 1 & 0 & t_y \\ 0 & 0 & 1 & t_z \\ 0 & 0 & 0 & 1 \end{pmatrix}\]
+  </div>
+  <p>
+    La rotation 3D autour de \(Oz\) en coordonnées homogènes est la matrice \(4\times 4\) obtenue
+    en insérant \(R_z(\theta)\) dans le bloc supérieur gauche.
+  </p>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple — Rotation 3D autour de \(Oz\) de \(45°\)</span>
+  <p>Avec \(\cos 45° = \sin 45° = \dfrac{\sqrt{2}}{2} \approx 0{,}707\) :</p>
+  \[R_z(45°) = \begin{pmatrix} 0{,}707 & -0{,}707 & 0 \\ 0{,}707 & 0{,}707 & 0 \\ 0 & 0 & 1 \end{pmatrix}\]
+  <p>Le point \(P(1, 0, 2)\) est envoyé sur :</p>
+  \[P' = R_z(45°)\begin{pmatrix}1\\0\\2\end{pmatrix} = \begin{pmatrix}0{,}707\\0{,}707\\2\end{pmatrix}\]
+  <p>
+    La composante \(z\) est inchangée (rotation autour de l'axe \(z\)).
+  </p>
+</div>
+
+<!-- SECTION 5 : PROJECTIONS -->
+<h2>5. Projections</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Projection orthogonale sur un plan</span>
+  <p>
+    La <strong>projection orthogonale</strong> sur le plan \(xOy\) (\(z = 0\)) associe
+    à tout point \(M(x, y, z)\) le point \(M'(x, y, 0)\). Elle est représentée par la matrice :
+  </p>
+  \[P_{xy} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}\]
+  <p>
+    Plus généralement, la projection orthogonale sur le plan de normale unitaire \(\vec{n}\)
+    est représentée par la matrice \(P = I - \vec{n}\vec{n}^T\).
+  </p>
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Projection perspective (perspective centrale)</span>
+  <p>
+    Dans une <strong>perspective centrale</strong>, le centre de projection est le point \(C(0,0,-d)\)
+    (le foyer de l'objectif). Un point \(M(X,Y,Z)\) dans l'espace se projette sur le plan
+    image \(z = 0\) en :
+  </p>
+  <div class="formule-box">
+    \[x = \frac{f \cdot X}{Z + d}, \quad y = \frac{f \cdot Y}{Z + d}\]
+  </div>
+  <p>
+    où \(f\) est la distance focale. Cette transformation n'est pas linéaire
+    (division par \(Z+d\)), mais s'exprime linéairement en coordonnées homogènes :
+  </p>
+  \[\begin{pmatrix} fx \\ fy \\ Z+d \end{pmatrix} \sim \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & d \end{pmatrix} \begin{pmatrix} X \\ Y \\ Z \\ 1 \end{pmatrix}\]
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Projection cavalière</span>
+  <p>
+    La <strong>projection cavalière</strong> (ou oblique) projette les points selon une direction
+    oblique faisant un angle \(\alpha\) avec le plan de projection.
+    L'axe \(z\) est représenté avec un rapport de réduction \(r\) et un angle \(\alpha\) :
+  </p>
+  \[x' = x + r\,z\cos\alpha, \quad y' = y + r\,z\sin\alpha\]
+  <p>
+    La projection isométrique correspond à \(r = 1\) et \(\alpha = 30°\).
+  </p>
+</div>
+
+<!-- SECTION 6 : SPHÈRES ET SURFACES -->
+<h2>6. Sphères et surfaces de révolution</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Sphère</span>
+  <p>
+    La <strong>sphère</strong> de centre \(\Omega(a, b, c)\) et de rayon \(R > 0\) est l'ensemble des points
+    \(M(x, y, z)\) tels que :
+  </p>
+  <div class="formule-box">
+    \[(x-a)^2 + (y-b)^2 + (z-c)^2 = R^2\]
+  </div>
+  <p>
+    Développée, cette équation s'écrit : \(x^2 + y^2 + z^2 + Dx + Ey + Fz + G = 0\)
+    avec \(D = -2a\), \(E = -2b\), \(F = -2c\), \(G = a^2 + b^2 + c^2 - R^2\).
+  </p>
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Surface de révolution</span>
+  <p>
+    Une <strong>surface de révolution</strong> d'axe \(Oz\) est obtenue en faisant tourner
+    une courbe génératrice autour de cet axe. Si la courbe est décrite par \(r = f(z)\)
+    (distance à l'axe en fonction de \(z\)), l'équation de la surface est :
+    \[x^2 + y^2 = [f(z)]^2\]
+  </p>
+  <p>Exemples :</p>
+  <ul>
+    <li>
+      <strong>Cylindre</strong> de rayon \(R\) d'axe \(Oz\) : \(x^2 + y^2 = R^2\)
+    </li>
+    <li>
+      <strong>Cône</strong> de demi-angle \(\alpha\) : \(x^2 + y^2 = z^2 \tan^2\alpha\)
+    </li>
+    <li>
+      <strong>Paraboloïde de révolution</strong> : \(x^2 + y^2 = 2pz\) (\(p > 0\))
+    </li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple — Identification d'une surface</span>
+  <p>
+    L'équation \(x^2 + y^2 + z^2 - 4x + 2y - 6z + 9 = 0\) représente quelle surface ?
+  </p>
+  <p><strong>Complétion du carré :</strong></p>
+  \[(x^2 - 4x + 4) + (y^2 + 2y + 1) + (z^2 - 6z + 9) = -9 + 4 + 1 + 9\]
+  \[(x-2)^2 + (y+1)^2 + (z-3)^2 = 5\]
+  <p>
+    C'est une <strong>sphère</strong> de centre \(\Omega(2, -1, 3)\) et de rayon \(R = \sqrt{5}\).
+  </p>
+</div>
+
+<!-- SECTION 7 : MATRICES ABCD -->
+<h2>7. Matrices de transfert ABCD en optique</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Rayon paraxial et vecteur rayon</span>
+  <p>
+    En optique géométrique paraxiale, un rayon lumineux est caractérisé à tout plan transversal
+    par deux paramètres :
+  </p>
+  <ul>
+    <li>\(r\) : hauteur (distance à l'axe optique)</li>
+    <li>\(u\) : angle par rapport à l'axe (en radians, approximation des petits angles : \(\sin u \approx u\))</li>
+  </ul>
+  <p>
+    Le vecteur rayon est \(\begin{pmatrix} r \\ u \end{pmatrix}\).
+  </p>
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Matrice de transfert (matrice ABCD)</span>
+  <p>
+    La <strong>matrice ABCD</strong> d'un système optique relie le vecteur rayon en sortie
+    au vecteur rayon en entrée :
+  </p>
+  <div class="formule-box">
+    \[\begin{pmatrix} r_2 \\ u_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix} \begin{pmatrix} r_1 \\ u_1 \end{pmatrix}\]
+  </div>
+  <p>
+    Pour un système optique dans un milieu homogène, \(\det(M) = AD - BC = n_1/n_2\)
+    (rapport des indices). Dans l'air (\(n = 1\) partout), \(\det(M) = 1\).
+  </p>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Matrices ABCD des éléments optiques fondamentaux</span>
+  <table style="width:100%;border-collapse:collapse;margin:1em 0">
+    <thead>
+      <tr style="background:var(--p);color:#fff">
+        <th style="padding:0.5em 0.8em;border:1px solid #aaa">Élément</th>
+        <th style="padding:0.5em 0.8em;border:1px solid #aaa">Matrice ABCD</th>
+        <th style="padding:0.5em 0.8em;border:1px solid #aaa">Paramètres</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Propagation libre sur distance \(d\)</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} 1 & d \\ 0 & 1 \end{pmatrix}\)
+        </td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">\(d\) : distance de propagation</td>
+      </tr>
+      <tr style="background:#f5f7fb">
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Lentille mince convergente</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} 1 & 0 \\ -1/f & 1 \end{pmatrix}\)
+        </td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">\(f > 0\) : focale</td>
+      </tr>
+      <tr>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Lentille mince divergente</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} 1 & 0 \\ -1/f & 1 \end{pmatrix}\)
+        </td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">\(f < 0\) : focale</td>
+      </tr>
+      <tr style="background:#f5f7fb">
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Miroir sphérique (rayon \(R\))</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} 1 & 0 \\ -2/R & 1 \end{pmatrix}\)
+        </td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">\(R > 0\) : concave</td>
+      </tr>
+      <tr>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">Interface dioptrique plane (\(n_1 \to n_2\))</td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">
+          \(\begin{pmatrix} 1 & 0 \\ 0 & n_1/n_2 \end{pmatrix}\)
+        </td>
+        <td style="padding:0.5em 0.8em;border:1px solid #aaa">indices \(n_1\), \(n_2\)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Composition de systèmes optiques</span>
+  <p>
+    Lorsque plusieurs éléments optiques sont traversés successivement, la matrice globale
+    est le produit des matrices dans l'ordre inverse du parcours de la lumière :
+  </p>
+  <div class="formule-box">
+    \[M_{\text{total}} = M_n \cdots M_2 \cdot M_1\]
+  </div>
+  <p>
+    (la lumière traverse d'abord l'élément 1, puis 2, ..., puis \(n\))
+  </p>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Analyse d'un système optique par matrices ABCD</span>
+  <ol>
+    <li>Identifier les éléments optiques dans l'ordre de traversée</li>
+    <li>Écrire la matrice ABCD de chaque élément</li>
+    <li>
+      Calculer le produit \(M = M_n \cdots M_1\) (attention à l'ordre !)
+    </li>
+    <li>
+      Lire les propriétés dans \(M = \begin{pmatrix}A&B\\C&D\end{pmatrix}\) :
+      <ul>
+        <li>\(B = 0\) : l'objet et l'image sont conjugués (condition de stigmatisme)</li>
+        <li>\(A = 0\) : système télécentrique objet (tout rayon parallèle passe par le foyer image)</li>
+        <li>\(D = 0\) : système télécentrique image</li>
+        <li>Focale image : \(f' = -1/C\) (si \(C \neq 0\))</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple — Lentille mince dans l'air</span>
+  <p>
+    Un rayon part d'un objet situé à distance \(d_0 = 30\,\text{cm}\) d'une lentille
+    de focale \(f = 10\,\text{cm}\), et on cherche la distance image \(d_i\).
+  </p>
+  <p>
+    Système : propagation \(d_0\), puis lentille de focale \(f\), puis propagation \(d_i\).
+  </p>
+  \[M = \underbrace{\begin{pmatrix}1 & d_i \\ 0 & 1\end{pmatrix}}_{\text{propagation }d_i} \cdot \underbrace{\begin{pmatrix}1 & 0 \\ -1/f & 1\end{pmatrix}}_{\text{lentille}} \cdot \underbrace{\begin{pmatrix}1 & d_0 \\ 0 & 1\end{pmatrix}}_{\text{propagation }d_0}\]
+  <p>Calcul du produit (lentille × propagation objet) :</p>
+  \[\begin{pmatrix}1&0\\-1/f&1\end{pmatrix}\begin{pmatrix}1&d_0\\0&1\end{pmatrix} = \begin{pmatrix}1&d_0\\-1/f&1-d_0/f\end{pmatrix}\]
+  <p>Puis multiplication par la propagation image :</p>
+  \[M = \begin{pmatrix}1&d_i\\0&1\end{pmatrix}\begin{pmatrix}1&d_0\\-1/f&1-d_0/f\end{pmatrix} = \begin{pmatrix}1 - d_i/f & d_0 + d_i(1 - d_0/f) \\ -1/f & 1-d_0/f\end{pmatrix}\]
+  <p>
+    Condition de conjugaison (\(B = 0\)) :
+    \[d_0 + d_i\!\left(1 - \frac{d_0}{f}\right) = 0 \implies d_i = \frac{-d_0}{1-d_0/f} = \frac{d_0 f}{d_0 - f}\]
+  </p>
+  <p>
+    Application : \(d_i = \dfrac{30 \times 10}{30 - 10} = \dfrac{300}{20} = 15\,\text{cm}\).
+    On retrouve la formule de conjugaison des lentilles : \(\dfrac{1}{d_i} - \dfrac{1}{d_0} = \dfrac{1}{f}\)
+    (avec convention algébrique).
+  </p>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple — Système doublet (deux lentilles séparées)</span>
+  <p>
+    Deux lentilles de focales \(f_1 = 20\,\text{cm}\) et \(f_2 = 10\,\text{cm}\), séparées
+    par une distance \(d = 5\,\text{cm}\). Calculer la focale équivalente.
+  </p>
+  \[M = \underbrace{\begin{pmatrix}1&0\\-1/f_2&1\end{pmatrix}}_{L_2}\begin{pmatrix}1&d\\0&1\end{pmatrix}\underbrace{\begin{pmatrix}1&0\\-1/f_1&1\end{pmatrix}}_{L_1}\]
+  <p>Calcul intermédiaire :</p>
+  \[\begin{pmatrix}1&0\\-1/f_2&1\end{pmatrix}\begin{pmatrix}1&d\\0&1\end{pmatrix} = \begin{pmatrix}1&d\\-1/f_2&1-d/f_2\end{pmatrix}\]
+  \[= \begin{pmatrix}1&5\\-0{,}1&0{,}5\end{pmatrix}\]
+  <p>Puis :</p>
+  \[M = \begin{pmatrix}1&5\\-0{,}1&0{,}5\end{pmatrix}\begin{pmatrix}1&0\\-0{,}05&1\end{pmatrix} = \begin{pmatrix}1-0{,}25&5\\-0{,}1-0{,}025&0{,}5\end{pmatrix} = \begin{pmatrix}0{,}75&5\\-0{,}125&0{,}5\end{pmatrix}\]
+  <p>
+    Focale équivalente : \(f' = -1/C = -1/(-0{,}125) = 8\,\text{cm}\).
+  </p>
+  <p>
+    On peut vérifier par la formule des doublets : \(\dfrac{1}{f'} = \dfrac{1}{f_1} + \dfrac{1}{f_2} - \dfrac{d}{f_1 f_2} = 0{,}05 + 0{,}1 - \dfrac{5}{200} = 0{,}125\), d'où \(f' = 8\,\text{cm}\). Cohérent.
+  </p>
+</div>
+
+<div class="retenir">
+  <strong>À retenir — Synthèse des matrices de transformation</strong>
+  <ul>
+    <li>En 2D, toute transformation linéaire = matrice \(2\times 2\) ; en coordonnées homogènes = matrice \(3\times 3\)</li>
+    <li>En 3D, rotations élémentaires = matrices \(3\times 3\) orthogonales ; en homogène = \(4\times 4\)</li>
+    <li>La composition de transformations = produit matriciel dans l'ordre inverse de l'application</li>
+    <li>En optique, matrice ABCD : \(B=0\) ↔ conjugaison ; \(f' = -1/C\)</li>
+    <li>Condition de stabilité des systèmes résonnants : \(|A+D|/2 \leq 1\) (critère de stabilité gaussienne)</li>
+  </ul>
+</div>
+
+<!-- SECTION 8 : EXERCICES -->
+<h2>8. Exercices d'application</h2>
+
+<div class="exo">
+  <span class="label label-def">Exercice 1 — Transformations 2D</span>
+  <ol>
+    <li>
+      Calculer la matrice de la rotation \(R(30°)\) et l'image du point \(P(2, 0)\).
+    </li>
+    <li>
+      Calculer la matrice \(M\) de la composition : rotation \(R(45°)\) puis homothétie de rapport 3.
+      Calculer l'image de \(P(1, 1)\).
+    </li>
+    <li>
+      En coordonnées homogènes, écrire la matrice d'une translation de vecteur \((3, -2)\)
+      suivie d'une rotation de \(90°\). Calculer l'image de \(A(1, 0)\).
+    </li>
+  </ol>
+</div>
+
+<div class="exo">
+  <span class="label label-def">Exercice 2 — Rotations 3D</span>
+  <ol>
+    <li>
+      Calculer \(R_z(90°) \cdot R_x(90°)\) et \(R_x(90°) \cdot R_z(90°)\).
+      Les résultats sont-ils identiques ?
+    </li>
+    <li>
+      Un point \(P(1, 0, 0)\) subit une rotation de \(60°\) autour de \(Oz\)
+      puis une rotation de \(30°\) autour de \(Ox\). Calculer ses coordonnées finales.
+    </li>
+    <li>
+      Vérifier que \(\det(R_z(60°)) = 1\) et que \(R_z(60°)^T R_z(60°) = I_3\).
+    </li>
+  </ol>
+</div>
+
+<div class="exo">
+  <span class="label label-def">Exercice 3 — Sphères</span>
+  <ol>
+    <li>Déterminer le centre et le rayon de la sphère d'équation \(x^2 + y^2 + z^2 - 6x + 4y + 2z - 2 = 0\).</li>
+    <li>
+      Montrer que les points \(A(4, 0, 1)\) et \(B(1, 2, -2)\) sont sur cette sphère.
+    </li>
+    <li>
+      Écrire l'équation de la surface de révolution obtenue en faisant tourner la droite
+      \(r = 2z\) (dans le plan \(xOz\)) autour de l'axe \(Oz\).
+    </li>
+  </ol>
+</div>
+
+<div class="exo">
+  <span class="label label-def">Exercice 4 — Matrices ABCD</span>
+  <ol>
+    <li>
+      Une lentille convergente de focale \(f = 15\,\text{cm}\) est placée à \(d_0 = 45\,\text{cm}\)
+      d'un objet. Calculer la position de l'image par la méthode des matrices ABCD.
+    </li>
+    <li>
+      Un système comporte, dans l'ordre : une lentille \(f_1 = 20\,\text{cm}\), une propagation
+      \(d = 10\,\text{cm}\), une lentille \(f_2 = 20\,\text{cm}\). Calculer la matrice globale
+      et la focale équivalente.
+    </li>
+    <li>
+      Pour une cavité laser Fabry-Pérot (deux miroirs sphériques identiques de rayon \(R = 40\,\text{cm}\)
+      séparés d'une distance \(L = 20\,\text{cm}\)), la matrice de parcours aller-retour est-elle stable ?
+      (Utiliser le critère \(|A+D|/2 \leq 1\).)
+    </li>
+  </ol>
+</div>
+
 </div>
 <script src="../../../nav.js"></script>
 </body>
