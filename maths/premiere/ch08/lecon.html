@@ -12,14 +12,403 @@
 <body>
 <div class="c">
 <a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
 <header>
-  <h1>Chapitre 08 – Vecteurs du plan</h1>
+  <h1>Chapitre 8 – Vecteurs du plan</h1>
   <p class="sous-titre">1ère Bac Pro | Géométrie | Mathématiques</p>
 </header>
 
+<!-- ══════════════════════════════════════════════════════ -->
 <div class="objectifs">
   <h3>Objectifs du chapitre</h3>
-  <p>Contenu à venir.</p>
+  <ul class="styled">
+    <li>Comprendre la notion de vecteur : direction, sens, norme</li>
+    <li>Représenter un vecteur et identifier des vecteurs égaux</li>
+    <li>Calculer les coordonnées d'un vecteur</li>
+    <li>Effectuer des opérations sur les vecteurs : somme, différence, produit par un scalaire</li>
+    <li>Calculer la norme d'un vecteur</li>
+    <li>Déterminer les coordonnées du milieu d'un segment</li>
+    <li>Introduire la notion de colinéarité</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>1. Notion de vecteur</h2>
+
+<div class="situation">
+  <h3>Situation professionnelle — Menuisier agenceur</h3>
+  <p>
+    Un menuisier agenceur doit déplacer un meuble de sa position initiale à sa position finale
+    dans une pièce. Ce déplacement est caractérisé par trois informations : la <strong>direction</strong>
+    (horizontale, verticale, oblique), le <strong>sens</strong> (vers la droite, vers la gauche...)
+    et la <strong>distance</strong> parcourue. C'est exactement ce que modélise un <strong>vecteur</strong>.
+  </p>
+</div>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  <strong>Vecteur :</strong><br>
+  Un <strong>vecteur</strong> est un objet mathématique caractérisé par :
+  <ul>
+    <li>une <strong>direction</strong> (la droite qui le porte)</li>
+    <li>un <strong>sens</strong> (l'un des deux sens de parcours sur cette droite)</li>
+    <li>une <strong>norme</strong> (longueur, notée \(\|\vec{u}\|\))</li>
+  </ul>
+  Un vecteur est représenté par une flèche. On le note \(\vec{u}\), \(\vec{v}\), \(\vec{AB}\), etc.
+</div>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  <strong>Vecteur \(\vec{AB}\) :</strong><br>
+  Soient \(A\) et \(B\) deux points du plan. Le vecteur \(\vec{AB}\) est le vecteur qui translate
+  le point \(A\) sur le point \(B\). Son point de départ est \(A\) (origine) et son point d'arrivée est \(B\) (extrémité).
+</div>
+
+<div class="att">
+  <span class="label-att">Attention</span>
+  L'ordre des lettres est important : \(\vec{AB} \neq \vec{BA}\).<br>
+  Les vecteurs \(\vec{AB}\) et \(\vec{BA}\) ont la même direction, la même norme, mais des <strong>sens opposés</strong> :
+  \(\vec{BA} = -\vec{AB}\).
+</div>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  <strong>Vecteur nul :</strong><br>
+  Le vecteur \(\vec{AA}\) est appelé <strong>vecteur nul</strong>, noté \(\vec{0}\). Sa norme est nulle et il n'a ni direction ni sens défini.
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>2. Coordonnées d'un vecteur</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  <strong>Coordonnées d'un vecteur :</strong><br>
+  Dans un repère \((O\,;\,\vec{i}\,,\,\vec{j})\), si \(A(x_A\,;\,y_A)\) et \(B(x_B\,;\,y_B)\),
+  alors le vecteur \(\vec{AB}\) a pour coordonnées :
+  \[\vec{AB} \begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}\]
+</div>
+
+<div class="ex">
+  <strong>Exemple :</strong> Soient \(A(2\,;\,5)\) et \(B(7\,;\,3)\).<br><br>
+  \[\vec{AB} \begin{pmatrix} 7 - 2 \\ 3 - 5 \end{pmatrix} = \begin{pmatrix} 5 \\ -2 \end{pmatrix}\]
+  Le vecteur \(\vec{AB}\) a pour coordonnées \((5\,;\,-2)\).
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>3. Égalité de vecteurs</h2>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span><br>
+  Deux vecteurs sont <strong>égaux</strong> si et seulement s'ils ont les <strong>mêmes coordonnées</strong>.
+  \[\vec{AB} = \vec{CD} \Leftrightarrow \begin{cases} x_B - x_A = x_D - x_C \\ y_B - y_A = y_D - y_C \end{cases}\]
+  Géométriquement, cela signifie qu'ils ont la même direction, le même sens et la même norme.
+</div>
+
+<div class="ex">
+  <strong>Exemple :</strong> Soient \(A(1\,;\,3)\), \(B(4\,;\,7)\), \(C(2\,;\,1)\) et \(D(5\,;\,5)\).<br><br>
+  \(\vec{AB} \begin{pmatrix} 3 \\ 4 \end{pmatrix}\) et \(\vec{CD} \begin{pmatrix} 3 \\ 4 \end{pmatrix}\)<br><br>
+  Les coordonnées sont identiques, donc \(\vec{AB} = \vec{CD}\).<br>
+  Conséquence : le quadrilatère \(ABDC\) est un <strong>parallélogramme</strong>.
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété — Parallélogramme</span><br>
+  \(ABDC\) est un parallélogramme si et seulement si \(\vec{AB} = \vec{CD}\).
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>4. Opérations sur les vecteurs</h2>
+
+<h3>4.1 Somme de deux vecteurs</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  <strong>Somme de vecteurs :</strong><br>
+  La somme de deux vecteurs \(\vec{u}\begin{pmatrix} x \\ y \end{pmatrix}\) et
+  \(\vec{v}\begin{pmatrix} x' \\ y' \end{pmatrix}\) est le vecteur :
+  \[\vec{u} + \vec{v} = \begin{pmatrix} x + x' \\ y + y' \end{pmatrix}\]
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété — Relation de Chasles</span><br>
+  Pour tous points \(A\), \(B\) et \(C\) du plan :
+  \[\vec{AB} + \vec{BC} = \vec{AC}\]
+  Cette relation permet d'enchaîner les déplacements.
+</div>
+
+<div class="ex">
+  <strong>Exemple :</strong> Un charpentier se déplace sur un chantier. Il va du point \(A\) au point \(B\),
+  puis du point \(B\) au point \(C\).<br><br>
+  Si \(\vec{AB}\begin{pmatrix} 3 \\ 2 \end{pmatrix}\) et \(\vec{BC}\begin{pmatrix} -1 \\ 4 \end{pmatrix}\),
+  alors le déplacement total est :
+  \[\vec{AC} = \vec{AB} + \vec{BC} = \begin{pmatrix} 3 + (-1) \\ 2 + 4 \end{pmatrix} = \begin{pmatrix} 2 \\ 6 \end{pmatrix}\]
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode — Construire la somme graphiquement</span>
+  <p><strong>Règle du parallélogramme :</strong></p>
+  <ol>
+    <li>Placer les deux vecteurs \(\vec{u}\) et \(\vec{v}\) à partir d'un même point \(O\).</li>
+    <li>Construire le parallélogramme dont \(\vec{u}\) et \(\vec{v}\) sont deux côtés.</li>
+    <li>La diagonale issue de \(O\) représente le vecteur somme \(\vec{u} + \vec{v}\).</li>
+  </ol>
+</div>
+
+<h3>4.2 Différence de deux vecteurs</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  <strong>Différence de vecteurs :</strong><br>
+  \[\vec{u} - \vec{v} = \vec{u} + (-\vec{v}) = \begin{pmatrix} x - x' \\ y - y' \end{pmatrix}\]
+</div>
+
+<h3>4.3 Produit d'un vecteur par un scalaire</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  <strong>Produit par un scalaire :</strong><br>
+  Si \(k\) est un réel et \(\vec{u}\begin{pmatrix} x \\ y \end{pmatrix}\), alors :
+  \[k\vec{u} = \begin{pmatrix} kx \\ ky \end{pmatrix}\]
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span><br>
+  Le vecteur \(k\vec{u}\) a :
+  <ul>
+    <li>la <strong>même direction</strong> que \(\vec{u}\)</li>
+    <li>le <strong>même sens</strong> si \(k > 0\), le <strong>sens opposé</strong> si \(k < 0\)</li>
+    <li>pour norme \(\|k\vec{u}\| = |k| \times \|\vec{u}\|\)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <strong>Exemple :</strong> Soit \(\vec{u}\begin{pmatrix} 2 \\ -3 \end{pmatrix}\).<br><br>
+  <ul>
+    <li>\(3\vec{u} = \begin{pmatrix} 6 \\ -9 \end{pmatrix}\) (même sens, 3 fois plus long)</li>
+    <li>\(-2\vec{u} = \begin{pmatrix} -4 \\ 6 \end{pmatrix}\) (sens opposé, 2 fois plus long)</li>
+    <li>\(0{,}5\vec{u} = \begin{pmatrix} 1 \\ -1{,}5 \end{pmatrix}\) (même sens, 2 fois plus court)</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>5. Norme d'un vecteur</h2>
+
+<div class="formule-box">
+  <h3>Norme d'un vecteur</h3>
+  <p>Si \(\vec{u}\begin{pmatrix} x \\ y \end{pmatrix}\), alors la norme de \(\vec{u}\) est :</p>
+  \[\|\vec{u}\| = \sqrt{x^2 + y^2}\]
+  <p>C'est la <strong>longueur</strong> du vecteur, obtenue par le théorème de Pythagore.</p>
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété — Distance entre deux points</span><br>
+  Si \(A(x_A\,;\,y_A)\) et \(B(x_B\,;\,y_B)\), alors :
+  \[AB = \|\vec{AB}\| = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}\]
+</div>
+
+<div class="ex">
+  <strong>Exemple :</strong> Soient \(A(1\,;\,2)\) et \(B(4\,;\,6)\).<br><br>
+  \(\vec{AB}\begin{pmatrix} 3 \\ 4 \end{pmatrix}\)<br><br>
+  \[AB = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5\]
+  La distance \(AB\) est de 5 unités.
+</div>
+
+<div class="situation">
+  <h3>Situation professionnelle — Charpentier</h3>
+  <p>
+    Sur un plan à l'échelle (1 unité = 1 m), un charpentier repère deux points d'ancrage
+    \(P(2\,;\,1)\) et \(Q(8\,;\,9)\) sur une charpente.
+    La longueur de la poutre reliant ces deux points est :
+  </p>
+  <p>
+    \(PQ = \sqrt{(8-2)^2 + (9-1)^2} = \sqrt{36 + 64} = \sqrt{100} = 10\) m.
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>6. Milieu d'un segment</h2>
+
+<div class="formule-box">
+  <h3>Coordonnées du milieu</h3>
+  <p>Le milieu \(M\) du segment \([AB]\) avec \(A(x_A\,;\,y_A)\) et \(B(x_B\,;\,y_B)\) a pour coordonnées :</p>
+  \[M\left(\frac{x_A + x_B}{2}\,;\,\frac{y_A + y_B}{2}\right)\]
+</div>
+
+<div class="ex">
+  <strong>Exemple :</strong> Soient \(A(3\,;\,7)\) et \(B(9\,;\,1)\).<br><br>
+  Le milieu \(M\) de \([AB]\) a pour coordonnées :
+  \[M\left(\frac{3+9}{2}\,;\,\frac{7+1}{2}\right) = M(6\,;\,4)\]
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode — Trouver un point connaissant le milieu</span>
+  <p>Si \(M(5\,;\,3)\) est le milieu de \([AB]\) avec \(A(2\,;\,1)\), on cherche \(B(x_B\,;\,y_B)\).</p>
+  <p>On utilise les formules du milieu :</p>
+  \[\frac{2 + x_B}{2} = 5 \Rightarrow x_B = 8 \qquad \frac{1 + y_B}{2} = 3 \Rightarrow y_B = 5\]
+  <p>Donc \(B(8\,;\,5)\).</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>7. Colinéarité (introduction)</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  <strong>Vecteurs colinéaires :</strong><br>
+  Deux vecteurs \(\vec{u}\) et \(\vec{v}\) sont <strong>colinéaires</strong> s'il existe un réel \(k\) tel que
+  \(\vec{v} = k\vec{u}\) (ou si l'un des deux est le vecteur nul).<br><br>
+  Géométriquement, deux vecteurs colinéaires ont la <strong>même direction</strong> (parallèles).
+</div>
+
+<div class="formule-box">
+  <h3>Critère de colinéarité</h3>
+  <p>Si \(\vec{u}\begin{pmatrix} x \\ y \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} x' \\ y' \end{pmatrix}\), alors :</p>
+  \[\vec{u} \text{ et } \vec{v} \text{ colinéaires} \Leftrightarrow xy' - x'y = 0\]
+  <p>La quantité \(xy' - x'y\) est appelée <strong>déterminant</strong> des vecteurs \(\vec{u}\) et \(\vec{v}\).</p>
+</div>
+
+<div class="ex">
+  <strong>Exemple 1 :</strong> \(\vec{u}\begin{pmatrix} 2 \\ 3 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 4 \\ 6 \end{pmatrix}\).<br><br>
+  Déterminant : \(2 \times 6 - 3 \times 4 = 12 - 12 = 0\).<br>
+  Les vecteurs sont <strong>colinéaires</strong> (on vérifie : \(\vec{v} = 2\vec{u}\)).
+</div>
+
+<div class="ex">
+  <strong>Exemple 2 :</strong> \(\vec{u}\begin{pmatrix} 1 \\ 4 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 3 \\ 5 \end{pmatrix}\).<br><br>
+  Déterminant : \(1 \times 5 - 4 \times 3 = 5 - 12 = -7 \neq 0\).<br>
+  Les vecteurs <strong>ne sont pas colinéaires</strong>.
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété — Alignement de trois points</span><br>
+  Trois points \(A\), \(B\) et \(C\) sont <strong>alignés</strong> si et seulement si les vecteurs
+  \(\vec{AB}\) et \(\vec{AC}\) sont colinéaires.
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>8. Applications</h2>
+
+<div class="situation">
+  <h3>Situation professionnelle — Forces en équilibre</h3>
+  <p>
+    Un technicien de maintenance doit vérifier l'équilibre d'un panneau suspendu par deux câbles.
+    Les forces exercées par les câbles sont modélisées par les vecteurs
+    \(\vec{F_1}\begin{pmatrix} -3 \\ 5 \end{pmatrix}\) et
+    \(\vec{F_2}\begin{pmatrix} 3 \\ 5 \end{pmatrix}\) (en kN).
+  </p>
+  <p>
+    Le poids du panneau est \(\vec{P}\begin{pmatrix} 0 \\ -10 \end{pmatrix}\) kN.
+  </p>
+  <p>
+    La résultante des forces est :
+    \[\vec{F_1} + \vec{F_2} + \vec{P} = \begin{pmatrix} -3+3+0 \\ 5+5-10 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} = \vec{0}\]
+    Le système est en <strong>équilibre</strong>.
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<h2>9. Mini-exercices</h2>
+
+<div class="exo">
+  <strong>Exercice 1 :</strong> Soient \(A(1\,;\,4)\), \(B(5\,;\,2)\) et \(C(-3\,;\,0)\).
+  <ol>
+    <li>Calculer les coordonnées de \(\vec{AB}\) et \(\vec{AC}\).</li>
+    <li>Calculer \(\vec{AB} + \vec{AC}\).</li>
+    <li>Vérifier la relation de Chasles : \(\vec{AB} + \vec{BC} = \vec{AC}\).</li>
+  </ol>
+</div>
+<div class="corr">
+  <ol>
+    <li>\(\vec{AB}\begin{pmatrix} 5-1 \\ 2-4 \end{pmatrix} = \begin{pmatrix} 4 \\ -2 \end{pmatrix}\)
+        et \(\vec{AC}\begin{pmatrix} -3-1 \\ 0-4 \end{pmatrix} = \begin{pmatrix} -4 \\ -4 \end{pmatrix}\)</li>
+    <li>\(\vec{AB} + \vec{AC} = \begin{pmatrix} 4+(-4) \\ -2+(-4) \end{pmatrix} = \begin{pmatrix} 0 \\ -6 \end{pmatrix}\)</li>
+    <li>\(\vec{BC}\begin{pmatrix} -3-5 \\ 0-2 \end{pmatrix} = \begin{pmatrix} -8 \\ -2 \end{pmatrix}\)<br>
+        \(\vec{AB} + \vec{BC} = \begin{pmatrix} 4+(-8) \\ -2+(-2) \end{pmatrix} = \begin{pmatrix} -4 \\ -4 \end{pmatrix} = \vec{AC}\) ✓</li>
+  </ol>
+</div>
+<button class="bc">Voir la correction</button>
+
+<div class="exo">
+  <strong>Exercice 2 :</strong> Soit \(\vec{u}\begin{pmatrix} 3 \\ -4 \end{pmatrix}\).
+  <ol>
+    <li>Calculer la norme de \(\vec{u}\).</li>
+    <li>Calculer les coordonnées et la norme de \(2\vec{u}\) et \(-\vec{u}\).</li>
+  </ol>
+</div>
+<div class="corr">
+  <ol>
+    <li>\(\|\vec{u}\| = \sqrt{3^2 + (-4)^2} = \sqrt{9 + 16} = \sqrt{25} = 5\)</li>
+    <li>\(2\vec{u} = \begin{pmatrix} 6 \\ -8 \end{pmatrix}\), \(\|2\vec{u}\| = \sqrt{36+64} = \sqrt{100} = 10\).<br>
+        \(-\vec{u} = \begin{pmatrix} -3 \\ 4 \end{pmatrix}\), \(\|-\vec{u}\| = \sqrt{9+16} = 5\).</li>
+  </ol>
+</div>
+<button class="bc">Voir la correction</button>
+
+<div class="exo">
+  <strong>Exercice 3 :</strong> Soient \(A(-2\,;\,3)\) et \(B(6\,;\,-1)\).
+  <ol>
+    <li>Calculer la distance \(AB\).</li>
+    <li>Déterminer les coordonnées du milieu \(M\) de \([AB]\).</li>
+  </ol>
+</div>
+<div class="corr">
+  <ol>
+    <li>\(AB = \sqrt{(6-(-2))^2 + (-1-3)^2} = \sqrt{64 + 16} = \sqrt{80} = 4\sqrt{5} \approx 8{,}94\)</li>
+    <li>\(M\left(\dfrac{-2+6}{2}\,;\,\dfrac{3+(-1)}{2}\right) = M(2\,;\,1)\)</li>
+  </ol>
+</div>
+<button class="bc">Voir la correction</button>
+
+<div class="exo">
+  <strong>Exercice 4 :</strong> Déterminer si les vecteurs suivants sont colinéaires.
+  <ol>
+    <li>\(\vec{u}\begin{pmatrix} 6 \\ 9 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 2 \\ 3 \end{pmatrix}\)</li>
+    <li>\(\vec{u}\begin{pmatrix} 4 \\ -1 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 8 \\ 3 \end{pmatrix}\)</li>
+  </ol>
+</div>
+<div class="corr">
+  <ol>
+    <li>Déterminant : \(6 \times 3 - 9 \times 2 = 18 - 18 = 0\).<br>
+        Les vecteurs sont <strong>colinéaires</strong> (\(\vec{u} = 3\vec{v}\)).</li>
+    <li>Déterminant : \(4 \times 3 - (-1) \times 8 = 12 + 8 = 20 \neq 0\).<br>
+        Les vecteurs <strong>ne sont pas colinéaires</strong>.</li>
+  </ol>
+</div>
+<button class="bc">Voir la correction</button>
+
+<div class="exo">
+  <strong>Exercice 5 :</strong> Un artisan déplace un panneau de bois sur un plan (unité : mètre).
+  Il effectue d'abord un déplacement \(\vec{d_1}\begin{pmatrix} 3 \\ 2 \end{pmatrix}\),
+  puis un second déplacement \(\vec{d_2}\begin{pmatrix} -1 \\ 4 \end{pmatrix}\).
+  <ol>
+    <li>Calculer le déplacement total \(\vec{d} = \vec{d_1} + \vec{d_2}\).</li>
+    <li>Quelle distance totale le panneau a-t-il réellement parcourue (somme des normes) ?</li>
+    <li>Quelle est la distance entre la position initiale et la position finale (norme du déplacement total) ?</li>
+  </ol>
+</div>
+<div class="corr">
+  <ol>
+    <li>\(\vec{d} = \begin{pmatrix} 3+(-1) \\ 2+4 \end{pmatrix} = \begin{pmatrix} 2 \\ 6 \end{pmatrix}\)</li>
+    <li>\(\|\vec{d_1}\| = \sqrt{9+4} = \sqrt{13} \approx 3{,}61\) m et \(\|\vec{d_2}\| = \sqrt{1+16} = \sqrt{17} \approx 4{,}12\) m.<br>
+        Distance totale parcourue : \(\sqrt{13} + \sqrt{17} \approx 7{,}73\) m.</li>
+    <li>\(\|\vec{d}\| = \sqrt{4+36} = \sqrt{40} = 2\sqrt{10} \approx 6{,}32\) m.<br>
+        La distance directe est plus courte que la distance parcourue.</li>
+  </ol>
+</div>
+<button class="bc">Voir la correction</button>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="retenir">
+  <h3>L'essentiel à retenir</h3>
+  <ul class="styled">
+    <li>Un <strong>vecteur</strong> a une direction, un sens et une norme.</li>
+    <li>Coordonnées de \(\vec{AB}\) : \(\begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}\).</li>
+    <li><strong>Relation de Chasles</strong> : \(\vec{AB} + \vec{BC} = \vec{AC}\).</li>
+    <li>Somme : \(\begin{pmatrix} x \\ y \end{pmatrix} + \begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} x+x' \\ y+y' \end{pmatrix}\) ;
+        Produit : \(k\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} kx \\ ky \end{pmatrix}\).</li>
+    <li><strong>Norme</strong> : \(\|\vec{u}\| = \sqrt{x^2+y^2}\).</li>
+    <li><strong>Milieu</strong> : \(M\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)\).</li>
+    <li><strong>Colinéarité</strong> : \(\vec{u}\) et \(\vec{v}\) colinéaires \(\Leftrightarrow xy'-x'y = 0\).</li>
+  </ul>
 </div>
 
 </div>
