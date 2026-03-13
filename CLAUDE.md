@@ -12,7 +12,7 @@ Ce fichier est lu automatiquement par Claude Code à chaque session.
 ├── styles.css                  ← Feuille de style partagée (NE PAS supprimer)
 ├── nav.js                      ← Navigation auto-générée (NE PAS modifier sans raison)
 ├── nav.css                     ← Styles de navigation
-├── diff.js                     ← Toggle différenciation pédagogique (insertion/poursuite)
+├── diff.js                     ← Toggle différenciation pédagogique (socle/standard/appro)
 ├── index.html                  ← Page d'accueil
 ├── maths/
 │   ├── seconde/ch01..ch14/     ← lecon.html, exercices.html, ds.html
@@ -117,9 +117,13 @@ Seules les classes vraiment spécifiques à une page peuvent rester inline.
 
 ## DIFFÉRENCIATION PÉDAGOGIQUE (Terminale)
 
-Le système de différenciation permet d'adapter le contenu selon le profil de l'élève :
-- **Insertion professionnelle** : exercices guidés, contextes 100% métier, calculs directs
-- **Poursuite d'études** : exercices ouverts, problèmes à étapes, formalisme BTS
+Le système de différenciation propose 3 niveaux d'adaptation :
+
+| Niveau | Profil cible | Contenu |
+|---|---|---|
+| **Socle** | Élèves en difficulté | Exercices très guidés, étape par étape, contextes simples |
+| **Standard** | Majorité de la classe | Exercices du programme, contextes pro variés |
+| **Approfondissement** | Poursuite BTS/MC | Problèmes ouverts, formalisme, type BTS |
 
 ### Mise en place sur une page
 
@@ -127,19 +131,25 @@ Le système de différenciation permet d'adapter le contenu selon le profil de l
 2. Tagger les blocs avec les classes CSS :
 
 ```html
-<!-- Visible par tous (pas de classe diff) -->
+<!-- Visible par tous (pas de classe diff) = tronc commun -->
 <div class="exo">Exercice commun</div>
 
-<!-- Seulement insertion professionnelle -->
-<div class="exo diff-insert">
-  <span class="tag-insert">Insertion pro</span>
-  Exercice guidé, contexte métier...
+<!-- Seulement niveau Socle -->
+<div class="exo diff-socle">
+  <span class="tag-socle">Socle</span>
+  Exercice très guidé, étape par étape...
 </div>
 
-<!-- Seulement poursuite d'études -->
+<!-- Seulement niveau Standard -->
+<div class="exo diff-standard">
+  <span class="tag-standard">Standard</span>
+  Exercice classique du programme...
+</div>
+
+<!-- Seulement niveau Approfondissement -->
 <div class="exo diff-appro">
-  <span class="tag-appro">Poursuite d'études</span>
-  Exercice approfondi type BTS...
+  <span class="tag-appro">Approfondissement</span>
+  Exercice ouvert type BTS...
 </div>
 
 <!-- Encadré "Pour aller plus loin" dans les cours -->
@@ -153,17 +163,24 @@ Le système de différenciation permet d'adapter le contenu selon le profil de l
 
 | Classe | Usage |
 |---|---|
-| `.diff-insert` | Bloc visible uniquement en mode Insertion |
-| `.diff-appro` | Bloc visible uniquement en mode Poursuite |
-| `.tag-insert` | Badge bleu "Insertion pro" |
-| `.tag-appro` | Badge violet "Poursuite d'études" |
-| `.plus-loin` | Encadré violet pour contenu complémentaire |
+| `.diff-socle` | Bloc visible uniquement en mode Socle |
+| `.diff-standard` | Bloc visible uniquement en mode Standard |
+| `.diff-appro` | Bloc visible uniquement en mode Approfondissement |
+| `.tag-socle` | Badge vert "Socle" |
+| `.tag-standard` | Badge bleu "Standard" |
+| `.tag-appro` | Badge violet "Approfondissement" |
+| `.plus-loin` | Encadré violet pour contenu complémentaire (cours) |
 
 ### Comportement
-- Le toggle apparaît automatiquement si la page contient des blocs `.diff-insert` ou `.diff-appro`
+- Le toggle apparaît automatiquement si la page contient des blocs `.diff-socle`, `.diff-standard` ou `.diff-appro`
 - Le choix est mémorisé en `localStorage` (persistant entre les pages)
 - Le bouton "Tout voir" affiche tous les blocs (mode prof)
 - Sans `diff.js`, tous les blocs restent visibles (dégradation gracieuse)
+
+### Principes de rédaction par niveau
+- **Socle** : consignes décomposées, calculs intermédiaires donnés, tableaux pré-remplis, contextes du quotidien
+- **Standard** : consignes complètes, contextes professionnels variés, rédaction attendue
+- **Approfondissement** : mise en équation autonome, problèmes à étapes, questions ouvertes, vocabulaire BTS
 
 ---
 
