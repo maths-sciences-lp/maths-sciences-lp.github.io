@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>DS Ch03 – Loi d'Ohm et équilibre d'un solide – 2de Bac Pro</title>
+<title>DS Ch03 – Loi d'Ohm et caractéristiques d'un dipôle – 2de Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
@@ -36,7 +36,7 @@
 
 <header>
   <h1>Devoir Surveill&eacute; &ndash; Chapitre 3</h1>
-  <p class="sous-titre">Loi d'Ohm et &eacute;quilibre d'un solide &nbsp;|&nbsp; 2<sup>de</sup> Bac Pro</p>
+  <p class="sous-titre">Loi d'Ohm et caract&eacute;ristiques d'un dip&ocirc;le &nbsp;|&nbsp; 2<sup>de</sup> Bac Pro</p>
 </header>
 
 <div class="dh">
@@ -51,113 +51,153 @@
   <span class="comp comp-ana">ANA &ndash; Analyser</span>
   <span class="comp comp-rea">REA &ndash; R&eacute;aliser</span>
   <span class="comp comp-val">VAL &ndash; Valider</span>
-  <span class="comp comp-com">COM &ndash; Communiquer</span>
 </div>
 
+<div class="objectifs">
+  <strong>Comp&eacute;tences &eacute;valu&eacute;es :</strong>
+  <ul>
+    <li><strong>S'approprier</strong> &mdash; Identifier les grandeurs &eacute;lectriques U, I, R et leurs unit&eacute;s</li>
+    <li><strong>Analyser</strong> &mdash; Interpr&eacute;ter une caract&eacute;ristique U(I)</li>
+    <li><strong>R&eacute;aliser</strong> &mdash; Calculer U, I, R avec la loi d'Ohm ; calculer P et W</li>
+    <li><strong>Valider</strong> &mdash; V&eacute;rifier la coh&eacute;rence d'un r&eacute;sultat (loi des mailles, unit&eacute;s)</li>
+  </ul>
+</div>
 
 <!-- ================================================================
-     DS SOCLE — très guidé, formules données, cases à remplir
+     DS SOCLE — très guidé, formules données, calculs amorcés
      ================================================================ -->
 <div class="diff-socle">
 <span class="tag-socle">Socle</span>
 
 <div class="formule-donnee">
   <strong>Formules donn&eacute;es :</strong><br>
-  Poids : \( P = m \times g \) &nbsp;|&nbsp; Masse : \( m = \dfrac{P}{g} \) &nbsp;|&nbsp; \( g = 9{,}8\,\text{N/kg} \)<br>
-  &Eacute;quilibre : somme des forces = 0. Verticalement : \( R = P \). Horizontalement : \( f = T \).
+  Loi d'Ohm : \( U = R \times I \) &nbsp;|&nbsp; \( I = \dfrac{U}{R} \) &nbsp;|&nbsp; \( R = \dfrac{U}{I} \)<br>
+  R&eacute;sistances en s&eacute;rie : \( R_{eq} = R_1 + R_2 \) &nbsp;|&nbsp; Loi des mailles : \( U = U_1 + U_2 \)<br>
+  Puissance : \( P = U \times I \) &nbsp;|&nbsp; &Eacute;nergie : \( W = P \times t \) &nbsp;|&nbsp; \( 1\,\text{kWh} = 1\,000\,\text{Wh} \)
 </div>
 
 <!-- PARTIE A SOCLE -->
 <div class="partie">
   <div class="partie-header">
-    <span class="partie-title">Partie A &ndash; Poids et masse (8 pts)</span>
+    <span class="partie-title">Partie A &ndash; Loi d'Ohm (8 pts)</span>
     <span class="pts">8 pts</span>
   </div>
   <p class="bareme">2 pts par question.</p>
 
+  <p>Dans un atelier de menuiserie, on rel&egrave;ve les caract&eacute;ristiques &eacute;lectriques de trois appareils :</p>
+
   <div class="q">
     <strong>1.</strong> <span class="comp comp-rea">REA</span>
-    Calculer le poids d'un objet de 12 kg. Formule : \( P = m \times g \)<br>
-    \( P = \ldots\ldots \times 9{,}8 = \) <span class="answer-line"></span>
+    Une ponceuse orbitale fonctionne sous 230 V et consomme 2 A. Calculer sa r&eacute;sistance.<br>
+    Formule : \( R = \dfrac{U}{I} \)<br>
+    \( R = \dfrac{230}{\ldots\ldots} = \) <span class="answer-line"></span>
   </div>
 
   <div class="q">
     <strong>2.</strong> <span class="comp comp-rea">REA</span>
-    Calculer la masse d'un objet pesant 294 N. Formule : \( m = \dfrac{P}{g} \)<br>
-    \( m = \dfrac{294}{\ldots\ldots} = \) <span class="answer-line"></span>
+    Une lampe LED d'&eacute;clairage est aliment&eacute;e en 12 V &agrave; travers une r&eacute;sistance de protection de 240 &Omega;. Calculer l'intensit&eacute; du courant.<br>
+    Formule : \( I = \dfrac{U}{R} \)<br>
+    \( I = \dfrac{\ldots\ldots}{240} = \) <span class="answer-line"></span>
   </div>
 
   <div class="q">
-    <strong>3.</strong> <span class="comp comp-ana">ANA</span>
-    Sur la Lune (\( g = 1{,}6\,\text{N/kg} \)) pour un objet de masse 30 kg :<br>
-    La masse change-t-elle sur la Lune ? (entourer) &nbsp; OUI &nbsp; / &nbsp; NON<br>
-    Son poids sur la Lune : \( P_{Lune} = 30 \times \ldots\ldots = \) <span class="answer-line"></span>
+    <strong>3.</strong> <span class="comp comp-rea">REA</span>
+    Une perceuse &agrave; colonne a une r&eacute;sistance de moteur de 46 &Omega; et consomme 5 A. Calculer la tension &agrave; ses bornes.<br>
+    Formule : \( U = R \times I \)<br>
+    \( U = 46 \times \ldots\ldots = \) <span class="answer-line"></span>
   </div>
 
   <div class="q">
-    <strong>4.</strong> <span class="comp comp-rea">REA</span>
-    Poids d'un sac de 25 kg : \( P = 25 \times 9{,}8 = \) <span class="answer-line"></span>
+    <strong>4.</strong> <span class="comp comp-app">APP</span>
+    Parmi les trois appareils pr&eacute;c&eacute;dents, lequel consomme le plus de courant ? Quel appareil a la plus grande r&eacute;sistance ?
+    <span class="answer-line"></span>
   </div>
 
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(P = 12 \times 9{,}8 = 117{,}6\,\text{N}\)</p>
-    <p><strong>2.</strong> \(m = 294 / 9{,}8 = 30\,\text{kg}\)</p>
-    <p><strong>3.</strong> Non, la masse ne change pas. \(P_{Lune} = 30 \times 1{,}6 = 48\,\text{N}\)</p>
-    <p><strong>4.</strong> \(P = 25 \times 9{,}8 = 245\,\text{N}\)</p>
+    <p><strong>1.</strong> \( R = \dfrac{230}{2} = 115\,\Omega \)</p>
+    <p><strong>2.</strong> \( I = \dfrac{12}{240} = 0{,}05\,\text{A} = 50\,\text{mA} \)</p>
+    <p><strong>3.</strong> \( U = 46 \times 5 = 230\,\text{V} \)</p>
+    <p><strong>4.</strong> La perceuse consomme le plus de courant (5 A). La lampe LED a la plus grande r&eacute;sistance (240 &Omega;).</p>
   </div>
 </div>
 
 <!-- PARTIE B SOCLE -->
 <div class="partie">
   <div class="partie-header">
-    <span class="partie-title">Partie B &ndash; &Eacute;quilibre d'une caisse (12 pts)</span>
-    <span class="pts">12 pts</span>
+    <span class="partie-title">Partie B &ndash; R&eacute;sistances en s&eacute;rie (6 pts)</span>
+    <span class="pts">6 pts</span>
   </div>
 
-  <p>Une caisse de 40 kg est pos&eacute;e sur le sol. On tire dessus avec une corde horizontale avec une force \( T = 80\,\text{N} \). Elle ne bouge pas.</p>
+  <p>Un artisan menuisier utilise un circuit d'&eacute;clairage aliment&eacute; par une pile de 12 V. Deux r&eacute;sistances sont branch&eacute;es en s&eacute;rie : \( R_1 = 20\,\Omega \) et \( R_2 = 40\,\Omega \).</p>
 
   <div class="formule-donnee">
-    Forces appliqu&eacute;es sur la caisse :
-    <ul>
-      <li>Poids \( P \) vers le <strong>bas</strong></li>
-      <li>R&eacute;action du sol \( R \) vers le <strong>haut</strong></li>
-      <li>Tension de la corde \( T \) vers la <strong>droite</strong></li>
-      <li>Frottement \( f \) vers la <strong>gauche</strong></li>
-    </ul>
+    Rappel : en s&eacute;rie, \( R_{eq} = R_1 + R_2 \) et le m&ecirc;me courant \( I \) traverse les deux r&eacute;sistances.
   </div>
 
   <div class="q">
     <strong>1.</strong> <span class="comp comp-rea">REA</span>
-    Calculer le poids de la caisse. <span class="bareme">(3 pts)</span><br>
-    \( P = 40 \times 9{,}8 = \) <span class="answer-line"></span>
+    Calculer la r&eacute;sistance &eacute;quivalente du circuit. <span class="bareme">(2 pts)</span><br>
+    \( R_{eq} = R_1 + R_2 = \ldots\ldots + \ldots\ldots = \) <span class="answer-line"></span>
   </div>
 
   <div class="q">
-    <strong>2.</strong> <span class="comp comp-app">APP</span>
-    Compléter la liste des forces exercées sur la caisse en précisant le sens de chacune. <span class="bareme">(3 pts)</span><br>
-    Force 1 : Poids \( P = \ldots\ldots\,\text{N} \), direction : <span class="answer-line"></span><br>
-    Force 2 : Réaction \( R = \ldots\ldots\,\text{N} \), direction : <span class="answer-line"></span><br>
-    Force 3 : Tension \( T = \ldots\ldots\,\text{N} \), direction : <span class="answer-line"></span><br>
-    Force 4 : Frottement \( f = \ldots\ldots\,\text{N} \), direction : <span class="answer-line"></span>
+    <strong>2.</strong> <span class="comp comp-rea">REA</span>
+    Calculer l'intensit&eacute; du courant dans le circuit. <span class="bareme">(2 pts)</span><br>
+    \( I = \dfrac{U}{R_{eq}} = \dfrac{12}{\ldots\ldots} = \) <span class="answer-line"></span>
   </div>
 
   <div class="q">
-    <strong>3.</strong> <span class="comp comp-ana">ANA</span>
-    La caisse est en équilibre vertical. Cela signifie : \( R = P = \) <span class="answer-line"></span> N. <span class="bareme">(3 pts)</span>
-  </div>
-
-  <div class="q">
-    <strong>4.</strong> <span class="comp comp-val">VAL</span>
-    La caisse est en équilibre horizontal. Cela signifie : \( f = T = \) <span class="answer-line"></span> N, dans le sens (entourer) : GAUCHE / DROITE. <span class="bareme">(3 pts)</span>
+    <strong>3.</strong> <span class="comp comp-val">VAL</span>
+    Calculer la tension aux bornes de chaque r&eacute;sistance et v&eacute;rifier avec la loi des mailles. <span class="bareme">(2 pts)</span><br>
+    \( U_1 = R_1 \times I = 20 \times \ldots\ldots = \) <span class="answer-line"></span><br>
+    \( U_2 = R_2 \times I = 40 \times \ldots\ldots = \) <span class="answer-line"></span><br>
+    V&eacute;rification : \( U_1 + U_2 = \ldots\ldots + \ldots\ldots = \) <span class="answer-line"></span>
   </div>
 
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(P = 40 \times 9{,}8 = 392\,\text{N}\)</p>
-    <p><strong>2.</strong> Poids 392 N vers le bas ; Réaction 392 N vers le haut ; Tension 80 N vers la droite ; Frottement 80 N vers la gauche.</p>
-    <p><strong>3.</strong> \(R = P = 392\,\text{N}\) (équilibre vertical)</p>
-    <p><strong>4.</strong> \(f = T = 80\,\text{N}\), sens : GAUCHE (opposé à T). Équilibre horizontal.</p>
+    <p><strong>1.</strong> \( R_{eq} = 20 + 40 = 60\,\Omega \)</p>
+    <p><strong>2.</strong> \( I = \dfrac{12}{60} = 0{,}2\,\text{A} \)</p>
+    <p><strong>3.</strong> \( U_1 = 20 \times 0{,}2 = 4\,\text{V} \) ; \( U_2 = 40 \times 0{,}2 = 8\,\text{V} \).<br>
+    V&eacute;rification : \( U_1 + U_2 = 4 + 8 = 12\,\text{V} = U \) &#10003; (loi des mailles v&eacute;rifi&eacute;e)</p>
+  </div>
+</div>
+
+<!-- PARTIE C SOCLE -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Partie C &ndash; Puissance et &eacute;nergie (6 pts)</span>
+    <span class="pts">6 pts</span>
+  </div>
+
+  <p>Une d&eacute;fonceuse de menuiserie porte la plaque signal&eacute;tique : <strong>230 V &ndash; 6 A</strong>. Elle est utilis&eacute;e 3 heures par jour.</p>
+
+  <div class="q">
+    <strong>1.</strong> <span class="comp comp-rea">REA</span>
+    Calculer la puissance &eacute;lectrique de la d&eacute;fonceuse. <span class="bareme">(2 pts)</span><br>
+    Formule : \( P = U \times I \)<br>
+    \( P = 230 \times \ldots\ldots = \) <span class="answer-line"></span>
+  </div>
+
+  <div class="q">
+    <strong>2.</strong> <span class="comp comp-rea">REA</span>
+    Calculer l'&eacute;nergie consomm&eacute;e en une journ&eacute;e, en Wh puis en kWh. <span class="bareme">(2 pts)</span><br>
+    \( W = P \times t = \ldots\ldots \times 3 = \) <span class="answer-line"></span> Wh<br>
+    En kWh : \( W = \dfrac{\ldots\ldots}{1\,000} = \) <span class="answer-line"></span> kWh
+  </div>
+
+  <div class="q">
+    <strong>3.</strong> <span class="comp comp-rea">REA</span>
+    Le prix du kWh est de 0,25 &euro;. Calculer le co&ucirc;t &eacute;lectrique d'une journ&eacute;e d'utilisation. <span class="bareme">(2 pts)</span><br>
+    Co&ucirc;t = \( \ldots\ldots \times 0{,}25 = \) <span class="answer-line"></span> &euro;
+  </div>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \( P = 230 \times 6 = 1\,380\,\text{W} = 1{,}38\,\text{kW} \)</p>
+    <p><strong>2.</strong> \( W = 1\,380 \times 3 = 4\,140\,\text{Wh} = 4{,}14\,\text{kWh} \)</p>
+    <p><strong>3.</strong> Co&ucirc;t = \( 4{,}14 \times 0{,}25 = 1{,}035 \approx 1{,}04\,\text{&euro;} \) par jour.</p>
   </div>
 </div>
 
@@ -165,7 +205,7 @@
 
 
 <!-- ================================================================
-     DS STANDARD — le DS original
+     DS STANDARD — niveau normal
      ================================================================ -->
 <div class="diff-standard">
 <span class="tag-standard">Standard</span>
@@ -173,85 +213,185 @@
 <!-- PARTIE A STANDARD -->
 <div class="partie">
   <div class="partie-header">
-    <span class="partie-title">Partie A &ndash; Poids et masse</span>
+    <span class="partie-title">Partie A &ndash; Loi d'Ohm et caract&eacute;ristique U(I) (8 pts)</span>
     <span class="pts">8 pts</span>
   </div>
-  <p class="bareme">2 pts par question.</p>
+
+  <p>Un menuisier agenceur teste un composant &eacute;lectrique en mesurant la tension \( U \) &agrave; ses bornes pour diff&eacute;rentes valeurs de l'intensit&eacute; \( I \). Voici les r&eacute;sultats :</p>
+
+  <table>
+    <tr>
+      <th>I (mA)</th>
+      <td>0</td>
+      <td>20</td>
+      <td>40</td>
+      <td>60</td>
+      <td>80</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>U (V)</th>
+      <td>0</td>
+      <td>1,5</td>
+      <td>3,0</td>
+      <td>4,5</td>
+      <td>6,0</td>
+      <td>7,5</td>
+    </tr>
+  </table>
 
   <div class="q">
-    <strong>1.</strong> <span class="comp comp-rea">REA</span>
-    Calculer le poids d'un objet de 12 kg (\(g = 9{,}8\) N/kg).
+    <strong>1.</strong> <span class="comp comp-app">APP</span>
+    Rappeler la relation entre \( U \), \( R \) et \( I \) pour un dip&ocirc;le ohmique. Pr&eacute;ciser les unit&eacute;s. <span class="bareme">(1 pt)</span>
   </div>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>2.</strong> <span class="comp comp-rea">REA</span>
-    Calculer la masse d'un objet pesant 294 N.
-  </div>
-  <span class="answer-line"></span>
-
-  <div class="q">
-    <strong>3.</strong> <span class="comp comp-ana">ANA</span>
-    M&ecirc;me objet sur la Lune (\(g = 1{,}6\) N/kg). Calculer sa masse et son poids.
+    <strong>2.</strong> <span class="comp comp-ana">ANA</span>
+    Le rapport \( \dfrac{U}{I} \) est-il constant pour toutes les mesures ? Conclure : ce composant est-il un dip&ocirc;le ohmique ? <span class="bareme">(2 pts)</span>
   </div>
   <span class="answer-line"></span>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>4.</strong> <span class="comp comp-rea">REA</span>
-    Quel est le poids d'un sac de 25 kg ?
+    <strong>3.</strong> <span class="comp comp-rea">REA</span>
+    Calculer la r&eacute;sistance \( R \) de ce composant en utilisant les valeurs \( I = 80\,\text{mA} \) et \( U = 6{,}0\,\text{V} \). <span class="bareme">(2 pts)</span>
+  </div>
+  <span class="answer-line"></span>
+
+  <div class="q">
+    <strong>4.</strong> <span class="comp comp-ana">ANA</span>
+    Si l'on tra&ccedil;ait la courbe U(I), quelle forme aurait-elle ? Que repr&eacute;sente sa pente ? <span class="bareme">(1 pt)</span>
+  </div>
+  <span class="answer-line"></span>
+
+  <div class="q">
+    <strong>5.</strong> <span class="comp comp-rea">REA</span>
+    On branche cette r&eacute;sistance sur une alimentation de 12 V. Calculer l'intensit&eacute; du courant. <span class="bareme">(2 pts)</span>
   </div>
   <span class="answer-line"></span>
 
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(P = 12 \times 9{,}8 = 117{,}6\,\text{N}\)</p>
-    <p><strong>2.</strong> \(m = 294 / 9{,}8 = 30\,\text{kg}\)</p>
-    <p><strong>3.</strong> Masse = 30 kg (inchang&eacute;e) ; \(P = 30 \times 1{,}6 = 48\,\text{N}\)</p>
-    <p><strong>4.</strong> \(P = 25 \times 9{,}8 = 245\,\text{N}\)</p>
+    <p><strong>1.</strong> Pour un dip&ocirc;le ohmique : \( U = R \times I \), avec \( U \) en volts (V), \( R \) en ohms (&Omega;) et \( I \) en amp&egrave;res (A).</p>
+    <p><strong>2.</strong> V&eacute;rification : \( \dfrac{1{,}5}{0{,}020} = 75 \) ; \( \dfrac{3{,}0}{0{,}040} = 75 \) ; \( \dfrac{4{,}5}{0{,}060} = 75 \) ; \( \dfrac{6{,}0}{0{,}080} = 75 \) ; \( \dfrac{7{,}5}{0{,}100} = 75 \). Le rapport est constant et &eacute;gal &agrave; 75 &Omega;. Le composant est bien un dip&ocirc;le ohmique.</p>
+    <p><strong>3.</strong> Conversion : \( I = 80\,\text{mA} = 0{,}080\,\text{A} \). Donc \( R = \dfrac{6{,}0}{0{,}080} = 75\,\Omega \).</p>
+    <p><strong>4.</strong> La courbe U(I) serait une droite passant par l'origine. Sa pente repr&eacute;sente la r&eacute;sistance \( R = 75\,\Omega \).</p>
+    <p><strong>5.</strong> \( I = \dfrac{U}{R} = \dfrac{12}{75} = 0{,}16\,\text{A} = 160\,\text{mA} \).</p>
   </div>
 </div>
 
 <!-- PARTIE B STANDARD -->
 <div class="partie">
   <div class="partie-header">
-    <span class="partie-title">Partie B &ndash; &Eacute;quilibre</span>
-    <span class="pts">12 pts</span>
+    <span class="partie-title">Partie B &ndash; Circuit mixte (6 pts)</span>
+    <span class="pts">6 pts</span>
   </div>
 
-  <p>Une caisse de 40 kg est pos&eacute;e sur le sol. On tire dessus avec une corde horizontale avec une force \(T = 80\,\text{N}\). Elle ne bouge pas.</p>
+  <p>Dans un circuit d'&eacute;clairage d'atelier, un artisan menuisier branche deux r&eacute;sistances \( R_1 = 60\,\Omega \) et \( R_2 = 40\,\Omega \) en s&eacute;rie avec une r&eacute;sistance \( R_3 = 50\,\Omega \) mont&eacute;e en parall&egrave;le avec l'ensemble \( R_1 + R_2 \). Le circuit est aliment&eacute; sous 230 V.</p>
 
   <div class="q">
     <strong>1.</strong> <span class="comp comp-rea">REA</span>
-    Calculer le poids de la caisse. <span class="bareme">(3 pts)</span>
+    Calculer la r&eacute;sistance &eacute;quivalente de \( R_1 \) et \( R_2 \) en s&eacute;rie : \( R_s = R_1 + R_2 \). <span class="bareme">(1 pt)</span>
   </div>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>2.</strong> <span class="comp comp-app">APP</span>
-    Quelles forces s'exercent sur la caisse ? Nommer et d&eacute;crire chacune. <span class="bareme">(3 pts)</span>
+    <strong>2.</strong> <span class="comp comp-rea">REA</span>
+    Calculer la r&eacute;sistance &eacute;quivalente totale \( R_{eq} \) de \( R_s \) en parall&egrave;le avec \( R_3 \). <span class="bareme">(2 pts)</span>
   </div>
   <span class="answer-line"></span>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>3.</strong> <span class="comp comp-ana">ANA</span>
-    Quelle est la valeur de la r&eacute;action du sol ? Justifier. <span class="bareme">(3 pts)</span>
+    <strong>3.</strong> <span class="comp comp-rea">REA</span>
+    Calculer l'intensit&eacute; totale \( I \) fournie par l'alimentation. <span class="bareme">(1 pt)</span>
   </div>
   <span class="answer-line"></span>
 
   <div class="q">
     <strong>4.</strong> <span class="comp comp-val">VAL</span>
-    Quelle est la valeur de la force de frottement ? Dans quel sens ? <span class="bareme">(3 pts)</span>
+    Calculer l'intensit&eacute; dans chaque branche (\( I_s \) dans la branche s&eacute;rie et \( I_3 \) dans \( R_3 \)) et v&eacute;rifier avec la loi des n&oelig;uds. <span class="bareme">(2 pts)</span>
   </div>
+  <span class="answer-line"></span>
   <span class="answer-line"></span>
 
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \(P = 40 \times 9{,}8 = 392\,\text{N}\)</p>
-    <p><strong>2.</strong> 4 forces : Poids (392 N &darr;), R&eacute;action (&uarr;), Tension T (&rarr; horizontal), Frottement f (&larr; horizontal)</p>
-    <p><strong>3.</strong> \(R = P = 392\,\text{N}\) (&eacute;quilibre vertical)</p>
-    <p><strong>4.</strong> \(f = T = 80\,\text{N}\) en sens oppos&eacute; &agrave; T (vers la gauche). &Eacute;quilibre horizontal.</p>
+    <p><strong>1.</strong> \( R_s = R_1 + R_2 = 60 + 40 = 100\,\Omega \)</p>
+    <p><strong>2.</strong> \( R_{eq} = \dfrac{R_s \times R_3}{R_s + R_3} = \dfrac{100 \times 50}{100 + 50} = \dfrac{5\,000}{150} \approx 33{,}3\,\Omega \)</p>
+    <p><strong>3.</strong> \( I = \dfrac{U}{R_{eq}} = \dfrac{230}{33{,}3} \approx 6{,}9\,\text{A} \)</p>
+    <p><strong>4.</strong> \( I_s = \dfrac{230}{100} = 2{,}3\,\text{A} \) ; \( I_3 = \dfrac{230}{50} = 4{,}6\,\text{A} \).<br>
+    V&eacute;rification (loi des n&oelig;uds) : \( I_s + I_3 = 2{,}3 + 4{,}6 = 6{,}9\,\text{A} = I \) &#10003;</p>
+  </div>
+</div>
+
+<!-- PARTIE C STANDARD -->
+<div class="partie">
+  <div class="partie-header">
+    <span class="partie-title">Partie C &ndash; Puissance et &eacute;nergie en atelier (6 pts)</span>
+    <span class="pts">6 pts</span>
+  </div>
+
+  <p>Un atelier de menuiserie utilise trois machines branch&eacute;es sur le r&eacute;seau 230 V :</p>
+  <table>
+    <tr>
+      <th>Machine</th>
+      <th>Tension</th>
+      <th>Intensit&eacute;</th>
+      <th>Dur&eacute;e d'utilisation / jour</th>
+    </tr>
+    <tr>
+      <td>Ponceuse orbitale</td>
+      <td>230 V</td>
+      <td>2 A</td>
+      <td>4 h</td>
+    </tr>
+    <tr>
+      <td>Scie circulaire</td>
+      <td>230 V</td>
+      <td>10 A</td>
+      <td>2 h</td>
+    </tr>
+    <tr>
+      <td>Lampe d'atelier LED</td>
+      <td>230 V</td>
+      <td>0,35 A</td>
+      <td>8 h</td>
+    </tr>
+  </table>
+
+  <div class="q">
+    <strong>1.</strong> <span class="comp comp-rea">REA</span>
+    Calculer la puissance &eacute;lectrique de chaque machine. <span class="bareme">(2 pts)</span>
+  </div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q">
+    <strong>2.</strong> <span class="comp comp-rea">REA</span>
+    Calculer l'&eacute;nergie totale consomm&eacute;e par l'atelier en une journ&eacute;e, en kWh. <span class="bareme">(2 pts)</span>
+  </div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q">
+    <strong>3.</strong> <span class="comp comp-val">VAL</span>
+    Le prix du kWh est de 0,25 &euro;. Calculer le co&ucirc;t &eacute;lectrique journalier. Quelle machine co&ucirc;te le plus cher en &eacute;lectricit&eacute; ? <span class="bareme">(2 pts)</span>
+  </div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Ponceuse : \( P = 230 \times 2 = 460\,\text{W} \). Scie : \( P = 230 \times 10 = 2\,300\,\text{W} \). Lampe : \( P = 230 \times 0{,}35 = 80{,}5\,\text{W} \approx 80\,\text{W} \).</p>
+    <p><strong>2.</strong> Ponceuse : \( W = 460 \times 4 = 1\,840\,\text{Wh} = 1{,}84\,\text{kWh} \).<br>
+    Scie : \( W = 2\,300 \times 2 = 4\,600\,\text{Wh} = 4{,}60\,\text{kWh} \).<br>
+    Lampe : \( W = 80{,}5 \times 8 = 644\,\text{Wh} = 0{,}644\,\text{kWh} \).<br>
+    Total : \( 1{,}84 + 4{,}60 + 0{,}644 = 7{,}084\,\text{kWh} \approx 7{,}08\,\text{kWh} \).</p>
+    <p><strong>3.</strong> Co&ucirc;t total : \( 7{,}08 \times 0{,}25 = 1{,}77\,\text{&euro;} \) par jour.<br>
+    D&eacute;tail : Ponceuse 0,46 &euro; ; Scie 1,15 &euro; ; Lampe 0,16 &euro;.<br>
+    La <strong>scie circulaire</strong> co&ucirc;te le plus cher (1,15 &euro;/jour) car c'est la machine la plus puissante.</p>
   </div>
 </div>
 
@@ -267,96 +407,183 @@
 <!-- PARTIE A APPRO -->
 <div class="partie">
   <div class="partie-header">
-    <span class="partie-title">Partie A &ndash; Poids, masse et comparaison</span>
-    <span class="pts">8 pts</span>
+    <span class="partie-title">Partie A &ndash; Installation &eacute;lectrique d'un atelier (10 pts)</span>
+    <span class="pts">10 pts</span>
   </div>
 
+  <p>Un artisan menuisier am&eacute;nage un nouvel atelier. Toutes les machines sont branch&eacute;es en parall&egrave;le sur le r&eacute;seau 230 V. Voici les caract&eacute;ristiques des machines :</p>
+
+  <table>
+    <tr>
+      <th>Machine</th>
+      <th>Puissance nominale</th>
+    </tr>
+    <tr>
+      <td>Scie circulaire sur table</td>
+      <td>2 300 W</td>
+    </tr>
+    <tr>
+      <td>D&eacute;gauchisseuse</td>
+      <td>1 500 W</td>
+    </tr>
+    <tr>
+      <td>Aspirateur copeaux</td>
+      <td>1 150 W</td>
+    </tr>
+    <tr>
+      <td>&Eacute;clairage (4 tubes LED)</td>
+      <td>160 W (total)</td>
+    </tr>
+  </table>
+
   <div class="q">
-    <strong>1.</strong> <span class="comp comp-rea">REA</span> <span class="bareme">(2 pts)</span>
-    Un menuisier agenceur transporte un plateau de bois de chêne massif de 38 kg sur un chariot. Calculer le poids de ce plateau.
+    <strong>1.</strong> <span class="comp comp-rea">REA</span>
+    Calculer l'intensit&eacute; absorb&eacute;e par chaque machine. <span class="bareme">(3 pts)</span>
+  </div>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
+
+  <div class="q">
+    <strong>2.</strong> <span class="comp comp-rea">REA</span>
+    Calculer l'intensit&eacute; totale si toutes les machines fonctionnent simultan&eacute;ment. <span class="bareme">(1 pt)</span>
   </div>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>2.</strong> <span class="comp comp-ana">ANA</span> <span class="bareme">(2 pts)</span>
-    Le chariot de l'atelier peut supporter une charge maximale de 600 N. L'opérateur veut y poser une deuxième planche de masse inconnue \( m_2 \). La masse du chariot vide est négligeable.
-    Quelle est la masse maximale de la deuxième planche ? Montrer la démarche complète.
+    <strong>3.</strong> <span class="comp comp-ana">ANA</span>
+    Le menuisier doit choisir un disjoncteur pour prot&eacute;ger l'installation. Les calibres disponibles sont : 16 A, 20 A, 25 A, 32 A. Quel calibre choisir ? Justifier. <span class="bareme">(2 pts)</span>
   </div>
   <span class="answer-line"></span>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>3.</strong> <span class="comp comp-ana">ANA</span> <span class="bareme">(2 pts)</span>
-    Sur la station spatiale internationale (ISS), \( g \approx 0\,\text{N/kg} \) (apesanteur). Expliquer, sans calcul, la différence entre poids et masse dans ce contexte. Qu'arrive-t-il à la planche de bois en apesanteur ?
+    <strong>4.</strong> <span class="comp comp-rea">REA</span>
+    L'atelier fonctionne 6 heures par jour, 5 jours par semaine. Calculer l'&eacute;nergie consomm&eacute;e en une semaine (en kWh) et le co&ucirc;t hebdomadaire (&agrave; 0,25 &euro;/kWh). <span class="bareme">(2 pts)</span>
   </div>
   <span class="answer-line"></span>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>4.</strong> <span class="comp comp-val">VAL</span> <span class="bareme">(2 pts)</span>
-    Un technicien affirme : « Un objet de 5 kg pèse toujours 49 N ». Cette affirmation est-elle correcte ? Justifier en citant un exemple précis.
+    <strong>5.</strong> <span class="comp comp-ana">ANA</span>
+    Expliquer pourquoi les machines de l'atelier sont branch&eacute;es en parall&egrave;le et non en s&eacute;rie. Donner au moins deux arguments. <span class="bareme">(2 pts)</span>
   </div>
-  <span class="answer-line"></span>
-  <span class="answer-line"></span>
+  <span class="answer-box"></span>
 
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \( P = 38 \times 9{,}8 = 372{,}4\,\text{N} \)</p>
-    <p><strong>2.</strong> Poids total admissible : 600 N. Poids de la planche 1 : 372,4 N. Poids restant : \( 600 - 372{,}4 = 227{,}6\,\text{N} \). Masse maximale de la 2e planche : \( m_2 = 227{,}6 / 9{,}8 \approx 23{,}2\,\text{kg} \).</p>
-    <p><strong>3.</strong> La masse est une propriété intrinsèque de la matière (invariante) ; le poids est la force exercée par la gravité. En apesanteur, \( g \approx 0 \), donc \( P \approx 0 \) : la planche flotte. Sa masse reste 38 kg (elle a toujours autant de matière), mais elle ne pèse plus rien au sens gravitationnel.</p>
-    <p><strong>4.</strong> Affirmation incorrecte. Sur Terre : \( P = 5 \times 9{,}8 = 49\,\text{N} \), vrai. Mais sur la Lune : \( P = 5 \times 1{,}6 = 8\,\text{N} \). Le poids dépend de \( g \) local, pas la masse.</p>
+    <p><strong>1.</strong> On utilise \( I = \dfrac{P}{U} \) pour chaque machine :<br>
+    Scie : \( I = \dfrac{2\,300}{230} = 10\,\text{A} \) ;
+    D&eacute;gauchisseuse : \( I = \dfrac{1\,500}{230} \approx 6{,}52\,\text{A} \) ;
+    Aspirateur : \( I = \dfrac{1\,150}{230} = 5\,\text{A} \) ;
+    &Eacute;clairage : \( I = \dfrac{160}{230} \approx 0{,}70\,\text{A} \).</p>
+    <p><strong>2.</strong> \( I_{total} = 10 + 6{,}52 + 5 + 0{,}70 = 22{,}22\,\text{A} \approx 22{,}2\,\text{A} \)</p>
+    <p><strong>3.</strong> Il faut un calibre sup&eacute;rieur &agrave; 22,2 A. Le calibre 20 A est insuffisant. Le calibre <strong>25 A</strong> convient : il prot&egrave;ge l'installation tout en laissant une marge raisonnable. Le 32 A serait surdimensionn&eacute; et offrirait une moins bonne protection.</p>
+    <p><strong>4.</strong> Puissance totale : \( P = 2\,300 + 1\,500 + 1\,150 + 160 = 5\,110\,\text{W} = 5{,}11\,\text{kW} \).<br>
+    &Eacute;nergie par semaine : \( W = 5{,}11 \times 6 \times 5 = 153{,}3\,\text{kWh} \).<br>
+    Co&ucirc;t : \( 153{,}3 \times 0{,}25 = 38{,}33\,\text{&euro;} \) par semaine.</p>
+    <p><strong>5.</strong> En parall&egrave;le :<br>
+    &bull; Chaque machine re&ccedil;oit la m&ecirc;me tension de 230 V (tension nominale de fonctionnement).<br>
+    &bull; Chaque machine peut &ecirc;tre allum&eacute;e ou &eacute;teinte ind&eacute;pendamment des autres.<br>
+    &bull; Si une machine est d&eacute;branch&eacute;e, les autres continuent de fonctionner.<br>
+    En s&eacute;rie, la tension serait partag&eacute;e entre les machines (chacune recevrait une fraction de 230 V) et l'arr&ecirc;t d'une machine couperait tout le circuit.</p>
   </div>
 </div>
 
 <!-- PARTIE B APPRO -->
 <div class="partie">
   <div class="partie-header">
-    <span class="partie-title">Partie B &ndash; Analyse d'un système en équilibre</span>
-    <span class="pts">12 pts</span>
+    <span class="partie-title">Partie B &ndash; Analyse de caract&eacute;ristiques (10 pts)</span>
+    <span class="pts">10 pts</span>
   </div>
 
-  <p>Un technicien d'atelier de maintenance automobile pose une caisse d'outillage de 60 kg sur une rampe inclinée à 30° par rapport à l'horizontale. Une sangle retient la caisse immobile. La composante de la force de traction le long de la rampe est \( T = 294\,\text{N} \).</p>
+  <p>On mesure la tension \( U \) en fonction de l'intensit&eacute; \( I \) pour deux composants &eacute;lectroniques utilis&eacute;s dans un syst&egrave;me de contr&ocirc;le de machine.</p>
+
+  <p><strong>Composant A :</strong></p>
+  <table>
+    <tr>
+      <th>I (mA)</th>
+      <td>0</td>
+      <td>10</td>
+      <td>20</td>
+      <td>30</td>
+      <td>40</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>U (V)</th>
+      <td>0</td>
+      <td>2,2</td>
+      <td>4,4</td>
+      <td>6,6</td>
+      <td>8,8</td>
+      <td>11,0</td>
+    </tr>
+  </table>
+
+  <p><strong>Composant B :</strong></p>
+  <table>
+    <tr>
+      <th>I (mA)</th>
+      <td>0</td>
+      <td>10</td>
+      <td>20</td>
+      <td>30</td>
+      <td>40</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>U (V)</th>
+      <td>0</td>
+      <td>0,48</td>
+      <td>0,55</td>
+      <td>0,60</td>
+      <td>0,63</td>
+      <td>0,65</td>
+    </tr>
+  </table>
 
   <div class="q">
-    <strong>1.</strong> <span class="comp comp-rea">REA</span> <span class="bareme">(2 pts)</span>
-    Calculer le poids \( P \) de la caisse.
-  </div>
-  <span class="answer-line"></span>
-
-  <div class="q">
-    <strong>2.</strong> <span class="comp comp-app">APP</span> <span class="bareme">(3 pts)</span>
-    Identifier toutes les forces appliquées sur la caisse sur la rampe inclinée. Décrire leur direction et leur sens.
+    <strong>1.</strong> <span class="comp comp-ana">ANA</span>
+    Pour chaque composant, dire s'il est ohmique ou non ohmique. Justifier en analysant les donn&eacute;es. <span class="bareme">(3 pts)</span>
   </div>
   <span class="answer-line"></span>
   <span class="answer-line"></span>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>3.</strong> <span class="comp comp-ana">ANA</span> <span class="bareme">(3 pts)</span>
-    Sachant que la composante du poids parallèle à la rampe est \( P_{\parallel} = P \times \sin(30°) = P \times 0{,}5 \), calculer cette valeur. Comparer avec \( T \). Que peut-on en déduire ?
+    <strong>2.</strong> <span class="comp comp-rea">REA</span>
+    Calculer la r&eacute;sistance du composant A. <span class="bareme">(2 pts)</span>
+  </div>
+  <span class="answer-line"></span>
+
+  <div class="q">
+    <strong>3.</strong> <span class="comp comp-ana">ANA</span>
+    D&eacute;crire la forme de la caract&eacute;ristique U(I) de chaque composant. Quel type de composant pourrait &ecirc;tre le composant B ? <span class="bareme">(2 pts)</span>
   </div>
   <span class="answer-line"></span>
   <span class="answer-line"></span>
 
   <div class="q">
-    <strong>4.</strong> <span class="comp comp-val">VAL</span> <span class="bareme">(2 pts)</span>
-    La composante du poids perpendiculaire à la rampe est \( P_{\perp} = P \times \cos(30°) \approx P \times 0{,}866 \). Calculer la réaction normale de la rampe sur la caisse.
+    <strong>4.</strong> <span class="comp comp-rea">REA</span> <span class="comp comp-val">VAL</span>
+    On souhaite prot&eacute;ger une LED (composant B) en pla&ccedil;ant le composant A en s&eacute;rie. L'alimentation est de 12 V. La LED fonctionne avec un courant de 20 mA et une tension &agrave; ses bornes de 0,55 V (lue dans le tableau). <span class="bareme">(3 pts)</span><br>
+    a) Quelle tension doit supporter la r&eacute;sistance de protection ?<br>
+    b) V&eacute;rifier que le courant calcul&eacute; &agrave; travers la r&eacute;sistance est coh&eacute;rent avec les 20 mA attendus.
   </div>
   <span class="answer-line"></span>
-
-  <div class="q">
-    <strong>5.</strong> <span class="comp comp-com">COM</span> <span class="bareme">(2 pts)</span>
-    Rédiger une conclusion complète : nommer les forces, préciser les conditions d'équilibre et expliquer le rôle de la sangle.
-  </div>
-  <span class="answer-box"></span>
+  <span class="answer-line"></span>
+  <span class="answer-line"></span>
 
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p><strong>1.</strong> \( P = 60 \times 9{,}8 = 588\,\text{N} \)</p>
-    <p><strong>2.</strong> Forces : Poids \( P = 588\,\text{N} \) vertical vers le bas ; Réaction normale \( N \) perpendiculaire à la rampe ; Tension de la sangle \( T = 294\,\text{N} \) dirigée vers le haut de la pente.</p>
-    <p><strong>3.</strong> \( P_{\parallel} = 588 \times 0{,}5 = 294\,\text{N} \). Or \( T = 294\,\text{N} \). On a \( T = P_{\parallel} \) → la sangle compense exactement la composante du poids qui tire la caisse vers le bas de la pente → équilibre dans la direction de la pente.</p>
-    <p><strong>4.</strong> \( N = P_{\perp} = 588 \times 0{,}866 \approx 509\,\text{N} \).</p>
-    <p><strong>5.</strong> La caisse est en équilibre sous l'action de 3 forces : son poids (588 N vers le bas), la réaction normale de la rampe (~509 N perpendiculaire à la surface) et la tension de la sangle (294 N remontant la pente). La sangle s'oppose à la composante tangentielle du poids et empêche le glissement. Sans sangle, la caisse glisserait vers le bas de la rampe.</p>
+    <p><strong>1.</strong> <em>Composant A</em> : le rapport \( \dfrac{U}{I} \) est constant : \( \dfrac{2{,}2}{0{,}010} = \dfrac{4{,}4}{0{,}020} = \dfrac{11{,}0}{0{,}050} = 220 \). C'est un dip&ocirc;le ohmique (r&eacute;sistance).<br>
+    <em>Composant B</em> : le rapport varie : \( \dfrac{0{,}48}{0{,}010} = 48 \) ; \( \dfrac{0{,}55}{0{,}020} = 27{,}5 \) ; \( \dfrac{0{,}65}{0{,}050} = 13 \). Le rapport n'est pas constant, c'est un dip&ocirc;le <strong>non ohmique</strong>.</p>
+    <p><strong>2.</strong> \( R_A = \dfrac{U}{I} = \dfrac{11{,}0}{0{,}050} = 220\,\Omega \).</p>
+    <p><strong>3.</strong> Composant A : droite passant par l'origine (caract&eacute;ristique lin&eacute;aire d'une r&eacute;sistance).<br>
+    Composant B : courbe qui monte rapidement puis se stabilise vers 0,6&ndash;0,7 V. C'est le comportement typique d'une <strong>diode</strong> (tension seuil ~0,6 V).</p>
+    <p><strong>4.</strong><br>
+    a) Loi des mailles : \( U_{alim} = U_R + U_{LED} \). Donc \( U_R = 12 - 0{,}55 = 11{,}45\,\text{V} \).<br>
+    b) Courant dans la r&eacute;sistance : \( I = \dfrac{U_R}{R_A} = \dfrac{11{,}45}{220} = 0{,}05205\,\text{A} \approx 52\,\text{mA} \).<br>
+    Ce courant (52 mA) est sup&eacute;rieur aux 20 mA souhait&eacute;s. La r&eacute;sistance de 220 &Omega; n'est donc pas adapt&eacute;e : il faudrait une r&eacute;sistance plus grande. Pour obtenir 20 mA : \( R = \dfrac{11{,}45}{0{,}020} = 572{,}5\,\Omega \). On choisirait une r&eacute;sistance normalis&eacute;e de <strong>560 &Omega;</strong> (valeur standard la plus proche).</p>
   </div>
 </div>
 

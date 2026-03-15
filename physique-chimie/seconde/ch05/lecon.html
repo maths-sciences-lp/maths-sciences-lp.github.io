@@ -37,6 +37,8 @@ details.corr .corr-body{background:#f0fff4;border-left:4px solid var(--s);paddin
     <li>Calculer une vitesse moyenne &agrave; partir d&rsquo;une distance et d&rsquo;une dur&eacute;e</li>
     <li>Convertir des vitesses entre m/s et km/h</li>
     <li>Caract&eacute;riser un mouvement &agrave; partir d&rsquo;une chronophotographie</li>
+    <li>D&eacute;terminer la fr&eacute;quence de rotation et la p&eacute;riode d&rsquo;un mouvement circulaire</li>
+    <li>Utiliser la relation entre vitesse lin&eacute;aire, diam&egrave;tre et fr&eacute;quence de rotation</li>
   </ul>
 </div>
 
@@ -460,6 +462,27 @@ details.corr .corr-body{background:#f0fff4;border-left:4px solid var(--s);paddin
       <td>&mdash;</td>
       <td>\( v = \dfrac{d}{\tau} \) (&tau; : intervalle de temps entre flashs)</td>
     </tr>
+    <tr>
+      <td>Fr&eacute;quence de rotation</td>
+      <td>n</td>
+      <td>tr/s (Hz)</td>
+      <td>tr/min</td>
+      <td>\( n = \dfrac{N\ (\text{tr/min})}{60} \)</td>
+    </tr>
+    <tr>
+      <td>P&eacute;riode de rotation</td>
+      <td>T</td>
+      <td>seconde (s)</td>
+      <td>&mdash;</td>
+      <td>\( T = \dfrac{1}{n} \)</td>
+    </tr>
+    <tr>
+      <td>Vitesse lin&eacute;aire</td>
+      <td>v</td>
+      <td>m/s</td>
+      <td>km/h</td>
+      <td>\( v = \pi \times d \times n \) ou \( v = 2\pi \times r \times n \)</td>
+    </tr>
   </tbody>
 </table>
 
@@ -554,8 +577,360 @@ details.corr .corr-body{background:#f0fff4;border-left:4px solid var(--s);paddin
   </p>
 </div>
 
-<!-- ==================== SECTION 8 ==================== -->
-<h2>8. &Agrave; retenir</h2>
+<!-- ==================== SECTION 8 — MOUVEMENT CIRCULAIRE ==================== -->
+<h2>8. Mouvement circulaire : fr&eacute;quence de rotation et vitesse lin&eacute;aire</h2>
+
+<p style="margin-bottom:14px;font-size:.95em;color:#4a5568">
+  Observons deux situations tr&egrave;s diff&eacute;rentes o&ugrave; la rotation joue un r&ocirc;le central :
+</p>
+<ul style="margin-bottom:18px;font-size:.95em;color:#4a5568">
+  <li>Une <strong>lame de scie circulaire</strong> tourne sur elle-m&ecirc;me &agrave; grande vitesse : chaque dent d&eacute;crit un cercle autour de l&rsquo;axe. C&rsquo;est la vitesse en bord de lame qui d&eacute;termine la qualit&eacute; de la coupe.</li>
+  <li>Un <strong>v&eacute;lo roule sur une route</strong> : la roue tourne et, en m&ecirc;me temps, le v&eacute;lo avance. &Agrave; chaque tour de roue, le v&eacute;lo parcourt exactement la circonf&eacute;rence de la roue sur le sol.</li>
+</ul>
+<p style="margin-bottom:14px;font-size:.95em;color:#4a5568">
+  Dans les deux cas, on a besoin de savoir <em>combien de tours par seconde</em> effectue l&rsquo;objet et <em>quelle distance</em> parcourt un point sur le bord. C&rsquo;est ce que mesurent la <strong>fr&eacute;quence de rotation</strong> et la <strong>vitesse lin&eacute;aire</strong>.
+</p>
+
+<!-- ——— 8.1 ——— -->
+<h3>8.1 Fr&eacute;quence de rotation et p&eacute;riode</h3>
+
+<span class="label label-def">D&eacute;finition</span>
+<div class="def">
+  La <strong>fr&eacute;quence de rotation</strong> \(n\) est le nombre de tours effectu&eacute;s par un objet en une seconde.<br>
+  Unit&eacute; : <strong>tours par seconde</strong> (tr/s) ou <strong>hertz</strong> (Hz).<br>
+  <em>1 tr/s = 1 Hz = un tour complet chaque seconde.</em>
+</div>
+
+<span class="label label-def">D&eacute;finition</span>
+<div class="def">
+  La <strong>p&eacute;riode de rotation</strong> \(T\) est la dur&eacute;e n&eacute;cessaire pour effectuer <strong>un tour complet</strong>.<br>
+  Unit&eacute; : <strong>seconde</strong> (s).
+</div>
+
+<div class="formule">
+  \( T = \dfrac{1}{n} \qquad \text{et} \qquad n = \dfrac{1}{T} \)
+  <small>T : p&eacute;riode (s) &bull; n : fr&eacute;quence de rotation (tr/s ou Hz)</small>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention &mdash; Conversion tr/min &rarr; tr/s</span><br>
+  Sur les machines, la vitesse de rotation est presque toujours indiqu&eacute;e en <strong>tours par minute</strong> (tr/min). Il faut <strong>diviser par 60</strong> pour obtenir des tr/s avant de faire les calculs :<br>
+  \[ n\ (\text{tr/s}) = \frac{N\ (\text{tr/min})}{60} \]
+  <strong>Ne jamais oublier cette conversion !</strong> C&rsquo;est l&rsquo;erreur la plus fr&eacute;quente dans les exercices.
+</div>
+
+<!-- ——— Exemple détaillé : scie circulaire ——— -->
+<div class="ex">
+  <span class="label label-ex">Exemple complet &mdash; Scie circulaire d&rsquo;atelier</span><br>
+  <p>La plaque signal&eacute;tique d&rsquo;une scie circulaire de chantier indique : <strong>3 000 tr/min</strong>.</p>
+
+  <p><strong>Question 1 :</strong> Quelle est la fr&eacute;quence de rotation en tr/s ?</p>
+  \[ n = \frac{N}{60} = \frac{3\,000}{60} = \mathbf{50\ \text{tr/s}} \]
+  <p>La lame effectue 50 tours chaque seconde.</p>
+
+  <p><strong>Question 2 :</strong> Combien de temps dure un tour ?</p>
+  \[ T = \frac{1}{n} = \frac{1}{50} = \mathbf{0{,}02\ \text{s}} = 20\ \text{ms} \]
+  <p>La lame fait un tour complet en seulement <strong>20 millisecondes</strong>, soit 50 fois plus vite qu&rsquo;un battement de cil (environ 400 ms). C&rsquo;est cette vitesse qui rend la scie efficace&hellip; et dangereuse.</p>
+</div>
+
+<!-- ——— 8.2 ——— -->
+<h3>8.2 Vitesse lin&eacute;aire d&rsquo;un point en rotation</h3>
+
+<p>Imaginons une fourmi pos&eacute;e sur le bord de la lame de scie. &Agrave; chaque tour complet, elle parcourt exactement le <strong>p&eacute;rim&egrave;tre du cercle</strong> (la circonf&eacute;rence) :</p>
+\[ C = \pi \times d \]
+<p>Si elle fait \(n\) tours par seconde, la distance parcourue en une seconde vaut \(C \times n\). C&rsquo;est sa <strong>vitesse lin&eacute;aire</strong>.</p>
+
+<span class="label label-prop">Propri&eacute;t&eacute; fondamentale</span>
+<div class="prop">
+  La <strong>vitesse lin&eacute;aire</strong> \(v\) d&rsquo;un point situ&eacute; &agrave; la distance \(r\) de l&rsquo;axe de rotation vaut :
+  \[ \boxed{v = \pi \times d \times n} \qquad \text{ou de fa&ccedil;on &eacute;quivalente :} \qquad \boxed{v = 2\pi \times r \times n} \]
+  <small>v : vitesse lin&eacute;aire (m/s) &bull; d : diam&egrave;tre (m) &bull; r : rayon (m) &bull; n : fr&eacute;quence (tr/s)</small>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Calculer une vitesse lin&eacute;aire en 3 &eacute;tapes</span>
+  <ol>
+    <li><strong>Convertir</strong> la vitesse de rotation en tr/s : \( n = N\,(\text{tr/min}) \div 60 \)</li>
+    <li><strong>Convertir</strong> le diam&egrave;tre (ou le rayon) en m&egrave;tres</li>
+    <li><strong>Appliquer</strong> la formule : \( v = \pi \times d \times n \)</li>
+  </ol>
+</div>
+
+<!-- ——— Exemple détaillé : suite scie circulaire ——— -->
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Vitesse de coupe de la scie circulaire</span><br>
+  <p>Reprenons notre scie circulaire (\(n = 50\) tr/s). Sa lame a un diam&egrave;tre \(d = 25\) cm.</p>
+
+  <p><strong>&Eacute;tape 1 :</strong> Conversion du diam&egrave;tre en m&egrave;tres</p>
+  \[ d = 25\ \text{cm} = 0{,}25\ \text{m} \]
+
+  <p><strong>&Eacute;tape 2 :</strong> Calcul de la vitesse lin&eacute;aire en bord de lame</p>
+  \[ v = \pi \times d \times n = \pi \times 0{,}25 \times 50 \approx \mathbf{39{,}3\ \text{m/s}} \]
+
+  <p><strong>Interpr&eacute;tation :</strong> Chaque dent de la scie se d&eacute;place &agrave; <strong>39,3 m/s</strong>, soit environ <strong>141 km/h</strong>. C&rsquo;est la vitesse d&rsquo;une voiture sur autoroute ! Voil&agrave; pourquoi il est interdit d&rsquo;approcher la main de la lame, et pourquoi les guides et protecteurs sont obligatoires.</p>
+</div>
+
+<!-- ——— 8.3 ——— -->
+<h3>8.3 La vitesse d&eacute;pend de la distance &agrave; l&rsquo;axe</h3>
+
+<p>Tous les points de la lame tournent &agrave; la m&ecirc;me fr&eacute;quence \(n\), mais ils ne vont pas &agrave; la m&ecirc;me vitesse lin&eacute;aire. Un point proche de l&rsquo;axe parcourt un petit cercle, un point au bord parcourt un grand cercle &mdash; <strong>dans le m&ecirc;me temps</strong>.</p>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute;</span><br>
+  &Agrave; fr&eacute;quence de rotation &eacute;gale, <strong>plus un point est &eacute;loign&eacute; de l&rsquo;axe, plus sa vitesse lin&eacute;aire est grande</strong>.<br>
+  La vitesse est <strong>proportionnelle au rayon</strong> : si on double le rayon, on double la vitesse.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &mdash; Deux points sur la m&ecirc;me lame</span><br>
+  Lame de scie circulaire, \(d = 25\) cm, \(n = 50\) tr/s.<br><br>
+
+  <strong>Point A &mdash; au bord de la lame</strong> (\(r_A = 12{,}5\) cm = 0,125 m) :<br>
+  \( v_A = 2\pi \times 0{,}125 \times 50 \approx \mathbf{39{,}3\ \text{m/s}} \)<br><br>
+
+  <strong>Point B &mdash; &agrave; mi-rayon</strong> (\(r_B = 6{,}25\) cm = 0,0625 m) :<br>
+  \( v_B = 2\pi \times 0{,}0625 \times 50 \approx \mathbf{19{,}6\ \text{m/s}} \)<br><br>
+
+  Le point B est deux fois plus pr&egrave;s de l&rsquo;axe que le point A : sa vitesse est exactement <strong>deux fois plus petite</strong>. C&rsquo;est pourquoi c&rsquo;est le <em>bord</em> de la lame qui coupe, pas le centre.
+</div>
+
+<!-- SVG illustratif — vitesse et distance à l'axe -->
+<div class="svg-wrap">
+  <svg width="100%" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;font-family:sans-serif">
+    <rect width="500" height="320" fill="#f5f0ff" rx="10" stroke="#c4b5fd" stroke-width="1.5"/>
+    <text x="250" y="22" text-anchor="middle" font-size="13" font-weight="bold" fill="#6f42c1">Scie circulaire &mdash; Vitesse lin&eacute;aire selon la position</text>
+
+    <!-- Axe central -->
+    <circle cx="200" cy="175" r="4" fill="#1a1a2e"/>
+    <text x="200" y="198" text-anchor="middle" font-size="10" fill="#1a1a2e">Axe</text>
+
+    <!-- Lame (cercle externe) -->
+    <circle cx="200" cy="175" r="110" fill="#f5f0ff" stroke="#6f42c1" stroke-width="2.5"/>
+    <!-- Alésage central -->
+    <circle cx="200" cy="175" r="12" fill="#fff" stroke="#aaa" stroke-width="1"/>
+
+    <!-- Cercle mi-rayon (pointillé) -->
+    <circle cx="200" cy="175" r="55" fill="none" stroke="#2f855a" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+    <!-- Point A au bord -->
+    <circle cx="310" cy="175" r="7" fill="#6f42c1"/>
+    <text x="325" y="172" font-size="10" font-weight="bold" fill="#6f42c1">A</text>
+    <!-- Flèche vitesse A (tangente vers le haut, longue) -->
+    <defs>
+      <marker id="arrVA" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L7,3.5 L0,7 Z" fill="#6f42c1"/>
+      </marker>
+      <marker id="arrVB" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L7,3.5 L0,7 Z" fill="#2f855a"/>
+      </marker>
+    </defs>
+    <line x1="310" y1="168" x2="310" y2="95" stroke="#6f42c1" stroke-width="2.5" marker-end="url(#arrVA)"/>
+    <text x="330" y="120" font-size="11" font-weight="bold" fill="#6f42c1">v&#x2090; = 39,3 m/s</text>
+
+    <!-- Rayon vers bord -->
+    <line x1="204" y1="175" x2="303" y2="175" stroke="#6f42c1" stroke-width="1" stroke-dasharray="4,2"/>
+    <text x="255" y="190" text-anchor="middle" font-size="9" fill="#6f42c1">r = 12,5 cm</text>
+
+    <!-- Point B à mi-rayon -->
+    <circle cx="255" cy="175" r="7" fill="#2f855a"/>
+    <text x="268" y="172" font-size="10" font-weight="bold" fill="#2f855a">B</text>
+    <!-- Flèche vitesse B (plus courte) -->
+    <line x1="255" y1="168" x2="255" y2="135" stroke="#2f855a" stroke-width="2.5" marker-end="url(#arrVB)"/>
+    <text x="268" y="148" font-size="10" font-weight="bold" fill="#2f855a">v&#x2092; = 19,6 m/s</text>
+
+    <!-- Flèche rotation -->
+    <path d="M165,65 A105,105 0 0,1 235,65" fill="none" stroke="#718096" stroke-width="1.5"/>
+    <text x="200" y="57" text-anchor="middle" font-size="10" fill="#718096">Rotation</text>
+
+    <!-- Légende en bas -->
+    <text x="200" y="300" text-anchor="middle" font-size="10" fill="#718096">M&ecirc;me fr&eacute;quence de rotation, mais A va 2&times; plus vite que B</text>
+
+    <!-- Légende droite -->
+    <rect x="350" y="230" width="140" height="70" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+    <circle cx="365" cy="248" r="5" fill="#6f42c1"/>
+    <text x="375" y="252" font-size="9" fill="#333">Bord de lame</text>
+    <circle cx="365" cy="272" r="5" fill="#2f855a"/>
+    <text x="375" y="276" font-size="9" fill="#333">Mi-rayon</text>
+  </svg>
+  <p style="font-size:.82em;color:#718096;margin-top:6px">Lame de scie circulaire vue de face : le point A (au bord) va deux fois plus vite que le point B (&agrave; mi-rayon)</p>
+</div>
+
+<!-- ——— 8.4 ——— -->
+<h3>8.4 Rotation et d&eacute;placement : la roue qui avance</h3>
+
+<p>Quand une roue tourne <strong>sans glisser</strong> sur le sol (v&eacute;lo, voiture, chariot d&rsquo;atelier), il existe un lien direct entre sa rotation et la distance qu&rsquo;elle parcourt :</p>
+
+<span class="label label-prop">Propri&eacute;t&eacute;</span>
+<div class="prop">
+  <strong>&Agrave; chaque tour complet, la roue avance d&rsquo;une distance &eacute;gale &agrave; sa circonf&eacute;rence :</strong>
+  \[ d_{1\ tour} = \pi \times d \]
+  Si la roue effectue \(n\) tours par seconde, la vitesse de d&eacute;placement du v&eacute;hicule est :
+  \[ \boxed{v_{v\acute{e}hicule} = \pi \times d \times n} \]
+  <strong>C&rsquo;est exactement la m&ecirc;me formule</strong> que la vitesse lin&eacute;aire d&rsquo;un point sur le bord de la roue. Ce n&rsquo;est pas un hasard : le point de contact de la roue avec le sol avance &agrave; la m&ecirc;me vitesse que le v&eacute;hicule.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple complet &mdash; Roue de v&eacute;lo</span><br>
+  <p>Un cycliste roule sur une piste. Ses roues ont un diam&egrave;tre \(d = 70\) cm et tournent &agrave; \(N = 120\) tr/min.</p>
+
+  <p><strong>&Eacute;tape 1 :</strong> Conversion de la fr&eacute;quence</p>
+  \[ n = \frac{120}{60} = 2\ \text{tr/s} \]
+
+  <p><strong>&Eacute;tape 2 :</strong> Distance parcourue en un tour</p>
+  \[ d_{1\ tour} = \pi \times 0{,}70 \approx 2{,}20\ \text{m} \]
+  <p>&Agrave; chaque tour de roue, le v&eacute;lo avance de <strong>2,20 m</strong> sur le sol.</p>
+
+  <p><strong>&Eacute;tape 3 :</strong> Vitesse du v&eacute;lo</p>
+  \[ v = \pi \times 0{,}70 \times 2 \approx \mathbf{4{,}40\ \text{m/s}} \]
+  <p>Conversion : \( 4{,}40 \times 3{,}6 \approx \mathbf{15{,}8\ \text{km/h}} \). C&rsquo;est une allure de balade tranquille.</p>
+
+  <p><strong>V&eacute;rification :</strong> en 1 seconde, la roue fait 2 tours, donc le v&eacute;lo avance de \(2 \times 2{,}20 = 4{,}40\) m. C&rsquo;est bien coh&eacute;rent.</p>
+</div>
+
+<!-- SVG illustratif — roue qui avance -->
+<div class="svg-wrap">
+  <svg width="100%" viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="max-width:680px;font-family:sans-serif">
+    <rect width="680" height="220" fill="#f0f9ff" rx="10" stroke="#7dd3fc" stroke-width="1.5"/>
+    <text x="340" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">Roue qui roule sans glisser : 1 tour = 1 circonf&eacute;rence parcourue</text>
+
+    <!-- Sol -->
+    <line x1="20" y1="170" x2="660" y2="170" stroke="#94a3b8" stroke-width="2"/>
+    <text x="665" y="174" font-size="9" fill="#94a3b8">sol</text>
+
+    <!-- Roue position 1 -->
+    <circle cx="120" cy="130" r="40" fill="none" stroke="#0369a1" stroke-width="2.5"/>
+    <circle cx="120" cy="130" r="3" fill="#0369a1"/>
+    <!-- Rayon repère -->
+    <line x1="120" y1="130" x2="120" y2="90" stroke="#e53e3e" stroke-width="2"/>
+    <circle cx="120" cy="90" r="5" fill="#e53e3e"/>
+    <text x="120" y="80" text-anchor="middle" font-size="9" font-weight="bold" fill="#e53e3e">P</text>
+    <text x="120" y="200" text-anchor="middle" font-size="10" fill="#0369a1">D&eacute;part</text>
+
+    <!-- Flèche de déplacement -->
+    <defs>
+      <marker id="arrDep" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 Z" fill="#0369a1"/>
+      </marker>
+    </defs>
+    <line x1="160" y1="50" x2="350" y2="50" stroke="#0369a1" stroke-width="2" marker-end="url(#arrDep)"/>
+    <text x="255" y="44" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">d = &pi; &times; d &asymp; 2,20 m</text>
+
+    <!-- Roue position 2 (après 1/2 tour) -->
+    <circle cx="245" cy="130" r="40" fill="none" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="5,3" opacity=".4"/>
+    <line x1="245" y1="130" x2="245" y2="170" stroke="#e53e3e" stroke-width="1.5" opacity=".4"/>
+    <circle cx="245" cy="170" r="4" fill="#e53e3e" opacity=".4"/>
+    <text x="245" y="200" text-anchor="middle" font-size="9" fill="#718096">&frac12; tour</text>
+
+    <!-- Roue position 3 (après 1 tour) -->
+    <circle cx="371" cy="130" r="40" fill="none" stroke="#0369a1" stroke-width="2.5"/>
+    <circle cx="371" cy="130" r="3" fill="#0369a1"/>
+    <line x1="371" y1="130" x2="371" y2="90" stroke="#e53e3e" stroke-width="2"/>
+    <circle cx="371" cy="90" r="5" fill="#e53e3e"/>
+    <text x="371" y="80" text-anchor="middle" font-size="9" font-weight="bold" fill="#e53e3e">P</text>
+    <text x="371" y="200" text-anchor="middle" font-size="10" fill="#0369a1">Apr&egrave;s 1 tour</text>
+
+    <!-- Accolade distance au sol -->
+    <line x1="120" y1="175" x2="120" y2="182" stroke="#d97706" stroke-width="1.5"/>
+    <line x1="371" y1="175" x2="371" y2="182" stroke="#d97706" stroke-width="1.5"/>
+    <line x1="120" y1="180" x2="371" y2="180" stroke="#d97706" stroke-width="1.5"/>
+    <text x="245" y="195" text-anchor="middle" font-size="10" font-weight="bold" fill="#d97706">&pi; &times; 0,70 &asymp; 2,20 m</text>
+
+    <!-- Légende droite -->
+    <rect x="440" y="70" width="220" height="90" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="450" y="90" font-size="10" font-weight="bold" fill="#333">Donn&eacute;es :</text>
+    <text x="450" y="107" font-size="10" fill="#333">Diam&egrave;tre : d = 70 cm</text>
+    <text x="450" y="122" font-size="10" fill="#333">Fr&eacute;quence : n = 2 tr/s</text>
+    <text x="450" y="142" font-size="10" font-weight="bold" fill="#0369a1">v = &pi; &times; 0,70 &times; 2</text>
+    <text x="450" y="155" font-size="10" font-weight="bold" fill="#0369a1">v &asymp; 4,40 m/s = 15,8 km/h</text>
+  </svg>
+  <p style="font-size:.82em;color:#718096;margin-top:6px">Une roue de v&eacute;lo (d&nbsp;=&nbsp;70&nbsp;cm) avance de &pi;&nbsp;&times;&nbsp;d&nbsp;&asymp;&nbsp;2,20&nbsp;m &agrave; chaque tour complet</p>
+</div>
+
+<div class="att">
+  <span class="label label-att">Ne pas confondre !</span><br>
+  <ul>
+    <li><strong>Vitesse lin&eacute;aire</strong> d&rsquo;un point sur le bord (\(v = \pi d n\)) : c&rsquo;est la distance parcourue <em>le long du cercle</em> par seconde (mouvement circulaire).</li>
+    <li><strong>Vitesse d&rsquo;avancement</strong> d&rsquo;une roue sur le sol (\(v = \pi d n\)) : c&rsquo;est la distance parcourue <em>en ligne droite</em> par seconde.</li>
+  </ul>
+  Les deux formules sont identiques car, sans glissement, la distance parcourue sur le sol &eacute;gale exactement l&rsquo;arc d&eacute;roul&eacute; de la roue.
+</div>
+
+<!-- ——— 8.5 ——— -->
+<h3>8.5 Exemple r&eacute;capitulatif : du tr/min &agrave; la vitesse en km/h</h3>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode compl&egrave;te sur un exemple concret</span>
+  <p>Un chariot motoris&eacute; d&rsquo;atelier a des roues de diam&egrave;tre \(d = 20\) cm. Le moteur entra&icirc;ne les roues &agrave; \(N = 150\) tr/min. &Agrave; quelle vitesse avance le chariot ?</p>
+
+  <p><strong>1. Conversion tr/min &rarr; tr/s :</strong></p>
+  \[ n = \frac{150}{60} = 2{,}5\ \text{tr/s} \]
+
+  <p><strong>2. Conversion du diam&egrave;tre en m&egrave;tres :</strong></p>
+  \[ d = 20\ \text{cm} = 0{,}20\ \text{m} \]
+
+  <p><strong>3. Calcul de la vitesse :</strong></p>
+  \[ v = \pi \times 0{,}20 \times 2{,}5 \approx 1{,}57\ \text{m/s} \]
+
+  <p><strong>4. Conversion en km/h :</strong></p>
+  \[ v = 1{,}57 \times 3{,}6 \approx \mathbf{5{,}7\ \text{km/h}} \]
+
+  <p>Le chariot roule &agrave; environ <strong>5,7 km/h</strong>, un peu plus vite qu&rsquo;un pi&eacute;ton.</p>
+</div>
+
+<!-- ——— 8.6 ——— -->
+<h3>8.6 Tableau r&eacute;capitulatif : machines et rotations</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Situation</th>
+      <th>Vitesse (tr/min)</th>
+      <th>Diam&egrave;tre</th>
+      <th>Vitesse lin&eacute;aire</th>
+      <th>Ce qu&rsquo;on calcule</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Scie circulaire</td>
+      <td>3 000</td>
+      <td>25 cm</td>
+      <td>39,3 m/s</td>
+      <td>Vitesse de coupe</td>
+    </tr>
+    <tr>
+      <td>Toupie</td>
+      <td>6 000</td>
+      <td>8 cm</td>
+      <td>25,1 m/s</td>
+      <td>Vitesse de coupe</td>
+    </tr>
+    <tr>
+      <td>Roue de v&eacute;lo</td>
+      <td>120</td>
+      <td>70 cm</td>
+      <td>4,4 m/s</td>
+      <td>Vitesse du v&eacute;lo</td>
+    </tr>
+    <tr>
+      <td>Chariot d&rsquo;atelier</td>
+      <td>150</td>
+      <td>20 cm</td>
+      <td>1,6 m/s</td>
+      <td>Vitesse du chariot</td>
+    </tr>
+    <tr>
+      <td>Aiguille des minutes</td>
+      <td>1/60</td>
+      <td>&asymp; 10 cm</td>
+      <td>0,00009 m/s</td>
+      <td>Vitesse de l&rsquo;extr&eacute;mit&eacute;</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ==================== SECTION 9 ==================== -->
+<h2>9. &Agrave; retenir</h2>
 
 <div class="retenir">
   <span class="label label-ret">&Agrave; retenir</span>
@@ -565,12 +940,14 @@ details.corr .corr-body{background:#f0fff4;border-left:4px solid var(--s);paddin
     <li>La <strong>vitesse moyenne</strong> se calcule par \( v = d / \Delta t \). Les unit&eacute;s sont m/s (SI) ou km/h. Conversion : 1 m/s = 3,6 km/h.</li>
     <li>Un mouvement est <strong>uniforme</strong> (v constante), <strong>acc&eacute;l&eacute;r&eacute;</strong> (v croissante) ou <strong>d&eacute;c&eacute;l&eacute;r&eacute;</strong> (v d&eacute;croissante).</li>
     <li>En <strong>chronophotographie</strong> : positions &eacute;quidistantes = mouvement uniforme ; espaces croissants = acc&eacute;l&eacute;ration ; espaces d&eacute;croissants = d&eacute;c&eacute;l&eacute;ration.</li>
-    <li>En atelier de menuiserie : la scie &agrave; ruban, le convoyeur et la CNC illustrent directement les notions de vitesse, trajectoire et calcul de distance ou de dur&eacute;e.</li>
+    <li>La <strong>fr&eacute;quence de rotation</strong> \(n\) est le nombre de tours par seconde (tr/s ou Hz). La <strong>p&eacute;riode</strong> \(T = 1/n\) est la dur&eacute;e d&rsquo;un tour.</li>
+    <li>La <strong>vitesse lin&eacute;aire</strong> d&rsquo;un point en rotation : \( v = \pi \times d \times n \). Elle d&eacute;pend du diam&egrave;tre et de la fr&eacute;quence.</li>
+    <li>Pour une <strong>roue qui roule sans glisser</strong>, la vitesse d&rsquo;avancement est &eacute;gale &agrave; la vitesse lin&eacute;aire du bord : \( v = \pi \times d \times n \).</li>
   </ol>
 </div>
 
-<!-- ==================== SECTION 9 ==================== -->
-<h2>9. Mini-exercices</h2>
+<!-- ==================== SECTION 10 ==================== -->
+<h2>10. Mini-exercices</h2>
 
 <div class="exo">
   <div class="exo-num">Exercice 1 &mdash; Conversion de vitesse</div>
@@ -678,6 +1055,28 @@ details.corr .corr-body{background:#f0fff4;border-left:4px solid var(--s);paddin
       <ol>
         <li>\( \Delta t = \dfrac{12}{0{,}3} = \mathbf{40\ \text{s}} \)</li>
         <li>En 1 h = 3600 s : \( n = \dfrac{3600}{40} = \mathbf{90\ \text{panneaux/h}} \)</li>
+      </ol>
+    </div>
+  </details>
+</div>
+
+<div class="exo">
+  <div class="exo-num">Exercice 5 &mdash; Fr&eacute;quence de rotation et vitesse lin&eacute;aire</div>
+  <p>
+    Une d&eacute;fonceuse tourne &agrave; \(N = 12\,000\) tr/min. La fraise utilis&eacute;e a un diam&egrave;tre \(d = 2\) cm.
+  </p>
+  <ol>
+    <li>Convertir la vitesse de rotation en tr/s.</li>
+    <li>Calculer la vitesse lin&eacute;aire en bord de fraise (en m/s).</li>
+    <li>Un cycliste roule sur des roues de diam&egrave;tre 66 cm. Ses roues tournent &agrave; 180 tr/min. Calculer la vitesse du v&eacute;lo en m/s, puis en km/h.</li>
+  </ol>
+  <details class="corr">
+    <summary>Voir la correction</summary>
+    <div class="corr-body">
+      <ol>
+        <li>\( n = \dfrac{12\,000}{60} = \mathbf{200\ \text{tr/s}} \)</li>
+        <li>\( v = \pi \times 0{,}02 \times 200 \approx \mathbf{12{,}6\ \text{m/s}} \approx 45\ \text{km/h}\)</li>
+        <li>\( n = 180/60 = 3\ \text{tr/s} \). \( v = \pi \times 0{,}66 \times 3 \approx \mathbf{6{,}22\ \text{m/s}} \approx 22{,}4\ \text{km/h}\)</li>
       </ol>
     </div>
   </details>
@@ -947,6 +1346,6 @@ details.corr .corr-body{background:#f0fff4;border-left:4px solid var(--s);paddin
 })();
 </script>
 
-<script src="/nav.js"></script>
+<script src="../../../nav.js"></script>
 </body>
 </html>
