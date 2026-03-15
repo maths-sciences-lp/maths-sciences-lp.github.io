@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – DS – Vitesse et accélération | ICCER Première</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.info-ds{background:#f5f0ff;border:1px solid #ddd6fe;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.93em;display:flex;gap:30px;flex-wrap:wrap}
+.info-ds div{flex:1;min-width:150px}
+.info-ds strong{display:block;color:var(--p);margin-bottom:2px}
+.pts{font-size:.8em;background:#ede9fe;color:#5b21b6;padding:2px 8px;border-radius:4px;font-weight:600}
+.q-pts{color:#718096;font-size:.85em;font-style:italic}
+.enonce{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.93em}
+.total-bar{background:#6f42c1;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:700;font-size:1.1em;margin-top:24px}
+.graph-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:14px 0;max-width:500px}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header>
+  <h1>Chapitre 5 – Devoir Surveillé</h1>
+  <p class="sous-titre">Vitesse et accélération en mouvement rectiligne &nbsp;|&nbsp; Première Bac Pro ICCER</p>
+</header>
+<div class="info-ds">
+  <div><strong>Durée</strong>45 minutes</div>
+  <div><strong>Barème</strong>20 points</div>
+  <div><strong>Documents</strong>Non autorisés (fiche de formules fournie)</div>
+  <div><strong>Calculatrice</strong>Autorisée</div>
+</div>
+
+<div class="formule-box">
+  <strong>Formulaire</strong><br>
+  \(v = \dfrac{d}{\Delta t}\) &emsp; \(a = \dfrac{\Delta v}{\Delta t} = \dfrac{v_f - v_i}{\Delta t}\) &emsp; \(\Delta v = a \times \Delta t\) &emsp; Conversion : 1 m/s = 3,6 km/h
+</div>
+
+<!-- ================= NIVEAU SOCLE ================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Calcul de vitesse – Monte-charge</span>
+    <span class="pts">7 points</span>
+  </div>
+  <div class="enonce">
+    <p>Un installateur thermique utilise un monte-charge pour monter des radiateurs. Le monte-charge parcourt une hauteur de <strong>15 m</strong> en <strong>30 s</strong>.</p>
+  </div>
+  <p><strong>1.</strong> Compléter le calcul de la vitesse : <span class="q-pts">(2 pts)</span></p>
+  <p>\(v = \dfrac{d}{\Delta t} = \dfrac{……}{……} = ……\ \text{m/s}\)</p>
+  <p><strong>2.</strong> Convertir cette vitesse en km/h : <span class="q-pts">(1,5 pt)</span></p>
+  <p>\(v = …… \times 3{,}6 = ……\ \text{km/h}\)</p>
+  <p><strong>3.</strong> La vitesse maximale autorisée est 0,6 m/s. Le monte-charge est-il conforme ? Justifier. <span class="q-pts">(1,5 pt)</span></p>
+  <p><strong>4.</strong> Combien de temps faudrait-il pour parcourir 15 m si la vitesse était 0,3 m/s ? Compléter : <span class="q-pts">(2 pts)</span></p>
+  <p>\(\Delta t = \dfrac{d}{v} = \dfrac{……}{……} = ……\ \text{s}\)</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(v = \dfrac{15}{30} = \mathbf{0{,}5\ \text{m/s}}\)</p>
+    <p><strong>2.</strong> \(v = 0{,}5 \times 3{,}6 = \mathbf{1{,}8\ \text{km/h}}\)</p>
+    <p><strong>3.</strong> Oui, le monte-charge est conforme car \(0{,}5 < 0{,}6\) m/s.</p>
+    <p><strong>4.</strong> \(\Delta t = \dfrac{15}{0{,}3} = \mathbf{50\ \text{s}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Calcul d'accélération</span>
+    <span class="pts">6 points</span>
+  </div>
+  <div class="enonce">
+    <p>Un ascenseur de chantier démarre du repos et atteint la vitesse de <strong>0,8 m/s</strong> en <strong>4 secondes</strong>.</p>
+  </div>
+  <p><strong>1.</strong> Quelles sont les valeurs de \(v_i\) et \(v_f\) ? <span class="q-pts">(1 pt)</span></p>
+  <p><strong>2.</strong> Calculer \(\Delta v = v_f - v_i\). <span class="q-pts">(1 pt)</span></p>
+  <p><strong>3.</strong> Calculer l'accélération : \(a = \dfrac{\Delta v}{\Delta t} = \dfrac{……}{……} = ……\ \text{m/s}^2\) <span class="q-pts">(2 pts)</span></p>
+  <p><strong>4.</strong> L'accélération est-elle positive ou négative ? L'ascenseur accélère-t-il ou freine-t-il ? <span class="q-pts">(2 pts)</span></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(v_i = 0\) m/s (repos), \(v_f = 0{,}8\) m/s.</p>
+    <p><strong>2.</strong> \(\Delta v = 0{,}8 - 0 = \mathbf{0{,}8\ \text{m/s}}\)</p>
+    <p><strong>3.</strong> \(a = \dfrac{0{,}8}{4} = \mathbf{0{,}2\ \text{m/s}^2}\)</p>
+    <p><strong>4.</strong> L'accélération est <strong>positive</strong> (0,2 > 0). L'ascenseur <strong>accélère</strong> : sa vitesse augmente.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Identifier un mouvement</span>
+    <span class="pts">7 points</span>
+  </div>
+  <p>Compléter le tableau suivant : <span class="q-pts">(4 pts)</span></p>
+  <table style="width:100%;border-collapse:collapse;font-size:.92em;margin:10px 0">
+    <tr style="background:var(--p);color:#fff"><th style="padding:6px;border:1px solid #cbd5e1">Type de mouvement</th><th style="padding:6px;border:1px solid #cbd5e1">La vitesse…</th><th style="padding:6px;border:1px solid #cbd5e1">L'accélération…</th><th style="padding:6px;border:1px solid #cbd5e1">Le graphe v(t) est…</th></tr>
+    <tr><td style="padding:6px;border:1px solid #cbd5e1">MRU</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td></tr>
+    <tr><td style="padding:6px;border:1px solid #cbd5e1">MRUA</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td></tr>
+    <tr><td style="padding:6px;border:1px solid #cbd5e1">MRUD</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td><td style="padding:6px;border:1px solid #cbd5e1">…………</td></tr>
+  </table>
+  <p>Répondre par Vrai ou Faux : <span class="q-pts">(3 pts)</span></p>
+  <p><strong>a)</strong> Si \(a = 0\), la vitesse est nulle. ☐ Vrai ☐ Faux</p>
+  <p><strong>b)</strong> Si \(a < 0\), le mouvement est un freinage. ☐ Vrai ☐ Faux</p>
+  <p><strong>c)</strong> 1 m/s = 3,6 km/h. ☐ Vrai ☐ Faux</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table style="width:100%;border-collapse:collapse;font-size:.92em;margin:10px 0">
+      <tr style="background:var(--p);color:#fff"><th style="padding:6px;border:1px solid #cbd5e1">Type</th><th style="padding:6px;border:1px solid #cbd5e1">Vitesse</th><th style="padding:6px;border:1px solid #cbd5e1">Accélération</th><th style="padding:6px;border:1px solid #cbd5e1">Graphe v(t)</th></tr>
+      <tr><td style="padding:6px;border:1px solid #cbd5e1">MRU</td><td style="padding:6px;border:1px solid #cbd5e1">est constante</td><td style="padding:6px;border:1px solid #cbd5e1">a = 0</td><td style="padding:6px;border:1px solid #cbd5e1">droite horizontale</td></tr>
+      <tr><td style="padding:6px;border:1px solid #cbd5e1">MRUA</td><td style="padding:6px;border:1px solid #cbd5e1">augmente</td><td style="padding:6px;border:1px solid #cbd5e1">a > 0 (constante)</td><td style="padding:6px;border:1px solid #cbd5e1">droite croissante</td></tr>
+      <tr><td style="padding:6px;border:1px solid #cbd5e1">MRUD</td><td style="padding:6px;border:1px solid #cbd5e1">diminue</td><td style="padding:6px;border:1px solid #cbd5e1">a < 0 (constante)</td><td style="padding:6px;border:1px solid #cbd5e1">droite décroissante</td></tr>
+    </table>
+    <p><strong>a)</strong> <strong>Faux</strong>. Si \(a = 0\), la vitesse est <strong>constante</strong>, mais pas forcément nulle (elle peut être de 5 m/s par exemple).</p>
+    <p><strong>b)</strong> <strong>Vrai</strong>. Une accélération négative signifie que la vitesse diminue (freinage / décélération).</p>
+    <p><strong>c)</strong> <strong>Vrai</strong>. \(1 \text{ m/s} = 1 \times 3{,}6 = 3{,}6 \text{ km/h}\).</p>
+  </div>
+</div>
+
+<div class="total-bar">Total : 20 points</div>
+</div><!-- fin diff-socle -->
+
+<!-- ================= NIVEAU STANDARD ================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Monte-charge et normes de sécurité</span>
+    <span class="pts">8 points</span>
+  </div>
+  <div class="enonce">
+    <p>Un technicien chauffagiste utilise un monte-charge de chantier pour monter une chaudière (45 kg) au 5<sup>e</sup> étage (hauteur : 15 m). Le trajet complet dure 30 secondes. Le graphe \(v(t)\) enregistré est le suivant :</p>
+  </div>
+  <div class="graph-box">
+    <canvas id="graphDS1" width="460" height="260"></canvas>
+  </div>
+  <p><strong>1.</strong> Identifier les trois phases du mouvement et nommer chaque type. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>2.</strong> Quelle est la vitesse maximale du monte-charge ? <span class="q-pts">(1 pt)</span></p>
+  <p><strong>3.</strong> Calculer l'accélération pendant la phase de démarrage. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>4.</strong> Calculer la décélération pendant la phase de freinage. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>5.</strong> La norme impose une accélération maximale de 0,4 m/s². Le monte-charge est-il conforme ? <span class="q-pts">(1 pt)</span></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Phase 1 (0 à 2,5 s) : MRUA. Phase 2 (2,5 à 27,5 s) : MRU. Phase 3 (27,5 à 30 s) : MRUD.</p>
+    <p><strong>2.</strong> Vitesse maximale : <strong>0,5 m/s</strong>.</p>
+    <p><strong>3.</strong> \(a = \dfrac{0{,}5 - 0}{2{,}5} = \mathbf{0{,}2\ \text{m/s}^2}\)</p>
+    <p><strong>4.</strong> \(a = \dfrac{0 - 0{,}5}{2{,}5} = \mathbf{-0{,}2\ \text{m/s}^2}\)</p>
+    <p><strong>5.</strong> En valeur absolue, \(|a| = 0{,}2 < 0{,}4\) m/s². Le monte-charge est <strong>conforme</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Fourgonnette de livraison</span>
+    <span class="pts">7 points</span>
+  </div>
+  <div class="enonce">
+    <p>Un plombier chauffagiste se déplace en fourgonnette pour livrer du matériel. Il roule à 72 km/h et doit s'arrêter à un feu rouge. Le freinage dure 5 secondes.</p>
+  </div>
+  <p><strong>1.</strong> Convertir 72 km/h en m/s. <span class="q-pts">(1 pt)</span></p>
+  <p><strong>2.</strong> Calculer l'accélération pendant le freinage. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>3.</strong> L'accélération est-elle positive ou négative ? Interpréter. <span class="q-pts">(1 pt)</span></p>
+  <p><strong>4.</strong> Au feu vert, la fourgonnette redémarre et atteint 36 km/h en 6 secondes. Calculer l'accélération au démarrage. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>5.</strong> Comparer cette accélération avec celle du freinage (en valeur absolue). Que constate-t-on ? <span class="q-pts">(1 pt)</span></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(v = \dfrac{72}{3{,}6} = \mathbf{20\ \text{m/s}}\)</p>
+    <p><strong>2.</strong> \(a = \dfrac{0 - 20}{5} = \mathbf{-4\ \text{m/s}^2}\)</p>
+    <p><strong>3.</strong> L'accélération est <strong>négative</strong>, ce qui traduit un <strong>freinage</strong> (la vitesse diminue).</p>
+    <p><strong>4.</strong> \(v_f = \dfrac{36}{3{,}6} = 10\) m/s. \(a = \dfrac{10 - 0}{6} \approx \mathbf{1{,}67\ \text{m/s}^2}\)</p>
+    <p><strong>5.</strong> \(|{-}4| = 4\) m/s² (freinage) contre 1,67 m/s² (démarrage). Le <strong>freinage est plus brusque</strong> que l'accélération au démarrage.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Utilisation de \(\Delta v = a \times \Delta t\)</span>
+    <span class="pts">5 points</span>
+  </div>
+  <div class="enonce">
+    <p>Un ascenseur de chantier a une accélération de 0,3 m/s² au démarrage et une vitesse maximale de 0,9 m/s.</p>
+  </div>
+  <p><strong>1.</strong> Calculer le temps nécessaire pour passer de 0 à 0,9 m/s. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>2.</strong> Après 1 seconde de fonctionnement, quelle est la vitesse de l'ascenseur ? <span class="q-pts">(1,5 pt)</span></p>
+  <p><strong>3.</strong> L'ascenseur freine avec une décélération de &minus;0,3 m/s². Combien de temps met-il pour s'arrêter depuis sa vitesse maximale ? <span class="q-pts">(1,5 pt)</span></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\Delta t = \dfrac{\Delta v}{a} = \dfrac{0{,}9}{0{,}3} = \mathbf{3\ \text{s}}\)</p>
+    <p><strong>2.</strong> \(v = v_i + a \times \Delta t = 0 + 0{,}3 \times 1 = \mathbf{0{,}3\ \text{m/s}}\)</p>
+    <p><strong>3.</strong> \(\Delta t = \dfrac{\Delta v}{a} = \dfrac{0 - 0{,}9}{-0{,}3} = \mathbf{3\ \text{s}}\)</p>
+  </div>
+</div>
+
+<div class="total-bar">Total : 20 points</div>
+</div><!-- fin diff-standard -->
+
+<!-- ================= NIVEAU APPRO ================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Étude complète d'un trajet en ascenseur</span>
+    <span class="pts">12 points</span>
+  </div>
+  <div class="enonce">
+    <p>Un ascenseur de service transporte un technicien CVC et son matériel du RDC au 10<sup>e</sup> étage (hauteur d'un étage : 3 m). Les caractéristiques de l'ascenseur sont :</p>
+    <ul>
+      <li>Accélération au démarrage : \(a_1 = 1{,}0\) m/s²</li>
+      <li>Vitesse maximale : \(v_{\max} = 3{,}0\) m/s</li>
+      <li>Décélération au freinage : \(a_3 = -1{,}0\) m/s²</li>
+    </ul>
+  </div>
+  <p><strong>1.</strong> Calculer la hauteur totale à parcourir. <span class="q-pts">(1 pt)</span></p>
+  <p><strong>2.</strong> Calculer le temps de la phase d'accélération. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>3.</strong> Calculer la distance parcourue pendant l'accélération (aire du triangle sous le graphe \(v(t)\)). <span class="q-pts">(2 pts)</span></p>
+  <p><strong>4.</strong> Par symétrie, la phase de freinage a les mêmes caractéristiques. En déduire la distance parcourue à vitesse constante. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>5.</strong> Calculer le temps de la phase à vitesse constante et le temps total du trajet. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>6.</strong> Tracer l'allure du graphe \(v(t)\) en indiquant les valeurs numériques. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>7.</strong> Comparer la vitesse maximale de l'ascenseur avec la vitesse de marche dans un escalier (environ 1 m/s vertical). <span class="q-pts">(1 pt)</span></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(h = 10 \times 3 = \mathbf{30\ \text{m}}\)</p>
+    <p><strong>2.</strong> \(\Delta t_1 = \dfrac{v_{\max}}{a_1} = \dfrac{3{,}0}{1{,}0} = \mathbf{3\ \text{s}}\)</p>
+    <p><strong>3.</strong> \(d_1 = \dfrac{\Delta t_1 \times v_{\max}}{2} = \dfrac{3 \times 3}{2} = \mathbf{4{,}5\ \text{m}}\)</p>
+    <p><strong>4.</strong> \(d_3 = d_1 = 4{,}5\) m. \(d_2 = 30 - 4{,}5 - 4{,}5 = \mathbf{21\ \text{m}}\)</p>
+    <p><strong>5.</strong> \(\Delta t_2 = \dfrac{d_2}{v_{\max}} = \dfrac{21}{3} = 7\) s. Temps total = 3 + 7 + 3 = <strong>13 secondes</strong>.</p>
+    <p><strong>6.</strong> Trapèze : montée de (0 ; 0) à (3 ; 3), plateau de (3 ; 3) à (10 ; 3), descente de (10 ; 3) à (13 ; 0).</p>
+    <p><strong>7.</strong> \(v_{\max} = 3{,}0\) m/s, soit <strong>3 fois plus rapide</strong> que la marche dans un escalier (1 m/s). L'ascenseur est bien plus efficace pour 10 étages.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Analyse de données – Capteur de vitesse</span>
+    <span class="pts">8 points</span>
+  </div>
+  <div class="enonce">
+    <p>Un capteur enregistre la vitesse d'un monte-charge industriel. Les données sont :</p>
+    <table style="width:100%;border-collapse:collapse;font-size:.92em;margin:10px 0">
+      <tr style="background:var(--p);color:#fff"><th style="padding:6px;border:1px solid #cbd5e1">t (s)</th><th style="padding:6px;border:1px solid #cbd5e1">0</th><th style="padding:6px;border:1px solid #cbd5e1">1</th><th style="padding:6px;border:1px solid #cbd5e1">2</th><th style="padding:6px;border:1px solid #cbd5e1">3</th><th style="padding:6px;border:1px solid #cbd5e1">8</th><th style="padding:6px;border:1px solid #cbd5e1">13</th><th style="padding:6px;border:1px solid #cbd5e1">14</th><th style="padding:6px;border:1px solid #cbd5e1">15</th><th style="padding:6px;border:1px solid #cbd5e1">16</th></tr>
+      <tr><td style="padding:6px;border:1px solid #cbd5e1;text-align:center"><strong>v (m/s)</strong></td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,25</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,50</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,75</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,75</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,75</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,50</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,25</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0</td></tr>
+    </table>
+  </div>
+  <p><strong>1.</strong> Identifier les trois phases du mouvement, donner les bornes temporelles et nommer chaque type. <span class="q-pts">(2 pts)</span></p>
+  <p><strong>2.</strong> Calculer l'accélération dans la phase de démarrage. <span class="q-pts">(1,5 pt)</span></p>
+  <p><strong>3.</strong> Calculer la décélération dans la phase de freinage. <span class="q-pts">(1,5 pt)</span></p>
+  <p><strong>4.</strong> Calculer la distance totale parcourue en utilisant l'aire sous la courbe. <span class="q-pts">(3 pts)</span></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong></p>
+    <ul>
+      <li>Phase 1 (0 à 3 s) : MRUA — vitesse augmente de 0 à 0,75 m/s.</li>
+      <li>Phase 2 (3 à 13 s) : MRU — vitesse constante à 0,75 m/s.</li>
+      <li>Phase 3 (13 à 16 s) : MRUD — vitesse diminue de 0,75 à 0 m/s.</li>
+    </ul>
+    <p><strong>2.</strong> \(a = \dfrac{0{,}75 - 0}{3 - 0} = \mathbf{0{,}25\ \text{m/s}^2}\)</p>
+    <p><strong>3.</strong> \(a = \dfrac{0 - 0{,}75}{16 - 13} = \dfrac{-0{,}75}{3} = \mathbf{-0{,}25\ \text{m/s}^2}\)</p>
+    <p><strong>4.</strong></p>
+    <ul>
+      <li>Phase 1 (triangle) : \(d_1 = \dfrac{3 \times 0{,}75}{2} = 1{,}125\) m</li>
+      <li>Phase 2 (rectangle) : \(d_2 = 10 \times 0{,}75 = 7{,}5\) m</li>
+      <li>Phase 3 (triangle) : \(d_3 = \dfrac{3 \times 0{,}75}{2} = 1{,}125\) m</li>
+    </ul>
+    <p>Distance totale = 1,125 + 7,5 + 1,125 = <strong>9,75 m</strong>.</p>
+  </div>
+</div>
+
+<div class="total-bar">Total : 20 points</div>
+</div><!-- fin diff-appro -->
+
+<footer style="margin-top:40px;padding:16px 0;border-top:1px solid #e2e8f0;font-size:.82em;color:#718096;text-align:center">
+  Première Bac Pro ICCER – Groupement 1 | Physique-Chimie – Chapitre 5 | maths-sciences-lp.github.io
+</footer>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+<script>
+// Graphe DS Standard – Monte-charge
+new Chart(document.getElementById('graphDS1').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: [0,2.5,2.5,27.5,27.5,30],
+    datasets: [{label:'v (m/s)',data:[0,0.5,0.5,0.5,0.5,0],borderColor:'#0969da',backgroundColor:'rgba(9,105,218,0.1)',fill:true,tension:0,pointRadius:4}]
+  },
+  options: {responsive:true,plugins:{title:{display:true,text:'Graphe v(t) du monte-charge',font:{size:14}},legend:{display:false}},scales:{x:{title:{display:true,text:'Temps t (s)'},min:0,max:32},y:{title:{display:true,text:'Vitesse v (m/s)'},min:0,max:0.7}}}
+});
+</script>
+</body>
+</html>

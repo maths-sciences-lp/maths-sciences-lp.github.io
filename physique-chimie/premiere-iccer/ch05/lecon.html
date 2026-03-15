@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Vitesse et accélération en mouvement rectiligne – Cours</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.situation-pro{background:linear-gradient(135deg,#ebf5ff 0%,#f0fff4 100%);border:2px solid var(--p);border-radius:10px;padding:18px 22px;margin:18px 0}
+.situation-pro::before{content:"🎯 Situation professionnelle";display:block;font-weight:700;color:var(--p);font-size:.95em;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
+.situation-pro .sp-grid{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:.93em;margin-bottom:12px}
+.situation-pro .sp-label{font-weight:600;color:#4a5568;white-space:nowrap}
+.graph-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:14px 0;max-width:500px}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Chapitre 5 – Vitesse et accélération en mouvement rectiligne</h1>
+  <p class="sous-titre">Première Bac Pro ICCER &nbsp;|&nbsp; Physique – Mécanique &nbsp;|&nbsp; Cinématique</p>
+</header>
+
+<!-- ===== OBJECTIFS ===== -->
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Mesurer des vitesses et des accélérations dans le cas d'un mouvement rectiligne</li>
+    <li>Identifier la nature d'un mouvement à partir du graphe des vitesses v(t)</li>
+    <li>Utiliser la relation \(\Delta v = a \times \Delta t\) pour une accélération constante</li>
+    <li>Connaître les ordres de grandeur courants de vitesses et d'accélérations</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PROFESSIONNELLE ===== -->
+<div class="situation-pro">
+  <div class="sp-grid">
+    <span class="sp-label">Technicien :</span><span>Sarah, technicienne de maintenance en 1<sup>re</sup> année de Bac Pro</span>
+    <span class="sp-label">Entreprise :</span><span>Ascenseurs Duval — installation et maintenance d'ascenseurs et monte-charges</span>
+    <span class="sp-label">Mission :</span><span>Sarah doit vérifier le bon fonctionnement d'un monte-charge de chantier. Elle doit s'assurer que la vitesse et l'accélération restent dans les normes de sécurité.</span>
+    <span class="sp-label">Données :</span><span>Le monte-charge transporte des radiateurs (masse 80 kg) du rez-de-chaussée au 3<sup>e</sup> étage (hauteur 9 m). Vitesse maximale autorisée : 0,5 m/s. Accélération max : 0,3 m/s².</span>
+  </div>
+  <strong>Questions de Sarah :</strong>
+  <ol style="margin:8px 0 0 0;padding-left:20px;font-size:.93em">
+    <li>Comment calculer la vitesse du monte-charge à partir des mesures de distance et de temps ?</li>
+    <li>Comment vérifier que l'accélération au démarrage ne dépasse pas la norme ?</li>
+    <li>Comment interpréter le graphique de vitesse enregistré par le capteur ?</li>
+    <li>Combien de temps faut-il au monte-charge pour atteindre sa vitesse maximale ?</li>
+  </ol>
+  <p style="font-size:.82em;color:#718096;margin:10px 0 0 0"><em>Ces questions trouveront une réponse complète au fil de ce chapitre.</em></p>
+</div>
+
+<!-- ===== SECTION 1 ===== -->
+<h2>1. La vitesse</h2>
+
+<h3>1.1. Définition et formule</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  La <strong>vitesse</strong> d'un objet en mouvement rectiligne est le rapport de la distance parcourue par la durée du parcours.
+</div>
+
+<div class="formule-box">
+  \[ v = \frac{d}{\Delta t} \]
+  <small>v : vitesse (en m/s) &nbsp;|&nbsp; d : distance parcourue (en m) &nbsp;|&nbsp; \(\Delta t\) : durée (en s)</small>
+</div>
+
+<div class="att">
+  <span class="label-att">Attention aux unités</span><br>
+  <ul>
+    <li>En physique, on utilise le <strong>mètre par seconde</strong> (m/s).</li>
+    <li>Dans la vie courante, on utilise le <strong>kilomètre par heure</strong> (km/h).</li>
+    <li>Conversion : \(1 \text{ m/s} = 3{,}6 \text{ km/h}\) &emsp; et &emsp; \(v_{\text{m/s}} = \dfrac{v_{\text{km/h}}}{3{,}6}\)</li>
+  </ul>
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode – Convertir km/h en m/s</span><br>
+  Pour convertir une vitesse de km/h en m/s, on <strong>divise par 3,6</strong>.<br>
+  Exemple : 90 km/h = \(\dfrac{90}{3{,}6}\) = 25 m/s.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span><br>
+  Le monte-charge de Sarah parcourt 9 m en 18 s. Sa vitesse moyenne est :
+  \[ v = \frac{d}{\Delta t} = \frac{9}{18} = 0{,}5 \text{ m/s} \]
+  C'est bien conforme à la norme (vitesse max : 0,5 m/s).
+</div>
+
+<h3>1.2. Ordres de grandeur de vitesses</h3>
+
+<table style="width:100%;border-collapse:collapse;font-size:.92em;margin:10px 0">
+  <tr style="background:var(--p);color:#fff"><th style="padding:6px;border:1px solid #cbd5e1">Objet / Situation</th><th style="padding:6px;border:1px solid #cbd5e1">Vitesse (m/s)</th><th style="padding:6px;border:1px solid #cbd5e1">Vitesse (km/h)</th></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Escargot</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,001</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,004</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Marche à pied</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">1,4</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">5</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Monte-charge de chantier</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,5</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">1,8</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Ascenseur d'immeuble</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">1 à 4</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">3,6 à 14</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Voiture en ville</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">14</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">50</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">TGV</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">83</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">300</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Son dans l'air</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">340</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">1 224</td></tr>
+</table>
+
+<!-- ===== SECTION 2 ===== -->
+<h2>2. L'accélération</h2>
+
+<h3>2.1. Définition et formule</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  L'<strong>accélération</strong> mesure la rapidité avec laquelle la vitesse change. C'est la variation de vitesse divisée par la durée de cette variation.
+</div>
+
+<div class="formule-box">
+  \[ a = \frac{\Delta v}{\Delta t} = \frac{v_f - v_i}{\Delta t} \]
+  <small>a : accélération (en m/s²) &nbsp;|&nbsp; \(\Delta v = v_f - v_i\) : variation de vitesse (en m/s) &nbsp;|&nbsp; \(\Delta t\) : durée (en s)</small>
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span><br>
+  On peut aussi écrire cette relation sous la forme :
+  \[ \Delta v = a \times \Delta t \qquad \text{soit} \qquad v_f = v_i + a \times \Delta t \]
+  Cette formule est valable uniquement lorsque l'accélération est <strong>constante</strong>.
+</div>
+
+<div class="att">
+  <span class="label-att">Attention</span><br>
+  <ul>
+    <li>Si \(a > 0\) : la vitesse <strong>augmente</strong> (accélération au sens courant).</li>
+    <li>Si \(a = 0\) : la vitesse est <strong>constante</strong> (mouvement uniforme).</li>
+    <li>Si \(a < 0\) : la vitesse <strong>diminue</strong> (décélération ou freinage).</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span><br>
+  Le monte-charge de Sarah passe de 0 à 0,5 m/s en 2 secondes au démarrage.
+  \[ a = \frac{v_f - v_i}{\Delta t} = \frac{0{,}5 - 0}{2} = 0{,}25 \text{ m/s}^2 \]
+  L'accélération est de 0,25 m/s², ce qui est inférieur à la norme (0,3 m/s²) : c'est conforme.
+</div>
+
+<h3>2.2. Ordres de grandeur d'accélérations</h3>
+
+<table style="width:100%;border-collapse:collapse;font-size:.92em;margin:10px 0">
+  <tr style="background:var(--p);color:#fff"><th style="padding:6px;border:1px solid #cbd5e1">Situation</th><th style="padding:6px;border:1px solid #cbd5e1">Accélération (m/s²)</th></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Monte-charge de chantier (démarrage)</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">0,2 à 0,5</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Ascenseur d'immeuble</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">1 à 2</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Voiture (accélération normale)</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">2 à 4</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Chute libre (pesanteur g)</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">9,8</td></tr>
+  <tr><td style="padding:6px;border:1px solid #cbd5e1">Freinage d'urgence (voiture)</td><td style="text-align:center;padding:6px;border:1px solid #cbd5e1">8 à 10</td></tr>
+</table>
+
+<!-- ===== SECTION 3 ===== -->
+<h2>3. Les types de mouvement rectiligne</h2>
+
+<p>On identifie la nature d'un mouvement rectiligne à partir de l'évolution de la vitesse au cours du temps.</p>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  <ul>
+    <li><strong>Mouvement rectiligne uniforme (MRU)</strong> : la vitesse est constante (\(a = 0\)). Le graphe \(v(t)\) est une droite horizontale.</li>
+    <li><strong>Mouvement rectiligne uniformément accéléré (MRUA)</strong> : la vitesse augmente régulièrement (\(a > 0\), constante). Le graphe \(v(t)\) est une droite croissante.</li>
+    <li><strong>Mouvement rectiligne uniformément décéléré (MRUD)</strong> : la vitesse diminue régulièrement (\(a < 0\), constante). Le graphe \(v(t)\) est une droite décroissante.</li>
+  </ul>
+</div>
+
+<h3>3.1. Graphe v(t) – Mouvement uniforme</h3>
+
+<div class="graph-box">
+  <canvas id="graphMRU" width="460" height="260"></canvas>
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span><br>
+  Dans un mouvement uniforme, le graphe \(v(t)\) est une <strong>droite horizontale</strong>. La vitesse ne change pas : \(a = 0\).
+</div>
+
+<h3>3.2. Graphe v(t) – Mouvement uniformément accéléré</h3>
+
+<div class="graph-box">
+  <canvas id="graphMRUA" width="460" height="260"></canvas>
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span><br>
+  Dans un mouvement uniformément accéléré, le graphe \(v(t)\) est une <strong>droite croissante</strong>. La pente de cette droite correspond à l'accélération :
+  \[ a = \frac{\Delta v}{\Delta t} = \text{pente de la droite } v(t) \]
+</div>
+
+<h3>3.3. Graphe v(t) – Mouvement uniformément décéléré</h3>
+
+<div class="graph-box">
+  <canvas id="graphMRUD" width="460" height="260"></canvas>
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span><br>
+  Dans un mouvement uniformément décéléré (freinage), le graphe \(v(t)\) est une <strong>droite décroissante</strong>. L'accélération est négative : \(a < 0\).
+</div>
+
+<!-- ===== SECTION 4 ===== -->
+<h2>4. Utiliser la relation \(\Delta v = a \times \Delta t\)</h2>
+
+<div class="formule-box">
+  \[ \Delta v = a \times \Delta t \qquad \Leftrightarrow \qquad a = \frac{\Delta v}{\Delta t} \qquad \Leftrightarrow \qquad \Delta t = \frac{\Delta v}{a} \]
+  <small>\(\Delta v\) en m/s &nbsp;|&nbsp; a en m/s² &nbsp;|&nbsp; \(\Delta t\) en s</small>
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode – Résoudre un problème de cinématique</span><br>
+  <ol>
+    <li><strong>Identifier les données</strong> : vitesse initiale \(v_i\), vitesse finale \(v_f\), accélération \(a\), durée \(\Delta t\).</li>
+    <li><strong>Calculer \(\Delta v\)</strong> : \(\Delta v = v_f - v_i\).</li>
+    <li><strong>Appliquer la formule</strong> : \(\Delta v = a \times \Delta t\) et isoler l'inconnue.</li>
+    <li><strong>Vérifier les unités</strong> : tout en m, s, m/s, m/s².</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple – Monte-charge de Sarah</span><br>
+  <strong>Données :</strong> \(v_i = 0\) m/s, \(a = 0{,}25\) m/s², \(v_f = 0{,}5\) m/s.
+  <br><strong>Question :</strong> Combien de temps faut-il pour atteindre la vitesse maximale ?
+  \[ \Delta t = \frac{\Delta v}{a} = \frac{v_f - v_i}{a} = \frac{0{,}5 - 0}{0{,}25} = 2 \text{ s} \]
+  Le monte-charge met <strong>2 secondes</strong> pour atteindre sa vitesse maximale.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple – Freinage d'un ascenseur</span><br>
+  Un ascenseur roule à 2 m/s et freine avec une décélération de \(a = -0{,}5\) m/s² pour s'arrêter.
+  \[ \Delta t = \frac{\Delta v}{a} = \frac{0 - 2}{-0{,}5} = 4 \text{ s} \]
+  L'ascenseur met <strong>4 secondes</strong> pour s'arrêter.
+</div>
+
+<!-- ===== SECTION 5 ===== -->
+<h2>5. Lire et interpréter un graphe v(t)</h2>
+
+<div class="meth">
+  <span class="label-meth">Méthode – Analyser un graphe v(t)</span><br>
+  <ol>
+    <li><strong>Identifier les phases</strong> : accélération, vitesse constante, freinage.</li>
+    <li><strong>Lire la vitesse</strong> à chaque instant sur l'axe vertical.</li>
+    <li><strong>Calculer l'accélération</strong> dans chaque phase : \(a = \dfrac{\Delta v}{\Delta t}\) (pente de la droite).</li>
+    <li><strong>Nommer le type de mouvement</strong> de chaque phase.</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple – Graphe complet du monte-charge</span><br>
+  Le capteur de Sarah enregistre le graphe suivant :
+</div>
+
+<div class="graph-box">
+  <canvas id="graphMonteCharge" width="460" height="280"></canvas>
+</div>
+
+<p>Analyse du graphe :</p>
+<ul>
+  <li><strong>Phase 1 (0 à 2 s)</strong> : la vitesse passe de 0 à 0,5 m/s → MRUA, \(a = \frac{0{,}5}{2} = 0{,}25\) m/s².</li>
+  <li><strong>Phase 2 (2 à 16 s)</strong> : la vitesse reste à 0,5 m/s → MRU, \(a = 0\).</li>
+  <li><strong>Phase 3 (16 à 18 s)</strong> : la vitesse passe de 0,5 à 0 m/s → MRUD, \(a = \frac{0 - 0{,}5}{2} = -0{,}25\) m/s².</li>
+</ul>
+
+<!-- ===== RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>La <strong>vitesse</strong> mesure la rapidité d'un déplacement : \(v = \dfrac{d}{\Delta t}\) (en m/s).</li>
+    <li>L'<strong>accélération</strong> mesure la rapidité de variation de la vitesse : \(a = \dfrac{\Delta v}{\Delta t}\) (en m/s²).</li>
+    <li>La relation fondamentale (accélération constante) : \(\Delta v = a \times \Delta t\).</li>
+    <li><strong>MRU</strong> : \(v\) constante, \(a = 0\), graphe \(v(t)\) horizontal.</li>
+    <li><strong>MRUA</strong> : \(v\) augmente, \(a > 0\) constante, graphe \(v(t)\) droite croissante.</li>
+    <li><strong>MRUD</strong> : \(v\) diminue, \(a < 0\) constante, graphe \(v(t)\) droite décroissante.</li>
+    <li>Conversion : 1 m/s = 3,6 km/h.</li>
+  </ul>
+</div>
+
+<!-- ===== RÉPONSES SITUATION PRO ===== -->
+<h2>Retour sur la situation de Sarah</h2>
+
+<div class="ex">
+  <span class="label label-ex">Réponses aux questions</span><br>
+  <ol>
+    <li><strong>Calcul de la vitesse :</strong> \(v = \dfrac{d}{\Delta t} = \dfrac{9}{18} = 0{,}5\) m/s.</li>
+    <li><strong>Vérification de l'accélération :</strong> \(a = \dfrac{0{,}5 - 0}{2} = 0{,}25\) m/s² < 0,3 m/s² : conforme.</li>
+    <li><strong>Interprétation du graphe :</strong> trois phases : accélération (droite croissante), vitesse constante (droite horizontale), freinage (droite décroissante).</li>
+    <li><strong>Temps pour atteindre v<sub>max</sub> :</strong> \(\Delta t = \dfrac{0{,}5}{0{,}25} = 2\) s.</li>
+  </ol>
+</div>
+
+<footer style="margin-top:40px;padding:16px 0;border-top:1px solid #e2e8f0;font-size:.82em;color:#718096;text-align:center">
+  Première Bac Pro ICCER – Groupement 1 | Physique-Chimie – Chapitre 5 | maths-sciences-lp.github.io
+</footer>
+
+</div>
+<script src="../../../nav.js"></script>
+<script>
+// ===== GRAPHIQUES Chart.js =====
+
+// MRU
+new Chart(document.getElementById('graphMRU').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: [0,1,2,3,4,5,6,7,8],
+    datasets: [{
+      label: 'v (m/s)',
+      data: [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5],
+      borderColor: '#0969da',
+      backgroundColor: 'rgba(9,105,218,0.1)',
+      fill: true,
+      tension: 0,
+      pointRadius: 3
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { title: { display: true, text: 'Mouvement rectiligne uniforme (MRU)', font: { size: 14 } }, legend: { display: false } },
+    scales: {
+      x: { title: { display: true, text: 'Temps t (s)' } },
+      y: { title: { display: true, text: 'Vitesse v (m/s)' }, min: 0, max: 1 }
+    }
+  }
+});
+
+// MRUA
+new Chart(document.getElementById('graphMRUA').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: [0,1,2,3,4,5,6],
+    datasets: [{
+      label: 'v (m/s)',
+      data: [0,0.5,1.0,1.5,2.0,2.5,3.0],
+      borderColor: '#2da44e',
+      backgroundColor: 'rgba(45,164,78,0.1)',
+      fill: true,
+      tension: 0,
+      pointRadius: 3
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { title: { display: true, text: 'Mouvement rectiligne uniformément accéléré (MRUA)', font: { size: 14 } }, legend: { display: false } },
+    scales: {
+      x: { title: { display: true, text: 'Temps t (s)' } },
+      y: { title: { display: true, text: 'Vitesse v (m/s)' }, min: 0, max: 3.5 }
+    }
+  }
+});
+
+// MRUD
+new Chart(document.getElementById('graphMRUD').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: [0,1,2,3,4,5,6],
+    datasets: [{
+      label: 'v (m/s)',
+      data: [3.0,2.5,2.0,1.5,1.0,0.5,0],
+      borderColor: '#cf222e',
+      backgroundColor: 'rgba(207,34,46,0.1)',
+      fill: true,
+      tension: 0,
+      pointRadius: 3
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { title: { display: true, text: 'Mouvement rectiligne uniformément décéléré (MRUD)', font: { size: 14 } }, legend: { display: false } },
+    scales: {
+      x: { title: { display: true, text: 'Temps t (s)' } },
+      y: { title: { display: true, text: 'Vitesse v (m/s)' }, min: 0, max: 3.5 }
+    }
+  }
+});
+
+// Monte-charge complet
+new Chart(document.getElementById('graphMonteCharge').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: [0,2,2,16,16,18],
+    datasets: [{
+      label: 'v (m/s)',
+      data: [0,0.5,0.5,0.5,0.5,0],
+      borderColor: '#0969da',
+      backgroundColor: 'rgba(9,105,218,0.1)',
+      fill: true,
+      tension: 0,
+      pointRadius: 4,
+      pointBackgroundColor: '#0969da'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      title: { display: true, text: 'Graphe v(t) du monte-charge', font: { size: 14 } },
+      legend: { display: false },
+      annotation: {}
+    },
+    scales: {
+      x: { title: { display: true, text: 'Temps t (s)' }, min: 0, max: 20 },
+      y: { title: { display: true, text: 'Vitesse v (m/s)' }, min: 0, max: 0.7 }
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Équilibre d'un solide en rotation autour d'un axe fixe – Cours</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.situation-pro{background:linear-gradient(135deg,#ebf5ff 0%,#f0fff4 100%);border:2px solid var(--p);border-radius:10px;padding:18px 22px;margin:18px 0}
+.situation-pro::before{content:"🎯 Situation professionnelle";display:block;font-weight:700;color:var(--p);font-size:.95em;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
+.situation-pro .sp-grid{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:.93em;margin-bottom:12px}
+.situation-pro .sp-label{font-weight:600;color:#4a5568;white-space:nowrap}
+.schema-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin:14px auto;text-align:center;max-width:520px}
+.schema-box svg{max-width:100%;height:auto}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Chapitre 6 – Équilibre d'un solide en rotation autour d'un axe fixe</h1>
+  <p class="sous-titre">Première Bac Pro ICCER &nbsp;|&nbsp; Physique – Mécanique &nbsp;|&nbsp; Moments et équilibre</p>
+</header>
+
+<!-- ===== OBJECTIFS ===== -->
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Comprendre l'effet d'une force sur la rotation d'un objet autour d'un axe fixe</li>
+    <li>Calculer le moment d'une force par rapport à un axe : \(M = F \times d\)</li>
+    <li>Faire l'inventaire des moments sur un système</li>
+    <li>Appliquer la condition d'équilibre : somme des moments = 0</li>
+    <li>Comprendre la notion de centre de gravité et les conditions de basculement</li>
+    <li>Utiliser le principe du bras de levier</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PROFESSIONNELLE ===== -->
+<div class="situation-pro">
+  <div class="sp-grid">
+    <span class="sp-label">Technicien :</span><span>Lucas, technicien chauffagiste en 1<sup>re</sup> année de Bac Pro</span>
+    <span class="sp-label">Entreprise :</span><span>ThermoLev SARL — installation et levage de matériel de chauffage</span>
+    <span class="sp-label">Mission :</span><span>Lucas doit installer un radiateur en fonte de 80 kg au 2<sup>e</sup> étage d'un immeuble en rénovation. Il utilise une grue de chantier à bras pivotant pour lever la charge.</span>
+    <span class="sp-label">Données :</span><span>Le bras de la grue mesure 6 m. La charge est accrochée à l'extrémité du bras. Un contrepoids de 200 kg est placé à 2 m de l'autre côté de l'axe de rotation.</span>
+  </div>
+  <strong>Questions de Lucas :</strong>
+  <ol style="margin:8px 0 0 0;padding-left:20px;font-size:.93em">
+    <li>La grue va-t-elle basculer sous le poids du radiateur ?</li>
+    <li>Comment vérifier que la grue est en équilibre ?</li>
+    <li>Quel contrepoids faut-il pour équilibrer la charge ?</li>
+    <li>Que se passe-t-il si le radiateur est accroché plus loin sur le bras ?</li>
+  </ol>
+  <p style="font-size:.82em;color:#718096;margin:10px 0 0 0"><em>Ces questions trouveront une réponse complète au fil de ce chapitre.</em></p>
+</div>
+
+<!-- ===== SECTION 1 ===== -->
+<h2>1. Effet d'une force sur la rotation</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  Lorsqu'une force est appliquée sur un objet pouvant tourner autour d'un <strong>axe fixe</strong>, elle peut provoquer une <strong>rotation</strong> de cet objet. L'effet de rotation dépend de deux facteurs :
+  <ul>
+    <li>L'<strong>intensité de la force</strong> F (en N)</li>
+    <li>La <strong>distance</strong> d entre la droite d'action de la force et l'axe de rotation (en m)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemples</span><br>
+  <ul>
+    <li>Ouvrir une <strong>porte</strong> : on pousse loin de la charnière (axe) pour que la porte tourne facilement. Plus on pousse loin de l'axe, moins il faut de force.</li>
+    <li>Dévisser un <strong>écrou</strong> avec une clé : plus la clé est longue, moins il faut de force.</li>
+    <li>Une <strong>balançoire</strong> : un enfant lourd s'assoit près du centre, un enfant léger s'assoit loin du centre pour équilibrer.</li>
+    <li>Le bras d'une <strong>grue de chantier</strong> : la charge et le contrepoids créent des effets de rotation opposés autour de l'axe.</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span><br>
+  Une force peut faire tourner un objet dans <strong>deux sens</strong> :
+  <ul>
+    <li><strong>Sens horaire</strong> (sens des aiguilles d'une montre) : par convention, le moment est <strong>négatif</strong>.</li>
+    <li><strong>Sens antihoraire</strong> (sens inverse des aiguilles d'une montre) : par convention, le moment est <strong>positif</strong>.</li>
+  </ul>
+</div>
+
+<!-- ===== SECTION 2 ===== -->
+<h2>2. Moment d'une force</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  Le <strong>moment d'une force</strong> par rapport à un axe de rotation mesure l'effet de cette force sur la rotation. Il est noté \(M\) et se calcule par :
+</div>
+
+<div class="formule-box">
+  \[ M = F \times d \]
+  <small>M : moment de la force (en N&middot;m) &nbsp;|&nbsp; F : intensité de la force (en N) &nbsp;|&nbsp; d : distance entre la droite d'action de la force et l'axe de rotation (en m)</small>
+</div>
+
+<div class="att">
+  <span class="label-att">Attention</span><br>
+  <ul>
+    <li>Le moment s'exprime en <strong>newton-mètre</strong> (N&middot;m), à ne pas confondre avec le joule (J) qui est aussi des N&middot;m mais mesure une énergie.</li>
+    <li>La distance \(d\) est la <strong>distance perpendiculaire</strong> entre l'axe de rotation et la droite d'action de la force. On l'appelle aussi <strong>bras de levier</strong>.</li>
+    <li>Si la droite d'action de la force passe par l'axe de rotation, alors \(d = 0\) et \(M = 0\) : la force ne fait pas tourner l'objet.</li>
+  </ul>
+</div>
+
+<h3>2.1. Le bras de levier</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  Le <strong>bras de levier</strong> est la distance perpendiculaire entre l'axe de rotation et la droite d'action de la force. C'est le « d » dans la formule \(M = F \times d\).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple professionnel</span><br>
+  Un plombier chauffagiste utilise une clé de 30 cm (0,30 m) pour serrer un raccord. Il applique une force de 50 N à l'extrémité de la clé.
+  \[ M = F \times d = 50 \times 0{,}30 = 15 \text{ N·m} \]
+  Avec une clé de 50 cm (0,50 m) et la même force :
+  \[ M = 50 \times 0{,}50 = 25 \text{ N·m} \]
+  Un bras de levier plus long produit un moment plus grand : il est plus facile de serrer !
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode – Calculer un moment</span><br>
+  <ol>
+    <li>Identifier l'<strong>axe de rotation</strong>.</li>
+    <li>Repérer la <strong>force</strong> et son intensité F (en N).</li>
+    <li>Mesurer la <strong>distance perpendiculaire</strong> d entre l'axe et la droite d'action de la force (en m).</li>
+    <li>Appliquer : \(M = F \times d\).</li>
+    <li>Préciser le <strong>sens de rotation</strong> (horaire ou antihoraire).</li>
+  </ol>
+</div>
+
+<!-- ===== SECTION 3 ===== -->
+<h2>3. Condition d'équilibre d'un solide en rotation</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  Un solide pouvant tourner autour d'un axe fixe est en <strong>équilibre de rotation</strong> lorsque la somme de tous les moments par rapport à cet axe est nulle.
+</div>
+
+<div class="formule-box">
+  \[ \sum M = 0 \qquad \Leftrightarrow \qquad \text{Somme des moments horaires} = \text{Somme des moments antihoraires} \]
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span><br>
+  En pratique, pour vérifier l'équilibre :
+  <ul>
+    <li>On calcule les moments des forces qui font tourner dans un sens (ex : horaire).</li>
+    <li>On calcule les moments des forces qui font tourner dans l'autre sens (antihoraire).</li>
+    <li>Si les deux sommes sont <strong>égales</strong>, le solide est en équilibre.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple – Grue de chantier de Lucas</span><br>
+
+  <div class="schema-box">
+    <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" style="max-width:480px">
+      <!-- Axe -->
+      <line x1="200" y1="30" x2="200" y2="80" stroke="#333" stroke-width="3"/>
+      <circle cx="200" cy="80" r="6" fill="#0969da"/>
+      <text x="200" y="25" text-anchor="middle" font-size="12" fill="#333">Axe</text>
+      <!-- Bras gauche (contrepoids) -->
+      <line x1="80" y1="80" x2="200" y2="80" stroke="#555" stroke-width="4"/>
+      <!-- Bras droit (charge) -->
+      <line x1="200" y1="80" x2="440" y2="80" stroke="#555" stroke-width="4"/>
+      <!-- Contrepoids -->
+      <rect x="60" y="90" width="40" height="35" fill="#2da44e" rx="3"/>
+      <text x="80" y="112" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">200 kg</text>
+      <line x1="80" y1="80" x2="80" y2="90" stroke="#333" stroke-width="2"/>
+      <!-- Charge -->
+      <rect x="420" y="90" width="40" height="35" fill="#cf222e" rx="3"/>
+      <text x="440" y="112" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">80 kg</text>
+      <line x1="440" y1="80" x2="440" y2="90" stroke="#333" stroke-width="2"/>
+      <!-- Cotes -->
+      <line x1="80" y1="145" x2="200" y2="145" stroke="#0969da" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+      <text x="140" y="160" text-anchor="middle" font-size="12" fill="#0969da" font-weight="bold">2 m</text>
+      <line x1="200" y1="145" x2="440" y2="145" stroke="#cf222e" stroke-width="1.5" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+      <text x="320" y="160" text-anchor="middle" font-size="12" fill="#cf222e" font-weight="bold">6 m</text>
+      <!-- Flèches poids -->
+      <line x1="80" y1="130" x2="80" y2="140" stroke="#2da44e" stroke-width="2"/>
+      <text x="80" y="185" text-anchor="middle" font-size="11" fill="#2da44e">P₁ = 1960 N</text>
+      <line x1="440" y1="130" x2="440" y2="140" stroke="#cf222e" stroke-width="2"/>
+      <text x="440" y="185" text-anchor="middle" font-size="11" fill="#cf222e">P₂ = 784 N</text>
+      <!-- Sens rotation -->
+      <text x="140" y="75" text-anchor="middle" font-size="10" fill="#2da44e">antihoraire</text>
+      <text x="320" y="75" text-anchor="middle" font-size="10" fill="#cf222e">horaire</text>
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#666"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <p><strong>Données :</strong></p>
+  <ul>
+    <li>Charge (radiateur) : \(m_2 = 80\) kg, à \(d_2 = 6\) m de l'axe → \(P_2 = m_2 \times g = 80 \times 9{,}8 = 784\) N</li>
+    <li>Contrepoids : \(m_1 = 200\) kg, à \(d_1 = 2\) m de l'axe → \(P_1 = 200 \times 9{,}8 = 1\,960\) N</li>
+  </ul>
+  <p><strong>Calcul des moments :</strong></p>
+  <ul>
+    <li>Moment de la charge (horaire) : \(M_2 = P_2 \times d_2 = 784 \times 6 = 4\,704\) N&middot;m</li>
+    <li>Moment du contrepoids (antihoraire) : \(M_1 = P_1 \times d_1 = 1\,960 \times 2 = 3\,920\) N&middot;m</li>
+  </ul>
+  <p><strong>Vérification :</strong> \(M_2 = 4\,704\) N&middot;m &gt; \(M_1 = 3\,920\) N&middot;m → <strong>La grue n'est pas en équilibre ! Elle bascule du côté de la charge.</strong></p>
+  <p>Lucas doit soit rapprocher la charge de l'axe, soit augmenter le contrepoids.</p>
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode – Vérifier l'équilibre</span><br>
+  <ol>
+    <li>Identifier l'<strong>axe de rotation</strong>.</li>
+    <li>Faire l'<strong>inventaire</strong> de toutes les forces et calculer leurs moments.</li>
+    <li>Calculer la <strong>somme des moments horaires</strong> et la <strong>somme des moments antihoraires</strong>.</li>
+    <li>Comparer : si elles sont égales → <strong>équilibre</strong>. Sinon → <strong>rotation</strong> dans le sens du moment le plus grand.</li>
+  </ol>
+</div>
+
+<!-- ===== SECTION 4 ===== -->
+<h2>4. Applications du principe des moments</h2>
+
+<h3>4.1. Trouver une force inconnue</h3>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span><br>
+  <strong>Question :</strong> Quel contrepoids faut-il pour équilibrer le radiateur de 80 kg à 6 m de l'axe, si le contrepoids est placé à 2 m ?
+  <br>
+  À l'équilibre : \(M_1 = M_2\)
+  \[ P_1 \times d_1 = P_2 \times d_2 \]
+  \[ P_1 \times 2 = 784 \times 6 \]
+  \[ P_1 = \frac{784 \times 6}{2} = \frac{4\,704}{2} = 2\,352 \text{ N} \]
+  Masse correspondante : \(m_1 = \dfrac{P_1}{g} = \dfrac{2\,352}{9{,}8} = 240 \text{ kg}\)
+  <br>
+  Il faut un contrepoids de <strong>240 kg</strong> (au lieu de 200 kg).
+</div>
+
+<h3>4.2. Trouver une distance</h3>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span><br>
+  <strong>Question :</strong> Avec le contrepoids de 200 kg à 2 m, à quelle distance maximale peut-on accrocher le radiateur de 80 kg ?
+  <br>
+  À l'équilibre : \(P_1 \times d_1 = P_2 \times d_2\)
+  \[ 1\,960 \times 2 = 784 \times d_2 \]
+  \[ d_2 = \frac{3\,920}{784} = 5{,}0 \text{ m} \]
+  Le radiateur peut être accroché à <strong>5 m maximum</strong> de l'axe (et non 6 m).
+</div>
+
+<!-- ===== SECTION 5 ===== -->
+<h2>5. Centre de gravité et basculement</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  Le <strong>centre de gravité</strong> (noté G) d'un objet est le point d'application du poids de l'objet. C'est le point où l'on peut considérer que tout le poids est concentré.
+  <ul>
+    <li>Pour un objet homogène de forme simple (rectangle, disque, sphère), G est au <strong>centre géométrique</strong>.</li>
+    <li>Pour un objet non homogène, G est décalé vers la partie la plus lourde.</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriété – Condition de basculement</span><br>
+  Un objet posé sur un plan bascule lorsque la <strong>verticale passant par son centre de gravité G</strong> sort de sa <strong>base d'appui</strong> (surface de contact avec le sol).
+  <ul>
+    <li>Si la verticale de G tombe <strong>dans la base</strong> → l'objet est <strong>stable</strong>.</li>
+    <li>Si la verticale de G tombe <strong>hors de la base</strong> → l'objet <strong>bascule</strong>.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Application professionnelle</span><br>
+  Un technicien chauffagiste transporte un chauffe-eau vertical de 150 litres (plein : environ 160 kg) sur un diable. Le chauffe-eau est haut et étroit.
+  <ul>
+    <li>Si le centre de gravité reste au-dessus de la base du diable → stable.</li>
+    <li>Si le technicien incline trop le diable → le centre de gravité sort de la base → le chauffe-eau bascule !</li>
+  </ul>
+  <strong>Règle de sécurité :</strong> ne jamais incliner un objet lourd au-delà du point où son centre de gravité dépasse le bord d'appui.
+</div>
+
+<div class="att">
+  <span class="label-att">Attention – Sécurité sur chantier</span><br>
+  <ul>
+    <li>Un objet avec un centre de gravité <strong>bas</strong> et une base <strong>large</strong> est plus stable (ex : radiateur en fonte posé au sol).</li>
+    <li>Un objet avec un centre de gravité <strong>haut</strong> et une base <strong>étroite</strong> est instable (ex : chauffe-eau vertical, échelle chargée).</li>
+    <li>Lors du levage à la grue, toujours vérifier que le contrepoids est suffisant pour éviter le basculement.</li>
+  </ul>
+</div>
+
+<!-- ===== SECTION 6 ===== -->
+<h2>6. Le levier dans les métiers du bâtiment</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span><br>
+  Un <strong>levier</strong> est un objet rigide pouvant tourner autour d'un point fixe appelé <strong>pivot</strong> (ou fulcrum). Il permet de soulever une charge lourde avec une force plus faible, en utilisant un bras de levier suffisamment long.
+</div>
+
+<div class="formule-box">
+  <strong>Principe du levier</strong><br>
+  À l'équilibre : \(F_1 \times d_1 = F_2 \times d_2\)
+  <br><small>\(F_1\) : force motrice (en N) &nbsp;|&nbsp; \(d_1\) : bras de levier moteur (en m) &nbsp;|&nbsp; \(F_2\) : force résistante (en N) &nbsp;|&nbsp; \(d_2\) : bras de levier résistant (en m)</small>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple professionnel</span><br>
+  Un installateur thermique utilise un pied-de-biche de 80 cm pour soulever un ancien radiateur en fonte posé au sol. Le pivot est situé à 5 cm de la charge.
+  <ul>
+    <li>Bras de levier moteur : \(d_1 = 80 - 5 = 75\) cm = 0,75 m</li>
+    <li>Bras de levier résistant : \(d_2 = 5\) cm = 0,05 m</li>
+    <li>Poids du radiateur : \(P = 600\) N</li>
+  </ul>
+  Force nécessaire :
+  \[ F_1 = \frac{F_2 \times d_2}{d_1} = \frac{600 \times 0{,}05}{0{,}75} = 40 \text{ N} \]
+  Le technicien n'a besoin que de <strong>40 N</strong> (environ 4 kg-force) pour soulever un radiateur de 600 N (60 kg) !
+  <br>
+  Le rapport de bras de levier est : \(\dfrac{d_1}{d_2} = \dfrac{0{,}75}{0{,}05} = 15\). Le levier multiplie la force par <strong>15</strong>.
+</div>
+
+<!-- ===== RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Le <strong>moment d'une force</strong> mesure son effet de rotation : \(M = F \times d\) (en N&middot;m).</li>
+    <li>Le <strong>bras de levier</strong> est la distance perpendiculaire entre l'axe de rotation et la droite d'action de la force.</li>
+    <li><strong>Condition d'équilibre</strong> : somme des moments horaires = somme des moments antihoraires (\(\sum M = 0\)).</li>
+    <li>Le <strong>centre de gravité</strong> G est le point d'application du poids. Un objet bascule quand la verticale de G sort de sa base d'appui.</li>
+    <li>Le <strong>levier</strong> multiplie la force : \(F_1 \times d_1 = F_2 \times d_2\).</li>
+    <li>Plus le bras de levier est <strong>long</strong>, plus l'effet de rotation est <strong>grand</strong> pour une même force.</li>
+  </ul>
+</div>
+
+<!-- ===== RÉPONSES SITUATION PRO ===== -->
+<h2>Retour sur la situation de Lucas</h2>
+
+<div class="ex">
+  <span class="label label-ex">Réponses aux questions</span><br>
+  <ol>
+    <li><strong>La grue va-t-elle basculer ?</strong> — Oui ! Le moment de la charge (4 704 N&middot;m) est supérieur au moment du contrepoids (3 920 N&middot;m). La grue bascule du côté du radiateur.</li>
+    <li><strong>Comment vérifier l'équilibre ?</strong> — En calculant et comparant les moments de chaque côté. Si \(M_{\text{charge}} = M_{\text{contrepoids}}\), la grue est en équilibre.</li>
+    <li><strong>Quel contrepoids faut-il ?</strong> — Il faut au minimum 240 kg à 2 m de l'axe pour équilibrer les 80 kg à 6 m.</li>
+    <li><strong>Si le radiateur est plus loin ?</strong> — Le moment de la charge augmente (\(M = P \times d\)). Il faut un contrepoids encore plus lourd ou placé plus loin de l'axe.</li>
+  </ol>
+</div>
+
+<footer style="margin-top:40px;padding:16px 0;border-top:1px solid #e2e8f0;font-size:.82em;color:#718096;text-align:center">
+  Première Bac Pro ICCER – Groupement 1 | Physique-Chimie – Chapitre 6 | maths-sciences-lp.github.io
+</footer>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
