@@ -20,8 +20,8 @@ Ce fichier est lu automatiquement par Claude Code à chaque session.
 │   └── terminale/ch01..ch11/   ← lecon.html, exercices.html, ds.html
 ├── physique-chimie/
 │   ├── seconde/ch01..ch14/
-│   ├── premiere-iccer/ch01..chXX/  ← groupement 1 (ICCER)
-│   ├── premiere-era/ch01..chXX/    ← groupement 3 (ERA-MA)
+│   ├── premiere-iccer/ch01..ch10/  ← groupement 1 (ICCER)
+│   ├── premiere-era/ch01..ch10/    ← groupement 3 (ERA-MA)
 │   ├── terminale-iccer/ch01..ch11/
 │   └── terminale-era/ch01..ch08/
 ├── simulations/                ← Pages interactives (Canvas/SVG/JS)
