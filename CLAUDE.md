@@ -200,9 +200,37 @@ Avant de générer du contenu, consulter les fichiers dans `/prompts/` :
 | `prompts/prompt-filiere-ticcer.md` | Contextes pro Terminale ICCER (chauffage/énergie) |
 
 ### Règles contextes professionnels
-- Ne jamais écrire "élève de MAMA/ICCER/ERA" — utiliser des noms de métiers réels
-- Varier les contextes : pro + sport + science + quotidien + énergie
-- Exemples : "Un technicien chauffagiste...", "Un menuisier agenceur..."
+
+**RÈGLE ABSOLUE : Ne JAMAIS utiliser les sigles de filière (ICCER, ERA, MA, ERA-MA, MAMA) comme noms de métiers dans le contenu.**
+
+Ces sigles sont des noms de formations scolaires, pas des métiers réels. Ils ne doivent apparaître que dans :
+- les titres de pages (`<title>`, `<h1>`)
+- les sous-titres identifiant la classe (`<p class="sous-titre">`)
+- les liens de navigation (`← RETOUR SOMMAIRE`)
+- les badges visuels (`<span class="ticcer-badge">`, `<span class="erama-badge">`)
+
+**Interdit dans le contenu pédagogique :**
+- ~~"Un technicien ICCER installe..."~~ → **"Un installateur thermique installe..."**
+- ~~"Un technicien ERA-MA effectue..."~~ → **"Un menuisier agenceur effectue..."**
+- ~~"Vous êtes technicien ERA-MA dans..."~~ → **"Vous êtes technicien d'agencement dans..."**
+- ~~"Un technicien MAMA prépare un devis..."~~ → **"Un métreur prépare un devis..."**
+- ~~"Contexte ERA-MA"~~ → **"Contexte professionnel"** ou **"Contexte menuiserie"**
+- ~~"Application ERA-MA"~~ → **"Application en agencement"**
+- ~~"Utilisations en ERA-MA"~~ → **"Utilisations en agencement"**
+- ~~"Exemple ERA-MA"~~ → **"Exemple professionnel"**
+- ~~"Lien ERA-MA"~~ → **"Application professionnelle"** ou **"Lien métier"**
+
+**Métiers réels à utiliser :**
+
+| Filière | Métiers à utiliser |
+|---|---|
+| ICCER | plombier chauffagiste, installateur thermique, technicien chauffagiste, technicien climatisation, technicien CVC, technicien de maintenance énergétique, installateur de pompes à chaleur, technicien en énergies renouvelables |
+| ERA / MA | menuisier, menuisier agenceur, ébéniste, fabricant de meubles, installateur d'agencement, poseur de cuisines, artisan menuisier, aménageur d'intérieur, technicien d'agencement |
+| MAMA (Seconde) | menuisier, métreur, artisan menuisier, fabricant de mobilier |
+
+**Autres règles :**
+- Varier les contextes : professionnel + sport + science + quotidien + énergie + santé + climat
+- On peut aussi utiliser des métiers plus qualifiés : ingénieur thermicien, architecte d'intérieur, chef de chantier, conducteur de travaux, etc.
 
 ---
 
