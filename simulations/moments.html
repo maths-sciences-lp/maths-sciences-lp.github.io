@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Moments et Équilibre en Rotation — Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.6}
+header{background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;padding:30px 20px 22px;text-align:center;position:relative}
+header h1{font-size:1.6em;margin-bottom:4px}
+header p{opacity:.88;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:20px auto;padding:0 15px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:18px}
+.card h3{margin-bottom:12px;color:#0284c7;font-size:1.05em}
+label{font-weight:600;font-size:.9em;display:block;margin:8px 0 4px}
+.slider-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.slider-row input[type=range]{flex:1}
+.slider-row .val{min-width:60px;text-align:right;font-weight:600;font-size:.95em}
+.slider-row .unit{font-size:.85em;color:#64748b;min-width:20px}
+canvas{width:100%;border-radius:8px;border:1px solid #e0e0e0}
+.info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.info-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;font-size:.92em}
+.info-box .lbl{font-size:.8em;color:#64748b;text-transform:uppercase;letter-spacing:.04em}
+.info-box .value{font-size:1.15em;font-weight:700;margin-top:2px}
+.eq-status{text-align:center;padding:12px;border-radius:10px;font-weight:700;font-size:1.1em;margin-top:12px;transition:.3s}
+.eq-balanced{background:#dcfce7;color:#16a34a;border:2px solid #16a34a}
+.eq-unbalanced{background:#fef2f2;color:#dc2626;border:2px solid #dc2626}
+.formula-card{background:#eff8ff;border:1px solid #7dd3fc;border-radius:10px;padding:16px 20px;text-align:center;margin-bottom:18px}
+.toggle-f3{display:flex;align-items:center;gap:10px;margin:10px 0;cursor:pointer;font-weight:600;font-size:.93em}
+.toggle-f3 input{width:18px;height:18px;accent-color:#0284c7}
+.f3-section{display:none;border-top:1px solid #e2e8f0;padding-top:10px;margin-top:10px}
+.situation{background:linear-gradient(135deg,#eff8ff,#f0f9ff);border:2px dashed #0284c7;border-radius:10px;padding:14px 18px;margin-bottom:18px;font-size:.93em}
+.situation strong{color:#0284c7}
+.color-f1{color:#dc2626}.color-f2{color:#2563eb}.color-f3{color:#7c3aed}
+@media(max-width:600px){
+  header h1{font-size:1.2em}
+  .info-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">← Retour</a>
+  <h1>Moments et Équilibre en Rotation</h1>
+  <p>Première Bac Pro · Ch06</p>
+</header>
+
+<div class="container">
+
+<div class="situation">
+  <strong>Contexte professionnel — Bras de levier pour lever une charge :</strong> Un technicien chauffagiste utilise un levier pour soulever un radiateur en fonte. Il doit déterminer la force nécessaire et la position du pivot pour atteindre l'équilibre.
+</div>
+
+<div class="formula-card">
+  <p>Moment d'une force : \(\quad M = F \times d \quad\) (en N.m)</p>
+  <p style="margin-top:6px">Condition d'équilibre : \(\quad \sum M = 0 \quad \Leftrightarrow \quad M_1 = M_2\)</p>
+</div>
+
+<div class="card">
+  <h3>Paramètres</h3>
+
+  <label>Position du pivot sur la poutre (m) : <span id="pivotVal">1.50</span></label>
+  <div class="slider-row">
+    <span class="unit">0 m</span>
+    <input type="range" id="pivotSlider" min="0.2" max="2.8" step="0.05" value="1.5">
+    <span class="unit">3 m</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px">
+    <div>
+      <h4 class="color-f1" style="font-size:.95em">Force F₁ (gauche)</h4>
+      <label>F₁ = <span id="f1Val">50</span> N</label>
+      <div class="slider-row"><input type="range" id="f1Slider" min="1" max="100" step="1" value="50"></div>
+      <label>d₁ = <span id="d1Val">1.0</span> m</label>
+      <div class="slider-row"><input type="range" id="d1Slider" min="0.1" max="2" step="0.05" value="1.0"></div>
+    </div>
+    <div>
+      <h4 class="color-f2" style="font-size:.95em">Force F₂ (droite)</h4>
+      <label>F₂ = <span id="f2Val">50</span> N</label>
+      <div class="slider-row"><input type="range" id="f2Slider" min="1" max="100" step="1" value="50"></div>
+      <label>d₂ = <span id="d2Val">1.0</span> m</label>
+      <div class="slider-row"><input type="range" id="d2Slider" min="0.1" max="2" step="0.05" value="1.0"></div>
+    </div>
+  </div>
+
+  <label class="toggle-f3">
+    <input type="checkbox" id="f3Toggle"> Ajouter une troisième force F₃
+  </label>
+  <div class="f3-section" id="f3Section">
+    <h4 class="color-f3" style="font-size:.95em">Force F₃</h4>
+    <label>F₃ = <span id="f3Val">30</span> N</label>
+    <div class="slider-row"><input type="range" id="f3Slider" min="1" max="100" step="1" value="30"></div>
+    <label>d₃ = <span id="d3Val">0.5</span> m (à gauche du pivot)</label>
+    <div class="slider-row"><input type="range" id="d3Slider" min="0.1" max="2" step="0.05" value="0.5"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Visualisation</h3>
+  <canvas id="beamCanvas" height="300"></canvas>
+  <div id="eqStatus" class="eq-status eq-balanced">ÉQUILIBRE</div>
+</div>
+
+<div class="card">
+  <h3>Résultats</h3>
+  <div class="info-grid">
+    <div class="info-box"><div class="lbl">M₁ = F₁ × d₁</div><div class="value color-f1" id="m1Val">—</div></div>
+    <div class="info-box"><div class="lbl">M₂ = F₂ × d₂</div><div class="value color-f2" id="m2Val">—</div></div>
+    <div class="info-box"><div class="lbl">ΣM = M₁ − M₂</div><div class="value" id="sumVal">—</div></div>
+  </div>
+  <div class="info-grid" id="f3Results" style="display:none;margin-top:8px">
+    <div class="info-box"><div class="lbl">M₃ = F₃ × d₃</div><div class="value color-f3" id="m3Val">—</div></div>
+    <div class="info-box"><div class="lbl">ΣM (avec F₃)</div><div class="value" id="sumVal3">—</div></div>
+    <div class="info-box"><div class="lbl">Sens de rotation</div><div class="value" id="rotDir">—</div></div>
+  </div>
+</div>
+
+</div><!-- container -->
+
+<script>
+const canvas = document.getElementById('beamCanvas');
+const ctx = canvas.getContext('2d');
+
+const pivotSlider = document.getElementById('pivotSlider');
+const f1Slider = document.getElementById('f1Slider');
+const d1Slider = document.getElementById('d1Slider');
+const f2Slider = document.getElementById('f2Slider');
+const d2Slider = document.getElementById('d2Slider');
+const f3Slider = document.getElementById('f3Slider');
+const d3Slider = document.getElementById('d3Slider');
+const f3Toggle = document.getElementById('f3Toggle');
+
+function resize() {
+  const r = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth;
+  const h = 300;
+  canvas.width = w * r;
+  canvas.height = h * r;
+  ctx.setTransform(r, 0, 0, r, 0, 0);
+  return { w, h };
+}
+
+function draw() {
+  const { w, h } = resize();
+  ctx.clearRect(0, 0, w, h);
+
+  const beamLen = 3; // meters
+  const pivotPos = parseFloat(pivotSlider.value);
+  const f1 = parseInt(f1Slider.value);
+  const d1 = parseFloat(d1Slider.value);
+  const f2 = parseInt(f2Slider.value);
+  const d2 = parseFloat(d2Slider.value);
+  const useF3 = f3Toggle.checked;
+  const f3 = parseInt(f3Slider.value);
+  const d3 = parseFloat(d3Slider.value);
+
+  // Update labels
+  document.getElementById('pivotVal').textContent = pivotPos.toFixed(2);
+  document.getElementById('f1Val').textContent = f1;
+  document.getElementById('d1Val').textContent = d1.toFixed(2);
+  document.getElementById('f2Val').textContent = f2;
+  document.getElementById('d2Val').textContent = d2.toFixed(2);
+  document.getElementById('f3Val').textContent = f3;
+  document.getElementById('d3Val').textContent = d3.toFixed(2);
+
+  // Moments: M1 turns clockwise (left side), M2 turns counter-clockwise (right side)
+  const m1 = f1 * d1;
+  const m2 = f2 * d2;
+  let m3 = 0;
+  if (useF3) m3 = f3 * d3; // F3 on left side, same direction as F1
+
+  const totalLeft = m1 + m3; // clockwise
+  const totalRight = m2; // counter-clockwise
+  const sumM = totalLeft - totalRight;
+
+  // Display values
+  document.getElementById('m1Val').textContent = m1.toFixed(1) + ' N.m';
+  document.getElementById('m2Val').textContent = m2.toFixed(1) + ' N.m';
+  document.getElementById('sumVal').textContent = (useF3 ? '—' : sumM.toFixed(1) + ' N.m');
+  document.getElementById('m3Val').textContent = m3.toFixed(1) + ' N.m';
+  document.getElementById('sumVal3').textContent = sumM.toFixed(1) + ' N.m';
+
+  const rotEl = document.getElementById('rotDir');
+  if (Math.abs(sumM) < 0.5) {
+    rotEl.textContent = 'Aucun';
+    rotEl.style.color = '#16a34a';
+  } else if (sumM > 0) {
+    rotEl.textContent = '↻ Horaire (gauche descend)';
+    rotEl.style.color = '#dc2626';
+  } else {
+    rotEl.textContent = '↺ Anti-horaire (droite descend)';
+    rotEl.style.color = '#2563eb';
+  }
+
+  // Status
+  const statusEl = document.getElementById('eqStatus');
+  const balanced = Math.abs(sumM) < 0.5;
+  statusEl.className = 'eq-status ' + (balanced ? 'eq-balanced' : 'eq-unbalanced');
+  statusEl.textContent = balanced ? 'ÉQUILIBRE' : (sumM > 0 ? 'DÉSÉQUILIBRE — La poutre bascule à gauche' : 'DÉSÉQUILIBRE — La poutre bascule à droite');
+
+  // Drawing coordinates
+  const margin = 60;
+  const beamY = h * 0.45;
+  const scale = (w - margin * 2) / beamLen;
+  const beamLeft = margin;
+  const beamRight = w - margin;
+  const pivotX = beamLeft + pivotPos * scale;
+
+  // Tilt angle based on moment difference
+  const maxAngle = 15 * Math.PI / 180;
+  const tiltAngle = Math.max(-maxAngle, Math.min(maxAngle, sumM / 200 * maxAngle));
+
+  // Draw ground
+  ctx.fillStyle = '#e2e8f0';
+  ctx.fillRect(0, h - 30, w, 30);
+  for (let gx = 0; gx < w; gx += 15) {
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(gx, h - 30);
+    ctx.lineTo(gx - 8, h - 18);
+    ctx.stroke();
+  }
+
+  // Pivot triangle
+  const pivotTopY = beamY;
+  const pivotBaseY = h - 30;
+  ctx.fillStyle = '#475569';
+  ctx.beginPath();
+  ctx.moveTo(pivotX, pivotTopY);
+  ctx.lineTo(pivotX - 18, pivotBaseY);
+  ctx.lineTo(pivotX + 18, pivotBaseY);
+  ctx.closePath();
+  ctx.fill();
+
+  // Pivot circle
+  ctx.fillStyle = '#0284c7';
+  ctx.beginPath();
+  ctx.arc(pivotX, pivotTopY, 6, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Beam (tilted)
+  ctx.save();
+  ctx.translate(pivotX, pivotTopY);
+  ctx.rotate(tiltAngle);
+
+  const leftEnd = -(pivotPos * scale);
+  const rightEnd = (beamLen - pivotPos) * scale;
+
+  // Beam body
+  ctx.fillStyle = '#64748b';
+  ctx.beginPath();
+  ctx.roundRect(leftEnd, -8, rightEnd - leftEnd, 16, 4);
+  ctx.fill();
+
+  // Meter marks
+  ctx.fillStyle = '#fff';
+  ctx.font = '10px Segoe UI,sans-serif';
+  ctx.textAlign = 'center';
+  for (let m = 0; m <= beamLen; m += 0.5) {
+    const mx = (m - pivotPos) * scale;
+    ctx.beginPath();
+    ctx.moveTo(mx, -8);
+    ctx.lineTo(mx, m % 1 === 0 ? -14 : -11);
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    if (m % 1 === 0) {
+      ctx.fillText(m + 'm', mx, -17);
+    }
+  }
+
+  // Force F1 (left, at -d1 from pivot → 0 on beam means pivot)
+  const f1X = -d1 * scale;
+  drawForce(ctx, f1X, -8, f1, '#dc2626', 'F₁', scale);
+
+  // Force F2 (right)
+  const f2X = d2 * scale;
+  drawForce(ctx, f2X, -8, f2, '#2563eb', 'F₂', scale);
+
+  // Force F3
+  if (useF3) {
+    const f3X = -d3 * scale;
+    drawForce(ctx, f3X, -8, f3, '#7c3aed', 'F₃', scale);
+  }
+
+  // Distance markers
+  drawDistMarker(ctx, 0, f1X, 20, '#dc2626', 'd₁=' + d1.toFixed(1) + 'm');
+  drawDistMarker(ctx, 0, f2X, 20, '#2563eb', 'd₂=' + d2.toFixed(1) + 'm');
+  if (useF3) {
+    drawDistMarker(ctx, 0, -d3 * scale, 36, '#7c3aed', 'd₃=' + d3.toFixed(1) + 'm');
+  }
+
+  ctx.restore();
+
+  // Pivot label
+  ctx.fillStyle = '#0284c7';
+  ctx.font = 'bold 12px Segoe UI,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Pivot', pivotX, pivotBaseY + 14);
+}
+
+function drawForce(ctx, x, beamTop, force, color, label, scale) {
+  const arrowLen = Math.max(30, force * 0.8);
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 3;
+  // Arrow pointing down
+  ctx.beginPath();
+  ctx.moveTo(x, beamTop - arrowLen);
+  ctx.lineTo(x, beamTop);
+  ctx.stroke();
+  // Arrowhead
+  ctx.beginPath();
+  ctx.moveTo(x, beamTop);
+  ctx.lineTo(x - 6, beamTop - 10);
+  ctx.lineTo(x + 6, beamTop - 10);
+  ctx.closePath();
+  ctx.fill();
+  // Label
+  ctx.font = 'bold 13px Segoe UI,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(label + '=' + force + 'N', x, beamTop - arrowLen - 8);
+}
+
+function drawDistMarker(ctx, x1, x2, yOff, color, label) {
+  const y = 8 + yOff;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 3]);
+  ctx.beginPath();
+  ctx.moveTo(x1, y);
+  ctx.lineTo(x2, y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  // End caps
+  ctx.beginPath(); ctx.moveTo(x1, y - 4); ctx.lineTo(x1, y + 4); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x2, y - 4); ctx.lineTo(x2, y + 4); ctx.stroke();
+  // Label
+  ctx.fillStyle = color;
+  ctx.font = '10px Segoe UI,sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(label, (x1 + x2) / 2, y + 14);
+}
+
+// roundRect polyfill
+if (!ctx.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+    if (typeof r === 'number') r = [r, r, r, r];
+    this.moveTo(x + r[0], y);
+    this.arcTo(x + w, y, x + w, y + h, r[1]);
+    this.arcTo(x + w, y + h, x, y + h, r[2]);
+    this.arcTo(x, y + h, x, y, r[3]);
+    this.arcTo(x, y, x + w, y, r[0]);
+    this.closePath();
+  };
+}
+
+f3Toggle.addEventListener('change', () => {
+  document.getElementById('f3Section').style.display = f3Toggle.checked ? 'block' : 'none';
+  document.getElementById('f3Results').style.display = f3Toggle.checked ? 'grid' : 'none';
+  draw();
+});
+
+[pivotSlider, f1Slider, d1Slider, f2Slider, d2Slider, f3Slider, d3Slider].forEach(s => s.addEventListener('input', draw));
+window.addEventListener('resize', draw);
+draw();
+</script>
+</body>
+</html>
