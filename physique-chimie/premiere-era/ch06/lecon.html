@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Équilibre d'un solide en rotation | Première ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-erama.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 6 – Équilibre d'un solide en rotation autour d'un axe fixe</h1>
+  <p class="sous-titre">Première Bac Pro ERA-MA | Physique – Mécanique | Moments et équilibre</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Définir le moment d'une force par rapport à un axe de rotation</li>
+    <li>Calculer un moment : \(M = F \times d\) (bras de levier)</li>
+    <li>Énoncer et appliquer la condition d'équilibre en rotation : somme des moments = 0</li>
+    <li>Déterminer le centre de gravité d'un solide et étudier les conditions de basculement</li>
+  </ul>
+</div>
+
+<!-- ========== SITUATION PRO ========== -->
+<h2>1. Situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte : Levage d'un panneau de bois en atelier</strong><br>
+  Un menuisier agenceur doit soulever un grand panneau de contreplaqué (2,50 m × 1,25 m) à l'aide d'un bras de levage pivotant fixé au mur de l'atelier. Le panneau pèse 45 kg. Le bras mesure 2 m et pivote autour de son point de fixation. Pour dimensionner correctement ce système, il faut comprendre la notion de <strong>moment d'une force</strong> et les conditions d'équilibre.
+</div>
+
+<p>Dans les métiers de la menuiserie et de l'agencement, la notion d'équilibre en rotation intervient dans de nombreuses situations :</p>
+<ul>
+  <li><strong>Charnières de meuble</strong> : une porte d'armoire pivote autour de ses charnières — son poids crée un moment qui tend à l'ouvrir ou la fermer</li>
+  <li><strong>Portes battantes</strong> : plus on pousse loin de la charnière, plus c'est facile — c'est l'effet du bras de levier</li>
+  <li><strong>Établis basculants</strong> : un établi mal chargé peut basculer si le centre de gravité sort de la zone d'appui</li>
+  <li><strong>Étagères murales</strong> : le poids des objets crée un moment par rapport aux fixations</li>
+</ul>
+
+<!-- ========== FORCES ET ROTATION ========== -->
+<h2>2. Forces et rotation</h2>
+
+<h3>2.1. Rappel : qu'est-ce qu'une force ?</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  Une <strong>force</strong> est une action mécanique capable de mettre en mouvement un objet, de le déformer ou de modifier sa trajectoire. Elle se caractérise par :
+  <ul>
+    <li>un <strong>point d'application</strong> (là où elle s'exerce)</li>
+    <li>une <strong>direction</strong> (droite d'action)</li>
+    <li>un <strong>sens</strong> (vers le haut, le bas…)</li>
+    <li>une <strong>intensité</strong> (valeur en newton, N)</li>
+  </ul>
+</div>
+
+<h3>2.2. Effet d'une force sur la rotation</h3>
+
+<p>Quand un solide peut tourner autour d'un <strong>axe fixe</strong> (charnière, pivot, point de fixation), une force appliquée sur ce solide peut provoquer une <strong>rotation</strong>.</p>
+
+<div class="ex">
+  <strong>Exemple : Porte d'armoire</strong><br>
+  Une porte d'armoire pivote autour de ses charnières (axe fixe). Si on pousse la porte <strong>loin des charnières</strong> (au niveau de la poignée), elle tourne facilement. Si on pousse <strong>près des charnières</strong>, il faut exercer une force beaucoup plus grande pour le même effet.
+</div>
+
+<p>Ce constat montre que l'effet de rotation ne dépend pas seulement de l'intensité de la force, mais aussi de la <strong>distance</strong> entre le point d'application de la force et l'axe de rotation.</p>
+
+<!-- ========== MOMENT D'UNE FORCE ========== -->
+<h2>3. Moment d'une force par rapport à un axe</h2>
+
+<h3>3.1. Définition</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  Le <strong>moment d'une force</strong> \(\vec{F}\) par rapport à un axe de rotation \(\Delta\) mesure l'aptitude de cette force à faire tourner le solide autour de cet axe.
+</div>
+
+<h3>3.2. Bras de levier</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  Le <strong>bras de levier</strong> \(d\) est la distance perpendiculaire entre l'axe de rotation et la droite d'action de la force. C'est la plus courte distance entre l'axe et la ligne sur laquelle s'exerce la force.
+</div>
+
+<div class="svg-wrap">
+<svg width="500" height="250" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <!-- Axe de rotation -->
+  <circle cx="80" cy="150" r="8" fill="#2da44e" stroke="#166534" stroke-width="2"/>
+  <text x="80" y="180" text-anchor="middle" font-size="12" fill="#166534" font-weight="bold">Axe Δ</text>
+  <!-- Barre -->
+  <line x1="80" y1="150" x2="400" y2="150" stroke="#4a5568" stroke-width="4" stroke-linecap="round"/>
+  <!-- Force -->
+  <line x1="350" y1="150" x2="350" y2="60" stroke="#c53030" stroke-width="3"/>
+  <polygon points="345,65 350,45 355,65" fill="#c53030"/>
+  <text x="370" y="90" font-size="14" fill="#c53030" font-weight="bold">F⃗</text>
+  <!-- Bras de levier -->
+  <line x1="80" y1="200" x2="350" y2="200" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="6,3"/>
+  <line x1="80" y1="195" x2="80" y2="205" stroke="#0ea5e9" stroke-width="2"/>
+  <line x1="350" y1="195" x2="350" y2="205" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="215" y="220" text-anchor="middle" font-size="13" fill="#0ea5e9" font-weight="bold">d = bras de levier</text>
+  <!-- Angle droit -->
+  <rect x="342" y="142" width="8" height="8" fill="none" stroke="#c53030" stroke-width="1.5"/>
+</svg>
+</div>
+
+<h3>3.3. Formule du moment</h3>
+
+<div class="formule-box">
+  <strong>Moment d'une force</strong><br>
+  \[ M_{\Delta}(\vec{F}) = F \times d \]
+  <ul>
+    <li>\(M_{\Delta}(\vec{F})\) : moment de la force par rapport à l'axe Δ, en <strong>newton-mètre (N·m)</strong></li>
+    <li>\(F\) : intensité de la force, en <strong>newton (N)</strong></li>
+    <li>\(d\) : bras de levier (distance perpendiculaire), en <strong>mètre (m)</strong></li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label-att">Attention</span>
+  <ul>
+    <li>Le bras de levier \(d\) doit toujours être mesuré <strong>perpendiculairement</strong> à la droite d'action de la force</li>
+    <li>Si la droite d'action passe par l'axe de rotation, alors \(d = 0\) et le moment est nul : la force ne fait pas tourner le solide</li>
+    <li>Ne pas confondre la distance entre l'axe et le point d'application avec le bras de levier (ce n'est la même que si la force est perpendiculaire au bras)</li>
+  </ul>
+</div>
+
+<h3>3.4. Sens de rotation et signe du moment</h3>
+
+<p>Par convention :</p>
+<ul>
+  <li>Un moment est <strong>positif</strong> si la force tend à faire tourner le solide dans le <strong>sens antihoraire</strong> (sens inverse des aiguilles d'une montre)</li>
+  <li>Un moment est <strong>négatif</strong> si la force tend à faire tourner le solide dans le <strong>sens horaire</strong> (sens des aiguilles d'une montre)</li>
+</ul>
+
+<div class="ex">
+  <strong>Exemple : Clé de serrage</strong><br>
+  Un technicien d'agencement serre un boulon avec une clé de 25 cm. Il exerce une force de 40 N perpendiculaire à la clé.<br>
+  \[M = F \times d = 40 \times 0{,}25 = 10 \text{ N·m}\]
+  Le moment vaut 10 N·m. C'est le couple de serrage.
+</div>
+
+<!-- ========== CAS PARTICULIERS ========== -->
+<h3>3.5. Cas particuliers</h3>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span>
+  <ul>
+    <li>Si la force est <strong>perpendiculaire</strong> au segment reliant l'axe au point d'application, alors le bras de levier est maximal : \(d\) est la longueur de ce segment</li>
+    <li>Si la force <strong>passe par l'axe</strong> de rotation, alors \(d = 0\) et \(M = 0\) : pas de rotation</li>
+    <li>Si la force est <strong>parallèle</strong> à l'axe de rotation, elle ne fait pas tourner le solide</li>
+  </ul>
+</div>
+
+<!-- ========== ÉQUILIBRE ========== -->
+<h2>4. Condition d'équilibre en rotation</h2>
+
+<h3>4.1. Théorème des moments</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  Un solide mobile autour d'un axe fixe est en <strong>équilibre de rotation</strong> lorsqu'il ne tourne pas. Il reste immobile dans la position où il se trouve.
+</div>
+
+<div class="formule-box">
+  <strong>Condition d'équilibre en rotation</strong><br>
+  \[ \sum M_{\Delta} = 0 \]
+  La somme algébrique des moments de toutes les forces par rapport à l'axe de rotation est nulle.<br><br>
+  Autrement dit : <strong>la somme des moments qui font tourner dans un sens est égale à la somme des moments qui font tourner dans l'autre sens.</strong>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>Pour qu'un solide soit en équilibre autour d'un axe fixe :</p>
+  \[ \text{Moments horaires} = \text{Moments antihoraires} \]
+  \[ F_1 \times d_1 = F_2 \times d_2 \]
+</div>
+
+<h3>4.2. Application : la balance</h3>
+
+<div class="svg-wrap">
+<svg width="500" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <!-- Pivot -->
+  <polygon points="250,120 240,150 260,150" fill="#2da44e" stroke="#166534" stroke-width="2"/>
+  <text x="250" y="170" text-anchor="middle" font-size="11" fill="#166534">Pivot (axe Δ)</text>
+  <!-- Barre -->
+  <line x1="80" y1="120" x2="420" y2="120" stroke="#4a5568" stroke-width="4" stroke-linecap="round"/>
+  <!-- Force F1 -->
+  <line x1="120" y1="120" x2="120" y2="60" stroke="#c53030" stroke-width="2"/>
+  <polygon points="116,65 120,50 124,65" fill="#c53030"/>
+  <text x="105" y="45" font-size="12" fill="#c53030" font-weight="bold">P₁</text>
+  <!-- d1 -->
+  <line x1="120" y1="135" x2="250" y2="135" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="185" y="148" text-anchor="middle" font-size="11" fill="#0ea5e9">d₁</text>
+  <!-- Force F2 -->
+  <line x1="380" y1="120" x2="380" y2="60" stroke="#d97706" stroke-width="2"/>
+  <polygon points="376,65 380,50 384,65" fill="#d97706"/>
+  <text x="395" y="45" font-size="12" fill="#d97706" font-weight="bold">P₂</text>
+  <!-- d2 -->
+  <line x1="250" y1="135" x2="380" y2="135" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="315" y="148" text-anchor="middle" font-size="11" fill="#d97706">d₂</text>
+</svg>
+</div>
+
+<p>À l'équilibre : \(P_1 \times d_1 = P_2 \times d_2\)</p>
+
+<div class="ex">
+  <strong>Exemple : Étagère chargée</strong><br>
+  Un menuisier vérifie l'équilibre d'une étagère de 1,20 m fixée au mur par un pivot. Une charge de 80 N est posée à 0,90 m du mur. Un câble de rappel exerce une force de 120 N à 0,60 m du mur, perpendiculairement à l'étagère.<br><br>
+  Vérification de l'équilibre :<br>
+  Moment de la charge (horaire) : \(M_1 = 80 \times 0{,}90 = 72 \text{ N·m}\)<br>
+  Moment du câble (antihoraire) : \(M_2 = 120 \times 0{,}60 = 72 \text{ N·m}\)<br>
+  \(M_1 = M_2 = 72\) N·m → <strong>L'étagère est en équilibre.</strong>
+</div>
+
+<!-- ========== MÉTHODE ========== -->
+<h2>5. Méthode de résolution</h2>
+
+<div class="meth">
+  <span class="label-meth">Méthode</span>
+  <strong>Résoudre un problème d'équilibre en rotation</strong>
+  <ol>
+    <li><strong>Identifier</strong> l'axe de rotation (pivot, charnière…)</li>
+    <li><strong>Repérer</strong> toutes les forces qui s'exercent sur le solide</li>
+    <li><strong>Calculer</strong> le bras de levier de chaque force (distance perpendiculaire à l'axe)</li>
+    <li><strong>Calculer</strong> le moment de chaque force : \(M = F \times d\)</li>
+    <li><strong>Attribuer</strong> un signe (+ ou −) selon le sens de rotation</li>
+    <li><strong>Écrire</strong> la condition d'équilibre : \(\sum M = 0\)</li>
+    <li><strong>Résoudre</strong> l'équation pour trouver l'inconnue</li>
+  </ol>
+</div>
+
+<!-- ========== CENTRE DE GRAVITÉ ========== -->
+<h2>6. Centre de gravité</h2>
+
+<h3>6.1. Définition</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  Le <strong>centre de gravité</strong> (noté G) d'un solide est le point d'application de la résultante des forces de pesanteur. C'est le point où l'on peut considérer que tout le poids du solide est concentré.
+</div>
+
+<p>Pour des formes simples et homogènes :</p>
+<ul>
+  <li><strong>Rectangle</strong> : G est au centre (intersection des diagonales)</li>
+  <li><strong>Triangle</strong> : G est au point d'intersection des médianes (à 1/3 de la base)</li>
+  <li><strong>Cercle/disque</strong> : G est au centre du cercle</li>
+</ul>
+
+<h3>6.2. Détermination expérimentale</h3>
+
+<p>On peut trouver le centre de gravité d'un objet plat en le suspendant successivement par deux points différents. Le centre de gravité se trouve à l'intersection des deux verticales passant par les points de suspension.</p>
+
+<div class="ex">
+  <strong>Exemple professionnel</strong><br>
+  Un ébéniste fabrique un plateau de table en forme de L. Pour déterminer le centre de gravité de ce plateau (nécessaire pour positionner correctement le pied central), il suspend le plateau par un coin, trace la verticale, puis le suspend par un autre coin et trace une seconde verticale. Le centre de gravité est à l'intersection de ces deux droites.
+</div>
+
+<!-- ========== BASCULEMENT ========== -->
+<h2>7. Basculement</h2>
+
+<h3>7.1. Condition de basculement</h3>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span>
+  Un solide posé sur un plan <strong>bascule</strong> lorsque la verticale passant par son centre de gravité G sort de la <strong>base de sustentation</strong> (surface d'appui au sol).
+</div>
+
+<div class="svg-wrap">
+<svg width="500" height="220" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+  <!-- Cas stable -->
+  <text x="125" y="20" text-anchor="middle" font-size="13" fill="#166534" font-weight="bold">Stable</text>
+  <rect x="60" y="50" width="130" height="130" rx="4" fill="#f0fff4" stroke="#2da44e" stroke-width="2"/>
+  <circle cx="125" cy="115" r="5" fill="#c53030"/>
+  <text x="138" y="112" font-size="10" fill="#c53030" font-weight="bold">G</text>
+  <line x1="125" y1="115" x2="125" y2="195" stroke="#c53030" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <line x1="60" y1="190" x2="190" y2="190" stroke="#166534" stroke-width="3"/>
+  <text x="125" y="210" text-anchor="middle" font-size="10" fill="#166534">Base de sustentation</text>
+  <!-- Flèche P -->
+  <line x1="125" y1="120" x2="125" y2="160" stroke="#c53030" stroke-width="2"/>
+  <polygon points="121,155 125,168 129,155" fill="#c53030"/>
+  <text x="140" y="148" font-size="10" fill="#c53030">P⃗</text>
+
+  <!-- Cas instable -->
+  <text x="375" y="20" text-anchor="middle" font-size="13" fill="#c53030" font-weight="bold">Basculement !</text>
+  <g transform="translate(375,120) rotate(25)">
+    <rect x="-65" y="-65" width="130" height="130" rx="4" fill="#fff5f5" stroke="#c53030" stroke-width="2"/>
+    <circle cx="0" cy="0" r="5" fill="#c53030"/>
+    <text x="12" y="-3" font-size="10" fill="#c53030" font-weight="bold">G</text>
+  </g>
+  <line x1="315" y1="190" x2="435" y2="190" stroke="#c53030" stroke-width="3"/>
+  <line x1="405" y1="40" x2="405" y2="195" stroke="#c53030" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="375" y="210" text-anchor="middle" font-size="10" fill="#c53030">G sort de la base !</text>
+</svg>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Un solide est <strong>stable</strong> si la verticale passant par G tombe <strong>à l'intérieur</strong> de la base de sustentation</li>
+    <li>Un solide <strong>bascule</strong> si la verticale passant par G tombe <strong>à l'extérieur</strong> de la base de sustentation</li>
+    <li>Plus le centre de gravité est <strong>bas</strong> et la base de sustentation <strong>large</strong>, plus le solide est stable</li>
+  </ul>
+</div>
+
+<h3>7.2. Applications professionnelles</h3>
+
+<div class="situation">
+  <strong>Sécurité en atelier</strong><br>
+  <ul>
+    <li><strong>Stockage de panneaux</strong> : les panneaux de bois stockés verticalement doivent être calés pour éviter le basculement — leur centre de gravité est haut et leur base de sustentation est étroite (épaisseur du panneau)</li>
+    <li><strong>Meubles hauts</strong> : une bibliothèque haute et étroite doit être fixée au mur car un chargement en hauteur déplace le centre de gravité vers le haut et rend le meuble instable</li>
+    <li><strong>Établi</strong> : un établi de menuisier est conçu avec une base large et un centre de gravité bas pour une grande stabilité lors du travail</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <strong>Exemple : Armoire haute</strong><br>
+  Un poseur de cuisines installe une armoire haute de 2,20 m et 0,60 m de profondeur. Le centre de gravité à vide est à 1,10 m du sol. Si on charge les étagères du haut, le centre de gravité monte. Tant que la verticale passant par G reste dans les 0,60 m de profondeur de la base, l'armoire est stable. Si l'armoire est inclinée de sorte que G dépasse le bord de la base, elle bascule.
+</div>
+
+<!-- ========== RÉSUMÉ ========== -->
+<h2>8. Résumé du chapitre</h2>
+
+<div class="retenir">
+  <strong>Formules et résultats essentiels</strong>
+  <table style="width:100%;border-collapse:collapse;margin:10px 0">
+    <tr style="background:var(--p-bg)">
+      <th style="padding:8px;border:1px solid var(--p-border);text-align:left">Grandeur</th>
+      <th style="padding:8px;border:1px solid var(--p-border);text-align:left">Formule</th>
+      <th style="padding:8px;border:1px solid var(--p-border);text-align:left">Unités</th>
+    </tr>
+    <tr>
+      <td style="padding:8px;border:1px solid #e2e8f0">Moment d'une force</td>
+      <td style="padding:8px;border:1px solid #e2e8f0">\(M = F \times d\)</td>
+      <td style="padding:8px;border:1px solid #e2e8f0">N·m</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;border:1px solid #e2e8f0">Condition d'équilibre</td>
+      <td style="padding:8px;border:1px solid #e2e8f0">\(\sum M_{\Delta} = 0\)</td>
+      <td style="padding:8px;border:1px solid #e2e8f0">—</td>
+    </tr>
+    <tr>
+      <td style="padding:8px;border:1px solid #e2e8f0">Poids d'un objet</td>
+      <td style="padding:8px;border:1px solid #e2e8f0">\(P = m \times g\)</td>
+      <td style="padding:8px;border:1px solid #e2e8f0">N (avec g ≈ 9,8 N/kg)</td>
+    </tr>
+  </table>
+</div>
+
+<footer>
+  <p>Première Bac Pro ERA-MA – Groupement 3 | Physique-Chimie – Chapitre 6 | maths-sciences-lp.github.io</p>
+</footer>
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

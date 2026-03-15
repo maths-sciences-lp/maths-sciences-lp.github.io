@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – La force d'Archimède – Cours</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.situation-pro{background:linear-gradient(135deg,#ebf5ff 0%,#f0fff4 100%);border:2px solid var(--p);border-radius:10px;padding:18px 22px;margin:18px 0}
+.situation-pro::before{content:"Situation professionnelle";display:block;font-weight:700;color:var(--p);font-size:.95em;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
+.situation-pro .sp-grid{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:.93em;margin-bottom:12px}
+.situation-pro .sp-label{font-weight:600;color:#4a5568;white-space:nowrap}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-iccer.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 8 – La force d'Archimède</h1>
+  <p class="sous-titre">Première Bac Pro ICCER | Physique – Mécanique des fluides | Poussée d'Archimède et flottabilité</p>
+</header>
+
+<!-- ===== OBJECTIFS ===== -->
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Déterminer expérimentalement la valeur de la force d'Archimède</li>
+    <li>Identifier les paramètres qui influent sur cette force : masse volumique du fluide et volume immergé</li>
+    <li>Calculer la force d'Archimède : \(F_A = \rho_{\text{fluide}} \times g \times V_{\text{immergé}}\)</li>
+    <li>Comprendre la condition d'équilibre : \(F_A = P\) (le corps flotte)</li>
+    <li>Déterminer si un corps flotte ou coule en comparant les masses volumiques</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PROFESSIONNELLE ===== -->
+<div class="situation-pro">
+  <div class="sp-grid">
+    <span class="sp-label">Technicien :</span><span>Léa, technicienne chauffagiste en 1re année de Bac Pro</span>
+    <span class="sp-label">Entreprise :</span><span>AquaTherm Services — installation de systèmes de production d'eau chaude sanitaire</span>
+    <span class="sp-label">Mission :</span><span>Léa installe un ballon d'eau chaude sanitaire (cumulus) de 200 L dans un local technique. Elle doit comprendre pourquoi les éléments immergés dans l'eau (flotteurs, sondes) se comportent différemment selon leur densité.</span>
+  </div>
+  <strong>Questions de Léa :</strong>
+  <ol style="margin:8px 0 0 0;padding-left:20px;font-size:.93em">
+    <li>Pourquoi un flotteur en polystyrène remonte-t-il à la surface dans un ballon d'eau chaude ?</li>
+    <li>Quelle force s'oppose au poids d'un objet plongé dans l'eau ?</li>
+    <li>Comment déterminer si un composant va flotter ou couler dans un fluide ?</li>
+  </ol>
+  <p style="font-size:.82em;color:#718096;margin:10px 0 0 0"><em>Ces questions trouveront une réponse complète au fil de ce chapitre.</em></p>
+</div>
+
+<!-- ===== I. MISE EN ÉVIDENCE ===== -->
+<h2>I. Mise en évidence de la poussée d'Archimède</h2>
+
+<h3>1. Expérience historique</h3>
+
+<p>
+  Tout corps plongé dans un fluide (liquide ou gaz) semble <strong>plus léger</strong> qu'à l'air libre. C'est ce qu'a observé Archimède, savant grec du IIIe siècle av. J.-C.
+</p>
+
+<div class="ex">
+  <span class="label label-ex">Expérience</span>
+  On suspend un objet métallique à un dynamomètre :
+  <ul>
+    <li><strong>Dans l'air</strong> : le dynamomètre indique \(P = 5{,}0 \text{ N}\) (le poids de l'objet)</li>
+    <li><strong>Immergé dans l'eau</strong> : le dynamomètre indique \(T = 3{,}8 \text{ N}\) (le poids apparent)</li>
+  </ul>
+  La différence \(P - T = 5{,}0 - 3{,}8 = 1{,}2 \text{ N}\) correspond à la <strong>force d'Archimède</strong> exercée par l'eau sur l'objet.
+</div>
+
+<h3>2. Origine de la force d'Archimède</h3>
+
+<p>
+  Dans un fluide, la pression augmente avec la profondeur. Les faces inférieure et supérieure d'un objet immergé ne subissent donc pas la même pression. La résultante de toutes ces forces de pression sur la surface de l'objet constitue la <strong>force d'Archimède</strong> (ou <strong>poussée d'Archimède</strong>).
+</p>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span>
+  La force d'Archimède est la <strong>résultante des forces de pression</strong> exercées par le fluide sur la surface de l'objet immergé. Elle est dirigée <strong>verticalement vers le haut</strong>.
+</div>
+
+<!-- ===== II. CARACTÉRISTIQUES ===== -->
+<h2>II. Caractéristiques de la force d'Archimède</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  Tout corps plongé dans un fluide subit une force verticale, dirigée vers le haut, appelée <strong>force d'Archimède</strong> \(\vec{F_A}\). Son intensité est égale au <strong>poids du fluide déplacé</strong> :
+  \[F_A = \rho_{\text{fluide}} \times g \times V_{\text{immergé}}\]
+  <ul>
+    <li>\(F_A\) : force d'Archimède en <strong>newton</strong> (N)</li>
+    <li>\(\rho_{\text{fluide}}\) : masse volumique du fluide en <strong>kg/m³</strong></li>
+    <li>\(g\) : intensité de la pesanteur (\(g \approx 9{,}81 \text{ N/kg}\) ou \(g \approx 10 \text{ N/kg}\))</li>
+    <li>\(V_{\text{immergé}}\) : volume de la partie immergée de l'objet en <strong>m³</strong></li>
+  </ul>
+</div>
+
+<div class="formule-box">
+  <strong>Caractéristiques de \(\vec{F_A}\)</strong>
+  <ul>
+    <li><strong>Point d'application :</strong> centre de gravité du volume de fluide déplacé (centre de poussée)</li>
+    <li><strong>Direction :</strong> verticale</li>
+    <li><strong>Sens :</strong> vers le haut</li>
+    <li><strong>Intensité :</strong> \(F_A = \rho_{\text{fluide}} \times g \times V_{\text{immergé}}\)</li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label-att">Attention</span>
+  <ul>
+    <li>Le volume à utiliser est le <strong>volume immergé</strong> (pas le volume total si l'objet n'est que partiellement immergé)</li>
+    <li>La masse volumique est celle du <strong>fluide</strong>, pas celle de l'objet !</li>
+    <li>Le volume doit être en <strong>m³</strong> : \(1 \text{ L} = 10^{-3} \text{ m}^3\) et \(1 \text{ cm}^3 = 10^{-6} \text{ m}^3\)</li>
+  </ul>
+</div>
+
+<h3>Paramètres influençant la force d'Archimède</h3>
+
+<p>La formule \(F_A = \rho \cdot g \cdot V\) montre que la poussée d'Archimède dépend de :</p>
+<ul>
+  <li><strong>La masse volumique du fluide \(\rho\)</strong> : plus le fluide est dense, plus la poussée est forte. On flotte mieux dans l'eau salée que dans l'eau douce.</li>
+  <li><strong>Le volume immergé \(V\)</strong> : plus l'objet est gros (volume immergé important), plus la poussée est forte.</li>
+  <li>La poussée ne dépend <strong>pas de la masse</strong> ni de la <strong>forme</strong> de l'objet (pour un même volume immergé).</li>
+</ul>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  Calculer la force d'Archimède sur une sonde cylindrique de volume 50 cm³ immergée dans l'eau.
+  <ul>
+    <li>\(\rho_{\text{eau}} = 1\,000 \text{ kg/m}^3\)</li>
+    <li>\(V = 50 \text{ cm}^3 = 50 \times 10^{-6} = 5 \times 10^{-5} \text{ m}^3\)</li>
+    <li>\(F_A = 1\,000 \times 9{,}81 \times 5 \times 10^{-5} = 0{,}49 \text{ N}\)</li>
+  </ul>
+</div>
+
+<!-- ===== III. FLOTTABILITÉ ===== -->
+<h2>III. Conditions de flottabilité</h2>
+
+<h3>1. Bilan des forces sur un objet immergé</h3>
+
+<p>Un objet totalement immergé dans un fluide est soumis à deux forces :</p>
+<ul>
+  <li>Son <strong>poids</strong> \(\vec{P}\), dirigé vers le bas : \(P = m \times g = \rho_{\text{objet}} \times V_{\text{objet}} \times g\)</li>
+  <li>La <strong>force d'Archimède</strong> \(\vec{F_A}\), dirigée vers le haut : \(F_A = \rho_{\text{fluide}} \times V_{\text{objet}} \times g\)</li>
+</ul>
+
+<h3>2. Trois cas possibles</h3>
+
+<div class="prop">
+  <span class="label-prop">Propriété – Conditions de flottabilité</span>
+  <table>
+    <thead>
+      <tr><th>Condition</th><th>Comparaison</th><th>Comportement</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>\(\rho_{\text{objet}} < \rho_{\text{fluide}}\)</td>
+        <td>\(P < F_A\)</td>
+        <td>L'objet <strong>flotte</strong> (remonte à la surface)</td>
+      </tr>
+      <tr>
+        <td>\(\rho_{\text{objet}} = \rho_{\text{fluide}}\)</td>
+        <td>\(P = F_A\)</td>
+        <td>L'objet est en <strong>équilibre</strong> (reste à sa position)</td>
+      </tr>
+      <tr>
+        <td>\(\rho_{\text{objet}} > \rho_{\text{fluide}}\)</td>
+        <td>\(P > F_A\)</td>
+        <td>L'objet <strong>coule</strong> (descend au fond)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="retenir">
+  <strong>Règle simple</strong>
+  <p>Un corps <strong>flotte</strong> dans un fluide si sa masse volumique est <strong>inférieure</strong> à celle du fluide.</p>
+</div>
+
+<h3>3. Équilibre d'un corps flottant</h3>
+
+<p>
+  Quand un objet flotte à la surface, il n'est que <strong>partiellement immergé</strong>. À l'équilibre, le poids est égal à la poussée d'Archimède :
+</p>
+\[P = F_A \implies \rho_{\text{objet}} \times V_{\text{objet}} \times g = \rho_{\text{fluide}} \times V_{\text{immergé}} \times g\]
+
+<div class="formule-box">
+  <strong>Fraction immergée d'un corps flottant</strong>
+  \[\frac{V_{\text{immergé}}}{V_{\text{objet}}} = \frac{\rho_{\text{objet}}}{\rho_{\text{fluide}}}\]
+  Plus l'objet est dense (par rapport au fluide), plus il s'enfonce.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  Un bloc de bois (\(\rho = 600 \text{ kg/m}^3\)) flotte sur l'eau (\(\rho = 1\,000 \text{ kg/m}^3\)).
+  <br>Fraction immergée : \(\dfrac{V_{\text{imm}}}{V_{\text{total}}} = \dfrac{600}{1\,000} = 0{,}6 = 60\%\)
+  <br>Le bloc de bois est immergé à 60 % et dépasse de 40 % hors de l'eau.
+</div>
+
+<!-- ===== IV. MASSES VOLUMIQUES ===== -->
+<h2>IV. Masses volumiques de référence</h2>
+
+<table>
+  <thead>
+    <tr><th>Matériau / Fluide</th><th>\(\rho\) (kg/m³)</th><th>Flotte dans l'eau ?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Air (20 °C, 1 atm)</td><td>1,2</td><td>—</td></tr>
+    <tr><td>Polystyrène expansé</td><td>15 – 30</td><td>Oui</td></tr>
+    <tr><td>Bois (pin)</td><td>400 – 600</td><td>Oui</td></tr>
+    <tr><td>Huile</td><td>850 – 920</td><td>Oui</td></tr>
+    <tr><td>Eau douce (4 °C)</td><td>1 000</td><td>—</td></tr>
+    <tr><td>Eau de mer</td><td>1 025</td><td>—</td></tr>
+    <tr><td>Glycol (antigel)</td><td>1 110</td><td>Non</td></tr>
+    <tr><td>Cuivre</td><td>8 900</td><td>Non</td></tr>
+    <tr><td>Acier</td><td>7 800</td><td>Non</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== V. APPLICATIONS PROFESSIONNELLES ===== -->
+<h2>V. Applications professionnelles</h2>
+
+<div class="ex">
+  <span class="label label-ex">Application 1 – Flotteur de chauffe-eau</span>
+  <p>
+    Dans certains ballons d'eau chaude, un <strong>flotteur en polystyrène</strong> (\(\rho \approx 25 \text{ kg/m}^3\)) est utilisé pour détecter le niveau d'eau. Il flotte car sa masse volumique est très inférieure à celle de l'eau (1 000 kg/m³).
+  </p>
+  <p>Calcul pour un flotteur de volume \(V = 200 \text{ cm}^3 = 2 \times 10^{-4} \text{ m}^3\) :</p>
+  <ul>
+    <li>Poids : \(P = \rho_{\text{polystyrène}} \times V \times g = 25 \times 2 \times 10^{-4} \times 9{,}81 = 0{,}049 \text{ N}\)</li>
+    <li>Poussée d'Archimède (si totalement immergé) : \(F_A = 1\,000 \times 2 \times 10^{-4} \times 9{,}81 = 1{,}96 \text{ N}\)</li>
+    <li>\(F_A \gg P\) : le flotteur remonte vigoureusement à la surface.</li>
+    <li>Fraction immergée à l'équilibre : \(\dfrac{25}{1\,000} = 2{,}5\%\) seulement !</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Application 2 – Tube de cuivre dans un ballon</span>
+  <p>
+    Un tube de cuivre (\(\rho = 8\,900 \text{ kg/m}^3\)) plongé dans l'eau coule car sa masse volumique est bien supérieure à celle de l'eau. Le poids du tube est largement supérieur à la poussée d'Archimède.
+  </p>
+  <p>Pour un tube de cuivre creux de volume total 100 cm³ et de volume de métal 30 cm³ :</p>
+  <ul>
+    <li>Masse du cuivre : \(m = 8\,900 \times 30 \times 10^{-6} = 0{,}267 \text{ kg}\)</li>
+    <li>Poids : \(P = 0{,}267 \times 9{,}81 = 2{,}62 \text{ N}\)</li>
+    <li>Poussée d'Archimède (volume extérieur) : \(F_A = 1\,000 \times 100 \times 10^{-6} \times 9{,}81 = 0{,}981 \text{ N}\)</li>
+    <li>\(P > F_A\) : le tube coule.</li>
+  </ul>
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode – Déterminer si un objet flotte ou coule</span>
+  <ol>
+    <li>Identifier la masse volumique de l'objet \(\rho_{\text{objet}}\)</li>
+    <li>Identifier la masse volumique du fluide \(\rho_{\text{fluide}}\)</li>
+    <li>Comparer :
+      <ul>
+        <li>Si \(\rho_{\text{objet}} < \rho_{\text{fluide}}\) : l'objet flotte</li>
+        <li>Si \(\rho_{\text{objet}} > \rho_{\text{fluide}}\) : l'objet coule</li>
+      </ul>
+    </li>
+    <li>Pour calculer \(F_A\), utiliser : \(F_A = \rho_{\text{fluide}} \times g \times V_{\text{immergé}}\)</li>
+  </ol>
+</div>
+
+<!-- ===== RETENIR ===== -->
+<div class="retenir">
+  <strong>L'essentiel à retenir</strong>
+  <ul>
+    <li>Tout corps plongé dans un fluide subit une <strong>force d'Archimède</strong> verticale, vers le haut.</li>
+    <li>Formule : \(F_A = \rho_{\text{fluide}} \times g \times V_{\text{immergé}}\)</li>
+    <li>La poussée dépend de la <strong>masse volumique du fluide</strong> et du <strong>volume immergé</strong>.</li>
+    <li>Un corps <strong>flotte</strong> si \(\rho_{\text{objet}} < \rho_{\text{fluide}}\).</li>
+    <li>À l'équilibre d'un corps flottant : \(P = F_A\).</li>
+    <li>Fraction immergée : \(\dfrac{V_{\text{imm}}}{V_{\text{total}}} = \dfrac{\rho_{\text{objet}}}{\rho_{\text{fluide}}}\)</li>
+  </ul>
+</div>
+
+<footer>
+  <p>Première Bac Pro ICCER – Groupement 1 | Physique-Chimie – Chapitre 8 | maths-sciences-lp.github.io</p>
+</footer>
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

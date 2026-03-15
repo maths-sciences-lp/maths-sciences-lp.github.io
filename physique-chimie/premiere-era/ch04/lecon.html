@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Les trois modes de transfert thermique | Première ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-erama.html" class="nb">← RETOUR SOMMAIRE ERA-MA</a>
+
+<header>
+  <h1>Chapitre 4 – Les trois modes de transfert thermique</h1>
+  <p class="sous-titre">Première Bac Pro ERA-MA | Physique – Thermique | Transferts thermiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Identifier les trois modes de transfert thermique : conduction, convection, rayonnement</li>
+    <li>Donner des exemples de chaque mode dans la vie courante et en atelier</li>
+    <li>Comparer les propriétés thermiques de différents matériaux</li>
+    <li>Comprendre que le transfert thermique s'effectue spontanément du chaud vers le froid</li>
+  </ul>
+</div>
+
+<!-- ========== SITUATION PRO ========== -->
+<h2>1. Situation professionnelle – L'isolation d'une maison</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel</strong><br>
+  Un menuisier agenceur intervient dans la rénovation d'une maison ancienne. Le propriétaire se plaint de factures de chauffage élevées. En posant la main sur les murs, on sent le froid. Les fenêtres en simple vitrage laissent passer l'air frais. Le sol carrelé est glacial en hiver. Comprendre <strong>comment la chaleur se déplace</strong> est essentiel pour proposer les bonnes solutions d'isolation : choix des matériaux, pose de menuiseries performantes, isolation des murs et des combles.
+</div>
+
+<p>La chaleur (énergie thermique) se propage toujours du <strong>corps le plus chaud</strong> vers le <strong>corps le plus froid</strong>, jusqu'à l'équilibre des températures. Ce transfert peut se faire de trois manières différentes.</p>
+
+<!-- ========== CONDUCTION ========== -->
+<h2>2. Premier mode : la conduction</h2>
+
+<div class="def">
+  <span class="label label-def">Définition – Conduction thermique</span><br>
+  La <strong>conduction</strong> est le transfert de chaleur à travers un matériau <strong>solide</strong>, de proche en proche, sans déplacement de matière. L'énergie est transmise par les vibrations des atomes et des électrons à l'intérieur du matériau.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété – Conducteurs et isolants</span><br>
+  <ul>
+    <li>Les <strong>métaux</strong> sont de bons conducteurs thermiques (cuivre, aluminium, acier) : la chaleur les traverse facilement.</li>
+    <li>Les <strong>isolants</strong> conduisent mal la chaleur (bois, laine de verre, polystyrène, air immobile) : ils freinent le transfert.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemples en atelier et dans le bâtiment</span>
+  <ul>
+    <li>Une <strong>poignée de porte métallique</strong> semble froide en hiver : le métal conduit rapidement la chaleur de la main vers la porte.</li>
+    <li>Une <strong>poignée en bois</strong> semble moins froide : le bois est un mauvais conducteur.</li>
+    <li>Les <strong>murs en pierre</strong> d'une maison ancienne conduisent la chaleur vers l'extérieur en hiver.</li>
+    <li>L'<strong>isolation en laine de verre</strong> dans les combles ralentit la conduction thermique.</li>
+  </ul>
+</div>
+
+<h3>Conductivité thermique de quelques matériaux</h3>
+
+<table>
+  <tr><th>Matériau</th><th>Conductivité \(\lambda\) (W/m·K)</th><th>Qualité isolante</th></tr>
+  <tr><td>Cuivre</td><td>390</td><td>Excellent conducteur</td></tr>
+  <tr><td>Aluminium</td><td>237</td><td>Très bon conducteur</td></tr>
+  <tr><td>Acier</td><td>50</td><td>Bon conducteur</td></tr>
+  <tr><td>Béton</td><td>1,7</td><td>Conducteur moyen</td></tr>
+  <tr><td>Verre</td><td>1,0</td><td>Conducteur moyen</td></tr>
+  <tr><td>Brique</td><td>0,84</td><td>Isolant moyen</td></tr>
+  <tr><td>Bois (chêne)</td><td>0,16</td><td>Bon isolant</td></tr>
+  <tr><td>Bois (résineux)</td><td>0,12</td><td>Bon isolant</td></tr>
+  <tr><td>Polystyrène expansé</td><td>0,035</td><td>Excellent isolant</td></tr>
+  <tr><td>Laine de verre</td><td>0,032</td><td>Excellent isolant</td></tr>
+  <tr><td>Air immobile</td><td>0,025</td><td>Excellent isolant</td></tr>
+</table>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  Plus la conductivité \(\lambda\) est <strong>faible</strong>, plus le matériau est <strong>isolant</strong>.<br>
+  Plus la conductivité \(\lambda\) est <strong>grande</strong>, plus le matériau est <strong>conducteur</strong>.
+</div>
+
+<!-- ========== GRAPHIQUE ========== -->
+<div class="chart-wrap">
+  <canvas id="chartLambda" height="250"></canvas>
+</div>
+
+<script>
+(function(){
+  new Chart(document.getElementById('chartLambda'), {
+    type: 'bar',
+    data: {
+      labels: ['Laine de\nverre','Polystyrène','Bois\nrésineux','Bois\nchêne','Brique','Verre','Béton','Acier'],
+      datasets: [{
+        label: 'Conductivité λ (W/m·K)',
+        data: [0.032, 0.035, 0.12, 0.16, 0.84, 1.0, 1.7, 50],
+        backgroundColor: ['#86efac','#86efac','#86efac','#86efac','#fde68a','#fde68a','#fca5a5','#fca5a5'],
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      indexAxis: 'y',
+      plugins: {
+        title: { display: true, text: 'Conductivité thermique de matériaux courants (échelle log)', font: { size: 12 } },
+        legend: { display: false }
+      },
+      scales: {
+        x: {
+          type: 'logarithmic',
+          title: { display: true, text: 'λ (W/m·K) – échelle logarithmique' }
+        }
+      }
+    }
+  });
+})();
+</script>
+
+<!-- ========== CONVECTION ========== -->
+<h2>3. Deuxième mode : la convection</h2>
+
+<div class="def">
+  <span class="label label-def">Définition – Convection thermique</span><br>
+  La <strong>convection</strong> est le transfert de chaleur par <strong>déplacement de matière</strong> (fluide : air, eau). Le fluide chaud, plus léger, monte ; le fluide froid, plus lourd, descend. Il se crée un <strong>courant de convection</strong>.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété – Deux types de convection</span><br>
+  <ul>
+    <li><strong>Convection naturelle</strong> : le mouvement du fluide est causé par la différence de densité (air chaud monte, air froid descend).</li>
+    <li><strong>Convection forcée</strong> : le mouvement est provoqué par un ventilateur, une pompe ou un appareil (radiateur soufflant, VMC).</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemples en atelier et dans le bâtiment</span>
+  <ul>
+    <li><strong>Radiateur à eau chaude</strong> : l'air chauffé au contact du radiateur monte au plafond, l'air froid descend le long des murs et revient vers le radiateur → circulation naturelle.</li>
+    <li><strong>Aspiration de copeaux</strong> : le ventilateur crée une convection forcée qui déplace l'air chargé de poussières.</li>
+    <li><strong>VMC</strong> (ventilation mécanique contrôlée) : renouvelle l'air intérieur par convection forcée.</li>
+    <li><strong>Double vitrage</strong> : l'air ou le gaz emprisonné entre les deux vitres ne peut pas circuler (pas de convection) → meilleure isolation.</li>
+    <li>En été, l'air chaud monte dans les combles → il fait très chaud sous les toits non isolés.</li>
+  </ul>
+</div>
+
+<!-- ========== RAYONNEMENT ========== -->
+<h2>4. Troisième mode : le rayonnement</h2>
+
+<div class="def">
+  <span class="label label-def">Définition – Rayonnement thermique</span><br>
+  Le <strong>rayonnement</strong> est le transfert de chaleur par des <strong>ondes électromagnétiques</strong> (rayonnement infrarouge). Il ne nécessite aucun support matériel : il peut se propager dans le <strong>vide</strong>.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété – Caractéristiques du rayonnement</span><br>
+  <ul>
+    <li>Tout corps dont la température est supérieure au zéro absolu (-273 °C) émet du rayonnement.</li>
+    <li>Plus un corps est chaud, plus il rayonne.</li>
+    <li>Les surfaces <strong>sombres et mates</strong> absorbent et émettent plus de rayonnement que les surfaces claires et brillantes.</li>
+    <li>Les surfaces <strong>réfléchissantes</strong> (aluminium, miroir) renvoient le rayonnement.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemples</span>
+  <ul>
+    <li>Le <strong>Soleil</strong> chauffe la Terre par rayonnement (à travers le vide de l'espace).</li>
+    <li>Un <strong>radiateur infrarouge</strong> d'atelier chauffe les personnes par rayonnement, sans chauffer l'air intermédiaire.</li>
+    <li>En été, un <strong>toit foncé</strong> absorbe beaucoup de rayonnement solaire → surchauffe des combles.</li>
+    <li>Les <strong>films réfléchissants</strong> placés derrière les radiateurs renvoient le rayonnement vers la pièce.</li>
+    <li>Le <strong>vitrage à faible émissivité</strong> (Low-E) comporte une couche métallique qui renvoie le rayonnement infrarouge vers l'intérieur.</li>
+  </ul>
+</div>
+
+<!-- ========== COMPARAISON ========== -->
+<h2>5. Comparaison des trois modes</h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>Conduction</th>
+    <th>Convection</th>
+    <th>Rayonnement</th>
+  </tr>
+  <tr>
+    <td><strong>Support</strong></td>
+    <td>Solide (ou fluide immobile)</td>
+    <td>Fluide (air, eau)</td>
+    <td>Aucun (peut traverser le vide)</td>
+  </tr>
+  <tr>
+    <td><strong>Déplacement de matière</strong></td>
+    <td>Non</td>
+    <td>Oui</td>
+    <td>Non</td>
+  </tr>
+  <tr>
+    <td><strong>Mécanisme</strong></td>
+    <td>Vibrations d'atomes</td>
+    <td>Courants de fluide</td>
+    <td>Ondes électromagnétiques</td>
+  </tr>
+  <tr>
+    <td><strong>Exemple</strong></td>
+    <td>Mur en béton</td>
+    <td>Radiateur, VMC</td>
+    <td>Soleil, radiateur IR</td>
+  </tr>
+  <tr>
+    <td><strong>Comment le limiter</strong></td>
+    <td>Isolant (laine, polystyrène)</td>
+    <td>Supprimer la circulation (double vitrage)</td>
+    <td>Surface réfléchissante</td>
+  </tr>
+</table>
+
+<!-- ========== SENS DU TRANSFERT ========== -->
+<h2>6. Le sens du transfert thermique</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propriété fondamentale</span><br>
+  Le transfert thermique s'effectue <strong>spontanément</strong> et <strong>toujours</strong> du corps le plus <strong>chaud</strong> vers le corps le plus <strong>froid</strong>, jusqu'à l'<strong>équilibre thermique</strong> (les deux corps atteignent la même température).
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  La chaleur ne se déplace <strong>jamais</strong> spontanément du froid vers le chaud. Pour forcer un transfert dans le sens inverse (du froid vers le chaud), il faut fournir de l'énergie : c'est le principe d'une <strong>pompe à chaleur</strong> ou d'un <strong>réfrigérateur</strong>.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Application – Pourquoi isoler ?</span>
+  <p>En hiver : l'intérieur (20 °C) est plus chaud que l'extérieur (5 °C). La chaleur s'échappe naturellement vers l'extérieur à travers les murs, le toit, les fenêtres et le sol.</p>
+  <p>En été : l'extérieur (35 °C) est plus chaud que l'intérieur climatisé (25 °C). La chaleur entre naturellement dans la maison.</p>
+  <p><strong>L'isolation ralentit ce transfert dans les deux sens</strong>, réduisant les besoins de chauffage en hiver et de climatisation en été.</p>
+</div>
+
+<!-- ========== APPLICATION BÂTIMENT ========== -->
+<h2>7. Application aux métiers de l'agencement</h2>
+
+<div class="ex">
+  <span class="label label-ex">Application 1 – Le double vitrage</span>
+  <p>Le double vitrage est composé de deux vitres séparées par une lame d'air (ou de gaz argon). Son efficacité repose sur les trois modes :</p>
+  <ul>
+    <li><strong>Conduction</strong> : le verre conduit la chaleur, mais la lame d'air (bon isolant, \(\lambda = 0{,}025\)) la freine.</li>
+    <li><strong>Convection</strong> : l'espace entre les vitres est trop mince pour que l'air circule → pas de convection.</li>
+    <li><strong>Rayonnement</strong> : un vitrage Low-E possède une couche métallique qui renvoie le rayonnement infrarouge.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Application 2 – Le choix des matériaux d'agencement</span>
+  <p>Un technicien d'agencement doit connaître les propriétés thermiques des matériaux qu'il utilise :</p>
+  <table>
+    <tr><th>Matériau</th><th>\(\lambda\) (W/m·K)</th><th>Sensation au toucher</th><th>Usage</th></tr>
+    <tr><td>Bois massif</td><td>0,12 – 0,16</td><td>Chaud</td><td>Mobilier, parquet, habillage</td></tr>
+    <tr><td>MDF / Aggloméré</td><td>0,10 – 0,14</td><td>Chaud</td><td>Meubles, cloisons</td></tr>
+    <tr><td>Métal (alu)</td><td>237</td><td>Froid</td><td>Poignées, profils</td></tr>
+    <tr><td>Pierre naturelle</td><td>1,5 – 3,5</td><td>Froid</td><td>Plans de travail, sols</td></tr>
+    <tr><td>Carrelage</td><td>1,0 – 1,3</td><td>Froid</td><td>Sols, crédences</td></tr>
+  </table>
+  <p>Un plan de travail en <strong>bois</strong> semblera plus chaud au toucher qu'un plan en <strong>pierre</strong>, même s'ils sont à la même température. Le bois conduit moins bien la chaleur de la main.</p>
+</div>
+
+<!-- ========== À RETENIR ========== -->
+<h2>8. À retenir</h2>
+
+<div class="retenir">
+  <strong>Les trois modes de transfert thermique :</strong>
+  <ul>
+    <li><strong>Conduction</strong> : transfert dans les solides, de proche en proche, sans déplacement de matière</li>
+    <li><strong>Convection</strong> : transfert dans les fluides (air, eau), par déplacement de matière</li>
+    <li><strong>Rayonnement</strong> : transfert par ondes électromagnétiques, sans support matériel</li>
+  </ul>
+  <strong>Règle fondamentale :</strong> La chaleur va spontanément du chaud vers le froid.<br>
+  <strong>Conductivité \(\lambda\) :</strong> Plus \(\lambda\) est petit, meilleur est l'isolant.
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention aux erreurs fréquentes</span>
+  <ul>
+    <li>Un matériau « froid au toucher » n'est pas forcément plus froid qu'un matériau « chaud au toucher ». C'est la <strong>conductivité</strong> qui détermine la sensation.</li>
+    <li>L'air est un excellent isolant… mais seulement s'il est <strong>immobile</strong> (pas de convection).</li>
+    <li>Le rayonnement peut traverser le vide, contrairement à la conduction et la convection.</li>
+    <li>Ne pas confondre les trois modes : la conduction est dans les solides, la convection dans les fluides.</li>
+  </ul>
+</div>
+
+<!-- ========== MINI EXERCICES ========== -->
+<h2>9. Mini exercices</h2>
+
+<div class="exo">
+  <strong>Exercice 1 – Identifier le mode de transfert</strong><br>
+  Pour chaque situation, indiquer le mode de transfert principal : conduction, convection ou rayonnement.
+  <ol>
+    <li>La chaleur traverse un mur en béton.</li>
+    <li>L'air chaud monte dans une pièce.</li>
+    <li>Le soleil réchauffe un parquet à travers une baie vitrée.</li>
+    <li>Un fer à souder chauffe une pièce métallique.</li>
+    <li>L'eau chaude circule dans les tuyaux d'un plancher chauffant.</li>
+  </ol>
+  <details>
+    <summary>Voir la solution</summary>
+    <p>1. Conduction | 2. Convection (naturelle) | 3. Rayonnement | 4. Conduction | 5. Convection (forcée)</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 2 – Classer les matériaux</strong><br>
+  Classer les matériaux suivants du meilleur isolant au meilleur conducteur : acier, bois de chêne, laine de verre, béton, aluminium.<br>
+  <details>
+    <summary>Voir la solution</summary>
+    <p>Meilleur isolant → meilleur conducteur :<br>
+    Laine de verre (0,032) → Bois de chêne (0,16) → Béton (1,7) → Acier (50) → Aluminium (237)</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 3 – Double vitrage</strong><br>
+  Expliquer pourquoi un double vitrage isole mieux qu'un simple vitrage, en citant les trois modes de transfert.<br>
+  <details>
+    <summary>Voir la solution</summary>
+    <p><strong>Conduction :</strong> La lame d'air entre les vitres a une très faible conductivité (\(\lambda = 0{,}025\)), ce qui freine la conduction.<br>
+    <strong>Convection :</strong> L'espace est trop mince pour permettre une circulation d'air (pas de courant de convection).<br>
+    <strong>Rayonnement :</strong> Dans les vitrages modernes, une couche Low-E réfléchit le rayonnement infrarouge vers l'intérieur.</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 4 – Sens du transfert</strong><br>
+  Un menuisier agenceur installe une cloison intérieure entre une pièce chauffée à 22 °C et un garage non chauffé à 8 °C.<br>
+  a) Dans quel sens la chaleur se transfère-t-elle ?<br>
+  b) Quel mode de transfert traverse la cloison ?<br>
+  c) Comment limiter ce transfert ?<br>
+  <details>
+    <summary>Voir la solution</summary>
+    <p>a) Du chaud (22 °C) vers le froid (8 °C), soit de la pièce vers le garage.</p>
+    <p>b) La conduction (transfert à travers un solide).</p>
+    <p>c) Ajouter un isolant (laine de verre, polystyrène) dans ou sur la cloison pour réduire la conductivité.</p>
+  </details>
+</div>
+
+<div style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;text-align:center;color:#718096;font-size:.82em">
+  Première Bac Pro ERA-MA – Groupement 3 | Physique-Chimie – Chapitre 4 | maths-sciences-lp.github.io
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

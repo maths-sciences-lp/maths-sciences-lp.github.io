@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 – Ondes électromagnétiques – Cours</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.situation-pro{background:linear-gradient(135deg,#ebf5ff 0%,#f0fff4 100%);border:2px solid var(--p);border-radius:10px;padding:18px 22px;margin:18px 0}
+.situation-pro::before{content:"Situation professionnelle";display:block;font-weight:700;color:var(--p);font-size:.95em;margin-bottom:12px;text-transform:uppercase;letter-spacing:.04em}
+.situation-pro .sp-grid{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:.93em;margin-bottom:12px}
+.situation-pro .sp-label{font-weight:600;color:#4a5568;white-space:nowrap}
+.spectre-table td,.spectre-table th{padding:6px 10px;font-size:.88em}
+.spectre-table tr:nth-child(1) td{background:#9333ea;color:#fff}
+.spectre-table tr:nth-child(2) td{background:#6366f1;color:#fff}
+.spectre-table tr:nth-child(3) td{background:#3b82f6;color:#fff}
+.spectre-table tr:nth-child(4) td{background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#3b82f6,#8b5cf6);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.spectre-table tr:nth-child(5) td{background:#ef4444;color:#fff}
+.spectre-table tr:nth-child(6) td{background:#f97316;color:#fff}
+.spectre-table tr:nth-child(7) td{background:#eab308;color:#000}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-iccer.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 10 – Ondes électromagnétiques</h1>
+  <p class="sous-titre">Première Bac Pro ICCER | Physique – Ondes | Spectre EM, longueur d'onde, fréquence, applications</p>
+</header>
+
+<!-- ===== OBJECTIFS ===== -->
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Connaître le spectre des ondes électromagnétiques et ses différents domaines</li>
+    <li>Identifier le domaine spectral d'un rayonnement à partir de sa longueur d'onde</li>
+    <li>Utiliser la relation \(\lambda = \dfrac{c}{f}\) entre longueur d'onde, vitesse de la lumière et fréquence</li>
+    <li>Citer des sources et détecteurs d'ondes EM dans la vie courante et le domaine professionnel</li>
+    <li>Comprendre que les ondes EM permettent de transmettre des informations</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PROFESSIONNELLE ===== -->
+<div class="situation-pro">
+  <div class="sp-grid">
+    <span class="sp-label">Technicien :</span><span>Théo, technicien en énergies renouvelables en 1re année de Bac Pro</span>
+    <span class="sp-label">Entreprise :</span><span>DiagTherm SARL — diagnostic thermique et audit énergétique</span>
+    <span class="sp-label">Mission :</span><span>Théo réalise un diagnostic thermique d'un pavillon à l'aide d'une caméra infrarouge. La caméra détecte les rayonnements infrarouges émis par les surfaces du bâtiment et les convertit en image thermique colorée.</span>
+  </div>
+  <strong>Questions de Théo :</strong>
+  <ol style="margin:8px 0 0 0;padding-left:20px;font-size:.93em">
+    <li>Qu'est-ce qu'un rayonnement infrarouge ? Est-ce de la lumière ?</li>
+    <li>Où se situe l'infrarouge dans le spectre des ondes électromagnétiques ?</li>
+    <li>Pourquoi une caméra infrarouge permet-elle de détecter les déperditions thermiques ?</li>
+    <li>Comment fonctionnent les communications sans fil (wifi, téléphone) utilisées pour transférer les images ?</li>
+  </ol>
+  <p style="font-size:.82em;color:#718096;margin:10px 0 0 0"><em>Ces questions trouveront une réponse complète au fil de ce chapitre.</em></p>
+</div>
+
+<!-- ===== I. QU'EST-CE QU'UNE ONDE EM ? ===== -->
+<h2>I. Qu'est-ce qu'une onde électromagnétique ?</h2>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  Une <strong>onde électromagnétique</strong> (onde EM) est une perturbation qui se propage dans l'espace en transportant de l'énergie, sans nécessiter de support matériel. Elle est constituée d'un champ électrique et d'un champ magnétique oscillants, perpendiculaires entre eux et perpendiculaires à la direction de propagation.
+</div>
+
+<div class="prop">
+  <span class="label-prop">Propriétés fondamentales</span>
+  <ul>
+    <li>Les ondes EM se propagent dans le vide à la <strong>vitesse de la lumière</strong> : \(c = 3 \times 10^8 \text{ m/s}\) (300 000 km/s)</li>
+    <li>Elles n'ont <strong>pas besoin de milieu matériel</strong> pour se propager (contrairement au son)</li>
+    <li>Elles transportent de l'<strong>énergie</strong> et peuvent transmettre des <strong>informations</strong></li>
+  </ul>
+</div>
+
+<!-- ===== II. GRANDEURS CARACTÉRISTIQUES ===== -->
+<h2>II. Longueur d'onde et fréquence</h2>
+
+<h3>1. La longueur d'onde</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  La <strong>longueur d'onde</strong> \(\lambda\) (lettre grecque « lambda ») est la distance parcourue par l'onde pendant une période. Elle s'exprime en <strong>mètre</strong> (m).
+</div>
+
+<h3>2. La fréquence</h3>
+
+<div class="def">
+  <span class="label-def">Définition</span>
+  La <strong>fréquence</strong> \(f\) est le nombre d'oscillations par seconde. Elle s'exprime en <strong>hertz</strong> (Hz).
+  <br>\(1 \text{ kHz} = 10^3 \text{ Hz}\) &nbsp;|&nbsp; \(1 \text{ MHz} = 10^6 \text{ Hz}\) &nbsp;|&nbsp; \(1 \text{ GHz} = 10^9 \text{ Hz}\) &nbsp;|&nbsp; \(1 \text{ THz} = 10^{12} \text{ Hz}\)
+</div>
+
+<h3>3. Relation fondamentale</h3>
+
+<div class="formule-box">
+  <strong>Relation longueur d'onde – fréquence</strong>
+  \[\lambda = \frac{c}{f} \qquad f = \frac{c}{\lambda} \qquad c = \lambda \times f\]
+  <ul>
+    <li>\(\lambda\) : longueur d'onde en <strong>m</strong></li>
+    <li>\(c\) : vitesse de la lumière dans le vide = \(3 \times 10^8 \text{ m/s}\)</li>
+    <li>\(f\) : fréquence en <strong>Hz</strong></li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label-att">Attention</span>
+  <ul>
+    <li>La longueur d'onde doit être en <strong>mètre</strong> dans la formule. Convertir les nm : \(1 \text{ nm} = 10^{-9} \text{ m}\)</li>
+    <li>Plus la fréquence est <strong>élevée</strong>, plus la longueur d'onde est <strong>courte</strong> (et inversement)</li>
+    <li>Les ondes de haute fréquence transportent plus d'énergie que celles de basse fréquence</li>
+  </ul>
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode – Calculer une longueur d'onde ou une fréquence</span>
+  <p><strong>Exemple :</strong> Une station radio émet à la fréquence \(f = 100 \text{ MHz}\). Quelle est la longueur d'onde ?</p>
+  <ol>
+    <li>Convertir : \(f = 100 \text{ MHz} = 100 \times 10^6 = 10^8 \text{ Hz}\)</li>
+    <li>Appliquer : \(\lambda = \dfrac{c}{f} = \dfrac{3 \times 10^8}{10^8} = 3 \text{ m}\)</li>
+  </ol>
+</div>
+
+<!-- ===== III. SPECTRE EM ===== -->
+<h2>III. Le spectre électromagnétique</h2>
+
+<p>Le spectre électromagnétique classe toutes les ondes EM par ordre de longueur d'onde (ou de fréquence). Des rayons gamma aux ondes radio, ce sont toutes des ondes de même nature, seule la longueur d'onde change.</p>
+
+<table class="spectre-table">
+  <thead>
+    <tr><th>Domaine</th><th>Longueur d'onde</th><th>Fréquence</th><th>Exemples</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Rayons gamma (\(\gamma\))</td><td>&lt; 0,01 nm</td><td>&gt; 3 × 10¹⁹ Hz</td><td>Radioactivité, médecine nucléaire</td></tr>
+    <tr><td>Rayons X</td><td>0,01 nm – 10 nm</td><td>3 × 10¹⁶ – 3 × 10¹⁹ Hz</td><td>Radiographie, scanner</td></tr>
+    <tr><td>Ultraviolets (UV)</td><td>10 nm – 400 nm</td><td>7,5 × 10¹⁴ – 3 × 10¹⁶ Hz</td><td>Soleil, lampe UV, stérilisation</td></tr>
+    <tr><td>Visible</td><td>400 nm – 800 nm</td><td>3,75 × 10¹⁴ – 7,5 × 10¹⁴ Hz</td><td>Lumière perçue par l'oeil</td></tr>
+    <tr><td>Infrarouge (IR)</td><td>800 nm – 1 mm</td><td>3 × 10¹¹ – 3,75 × 10¹⁴ Hz</td><td>Chaleur, caméra thermique, télécommande</td></tr>
+    <tr><td>Micro-ondes</td><td>1 mm – 30 cm</td><td>10⁹ – 3 × 10¹¹ Hz</td><td>Four micro-ondes, radar, wifi, 5G</td></tr>
+    <tr><td>Ondes hertziennes (radio)</td><td>&gt; 30 cm</td><td>&lt; 10⁹ Hz</td><td>Radio FM/AM, TV, RFID</td></tr>
+  </tbody>
+</table>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span>
+  Le <strong>domaine visible</strong> est la seule partie du spectre EM perceptible par l'oeil humain. Il va du violet (400 nm) au rouge (800 nm) en passant par le bleu, le vert, le jaune et l'orange.
+</div>
+
+<div class="retenir">
+  <strong>Ordre du spectre (longueur d'onde croissante)</strong>
+  <p>Gamma → Rayons X → UV → <strong>Violet – Bleu – Vert – Jaune – Orange – Rouge</strong> → IR → Micro-ondes → Ondes radio</p>
+  <p>↑ Haute fréquence, haute énergie &emsp;&emsp;&emsp;&emsp;&emsp; Basse fréquence, basse énergie ↑</p>
+</div>
+
+<!-- ===== IV. APPLICATIONS ===== -->
+<h2>IV. Sources, détecteurs et applications</h2>
+
+<h3>1. Sources et détecteurs</h3>
+
+<table>
+  <thead>
+    <tr><th>Domaine</th><th>Sources</th><th>Détecteurs</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Rayons gamma</td><td>Noyaux radioactifs</td><td>Compteur Geiger</td></tr>
+    <tr><td>Rayons X</td><td>Tube à rayons X</td><td>Film radiographique, capteur numérique</td></tr>
+    <tr><td>UV</td><td>Soleil, lampe UV</td><td>Capteur UV, peau (coup de soleil)</td></tr>
+    <tr><td>Visible</td><td>Soleil, ampoule, LED, laser</td><td>Oeil, capteur photo (CCD/CMOS)</td></tr>
+    <tr><td>Infrarouge</td><td>Tout corps chaud, radiateur</td><td>Caméra thermique, thermomètre IR</td></tr>
+    <tr><td>Micro-ondes</td><td>Magnétron, antenne</td><td>Antenne, récepteur</td></tr>
+    <tr><td>Ondes radio</td><td>Antenne émettrice</td><td>Antenne réceptrice, radio</td></tr>
+  </tbody>
+</table>
+
+<h3>2. Applications dans le domaine du chauffage et de l'énergie</h3>
+
+<div class="ex">
+  <span class="label label-ex">Application 1 – Thermographie infrarouge</span>
+  <p>
+    La <strong>caméra infrarouge</strong> détecte les rayonnements infrarouges (\(\lambda\) de 8 à 14 \(\mu\)m, soit 8 000 à 14 000 nm) émis par les surfaces. Tout corps dont la température est supérieure au zéro absolu (-273 °C) émet des infrarouges. Plus un objet est chaud, plus il émet d'infrarouges.
+  </p>
+  <p>
+    Un installateur thermique utilise la thermographie pour :
+  </p>
+  <ul>
+    <li>Détecter les <strong>déperditions thermiques</strong> d'un bâtiment (ponts thermiques, défauts d'isolation)</li>
+    <li>Localiser les <strong>fuites</strong> dans un plancher chauffant</li>
+    <li>Vérifier le bon fonctionnement des <strong>radiateurs</strong> (zones froides = air ou boue)</li>
+    <li>Contrôler les <strong>panneaux solaires</strong> (cellules défectueuses apparaissent plus chaudes)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Application 2 – Communications sans fil</span>
+  <p>Les techniciens chauffagistes utilisent quotidiennement des appareils communicants :</p>
+  <table>
+    <thead>
+      <tr><th>Technologie</th><th>Fréquence</th><th>\(\lambda\)</th><th>Usage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Wifi</td><td>2,4 GHz / 5 GHz</td><td>12,5 cm / 6 cm</td><td>Connexion internet des régulations connectées</td></tr>
+      <tr><td>Bluetooth</td><td>2,4 GHz</td><td>12,5 cm</td><td>Connexion téléphone – appareil de mesure</td></tr>
+      <tr><td>Téléphone 4G</td><td>700 MHz – 2,6 GHz</td><td>43 cm – 11,5 cm</td><td>Communication, envoi de données</td></tr>
+      <tr><td>Téléphone 5G</td><td>3,5 GHz / 26 GHz</td><td>8,6 cm / 1,15 cm</td><td>Connexion très haut débit</td></tr>
+      <tr><td>RFID</td><td>13,56 MHz / 860 MHz</td><td>22 m / 35 cm</td><td>Badges d'accès, suivi de stock</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Application 3 – Télécommande infrarouge</span>
+  <p>
+    La télécommande d'un climatiseur envoie un signal infrarouge (\(\lambda \approx 940 \text{ nm}\)) vers le récepteur de l'appareil. Ce rayonnement est <strong>invisible à l'oeil</strong> (l'infrarouge est au-delà du rouge visible). On peut le voir avec un appareil photo de smartphone.
+  </p>
+  <p>Calcul de la fréquence :</p>
+  \[f = \frac{c}{\lambda} = \frac{3 \times 10^8}{940 \times 10^{-9}} = 3{,}19 \times 10^{14} \text{ Hz} \approx 319 \text{ THz}\]
+</div>
+
+<!-- ===== V. TRANSMISSION D'INFORMATIONS ===== -->
+<h2>V. Ondes EM et transmission d'informations</h2>
+
+<div class="prop">
+  <span class="label-prop">Propriété</span>
+  Les ondes électromagnétiques permettent de <strong>transmettre des informations à distance</strong>, sans fil, à la vitesse de la lumière. L'information est codée dans les variations (modulation) de l'onde.
+</div>
+
+<p>Les systèmes de régulation modernes des installations de chauffage utilisent les ondes EM pour :</p>
+<ul>
+  <li>La <strong>communication sans fil</strong> entre la chaudière et le thermostat d'ambiance (ondes radio, environ 868 MHz)</li>
+  <li>La <strong>connexion internet</strong> pour le pilotage à distance (wifi, 4G)</li>
+  <li>Le <strong>relevé de compteurs</strong> à distance (ondes radio basse fréquence)</li>
+  <li>Les <strong>capteurs connectés</strong> (température, pression, débit) qui transmettent en Bluetooth ou wifi</li>
+</ul>
+
+<div class="meth">
+  <span class="label-meth">Méthode – Identifier le domaine spectral d'un rayonnement</span>
+  <ol>
+    <li>Lire la longueur d'onde ou la fréquence dans l'énoncé</li>
+    <li>Convertir en mètre si nécessaire</li>
+    <li>Comparer aux bornes du spectre :
+      <ul>
+        <li>\(\lambda < 10 \text{ nm}\) : rayons X ou gamma</li>
+        <li>\(10 \text{ nm} < \lambda < 400 \text{ nm}\) : ultraviolet</li>
+        <li>\(400 \text{ nm} < \lambda < 800 \text{ nm}\) : visible</li>
+        <li>\(800 \text{ nm} < \lambda < 1 \text{ mm}\) : infrarouge</li>
+        <li>\(1 \text{ mm} < \lambda < 30 \text{ cm}\) : micro-ondes</li>
+        <li>\(\lambda > 30 \text{ cm}\) : ondes radio</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+<!-- ===== RETENIR ===== -->
+<div class="retenir">
+  <strong>L'essentiel à retenir</strong>
+  <ul>
+    <li>Une <strong>onde EM</strong> se propage dans le vide à la vitesse \(c = 3 \times 10^8 \text{ m/s}\)</li>
+    <li>Relation fondamentale : \(\lambda = \dfrac{c}{f}\)</li>
+    <li>Le <strong>spectre EM</strong> va des rayons gamma (courte \(\lambda\), haute énergie) aux ondes radio (grande \(\lambda\), basse énergie)</li>
+    <li>Le <strong>domaine visible</strong> (400 – 800 nm) est la seule partie perceptible par l'oeil</li>
+    <li>L'<strong>infrarouge</strong> est utilisé en thermographie pour détecter les déperditions thermiques</li>
+    <li>Les <strong>micro-ondes</strong> et ondes radio servent aux communications sans fil (wifi, 4G, Bluetooth)</li>
+    <li>Les ondes EM permettent de <strong>transmettre des informations</strong> à distance</li>
+  </ul>
+</div>
+
+<footer>
+  <p>Première Bac Pro ICCER – Groupement 1 | Physique-Chimie – Chapitre 10 | maths-sciences-lp.github.io</p>
+</footer>
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

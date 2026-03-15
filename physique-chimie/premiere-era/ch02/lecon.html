@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Évaluer la puissance consommée par un appareil électrique | Première ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-erama.html" class="nb">← RETOUR SOMMAIRE ERA-MA</a>
+
+<header>
+  <h1>Chapitre 2 – Évaluer la puissance consommée par un appareil électrique</h1>
+  <p class="sous-titre">Première Bac Pro ERA-MA | Physique – Électricité | Puissance en régime sinusoïdal</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Calculer le produit \(u(t) \times i(t)\) en régime sinusoïdal</li>
+    <li>Mettre en évidence le déphasage entre tension et intensité</li>
+    <li>Définir et utiliser le facteur de puissance \(\cos \varphi\)</li>
+    <li>Calculer la puissance active (puissance moyenne consommée) : \(P = U \cdot I \cdot \cos \varphi\)</li>
+  </ul>
+</div>
+
+<!-- ========== SITUATION PRO ========== -->
+<h2>1. Situation professionnelle – L'atelier d'agencement</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel</strong><br>
+  Dans un atelier d'agencement, on utilise de nombreux moteurs électriques : aspiration centralisée, toupie, dégauchisseuse, compresseur. Ces machines sont alimentées en <strong>courant alternatif</strong> (secteur 230 V ou triphasé 400 V). Contrairement à une simple résistance (radiateur, ampoule), un moteur crée un <strong>déphasage</strong> entre la tension et le courant. Ce déphasage a des conséquences importantes sur la consommation réelle d'énergie et sur le dimensionnement de l'installation électrique.
+</div>
+
+<p>Au chapitre 1, nous avons utilisé la formule \(P = U \times I\) en courant continu. En courant alternatif, cette formule ne suffit plus pour certains appareils. Il faut introduire une nouvelle grandeur : le <strong>facteur de puissance</strong>.</p>
+
+<!-- ========== RAPPEL SINUSOÏDAL ========== -->
+<h2>2. Rappels – Tension et courant en régime sinusoïdal</h2>
+
+<div class="def">
+  <span class="label label-def">Définition – Grandeurs sinusoïdales</span><br>
+  En courant alternatif, la tension et l'intensité varient au cours du temps selon des fonctions sinusoïdales :
+  \[ u(t) = U_{\max} \cdot \sin(2\pi f \cdot t) \]
+  \[ i(t) = I_{\max} \cdot \sin(2\pi f \cdot t + \varphi) \]
+  <ul>
+    <li>\(U_{\max}\), \(I_{\max}\) : valeurs maximales (amplitudes)</li>
+    <li>\(f\) : fréquence (50 Hz en France)</li>
+    <li>\(\varphi\) : déphasage entre la tension et le courant (en radians ou degrés)</li>
+  </ul>
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition – Valeurs efficaces</span><br>
+  Les <strong>valeurs efficaces</strong> U et I sont les valeurs indiquées par les appareils de mesure (voltmètre, ampèremètre en mode AC). Elles sont liées aux valeurs maximales par :
+  \[ U = \frac{U_{\max}}{\sqrt{2}} \qquad I = \frac{I_{\max}}{\sqrt{2}} \]
+  <em>Le secteur français : \(U = 230\) V (valeur efficace), soit \(U_{\max} = 230 \times \sqrt{2} \approx 325\) V.</em>
+</div>
+
+<!-- ========== PRODUIT u(t).i(t) ========== -->
+<h2>3. Le produit \(u(t) \times i(t)\) – La puissance instantanée</h2>
+
+<div class="def">
+  <span class="label label-def">Définition – Puissance instantanée</span><br>
+  La <strong>puissance instantanée</strong> \(p(t)\) est le produit de la tension et du courant à chaque instant :
+  \[ p(t) = u(t) \times i(t) \]
+  Cette grandeur varie au cours du temps. Elle peut même devenir <strong>négative</strong> (l'appareil renvoie de l'énergie au réseau pendant une partie du cycle).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété – Observation expérimentale (ExAO)</span><br>
+  En utilisant un système d'acquisition de données (ExAO), on peut visualiser simultanément \(u(t)\), \(i(t)\) et leur produit \(p(t)\) :
+  <ul>
+    <li><strong>Pour une résistance</strong> (radiateur, lampe) : \(u(t)\) et \(i(t)\) sont en phase (\(\varphi = 0\)). Le produit \(p(t)\) est toujours positif.</li>
+    <li><strong>Pour un moteur</strong> (aspiration, toupie) : \(i(t)\) est en retard sur \(u(t)\) (\(\varphi \neq 0\)). Le produit \(p(t)\) peut devenir négatif.</li>
+  </ul>
+</div>
+
+<!-- ========== GRAPHIQUE ========== -->
+<h3>Visualisation : résistance vs moteur</h3>
+
+<div class="grid2">
+<div class="chart-wrap">
+  <canvas id="chartResistance" height="200"></canvas>
+</div>
+<div class="chart-wrap">
+  <canvas id="chartMoteur" height="200"></canvas>
+</div>
+</div>
+
+<script>
+(function(){
+  var N = 200;
+  var labels = [];
+  var uData = [], iRes = [], pRes = [], iMot = [], pMot = [];
+  var f = 50, T = 1/f;
+  for (var k = 0; k < N; k++) {
+    var t = k * 2 * T / N;
+    labels.push((t * 1000).toFixed(1));
+    var u = 325 * Math.sin(2 * Math.PI * f * t);
+    var ir = 10 * Math.sin(2 * Math.PI * f * t);
+    var im = 10 * Math.sin(2 * Math.PI * f * t - Math.PI/4);
+    uData.push(u);
+    iRes.push(ir);
+    pRes.push(u * ir / 1000);
+    iMot.push(im);
+    pMot.push(u * im / 1000);
+  }
+  var commonOpts = {
+    responsive: true,
+    plugins: { legend: { labels: { font: { size: 10 } } } },
+    scales: {
+      x: { display: false },
+      y: { title: { display: false } }
+    },
+    elements: { point: { radius: 0 }, line: { borderWidth: 1.5 } }
+  };
+  new Chart(document.getElementById('chartResistance'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'u(t) [V]', data: uData, borderColor: '#2da44e', fill: false },
+        { label: 'i(t) [A] (×30)', data: iRes.map(function(v){return v*30;}), borderColor: '#0ea5e9', fill: false },
+        { label: 'p(t) [kW]', data: pRes, borderColor: '#e11d48', backgroundColor: 'rgba(225,29,72,0.08)', fill: true }
+      ]
+    },
+    options: Object.assign({}, commonOpts, {
+      plugins: { legend: { labels: { font: { size: 10 } } }, title: { display: true, text: 'Résistance (φ = 0°) : p(t) toujours ≥ 0', font: { size: 12 } } }
+    })
+  });
+  new Chart(document.getElementById('chartMoteur'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'u(t) [V]', data: uData, borderColor: '#2da44e', fill: false },
+        { label: 'i(t) [A] (×30)', data: iMot.map(function(v){return v*30;}), borderColor: '#0ea5e9', fill: false },
+        { label: 'p(t) [kW]', data: pMot, borderColor: '#e11d48', backgroundColor: 'rgba(225,29,72,0.08)', fill: true }
+      ]
+    },
+    options: Object.assign({}, commonOpts, {
+      plugins: { legend: { labels: { font: { size: 10 } } }, title: { display: true, text: 'Moteur (φ = 45°) : p(t) parfois négatif', font: { size: 12 } } }
+    })
+  });
+})();
+</script>
+
+<!-- ========== DÉPHASAGE ========== -->
+<h2>4. Le déphasage entre tension et courant</h2>
+
+<div class="def">
+  <span class="label label-def">Définition – Déphasage \(\varphi\)</span><br>
+  Le <strong>déphasage</strong> \(\varphi\) (phi) est le décalage temporel entre la tension \(u(t)\) et le courant \(i(t)\), exprimé en angle.
+  <ul>
+    <li>Si \(\varphi = 0\) : tension et courant sont <strong>en phase</strong> (cas d'une résistance pure).</li>
+    <li>Si \(\varphi > 0\) : le courant est <strong>en avance</strong> sur la tension (cas d'un condensateur).</li>
+    <li>Si \(\varphi < 0\) : le courant est <strong>en retard</strong> sur la tension (cas d'un moteur, d'une bobine).</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété – Mesure du déphasage</span><br>
+  Sur un oscilloscope ou avec un système ExAO, on mesure le décalage temporel \(\Delta t\) entre les deux signaux, puis :
+  \[ \varphi = \frac{\Delta t}{T} \times 360° \qquad \text{ou} \qquad \varphi = \frac{\Delta t}{T} \times 2\pi \text{ rad} \]
+  où \(T\) est la période du signal (\(T = 1/f = 0{,}02\) s pour 50 Hz).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 1 – Mesure du déphasage d'un moteur d'aspiration</span>
+  <p><strong>Situation :</strong> Sur l'oscilloscope, on mesure un décalage \(\Delta t = 2{,}5\) ms entre \(u(t)\) et \(i(t)\) pour le moteur d'une aspiration centralisée. La période est \(T = 20\) ms.</p>
+  \[ \varphi = \frac{2{,}5}{20} \times 360° = 45° \]
+  <p>Le courant est en retard de 45° sur la tension.</p>
+</div>
+
+<!-- ========== FACTEUR DE PUISSANCE ========== -->
+<h2>5. Le facteur de puissance : \(\cos \varphi\)</h2>
+
+<div class="def">
+  <span class="label label-def">Définition – Facteur de puissance</span><br>
+  Le <strong>facteur de puissance</strong> est le cosinus de l'angle de déphasage :
+  \[ \text{Facteur de puissance} = \cos \varphi \]
+  <ul>
+    <li>\(\cos \varphi = 1\) : tout le courant sert à produire du travail utile (résistance pure).</li>
+    <li>\(\cos \varphi < 1\) : une partie du courant ne produit pas de travail utile (moteurs, bobines).</li>
+    <li>\(\cos \varphi\) est un nombre sans unité, compris entre 0 et 1.</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété – Valeurs typiques de cos φ</span><br>
+  <table>
+    <tr><th>Type d'appareil</th><th>Exemple en atelier</th><th>\(\cos \varphi\)</th></tr>
+    <tr><td>Résistance pure</td><td>Radiateur, lampe à incandescence</td><td>1,00</td></tr>
+    <tr><td>Moteur à pleine charge</td><td>Toupie, dégauchisseuse</td><td>0,80 – 0,90</td></tr>
+    <tr><td>Moteur à vide</td><td>Machine en rotation libre</td><td>0,20 – 0,40</td></tr>
+    <tr><td>Lampes fluorescentes</td><td>Néons d'atelier</td><td>0,50 – 0,60</td></tr>
+    <tr><td>Lampes LED</td><td>Éclairage moderne</td><td>0,90 – 0,99</td></tr>
+  </table>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention – Facteur de puissance faible</span><br>
+  Un facteur de puissance faible signifie que l'installation consomme plus de courant que nécessaire pour la même puissance utile. Conséquences :
+  <ul>
+    <li>Câbles plus chargés → échauffement → pertes Joule accrues</li>
+    <li>Disjoncteurs qui déclenchent plus facilement</li>
+    <li>Pénalités sur la facture d'électricité (pour les professionnels)</li>
+  </ul>
+  <strong>EDF demande un \(\cos \varphi \geq 0{,}93\)</strong> pour les installations professionnelles.
+</div>
+
+<!-- ========== PUISSANCE ACTIVE ========== -->
+<h2>6. La puissance active : \(P = U \cdot I \cdot \cos \varphi\)</h2>
+
+<div class="def">
+  <span class="label label-def">Définition – Puissance active</span><br>
+  La <strong>puissance active</strong> P est la puissance moyenne réellement consommée par l'appareil. C'est la moyenne du produit \(u(t) \times i(t)\) sur une période complète :
+  \[ P = U \cdot I \cdot \cos \varphi \]
+  <ul>
+    <li>\(P\) : puissance active en watts (W)</li>
+    <li>\(U\) : tension efficace en volts (V)</li>
+    <li>\(I\) : intensité efficace en ampères (A)</li>
+    <li>\(\cos \varphi\) : facteur de puissance (sans unité)</li>
+  </ul>
+</div>
+
+<div class="formule-box">
+  \[ \boxed{P = U \cdot I \cdot \cos \varphi} \]
+  <small>C'est la puissance qui apparaît sur le wattmètre et qui est facturée par le fournisseur d'énergie.</small>
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition – Puissance apparente</span><br>
+  La <strong>puissance apparente</strong> S est le produit \(U \times I\) (sans le facteur de puissance) :
+  \[ S = U \times I \]
+  Elle s'exprime en <strong>voltampères (VA)</strong>. C'est cette puissance qui dimensionne les câbles et les protections.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété – Relation entre P et S</span><br>
+  \[ P = S \cdot \cos \varphi \qquad \Leftrightarrow \qquad \cos \varphi = \frac{P}{S} = \frac{P}{U \cdot I} \]
+  La puissance active P est toujours inférieure ou égale à la puissance apparente S.
+</div>
+
+<!-- ========== EXEMPLES ========== -->
+<h2>7. Exemples numériques</h2>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 2 – Moteur d'aspiration centralisée</span>
+  <p><strong>Situation :</strong> Le moteur d'une aspiration centralisée dans un atelier de menuiserie consomme un courant I = 8,5 A sous U = 230 V, avec un facteur de puissance \(\cos \varphi = 0{,}82\).</p>
+  <p><strong>Puissance apparente :</strong></p>
+  \[ S = U \times I = 230 \times 8{,}5 = 1\,955 \text{ VA} \]
+  <p><strong>Puissance active :</strong></p>
+  \[ P = U \times I \times \cos \varphi = 230 \times 8{,}5 \times 0{,}82 = 1\,603 \text{ W} \approx 1{,}6 \text{ kW} \]
+  <p><strong>Conclusion :</strong> La puissance réellement consommée (1 603 W) est inférieure à la puissance apparente (1 955 VA). La différence correspond à l'énergie « réactive » qui circule dans les câbles sans être utile.</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 3 – Comparaison résistance / moteur</span>
+  <p>Deux appareils sont branchés sous 230 V et consomment chacun I = 10 A :</p>
+  <table>
+    <tr><th>Appareil</th><th>\(\cos \varphi\)</th><th>P apparente (VA)</th><th>P active (W)</th></tr>
+    <tr><td>Radiateur (résistance)</td><td>1,00</td><td>2 300</td><td>2 300</td></tr>
+    <tr><td>Moteur de toupie</td><td>0,85</td><td>2 300</td><td>1 955</td></tr>
+  </table>
+  <p>Le moteur consomme le même courant mais fournit moins de puissance utile. Les câbles et les protections doivent pourtant supporter les mêmes 10 A dans les deux cas.</p>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 4 – Retrouver le facteur de puissance</span>
+  <p><strong>Situation :</strong> Un compresseur d'atelier est branché sous 230 V. Un wattmètre mesure P = 1 800 W et un ampèremètre mesure I = 10,5 A.</p>
+  \[ \cos \varphi = \frac{P}{U \times I} = \frac{1\,800}{230 \times 10{,}5} = \frac{1\,800}{2\,415} = 0{,}745 \]
+  <p>\(\cos \varphi = 0{,}75\) environ. Ce facteur de puissance est assez faible ; l'installation bénéficierait d'une compensation (condensateurs).</p>
+</div>
+
+<!-- ========== APPLICATION ATELIER ========== -->
+<h2>8. Application – Bilan de puissance d'un atelier</h2>
+
+<p>Voici le bilan de puissance d'un atelier d'agencement intérieur :</p>
+
+<table>
+  <tr>
+    <th>Machine</th>
+    <th>U (V)</th>
+    <th>I (A)</th>
+    <th>\(\cos \varphi\)</th>
+    <th>S (VA)</th>
+    <th>P active (W)</th>
+  </tr>
+  <tr>
+    <td>Toupie</td><td>230</td><td>18</td><td>0,85</td><td>4 140</td><td>3 519</td>
+  </tr>
+  <tr>
+    <td>Aspiration centralisée</td><td>230</td><td>12</td><td>0,80</td><td>2 760</td><td>2 208</td>
+  </tr>
+  <tr>
+    <td>Compresseur</td><td>230</td><td>10</td><td>0,78</td><td>2 300</td><td>1 794</td>
+  </tr>
+  <tr>
+    <td>Éclairage LED</td><td>230</td><td>2,5</td><td>0,95</td><td>575</td><td>546</td>
+  </tr>
+  <tr>
+    <td>Radiateur d'appoint</td><td>230</td><td>8,7</td><td>1,00</td><td>2 001</td><td>2 001</td>
+  </tr>
+</table>
+
+<p>On remarque que les machines avec moteur (\(\cos \varphi < 1\)) consomment plus de courant que ce que leur puissance active laisserait supposer. Il faut dimensionner les câbles et les protections en fonction de la <strong>puissance apparente</strong> (ou de l'intensité réelle), pas de la puissance active seule.</p>
+
+<!-- ========== À RETENIR ========== -->
+<h2>9. À retenir</h2>
+
+<div class="retenir">
+  <strong>Formules clés du chapitre :</strong>
+  <ul>
+    <li>Puissance active : \( P = U \cdot I \cdot \cos \varphi \) (en W)</li>
+    <li>Puissance apparente : \( S = U \cdot I \) (en VA)</li>
+    <li>Facteur de puissance : \( \cos \varphi = \dfrac{P}{S} = \dfrac{P}{U \cdot I} \)</li>
+    <li>Déphasage : \( \varphi = \dfrac{\Delta t}{T} \times 360° \)</li>
+  </ul>
+  <strong>À savoir expliquer :</strong>
+  <ul>
+    <li>En courant alternatif, \(u(t)\) et \(i(t)\) ne sont pas toujours en phase : il y a un déphasage \(\varphi\).</li>
+    <li>Le facteur de puissance \(\cos \varphi\) traduit la part du courant qui produit réellement du travail.</li>
+    <li>Un \(\cos \varphi\) faible entraîne un sur-dimensionnement des câbles et des pertes accrues.</li>
+    <li>Pour une résistance pure, \(\cos \varphi = 1\) et on retrouve \(P = U \times I\).</li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention aux erreurs fréquentes</span>
+  <ul>
+    <li>Ne pas oublier le facteur \(\cos \varphi\) pour les moteurs ! \(P \neq U \times I\) en général.</li>
+    <li>Ne pas confondre <strong>watts (W)</strong> et <strong>voltampères (VA)</strong>.</li>
+    <li>\(\cos \varphi\) est toujours compris entre 0 et 1 : si vous trouvez une valeur supérieure, il y a une erreur.</li>
+    <li>Le déphasage \(\varphi\) est un angle (degrés ou radians), pas un temps.</li>
+    <li>Un moteur à vide a un \(\cos \varphi\) très faible → ne pas laisser tourner les machines à vide inutilement.</li>
+  </ul>
+</div>
+
+<!-- ========== MINI EXERCICES ========== -->
+<h2>10. Mini exercices</h2>
+
+<div class="exo">
+  <strong>Exercice 1 – Puissance active d'une dégauchisseuse</strong><br>
+  Une dégauchisseuse consomme I = 14 A sous U = 230 V avec \(\cos \varphi = 0{,}85\).<br>
+  Calculer la puissance active P.<br>
+  <details>
+    <summary>Voir la solution</summary>
+    <p>\[ P = U \times I \times \cos \varphi = 230 \times 14 \times 0{,}85 = \mathbf{2\,737 \text{ W}} \approx 2{,}7 \text{ kW} \]</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 2 – Facteur de puissance d'un compresseur</strong><br>
+  Un compresseur branché sous 230 V consomme 9,2 A. Un wattmètre indique P = 1 590 W.<br>
+  Calculer le facteur de puissance.<br>
+  <details>
+    <summary>Voir la solution</summary>
+    <p>\[ \cos \varphi = \frac{P}{U \times I} = \frac{1\,590}{230 \times 9{,}2} = \frac{1\,590}{2\,116} = \mathbf{0{,}75} \]</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 3 – Calcul du déphasage</strong><br>
+  Sur un oscilloscope, on observe que le courant est en retard de \(\Delta t = 3{,}3\) ms sur la tension. La fréquence est 50 Hz.<br>
+  Calculer le déphasage \(\varphi\) en degrés et le facteur de puissance.<br>
+  <details>
+    <summary>Voir la solution</summary>
+    <p>\(T = 1/50 = 0{,}020\) s = 20 ms</p>
+    <p>\[ \varphi = \frac{3{,}3}{20} \times 360 = \mathbf{59{,}4°} \]</p>
+    <p>\[ \cos \varphi = \cos(59{,}4°) = \mathbf{0{,}51} \]</p>
+    <p>Ce facteur de puissance est très faible (moteur probablement à vide).</p>
+  </details>
+</div>
+
+<div class="exo">
+  <strong>Exercice 4 – Intensité réelle d'un moteur</strong><br>
+  Un moteur de puissance active P = 2 000 W est branché sous 230 V. Son facteur de puissance est \(\cos \varphi = 0{,}80\).<br>
+  a) Calculer l'intensité consommée.<br>
+  b) Si \(\cos \varphi\) valait 1, quelle serait l'intensité ?<br>
+  <details>
+    <summary>Voir la solution</summary>
+    <p>a) \(I = \dfrac{P}{U \times \cos \varphi} = \dfrac{2\,000}{230 \times 0{,}80} = \dfrac{2\,000}{184} = \mathbf{10{,}9 \text{ A}}\)</p>
+    <p>b) \(I = \dfrac{P}{U} = \dfrac{2\,000}{230} = \mathbf{8{,}7 \text{ A}}\)</p>
+    <p>Avec \(\cos \varphi = 0{,}80\), le moteur consomme 2,2 A de plus qu'une résistance de même puissance.</p>
+  </details>
+</div>
+
+<div style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;text-align:center;color:#718096;font-size:.82em">
+  Première Bac Pro ERA-MA – Groupement 3 | Physique-Chimie – Chapitre 2 | maths-sciences-lp.github.io
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
