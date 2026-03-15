@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Theoreme de Pythagore – Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#2d3748;line-height:1.6;padding:20px}
+
+header{background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff;padding:28px 20px 22px;border-radius:10px 10px 0 0;text-align:center;position:relative}
+header h1{font-size:1.6em;margin-bottom:4px}
+header .sous-titre{opacity:.85;font-size:.92em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+
+.container{max-width:860px;margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);overflow:hidden}
+.body-content{padding:24px}
+
+/* Canvas */
+.canvas-wrap{background:#fafbfc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin:16px 0;text-align:center;overflow-x:auto}
+canvas{display:block;margin:0 auto;max-width:100%}
+
+/* Sliders */
+.sliders-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.slider-group{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px}
+.slider-group label{font-weight:600;font-size:.88em;display:block;margin-bottom:6px;color:#475569}
+.slider-group input[type=range]{width:100%;accent-color:#1976d2}
+.val-badge{display:inline-block;background:#1976d2;color:#fff;border-radius:5px;padding:2px 10px;font-size:.85em;font-weight:700;min-width:40px;text-align:center;margin-left:6px}
+
+/* Formula box */
+.formula-box{background:#e3f2fd;border:2px solid #1976d2;border-radius:10px;padding:16px 24px;text-align:center;margin:16px 0}
+.formula-main{font-size:1.3em;font-weight:700;color:#1565c0;margin-bottom:6px}
+.formula-values{font-size:1.05em;color:#334155}
+.formula-check{font-size:1.2em;margin-top:6px;font-weight:700}
+.check-ok{color:#16a34a}
+.check-fail{color:#dc2626}
+
+/* Hypotenuse result */
+.result-box{background:#f0fdf4;border:2px solid #16a34a;border-radius:10px;padding:14px 20px;text-align:center;margin:14px 0}
+.result-box .result-c{font-size:1.4em;font-weight:700;color:#166534}
+.result-box .result-detail{font-size:.92em;color:#475569;margin-top:4px}
+
+/* Toggle verification */
+.toggle-row{display:flex;align-items:center;gap:10px;margin:16px 0;padding:12px 16px;background:#fef3c7;border:1px solid #fcd34d;border-radius:8px}
+.toggle-row label{font-weight:600;font-size:.92em;color:#92400e;cursor:pointer}
+.toggle-row input[type=checkbox]{width:18px;height:18px;accent-color:#d97706;cursor:pointer}
+
+.verif-panel{display:none;margin:14px 0}
+.verif-panel.visible{display:block}
+.verif-inputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0}
+.verif-input{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px;text-align:center}
+.verif-input label{display:block;font-weight:600;font-size:.85em;color:#475569;margin-bottom:4px}
+.verif-input input[type=number]{width:80px;padding:6px;border:2px solid #cbd5e1;border-radius:6px;text-align:center;font-size:1em;outline:none}
+.verif-input input:focus{border-color:#1976d2}
+.verif-btn{display:block;margin:10px auto;background:#1976d2;color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:600;cursor:pointer;transition:background .2s}
+.verif-btn:hover{background:#1565c0}
+.verif-result{text-align:center;padding:12px;border-radius:8px;margin:10px 0;font-weight:600;font-size:1.05em;display:none}
+.verif-ok{display:block;background:#d1fae5;border:2px solid #16a34a;color:#065f46}
+.verif-fail{display:block;background:#fee2e2;border:2px solid #dc2626;color:#991b1b}
+
+/* Context */
+.context-pro{background:#f5f0ff;border-left:4px solid #7b1fa2;border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:.9em;color:#581c87}
+.context-pro strong{color:#7b1fa2}
+
+/* Legend */
+.legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0;font-size:.85em}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-sq{width:14px;height:14px;border-radius:2px}
+
+@media(max-width:600px){
+  .sliders-grid,.verif-inputs{grid-template-columns:1fr}
+  header h1{font-size:1.25em}
+  .body-content{padding:16px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Theoreme de Pythagore</h1>
+    <p class="sous-titre">2nde Bac Pro &middot; Ch12 &middot; \(a^2 + b^2 = c^2\)</p>
+  </header>
+
+  <div class="body-content">
+
+    <!-- Canvas -->
+    <div class="canvas-wrap">
+      <canvas id="canvas" width="600" height="450"></canvas>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item"><div class="legend-sq" style="background:rgba(239,68,68,.25);border:1px solid #ef4444"></div> Carre sur a</div>
+      <div class="legend-item"><div class="legend-sq" style="background:rgba(59,130,246,.25);border:1px solid #3b82f6"></div> Carre sur b</div>
+      <div class="legend-item"><div class="legend-sq" style="background:rgba(34,197,94,.25);border:1px solid #22c55e"></div> Carre sur c (hypotenuse)</div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="sliders-grid">
+      <div class="slider-group">
+        <label>Cote a <span class="val-badge" id="valA">3</span></label>
+        <input type="range" id="sliderA" min="1" max="15" step="0.5" value="3" oninput="update()">
+      </div>
+      <div class="slider-group">
+        <label>Cote b <span class="val-badge" id="valB">4</span></label>
+        <input type="range" id="sliderB" min="1" max="15" step="0.5" value="4" oninput="update()">
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="result-box" id="resultBox">
+      <div class="result-c" id="resultC">c = 5</div>
+      <div class="result-detail" id="resultDetail">c = &radic;(9 + 16) = &radic;25 = 5</div>
+    </div>
+
+    <!-- Formula -->
+    <div class="formula-box">
+      <div class="formula-main" id="formulaMain">\(a^2 + b^2 = c^2\)</div>
+      <div class="formula-values" id="formulaValues">\(3^2 + 4^2 = 5^2\)</div>
+      <div class="formula-check check-ok" id="formulaCheck">9 + 16 = 25 &#10003;</div>
+    </div>
+
+    <!-- Verification toggle -->
+    <div class="toggle-row">
+      <input type="checkbox" id="toggleVerif" onchange="toggleVerification()">
+      <label for="toggleVerif">Mode verification : saisir 3 cotes pour verifier si c'est un triangle rectangle</label>
+    </div>
+
+    <div class="verif-panel" id="verifPanel">
+      <div class="verif-inputs">
+        <div class="verif-input">
+          <label>Cote 1</label>
+          <input type="number" id="v1" value="5" min="0.1" step="0.1">
+        </div>
+        <div class="verif-input">
+          <label>Cote 2</label>
+          <input type="number" id="v2" value="12" min="0.1" step="0.1">
+        </div>
+        <div class="verif-input">
+          <label>Cote 3 (plus grand)</label>
+          <input type="number" id="v3" value="13" min="0.1" step="0.1">
+        </div>
+      </div>
+      <button class="verif-btn" onclick="checkVerification()">Verifier</button>
+      <div class="verif-result" id="verifResult"></div>
+    </div>
+
+    <!-- Context -->
+    <div class="context-pro">
+      <strong>Contexte professionnel :</strong> Verification d'equerrage sur un chantier avec la methode du 3-4-5.
+      Un menuisier verifie qu'un angle est droit en mesurant 3 m sur un cote, 4 m sur l'autre : si la diagonale fait 5 m, l'angle est droit.
+    </div>
+
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = 600, H = 450;
+
+function update() {
+  const a = parseFloat(document.getElementById('sliderA').value);
+  const b = parseFloat(document.getElementById('sliderB').value);
+  const c = Math.sqrt(a * a + b * b);
+
+  document.getElementById('valA').textContent = a;
+  document.getElementById('valB').textContent = b;
+
+  // Result
+  const a2 = a * a, b2 = b * b, c2 = a2 + b2;
+  const cRound = Math.round(c * 1000) / 1000;
+  const cExact = Number.isInteger(c2) && Number.isInteger(Math.sqrt(c2));
+
+  document.getElementById('resultC').textContent = 'c = ' + (cExact ? Math.sqrt(c2) : cRound.toFixed(2));
+  document.getElementById('resultDetail').innerHTML =
+    'c = &radic;(' + fmt(a2) + ' + ' + fmt(b2) + ') = &radic;' + fmt(c2) +
+    ' = ' + (cExact ? Math.sqrt(c2) : cRound.toFixed(2));
+
+  // Formula
+  document.getElementById('formulaValues').innerHTML =
+    '\\(' + fmt(a) + '^2 + ' + fmt(b) + '^2 = ' + (cExact ? fmt(Math.sqrt(c2)) : cRound.toFixed(2)) + '^2\\)';
+  document.getElementById('formulaCheck').innerHTML =
+    fmt(a2) + ' + ' + fmt(b2) + ' = ' + fmt(c2) + ' &#10003;';
+
+  if (window.MathJax && MathJax.typeset) {
+    MathJax.typeset([document.getElementById('formulaMain'), document.getElementById('formulaValues')]);
+  }
+
+  draw(a, b, c);
+}
+
+function fmt(n) {
+  return Number.isInteger(n) ? n.toString() : (Math.round(n * 100) / 100).toString();
+}
+
+function draw(a, b, c) {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#fafbfc';
+  ctx.fillRect(0, 0, W, H);
+
+  // Scale to fit
+  const maxSide = Math.max(a, b, c);
+  const scale = Math.min(140, 200 / maxSide * 8);
+  const unit = scale;
+
+  // Triangle vertices (right angle at bottom-left)
+  const ox = 180, oy = 330;
+  const Ax = ox, Ay = oy;                       // right angle vertex
+  const Bx = ox + b * unit, By = oy;            // along x
+  const Cx = ox, Cy = oy - a * unit;            // along y
+
+  // Draw squares on each side
+  // Square on side a (vertical side, left) - light red
+  drawSquare(Ax, Ay, Cx, Cy, 'left', 'rgba(239,68,68,0.15)', '#ef4444', 'a\u00b2 = ' + fmt(a * a));
+
+  // Square on side b (horizontal side, bottom) - light blue
+  drawSquare(Ax, Ay, Bx, By, 'bottom', 'rgba(59,130,246,0.15)', '#3b82f6', 'b\u00b2 = ' + fmt(b * b));
+
+  // Square on hypotenuse c - light green
+  drawHypSquare(Bx, By, Cx, Cy, 'rgba(34,197,94,0.15)', '#22c55e', 'c\u00b2 = ' + fmt(c * c));
+
+  // Draw triangle
+  ctx.beginPath();
+  ctx.moveTo(Ax, Ay);
+  ctx.lineTo(Bx, By);
+  ctx.lineTo(Cx, Cy);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(30,64,175,0.08)';
+  ctx.fill();
+  ctx.strokeStyle = '#1e3a8a';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Right angle marker
+  const sq = 12;
+  ctx.strokeStyle = '#1e3a8a';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(Ax + sq, Ay);
+  ctx.lineTo(Ax + sq, Ay - sq);
+  ctx.lineTo(Ax, Ay - sq);
+  ctx.stroke();
+
+  // Labels on sides
+  ctx.font = 'bold 14px Segoe UI, system-ui, sans-serif';
+  // Side a (vertical)
+  ctx.fillStyle = '#dc2626';
+  ctx.textAlign = 'right';
+  ctx.fillText('a = ' + fmt(a), Ax - 10, (Ay + Cy) / 2 + 4);
+
+  // Side b (horizontal)
+  ctx.fillStyle = '#2563eb';
+  ctx.textAlign = 'center';
+  ctx.fillText('b = ' + fmt(b), (Ax + Bx) / 2, Ay + 20);
+
+  // Side c (hypotenuse)
+  ctx.fillStyle = '#16a34a';
+  const midHx = (Bx + Cx) / 2, midHy = (By + Cy) / 2;
+  ctx.textAlign = 'left';
+  ctx.fillText('c = ' + fmt(Math.round(c * 100) / 100), midHx + 8, midHy - 8);
+
+  // Vertex labels
+  ctx.font = 'bold 13px Segoe UI, system-ui, sans-serif';
+  ctx.fillStyle = '#334155';
+  ctx.textAlign = 'right';
+  ctx.fillText('A', Ax - 10, Ay + 16);
+  ctx.textAlign = 'left';
+  ctx.fillText('B', Bx + 6, By + 16);
+  ctx.textAlign = 'right';
+  ctx.fillText('C', Cx - 10, Cy - 6);
+}
+
+function drawSquare(x1, y1, x2, y2, side, fill, stroke, label) {
+  const dx = x2 - x1, dy = y2 - y1;
+  let px, py;
+
+  if (side === 'left') {
+    // Square extends to the left of vertical side
+    px = [-dy, -dy, 0, 0];
+    py = [0, dy, dy, 0];
+    // corners: (x1, y1), (x1-dy, y1), (x1-dy, y1+dy=y2), (x2, y2) -- but dy is negative
+    const sqx = [x1, x1 + dy, x2 + dy, x2];
+    const sqy = [y1, y1 - dx, y2 - dx, y2];
+    ctx.beginPath();
+    ctx.moveTo(sqx[0], sqy[0]);
+    for (let i = 1; i < 4; i++) ctx.lineTo(sqx[i], sqy[i]);
+    ctx.closePath();
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.strokeStyle = stroke;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Label
+    ctx.font = '12px Segoe UI, system-ui, sans-serif';
+    ctx.fillStyle = stroke;
+    ctx.textAlign = 'center';
+    const cx = (sqx[0] + sqx[1] + sqx[2] + sqx[3]) / 4;
+    const cy = (sqy[0] + sqy[1] + sqy[2] + sqy[3]) / 4;
+    ctx.fillText(label, cx, cy + 4);
+  } else if (side === 'bottom') {
+    const sqx = [x1, x2, x2, x1];
+    const sqy = [y1, y2, y2 + dx, y1 + dx]; // dx = x2-x1 > 0
+    // Wait: need to go perpendicular downward
+    const len = dx; // horizontal
+    const sqx2 = [x1, x2, x2, x1];
+    const sqy2 = [y1, y1, y1 + len, y1 + len];
+    ctx.beginPath();
+    ctx.moveTo(sqx2[0], sqy2[0]);
+    for (let i = 1; i < 4; i++) ctx.lineTo(sqx2[i], sqy2[i]);
+    ctx.closePath();
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.strokeStyle = stroke;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.font = '12px Segoe UI, system-ui, sans-serif';
+    ctx.fillStyle = stroke;
+    ctx.textAlign = 'center';
+    ctx.fillText(label, (x1 + x2) / 2, y1 + len / 2 + 4);
+  }
+}
+
+function drawHypSquare(x1, y1, x2, y2, fill, stroke, label) {
+  // Square on hypotenuse, built outward from the triangle
+  const dx = x2 - x1, dy = y2 - y1;
+  // Perpendicular direction (outward)
+  const px = -dy, py = dx;
+
+  const sqx = [x1, x2, x2 + px, x1 + px];
+  const sqy = [y1, y2, y2 + py, y1 + py];
+
+  ctx.beginPath();
+  ctx.moveTo(sqx[0], sqy[0]);
+  for (let i = 1; i < 4; i++) ctx.lineTo(sqx[i], sqy[i]);
+  ctx.closePath();
+  ctx.fillStyle = fill;
+  ctx.fill();
+  ctx.strokeStyle = stroke;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.font = '12px Segoe UI, system-ui, sans-serif';
+  ctx.fillStyle = stroke;
+  ctx.textAlign = 'center';
+  const cx = (sqx[0] + sqx[1] + sqx[2] + sqx[3]) / 4;
+  const cy = (sqy[0] + sqy[1] + sqy[2] + sqy[3]) / 4;
+  ctx.fillText(label, cx, cy + 4);
+}
+
+function toggleVerification() {
+  const panel = document.getElementById('verifPanel');
+  panel.classList.toggle('visible', document.getElementById('toggleVerif').checked);
+  document.getElementById('verifResult').className = 'verif-result';
+}
+
+function checkVerification() {
+  let sides = [
+    parseFloat(document.getElementById('v1').value) || 0,
+    parseFloat(document.getElementById('v2').value) || 0,
+    parseFloat(document.getElementById('v3').value) || 0
+  ];
+  sides.sort((a, b) => a - b);
+  const [s1, s2, s3] = sides;
+
+  if (s1 <= 0 || s2 <= 0 || s3 <= 0) {
+    document.getElementById('verifResult').innerHTML = 'Veuillez entrer des valeurs positives.';
+    document.getElementById('verifResult').className = 'verif-result verif-fail';
+    return;
+  }
+
+  const sum = s1 * s1 + s2 * s2;
+  const hyp = s3 * s3;
+  const result = document.getElementById('verifResult');
+
+  if (Math.abs(sum - hyp) < 0.01) {
+    result.innerHTML = fmt(s1) + '\u00b2 + ' + fmt(s2) + '\u00b2 = ' + fmt(s1*s1) + ' + ' + fmt(s2*s2) + ' = ' + fmt(sum) +
+      '<br>' + fmt(s3) + '\u00b2 = ' + fmt(hyp) +
+      '<br><br>Triangle rectangle &#10003;';
+    result.className = 'verif-result verif-ok';
+  } else {
+    result.innerHTML = fmt(s1) + '\u00b2 + ' + fmt(s2) + '\u00b2 = ' + fmt(s1*s1) + ' + ' + fmt(s2*s2) + ' = ' + fmt(sum) +
+      '<br>' + fmt(s3) + '\u00b2 = ' + fmt(hyp) +
+      '<br>' + fmt(sum) + ' \u2260 ' + fmt(hyp) +
+      '<br><br>Ce n\'est pas un triangle rectangle &#10007;';
+    result.className = 'verif-result verif-fail';
+  }
+}
+
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Trigonom&eacute;trie &mdash; Simulation</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.6}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:28px 20px 22px;text-align:center;position:relative}
+header h1{font-size:1.5em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px;margin-bottom:20px}
+.card h2{font-size:1.15em;color:#1976d2;margin-bottom:14px;border-bottom:2px solid #e3f2fd;padding-bottom:8px}
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.slider-row{display:flex;align-items:center;gap:10px;margin:10px 0;flex-wrap:wrap}
+.slider-row label{min-width:60px;font-weight:600;font-size:.95em}
+.slider-row input[type=range]{flex:1;min-width:150px;accent-color:#1976d2}
+.slider-row .val{min-width:80px;text-align:center;font-family:monospace;font-weight:700;color:#1976d2;font-size:1em}
+.toggle-row{display:flex;gap:16px;align-items:center;margin:8px 0;flex-wrap:wrap}
+.toggle-row label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.9em;font-weight:600}
+.toggle-row input[type=checkbox]{accent-color:#1976d2;width:16px;height:16px}
+canvas#circleCanvas{display:block;margin:0 auto;background:#fff;border:1px solid #e2e8f0;border-radius:8px}
+.values-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+.val-box{border-radius:8px;padding:10px 14px;text-align:center}
+.val-box.sin-box{background:#fff5f5;border:1px solid #fed7d7}
+.val-box.cos-box{background:#ebf8ff;border:1px solid #bee3f8}
+.val-box.tan-box{background:#f0fff4;border:1px solid #c6f6d5}
+.val-box .label{font-size:.82em;color:#718096;margin-bottom:2px}
+.val-box .value{font-weight:700;font-size:1.15em}
+.identity{background:#fffff0;border:2px solid #fefcbf;border-radius:8px;padding:14px 18px;margin-top:14px;text-align:center;font-size:1em}
+.identity .check{font-weight:700;margin-top:4px}
+.chart-container{position:relative;height:250px;margin-top:10px}
+.notable-table{width:100%;border-collapse:collapse;font-size:.85em;margin-top:10px}
+.notable-table th{background:#1976d2;color:#fff;padding:6px 8px}
+.notable-table td{border:1px solid #e2e8f0;padding:5px 8px;text-align:center}
+.notable-table tr:nth-child(even){background:#f7fafc}
+.notable-table tr.highlight{background:#fffff0}
+.notable-table td.active-angle{background:#e3f2fd;font-weight:700}
+@media(max-width:600px){
+  .main-grid{grid-template-columns:1fr}
+  .values-grid{grid-template-columns:1fr}
+  header h1{font-size:1.2em}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Trigonom&eacute;trie</h1>
+  <p>Terminale Bac Pro &middot; Ch07</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Angle &alpha;</h2>
+    <div class="slider-row">
+      <label>&alpha; =</label>
+      <input type="range" id="angleSlider" min="0" max="360" value="45" step="1">
+      <span class="val" id="angleVal">45&deg;</span>
+    </div>
+    <div class="toggle-row">
+      <label><input type="checkbox" id="useRad" onchange="updateAngle()"> Afficher en radians</label>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+      <button onclick="setAngle(0)" class="nb-btn">0</button>
+      <button onclick="setAngle(30)" class="nb-btn">&pi;/6</button>
+      <button onclick="setAngle(45)" class="nb-btn">&pi;/4</button>
+      <button onclick="setAngle(60)" class="nb-btn">&pi;/3</button>
+      <button onclick="setAngle(90)" class="nb-btn">&pi;/2</button>
+      <button onclick="setAngle(180)" class="nb-btn">&pi;</button>
+      <button onclick="setAngle(270)" class="nb-btn">3&pi;/2</button>
+      <button onclick="setAngle(360)" class="nb-btn">2&pi;</button>
+    </div>
+    <style>.nb-btn{padding:5px 12px;background:#e3f2fd;color:#1976d2;border:2px solid #1976d2;border-radius:5px;cursor:pointer;font-weight:600;font-size:.85em}.nb-btn:hover{background:#1976d2;color:#fff}</style>
+  </div>
+
+  <div class="main-grid">
+    <div class="card">
+      <h2>Cercle trigonom&eacute;trique</h2>
+      <canvas id="circleCanvas" width="380" height="380"></canvas>
+    </div>
+    <div class="card">
+      <h2>Courbes sin(&alpha;) et cos(&alpha;)</h2>
+      <div class="chart-container">
+        <canvas id="sinCosChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Valeurs trigonom&eacute;triques</h2>
+    <div class="values-grid">
+      <div class="val-box sin-box">
+        <div class="label">sin(&alpha;)</div>
+        <div class="value" id="sinVal" style="color:#e53e3e">-</div>
+      </div>
+      <div class="val-box cos-box">
+        <div class="label">cos(&alpha;)</div>
+        <div class="value" id="cosVal" style="color:#1976d2">-</div>
+      </div>
+      <div class="val-box tan-box">
+        <div class="label">tan(&alpha;)</div>
+        <div class="value" id="tanVal" style="color:#38a169">-</div>
+      </div>
+    </div>
+    <div class="identity" id="identityBox"></div>
+  </div>
+
+  <div class="card">
+    <h2>Angles remarquables</h2>
+    <div style="overflow-x:auto">
+      <table class="notable-table" id="notableTable">
+        <thead>
+          <tr><th>Angle</th><th>0</th><th>&pi;/6</th><th>&pi;/4</th><th>&pi;/3</th><th>&pi;/2</th><th>&pi;</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-weight:700">Degr&eacute;s</td><td>0&deg;</td><td>30&deg;</td><td>45&deg;</td><td>60&deg;</td><td>90&deg;</td><td>180&deg;</td></tr>
+          <tr><td style="font-weight:700">sin</td><td>0</td><td>1/2</td><td>&radic;2/2</td><td>&radic;3/2</td><td>1</td><td>0</td></tr>
+          <tr><td style="font-weight:700">cos</td><td>1</td><td>&radic;3/2</td><td>&radic;2/2</td><td>1/2</td><td>0</td><td>&minus;1</td></tr>
+          <tr><td style="font-weight:700">tan</td><td>0</td><td>&radic;3/3</td><td>1</td><td>&radic;3</td><td>&mdash;</td><td>0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const circleCanvas = document.getElementById('circleCanvas');
+const cctx = circleCanvas.getContext('2d');
+const CW = circleCanvas.width, CH = circleCanvas.height;
+const cx = CW / 2, cy = CH / 2, R = 150;
+let sinCosChart;
+
+function initChart() {
+  const ctx2 = document.getElementById('sinCosChart').getContext('2d');
+  const labels = [];
+  const sinData = [], cosData = [];
+  for (let d = 0; d <= 360; d += 5) {
+    labels.push(d);
+    sinData.push(Math.sin(d * Math.PI / 180));
+    cosData.push(Math.cos(d * Math.PI / 180));
+  }
+  sinCosChart = new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'sin(\u03b1)', data: sinData, borderColor: '#e53e3e', borderWidth: 2, pointRadius: 0, fill: false, tension: 0.4 },
+        { label: 'cos(\u03b1)', data: cosData, borderColor: '#1976d2', borderWidth: 2, pointRadius: 0, fill: false, tension: 0.4 },
+        { label: 'Position actuelle', data: [], pointRadius: 8, pointBackgroundColor: '#e69500', showLine: false }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } },
+      scales: {
+        x: { title: { display: true, text: 'Angle (\u00b0)' }, ticks: { stepSize: 45 } },
+        y: { min: -1.2, max: 1.2, title: { display: true, text: 'Valeur' } }
+      }
+    }
+  });
+}
+
+function setAngle(deg) {
+  document.getElementById('angleSlider').value = deg;
+  updateAngle();
+}
+
+function updateAngle() {
+  const deg = parseInt(document.getElementById('angleSlider').value);
+  const rad = deg * Math.PI / 180;
+  const useRad = document.getElementById('useRad').checked;
+
+  // Display angle
+  const av = document.getElementById('angleVal');
+  if (useRad) {
+    const frac = deg / 180;
+    if (deg === 0) av.textContent = '0 rad';
+    else if (deg === 180) av.textContent = '\u03c0 rad';
+    else if (deg === 360) av.textContent = '2\u03c0 rad';
+    else if (deg === 90) av.textContent = '\u03c0/2 rad';
+    else if (deg === 270) av.textContent = '3\u03c0/2 rad';
+    else av.textContent = (rad).toFixed(3) + ' rad';
+  } else {
+    av.textContent = deg + '\u00b0';
+  }
+
+  const sinA = Math.sin(rad);
+  const cosA = Math.cos(rad);
+  const tanA = Math.abs(Math.cos(rad)) < 1e-10 ? null : Math.tan(rad);
+
+  // Values
+  document.getElementById('sinVal').textContent = sinA.toFixed(4);
+  document.getElementById('cosVal').textContent = cosA.toFixed(4);
+  document.getElementById('tanVal').textContent = tanA !== null ? tanA.toFixed(4) : 'Non d\u00e9fini';
+
+  // Identity
+  const sum = sinA * sinA + cosA * cosA;
+  document.getElementById('identityBox').innerHTML =
+    `sin\u00b2(\u03b1) + cos\u00b2(\u03b1) = ${sinA.toFixed(4)}\u00b2 + ${cosA.toFixed(4)}\u00b2 = <span class="check" style="color:#276749">${sum.toFixed(6)} = 1 \u2713</span>`;
+
+  // Draw circle
+  drawCircle(deg, rad, sinA, cosA, tanA);
+
+  // Update chart marker
+  sinCosChart.data.datasets[2].data = [{ x: deg, y: sinA }, { x: deg, y: cosA }];
+  sinCosChart.data.datasets[2].pointBackgroundColor = ['#e53e3e', '#1976d2'];
+  sinCosChart.data.datasets[2].pointRadius = [8, 8];
+  sinCosChart.update('none');
+}
+
+function drawCircle(deg, rad, sinA, cosA, tanA) {
+  cctx.clearRect(0, 0, CW, CH);
+  cctx.fillStyle = '#fff';
+  cctx.fillRect(0, 0, CW, CH);
+
+  // Grid
+  cctx.strokeStyle = '#f0f0f5';
+  cctx.lineWidth = 1;
+  for (let i = -1; i <= 1; i += 0.5) {
+    const px = cx + i * R, py = cy - i * R;
+    cctx.beginPath(); cctx.moveTo(px, 0); cctx.lineTo(px, CH); cctx.stroke();
+    cctx.beginPath(); cctx.moveTo(0, py); cctx.lineTo(CW, py); cctx.stroke();
+  }
+
+  // Axes
+  cctx.strokeStyle = '#94a3b8';
+  cctx.lineWidth = 1.5;
+  cctx.beginPath(); cctx.moveTo(0, cy); cctx.lineTo(CW, cy); cctx.stroke();
+  cctx.beginPath(); cctx.moveTo(cx, 0); cctx.lineTo(cx, CH); cctx.stroke();
+
+  // Labels
+  cctx.fillStyle = '#94a3b8';
+  cctx.font = '11px Segoe UI';
+  cctx.fillText('1', cx + R + 4, cy - 4);
+  cctx.fillText('-1', cx - R - 14, cy - 4);
+  cctx.fillText('1', cx + 4, cy - R - 4);
+  cctx.fillText('-1', cx + 4, cy + R + 14);
+
+  // Unit circle
+  cctx.strokeStyle = '#cbd5e0';
+  cctx.lineWidth = 2;
+  cctx.beginPath();
+  cctx.arc(cx, cy, R, 0, 2 * Math.PI);
+  cctx.stroke();
+
+  // Notable angles markers
+  const notables = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330];
+  notables.forEach(d => {
+    const r = d * Math.PI / 180;
+    const px = cx + R * Math.cos(r), py = cy - R * Math.sin(r);
+    cctx.beginPath(); cctx.arc(px, py, 3, 0, 2 * Math.PI);
+    cctx.fillStyle = '#cbd5e0'; cctx.fill();
+  });
+
+  const px = cx + R * cosA;
+  const py = cy - R * sinA;
+
+  // Angle arc
+  cctx.strokeStyle = '#e69500';
+  cctx.lineWidth = 2;
+  cctx.beginPath();
+  cctx.arc(cx, cy, 30, 0, -rad, rad > 0);
+  cctx.stroke();
+
+  // Angle label
+  cctx.fillStyle = '#e69500';
+  cctx.font = 'bold 13px Segoe UI';
+  const labelR = 40;
+  const midA = rad / 2;
+  cctx.fillText('\u03b1', cx + labelR * Math.cos(midA) - 4, cy - labelR * Math.sin(midA) + 4);
+
+  // Radius
+  cctx.strokeStyle = '#2d3748';
+  cctx.lineWidth = 2;
+  cctx.beginPath(); cctx.moveTo(cx, cy); cctx.lineTo(px, py); cctx.stroke();
+
+  // cos projection (blue)
+  cctx.strokeStyle = '#1976d2';
+  cctx.lineWidth = 3;
+  cctx.beginPath(); cctx.moveTo(cx, cy); cctx.lineTo(px, cy); cctx.stroke();
+  // Dotted vertical from point to x-axis
+  cctx.strokeStyle = '#1976d2';
+  cctx.lineWidth = 1;
+  cctx.setLineDash([3, 3]);
+  cctx.beginPath(); cctx.moveTo(px, py); cctx.lineTo(px, cy); cctx.stroke();
+  cctx.setLineDash([]);
+
+  // sin projection (red)
+  cctx.strokeStyle = '#e53e3e';
+  cctx.lineWidth = 3;
+  cctx.beginPath(); cctx.moveTo(px, cy); cctx.lineTo(px, py); cctx.stroke();
+  // Dotted horizontal from point to y-axis
+  cctx.strokeStyle = '#e53e3e';
+  cctx.lineWidth = 1;
+  cctx.setLineDash([3, 3]);
+  cctx.beginPath(); cctx.moveTo(px, py); cctx.lineTo(cx, py); cctx.stroke();
+  cctx.setLineDash([]);
+
+  // tan line (green) - tangent at (1,0)
+  if (tanA !== null && Math.abs(tanA) < 10) {
+    const tanPx = cx + R;
+    const tanPy = cy - R * tanA;
+    cctx.strokeStyle = '#38a169';
+    cctx.lineWidth = 2;
+    cctx.beginPath(); cctx.moveTo(cx, cy); cctx.lineTo(tanPx, tanPy); cctx.stroke();
+    // tan segment on the tangent line
+    cctx.strokeStyle = '#38a169';
+    cctx.lineWidth = 3;
+    cctx.beginPath(); cctx.moveTo(tanPx, cy); cctx.lineTo(tanPx, tanPy); cctx.stroke();
+    // tan point
+    cctx.beginPath(); cctx.arc(tanPx, tanPy, 4, 0, 2*Math.PI);
+    cctx.fillStyle = '#38a169'; cctx.fill();
+  }
+
+  // Point on circle
+  cctx.beginPath(); cctx.arc(px, py, 6, 0, 2 * Math.PI);
+  cctx.fillStyle = '#e69500'; cctx.fill();
+  cctx.strokeStyle = '#fff'; cctx.lineWidth = 2; cctx.stroke();
+
+  // Labels on projections
+  cctx.font = 'bold 12px Segoe UI';
+  cctx.fillStyle = '#1976d2';
+  cctx.fillText('cos', cx + (px - cx) / 2 - 10, cy + 16);
+  cctx.fillStyle = '#e53e3e';
+  cctx.fillText('sin', px + 8, cy - (cy - py) / 2 + 4);
+  if (tanA !== null && Math.abs(tanA) < 10) {
+    cctx.fillStyle = '#38a169';
+    cctx.fillText('tan', cx + R + 8, cy - R * tanA / 2 + 4);
+  }
+}
+
+document.getElementById('angleSlider').addEventListener('input', updateAngle);
+
+initChart();
+updateAngle();
+</script>
+</body>
+</html>

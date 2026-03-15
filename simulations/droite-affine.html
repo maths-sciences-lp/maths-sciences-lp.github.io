@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fonctions Linéaire et Affine – Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root { --blue:#1976d2; --blue-light:#e3f2fd; --green:#2e7d32; --red:#c62828; --orange:#ef6c00; --purple:#7b1fa2; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#2d3748;line-height:1.6;padding:20px}
+
+header{background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff;padding:28px 20px 22px;border-radius:10px 10px 0 0;text-align:center;position:relative}
+header h1{font-size:1.6em;margin-bottom:4px}
+header .sous-titre{opacity:.85;font-size:.92em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+
+.container{max-width:860px;margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);overflow:hidden}
+.body-content{padding:24px}
+
+/* Canvas */
+.canvas-wrap{background:#fafbfc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin:16px 0;text-align:center;overflow-x:auto}
+canvas{display:block;margin:0 auto;max-width:100%;cursor:crosshair}
+
+/* Sliders */
+.sliders-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.slider-group{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px}
+.slider-group label{font-weight:600;font-size:.88em;display:block;margin-bottom:6px;color:#475569}
+.slider-group input[type=range]{width:100%;accent-color:var(--blue)}
+.val-badge{display:inline-block;background:var(--blue);color:#fff;border-radius:5px;padding:2px 10px;font-size:.85em;font-weight:700;min-width:40px;text-align:center;margin-left:6px}
+
+/* Formula display */
+.formula-display{background:var(--blue-light);border:2px solid var(--blue);border-radius:10px;padding:16px 24px;text-align:center;margin:16px 0;font-size:1.15em}
+.formula-display .mjx-math{font-size:1.3em}
+
+/* Table */
+.val-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.92em}
+.val-table th,.val-table td{border:1px solid #e2e8f0;padding:8px 12px;text-align:center}
+.val-table th{background:var(--blue);color:#fff;font-weight:600}
+.val-table td{background:#f8fafc}
+
+/* Indicators */
+.indicators{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;justify-content:center}
+.indicator{padding:6px 16px;border-radius:20px;font-size:.88em;font-weight:600}
+.ind-linear{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
+.ind-constant{background:#fef3c7;color:#92400e;border:1px solid #fcd34d}
+.ind-affine{background:var(--blue-light);color:#1e40af;border:1px solid #93c5fd}
+.ind-hidden{display:none}
+
+/* Toggle second line */
+.toggle-row{display:flex;align-items:center;gap:10px;margin:16px 0;padding:12px 16px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px}
+.toggle-row label{font-weight:600;font-size:.92em;color:#166534;cursor:pointer}
+.toggle-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--green);cursor:pointer}
+
+.second-line-controls{display:none;margin-top:0}
+.second-line-controls.visible{display:block}
+.second-line-controls .sliders-grid .slider-group{border-color:#bbf7d0;background:#f0fdf4}
+.second-line-controls .val-badge{background:var(--green)}
+.second-line-controls .slider-group input[type=range]{accent-color:var(--green)}
+
+/* Intersection */
+.intersection-box{background:#fef3c7;border:2px solid var(--orange);border-radius:10px;padding:14px;text-align:center;margin:14px 0;display:none}
+.intersection-box.visible{display:block}
+.intersection-box .inter-title{font-weight:700;color:var(--orange);margin-bottom:4px}
+
+/* Legend */
+.legend{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin:8px 0;font-size:.88em}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-line{width:28px;height:3px;border-radius:2px}
+
+/* Context pro */
+.context-pro{background:#f5f0ff;border-left:4px solid var(--purple);border-radius:0 8px 8px 0;padding:12px 16px;margin:18px 0;font-size:.9em;color:#581c87}
+.context-pro strong{color:var(--purple)}
+
+@media(max-width:600px){
+  .sliders-grid{grid-template-columns:1fr}
+  header h1{font-size:1.25em}
+  .body-content{padding:16px}
+  .formula-display{padding:12px 14px;font-size:1em}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Fonctions Lineaire et Affine</h1>
+    <p class="sous-titre">2nde Bac Pro &middot; Ch08-09 &middot; f(x) = ax + b</p>
+  </header>
+
+  <div class="body-content">
+
+    <!-- Formula -->
+    <div class="formula-display" id="formulaDisplay">
+      \( f(x) = 2x + 1 \)
+    </div>
+
+    <!-- Indicators -->
+    <div class="indicators">
+      <span class="indicator ind-affine" id="indAffine">Fonction affine</span>
+      <span class="indicator ind-linear ind-hidden" id="indLinear">Fonction lineaire (b = 0)</span>
+      <span class="indicator ind-constant ind-hidden" id="indConstant">Fonction constante (a = 0)</span>
+    </div>
+
+    <!-- Canvas -->
+    <div class="canvas-wrap">
+      <canvas id="canvas" width="600" height="400"></canvas>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item"><div class="legend-line" style="background:#2563eb"></div> f(x) = ax + b</div>
+      <div class="legend-item" id="legendG" style="display:none"><div class="legend-line" style="background:#16a34a"></div> g(x) = cx + d</div>
+      <div class="legend-item"><div style="width:12px;height:12px;border-radius:50%;background:#dc2626"></div> Ordonnee a l'origine</div>
+    </div>
+
+    <!-- Sliders f -->
+    <div class="sliders-grid">
+      <div class="slider-group">
+        <label>Coefficient directeur a <span class="val-badge" id="valA">2</span></label>
+        <input type="range" id="sliderA" min="-5" max="5" step="0.1" value="2" oninput="update()">
+      </div>
+      <div class="slider-group">
+        <label>Ordonnee a l'origine b <span class="val-badge" id="valB">1</span></label>
+        <input type="range" id="sliderB" min="-10" max="10" step="0.5" value="1" oninput="update()">
+      </div>
+    </div>
+
+    <!-- Table of values -->
+    <table class="val-table">
+      <thead><tr><th>x</th><th>-2</th><th>-1</th><th>0</th><th>1</th><th>2</th></tr></thead>
+      <tbody><tr><td><strong>f(x)</strong></td><td id="fx0">-3</td><td id="fx1">-1</td><td id="fx2">1</td><td id="fx3">3</td><td id="fx4">5</td></tr></tbody>
+    </table>
+
+    <!-- Toggle second line -->
+    <div class="toggle-row">
+      <input type="checkbox" id="toggleG" onchange="update()">
+      <label for="toggleG">Afficher une seconde droite g(x) = cx + d</label>
+    </div>
+
+    <!-- Second line controls -->
+    <div class="second-line-controls" id="gControls">
+      <div class="sliders-grid">
+        <div class="slider-group">
+          <label>Coefficient directeur c <span class="val-badge" id="valC">-1</span></label>
+          <input type="range" id="sliderC" min="-5" max="5" step="0.1" value="-1" oninput="update()">
+        </div>
+        <div class="slider-group">
+          <label>Ordonnee a l'origine d <span class="val-badge" id="valD">3</span></label>
+          <input type="range" id="sliderD" min="-10" max="10" step="0.5" value="3" oninput="update()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Intersection -->
+    <div class="intersection-box" id="interBox">
+      <div class="inter-title">Point d'intersection</div>
+      <div id="interInfo"></div>
+    </div>
+
+    <!-- Context pro -->
+    <div class="context-pro">
+      <strong>Contexte professionnel :</strong> Prix de revient = cout fixe + cout unitaire &times; quantite.<br>
+      Le coefficient directeur <em>a</em> represente le cout unitaire et l'ordonnee a l'origine <em>b</em> represente le cout fixe.
+    </div>
+
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+// Coordinate system config
+const W = 600, H = 400;
+const margin = { left: 50, right: 30, top: 30, bottom: 40 };
+const xMin = -6, xMax = 6, yMin = -12, yMax = 12;
+
+function toPixelX(x) {
+  return margin.left + (x - xMin) / (xMax - xMin) * (W - margin.left - margin.right);
+}
+function toPixelY(y) {
+  return margin.top + (yMax - y) / (yMax - yMin) * (H - margin.top - margin.bottom);
+}
+
+function drawGrid() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#fafbfc';
+  ctx.fillRect(0, 0, W, H);
+
+  const pLeft = margin.left, pRight = W - margin.right;
+  const pTop = margin.top, pBottom = H - margin.bottom;
+
+  // Grid lines
+  ctx.strokeStyle = '#e8ecf0';
+  ctx.lineWidth = 1;
+  for (let x = Math.ceil(xMin); x <= xMax; x++) {
+    const px = toPixelX(x);
+    ctx.beginPath(); ctx.moveTo(px, pTop); ctx.lineTo(px, pBottom); ctx.stroke();
+  }
+  for (let y = Math.ceil(yMin); y <= yMax; y++) {
+    const py = toPixelY(y);
+    ctx.beginPath(); ctx.moveTo(pLeft, py); ctx.lineTo(pRight, py); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 2;
+  // X axis
+  const axisY = toPixelY(0);
+  ctx.beginPath(); ctx.moveTo(pLeft, axisY); ctx.lineTo(pRight, axisY); ctx.stroke();
+  // Y axis
+  const axisX = toPixelX(0);
+  ctx.beginPath(); ctx.moveTo(axisX, pTop); ctx.lineTo(axisX, pBottom); ctx.stroke();
+
+  // Tick marks and labels
+  ctx.fillStyle = '#64748b';
+  ctx.font = '11px Segoe UI, system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  for (let x = Math.ceil(xMin); x <= xMax; x++) {
+    if (x === 0) continue;
+    const px = toPixelX(x);
+    ctx.beginPath(); ctx.moveTo(px, axisY - 4); ctx.lineTo(px, axisY + 4); ctx.stroke();
+    ctx.fillText(x, px, axisY + 16);
+  }
+  ctx.textAlign = 'right';
+  for (let y = Math.ceil(yMin); y <= yMax; y++) {
+    if (y === 0) continue;
+    const py = toPixelY(y);
+    ctx.beginPath(); ctx.moveTo(axisX - 4, py); ctx.lineTo(axisX + 4, py); ctx.stroke();
+    ctx.fillText(y, axisX - 8, py + 4);
+  }
+
+  // Origin label
+  ctx.textAlign = 'right';
+  ctx.fillText('O', axisX - 8, axisY + 16);
+
+  // Arrow heads
+  ctx.fillStyle = '#64748b';
+  // X arrow
+  ctx.beginPath(); ctx.moveTo(pRight, axisY); ctx.lineTo(pRight - 8, axisY - 4); ctx.lineTo(pRight - 8, axisY + 4); ctx.fill();
+  // Y arrow
+  ctx.beginPath(); ctx.moveTo(axisX, pTop); ctx.lineTo(axisX - 4, pTop + 8); ctx.lineTo(axisX + 4, pTop + 8); ctx.fill();
+
+  // Axis labels
+  ctx.font = '13px Segoe UI, system-ui, sans-serif';
+  ctx.fillStyle = '#334155';
+  ctx.textAlign = 'left';
+  ctx.fillText('x', pRight - 4, axisY + 20);
+  ctx.fillText('y', axisX + 10, pTop + 6);
+}
+
+function drawLine(a, b, color, lineWidth) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lineWidth;
+  ctx.beginPath();
+  const x1 = xMin, x2 = xMax;
+  const y1 = a * x1 + b, y2 = a * x2 + b;
+  ctx.moveTo(toPixelX(x1), toPixelY(y1));
+  ctx.lineTo(toPixelX(x2), toPixelY(y2));
+  ctx.stroke();
+}
+
+function drawSlopeTriangle(a, b) {
+  if (Math.abs(a) < 0.01) return; // no triangle for constant
+
+  const x0 = 0, y0 = b;
+  const x1 = 1, y1 = b;
+  const x2 = 1, y2 = b + a;
+
+  // Dashed horizontal line (Dx=1)
+  ctx.setLineDash([5, 4]);
+  ctx.strokeStyle = '#ef6c00';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(toPixelX(x0), toPixelY(y0));
+  ctx.lineTo(toPixelX(x1), toPixelY(y1));
+  ctx.stroke();
+
+  // Dashed vertical line (Dy=a)
+  ctx.strokeStyle = '#c62828';
+  ctx.beginPath();
+  ctx.moveTo(toPixelX(x1), toPixelY(y1));
+  ctx.lineTo(toPixelX(x2), toPixelY(y2));
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Labels
+  ctx.font = 'bold 12px Segoe UI, system-ui, sans-serif';
+  const midX = toPixelX(0.5);
+  const midY1 = toPixelY(y0);
+  ctx.fillStyle = '#ef6c00';
+  ctx.textAlign = 'center';
+  ctx.fillText('\u0394x = 1', midX, midY1 + (a > 0 ? 16 : -8));
+
+  const midY2 = toPixelY((y1 + y2) / 2);
+  ctx.fillStyle = '#c62828';
+  ctx.textAlign = 'left';
+  ctx.fillText('\u0394y = ' + formatNum(a), toPixelX(x1) + 6, midY2 + 4);
+}
+
+function drawPoint(x, y, color, label) {
+  const px = toPixelX(x), py = toPixelY(y);
+  ctx.beginPath();
+  ctx.arc(px, py, 6, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  if (label) {
+    ctx.font = 'bold 12px Segoe UI, system-ui, sans-serif';
+    ctx.fillStyle = color;
+    ctx.textAlign = 'left';
+    ctx.fillText(label, px + 10, py - 8);
+  }
+}
+
+function formatNum(n) {
+  return Math.abs(n - Math.round(n)) < 0.001 ? Math.round(n).toString() : n.toFixed(1);
+}
+
+function update() {
+  const a = parseFloat(document.getElementById('sliderA').value);
+  const b = parseFloat(document.getElementById('sliderB').value);
+  const c = parseFloat(document.getElementById('sliderC').value);
+  const d = parseFloat(document.getElementById('sliderD').value);
+  const showG = document.getElementById('toggleG').checked;
+
+  // Update value badges
+  document.getElementById('valA').textContent = formatNum(a);
+  document.getElementById('valB').textContent = formatNum(b);
+  document.getElementById('valC').textContent = formatNum(c);
+  document.getElementById('valD').textContent = formatNum(d);
+
+  // Show/hide second line controls
+  document.getElementById('gControls').classList.toggle('visible', showG);
+  document.getElementById('legendG').style.display = showG ? 'flex' : 'none';
+
+  // Update formula display
+  let formula = 'f(x) = ';
+  if (Math.abs(a) < 0.01 && Math.abs(b) < 0.01) {
+    formula += '0';
+  } else if (Math.abs(a) < 0.01) {
+    formula += formatNum(b);
+  } else if (Math.abs(b) < 0.01) {
+    formula += (Math.abs(a - 1) < 0.01 ? '' : Math.abs(a + 1) < 0.01 ? '-' : formatNum(a)) + 'x';
+  } else {
+    const aStr = Math.abs(a - 1) < 0.01 ? '' : Math.abs(a + 1) < 0.01 ? '-' : formatNum(a);
+    const sign = b > 0 ? ' + ' : ' - ';
+    formula += aStr + 'x' + sign + formatNum(Math.abs(b));
+  }
+
+  let texFormula = '\\( ' + formula + ' \\)';
+  if (showG) {
+    let gFormula = 'g(x) = ';
+    if (Math.abs(c) < 0.01 && Math.abs(d) < 0.01) {
+      gFormula += '0';
+    } else if (Math.abs(c) < 0.01) {
+      gFormula += formatNum(d);
+    } else if (Math.abs(d) < 0.01) {
+      gFormula += (Math.abs(c - 1) < 0.01 ? '' : Math.abs(c + 1) < 0.01 ? '-' : formatNum(c)) + 'x';
+    } else {
+      const cStr = Math.abs(c - 1) < 0.01 ? '' : Math.abs(c + 1) < 0.01 ? '-' : formatNum(c);
+      const sign = d > 0 ? ' + ' : ' - ';
+      gFormula += cStr + 'x' + sign + formatNum(Math.abs(d));
+    }
+    texFormula += '\\quad\\quad \\( ' + gFormula + ' \\)';
+  }
+  document.getElementById('formulaDisplay').innerHTML = texFormula;
+  if (window.MathJax && MathJax.typeset) MathJax.typeset([document.getElementById('formulaDisplay')]);
+
+  // Update indicators
+  const indAffine = document.getElementById('indAffine');
+  const indLinear = document.getElementById('indLinear');
+  const indConstant = document.getElementById('indConstant');
+
+  indAffine.classList.toggle('ind-hidden', Math.abs(b) < 0.01 || Math.abs(a) < 0.01);
+  indLinear.classList.toggle('ind-hidden', Math.abs(b) >= 0.01);
+  indConstant.classList.toggle('ind-hidden', Math.abs(a) >= 0.01);
+
+  // Update table
+  const xs = [-2, -1, 0, 1, 2];
+  xs.forEach((x, i) => {
+    document.getElementById('fx' + i).textContent = formatNum(a * x + b);
+  });
+
+  // Draw
+  drawGrid();
+  drawLine(a, b, '#2563eb', 2.5);
+  drawSlopeTriangle(a, b);
+  drawPoint(0, b, '#dc2626', '(0 ; ' + formatNum(b) + ')');
+
+  if (showG) {
+    drawLine(c, d, '#16a34a', 2.5);
+    drawPoint(0, d, '#16a34a', '(0 ; ' + formatNum(d) + ')');
+
+    // Intersection
+    const interBox = document.getElementById('interBox');
+    const interInfo = document.getElementById('interInfo');
+
+    if (Math.abs(a - c) < 0.001) {
+      if (Math.abs(b - d) < 0.001) {
+        interBox.classList.add('visible');
+        interInfo.innerHTML = 'Les droites sont <strong>confondues</strong> (infinit\u00e9 de solutions)';
+      } else {
+        interBox.classList.add('visible');
+        interInfo.innerHTML = 'Les droites sont <strong>parall\u00e8les</strong> (aucune solution)';
+      }
+    } else {
+      const xi = (d - b) / (a - c);
+      const yi = a * xi + b;
+      interBox.classList.add('visible');
+      interInfo.innerHTML = 'Intersection en <strong>(' + formatNum(xi) + ' ; ' + formatNum(yi) + ')</strong>';
+      // Draw intersection point
+      if (xi >= xMin && xi <= xMax && yi >= yMin && yi <= yMax) {
+        drawPoint(xi, yi, '#ef6c00', 'I(' + formatNum(xi) + ' ; ' + formatNum(yi) + ')');
+
+        // Dashed lines to axes
+        ctx.setLineDash([4, 4]);
+        ctx.strokeStyle = '#ef6c00';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(toPixelX(xi), toPixelY(yi));
+        ctx.lineTo(toPixelX(xi), toPixelY(0));
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(toPixelX(xi), toPixelY(yi));
+        ctx.lineTo(toPixelX(0), toPixelY(yi));
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+  } else {
+    document.getElementById('interBox').classList.remove('visible');
+  }
+}
+
+update();
+</script>
+</body>
+</html>

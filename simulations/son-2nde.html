@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caractéristiques d'un Son — Simulation</title>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 860px; margin: 0 auto; }
+  header { background: #0f766e; color: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 25px; position: relative; }
+  header h1 { margin: 0 0 5px 0; font-size: 1.5em; }
+  header p { margin: 0; opacity: 0.9; font-size: 0.95em; }
+  .btn-back { position: absolute; left: 15px; top: 15px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 5px 12px; border-radius: 5px; font-size: 0.85em; }
+  .btn-back:hover { background: rgba(255,255,255,0.35); }
+  .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+  h3 { margin-top: 0; color: #0f766e; }
+  label { font-weight: 600; display: block; margin-bottom: 4px; }
+  input[type=range] { width: 100%; accent-color: #0f766e; margin-bottom: 10px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  @media(max-width:600px) { .row { grid-template-columns: 1fr; } }
+  canvas { display: block; width: 100%; border-radius: 8px; }
+  .results { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 12px; }
+  @media(max-width:600px) { .results { grid-template-columns: 1fr 1fr; } }
+  .result-box { text-align: center; padding: 10px 6px; border-radius: 8px; }
+  .result-box .val { font-size: 1.2em; font-weight: 700; }
+  .result-box .lbl { font-size: 0.75em; opacity: 0.7; margin-top: 2px; }
+  .r-f { background: #ccfbf1; color: #0f766e; }
+  .r-t { background: #dbeafe; color: #1d4ed8; }
+  .r-l { background: #fef3c7; color: #92400e; }
+  .r-v { background: #f3e8ff; color: #7c3aed; }
+  .formule { font-family: monospace; background: #f0fdfa; border: 1px solid #99f6e4; border-radius: 8px; padding: 12px 15px; font-size: 0.92em; line-height: 1.7; }
+  .toggle-group { display: flex; gap: 0; margin-bottom: 15px; }
+  .toggle-btn { flex: 1; padding: 10px; text-align: center; border: 2px solid #0f766e; background: white; color: #0f766e; font-weight: 600; cursor: pointer; font-size: 0.95em; transition: all 0.2s; }
+  .toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+  .toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+  .toggle-btn.active { background: #0f766e; color: white; }
+  .freq-bar { height: 32px; border-radius: 6px; overflow: hidden; display: flex; margin: 10px 0; font-size: 0.72em; font-weight: 600; color: white; text-align: center; }
+  .freq-bar div { display: flex; align-items: center; justify-content: center; }
+  .fb-infra { background: #6b7280; flex: 0.5; }
+  .fb-grave { background: #dc2626; flex: 5; }
+  .fb-medium { background: #f59e0b; flex: 10; }
+  .fb-aigu { background: #3b82f6; flex: 10; }
+  .fb-ultra { background: #6b7280; flex: 1; }
+  .freq-indicator { height: 4px; background: #0f766e; border-radius: 2px; transition: margin-left 0.2s, width 0.2s; margin-bottom: 5px; }
+  .db-scale { margin-top: 15px; }
+  .db-item { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 0.88em; }
+  .db-bar { height: 18px; border-radius: 4px; min-width: 5px; transition: width 0.3s; }
+  .db-label { min-width: 140px; text-align: right; }
+  .db-val { min-width: 50px; font-weight: 700; font-size: 0.85em; }
+  .danger-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.85em; margin-top: 8px; }
+  .danger-ok { background: #d1fae5; color: #065f46; }
+  .danger-warn { background: #fef3c7; color: #92400e; }
+  .danger-bad { background: #fee2e2; color: #991b1b; }
+  .zone-label { font-size: 0.85em; font-weight: 600; margin-top: 5px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Caract&eacute;ristiques d'un Son</h1>
+    <p>2nde Bac Pro &middot; Ch09 &middot; v = d/t &middot; &lambda; = v/f</p>
+  </header>
+
+  <div class="card">
+    <h3>Oscilloscope virtuel</h3>
+    <div class="toggle-group">
+      <button class="toggle-btn active" onclick="setWaveMode('pure')">Sinuso&iuml;de pure</button>
+      <button class="toggle-btn" onclick="setWaveMode('complex')">Son complexe</button>
+    </div>
+    <canvas id="waveCanvas" height="200"></canvas>
+    <div class="row" style="margin-top:15px;">
+      <div>
+        <label>Fr&eacute;quence f : <span id="vF">440</span> Hz</label>
+        <input type="range" id="slF" min="20" max="2000" step="10" value="440" oninput="update()">
+        <label>Amplitude A : <span id="vA">0.50</span></label>
+        <input type="range" id="slA" min="0.1" max="1.0" step="0.05" value="0.5" oninput="update()">
+      </div>
+      <div>
+        <div class="results">
+          <div class="result-box r-f"><div class="val" id="rF">440</div><div class="lbl">f (Hz)</div></div>
+          <div class="result-box r-t"><div class="val" id="rT">2.27</div><div class="lbl">T (ms)</div></div>
+          <div class="result-box r-l"><div class="val" id="rL">0.77</div><div class="lbl">&lambda; (m)</div></div>
+          <div class="result-box r-v"><div class="val">340</div><div class="lbl">v (m/s)</div></div>
+        </div>
+        <div class="formule" style="margin-top:12px;">
+          v = d / t = 340 m/s (dans l'air)<br>
+          &lambda; = v / f<br>
+          f = 1 / T
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Spectre fr&eacute;quentiel</h3>
+    <p class="zone-label">Zone : <span id="zoneLabel" style="color:#0f766e;">M&eacute;diums</span></p>
+    <div class="freq-indicator" id="freqIndicator"></div>
+    <div class="freq-bar">
+      <div class="fb-infra">&lt;20</div>
+      <div class="fb-grave">Graves<br>20-300</div>
+      <div class="fb-medium">M&eacute;diums<br>300-3000</div>
+      <div class="fb-aigu">Aigus<br>3k-20k</div>
+      <div class="fb-ultra">&gt;20k</div>
+    </div>
+    <p style="font-size:0.82em;color:#64748b;margin:0;">Unit&eacute; : Hz. L'oreille humaine per&ccedil;oit les sons entre 20 Hz et 20 000 Hz.</p>
+  </div>
+
+  <div class="card">
+    <h3>Niveau sonore (dB) en atelier</h3>
+    <div class="db-scale" id="dbScale"></div>
+    <div style="margin-top:12px;" id="dangerZone"></div>
+    <p style="font-size:0.82em;color:#64748b;margin-top:8px;">L'amplitude du son est li&eacute;e au niveau sonore en d&eacute;cibels. Au-del&agrave; de 80 dB, une exposition prolong&eacute;e endommage l'audition.</p>
+  </div>
+</div>
+
+<script>
+const v = 340; // m/s
+let waveMode = 'pure';
+let waveTime = 0;
+let animId;
+
+const dbExamples = [
+  { name: 'Conversation', db: 60, color: '#22c55e' },
+  { name: 'Ponceuse', db: 85, color: '#f59e0b' },
+  { name: 'Scie circulaire', db: 95, color: '#f97316' },
+  { name: 'Marteau-piqueur', db: 110, color: '#ef4444' },
+  { name: 'Seuil de douleur', db: 120, color: '#991b1b' }
+];
+
+function setWaveMode(m) {
+  waveMode = m;
+  document.querySelectorAll('.toggle-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && m === 'pure') || (i === 1 && m === 'complex'));
+  });
+}
+
+function update() {
+  const f = parseFloat(document.getElementById('slF').value);
+  const A = parseFloat(document.getElementById('slA').value);
+  document.getElementById('vF').textContent = f;
+  document.getElementById('vA').textContent = A.toFixed(2);
+
+  const T = 1 / f;
+  const lambda = v / f;
+
+  document.getElementById('rF').textContent = f;
+  document.getElementById('rT').textContent = (T * 1000).toFixed(2);
+  document.getElementById('rL').textContent = lambda.toFixed(2);
+
+  // Frequency zone
+  updateFreqZone(f);
+  // dB display
+  updateDB(A);
+}
+
+function updateFreqZone(f) {
+  let zone, color;
+  if (f < 20) { zone = 'Infrasons'; color = '#6b7280'; }
+  else if (f < 300) { zone = 'Graves'; color = '#dc2626'; }
+  else if (f < 3000) { zone = 'Mediums'; color = '#f59e0b'; }
+  else if (f <= 20000) { zone = 'Aigus'; color = '#3b82f6'; }
+  else { zone = 'Ultrasons'; color = '#6b7280'; }
+
+  document.getElementById('zoneLabel').textContent = zone;
+  document.getElementById('zoneLabel').style.color = color;
+
+  // Position indicator (log scale for 20-20000)
+  const bar = document.getElementById('freqIndicator');
+  const totalW = 26.5; // total flex units
+  let pos;
+  if (f < 20) pos = (f / 20) * (0.5 / totalW) * 100;
+  else if (f < 300) pos = (0.5 / totalW + ((f - 20) / 280) * (5 / totalW)) * 100;
+  else if (f < 3000) pos = ((0.5 + 5) / totalW + ((f - 300) / 2700) * (10 / totalW)) * 100;
+  else if (f <= 20000) pos = ((0.5 + 5 + 10) / totalW + ((f - 3000) / 17000) * (10 / totalW)) * 100;
+  else pos = ((0.5 + 5 + 10 + 10) / totalW) * 100;
+
+  bar.style.marginLeft = Math.min(pos, 97) + '%';
+  bar.style.width = '3%';
+  bar.style.background = color;
+}
+
+function updateDB(A) {
+  // Map amplitude 0.1-1.0 to roughly 40-110 dB
+  const dB = Math.round(40 + A * 80);
+  const maxDB = 130;
+
+  let html = '';
+  // Current level
+  const curColor = dB < 80 ? '#22c55e' : dB < 100 ? '#f59e0b' : '#ef4444';
+  html += `<div class="db-item"><span class="db-label" style="font-weight:700;color:${curColor};">Niveau actuel</span><div class="db-bar" style="width:${(dB/maxDB)*100}%;background:${curColor};height:22px;"></div><span class="db-val" style="color:${curColor};">${dB} dB</span></div>`;
+  html += '<hr style="border:none;border-top:1px solid #e5e7eb;margin:8px 0;">';
+
+  for (const ex of dbExamples) {
+    const w = (ex.db / maxDB) * 100;
+    html += `<div class="db-item"><span class="db-label">${ex.name}</span><div class="db-bar" style="width:${w}%;background:${ex.color};"></div><span class="db-val">${ex.db} dB</span></div>`;
+  }
+  document.getElementById('dbScale').innerHTML = html;
+
+  // Danger level
+  let badge;
+  if (dB < 80) badge = '<span class="danger-badge danger-ok">Sans danger pour l\'audition</span>';
+  else if (dB < 100) badge = '<span class="danger-badge danger-warn">Attention : port de protections auditives recommande</span>';
+  else badge = '<span class="danger-badge danger-bad">DANGER : risque de lesions auditives !</span>';
+  document.getElementById('dangerZone').innerHTML = badge;
+}
+
+/* ── Waveform animation ── */
+function animate() {
+  const cv = document.getElementById('waveCanvas');
+  const ctx = cv.getContext('2d');
+  const W = cv.offsetWidth; cv.width = W; const H = 200; cv.height = H;
+
+  const f = parseFloat(document.getElementById('slF').value);
+  const A = parseFloat(document.getElementById('slA').value);
+
+  waveTime += 0.02;
+
+  // Background
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#1e3a5f';
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x < W; x += W / 10) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  }
+  for (let y = 0; y < H; y += H / 6) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  // Center line
+  ctx.strokeStyle = '#334155';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke();
+
+  // Waveform
+  ctx.strokeStyle = '#14b8a6';
+  ctx.lineWidth = 2.5;
+  ctx.shadowColor = '#14b8a6';
+  ctx.shadowBlur = 6;
+  ctx.beginPath();
+
+  // Show ~3 periods on screen
+  const periodsShown = 3;
+  const T = 1 / f;
+  const timeWindow = T * periodsShown;
+
+  for (let px = 0; px < W; px++) {
+    const t = (px / W) * timeWindow + waveTime * T;
+    let y;
+    if (waveMode === 'pure') {
+      y = A * Math.sin(2 * Math.PI * f * t);
+    } else {
+      // Complex: fundamental + harmonics
+      y = A * 0.6 * Math.sin(2 * Math.PI * f * t)
+        + A * 0.25 * Math.sin(2 * Math.PI * f * 2 * t)
+        + A * 0.12 * Math.sin(2 * Math.PI * f * 3 * t)
+        + A * 0.06 * Math.sin(2 * Math.PI * f * 5 * t);
+    }
+    const screenY = H / 2 - y * (H / 2 - 15);
+    if (px === 0) ctx.moveTo(px, screenY);
+    else ctx.lineTo(px, screenY);
+  }
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // Period indicator
+  const periodPx = W / periodsShown;
+  if (periodPx > 40) {
+    ctx.strokeStyle = '#fbbf24';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 3]);
+    // First zero crossing going up
+    const startX = 0;
+    const endX = periodPx;
+    ctx.beginPath();
+    ctx.moveTo(startX, H - 15);
+    ctx.lineTo(startX, H - 25);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(endX, H - 15);
+    ctx.lineTo(endX, H - 25);
+    ctx.stroke();
+    // Horizontal with arrows
+    ctx.beginPath();
+    ctx.moveTo(startX, H - 20);
+    ctx.lineTo(endX, H - 20);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = '11px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText('T = ' + (T * 1000).toFixed(2) + ' ms', (startX + endX) / 2, H - 5);
+  }
+
+  // Amplitude indicator
+  ctx.strokeStyle = '#f472b6';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 3]);
+  const ampPx = A * (H / 2 - 15);
+  ctx.beginPath();
+  ctx.moveTo(W - 40, H / 2);
+  ctx.lineTo(W - 40, H / 2 - ampPx);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#f472b6';
+  ctx.font = '11px Segoe UI';
+  ctx.textAlign = 'left';
+  ctx.fillText('A', W - 35, H / 2 - ampPx / 2 + 4);
+
+  // Mode label
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '11px Segoe UI';
+  ctx.textAlign = 'right';
+  ctx.fillText(waveMode === 'pure' ? 'Sinusoide pure' : 'Son complexe (harmoniques)', W - 10, 18);
+
+  animId = requestAnimationFrame(animate);
+}
+
+update();
+animate();
+</script>
+</body>
+</html>

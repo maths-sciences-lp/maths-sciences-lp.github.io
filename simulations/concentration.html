@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solutions Chimiques et Concentration — Simulation</title>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 860px; margin: 0 auto; }
+  header { background: #b45309; color: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 25px; position: relative; }
+  header h1 { margin: 0 0 5px 0; font-size: 1.5em; }
+  header p { margin: 0; opacity: 0.9; font-size: 0.95em; }
+  .btn-back { position: absolute; left: 15px; top: 15px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 5px 12px; border-radius: 5px; font-size: 0.85em; }
+  .btn-back:hover { background: rgba(255,255,255,0.35); }
+  .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+  h3 { margin-top: 0; color: #b45309; }
+  label { font-weight: 600; display: block; margin-bottom: 4px; }
+  input[type=range] { width: 100%; accent-color: #b45309; margin-bottom: 10px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  @media(max-width:600px) { .row { grid-template-columns: 1fr; } }
+  canvas { display: block; width: 100%; border-radius: 8px; }
+  .results { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 15px; }
+  @media(max-width:600px) { .results { grid-template-columns: 1fr; } }
+  .result-box { text-align: center; padding: 12px 8px; border-radius: 8px; }
+  .result-box .val { font-size: 1.4em; font-weight: 700; }
+  .result-box .lbl { font-size: 0.8em; opacity: 0.7; margin-top: 2px; }
+  .r-m { background: #fef3c7; color: #92400e; }
+  .r-v { background: #dbeafe; color: #1d4ed8; }
+  .r-c { background: #fce7f3; color: #be185d; }
+  .formule { font-family: monospace; background: #fef9ee; border: 1px solid #fcd99c; border-radius: 8px; padding: 12px 15px; font-size: 0.92em; line-height: 1.7; }
+  .toggle-group { display: flex; gap: 0; margin-bottom: 15px; }
+  .toggle-btn { flex: 1; padding: 10px; text-align: center; border: 2px solid #b45309; background: white; color: #b45309; font-weight: 600; cursor: pointer; font-size: 0.95em; transition: all 0.2s; }
+  .toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+  .toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+  .toggle-btn.active { background: #b45309; color: white; }
+  .info-box { background: #fef9ee; border-left: 4px solid #b45309; border-radius: 0 8px 8px 0; padding: 12px 15px; font-size: 0.9em; margin-top: 12px; }
+  .sat-warning { background: #fef2f2; border: 2px solid #dc2626; color: #dc2626; font-weight: 700; text-align: center; padding: 10px; border-radius: 8px; margin-top: 10px; display: none; }
+  .context { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 12px 15px; font-size: 0.9em; margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Solutions Chimiques et Concentration</h1>
+    <p>2nde Bac Pro &middot; Ch08 &middot; C<sub>m</sub> = m / V</p>
+  </header>
+
+  <div class="card">
+    <h3>Mode</h3>
+    <div class="toggle-group">
+      <button class="toggle-btn active" onclick="setMode('dissolution')">Dissolution</button>
+      <button class="toggle-btn" onclick="setMode('dilution')">Dilution</button>
+    </div>
+  </div>
+
+  <div class="card" id="cardDissolution">
+    <h3>Pr&eacute;paration d'une solution</h3>
+    <div class="row">
+      <div>
+        <canvas id="beaker" height="320"></canvas>
+      </div>
+      <div>
+        <label>Masse de solut&eacute; m : <span id="vM">10</span> g</label>
+        <input type="range" id="slM" min="0" max="50" step="0.5" value="10" oninput="update()">
+        <label>Volume de solution V : <span id="vV">0.50</span> L</label>
+        <input type="range" id="slV" min="0.1" max="2" step="0.05" value="0.5" oninput="update()">
+        <div class="results" id="resDissolution"></div>
+        <div class="sat-warning" id="satWarn">Seuil de saturation d&eacute;pass&eacute; (&gt; 360 g/L pour le sel) !</div>
+        <div class="formule">
+          <strong>Concentration massique :</strong><br>
+          C<sub>m</sub> = m / V (en g/L)<br>
+          m en grammes, V en litres
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="cardDilution" style="display:none;">
+    <h3>Dilution d'une solution</h3>
+    <div class="row">
+      <div>
+        <canvas id="beakerDil" height="320"></canvas>
+      </div>
+      <div>
+        <label>Concentration initiale C<sub>1</sub> : <span id="vC1">100</span> g/L</label>
+        <input type="range" id="slC1" min="1" max="400" step="1" value="100" oninput="update()">
+        <label>Volume initial V<sub>1</sub> : <span id="vV1">0.10</span> L</label>
+        <input type="range" id="slV1" min="0.01" max="1" step="0.01" value="0.1" oninput="update()">
+        <label>Volume final V<sub>2</sub> : <span id="vV2">0.50</span> L</label>
+        <input type="range" id="slV2" min="0.1" max="2" step="0.01" value="0.5" oninput="update()">
+        <div class="results" id="resDilution"></div>
+        <div class="formule">
+          <strong>Conservation de la mati&egrave;re :</strong><br>
+          C<sub>1</sub> &times; V<sub>1</sub> = C<sub>2</sub> &times; V<sub>2</sub><br>
+          C<sub>2</sub> = C<sub>1</sub> &times; V<sub>1</sub> / V<sub>2</sub>
+        </div>
+      </div>
+    </div>
+    <div class="context">
+      <strong>Contexte professionnel :</strong> Dilution d'un produit de traitement du bois.
+      Un menuisier doit diluer un produit fongicide concentr&eacute; avant application.
+      Il pr&eacute;l&egrave;ve un volume V<sub>1</sub> de solution m&egrave;re &agrave; la concentration C<sub>1</sub> et compl&egrave;te avec de l'eau jusqu'au volume V<sub>2</sub>.
+    </div>
+  </div>
+</div>
+
+<script>
+let currentMode = 'dissolution';
+
+function setMode(m) {
+  currentMode = m;
+  document.querySelectorAll('.toggle-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && m === 'dissolution') || (i === 1 && m === 'dilution'));
+  });
+  document.getElementById('cardDissolution').style.display = m === 'dissolution' ? '' : 'none';
+  document.getElementById('cardDilution').style.display = m === 'dilution' ? '' : 'none';
+  update();
+}
+
+function update() {
+  if (currentMode === 'dissolution') updateDissolution();
+  else updateDilution();
+}
+
+function updateDissolution() {
+  const m = parseFloat(document.getElementById('slM').value);
+  const V = parseFloat(document.getElementById('slV').value);
+  document.getElementById('vM').textContent = m.toFixed(1);
+  document.getElementById('vV').textContent = V.toFixed(2);
+  const Cm = m / V;
+
+  document.getElementById('resDissolution').innerHTML =
+    `<div class="result-box r-m"><div class="val">${m.toFixed(1)}</div><div class="lbl">m (g)</div></div>` +
+    `<div class="result-box r-v"><div class="val">${V.toFixed(2)}</div><div class="lbl">V (L)</div></div>` +
+    `<div class="result-box r-c"><div class="val">${Cm.toFixed(1)}</div><div class="lbl">C<sub>m</sub> (g/L)</div></div>`;
+
+  document.getElementById('satWarn').style.display = Cm > 360 ? 'block' : 'none';
+  drawBeaker('beaker', Cm, V, 2);
+}
+
+function updateDilution() {
+  const C1 = parseFloat(document.getElementById('slC1').value);
+  const V1 = parseFloat(document.getElementById('slV1').value);
+  let V2 = parseFloat(document.getElementById('slV2').value);
+  if (V2 < V1) { V2 = V1; document.getElementById('slV2').value = V1; }
+  document.getElementById('vC1').textContent = C1.toFixed(0);
+  document.getElementById('vV1').textContent = V1.toFixed(2);
+  document.getElementById('vV2').textContent = V2.toFixed(2);
+  const C2 = (C1 * V1) / V2;
+
+  document.getElementById('resDilution').innerHTML =
+    `<div class="result-box r-c"><div class="val">${C1.toFixed(0)}</div><div class="lbl">C<sub>1</sub> (g/L)</div></div>` +
+    `<div class="result-box r-v"><div class="val">${V2.toFixed(2)}</div><div class="lbl">V<sub>2</sub> (L)</div></div>` +
+    `<div class="result-box r-c"><div class="val">${C2.toFixed(1)}</div><div class="lbl">C<sub>2</sub> (g/L)</div></div>`;
+
+  drawBeaker('beakerDil', C2, V2, 2);
+}
+
+function drawBeaker(canvasId, Cm, V, Vmax) {
+  const cv = document.getElementById(canvasId);
+  const ctx = cv.getContext('2d');
+  const W = cv.offsetWidth;
+  cv.width = W;
+  const H = 320;
+  cv.height = H;
+
+  const bLeft = W * 0.2, bRight = W * 0.8;
+  const bTop = 50, bBot = H - 30;
+  const bW = bRight - bLeft, bH = bBot - bTop;
+
+  // Beaker outline
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(bLeft, bTop);
+  ctx.lineTo(bLeft, bBot);
+  ctx.lineTo(bRight, bBot);
+  ctx.lineTo(bRight, bTop);
+  ctx.stroke();
+
+  // Spout
+  ctx.beginPath();
+  ctx.moveTo(bLeft, bTop);
+  ctx.lineTo(bLeft - 10, bTop - 5);
+  ctx.stroke();
+
+  // Graduations
+  ctx.strokeStyle = '#cbd5e1';
+  ctx.lineWidth = 1;
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '11px Segoe UI';
+  ctx.textAlign = 'right';
+  for (let i = 1; i <= 4; i++) {
+    const y = bBot - (i / 4) * bH;
+    ctx.beginPath();
+    ctx.moveTo(bLeft + 5, y);
+    ctx.lineTo(bLeft + 20, y);
+    ctx.stroke();
+    ctx.fillText((Vmax * i / 4).toFixed(1) + ' L', bLeft - 5, y + 4);
+  }
+
+  // Liquid
+  const fillFrac = Math.min(V / Vmax, 1);
+  const liquidH = fillFrac * bH;
+  const liquidTop = bBot - liquidH;
+
+  // Color intensity based on concentration
+  const maxCm = 400;
+  const intensity = Math.min(Cm / maxCm, 1);
+  const r = Math.round(30 + (1 - intensity) * 200);
+  const g = Math.round(100 + (1 - intensity) * 150);
+  const b = Math.round(200 - intensity * 50);
+  const alpha = 0.3 + intensity * 0.6;
+
+  ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  ctx.fillRect(bLeft + 1, liquidTop, bW - 2, liquidH - 1);
+
+  // Surface shimmer
+  ctx.fillStyle = `rgba(255, 255, 255, 0.3)`;
+  ctx.fillRect(bLeft + 1, liquidTop, bW - 2, 3);
+
+  // Particles (solute)
+  if (Cm > 0) {
+    const numParticles = Math.min(Math.floor(Cm / 5), 50);
+    ctx.fillStyle = `rgba(180, 83, 9, ${Math.min(intensity + 0.3, 0.9)})`;
+    // Use deterministic positions based on Cm and V
+    for (let i = 0; i < numParticles; i++) {
+      const seed1 = Math.sin(i * 127.1 + 311.7) * 43758.5453;
+      const seed2 = Math.sin(i * 269.5 + 183.3) * 43758.5453;
+      const px = bLeft + 8 + ((seed1 - Math.floor(seed1)) * (bW - 16));
+      const py = liquidTop + 8 + ((seed2 - Math.floor(seed2)) * (liquidH - 16));
+      if (py > liquidTop && py < bBot - 4) {
+        ctx.beginPath();
+        ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+
+  // Concentration label on beaker
+  ctx.fillStyle = '#1e293b';
+  ctx.font = 'bold 14px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('Cm = ' + Cm.toFixed(1) + ' g/L', W / 2, bTop - 15);
+
+  // Volume indicator arrow
+  if (liquidH > 20) {
+    ctx.fillStyle = '#1d4ed8';
+    ctx.font = '12px Segoe UI';
+    ctx.textAlign = 'left';
+    ctx.fillText('V = ' + V.toFixed(2) + ' L', bRight + 10, liquidTop + liquidH / 2 + 4);
+    ctx.strokeStyle = '#1d4ed8';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(bRight + 3, liquidTop + liquidH / 2);
+    ctx.lineTo(bRight + 8, liquidTop + liquidH / 2);
+    ctx.stroke();
+  }
+}
+
+update();
+</script>
+</body>
+</html>

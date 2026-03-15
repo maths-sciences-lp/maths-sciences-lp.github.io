@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fonctions exponentielles et logarithme &mdash; Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.6}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:28px 20px 22px;text-align:center;position:relative}
+header h1{font-size:1.5em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px;margin-bottom:20px}
+.card h2{font-size:1.15em;color:#1976d2;margin-bottom:14px;border-bottom:2px solid #e3f2fd;padding-bottom:8px}
+.tabs{display:flex;gap:0;margin-bottom:20px}
+.tab{flex:1;padding:12px;text-align:center;cursor:pointer;font-weight:600;border:2px solid #1976d2;background:#e3f2fd;color:#1976d2;transition:.2s}
+.tab:first-child{border-radius:8px 0 0 8px}
+.tab:last-child{border-radius:0 8px 8px 0}
+.tab.active{background:#1976d2;color:#fff}
+.slider-row{display:flex;align-items:center;gap:12px;margin:10px 0;flex-wrap:wrap}
+.slider-row label{min-width:100px;font-weight:600;font-size:.95em}
+.slider-row input[type=range]{flex:1;min-width:150px;accent-color:#1976d2}
+.slider-row .val{min-width:60px;text-align:center;font-family:monospace;font-weight:700;color:#1976d2;font-size:1.05em}
+.formula-display{background:#f0f7ff;border:2px solid #90caf9;border-radius:8px;padding:14px 18px;margin:14px 0;text-align:center;font-size:1.1em}
+canvas#graphCanvas{display:block;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;background:#fff;max-width:100%}
+.toggle-row{display:flex;gap:16px;align-items:center;margin:14px 0;flex-wrap:wrap}
+.toggle-row label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.95em;font-weight:600}
+.toggle-row input[type=checkbox]{accent-color:#1976d2;width:18px;height:18px}
+.props-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.prop-box{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px}
+.prop-box .label{font-size:.82em;color:#718096;margin-bottom:2px}
+.prop-box .value{font-weight:700;color:#2d3748;font-size:.95em}
+.behavior{margin-top:10px;padding:10px 14px;border-radius:6px;font-weight:600;font-size:.92em}
+.behavior.crois{background:#f0fff4;color:#276749;border:1px solid #9ae6b4}
+.behavior.decrois{background:#fff5f5;color:#9b2c2c;border:1px solid #fed7d7}
+.legend{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;font-size:.85em}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.key-vals{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.kv{background:#fffff0;border:1px solid #fefcbf;border-radius:8px;padding:8px 12px;text-align:center;font-size:.9em}
+.kv .kv-label{font-size:.78em;color:#975a16}
+.kv .kv-val{font-weight:700;color:#744210;font-size:1.05em}
+@media(max-width:600px){
+  .props-grid,.key-vals{grid-template-columns:1fr}
+  header h1{font-size:1.2em}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Fonctions exponentielles et logarithme</h1>
+  <p>Terminale Bac Pro &middot; Ch05</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('exp')">Exponentielle</div>
+    <div class="tab" onclick="switchTab('log')">Logarithme</div>
+  </div>
+
+  <div class="card">
+    <h2>Param&egrave;tres</h2>
+    <div class="slider-row">
+      <label>Base a =</label>
+      <input type="range" id="sliderA" min="0.1" max="5" value="2.718" step="0.01">
+      <span class="val" id="valA">2.72</span>
+    </div>
+    <button onclick="setBase(Math.E)" style="padding:5px 14px;background:#1976d2;color:#fff;border:none;border-radius:5px;cursor:pointer;font-weight:600;margin:4px 4px 4px 0">a = e &asymp; 2.718</button>
+    <button onclick="setBase(2)" style="padding:5px 14px;background:#6f42c1;color:#fff;border:none;border-radius:5px;cursor:pointer;font-weight:600;margin:4px 4px 4px 0">a = 2</button>
+    <button onclick="setBase(10)" style="padding:5px 14px;background:#e69500;color:#fff;border:none;border-radius:5px;cursor:pointer;font-weight:600;margin:4px 4px 4px 0">a = 10</button>
+    <button onclick="setBase(0.5)" style="padding:5px 14px;background:#e53e3e;color:#fff;border:none;border-radius:5px;cursor:pointer;font-weight:600;margin:4px">a = 0.5</button>
+    <div class="formula-display" id="formulaBox"></div>
+  </div>
+
+  <div class="card">
+    <h2>Repr&eacute;sentation graphique</h2>
+    <div class="toggle-row">
+      <label><input type="checkbox" id="showBoth" onchange="draw()"> Superposer exp et log (sym&eacute;trie / y = x)</label>
+    </div>
+    <canvas id="graphCanvas" width="800" height="550"></canvas>
+    <div class="legend">
+      <span><span class="dot" style="background:#1976d2"></span> f(x) = a<sup>x</sup></span>
+      <span><span class="dot" style="background:#e53e3e"></span> g(x) = log<sub>a</sub>(x)</span>
+      <span><span class="dot" style="background:#94a3b8"></span> y = x</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Propri&eacute;t&eacute;s</h2>
+    <div class="props-grid" id="propsGrid"></div>
+    <div class="behavior" id="behaviorBox"></div>
+  </div>
+
+  <div class="card">
+    <h2>Valeurs remarquables</h2>
+    <div class="key-vals" id="keyVals"></div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('graphCanvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+let mode = 'exp';
+const xMin = -5, xMax = 8, yMin = -4, yMax = 10;
+
+function toPixel(x, y) {
+  return [(x - xMin) / (xMax - xMin) * W, H - (y - yMin) / (yMax - yMin) * H];
+}
+
+function setBase(v) {
+  document.getElementById('sliderA').value = v;
+  draw();
+}
+
+function switchTab(t) {
+  mode = t;
+  document.querySelectorAll('.tab').forEach((el, i) => {
+    el.classList.toggle('active', (i === 0 && t === 'exp') || (i === 1 && t === 'log'));
+  });
+  draw();
+}
+
+function draw() {
+  const a = parseFloat(document.getElementById('sliderA').value);
+  document.getElementById('valA').textContent = a.toFixed(2);
+  const showBoth = document.getElementById('showBoth').checked;
+
+  // Formula
+  const fb = document.getElementById('formulaBox');
+  if (mode === 'exp') {
+    if (Math.abs(a - Math.E) < 0.01)
+      fb.innerHTML = `\\( f(x) = e^{x} \\)`;
+    else
+      fb.innerHTML = `\\( f(x) = ${a.toFixed(2)}^{x} \\)`;
+  } else {
+    if (Math.abs(a - Math.E) < 0.01)
+      fb.innerHTML = `\\( g(x) = \\ln(x) \\)`;
+    else if (Math.abs(a - 10) < 0.01)
+      fb.innerHTML = `\\( g(x) = \\log(x) \\)`;
+    else
+      fb.innerHTML = `\\( g(x) = \\log_{${a.toFixed(2)}}(x) \\)`;
+  }
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([fb]);
+
+  // Clear
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#e8ecf0';
+  ctx.lineWidth = 1;
+  for (let x = Math.ceil(xMin); x <= xMax; x++) {
+    const [px] = toPixel(x, 0);
+    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, H); ctx.stroke();
+  }
+  for (let y = Math.ceil(yMin); y <= yMax; y++) {
+    const [, py] = toPixel(0, y);
+    ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(W, py); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 2;
+  const [ax0, ay0] = toPixel(0, 0);
+  ctx.beginPath(); ctx.moveTo(0, ay0); ctx.lineTo(W, ay0); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ax0, 0); ctx.lineTo(ax0, H); ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = '#64748b';
+  ctx.font = '11px Segoe UI';
+  for (let x = Math.ceil(xMin); x <= xMax; x++) {
+    if (x === 0) continue;
+    const [px] = toPixel(x, 0);
+    ctx.fillText(x, px - 4, ay0 + 14);
+  }
+  for (let y = Math.ceil(yMin); y <= yMax; y++) {
+    if (y === 0) continue;
+    const [, py] = toPixel(0, y);
+    ctx.fillText(y, ax0 + 5, py + 4);
+  }
+
+  // y = x line (if showBoth)
+  if (showBoth) {
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    const [px1, py1] = toPixel(xMin, xMin);
+    const [px2, py2] = toPixel(xMax, xMax);
+    ctx.moveTo(px1, py1); ctx.lineTo(px2, py2); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // Draw exp
+  const drawExp = mode === 'exp' || showBoth;
+  const drawLog = mode === 'log' || showBoth;
+
+  if (drawExp && a > 0) {
+    ctx.strokeStyle = '#1976d2';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    let started = false;
+    for (let px = 0; px < W; px++) {
+      const x = xMin + (px / W) * (xMax - xMin);
+      const y = Math.pow(a, x);
+      const [, py] = toPixel(x, y);
+      if (py < -50 || py > H + 50) { started = false; continue; }
+      if (!started) { ctx.moveTo(px, py); started = true; } else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    // f(0)=1 point
+    const [px0, py0] = toPixel(0, 1);
+    ctx.beginPath(); ctx.arc(px0, py0, 5, 0, 2*Math.PI);
+    ctx.fillStyle = '#1976d2'; ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+
+    // Asymptote y=0
+    ctx.strokeStyle = 'rgba(25,118,210,0.3)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(0, ay0); ctx.lineTo(W, ay0); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  if (drawLog && a > 0 && a !== 1) {
+    ctx.strokeStyle = '#e53e3e';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    let started = false;
+    for (let px = 0; px < W; px++) {
+      const x = xMin + (px / W) * (xMax - xMin);
+      if (x <= 0) continue;
+      const y = Math.log(x) / Math.log(a);
+      const [, py] = toPixel(x, y);
+      if (py < -50 || py > H + 50) { started = false; continue; }
+      if (!started) { ctx.moveTo(px, py); started = true; } else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    // g(1)=0 point
+    const [px1, py1] = toPixel(1, 0);
+    ctx.beginPath(); ctx.arc(px1, py1, 5, 0, 2*Math.PI);
+    ctx.fillStyle = '#e53e3e'; ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+
+    // Asymptote x=0
+    ctx.strokeStyle = 'rgba(229,62,62,0.3)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    const [pxAsym] = toPixel(0, 0);
+    ctx.beginPath(); ctx.moveTo(pxAsym, 0); ctx.lineTo(pxAsym, H); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // Properties
+  const pg = document.getElementById('propsGrid');
+  let propsHTML = '';
+  if (mode === 'exp') {
+    propsHTML += `<div class="prop-box"><div class="label">Image de 0</div><div class="value">f(0) = ${a.toFixed(2)}\u2070 = 1</div></div>`;
+    propsHTML += `<div class="prop-box"><div class="label">Asymptote</div><div class="value">y = 0 (axe des abscisses)</div></div>`;
+    propsHTML += `<div class="prop-box"><div class="label">Ensemble de d\u00e9finition</div><div class="value">\u211d (tout r\u00e9el)</div></div>`;
+    propsHTML += `<div class="prop-box"><div class="label">Image de 1</div><div class="value">f(1) = ${a.toFixed(3)}</div></div>`;
+  } else {
+    propsHTML += `<div class="prop-box"><div class="label">Image de 1</div><div class="value">g(1) = 0</div></div>`;
+    propsHTML += `<div class="prop-box"><div class="label">Asymptote</div><div class="value">x = 0 (axe des ordonn\u00e9es)</div></div>`;
+    propsHTML += `<div class="prop-box"><div class="label">Ensemble de d\u00e9finition</div><div class="value">]0 ; +\u221e[</div></div>`;
+    const ga = (Math.log(a) / Math.log(a));
+    propsHTML += `<div class="prop-box"><div class="label">Image de a</div><div class="value">g(${a.toFixed(2)}) = 1</div></div>`;
+  }
+  pg.innerHTML = propsHTML;
+
+  // Behavior
+  const bb = document.getElementById('behaviorBox');
+  if (mode === 'exp') {
+    if (a > 1) { bb.textContent = `Croissante (a = ${a.toFixed(2)} > 1) \u2014 croissance exponentielle`; bb.className = 'behavior crois'; }
+    else if (Math.abs(a - 1) < 0.02) { bb.textContent = 'Fonction constante (a = 1)'; bb.className = 'behavior crois'; }
+    else { bb.textContent = `D\u00e9croissante (a = ${a.toFixed(2)} < 1) \u2014 d\u00e9croissance exponentielle`; bb.className = 'behavior decrois'; }
+  } else {
+    if (a > 1) { bb.textContent = `Croissante (a = ${a.toFixed(2)} > 1)`; bb.className = 'behavior crois'; }
+    else { bb.textContent = `D\u00e9croissante (a = ${a.toFixed(2)} < 1)`; bb.className = 'behavior decrois'; }
+  }
+
+  // Key values
+  const kv = document.getElementById('keyVals');
+  let kvHTML = '';
+  if (mode === 'exp') {
+    kvHTML += `<div class="kv"><div class="kv-label">e\u00b9</div><div class="kv-val">${Math.E.toFixed(4)}</div></div>`;
+    kvHTML += `<div class="kv"><div class="kv-label">${a.toFixed(2)}\u00b2</div><div class="kv-val">${Math.pow(a,2).toFixed(4)}</div></div>`;
+    kvHTML += `<div class="kv"><div class="kv-label">${a.toFixed(2)}\u207b\u00b9</div><div class="kv-val">${Math.pow(a,-1).toFixed(4)}</div></div>`;
+  } else {
+    kvHTML += `<div class="kv"><div class="kv-label">ln(e)</div><div class="kv-val">1</div></div>`;
+    kvHTML += `<div class="kv"><div class="kv-label">log\u2081\u2080(10)</div><div class="kv-val">1</div></div>`;
+    kvHTML += `<div class="kv"><div class="kv-label">log<sub>${a.toFixed(1)}</sub>(${a.toFixed(1)})</div><div class="kv-val">1</div></div>`;
+  }
+  kv.innerHTML = kvHTML;
+}
+
+document.getElementById('sliderA').addEventListener('input', draw);
+draw();
+</script>
+</body>
+</html>

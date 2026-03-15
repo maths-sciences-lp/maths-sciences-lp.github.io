@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Proportionnalité et Pourcentages – Simulation</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#333;padding:20px;min-height:100vh}
+.container{max-width:860px;margin:0 auto}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:25px 20px 20px;border-radius:10px 10px 0 0;position:relative;text-align:center}
+header h1{font-size:1.6em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.card{background:#fff;border-radius:0 0 10px 10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:25px;margin-bottom:20px}
+.tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid #e0e0e0}
+.tab{padding:10px 24px;cursor:pointer;border:none;background:none;font-size:1em;color:#777;font-weight:600;border-bottom:3px solid transparent;transition:all .2s}
+.tab.active{color:#1976d2;border-bottom-color:#1976d2}
+.tab:hover{color:#1976d2}
+.panel{display:none}
+.panel.active{display:block}
+.control-row{display:flex;align-items:center;gap:12px;margin-bottom:15px;flex-wrap:wrap}
+.control-row label{font-weight:600;min-width:140px}
+.control-row input[type=range]{flex:1;min-width:150px;accent-color:#1976d2}
+.val{background:#e3f2fd;color:#1976d2;font-weight:700;padding:2px 10px;border-radius:4px;min-width:50px;text-align:center;display:inline-block}
+table{width:100%;border-collapse:collapse;margin:15px 0}
+th,td{border:1px solid #e0e0e0;padding:10px 14px;text-align:center}
+th{background:#e3f2fd;color:#1976d2;font-weight:600}
+td{background:#fafafa}
+.chart-container{position:relative;width:100%;max-width:500px;margin:20px auto}
+.section-title{font-size:1.1em;font-weight:700;color:#1976d2;margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid #e3f2fd}
+.check-box{background:#f5f5f5;border-radius:8px;padding:15px;margin-top:15px}
+.check-box input[type=number]{width:80px;padding:6px 8px;border:2px solid #ccc;border-radius:5px;font-size:1em;text-align:center}
+.check-box input[type=number]:focus{border-color:#1976d2;outline:none}
+.result{margin-top:10px;padding:10px 15px;border-radius:6px;font-weight:600}
+.result.ok{background:#e8f5e9;color:#2e7d32}
+.result.no{background:#fce4ec;color:#c62828}
+.result.info{background:#e3f2fd;color:#1565c0}
+button{background:#1976d2;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:.95em;font-weight:600;transition:background .2s}
+button:hover{background:#1565c0}
+.context-box{background:linear-gradient(135deg,#fff8e1,#fff3cd);border-left:4px solid #f9a825;padding:12px 16px;border-radius:0 8px 8px 0;margin-bottom:15px;font-size:.92em}
+.context-box strong{color:#e65100}
+.bar-compare{display:flex;gap:15px;align-items:flex-end;margin:15px 0;height:120px}
+.bar{border-radius:6px 6px 0 0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;color:#fff;font-weight:700;font-size:.9em;min-width:80px;transition:height .4s;padding:8px 5px}
+.bar span{font-size:.75em;opacity:.85}
+.bar.original{background:linear-gradient(180deg,#42a5f5,#1976d2)}
+.bar.reduced{background:linear-gradient(180deg,#66bb6a,#2e7d32)}
+.formula{background:#f5f5f5;padding:10px 15px;border-radius:6px;font-family:'Courier New',monospace;font-size:.95em;margin:10px 0;text-align:center;border:1px dashed #ccc}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:600px){
+  .grid2{grid-template-columns:1fr}
+  .control-row{flex-direction:column;align-items:flex-start}
+  .control-row input[type=range]{width:100%}
+  header h1{font-size:1.3em}
+  .tab{padding:8px 14px;font-size:.9em}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <a href="../simulations.html" class="btn-back">← Retour</a>
+  <h1>Proportionnalité et Pourcentages</h1>
+  <p>2nde Bac Pro · Ch01 · y = k × x</p>
+</header>
+<div class="card">
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('prop')">Proportionnalité</button>
+  <button class="tab" onclick="switchTab('pct')">Pourcentages</button>
+</div>
+
+<!-- ═══════ PROPORTIONNALITÉ ═══════ -->
+<div class="panel active" id="panel-prop">
+
+<div class="context-box">
+  <strong>Contexte professionnel :</strong> Un menuisier achète du parquet à <strong id="ctx-price">8</strong> €/m². Le prix total est proportionnel à la surface.
+</div>
+
+<div class="control-row">
+  <label for="slider-k">Coefficient k :</label>
+  <input type="range" id="slider-k" min="0.5" max="20" step="0.5" value="8" oninput="updateProp()">
+  <span class="val" id="val-k">8</span> €/m²
+</div>
+
+<div class="section-title">Tableau de proportionnalité</div>
+<table>
+  <thead><tr><th>x (m²)</th><td id="tx1"></td><td id="tx2"></td><td id="tx3"></td><td id="tx4"></td><td id="tx5"></td></tr></thead>
+  <tbody><tr><th>y = k × x (€)</th><td id="ty1"></td><td id="ty2"></td><td id="ty3"></td><td id="ty4"></td><td id="ty5"></td></tr></tbody>
+</table>
+
+<div class="formula">y = k × x → Le graphique est une <strong>droite passant par l'origine</strong></div>
+
+<div class="chart-container">
+  <canvas id="chartProp"></canvas>
+</div>
+
+<div class="section-title">Vérifier la proportionnalité</div>
+<div class="check-box">
+  <p style="margin-bottom:10px">Entrez un couple (x ; y) pour vérifier s'il appartient à la droite y = k × x :</p>
+  <div class="control-row">
+    <label>x =</label><input type="number" id="check-x" value="5" step="0.1">
+    <label>y =</label><input type="number" id="check-y" value="40" step="0.1">
+    <button onclick="checkProp()">Vérifier</button>
+  </div>
+  <div class="result info" id="check-result" style="display:none"></div>
+</div>
+</div>
+
+<!-- ═══════ POURCENTAGES ═══════ -->
+<div class="panel" id="panel-pct">
+
+<div class="section-title">Calculer un prix réduit</div>
+
+<div class="control-row">
+  <label for="slider-price">Prix initial :</label>
+  <input type="range" id="slider-price" min="10" max="1000" step="5" value="250" oninput="updatePct()">
+  <span class="val" id="val-price">250</span> €
+</div>
+<div class="control-row">
+  <label for="slider-taux">Réduction :</label>
+  <input type="range" id="slider-taux" min="0" max="50" step="1" value="20" oninput="updatePct()">
+  <span class="val" id="val-taux">20</span> %
+</div>
+
+<div class="formula" id="formula-pct">Prix réduit = 250 × (1 − 20/100) = 250 × 0,80 = <strong>200,00 €</strong></div>
+
+<div class="grid2">
+  <div>
+    <div class="section-title">Comparaison visuelle</div>
+    <div class="bar-compare" id="bar-container">
+      <div class="bar original" id="bar-orig" style="height:100%">250 €<span>Prix initial</span></div>
+      <div class="bar reduced" id="bar-red" style="height:80%">200 €<span>Prix réduit</span></div>
+    </div>
+  </div>
+  <div>
+    <div class="section-title">Résumé</div>
+    <table>
+      <tr><th>Prix initial</th><td id="sum-init">250,00 €</td></tr>
+      <tr><th>Réduction</th><td id="sum-red">−50,00 €</td></tr>
+      <tr><th style="background:#e8f5e9;color:#2e7d32">Prix réduit</th><td id="sum-final" style="font-weight:700;color:#2e7d32">200,00 €</td></tr>
+      <tr><th>Coefficient multiplicateur</th><td id="sum-coeff">× 0,80</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section-title">Calcul inverse : retrouver le prix initial</div>
+<div class="check-box">
+  <p style="margin-bottom:10px">Vous connaissez le prix <strong>après</strong> réduction et le taux. Quel était le prix initial ?</p>
+  <div class="control-row">
+    <label>Prix réduit :</label><input type="number" id="inv-final" value="200" step="0.01">
+    <label>Taux (%) :</label><input type="number" id="inv-taux" value="20" min="0" max="99" step="1">
+    <button onclick="calcInverse()">Calculer</button>
+  </div>
+  <div class="result info" id="inv-result" style="display:none"></div>
+</div>
+
+</div><!-- end panel-pct -->
+</div><!-- end card -->
+</div><!-- end container -->
+
+<script>
+/* ── Tabs ── */
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===(id==='prop'?0:1)));
+  document.getElementById('panel-prop').classList.toggle('active',id==='prop');
+  document.getElementById('panel-pct').classList.toggle('active',id==='pct');
+}
+
+/* ── Proportionnalité ── */
+let chartProp;
+function updateProp(){
+  const k=parseFloat(document.getElementById('slider-k').value);
+  document.getElementById('val-k').textContent=k;
+  document.getElementById('ctx-price').textContent=k;
+  const xs=[1,2,5,8,10];
+  xs.forEach((x,i)=>{
+    document.getElementById('tx'+(i+1)).textContent=x;
+    document.getElementById('ty'+(i+1)).textContent=(k*x).toFixed(1).replace(/\.0$/,'');
+  });
+  // chart
+  const pts=[];for(let x=0;x<=12;x+=0.5)pts.push({x,y:k*x});
+  if(chartProp){
+    chartProp.data.datasets[0].data=pts;
+    chartProp.data.datasets[0].label='y = '+k+' × x';
+    chartProp.options.scales.y.max=Math.ceil(k*12/10)*10;
+    chartProp.update();
+  }else{
+    chartProp=new Chart(document.getElementById('chartProp'),{
+      type:'scatter',
+      data:{datasets:[{label:'y = '+k+' × x',data:pts,showLine:true,borderColor:'#1976d2',backgroundColor:'rgba(25,118,210,.1)',fill:true,pointRadius:0,borderWidth:2.5,tension:0}]},
+      options:{responsive:true,plugins:{legend:{display:true,position:'top'}},scales:{x:{title:{display:true,text:'x (m²)'},min:0,max:12},y:{title:{display:true,text:'y (€)'},min:0,max:Math.ceil(k*12/10)*10}}}
+    });
+  }
+}
+
+function checkProp(){
+  const k=parseFloat(document.getElementById('slider-k').value);
+  const x=parseFloat(document.getElementById('check-x').value);
+  const y=parseFloat(document.getElementById('check-y').value);
+  const el=document.getElementById('check-result');
+  el.style.display='block';
+  if(isNaN(x)||isNaN(y)||x===0){el.className='result no';el.textContent='Veuillez entrer des valeurs valides (x ≠ 0).';return;}
+  const ratio=(y/x).toFixed(4);
+  const expected=(k*x).toFixed(2);
+  if(Math.abs(y-k*x)<0.01){
+    el.className='result ok';
+    el.innerHTML='✓ Proportionnel ! y/x = '+ratio+' = k = '+k+'<br>Le point ('+x+' ; '+y+') est <strong>sur la droite</strong>.';
+  }else{
+    el.className='result no';
+    el.innerHTML='✗ Non proportionnel : y/x = '+ratio+' ≠ k = '+k+'<br>Pour x = '+x+', on devrait avoir y = '+expected+'.';
+  }
+}
+
+/* ── Pourcentages ── */
+function updatePct(){
+  const prix=parseFloat(document.getElementById('slider-price').value);
+  const taux=parseFloat(document.getElementById('slider-taux').value);
+  document.getElementById('val-price').textContent=prix;
+  document.getElementById('val-taux').textContent=taux;
+  const coeff=1-taux/100;
+  const reduit=prix*coeff;
+  const eco=prix-reduit;
+  document.getElementById('formula-pct').innerHTML='Prix réduit = '+prix+' × (1 − '+taux+'/100) = '+prix+' × '+coeff.toFixed(2)+' = <strong>'+reduit.toFixed(2)+' €</strong>';
+  document.getElementById('sum-init').textContent=prix.toFixed(2)+' €';
+  document.getElementById('sum-red').textContent='−'+eco.toFixed(2)+' €';
+  document.getElementById('sum-final').textContent=reduit.toFixed(2)+' €';
+  document.getElementById('sum-coeff').textContent='× '+coeff.toFixed(2);
+  // bars
+  const pct=taux===100?0:(reduit/prix*100);
+  document.getElementById('bar-orig').style.height='100%';
+  document.getElementById('bar-orig').innerHTML=prix.toFixed(0)+' €<span>Prix initial</span>';
+  document.getElementById('bar-red').style.height=pct+'%';
+  document.getElementById('bar-red').innerHTML=reduit.toFixed(0)+' €<span>Prix réduit</span>';
+}
+
+function calcInverse(){
+  const pf=parseFloat(document.getElementById('inv-final').value);
+  const t=parseFloat(document.getElementById('inv-taux').value);
+  const el=document.getElementById('inv-result');
+  el.style.display='block';
+  if(isNaN(pf)||isNaN(t)||t>=100){el.className='result no';el.textContent='Valeurs invalides (taux < 100 %).';return;}
+  const coeff=1-t/100;
+  const pi=pf/coeff;
+  el.className='result ok';
+  el.innerHTML='Prix initial = Prix réduit ÷ (1 − '+t+'/100) = '+pf.toFixed(2)+' ÷ '+coeff.toFixed(2)+' = <strong>'+pi.toFixed(2)+' €</strong>';
+}
+
+updateProp();
+updatePct();
+</script>
+</body>
+</html>

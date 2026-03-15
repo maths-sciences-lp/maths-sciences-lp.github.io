@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Simulation — Produit scalaire | Terminale Bac Pro</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#333;line-height:1.6}
+.header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:30px 20px 20px;text-align:center;position:relative}
+.header h1{font-size:1.6em;margin-bottom:4px}
+.header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:20px auto;padding:0 15px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}
+.card h2{color:#1976d2;font-size:1.15em;margin-bottom:12px;border-bottom:2px solid #e3f2fd;padding-bottom:6px}
+canvas{display:block;margin:0 auto;border-radius:8px;border:1px solid #e0e0e0;background:#fff}
+.tabs{display:flex;gap:0;margin-bottom:14px}
+.tabs button{flex:1;padding:10px;border:1px solid #e2e8f0;background:#f8fafc;cursor:pointer;font-size:.92em;font-weight:600;transition:all .2s;font-family:inherit}
+.tabs button:first-child{border-radius:8px 0 0 8px}
+.tabs button:last-child{border-radius:0 8px 8px 0}
+.tabs button.active{background:#1976d2;color:#fff;border-color:#1976d2}
+.mode{display:none}
+.mode.active{display:block}
+.ctrl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.ctrl-box{background:#f8fafc;border-radius:8px;padding:12px;border:1px solid #e2e8f0}
+.ctrl-box h3{font-size:.95em;margin-bottom:8px;color:#1976d2}
+.slider-row{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:.9em}
+.slider-row label{min-width:36px;font-weight:600}
+.slider-row input[type=range]{flex:1}
+.slider-row .val{min-width:40px;text-align:center;font-weight:600;font-family:monospace}
+.result-main{text-align:center;padding:16px;border-radius:10px;margin-top:14px;font-size:1.1em;font-weight:700;transition:all .3s}
+.result-main.pos{background:#e8f5e9;color:#2e7d32;border:2px solid #66bb6a}
+.result-main.neg{background:#fce4ec;color:#c62828;border:2px solid #ef5350}
+.result-main.zero{background:#e3f2fd;color:#1565c0;border:2px solid #42a5f5}
+.ortho-banner{text-align:center;padding:10px;background:#e3f2fd;color:#1565c0;border-radius:8px;margin-top:10px;font-weight:700;font-size:1.05em;display:none}
+.ortho-banner.show{display:block;animation:pulse .6s}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.info-box{background:#f8fafc;border-radius:8px;padding:10px;border:1px solid #e2e8f0;font-size:.88em}
+.info-box .lbl{font-weight:700;font-size:.8em;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;color:#1976d2}
+.legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:.85em;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .swatch{width:14px;height:3px;display:inline-block;border-radius:2px}
+.formulas{background:#f1f8fe;border-radius:8px;padding:14px;margin-top:10px;font-size:.92em;border:1px solid #bbdefb}
+@media(max-width:600px){
+  .ctrl-grid{grid-template-columns:1fr}
+  .info-grid{grid-template-columns:1fr}
+  canvas{width:100%!important;height:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Produit scalaire</h1>
+  <p>Terminale Bac Pro &middot; Ch11</p>
+</div>
+<div class="container">
+
+<div class="card">
+  <h2>Mode de saisie</h2>
+  <div class="tabs">
+    <button class="active" onclick="setMode('geo')">Norme &amp; Angle</button>
+    <button onclick="setMode('comp')">Coordonnées</button>
+  </div>
+
+  <!-- Mode géométrique -->
+  <div class="mode active" id="mode-geo">
+    <canvas id="cvs-geo" width="600" height="450"></canvas>
+    <div class="legend">
+      <span><span class="swatch" style="background:#1976d2"></span> Vecteur u</span>
+      <span><span class="swatch" style="background:#e53935"></span> Vecteur v</span>
+      <span><span class="swatch" style="background:rgba(25,118,210,0.3);height:8px"></span> Projection</span>
+    </div>
+    <div class="ctrl-grid">
+      <div class="ctrl-box">
+        <h3>Vecteur u</h3>
+        <div class="slider-row"><label>||u|| =</label><input type="range" id="nu" min="0.5" max="10" step="0.5" value="4"><span class="val" id="nu-v">4</span></div>
+      </div>
+      <div class="ctrl-box">
+        <h3>Vecteur v</h3>
+        <div class="slider-row"><label>||v|| =</label><input type="range" id="nv" min="0.5" max="10" step="0.5" value="3"><span class="val" id="nv-v">3</span></div>
+      </div>
+    </div>
+    <div class="ctrl-box" style="margin-top:14px">
+      <div class="slider-row"><label>&theta; =</label><input type="range" id="theta" min="0" max="180" step="1" value="45"><span class="val" id="theta-v">45&deg;</span></div>
+    </div>
+  </div>
+
+  <!-- Mode coordonnées -->
+  <div class="mode" id="mode-comp">
+    <canvas id="cvs-comp" width="600" height="450"></canvas>
+    <div class="ctrl-grid">
+      <div class="ctrl-box">
+        <h3>Vecteur u</h3>
+        <div class="slider-row"><label>u<sub>x</sub> =</label><input type="range" id="cux" min="-5" max="5" step="0.5" value="3"><span class="val" id="cux-v">3</span></div>
+        <div class="slider-row"><label>u<sub>y</sub> =</label><input type="range" id="cuy" min="-5" max="5" step="0.5" value="1"><span class="val" id="cuy-v">1</span></div>
+      </div>
+      <div class="ctrl-box">
+        <h3>Vecteur v</h3>
+        <div class="slider-row"><label>v<sub>x</sub> =</label><input type="range" id="cvx" min="-5" max="5" step="0.5" value="1"><span class="val" id="cvx-v">1</span></div>
+        <div class="slider-row"><label>v<sub>y</sub> =</label><input type="range" id="cvy" min="-5" max="5" step="0.5" value="3"><span class="val" id="cvy-v">3</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-main pos" id="result"></div>
+  <div class="ortho-banner" id="ortho">&#10003; Vecteurs orthogonaux : u &middot; v = 0</div>
+</div>
+
+<div class="card">
+  <h2>Détails</h2>
+  <div class="info-grid">
+    <div class="info-box"><div class="lbl">||u||</div><div id="det-nu"></div></div>
+    <div class="info-box"><div class="lbl">||v||</div><div id="det-nv"></div></div>
+    <div class="info-box"><div class="lbl">Angle &theta;</div><div id="det-theta"></div></div>
+  </div>
+  <div id="sign-info" style="margin-top:10px;padding:10px;border-radius:8px;font-size:.92em;background:#f8fafc;border:1px solid #e2e8f0"></div>
+</div>
+
+<div class="card">
+  <h2>Formules</h2>
+  <div class="formulas">
+    <p><strong>Formule avec norme et angle :</strong> \(\vec{u}\cdot\vec{v} = \|\vec{u}\|\cdot\|\vec{v}\|\cdot\cos\theta\)</p>
+    <p style="margin-top:8px"><strong>Formule avec coordonnées :</strong> \(\vec{u}\cdot\vec{v} = u_x v_x + u_y v_y\)</p>
+    <p style="margin-top:8px"><strong>Calcul de l'angle :</strong> \(\cos\theta = \dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\cdot\|\vec{v}\|}\)</p>
+    <p style="margin-top:8px"><strong>Orthogonalité :</strong> \(\vec{u} \perp \vec{v} \iff \vec{u}\cdot\vec{v} = 0 \iff \theta = 90°\)</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+let mode = 'geo';
+
+function setMode(m){
+  mode = m;
+  document.querySelectorAll('.tabs button').forEach((b,i)=>{
+    b.classList.toggle('active', (i===0 && m==='geo') || (i===1 && m==='comp'));
+  });
+  document.getElementById('mode-geo').classList.toggle('active', m==='geo');
+  document.getElementById('mode-comp').classList.toggle('active', m==='comp');
+  draw();
+}
+
+const allSliders = ['nu','nv','theta','cux','cuy','cvx','cvy'];
+allSliders.forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener('input', ()=>{
+    const suffix = id === 'theta' ? '\u00b0' : '';
+    document.getElementById(id+'-v').textContent = el.value + suffix;
+    draw();
+  });
+});
+
+function val(id){ return parseFloat(document.getElementById(id).value); }
+
+function resizeCanvases(){
+  ['cvs-geo','cvs-comp'].forEach(cid=>{
+    const c = document.getElementById(cid);
+    const w = c.parentElement.clientWidth - 40;
+    const s = Math.min(600, Math.max(300, w));
+    c.width = s; c.height = Math.round(s*0.75);
+  });
+  draw();
+}
+window.addEventListener('resize', resizeCanvases);
+
+function drawArrow(ctx, W, H, fx, fy, tx, ty, color, lw, unit){
+  const sx = W/2 + fx*unit, sy = H/2 - fy*unit;
+  const ex = W/2 + tx*unit, ey = H/2 - ty*unit;
+  const dx = ex-sx, dy = ey-sy;
+  const len = Math.sqrt(dx*dx+dy*dy);
+  if(len < 2) return;
+  const hl = Math.min(14, len*0.25);
+  const hw = 6;
+  const ux = dx/len, uy = dy/len;
+
+  ctx.beginPath();
+  ctx.moveTo(sx, sy);
+  ctx.lineTo(ex - ux*hl, ey - uy*hl);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lw;
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(ex, ey);
+  ctx.lineTo(ex - ux*hl - uy*hw, ey - uy*hl + ux*hw);
+  ctx.lineTo(ex - ux*hl + uy*hw, ey - uy*hl - ux*hw);
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+function drawGrid(ctx, W, H, unit, maxVal){
+  ctx.strokeStyle = '#e8eaed'; ctx.lineWidth = 1;
+  for(let i = -maxVal; i <= maxVal; i++){
+    const x = W/2 + i*unit;
+    ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
+    const y = H/2 - i*unit;
+    ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+  }
+  ctx.strokeStyle = '#90a4ae'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0,H/2); ctx.lineTo(W,H/2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2,0); ctx.lineTo(W/2,H); ctx.stroke();
+}
+
+function draw(){
+  if(mode === 'geo') drawGeo();
+  else drawComp();
+}
+
+function drawGeo(){
+  const cvs = document.getElementById('cvs-geo');
+  const ctx = cvs.getContext('2d');
+  const W = cvs.width, H = cvs.height;
+  const maxR = 11;
+  const unit = Math.min(W, H) / (maxR * 2);
+  ctx.clearRect(0,0,W,H);
+
+  drawGrid(ctx, W, H, unit, maxR);
+
+  const nu = val('nu'), nv = val('nv');
+  const thetaDeg = val('theta');
+  const theta = thetaDeg * Math.PI / 180;
+
+  // u along positive x-axis direction (angle 15deg for visual clarity)
+  const baseAngle = 0;
+  const ux = nu * Math.cos(baseAngle), uy = nu * Math.sin(baseAngle);
+  const vx = nv * Math.cos(baseAngle + theta), vy = nv * Math.sin(baseAngle + theta);
+
+  const dot = nu * nv * Math.cos(theta);
+
+  // Projection of v onto u
+  const projLen = dot / nu; // scalar projection
+  const projX = projLen * Math.cos(baseAngle), projY = projLen * Math.sin(baseAngle);
+
+  // Draw projection line
+  const px = W/2 + projX*unit, py = H/2 - projY*unit;
+  const vex = W/2 + vx*unit, vey = H/2 - vy*unit;
+  ctx.setLineDash([4,4]);
+  ctx.strokeStyle = 'rgba(25,118,210,0.4)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(vex, vey); ctx.lineTo(px, py); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Projection segment on u
+  ctx.beginPath();
+  ctx.moveTo(W/2, H/2);
+  ctx.lineTo(px, py);
+  ctx.strokeStyle = 'rgba(25,118,210,0.3)';
+  ctx.lineWidth = 8;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  ctx.lineCap = 'butt';
+
+  // Angle arc
+  const arcR = Math.min(nu, nv, 2) * unit * 0.6;
+  ctx.beginPath();
+  ctx.arc(W/2, H/2, arcR, -baseAngle - theta, -baseAngle);
+  ctx.strokeStyle = '#ff9800';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // Angle label
+  const midA = baseAngle + theta/2;
+  const lx = W/2 + (arcR+14)*Math.cos(midA);
+  const ly = H/2 - (arcR+14)*Math.sin(midA);
+  ctx.fillStyle = '#ff9800';
+  ctx.font = 'bold 13px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(thetaDeg + '\u00b0', lx, ly);
+
+  // Vectors
+  drawArrow(ctx, W, H, 0, 0, ux, uy, '#1976d2', 3, unit);
+  drawArrow(ctx, W, H, 0, 0, vx, vy, '#e53935', 3, unit);
+
+  // Labels
+  const ulx = W/2 + ux*unit, uly = H/2 - uy*unit;
+  ctx.fillStyle = '#1976d2'; ctx.font = 'bold 14px sans-serif';
+  ctx.fillText('u', ulx+12, uly-6);
+  const vlx = W/2 + vx*unit, vly = H/2 - vy*unit;
+  ctx.fillStyle = '#e53935';
+  ctx.fillText('v', vlx+12, vly-6);
+
+  // Right angle marker if ~90
+  if(Math.abs(thetaDeg - 90) < 1.5){
+    const sz = 10;
+    const cx = W/2, cy = H/2;
+    ctx.strokeStyle = '#1565c0'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx + sz, cy);
+    ctx.lineTo(cx + sz, cy - sz);
+    ctx.lineTo(cx, cy - sz);
+    ctx.stroke();
+  }
+
+  updateResults(dot, nu, nv, thetaDeg);
+}
+
+function drawComp(){
+  const cvs = document.getElementById('cvs-comp');
+  const ctx = cvs.getContext('2d');
+  const W = cvs.width, H = cvs.height;
+  const unit = Math.min(W, H) / 14;
+  ctx.clearRect(0,0,W,H);
+
+  drawGrid(ctx, W, H, unit, 6);
+
+  const ux = val('cux'), uy = val('cuy');
+  const vx = val('cvx'), vy = val('cvy');
+
+  const dot = ux*vx + uy*vy;
+  const nu = Math.sqrt(ux*ux+uy*uy);
+  const nv = Math.sqrt(vx*vx+vy*vy);
+  let thetaDeg = 0;
+  if(nu > 0.01 && nv > 0.01){
+    let cosT = dot/(nu*nv);
+    cosT = Math.max(-1, Math.min(1, cosT));
+    thetaDeg = Math.acos(cosT)*180/Math.PI;
+  }
+
+  // Angle arc
+  if(nu > 0.01 && nv > 0.01){
+    const angU = Math.atan2(uy, ux);
+    const angV = Math.atan2(vy, vx);
+    const arcR = Math.min(nu, nv, 1.5)*unit;
+    // Draw arc from angU to angV (shortest)
+    ctx.beginPath();
+    const start = Math.min(angU, angV);
+    const end = Math.max(angU, angV);
+    let s = -end, e = -start;
+    if(end - start > Math.PI){ s = -start; e = -end + 2*Math.PI; }
+    ctx.arc(W/2, H/2, arcR, s, e);
+    ctx.strokeStyle = '#ff9800'; ctx.lineWidth = 2;
+    ctx.stroke();
+
+    const midA = (angU + angV)/2;
+    // Adjust if reflex
+    let finalMid = midA;
+    if(end - start > Math.PI) finalMid = midA + Math.PI;
+    const lx = W/2 + (arcR+16)*Math.cos(finalMid);
+    const ly = H/2 - (arcR+16)*Math.sin(finalMid);
+    ctx.fillStyle = '#ff9800'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(thetaDeg.toFixed(1)+'\u00b0', lx, ly);
+  }
+
+  // Projection
+  if(nu > 0.01){
+    const projLen = dot / nu;
+    const projX = projLen * ux/nu, projY = projLen * uy/nu;
+    const px = W/2 + projX*unit, py = H/2 - projY*unit;
+    const vex = W/2 + vx*unit, vey = H/2 - vy*unit;
+    ctx.setLineDash([4,4]);
+    ctx.strokeStyle = 'rgba(25,118,210,0.4)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(vex,vey); ctx.lineTo(px,py); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(W/2,H/2); ctx.lineTo(px,py);
+    ctx.strokeStyle = 'rgba(25,118,210,0.3)'; ctx.lineWidth = 8; ctx.lineCap = 'round'; ctx.stroke(); ctx.lineCap = 'butt';
+  }
+
+  drawArrow(ctx, W, H, 0, 0, ux, uy, '#1976d2', 3, unit);
+  drawArrow(ctx, W, H, 0, 0, vx, vy, '#e53935', 3, unit);
+
+  ctx.fillStyle = '#1976d2'; ctx.font = 'bold 13px sans-serif';
+  ctx.fillText('u', W/2+ux*unit+10, H/2-uy*unit-6);
+  ctx.fillStyle = '#e53935';
+  ctx.fillText('v', W/2+vx*unit+10, H/2-vy*unit-6);
+
+  // Axis labels
+  ctx.fillStyle = '#78909c'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+  for(let i = -5; i <= 5; i++){
+    if(i===0) continue;
+    ctx.fillText(i, W/2+i*unit, H/2+13);
+    ctx.fillText(i, W/2-14, H/2-i*unit+4);
+  }
+
+  updateResults(dot, nu, nv, thetaDeg);
+}
+
+function updateResults(dot, nu, nv, thetaDeg){
+  const res = document.getElementById('result');
+  const isZero = Math.abs(dot) < 0.01;
+  const isPos = dot > 0.01;
+
+  let cls = isZero ? 'zero' : (isPos ? 'pos' : 'neg');
+  res.className = 'result-main ' + cls;
+
+  if(mode === 'geo'){
+    res.innerHTML = `\\(\\vec{u}\\cdot\\vec{v} = \\|\\vec{u}\\|\\cdot\\|\\vec{v}\\|\\cdot\\cos\\theta = ${nu}\\times${nv}\\times\\cos(${thetaDeg}°) = \\mathbf{${dot.toFixed(2)}}\\)`;
+  } else {
+    const ux = val('cux'), uy = val('cuy'), vx = val('cvx'), vy = val('cvy');
+    res.innerHTML = `\\(\\vec{u}\\cdot\\vec{v} = u_x v_x + u_y v_y = ${ux}\\times${vx} + ${uy}\\times${vy} = \\mathbf{${dot.toFixed(2)}}\\)`;
+  }
+
+  const ortho = document.getElementById('ortho');
+  ortho.classList.toggle('show', Math.abs(thetaDeg - 90) < 1.5 || isZero);
+
+  document.getElementById('det-nu').textContent = nu.toFixed(2);
+  document.getElementById('det-nv').textContent = nv.toFixed(2);
+  document.getElementById('det-theta').textContent = thetaDeg.toFixed(1) + '\u00b0';
+
+  let sign = '';
+  if(isZero) sign = '<strong style="color:#1565c0">u \u00b7 v = 0</strong> : les vecteurs sont <strong>orthogonaux</strong> (\u03b8 = 90\u00b0).';
+  else if(isPos) sign = '<strong style="color:#2e7d32">u \u00b7 v &gt; 0</strong> : l\'angle est <strong>aigu</strong> (\u03b8 &lt; 90\u00b0). Les vecteurs "vont dans le même sens".';
+  else sign = '<strong style="color:#c62828">u \u00b7 v &lt; 0</strong> : l\'angle est <strong>obtus</strong> (\u03b8 &gt; 90\u00b0). Les vecteurs "vont en sens opposé".';
+
+  document.getElementById('sign-info').innerHTML = sign;
+
+  if(window.MathJax && MathJax.typeset) MathJax.typeset([res]);
+}
+
+resizeCanvases();
+</script>
+</body>
+</html>

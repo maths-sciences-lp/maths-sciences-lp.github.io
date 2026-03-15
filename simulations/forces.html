@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Forces et Équilibre</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#0284c7,#0ea5e9);color:#fff;padding:2rem 1.5rem;text-align:center;position:relative}
+header h1{font-size:1.6rem;margin-bottom:.3rem}
+header p{opacity:.85;font-size:.95rem}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:1.5rem auto;padding:0 1rem;display:flex;flex-direction:column;gap:1.2rem}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:1.4rem}
+.card h2{color:#0284c7;font-size:1.15rem;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.card h2::before{content:'';display:inline-block;width:4px;height:1.1em;background:#0284c7;border-radius:2px}
+.canvas-wrap{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:4px}
+canvas{display:block;width:100%;border-radius:4px}
+.controls-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.slider-group{display:flex;flex-direction:column;gap:4px}
+.slider-group label{font-weight:600;font-size:.88rem;color:#374151}
+.slider-group .val{font-size:.82rem;color:#0284c7;font-weight:700}
+input[type=range]{width:100%;accent-color:#0284c7;cursor:pointer}
+.check-row{display:flex;align-items:center;gap:8px;margin-top:.6rem;font-size:.9rem}
+.check-row input{accent-color:#0284c7;width:16px;height:16px}
+.readings{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.7rem;margin-top:.8rem}
+.reading-box{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:.6rem;text-align:center}
+.reading-box .label{font-size:.78rem;color:#64748b;margin-bottom:2px}
+.reading-box .value{font-size:1.05rem;font-weight:700;color:#0284c7}
+.eq-badge{display:inline-block;padding:6px 18px;border-radius:20px;font-weight:700;font-size:1rem;margin-top:.6rem;text-align:center}
+.eq-badge.ok{background:#dcfce7;color:#16a34a;border:2px solid #86efac}
+.eq-badge.no{background:#fee2e2;color:#dc2626;border:2px solid #fca5a5}
+.formulas{background:#f0f9ff;border-left:4px solid #0284c7;padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.92rem;line-height:1.8}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:.5rem;font-size:.85rem}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend .dot{width:14px;height:4px;border-radius:2px}
+.context{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:.8rem 1rem;font-size:.88rem;color:#92400e;display:flex;align-items:flex-start;gap:8px}
+.context::before{content:'🔧';font-size:1.1rem;flex-shrink:0}
+@media(max-width:600px){
+  .controls-grid{grid-template-columns:1fr}
+  .readings{grid-template-columns:1fr 1fr}
+  header h1{font-size:1.25rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Forces et &Eacute;quilibre</h1>
+  <p>2nde Bac Pro &middot; Ch06 &middot; P = m &times; g</p>
+</header>
+
+<div class="container">
+  <!-- Canvas -->
+  <div class="card">
+    <h2>Diagramme des forces</h2>
+    <div class="canvas-wrap">
+      <canvas id="cv" width="800" height="500"></canvas>
+    </div>
+    <div class="legend">
+      <span><span class="dot" style="background:#dc2626"></span> Poids \(\vec{P}\)</span>
+      <span><span class="dot" style="background:#2563eb"></span> R&eacute;action normale \(\vec{R_N}\)</span>
+      <span><span class="dot" style="background:#f59e0b"></span> Frottement \(\vec{f}\)</span>
+      <span><span class="dot" style="background:#16a34a;border:1px dashed #16a34a"></span> R&eacute;sultante</span>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="card">
+    <h2>Param&egrave;tres</h2>
+    <div class="controls-grid">
+      <div class="slider-group">
+        <label>Masse m : <span class="val" id="vMass">10.0 kg</span></label>
+        <input type="range" id="sMass" min="0.5" max="50" value="10" step="0.5" oninput="update()">
+      </div>
+      <div class="slider-group">
+        <label>Angle d'inclinaison &alpha; : <span class="val" id="vAngle">0&deg;</span></label>
+        <input type="range" id="sAngle" min="0" max="60" value="0" step="1" oninput="update()">
+      </div>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="cbComp" checked onchange="update()">
+      <label for="cbComp">Afficher les composantes du poids (\(P_\parallel\) et \(P_\perp\))</label>
+    </div>
+    <div class="readings" id="readings"></div>
+    <div style="text-align:center">
+      <div class="eq-badge" id="eqBadge"></div>
+    </div>
+  </div>
+
+  <!-- Formulas -->
+  <div class="card">
+    <h2>Formules</h2>
+    <div class="formulas">
+      \( P = m \times g \quad \text{avec } g = 10 \text{ N/kg} \)<br>
+      Sur un plan inclin&eacute; d'angle \(\alpha\) :<br>
+      \( P_\parallel = P \times \sin(\alpha) \quad \) (composante parall&egrave;le au plan)<br>
+      \( P_\perp = P \times \cos(\alpha) \quad \) (composante perpendiculaire au plan)<br>
+      &Eacute;quilibre : \( \sum \vec{F} = \vec{0} \)
+    </div>
+  </div>
+
+  <!-- Context -->
+  <div class="context">
+    <div><strong>Contexte professionnel :</strong> Lorsqu'un menuisier pose un panneau de bois sur un &eacute;tabli inclin&eacute;, le panneau reste en place gr&acirc;ce &agrave; l'&eacute;quilibre entre son poids, la r&eacute;action du support et les forces de frottement.</div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('cv');
+const ctx = canvas.getContext('2d');
+const g = 10; // N/kg simplified for bac pro
+
+function update() {
+  const m = +document.getElementById('sMass').value;
+  const angle = +document.getElementById('sAngle').value;
+  const showComp = document.getElementById('cbComp').checked;
+
+  document.getElementById('vMass').textContent = m.toFixed(1) + ' kg';
+  document.getElementById('vAngle').innerHTML = angle + '&deg;';
+
+  const alpha = angle * Math.PI / 180;
+  const P = m * g;
+  const Ppar = P * Math.sin(alpha);
+  const Pperp = P * Math.cos(alpha);
+  const RN = Pperp; // normal reaction
+  const friction = Ppar; // static friction balances parallel component
+
+  // On flat surface: equilibrium. On incline: equilibrium if friction = Ppar
+  // We always show equilibrium (static case) unless angle > 45 where we show imbalance
+  const isEquilibrium = angle <= 45;
+
+  document.getElementById('readings').innerHTML = `
+    <div class="reading-box"><div class="label">Poids P</div><div class="value">${P.toFixed(1)} N</div></div>
+    <div class="reading-box"><div class="label">P<sub>&parallel;</sub></div><div class="value">${Ppar.toFixed(1)} N</div></div>
+    <div class="reading-box"><div class="label">P<sub>&perp;</sub></div><div class="value">${Pperp.toFixed(1)} N</div></div>
+    <div class="reading-box"><div class="label">R&eacute;action N</div><div class="value">${RN.toFixed(1)} N</div></div>
+    <div class="reading-box"><div class="label">Frottement f</div><div class="value">${(isEquilibrium ? Ppar : Ppar * 0.6).toFixed(1)} N</div></div>
+  `;
+
+  const badge = document.getElementById('eqBadge');
+  if (isEquilibrium) {
+    badge.className = 'eq-badge ok';
+    badge.innerHTML = '&#10003; &Eacute;QUILIBRE &mdash; &Sigma;F = 0';
+  } else {
+    badge.className = 'eq-badge no';
+    badge.innerHTML = '&#10007; D&Eacute;S&Eacute;QUILIBRE &mdash; l\'objet glisse !';
+  }
+
+  draw(m, angle, alpha, P, Ppar, Pperp, RN, friction, showComp, isEquilibrium);
+}
+
+function draw(m, angleDeg, alpha, P, Ppar, Pperp, RN, friction, showComp, isEq) {
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, W, H);
+
+  // Scale: max force arrow = 150px
+  const maxForce = Math.max(P, 50);
+  const scale = 140 / maxForce;
+
+  // Surface geometry
+  const surfLen = 500;
+  const cx = W / 2;
+  const cy = H * 0.55;
+
+  ctx.save();
+  ctx.translate(cx, cy);
+
+  // Draw inclined surface
+  const cosA = Math.cos(alpha), sinA = Math.sin(alpha);
+  const surfX1 = -surfLen / 2 * cosA;
+  const surfY1 = surfLen / 2 * sinA;
+  const surfX2 = surfLen / 2 * cosA;
+  const surfY2 = -surfLen / 2 * sinA;
+
+  // Ground / surface fill
+  ctx.fillStyle = '#e2e8f0';
+  ctx.beginPath();
+  ctx.moveTo(surfX1, surfY1);
+  ctx.lineTo(surfX2, surfY2);
+  ctx.lineTo(surfX2, surfY2 + 30);
+  ctx.lineTo(surfX1, surfY1 + 30);
+  ctx.closePath();
+  ctx.fill();
+
+  // Hatching
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 1;
+  for (let i = -10; i < 20; i++) {
+    const hx = surfX1 + (i / 18) * (surfX2 - surfX1);
+    const hy = surfY1 + (i / 18) * (surfY2 - surfY1);
+    ctx.beginPath();
+    ctx.moveTo(hx, hy + 5);
+    ctx.lineTo(hx - 10, hy + 25);
+    ctx.stroke();
+  }
+
+  // Surface line
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(surfX1, surfY1);
+  ctx.lineTo(surfX2, surfY2);
+  ctx.stroke();
+
+  // Angle arc
+  if (angleDeg > 0) {
+    ctx.strokeStyle = '#64748b';
+    ctx.lineWidth = 1.5;
+    const arcR = 50;
+    ctx.beginPath();
+    ctx.arc(surfX1, surfY1, arcR, 0, -alpha, true);
+    ctx.stroke();
+    ctx.fillStyle = '#475569';
+    ctx.font = 'bold 14px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText(angleDeg + '°', surfX1 + arcR * 1.1 * Math.cos(-alpha / 2), surfY1 - arcR * 0.5 * Math.sin(alpha / 2) + 5);
+  }
+
+  // Object position on surface
+  const objX = -20 * cosA;
+  const objY = 20 * sinA;
+
+  // Draw object (box)
+  ctx.save();
+  ctx.translate(objX, objY);
+  ctx.rotate(-alpha);
+  const bw = 60, bh = 40;
+  ctx.fillStyle = '#fef3c7';
+  ctx.strokeStyle = '#f59e0b';
+  ctx.lineWidth = 2;
+  ctx.fillRect(-bw / 2, -bh, bw, bh);
+  ctx.strokeRect(-bw / 2, -bh, bw, bh);
+  ctx.fillStyle = '#92400e';
+  ctx.font = 'bold 13px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText(m.toFixed(1) + ' kg', 0, -bh / 2 + 5);
+  ctx.restore();
+
+  // Force arrow origin = center of object top
+  const fOx = objX - (bh / 2) * sinA;
+  const fOy = objY - (bh / 2) * cosA;
+
+  // --- Draw forces ---
+
+  // Helper: draw arrow
+  function drawArrow(x1, y1, x2, y2, color, lw, dashed) {
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.lineWidth = lw || 3;
+    if (dashed) ctx.setLineDash([6, 4]); else ctx.setLineDash([]);
+    const dx = x2 - x1, dy = y2 - y1;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    if (len < 3) { ctx.setLineDash([]); return; }
+    const ux = dx / len, uy = dy / len;
+    const headLen = Math.min(14, len * 0.3);
+
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2 - ux * headLen, y2 - uy * headLen);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Arrowhead
+    ctx.beginPath();
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - ux * headLen - uy * headLen * 0.4, y2 - uy * headLen + ux * headLen * 0.4);
+    ctx.lineTo(x2 - ux * headLen + uy * headLen * 0.4, y2 - uy * headLen - ux * headLen * 0.4);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function drawLabel(x, y, text, color) {
+    ctx.fillStyle = color;
+    ctx.font = 'bold 13px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText(text, x, y);
+  }
+
+  // Weight P (always vertically down)
+  const pLen = P * scale;
+  drawArrow(fOx, fOy, fOx, fOy + pLen, '#dc2626', 3);
+  drawLabel(fOx + 20, fOy + pLen / 2, 'P = ' + P.toFixed(0) + ' N', '#dc2626');
+
+  // Components of P
+  if (showComp && angleDeg > 0) {
+    // P parallel (along slope, downhill)
+    const pparLen = Ppar * scale;
+    const pperpLen = Pperp * scale;
+    // Parallel: along slope direction (positive = down the slope)
+    const parDx = cosA, parDy = -sinA; // down the slope = positive x component (right/down)
+    // Wait, slope goes from lower-left to upper-right with positive angle
+    // "Down the slope" = toward lower-left
+    const downSlopeX = -cosA, downSlopeY = sinA; // Nope
+    // Slope direction: from surfX2,surfY2 (upper) to surfX1,surfY1 (lower)
+    // That's (-cosA, sinA) normalized already
+    const dsx = -cosA, dsy = sinA; // down slope
+    const perpUpX = -sinA, perpUpY = -cosA; // perpendicular, away from surface
+
+    // P_parallel
+    drawArrow(fOx, fOy, fOx + dsx * pparLen, fOy + dsy * pparLen, '#dc2626', 2, true);
+    drawLabel(fOx + dsx * pparLen - 15, fOy + dsy * pparLen + 15, 'P∥=' + Ppar.toFixed(0) + 'N', '#dc2626');
+
+    // P_perp (into surface)
+    const perpInX = sinA, perpInY = cosA; // into surface
+    drawArrow(fOx, fOy, fOx + perpInX * pperpLen, fOy + perpInY * pperpLen, '#dc2626', 2, true);
+    drawLabel(fOx + perpInX * pperpLen + 25, fOy + perpInY * pperpLen, 'P⊥=' + Pperp.toFixed(0) + 'N', '#991b1b');
+  }
+
+  // Normal reaction RN (perpendicular to surface, upward)
+  const rnLen = RN * scale;
+  const nDx = -sinA, nDy = -cosA; // perpendicular away from surface
+  drawArrow(fOx, fOy, fOx + nDx * rnLen, fOy + nDy * rnLen, '#2563eb', 3);
+  drawLabel(fOx + nDx * rnLen - 20, fOy + nDy * rnLen - 8, 'N = ' + RN.toFixed(0) + ' N', '#2563eb');
+
+  // Friction (along surface, opposing motion = up the slope)
+  if (angleDeg > 0) {
+    const frictForce = isEq ? Ppar : Ppar * 0.6;
+    const fLen = frictForce * scale;
+    // Up the slope
+    const usx = cosA, usy = -sinA;
+    drawArrow(fOx, fOy, fOx + usx * fLen, fOy + usy * fLen, '#f59e0b', 3);
+    drawLabel(fOx + usx * fLen + 5, fOy + usy * fLen - 10, 'f = ' + frictForce.toFixed(0) + ' N', '#f59e0b');
+  }
+
+  // Resultant force
+  if (angleDeg > 0) {
+    const frictForce = isEq ? Ppar : Ppar * 0.6;
+    // Resultant = sum of all forces
+    // P = (0, P) downward
+    // N = (-sinA*RN, -cosA*RN)
+    // friction up slope = (cosA*f, -sinA*f)
+    let rx = 0 + (-sinA * RN) + cosA * frictForce;
+    let ry = P + (-cosA * RN) + (-sinA * frictForce);
+    const rLen = Math.sqrt(rx * rx + ry * ry);
+    if (rLen > 1) {
+      const rScale = rLen * scale;
+      const rux = rx / rLen, ruy = ry / rLen;
+      drawArrow(fOx, fOy, fOx + rux * rScale, fOy + ruy * rScale, '#16a34a', 2.5, true);
+      drawLabel(fOx + rux * rScale + 15, fOy + ruy * rScale + 15, 'R = ' + rLen.toFixed(0) + ' N', '#16a34a');
+    }
+  }
+
+  ctx.restore();
+}
+
+update();
+</script>
+</body>
+</html>

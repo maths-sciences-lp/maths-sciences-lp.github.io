@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Simulation — Nombres complexes | Terminale Bac Pro</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#333;line-height:1.6}
+.header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:30px 20px 20px;text-align:center;position:relative}
+.header h1{font-size:1.6em;margin-bottom:4px}
+.header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:20px auto;padding:0 15px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}
+.card h2{color:#1976d2;font-size:1.15em;margin-bottom:12px;border-bottom:2px solid #e3f2fd;padding-bottom:6px}
+canvas{display:block;margin:0 auto;border-radius:8px;border:1px solid #e0e0e0;background:#fff}
+.ctrl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.ctrl-box{background:#f8fafc;border-radius:8px;padding:12px;border:1px solid #e2e8f0}
+.ctrl-box h3{font-size:.95em;margin-bottom:8px}
+.ctrl-box.z-box h3{color:#1976d2}
+.ctrl-box.w-box h3{color:#e53935}
+.slider-row{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.9em}
+.slider-row label{min-width:24px;font-weight:600}
+.slider-row input[type=range]{flex:1}
+.slider-row .val{min-width:32px;text-align:center;font-weight:600;font-family:monospace}
+.ops{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ops button{padding:6px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:600;transition:all .2s}
+.ops button.active{transform:scale(1.05);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.btn-conj{background:#e8f5e9;color:#2e7d32}.btn-conj.active,.btn-conj:hover{background:#2e7d32;color:#fff}
+.btn-sum{background:#fff3e0;color:#e65100}.btn-sum.active,.btn-sum:hover{background:#e65100;color:#fff}
+.btn-prod{background:#f3e5f5;color:#7b1fa2}.btn-prod.active,.btn-prod:hover{background:#7b1fa2;color:#fff}
+.btn-reset{background:#fce4ec;color:#c62828}.btn-reset:hover{background:#c62828;color:#fff}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.info-box{background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #e2e8f0;font-size:.9em}
+.info-box .lbl{font-weight:700;font-size:.82em;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.info-box.z-info .lbl{color:#1976d2}
+.info-box.w-info .lbl{color:#e53935}
+.info-box.res-info .lbl{color:#7b1fa2}
+.legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:.85em;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.formulas{background:#f1f8fe;border-radius:8px;padding:14px;margin-top:10px;font-size:.92em;border:1px solid #bbdefb}
+.chk-row{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:.9em;cursor:pointer}
+.chk-row input{width:16px;height:16px}
+@media(max-width:600px){
+  .ctrl-grid,.info-grid{grid-template-columns:1fr}
+  canvas{width:100%!important;height:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Nombres complexes</h1>
+  <p>Terminale Bac Pro &middot; Ch10</p>
+</div>
+<div class="container">
+
+<div class="card">
+  <h2>Plan complexe (diagramme d'Argand)</h2>
+  <canvas id="cvs" width="600" height="600"></canvas>
+  <div class="legend">
+    <span><span class="dot" style="background:#1976d2"></span> z</span>
+    <span><span class="dot" style="background:#e53935"></span> w</span>
+    <span><span class="dot" style="background:#2e7d32"></span> Conjugué</span>
+    <span><span class="dot" style="background:#e65100"></span> z + w</span>
+    <span><span class="dot" style="background:#7b1fa2"></span> z &times; w</span>
+  </div>
+
+  <div class="ctrl-grid">
+    <div class="ctrl-box z-box">
+      <h3>Nombre z <span style="color:#1976d2">&#9679;</span></h3>
+      <div class="slider-row"><label>a =</label><input type="range" id="za" min="-5" max="5" step="0.5" value="3"><span class="val" id="za-v">3</span></div>
+      <div class="slider-row"><label>b =</label><input type="range" id="zb" min="-5" max="5" step="0.5" value="2"><span class="val" id="zb-v">2</span></div>
+    </div>
+    <div class="ctrl-box w-box">
+      <h3>Nombre w <span style="color:#e53935">&#9679;</span></h3>
+      <div class="slider-row"><label>a =</label><input type="range" id="wa" min="-5" max="5" step="0.5" value="1"><span class="val" id="wa-v">1</span></div>
+      <div class="slider-row"><label>b =</label><input type="range" id="wb" min="-5" max="5" step="0.5" value="-1"><span class="val" id="wb-v">-1</span></div>
+    </div>
+  </div>
+
+  <div class="ops">
+    <button class="btn-conj" id="btn-conj" onclick="toggleOp('conj')">Conjugué z&#772;</button>
+    <button class="btn-sum" id="btn-sum" onclick="toggleOp('sum')">z + w</button>
+    <button class="btn-prod" id="btn-prod" onclick="toggleOp('prod')">z &times; w</button>
+    <button class="btn-reset" onclick="clearOps()">Effacer</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Informations</h2>
+  <div class="info-grid">
+    <div class="info-box z-info"><div class="lbl">z</div><div id="info-z"></div></div>
+    <div class="info-box w-info"><div class="lbl">w</div><div id="info-w"></div></div>
+  </div>
+  <div class="info-box res-info" id="res-box" style="display:none;margin-top:12px"><div class="lbl" id="res-lbl">Résultat</div><div id="info-res"></div></div>
+</div>
+
+<div class="card">
+  <h2>Formules</h2>
+  <div class="formulas">
+    <p>\(z = a + bi\) &nbsp; avec \(a = \text{Re}(z)\), \(b = \text{Im}(z)\)</p>
+    <p style="margin-top:8px">\(|z| = \sqrt{a^2 + b^2}\) &nbsp;&nbsp; \(\arg(z) = \arctan\!\left(\frac{b}{a}\right)\)</p>
+    <p style="margin-top:8px"><strong>Forme trigonométrique :</strong> \(z = |z|\left(\cos\theta + i\sin\theta\right)\)</p>
+    <p style="margin-top:8px"><strong>Conjugué :</strong> \(\bar{z} = a - bi\)</p>
+    <p style="margin-top:8px"><strong>Produit :</strong> \(|z \times w| = |z| \cdot |w|\) &nbsp; et &nbsp; \(\arg(z \times w) = \arg(z) + \arg(w)\)</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+const cvs = document.getElementById('cvs');
+const ctx = cvs.getContext('2d');
+const ops = {conj: false, sum: false, prod: false};
+
+const ids = ['za','zb','wa','wb'];
+ids.forEach(id=>{
+  document.getElementById(id).addEventListener('input', e=>{
+    document.getElementById(id+'-v').textContent = e.target.value;
+    draw();
+  });
+});
+
+function toggleOp(o){ ops[o] = !ops[o]; updateButtons(); draw(); }
+function clearOps(){ ops.conj=false; ops.sum=false; ops.prod=false; updateButtons(); draw(); }
+function updateButtons(){
+  document.getElementById('btn-conj').classList.toggle('active', ops.conj);
+  document.getElementById('btn-sum').classList.toggle('active', ops.sum);
+  document.getElementById('btn-prod').classList.toggle('active', ops.prod);
+}
+
+function val(id){ return parseFloat(document.getElementById(id).value); }
+
+function resizeCanvas(){
+  const w = cvs.parentElement.clientWidth - 40;
+  const s = Math.min(600, Math.max(300, w));
+  cvs.width = s; cvs.height = s;
+  draw();
+}
+window.addEventListener('resize', resizeCanvas);
+
+function toScreen(re, im){
+  const s = cvs.width, unit = s/12;
+  return [s/2 + re*unit, s/2 - im*unit];
+}
+
+function drawPoint(re, im, color, label, radius){
+  const [x,y] = toScreen(re, im);
+  ctx.beginPath();
+  ctx.arc(x, y, radius||6, 0, Math.PI*2);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.font = 'bold 13px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(label, x+10, y-8);
+}
+
+function drawVector(re, im, color, dashed){
+  const [ox,oy] = toScreen(0,0);
+  const [ex,ey] = toScreen(re, im);
+  ctx.beginPath();
+  ctx.moveTo(ox, oy);
+  ctx.lineTo(ex, ey);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  if(dashed) ctx.setLineDash([6,4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+function drawProjections(re, im, color){
+  const [px,py] = toScreen(re, im);
+  const [ox,oy] = toScreen(0, 0);
+  const [rx] = toScreen(re, 0);
+  const [,ry] = toScreen(0, im);
+  ctx.setLineDash([4,4]);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1;
+  ctx.globalAlpha = 0.4;
+  ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(rx,oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(ox,ry); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.globalAlpha = 1;
+}
+
+function drawArc(cx, cy, r, startAngle, endAngle, color){
+  const [sx,sy] = toScreen(cx, cy);
+  const unit = cvs.width/12;
+  ctx.beginPath();
+  ctx.arc(sx, sy, r*unit, -endAngle, -startAngle);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function formatComplex(a, b){
+  if(b === 0) return `${a}`;
+  if(a === 0) return b === 1 ? 'i' : b === -1 ? '-i' : `${b}i`;
+  const sign = b > 0 ? '+' : '-';
+  const bAbs = Math.abs(b);
+  const bStr = bAbs === 1 ? '' : bAbs;
+  return `${a} ${sign} ${bStr}i`;
+}
+
+function argDeg(a, b){
+  if(a === 0 && b === 0) return 0;
+  return Math.atan2(b, a) * 180 / Math.PI;
+}
+
+function draw(){
+  const W = cvs.width, H = cvs.height;
+  const unit = W/12;
+  ctx.clearRect(0,0,W,H);
+
+  // Grid
+  ctx.strokeStyle = '#e8eaed'; ctx.lineWidth = 1;
+  for(let i = -6; i <= 6; i++){
+    const [x1,y1] = toScreen(i,-6); const [x2,y2] = toScreen(i,6);
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    const [x3,y3] = toScreen(-6,i); const [x4,y4] = toScreen(6,i);
+    ctx.beginPath(); ctx.moveTo(x3,y3); ctx.lineTo(x4,y4); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#90a4ae'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0,H/2); ctx.lineTo(W,H/2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2,0); ctx.lineTo(W/2,H); ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#78909c'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+  for(let i = -5; i <= 5; i++){
+    if(i===0) continue;
+    const [x] = toScreen(i,0);
+    ctx.fillText(i, x, H/2+14);
+    const [,y] = toScreen(0,i);
+    ctx.fillText(i, W/2-14, y+4);
+  }
+  ctx.fillText('Re', W-16, H/2-6);
+  ctx.fillText('Im', W/2+14, 14);
+
+  const za = val('za'), zb = val('zb');
+  const wa = val('wa'), wb = val('wb');
+
+  // Unit circle (light)
+  ctx.beginPath();
+  ctx.arc(W/2, H/2, unit, 0, Math.PI*2);
+  ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // z: vector, projections, point
+  drawVector(za, zb, 'rgba(25,118,210,0.5)');
+  drawProjections(za, zb, '#1976d2');
+  drawPoint(za, zb, '#1976d2', 'z');
+
+  // w: vector, point
+  drawVector(wa, wb, 'rgba(229,57,53,0.5)');
+  drawProjections(wa, wb, '#e53935');
+  drawPoint(wa, wb, '#e53935', 'w');
+
+  // Module arc for z
+  const modZ = Math.sqrt(za*za+zb*zb);
+  const argZ = Math.atan2(zb, za);
+  if(modZ > 0.1){
+    drawArc(0, 0, Math.min(modZ*0.3, 1.2), 0, argZ, '#1976d2');
+  }
+
+  // Operations
+  let resHtml = '';
+
+  if(ops.conj){
+    drawVector(za, -zb, 'rgba(46,125,50,0.4)');
+    drawPoint(za, -zb, '#2e7d32', 'z\u0304', 5);
+    resHtml += `<strong>Conjugué :</strong> z\u0304 = ${formatComplex(za, -zb)}<br>`;
+  }
+
+  if(ops.sum){
+    const sr = za+wa, si = zb+wb;
+    // Parallelogram
+    const [p1x,p1y] = toScreen(za,zb);
+    const [p2x,p2y] = toScreen(wa,wb);
+    const [p3x,p3y] = toScreen(sr,si);
+    ctx.setLineDash([5,4]);
+    ctx.strokeStyle = 'rgba(230,81,0,0.3)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(p1x,p1y); ctx.lineTo(p3x,p3y); ctx.lineTo(p2x,p2y); ctx.stroke();
+    ctx.setLineDash([]);
+    drawVector(sr, si, 'rgba(230,81,0,0.5)');
+    drawPoint(sr, si, '#e65100', 'z+w', 5);
+    const modS = Math.sqrt(sr*sr+si*si);
+    resHtml += `<strong>z + w :</strong> ${formatComplex(sr,si)}, |z+w| = ${modS.toFixed(2)}<br>`;
+  }
+
+  if(ops.prod){
+    const pr = za*wa - zb*wb;
+    const pi = za*wb + zb*wa;
+    drawVector(pr, pi, 'rgba(123,31,162,0.5)');
+    drawPoint(pr, pi, '#7b1fa2', 'z\u00d7w', 5);
+    const modP = Math.sqrt(pr*pr+pi*pi);
+    const argP = Math.atan2(pi, pr)*180/Math.PI;
+    resHtml += `<strong>z &times; w :</strong> ${formatComplex(parseFloat(pr.toFixed(2)), parseFloat(pi.toFixed(2)))}<br>`;
+    resHtml += `|z&times;w| = ${modP.toFixed(2)} = |z|&middot;|w| = ${modZ.toFixed(2)}&times;${Math.sqrt(wa*wa+wb*wb).toFixed(2)}<br>`;
+    resHtml += `arg(z&times;w) = ${argP.toFixed(1)}&deg; = arg(z)+arg(w) = ${argDeg(za,zb).toFixed(1)}&deg;+${argDeg(wa,wb).toFixed(1)}&deg;<br>`;
+  }
+
+  // Info z
+  const argZd = argDeg(za,zb);
+  document.getElementById('info-z').innerHTML =
+    `z = ${formatComplex(za,zb)}<br>|z| = ${modZ.toFixed(2)}<br>arg(z) = ${argZd.toFixed(1)}&deg;<br>` +
+    `Forme trigo : ${modZ.toFixed(2)}(cos ${argZd.toFixed(1)}&deg; + i sin ${argZd.toFixed(1)}&deg;)`;
+
+  const modW = Math.sqrt(wa*wa+wb*wb);
+  const argWd = argDeg(wa,wb);
+  document.getElementById('info-w').innerHTML =
+    `w = ${formatComplex(wa,wb)}<br>|w| = ${modW.toFixed(2)}<br>arg(w) = ${argWd.toFixed(1)}&deg;<br>` +
+    `Forme trigo : ${modW.toFixed(2)}(cos ${argWd.toFixed(1)}&deg; + i sin ${argWd.toFixed(1)}&deg;)`;
+
+  const resBox = document.getElementById('res-box');
+  if(resHtml){
+    resBox.style.display = '';
+    document.getElementById('info-res').innerHTML = resHtml;
+  } else {
+    resBox.style.display = 'none';
+  }
+}
+
+resizeCanvas();
+</script>
+</body>
+</html>

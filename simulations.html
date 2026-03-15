@@ -47,6 +47,7 @@
             text-transform: uppercase; letter-spacing: 0.5px;
         }
         .badge-term { background: #ede9fe; color: #6d28d9; }
+        .badge-1ere { background: #dcfce7; color: #166534; }
         .badge-2nde { background: #dbeafe; color: #1d4ed8; }
         .card h3 { font-size: 1em; margin: 0 0 6px 0; }
         .card p { font-size: 0.85em; color: #666; margin: 0 0 14px 0; flex-grow: 1; }
@@ -64,10 +65,6 @@
         .btn-chimie { background: #b45309; }
         .btn-signal { background: #0f766e; }
         .btn-maths  { background: #1976d2; }
-
-        /* Masquage filtres */
-        .card[data-niveau="term"].hide-term { display: none; }
-        .card[data-niveau="2nde"].hide-2nde { display: none; }
     </style>
 </head>
 <body>
@@ -83,13 +80,41 @@
         <span class="filtre-label">Niveau :</span>
         <button class="btn-filtre active" onclick="filtrer('tous', this)">Tous</button>
         <button class="btn-filtre" onclick="filtrer('term', this)">Terminale Pro</button>
+        <button class="btn-filtre" onclick="filtrer('1ere', this)">1ère Pro</button>
         <button class="btn-filtre" onclick="filtrer('2nde', this)">2nde Pro</button>
     </div>
 
-    <!-- ÉLECTRICITÉ -->
+    <!-- ═══════════════ ÉLECTRICITÉ ═══════════════ -->
     <div class="theme-section" data-theme="elec">
         <div class="theme-titre theme-elec">⚡ Électricité</div>
         <div class="grid">
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🔌</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch02</span>
+                    <h3>Grandeurs Électriques</h3>
+                    <p>Circuit interactif — P = U × I, loi des nœuds, série et parallèle.</p>
+                </div>
+                <a href="simulations/circuit-electrique.html" class="btn-lancer btn-elec">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">⚡</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch03</span>
+                    <h3>Loi d'Ohm</h3>
+                    <p>Laboratoire virtuel multi-séries — U = R × I, graphique et mesures.</p>
+                </div>
+                <a href="simulations/ohm.html" class="btn-lancer btn-elec">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">📟</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch04</span>
+                    <h3>Signal Alternatif</h3>
+                    <p>Oscilloscope virtuel — u(t) = Umax·sin(2πft), période, fréquence, Ueff.</p>
+                </div>
+                <a href="simulations/signal-alternatif.html" class="btn-lancer btn-elec">Lancer →</a>
+            </div>
             <div class="card" data-niveau="term">
                 <div>
                     <div class="icon">🔋</div>
@@ -98,6 +123,24 @@
                     <p>Triangle des puissances P, Q, S et facteur cos(φ).</p>
                 </div>
                 <a href="simulations/puissance.html" class="btn-lancer btn-elec">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">🔄</div>
+                    <span class="badge-niveau badge-term">Terminale ERA · Ch01</span>
+                    <h3>Transformateur</h3>
+                    <p>Rapport de transformation N₂/N₁, pertes en ligne P = R·I².</p>
+                </div>
+                <a href="simulations/transformateur.html" class="btn-lancer btn-elec">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">🔌</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch01</span>
+                    <h3>Déphasage & Triangle</h3>
+                    <p>Courbes u(t)/i(t) animées, déphasage φ, triangle P/Q/S et facteur cos φ.</p>
+                </div>
+                <a href="simulations/dephasage.html" class="btn-lancer btn-elec">Lancer →</a>
             </div>
             <div class="card" data-niveau="term">
                 <div>
@@ -117,31 +160,49 @@
                 </div>
                 <a href="simulations/moteur.html" class="btn-lancer btn-elec">Lancer →</a>
             </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔌</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch01</span>
-                    <h3>Déphasage & Triangle des puissances</h3>
-                    <p>Courbes u(t)/i(t) animées, déphasage φ, triangle P/Q/S et facteur cos φ.</p>
-                </div>
-                <a href="simulations/dephasage.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">⚡</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro</span>
-                    <h3>Loi d'Ohm</h3>
-                    <p>Calculer U, R ou I simplement.</p>
-                </div>
-                <a href="simulations/ohm.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
         </div>
     </div>
 
-    <!-- THERMIQUE -->
+    <!-- ═══════════════ THERMIQUE ═══════════════ -->
     <div class="theme-section" data-theme="thermo">
         <div class="theme-titre theme-thermo">🌡️ Thermique</div>
         <div class="grid">
+            <div class="card" data-niveau="1ere">
+                <div>
+                    <div class="icon">🔥</div>
+                    <span class="badge-niveau badge-1ere">1ère Pro · Ch03</span>
+                    <h3>Combustion</h3>
+                    <p>Complète/incomplète — danger CO, bilan énergétique, équation équilibrée.</p>
+                </div>
+                <a href="simulations/combustion.html" class="btn-lancer btn-thermo">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="1ere">
+                <div>
+                    <div class="icon">🧱</div>
+                    <span class="badge-niveau badge-1ere">1ère ERA · Ch05</span>
+                    <h3>Conductance Thermique</h3>
+                    <p>G = λS/e — mur composite, résistance thermique, coût énergétique.</p>
+                </div>
+                <a href="simulations/conductance-thermique.html" class="btn-lancer btn-thermo">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🔥</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch11</span>
+                    <h3>Transferts Thermiques</h3>
+                    <p>Conduction, convection, rayonnement — 3 modes animés et équilibre thermique.</p>
+                </div>
+                <a href="simulations/transferts-thermiques.html" class="btn-lancer btn-thermo">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🫧</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch12</span>
+                    <h3>Courbe de Chauffage</h3>
+                    <p>Courbe T = f(t) avec paliers de fusion et d'ébullition — eau, paraffine, colle.</p>
+                </div>
+                <a href="simulations/changement-etat.html" class="btn-lancer btn-thermo">Lancer →</a>
+            </div>
             <div class="card" data-niveau="term">
                 <div>
                     <div class="icon">🌡️</div>
@@ -156,14 +217,14 @@
                     <div class="icon">🌍</div>
                     <span class="badge-niveau badge-term">Terminale · Ch04</span>
                     <h3>Effet de Serre</h3>
-                    <p>Simulation animée — rayonnements solaire et IR, atmosphère, bilan énergétique et température.</p>
+                    <p>Simulation animée — rayonnements solaire et IR, atmosphère, bilan énergétique.</p>
                 </div>
                 <a href="simulations/serre.html" class="btn-lancer btn-thermo">Lancer →</a>
             </div>
             <div class="card" data-niveau="term">
                 <div>
                     <div class="icon">🔥</div>
-                    <span class="badge-niveau badge-term">Terminale · Thermique</span>
+                    <span class="badge-niveau badge-term">Terminale</span>
                     <h3>Effet Joule</h3>
                     <p>P = R·I² — échauffement d'un conducteur, puissance dissipée, énergie thermique.</p>
                 </div>
@@ -172,28 +233,64 @@
             <div class="card" data-niveau="term">
                 <div>
                     <div class="icon">♨️</div>
-                    <span class="badge-niveau badge-term">Terminale · Thermique</span>
+                    <span class="badge-niveau badge-term">Terminale</span>
                     <h3>Énergie Thermique</h3>
                     <p>Q = m·c·ΔT — chaleur massique, comparaison des matériaux, montée en température.</p>
                 </div>
                 <a href="simulations/chaleur.html" class="btn-lancer btn-thermo">Lancer →</a>
             </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🫧</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch12</span>
-                    <h3>Courbe de chauffage</h3>
-                    <p>Animez la courbe T = f(t) avec paliers de fusion et d'ébullition — eau, paraffine, colle thermofusible.</p>
-                </div>
-                <a href="simulations/changement-etat.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
         </div>
     </div>
 
-    <!-- MÉCANIQUE DES FLUIDES -->
+    <!-- ═══════════════ MÉCANIQUE ═══════════════ -->
     <div class="theme-section" data-theme="meca">
-        <div class="theme-titre theme-meca">💧 Mécanique des fluides</div>
+        <div class="theme-titre theme-meca">💧 Mécanique</div>
         <div class="grid">
+            <div class="card" data-niveau="1ere">
+                <div>
+                    <div class="icon">⚖️</div>
+                    <span class="badge-niveau badge-1ere">1ère Pro · Ch06</span>
+                    <h3>Moments et Rotation</h3>
+                    <p>M = F × d — levier, équilibre en rotation, condition ΣM = 0.</p>
+                </div>
+                <a href="simulations/moments.html" class="btn-lancer btn-meca">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="1ere">
+                <div>
+                    <div class="icon">🏊</div>
+                    <span class="badge-niveau badge-1ere">1ère ICCER · Ch08</span>
+                    <h3>Force d'Archimède</h3>
+                    <p>FA = ρ·V·g — flottaison, poussée, pourcentage immergé.</p>
+                </div>
+                <a href="simulations/archimede.html" class="btn-lancer btn-meca">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🏃</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
+                    <h3>Mouvement et Trajectoire</h3>
+                    <p>Chronophotographie, 3 trajectoires, graphique d-t en temps réel — v = d/t.</p>
+                </div>
+                <a href="simulations/mouvement.html" class="btn-lancer btn-meca">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">⚖️</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch06</span>
+                    <h3>Forces et Équilibre</h3>
+                    <p>Plan incliné, vecteurs forces, composantes — P = m × g, condition d'équilibre.</p>
+                </div>
+                <a href="simulations/forces.html" class="btn-lancer btn-meca">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">🚗</div>
+                    <span class="badge-niveau badge-term">Terminale ERA · Ch04</span>
+                    <h3>Vitesse et Accélération</h3>
+                    <p>Cinématique v(t), x(t), a(t) — mouvement accéléré, décéléré, uniforme.</p>
+                </div>
+                <a href="simulations/vitesse-acceleration.html" class="btn-lancer btn-meca">Lancer →</a>
+            </div>
             <div class="card" data-niveau="term">
                 <div>
                     <div class="icon">🏊</div>
@@ -215,7 +312,7 @@
             <div class="card" data-niveau="term">
                 <div>
                     <div class="icon">💨</div>
-                    <span class="badge-niveau badge-term">Terminale · Thermique</span>
+                    <span class="badge-niveau badge-term">Terminale</span>
                     <h3>Pression des Gaz</h3>
                     <p>Boyle-Mariotte P·V = cste · Gay-Lussac P/T = cste — lois des gaz parfaits.</p>
                 </div>
@@ -224,10 +321,55 @@
         </div>
     </div>
 
-    <!-- CHIMIE -->
+    <!-- ═══════════════ CHIMIE ═══════════════ -->
     <div class="theme-section" data-theme="chimie">
         <div class="theme-titre theme-chimie">🧪 Chimie</div>
         <div class="grid">
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">⚛️</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
+                    <h3>Constructeur d'Atomes</h3>
+                    <p>Protons, neutrons, électrons — construisez votre atome.</p>
+                </div>
+                <a href="simulations/atome.html" class="btn-lancer btn-chimie">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🌀</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
+                    <h3>Couches Électroniques</h3>
+                    <p>Remplissage des couches K, L, M.</p>
+                </div>
+                <a href="simulations/atome-couches.html" class="btn-lancer btn-chimie">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🧪</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
+                    <h3>Modèles de l'Atome</h3>
+                    <p>Dalton, Thomson, Rutherford, Bohr — évolution historique.</p>
+                </div>
+                <a href="simulations/modeles-atome.html" class="btn-lancer btn-chimie">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🧫</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch08</span>
+                    <h3>Solutions et Concentration</h3>
+                    <p>Cm = m/V — dissolution, dilution C₁V₁ = C₂V₂, saturation.</p>
+                </div>
+                <a href="simulations/concentration.html" class="btn-lancer btn-chimie">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🎨</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch14</span>
+                    <h3>Mélangeur de Couleurs</h3>
+                    <p>Synthèse additive RVB.</p>
+                </div>
+                <a href="simulations/melangeur.html" class="btn-lancer btn-chimie">Lancer →</a>
+            </div>
             <div class="card" data-niveau="term">
                 <div>
                     <div class="icon">🔬</div>
@@ -237,49 +379,67 @@
                 </div>
                 <a href="simulations/oxydoreduction.html" class="btn-lancer btn-chimie">Lancer →</a>
             </div>
-            <div class="card" data-niveau="2nde">
+            <div class="card" data-niveau="term">
                 <div>
-                    <div class="icon">⚛️</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro</span>
-                    <h3>Constructeur d'Atomes</h3>
-                    <p>Protons, neutrons, électrons.</p>
+                    <div class="icon">🔋</div>
+                    <span class="badge-niveau badge-term">Terminale ERA · Ch02</span>
+                    <h3>Pile Électrochimique</h3>
+                    <p>Cellule galvanique, FEM, réactions aux électrodes, types de batteries.</p>
                 </div>
-                <a href="simulations/atome.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🌀</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro</span>
-                    <h3>Couches Électroniques</h3>
-                    <p>Remplissage des couches K, L, M.</p>
-                </div>
-                <a href="simulations/atome-couches.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🧪</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro</span>
-                    <h3>Modèles de l'Atome</h3>
-                    <p>Dalton, Thomson, Rutherford, Bohr.</p>
-                </div>
-                <a href="simulations/modeles-atome.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">⚖️</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro</span>
-                    <h3>Mélangeur de Couleurs</h3>
-                    <p>Synthèse additive RVB.</p>
-                </div>
-                <a href="simulations/melangeur.html" class="btn-lancer btn-chimie">Lancer →</a>
+                <a href="simulations/pile-electrochimique.html" class="btn-lancer btn-chimie">Lancer →</a>
             </div>
         </div>
     </div>
 
-    <!-- SIGNAUX -->
+    <!-- ═══════════════ SIGNAUX & OPTIQUE ═══════════════ -->
     <div class="theme-section" data-theme="signal">
-        <div class="theme-titre theme-signal">📡 Signaux</div>
+        <div class="theme-titre theme-signal">📡 Signaux & Optique</div>
         <div class="grid">
+            <div class="card" data-niveau="1ere">
+                <div>
+                    <div class="icon">🌈</div>
+                    <span class="badge-niveau badge-1ere">1ère Pro · Ch09-10</span>
+                    <h3>Spectre Électromagnétique</h3>
+                    <p>Radio → gamma — c = λf, applications, zoom visible, énergie E = hf.</p>
+                </div>
+                <a href="simulations/ondes-em.html" class="btn-lancer btn-signal">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🔊</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch09</span>
+                    <h3>Caractéristiques d'un Son</h3>
+                    <p>Fréquence, amplitude, spectre, échelle dB atelier — v = d/t, λ = v/f.</p>
+                </div>
+                <a href="simulations/son-2nde.html" class="btn-lancer btn-signal">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">💡</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch13</span>
+                    <h3>Réflexion et Réfraction</h3>
+                    <p>Lois de Descartes — n₁·sin(i₁) = n₂·sin(i₂), réflexion totale.</p>
+                </div>
+                <a href="simulations/refraction.html" class="btn-lancer btn-signal">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">💡</div>
+                    <span class="badge-niveau badge-term">Terminale ERA · Ch06</span>
+                    <h3>Sources Lumineuses</h3>
+                    <p>Incandescence, fluocompacte, LED — efficacité, spectre, coût sur 10 ans.</p>
+                </div>
+                <a href="simulations/sources-lumineuses.html" class="btn-lancer btn-signal">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">📶</div>
+                    <span class="badge-niveau badge-term">Terminale ERA · Ch07</span>
+                    <h3>Transmission de l'Information</h3>
+                    <p>Échantillonnage, théorème de Shannon, quantification, signal numérique.</p>
+                </div>
+                <a href="simulations/transmission-info.html" class="btn-lancer btn-signal">Lancer →</a>
+            </div>
             <div class="card" data-niveau="term">
                 <div>
                     <div class="icon">🔊</div>
@@ -292,23 +452,41 @@
         </div>
     </div>
 
-    <!-- MATHÉMATIQUES -->
+    <!-- ═══════════════ MATHÉMATIQUES ═══════════════ -->
     <div class="theme-section" data-theme="maths">
         <div class="theme-titre theme-maths">📐 Mathématiques</div>
         <div class="grid">
             <div class="card" data-niveau="2nde">
                 <div>
-                    <div class="icon">📈</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro</span>
-                    <h3>Fonctions du 2nd degré</h3>
-                    <p>Analyse de la parabole et de ses paramètres.</p>
+                    <div class="icon">📊</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch01</span>
+                    <h3>Proportionnalité</h3>
+                    <p>y = k·x, pourcentages, réductions — tableau et graphique dynamiques.</p>
                 </div>
-                <a href="simulations/traceur.html" class="btn-lancer btn-maths">Lancer →</a>
+                <a href="simulations/proportionnalite.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">📊</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch02-03</span>
+                    <h3>Statistiques</h3>
+                    <p>Diagrammes, moyenne, médiane, quartiles, boîte à moustaches.</p>
+                </div>
+                <a href="simulations/statistiques.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">🎲</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch04</span>
+                    <h3>Probabilités</h3>
+                    <p>Lancer de dé/pièce — fluctuation des fréquences et loi des grands nombres.</p>
+                </div>
+                <a href="simulations/probabilites.html" class="btn-lancer btn-maths">Lancer →</a>
             </div>
             <div class="card" data-niveau="2nde">
                 <div>
                     <div class="icon">🟰</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro</span>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
                     <h3>Résolution d'Équations</h3>
                     <p>Résoudre pas à pas ax + b = c.</p>
                 </div>
@@ -318,8 +496,8 @@
                 <div>
                     <div class="icon">⚖️</div>
                     <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Balance des équations</h3>
-                    <p>Applique des opérations aux deux membres et résous l'équation interactivement.</p>
+                    <h3>Balance des Équations</h3>
+                    <p>Opérations sur les deux membres — résolution interactive.</p>
                 </div>
                 <a href="simulations/balance.html" class="btn-lancer btn-maths">Lancer →</a>
             </div>
@@ -327,8 +505,8 @@
                 <div>
                     <div class="icon">📈</div>
                     <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Résolution graphique</h3>
-                    <p>Visualise l'intersection de y = ax+b et y = c — la solution, c'est l'abscisse !</p>
+                    <h3>Résolution Graphique</h3>
+                    <p>Intersection de y = ax+b et y = c — la solution, c'est l'abscisse !</p>
                 </div>
                 <a href="simulations/graphe-equation.html" class="btn-lancer btn-maths">Lancer →</a>
             </div>
@@ -336,8 +514,8 @@
                 <div>
                     <div class="icon">📏</div>
                     <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Inéquations & droite graduée</h3>
-                    <p>Visualise les solutions d'une inéquation sur la droite graduée et teste une valeur.</p>
+                    <h3>Inéquations</h3>
+                    <p>Solutions sur la droite graduée — test de valeurs.</p>
                 </div>
                 <a href="simulations/inegalite.html" class="btn-lancer btn-maths">Lancer →</a>
             </div>
@@ -346,7 +524,7 @@
                     <div class="icon">🏋️</div>
                     <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
                     <h3>Entraînement – Équations</h3>
-                    <p>Mode libre + Quiz 10 questions + difficulté adaptative. Résous des équations ax+b=c.</p>
+                    <p>Mode libre + Quiz 10 questions + difficulté adaptative.</p>
                 </div>
                 <a href="simulations/entrainement.html" class="btn-lancer btn-maths">Lancer →</a>
             </div>
@@ -355,9 +533,162 @@
                     <div class="icon">📐</div>
                     <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
                     <h3>Entraînement – Inéquations</h3>
-                    <p>Mode libre + Quiz 10 questions + difficulté adaptative. Résous des inéquations ax+b≥c.</p>
+                    <p>Mode libre + Quiz 10 questions + difficulté adaptative.</p>
                 </div>
                 <a href="simulations/entrainement-ineq.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">⚙️</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
+                    <h3>Machine à Fonctions</h3>
+                    <p>Entrée x → machine → sortie f(x). Table de valeurs et graphique.</p>
+                </div>
+                <a href="simulations/fonction-machine.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">📈</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch08-09</span>
+                    <h3>Fonctions Linéaire & Affine</h3>
+                    <p>f(x) = ax + b — pente, ordonnée à l'origine, intersection de deux droites.</p>
+                </div>
+                <a href="simulations/droite-affine.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">📈</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch10</span>
+                    <h3>Fonctions du 2nd Degré</h3>
+                    <p>Parabole — sommet, axe de symétrie, paramètres a, b, c.</p>
+                </div>
+                <a href="simulations/traceur.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">📐</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch11</span>
+                    <h3>Figures Planes</h3>
+                    <p>Périmètres et aires — rectangle, triangle, cercle, trapèze, parallélogramme.</p>
+                </div>
+                <a href="simulations/figures-planes.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">📏</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch12</span>
+                    <h3>Théorème de Pythagore</h3>
+                    <p>a² + b² = c² — triangle rectangle, carrés sur les côtés, vérification.</p>
+                </div>
+                <a href="simulations/pythagore.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">📐</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch13</span>
+                    <h3>Théorème de Thalès</h3>
+                    <p>Configuration de Thalès — rapports de segments, facteur d'échelle.</p>
+                </div>
+                <a href="simulations/thales.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="2nde">
+                <div>
+                    <div class="icon">📦</div>
+                    <span class="badge-niveau badge-2nde">2nde Pro · Ch14</span>
+                    <h3>Solides et Volumes</h3>
+                    <p>Cube, pavé, cylindre, cône, pyramide, sphère — volumes et agrandissement k³.</p>
+                </div>
+                <a href="simulations/solides.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="1ere">
+                <div>
+                    <div class="icon">📈</div>
+                    <span class="badge-niveau badge-1ere">1ère Pro · Ch06</span>
+                    <h3>Fonction Dérivée</h3>
+                    <p>Tangente, sécante, signe de f'(x), tableau de variations.</p>
+                </div>
+                <a href="simulations/derivee.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">📊</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch01</span>
+                    <h3>Statistiques à deux variables</h3>
+                    <p>Nuage de points, droite de régression, coefficient de corrélation r.</p>
+                </div>
+                <a href="simulations/stats-2var.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">🔢</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch03</span>
+                    <h3>Suites Numériques</h3>
+                    <p>Suites arithmétiques et géométriques — termes, sommes, convergence.</p>
+                </div>
+                <a href="simulations/suites.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">📈</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch04</span>
+                    <h3>Polynôme degré 3</h3>
+                    <p>Courbe ax³+bx²+cx+d — racines, extrema, point d'inflexion, dérivée.</p>
+                </div>
+                <a href="simulations/polynome3.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">📈</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch05</span>
+                    <h3>Exponentielle et Logarithme</h3>
+                    <p>Fonctions exp et log — base variable, propriétés, symétrie.</p>
+                </div>
+                <a href="simulations/exp-log.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">➡️</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch06</span>
+                    <h3>Vecteurs</h3>
+                    <p>Addition, soustraction, k·u, norme, colinéarité — opérations vectorielles.</p>
+                </div>
+                <a href="simulations/vecteurs.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">🔵</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch07</span>
+                    <h3>Trigonométrie</h3>
+                    <p>Cercle trigonométrique — sin, cos, tan, angles remarquables.</p>
+                </div>
+                <a href="simulations/trigonometrie.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">📐</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch08</span>
+                    <h3>Calcul Intégral</h3>
+                    <p>Aire sous la courbe — méthode des rectangles, ∫f(x)dx.</p>
+                </div>
+                <a href="simulations/integrale.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">🌀</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch10</span>
+                    <h3>Nombres Complexes</h3>
+                    <p>Plan complexe, module, argument, opérations z+w et z×w.</p>
+                </div>
+                <a href="simulations/complexes.html" class="btn-lancer btn-maths">Lancer →</a>
+            </div>
+            <div class="card" data-niveau="term">
+                <div>
+                    <div class="icon">📐</div>
+                    <span class="badge-niveau badge-term">Terminale · Ch11</span>
+                    <h3>Produit Scalaire</h3>
+                    <p>u·v = ||u||·||v||·cos(θ) — orthogonalité, projection, angle.</p>
+                </div>
+                <a href="simulations/scalaire.html" class="btn-lancer btn-maths">Lancer →</a>
             </div>
         </div>
     </div>
@@ -369,11 +700,8 @@ function filtrer(niveau, btn) {
     btn.classList.add('active');
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
-        card.style.display = '';
-        if (niveau === 'term' && card.dataset.niveau === '2nde') card.style.display = 'none';
-        if (niveau === '2nde' && card.dataset.niveau === 'term') card.style.display = 'none';
+        card.style.display = (niveau === 'tous' || card.dataset.niveau === niveau) ? '' : 'none';
     });
-    // Cacher les sections vides
     document.querySelectorAll('.theme-section').forEach(section => {
         const visibles = [...section.querySelectorAll('.card')].filter(c => c.style.display !== 'none');
         section.style.display = visibles.length === 0 ? 'none' : '';

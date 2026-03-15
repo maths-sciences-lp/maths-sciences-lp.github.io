@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Réflexion et Réfraction de la lumière</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff;padding:2rem 1.5rem;text-align:center;position:relative}
+header h1{font-size:1.6rem;margin-bottom:.3rem}
+header p{opacity:.85;font-size:.95rem}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:1.5rem auto;padding:0 1rem;display:flex;flex-direction:column;gap:1.2rem}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:1.4rem}
+.card h2{color:#7c3aed;font-size:1.15rem;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.card h2::before{content:'';display:inline-block;width:4px;height:1.1em;background:#7c3aed;border-radius:2px}
+.canvas-wrap{background:#1e1b2e;border-radius:8px;padding:6px}
+canvas{display:block;width:100%;border-radius:4px}
+.controls-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.slider-group{display:flex;flex-direction:column;gap:4px}
+.slider-group label{font-weight:600;font-size:.88rem;color:#374151}
+.slider-group .val{font-size:.82rem;color:#7c3aed;font-weight:700}
+input[type=range]{width:100%;accent-color:#7c3aed;cursor:pointer}
+select{width:100%;padding:6px 10px;border:2px solid #e2e8f0;border-radius:6px;font-size:.9rem;font-family:inherit;background:#fff;cursor:pointer}
+select:focus{border-color:#7c3aed;outline:none}
+.readings{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.7rem;margin-top:.8rem}
+.reading-box{background:#f5f0ff;border:1px solid #e0d5f5;border-radius:8px;padding:.6rem;text-align:center}
+.reading-box .label{font-size:.78rem;color:#64748b;margin-bottom:2px}
+.reading-box .value{font-size:1.05rem;font-weight:700;color:#7c3aed}
+.alert-box{display:none;background:#fef2f2;border:2px solid #fca5a5;border-radius:8px;padding:.7rem 1rem;text-align:center;font-weight:700;color:#dc2626;font-size:1rem;margin-top:.5rem}
+.alert-box.show{display:block;animation:pulse 1s infinite alternate}
+@keyframes pulse{from{opacity:.7}to{opacity:1}}
+.formulas{background:#f8f5ff;border-left:4px solid #7c3aed;padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.92rem;line-height:1.8}
+.context{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:.8rem 1rem;font-size:.88rem;color:#92400e;display:flex;align-items:flex-start;gap:8px}
+.context::before{content:'💡';font-size:1.1rem;flex-shrink:0}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:.5rem;font-size:.85rem}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend .dot{width:14px;height:4px;border-radius:2px}
+@media(max-width:600px){
+  .controls-grid{grid-template-columns:1fr}
+  .readings{grid-template-columns:1fr 1fr}
+  header h1{font-size:1.25rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>R&eacute;flexion et R&eacute;fraction de la lumi&egrave;re</h1>
+  <p>2nde Bac Pro &middot; Ch13 &middot; n<sub>1</sub>&middot;sin(i<sub>1</sub>) = n<sub>2</sub>&middot;sin(i<sub>2</sub>)</p>
+</header>
+
+<div class="container">
+  <!-- Canvas -->
+  <div class="card">
+    <h2>Simulation optique</h2>
+    <div class="canvas-wrap">
+      <canvas id="cv" width="800" height="500"></canvas>
+    </div>
+    <div class="legend">
+      <span><span class="dot" style="background:#facc15"></span> Rayon incident</span>
+      <span><span class="dot" style="background:#f97316"></span> Rayon r&eacute;fl&eacute;chi</span>
+      <span><span class="dot" style="background:#22d3ee"></span> Rayon r&eacute;fract&eacute;</span>
+      <span><span class="dot" style="background:rgba(255,255,255,.4);border:1px dashed #fff"></span> Normale</span>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="card">
+    <h2>Param&egrave;tres</h2>
+    <div class="controls-grid">
+      <div class="slider-group">
+        <label>Angle d'incidence i<sub>1</sub> : <span class="val" id="vAngle">30&deg;</span></label>
+        <input type="range" id="sAngle" min="0" max="89" value="30" step="1" oninput="update()">
+      </div>
+      <div></div>
+      <div class="slider-group">
+        <label>Milieu 1 (haut)</label>
+        <select id="selM1" onchange="update()">
+          <option value="1.00">Air (n = 1,00)</option>
+          <option value="1.33">Eau (n = 1,33)</option>
+          <option value="1.50">Verre (n = 1,50)</option>
+        </select>
+      </div>
+      <div class="slider-group">
+        <label>Milieu 2 (bas)</label>
+        <select id="selM2" onchange="update()">
+          <option value="1.00">Air (n = 1,00)</option>
+          <option value="1.33" selected>Eau (n = 1,33)</option>
+          <option value="1.50">Verre (n = 1,50)</option>
+        </select>
+      </div>
+    </div>
+    <div class="readings" id="readings"></div>
+    <div class="alert-box" id="alertTIR">&#9888; R&eacute;flexion totale ! Aucun rayon r&eacute;fract&eacute;.</div>
+  </div>
+
+  <!-- Formulas -->
+  <div class="card">
+    <h2>Lois de l'optique</h2>
+    <div class="formulas">
+      <strong>Loi de la r&eacute;flexion :</strong> \( i_r = i_1 \) &mdash; l'angle de r&eacute;flexion &eacute;gale l'angle d'incidence.<br>
+      <strong>Loi de Snell-Descartes :</strong> \( n_1 \cdot \sin(i_1) = n_2 \cdot \sin(i_2) \)<br>
+      <strong>Angle critique :</strong> \( i_c = \arcsin\!\left(\dfrac{n_2}{n_1}\right) \) &nbsp; (si \( n_1 > n_2 \))
+    </div>
+  </div>
+
+  <!-- Context -->
+  <div class="context">
+    <div><strong>Applications :</strong> La r&eacute;fraction explique pourquoi un b&acirc;ton semble bris&eacute; dans l'eau, comment fonctionnent les lentilles de lunettes, et comment la fibre optique guide la lumi&egrave;re par r&eacute;flexion totale interne.</div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('cv');
+const ctx = canvas.getContext('2d');
+
+const mediaNames = {'1.00': 'Air', '1.33': 'Eau', '1.50': 'Verre'};
+const mediaColors1 = {'1.00': '#2d2b45', '1.33': '#1a2940', '1.50': '#2a1f3d'};
+const mediaColors2 = {'1.00': '#2d2b45', '1.33': '#0c2d48', '1.50': '#1f1535'};
+
+function update() {
+  const i1deg = +document.getElementById('sAngle').value;
+  const n1 = +document.getElementById('selM1').value;
+  const n2 = +document.getElementById('selM2').value;
+
+  document.getElementById('vAngle').innerHTML = i1deg + '&deg;';
+
+  const i1 = i1deg * Math.PI / 180;
+  const sinI2 = n1 * Math.sin(i1) / n2;
+  const hasTIR = sinI2 > 1;
+  const i2 = hasTIR ? null : Math.asin(sinI2);
+  const i2deg = hasTIR ? null : (i2 * 180 / Math.PI);
+
+  // Critical angle
+  let icDeg = null;
+  if (n1 > n2) {
+    icDeg = Math.asin(n2 / n1) * 180 / Math.PI;
+  }
+
+  // Readings
+  let readingsHTML = `
+    <div class="reading-box"><div class="label">n<sub>1</sub> (${mediaNames[n1.toFixed(2)]})</div><div class="value">${n1.toFixed(2)}</div></div>
+    <div class="reading-box"><div class="label">n<sub>2</sub> (${mediaNames[n2.toFixed(2)]})</div><div class="value">${n2.toFixed(2)}</div></div>
+    <div class="reading-box"><div class="label">i<sub>1</sub> (incidence)</div><div class="value">${i1deg}&deg;</div></div>
+    <div class="reading-box"><div class="label">i<sub>r</sub> (r&eacute;flexion)</div><div class="value">${i1deg}&deg;</div></div>
+    <div class="reading-box"><div class="label">i<sub>2</sub> (r&eacute;fraction)</div><div class="value">${hasTIR ? '---' : i2deg.toFixed(1) + '&deg;'}</div></div>
+  `;
+  if (icDeg !== null) {
+    readingsHTML += `<div class="reading-box"><div class="label">Angle critique i<sub>c</sub></div><div class="value">${icDeg.toFixed(1)}&deg;</div></div>`;
+  }
+  document.getElementById('readings').innerHTML = readingsHTML;
+
+  const alert = document.getElementById('alertTIR');
+  alert.classList.toggle('show', hasTIR);
+
+  draw(i1, i1deg, n1, n2, i2, hasTIR);
+}
+
+function draw(i1, i1deg, n1, n2, i2, hasTIR) {
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  ctx.clearRect(0, 0, W, H);
+
+  const m1key = n1.toFixed(2);
+  const m2key = n2.toFixed(2);
+
+  // Medium 1 (top)
+  ctx.fillStyle = mediaColors1[m1key] || '#2d2b45';
+  ctx.fillRect(0, 0, W, cy);
+
+  // Medium 2 (bottom)
+  ctx.fillStyle = mediaColors2[m2key] || '#0c2d48';
+  ctx.fillRect(0, cy, W, cy);
+
+  // Interface line
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
+
+  // Medium labels
+  ctx.font = 'bold 14px Segoe UI';
+  ctx.textAlign = 'left';
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.fillText('Milieu 1 : ' + mediaNames[m1key] + ' (n=' + n1.toFixed(2) + ')', 15, 25);
+  ctx.fillText('Milieu 2 : ' + mediaNames[m2key] + ' (n=' + n2.toFixed(2) + ')', 15, cy + 25);
+
+  // Normal (dashed vertical)
+  ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(cx, 20); ctx.lineTo(cx, H - 20); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Normal label
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.font = '12px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('Normale', cx, 15);
+
+  const rayLen = 220;
+
+  // Incident ray (comes from upper-left toward center)
+  // Angle i1 measured from normal (vertical), so ray direction:
+  // dx = -sin(i1), dy = cos(i1) going downward toward interface
+  const incStartX = cx - Math.sin(i1) * rayLen;
+  const incStartY = cy - Math.cos(i1) * rayLen;
+
+  // Draw incident ray
+  drawRay(incStartX, incStartY, cx, cy, '#facc15', 3);
+
+  // Reflected ray (symmetric about normal, going up-right)
+  const refEndX = cx + Math.sin(i1) * rayLen;
+  const refEndY = cy - Math.cos(i1) * rayLen;
+  drawRay(cx, cy, refEndX, refEndY, '#f97316', 2.5);
+
+  // Refracted ray
+  if (!hasTIR && i2 !== null) {
+    const refrEndX = cx + Math.sin(i2) * rayLen;
+    const refrEndY = cy + Math.cos(i2) * rayLen;
+    drawRay(cx, cy, refrEndX, refrEndY, '#22d3ee', 2.5);
+
+    // Angle arc for i2
+    drawAngleArc(cx, cy, 60, Math.PI / 2, Math.PI / 2 - i2, '#22d3ee', false);
+    // Label i2
+    if (i2 > 0.05) {
+      const labelAngle2 = Math.PI / 2 - i2 / 2;
+      ctx.fillStyle = '#22d3ee';
+      ctx.font = 'bold 13px Segoe UI';
+      ctx.textAlign = 'center';
+      const i2deg = (i2 * 180 / Math.PI).toFixed(1);
+      ctx.fillText('i₂=' + i2deg + '°', cx + Math.cos(labelAngle2) * 80, cy + Math.sin(labelAngle2) * 80 + 5);
+    }
+  }
+
+  // Angle arc for i1 (incident)
+  drawAngleArc(cx, cy, 55, -Math.PI / 2, -Math.PI / 2 + i1, '#facc15', true);
+  // Label i1
+  if (i1 > 0.05) {
+    const labelAngle1 = -Math.PI / 2 + i1 / 2;
+    ctx.fillStyle = '#facc15';
+    ctx.font = 'bold 13px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText('i₁=' + i1deg + '°', cx + Math.cos(labelAngle1) * 80, cy + Math.sin(labelAngle1) * 80);
+  }
+
+  // Angle arc for ir (reflected)
+  drawAngleArc(cx, cy, 50, -Math.PI / 2, -Math.PI / 2 - i1, '#f97316', true);
+  if (i1 > 0.05) {
+    const labelAngleR = -Math.PI / 2 - i1 / 2;
+    ctx.fillStyle = '#f97316';
+    ctx.font = 'bold 13px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText('iᵣ=' + i1deg + '°', cx + Math.cos(labelAngleR) * 75, cy + Math.sin(labelAngleR) * 75);
+  }
+
+  // TIR message on canvas
+  if (hasTIR) {
+    ctx.fillStyle = 'rgba(220,38,38,0.9)';
+    ctx.font = 'bold 18px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText('Réflexion totale !', cx, cy + 60);
+  }
+
+  // Point of incidence
+  ctx.beginPath();
+  ctx.arc(cx, cy, 5, 0, 2 * Math.PI);
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+}
+
+function drawRay(x1, y1, x2, y2, color, lw) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lw;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 8;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+
+  // Arrowhead at midpoint
+  const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+  const dx = x2 - x1, dy = y2 - y1;
+  const len = Math.sqrt(dx * dx + dy * dy);
+  const ux = dx / len, uy = dy / len;
+  const hl = 12;
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(mx + ux * hl, my + uy * hl);
+  ctx.lineTo(mx - uy * hl * 0.4, my + ux * hl * 0.4);
+  ctx.lineTo(mx + uy * hl * 0.4, my - ux * hl * 0.4);
+  ctx.closePath();
+  ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.restore();
+}
+
+function drawAngleArc(cx, cy, r, startAngle, endAngle, color, upper) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.globalAlpha = 0.6;
+  ctx.beginPath();
+  if (startAngle < endAngle) {
+    ctx.arc(cx, cy, r, startAngle, endAngle);
+  } else {
+    ctx.arc(cx, cy, r, endAngle, startAngle);
+  }
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+}
+
+update();
+</script>
+</body>
+</html>

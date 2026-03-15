@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grandeurs Électriques et Circuits — Simulation</title>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 860px; margin: 0 auto; }
+  header { background: #6f42c1; color: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 25px; position: relative; }
+  header h1 { margin: 0 0 5px 0; font-size: 1.5em; }
+  header p { margin: 0; opacity: 0.9; font-size: 0.95em; }
+  .btn-back { position: absolute; left: 15px; top: 15px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 5px 12px; border-radius: 5px; font-size: 0.85em; }
+  .btn-back:hover { background: rgba(255,255,255,0.35); }
+  .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+  h3 { margin-top: 0; color: #6f42c1; }
+  label { font-weight: 600; display: block; margin-bottom: 4px; }
+  input[type=range] { width: 100%; accent-color: #6f42c1; margin-bottom: 10px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:600px) { .row { grid-template-columns: 1fr; } }
+  canvas { display: block; width: 100%; border-radius: 8px; background: #1a1a2e; }
+  .results { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; }
+  @media(max-width:600px) { .results { grid-template-columns: 1fr 1fr; } }
+  .result-box { text-align: center; padding: 12px 8px; border-radius: 8px; }
+  .result-box .val { font-size: 1.4em; font-weight: 700; }
+  .result-box .lbl { font-size: 0.8em; opacity: 0.7; margin-top: 2px; }
+  .r-u { background: #dbeafe; color: #1d4ed8; }
+  .r-i { background: #fee2e2; color: #dc2626; }
+  .r-r { background: #fef3c7; color: #b45309; }
+  .r-p { background: #f3e8ff; color: #7c3aed; }
+  .formule { font-family: monospace; background: #f5f0ff; border: 1px solid #e0d4f5; border-radius: 8px; padding: 12px 15px; font-size: 0.92em; line-height: 1.7; }
+  .toggle-group { display: flex; gap: 0; margin-bottom: 15px; }
+  .toggle-btn { flex: 1; padding: 10px; text-align: center; border: 2px solid #6f42c1; background: white; color: #6f42c1; font-weight: 600; cursor: pointer; font-size: 0.95em; transition: all 0.2s; }
+  .toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+  .toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+  .toggle-btn.active { background: #6f42c1; color: white; }
+  .info-box { background: #f5f0ff; border-left: 4px solid #6f42c1; border-radius: 0 8px 8px 0; padding: 12px 15px; font-size: 0.9em; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Grandeurs &Eacute;lectriques et Circuits</h1>
+    <p>2nde Bac Pro &middot; Ch02 &middot; P = U &times; I</p>
+  </header>
+
+  <div class="card">
+    <h3>Circuit interactif</h3>
+    <div class="toggle-group">
+      <button class="toggle-btn active" onclick="setMode('serie')">S&eacute;rie</button>
+      <button class="toggle-btn" onclick="setMode('parallele')">Parall&egrave;le</button>
+    </div>
+    <canvas id="canvas" height="380"></canvas>
+    <div class="results" id="results"></div>
+  </div>
+
+  <div class="card">
+    <h3>Param&egrave;tres du circuit</h3>
+    <div class="row">
+      <div>
+        <label>Tension U : <span id="vU" style="color:#1d4ed8;">12</span> V</label>
+        <input type="range" id="slU" min="0" max="24" step="0.5" value="12" oninput="update()">
+        <label>R&eacute;sistance R<sub>1</sub> : <span id="vR1" style="color:#b45309;">10</span> &Omega;</label>
+        <input type="range" id="slR1" min="1" max="100" step="1" value="10" oninput="update()">
+        <div id="r2group">
+          <label>R&eacute;sistance R<sub>2</sub> : <span id="vR2" style="color:#b45309;">20</span> &Omega;</label>
+          <input type="range" id="slR2" min="1" max="100" step="1" value="20" oninput="update()">
+        </div>
+      </div>
+      <div>
+        <div class="formule">
+          <strong>Loi d'Ohm :</strong> U = R &times; I<br>
+          <strong>Puissance :</strong> P = U &times; I<br>
+          <strong>S&eacute;rie :</strong> R<sub>eq</sub> = R<sub>1</sub> + R<sub>2</sub><br>
+          <strong>Parall&egrave;le :</strong> R<sub>eq</sub> = (R<sub>1</sub> &times; R<sub>2</sub>) / (R<sub>1</sub> + R<sub>2</sub>)
+        </div>
+        <div class="info-box" id="infoMode"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const cv = document.getElementById('canvas');
+const ctx = cv.getContext('2d');
+let mode = 'serie';
+let W, H;
+let electrons = [];
+let animId;
+
+function resize() {
+  W = cv.offsetWidth;
+  H = 380;
+  cv.width = W;
+  cv.height = H;
+}
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.toggle-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && m === 'serie') || (i === 1 && m === 'parallele'));
+  });
+  initElectrons();
+  update();
+}
+
+function getValues() {
+  const U = parseFloat(document.getElementById('slU').value);
+  const R1 = parseFloat(document.getElementById('slR1').value);
+  const R2 = parseFloat(document.getElementById('slR2').value);
+  document.getElementById('vU').textContent = U;
+  document.getElementById('vR1').textContent = R1;
+  document.getElementById('vR2').textContent = R2;
+  let Req, I, P;
+  if (mode === 'serie') {
+    Req = R1 + R2;
+  } else {
+    Req = (R1 * R2) / (R1 + R2);
+  }
+  I = U / Req;
+  P = U * I;
+  return { U, R1, R2, Req, I, P };
+}
+
+function update() {
+  const v = getValues();
+  const res = document.getElementById('results');
+  let extra = '';
+  if (mode === 'serie') {
+    extra = `<div class="result-box r-r"><div class="val">${v.Req.toFixed(1)}</div><div class="lbl">R<sub>eq</sub> (&Omega;)</div></div>`;
+  } else {
+    extra = `<div class="result-box r-r"><div class="val">${v.Req.toFixed(1)}</div><div class="lbl">R<sub>eq</sub> (&Omega;)</div></div>`;
+  }
+  res.innerHTML =
+    `<div class="result-box r-u"><div class="val">${v.U.toFixed(1)}</div><div class="lbl">U (V)</div></div>` +
+    `<div class="result-box r-i"><div class="val">${v.I.toFixed(2)}</div><div class="lbl">I (A)</div></div>` +
+    extra +
+    `<div class="result-box r-p"><div class="val">${v.P.toFixed(1)}</div><div class="lbl">P (W)</div></div>`;
+
+  const info = document.getElementById('infoMode');
+  if (mode === 'serie') {
+    const I1 = v.I, I2 = v.I;
+    const U1 = v.R1 * v.I, U2 = v.R2 * v.I;
+    info.innerHTML = `<strong>Mode s&eacute;rie</strong><br>Le courant est identique partout : I = ${v.I.toFixed(2)} A<br>U<sub>R1</sub> = ${U1.toFixed(1)} V, U<sub>R2</sub> = ${U2.toFixed(1)} V<br>V&eacute;rification : ${U1.toFixed(1)} + ${U2.toFixed(1)} = ${(U1+U2).toFixed(1)} V`;
+  } else {
+    const I1 = v.U / v.R1, I2 = v.U / v.R2;
+    info.innerHTML = `<strong>Mode parall&egrave;le</strong><br>La tension est identique aux bornes : U = ${v.U.toFixed(1)} V<br>I<sub>R1</sub> = ${I1.toFixed(2)} A, I<sub>R2</sub> = ${I2.toFixed(2)} A<br>I<sub>total</sub> = ${(I1+I2).toFixed(2)} A`;
+  }
+}
+
+/* ── Circuit drawing ── */
+function drawSerie(v) {
+  const mx = W / 2, my = H / 2;
+  const bw = 50, bh = 80;
+  const rw = 60, rh = 24;
+  const top = my - 100, bot = my + 100;
+  const left = mx - 160, right = mx + 160;
+
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+
+  // wires - top
+  ctx.beginPath();
+  ctx.moveTo(left, top); ctx.lineTo(right, top);
+  ctx.stroke();
+  // wires - bottom
+  ctx.beginPath();
+  ctx.moveTo(left, bot); ctx.lineTo(right, bot);
+  ctx.stroke();
+  // left vertical
+  ctx.beginPath();
+  ctx.moveTo(left, top); ctx.lineTo(left, bot);
+  ctx.stroke();
+  // right vertical
+  ctx.beginPath();
+  ctx.moveTo(right, top); ctx.lineTo(right, bot);
+  ctx.stroke();
+
+  // Battery on left
+  const by = my;
+  drawBattery(left, by, v.U);
+
+  // R1 on top
+  const r1x = mx - 40;
+  drawResistor(r1x, top, rw, rh, 'R₁', v.R1 + ' Ω');
+
+  // R2 on right side of top
+  const r2x = mx + 50;
+  drawResistor(r2x, top, rw, rh, 'R₂', v.R2 + ' Ω');
+
+  // Ammeter on bottom
+  drawMeter(mx, bot, 'A', v.I.toFixed(2) + ' A', '#dc2626');
+
+  // Voltmeter across battery
+  drawVoltmeter(left + 40, my, v.U.toFixed(1) + ' V');
+}
+
+function drawParallele(v) {
+  const mx = W / 2, my = H / 2;
+  const top = my - 110, bot = my + 110;
+  const left = mx - 170, right = mx + 170;
+  const branchLeft = mx - 50, branchRight = mx + 50;
+  const branchTop = top + 30, branchBot = bot - 30;
+
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = 'round';
+
+  // Main top wire
+  ctx.beginPath(); ctx.moveTo(left, top); ctx.lineTo(right, top); ctx.stroke();
+  // Main bottom wire
+  ctx.beginPath(); ctx.moveTo(left, bot); ctx.lineTo(right, bot); ctx.stroke();
+  // Left vertical
+  ctx.beginPath(); ctx.moveTo(left, top); ctx.lineTo(left, bot); ctx.stroke();
+  // Right vertical
+  ctx.beginPath(); ctx.moveTo(right, top); ctx.lineTo(right, bot); ctx.stroke();
+
+  // Branch split top
+  ctx.beginPath(); ctx.moveTo(mx, top); ctx.lineTo(branchLeft, branchTop); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(mx, top); ctx.lineTo(branchRight, branchTop); ctx.stroke();
+  // Branch merge bottom
+  ctx.beginPath(); ctx.moveTo(branchLeft, branchBot); ctx.lineTo(mx, bot); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(branchRight, branchBot); ctx.lineTo(mx, bot); ctx.stroke();
+  // Branch verticals
+  ctx.beginPath(); ctx.moveTo(branchLeft, branchTop); ctx.lineTo(branchLeft, branchBot); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(branchRight, branchTop); ctx.lineTo(branchRight, branchBot); ctx.stroke();
+
+  // Battery on left
+  drawBattery(left, my, v.U);
+
+  // R1 on left branch
+  drawResistor(branchLeft - 30, my - 12, 60, 24, 'R₁', v.R1 + ' Ω');
+  // R2 on right branch
+  drawResistor(branchRight - 30, my - 12, 60, 24, 'R₂', v.R2 + ' Ω');
+
+  // Current labels
+  const I1 = (v.U / v.R1).toFixed(2);
+  const I2 = (v.U / v.R2).toFixed(2);
+  ctx.fillStyle = '#dc2626';
+  ctx.font = 'bold 11px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('I₁=' + I1 + 'A', branchLeft, branchTop - 8);
+  ctx.fillText('I₂=' + I2 + 'A', branchRight, branchTop - 8);
+
+  // Ammeter on bottom left
+  drawMeter(left + 60, bot, 'A', v.I.toFixed(2) + ' A', '#dc2626');
+
+  // Voltmeter
+  drawVoltmeter(left + 40, my, v.U.toFixed(1) + ' V');
+}
+
+function drawBattery(x, y, U) {
+  ctx.lineWidth = 3;
+  // Long line (positive)
+  ctx.strokeStyle = '#dc2626';
+  ctx.beginPath(); ctx.moveTo(x - 12, y - 18); ctx.lineTo(x + 12, y - 18); ctx.stroke();
+  // Short line (negative)
+  ctx.strokeStyle = '#1d4ed8';
+  ctx.beginPath(); ctx.moveTo(x - 7, y - 8); ctx.lineTo(x + 7, y - 8); ctx.stroke();
+  ctx.strokeStyle = '#dc2626';
+  ctx.beginPath(); ctx.moveTo(x - 12, y + 8); ctx.lineTo(x + 12, y + 8); ctx.stroke();
+  ctx.strokeStyle = '#1d4ed8';
+  ctx.beginPath(); ctx.moveTo(x - 7, y + 18); ctx.lineTo(x + 7, y + 18); ctx.stroke();
+  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = '#64748b';
+  // + and - labels
+  ctx.fillStyle = '#dc2626';
+  ctx.font = 'bold 14px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('+', x + 20, y - 12);
+  ctx.fillStyle = '#1d4ed8';
+  ctx.fillText('−', x + 20, y + 22);
+  // Label
+  ctx.fillStyle = '#1d4ed8';
+  ctx.font = 'bold 12px Segoe UI';
+  ctx.fillText(U.toFixed(1) + ' V', x - 30, y + 5);
+}
+
+function drawResistor(x, y, w, h, name, val) {
+  ctx.fillStyle = '#fef3c7';
+  ctx.strokeStyle = '#b45309';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(x, y - h/2, w, h, 4);
+  ctx.fill();
+  ctx.stroke();
+  // zigzag
+  ctx.strokeStyle = '#92400e';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  const zx = x + 5, zy = y, zw = w - 10, steps = 6, amp = 6;
+  for (let i = 0; i <= steps; i++) {
+    const px = zx + (i / steps) * zw;
+    const py = zy + (i % 2 === 0 ? -amp : amp);
+    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  // labels
+  ctx.fillStyle = '#92400e';
+  ctx.font = 'bold 11px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText(name, x + w/2, y - h/2 - 6);
+  ctx.font = '10px Segoe UI';
+  ctx.fillText(val, x + w/2, y + h/2 + 14);
+}
+
+function drawMeter(x, y, letter, val, color) {
+  ctx.beginPath();
+  ctx.arc(x, y, 16, 0, Math.PI * 2);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.font = 'bold 14px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(letter, x, y);
+  ctx.font = 'bold 10px Segoe UI';
+  ctx.fillText(val, x, y + 26);
+  ctx.textBaseline = 'alphabetic';
+}
+
+function drawVoltmeter(x, y, val) {
+  ctx.setLineDash([4, 4]);
+  ctx.strokeStyle = '#1d4ed8';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(x, y - 35); ctx.lineTo(x, y + 35);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath();
+  ctx.arc(x, y, 16, 0, Math.PI * 2);
+  ctx.fillStyle = '#dbeafe';
+  ctx.fill();
+  ctx.strokeStyle = '#1d4ed8';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.fillStyle = '#1d4ed8';
+  ctx.font = 'bold 14px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('V', x, y);
+  ctx.font = 'bold 10px Segoe UI';
+  ctx.fillText(val, x, y - 26);
+  ctx.textBaseline = 'alphabetic';
+}
+
+/* ── Electrons ── */
+function getSerieWirePath() {
+  const mx = W / 2, my = H / 2;
+  const top = my - 100, bot = my + 100;
+  const left = mx - 160, right = mx + 160;
+  return [
+    { x: left, y: top },
+    { x: right, y: top },
+    { x: right, y: bot },
+    { x: left, y: bot },
+    { x: left, y: top }
+  ];
+}
+
+function getParalleleWirePath(branch) {
+  const mx = W / 2, my = H / 2;
+  const top = my - 110, bot = my + 110;
+  const left = mx - 170, right = mx + 170;
+  const bx = branch === 0 ? mx - 50 : mx + 50;
+  const bTop = top + 30, bBot = bot - 30;
+  return [
+    { x: left, y: top },
+    { x: mx, y: top },
+    { x: bx, y: bTop },
+    { x: bx, y: bBot },
+    { x: mx, y: bot },
+    { x: left, y: bot },
+    { x: left, y: top }
+  ];
+}
+
+function pathLength(pts) {
+  let len = 0;
+  for (let i = 1; i < pts.length; i++) {
+    len += Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y);
+  }
+  return len;
+}
+
+function posOnPath(pts, t) {
+  const total = pathLength(pts);
+  let target = (t % 1) * total;
+  for (let i = 1; i < pts.length; i++) {
+    const seg = Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y);
+    if (target <= seg) {
+      const f = target / seg;
+      return { x: pts[i-1].x + (pts[i].x - pts[i-1].x) * f, y: pts[i-1].y + (pts[i].y - pts[i-1].y) * f };
+    }
+    target -= seg;
+  }
+  return pts[pts.length - 1];
+}
+
+function initElectrons() {
+  electrons = [];
+  const count = 16;
+  if (mode === 'serie') {
+    const path = getSerieWirePath();
+    for (let i = 0; i < count; i++) {
+      electrons.push({ t: i / count, path });
+    }
+  } else {
+    const p1 = getParalleleWirePath(0);
+    const p2 = getParalleleWirePath(1);
+    for (let i = 0; i < count / 2; i++) {
+      electrons.push({ t: i / (count / 2), path: p1 });
+      electrons.push({ t: i / (count / 2), path: p2 });
+    }
+  }
+}
+
+function animate() {
+  const v = getValues();
+  const speed = Math.min(v.I * 0.003, 0.015);
+
+  ctx.clearRect(0, 0, W, H);
+  if (mode === 'serie') drawSerie(v);
+  else drawParallele(v);
+
+  // draw electrons
+  if (v.U > 0 && v.I > 0) {
+    for (const e of electrons) {
+      e.t = (e.t + speed) % 1;
+      const pos = posOnPath(e.path, e.t);
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#fbbf24';
+      ctx.fill();
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  // Direction arrows
+  ctx.fillStyle = '#fbbf24';
+  ctx.font = '10px Segoe UI';
+  ctx.textAlign = 'center';
+  if (mode === 'serie') {
+    const mx = W/2, my = H/2;
+    ctx.fillText('e⁻ →', mx, my - 112);
+    ctx.fillText('← e⁻', mx, my + 116);
+  }
+
+  animId = requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => { resize(); initElectrons(); });
+resize();
+initElectrons();
+update();
+animate();
+</script>
+</body>
+</html>

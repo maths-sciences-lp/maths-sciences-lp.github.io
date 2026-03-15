@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mouvement et Trajectoire</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#0284c7,#0ea5e9);color:#fff;padding:2rem 1.5rem;text-align:center;position:relative}
+header h1{font-size:1.6rem;margin-bottom:.3rem}
+header p{opacity:.85;font-size:.95rem}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:1.5rem auto;padding:0 1rem;display:flex;flex-direction:column;gap:1.2rem}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:1.4rem}
+.card h2{color:#0284c7;font-size:1.15rem;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.card h2::before{content:'';display:inline-block;width:4px;height:1.1em;background:#0284c7;border-radius:2px}
+.canvas-row{display:grid;grid-template-columns:1.4fr 1fr;gap:1rem}
+.canvas-wrap{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:4px}
+canvas{display:block;width:100%;border-radius:4px}
+.controls-row{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-end}
+.slider-group{flex:1;min-width:180px;display:flex;flex-direction:column;gap:4px}
+.slider-group label{font-weight:600;font-size:.88rem;color:#374151}
+.slider-group .val{font-size:.82rem;color:#0284c7;font-weight:700}
+input[type=range]{width:100%;accent-color:#0284c7;cursor:pointer}
+.btn-group{display:flex;gap:6px;flex-wrap:wrap}
+.btn{padding:7px 16px;border:none;border-radius:6px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-traj{background:#e0f2fe;color:#0284c7;border:2px solid transparent}
+.btn-traj.active{background:#0284c7;color:#fff}
+.btn-traj:hover{border-color:#0284c7}
+.btn-ctrl{background:#0284c7;color:#fff}
+.btn-ctrl:hover{background:#0369a1}
+.btn-ctrl.pause{background:#f59e0b}
+.btn-ctrl.reset{background:#64748b}
+.check-row{display:flex;align-items:center;gap:8px;font-size:.9rem}
+.check-row input{accent-color:#0284c7;width:16px;height:16px}
+.readings{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin-top:.6rem}
+.reading-box{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:.6rem;text-align:center}
+.reading-box .label{font-size:.78rem;color:#64748b;margin-bottom:2px}
+.reading-box .value{font-size:1.1rem;font-weight:700;color:#0284c7}
+.context{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:.8rem 1rem;font-size:.88rem;color:#92400e;display:flex;align-items:flex-start;gap:8px}
+.context::before{content:'🔧';font-size:1.1rem;flex-shrink:0}
+.formula-bar{background:#f0f9ff;border-left:4px solid #0284c7;padding:.6rem 1rem;border-radius:0 8px 8px 0;font-size:1rem;font-weight:600;color:#0284c7;text-align:center}
+@media(max-width:600px){
+  .canvas-row{grid-template-columns:1fr}
+  .controls-row{flex-direction:column}
+  header h1{font-size:1.25rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Mouvement et Trajectoire</h1>
+  <p>2nde Bac Pro &middot; Ch05 &middot; v = d / t</p>
+</header>
+
+<div class="container">
+  <!-- Animation + Graph -->
+  <div class="card">
+    <h2>Animation</h2>
+    <div class="canvas-row">
+      <div class="canvas-wrap">
+        <canvas id="anim" width="560" height="400"></canvas>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="graph" width="300" height="400"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="card">
+    <h2>Commandes</h2>
+    <div class="controls-row">
+      <div class="slider-group">
+        <label>Vitesse : <span class="val" id="vSpeed">2.0 m/s</span></label>
+        <input type="range" id="sSpeed" min="0.5" max="5" value="2" step="0.1" oninput="updateSpeed()">
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-traj active" data-traj="rect" onclick="setTraj('rect')">Rectiligne</button>
+        <button class="btn btn-traj" data-traj="circ" onclick="setTraj('circ')">Circulaire</button>
+        <button class="btn btn-traj" data-traj="curv" onclick="setTraj('curv')">Curviligne</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:.8rem;flex-wrap:wrap;align-items:center">
+      <div class="btn-group">
+        <button class="btn btn-ctrl" id="btnPlay" onclick="togglePlay()">&#9654; Lecture</button>
+        <button class="btn btn-ctrl reset" onclick="resetAnim()">&#8635; Reset</button>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="cbTrace" checked onchange="updateSpeed()">
+        <label for="cbTrace">Afficher les points (chronophotographie)</label>
+      </div>
+    </div>
+    <div class="readings" id="readings">
+      <div class="reading-box"><div class="label">Distance d</div><div class="value" id="rDist">0.0 m</div></div>
+      <div class="reading-box"><div class="label">Temps t</div><div class="value" id="rTime">0.0 s</div></div>
+      <div class="reading-box"><div class="label">Vitesse v</div><div class="value" id="rSpeed">2.0 m/s</div></div>
+      <div class="reading-box"><div class="label">Trajectoire</div><div class="value" id="rTraj">Rectiligne</div></div>
+    </div>
+  </div>
+
+  <!-- Formula -->
+  <div class="formula-bar">v = d / t &nbsp;&nbsp;&nbsp; soit &nbsp;&nbsp;&nbsp; d = v &times; t &nbsp;&nbsp;&nbsp; et &nbsp;&nbsp;&nbsp; t = d / v</div>
+
+  <!-- Context -->
+  <div class="context">
+    <div><strong>Contexte professionnel :</strong> Un outil sur rail de guidage suit une trajectoire rectiligne. La lame d'une scie circulaire suit une trajectoire circulaire. Une pièce de bois sur un convoyeur courbe suit une trajectoire curviligne.</div>
+  </div>
+</div>
+
+<script>
+const animC = document.getElementById('anim');
+const animCtx = animC.getContext('2d');
+const graphC = document.getElementById('graph');
+const graphCtx = graphC.getContext('2d');
+
+let traj = 'rect';
+let speed = 2;
+let playing = false;
+let t = 0;
+let dist = 0;
+let positions = [];
+let tracePoints = [];
+let graphData = [];
+let lastFrame = 0;
+let animId = null;
+const dt = 1/60;
+const dotInterval = 0.3; // seconds between chronophotography dots
+let nextDotTime = 0;
+
+function setTraj(type) {
+  traj = type;
+  document.querySelectorAll('.btn-traj').forEach(b => b.classList.toggle('active', b.dataset.traj === type));
+  const names = {rect:'Rectiligne', circ:'Circulaire', curv:'Curviligne'};
+  document.getElementById('rTraj').textContent = names[type];
+  resetAnim();
+}
+
+function updateSpeed() {
+  speed = +document.getElementById('sSpeed').value;
+  document.getElementById('vSpeed').textContent = speed.toFixed(1) + ' m/s';
+  document.getElementById('rSpeed').textContent = speed.toFixed(1) + ' m/s';
+}
+
+function togglePlay() {
+  playing = !playing;
+  const btn = document.getElementById('btnPlay');
+  if (playing) {
+    btn.innerHTML = '&#9646;&#9646; Pause';
+    btn.classList.add('pause');
+    btn.classList.remove('btn-ctrl');
+    btn.classList.add('btn-ctrl');
+    lastFrame = performance.now();
+    animId = requestAnimationFrame(loop);
+  } else {
+    btn.innerHTML = '&#9654; Lecture';
+    btn.classList.remove('pause');
+    if (animId) cancelAnimationFrame(animId);
+  }
+}
+
+function resetAnim() {
+  playing = false;
+  document.getElementById('btnPlay').innerHTML = '&#9654; Lecture';
+  document.getElementById('btnPlay').classList.remove('pause');
+  if (animId) cancelAnimationFrame(animId);
+  t = 0; dist = 0; positions = []; tracePoints = []; graphData = [];
+  nextDotTime = 0;
+  drawAnim();
+  drawGraph();
+  updateReadings();
+}
+
+function getPos(distance) {
+  const W = animC.width, H = animC.height;
+  const mx = W / 2, my = H / 2;
+  const scale = 40; // px per meter
+
+  if (traj === 'rect') {
+    const startX = 60;
+    return { x: startX + distance * scale, y: my };
+  } else if (traj === 'circ') {
+    const r = 120;
+    const angle = distance * scale / r;
+    return { x: mx + r * Math.cos(angle - Math.PI/2), y: my + r * Math.sin(angle - Math.PI/2) };
+  } else {
+    // Curvilinear: lissajous-like path
+    const p = distance * 0.5;
+    return { x: 80 + p * scale * 0.25 + 60 * Math.sin(p * 1.2), y: my + 80 * Math.sin(p * 0.7) };
+  }
+}
+
+function loop(now) {
+  if (!playing) return;
+  const elapsed = Math.min((now - lastFrame) / 1000, 0.05);
+  lastFrame = now;
+
+  t += elapsed;
+  dist += speed * elapsed;
+  const pos = getPos(dist);
+
+  // Check bounds
+  if (pos.x > animC.width - 10 || pos.x < 10 || pos.y > animC.height - 10 || pos.y < 10) {
+    playing = false;
+    document.getElementById('btnPlay').innerHTML = '&#9654; Lecture';
+    document.getElementById('btnPlay').classList.remove('pause');
+    drawAnim(); drawGraph(); updateReadings();
+    return;
+  }
+
+  positions.push({...pos});
+
+  // Chronophotography dots
+  if (t >= nextDotTime) {
+    tracePoints.push({...pos, t: t, d: dist});
+    nextDotTime += dotInterval;
+  }
+
+  graphData.push({t: t, d: dist});
+
+  drawAnim();
+  drawGraph();
+  updateReadings();
+  animId = requestAnimationFrame(loop);
+}
+
+function drawAnim() {
+  const W = animC.width, H = animC.height;
+  const ctx = animCtx;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, W, H);
+
+  // Light grid
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+  for (let y = 0; y < H; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+  // Draw reference path (faint)
+  ctx.strokeStyle = '#cbd5e1';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([5, 5]);
+  ctx.beginPath();
+  for (let d = 0; d < 15; d += 0.05) {
+    const p = getPos(d);
+    if (p.x > W - 5 || p.x < 5 || p.y > H - 5 || p.y < 5) break;
+    if (d === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Trace line
+  if (positions.length > 1) {
+    ctx.strokeStyle = '#0ea5e9';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(positions[0].x, positions[0].y);
+    for (let i = 1; i < positions.length; i++) ctx.lineTo(positions[i].x, positions[i].y);
+    ctx.stroke();
+  }
+
+  // Chronophotography dots
+  const showTrace = document.getElementById('cbTrace').checked;
+  if (showTrace) {
+    tracePoints.forEach((p, i) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = '#0284c7';
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      // Label
+      ctx.fillStyle = '#0369a1';
+      ctx.font = 'bold 10px Segoe UI';
+      ctx.textAlign = 'center';
+      ctx.fillText('M' + i, p.x, p.y - 10);
+    });
+  }
+
+  // Current position (larger dot)
+  if (positions.length > 0) {
+    const cur = positions[positions.length - 1];
+    ctx.beginPath();
+    ctx.arc(cur.x, cur.y, 8, 0, 2 * Math.PI);
+    ctx.fillStyle = '#ef4444';
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  // Title
+  ctx.fillStyle = '#475569';
+  ctx.font = 'bold 13px Segoe UI';
+  ctx.textAlign = 'left';
+  ctx.fillText('Trajectoire', 12, 22);
+}
+
+function drawGraph() {
+  const W = graphC.width, H = graphC.height;
+  const ctx = graphCtx;
+  ctx.clearRect(0, 0, W, H);
+
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, W, H);
+
+  const pad = {l:50, r:15, t:35, b:40};
+  const gw = W - pad.l - pad.r;
+  const gh = H - pad.t - pad.b;
+
+  // Scales
+  const maxT = Math.max(5, t + 1);
+  const maxD = Math.max(5, dist + 2);
+
+  // Grid
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 5; i++) {
+    const x = pad.l + (i / 5) * gw;
+    const y = pad.t + (i / 5) * gh;
+    ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, pad.t + gh); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + gw, y); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(pad.l, pad.t + gh); ctx.lineTo(pad.l + gw, pad.t + gh); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(pad.l, pad.t); ctx.lineTo(pad.l, pad.t + gh); ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#64748b';
+  ctx.font = '11px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('t (s)', pad.l + gw / 2, H - 5);
+  ctx.save();
+  ctx.translate(14, pad.t + gh / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('d (m)', 0, 0);
+  ctx.restore();
+
+  // Tick labels
+  ctx.font = '10px Segoe UI';
+  ctx.textAlign = 'center';
+  for (let i = 0; i <= 5; i++) {
+    const v = (i / 5) * maxT;
+    ctx.fillText(v.toFixed(1), pad.l + (i / 5) * gw, pad.t + gh + 15);
+  }
+  ctx.textAlign = 'right';
+  for (let i = 0; i <= 5; i++) {
+    const v = maxD - (i / 5) * maxD;
+    ctx.fillText(v.toFixed(1), pad.l - 5, pad.t + (i / 5) * gh + 4);
+  }
+
+  // Plot
+  if (graphData.length > 1) {
+    ctx.strokeStyle = '#0284c7';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    graphData.forEach((p, i) => {
+      const x = pad.l + (p.t / maxT) * gw;
+      const y = pad.t + gh - (p.d / maxD) * gh;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+  }
+
+  // Title
+  ctx.fillStyle = '#475569';
+  ctx.font = 'bold 13px Segoe UI';
+  ctx.textAlign = 'left';
+  ctx.fillText('Graphique d(t)', pad.l, pad.t - 10);
+}
+
+function updateReadings() {
+  document.getElementById('rDist').textContent = dist.toFixed(1) + ' m';
+  document.getElementById('rTime').textContent = t.toFixed(1) + ' s';
+}
+
+resetAnim();
+</script>
+</body>
+</html>

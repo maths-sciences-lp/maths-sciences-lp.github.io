@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Suites num&eacute;riques &mdash; Simulation</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.6}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:28px 20px 22px;text-align:center;position:relative}
+header h1{font-size:1.5em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px;margin-bottom:20px}
+.card h2{font-size:1.15em;color:#1976d2;margin-bottom:14px;border-bottom:2px solid #e3f2fd;padding-bottom:8px}
+.tabs{display:flex;gap:0;margin-bottom:20px}
+.tab{flex:1;padding:12px;text-align:center;cursor:pointer;font-weight:600;border:2px solid #1976d2;background:#e3f2fd;color:#1976d2;transition:.2s}
+.tab:first-child{border-radius:8px 0 0 8px}
+.tab:last-child{border-radius:0 8px 8px 0}
+.tab.active{background:#1976d2;color:#fff}
+.slider-row{display:flex;align-items:center;gap:12px;margin:10px 0;flex-wrap:wrap}
+.slider-row label{min-width:120px;font-weight:600;font-size:.95em}
+.slider-row input[type=range]{flex:1;min-width:150px;accent-color:#1976d2}
+.slider-row .val{min-width:50px;text-align:center;font-family:monospace;font-weight:700;color:#1976d2;font-size:1.05em}
+.formula-display{background:#f0f7ff;border:2px solid #90caf9;border-radius:8px;padding:14px 18px;margin:14px 0;text-align:center;font-size:1.1em}
+.sum-display{background:#f0fff4;border:2px solid #9ae6b4;border-radius:8px;padding:14px 18px;margin:14px 0;text-align:center}
+.sum-display .label{font-size:.85em;color:#718096;margin-bottom:4px}
+.sum-display .value{font-size:1.2em;font-weight:700;color:#276749}
+.behavior{margin-top:10px;padding:10px 14px;border-radius:6px;font-weight:600;font-size:.92em}
+.behavior.crois{background:#f0fff4;color:#276749;border:1px solid #9ae6b4}
+.behavior.decrois{background:#fff5f5;color:#9b2c2c;border:1px solid #fed7d7}
+.behavior.const{background:#fffff0;color:#975a16;border:1px solid #fefcbf}
+.behavior.conv{background:#f0fff4;color:#276749;border:1px solid #9ae6b4}
+.behavior.div{background:#fff5f5;color:#9b2c2c;border:1px solid #fed7d7}
+.chart-container{position:relative;height:320px}
+.terms-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.88em}
+.terms-table th{background:#1976d2;color:#fff;padding:6px 8px}
+.terms-table td{border:1px solid #e2e8f0;padding:5px 8px;text-align:center;font-family:monospace}
+.slider-group{display:flex;gap:8px;align-items:center;margin:6px 0}
+.slider-group label{font-size:.9em;font-weight:600;min-width:30px}
+.n-control{display:flex;align-items:center;gap:10px;margin:10px 0}
+.n-control label{font-weight:600}
+.n-control input{width:70px;border:1px solid #cbd5e0;border-radius:6px;padding:5px 8px;font-size:.95em;text-align:center}
+@media(max-width:600px){
+  .chart-container{height:250px}
+  header h1{font-size:1.2em}
+  .slider-row label{min-width:80px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Suites num&eacute;riques</h1>
+  <p>Terminale Bac Pro &middot; Ch03</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('arith')">Suite arithm&eacute;tique</div>
+    <div class="tab" onclick="switchTab('geom')">Suite g&eacute;om&eacute;trique</div>
+  </div>
+
+  <div class="card">
+    <h2 id="paramTitle">Param&egrave;tres de la suite arithm&eacute;tique</h2>
+    <div class="slider-row">
+      <label id="lblU0">u<sub>0</sub> =</label>
+      <input type="range" id="sliderU0" min="-10" max="10" value="2" step="0.5">
+      <span class="val" id="valU0">2</span>
+    </div>
+    <div class="slider-row">
+      <label id="lblR">Raison r =</label>
+      <input type="range" id="sliderR" min="-5" max="5" value="3" step="0.5">
+      <span class="val" id="valR">3</span>
+    </div>
+    <div class="n-control">
+      <label>Nombre de termes :</label>
+      <input type="number" id="nTerms" value="10" min="2" max="20">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Formule du terme g&eacute;n&eacute;ral</h2>
+    <div class="formula-display" id="formulaBox"></div>
+    <div class="sum-display">
+      <div class="label" id="sumLabel">Somme des n premiers termes</div>
+      <div class="value" id="sumValue">-</div>
+      <div style="font-size:.85em;color:#718096;margin-top:4px" id="sumFormula"></div>
+    </div>
+    <div class="behavior" id="behaviorBox"></div>
+  </div>
+
+  <div class="card">
+    <h2>Repr&eacute;sentation graphique</h2>
+    <div class="chart-container">
+      <canvas id="suiteChart"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Tableau des valeurs</h2>
+    <div style="overflow-x:auto">
+      <table class="terms-table" id="termsTable">
+        <thead><tr id="headerRow"></tr></thead>
+        <tbody><tr id="valuesRow"></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+let mode = 'arith';
+let chart;
+
+function initChart() {
+  const ctx = document.getElementById('suiteChart').getContext('2d');
+  chart = new Chart(ctx, {
+    type: 'bar',
+    data: { labels: [], datasets: [{ label: 'u_n', data: [], backgroundColor: '#42a5f5', borderColor: '#1976d2', borderWidth: 1 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: 'n' } },
+        y: { title: { display: true, text: 'u_n' } }
+      }
+    }
+  });
+}
+
+function switchTab(t) {
+  mode = t;
+  document.querySelectorAll('.tab').forEach((el, i) => {
+    el.classList.toggle('active', (i === 0 && t === 'arith') || (i === 1 && t === 'geom'));
+  });
+  const sl = document.getElementById('sliderR');
+  const lblR = document.getElementById('lblR');
+  const slU0 = document.getElementById('sliderU0');
+  if (t === 'arith') {
+    document.getElementById('paramTitle').textContent = 'Param\u00e8tres de la suite arithm\u00e9tique';
+    lblR.innerHTML = 'Raison r =';
+    sl.min = -5; sl.max = 5; sl.step = 0.5; sl.value = 3;
+    slU0.min = -10; slU0.max = 10; slU0.step = 0.5; slU0.value = 2;
+  } else {
+    document.getElementById('paramTitle').textContent = 'Param\u00e8tres de la suite g\u00e9om\u00e9trique';
+    lblR.innerHTML = 'Raison q =';
+    sl.min = 0.1; sl.max = 3; sl.step = 0.1; sl.value = 1.5;
+    slU0.min = 0.1; slU0.max = 10; slU0.step = 0.1; slU0.value = 2;
+  }
+  update();
+}
+
+function update() {
+  const u0 = parseFloat(document.getElementById('sliderU0').value);
+  const r = parseFloat(document.getElementById('sliderR').value);
+  const n = parseInt(document.getElementById('nTerms').value) || 10;
+  document.getElementById('valU0').textContent = u0;
+  document.getElementById('valR').textContent = r;
+
+  const terms = [];
+  for (let i = 0; i < n; i++) {
+    if (mode === 'arith') terms.push(u0 + i * r);
+    else terms.push(u0 * Math.pow(r, i));
+  }
+
+  // Formula
+  const fb = document.getElementById('formulaBox');
+  if (mode === 'arith') {
+    const sign = r >= 0 ? '+' : '\u2212';
+    fb.innerHTML = `\\( u_n = ${u0} ${sign} ${Math.abs(r)} \\times n \\)&emsp;\u2192&emsp;\\( u_n = u_0 + n \\cdot r \\)`;
+  } else {
+    fb.innerHTML = `\\( u_n = ${u0} \\times ${r}^{n} \\)&emsp;\u2192&emsp;\\( u_n = u_0 \\times q^n \\)`;
+  }
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([fb]);
+
+  // Sum
+  let S;
+  const sumLabel = document.getElementById('sumLabel');
+  const sumFormula = document.getElementById('sumFormula');
+  if (mode === 'arith') {
+    S = n * (2 * u0 + (n - 1) * r) / 2;
+    sumLabel.textContent = `Somme des ${n} premiers termes (S${n-1})`;
+    sumFormula.innerHTML = `S = n \u00d7 (u\u2080 + u\u2099) / 2 = ${n} \u00d7 (${terms[0].toFixed(2)} + ${terms[n-1].toFixed(2)}) / 2`;
+  } else {
+    if (Math.abs(r - 1) < 1e-9) {
+      S = n * u0;
+      sumFormula.textContent = `q = 1, donc S = n \u00d7 u\u2080 = ${n} \u00d7 ${u0}`;
+    } else {
+      S = u0 * (1 - Math.pow(r, n)) / (1 - r);
+      sumFormula.innerHTML = `S = u\u2080 \u00d7 (1 \u2212 q\u207f) / (1 \u2212 q) = ${u0} \u00d7 (1 \u2212 ${r}\u207f) / (1 \u2212 ${r})`;
+    }
+    sumLabel.textContent = `Somme des ${n} premiers termes`;
+  }
+  document.getElementById('sumValue').textContent = isFinite(S) ? S.toFixed(4) : 'Diverge';
+
+  // Behavior
+  const bBox = document.getElementById('behaviorBox');
+  if (mode === 'arith') {
+    if (r > 0) { bBox.textContent = 'Suite croissante (r > 0) \u2014 diverge vers +\u221e'; bBox.className = 'behavior crois'; }
+    else if (r < 0) { bBox.textContent = 'Suite d\u00e9croissante (r < 0) \u2014 diverge vers \u2212\u221e'; bBox.className = 'behavior decrois'; }
+    else { bBox.textContent = 'Suite constante (r = 0)'; bBox.className = 'behavior const'; }
+  } else {
+    if (r > 1) { bBox.textContent = 'Suite divergente (q > 1) \u2014 croissance exponentielle'; bBox.className = 'behavior div'; }
+    else if (Math.abs(r - 1) < 1e-9) { bBox.textContent = 'Suite constante (q = 1)'; bBox.className = 'behavior const'; }
+    else if (r > 0) { bBox.textContent = 'Suite convergente vers 0 (0 < q < 1)'; bBox.className = 'behavior conv'; }
+    else { bBox.textContent = 'Suite convergente vers 0 (q proche de 0)'; bBox.className = 'behavior conv'; }
+  }
+
+  // Chart
+  chart.data.labels = terms.map((_, i) => i);
+  chart.data.datasets[0].data = terms;
+  chart.data.datasets[0].backgroundColor = terms.map(v => v >= 0 ? '#42a5f5' : '#ef5350');
+  chart.update();
+
+  // Table
+  const hr = document.getElementById('headerRow');
+  const vr = document.getElementById('valuesRow');
+  hr.innerHTML = '<th>n</th>' + terms.map((_, i) => `<th>${i}</th>`).join('');
+  vr.innerHTML = '<td style="font-weight:700">u<sub>n</sub></td>' + terms.map(v => `<td>${v.toFixed(2)}</td>`).join('');
+}
+
+document.getElementById('sliderU0').addEventListener('input', update);
+document.getElementById('sliderR').addEventListener('input', update);
+document.getElementById('nTerms').addEventListener('input', update);
+
+initChart();
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fonction Dérivée et Tangente — Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.6}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:30px 20px 22px;text-align:center;position:relative}
+header h1{font-size:1.6em;margin-bottom:4px}
+header p{opacity:.88;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:20px auto;padding:0 15px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:18px}
+.card h3{margin-bottom:12px;color:#1976d2;font-size:1.05em}
+label{font-weight:600;font-size:.9em;display:block;margin:8px 0 4px}
+select,input[type=range],input[type=number]{width:100%;font-size:.95em}
+select{padding:6px 8px;border:1px solid #ccc;border-radius:5px}
+input[type=number]{padding:5px 8px;border:1px solid #ccc;border-radius:5px;width:70px}
+.slider-row{display:flex;align-items:center;gap:10px}
+.slider-row input[type=range]{flex:1}
+.slider-row .val{min-width:50px;text-align:right;font-weight:600;font-size:.95em}
+canvas{width:100%;border-radius:8px;border:1px solid #e0e0e0;cursor:crosshair}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.info-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;font-size:.92em}
+.info-box .lbl{font-size:.8em;color:#64748b;text-transform:uppercase;letter-spacing:.04em}
+.info-box .value{font-size:1.15em;font-weight:700;margin-top:2px}
+.pos{color:#16a34a}.neg{color:#dc2626}.zero{color:#ea580c}
+.sign-bar{height:28px;border-radius:6px;overflow:hidden;display:flex;margin-top:8px;border:1px solid #e0e0e0}
+.sign-bar span{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82em;color:#fff}
+.formula-card{background:#eef6ff;border:1px solid #93c5fd;border-radius:10px;padding:16px 20px;text-align:center;margin-bottom:18px}
+.custom-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.custom-row label{margin:0;min-width:40px}
+.custom-row input[type=number]{width:65px}
+.legend{display:flex;gap:18px;margin-top:8px;font-size:.85em;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+@media(max-width:600px){
+  header h1{font-size:1.2em}
+  .info-grid{grid-template-columns:1fr}
+  .custom-row{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">← Retour</a>
+  <h1>Fonction Dérivée et Tangente</h1>
+  <p>Première Bac Pro · Ch06</p>
+</header>
+
+<div class="container">
+
+<div class="formula-card">
+  <p>Le nombre dérivé de \(f\) en \(x_0\) est :</p>
+  <p style="font-size:1.2em;margin-top:6px">\(\displaystyle f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}\)</p>
+</div>
+
+<div class="card">
+  <h3>Paramètres</h3>
+  <label for="funcSel">Fonction f(x)</label>
+  <select id="funcSel">
+    <option value="x2">f(x) = x²</option>
+    <option value="x3">f(x) = x³</option>
+    <option value="quad">f(x) = 2x² − 3x + 1</option>
+    <option value="sin">f(x) = sin(x)</option>
+    <option value="custom">Personnalisée : ax² + bx + c</option>
+  </select>
+  <div id="customParams" style="display:none;margin-top:8px">
+    <div class="custom-row">
+      <label>a =</label><input type="number" id="ca" value="1" step="0.5">
+      <label>b =</label><input type="number" id="cb" value="0" step="0.5">
+      <label>c =</label><input type="number" id="cc" value="0" step="0.5">
+    </div>
+  </div>
+
+  <label>Point x₀ = <span id="x0Val">1.0</span></label>
+  <div class="slider-row">
+    <input type="range" id="x0" min="-5" max="5" step="0.1" value="1">
+  </div>
+
+  <label>Pas h (sécante) = <span id="hVal">1.00</span></label>
+  <div class="slider-row">
+    <input type="range" id="hSlider" min="0.01" max="2" step="0.01" value="1">
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:#1976d2"></span> Courbe f(x)</span>
+    <span><span class="dot" style="background:#dc2626"></span> Tangente</span>
+    <span><span class="dot" style="background:#f59e0b"></span> Sécante (h)</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Graphique</h3>
+  <canvas id="graph" height="420"></canvas>
+  <p style="font-size:.82em;color:#64748b;margin-top:6px;text-align:center">Barre du signe de f'(x) sur l'intervalle visible :</p>
+  <div id="signBar" class="sign-bar"></div>
+</div>
+
+<div class="card">
+  <h3>Résultats</h3>
+  <div class="info-grid">
+    <div class="info-box"><div class="lbl">f(x₀)</div><div class="value" id="fVal">—</div></div>
+    <div class="info-box"><div class="lbl">f'(x₀) — nombre dérivé</div><div class="value" id="fpVal">—</div></div>
+    <div class="info-box"><div class="lbl">Taux de variation (h)</div><div class="value" id="tvVal">—</div></div>
+    <div class="info-box"><div class="lbl">Équation de la tangente</div><div class="value" id="tanEq" style="font-size:.95em">—</div></div>
+  </div>
+</div>
+
+</div><!-- container -->
+
+<script>
+const canvas = document.getElementById('graph');
+const ctx = canvas.getContext('2d');
+const funcSel = document.getElementById('funcSel');
+const x0Slider = document.getElementById('x0');
+const hSlider = document.getElementById('hSlider');
+const customDiv = document.getElementById('customParams');
+const caI = document.getElementById('ca'), cbI = document.getElementById('cb'), ccI = document.getElementById('cc');
+
+function getFunc() {
+  const v = funcSel.value;
+  if (v === 'x2') return { f: x => x*x, fp: x => 2*x, label: 'x²' };
+  if (v === 'x3') return { f: x => x*x*x, fp: x => 3*x*x, label: 'x³' };
+  if (v === 'quad') return { f: x => 2*x*x - 3*x + 1, fp: x => 4*x - 3, label: '2x²−3x+1' };
+  if (v === 'sin') return { f: x => Math.sin(x), fp: x => Math.cos(x), label: 'sin(x)' };
+  const a = parseFloat(caI.value)||0, b = parseFloat(cbI.value)||0, c = parseFloat(ccI.value)||0;
+  return { f: x => a*x*x + b*x + c, fp: x => 2*a*x + b, label: `${a}x²+${b}x+${c}` };
+}
+
+function resize() {
+  const r = window.devicePixelRatio || 1;
+  const w = canvas.clientWidth;
+  const h = 420;
+  canvas.width = w * r;
+  canvas.height = h * r;
+  ctx.setTransform(r, 0, 0, r, 0, 0);
+  return { w, h };
+}
+
+function draw() {
+  const { w, h } = resize();
+  ctx.clearRect(0, 0, w, h);
+  const fn = getFunc();
+  const x0 = parseFloat(x0Slider.value);
+  const hv = parseFloat(hSlider.value);
+
+  document.getElementById('x0Val').textContent = x0.toFixed(1);
+  document.getElementById('hVal').textContent = hv.toFixed(2);
+
+  // Coordinate system
+  const xMin = -6, xMax = 6;
+  // Auto y range
+  let yMin = -8, yMax = 8;
+  // sample to find range
+  let samples = [];
+  for (let x = xMin; x <= xMax; x += 0.05) {
+    const y = fn.f(x);
+    if (isFinite(y)) samples.push(y);
+  }
+  if (samples.length) {
+    const sMin = Math.min(...samples), sMax = Math.max(...samples);
+    const margin = Math.max((sMax - sMin) * 0.15, 1);
+    yMin = Math.min(sMin - margin, -1);
+    yMax = Math.max(sMax + margin, 1);
+  }
+  // Clamp
+  yMin = Math.max(yMin, -30); yMax = Math.min(yMax, 30);
+
+  const toX = x => (x - xMin) / (xMax - xMin) * w;
+  const toY = y => h - (y - yMin) / (yMax - yMin) * h;
+
+  // Grid
+  ctx.strokeStyle = '#e8e8f0';
+  ctx.lineWidth = 0.5;
+  for (let gx = Math.ceil(xMin); gx <= xMax; gx++) {
+    ctx.beginPath(); ctx.moveTo(toX(gx), 0); ctx.lineTo(toX(gx), h); ctx.stroke();
+  }
+  for (let gy = Math.ceil(yMin); gy <= yMax; gy++) {
+    ctx.beginPath(); ctx.moveTo(0, toY(gy)); ctx.lineTo(w, toY(gy)); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.moveTo(toX(xMin), toY(0)); ctx.lineTo(toX(xMax), toY(0)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(toX(0), toY(yMin)); ctx.lineTo(toX(0), toY(yMax)); ctx.stroke();
+  // Ticks
+  ctx.fillStyle = '#666'; ctx.font = '11px Segoe UI,sans-serif'; ctx.textAlign = 'center';
+  for (let gx = Math.ceil(xMin); gx <= xMax; gx++) {
+    if (gx === 0) continue;
+    ctx.fillText(gx, toX(gx), toY(0) + 14);
+  }
+  ctx.textAlign = 'right';
+  for (let gy = Math.ceil(yMin); gy <= yMax; gy++) {
+    if (gy === 0) continue;
+    ctx.fillText(gy, toX(0) - 5, toY(gy) + 4);
+  }
+
+  // Draw curve
+  ctx.strokeStyle = '#1976d2';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  let started = false;
+  for (let px = 0; px <= w; px++) {
+    const x = xMin + (px / w) * (xMax - xMin);
+    const y = fn.f(x);
+    if (!isFinite(y) || y < yMin - 5 || y > yMax + 5) { started = false; continue; }
+    if (!started) { ctx.moveTo(px, toY(y)); started = true; } else ctx.lineTo(px, toY(y));
+  }
+  ctx.stroke();
+
+  const fx0 = fn.f(x0);
+  const fpx0 = fn.fp(x0);
+
+  // Secant line
+  const fx0h = fn.f(x0 + hv);
+  const tv = (fx0h - fx0) / hv;
+  ctx.strokeStyle = '#f59e0b';
+  ctx.lineWidth = 1.8;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  const secY = xx => fx0 + tv * (xx - x0);
+  ctx.moveTo(toX(xMin), toY(secY(xMin)));
+  ctx.lineTo(toX(xMax), toY(secY(xMax)));
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Point (x0+h, f(x0+h))
+  ctx.fillStyle = '#f59e0b';
+  ctx.beginPath(); ctx.arc(toX(x0 + hv), toY(fx0h), 5, 0, Math.PI * 2); ctx.fill();
+
+  // Tangent line
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  const tanY = xx => fx0 + fpx0 * (xx - x0);
+  ctx.moveTo(toX(xMin), toY(tanY(xMin)));
+  ctx.lineTo(toX(xMax), toY(tanY(xMax)));
+  ctx.stroke();
+
+  // Point on curve
+  ctx.fillStyle = '#dc2626';
+  ctx.beginPath(); ctx.arc(toX(x0), toY(fx0), 6, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(toX(x0), toY(fx0), 3, 0, Math.PI * 2); ctx.fill();
+
+  // Info
+  document.getElementById('fVal').textContent = fx0.toFixed(3);
+  const fpEl = document.getElementById('fpVal');
+  fpEl.textContent = fpx0.toFixed(3);
+  fpEl.className = 'value ' + (Math.abs(fpx0) < 0.05 ? 'zero' : fpx0 > 0 ? 'pos' : 'neg');
+  document.getElementById('tvVal').textContent = tv.toFixed(3);
+
+  const sign = s => s >= 0 ? '+' : '−';
+  const abs = Math.abs;
+  document.getElementById('tanEq').textContent =
+    `y = ${fpx0.toFixed(2)}(x ${sign(-x0)} ${abs(x0).toFixed(1)}) ${sign(fx0)} ${abs(fx0).toFixed(2)}`;
+
+  // Sign bar
+  drawSignBar(fn);
+}
+
+function drawSignBar(fn) {
+  const bar = document.getElementById('signBar');
+  bar.innerHTML = '';
+  const N = 60;
+  const xMin = -6, xMax = 6;
+  const dx = (xMax - xMin) / N;
+  let segments = [];
+  for (let i = 0; i < N; i++) {
+    const x = xMin + (i + 0.5) * dx;
+    const fp = fn.fp(x);
+    segments.push(fp);
+  }
+  segments.forEach(fp => {
+    const sp = document.createElement('span');
+    sp.style.flex = '1';
+    if (Math.abs(fp) < 0.08) {
+      sp.style.background = '#ea580c';
+      sp.textContent = '0';
+    } else if (fp > 0) {
+      sp.style.background = '#16a34a';
+      sp.textContent = '+';
+    } else {
+      sp.style.background = '#dc2626';
+      sp.textContent = '−';
+    }
+    bar.appendChild(sp);
+  });
+}
+
+funcSel.addEventListener('change', () => {
+  customDiv.style.display = funcSel.value === 'custom' ? 'block' : 'none';
+  draw();
+});
+x0Slider.addEventListener('input', draw);
+hSlider.addEventListener('input', draw);
+caI.addEventListener('input', draw);
+cbI.addEventListener('input', draw);
+ccI.addEventListener('input', draw);
+window.addEventListener('resize', draw);
+draw();
+</script>
+</body>
+</html>

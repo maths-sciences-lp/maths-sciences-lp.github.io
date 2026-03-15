@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transferts Thermiques et Équilibre — Simulation</title>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 860px; margin: 0 auto; }
+  header { background: #e67e22; color: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 25px; position: relative; }
+  header h1 { margin: 0 0 5px 0; font-size: 1.5em; }
+  header p { margin: 0; opacity: 0.9; font-size: 0.95em; }
+  .btn-back { position: absolute; left: 15px; top: 15px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 5px 12px; border-radius: 5px; font-size: 0.85em; }
+  .btn-back:hover { background: rgba(255,255,255,0.35); }
+  .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+  h3 { margin-top: 0; color: #e67e22; }
+  label { font-weight: 600; display: block; margin-bottom: 4px; }
+  input[type=range] { width: 100%; accent-color: #e67e22; margin-bottom: 10px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  @media(max-width:600px) { .row { grid-template-columns: 1fr; } }
+  canvas { display: block; width: 100%; border-radius: 8px; }
+  .tab-group { display: flex; gap: 0; margin-bottom: 15px; }
+  .tab-btn { flex: 1; padding: 12px; text-align: center; border: 2px solid #e67e22; background: white; color: #e67e22; font-weight: 600; cursor: pointer; font-size: 0.95em; transition: all 0.2s; }
+  .tab-btn:first-child { border-radius: 8px 0 0 8px; }
+  .tab-btn:last-child { border-radius: 0 8px 8px 0; }
+  .tab-btn.active { background: #e67e22; color: white; }
+  .formule { font-family: monospace; background: #fef9ee; border: 1px solid #fcd99c; border-radius: 8px; padding: 12px 15px; font-size: 0.92em; line-height: 1.7; }
+  .info-box { background: #fef9ee; border-left: 4px solid #e67e22; border-radius: 0 8px 8px 0; padding: 12px 15px; font-size: 0.9em; margin-top: 12px; line-height: 1.6; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  select { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95em; margin-bottom: 10px; width: 100%; }
+  .results { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 15px; }
+  .result-box { text-align: center; padding: 10px 8px; border-radius: 8px; }
+  .result-box .val { font-size: 1.3em; font-weight: 700; }
+  .result-box .lbl { font-size: 0.78em; opacity: 0.7; margin-top: 2px; }
+  .r-hot { background: #fee2e2; color: #dc2626; }
+  .r-cold { background: #dbeafe; color: #1d4ed8; }
+  .r-eq { background: #d1fae5; color: #059669; }
+  .r-lam { background: #fef3c7; color: #92400e; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Transferts Thermiques et &Eacute;quilibre</h1>
+    <p>2nde Bac Pro &middot; Ch11 &middot; Conduction &middot; Convection &middot; Rayonnement</p>
+  </header>
+
+  <div class="card">
+    <div class="tab-group">
+      <button class="tab-btn active" onclick="setTab('conduction')">Conduction</button>
+      <button class="tab-btn" onclick="setTab('convection')">Convection</button>
+      <button class="tab-btn" onclick="setTab('rayonnement')">Rayonnement</button>
+    </div>
+
+    <!-- CONDUCTION -->
+    <div class="tab-content active" id="tab-conduction">
+      <h3>Conduction thermique</h3>
+      <div class="row">
+        <div>
+          <canvas id="cvConduction" height="220"></canvas>
+          <div class="info-box">
+            La <strong>conduction</strong> est le transfert de chaleur de proche en proche dans un solide, sans d&eacute;placement de mati&egrave;re.
+            Plus la conductivit&eacute; thermique &lambda; est grande, plus le transfert est rapide.
+          </div>
+        </div>
+        <div>
+          <label>Mat&eacute;riau :</label>
+          <select id="selMat" onchange="updateConduction()">
+            <option value="390">Cuivre (&lambda; = 390 W/m&middot;K)</option>
+            <option value="237">Aluminium (&lambda; = 237 W/m&middot;K)</option>
+            <option value="50">Acier (&lambda; = 50 W/m&middot;K)</option>
+            <option value="0.15">Bois (&lambda; = 0,15 W/m&middot;K)</option>
+          </select>
+          <label>Temp. chaude T<sub>c</sub> : <span id="vTc">200</span> &deg;C</label>
+          <input type="range" id="slTc" min="50" max="500" step="10" value="200" oninput="updateConduction()">
+          <label>Temp. froide T<sub>f</sub> : <span id="vTf">20</span> &deg;C</label>
+          <input type="range" id="slTf" min="-20" max="100" step="5" value="20" oninput="updateConduction()">
+          <div class="results">
+            <div class="result-box r-lam"><div class="val" id="rLam">390</div><div class="lbl">&lambda; (W/m&middot;K)</div></div>
+            <div class="result-box r-hot"><div class="val" id="rDT">180</div><div class="lbl">&Delta;T (&deg;C)</div></div>
+          </div>
+          <div class="formule" style="margin-top:12px;">
+            <strong>Flux thermique :</strong><br>
+            &Phi; = &lambda; &times; S &times; &Delta;T / e<br>
+            &Delta;T = T<sub>c</sub> &minus; T<sub>f</sub>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONVECTION -->
+    <div class="tab-content" id="tab-convection">
+      <h3>Convection thermique</h3>
+      <div class="row">
+        <div>
+          <canvas id="cvConvection" height="300"></canvas>
+        </div>
+        <div>
+          <label>Puissance du radiateur : <span id="vPrad">1500</span> W</label>
+          <input type="range" id="slPrad" min="500" max="3000" step="100" value="1500" oninput="updateConvection()">
+          <div class="info-box">
+            La <strong>convection</strong> est le transfert de chaleur par d&eacute;placement d'un fluide (air, eau).
+            L'air chauff&eacute; par le radiateur monte (moins dense), se refroidit au contact des parois
+            et redescend, cr&eacute;ant un mouvement circulaire.
+          </div>
+          <div class="formule" style="margin-top:12px;">
+            L'air chaud monte (moins dense).<br>
+            L'air froid descend (plus dense).<br>
+            &rarr; Circulation naturelle (convection)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAYONNEMENT -->
+    <div class="tab-content" id="tab-rayonnement">
+      <h3>Rayonnement thermique</h3>
+      <div class="row">
+        <div>
+          <canvas id="cvRayonnement" height="280"></canvas>
+        </div>
+        <div>
+          <label>Temp&eacute;rature de l'objet : <span id="vTray">500</span> &deg;C</label>
+          <input type="range" id="slTray" min="20" max="1000" step="10" value="500" oninput="updateRayonnement()">
+          <div class="info-box">
+            Le <strong>rayonnement</strong> est le transfert de chaleur par ondes &eacute;lectromagn&eacute;tiques (infrarouges).
+            Il ne n&eacute;cessite aucun support mat&eacute;riel.
+            Plus un objet est chaud, plus il rayonne d'&eacute;nergie et plus sa couleur &eacute;volue :
+            rouge sombre &rarr; orange &rarr; jaune &rarr; blanc.
+          </div>
+          <div class="formule" style="margin-top:12px;">
+            <strong>Loi de Stefan-Boltzmann :</strong><br>
+            P = &sigma; &times; S &times; T<sup>4</sup><br>
+            &sigma; = 5,67 &times; 10<sup>&minus;8</sup> W&middot;m<sup>&minus;2</sup>&middot;K<sup>&minus;4</sup>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUILIBRE THERMIQUE -->
+  <div class="card">
+    <h3>&Eacute;quilibre thermique</h3>
+    <p style="font-size:0.9em;color:#64748b;margin-top:0;">Deux objets &agrave; temp&eacute;ratures diff&eacute;rentes &eacute;voluent vers une temp&eacute;rature d'&eacute;quilibre.</p>
+    <div class="row">
+      <div>
+        <canvas id="cvEquilibre" height="250"></canvas>
+      </div>
+      <div>
+        <label>Temp. objet A : <span id="vTA">90</span> &deg;C</label>
+        <input type="range" id="slTA" min="0" max="200" step="5" value="90" oninput="resetEquilibre()">
+        <label>Temp. objet B : <span id="vTB">20</span> &deg;C</label>
+        <input type="range" id="slTB" min="0" max="200" step="5" value="20" oninput="resetEquilibre()">
+        <button onclick="startEquilibre()" style="width:100%;padding:10px;background:#e67e22;color:white;border:none;border-radius:8px;font-weight:600;font-size:1em;cursor:pointer;margin-top:8px;">Lancer la simulation</button>
+        <div class="results" style="margin-top:12px;">
+          <div class="result-box r-hot"><div class="val" id="rTA2">90</div><div class="lbl">T<sub>A</sub> actuelle</div></div>
+          <div class="result-box r-cold"><div class="val" id="rTB2">20</div><div class="lbl">T<sub>B</sub> actuelle</div></div>
+        </div>
+        <div class="result-box r-eq" style="margin-top:10px;"><div class="val" id="rTeq">55</div><div class="lbl">T<sub>&eacute;q</sub> = (T<sub>A</sub> + T<sub>B</sub>) / 2</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let activeTab = 'conduction';
+let animIds = {};
+let condTime = 0;
+let convParticles = [];
+let rayTime = 0;
+let eqRunning = false, eqTA, eqTB, eqTarget;
+
+function setTab(t) {
+  activeTab = t;
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    const tabs = ['conduction','convection','rayonnement'];
+    b.classList.toggle('active', tabs[i] === t);
+  });
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + t).classList.add('active');
+  if (t === 'conduction') updateConduction();
+  else if (t === 'convection') { initConvParticles(); updateConvection(); }
+  else updateRayonnement();
+}
+
+/* ── CONDUCTION ── */
+function updateConduction() {
+  const lambda = parseFloat(document.getElementById('selMat').value);
+  const Tc = parseFloat(document.getElementById('slTc').value);
+  const Tf = parseFloat(document.getElementById('slTf').value);
+  document.getElementById('vTc').textContent = Tc;
+  document.getElementById('vTf').textContent = Tf;
+  document.getElementById('rLam').textContent = lambda;
+  document.getElementById('rDT').textContent = (Tc - Tf);
+
+  const cv = document.getElementById('cvConduction');
+  const ctx = cv.getContext('2d');
+  const W = cv.offsetWidth; cv.width = W; const H = 220; cv.height = H;
+
+  const barY = 60, barH = 50;
+  const barL = 40, barR = W - 40;
+  const barW = barR - barL;
+
+  // Background
+  ctx.fillStyle = '#fafafa';
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw bar with gradient
+  const grad = ctx.createLinearGradient(barL, 0, barR, 0);
+  // propagation factor based on lambda (normalized log scale)
+  const propFactor = Math.min(Math.log10(lambda + 1) / Math.log10(391), 1);
+
+  for (let i = 0; i <= 10; i++) {
+    const t = i / 10;
+    const temp = Tc + (Tf - Tc) * Math.pow(t, 1 / (0.3 + propFactor * 2));
+    grad.addColorStop(t, tempToColor(temp, Tc, Tf));
+  }
+  ctx.fillStyle = grad;
+  ctx.fillRect(barL, barY, barW, barH);
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(barL, barY, barW, barH);
+
+  // Temperature labels
+  ctx.fillStyle = '#dc2626';
+  ctx.font = 'bold 14px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText(Tc + ' °C', barL, barY - 10);
+  ctx.fillStyle = '#1d4ed8';
+  ctx.fillText(Tf + ' °C', barR, barY - 10);
+
+  // Material label
+  ctx.fillStyle = '#64748b';
+  ctx.font = '12px Segoe UI';
+  ctx.fillText(document.getElementById('selMat').selectedOptions[0].text, W / 2, barY + barH + 20);
+
+  // Heat flow arrows
+  const arrowCount = Math.max(1, Math.round(propFactor * 6));
+  ctx.strokeStyle = '#e67e22';
+  ctx.fillStyle = '#e67e22';
+  ctx.lineWidth = 2;
+  for (let i = 0; i < arrowCount; i++) {
+    const ax = barL + 30 + i * ((barW - 60) / Math.max(arrowCount - 1, 1));
+    const ay = barY + barH + 35;
+    ctx.beginPath();
+    ctx.moveTo(ax - 15, ay);
+    ctx.lineTo(ax + 10, ay);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(ax + 10, ay - 5);
+    ctx.lineTo(ax + 18, ay);
+    ctx.lineTo(ax + 10, ay + 5);
+    ctx.fill();
+  }
+  ctx.font = '11px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('Flux thermique →', W / 2, barY + barH + 55);
+
+  // Heat source icon (flame)
+  drawFlame(ctx, barL - 15, barY + barH / 2, Tc);
+}
+
+function tempToColor(temp, maxT, minT) {
+  const t = Math.max(0, Math.min(1, (temp - minT) / (maxT - minT)));
+  const r = Math.round(50 + t * 205);
+  const g = Math.round(50 + (1 - t) * 100 + t * 50);
+  const b = Math.round(200 - t * 170);
+  return `rgb(${r},${g},${b})`;
+}
+
+function drawFlame(ctx, x, y, T) {
+  const s = Math.min(T / 200, 1.5);
+  ctx.fillStyle = '#ef4444';
+  ctx.beginPath();
+  ctx.ellipse(x, y, 6 * s, 12 * s, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#fbbf24';
+  ctx.beginPath();
+  ctx.ellipse(x, y + 3, 3 * s, 7 * s, 0, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+/* ── CONVECTION ── */
+function initConvParticles() {
+  convParticles = [];
+  for (let i = 0; i < 40; i++) {
+    convParticles.push({
+      angle: Math.random() * Math.PI * 2,
+      speed: 0.005 + Math.random() * 0.01,
+      offset: Math.random() * 0.3 - 0.15
+    });
+  }
+}
+
+let convAnimId = null;
+function updateConvection() {
+  const P = parseFloat(document.getElementById('slPrad').value);
+  document.getElementById('vPrad').textContent = P;
+  if (convAnimId) cancelAnimationFrame(convAnimId);
+  if (convParticles.length === 0) initConvParticles();
+  animateConvection(P);
+}
+
+function animateConvection(P) {
+  const cv = document.getElementById('cvConvection');
+  const ctx = cv.getContext('2d');
+  const W = cv.offsetWidth; cv.width = W; const H = 300; cv.height = H;
+
+  // Room
+  ctx.fillStyle = '#f8f9fa';
+  ctx.fillRect(0, 0, W, H);
+
+  const roomL = 30, roomR = W - 30, roomT = 20, roomB = H - 20;
+
+  // Walls
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(roomL, roomT, roomR - roomL, roomB - roomT);
+
+  // Floor pattern
+  ctx.fillStyle = '#e5e7eb';
+  ctx.fillRect(roomL + 2, roomB - 8, roomR - roomL - 4, 6);
+
+  // Window on right wall
+  const winT = roomT + 30, winB = roomT + 120;
+  ctx.fillStyle = '#bfdbfe';
+  ctx.fillRect(roomR - 12, winT, 10, winB - winT);
+  ctx.strokeStyle = '#60a5fa';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(roomR - 12, winT, 10, winB - winT);
+  ctx.beginPath();
+  ctx.moveTo(roomR - 12, (winT + winB) / 2);
+  ctx.lineTo(roomR - 2, (winT + winB) / 2);
+  ctx.stroke();
+  ctx.fillStyle = '#3b82f6';
+  ctx.font = '10px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('Froid', roomR - 7, winB + 14);
+
+  // Radiator on left
+  const radX = roomL + 15, radY = roomB - 80, radW = 30, radH = 60;
+  const intensity = P / 3000;
+  ctx.fillStyle = `rgba(239, 68, 68, ${0.3 + intensity * 0.7})`;
+  ctx.fillRect(radX, radY, radW, radH);
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(radX, radY, radW, radH);
+  // Fins
+  for (let i = 1; i < 4; i++) {
+    const fy = radY + i * (radH / 4);
+    ctx.beginPath();
+    ctx.moveTo(radX + 3, fy);
+    ctx.lineTo(radX + radW - 3, fy);
+    ctx.stroke();
+  }
+  ctx.fillStyle = '#dc2626';
+  ctx.font = 'bold 11px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('Radiateur', radX + radW / 2, radY - 8);
+  ctx.font = '10px Segoe UI';
+  ctx.fillText(P + ' W', radX + radW / 2, radY + radH + 14);
+
+  // Convection arrows (circular path)
+  const cx = (roomL + roomR) / 2;
+  const cy = (roomT + roomB) / 2;
+  const rx = (roomR - roomL) / 2 - 45;
+  const ry = (roomB - roomT) / 2 - 35;
+
+  const speedMul = 0.5 + intensity * 1.5;
+
+  // Draw particles along elliptical path
+  for (const p of convParticles) {
+    p.angle += p.speed * speedMul;
+    if (p.angle > Math.PI * 2) p.angle -= Math.PI * 2;
+
+    const pRx = rx * (1 + p.offset);
+    const pRy = ry * (1 + p.offset);
+    const px = cx + Math.cos(p.angle) * pRx;
+    const py = cy + Math.sin(p.angle) * pRy;
+
+    // Color based on position (hot near radiator, cold near window)
+    const hotness = Math.max(0, 1 - (px - roomL) / (roomR - roomL));
+    const vertHot = Math.max(0, 1 - (py - roomT) / (roomB - roomT));
+    const temp = hotness * 0.6 + vertHot * 0.4;
+
+    const r = Math.round(100 + temp * 155);
+    const g = Math.round(100 + (1 - temp) * 50);
+    const b = Math.round(100 + (1 - temp) * 155);
+
+    ctx.beginPath();
+    ctx.arc(px, py, 4, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${r},${g},${b},0.8)`;
+    ctx.fill();
+  }
+
+  // Direction arrows
+  ctx.strokeStyle = '#e67e22';
+  ctx.fillStyle = '#e67e22';
+  ctx.lineWidth = 2;
+  const arrowPts = [
+    { x: radX + radW + 20, y: roomT + 50, dir: 'up' },
+    { x: cx, y: roomT + 35, dir: 'right' },
+    { x: roomR - 50, y: cy, dir: 'down' },
+    { x: cx, y: roomB - 35, dir: 'left' }
+  ];
+  for (const a of arrowPts) {
+    drawArrow(ctx, a.x, a.y, a.dir);
+  }
+
+  // Labels
+  ctx.fillStyle = '#dc2626';
+  ctx.font = '11px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('Air chaud', radX + radW + 40, roomT + 42);
+  ctx.fillText('monte', radX + radW + 40, roomT + 55);
+  ctx.fillStyle = '#1d4ed8';
+  ctx.fillText('Air froid', roomR - 55, cy + 30);
+  ctx.fillText('descend', roomR - 55, cy + 43);
+
+  convAnimId = requestAnimationFrame(() => animateConvection(P));
+}
+
+function drawArrow(ctx, x, y, dir) {
+  const s = 10;
+  ctx.beginPath();
+  if (dir === 'up') { ctx.moveTo(x - 4, y + s); ctx.lineTo(x, y - s); ctx.lineTo(x + 4, y + s); }
+  else if (dir === 'down') { ctx.moveTo(x - 4, y - s); ctx.lineTo(x, y + s); ctx.lineTo(x + 4, y - s); }
+  else if (dir === 'right') { ctx.moveTo(x - s, y - 4); ctx.lineTo(x + s, y); ctx.lineTo(x - s, y + 4); }
+  else { ctx.moveTo(x + s, y - 4); ctx.lineTo(x - s, y); ctx.lineTo(x + s, y + 4); }
+  ctx.fill();
+}
+
+/* ── RAYONNEMENT ── */
+let rayAnimId = null;
+function updateRayonnement() {
+  const T = parseFloat(document.getElementById('slTray').value);
+  document.getElementById('vTray').textContent = T;
+  if (rayAnimId) cancelAnimationFrame(rayAnimId);
+  rayTime = 0;
+  animateRayonnement(T);
+}
+
+function animateRayonnement(T) {
+  const cv = document.getElementById('cvRayonnement');
+  const ctx = cv.getContext('2d');
+  const W = cv.offsetWidth; cv.width = W; const H = 280; cv.height = H;
+  rayTime += 0.03;
+
+  ctx.fillStyle = '#1a1a2e';
+  ctx.fillRect(0, 0, W, H);
+
+  const objX = W * 0.25, objY = H / 2, objR = 40;
+  const targetX = W * 0.75, targetY = H / 2;
+
+  // Object color based on temperature
+  const color = tempToEmissionColor(T);
+  // Glow
+  const glowR = objR + 10 + Math.sin(rayTime * 2) * 5;
+  const glow = ctx.createRadialGradient(objX, objY, objR * 0.5, objX, objY, glowR * 1.5);
+  glow.addColorStop(0, color);
+  glow.addColorStop(1, 'transparent');
+  ctx.fillStyle = glow;
+  ctx.fillRect(objX - glowR * 2, objY - glowR * 2, glowR * 4, glowR * 4);
+
+  // Object
+  ctx.beginPath();
+  ctx.arc(objX, objY, objR, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.strokeStyle = '#ffffff44';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Rays (wavy lines)
+  const numRays = Math.min(Math.floor((T - 20) / 80) + 2, 10);
+  const rayAlpha = Math.min((T - 20) / 500, 0.9);
+  ctx.strokeStyle = `rgba(255, 200, 50, ${rayAlpha})`;
+  ctx.lineWidth = 2;
+
+  for (let i = 0; i < numRays; i++) {
+    const angle = (i / numRays - 0.5) * 1.2;
+    const startX = objX + Math.cos(angle) * (objR + 5);
+    const startY = objY + Math.sin(angle) * (objR + 5);
+    const endX = targetX - 30;
+    const endY = targetY + Math.sin(angle) * 60;
+
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    const steps = 20;
+    for (let s = 1; s <= steps; s++) {
+      const t = s / steps;
+      const x = startX + (endX - startX) * t;
+      const baseY = startY + (endY - startY) * t;
+      const wave = Math.sin((t * 8 + rayTime * 3 + i) * Math.PI) * 8 * (1 - t * 0.5);
+      ctx.lineTo(x, baseY + wave);
+    }
+    ctx.stroke();
+  }
+
+  // Target object (cold)
+  ctx.beginPath();
+  ctx.arc(targetX, targetY, 30, 0, Math.PI * 2);
+  ctx.fillStyle = '#334155';
+  ctx.fill();
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = 'white';
+  ctx.font = 'bold 13px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText(T + ' °C', objX, objY + objR + 25);
+  ctx.fillStyle = '#94a3b8';
+  ctx.fillText('20 °C', targetX, targetY + 50);
+
+  ctx.fillStyle = '#fbbf24';
+  ctx.font = '12px Segoe UI';
+  ctx.fillText('Ondes infrarouges', W / 2, H - 20);
+
+  ctx.fillStyle = color;
+  ctx.fillText('Source chaude', objX, 25);
+  ctx.fillStyle = '#64748b';
+  ctx.fillText('Objet froid', targetX, 25);
+
+  rayAnimId = requestAnimationFrame(() => animateRayonnement(T));
+}
+
+function tempToEmissionColor(T) {
+  if (T < 100) return '#8b0000';
+  if (T < 300) return '#cc2200';
+  if (T < 500) return '#e65100';
+  if (T < 700) return '#ff8c00';
+  if (T < 850) return '#ffc107';
+  return '#fff8e1';
+}
+
+/* ── EQUILIBRE ── */
+let eqAnimId = null;
+
+function resetEquilibre() {
+  const TA = parseFloat(document.getElementById('slTA').value);
+  const TB = parseFloat(document.getElementById('slTB').value);
+  document.getElementById('vTA').textContent = TA;
+  document.getElementById('vTB').textContent = TB;
+  eqRunning = false;
+  if (eqAnimId) cancelAnimationFrame(eqAnimId);
+  eqTA = TA; eqTB = TB;
+  eqTarget = (TA + TB) / 2;
+  document.getElementById('rTA2').textContent = TA;
+  document.getElementById('rTB2').textContent = TB;
+  document.getElementById('rTeq').textContent = eqTarget.toFixed(0);
+  drawEquilibre();
+}
+
+function startEquilibre() {
+  const TA = parseFloat(document.getElementById('slTA').value);
+  const TB = parseFloat(document.getElementById('slTB').value);
+  eqTA = TA; eqTB = TB;
+  eqTarget = (TA + TB) / 2;
+  eqRunning = true;
+  document.getElementById('rTeq').textContent = eqTarget.toFixed(0);
+  animateEquilibre();
+}
+
+function animateEquilibre() {
+  const rate = 0.02;
+  eqTA += (eqTarget - eqTA) * rate;
+  eqTB += (eqTarget - eqTB) * rate;
+
+  document.getElementById('rTA2').textContent = eqTA.toFixed(1);
+  document.getElementById('rTB2').textContent = eqTB.toFixed(1);
+
+  drawEquilibre();
+
+  if (Math.abs(eqTA - eqTarget) > 0.2) {
+    eqAnimId = requestAnimationFrame(animateEquilibre);
+  } else {
+    eqTA = eqTarget; eqTB = eqTarget;
+    document.getElementById('rTA2').textContent = eqTarget.toFixed(0);
+    document.getElementById('rTB2').textContent = eqTarget.toFixed(0);
+    drawEquilibre();
+    eqRunning = false;
+  }
+}
+
+function drawEquilibre() {
+  const cv = document.getElementById('cvEquilibre');
+  const ctx = cv.getContext('2d');
+  const W = cv.offsetWidth; cv.width = W; const H = 250; cv.height = H;
+
+  ctx.fillStyle = '#fafafa';
+  ctx.fillRect(0, 0, W, H);
+
+  const maxT = 200;
+  const barW = 60, gap = 40;
+  const startX = W / 2 - barW - gap / 2;
+  const barBot = H - 40, barMaxH = H - 80;
+
+  // Bar A
+  const hA = (eqTA / maxT) * barMaxH;
+  const gradA = ctx.createLinearGradient(0, barBot - hA, 0, barBot);
+  gradA.addColorStop(0, '#ef4444');
+  gradA.addColorStop(1, '#fca5a5');
+  ctx.fillStyle = gradA;
+  ctx.fillRect(startX, barBot - hA, barW, hA);
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(startX, barBot - hA, barW, hA);
+
+  // Bar B
+  const hB = (eqTB / maxT) * barMaxH;
+  const bx = startX + barW + gap;
+  const gradB = ctx.createLinearGradient(0, barBot - hB, 0, barBot);
+  gradB.addColorStop(0, '#3b82f6');
+  gradB.addColorStop(1, '#93c5fd');
+  ctx.fillStyle = gradB;
+  ctx.fillRect(bx, barBot - hB, barW, hB);
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(bx, barBot - hB, barW, hB);
+
+  // Equilibrium line
+  const eqH = barBot - (eqTarget / maxT) * barMaxH;
+  ctx.setLineDash([6, 4]);
+  ctx.strokeStyle = '#059669';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(startX - 20, eqH);
+  ctx.lineTo(bx + barW + 20, eqH);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Labels
+  ctx.fillStyle = '#dc2626';
+  ctx.font = 'bold 14px Segoe UI';
+  ctx.textAlign = 'center';
+  ctx.fillText('A', startX + barW / 2, barBot + 20);
+  ctx.fillText(eqTA.toFixed(0) + '°C', startX + barW / 2, barBot - hA - 10);
+
+  ctx.fillStyle = '#2563eb';
+  ctx.fillText('B', bx + barW / 2, barBot + 20);
+  ctx.fillText(eqTB.toFixed(0) + '°C', bx + barW / 2, barBot - hB - 10);
+
+  ctx.fillStyle = '#059669';
+  ctx.font = '12px Segoe UI';
+  ctx.textAlign = 'left';
+  ctx.fillText('T_éq = ' + eqTarget.toFixed(0) + '°C', bx + barW + 25, eqH + 4);
+
+  // Arrow if not at equilibrium
+  if (Math.abs(eqTA - eqTB) > 1) {
+    ctx.fillStyle = '#e67e22';
+    ctx.font = '11px Segoe UI';
+    ctx.textAlign = 'center';
+    const arrowY = (barBot - hA / 2 + barBot - hB / 2) / 2;
+    ctx.fillText('Transfert →', W / 2, arrowY);
+  }
+}
+
+// Init
+initConvParticles();
+updateConduction();
+resetEquilibre();
+</script>
+</body>
+</html>

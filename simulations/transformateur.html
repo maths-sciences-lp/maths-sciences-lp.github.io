@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transformateur et Transport d'Énergie — Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 860px; margin: 0 auto; }
+  header { background: #6f42c1; color: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 25px; position: relative; }
+  header h1 { margin: 0 0 5px 0; font-size: 1.5em; }
+  header p { margin: 0; opacity: 0.85; font-size: 0.95em; }
+  .btn-back { position: absolute; left: 15px; top: 15px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 5px 12px; border-radius: 5px; font-size: 0.85em; }
+  .btn-back:hover { background: rgba(255,255,255,0.35); }
+  .card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+  .card h2 { margin-top: 0; color: #6f42c1; font-size: 1.15em; border-bottom: 2px solid #e9d5ff; padding-bottom: 8px; }
+  label { font-weight: 600; display: block; margin-bottom: 5px; font-size: 0.95em; }
+  input[type=range] { width: 100%; accent-color: #6f42c1; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media(max-width:600px) { .row, .row3 { grid-template-columns: 1fr; } }
+  .val { color: #6f42c1; font-weight: bold; }
+  .result { background: #f5f0ff; border-radius: 8px; padding: 15px; margin-top: 15px; }
+  .result p { margin: 6px 0; font-size: 1em; }
+  .explication { background: #faf5ff; border-left: 4px solid #6f42c1; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 20px; font-size: 0.95em; line-height: 1.6; }
+  canvas { display: block; margin: 0 auto; border-radius: 8px; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; font-weight: 600; }
+  .badge-up { background: #dcfce7; color: #166534; }
+  .badge-down { background: #fee2e2; color: #991b1b; }
+  .badge-eq { background: #e0f2fe; color: #0369a1; }
+  .info { font-size: 0.88em; color: #6b7280; margin-top: 4px; }
+  .warn { background: #fef3c7; border-left: 4px solid #d97706; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 0.92em; margin-top: 15px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Transformateur et Transport d'Energie</h1>
+    <p>Terminale Bac Pro &middot; Ch01 ERA</p>
+  </header>
+
+  <div class="explication">
+    <strong>Principe :</strong> Un transformateur modifie la tension alternative grace a deux bobines (primaire et secondaire) couplees magnetiquement. La relation fondamentale est :
+    <strong>U2/U1 = N2/N1 = m</strong> (rapport de transformation). Le transport en haute tension reduit les pertes par effet Joule dans les lignes (<strong>P<sub>pertes</sub> = R &times; I&sup2;</strong>).
+  </div>
+
+  <!-- TRANSFORMER VISUALIZATION -->
+  <div class="card">
+    <h2>1. Le Transformateur</h2>
+    <canvas id="cvTransfo" width="820" height="320"></canvas>
+
+    <div class="row3" style="margin-top:18px;">
+      <div>
+        <label>U1 (tension primaire) : <span class="val" id="vU1">230</span> V</label>
+        <input type="range" id="sU1" min="0" max="400" value="230" step="1" oninput="update()">
+      </div>
+      <div>
+        <label>N1 (spires primaire) : <span class="val" id="vN1">100</span></label>
+        <input type="range" id="sN1" min="10" max="1000" value="100" step="1" oninput="update()">
+      </div>
+      <div>
+        <label>N2 (spires secondaire) : <span class="val" id="vN2">500</span></label>
+        <input type="range" id="sN2" min="10" max="1000" value="500" step="1" oninput="update()">
+      </div>
+    </div>
+
+    <div class="result" id="resTransfo">
+    </div>
+  </div>
+
+  <!-- TRANSPORT LOSSES -->
+  <div class="card">
+    <h2>2. Pertes en ligne lors du transport</h2>
+    <p style="font-size:0.93em;">On transporte une puissance \( P = 100\,\text{kW} \). Observez l'effet de la tension de transport et de la resistance de la ligne sur les pertes.</p>
+
+    <div class="row">
+      <div>
+        <label>Resistance de la ligne R : <span class="val" id="vRL">5</span> &Omega;</label>
+        <input type="range" id="sRL" min="0.5" max="50" step="0.5" value="5" oninput="updateTransport()">
+      </div>
+      <div>
+        <label>Tension de transport U : <span class="val" id="vUT">230</span> V</label>
+        <input type="range" id="sUT" min="230" max="400000" step="100" value="230" oninput="updateTransport()">
+        <p class="info">De 230 V (basse tension) a 400 000 V (THT)</p>
+      </div>
+    </div>
+
+    <div class="result" id="resTransport">
+    </div>
+
+    <canvas id="cvTransport" width="820" height="260" style="margin-top:15px;"></canvas>
+
+    <div class="warn">
+      <strong>Conclusion :</strong> Plus la tension de transport est elevee, plus le courant est faible (car P = U &times; I), et donc plus les pertes \( P_{\text{pertes}} = R \times I^2 \) sont faibles. C'est pourquoi on transporte l'electricite en haute tension !
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+// ===== TRANSFORMER CANVAS =====
+const cvT = $('cvTransfo');
+const ctxT = cvT.getContext('2d');
+let animFrame = 0;
+
+function drawTransformer() {
+  const W = cvT.width, H = cvT.height;
+  const dpr = window.devicePixelRatio || 1;
+  cvT.style.width = W + 'px';
+  ctxT.clearRect(0, 0, W, H);
+
+  const U1 = +$('sU1').value;
+  const N1 = +$('sN1').value;
+  const N2 = +$('sN2').value;
+  const m = N2 / N1;
+  const U2 = U1 * m;
+
+  // Core
+  ctxT.fillStyle = '#94a3b8';
+  ctxT.fillRect(250, 60, 320, 30);
+  ctxT.fillRect(250, 230, 320, 30);
+  ctxT.fillRect(250, 60, 40, 200);
+  ctxT.fillRect(530, 60, 40, 200);
+  // Core label
+  ctxT.fillStyle = '#475569';
+  ctxT.font = '12px Segoe UI';
+  ctxT.textAlign = 'center';
+  ctxT.fillText('Noyau ferromagnetique', 410, 255);
+
+  // Primary coil (left)
+  const coilColors = ['#7c3aed', '#6d28d9'];
+  const n1Draw = Math.min(Math.round(N1 / 50), 18);
+  const coilY = 95;
+  const coilH = 130;
+  const spacing1 = coilH / (n1Draw + 1);
+  ctxT.strokeStyle = '#7c3aed';
+  ctxT.lineWidth = 3;
+  for (let i = 1; i <= n1Draw; i++) {
+    const y = coilY + i * spacing1;
+    ctxT.beginPath();
+    ctxT.ellipse(280, y, 35, 8, 0, 0, Math.PI * 2);
+    ctxT.stroke();
+  }
+  ctxT.fillStyle = '#7c3aed';
+  ctxT.font = 'bold 14px Segoe UI';
+  ctxT.textAlign = 'center';
+  ctxT.fillText('Primaire (N1)', 240, 52);
+  ctxT.font = '13px Segoe UI';
+  ctxT.fillText('N1 = ' + N1 + ' spires', 240, 280);
+
+  // Secondary coil (right)
+  const n2Draw = Math.min(Math.round(N2 / 50), 18);
+  const spacing2 = coilH / (n2Draw + 1);
+  ctxT.strokeStyle = '#c026d3';
+  ctxT.lineWidth = 3;
+  for (let i = 1; i <= n2Draw; i++) {
+    const y = coilY + i * spacing2;
+    ctxT.beginPath();
+    ctxT.ellipse(540, y, 35, 8, 0, 0, Math.PI * 2);
+    ctxT.stroke();
+  }
+  ctxT.fillStyle = '#c026d3';
+  ctxT.font = 'bold 14px Segoe UI';
+  ctxT.fillText('Secondaire (N2)', 580, 52);
+  ctxT.font = '13px Segoe UI';
+  ctxT.fillText('N2 = ' + N2 + ' spires', 580, 280);
+
+  // Input voltage label
+  ctxT.fillStyle = '#1e40af';
+  ctxT.font = 'bold 16px Segoe UI';
+  ctxT.textAlign = 'right';
+  ctxT.fillText('U1 = ' + U1 + ' V', 200, 160);
+
+  // Arrow left
+  ctxT.beginPath();
+  ctxT.moveTo(130, 100); ctxT.lineTo(130, 220);
+  ctxT.strokeStyle = '#1e40af'; ctxT.lineWidth = 2; ctxT.stroke();
+  ctxT.beginPath();
+  ctxT.moveTo(125, 110); ctxT.lineTo(130, 95); ctxT.lineTo(135, 110);
+  ctxT.fillStyle = '#1e40af'; ctxT.fill();
+
+  // Output voltage label
+  ctxT.fillStyle = '#9333ea';
+  ctxT.font = 'bold 16px Segoe UI';
+  ctxT.textAlign = 'left';
+  ctxT.fillText('U2 = ' + U2.toFixed(1) + ' V', 620, 160);
+
+  // Arrow right
+  ctxT.beginPath();
+  ctxT.moveTo(690, 100); ctxT.lineTo(690, 220);
+  ctxT.strokeStyle = '#9333ea'; ctxT.lineWidth = 2; ctxT.stroke();
+  ctxT.beginPath();
+  ctxT.moveTo(685, 110); ctxT.lineTo(690, 95); ctxT.lineTo(695, 110);
+  ctxT.fillStyle = '#9333ea'; ctxT.fill();
+
+  // Animated electrons
+  animFrame++;
+  const speed = U1 > 0 ? 2 : 0;
+  const phase = (animFrame * speed) % 60;
+
+  // Primary side electrons (blue dots moving down)
+  if (U1 > 0) {
+    ctxT.fillStyle = '#3b82f6';
+    for (let i = 0; i < 4; i++) {
+      const t = ((phase + i * 15) % 60) / 60;
+      const ey = 90 + t * 140;
+      ctxT.beginPath();
+      ctxT.arc(145, ey, 4, 0, Math.PI * 2);
+      ctxT.fill();
+    }
+    // Secondary side electrons (purple dots)
+    ctxT.fillStyle = '#a855f7';
+    for (let i = 0; i < 4; i++) {
+      const t = ((phase + i * 15) % 60) / 60;
+      const ey = 230 - t * 140;
+      ctxT.beginPath();
+      ctxT.arc(675, ey, 4, 0, Math.PI * 2);
+      ctxT.fill();
+    }
+  }
+
+  // Magnetic flux arrows in core
+  ctxT.strokeStyle = '#ef4444';
+  ctxT.lineWidth = 2;
+  ctxT.setLineDash([5, 5]);
+  const fluxOffset = (animFrame * 1.5) % 40;
+  for (let i = 0; i < 5; i++) {
+    const x = 310 + ((i * 40 + fluxOffset) % 200);
+    ctxT.beginPath();
+    ctxT.moveTo(x, 72); ctxT.lineTo(x + 10, 77); ctxT.lineTo(x, 82);
+    ctxT.stroke();
+  }
+  ctxT.setLineDash([]);
+
+  // Formula box
+  ctxT.fillStyle = '#f5f0ff';
+  ctxT.fillRect(320, 290, 180, 28);
+  ctxT.strokeStyle = '#6f42c1';
+  ctxT.lineWidth = 1;
+  ctxT.strokeRect(320, 290, 180, 28);
+  ctxT.fillStyle = '#6f42c1';
+  ctxT.font = 'bold 13px Segoe UI';
+  ctxT.textAlign = 'center';
+  ctxT.fillText('m = N2/N1 = ' + m.toFixed(2), 410, 309);
+
+  requestAnimationFrame(drawTransformer);
+}
+
+function update() {
+  const U1 = +$('sU1').value;
+  const N1 = +$('sN1').value;
+  const N2 = +$('sN2').value;
+  $('vU1').textContent = U1;
+  $('vN1').textContent = N1;
+  $('vN2').textContent = N2;
+
+  const m = N2 / N1;
+  const U2 = U1 * m;
+  const I1 = U1 > 0 ? 100000 / U1 : 0; // Assuming P=100kW
+  const I2 = U1 > 0 && U2 > 0 ? 100000 / U2 : 0;
+
+  let typeLabel, typeBadge;
+  if (m > 1) { typeLabel = 'Elevateur'; typeBadge = '<span class="badge badge-up">Elevateur (m > 1)</span>'; }
+  else if (m < 1) { typeLabel = 'Abaisseur'; typeBadge = '<span class="badge badge-down">Abaisseur (m < 1)</span>'; }
+  else { typeLabel = 'Isolement'; typeBadge = '<span class="badge badge-eq">Isolement (m = 1)</span>'; }
+
+  $('resTransfo').innerHTML = `
+    <p><strong>Rapport de transformation :</strong> m = N2 / N1 = ${N2} / ${N1} = <span class="val">${m.toFixed(3)}</span> ${typeBadge}</p>
+    <p><strong>Tension secondaire :</strong> U2 = U1 &times; m = ${U1} &times; ${m.toFixed(3)} = <span class="val">${U2.toFixed(1)} V</span></p>
+    <p><strong>Conservation de la puissance :</strong> P1 &asymp; P2 &rArr; si P = 100 kW :</p>
+    <p style="margin-left:20px;">I1 = P / U1 = ${I1.toFixed(2)} A &nbsp;|&nbsp; I2 = P / U2 = ${I2.toFixed(2)} A</p>
+  `;
+}
+
+// ===== TRANSPORT LOSSES =====
+const cvTr = $('cvTransport');
+const ctxTr = cvTr.getContext('2d');
+
+function updateTransport() {
+  const R = +$('sRL').value;
+  const U = +$('sUT').value;
+  $('vRL').textContent = R;
+
+  // Format voltage nicely
+  let uLabel;
+  if (U >= 1000) uLabel = (U / 1000).toFixed(1) + ' kV';
+  else uLabel = U + ' V';
+  $('vUT').textContent = uLabel;
+
+  const P = 100000; // 100 kW
+  const I = P / U;
+  const Ppertes = R * I * I;
+  const pct = (Ppertes / P) * 100;
+  const Putile = P - Ppertes;
+
+  $('resTransport').innerHTML = `
+    <p><strong>Puissance transportee :</strong> P = 100 kW a U = ${uLabel}</p>
+    <p><strong>Courant dans la ligne :</strong> I = P / U = ${I.toFixed(3)} A</p>
+    <p><strong>Pertes par effet Joule :</strong> P<sub>pertes</sub> = R &times; I&sup2; = ${R} &times; ${I.toFixed(3)}&sup2; = <span class="val" style="color:${pct > 50 ? '#dc2626' : pct > 10 ? '#d97706' : '#16a34a'}">${Ppertes.toFixed(1)} W (${pct.toFixed(2)} %)</span></p>
+    <p><strong>Puissance utile recue :</strong> ${Math.max(0, Putile).toFixed(1)} W</p>
+    ${pct > 100 ? '<p style="color:#dc2626;font-weight:bold;">Les pertes depassent la puissance transportee ! Situation impossible en pratique.</p>' : ''}
+  `;
+
+  // Draw comparison bar chart
+  drawTransportChart(R);
+}
+
+function drawTransportChart(R) {
+  const W = cvTr.width, H = cvTr.height;
+  ctxTr.clearRect(0, 0, W, H);
+
+  const P = 100000;
+  const voltages = [230, 1000, 20000, 90000, 225000, 400000];
+  const labels = ['230 V', '1 kV', '20 kV', '90 kV', '225 kV', '400 kV'];
+  const barW = 80;
+  const gap = (W - 80) / voltages.length;
+
+  ctxTr.fillStyle = '#475569';
+  ctxTr.font = 'bold 13px Segoe UI';
+  ctxTr.textAlign = 'center';
+  ctxTr.fillText('Pourcentage de pertes selon la tension de transport (P = 100 kW, R = ' + R + ' \u03A9)', W / 2, 20);
+
+  const maxH = 180;
+  const baseY = 240;
+
+  voltages.forEach((U, i) => {
+    const x = 60 + i * gap;
+    const I = P / U;
+    let pct = (R * I * I / P) * 100;
+    if (pct > 100) pct = 100;
+    const barH = (pct / 100) * maxH;
+
+    // Color based on pct
+    let color;
+    if (pct > 50) color = '#dc2626';
+    else if (pct > 10) color = '#f59e0b';
+    else if (pct > 1) color = '#3b82f6';
+    else color = '#16a34a';
+
+    ctxTr.fillStyle = color;
+    ctxTr.fillRect(x, baseY - barH, barW, barH);
+    ctxTr.strokeStyle = '#fff';
+    ctxTr.lineWidth = 1;
+    ctxTr.strokeRect(x, baseY - barH, barW, barH);
+
+    // Label
+    ctxTr.fillStyle = '#333';
+    ctxTr.font = '11px Segoe UI';
+    ctxTr.textAlign = 'center';
+    ctxTr.fillText(labels[i], x + barW / 2, baseY + 16);
+
+    // Percentage
+    ctxTr.fillStyle = color;
+    ctxTr.font = 'bold 12px Segoe UI';
+    const pctLabel = pct > 0.01 ? pct.toFixed(pct < 1 ? 4 : 1) + ' %' : '~0 %';
+    ctxTr.fillText(pctLabel, x + barW / 2, baseY - barH - 6);
+  });
+
+  // Baseline
+  ctxTr.strokeStyle = '#94a3b8';
+  ctxTr.lineWidth = 1;
+  ctxTr.beginPath();
+  ctxTr.moveTo(40, baseY);
+  ctxTr.lineTo(W - 20, baseY);
+  ctxTr.stroke();
+}
+
+// Init
+update();
+updateTransport();
+drawTransformer();
+</script>
+</body>
+</html>

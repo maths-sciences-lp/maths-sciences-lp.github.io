@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Figures Planes — Périmètres et Aires</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:20px;text-align:center;position:relative}
+header h1{font-size:1.6em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:0 auto;padding:20px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}
+.shape-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px}
+.shape-btn{padding:8px 16px;border:2px solid #1976d2;background:#fff;color:#1976d2;border-radius:8px;cursor:pointer;font-size:.9em;font-weight:600;transition:all .2s}
+.shape-btn:hover{background:#e3f2fd}
+.shape-btn.active{background:#1976d2;color:#fff}
+.canvas-wrap{display:flex;justify-content:center;margin:16px 0;overflow-x:auto}
+canvas{border:1px solid #e0e0e0;border-radius:8px;background:#fff;max-width:100%}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin:16px 0}
+.ctrl-group{display:flex;flex-direction:column;gap:4px}
+.ctrl-group label{font-weight:600;font-size:.88em;color:#555}
+.ctrl-group .slider-row{display:flex;align-items:center;gap:8px}
+.ctrl-group input[type=range]{flex:1;accent-color:#1976d2;height:6px}
+.ctrl-group .val{font-weight:700;color:#1976d2;min-width:36px;text-align:center;font-size:.95em}
+.unit-sel{display:flex;align-items:center;gap:10px;justify-content:center;margin:10px 0}
+.unit-sel label{font-weight:600;font-size:.9em}
+.unit-sel select{padding:4px 10px;border:2px solid #1976d2;border-radius:6px;font-size:.9em;color:#1976d2;font-weight:600;background:#fff}
+.results{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.result-box{padding:14px;border-radius:8px;text-align:center}
+.result-box.perim{background:#e3f2fd;border:1px solid #90caf9}
+.result-box.aire{background:#e8f5e9;border:1px solid #a5d6a7}
+.result-box h3{font-size:.85em;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;color:#555}
+.result-box .formula{font-size:.95em;color:#333;margin-bottom:4px}
+.result-box .value{font-size:1.35em;font-weight:700;color:#1976d2}
+.result-box.aire .value{color:#2e7d32}
+.pro-context{background:#fff3e0;border-left:4px solid #ff9800;padding:12px 16px;border-radius:0 8px 8px 0;margin-top:10px;font-size:.9em;color:#e65100}
+.pro-context strong{color:#bf360c}
+@media(max-width:600px){
+  .controls{grid-template-columns:1fr}
+  .results{grid-template-columns:1fr}
+  header h1{font-size:1.2em}
+  .shape-btns{gap:5px}
+  .shape-btn{padding:6px 10px;font-size:.8em}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">← Retour</a>
+  <h1>Figures Planes — Périmètres et Aires</h1>
+  <p>2nde Bac Pro · Ch11</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div class="shape-btns" id="shapeBtns">
+      <button class="shape-btn active" onclick="selectShape('rectangle')">Rectangle</button>
+      <button class="shape-btn" onclick="selectShape('triangle')">Triangle</button>
+      <button class="shape-btn" onclick="selectShape('cercle')">Cercle</button>
+      <button class="shape-btn" onclick="selectShape('trapeze')">Trapèze</button>
+      <button class="shape-btn" onclick="selectShape('parallelogramme')">Parallélogramme</button>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="cv" width="500" height="400"></canvas>
+    </div>
+
+    <div class="unit-sel">
+      <label for="unit">Unité :</label>
+      <select id="unit" onchange="update()">
+        <option value="cm">cm</option>
+        <option value="m">m</option>
+      </select>
+    </div>
+
+    <div class="controls" id="controls"></div>
+
+    <div class="results">
+      <div class="result-box perim">
+        <h3>Périmètre</h3>
+        <div class="formula" id="perimFormula"></div>
+        <div class="value" id="perimValue"></div>
+      </div>
+      <div class="result-box aire">
+        <h3>Aire</h3>
+        <div class="formula" id="aireFormula"></div>
+        <div class="value" id="aireValue"></div>
+      </div>
+    </div>
+
+    <div class="pro-context">
+      <strong>Contexte professionnel :</strong> Calcul de surface pour poser du parquet ou des plinthes — un menuisier doit connaître l'aire d'une pièce pour commander la bonne quantité de matériau, et le périmètre pour les plinthes.
+    </div>
+  </div>
+</div>
+
+<script>
+let shape = 'rectangle';
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+
+const sliderDefs = {
+  rectangle: [
+    {id:'L', label:'Longueur L', min:1, max:20, def:8},
+    {id:'l', label:'Largeur l', min:1, max:15, def:5}
+  ],
+  triangle: [
+    {id:'b', label:'Base b', min:1, max:20, def:6},
+    {id:'h', label:'Hauteur h', min:1, max:15, def:4},
+    {id:'c1', label:'Côté gauche c₁', min:1, max:20, def:5},
+    {id:'c2', label:'Côté droit c₂', min:1, max:20, def:5}
+  ],
+  cercle: [
+    {id:'r', label:'Rayon r', min:1, max:15, def:5}
+  ],
+  trapeze: [
+    {id:'B', label:'Grande base B', min:5, max:20, def:12},
+    {id:'b', label:'Petite base b', min:2, max:15, def:6},
+    {id:'h', label:'Hauteur h', min:1, max:10, def:4},
+    {id:'c1', label:'Côté gauche c₁', min:1, max:15, def:5},
+    {id:'c2', label:'Côté droit c₂', min:1, max:15, def:5}
+  ],
+  parallelogramme: [
+    {id:'b', label:'Base b', min:3, max:20, def:10},
+    {id:'h', label:'Hauteur h', min:1, max:15, def:6},
+    {id:'c', label:'Côté oblique c', min:2, max:20, def:7}
+  ]
+};
+
+let vals = {};
+
+function selectShape(s) {
+  shape = s;
+  document.querySelectorAll('.shape-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.shape-btn[onclick="selectShape('${s}')"]`).classList.add('active');
+  buildControls();
+  update();
+}
+
+function buildControls() {
+  const ctn = document.getElementById('controls');
+  ctn.innerHTML = '';
+  const defs = sliderDefs[shape];
+  vals = {};
+  defs.forEach(d => {
+    vals[d.id] = d.def;
+    const g = document.createElement('div');
+    g.className = 'ctrl-group';
+    g.innerHTML = `<label>${d.label}</label>
+      <div class="slider-row">
+        <input type="range" min="${d.min}" max="${d.max}" value="${d.def}" step="0.5" id="sl_${d.id}" oninput="vals['${d.id}']=parseFloat(this.value);document.getElementById('v_${d.id}').textContent=this.value;update()">
+        <span class="val" id="v_${d.id}">${d.def}</span>
+      </div>`;
+    ctn.appendChild(g);
+  });
+}
+
+function round2(x) { return Math.round(x * 100) / 100; }
+
+function update() {
+  const u = document.getElementById('unit').value;
+  const u2 = u + '²';
+  draw();
+
+  let P, A, pf, af;
+
+  switch (shape) {
+    case 'rectangle': {
+      const L = vals.L, l = vals.l;
+      P = round2(2 * (L + l));
+      A = round2(L * l);
+      pf = `P = 2(L + l) = 2(${L} + ${l}) = ${P} ${u}`;
+      af = `A = L × l = ${L} × ${l} = ${A} ${u2}`;
+      break;
+    }
+    case 'triangle': {
+      const b = vals.b, h = vals.h, c1 = vals.c1, c2 = vals.c2;
+      P = round2(b + c1 + c2);
+      A = round2(b * h / 2);
+      pf = `P = b + c₁ + c₂ = ${b} + ${c1} + ${c2} = ${P} ${u}`;
+      af = `A = b × h ÷ 2 = ${b} × ${h} ÷ 2 = ${A} ${u2}`;
+      break;
+    }
+    case 'cercle': {
+      const r = vals.r;
+      P = round2(2 * Math.PI * r);
+      A = round2(Math.PI * r * r);
+      pf = `P = 2πr = 2 × π × ${r} ≈ ${P} ${u}`;
+      af = `A = πr² = π × ${r}² ≈ ${A} ${u2}`;
+      break;
+    }
+    case 'trapeze': {
+      const B = vals.B, b = vals.b, h = vals.h, c1 = vals.c1, c2 = vals.c2;
+      P = round2(B + b + c1 + c2);
+      A = round2((B + b) * h / 2);
+      pf = `P = B + b + c₁ + c₂ = ${B} + ${b} + ${c1} + ${c2} = ${P} ${u}`;
+      af = `A = (B + b) × h ÷ 2 = (${B} + ${b}) × ${h} ÷ 2 = ${A} ${u2}`;
+      break;
+    }
+    case 'parallelogramme': {
+      const b = vals.b, h = vals.h, c = vals.c;
+      P = round2(2 * (b + c));
+      A = round2(b * h);
+      pf = `P = 2(b + c) = 2(${b} + ${c}) = ${P} ${u}`;
+      af = `A = b × h = ${b} × ${h} = ${A} ${u2}`;
+      break;
+    }
+  }
+
+  document.getElementById('perimFormula').textContent = pf;
+  document.getElementById('perimValue').textContent = P + ' ' + u;
+  document.getElementById('aireFormula').textContent = af;
+  document.getElementById('aireValue').textContent = A + ' ' + u2;
+}
+
+function draw() {
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#f0f0f0';
+  ctx.lineWidth = 1;
+  for (let x = 0; x < W; x += 20) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+  for (let y = 0; y < H; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+  const cx = W / 2, cy = H / 2;
+  const scale = 18; // pixels per unit
+
+  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = '#1976d2';
+  ctx.font = 'bold 14px Segoe UI, system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  switch (shape) {
+    case 'rectangle': drawRectangle(cx, cy, scale); break;
+    case 'triangle': drawTriangle(cx, cy, scale); break;
+    case 'cercle': drawCercle(cx, cy, scale); break;
+    case 'trapeze': drawTrapeze(cx, cy, scale); break;
+    case 'parallelogramme': drawParallelogramme(cx, cy, scale); break;
+  }
+}
+
+function fillShape(path) {
+  ctx.save();
+  ctx.fillStyle = 'rgba(25,118,210,0.08)';
+  ctx.fill(path);
+  ctx.restore();
+}
+
+function dimLabel(text, x, y, color) {
+  ctx.save();
+  ctx.fillStyle = color || '#d32f2f';
+  ctx.font = 'bold 14px Segoe UI, system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  const m = ctx.measureText(text);
+  const pw = m.width + 10, ph = 20;
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(x - pw/2, y - ph/2, pw, ph);
+  ctx.fillStyle = color || '#d32f2f';
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+function dashedLine(x1, y1, x2, y2) {
+  ctx.save();
+  ctx.setLineDash([6, 4]);
+  ctx.strokeStyle = '#888';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function rightAngle(x, y, dir1x, dir1y, dir2x, dir2y, size) {
+  size = size || 10;
+  ctx.save();
+  ctx.strokeStyle = '#888';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([]);
+  ctx.beginPath();
+  ctx.moveTo(x + dir1x * size, y + dir1y * size);
+  ctx.lineTo(x + dir1x * size + dir2x * size, y + dir1y * size + dir2y * size);
+  ctx.lineTo(x + dir2x * size, y + dir2y * size);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawRectangle(cx, cy, sc) {
+  const L = vals.L, l = vals.l;
+  const w = L * sc, h = l * sc;
+  const x0 = cx - w/2, y0 = cy - h/2;
+
+  const path = new Path2D();
+  path.rect(x0, y0, w, h);
+  fillShape(path);
+
+  ctx.strokeStyle = '#1976d2';
+  ctx.lineWidth = 2.5;
+  ctx.setLineDash([]);
+  ctx.stroke(path);
+
+  // Right angle marker
+  rightAngle(x0, y0 + h, 1, 0, 0, -1);
+
+  // Dimension labels
+  dimLabel('L = ' + L, cx, y0 + h + 22, '#1976d2');
+  dimLabel('l = ' + l, x0 - 28, cy, '#e65100');
+}
+
+function drawTriangle(cx, cy, sc) {
+  const b = vals.b, h = vals.h;
+  const bw = b * sc, bh = h * sc;
+  const x0 = cx - bw/2, y0 = cy + bh/2;
+  // apex slightly off-center for a general triangle
+  const apexX = cx - bw * 0.1, apexY = cy - bh/2;
+
+  const path = new Path2D();
+  path.moveTo(x0, y0);
+  path.lineTo(x0 + bw, y0);
+  path.lineTo(apexX, apexY);
+  path.closePath();
+  fillShape(path);
+
+  ctx.strokeStyle = '#1976d2';
+  ctx.lineWidth = 2.5;
+  ctx.setLineDash([]);
+  ctx.stroke(path);
+
+  // Height dashed line
+  dashedLine(apexX, apexY, apexX, y0);
+  rightAngle(apexX, y0, 1, 0, 0, -1);
+
+  // Labels
+  dimLabel('b = ' + b, cx, y0 + 22, '#1976d2');
+  dimLabel('h = ' + h, apexX + 24, cy, '#e65100');
+  dimLabel('c₁ = ' + vals.c1, (x0 + apexX)/2 - 20, (y0 + apexY)/2, '#666');
+  dimLabel('c₂ = ' + vals.c2, (x0 + bw + apexX)/2 + 20, (y0 + apexY)/2, '#666');
+}
+
+function drawCercle(cx, cy, sc) {
+  const r = vals.r;
+  const rp = r * sc;
+
+  const path = new Path2D();
+  path.arc(cx, cy, rp, 0, 2 * Math.PI);
+  fillShape(path);
+
+  ctx.strokeStyle = '#1976d2';
+  ctx.lineWidth = 2.5;
+  ctx.setLineDash([]);
+  ctx.stroke(path);
+
+  // Center dot
+  ctx.beginPath();
+  ctx.arc(cx, cy, 3, 0, 2 * Math.PI);
+  ctx.fillStyle = '#1976d2';
+  ctx.fill();
+
+  // Radius line
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(cx + rp, cy);
+  ctx.strokeStyle = '#d32f2f';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  dimLabel('r = ' + r, cx + rp/2, cy - 16, '#d32f2f');
+}
+
+function drawTrapeze(cx, cy, sc) {
+  const B = vals.B, b = vals.b, h = vals.h;
+  const Bw = B * sc, bw = b * sc, bh = h * sc;
+  const yBot = cy + bh/2, yTop = cy - bh/2;
+  const xBotL = cx - Bw/2, xBotR = cx + Bw/2;
+  const xTopL = cx - bw/2, xTopR = cx + bw/2;
+
+  const path = new Path2D();
+  path.moveTo(xBotL, yBot);
+  path.lineTo(xBotR, yBot);
+  path.lineTo(xTopR, yTop);
+  path.lineTo(xTopL, yTop);
+  path.closePath();
+  fillShape(path);
+
+  ctx.strokeStyle = '#1976d2';
+  ctx.lineWidth = 2.5;
+  ctx.setLineDash([]);
+  ctx.stroke(path);
+
+  // Height dashed
+  const hx = cx - bw/2 + 10;
+  dashedLine(hx, yTop, hx, yBot);
+  rightAngle(hx, yBot, 1, 0, 0, -1);
+
+  // Labels
+  dimLabel('B = ' + B, cx, yBot + 22, '#1976d2');
+  dimLabel('b = ' + b, cx, yTop - 18, '#e65100');
+  dimLabel('h = ' + h, hx - 28, cy, '#888');
+  dimLabel('c₁', (xBotL + xTopL)/2 - 18, cy, '#666');
+  dimLabel('c₂', (xBotR + xTopR)/2 + 18, cy, '#666');
+}
+
+function drawParallelogramme(cx, cy, sc) {
+  const b = vals.b, h = vals.h;
+  const bw = b * sc, bh = h * sc;
+  const offset = bh * 0.45; // slant
+
+  const x0 = cx - bw/2, y0 = cy + bh/2;
+  const pts = [
+    [x0, y0],
+    [x0 + bw, y0],
+    [x0 + bw + offset, y0 - bh],
+    [x0 + offset, y0 - bh]
+  ];
+
+  const path = new Path2D();
+  path.moveTo(pts[0][0], pts[0][1]);
+  pts.forEach(p => path.lineTo(p[0], p[1]));
+  path.closePath();
+  fillShape(path);
+
+  ctx.strokeStyle = '#1976d2';
+  ctx.lineWidth = 2.5;
+  ctx.setLineDash([]);
+  ctx.stroke(path);
+
+  // Height dashed (from top-left corner down vertically)
+  const hx = pts[3][0];
+  dashedLine(hx, pts[3][1], hx, pts[0][1]);
+  rightAngle(hx, pts[0][1], 1, 0, 0, -1);
+
+  // Labels
+  dimLabel('b = ' + b, cx, y0 + 22, '#1976d2');
+  dimLabel('h = ' + h, hx - 28, cy, '#e65100');
+  dimLabel('c = ' + vals.c, (pts[0][0] + pts[3][0])/2 - 26, cy, '#666');
+}
+
+// Init
+buildControls();
+update();
+</script>
+</body>
+</html>

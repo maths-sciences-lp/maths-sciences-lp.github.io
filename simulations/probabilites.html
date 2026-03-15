@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Probabilités et Fluctuation des Fréquences</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#333;padding:20px;min-height:100vh}
+.container{max-width:860px;margin:0 auto}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:25px 20px 20px;border-radius:10px 10px 0 0;position:relative;text-align:center}
+header h1{font-size:1.6em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.card{background:#fff;border-radius:0 0 10px 10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:25px;margin-bottom:20px}
+.section-title{font-size:1.1em;font-weight:700;color:#1976d2;margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid #e3f2fd}
+.control-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.control-row label{font-weight:600;min-width:130px}
+.control-row input[type=range]{flex:1;min-width:150px;accent-color:#1976d2}
+.val{background:#e3f2fd;color:#1976d2;font-weight:700;padding:2px 10px;border-radius:4px;min-width:50px;text-align:center;display:inline-block}
+button{background:#1976d2;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:1em;font-weight:600;transition:all .2s}
+button:hover{background:#1565c0}
+button:disabled{opacity:.5;cursor:not-allowed}
+.tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid #e0e0e0}
+.tab{padding:10px 24px;cursor:pointer;border:none;background:none;font-size:1em;color:#777;font-weight:600;border-bottom:3px solid transparent;transition:all .2s}
+.tab.active{color:#1976d2;border-bottom-color:#1976d2}
+.tab:hover{color:#1976d2}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.chart-container{position:relative;width:100%;margin:15px auto}
+canvas#dieCanvas,canvas#coinCanvas{display:block;margin:0 auto 15px}
+.indicators{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:15px 0}
+.ind{background:#f5f5f5;border-radius:8px;padding:12px;text-align:center;border-left:4px solid #1976d2}
+.ind.green{border-left-color:#2e7d32}
+.ind.orange{border-left-color:#e65100}
+.ind .label{font-size:.8em;color:#777;text-transform:uppercase;letter-spacing:.5px}
+.ind .value{font-size:1.3em;font-weight:700;color:#333;margin-top:2px}
+.history{background:#f9f9f9;border-radius:8px;padding:12px;max-height:200px;overflow-y:auto}
+.history-item{display:flex;justify-content:space-between;padding:4px 8px;border-bottom:1px solid #eee;font-size:.85em}
+.history-item:last-child{border-bottom:none}
+.insight{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-left:4px solid #2e7d32;padding:12px 16px;border-radius:0 8px 8px 0;margin-top:15px;font-size:.95em}
+.insight strong{color:#1b5e20}
+@media(max-width:600px){
+  .grid2{grid-template-columns:1fr}
+  .control-row{flex-direction:column;align-items:flex-start}
+  .control-row input[type=range]{width:100%}
+  header h1{font-size:1.3em}
+  .tab{padding:8px 14px;font-size:.9em}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <a href="../simulations.html" class="btn-back">← Retour</a>
+  <h1>Probabilités et Fluctuation des Fréquences</h1>
+  <p>2nde Bac Pro · Ch04</p>
+</header>
+<div class="card">
+
+<div class="tabs">
+  <button class="tab active" onclick="switchMode('die')">🎲 Lancer de dé</button>
+  <button class="tab" onclick="switchMode('coin')">🪙 Lancer de pièce</button>
+</div>
+
+<div class="control-row">
+  <label for="slider-n">Nombre de lancers :</label>
+  <input type="range" id="slider-n" min="1" max="1000" step="1" value="100" oninput="document.getElementById('val-n').textContent=this.value">
+  <span class="val" id="val-n">100</span>
+</div>
+
+<div style="text-align:center;margin:10px 0">
+  <button id="btn-launch" onclick="launch()">Lancer !</button>
+  <button onclick="resetAll()" style="background:#757575;margin-left:8px">Réinitialiser</button>
+</div>
+
+<div class="grid2">
+  <div>
+    <div class="section-title">Résultat visuel</div>
+    <canvas id="dieCanvas" width="120" height="120"></canvas>
+    <canvas id="coinCanvas" width="120" height="120" style="display:none"></canvas>
+    <div class="indicators" id="indicators"></div>
+  </div>
+  <div>
+    <div class="section-title">Historique (10 derniers)</div>
+    <div class="history" id="history"><p style="color:#999;text-align:center;font-size:.9em">Aucun lancer effectué</p></div>
+  </div>
+</div>
+
+<div class="section-title">Fréquences observées vs probabilité théorique</div>
+<div class="chart-container">
+  <canvas id="chartFreq"></canvas>
+</div>
+
+<div class="insight">
+  <strong>Loi des grands nombres :</strong> Plus le nombre de lancers N est grand, plus la fréquence observée de chaque résultat se rapproche de la probabilité théorique.
+</div>
+
+</div>
+</div>
+
+<script>
+let mode='die'; // 'die' or 'coin'
+let results=[];
+let history=[];
+let chartFreq=null;
+let animating=false;
+
+function switchMode(m){
+  mode=m;
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===(m==='die'?0:1)));
+  document.getElementById('dieCanvas').style.display=m==='die'?'block':'none';
+  document.getElementById('coinCanvas').style.display=m==='coin'?'block':'none';
+  resetAll();
+}
+
+function resetAll(){
+  results=[];history=[];
+  document.getElementById('history').innerHTML='<p style="color:#999;text-align:center;font-size:.9em">Aucun lancer effectué</p>';
+  document.getElementById('indicators').innerHTML='';
+  drawDie(0);drawCoin('');
+  if(chartFreq){chartFreq.destroy();chartFreq=null;}
+}
+
+/* ── Die drawing ── */
+function drawDie(face){
+  const c=document.getElementById('dieCanvas');
+  const ctx=c.getContext('2d');
+  ctx.clearRect(0,0,120,120);
+  // background
+  ctx.fillStyle='#fff';ctx.strokeStyle='#1976d2';ctx.lineWidth=3;
+  roundRect(ctx,10,10,100,100,12);
+  if(face===0)return;
+  ctx.fillStyle='#1976d2';
+  const dots={
+    1:[[60,60]],
+    2:[[35,35],[85,85]],
+    3:[[35,35],[60,60],[85,85]],
+    4:[[35,35],[85,35],[35,85],[85,85]],
+    5:[[35,35],[85,35],[60,60],[35,85],[85,85]],
+    6:[[35,30],[85,30],[35,60],[85,60],[35,90],[85,90]]
+  };
+  (dots[face]||[]).forEach(([x,y])=>{ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fill();});
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();ctx.fill();ctx.stroke();
+}
+
+/* ── Coin drawing ── */
+function drawCoin(face){
+  const c=document.getElementById('coinCanvas');
+  const ctx=c.getContext('2d');
+  ctx.clearRect(0,0,120,120);
+  ctx.beginPath();ctx.arc(60,60,50,0,Math.PI*2);
+  ctx.fillStyle=face==='P'?'#ffd54f':face==='F'?'#90a4ae':'#e0e0e0';
+  ctx.fill();ctx.strokeStyle='#888';ctx.lineWidth=2;ctx.stroke();
+  if(face){
+    ctx.fillStyle=face==='P'?'#e65100':'#37474f';
+    ctx.font='bold 28px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(face,60,60);
+  }
+}
+
+/* ── Launch ── */
+async function launch(){
+  if(animating)return;
+  animating=true;
+  const btn=document.getElementById('btn-launch');
+  btn.disabled=true;
+  const N=parseInt(document.getElementById('slider-n').value);
+  const outcomes=mode==='die'?6:2;
+
+  // generate results
+  const newResults=[];
+  for(let i=0;i<N;i++){
+    newResults.push(Math.floor(Math.random()*outcomes)+1);
+  }
+
+  // animate last result
+  const animSteps=15;
+  for(let s=0;s<animSteps;s++){
+    const rand=Math.floor(Math.random()*outcomes)+1;
+    if(mode==='die')drawDie(rand);
+    else drawCoin(rand===1?'P':'F');
+    await sleep(40+s*3);
+  }
+  const lastVal=newResults[N-1];
+  if(mode==='die')drawDie(lastVal);
+  else drawCoin(lastVal===1?'P':'F');
+
+  results=results.concat(newResults);
+
+  // history
+  const label=mode==='die'?
+    'Dé : '+N+' lancers':
+    'Pièce : '+N+' lancers';
+  const counts=countResults(newResults,outcomes);
+  const detail=mode==='die'?
+    Object.entries(counts).map(([k,v])=>k+':'+v).join(' '):
+    'P:'+( counts[1]||0)+' F:'+(counts[2]||0);
+  history.unshift({label,detail,n:N});
+  if(history.length>10)history.pop();
+  renderHistory();
+
+  // indicators
+  renderIndicators(outcomes);
+
+  // chart
+  renderChart(outcomes);
+
+  animating=false;
+  btn.disabled=false;
+}
+
+function countResults(arr,outcomes){
+  const c={};
+  for(let i=1;i<=outcomes;i++)c[i]=0;
+  arr.forEach(v=>c[v]++);
+  return c;
+}
+
+function renderIndicators(outcomes){
+  const counts=countResults(results,outcomes);
+  const N=results.length;
+  const theo=mode==='die'?'1/6 ≈ '+(1/6).toFixed(4):'1/2 = 0,5000';
+  let html='<div class="ind green"><div class="label">Total lancers</div><div class="value">'+N+'</div></div>';
+  html+='<div class="ind orange"><div class="label">P. théorique</div><div class="value" style="font-size:1em">'+theo+'</div></div>';
+  if(mode==='die'){
+    for(let i=1;i<=6;i++){
+      const freq=(counts[i]/N).toFixed(4);
+      html+='<div class="ind"><div class="label">Face '+i+'</div><div class="value" style="font-size:1em">'+counts[i]+' ('+freq+')</div></div>';
+    }
+  }else{
+    html+='<div class="ind"><div class="label">Pile</div><div class="value">'+(counts[1]||0)+' ('+(((counts[1]||0)/N).toFixed(4))+')</div></div>';
+    html+='<div class="ind"><div class="label">Face</div><div class="value">'+(counts[2]||0)+' ('+(((counts[2]||0)/N).toFixed(4))+')</div></div>';
+  }
+  document.getElementById('indicators').innerHTML=html;
+}
+
+function renderHistory(){
+  let html='';
+  history.forEach(h=>{
+    html+='<div class="history-item"><span>'+h.label+'</span><span style="color:#888">'+h.detail+'</span></div>';
+  });
+  document.getElementById('history').innerHTML=html;
+}
+
+function renderChart(outcomes){
+  const counts=countResults(results,outcomes);
+  const N=results.length;
+  const labels=mode==='die'?['1','2','3','4','5','6']:['Pile','Face'];
+  const freqs=mode==='die'?[1,2,3,4,5,6].map(i=>counts[i]/N):[counts[1]/N,counts[2]/N];
+  const theoVal=mode==='die'?1/6:0.5;
+  const theoData=labels.map(()=>theoVal);
+
+  if(chartFreq)chartFreq.destroy();
+  chartFreq=new Chart(document.getElementById('chartFreq'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'Fréquence observée',data:freqs,backgroundColor:'rgba(25,118,210,.6)',borderColor:'#1976d2',borderWidth:1},
+        {label:'Probabilité théorique',data:theoData,type:'line',borderColor:'#e65100',backgroundColor:'rgba(230,81,0,.1)',borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#e65100',fill:false}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'top'}},
+      scales:{
+        y:{beginAtZero:true,max:mode==='die'?0.5:1,title:{display:true,text:'Fréquence'},ticks:{callback:v=>v.toFixed(2)}}
+      }
+    }
+  });
+}
+
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+
+drawDie(0);
+drawCoin('');
+</script>
+</body>
+</html>

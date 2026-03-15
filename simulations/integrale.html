@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Simulation — Calcul intégral | Terminale Bac Pro</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#333;line-height:1.6}
+.header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:30px 20px 20px;text-align:center;position:relative}
+.header h1{font-size:1.6em;margin-bottom:4px}
+.header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:20px auto;padding:0 15px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}
+.card h2{color:#1976d2;font-size:1.15em;margin-bottom:12px;border-bottom:2px solid #e3f2fd;padding-bottom:6px}
+canvas{display:block;margin:0 auto;border-radius:8px;border:1px solid #e0e0e0;background:#fff}
+.ctrl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.ctrl-box{background:#f8fafc;border-radius:8px;padding:12px;border:1px solid #e2e8f0}
+.ctrl-box label{font-weight:600;font-size:.9em;display:block;margin-bottom:4px}
+.slider-row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:.9em}
+.slider-row label{min-width:18px;font-weight:600}
+.slider-row input[type=range]{flex:1}
+.slider-row .val{min-width:32px;text-align:center;font-weight:600;font-family:monospace}
+select{width:100%;padding:6px 10px;border-radius:6px;border:1px solid #cbd5e1;font-size:.92em;font-family:inherit}
+.result{text-align:center;font-size:1.3em;font-weight:700;color:#1976d2;padding:14px;background:#f1f8fe;border-radius:8px;margin-top:14px;border:1px solid #bbdefb}
+.toggle-row{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.toggle-row label{font-size:.9em;font-weight:600}
+.toggle-row select,.toggle-row input{font-size:.9em}
+.chk{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.9em}
+.chk input{width:16px;height:16px}
+.legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:.85em;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .swatch{width:14px;height:14px;border-radius:3px;display:inline-block}
+.formulas{background:#f1f8fe;border-radius:8px;padding:14px;margin-top:10px;font-size:.92em;border:1px solid #bbdefb}
+@media(max-width:600px){
+  .ctrl-grid{grid-template-columns:1fr}
+  canvas{width:100%!important;height:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Calcul intégral</h1>
+  <p>Terminale Bac Pro &middot; Ch08</p>
+</div>
+<div class="container">
+
+<div class="card">
+  <h2>Aire sous la courbe</h2>
+  <canvas id="cvs" width="700" height="450"></canvas>
+
+  <div class="legend">
+    <span><span class="swatch" style="background:rgba(25,118,210,.3)"></span> Aire positive</span>
+    <span><span class="swatch" style="background:rgba(229,57,53,.3)"></span> Aire négative</span>
+    <span><span class="swatch" style="background:rgba(255,167,38,.5)"></span> Rectangles</span>
+  </div>
+
+  <div class="ctrl-grid">
+    <div class="ctrl-box">
+      <label>Fonction f(x)</label>
+      <select id="fn">
+        <option value="x2">f(x) = x&sup2;</option>
+        <option value="lin">f(x) = 2x + 1</option>
+        <option value="x3">f(x) = x&sup3;</option>
+        <option value="sin">f(x) = sin(x)</option>
+        <option value="exp">f(x) = e^x</option>
+      </select>
+    </div>
+    <div class="ctrl-box">
+      <label>Méthode des rectangles</label>
+      <select id="method">
+        <option value="none">Masquer les rectangles</option>
+        <option value="left">Rectangles à gauche</option>
+        <option value="right">Rectangles à droite</option>
+        <option value="mid" selected>Rectangles au milieu</option>
+      </select>
+    </div>
+  </div>
+  <div class="ctrl-grid">
+    <div class="ctrl-box">
+      <div class="slider-row"><label>a =</label><input type="range" id="sa" min="-5" max="5" step="0.1" value="0"><span class="val" id="sa-v">0</span></div>
+      <div class="slider-row"><label>b =</label><input type="range" id="sb" min="-5" max="5" step="0.1" value="2"><span class="val" id="sb-v">2</span></div>
+    </div>
+    <div class="ctrl-box">
+      <div class="slider-row"><label>n =</label><input type="range" id="sn" min="2" max="50" step="1" value="10"><span class="val" id="sn-v">10</span></div>
+      <p style="font-size:.82em;color:#78909c;margin-top:4px">Nombre de rectangles</p>
+    </div>
+  </div>
+
+  <div class="result" id="result"></div>
+</div>
+
+<div class="card">
+  <h2>Formules</h2>
+  <div class="formulas">
+    <p>\(\displaystyle\int_a^b f(x)\,dx = F(b) - F(a)\) &nbsp; o&ugrave; \(F\) est une primitive de \(f\)</p>
+    <p style="margin-top:8px"><strong>Approximation par rectangles :</strong> \(\displaystyle\int_a^b f(x)\,dx \approx \sum_{i=0}^{n-1} f(x_i)\cdot\Delta x\) &nbsp; avec \(\Delta x = \frac{b-a}{n}\)</p>
+    <p style="margin-top:8px">Si \(f(x) \geq 0\), l'intégrale représente l'aire sous la courbe.<br>Si \(f(x) &lt; 0\), l'aire est comptée négativement.</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+const cvs = document.getElementById('cvs');
+const ctx = cvs.getContext('2d');
+
+const funcs = {
+  x2:  { f: x => x*x,       label: 'x²',     exact: (a,b) => b*b*b/3 - a*a*a/3 },
+  lin: { f: x => 2*x+1,     label: '2x+1',   exact: (a,b) => (b*b+b) - (a*a+a) },
+  x3:  { f: x => x*x*x,     label: 'x³',     exact: (a,b) => b**4/4 - a**4/4 },
+  sin: { f: x => Math.sin(x),label: 'sin(x)', exact: (a,b) => -Math.cos(b)+Math.cos(a) },
+  exp: { f: x => Math.exp(x),label: 'eˣ',     exact: (a,b) => Math.exp(b)-Math.exp(a) }
+};
+
+const sliders = ['sa','sb','sn'];
+const selects = ['fn','method'];
+
+sliders.forEach(id=>{
+  document.getElementById(id).addEventListener('input', e=>{
+    document.getElementById(id+'-v').textContent = e.target.value;
+    draw();
+  });
+});
+selects.forEach(id=> document.getElementById(id).addEventListener('change', draw));
+
+function val(id){ return parseFloat(document.getElementById(id).value); }
+function sel(id){ return document.getElementById(id).value; }
+
+function resizeCanvas(){
+  const w = cvs.parentElement.clientWidth - 40;
+  const s = Math.min(700, Math.max(300, w));
+  cvs.width = s; cvs.height = Math.round(s * 0.64);
+  draw();
+}
+window.addEventListener('resize', resizeCanvas);
+
+function draw(){
+  const W = cvs.width, H = cvs.height;
+  ctx.clearRect(0,0,W,H);
+
+  const fnKey = sel('fn');
+  const {f, exact} = funcs[fnKey];
+  let a = val('sa'), b = val('sb');
+  const n = parseInt(document.getElementById('sn').value);
+  const method = sel('method');
+
+  // View bounds
+  const xMin = -5.5, xMax = 5.5;
+  // Compute yrange
+  let yMinC = -3, yMaxC = 3;
+  for(let px = 0; px < W; px++){
+    const x = xMin + (px/W)*(xMax-xMin);
+    const y = f(x);
+    if(isFinite(y)){
+      if(y < yMinC) yMinC = y;
+      if(y > yMaxC) yMaxC = y;
+    }
+  }
+  const yPad = (yMaxC - yMinC) * 0.15 + 0.5;
+  const yMin = yMinC - yPad, yMax = yMaxC + yPad;
+
+  function toX(x){ return (x - xMin)/(xMax - xMin)*W; }
+  function toY(y){ return H - (y - yMin)/(yMax - yMin)*H; }
+
+  // Grid
+  ctx.strokeStyle = '#f0f0f0'; ctx.lineWidth = 1;
+  for(let i = Math.ceil(xMin); i <= Math.floor(xMax); i++){
+    const sx = toX(i);
+    ctx.beginPath(); ctx.moveTo(sx,0); ctx.lineTo(sx,H); ctx.stroke();
+  }
+  for(let i = Math.ceil(yMin); i <= Math.floor(yMax); i++){
+    const sy = toY(i);
+    ctx.beginPath(); ctx.moveTo(0,sy); ctx.lineTo(W,sy); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#90a4ae'; ctx.lineWidth = 1.5;
+  const axY = toY(0);
+  ctx.beginPath(); ctx.moveTo(0,axY); ctx.lineTo(W,axY); ctx.stroke();
+  const axX = toX(0);
+  ctx.beginPath(); ctx.moveTo(axX,0); ctx.lineTo(axX,H); ctx.stroke();
+
+  // Axis ticks
+  ctx.fillStyle = '#78909c'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+  for(let i = Math.ceil(xMin); i <= Math.floor(xMax); i++){
+    if(i===0) continue;
+    ctx.fillText(i, toX(i), axY+13);
+  }
+  ctx.textAlign = 'right';
+  for(let i = Math.ceil(yMin); i <= Math.floor(yMax); i++){
+    if(i===0) continue;
+    ctx.fillText(i, axX-5, toY(i)+4);
+  }
+
+  const aEff = Math.min(a,b), bEff = Math.max(a,b);
+  const sign = a <= b ? 1 : -1;
+
+  // Shaded area
+  if(aEff < bEff){
+    // Draw positive and negative areas separately
+    const steps = 200;
+    const dx = (bEff - aEff)/steps;
+    for(let i = 0; i < steps; i++){
+      const xi = aEff + i*dx;
+      const yi = f(xi);
+      if(!isFinite(yi)) continue;
+      const sx = toX(xi), sw = toX(xi+dx)-toX(xi);
+      const sy0 = toY(0);
+      const sy = toY(yi);
+      if(yi >= 0){
+        ctx.fillStyle = 'rgba(25,118,210,0.2)';
+        ctx.fillRect(sx, sy, sw, sy0-sy);
+      } else {
+        ctx.fillStyle = 'rgba(229,57,53,0.2)';
+        ctx.fillRect(sx, sy0, sw, sy-sy0);
+      }
+    }
+  }
+
+  // Rectangles
+  if(method !== 'none' && aEff < bEff){
+    const dx = (bEff - aEff)/n;
+    ctx.strokeStyle = 'rgba(230,130,0,0.6)';
+    ctx.lineWidth = 1;
+    for(let i = 0; i < n; i++){
+      const xi = aEff + i*dx;
+      let xSample;
+      if(method === 'left') xSample = xi;
+      else if(method === 'right') xSample = xi + dx;
+      else xSample = xi + dx/2;
+      const yi = f(xSample);
+      if(!isFinite(yi)) continue;
+      const sx = toX(xi), sw = toX(xi+dx)-toX(xi);
+      const sy0 = toY(0), sy = toY(yi);
+      ctx.fillStyle = yi >= 0 ? 'rgba(255,167,38,0.35)' : 'rgba(255,100,100,0.35)';
+      if(yi >= 0) ctx.fillRect(sx, sy, sw, sy0-sy);
+      else ctx.fillRect(sx, sy0, sw, sy-sy0);
+      ctx.strokeRect(sx, Math.min(sy,sy0), sw, Math.abs(sy-sy0));
+    }
+  }
+
+  // Bounds lines
+  if(aEff < bEff){
+    ctx.strokeStyle = '#2e7d32'; ctx.lineWidth = 1.5; ctx.setLineDash([5,4]);
+    let sx = toX(a); ctx.beginPath(); ctx.moveTo(sx,0); ctx.lineTo(sx,H); ctx.stroke();
+    sx = toX(b); ctx.beginPath(); ctx.moveTo(sx,0); ctx.lineTo(sx,H); ctx.stroke();
+    ctx.setLineDash([]);
+    // Labels
+    ctx.fillStyle = '#2e7d32'; ctx.font = 'bold 13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('a='+a, toX(a), H-6);
+    ctx.fillText('b='+b, toX(b), H-6);
+  }
+
+  // Curve
+  ctx.beginPath();
+  ctx.strokeStyle = '#1976d2'; ctx.lineWidth = 2.5;
+  let started = false;
+  for(let px = 0; px < W; px++){
+    const x = xMin + (px/W)*(xMax - xMin);
+    const y = f(x);
+    if(!isFinite(y)){ started = false; continue; }
+    const sy = toY(y);
+    if(!started){ ctx.moveTo(px, sy); started = true; }
+    else ctx.lineTo(px, sy);
+  }
+  ctx.stroke();
+
+  // Compute values
+  const exactVal = exact(a, b);
+  let approxVal = 0;
+  if(aEff < bEff && method !== 'none'){
+    const dx = (bEff - aEff)/n;
+    for(let i = 0; i < n; i++){
+      let xSample;
+      if(method === 'left') xSample = aEff + i*dx;
+      else if(method === 'right') xSample = aEff + (i+1)*dx;
+      else xSample = aEff + (i+0.5)*dx;
+      approxVal += f(xSample)*dx;
+    }
+    approxVal *= sign;
+  }
+
+  let html = `\\(\\displaystyle\\int_{${a}}^{${b}} f(x)\\,dx = ${exactVal.toFixed(4)}\\)`;
+  if(method !== 'none' && aEff < bEff){
+    const err = Math.abs(approxVal - exactVal);
+    html += `<br><span style="font-size:.85em;color:#555">Approximation (n=${n}) : ${approxVal.toFixed(4)} &nbsp;|&nbsp; Erreur : ${err.toFixed(4)}</span>`;
+  }
+  document.getElementById('result').innerHTML = html;
+  if(window.MathJax && MathJax.typeset) MathJax.typeset([document.getElementById('result')]);
+}
+
+resizeCanvas();
+</script>
+</body>
+</html>

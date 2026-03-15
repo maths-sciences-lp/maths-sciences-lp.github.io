@@ -200,6 +200,7 @@ Avant de générer du contenu, consulter les fichiers dans `/prompts/` :
 |---|---|
 | `prompts/prompt-cours.md` | Structure d'une page de cours |
 | `prompts/prompt-exercices.md` | Structure d'une page d'exercices |
+| `prompts/prompt-simulation.md` | Structure d'une simulation interactive (4 types) |
 | `prompts/prompt-filiere-2mama.md` | Contextes pro Seconde MAMA (menuiserie/agencement) |
 | `prompts/prompt-filiere-era-ma.md` | Contextes pro Première & Terminale ERA/MA (agencement/bois) |
 | `prompts/prompt-filiere-ticcer.md` | Contextes pro Première & Terminale ICCER (chauffage/énergie) |
@@ -243,6 +244,30 @@ Ces sigles sont des noms de formations scolaires, pas des métiers réels. Ils n
 
 Les PDF des programmes Bac Pro sont dans `/pdf/`.
 Vérifier les notions avant de créer du contenu : respecter les capacités attendues et ne pas introduire de hors-programme.
+
+---
+
+## SIMULATIONS INTERACTIVES
+
+Les simulations sont dans le dossier `simulations/`. Elles sont autonomes (styles inline, pas de `styles.css` ni `nav.js`).
+
+Consulter `prompts/prompt-simulation.md` pour les 4 types de simulations, le template HTML et les conventions.
+
+### Règle fondamentale : ancrage pédagogique
+
+**Toute simulation doit être en lien direct avec un chapitre, une classe et le programme officiel.**
+
+Avant de créer ou modifier une simulation :
+1. **Analyser la page du chapitre concerné** (lecon.html) pour identifier les notions
+2. **Vérifier le programme officiel** dans `/pdf/` pour confirmer que la notion est au programme
+3. **Concevoir la simulation** pour qu'elle illustre, exploite ou prolonge une notion réellement étudiée
+
+Une simulation doit toujours servir à :
+- illustrer une notion du cours
+- accompagner un exercice ou un TP numérique
+- faire manipuler un modèle mathématique ou physique du programme
+
+**Interdit :** créer une simulation déconnectée du contenu pédagogique existant ou hors-programme.
 
 ---
 

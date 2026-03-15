@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pile Electrochimique — Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 860px; margin: 0 auto; }
+  header { background: #b45309; color: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 25px; position: relative; }
+  header h1 { margin: 0 0 5px 0; font-size: 1.5em; }
+  header p { margin: 0; opacity: 0.85; font-size: 0.95em; }
+  .btn-back { position: absolute; left: 15px; top: 15px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 5px 12px; border-radius: 5px; font-size: 0.85em; }
+  .btn-back:hover { background: rgba(255,255,255,0.35); }
+  .card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+  .card h2 { margin-top: 0; color: #b45309; font-size: 1.15em; border-bottom: 2px solid #fde68a; padding-bottom: 8px; }
+  label { font-weight: 600; display: block; margin-bottom: 5px; font-size: 0.95em; }
+  select { width: 100%; padding: 8px 12px; border: 2px solid #e5e7eb; border-radius: 6px; font-size: 1em; background: white; }
+  select:focus { border-color: #b45309; outline: none; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:600px) { .row { grid-template-columns: 1fr; } }
+  .val { color: #b45309; font-weight: bold; }
+  .result { background: #fffbeb; border-radius: 8px; padding: 15px; margin-top: 15px; }
+  .result p { margin: 6px 0; font-size: 0.98em; }
+  .explication { background: #fffbeb; border-left: 4px solid #b45309; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 20px; font-size: 0.95em; line-height: 1.6; }
+  canvas { display: block; margin: 0 auto; border-radius: 8px; }
+  .reaction { background: #fef3c7; border-radius: 6px; padding: 10px 15px; font-family: 'Segoe UI', sans-serif; font-size: 0.95em; margin: 8px 0; }
+  .reaction .label-r { font-weight: 700; color: #92400e; }
+  table.compare { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-top: 12px; }
+  table.compare th { background: #b45309; color: white; padding: 8px 10px; text-align: left; }
+  table.compare td { padding: 8px 10px; border-bottom: 1px solid #e5e7eb; }
+  table.compare tr:nth-child(even) { background: #fffbeb; }
+  .fem-big { font-size: 1.8em; font-weight: 800; color: #b45309; text-align: center; margin: 10px 0; }
+  .warn { background: #fee2e2; border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 0.9em; color: #991b1b; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Pile Electrochimique</h1>
+    <p>Terminale Bac Pro &middot; Ch02 ERA</p>
+  </header>
+
+  <div class="explication">
+    <strong>Principe :</strong> Une pile transforme de l'<strong>energie chimique en energie electrique</strong> grace a une reaction d'oxydoreduction spontanee. L'anode (borne &minus;) est le siege de l'oxydation, la cathode (borne +) est le siege de la reduction. La force electromotrice (f.e.m.) est : <strong>E = E&deg;(cathode) &minus; E&deg;(anode)</strong>.
+  </div>
+
+  <!-- CELL BUILDER -->
+  <div class="card">
+    <h2>1. Construire une pile</h2>
+    <div class="row">
+      <div>
+        <label>Metal de l'anode (borne &minus;) :</label>
+        <select id="selAnode" onchange="updatePile()">
+          <option value="Zn" selected>Zinc (Zn)</option>
+          <option value="Fe">Fer (Fe)</option>
+          <option value="Al">Aluminium (Al)</option>
+          <option value="Cu">Cuivre (Cu)</option>
+        </select>
+      </div>
+      <div>
+        <label>Metal de la cathode (borne +) :</label>
+        <select id="selCathode" onchange="updatePile()">
+          <option value="Cu" selected>Cuivre (Cu)</option>
+          <option value="Ag">Argent (Ag)</option>
+          <option value="Pb">Plomb (Pb)</option>
+        </select>
+      </div>
+    </div>
+
+    <canvas id="cvPile" width="820" height="360" style="margin-top:15px;"></canvas>
+
+    <div id="warnSame" class="warn" style="display:none;">Les deux electrodes sont identiques : aucune reaction n'est possible. La f.e.m. serait nulle.</div>
+    <div id="warnReverse" class="warn" style="display:none;">Attention : E&deg;(anode) > E&deg;(cathode). En pratique, les roles seraient inverses. La pile fonctionne dans l'autre sens.</div>
+
+    <div class="result" id="resPile"></div>
+  </div>
+
+  <!-- BATTERY TYPES COMPARISON -->
+  <div class="card">
+    <h2>2. Comparaison des types de batteries</h2>
+    <p style="font-size:0.93em;">Sur un chantier, les outils sans fil utilisent principalement des accumulateurs Li-ion. Voici une comparaison des technologies courantes :</p>
+    <table class="compare">
+      <thead>
+        <tr><th>Type</th><th>Tension (V)</th><th>Energie massique (Wh/kg)</th><th>Cycles</th><th>Effet memoire</th><th>Usage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Pile saline</strong></td><td>1,5</td><td>~30</td><td>1 (jetable)</td><td>-</td><td>Telecommandes, lampes</td></tr>
+        <tr><td><strong>Pile alcaline</strong></td><td>1,5</td><td>~80</td><td>1 (jetable)</td><td>-</td><td>Appareils courants</td></tr>
+        <tr><td><strong>Ni-Cd</strong></td><td>1,2</td><td>~50</td><td>~1 000</td><td>Oui</td><td>Ancien outillage (interdit UE)</td></tr>
+        <tr><td><strong>Ni-MH</strong></td><td>1,2</td><td>~80</td><td>~500</td><td>Faible</td><td>Piles rechargeables AA/AAA</td></tr>
+        <tr><td><strong>Li-ion</strong></td><td>3,6 &ndash; 3,7</td><td>~150 &ndash; 250</td><td>~500 &ndash; 1 000</td><td>Non</td><td>Outillage pro, smartphones</td></tr>
+        <tr><td><strong>LiFePO4</strong></td><td>3,2</td><td>~100</td><td>~2 000</td><td>Non</td><td>Stockage solaire</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ENERGY CALCULATOR -->
+  <div class="card">
+    <h2>3. Calculer l'energie d'un accumulateur</h2>
+    <div class="row">
+      <div>
+        <label>Tension nominale U : <span class="val" id="vUbat">18</span> V</label>
+        <input type="range" id="sUbat" min="1" max="60" value="18" step="0.1" oninput="updateBat()" style="width:100%;accent-color:#b45309;">
+      </div>
+      <div>
+        <label>Capacite Q : <span class="val" id="vQbat">5.0</span> Ah</label>
+        <input type="range" id="sQbat" min="0.5" max="20" value="5" step="0.1" oninput="updateBat()" style="width:100%;accent-color:#b45309;">
+      </div>
+    </div>
+    <div class="result" id="resBat"></div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+// Standard electrode potentials (V vs SHE)
+const metals = {
+  Al: { name: 'Aluminium', symbol: 'Al', E0: -1.66, ion: 'Al\u00B3\u207A', n: 3, color: '#94a3b8' },
+  Zn: { name: 'Zinc', symbol: 'Zn', E0: -0.76, ion: 'Zn\u00B2\u207A', n: 2, color: '#a1a1aa' },
+  Fe: { name: 'Fer', symbol: 'Fe', E0: -0.44, ion: 'Fe\u00B2\u207A', n: 2, color: '#78716c' },
+  Pb: { name: 'Plomb', symbol: 'Pb', E0: -0.13, ion: 'Pb\u00B2\u207A', n: 2, color: '#57534e' },
+  Cu: { name: 'Cuivre', symbol: 'Cu', E0: 0.34, ion: 'Cu\u00B2\u207A', n: 2, color: '#c2410c' },
+  Ag: { name: 'Argent', symbol: 'Ag', E0: 0.80, ion: 'Ag\u207A', n: 1, color: '#d1d5db' }
+};
+
+let animFrame = 0;
+
+function updatePile() {
+  const anodeKey = $('selAnode').value;
+  const cathodeKey = $('selCathode').value;
+  const anode = metals[anodeKey];
+  const cathode = metals[cathodeKey];
+
+  const same = anodeKey === cathodeKey;
+  const reverse = anode.E0 > cathode.E0;
+  $('warnSame').style.display = same ? 'block' : 'none';
+  $('warnReverse').style.display = (!same && reverse) ? 'block' : 'none';
+
+  const fem = cathode.E0 - anode.E0;
+
+  const oxReaction = `${anode.symbol} \u2192 ${anode.ion} + ${anode.n}e\u207B`;
+  const redReaction = `${cathode.ion} + ${cathode.n}e\u207B \u2192 ${cathode.symbol}`;
+
+  // Balance electrons for overall reaction
+  const lcm = (anode.n * cathode.n) / gcd(anode.n, cathode.n);
+  const coefAnode = lcm / anode.n;
+  const coefCathode = lcm / cathode.n;
+  const overallLeft = (coefAnode > 1 ? coefAnode : '') + anode.symbol + ' + ' + (coefCathode > 1 ? coefCathode : '') + cathode.ion;
+  const overallRight = (coefAnode > 1 ? coefAnode : '') + anode.ion + ' + ' + (coefCathode > 1 ? coefCathode : '') + cathode.symbol;
+
+  $('resPile').innerHTML = `
+    <div class="reaction"><span class="label-r">Oxydation (anode \u2212) :</span> ${oxReaction}</div>
+    <div class="reaction"><span class="label-r">Reduction (cathode +) :</span> ${redReaction}</div>
+    <div class="reaction"><span class="label-r">Bilan :</span> ${overallLeft} \u2192 ${overallRight}</div>
+    <div class="fem-big">E = E\u00B0(cathode) \u2212 E\u00B0(anode) = ${cathode.E0.toFixed(2)} \u2212 (${anode.E0.toFixed(2)}) = ${fem.toFixed(2)} V</div>
+    <p style="text-align:center;font-size:0.9em;color:#6b7280;">E\u00B0(${cathode.symbol}) = ${cathode.E0.toFixed(2)} V &nbsp;|&nbsp; E\u00B0(${anode.symbol}) = ${anode.E0.toFixed(2)} V</p>
+  `;
+}
+
+function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+
+// Pile canvas animation
+const cvP = $('cvPile');
+const ctxP = cvP.getContext('2d');
+
+function drawPile() {
+  const W = cvP.width, H = cvP.height;
+  ctxP.clearRect(0, 0, W, H);
+  animFrame++;
+
+  const anodeKey = $('selAnode').value;
+  const cathodeKey = $('selCathode').value;
+  const anode = metals[anodeKey];
+  const cathode = metals[cathodeKey];
+
+  // Beaker left (anode)
+  ctxP.fillStyle = '#e0f2fe';
+  ctxP.fillRect(100, 120, 200, 180);
+  ctxP.strokeStyle = '#64748b';
+  ctxP.lineWidth = 2;
+  ctxP.strokeRect(100, 120, 200, 180);
+  // Electrolyte label
+  ctxP.fillStyle = '#0369a1';
+  ctxP.font = '11px Segoe UI';
+  ctxP.textAlign = 'center';
+  ctxP.fillText('Solution de ' + anode.ion, 200, 285);
+
+  // Beaker right (cathode)
+  ctxP.fillStyle = '#ecfdf5';
+  ctxP.fillRect(520, 120, 200, 180);
+  ctxP.strokeStyle = '#64748b';
+  ctxP.lineWidth = 2;
+  ctxP.strokeRect(520, 120, 200, 180);
+  ctxP.fillStyle = '#047857';
+  ctxP.font = '11px Segoe UI';
+  ctxP.fillText('Solution de ' + cathode.ion, 620, 285);
+
+  // Salt bridge
+  ctxP.fillStyle = '#fde68a';
+  ctxP.beginPath();
+  ctxP.moveTo(270, 140); ctxP.lineTo(550, 140);
+  ctxP.lineTo(550, 160); ctxP.lineTo(270, 160);
+  ctxP.closePath();
+  ctxP.fill();
+  ctxP.strokeStyle = '#d97706';
+  ctxP.lineWidth = 1.5;
+  ctxP.stroke();
+  ctxP.fillStyle = '#92400e';
+  ctxP.font = 'bold 11px Segoe UI';
+  ctxP.fillText('Pont salin (KCl)', 410, 155);
+
+  // Anode electrode
+  ctxP.fillStyle = anode.color;
+  ctxP.fillRect(160, 80, 30, 200);
+  ctxP.strokeStyle = '#333';
+  ctxP.lineWidth = 1;
+  ctxP.strokeRect(160, 80, 30, 200);
+  // Anode label
+  ctxP.fillStyle = '#dc2626';
+  ctxP.font = 'bold 14px Segoe UI';
+  ctxP.textAlign = 'center';
+  ctxP.fillText('\u2212', 175, 75);
+  ctxP.fillText('Anode', 175, 310);
+  ctxP.font = '12px Segoe UI';
+  ctxP.fillText(anode.name + ' (' + anode.symbol + ')', 175, 326);
+  ctxP.font = '10px Segoe UI';
+  ctxP.fillStyle = '#dc2626';
+  ctxP.fillText('Oxydation', 175, 340);
+
+  // Cathode electrode
+  ctxP.fillStyle = cathode.color;
+  ctxP.fillRect(610, 80, 30, 200);
+  ctxP.strokeStyle = '#333';
+  ctxP.lineWidth = 1;
+  ctxP.strokeRect(610, 80, 30, 200);
+  // Cathode label
+  ctxP.fillStyle = '#16a34a';
+  ctxP.font = 'bold 14px Segoe UI';
+  ctxP.textAlign = 'center';
+  ctxP.fillText('+', 625, 75);
+  ctxP.fillText('Cathode', 625, 310);
+  ctxP.font = '12px Segoe UI';
+  ctxP.fillText(cathode.name + ' (' + cathode.symbol + ')', 625, 326);
+  ctxP.font = '10px Segoe UI';
+  ctxP.fillStyle = '#16a34a';
+  ctxP.fillText('Reduction', 625, 340);
+
+  // External wire
+  ctxP.strokeStyle = '#1e293b';
+  ctxP.lineWidth = 3;
+  ctxP.beginPath();
+  ctxP.moveTo(175, 80); ctxP.lineTo(175, 30);
+  ctxP.lineTo(625, 30); ctxP.lineTo(625, 80);
+  ctxP.stroke();
+
+  // Resistor symbol
+  ctxP.fillStyle = '#fef3c7';
+  ctxP.fillRect(370, 18, 60, 24);
+  ctxP.strokeStyle = '#d97706';
+  ctxP.lineWidth = 1.5;
+  ctxP.strokeRect(370, 18, 60, 24);
+  ctxP.fillStyle = '#92400e';
+  ctxP.font = 'bold 12px Segoe UI';
+  ctxP.textAlign = 'center';
+  ctxP.fillText('R', 400, 35);
+
+  // Animated electrons in wire (from anode - to cathode +)
+  const fem = metals[cathodeKey].E0 - metals[anodeKey].E0;
+  if (fem > 0) {
+    ctxP.fillStyle = '#3b82f6';
+    for (let i = 0; i < 6; i++) {
+      const t = ((animFrame * 2 + i * 80) % 480) / 480;
+      let ex, ey;
+      const totalPath = 175 + 450 + 175; // up + across + down, normalized
+      const pos = t * 900;
+      if (pos < 50) { // going up from anode
+        ex = 175; ey = 80 - pos;
+      } else if (pos < 500) { // going right
+        ex = 175 + (pos - 50); ey = 30;
+      } else if (pos < 550) { // going down to cathode
+        ex = 625; ey = 30 + (pos - 500);
+      } else {
+        continue;
+      }
+      ctxP.beginPath();
+      ctxP.arc(ex, ey, 4, 0, Math.PI * 2);
+      ctxP.fill();
+    }
+
+    // Electron flow label
+    ctxP.fillStyle = '#3b82f6';
+    ctxP.font = '11px Segoe UI';
+    ctxP.fillText('e\u207B \u2192', 300, 18);
+
+    // Current arrow (conventional, opposite)
+    ctxP.fillStyle = '#ef4444';
+    ctxP.font = '11px Segoe UI';
+    ctxP.fillText('\u2190 I (courant)', 500, 18);
+
+    // Ion movement in solutions (animated)
+    ctxP.fillStyle = 'rgba(59,130,246,0.5)';
+    for (let i = 0; i < 5; i++) {
+      const t = ((animFrame + i * 30) % 150) / 150;
+      // Cations moving in salt bridge (left to right)
+      const bx = 280 + t * 260;
+      ctxP.beginPath();
+      ctxP.arc(bx, 150, 3, 0, Math.PI * 2);
+      ctxP.fill();
+    }
+  }
+
+  requestAnimationFrame(drawPile);
+}
+
+// Battery energy calculator
+function updateBat() {
+  const U = +$('sUbat').value;
+  const Q = +$('sQbat').value;
+  $('vUbat').textContent = U.toFixed(1);
+  $('vQbat').textContent = Q.toFixed(1);
+
+  const E = U * Q; // Wh
+  const Ej = E * 3600; // Joules
+  const Qc = Q * 3600; // Coulombs
+
+  // Example: how long powering a 500W tool
+  const tHours = E / 500;
+  const tMin = tHours * 60;
+
+  $('resBat').innerHTML = `
+    <p><strong>Charge :</strong> Q = ${Q.toFixed(1)} Ah = ${Qc.toFixed(0)} C (coulombs)</p>
+    <p><strong>Energie stockee :</strong> E = U &times; Q = ${U.toFixed(1)} &times; ${Q.toFixed(1)} = <span class="val">${E.toFixed(1)} Wh</span> = ${(E / 1000).toFixed(3)} kWh</p>
+    <p><strong>Energie en joules :</strong> ${Ej.toFixed(0)} J</p>
+    <p style="margin-top:10px;padding-top:8px;border-top:1px solid #e5e7eb;">
+      <strong>Exemple :</strong> Avec un outil consommant 500 W, cette batterie tiendrait environ <span class="val">${tMin.toFixed(1)} min</span>.
+    </p>
+  `;
+}
+
+// Init
+updatePile();
+updateBat();
+drawPile();
+</script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Statistiques à deux variables — Simulation</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.6}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:28px 20px 22px;text-align:center;position:relative}
+header h1{font-size:1.5em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px;margin-bottom:20px}
+.card h2{font-size:1.15em;color:#1976d2;margin-bottom:14px;border-bottom:2px solid #e3f2fd;padding-bottom:8px}
+.preset-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.preset-btns button{padding:7px 14px;border:2px solid #1976d2;background:#e3f2fd;color:#1976d2;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:600;transition:.2s}
+.preset-btns button:hover,.preset-btns button.active{background:#1976d2;color:#fff}
+.add-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.add-row input{border:1px solid #cbd5e0;border-radius:6px;padding:6px 10px;width:90px;font-size:.95em}
+.add-row button{padding:7px 16px;background:#1976d2;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600}
+.add-row button:hover{background:#1565c0}
+.btn-clear{padding:7px 16px;background:#e53e3e;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600;margin-left:8px}
+.btn-clear:hover{background:#c53030}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.stat-box{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;text-align:center}
+.stat-box .label{font-size:.82em;color:#718096;margin-bottom:4px}
+.stat-box .value{font-size:1.15em;font-weight:700;color:#2d3748}
+.stat-box .value.positive{color:#2f855a}
+.stat-box .value.negative{color:#c53030}
+.stat-box .value.neutral{color:#1976d2}
+.interp{font-size:.9em;margin-top:6px;padding:8px 12px;border-radius:6px;font-weight:600}
+.interp.forte{background:#f0fff4;color:#276749;border:1px solid #9ae6b4}
+.interp.moyenne{background:#fffff0;color:#975a16;border:1px solid #fefcbf}
+.interp.faible{background:#fff5f5;color:#9b2c2c;border:1px solid #fed7d7}
+.predict-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.predict-row input{border:1px solid #cbd5e0;border-radius:6px;padding:6px 10px;width:100px;font-size:.95em}
+.predict-row button{padding:7px 16px;background:#38a169;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600}
+.predict-result{margin-top:8px;font-weight:600;color:#2f855a;font-size:.95em}
+.chart-container{position:relative;height:380px}
+.data-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.88em}
+.data-table th{background:#1976d2;color:#fff;padding:6px 10px;text-align:center}
+.data-table td{border:1px solid #e2e8f0;padding:5px 8px;text-align:center}
+.data-table tr:nth-child(even){background:#f7fafc}
+.remove-btn{background:#e53e3e;color:#fff;border:none;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:.78em}
+@media(max-width:600px){
+  .stats-grid{grid-template-columns:1fr}
+  .chart-container{height:280px}
+  header h1{font-size:1.2em}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Statistiques &agrave; deux variables</h1>
+  <p>Terminale Bac Pro &middot; Ch01</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Jeu de donn&eacute;es</h2>
+    <div class="preset-btns">
+      <button onclick="loadPreset('temp')" id="btn-temp">Temp&eacute;rature / Consommation</button>
+      <button onclick="loadPreset('surface')" id="btn-surface">Surface / Prix</button>
+      <button onclick="loadPreset('heures')" id="btn-heures">Heures / Note</button>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="data-table" id="dataTable">
+        <thead><tr><th>x</th><th>y</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="add-row">
+      <label>x :</label><input type="number" id="newX" step="any">
+      <label>y :</label><input type="number" id="newY" step="any">
+      <button onclick="addPoint()">Ajouter</button>
+      <button class="btn-clear" onclick="clearData()">Tout effacer</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Nuage de points et droite de r&eacute;gression</h2>
+    <div class="chart-container">
+      <canvas id="scatterChart"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>R&eacute;sultats statistiques</h2>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="label">Droite de r&eacute;gression</div>
+        <div class="value neutral" id="eqLine">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Coefficient de corr&eacute;lation r</div>
+        <div class="value" id="corrR">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Coefficient a (pente)</div>
+        <div class="value neutral" id="coefA">-</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Coefficient b (ordonn&eacute;e &agrave; l'origine)</div>
+        <div class="value neutral" id="coefB">-</div>
+      </div>
+    </div>
+    <div id="interpBox" class="interp" style="display:none"></div>
+  </div>
+
+  <div class="card">
+    <h2>Pr&eacute;diction (interpolation / extrapolation)</h2>
+    <p style="font-size:.9em;color:#718096;margin-bottom:8px">Entrez une valeur de x pour estimer y &agrave; l'aide de la droite de r&eacute;gression.</p>
+    <div class="predict-row">
+      <label>x =</label>
+      <input type="number" id="predictX" step="any">
+      <button onclick="predict()">Pr&eacute;dire y</button>
+    </div>
+    <div class="predict-result" id="predictResult"></div>
+  </div>
+</div>
+
+<script>
+let dataX = [], dataY = [];
+let chart;
+const presets = {
+  temp: {
+    label: 'Temp\u00e9rature (\u00b0C) / Consommation (kWh)',
+    x: [-5, 0, 5, 8, 10, 15, 20, 25, 30],
+    y: [320, 280, 230, 200, 180, 120, 80, 50, 30],
+    xLabel: 'Temp\u00e9rature (\u00b0C)', yLabel: 'Consommation (kWh)'
+  },
+  surface: {
+    label: 'Surface (m\u00b2) / Prix (k\u20ac)',
+    x: [20, 30, 40, 50, 60, 70, 80, 90, 100, 120],
+    y: [95, 130, 165, 210, 240, 285, 310, 360, 400, 480],
+    xLabel: 'Surface (m\u00b2)', yLabel: 'Prix (k\u20ac)'
+  },
+  heures: {
+    label: 'Heures de r\u00e9vision / Note (/20)',
+    x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 10],
+    y: [4, 6, 8, 9, 11, 12, 14, 15, 16, 18],
+    xLabel: 'Heures', yLabel: 'Note (/20)'
+  }
+};
+let currentXLabel = 'x', currentYLabel = 'y';
+
+function initChart() {
+  const ctx = document.getElementById('scatterChart').getContext('2d');
+  chart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [
+        { label: 'Points', data: [], backgroundColor: '#1976d2', pointRadius: 6, pointHoverRadius: 8, order: 2 },
+        { label: 'Droite de r\u00e9gression', data: [], type: 'line', borderColor: '#e53e3e', borderWidth: 2, pointRadius: 0, fill: false, order: 1 },
+        { label: 'Pr\u00e9diction', data: [], backgroundColor: '#38a169', pointRadius: 8, pointStyle: 'triangle', order: 0 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        x: { title: { display: true, text: 'x' } },
+        y: { title: { display: true, text: 'y' } }
+      }
+    }
+  });
+}
+
+function loadPreset(key) {
+  document.querySelectorAll('.preset-btns button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + key).classList.add('active');
+  const p = presets[key];
+  dataX = [...p.x]; dataY = [...p.y];
+  currentXLabel = p.xLabel; currentYLabel = p.yLabel;
+  updateAll();
+}
+
+function addPoint() {
+  const x = parseFloat(document.getElementById('newX').value);
+  const y = parseFloat(document.getElementById('newY').value);
+  if (isNaN(x) || isNaN(y)) return;
+  dataX.push(x); dataY.push(y);
+  document.getElementById('newX').value = '';
+  document.getElementById('newY').value = '';
+  updateAll();
+}
+
+function removePoint(i) {
+  dataX.splice(i, 1); dataY.splice(i, 1);
+  updateAll();
+}
+
+function clearData() {
+  dataX = []; dataY = [];
+  document.querySelectorAll('.preset-btns button').forEach(b => b.classList.remove('active'));
+  updateAll();
+}
+
+function mean(arr) { return arr.reduce((a, b) => a + b, 0) / arr.length; }
+
+function regression() {
+  const n = dataX.length;
+  if (n < 2) return null;
+  const mx = mean(dataX), my = mean(dataY);
+  let num = 0, denX = 0, denY = 0;
+  for (let i = 0; i < n; i++) {
+    const dx = dataX[i] - mx, dy = dataY[i] - my;
+    num += dx * dy; denX += dx * dx; denY += dy * dy;
+  }
+  if (denX === 0) return null;
+  const a = num / denX;
+  const b = my - a * mx;
+  const r = denY === 0 ? 0 : num / Math.sqrt(denX * denY);
+  return { a, b, r };
+}
+
+function updateAll() {
+  // Table
+  const tbody = document.querySelector('#dataTable tbody');
+  tbody.innerHTML = '';
+  for (let i = 0; i < dataX.length; i++) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${dataX[i]}</td><td>${dataY[i]}</td><td><button class="remove-btn" onclick="removePoint(${i})">&#10005;</button></td>`;
+    tbody.appendChild(tr);
+  }
+
+  // Stats
+  const reg = regression();
+  const points = dataX.map((x, i) => ({ x, y: dataY[i] }));
+  chart.data.datasets[0].data = points;
+
+  if (reg) {
+    const a = reg.a, b = reg.b, r = reg.r;
+    const sign = b >= 0 ? '+' : '\u2212';
+    const bAbs = Math.abs(b).toFixed(2);
+    document.getElementById('eqLine').textContent = `y = ${a.toFixed(3)}x ${sign} ${bAbs}`;
+    document.getElementById('coefA').textContent = a.toFixed(4);
+    document.getElementById('coefB').textContent = b.toFixed(4);
+    const absR = Math.abs(r);
+    document.getElementById('corrR').textContent = r.toFixed(4);
+    const corrEl = document.getElementById('corrR');
+    corrEl.className = 'value ' + (absR > 0.8 ? 'positive' : absR > 0.5 ? 'neutral' : 'negative');
+
+    const interpBox = document.getElementById('interpBox');
+    interpBox.style.display = 'block';
+    if (absR > 0.8) {
+      interpBox.className = 'interp forte';
+      interpBox.textContent = `Corr\u00e9lation forte (|r| = ${absR.toFixed(3)} > 0.8) \u2014 l'ajustement lin\u00e9aire est pertinent.`;
+    } else if (absR > 0.5) {
+      interpBox.className = 'interp moyenne';
+      interpBox.textContent = `Corr\u00e9lation moyenne (|r| = ${absR.toFixed(3)}) \u2014 l'ajustement lin\u00e9aire est acceptable.`;
+    } else {
+      interpBox.className = 'interp faible';
+      interpBox.textContent = `Corr\u00e9lation faible (|r| = ${absR.toFixed(3)} < 0.5) \u2014 un ajustement lin\u00e9aire n'est pas adapt\u00e9.`;
+    }
+
+    // Regression line
+    const xMin = Math.min(...dataX) - 2, xMax = Math.max(...dataX) + 2;
+    chart.data.datasets[1].data = [{ x: xMin, y: a * xMin + b }, { x: xMax, y: a * xMax + b }];
+  } else {
+    document.getElementById('eqLine').textContent = '-';
+    document.getElementById('coefA').textContent = '-';
+    document.getElementById('coefB').textContent = '-';
+    document.getElementById('corrR').textContent = '-';
+    document.getElementById('corrR').className = 'value';
+    document.getElementById('interpBox').style.display = 'none';
+    chart.data.datasets[1].data = [];
+  }
+  chart.data.datasets[2].data = [];
+  chart.options.scales.x.title.text = currentXLabel;
+  chart.options.scales.y.title.text = currentYLabel;
+  chart.update();
+  document.getElementById('predictResult').textContent = '';
+}
+
+function predict() {
+  const reg = regression();
+  if (!reg) { document.getElementById('predictResult').textContent = 'Ajoutez au moins 2 points.'; return; }
+  const x = parseFloat(document.getElementById('predictX').value);
+  if (isNaN(x)) return;
+  const y = reg.a * x + reg.b;
+  document.getElementById('predictResult').textContent =
+    `Pour x = ${x}, la droite pr\u00e9dit y \u2248 ${y.toFixed(2)}`;
+  chart.data.datasets[2].data = [{ x, y }];
+  chart.update();
+}
+
+initChart();
+loadPreset('temp');
+</script>
+</body>
+</html>

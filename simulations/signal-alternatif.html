@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Signal Alternatif — Oscilloscope Virtuel</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#6f42c1,#8b5cf6);color:#fff;padding:2rem 1.5rem;text-align:center;position:relative}
+header h1{font-size:1.6rem;margin-bottom:.3rem}
+header p{opacity:.85;font-size:.95rem}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:1.5rem auto;padding:0 1rem;display:flex;flex-direction:column;gap:1.2rem}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:1.4rem;overflow:hidden}
+.card h2{color:#6f42c1;font-size:1.15rem;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.card h2::before{content:'';display:inline-block;width:4px;height:1.1em;background:#6f42c1;border-radius:2px}
+.canvas-wrap{background:#0a0a14;border-radius:8px;padding:8px;position:relative}
+canvas{display:block;width:100%;border-radius:4px}
+.controls-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.slider-group{display:flex;flex-direction:column;gap:4px}
+.slider-group label{font-weight:600;font-size:.88rem;color:#374151}
+.slider-group .val{font-size:.82rem;color:#6f42c1;font-weight:700}
+input[type=range]{width:100%;accent-color:#6f42c1;cursor:pointer}
+.readings{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin-top:.6rem}
+.reading-box{background:#f5f0ff;border:1px solid #e0d5f5;border-radius:8px;padding:.7rem;text-align:center}
+.reading-box .label{font-size:.78rem;color:#64748b;margin-bottom:2px}
+.reading-box .value{font-size:1.15rem;font-weight:700;color:#6f42c1}
+.check-row{display:flex;align-items:center;gap:8px;margin-top:.5rem;font-size:.9rem}
+.check-row input{accent-color:#6f42c1;width:16px;height:16px}
+.formulas{background:#f8f5ff;border-left:4px solid #6f42c1;padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.92rem;line-height:1.8}
+.context{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:.8rem 1rem;font-size:.88rem;color:#92400e;display:flex;align-items:flex-start;gap:8px}
+.context::before{content:'💡';font-size:1.1rem;flex-shrink:0}
+@media(max-width:600px){
+  .controls-grid{grid-template-columns:1fr}
+  header h1{font-size:1.25rem}
+  .readings{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Signal Alternatif &mdash; Oscilloscope Virtuel</h1>
+  <p>2nde Bac Pro &middot; Ch04 &middot; u(t) = U<sub>max</sub>&middot;sin(2&pi;ft)</p>
+</header>
+
+<div class="container">
+  <!-- Oscilloscope -->
+  <div class="card">
+    <h2>Oscilloscope</h2>
+    <div class="canvas-wrap">
+      <canvas id="scope" width="800" height="400"></canvas>
+    </div>
+  </div>
+
+  <!-- Controles -->
+  <div class="card">
+    <h2>Commandes</h2>
+    <div class="controls-grid">
+      <div class="slider-group">
+        <label>Tension maximale U<sub>max</sub> : <span class="val" id="vUmax">325 V</span></label>
+        <input type="range" id="sUmax" min="0" max="400" value="325" step="1" oninput="update()">
+      </div>
+      <div class="slider-group">
+        <label>Fréquence f : <span class="val" id="vFreq">50 Hz</span></label>
+        <input type="range" id="sFreq" min="10" max="200" value="50" step="1" oninput="update()">
+      </div>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="cbDC" onchange="update()">
+      <label for="cbDC">Afficher le signal continu (DC) pour comparaison</label>
+    </div>
+    <div class="readings" id="readings"></div>
+  </div>
+
+  <!-- Formules -->
+  <div class="card">
+    <h2>Formules</h2>
+    <div class="formulas">
+      \( u(t) = U_{max} \cdot \sin(2\pi f t) \)<br>
+      \( f = \dfrac{1}{T} \quad \Leftrightarrow \quad T = \dfrac{1}{f} \)<br>
+      \( U_{eff} = \dfrac{U_{max}}{\sqrt{2}} \)
+    </div>
+  </div>
+
+  <!-- Contexte pro -->
+  <div class="context">
+    <div><strong>Secteur français :</strong> La tension du réseau EDF est de <strong>230 V efficace</strong>, soit une tension maximale de 325 V, à la fréquence de <strong>50 Hz</strong> (période T = 20 ms). C'est un signal alternatif sinusoïdal.</div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('scope');
+const ctx = canvas.getContext('2d');
+
+function update() {
+  const Umax = +document.getElementById('sUmax').value;
+  const f = +document.getElementById('sFreq').value;
+  const showDC = document.getElementById('cbDC').checked;
+
+  document.getElementById('vUmax').textContent = Umax + ' V';
+  document.getElementById('vFreq').textContent = f + ' Hz';
+
+  const T = 1 / f;
+  const Ueff = Umax / Math.sqrt(2);
+
+  // Readings
+  document.getElementById('readings').innerHTML = `
+    <div class="reading-box"><div class="label">Période T</div><div class="value">${(T * 1000).toFixed(2)} ms</div></div>
+    <div class="reading-box"><div class="label">Fréquence f</div><div class="value">${f} Hz</div></div>
+    <div class="reading-box"><div class="label">U<sub>max</sub></div><div class="value">${Umax} V</div></div>
+    <div class="reading-box"><div class="label">U<sub>eff</sub></div><div class="value">${Ueff.toFixed(1)} V</div></div>
+  `;
+
+  draw(Umax, f, T, Ueff, showDC);
+}
+
+function draw(Umax, f, T, Ueff, showDC) {
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#0a0e1a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  const cols = 10, rows = 8;
+  const cellW = W / cols, cellH = H / rows;
+
+  // Sub-grid
+  ctx.strokeStyle = 'rgba(50,180,50,0.1)';
+  ctx.lineWidth = 0.5;
+  for (let i = 0; i <= cols * 5; i++) {
+    ctx.beginPath(); ctx.moveTo(i * cellW / 5, 0); ctx.lineTo(i * cellW / 5, H); ctx.stroke();
+  }
+  for (let i = 0; i <= rows * 5; i++) {
+    ctx.beginPath(); ctx.moveTo(0, i * cellH / 5); ctx.lineTo(W, i * cellH / 5); ctx.stroke();
+  }
+
+  // Main grid
+  ctx.strokeStyle = 'rgba(50,180,50,0.3)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= cols; i++) {
+    ctx.beginPath(); ctx.moveTo(i * cellW, 0); ctx.lineTo(i * cellW, H); ctx.stroke();
+  }
+  for (let i = 0; i <= rows; i++) {
+    ctx.beginPath(); ctx.moveTo(0, i * cellH); ctx.lineTo(W, i * cellH); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = 'rgba(50,180,50,0.7)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.stroke();
+
+  // Voltage scale: fit Umax in 3.5 divisions
+  const vScale = (cy * 3.5 / 4);
+  const yPerV = Umax > 0 ? vScale / Umax : 1;
+
+  // Time scale: show ~2.5 periods across the full width
+  const nPeriods = 2.5;
+  const totalTime = nPeriods * T;
+  const xPerSec = W / totalTime;
+
+  // DC signal
+  if (showDC) {
+    ctx.strokeStyle = '#fbbf24';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    const dcY = cy - Ueff * yPerV;
+    ctx.beginPath(); ctx.moveTo(0, dcY); ctx.lineTo(W, dcY); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = '12px Segoe UI';
+    ctx.fillText('DC = ' + Ueff.toFixed(0) + ' V', 10, dcY - 6);
+  }
+
+  // Umax dashed lines
+  ctx.setLineDash([4, 4]);
+  ctx.strokeStyle = 'rgba(239,68,68,0.5)';
+  ctx.lineWidth = 1;
+  const yTop = cy - Umax * yPerV;
+  const yBot = cy + Umax * yPerV;
+  ctx.beginPath(); ctx.moveTo(0, yTop); ctx.lineTo(W, yTop); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, yBot); ctx.lineTo(W, yBot); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Labels for Umax
+  ctx.fillStyle = '#ef4444';
+  ctx.font = 'bold 11px Segoe UI';
+  ctx.fillText('+Umax = ' + Umax + ' V', 6, yTop - 4);
+  ctx.fillText('-Umax = -' + Umax + ' V', 6, yBot + 14);
+
+  // Sine wave
+  ctx.strokeStyle = '#22d3ee';
+  ctx.lineWidth = 2.5;
+  ctx.shadowColor = '#22d3ee';
+  ctx.shadowBlur = 6;
+  ctx.beginPath();
+  const startT = -totalTime / 2;
+  for (let px = 0; px <= W; px++) {
+    const t = startT + (px / W) * totalTime;
+    const u = Umax * Math.sin(2 * Math.PI * f * t);
+    const y = cy - u * yPerV;
+    if (px === 0) ctx.moveTo(px, y); else ctx.lineTo(px, y);
+  }
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // Period bracket
+  if (Umax > 0) {
+    const pxPerPeriod = T * xPerSec;
+    const bx1 = cx;
+    const bx2 = cx + pxPerPeriod;
+    const by = cy + Umax * yPerV + 20;
+    if (by < H - 10) {
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(bx1, by - 6); ctx.lineTo(bx1, by); ctx.lineTo(bx2, by); ctx.lineTo(bx2, by - 6);
+      ctx.stroke();
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = 'bold 12px Segoe UI';
+      ctx.textAlign = 'center';
+      ctx.fillText('T = ' + (T * 1000).toFixed(1) + ' ms', (bx1 + bx2) / 2, by + 14);
+      ctx.textAlign = 'left';
+    }
+  }
+
+  // Axis labels
+  ctx.fillStyle = 'rgba(50,180,50,0.7)';
+  ctx.font = 'bold 12px Segoe UI';
+  ctx.fillText('u (V)', cx + 6, 16);
+  ctx.fillText('t (ms)', W - 48, cy - 8);
+}
+
+update();
+</script>
+</body>
+</html>

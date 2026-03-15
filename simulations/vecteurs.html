@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Simulation — Vecteurs | Terminale Bac Pro</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#333;line-height:1.6}
+.header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:30px 20px 20px;text-align:center;position:relative}
+.header h1{font-size:1.6em;margin-bottom:4px}
+.header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:20px auto;padding:0 15px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}
+.card h2{color:#1976d2;font-size:1.15em;margin-bottom:12px;border-bottom:2px solid #e3f2fd;padding-bottom:6px}
+canvas{display:block;margin:0 auto;border-radius:8px;border:1px solid #e0e0e0;background:#fff;cursor:crosshair}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+.vec-group{background:#f8fafc;border-radius:8px;padding:12px;border:1px solid #e2e8f0}
+.vec-group h3{font-size:.95em;margin-bottom:8px}
+.vec-group.u-group h3{color:#1976d2}
+.vec-group.v-group h3{color:#e53935}
+.slider-row{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.9em}
+.slider-row label{min-width:24px;font-weight:600}
+.slider-row input[type=range]{flex:1}
+.slider-row .val{min-width:28px;text-align:center;font-weight:600;font-family:monospace}
+.ops{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.ops button{padding:6px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:600;transition:all .2s}
+.ops button.active{transform:scale(1.05);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.btn-add{background:#e8f5e9;color:#2e7d32}.btn-add.active,.btn-add:hover{background:#2e7d32;color:#fff}
+.btn-sub{background:#fff3e0;color:#e65100}.btn-sub.active,.btn-sub:hover{background:#e65100;color:#fff}
+.btn-scl{background:#f3e5f5;color:#7b1fa2}.btn-scl.active,.btn-scl:hover{background:#7b1fa2;color:#fff}
+.btn-reset{background:#fce4ec;color:#c62828}.btn-reset:hover{background:#c62828;color:#fff}
+.k-row{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:.9em}
+.k-row input[type=range]{width:120px}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.info-box{background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #e2e8f0;font-size:.9em}
+.info-box .lbl{font-weight:700;font-size:.82em;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.info-box.u-info .lbl{color:#1976d2}
+.info-box.v-info .lbl{color:#e53935}
+.info-box.res-info .lbl{color:#2e7d32}
+.collin{text-align:center;padding:10px;border-radius:8px;font-weight:700;margin-top:10px;font-size:.95em;transition:all .3s}
+.collin.yes{background:#e8f5e9;color:#2e7d32;border:2px solid #66bb6a}
+.collin.no{background:#fff3e0;color:#e65100;border:2px solid #ffb74d}
+.formulas{background:#f1f8fe;border-radius:8px;padding:14px;margin-top:10px;font-size:.92em;border:1px solid #bbdefb}
+@media(max-width:600px){
+  .controls,.info{grid-template-columns:1fr}
+  canvas{width:100%!important;height:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Vecteurs</h1>
+  <p>Terminale Bac Pro &middot; Ch06</p>
+</div>
+<div class="container">
+
+<div class="card">
+  <h2>Plan interactif</h2>
+  <canvas id="cvs" width="600" height="600"></canvas>
+
+  <div class="controls">
+    <div class="vec-group u-group">
+      <h3>Vecteur \(\vec{u}\) <span style="color:#1976d2">&#9632;</span></h3>
+      <div class="slider-row"><label>u<sub>x</sub></label><input type="range" id="ux" min="-5" max="5" step="0.5" value="3"><span class="val" id="ux-v">3</span></div>
+      <div class="slider-row"><label>u<sub>y</sub></label><input type="range" id="uy" min="-5" max="5" step="0.5" value="1"><span class="val" id="uy-v">1</span></div>
+    </div>
+    <div class="vec-group v-group">
+      <h3>Vecteur \(\vec{v}\) <span style="color:#e53935">&#9632;</span></h3>
+      <div class="slider-row"><label>v<sub>x</sub></label><input type="range" id="vx" min="-5" max="5" step="0.5" value="1"><span class="val" id="vx-v">1</span></div>
+      <div class="slider-row"><label>v<sub>y</sub></label><input type="range" id="vy" min="-5" max="5" step="0.5" value="3"><span class="val" id="vy-v">3</span></div>
+    </div>
+  </div>
+
+  <div class="ops">
+    <button class="btn-add" id="btn-add" onclick="setOp('add')">u + v</button>
+    <button class="btn-sub" id="btn-sub" onclick="setOp('sub')">u &minus; v</button>
+    <button class="btn-scl" id="btn-scl" onclick="setOp('scl')">k &middot; u</button>
+    <button class="btn-reset" onclick="setOp(null)">Effacer</button>
+  </div>
+  <div class="k-row" id="k-row" style="display:none">
+    <label>k =</label><input type="range" id="k" min="-3" max="3" step="0.5" value="2"><span class="val" id="k-v">2</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Informations</h2>
+  <div class="info">
+    <div class="info-box u-info"><div class="lbl">Vecteur u</div><div id="info-u"></div></div>
+    <div class="info-box v-info"><div class="lbl">Vecteur v</div><div id="info-v"></div></div>
+    <div class="info-box res-info" id="res-box" style="display:none"><div class="lbl" id="res-lbl">Résultat</div><div id="info-res"></div></div>
+  </div>
+  <div class="collin no" id="collin-box"></div>
+</div>
+
+<div class="card">
+  <h2>Formules</h2>
+  <div class="formulas">
+    <p>\(\|\vec{u}\| = \sqrt{u_x^2 + u_y^2}\)</p>
+    <p style="margin-top:8px">\(\vec{u} + \vec{v} = (u_x + v_x\,;\, u_y + v_y)\)</p>
+    <p style="margin-top:8px"><strong>Colinéarité :</strong> \(\det(\vec{u},\vec{v}) = u_x \cdot v_y - u_y \cdot v_x\)</p>
+    <p style="margin-top:4px">\(\vec{u}\) et \(\vec{v}\) colinéaires \(\iff \det(\vec{u},\vec{v}) = 0\)</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+const cvs = document.getElementById('cvs');
+const ctx = cvs.getContext('2d');
+let op = null;
+const ids = ['ux','uy','vx','vy','k'];
+
+function val(id){ return parseFloat(document.getElementById(id).value); }
+
+function setOp(o){
+  op = o;
+  document.getElementById('btn-add').classList.toggle('active', o==='add');
+  document.getElementById('btn-sub').classList.toggle('active', o==='sub');
+  document.getElementById('btn-scl').classList.toggle('active', o==='scl');
+  document.getElementById('k-row').style.display = o==='scl'? 'flex':'none';
+  draw();
+}
+
+ids.forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener('input', ()=>{
+    document.getElementById(id+'-v').textContent = el.value;
+    draw();
+  });
+});
+
+function resizeCanvas(){
+  const w = cvs.parentElement.clientWidth - 40;
+  const s = Math.min(600, Math.max(300, w));
+  cvs.width = s; cvs.height = s;
+  draw();
+}
+window.addEventListener('resize', resizeCanvas);
+
+function toScreen(x, y){
+  const s = cvs.width;
+  const unit = s / 12;
+  return [s/2 + x*unit, s/2 - y*unit];
+}
+
+function drawArrow(fx, fy, tx, ty, color, lw){
+  const [sx,sy] = toScreen(fx,fy);
+  const [ex,ey] = toScreen(tx,ty);
+  const dx = ex-sx, dy = ey-sy;
+  const len = Math.sqrt(dx*dx+dy*dy);
+  if(len < 2) return;
+  const hl = Math.min(12, len*0.3);
+  const hw = 5;
+  const ux = dx/len, uy = dy/len;
+
+  ctx.beginPath();
+  ctx.moveTo(sx, sy);
+  ctx.lineTo(ex - ux*hl, ey - uy*hl);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lw || 2.5;
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(ex, ey);
+  ctx.lineTo(ex - ux*hl - uy*hw, ey - uy*hl + ux*hw);
+  ctx.lineTo(ex - ux*hl + uy*hw, ey - uy*hl - ux*hw);
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+function draw(){
+  const W = cvs.width, H = cvs.height;
+  const unit = W / 12;
+  ctx.clearRect(0,0,W,H);
+
+  // Grid
+  ctx.strokeStyle = '#e8eaed';
+  ctx.lineWidth = 1;
+  for(let i = -6; i <= 6; i++){
+    const [x1,y1] = toScreen(i,-6);
+    const [x2,y2] = toScreen(i,6);
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    const [x3,y3] = toScreen(-6,i);
+    const [x4,y4] = toScreen(6,i);
+    ctx.beginPath(); ctx.moveTo(x3,y3); ctx.lineTo(x4,y4); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#90a4ae';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0,H/2); ctx.lineTo(W,H/2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2,0); ctx.lineTo(W/2,H); ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = '#78909c';
+  ctx.font = '11px sans-serif';
+  ctx.textAlign = 'center';
+  for(let i = -5; i <= 5; i++){
+    if(i === 0) continue;
+    const [x] = toScreen(i, 0);
+    ctx.fillText(i, x, H/2 + 14);
+    const [,y] = toScreen(0, i);
+    ctx.fillText(i, W/2 - 12, y + 4);
+  }
+  ctx.fillText('O', W/2 - 10, H/2 + 14);
+
+  const uxv = val('ux'), uyv = val('uy');
+  const vxv = val('vx'), vyv = val('vy');
+
+  // Operation
+  if(op === 'add'){
+    // Parallelogram
+    const [p1x,p1y] = toScreen(uxv, uyv);
+    const [p2x,p2y] = toScreen(vxv, vyv);
+    const [p3x,p3y] = toScreen(uxv+vxv, uyv+vyv);
+    const [ox,oy] = toScreen(0,0);
+    ctx.beginPath();
+    ctx.moveTo(p1x,p1y); ctx.lineTo(p3x,p3y); ctx.lineTo(p2x,p2y);
+    ctx.strokeStyle = 'rgba(76,175,80,0.3)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([5,4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.beginPath();
+    ctx.moveTo(ox,oy); ctx.lineTo(p1x,p1y); ctx.lineTo(p3x,p3y); ctx.lineTo(p2x,p2y); ctx.closePath();
+    ctx.fillStyle = 'rgba(76,175,80,0.08)';
+    ctx.fill();
+
+    drawArrow(0,0, uxv+vxv, uyv+vyv, '#2e7d32', 3);
+  } else if(op === 'sub'){
+    drawArrow(0,0, uxv-vxv, uyv-vyv, '#e65100', 3);
+  } else if(op === 'scl'){
+    const k = val('k');
+    drawArrow(0,0, k*uxv, k*uyv, '#7b1fa2', 3);
+  }
+
+  // Vectors
+  drawArrow(0, 0, uxv, uyv, '#1976d2', 2.5);
+  drawArrow(0, 0, vxv, vyv, '#e53935', 2.5);
+
+  // Labels
+  const [ulx,uly] = toScreen(uxv, uyv);
+  ctx.fillStyle = '#1976d2'; ctx.font = 'bold 14px sans-serif';
+  ctx.fillText('u', ulx+10, uly-8);
+  const [vlx,vly] = toScreen(vxv, vyv);
+  ctx.fillStyle = '#e53935';
+  ctx.fillText('v', vlx+10, vly-8);
+
+  // Info
+  const normU = Math.sqrt(uxv*uxv + uyv*uyv);
+  const normV = Math.sqrt(vxv*vxv + vyv*vyv);
+  const det = uxv*vyv - uyv*vxv;
+
+  document.getElementById('info-u').innerHTML =
+    `(${uxv} ; ${uyv})<br>||u|| = ${normU.toFixed(2)}`;
+  document.getElementById('info-v').innerHTML =
+    `(${vxv} ; ${vyv})<br>||v|| = ${normV.toFixed(2)}`;
+
+  const resBox = document.getElementById('res-box');
+  if(op){
+    resBox.style.display = '';
+    let lbl='', txt='';
+    if(op==='add'){
+      lbl = 'u + v';
+      const rx = uxv+vxv, ry = uyv+vyv;
+      txt = `(${rx} ; ${ry})<br>||u+v|| = ${Math.sqrt(rx*rx+ry*ry).toFixed(2)}`;
+    } else if(op==='sub'){
+      lbl = 'u − v';
+      const rx = uxv-vxv, ry = uyv-vyv;
+      txt = `(${rx} ; ${ry})<br>||u−v|| = ${Math.sqrt(rx*rx+ry*ry).toFixed(2)}`;
+    } else {
+      const k = val('k');
+      lbl = `${k} · u`;
+      const rx = k*uxv, ry = k*uyv;
+      txt = `(${rx} ; ${ry})<br>||k·u|| = ${Math.sqrt(rx*rx+ry*ry).toFixed(2)}`;
+    }
+    document.getElementById('res-lbl').textContent = lbl;
+    document.getElementById('info-res').innerHTML = txt;
+  } else {
+    resBox.style.display = 'none';
+  }
+
+  const cb = document.getElementById('collin-box');
+  const isCollin = Math.abs(det) < 0.01;
+  cb.className = 'collin ' + (isCollin ? 'yes' : 'no');
+  cb.innerHTML = `det(u, v) = ${uxv} &times; ${vyv} &minus; ${uyv} &times; ${vxv} = <strong>${det}</strong> &rarr; ` +
+    (isCollin ? '&#10003; Colinéaires' : 'Non colinéaires');
+}
+
+resizeCanvas();
+</script>
+</body>
+</html>

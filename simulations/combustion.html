@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Combustion du Carbone et des Hydrocarbures — Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.6}
+header{background:linear-gradient(135deg,#e67e22,#d35400);color:#fff;padding:30px 20px 22px;text-align:center;position:relative}
+header h1{font-size:1.6em;margin-bottom:4px}
+header p{opacity:.88;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:20px auto;padding:0 15px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:18px}
+.card h3{margin-bottom:12px;color:#e67e22;font-size:1.05em}
+label{font-weight:600;font-size:.9em;display:block;margin:8px 0 4px}
+select{width:100%;padding:6px 8px;border:1px solid #ccc;border-radius:5px;font-size:.95em}
+.mode-btns{display:flex;gap:8px;margin:10px 0}
+.mode-btns button{flex:1;padding:10px;border:2px solid #e67e22;border-radius:8px;background:#fff;color:#e67e22;font-weight:700;font-size:.92em;cursor:pointer;transition:.2s}
+.mode-btns button.active{background:#e67e22;color:#fff}
+.slider-row{display:flex;align-items:center;gap:10px}
+.slider-row input[type=range]{flex:1}
+.slider-row .val{min-width:55px;text-align:right;font-weight:600}
+.eq-box{background:#fff8f0;border:2px solid #f59e0b;border-radius:10px;padding:16px 20px;text-align:center;margin:12px 0;font-size:1.1em}
+.info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.info-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;font-size:.92em}
+.info-box .lbl{font-size:.8em;color:#64748b;text-transform:uppercase;letter-spacing:.04em}
+.info-box .value{font-size:1.15em;font-weight:700;margin-top:2px}
+.alert{background:#fef2f2;border:2px solid #dc2626;border-radius:10px;padding:14px 18px;color:#dc2626;font-weight:700;display:none;margin-top:12px;text-align:center;font-size:1em;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+canvas#combustionAnim{width:100%;background:#1a1a2e;border-radius:8px}
+.chart-container{position:relative;height:280px;margin-top:12px}
+.situation{background:linear-gradient(135deg,#fff8f0,#fef9f0);border:2px dashed #e67e22;border-radius:10px;padding:14px 18px;margin-bottom:18px;font-size:.93em}
+.situation strong{color:#e67e22}
+@media(max-width:600px){
+  header h1{font-size:1.2em}
+  .info-grid{grid-template-columns:1fr}
+  .mode-btns{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">← Retour</a>
+  <h1>Combustion du Carbone et des Hydrocarbures</h1>
+  <p>Première Bac Pro · Ch03</p>
+</header>
+
+<div class="container">
+
+<div class="situation">
+  <strong>Contexte professionnel :</strong> Un technicien chauffagiste vérifie la combustion d'une chaudière à gaz dans un atelier. Il doit s'assurer que la combustion est complète pour éviter la production de monoxyde de carbone (CO), un gaz mortel et inodore.
+</div>
+
+<div class="card">
+  <h3>Paramètres</h3>
+  <div class="mode-btns">
+    <button id="btnComplete" class="active" onclick="setMode('complete')">Combustion complète</button>
+    <button id="btnIncomplete" onclick="setMode('incomplete')">Combustion incomplète</button>
+  </div>
+  <label for="fuelSel">Combustible</label>
+  <select id="fuelSel">
+    <option value="C">Carbone (C)</option>
+    <option value="CH4" selected>Méthane (CH₄)</option>
+    <option value="C3H8">Propane (C₃H₈)</option>
+    <option value="C4H10">Butane (C₄H₁₀)</option>
+    <option value="C8H18">Octane (C₈H₁₈)</option>
+  </select>
+  <label>Quantité de combustible : <span id="molVal">1</span> mol</label>
+  <div class="slider-row">
+    <input type="range" id="molSlider" min="1" max="10" step="1" value="1">
+  </div>
+</div>
+
+<div class="card">
+  <h3>Équation de la réaction</h3>
+  <div class="eq-box" id="eqDisplay">—</div>
+  <div class="alert" id="coAlert">⚠ DANGER — Production de monoxyde de carbone (CO) : gaz inodore, incolore et mortel !</div>
+</div>
+
+<div class="card">
+  <h3>Animation de la combustion</h3>
+  <canvas id="combustionAnim" height="220"></canvas>
+</div>
+
+<div class="card">
+  <h3>Bilan quantitatif</h3>
+  <div class="info-grid">
+    <div class="info-box"><div class="lbl">Volume O₂ nécessaire (L)</div><div class="value" id="volO2">—</div></div>
+    <div class="info-box"><div class="lbl">Masse CO₂ produite (g)</div><div class="value" id="massCO2">—</div></div>
+    <div class="info-box"><div class="lbl">Énergie libérée (kJ)</div><div class="value" id="energy">—</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Comparaison énergétique des combustibles (kJ/mol)</h3>
+  <div class="chart-container">
+    <canvas id="energyChart"></canvas>
+  </div>
+</div>
+
+</div><!-- container -->
+
+<script>
+// Fuel data: { formula, C, H, Mcomb, energy_kJ_mol (complete) }
+const FUELS = {
+  C:     { name:'Carbone',  C:1, H:0,  M:12,    energy:393 },
+  CH4:   { name:'Méthane',  C:1, H:4,  M:16,    energy:890 },
+  C3H8:  { name:'Propane',  C:3, H:8,  M:44,    energy:2220 },
+  C4H10: { name:'Butane',   C:4, H:10, M:58,    energy:2877 },
+  C8H18: { name:'Octane',   C:8, H:18, M:114,   energy:5471 }
+};
+
+let mode = 'complete';
+const fuelSel = document.getElementById('fuelSel');
+const molSlider = document.getElementById('molSlider');
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('btnComplete').className = m === 'complete' ? 'active' : '';
+  document.getElementById('btnIncomplete').className = m === 'incomplete' ? 'active' : '';
+  update();
+}
+
+function getEquation(key, m) {
+  const f = FUELS[key];
+  const c = f.C, h = f.H;
+  if (key === 'C') {
+    if (m === 'complete') return { eq: 'C + O_2 \\rightarrow CO_2', o2: 1, co2: 1, h2o: 0, co: 0 };
+    return { eq: '2\\,C + O_2 \\rightarrow 2\\,CO', o2: 0.5, co2: 0, h2o: 0, co: 1 };
+  }
+  if (m === 'complete') {
+    // CxHy + (x + y/4) O2 -> x CO2 + y/2 H2O
+    const o2 = c + h / 4;
+    const co2out = c;
+    const h2oout = h / 2;
+    // Build nice equation with integer coefficients
+    // Multiply by 4 to clear fractions if needed
+    let mult = 1;
+    if (h % 4 !== 0) mult = 2;
+    const eq = formatEq(key, mult, o2 * mult, co2out * mult, h2oout * mult, 0, m);
+    return { eq, o2, co2: co2out, h2o: h2oout, co: 0 };
+  } else {
+    // Incomplete: CxHy + (x/2 + y/4) O2 -> x CO + y/2 H2O
+    const o2 = c / 2 + h / 4;
+    const coOut = c;
+    const h2oout = h / 2;
+    let mult = 1;
+    if ((c % 2 !== 0) || (h % 4 !== 0)) mult = 2;
+    const eq = formatEq(key, mult, o2 * mult, 0, h2oout * mult, coOut * mult, m);
+    return { eq, o2, co2: 0, h2o: h2oout, co: coOut };
+  }
+}
+
+function formatEq(key, mult, o2, co2, h2o, co, m) {
+  const fuelStr = key.replace(/(\d+)/g, '_{$1}');
+  const coefFuel = mult === 1 ? '' : mult;
+  const coefO2 = o2 === 1 ? '' : (Number.isInteger(o2) ? o2 : frac(o2));
+  let products = '';
+  if (m === 'complete') {
+    const coefCO2 = co2 === 1 ? '' : co2;
+    const coefH2O = h2o === 1 ? '' : h2o;
+    products = `${coefCO2}\\,CO_2`;
+    if (h2o > 0) products += ` + ${coefH2O}\\,H_2O`;
+  } else {
+    const coefCO = co === 1 ? '' : co;
+    const coefH2O = h2o === 1 ? '' : h2o;
+    products = `${coefCO}\\,CO`;
+    if (h2o > 0) products += ` + ${coefH2O}\\,H_2O`;
+  }
+  return `${coefFuel}\\,${fuelStr} + ${coefO2}\\,O_2 \\rightarrow ${products}`;
+}
+
+function frac(n) {
+  // simple fraction display
+  const d = 2;
+  return `\\tfrac{${n * d}}{${d}}`;
+}
+
+function update() {
+  const key = fuelSel.value;
+  const mol = parseInt(molSlider.value);
+  document.getElementById('molVal').textContent = mol;
+
+  const r = getEquation(key, mode);
+  const eqEl = document.getElementById('eqDisplay');
+  eqEl.innerHTML = `\\(${r.eq}\\)`;
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([eqEl]);
+
+  // Alert
+  document.getElementById('coAlert').style.display = mode === 'incomplete' ? 'block' : 'none';
+
+  // Calculations
+  const volO2 = (r.o2 * mol * 22.4).toFixed(1);  // volume molaire 22.4 L/mol (CNTP)
+  const massCO2 = (r.co2 * mol * 44).toFixed(1);  // M(CO2) = 44 g/mol
+  const f = FUELS[key];
+  const energyVal = mode === 'complete' ? (f.energy * mol).toFixed(0) : (f.energy * 0.35 * mol).toFixed(0);
+
+  document.getElementById('volO2').textContent = volO2 + ' L';
+  document.getElementById('massCO2').textContent = mode === 'complete' ? massCO2 + ' g' : '0 g (→ CO)';
+  document.getElementById('energy').textContent = energyVal + ' kJ';
+}
+
+// Energy chart
+const chartCtx = document.getElementById('energyChart').getContext('2d');
+const energyChart = new Chart(chartCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Carbone', 'Méthane', 'Propane', 'Butane', 'Octane'],
+    datasets: [{
+      label: 'Énergie (kJ/mol)',
+      data: [393, 890, 2220, 2877, 5471],
+      backgroundColor: ['#f97316','#fb923c','#fdba74','#fed7aa','#ffedd5'],
+      borderColor: '#e67e22',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: 'kJ/mol' } }
+    }
+  }
+});
+
+// Combustion animation
+const animCanvas = document.getElementById('combustionAnim');
+const actx = animCanvas.getContext('2d');
+let particles = [];
+let animFrame;
+
+function resizeAnim() {
+  const r = window.devicePixelRatio || 1;
+  const w = animCanvas.clientWidth;
+  const h = 220;
+  animCanvas.width = w * r;
+  animCanvas.height = h * r;
+  actx.setTransform(r, 0, 0, r, 0, 0);
+  return { w, h };
+}
+
+function spawnParticles(w, h) {
+  const key = fuelSel.value;
+  const f = FUELS[key];
+  // Reactants on the left, products on the right
+  particles = [];
+  const mol = parseInt(molSlider.value);
+  // Fuel particles
+  for (let i = 0; i < Math.min(mol, 6); i++) {
+    particles.push({ x: 60 + Math.random() * 60, y: 60 + Math.random() * (h - 120), type: 'fuel', vx: 0.5 + Math.random(), vy: (Math.random() - 0.5) * 0.8 });
+  }
+  // O2 particles
+  for (let i = 0; i < Math.min(Math.ceil(mol * (f.C + f.H / 4)), 10); i++) {
+    particles.push({ x: 140 + Math.random() * 40, y: 40 + Math.random() * (h - 80), type: 'o2', vx: 0.6 + Math.random() * 0.5, vy: (Math.random() - 0.5) * 0.6 });
+  }
+  // Products on the right
+  const prodType = mode === 'complete' ? 'co2' : 'co';
+  for (let i = 0; i < Math.min(mol * f.C, 8); i++) {
+    particles.push({ x: w - 160 + Math.random() * 80, y: 50 + Math.random() * (h - 100), type: prodType, vx: 0.3 + Math.random() * 0.4, vy: (Math.random() - 0.5) * 0.5 });
+  }
+  if (f.H > 0) {
+    for (let i = 0; i < Math.min(mol * f.H / 2, 8); i++) {
+      particles.push({ x: w - 120 + Math.random() * 60, y: 50 + Math.random() * (h - 100), type: 'h2o', vx: 0.2 + Math.random() * 0.3, vy: -0.3 - Math.random() * 0.5 });
+    }
+  }
+}
+
+let flameT = 0;
+function animateCombustion() {
+  const { w, h } = resizeAnim();
+  actx.clearRect(0, 0, w, h);
+  flameT += 0.05;
+
+  // Flame in center
+  const cx = w / 2, cy = h / 2;
+  for (let i = 0; i < 12; i++) {
+    const angle = (i / 12) * Math.PI * 2 + flameT;
+    const r = 20 + Math.sin(flameT * 3 + i) * 10;
+    const grad = actx.createRadialGradient(cx + Math.cos(angle) * 5, cy + Math.sin(angle) * 5, 0, cx, cy, r + 15);
+    grad.addColorStop(0, 'rgba(255,200,50,0.8)');
+    grad.addColorStop(0.5, 'rgba(255,100,20,0.4)');
+    grad.addColorStop(1, 'rgba(255,50,0,0)');
+    actx.fillStyle = grad;
+    actx.beginPath();
+    actx.arc(cx + Math.cos(angle) * 8, cy + Math.sin(angle) * 8 - Math.sin(flameT * 2 + i) * 8, r, 0, Math.PI * 2);
+    actx.fill();
+  }
+
+  // Arrow
+  actx.fillStyle = '#fff';
+  actx.font = 'bold 24px sans-serif';
+  actx.textAlign = 'center';
+  actx.fillText('→', cx, cy + 50);
+
+  // Labels
+  actx.font = 'bold 13px Segoe UI,sans-serif';
+  actx.textAlign = 'center';
+  actx.fillStyle = '#94a3b8';
+  actx.fillText('RÉACTIFS', 100, h - 10);
+  actx.fillText('PRODUITS', w - 100, h - 10);
+
+  // Particles
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    // Wrap
+    if (p.type === 'fuel' || p.type === 'o2') {
+      if (p.x > cx - 40) { p.x = 40 + Math.random() * 30; p.y = 40 + Math.random() * (h - 80); }
+    } else {
+      if (p.x > w + 10) { p.x = cx + 50 + Math.random() * 20; p.y = 40 + Math.random() * (h - 80); }
+    }
+    if (p.y < 5 || p.y > h - 5) p.vy *= -1;
+
+    actx.beginPath();
+    const sz = 10;
+    let color;
+    let label;
+    switch(p.type) {
+      case 'fuel': color = '#22c55e'; label = fuelSel.value.replace(/(\d+)/g,'$1'); break;
+      case 'o2': color = '#3b82f6'; label = 'O₂'; break;
+      case 'co2': color = '#a855f7'; label = 'CO₂'; break;
+      case 'co': color = '#ef4444'; label = 'CO'; break;
+      case 'h2o': color = '#06b6d4'; label = 'H₂O'; break;
+    }
+    actx.fillStyle = color;
+    actx.arc(p.x, p.y, sz, 0, Math.PI * 2);
+    actx.fill();
+    actx.fillStyle = '#fff';
+    actx.font = 'bold 8px sans-serif';
+    actx.textAlign = 'center';
+    actx.fillText(label, p.x, p.y + 3);
+  });
+
+  // Danger overlay for incomplete
+  if (mode === 'incomplete') {
+    actx.fillStyle = `rgba(220,38,38,${0.08 + 0.04 * Math.sin(flameT * 2)})`;
+    actx.fillRect(0, 0, w, h);
+  }
+
+  animFrame = requestAnimationFrame(animateCombustion);
+}
+
+function restart() {
+  cancelAnimationFrame(animFrame);
+  const { w, h } = resizeAnim();
+  spawnParticles(w, h);
+  animateCombustion();
+}
+
+fuelSel.addEventListener('change', () => { update(); restart(); });
+molSlider.addEventListener('input', () => { update(); restart(); });
+
+update();
+restart();
+</script>
+</body>
+</html>

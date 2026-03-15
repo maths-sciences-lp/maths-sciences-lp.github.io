@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transmettre l'Information — Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 860px; margin: 0 auto; }
+  header { background: #0f766e; color: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 25px; position: relative; }
+  header h1 { margin: 0 0 5px 0; font-size: 1.5em; }
+  header p { margin: 0; opacity: 0.85; font-size: 0.95em; }
+  .btn-back { position: absolute; left: 15px; top: 15px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 5px 12px; border-radius: 5px; font-size: 0.85em; }
+  .btn-back:hover { background: rgba(255,255,255,0.35); }
+  .card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 20px; }
+  .card h2 { margin-top: 0; color: #0f766e; font-size: 1.15em; border-bottom: 2px solid #99f6e4; padding-bottom: 8px; }
+  label { font-weight: 600; display: block; margin-bottom: 5px; font-size: 0.95em; }
+  input[type=range] { width: 100%; accent-color: #0f766e; }
+  select { padding: 8px 12px; border: 2px solid #e5e7eb; border-radius: 6px; font-size: 1em; background: white; }
+  select:focus { border-color: #0f766e; outline: none; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:600px) { .row { grid-template-columns: 1fr; } }
+  .val { color: #0f766e; font-weight: bold; }
+  .result { background: #f0fdfa; border-radius: 8px; padding: 15px; margin-top: 15px; }
+  .result p { margin: 6px 0; font-size: 0.98em; }
+  .explication { background: #f0fdfa; border-left: 4px solid #0f766e; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 20px; font-size: 0.95em; line-height: 1.6; }
+  canvas { display: block; margin: 0 auto; border-radius: 8px; }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; font-weight: 600; }
+  .badge-ok { background: #dcfce7; color: #166534; }
+  .badge-warn { background: #fef3c7; color: #92400e; }
+  .badge-err { background: #fee2e2; color: #991b1b; }
+  .tabs { display: flex; gap: 0; margin-bottom: 15px; }
+  .tab { padding: 10px 24px; border: 2px solid #e5e7eb; background: #f8fafc; cursor: pointer; font-weight: 600; font-size: 0.95em; transition: all 0.2s; }
+  .tab:first-child { border-radius: 8px 0 0 8px; }
+  .tab:last-child { border-radius: 0 8px 8px 0; }
+  .tab.active { background: #0f766e; color: white; border-color: #0f766e; }
+  .context { background: #fffbeb; border-left: 4px solid #d97706; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 0.92em; margin-top: 15px; }
+  .shannon-box { background: #f0fdfa; border: 2px solid #0f766e; border-radius: 8px; padding: 15px; text-align: center; margin: 15px 0; }
+  .shannon-box .formula { font-size: 1.3em; font-weight: 700; color: #0f766e; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+    <h1>Transmettre l'Information</h1>
+    <p>Terminale Bac Pro &middot; Ch07 ERA</p>
+  </header>
+
+  <div class="explication">
+    <strong>Principe :</strong> Pour transmettre de l'information, un signal analogique peut etre converti en signal numerique par <strong>echantillonnage</strong> (prelevement de valeurs a intervalles reguliers) et <strong>quantification</strong> (arrondi a des niveaux discrets). Le <strong>theoreme de Shannon</strong> impose : \( F_e \geq 2 \times f_{\max} \) pour une reconstruction fidele du signal.
+  </div>
+
+  <!-- MODE SELECTOR -->
+  <div class="card">
+    <h2>1. Signal analogique et numerique</h2>
+    <div class="tabs">
+      <div class="tab active" id="tabAnalog" onclick="setMode('analog')">Signal analogique</div>
+      <div class="tab" id="tabDigital" onclick="setMode('digital')">Signal numerique</div>
+    </div>
+
+    <canvas id="cvSignal" width="820" height="350"></canvas>
+
+    <div class="row" style="margin-top:15px;">
+      <div>
+        <label>Frequence du signal f : <span class="val" id="vFreq">50</span> Hz</label>
+        <input type="range" id="sFreq" min="5" max="200" value="50" step="1" oninput="updateSignal()">
+      </div>
+      <div>
+        <label>Amplitude A : <span class="val" id="vAmp">1.0</span> V</label>
+        <input type="range" id="sAmp" min="0.1" max="3" value="1" step="0.1" oninput="updateSignal()">
+      </div>
+    </div>
+
+    <div id="digitalControls" style="display:none; margin-top:15px;">
+      <div class="row">
+        <div>
+          <label>Frequence d'echantillonnage F<sub>e</sub> : <span class="val" id="vFe">200</span> Hz</label>
+          <input type="range" id="sFe" min="10" max="1000" value="200" step="5" oninput="updateSignal()">
+        </div>
+        <div>
+          <label>Resolution (bits) : <span class="val" id="vBits">8</span> bits</label>
+          <select id="sBits" onchange="updateSignal()">
+            <option value="3">3 bits (8 niveaux)</option>
+            <option value="4">4 bits (16 niveaux)</option>
+            <option value="8" selected>8 bits (256 niveaux)</option>
+            <option value="16">16 bits (65 536 niveaux)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="result" id="resSignal"></div>
+  </div>
+
+  <!-- SHANNON THEOREM -->
+  <div class="card">
+    <h2>2. Theoreme de Shannon</h2>
+    <div class="shannon-box">
+      <div class="formula">\( F_e \geq 2 \times f_{\max} \)</div>
+      <p style="margin:8px 0 0 0;font-size:0.92em;">La frequence d'echantillonnage doit etre au moins le double de la frequence maximale du signal.</p>
+    </div>
+
+    <canvas id="cvShannon" width="820" height="300"></canvas>
+
+    <div>
+      <label>Frequence du signal f<sub>max</sub> : <span class="val" id="vFsh">100</span> Hz</label>
+      <input type="range" id="sFsh" min="10" max="400" value="100" step="5" oninput="updateShannon()">
+    </div>
+    <div style="margin-top:10px;">
+      <label>Frequence d'echantillonnage F<sub>e</sub> : <span class="val" id="vFesh">250</span> Hz</label>
+      <input type="range" id="sFesh" min="10" max="1000" value="250" step="5" oninput="updateShannon()">
+    </div>
+
+    <div class="result" id="resShannon"></div>
+
+    <div class="context">
+      <strong>Contexte professionnel — Transmission domotique :</strong> Un capteur de temperature connecte mesure la temperature d'une piece toutes les 10 secondes (F<sub>e</sub> = 0,1 Hz). Comme la temperature varie tres lentement (f<sub>max</sub> &lt; 0,01 Hz), le theoreme de Shannon est largement respecte. En revanche, un capteur de vibration sur une machine-outil necessite une frequence d'echantillonnage beaucoup plus elevee.
+    </div>
+  </div>
+
+  <!-- QUANTIZATION -->
+  <div class="card">
+    <h2>3. Quantification — Effet du nombre de bits</h2>
+    <canvas id="cvQuant" width="820" height="300"></canvas>
+    <div class="row">
+      <div>
+        <label>Nombre de bits : <span class="val" id="vQBits">4</span></label>
+        <input type="range" id="sQBits" min="1" max="8" value="4" step="1" oninput="updateQuant()">
+      </div>
+      <div>
+        <label>Frequence du signal : <span class="val" id="vQFreq">30</span> Hz</label>
+        <input type="range" id="sQFreq" min="5" max="100" value="30" step="1" oninput="updateQuant()">
+      </div>
+    </div>
+    <div class="result" id="resQuant"></div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+let mode = 'analog';
+
+function setMode(m) {
+  mode = m;
+  $('tabAnalog').className = m === 'analog' ? 'tab active' : 'tab';
+  $('tabDigital').className = m === 'digital' ? 'tab active' : 'tab';
+  $('digitalControls').style.display = m === 'digital' ? 'block' : 'none';
+  updateSignal();
+}
+
+// ===== SIGNAL CANVAS =====
+const cvS = $('cvSignal');
+const ctxS = cvS.getContext('2d');
+
+function updateSignal() {
+  const f = +$('sFreq').value;
+  const A = +$('sAmp').value;
+  $('vFreq').textContent = f;
+  $('vAmp').textContent = A.toFixed(1);
+
+  const W = cvS.width, H = cvS.height;
+  ctxS.clearRect(0, 0, W, H);
+
+  const margin = { left: 50, right: 20, top: 20, bottom: 40 };
+  const plotW = W - margin.left - margin.right;
+  const plotH = H - margin.top - margin.bottom;
+  const cx = margin.left;
+  const cy = margin.top + plotH / 2;
+
+  // Axes
+  ctxS.strokeStyle = '#94a3b8';
+  ctxS.lineWidth = 1;
+  ctxS.beginPath();
+  ctxS.moveTo(cx, margin.top);
+  ctxS.lineTo(cx, H - margin.bottom);
+  ctxS.lineTo(W - margin.right, H - margin.bottom);
+  ctxS.stroke();
+  // Zero line
+  ctxS.setLineDash([4, 4]);
+  ctxS.beginPath();
+  ctxS.moveTo(cx, cy);
+  ctxS.lineTo(W - margin.right, cy);
+  ctxS.stroke();
+  ctxS.setLineDash([]);
+
+  // Axis labels
+  ctxS.fillStyle = '#64748b';
+  ctxS.font = '11px Segoe UI';
+  ctxS.textAlign = 'center';
+  ctxS.fillText('Temps (ms)', W / 2, H - 8);
+  ctxS.save();
+  ctxS.translate(15, H / 2);
+  ctxS.rotate(-Math.PI / 2);
+  ctxS.fillText('Tension (V)', 0, 0);
+  ctxS.restore();
+
+  // Y scale
+  ctxS.textAlign = 'right';
+  ctxS.fillText(A.toFixed(1), cx - 5, margin.top + 10);
+  ctxS.fillText('0', cx - 5, cy + 4);
+  ctxS.fillText('-' + A.toFixed(1), cx - 5, H - margin.bottom - 5);
+
+  // Time range: show ~3 periods
+  const T = 1 / f; // period in seconds
+  const tTotal = 3 * T;
+  const nPoints = 500;
+
+  // Draw analog signal (always)
+  ctxS.strokeStyle = '#0f766e';
+  ctxS.lineWidth = 2;
+  ctxS.beginPath();
+  for (let i = 0; i <= nPoints; i++) {
+    const t = (i / nPoints) * tTotal;
+    const val = A * Math.sin(2 * Math.PI * f * t);
+    const px = cx + (i / nPoints) * plotW;
+    const py = cy - (val / A) * (plotH / 2 - 10);
+    if (i === 0) ctxS.moveTo(px, py); else ctxS.lineTo(px, py);
+  }
+  ctxS.stroke();
+
+  // X time markers
+  ctxS.fillStyle = '#64748b';
+  ctxS.textAlign = 'center';
+  ctxS.font = '10px Segoe UI';
+  for (let i = 0; i <= 6; i++) {
+    const tms = (tTotal * 1000 * i / 6).toFixed(1);
+    const px = cx + (i / 6) * plotW;
+    ctxS.fillText(tms, px, H - margin.bottom + 15);
+    ctxS.strokeStyle = '#e2e8f0';
+    ctxS.beginPath(); ctxS.moveTo(px, margin.top); ctxS.lineTo(px, H - margin.bottom); ctxS.stroke();
+  }
+
+  if (mode === 'digital') {
+    const Fe = +$('sFe').value;
+    const bits = +$('sBits').value;
+    $('vFe').textContent = Fe;
+    $('vBits').textContent = bits;
+
+    const nLevels = Math.pow(2, bits);
+    const step = (2 * A) / nLevels;
+
+    // Draw quantization levels (faint)
+    if (bits <= 8) {
+      ctxS.strokeStyle = 'rgba(15,118,110,0.1)';
+      ctxS.lineWidth = 0.5;
+      for (let l = 0; l < nLevels; l++) {
+        const val = -A + l * step + step / 2;
+        const py = cy - (val / A) * (plotH / 2 - 10);
+        if (py > margin.top && py < H - margin.bottom) {
+          ctxS.beginPath();
+          ctxS.moveTo(cx, py);
+          ctxS.lineTo(W - margin.right, py);
+          ctxS.stroke();
+        }
+      }
+    }
+
+    // Sample points
+    const Te = 1 / Fe;
+    const nSamples = Math.floor(tTotal / Te);
+    const samples = [];
+    for (let i = 0; i <= nSamples; i++) {
+      const t = i * Te;
+      if (t > tTotal) break;
+      const val = A * Math.sin(2 * Math.PI * f * t);
+      // Quantize
+      const quantized = Math.round(val / step) * step;
+      const clamped = Math.max(-A, Math.min(A, quantized));
+      const px = cx + (t / tTotal) * plotW;
+      const py = cy - (clamped / A) * (plotH / 2 - 10);
+      samples.push({ px, py, t, val: clamped });
+    }
+
+    // Draw sample stems
+    ctxS.strokeStyle = '#dc2626';
+    ctxS.lineWidth = 1.5;
+    samples.forEach(s => {
+      ctxS.beginPath();
+      ctxS.moveTo(s.px, cy);
+      ctxS.lineTo(s.px, s.py);
+      ctxS.stroke();
+    });
+
+    // Draw sample dots
+    ctxS.fillStyle = '#dc2626';
+    samples.forEach(s => {
+      ctxS.beginPath();
+      ctxS.arc(s.px, s.py, 4, 0, Math.PI * 2);
+      ctxS.fill();
+    });
+
+    // Draw reconstructed signal (staircase)
+    ctxS.strokeStyle = '#f59e0b';
+    ctxS.lineWidth = 2;
+    ctxS.beginPath();
+    for (let i = 0; i < samples.length - 1; i++) {
+      ctxS.moveTo(samples[i].px, samples[i].py);
+      ctxS.lineTo(samples[i + 1].px, samples[i].py);
+      ctxS.lineTo(samples[i + 1].px, samples[i + 1].py);
+    }
+    ctxS.stroke();
+
+    // Legend
+    ctxS.font = '11px Segoe UI';
+    ctxS.textAlign = 'left';
+    ctxS.fillStyle = '#0f766e'; ctxS.fillRect(W - 200, 10, 12, 3); ctxS.fillText('Signal original', W - 183, 15);
+    ctxS.fillStyle = '#dc2626'; ctxS.beginPath(); ctxS.arc(W - 194, 30, 3, 0, Math.PI * 2); ctxS.fill(); ctxS.fillText('Echantillons', W - 183, 34);
+    ctxS.fillStyle = '#f59e0b'; ctxS.fillRect(W - 200, 43, 12, 3); ctxS.fillText('Signal reconstruit', W - 183, 48);
+
+    // Shannon check
+    const shannonOk = Fe >= 2 * f;
+    const ratio = Fe / f;
+
+    $('resSignal').innerHTML = `
+      <p><strong>Signal :</strong> f = ${f} Hz, A = ${A.toFixed(1)} V, T = ${(T * 1000).toFixed(2)} ms</p>
+      <p><strong>Echantillonnage :</strong> F<sub>e</sub> = ${Fe} Hz, T<sub>e</sub> = ${(Te * 1000).toFixed(2)} ms</p>
+      <p><strong>Quantification :</strong> ${bits} bits = ${nLevels} niveaux, pas = ${step.toFixed(4)} V</p>
+      <p><strong>Shannon :</strong> F<sub>e</sub> / f = ${ratio.toFixed(1)} ${shannonOk ? '<span class="badge badge-ok">Fe &ge; 2&times;f &mdash; OK</span>' : '<span class="badge badge-err">Fe &lt; 2&times;f &mdash; ALIASING !</span>'}</p>
+    `;
+  } else {
+    $('resSignal').innerHTML = `
+      <p><strong>Signal analogique :</strong> f = ${f} Hz, A = ${A.toFixed(1)} V, T = ${(T * 1000).toFixed(2)} ms</p>
+      <p style="font-size:0.9em;color:#6b7280;">Un signal analogique varie continument dans le temps. Il prend une infinite de valeurs. Pour le transmettre numeriquement, il faut l'echantillonner et le quantifier.</p>
+    `;
+  }
+}
+
+// ===== SHANNON DEMO =====
+const cvSh = $('cvShannon');
+const ctxSh = cvSh.getContext('2d');
+
+function updateShannon() {
+  const f = +$('sFsh').value;
+  const Fe = +$('sFesh').value;
+  $('vFsh').textContent = f;
+  $('vFesh').textContent = Fe;
+
+  const W = cvSh.width, H = cvSh.height;
+  ctxSh.clearRect(0, 0, W, H);
+
+  const margin = { left: 50, right: 20, top: 30, bottom: 40 };
+  const plotW = W - margin.left - margin.right;
+  const plotH = H - margin.top - margin.bottom;
+  const cx = margin.left;
+  const cy = margin.top + plotH / 2;
+
+  // Axes
+  ctxSh.strokeStyle = '#94a3b8';
+  ctxSh.lineWidth = 1;
+  ctxSh.beginPath();
+  ctxSh.moveTo(cx, margin.top); ctxSh.lineTo(cx, H - margin.bottom); ctxSh.lineTo(W - margin.right, H - margin.bottom);
+  ctxSh.stroke();
+  ctxSh.setLineDash([4, 4]);
+  ctxSh.beginPath(); ctxSh.moveTo(cx, cy); ctxSh.lineTo(W - margin.right, cy); ctxSh.stroke();
+  ctxSh.setLineDash([]);
+
+  // Title
+  const shannonOk = Fe >= 2 * f;
+  ctxSh.fillStyle = shannonOk ? '#16a34a' : '#dc2626';
+  ctxSh.font = 'bold 13px Segoe UI';
+  ctxSh.textAlign = 'center';
+  ctxSh.fillText(shannonOk ? 'Signal bien reconstruit (Fe >= 2 x fmax)' : 'ALIASING ! Signal mal reconstruit (Fe < 2 x fmax)', W / 2, 18);
+
+  const T = 1 / f;
+  const tTotal = 3 * T;
+  const nPoints = 600;
+
+  // Original signal
+  ctxSh.strokeStyle = '#0f766e';
+  ctxSh.lineWidth = 2;
+  ctxSh.beginPath();
+  for (let i = 0; i <= nPoints; i++) {
+    const t = (i / nPoints) * tTotal;
+    const val = Math.sin(2 * Math.PI * f * t);
+    const px = cx + (i / nPoints) * plotW;
+    const py = cy - val * (plotH / 2 - 10);
+    if (i === 0) ctxSh.moveTo(px, py); else ctxSh.lineTo(px, py);
+  }
+  ctxSh.stroke();
+
+  // Sample and reconstruct
+  const Te = 1 / Fe;
+  const samples = [];
+  for (let t = 0; t <= tTotal; t += Te) {
+    const val = Math.sin(2 * Math.PI * f * t);
+    const px = cx + (t / tTotal) * plotW;
+    const py = cy - val * (plotH / 2 - 10);
+    samples.push({ px, py, val });
+  }
+
+  // Sample dots
+  ctxSh.fillStyle = '#dc2626';
+  samples.forEach(s => {
+    ctxSh.beginPath();
+    ctxSh.arc(s.px, s.py, 5, 0, Math.PI * 2);
+    ctxSh.fill();
+  });
+
+  // Reconstructed (sinc interpolation approximated by connecting dots smoothly)
+  if (samples.length > 1) {
+    ctxSh.strokeStyle = '#f59e0b';
+    ctxSh.lineWidth = 2;
+    ctxSh.setLineDash([6, 4]);
+    ctxSh.beginPath();
+    // Simple smooth interpolation through sample points
+    for (let i = 0; i < nPoints; i++) {
+      const t = (i / nPoints) * tTotal;
+      // Reconstruct using sinc interpolation (simplified)
+      let reconstructed = 0;
+      for (let k = 0; k < samples.length; k++) {
+        const tk = k * Te;
+        const x = (t - tk) / Te;
+        const sinc = x === 0 ? 1 : Math.sin(Math.PI * x) / (Math.PI * x);
+        reconstructed += samples[k].val * sinc;
+      }
+      const px = cx + (i / nPoints) * plotW;
+      const py = cy - reconstructed * (plotH / 2 - 10);
+      if (i === 0) ctxSh.moveTo(px, py); else ctxSh.lineTo(px, py);
+    }
+    ctxSh.stroke();
+    ctxSh.setLineDash([]);
+  }
+
+  // Legend
+  ctxSh.font = '11px Segoe UI';
+  ctxSh.textAlign = 'left';
+  ctxSh.setLineDash([]);
+  ctxSh.fillStyle = '#0f766e';
+  ctxSh.fillRect(W - 220, margin.top + 5, 12, 3);
+  ctxSh.fillText('Signal original', W - 203, margin.top + 10);
+  ctxSh.fillStyle = '#dc2626';
+  ctxSh.beginPath(); ctxSh.arc(W - 214, margin.top + 25, 3, 0, Math.PI * 2); ctxSh.fill();
+  ctxSh.fillText('Echantillons', W - 203, margin.top + 29);
+  ctxSh.fillStyle = '#f59e0b';
+  ctxSh.fillRect(W - 220, margin.top + 38, 12, 3);
+  ctxSh.fillText('Signal reconstruit', W - 203, margin.top + 43);
+
+  const ratio = Fe / f;
+  $('resShannon').innerHTML = `
+    <p><strong>f<sub>max</sub> = ${f} Hz</strong> &nbsp;|&nbsp; <strong>F<sub>e</sub> = ${Fe} Hz</strong> &nbsp;|&nbsp; F<sub>e</sub> / f<sub>max</sub> = ${ratio.toFixed(2)}</p>
+    <p><strong>Condition de Shannon :</strong> F<sub>e</sub> &ge; 2 &times; f<sub>max</sub> = ${2 * f} Hz
+    ${shannonOk
+      ? '<span class="badge badge-ok">Condition respectee &mdash; reconstruction fidele</span>'
+      : '<span class="badge badge-err">Condition NON respectee &mdash; ALIASING (repliement de spectre)</span>'}
+    </p>
+    ${!shannonOk ? '<p style="color:#dc2626;font-size:0.9em;">Le signal reconstruit ne correspond plus a l\'original. Des frequences parasites apparaissent (aliasing). Il faut augmenter F<sub>e</sub> a au moins ' + (2 * f) + ' Hz.</p>' : ''}
+  `;
+}
+
+// ===== QUANTIZATION DEMO =====
+const cvQ = $('cvQuant');
+const ctxQ = cvQ.getContext('2d');
+
+function updateQuant() {
+  const bits = +$('sQBits').value;
+  const f = +$('sQFreq').value;
+  $('vQBits').textContent = bits;
+  $('vQFreq').textContent = f;
+
+  const nLevels = Math.pow(2, bits);
+  const W = cvQ.width, H = cvQ.height;
+  ctxQ.clearRect(0, 0, W, H);
+
+  const margin = { left: 50, right: 30, top: 20, bottom: 40 };
+  const plotW = W - margin.left - margin.right;
+  const plotH = H - margin.top - margin.bottom;
+  const cx = margin.left;
+  const cy = margin.top + plotH / 2;
+  const A = 1;
+
+  // Axes
+  ctxQ.strokeStyle = '#94a3b8';
+  ctxQ.lineWidth = 1;
+  ctxQ.beginPath();
+  ctxQ.moveTo(cx, margin.top); ctxQ.lineTo(cx, H - margin.bottom); ctxQ.lineTo(W - margin.right, H - margin.bottom);
+  ctxQ.stroke();
+
+  // Quantization levels
+  const step = (2 * A) / nLevels;
+  ctxQ.strokeStyle = 'rgba(15,118,110,0.2)';
+  ctxQ.lineWidth = 0.5;
+  ctxQ.font = '9px Segoe UI';
+  ctxQ.textAlign = 'right';
+  ctxQ.fillStyle = '#94a3b8';
+  for (let l = 0; l <= nLevels; l++) {
+    const val = -A + l * step;
+    const py = cy - (val / A) * (plotH / 2 - 5);
+    if (py >= margin.top && py <= H - margin.bottom) {
+      ctxQ.beginPath();
+      ctxQ.moveTo(cx, py);
+      ctxQ.lineTo(W - margin.right, py);
+      ctxQ.stroke();
+      if (nLevels <= 32 && l % Math.max(1, Math.floor(nLevels / 16)) === 0) {
+        ctxQ.fillText(val.toFixed(2), cx - 4, py + 3);
+      }
+    }
+  }
+
+  // Y axis label for bits
+  ctxQ.fillStyle = '#0f766e';
+  ctxQ.font = 'bold 11px Segoe UI';
+  ctxQ.textAlign = 'left';
+  ctxQ.fillText(nLevels + ' niveaux', W - margin.right - 80, margin.top + 15);
+
+  const T = 1 / f;
+  const tTotal = 3 * T;
+  const nPoints = 500;
+  const Fe = 10 * f; // high Fe for this demo
+
+  // Original signal
+  ctxQ.strokeStyle = '#0f766e';
+  ctxQ.lineWidth = 2;
+  ctxQ.beginPath();
+  for (let i = 0; i <= nPoints; i++) {
+    const t = (i / nPoints) * tTotal;
+    const val = A * Math.sin(2 * Math.PI * f * t);
+    const px = cx + (i / nPoints) * plotW;
+    const py = cy - (val / A) * (plotH / 2 - 5);
+    if (i === 0) ctxQ.moveTo(px, py); else ctxQ.lineTo(px, py);
+  }
+  ctxQ.stroke();
+
+  // Quantized staircase
+  ctxQ.strokeStyle = '#dc2626';
+  ctxQ.lineWidth = 2;
+  const Te = 1 / Fe;
+  ctxQ.beginPath();
+  let prevPy = null;
+  for (let t = 0; t <= tTotal; t += Te) {
+    const val = A * Math.sin(2 * Math.PI * f * t);
+    const quantized = Math.round(val / step) * step;
+    const clamped = Math.max(-A, Math.min(A, quantized));
+    const px = cx + (t / tTotal) * plotW;
+    const py = cy - (clamped / A) * (plotH / 2 - 5);
+    if (prevPy === null) { ctxQ.moveTo(px, py); }
+    else { ctxQ.lineTo(px, prevPy); ctxQ.lineTo(px, py); }
+    prevPy = py;
+  }
+  ctxQ.stroke();
+
+  // Legend
+  ctxQ.font = '11px Segoe UI';
+  ctxQ.textAlign = 'left';
+  ctxQ.fillStyle = '#0f766e'; ctxQ.fillRect(cx + 10, margin.top + 5, 12, 3); ctxQ.fillText('Original', cx + 28, margin.top + 10);
+  ctxQ.fillStyle = '#dc2626'; ctxQ.fillRect(cx + 10, margin.top + 20, 12, 3); ctxQ.fillText('Quantifie (' + bits + ' bits)', cx + 28, margin.top + 25);
+
+  const errMax = step / 2;
+  $('resQuant').innerHTML = `
+    <p><strong>Resolution :</strong> ${bits} bits = <span class="val">${nLevels} niveaux</span> de quantification</p>
+    <p><strong>Pas de quantification :</strong> q = 2A / 2<sup>${bits}</sup> = ${step.toFixed(4)} V</p>
+    <p><strong>Erreur maximale :</strong> &plusmn; q/2 = &plusmn; ${errMax.toFixed(4)} V</p>
+    <p style="font-size:0.9em;color:#6b7280;">Plus le nombre de bits est eleve, plus la quantification est fine et le signal numerique est fidele a l'original. En audio CD : 16 bits (65 536 niveaux), en telephonie : 8 bits (256 niveaux).</p>
+  `;
+}
+
+// Init
+updateSignal();
+updateShannon();
+updateQuant();
+</script>
+</body>
+</html>

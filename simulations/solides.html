@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Solides Usuels — Volumes et Agrandissement</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:20px;text-align:center;position:relative}
+header h1{font-size:1.6em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:0 auto;padding:20px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}
+.card h2{font-size:1.1em;color:#1976d2;margin-bottom:12px;border-bottom:2px solid #e3f2fd;padding-bottom:6px}
+.solid-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px}
+.solid-btn{padding:8px 14px;border:2px solid #1976d2;background:#fff;color:#1976d2;border-radius:8px;cursor:pointer;font-size:.88em;font-weight:600;transition:all .2s}
+.solid-btn:hover{background:#e3f2fd}
+.solid-btn.active{background:#1976d2;color:#fff}
+.canvas-wrap{display:flex;justify-content:center;margin:16px 0;overflow-x:auto}
+canvas{border:1px solid #e0e0e0;border-radius:8px;background:#fff;max-width:100%}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin:16px 0}
+.ctrl-group{display:flex;flex-direction:column;gap:4px}
+.ctrl-group label{font-weight:600;font-size:.88em;color:#555}
+.ctrl-group .slider-row{display:flex;align-items:center;gap:8px}
+.ctrl-group input[type=range]{flex:1;accent-color:#1976d2;height:6px}
+.ctrl-group .val{font-weight:700;color:#1976d2;min-width:36px;text-align:center;font-size:.95em}
+.results{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.result-box{padding:14px;border-radius:8px;text-align:center}
+.result-box.vol{background:#e3f2fd;border:1px solid #90caf9}
+.result-box.scaled{background:#fce4ec;border:1px solid #f48fb1}
+.result-box h3{font-size:.85em;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;color:#555}
+.result-box .formula{font-size:.92em;color:#333;margin-bottom:4px;line-height:1.5}
+.result-box .value{font-size:1.3em;font-weight:700;color:#1976d2}
+.result-box.scaled .value{color:#c2185b}
+.scale-section{background:#fafafa;border:1px solid #eee;border-radius:8px;padding:16px;margin-top:14px}
+.scale-section h3{font-size:.95em;color:#1976d2;margin-bottom:10px}
+.scale-info{font-size:.9em;color:#555;margin-top:8px;text-align:center;line-height:1.6}
+.scale-info strong{color:#c2185b}
+.pro-context{background:#fff3e0;border-left:4px solid #ff9800;padding:12px 16px;border-radius:0 8px 8px 0;margin-top:10px;font-size:.9em;color:#e65100}
+.pro-context strong{color:#bf360c}
+@media(max-width:600px){
+  .controls{grid-template-columns:1fr}
+  .results{grid-template-columns:1fr}
+  header h1{font-size:1.2em}
+  .solid-btns{gap:5px}
+  .solid-btn{padding:6px 10px;font-size:.78em}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">← Retour</a>
+  <h1>Solides Usuels — Volumes et Agrandissement</h1>
+  <p>2nde Bac Pro · Ch14</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div class="solid-btns" id="solidBtns">
+      <button class="solid-btn active" onclick="selectSolid('cube')">Cube</button>
+      <button class="solid-btn" onclick="selectSolid('pave')">Pavé droit</button>
+      <button class="solid-btn" onclick="selectSolid('cylindre')">Cylindre</button>
+      <button class="solid-btn" onclick="selectSolid('cone')">Cône</button>
+      <button class="solid-btn" onclick="selectSolid('pyramide')">Pyramide</button>
+      <button class="solid-btn" onclick="selectSolid('sphere')">Sphère</button>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="cv" width="500" height="400"></canvas>
+    </div>
+
+    <div class="controls" id="controls"></div>
+  </div>
+
+  <div class="card">
+    <h2>Volume</h2>
+    <div class="results">
+      <div class="result-box vol">
+        <h3>Formule</h3>
+        <div class="formula" id="volFormula"></div>
+      </div>
+      <div class="result-box vol">
+        <h3>Résultat</h3>
+        <div class="formula" id="volCalc"></div>
+        <div class="value" id="volValue"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Agrandissement / Réduction</h2>
+    <div class="scale-section">
+      <div class="ctrl-group">
+        <label>Facteur d'échelle k</label>
+        <div class="slider-row">
+          <input type="range" min="0.5" max="3" value="1" step="0.1" id="sl_k" oninput="kVal=parseFloat(this.value);document.getElementById('v_k').textContent=this.value;update()">
+          <span class="val" id="v_k">1</span>
+        </div>
+      </div>
+      <div class="scale-info" id="scaleInfo"></div>
+    </div>
+    <div class="results" style="margin-top:14px">
+      <div class="result-box vol">
+        <h3>Volume original</h3>
+        <div class="value" id="volOrig"></div>
+      </div>
+      <div class="result-box scaled">
+        <h3>Volume agrandi (x k³)</h3>
+        <div class="formula" id="scaledFormula"></div>
+        <div class="value" id="volScaled"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pro-context">
+      <strong>Contexte professionnel :</strong> Calcul du volume de béton nécessaire pour couler un poteau cylindrique ou un socle parallélépipédique — un maçon doit connaître le volume exact pour commander la bonne quantité de béton prêt à l'emploi.
+    </div>
+  </div>
+</div>
+
+<script>
+let solid = 'cube';
+let kVal = 1;
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+const CX = 250, CY = 200; // canvas center for 3D
+
+const sliderDefs = {
+  cube:     [{id:'a', label:'Côté a', min:1, max:15, def:5}],
+  pave:     [{id:'L', label:'Longueur L', min:1, max:15, def:8},
+             {id:'l', label:'Largeur l', min:1, max:10, def:5},
+             {id:'h', label:'Hauteur h', min:1, max:10, def:3}],
+  cylindre: [{id:'r', label:'Rayon r', min:1, max:10, def:4},
+             {id:'h', label:'Hauteur h', min:1, max:15, def:8}],
+  cone:     [{id:'r', label:'Rayon r', min:1, max:10, def:4},
+             {id:'h', label:'Hauteur h', min:1, max:15, def:8}],
+  pyramide: [{id:'a', label:'Côté base a', min:1, max:15, def:6},
+             {id:'h', label:'Hauteur h', min:1, max:15, def:8}],
+  sphere:   [{id:'r', label:'Rayon r', min:1, max:10, def:5}]
+};
+
+let vals = {};
+
+function selectSolid(s) {
+  solid = s;
+  document.querySelectorAll('.solid-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.solid-btn[onclick="selectSolid('${s}')"]`).classList.add('active');
+  buildControls();
+  update();
+}
+
+function buildControls() {
+  const ctn = document.getElementById('controls');
+  ctn.innerHTML = '';
+  vals = {};
+  sliderDefs[solid].forEach(d => {
+    vals[d.id] = d.def;
+    const g = document.createElement('div');
+    g.className = 'ctrl-group';
+    g.innerHTML = `<label>${d.label}</label>
+      <div class="slider-row">
+        <input type="range" min="${d.min}" max="${d.max}" value="${d.def}" step="0.5" id="sl_${d.id}" oninput="vals['${d.id}']=parseFloat(this.value);document.getElementById('v_${d.id}').textContent=this.value;update()">
+        <span class="val" id="v_${d.id}">${d.def}</span>
+      </div>`;
+    ctn.appendChild(g);
+  });
+}
+
+function round2(x) { return Math.round(x * 100) / 100; }
+
+function update() {
+  draw();
+  let V, formula, calc;
+  const pi = Math.PI;
+
+  switch (solid) {
+    case 'cube': {
+      const a = vals.a;
+      V = round2(a * a * a);
+      formula = 'V = a\u00B3';
+      calc = `V = ${a}\u00B3 = ${V} cm\u00B3`;
+      break;
+    }
+    case 'pave': {
+      const L = vals.L, l = vals.l, h = vals.h;
+      V = round2(L * l * h);
+      formula = 'V = L \u00D7 l \u00D7 h';
+      calc = `V = ${L} \u00D7 ${l} \u00D7 ${h} = ${V} cm\u00B3`;
+      break;
+    }
+    case 'cylindre': {
+      const r = vals.r, h = vals.h;
+      V = round2(pi * r * r * h);
+      formula = 'V = \u03C0 \u00D7 r\u00B2 \u00D7 h';
+      calc = `V = \u03C0 \u00D7 ${r}\u00B2 \u00D7 ${h} \u2248 ${V} cm\u00B3`;
+      break;
+    }
+    case 'cone': {
+      const r = vals.r, h = vals.h;
+      V = round2(pi * r * r * h / 3);
+      formula = 'V = \u03C0 \u00D7 r\u00B2 \u00D7 h \u00F7 3';
+      calc = `V = \u03C0 \u00D7 ${r}\u00B2 \u00D7 ${h} \u00F7 3 \u2248 ${V} cm\u00B3`;
+      break;
+    }
+    case 'pyramide': {
+      const a = vals.a, h = vals.h;
+      V = round2(a * a * h / 3);
+      formula = 'V = a\u00B2 \u00D7 h \u00F7 3';
+      calc = `V = ${a}\u00B2 \u00D7 ${h} \u00F7 3 \u2248 ${V} cm\u00B3`;
+      break;
+    }
+    case 'sphere': {
+      const r = vals.r;
+      V = round2(4 / 3 * pi * r * r * r);
+      formula = 'V = 4/3 \u00D7 \u03C0 \u00D7 r\u00B3';
+      calc = `V = 4/3 \u00D7 \u03C0 \u00D7 ${r}\u00B3 \u2248 ${V} cm\u00B3`;
+      break;
+    }
+  }
+
+  document.getElementById('volFormula').textContent = formula;
+  document.getElementById('volCalc').textContent = calc;
+  document.getElementById('volValue').textContent = V + ' cm\u00B3';
+
+  const k3 = round2(kVal * kVal * kVal);
+  const Vs = round2(V * k3);
+  document.getElementById('volOrig').textContent = V + ' cm\u00B3';
+  document.getElementById('scaledFormula').textContent =
+    `V' = V \u00D7 k\u00B3 = ${V} \u00D7 ${kVal}\u00B3 = ${V} \u00D7 ${k3}`;
+  document.getElementById('volScaled').textContent = Vs + ' cm\u00B3';
+
+  let info = `k = ${kVal}  \u2192  k\u00B3 = ${k3}`;
+  if (kVal > 1) info += ` \u2014 <strong>Agrandissement</strong> : le volume est multipli\u00E9 par ${k3}`;
+  else if (kVal < 1) info += ` \u2014 <strong>R\u00E9duction</strong> : le volume est divis\u00E9 par ${round2(1/k3)}`;
+  else info += ' \u2014 Taille originale';
+  document.getElementById('scaleInfo').innerHTML = info;
+}
+
+/* ===== Isometric 3D Engine ===== */
+
+// All 3D coordinates are in "units" (e.g. cm). The scale factor converts to pixels.
+const SC = 14; // pixels per unit
+
+// Isometric projection: 3D (x,y,z) in units -> 2D canvas pixels
+// y axis points UP in 3D, but DOWN on canvas, so we negate y.
+// We apply a rotation for a pleasant 3/4 view.
+const AX = -0.46, AY = 0.62;
+const cosA = Math.cos(AY), sinA = Math.sin(AY);
+const cosB = Math.cos(AX), sinB = Math.sin(AX);
+
+function project(x, y, z, ox, oy) {
+  // x,y,z in units; ox,oy are 2D pixel offsets for canvas center
+  const px = x * SC, py = -y * SC, pz = z * SC;
+  const x1 = px * cosA - pz * sinA;
+  const z1 = px * sinA + pz * cosA;
+  const y1 = py * cosB - z1 * sinB;
+  return [(ox || CX) + x1, (oy || CY) + y1];
+}
+
+function line2D(a, b, color, width, dash) {
+  ctx.save();
+  ctx.strokeStyle = color || '#1976d2';
+  ctx.lineWidth = width || 2;
+  ctx.setLineDash(dash || []);
+  ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+  ctx.restore();
+}
+
+function poly2D(pts, fill, stroke) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.closePath();
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  ctx.strokeStyle = stroke || '#1976d2';
+  ctx.lineWidth = 2; ctx.setLineDash([]); ctx.stroke();
+  ctx.restore();
+}
+
+function ellipse3D(cx3, cy3, cz3, r, color, fill, ox, oy) {
+  const n = 64;
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const t = 2 * Math.PI * i / n;
+    pts.push(project(cx3 + r * Math.cos(t), cy3, cz3 + r * Math.sin(t), ox, oy));
+  }
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  ctx.strokeStyle = color || '#1976d2';
+  ctx.lineWidth = 2; ctx.setLineDash([]); ctx.stroke();
+  ctx.restore();
+  return pts;
+}
+
+// Find silhouette indices (leftmost & rightmost screen-x) on an ellipse
+function silhouette(cx3, cy3, cz3, r, ox, oy) {
+  const n = 64;
+  let minX = Infinity, maxX = -Infinity, iL = 0, iR = 0;
+  for (let i = 0; i <= n; i++) {
+    const t = 2 * Math.PI * i / n;
+    const p = project(cx3 + r * Math.cos(t), cy3, cz3 + r * Math.sin(t), ox, oy);
+    if (p[0] < minX) { minX = p[0]; iL = i; }
+    if (p[0] > maxX) { maxX = p[0]; iR = i; }
+  }
+  const tL = 2 * Math.PI * iL / n, tR = 2 * Math.PI * iR / n;
+  return {
+    left: project(cx3 + r * Math.cos(tL), cy3, cz3 + r * Math.sin(tL), ox, oy),
+    right: project(cx3 + r * Math.cos(tR), cy3, cz3 + r * Math.sin(tR), ox, oy),
+    tL, tR, iL, iR
+  };
+}
+
+function label2D(text, px, py, color) {
+  ctx.save();
+  ctx.font = 'bold 13px Segoe UI, system-ui, sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const m = ctx.measureText(text);
+  ctx.fillStyle = 'rgba(255,255,255,0.85)';
+  ctx.fillRect(px - m.width/2 - 4, py - 10, m.width + 8, 20);
+  ctx.fillStyle = color || '#d32f2f';
+  ctx.fillText(text, px, py);
+  ctx.restore();
+}
+
+function label3D(text, x, y, z, color, dx, dy, ox, oy) {
+  const p = project(x, y, z, ox, oy);
+  label2D(text, p[0] + (dx||0), p[1] + (dy||0), color);
+}
+
+/* ===== Drawing routines ===== */
+// Each drawXxx takes an optional (ox, oy) for canvas offset and optional alpha for ghost rendering.
+
+function drawBox(Lx, Ly, Lz, ox, oy, ghost) {
+  // Lx, Ly, Lz are half-dimensions in units
+  const p = (x,y,z) => project(x,y,z,ox,oy);
+  const v = [
+    p(-Lx,0,-Lz), p(Lx,0,-Lz), p(Lx,0,Lz), p(-Lx,0,Lz),   // bottom
+    p(-Lx,2*Ly,-Lz), p(Lx,2*Ly,-Lz), p(Lx,2*Ly,Lz), p(-Lx,2*Ly,Lz) // top
+  ];
+  const col = ghost || '#1976d2';
+  const a1 = ghost ? 'rgba(194,24,91,0.04)' : 'rgba(25,118,210,0.06)';
+  const a2 = ghost ? 'rgba(194,24,91,0.08)' : 'rgba(25,118,210,0.10)';
+  const a3 = ghost ? 'rgba(194,24,91,0.03)' : 'rgba(25,118,210,0.04)';
+  const a4 = ghost ? 'rgba(194,24,91,0.10)' : 'rgba(25,118,210,0.14)';
+
+  // Hidden edges
+  line2D(v[0], v[4], '#bbb', 1, [4,3]);
+  line2D(v[0], v[1], '#bbb', 1, [4,3]);
+  line2D(v[0], v[3], '#bbb', 1, [4,3]);
+  // Visible faces
+  poly2D([v[3],v[2],v[6],v[7]], a2, col); // front
+  poly2D([v[2],v[1],v[5],v[6]], a3, col); // right
+  poly2D([v[4],v[5],v[6],v[7]], a4, col); // top
+  // Bottom visible edges
+  line2D(v[1],v[2], col, 2);
+  line2D(v[2],v[3], col, 2);
+}
+
+function drawCube(ox, oy, ghost) {
+  const a = vals.a;
+  drawBox(a/2, a/2, a/2, ox, oy, ghost);
+  if (!ghost) {
+    label3D('a = ' + a, 0, 0, a/2, '#1976d2', 0, 18, ox, oy);
+  }
+}
+
+function drawPave(ox, oy, ghost) {
+  const L = vals.L, l = vals.l, h = vals.h;
+  drawBox(L/2, h/2, l/2, ox, oy, ghost);
+  if (!ghost) {
+    label3D('L = ' + L, 0, 0, l/2, '#1976d2', 0, 18, ox, oy);
+    const pR = project(L/2, 0, 0, ox, oy);
+    label2D('l = ' + l, pR[0] + 16, pR[1] + 8, '#e65100');
+    const pH = project(L/2, h/2, l/2, ox, oy);
+    label2D('h = ' + h, pH[0] + 18, pH[1], '#2e7d32');
+  }
+}
+
+function drawCylindre(ox, oy, ghost) {
+  const r = vals.r, h = vals.h;
+  const col = ghost || '#1976d2';
+  const fillBot = ghost ? 'rgba(194,24,91,0.04)' : 'rgba(25,118,210,0.06)';
+  const fillTop = ghost ? 'rgba(194,24,91,0.10)' : 'rgba(25,118,210,0.12)';
+  const colFade = ghost ? '#e48aab' : '#90caf9';
+
+  // Bottom ellipse
+  ellipse3D(0, 0, 0, r, colFade, fillBot, ox, oy);
+  const sBot = silhouette(0, 0, 0, r, ox, oy);
+  const sTop = silhouette(0, h, 0, r, ox, oy);
+  // Side lines
+  const bL = sBot.left, bR = sBot.right;
+  const tL = project(r * Math.cos(sBot.tL), h, r * Math.sin(sBot.tL), ox, oy);
+  const tR = project(r * Math.cos(sBot.tR), h, r * Math.sin(sBot.tR), ox, oy);
+  line2D(bL, tL, col, 2);
+  line2D(bR, tR, col, 2);
+  // Top ellipse
+  ellipse3D(0, h, 0, r, col, fillTop, ox, oy);
+
+  if (!ghost) {
+    // Height dimension line
+    const h1 = project(r + 1.5, 0, 0, ox, oy);
+    const h2 = project(r + 1.5, h, 0, ox, oy);
+    line2D(h1, h2, '#e65100', 1.5, [5,3]);
+    label3D('h = ' + h, r + 2, h/2, 0, '#e65100', 18, 0, ox, oy);
+    // Radius on top
+    line2D(project(0, h, 0, ox, oy), project(r, h, 0, ox, oy), '#d32f2f', 1.5);
+    label3D('r = ' + r, r/2, h, 0, '#d32f2f', 0, -14, ox, oy);
+  }
+}
+
+function drawCone(ox, oy, ghost) {
+  const r = vals.r, h = vals.h;
+  const col = ghost || '#1976d2';
+  const fillBase = ghost ? 'rgba(194,24,91,0.04)' : 'rgba(25,118,210,0.06)';
+  const fillSurf = ghost ? 'rgba(194,24,91,0.05)' : 'rgba(25,118,210,0.06)';
+
+  // Base ellipse
+  ellipse3D(0, 0, 0, r, col, fillBase, ox, oy);
+  const apex = project(0, h, 0, ox, oy);
+  const s = silhouette(0, 0, 0, r, ox, oy);
+  line2D(s.left, apex, col, 2);
+  line2D(s.right, apex, col, 2);
+
+  // Fill visible surface
+  const n = 64;
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(apex[0], apex[1]);
+  for (let i = s.iL; i <= s.iR; i++) {
+    const t = 2 * Math.PI * i / n;
+    const p = project(r * Math.cos(t), 0, r * Math.sin(t), ox, oy);
+    ctx.lineTo(p[0], p[1]);
+  }
+  ctx.closePath();
+  ctx.fillStyle = fillSurf; ctx.fill();
+  ctx.restore();
+
+  if (!ghost) {
+    // Height dashed
+    line2D(project(0, 0, 0, ox, oy), apex, '#888', 1.5, [5,3]);
+    // Center dot
+    const cb = project(0, 0, 0, ox, oy);
+    ctx.beginPath(); ctx.arc(cb[0], cb[1], 3, 0, 2*Math.PI);
+    ctx.fillStyle = '#888'; ctx.fill();
+
+    label3D('h = ' + h, 0.8, h/2, 0, '#e65100', 18, 0, ox, oy);
+    line2D(project(0, 0, 0, ox, oy), project(r, 0, 0, ox, oy), '#d32f2f', 1.5);
+    label3D('r = ' + r, r/2, 0, 0, '#d32f2f', 0, 16, ox, oy);
+  }
+}
+
+function drawPyramide(ox, oy, ghost) {
+  const a = vals.a, h = vals.h;
+  const col = ghost || '#1976d2';
+  const a1 = ghost ? 'rgba(194,24,91,0.04)' : 'rgba(25,118,210,0.06)';
+  const a2 = ghost ? 'rgba(194,24,91,0.06)' : 'rgba(25,118,210,0.08)';
+  const a3 = ghost ? 'rgba(194,24,91,0.03)' : 'rgba(25,118,210,0.04)';
+
+  const p = (x,y,z) => project(x,y,z,ox,oy);
+  const b = [p(-a/2,0,-a/2), p(a/2,0,-a/2), p(a/2,0,a/2), p(-a/2,0,a/2)];
+  const apex = p(0, h, 0);
+
+  // Base
+  poly2D([b[0],b[1],b[2],b[3]], a1, col);
+  // Hidden edges
+  line2D(b[0], apex, '#bbb', 1, [4,3]);
+  line2D(b[1], apex, '#bbb', 1, [4,3]);
+  // Visible edges
+  line2D(b[2], apex, col, 2);
+  line2D(b[3], apex, col, 2);
+  // Front face
+  poly2D([b[2], b[3], apex], a2, col);
+  // Right face
+  poly2D([b[1], b[2], apex], a3, col);
+
+  if (!ghost) {
+    // Height dashed
+    line2D(p(0,0,0), apex, '#888', 1.5, [5,3]);
+    label3D('a = ' + a, 0, 0, a/2, '#1976d2', 0, 18, ox, oy);
+    label3D('h = ' + h, 0.8, h/2, 0, '#e65100', 18, 0, ox, oy);
+  }
+}
+
+function drawSphere(ox, oy, ghost) {
+  const r = vals.r;
+  ox = ox || CX; oy = oy || CY;
+  const rp = r * SC;
+  const col = ghost || '#1976d2';
+  const fillC = ghost ? 'rgba(194,24,91,0.05)' : 'rgba(25,118,210,0.06)';
+  const colFade = ghost ? '#e48aab' : '#90caf9';
+
+  // Main circle
+  ctx.save();
+  ctx.beginPath(); ctx.arc(ox, oy, rp, 0, 2*Math.PI);
+  ctx.fillStyle = fillC; ctx.fill();
+  ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.setLineDash([]); ctx.stroke();
+  ctx.restore();
+
+  // Equator ellipse
+  ctx.save();
+  ctx.beginPath(); ctx.ellipse(ox, oy, rp, rp*0.35, 0, 0, 2*Math.PI);
+  ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.setLineDash([]); ctx.stroke();
+  ctx.restore();
+
+  // Meridian — back half dashed
+  ctx.save();
+  ctx.beginPath(); ctx.ellipse(ox, oy, rp*0.35, rp, 0, 0, Math.PI);
+  ctx.strokeStyle = colFade; ctx.lineWidth = 1.5; ctx.setLineDash([5,4]); ctx.stroke();
+  ctx.restore();
+  ctx.save();
+  ctx.beginPath(); ctx.ellipse(ox, oy, rp*0.35, rp, 0, Math.PI, 2*Math.PI);
+  ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.setLineDash([]); ctx.stroke();
+  ctx.restore();
+
+  if (!ghost) {
+    // Radius line
+    ctx.save();
+    ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(ox + rp, oy);
+    ctx.strokeStyle = '#d32f2f'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.restore();
+    // Center dot
+    ctx.beginPath(); ctx.arc(ox, oy, 3, 0, 2*Math.PI);
+    ctx.fillStyle = col; ctx.fill();
+    label2D('r = ' + r, ox + rp/2, oy - 14, '#d32f2f');
+  }
+}
+
+/* ===== Main draw ===== */
+function draw() {
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid
+  ctx.save();
+  ctx.strokeStyle = '#f0f0f0'; ctx.lineWidth = 1;
+  for (let x = 0; x < W; x += 20) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for (let y = 0; y < H; y += 20) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+  ctx.restore();
+
+  const hasGhost = Math.abs(kVal - 1) > 0.05;
+
+  if (hasGhost) {
+    // Draw original on the left, scaled on the right
+    const origOx = 160, ghostOx = 360;
+    const origOy = CY, ghostOy = CY;
+
+    // Save original vals, draw ghost with scaled vals
+    const saved = {...vals};
+
+    // Draw original (left)
+    drawSolid(origOx, origOy, false);
+
+    // Draw ghost (right) with scaled dimensions
+    Object.keys(vals).forEach(k => vals[k] = round2(saved[k] * kVal));
+    drawSolid(ghostOx, ghostOy, '#c2185b');
+    Object.keys(saved).forEach(k => vals[k] = saved[k]);
+
+    // Labels
+    ctx.save();
+    ctx.font = 'bold 12px Segoe UI, system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#1976d2';
+    ctx.fillText('Original', origOx, 380);
+    ctx.fillStyle = '#c2185b';
+    const kLabel = kVal > 1 ? `Agrandi (k = ${kVal})` : `R\u00E9duit (k = ${kVal})`;
+    ctx.fillText(kLabel, ghostOx, 380);
+    ctx.restore();
+  } else {
+    drawSolid(CX, CY, false);
+  }
+}
+
+function drawSolid(ox, oy, ghost) {
+  switch (solid) {
+    case 'cube': drawCube(ox, oy, ghost); break;
+    case 'pave': drawPave(ox, oy, ghost); break;
+    case 'cylindre': drawCylindre(ox, oy, ghost); break;
+    case 'cone': drawCone(ox, oy, ghost); break;
+    case 'pyramide': drawPyramide(ox, oy, ghost); break;
+    case 'sphere': drawSphere(ox, oy, ghost); break;
+  }
+}
+
+// Init
+buildControls();
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fonctions polyn&ocirc;mes degr&eacute; 3 &mdash; Simulation</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.6}
+header{background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;padding:28px 20px 22px;text-align:center;position:relative}
+header h1{font-size:1.5em;margin-bottom:4px}
+header p{opacity:.85;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:860px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px;margin-bottom:20px}
+.card h2{font-size:1.15em;color:#1976d2;margin-bottom:14px;border-bottom:2px solid #e3f2fd;padding-bottom:8px}
+.slider-row{display:flex;align-items:center;gap:10px;margin:8px 0;flex-wrap:wrap}
+.slider-row label{min-width:30px;font-weight:700;font-size:1em;color:#1976d2}
+.slider-row input[type=range]{flex:1;min-width:140px;accent-color:#1976d2}
+.slider-row .val{min-width:50px;text-align:center;font-family:monospace;font-weight:700;color:#1976d2;font-size:1em}
+.formula-display{background:#f0f7ff;border:2px solid #90caf9;border-radius:8px;padding:14px 18px;margin:14px 0;text-align:center;font-size:1.15em}
+canvas#graphCanvas{display:block;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;background:#fff;max-width:100%}
+.toggle-row{display:flex;gap:16px;align-items:center;margin:14px 0;flex-wrap:wrap}
+.toggle-row label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.95em;font-weight:600}
+.toggle-row input[type=checkbox]{accent-color:#1976d2;width:18px;height:18px}
+.key-points{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.kp{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px}
+.kp .label{font-size:.82em;color:#718096;margin-bottom:2px}
+.kp .value{font-weight:700;color:#2d3748;font-size:.95em}
+.tv-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.9em}
+.tv-table th,.tv-table td{border:1px solid #c0ccd8;padding:8px;text-align:center;vertical-align:middle}
+.tv-table th{background:#eef2f7;font-weight:600}
+.tv-up{color:#2f855a;font-size:1.3em}
+.tv-down{color:#c53030;font-size:1.3em}
+.legend{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;font-size:.85em}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+@media(max-width:600px){
+  .key-points{grid-template-columns:1fr}
+  header h1{font-size:1.2em}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../simulations.html" class="btn-back">&larr; Retour</a>
+  <h1>Fonctions polyn&ocirc;mes de degr&eacute; 3</h1>
+  <p>Terminale Bac Pro &middot; Ch04</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Coefficients de f(x) = ax&sup3; + bx&sup2; + cx + d</h2>
+    <div class="slider-row">
+      <label>a</label>
+      <input type="range" id="sa" min="-2" max="2" value="1" step="0.1">
+      <span class="val" id="va">1</span>
+    </div>
+    <div class="slider-row">
+      <label>b</label>
+      <input type="range" id="sb" min="-5" max="5" value="0" step="0.5">
+      <span class="val" id="vb">0</span>
+    </div>
+    <div class="slider-row">
+      <label>c</label>
+      <input type="range" id="sc" min="-10" max="10" value="-3" step="0.5">
+      <span class="val" id="vc">-3</span>
+    </div>
+    <div class="slider-row">
+      <label>d</label>
+      <input type="range" id="sd" min="-10" max="10" value="0" step="0.5">
+      <span class="val" id="vd">0</span>
+    </div>
+    <div class="formula-display" id="formulaBox"></div>
+  </div>
+
+  <div class="card">
+    <h2>Courbe repr&eacute;sentative</h2>
+    <div class="toggle-row">
+      <label><input type="checkbox" id="showDeriv" onchange="draw()"> Afficher f'(x) et signe</label>
+      <label><input type="checkbox" id="showRoots" checked onchange="draw()"> Afficher points cl&eacute;s</label>
+    </div>
+    <canvas id="graphCanvas" width="800" height="500"></canvas>
+    <div class="legend">
+      <span><span class="dot" style="background:#1976d2"></span> f(x)</span>
+      <span><span class="dot" style="background:#e53e3e"></span> f'(x)</span>
+      <span><span class="dot" style="background:#38a169"></span> Racines</span>
+      <span><span class="dot" style="background:#e69500"></span> Extrema</span>
+      <span><span class="dot" style="background:#9333ea"></span> Inflexion</span>
+    </div>
+  </div>
+
+  <div class="card" id="variationCard" style="display:none">
+    <h2>Tableau de variations</h2>
+    <div id="variationTable"></div>
+    <div class="formula-display" id="derivFormula" style="font-size:.95em;margin-top:10px"></div>
+  </div>
+
+  <div class="card">
+    <h2>Points caract&eacute;ristiques</h2>
+    <div class="key-points" id="keyPoints"></div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('graphCanvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+const xMin = -6, xMax = 6, yMin = -15, yMax = 15;
+
+function toPixel(x, y) {
+  return [ (x - xMin) / (xMax - xMin) * W, H - (y - yMin) / (yMax - yMin) * H ];
+}
+
+function f(x, a, b, c, d) { return a*x*x*x + b*x*x + c*x + d; }
+function fp(x, a, b, c) { return 3*a*x*x + 2*b*x + c; }
+
+function solveQuadratic(A, B, C) {
+  if (Math.abs(A) < 1e-12) {
+    if (Math.abs(B) < 1e-12) return [];
+    return [-C / B];
+  }
+  const disc = B*B - 4*A*C;
+  if (disc < 0) return [];
+  if (disc === 0) return [-B / (2*A)];
+  const sd = Math.sqrt(disc);
+  return [(-B - sd) / (2*A), (-B + sd) / (2*A)].sort((a,b) => a-b);
+}
+
+function findRoots(a, b, c, d) {
+  // Numerical approach: scan for sign changes
+  const roots = [];
+  const step = 0.01;
+  let prev = f(xMin, a, b, c, d);
+  for (let x = xMin + step; x <= xMax; x += step) {
+    const cur = f(x, a, b, c, d);
+    if (prev * cur < 0) {
+      // Bisection
+      let lo = x - step, hi = x;
+      for (let i = 0; i < 50; i++) {
+        const mid = (lo + hi) / 2;
+        if (f(mid, a, b, c, d) * f(lo, a, b, c, d) < 0) hi = mid; else lo = mid;
+      }
+      roots.push((lo + hi) / 2);
+    } else if (Math.abs(cur) < 1e-9) {
+      roots.push(x);
+    }
+    prev = cur;
+  }
+  return roots;
+}
+
+function draw() {
+  const a = parseFloat(document.getElementById('sa').value);
+  const b = parseFloat(document.getElementById('sb').value);
+  const c = parseFloat(document.getElementById('sc').value);
+  const d = parseFloat(document.getElementById('sd').value);
+  document.getElementById('va').textContent = a;
+  document.getElementById('vb').textContent = b;
+  document.getElementById('vc').textContent = c;
+  document.getElementById('vd').textContent = d;
+
+  const showDeriv = document.getElementById('showDeriv').checked;
+  const showRoots = document.getElementById('showRoots').checked;
+
+  // Formula
+  const fb = document.getElementById('formulaBox');
+  let formula = `f(x) = `;
+  const parts = [];
+  if (a !== 0) parts.push(`${a === 1 ? '' : a === -1 ? '-' : a}x^3`);
+  if (b !== 0) parts.push(`${b > 0 && parts.length ? '+' : ''}${b === 1 ? '' : b === -1 ? '-' : b}x^2`);
+  if (c !== 0) parts.push(`${c > 0 && parts.length ? '+' : ''}${c === 1 ? '' : c === -1 ? '-' : c}x`);
+  if (d !== 0 || parts.length === 0) parts.push(`${d > 0 && parts.length ? '+' : ''}${d}`);
+  fb.innerHTML = `\\( f(x) = ${parts.join(' ')} \\)`;
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([fb]);
+
+  // Clear
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#e8ecf0';
+  ctx.lineWidth = 1;
+  for (let x = Math.ceil(xMin); x <= xMax; x++) {
+    const [px] = toPixel(x, 0);
+    ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, H); ctx.stroke();
+  }
+  for (let y = Math.ceil(yMin); y <= yMax; y++) {
+    const [, py] = toPixel(0, y);
+    ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(W, py); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 2;
+  const [ax0, ay0] = toPixel(0, 0);
+  ctx.beginPath(); ctx.moveTo(0, ay0); ctx.lineTo(W, ay0); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ax0, 0); ctx.lineTo(ax0, H); ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = '#64748b';
+  ctx.font = '11px Segoe UI';
+  for (let x = Math.ceil(xMin); x <= xMax; x++) {
+    if (x === 0) continue;
+    const [px] = toPixel(x, 0);
+    ctx.fillText(x, px - 4, ay0 + 14);
+  }
+  for (let y = Math.ceil(yMin); y <= yMax; y++) {
+    if (y === 0) continue;
+    const [, py] = toPixel(0, y);
+    ctx.fillText(y, ax0 + 5, py + 4);
+  }
+
+  // Sign of f' shading
+  if (showDeriv && Math.abs(a) > 1e-12) {
+    const step = 0.05;
+    for (let x = xMin; x < xMax; x += step) {
+      const fv = fp(x + step/2, a, b, c);
+      const [px1] = toPixel(x, 0);
+      const [px2] = toPixel(x + step, 0);
+      ctx.fillStyle = fv >= 0 ? 'rgba(56,161,105,0.08)' : 'rgba(229,62,62,0.08)';
+      ctx.fillRect(px1, 0, px2 - px1, H);
+    }
+  }
+
+  // f(x) curve
+  ctx.strokeStyle = '#1976d2';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  let started = false;
+  for (let px = 0; px < W; px++) {
+    const x = xMin + (px / W) * (xMax - xMin);
+    const y = f(x, a, b, c, d);
+    const [, py] = toPixel(x, y);
+    if (py < -100 || py > H + 100) { started = false; continue; }
+    if (!started) { ctx.moveTo(px, py); started = true; } else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // f'(x) curve
+  if (showDeriv) {
+    ctx.strokeStyle = '#e53e3e';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    started = false;
+    for (let px = 0; px < W; px++) {
+      const x = xMin + (px / W) * (xMax - xMin);
+      const y = fp(x, a, b, c);
+      const [, py] = toPixel(x, y);
+      if (py < -100 || py > H + 100) { started = false; continue; }
+      if (!started) { ctx.moveTo(px, py); started = true; } else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // Key points
+  const criticals = solveQuadratic(3*a, 2*b, c);
+  const inflectionX = Math.abs(a) > 1e-12 ? -b / (3*a) : null;
+  const roots = findRoots(a, b, c, d);
+  const kpDiv = document.getElementById('keyPoints');
+  let kpHTML = '';
+
+  if (showRoots) {
+    // Roots
+    roots.forEach(r => {
+      const [px, py] = toPixel(r, 0);
+      ctx.beginPath(); ctx.arc(px, py, 6, 0, 2*Math.PI);
+      ctx.fillStyle = '#38a169'; ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+    });
+
+    // Extrema
+    criticals.forEach(xc => {
+      if (xc < xMin || xc > xMax) return;
+      const yc = f(xc, a, b, c, d);
+      const [px, py] = toPixel(xc, yc);
+      if (py > -20 && py < H + 20) {
+        ctx.beginPath(); ctx.arc(px, py, 6, 0, 2*Math.PI);
+        ctx.fillStyle = '#e69500'; ctx.fill();
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+      }
+    });
+
+    // Inflection
+    if (inflectionX !== null && inflectionX >= xMin && inflectionX <= xMax) {
+      const yi = f(inflectionX, a, b, c, d);
+      const [px, py] = toPixel(inflectionX, yi);
+      if (py > -20 && py < H + 20) {
+        ctx.beginPath(); ctx.arc(px, py, 6, 0, 2*Math.PI);
+        ctx.fillStyle = '#9333ea'; ctx.fill();
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+      }
+    }
+  }
+
+  // Key points info
+  if (roots.length > 0)
+    kpHTML += `<div class="kp"><div class="label">Racines (f(x)=0)</div><div class="value">${roots.map(r => 'x \u2248 ' + r.toFixed(2)).join(' ; ')}</div></div>`;
+  else
+    kpHTML += `<div class="kp"><div class="label">Racines</div><div class="value">Aucune racine visible sur [\u22126 ; 6]</div></div>`;
+
+  if (criticals.length > 0) {
+    criticals.forEach((xc, i) => {
+      const yc = f(xc, a, b, c, d);
+      const type = (criticals.length === 2) ? (i === 0 ? (a > 0 ? 'Maximum local' : 'Minimum local') : (a > 0 ? 'Minimum local' : 'Maximum local')) : 'Point critique';
+      kpHTML += `<div class="kp"><div class="label">${type}</div><div class="value">(${xc.toFixed(2)} ; ${yc.toFixed(2)})</div></div>`;
+    });
+  } else {
+    kpHTML += `<div class="kp"><div class="label">Extrema</div><div class="value">Aucun extremum (f' ne s'annule pas)</div></div>`;
+  }
+
+  if (inflectionX !== null) {
+    const yi = f(inflectionX, a, b, c, d);
+    kpHTML += `<div class="kp"><div class="label">Point d'inflexion</div><div class="value">(${inflectionX.toFixed(2)} ; ${yi.toFixed(2)})</div></div>`;
+  }
+  kpDiv.innerHTML = kpHTML;
+
+  // Variation table
+  const vc = document.getElementById('variationCard');
+  if (showDeriv) {
+    vc.style.display = 'block';
+    const df = document.getElementById('derivFormula');
+    df.innerHTML = `\\( f'(x) = ${3*a}x^2 ${2*b >= 0 ? '+' : ''}${2*b}x ${c >= 0 ? '+' : ''}${c} \\)`;
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([df]);
+
+    let tvHTML = '<table class="tv-table"><tr><th>x</th>';
+    const bounds = [xMin];
+    criticals.filter(x => x > xMin && x < xMax).sort((a,b) => a-b).forEach(x => bounds.push(x));
+    bounds.push(xMax);
+
+    bounds.forEach((x, i) => {
+      tvHTML += `<th>${i === 0 ? '\u2212\u221e' : i === bounds.length-1 ? '+\u221e' : x.toFixed(2)}</th>`;
+      if (i < bounds.length - 1) tvHTML += '<th></th>';
+    });
+    tvHTML += '</tr><tr><td style="font-weight:700">f\'(x)</td>';
+    for (let i = 0; i < bounds.length; i++) {
+      if (i > 0 && i < bounds.length) {
+        const mid = (bounds[i-1] + bounds[i]) / 2;
+        const sign = fp(mid, a, b, c);
+        tvHTML += `<td>${sign >= 0 ? '<span class="tv-up">+</span>' : '<span class="tv-down">\u2212</span>'}</td>`;
+      }
+      if (i < bounds.length - 1 && i > 0) tvHTML += '<td>0</td>';
+      else if (i === 0 || i === bounds.length - 1) { /* already handled */ }
+    }
+    // Simplified: rebuild properly
+    tvHTML = '<table class="tv-table"><tr><th>x</th>';
+    const pts = [];
+    pts.push({ x: xMin, label: '\u2212\u221e' });
+    criticals.filter(x => x > xMin && x < xMax).sort((a,b) => a-b).forEach(x => pts.push({ x, label: x.toFixed(2) }));
+    pts.push({ x: xMax, label: '+\u221e' });
+
+    for (let i = 0; i < pts.length; i++) {
+      tvHTML += `<th>${pts[i].label}</th>`;
+      if (i < pts.length - 1) tvHTML += '<th></th>';
+    }
+    tvHTML += '</tr><tr><td style="font-weight:700">f\'(x)</td>';
+    for (let i = 0; i < pts.length; i++) {
+      if (i > 0) {
+        const mid = (pts[i-1].x + pts[i].x) / 2;
+        const sign = fp(mid, a, b, c);
+        tvHTML += `<td>${sign >= 0 ? '<span class="tv-up">+</span>' : '<span class="tv-down">\u2212</span>'}</td>`;
+      }
+      if (i > 0 && i < pts.length - 1) tvHTML += '<td>0</td>';
+    }
+    tvHTML += '</tr><tr><td style="font-weight:700">f(x)</td>';
+    for (let i = 0; i < pts.length; i++) {
+      if (i > 0) {
+        const mid = (pts[i-1].x + pts[i].x) / 2;
+        const sign = fp(mid, a, b, c);
+        tvHTML += `<td>${sign >= 0 ? '<span class="tv-up">\u2197</span>' : '<span class="tv-down">\u2198</span>'}</td>`;
+      }
+      const yv = f(pts[i].x, a, b, c, d);
+      if (i === 0) tvHTML += `<td>${isFinite(yv) && Math.abs(a) > 1e-12 ? (a > 0 ? '\u2212\u221e' : '+\u221e') : yv.toFixed(1)}</td>`;
+      else if (i === pts.length - 1) tvHTML += `<td>${isFinite(yv) && Math.abs(a) > 1e-12 ? (a > 0 ? '+\u221e' : '\u2212\u221e') : yv.toFixed(1)}</td>`;
+      else tvHTML += `<td style="font-weight:700">${yv.toFixed(2)}</td>`;
+    }
+    tvHTML += '</tr></table>';
+    document.getElementById('variationTable').innerHTML = tvHTML;
+  } else {
+    vc.style.display = 'none';
+  }
+}
+
+['sa','sb','sc','sd'].forEach(id => {
+  document.getElementById(id).addEventListener('input', draw);
+});
+
+draw();
+</script>
+</body>
+</html>
