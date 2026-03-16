@@ -233,13 +233,9 @@ La section V "Representation graphique des suites" (ligne 273-309) explique comm
 
    Ce chemin absolu fonctionne en local mais peut casser en deploiement GitHub Pages.
 
-2. **Encodage HTML entities dans certains chapitres** (PRIORITE BASSE)
+2. ~~**Encodage HTML entities dans certains chapitres** (PRIORITE BASSE)~~ — **CORRIGE 2026-03-16**
 
-   Les chapitres ch04, ch05, ch08 utilisent des entites HTML (`&ndash;`, `&eacute;`, `&agrave;`) dans les titres et le contenu au lieu de caracteres UTF-8 directs. Cela n'affecte pas le rendu mais rend le code source moins lisible :
-   ```html
-   <!-- ch04/lecon.html -->
-   <title>Ch04 &ndash; Fonctions polyn&ocirc;mes de degr&eacute; 3 &mdash; Terminale Bac Pro</title>
-   ```
+   ~~Les chapitres ch04, ch05, ch08 utilisent des entites HTML~~ — Corrige dans les **44 fichiers** de maths/terminale (6 041 entites converties en UTF-8).
 
 3. **Absence d'exercices dans certains cours** (PRIORITE MOYENNE)
 
@@ -339,7 +335,7 @@ La section V "Representation graphique des suites" (ligne 273-309) explique comm
 
 8. **Harmoniser les badges de niveaux dans les mini-exercices** de Seconde (certains utilisent `badge-niv badge-1`, d'autres `badge badge-green`).
 
-9. **Convertir les entites HTML** en caracteres UTF-8 dans les titres de terminale ch04, ch05, ch08.
+9. ~~**Convertir les entites HTML** en caracteres UTF-8 dans les titres de terminale ch04, ch05, ch08.~~ — **CORRIGE 2026-03-16** (44 fichiers, 6 041 entites)
 
 10. **Ajouter des sections "Erreurs frequentes"** dans les cours de Premiere (seuls ch01 et ch06 en ont).
 
@@ -351,22 +347,23 @@ La section V "Representation graphique des suites" (ligne 273-309) explique comm
 - **2026-03-16** : Harmonise CSS maths/seconde/ch03 (container→c, exemple→ex, nav-btn→nb, sub→sous-titre)
 - **2026-03-16** : Harmonise CSS maths/seconde/ch04 exercices (methode style inline→meth)
 - **2026-03-16** : Harmonise CSS maths/seconde/ch05 exercices (methode style inline→meth)
+- **2026-03-16** : Converti 6 041 entites HTML en UTF-8 dans les 44 fichiers de maths/terminale
 
 ---
 
 ## Ameliorations restantes
 
-- [ ] Rediger premiere/ch05 (polynomes degre 2)
-- [ ] Rediger premiere/ch09 (trigonometrie)
+- [x] Rediger premiere/ch05 (polynomes degre 2) (2026-03-16, 1037 lignes, conforme BO)
+- [x] Rediger premiere/ch09 (trigonometrie) (2026-03-16, 761 lignes, conforme BO)
 - [x] Harmoniser CSS de seconde/ch02 (def-box → def, exemple → ex, etc.) (2026-03-16)
 - [x] Harmoniser CSS de seconde/ch03 (container → c, exemple → ex) (2026-03-16)
 - [x] Harmoniser CSS inline de seconde/ch04, ch05 (methode→meth) (2026-03-16)
-- [ ] Corriger chemins `/nav.css` dans 9 fichiers terminale
+- [x] Corriger chemins `/nav.css` dans 9 fichiers terminale (deja corrige lors de la session 1)
 - [ ] Ajouter graphiques Chart.js dans premiere/ch03 (suites)
 - [ ] Ajouter animation tangente dans premiere/ch06
 - [ ] Ajouter graphique interactif dans premiere/ch04
 - [ ] Completer ou reorganiser seconde/ch02 (indicateurs stats)
 - [ ] Verifier conformite programme terminale ch09, ch10
 - [ ] Harmoniser badges de niveaux dans mini-exercices seconde
-- [ ] Convertir entites HTML en UTF-8 (terminale ch04, ch05, ch08)
+- [x] Convertir entites HTML en UTF-8 dans maths/terminale (44 fichiers, 6 041 entites) (2026-03-16)
 - [ ] Ajouter blocs "Erreurs frequentes" dans premiere ch02, ch03, ch04, ch07, ch08

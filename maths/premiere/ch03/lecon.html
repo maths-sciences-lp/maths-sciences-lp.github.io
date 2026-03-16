@@ -308,6 +308,25 @@
   <p>La suite arithmétique progresse de manière régulière (linéaire), tandis que la suite géométrique accélère progressivement.</p>
 </div>
 
+<h3>Visualisation interactive</h3>
+<p>Le graphique ci-dessous permet de comparer la représentation des deux types de suites. Utilisez le sélecteur pour basculer entre la suite arithmétique (points alignés) et la suite géométrique (croissance exponentielle).</p>
+
+<div class="chart-wrap">
+  <div style="text-align:center;margin-bottom:.5em">
+    <label for="select-suite" style="font-weight:600;margin-right:.5em">Type de suite :</label>
+    <select id="select-suite" style="padding:6px 12px;border-radius:6px;border:1px solid #93c5fd;font-size:.95em;cursor:pointer">
+      <option value="arith">Arithmétique : u_n = 3 + 2n</option>
+      <option value="geom">Géométrique : v_n = 2 × 1,5^n</option>
+      <option value="both">Les deux suites</option>
+    </select>
+  </div>
+  <canvas id="chart-suites" style="max-width:100%;max-height:400px"></canvas>
+  <p style="text-align:center;font-size:.85em;color:#718096;margin-top:.5em">
+    <strong>Suite arithmétique</strong> (bleu) : les points sont alignés — croissance régulière.<br>
+    <strong>Suite géométrique</strong> (orange) : les points suivent une courbe exponentielle — croissance accélérée.
+  </p>
+</div>
+
 <!-- ════════════════════════════════════════ -->
 <h2>VI – Applications</h2>
 <!-- ════════════════════════════════════════ -->
@@ -411,6 +430,89 @@
 </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../../../nav.js"></script>
+<script>
+(function(){
+  var N = 10;
+  var arithData = [], geomData = [];
+  for(var n = 0; n <= N; n++){
+    arithData.push({x: n, y: 3 + 2*n});
+    geomData.push({x: n, y: 2 * Math.pow(1.5, n)});
+  }
+
+  var ctx = document.getElementById('chart-suites').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [
+        {
+          label: 'u_n = 3 + 2n (arithmétique)',
+          data: arithData,
+          backgroundColor: '#0969da',
+          borderColor: '#0969da',
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          showLine: false
+        },
+        {
+          label: 'v_n = 2 × 1,5^n (géométrique)',
+          data: geomData,
+          backgroundColor: '#d97706',
+          borderColor: '#d97706',
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          pointStyle: 'triangle',
+          showLine: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, position: 'top' },
+        tooltip: {
+          callbacks: {
+            label: function(ctx){
+              return ctx.dataset.label.split('(')[0].trim() + ' : n=' + ctx.parsed.x + ', valeur=' + Math.round(ctx.parsed.y*100)/100;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'Rang n', font: {weight:'bold'} },
+          min: -0.5,
+          max: N + 0.5,
+          ticks: { stepSize: 1 }
+        },
+        y: {
+          title: { display: true, text: 'Valeur du terme', font: {weight:'bold'} },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  document.getElementById('select-suite').addEventListener('change', function(){
+    var v = this.value;
+    chart.data.datasets[0].hidden = (v === 'geom');
+    chart.data.datasets[1].hidden = (v === 'arith');
+    chart.update();
+  });
+  // Initial state: show arithmetic only
+  chart.data.datasets[1].hidden = true;
+  chart.update();
+})();
+</script>
+
+<!-- Simulations interactives -->
+<div class="retenir" style="border-color:var(--p);background:var(--p-bg)">
+  <h3>Simulation interactive</h3>
+  <ul style="list-style:none;padding:0;margin:0">
+    <li style="margin:.4em 0"><a href="../../../simulations/suites.html" target="_blank" style="color:var(--p);font-weight:600;text-decoration:underline">Suites numériques</a></li>
+  </ul>
+</div>
+
 </body>
 </html>

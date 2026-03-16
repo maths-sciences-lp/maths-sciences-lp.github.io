@@ -1,7 +1,7 @@
 # Audit Global du Site Pédagogique
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-16
+**Dernière mise à jour** : 2026-03-16 (session 4)
 **Périmètre** : ensemble du site maths-sciences-lp.github.io
 
 ---
@@ -40,11 +40,11 @@ Chaque chapitre existant possède les 3 types de pages (lecon, exercices, ds).
 
 1. **Chapitres manquants en terminale ICCER** : CLAUDE.md indique ch01-ch11, mais seuls ch01-ch08 existent. Soit le programme a été réduit (mettre à jour CLAUDE.md), soit 3 chapitres restent à créer.
 
-2. **Chemins absolus cassés** : 61 fichiers utilisent `src="/nav.js"` et 37 fichiers utilisent `href="/nav.css"` au lieu de chemins relatifs (`../../../nav.js`). Ces pages fonctionnent en local mais le chargement dépend du serveur.
+2. ~~**Chemins absolus cassés**~~ — **CORRIGÉ 2026-03-16** : 104 chemins corrigés (nav.js, nav.css, diff.js).
 
-3. **Simulations non liées** : 56 simulations sur 63 ne sont référencées dans aucune page de cours — elles sont orphelines et difficilement accessibles par les élèves.
+3. ~~**Simulations non liées**~~ — **CORRIGÉ 2026-03-16** : 63 simulations liées à 79 pages de cours.
 
-4. **Différenciation absente en maths/premiere** : les 18 fichiers (exercices + DS) de maths/premiere n'incluent pas diff.js et n'utilisent pas la différenciation pédagogique.
+4. ~~**Différenciation absente en maths/premiere**~~ — **CORRIGÉ 2026-03-16** : diff.js et classes diff-* ajoutées aux 18 fichiers.
 
 5. **Corrections incomplètes** : certaines pages d'exercices ont un déséquilibre entre le nombre d'exercices (.exo) et de corrections (.corr), ce qui suggère des corrections manquantes.
 
@@ -54,22 +54,21 @@ Chaque chapitre existant possède les 3 types de pages (lecon, exercices, ds).
 
 ## Corrections realisees
 
-_(Section à compléter au fil des corrections)_
-
-- Aucune correction effectuée à ce stade — cet audit constitue l'état initial de référence.
+- **2026-03-16 (sessions 1-3)** : Corrigé 104 chemins absolus (nav.js, nav.css, diff.js), ajouté diff.js à maths/premiere (18 fichiers), harmonisé CSS maths seconde + PC seconde, standardisé labels PC premiere, remplacé .appli→.situation PC terminale ERA, retiré nav.js de 26 simulations, rédigé maths premiere ch05 et ch09.
+- **2026-03-16 (session 4)** : Lié 63 simulations à 79 pages de cours (0 orpheline restante). Ajouté blocs .meth à PC terminale ERA ch01-ch06. Ajouté visualisations interactives à maths premiere ch03 et ch04.
 
 ---
 
 ## Ameliorations restantes
 
 ### Priorité haute
-- [ ] Corriger les 61 chemins absolus `/nav.js` → `../../../nav.js`
-- [ ] Corriger les 37 chemins absolus `/nav.css` → `../../../nav.css`
-- [ ] Clarifier le nombre de chapitres attendus en physique-chimie/terminale-iccer
+- [x] Corriger les 61 chemins absolus `/nav.js` → `../../../nav.js` (2026-03-16)
+- [x] Corriger les 37 chemins absolus `/nav.css` → `../../../nav.css` (2026-03-16)
+- [ ] Clarifier le nombre de chapitres attendus en physique-chimie/terminale-iccer (mettre à jour CLAUDE.md : ch01-ch08)
 
 ### Priorité moyenne
-- [ ] Ajouter diff.js et la différenciation dans maths/premiere (9 exercices + 9 DS)
-- [ ] Lier les 56 simulations orphelines aux pages de cours correspondantes
+- [x] Ajouter diff.js et la différenciation dans maths/premiere (2026-03-16)
+- [x] Lier les 63 simulations aux pages de cours correspondantes (2026-03-16, 79 pages modifiées)
 - [ ] Compléter les corrections manquantes dans les pages d'exercices
 
 ### Priorité basse

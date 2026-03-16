@@ -23,23 +23,23 @@ canvas{display:block;margin:0 auto;border-radius:6px}
 <body>
 <div class="c">
 
-  <a href="../../../maths-term-iccer.html" class="nb">&larr; Retour au sommaire</a>
+  <a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
 
   <header>
-    <h1>Chapitre 11 &mdash; Produit scalaire</h1>
-    <p class="sous-titre">Terminale Bac Pro &middot; Classes ERA, TMA, ICCER (Grpt 1)</p>
+    <h1>Chapitre 11 — Produit scalaire</h1>
+    <p class="sous-titre">Terminale Bac Pro · Classes ERA, TMA, ICCER (Grpt 1)</p>
   </header>
 
   <!-- OBJECTIFS -->
   <div class="objectifs">
     <strong>Objectifs du chapitre :</strong>
     <ul>
-      <li>Calculer un produit scalaire par les trois formules (norme/angle, coordonn&eacute;es, d&eacute;veloppement)</li>
-      <li>D&eacute;montrer l&rsquo;orthogonalit&eacute; de deux vecteurs ou de deux droites</li>
-      <li>Calculer l&rsquo;angle entre deux vecteurs (ou deux droites, deux plans)</li>
-      <li>&Eacute;crire l&rsquo;&eacute;quation d&rsquo;une droite &agrave; partir de son vecteur normal</li>
-      <li>Calculer la distance d&rsquo;un point &agrave; une droite</li>
-      <li>Appliquer ces outils &agrave; des probl&egrave;mes professionnels (plans de construction, r&eacute;seaux, forces)</li>
+      <li>Calculer un produit scalaire par les trois formules (norme/angle, coordonnées, développement)</li>
+      <li>Démontrer l’orthogonalité de deux vecteurs ou de deux droites</li>
+      <li>Calculer l’angle entre deux vecteurs (ou deux droites, deux plans)</li>
+      <li>Écrire l’équation d’une droite à partir de son vecteur normal</li>
+      <li>Calculer la distance d’un point à une droite</li>
+      <li>Appliquer ces outils à des problèmes professionnels (plans de construction, réseaux, forces)</li>
     </ul>
   </div>
 
@@ -47,126 +47,126 @@ canvas{display:block;margin:0 auto;border-radius:6px}
        SECTION 0 : CANVAS INTERACTIF
        ========================================================= -->
   <h2>Visualisation interactive</h2>
-  <p>Modifiez les vecteurs \(\vec{u}\) et \(\vec{v}\) ci-dessous ou chargez un exemple pour voir le produit scalaire et l&rsquo;angle calcul&eacute;s en temps r&eacute;el.</p>
+  <p>Modifiez les vecteurs \(\vec{u}\) et \(\vec{v}\) ci-dessous ou chargez un exemple pour voir le produit scalaire et l’angle calculés en temps réel.</p>
 
   <div class="anim-wrap">
     <canvas id="cvs" width="500" height="320" style="background:#fff;border:1px solid #e2e8f0;max-width:100%"></canvas>
     <div style="margin:10px 0">
-      <label style="font-size:.85em;margin-right:6px">u&#x20D7;&nbsp;:</label>
-      <label style="font-size:.83em">x&nbsp;=&nbsp;</label><input id="ux" type="number" value="3" step="0.5" style="width:52px;margin-right:8px;padding:3px 6px;border:1px solid #cbd5e0;border-radius:4px">
-      <label style="font-size:.83em">y&nbsp;=&nbsp;</label><input id="uy" type="number" value="2" step="0.5" style="width:52px;margin-right:16px;padding:3px 6px;border:1px solid #cbd5e0;border-radius:4px">
-      <label style="font-size:.85em;margin-right:6px">v&#x20D7;&nbsp;:</label>
-      <label style="font-size:.83em">x&nbsp;=&nbsp;</label><input id="vx" type="number" value="1" step="0.5" style="width:52px;margin-right:8px;padding:3px 6px;border:1px solid #cbd5e0;border-radius:4px">
-      <label style="font-size:.83em">y&nbsp;=&nbsp;</label><input id="vy" type="number" value="4" step="0.5" style="width:52px;padding:3px 6px;border:1px solid #cbd5e0;border-radius:4px">
+      <label style="font-size:.85em;margin-right:6px">u⃗ :</label>
+      <label style="font-size:.83em">x = </label><input id="ux" type="number" value="3" step="0.5" style="width:52px;margin-right:8px;padding:3px 6px;border:1px solid #cbd5e0;border-radius:4px">
+      <label style="font-size:.83em">y = </label><input id="uy" type="number" value="2" step="0.5" style="width:52px;margin-right:16px;padding:3px 6px;border:1px solid #cbd5e0;border-radius:4px">
+      <label style="font-size:.85em;margin-right:6px">v⃗ :</label>
+      <label style="font-size:.83em">x = </label><input id="vx" type="number" value="1" step="0.5" style="width:52px;margin-right:8px;padding:3px 6px;border:1px solid #cbd5e0;border-radius:4px">
+      <label style="font-size:.83em">y = </label><input id="vy" type="number" value="4" step="0.5" style="width:52px;padding:3px 6px;border:1px solid #cbd5e0;border-radius:4px">
     </div>
     <div>
-      <button onclick="setVec(3,2,1,4)">Exemple g&eacute;n&eacute;ral</button>
+      <button onclick="setVec(3,2,1,4)">Exemple général</button>
       <button onclick="setVec(4,0,0,3)">Vecteurs perpendiculaires</button>
-      <button onclick="setVec(2,2,2,2)">Vecteurs colin&eacute;aires</button>
+      <button onclick="setVec(2,2,2,2)">Vecteurs colinéaires</button>
       <button onclick="setVec(4,1,1,3)">Exemple menuiserie</button>
       <button onclick="setVec(3,2,-1,4)">Exemple installation thermique</button>
     </div>
     <div class="result-box" style="margin-top:12px">
-      <div>\(\vec{u} \cdot \vec{v}\)&nbsp;=&nbsp;<span id="res-ps">&mdash;</span></div>
-      <div>\(|\vec{u}|\)&nbsp;=&nbsp;<span id="res-nu">&mdash;</span>&nbsp;&nbsp;|&nbsp;&nbsp;\(|\vec{v}|\)&nbsp;=&nbsp;<span id="res-nv">&mdash;</span></div>
-      <div>Angle \(\theta\)&nbsp;=&nbsp;<span id="res-ang">&mdash;</span></div>
-      <div id="res-orth" style="color:var(--s);font-weight:700;display:none">Vecteurs orthogonaux (&theta; = 90&deg;)</div>
+      <div>\(\vec{u} \cdot \vec{v}\) = <span id="res-ps">—</span></div>
+      <div>\(|\vec{u}|\) = <span id="res-nu">—</span>  |  \(|\vec{v}|\) = <span id="res-nv">—</span></div>
+      <div>Angle \(\theta\) = <span id="res-ang">—</span></div>
+      <div id="res-orth" style="color:var(--s);font-weight:700;display:none">Vecteurs orthogonaux (θ = 90°)</div>
     </div>
   </div>
 
   <!-- =========================================================
        SECTION 1 : TROIS DÉFINITIONS
        ========================================================= -->
-  <h2>1. Trois d&eacute;finitions du produit scalaire</h2>
+  <h2>1. Trois définitions du produit scalaire</h2>
 
-  <h3>1.1 D&eacute;finition par les normes et l&rsquo;angle</h3>
+  <h3>1.1 Définition par les normes et l’angle</h3>
   <div class="def">
-    <span class="label label-def">D&eacute;finition</span><br>
-    Soient \(\vec{u}\) et \(\vec{v}\) deux vecteurs <strong>non nuls</strong> et \(\theta\) l&rsquo;angle entre eux (\(0 \leq \theta \leq \pi\)).
+    <span class="label label-def">Définition</span><br>
+    Soient \(\vec{u}\) et \(\vec{v}\) deux vecteurs <strong>non nuls</strong> et \(\theta\) l’angle entre eux (\(0 \leq \theta \leq \pi\)).
     \[
       \vec{u} \cdot \vec{v} = |\vec{u}| \times |\vec{v}| \times \cos(\theta)
     \]
-    Si l&rsquo;un des vecteurs est le vecteur nul, on pose \(\vec{u} \cdot \vec{v} = 0\).
+    Si l’un des vecteurs est le vecteur nul, on pose \(\vec{u} \cdot \vec{v} = 0\).
   </div>
   <div class="prop">
     <span class="label label-prop">Cas particuliers</span>
     <ul style="margin:6px 0 0 0;padding-left:20px">
-      <li>Si \(\theta = 0°\) : \(\vec{u} \cdot \vec{v} = |\vec{u}| \times |\vec{v}|\) &nbsp; (vecteurs de m&ecirc;me sens)</li>
-      <li>Si \(\theta = 90°\) : \(\vec{u} \cdot \vec{v} = 0\) &nbsp; (vecteurs orthogonaux)</li>
-      <li>Si \(\theta = 180°\) : \(\vec{u} \cdot \vec{v} = -|\vec{u}| \times |\vec{v}|\) &nbsp; (vecteurs de sens oppos&eacute;)</li>
+      <li>Si \(\theta = 0°\) : \(\vec{u} \cdot \vec{v} = |\vec{u}| \times |\vec{v}|\)   (vecteurs de même sens)</li>
+      <li>Si \(\theta = 90°\) : \(\vec{u} \cdot \vec{v} = 0\)   (vecteurs orthogonaux)</li>
+      <li>Si \(\theta = 180°\) : \(\vec{u} \cdot \vec{v} = -|\vec{u}| \times |\vec{v}|\)   (vecteurs de sens opposé)</li>
     </ul>
   </div>
   <div class="meth">
-    <span class="label label-meth">Quand l&rsquo;utiliser ?</span><br>
-    Quand on conna&icirc;t les <strong>longueurs</strong> des deux vecteurs et <strong>l&rsquo;angle</strong> entre eux &mdash; par exemple la composante d&rsquo;une force, le travail d&rsquo;une force, un angle mesur&eacute; sur un plan.
+    <span class="label label-meth">Quand l’utiliser ?</span><br>
+    Quand on connaît les <strong>longueurs</strong> des deux vecteurs et <strong>l’angle</strong> entre eux — par exemple la composante d’une force, le travail d’une force, un angle mesuré sur un plan.
   </div>
 
-  <h3>1.2 D&eacute;finition par les coordonn&eacute;es</h3>
+  <h3>1.2 Définition par les coordonnées</h3>
   <div class="def">
-    <span class="label label-def">D&eacute;finition</span><br>
-    Dans un rep&egrave;re <strong>orthonorm&eacute;</strong>, si \(\vec{u}\begin{pmatrix}a\\b\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}c\\d\end{pmatrix}\) :
+    <span class="label label-def">Définition</span><br>
+    Dans un repère <strong>orthonormé</strong>, si \(\vec{u}\begin{pmatrix}a\\b\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}c\\d\end{pmatrix}\) :
     \[
       \vec{u} \cdot \vec{v} = ac + bd
     \]
   </div>
   <div class="meth">
-    <span class="label label-meth">Quand l&rsquo;utiliser ?</span><br>
-    Quand on dispose des <strong>coordonn&eacute;es</strong> des vecteurs (plans cot&eacute;s, syst&egrave;me de coordonn&eacute;es). C&rsquo;est la formule la plus pratique sur plan ou en bureau d&rsquo;&eacute;tudes.
+    <span class="label label-meth">Quand l’utiliser ?</span><br>
+    Quand on dispose des <strong>coordonnées</strong> des vecteurs (plans cotés, système de coordonnées). C’est la formule la plus pratique sur plan ou en bureau d’études.
   </div>
   <div class="ex">
     <span class="label label-ex">Exemple</span><br>
-    \(\vec{u}\begin{pmatrix}3\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}1\\4\end{pmatrix}\) &nbsp;:&nbsp;
+    \(\vec{u}\begin{pmatrix}3\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}1\\4\end{pmatrix}\)  : 
     \(\vec{u} \cdot \vec{v} = 3 \times 1 + 2 \times 4 = 3 + 8 = \mathbf{11}\)
   </div>
 
-  <h3>1.3 D&eacute;finition par d&eacute;veloppement (identit&eacute; de polarisation)</h3>
+  <h3>1.3 Définition par développement (identité de polarisation)</h3>
   <div class="def">
-    <span class="label label-def">D&eacute;finition</span><br>
+    <span class="label label-def">Définition</span><br>
     \[
       \vec{u} \cdot \vec{v} = \frac{1}{2}\!\left(|\vec{u}+\vec{v}|^2 - |\vec{u}|^2 - |\vec{v}|^2\right)
     \]
-    Forme &eacute;quivalente souvent utile&nbsp;:
+    Forme équivalente souvent utile :
     \[
       \vec{u} \cdot \vec{v} = \frac{1}{2}\!\left(|\vec{u}|^2 + |\vec{v}|^2 - |\vec{u}-\vec{v}|^2\right)
     \]
   </div>
   <div class="meth">
-    <span class="label label-meth">Quand l&rsquo;utiliser ?</span><br>
-    Quand on conna&icirc;t les <strong>normes</strong> des vecteurs et la <strong>norme de leur somme ou diff&eacute;rence</strong>, mais pas directement l&rsquo;angle (g&eacute;om&eacute;trie plane avec longueurs de c&ocirc;t&eacute;s connues, triangle).
+    <span class="label label-meth">Quand l’utiliser ?</span><br>
+    Quand on connaît les <strong>normes</strong> des vecteurs et la <strong>norme de leur somme ou différence</strong>, mais pas directement l’angle (géométrie plane avec longueurs de côtés connues, triangle).
   </div>
 
   <!-- =========================================================
        SECTION 2 : PROPRIÉTÉS
        ========================================================= -->
-  <h2>2. Propri&eacute;t&eacute;s du produit scalaire</h2>
+  <h2>2. Propriétés du produit scalaire</h2>
 
   <div class="prop">
-    <span class="label label-prop">Propri&eacute;t&eacute;s fondamentales</span>
+    <span class="label label-prop">Propriétés fondamentales</span>
     <table>
       <tr>
-        <th>Propri&eacute;t&eacute;</th><th>Formule</th>
+        <th>Propriété</th><th>Formule</th>
       </tr>
       <tr>
-        <td><strong>Commutativit&eacute;</strong></td>
+        <td><strong>Commutativité</strong></td>
         <td>\(\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}\)</td>
       </tr>
       <tr>
-        <td><strong>Bilin&eacute;arit&eacute; (distributivit&eacute;)</strong></td>
+        <td><strong>Bilinéarité (distributivité)</strong></td>
         <td>\(\vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}\)</td>
       </tr>
       <tr>
-        <td><strong>Homog&eacute;n&eacute;it&eacute;</strong></td>
+        <td><strong>Homogénéité</strong></td>
         <td>\((k\,\vec{u}) \cdot \vec{v} = k\,(\vec{u} \cdot \vec{v})\)</td>
       </tr>
       <tr>
-        <td><strong>Carr&eacute; scalaire</strong></td>
+        <td><strong>Carré scalaire</strong></td>
         <td>\(\vec{u} \cdot \vec{u} = |\vec{u}|^2\)</td>
       </tr>
     </table>
   </div>
 
   <div class="prop">
-    <span class="label label-prop">Identit&eacute;s remarquables</span>
+    <span class="label label-prop">Identités remarquables</span>
     \[
       |\vec{u} + \vec{v}|^2 = |\vec{u}|^2 + 2\,\vec{u}\cdot\vec{v} + |\vec{v}|^2
     \]
@@ -177,17 +177,17 @@ canvas{display:block;margin:0 auto;border-radius:6px}
 
   <div class="att">
     <span class="label label-att">Attention</span><br>
-    Le produit scalaire <strong>n&rsquo;est pas associatif</strong>&nbsp;: \((\vec{u} \cdot \vec{v}) \cdot \vec{w}\) n&rsquo;a pas de sens car \(\vec{u} \cdot \vec{v}\) est un <em>nombre</em>, pas un vecteur.
+    Le produit scalaire <strong>n’est pas associatif</strong> : \((\vec{u} \cdot \vec{v}) \cdot \vec{w}\) n’a pas de sens car \(\vec{u} \cdot \vec{v}\) est un <em>nombre</em>, pas un vecteur.
   </div>
 
   <!-- =========================================================
        SECTION 3 : ORTHOGONALITÉ
        ========================================================= -->
-  <h2>3. Orthogonalit&eacute;</h2>
+  <h2>3. Orthogonalité</h2>
 
   <div class="def">
-    <span class="label label-def">D&eacute;finition &amp; caract&eacute;risation</span><br>
-    Deux vecteurs <strong>non nuls</strong> \(\vec{u}\) et \(\vec{v}\) sont <strong>orthogonaux</strong> si et seulement si&nbsp;:
+    <span class="label label-def">Définition &amp; caractérisation</span><br>
+    Deux vecteurs <strong>non nuls</strong> \(\vec{u}\) et \(\vec{v}\) sont <strong>orthogonaux</strong> si et seulement si :
     \[
       \vec{u} \perp \vec{v} \iff \vec{u} \cdot \vec{v} = 0
     \]
@@ -195,40 +195,40 @@ canvas{display:block;margin:0 auto;border-radius:6px}
   </div>
 
   <div class="meth">
-    <span class="label label-meth">M&eacute;thode &mdash; V&eacute;rifier l&rsquo;orthogonalit&eacute;</span>
+    <span class="label label-meth">Méthode — Vérifier l’orthogonalité</span>
     <ol style="margin:6px 0 0 0;padding-left:20px">
-      <li>Lire ou calculer les coordonn&eacute;es des vecteurs directeurs \(\vec{u}\begin{pmatrix}a\\b\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}c\\d\end{pmatrix}\).</li>
+      <li>Lire ou calculer les coordonnées des vecteurs directeurs \(\vec{u}\begin{pmatrix}a\\b\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}c\\d\end{pmatrix}\).</li>
       <li>Calculer \(\vec{u} \cdot \vec{v} = ac + bd\).</li>
-      <li>Si le r&eacute;sultat est <strong>z&eacute;ro</strong>&nbsp;: les vecteurs sont orthogonaux (droites perpendiculaires).</li>
+      <li>Si le résultat est <strong>zéro</strong> : les vecteurs sont orthogonaux (droites perpendiculaires).</li>
     </ol>
   </div>
 
   <div class="ex">
     <span class="label label-ex">Exemple</span><br>
-    \(\vec{u}\begin{pmatrix}3\\-2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}4\\6\end{pmatrix}\)&nbsp;:
+    \(\vec{u}\begin{pmatrix}3\\-2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}4\\6\end{pmatrix}\) :
     \[
       \vec{u} \cdot \vec{v} = 3 \times 4 + (-2) \times 6 = 12 - 12 = 0
     \]
-    Conclusion&nbsp;: \(\vec{u} \perp \vec{v}\), les droites de direction \(\vec{u}\) et \(\vec{v}\) sont perpendiculaires.
+    Conclusion : \(\vec{u} \perp \vec{v}\), les droites de direction \(\vec{u}\) et \(\vec{v}\) sont perpendiculaires.
   </div>
 
   <div class="grid-2">
     <div class="pro-era">
       <span class="pro-label pro-label-era">ERA / TMA</span><br>
-      Sur un plan de coupe, la cloison&nbsp;A a pour vecteur directeur \(\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\) et la cloison&nbsp;B \(\vec{v}\begin{pmatrix}0\\1\end{pmatrix}\).<br>
-      \(\vec{u}\cdot\vec{v} = 1\times0 + 0\times1 = 0\) &rarr; les cloisons sont bien perpendiculaires.
+      Sur un plan de coupe, la cloison A a pour vecteur directeur \(\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\) et la cloison B \(\vec{v}\begin{pmatrix}0\\1\end{pmatrix}\).<br>
+      \(\vec{u}\cdot\vec{v} = 1\times0 + 0\times1 = 0\) → les cloisons sont bien perpendiculaires.
     </div>
     <div class="pro-iccer">
       <span class="pro-label pro-label-iccer">ICCER (Grpt 1)</span><br>
       Deux canalisations ont pour vecteurs directeurs \(\vec{u}\begin{pmatrix}2\\-3\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}3\\2\end{pmatrix}\).<br>
-      \(\vec{u}\cdot\vec{v} = 6-6 = 0\) &rarr; les canalisations se coupent &agrave; 90&deg;.
+      \(\vec{u}\cdot\vec{v} = 6-6 = 0\) → les canalisations se coupent à 90°.
     </div>
   </div>
 
   <!-- =========================================================
        SECTION 4 : CALCUL D'ANGLE
        ========================================================= -->
-  <h2>4. Calcul d&rsquo;un angle entre deux vecteurs</h2>
+  <h2>4. Calcul d’un angle entre deux vecteurs</h2>
 
   <div class="def">
     <span class="label label-def">Formule</span><br>
@@ -237,88 +237,88 @@ canvas{display:block;margin:0 auto;border-radius:6px}
       \qquad \text{puis} \qquad
       \theta = \arccos\!\left(\frac{\vec{u} \cdot \vec{v}}{|\vec{u}| \times |\vec{v}|}\right)
     \]
-    L&rsquo;angle \(\theta\) obtenu est dans \([0° ; 180°]\).
+    L’angle \(\theta\) obtenu est dans \([0° ; 180°]\).
   </div>
 
   <div class="meth">
-    <span class="label label-meth">M&eacute;thode pas &agrave; pas</span>
+    <span class="label label-meth">Méthode pas à pas</span>
     <ol style="margin:6px 0 0 0;padding-left:20px">
-      <li>Calculer le produit scalaire&nbsp;: \(\vec{u} \cdot \vec{v} = ac + bd\).</li>
-      <li>Calculer les normes&nbsp;: \(|\vec{u}| = \sqrt{a^2 + b^2}\) et \(|\vec{v}| = \sqrt{c^2 + d^2}\).</li>
+      <li>Calculer le produit scalaire : \(\vec{u} \cdot \vec{v} = ac + bd\).</li>
+      <li>Calculer les normes : \(|\vec{u}| = \sqrt{a^2 + b^2}\) et \(|\vec{v}| = \sqrt{c^2 + d^2}\).</li>
       <li>Calculer \(\cos(\theta) = \dfrac{\vec{u}\cdot\vec{v}}{|\vec{u}|\times|\vec{v}|}\).</li>
-      <li>Obtenir \(\theta = \arccos(\ldots)\) &agrave; la calculatrice (mode DEG).</li>
-      <li>V&eacute;rifier la coh&eacute;rence&nbsp;: si \(\vec{u}\cdot\vec{v} > 0\) alors \(\theta < 90°\)&nbsp;; si \(\vec{u}\cdot\vec{v} < 0\) alors \(\theta > 90°\).</li>
+      <li>Obtenir \(\theta = \arccos(\ldots)\) à la calculatrice (mode DEG).</li>
+      <li>Vérifier la cohérence : si \(\vec{u}\cdot\vec{v} > 0\) alors \(\theta < 90°\) ; si \(\vec{u}\cdot\vec{v} < 0\) alors \(\theta > 90°\).</li>
     </ol>
   </div>
 
-  <h3>Exemple menuiserie &mdash; Angle d&rsquo;une ar&ecirc;te de meuble</h3>
+  <h3>Exemple menuiserie — Angle d’une arête de meuble</h3>
   <div class="ex">
     <span class="label label-ex">Contexte menuiserie</span><br>
-    Un meuble a deux ar&ecirc;tes repr&eacute;sent&eacute;es par les vecteurs \(\vec{u}\begin{pmatrix}4\\1\end{pmatrix}\) (ar&ecirc;te horizontale) et \(\vec{v}\begin{pmatrix}1\\3\end{pmatrix}\) (ar&ecirc;te inclin&eacute;e). Calculer l&rsquo;angle entre ces deux ar&ecirc;tes.
+    Un meuble a deux arêtes représentées par les vecteurs \(\vec{u}\begin{pmatrix}4\\1\end{pmatrix}\) (arête horizontale) et \(\vec{v}\begin{pmatrix}1\\3\end{pmatrix}\) (arête inclinée). Calculer l’angle entre ces deux arêtes.
 
-    <div class="step" style="margin-top:10px"><strong>&Eacute;tape 1 &mdash; Produit scalaire&nbsp;:</strong><br>
+    <div class="step" style="margin-top:10px"><strong>Étape 1 — Produit scalaire :</strong><br>
     \(\vec{u} \cdot \vec{v} = 4 \times 1 + 1 \times 3 = 4 + 3 = 7\)</div>
 
-    <div class="step"><strong>&Eacute;tape 2 &mdash; Normes&nbsp;:</strong><br>
+    <div class="step"><strong>Étape 2 — Normes :</strong><br>
     \(|\vec{u}| = \sqrt{4^2+1^2} = \sqrt{17} \approx 4{,}12\)<br>
     \(|\vec{v}| = \sqrt{1^2+3^2} = \sqrt{10} \approx 3{,}16\)</div>
 
-    <div class="step"><strong>&Eacute;tape 3 &mdash; Cosinus&nbsp;:</strong><br>
+    <div class="step"><strong>Étape 3 — Cosinus :</strong><br>
     \(\cos(\theta) = \dfrac{7}{\sqrt{17}\times\sqrt{10}} = \dfrac{7}{\sqrt{170}} \approx \dfrac{7}{13{,}04} \approx 0{,}537\)</div>
 
-    <div class="step"><strong>&Eacute;tape 4 &mdash; Angle&nbsp;:</strong><br>
+    <div class="step"><strong>Étape 4 — Angle :</strong><br>
     \(\theta = \arccos(0{,}537) \approx 57{,}5°\)</div>
 
-    <p style="margin-top:10px"><strong>Conclusion&nbsp;:</strong> L&rsquo;angle entre les deux ar&ecirc;tes du meuble est d&rsquo;environ <strong>57,5&deg;</strong>. Ce n&rsquo;est pas un angle droit &mdash; la d&eacute;coupe des pi&egrave;ces devra &ecirc;tre faite &agrave; 57,5&deg; (et non &agrave; 45&deg;).</p>
+    <p style="margin-top:10px"><strong>Conclusion :</strong> L’angle entre les deux arêtes du meuble est d’environ <strong>57,5°</strong>. Ce n’est pas un angle droit — la découpe des pièces devra être faite à 57,5° (et non à 45°).</p>
   </div>
 
-  <h3>Exemple professionnel &mdash; Angle entre deux canalisations</h3>
+  <h3>Exemple professionnel — Angle entre deux canalisations</h3>
   <div class="ex">
     <span class="label label-ex">Contexte professionnel</span><br>
-    Deux canalisations d&rsquo;un r&eacute;seau de distribution ont pour vecteurs directeurs \(\vec{u}\begin{pmatrix}3\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}-1\\4\end{pmatrix}\). Calculer l&rsquo;angle de raccordement.
+    Deux canalisations d’un réseau de distribution ont pour vecteurs directeurs \(\vec{u}\begin{pmatrix}3\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}-1\\4\end{pmatrix}\). Calculer l’angle de raccordement.
 
-    <div class="step" style="margin-top:10px"><strong>&Eacute;tape 1 &mdash; Produit scalaire&nbsp;:</strong><br>
+    <div class="step" style="margin-top:10px"><strong>Étape 1 — Produit scalaire :</strong><br>
     \(\vec{u} \cdot \vec{v} = 3 \times (-1) + 2 \times 4 = -3 + 8 = 5\)</div>
 
-    <div class="step"><strong>&Eacute;tape 2 &mdash; Normes&nbsp;:</strong><br>
+    <div class="step"><strong>Étape 2 — Normes :</strong><br>
     \(|\vec{u}| = \sqrt{9+4} = \sqrt{13} \approx 3{,}606\)<br>
     \(|\vec{v}| = \sqrt{1+16} = \sqrt{17} \approx 4{,}123\)</div>
 
-    <div class="step"><strong>&Eacute;tape 3 &mdash; Cosinus&nbsp;:</strong><br>
+    <div class="step"><strong>Étape 3 — Cosinus :</strong><br>
     \(\cos(\theta) = \dfrac{5}{\sqrt{13}\times\sqrt{17}} = \dfrac{5}{\sqrt{221}} \approx \dfrac{5}{14{,}87} \approx 0{,}336\)</div>
 
-    <div class="step"><strong>&Eacute;tape 4 &mdash; Angle&nbsp;:</strong><br>
+    <div class="step"><strong>Étape 4 — Angle :</strong><br>
     \(\theta = \arccos(0{,}336) \approx 70{,}4°\)</div>
 
-    <p style="margin-top:10px"><strong>Conclusion&nbsp;:</strong> L&rsquo;angle de raccordement entre les deux canalisations est d&rsquo;environ <strong>70,4&deg;</strong>. Il faut pr&eacute;voir un coude adapt&eacute; (ou deux coudes de 45&deg;) lors du montage.</p>
+    <p style="margin-top:10px"><strong>Conclusion :</strong> L’angle de raccordement entre les deux canalisations est d’environ <strong>70,4°</strong>. Il faut prévoir un coude adapté (ou deux coudes de 45°) lors du montage.</p>
   </div>
 
   <!-- =========================================================
        SECTION 5 : ÉQUATION D'UNE DROITE
        ========================================================= -->
-  <h2>5. &Eacute;quation d&rsquo;une droite via le vecteur normal</h2>
+  <h2>5. Équation d’une droite via le vecteur normal</h2>
 
   <div class="def">
-    <span class="label label-def">D&eacute;finition</span><br>
-    Un <strong>vecteur normal</strong> &agrave; une droite \(d\) est un vecteur <strong>perpendiculaire</strong> &agrave; tout vecteur directeur de \(d\).<br><br>
-    Si \(\vec{n}\begin{pmatrix}a\\b\end{pmatrix}\) est un vecteur normal &agrave; la droite \(d\), alors l&rsquo;&eacute;quation de \(d\) est de la forme&nbsp;:
+    <span class="label label-def">Définition</span><br>
+    Un <strong>vecteur normal</strong> à une droite \(d\) est un vecteur <strong>perpendiculaire</strong> à tout vecteur directeur de \(d\).<br><br>
+    Si \(\vec{n}\begin{pmatrix}a\\b\end{pmatrix}\) est un vecteur normal à la droite \(d\), alors l’équation de \(d\) est de la forme :
     \[
       ax + by + c = 0
     \]
-    o&ugrave; \(c \in \mathbb{R}\) est d&eacute;termin&eacute; par les coordonn&eacute;es d&rsquo;un point connu de la droite.
+    où \(c \in \mathbb{R}\) est déterminé par les coordonnées d’un point connu de la droite.
   </div>
 
   <div class="prop">
     <span class="label label-prop">Lien vecteur normal / vecteur directeur</span><br>
-    Si le vecteur directeur de \(d\) est \(\vec{u}\begin{pmatrix}a\\b\end{pmatrix}\), alors un vecteur normal est \(\vec{n}\begin{pmatrix}-b\\a\end{pmatrix}\) (rotation de 90&deg;).
+    Si le vecteur directeur de \(d\) est \(\vec{u}\begin{pmatrix}a\\b\end{pmatrix}\), alors un vecteur normal est \(\vec{n}\begin{pmatrix}-b\\a\end{pmatrix}\) (rotation de 90°).
   </div>
 
   <div class="meth">
-    <span class="label label-meth">M&eacute;thode &mdash; &Eacute;crire l&rsquo;&eacute;quation d&rsquo;une droite</span>
+    <span class="label label-meth">Méthode — Écrire l’équation d’une droite</span>
     <ol style="margin:6px 0 0 0;padding-left:20px">
       <li>Identifier le vecteur normal \(\vec{n}\begin{pmatrix}a\\b\end{pmatrix}\).</li>
-      <li>&Eacute;crire l&rsquo;&eacute;quation \(ax + by + c = 0\).</li>
-      <li>Injecter les coordonn&eacute;es d&rsquo;un point connu \(M(x_0; y_0)\) pour trouver \(c\)&nbsp;:
+      <li>Écrire l’équation \(ax + by + c = 0\).</li>
+      <li>Injecter les coordonnées d’un point connu \(M(x_0; y_0)\) pour trouver \(c\) :
           \(c = -ax_0 - by_0\).</li>
     </ol>
   </div>
@@ -327,20 +327,20 @@ canvas{display:block;margin:0 auto;border-radius:6px}
     <span class="label label-ex">Exemple</span><br>
     Droite passant par \(A(2\,;\,3)\) de vecteur normal \(\vec{n}\begin{pmatrix}4\\-1\end{pmatrix}\).
     <ul style="margin:6px 0 0 0;padding-left:20px">
-      <li>Forme g&eacute;n&eacute;rale&nbsp;: \(4x - y + c = 0\)</li>
-      <li>Point \(A(2\,;\,3)\)&nbsp;: \(4(2) - 3 + c = 0 \Rightarrow 8 - 3 + c = 0 \Rightarrow c = -5\)</li>
-      <li>&Eacute;quation finale&nbsp;: \(\boxed{4x - y - 5 = 0}\)</li>
+      <li>Forme générale : \(4x - y + c = 0\)</li>
+      <li>Point \(A(2\,;\,3)\) : \(4(2) - 3 + c = 0 \Rightarrow 8 - 3 + c = 0 \Rightarrow c = -5\)</li>
+      <li>Équation finale : \(\boxed{4x - y - 5 = 0}\)</li>
     </ul>
   </div>
 
   <!-- =========================================================
        SECTION 6 : DISTANCE D'UN POINT À UNE DROITE
        ========================================================= -->
-  <h2>6. Distance d&rsquo;un point &agrave; une droite</h2>
+  <h2>6. Distance d’un point à une droite</h2>
 
   <div class="def">
     <span class="label label-def">Formule</span><br>
-    La distance du point \(M(x_M\,;\,y_M)\) &agrave; la droite \(d : ax + by + c = 0\) est&nbsp;:
+    La distance du point \(M(x_M\,;\,y_M)\) à la droite \(d : ax + by + c = 0\) est :
     \[
       d(M,\, d) = \frac{|ax_M + by_M + c|}{\sqrt{a^2 + b^2}}
     \]
@@ -348,14 +348,14 @@ canvas{display:block;margin:0 auto;border-radius:6px}
 
   <div class="att">
     <span class="label label-att">Attention</span><br>
-    Ne pas oublier la <strong>valeur absolue</strong> au num&eacute;rateur et la <strong>racine carr&eacute;e</strong> au d&eacute;nominateur. La distance est toujours <strong>positive ou nulle</strong>.
+    Ne pas oublier la <strong>valeur absolue</strong> au numérateur et la <strong>racine carrée</strong> au dénominateur. La distance est toujours <strong>positive ou nulle</strong>.
   </div>
 
   <div class="meth">
-    <span class="label label-meth">M&eacute;thode</span>
+    <span class="label label-meth">Méthode</span>
     <ol style="margin:6px 0 0 0;padding-left:20px">
       <li>Mettre la droite sous la forme \(ax + by + c = 0\).</li>
-      <li>Substituer les coordonn&eacute;es de \(M\) dans \(ax + by + c\).</li>
+      <li>Substituer les coordonnées de \(M\) dans \(ax + by + c\).</li>
       <li>Prendre la valeur absolue.</li>
       <li>Diviser par \(\sqrt{a^2 + b^2}\) (= norme du vecteur normal).</li>
     </ol>
@@ -363,128 +363,128 @@ canvas{display:block;margin:0 auto;border-radius:6px}
 
   <div class="ex">
     <span class="label label-ex">Exemple</span><br>
-    Distance du point \(P(1\,;\,5)\) &agrave; la droite \(d : 3x - 4y + 2 = 0\).
+    Distance du point \(P(1\,;\,5)\) à la droite \(d : 3x - 4y + 2 = 0\).
     \[
       d(P,\, d) = \frac{|3(1) - 4(5) + 2|}{\sqrt{3^2 + (-4)^2}} = \frac{|3 - 20 + 2|}{\sqrt{9+16}} = \frac{|-15|}{5} = \frac{15}{5} = 3
     \]
-    La distance est de <strong>3 unit&eacute;s</strong>.
+    La distance est de <strong>3 unités</strong>.
   </div>
 
   <!-- =========================================================
        SECTION 7 : EXEMPLE ERA/TMA COMPLET
        ========================================================= -->
-  <h2>7. Exemple complet ERA/TMA &mdash; Plan d&rsquo;une pi&egrave;ce</h2>
+  <h2>7. Exemple complet ERA/TMA — Plan d’une pièce</h2>
 
   <div class="pro-era">
-    <span class="pro-label pro-label-era">ERA / TMA &mdash; Plan de construction</span>
+    <span class="pro-label pro-label-era">ERA / TMA — Plan de construction</span>
   </div>
 
   <div class="ex">
-    <span class="label label-ex">&Eacute;nonc&eacute;</span><br>
-    On dispose du plan d&rsquo;une pi&egrave;ce dans un rep&egrave;re orthonorm&eacute; (en cm, 1 unit&eacute; = 10 cm).
+    <span class="label label-ex">Énoncé</span><br>
+    On dispose du plan d’une pièce dans un repère orthonormé (en cm, 1 unité = 10 cm).
     <ul style="padding-left:20px">
-      <li>Cloison&nbsp;1 (mur porteur)&nbsp;: passe par \(A(0\,;\,0)\) et \(B(8\,;\,0)\) &mdash; vecteur directeur \(\overrightarrow{AB}\begin{pmatrix}8\\0\end{pmatrix}\).</li>
-      <li>Cloison&nbsp;2 (mur lat&eacute;ral)&nbsp;: passe par \(A(0\,;\,0)\) et \(C(0\,;\,5)\) &mdash; vecteur directeur \(\overrightarrow{AC}\begin{pmatrix}0\\5\end{pmatrix}\).</li>
-      <li>Cloison&nbsp;3 (cloison oblique)&nbsp;: passe par \(D(3\,;\,0)\) et \(E(8\,;\,4)\) &mdash; vecteur directeur \(\overrightarrow{DE}\begin{pmatrix}5\\4\end{pmatrix}\).</li>
+      <li>Cloison 1 (mur porteur) : passe par \(A(0\,;\,0)\) et \(B(8\,;\,0)\) — vecteur directeur \(\overrightarrow{AB}\begin{pmatrix}8\\0\end{pmatrix}\).</li>
+      <li>Cloison 2 (mur latéral) : passe par \(A(0\,;\,0)\) et \(C(0\,;\,5)\) — vecteur directeur \(\overrightarrow{AC}\begin{pmatrix}0\\5\end{pmatrix}\).</li>
+      <li>Cloison 3 (cloison oblique) : passe par \(D(3\,;\,0)\) et \(E(8\,;\,4)\) — vecteur directeur \(\overrightarrow{DE}\begin{pmatrix}5\\4\end{pmatrix}\).</li>
     </ul>
 
-    <h3 style="margin-top:14px">Question 1 &mdash; Les cloisons 1 et 2 sont-elles perpendiculaires&nbsp;?</h3>
+    <h3 style="margin-top:14px">Question 1 — Les cloisons 1 et 2 sont-elles perpendiculaires ?</h3>
     \[
       \overrightarrow{AB} \cdot \overrightarrow{AC} = 8 \times 0 + 0 \times 5 = 0
     \]
-    <p><strong>Conclusion&nbsp;:</strong> Le produit scalaire est nul, donc les cloisons&nbsp;1 et&nbsp;2 sont <strong>perpendiculaires</strong>. L&rsquo;angle entre les deux murs est bien de 90&deg;. &checkmark;</p>
+    <p><strong>Conclusion :</strong> Le produit scalaire est nul, donc les cloisons 1 et 2 sont <strong>perpendiculaires</strong>. L’angle entre les deux murs est bien de 90°. ✓</p>
 
-    <h3>Question 2 &mdash; Angle de la cloison oblique avec le mur porteur</h3>
-    <p>Vecteur directeur du mur porteur (normalis&eacute;)&nbsp;: \(\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\), de la cloison oblique&nbsp;: \(\vec{v}\begin{pmatrix}5\\4\end{pmatrix}\).</p>
-    <div class="step"><strong>Produit scalaire&nbsp;:</strong> \(\vec{u}\cdot\vec{v} = 1\times5 + 0\times4 = 5\)</div>
-    <div class="step"><strong>Normes&nbsp;:</strong> \(|\vec{u}| = 1\)&nbsp;; &nbsp;\(|\vec{v}| = \sqrt{25+16} = \sqrt{41} \approx 6{,}40\)</div>
-    <div class="step"><strong>Cosinus&nbsp;:</strong> \(\cos(\theta) = \dfrac{5}{1 \times \sqrt{41}} = \dfrac{5}{\sqrt{41}} \approx 0{,}781\)</div>
-    <div class="step"><strong>Angle&nbsp;:</strong> \(\theta = \arccos(0{,}781) \approx 38{,}7°\)</div>
-    <p><strong>Conclusion&nbsp;:</strong> La cloison oblique fait un angle d&rsquo;environ <strong>38,7&deg;</strong> avec le mur porteur. Cette information est indispensable pour la d&eacute;coupe des lames de parquet, du placo ou des carreaux en bordure.</p>
+    <h3>Question 2 — Angle de la cloison oblique avec le mur porteur</h3>
+    <p>Vecteur directeur du mur porteur (normalisé) : \(\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\), de la cloison oblique : \(\vec{v}\begin{pmatrix}5\\4\end{pmatrix}\).</p>
+    <div class="step"><strong>Produit scalaire :</strong> \(\vec{u}\cdot\vec{v} = 1\times5 + 0\times4 = 5\)</div>
+    <div class="step"><strong>Normes :</strong> \(|\vec{u}| = 1\) ;  \(|\vec{v}| = \sqrt{25+16} = \sqrt{41} \approx 6{,}40\)</div>
+    <div class="step"><strong>Cosinus :</strong> \(\cos(\theta) = \dfrac{5}{1 \times \sqrt{41}} = \dfrac{5}{\sqrt{41}} \approx 0{,}781\)</div>
+    <div class="step"><strong>Angle :</strong> \(\theta = \arccos(0{,}781) \approx 38{,}7°\)</div>
+    <p><strong>Conclusion :</strong> La cloison oblique fait un angle d’environ <strong>38,7°</strong> avec le mur porteur. Cette information est indispensable pour la découpe des lames de parquet, du placo ou des carreaux en bordure.</p>
 
-    <h3>Question 3 &mdash; &Eacute;quation de la cloison oblique et distance du point \(F(5\,;\,3)\)</h3>
-    <p>Vecteur directeur \(\overrightarrow{DE}\begin{pmatrix}5\\4\end{pmatrix}\) &rarr; vecteur normal \(\vec{n}\begin{pmatrix}-4\\5\end{pmatrix}\).</p>
-    <div class="step"><strong>&Eacute;quation&nbsp;:</strong> \(-4x + 5y + c = 0\). Point \(D(3\,;\,0)\)&nbsp;: \(-12 + 0 + c = 0 \Rightarrow c = 12\).<br>
-    &Eacute;quation de la cloison oblique&nbsp;: \(-4x + 5y + 12 = 0\).</div>
-    <div class="step"><strong>Distance de \(F(5\,;\,3)\) &agrave; la cloison&nbsp;:</strong>
+    <h3>Question 3 — Équation de la cloison oblique et distance du point \(F(5\,;\,3)\)</h3>
+    <p>Vecteur directeur \(\overrightarrow{DE}\begin{pmatrix}5\\4\end{pmatrix}\) → vecteur normal \(\vec{n}\begin{pmatrix}-4\\5\end{pmatrix}\).</p>
+    <div class="step"><strong>Équation :</strong> \(-4x + 5y + c = 0\). Point \(D(3\,;\,0)\) : \(-12 + 0 + c = 0 \Rightarrow c = 12\).<br>
+    Équation de la cloison oblique : \(-4x + 5y + 12 = 0\).</div>
+    <div class="step"><strong>Distance de \(F(5\,;\,3)\) à la cloison :</strong>
     \[
       d = \frac{|-4(5)+5(3)+12|}{\sqrt{16+25}} = \frac{|-20+15+12|}{\sqrt{41}} = \frac{|7|}{\sqrt{41}} \approx \frac{7}{6{,}40} \approx 1{,}09
     \]
     </div>
-    <p><strong>Conclusion&nbsp;:</strong> Le point \(F\) (prise &eacute;lectrique envisag&eacute;e) est &agrave; environ <strong>1,09 unit&eacute; &asymp; 10,9 cm</strong> de la cloison oblique. V&eacute;rifier que l&rsquo;espace est suffisant pour la bo&icirc;tier d&rsquo;encastrement.</p>
+    <p><strong>Conclusion :</strong> Le point \(F\) (prise électrique envisagée) est à environ <strong>1,09 unité ≈ 10,9 cm</strong> de la cloison oblique. Vérifier que l’espace est suffisant pour la boîtier d’encastrement.</p>
   </div>
 
   <!-- =========================================================
        SECTION 8 : EXEMPLE ICCER COMPLET
        ========================================================= -->
-  <h2>8. Exemple complet professionnel &mdash; R&eacute;seau de canalisations</h2>
+  <h2>8. Exemple complet professionnel — Réseau de canalisations</h2>
 
   <div class="pro-iccer">
-    <span class="pro-label pro-label-iccer">ICCER (Grpt 1) &mdash; Dimensionnement de fixation</span>
+    <span class="pro-label pro-label-iccer">ICCER (Grpt 1) — Dimensionnement de fixation</span>
   </div>
 
   <div class="ex">
-    <span class="label label-ex">&Eacute;nonc&eacute;</span><br>
-    Dans le plan d&rsquo;une installation sanitaire (rep&egrave;re en m&egrave;tres)&nbsp;:
+    <span class="label label-ex">Énoncé</span><br>
+    Dans le plan d’une installation sanitaire (repère en mètres) :
     <ul style="padding-left:20px">
-      <li>Canalisation principale (CP)&nbsp;: vecteur directeur \(\vec{u}\begin{pmatrix}4\\2\end{pmatrix}\)</li>
-      <li>Canalisation secondaire (CS)&nbsp;: vecteur directeur \(\vec{v}\begin{pmatrix}-1\\3\end{pmatrix}\)</li>
-      <li>Point de raccordement&nbsp;: \(R(2\,;\,1)\)</li>
-      <li>Fixation murale en \(P(5\,;\,4)\) &mdash; calculer sa distance &agrave; la canalisation principale.</li>
+      <li>Canalisation principale (CP) : vecteur directeur \(\vec{u}\begin{pmatrix}4\\2\end{pmatrix}\)</li>
+      <li>Canalisation secondaire (CS) : vecteur directeur \(\vec{v}\begin{pmatrix}-1\\3\end{pmatrix}\)</li>
+      <li>Point de raccordement : \(R(2\,;\,1)\)</li>
+      <li>Fixation murale en \(P(5\,;\,4)\) — calculer sa distance à la canalisation principale.</li>
     </ul>
 
-    <h3 style="margin-top:14px">Question 1 &mdash; Angle de raccordement entre CP et CS</h3>
-    <div class="step"><strong>Produit scalaire&nbsp;:</strong> \(\vec{u}\cdot\vec{v} = 4\times(-1)+2\times3 = -4+6 = 2\)</div>
-    <div class="step"><strong>Normes&nbsp;:</strong>
+    <h3 style="margin-top:14px">Question 1 — Angle de raccordement entre CP et CS</h3>
+    <div class="step"><strong>Produit scalaire :</strong> \(\vec{u}\cdot\vec{v} = 4\times(-1)+2\times3 = -4+6 = 2\)</div>
+    <div class="step"><strong>Normes :</strong>
       \(|\vec{u}| = \sqrt{16+4} = \sqrt{20} = 2\sqrt{5} \approx 4{,}472\)<br>
       \(|\vec{v}| = \sqrt{1+9} = \sqrt{10} \approx 3{,}162\)
     </div>
-    <div class="step"><strong>Cosinus&nbsp;:</strong>
+    <div class="step"><strong>Cosinus :</strong>
       \(\cos(\theta) = \dfrac{2}{2\sqrt{5}\times\sqrt{10}} = \dfrac{2}{2\sqrt{50}} = \dfrac{1}{\sqrt{50}} \approx \dfrac{1}{7{,}071} \approx 0{,}141\)
     </div>
-    <div class="step"><strong>Angle&nbsp;:</strong> \(\theta = \arccos(0{,}141) \approx 81{,}9°\)</div>
-    <p><strong>Conclusion&nbsp;:</strong> Les deux canalisations forment un angle d&rsquo;environ <strong>81,9&deg;</strong>. Le raccord n&rsquo;est pas &agrave; 90&deg;&nbsp;; pr&eacute;voir des joints souples ou un raccord coud&eacute; sp&eacute;cifique.</p>
+    <div class="step"><strong>Angle :</strong> \(\theta = \arccos(0{,}141) \approx 81{,}9°\)</div>
+    <p><strong>Conclusion :</strong> Les deux canalisations forment un angle d’environ <strong>81,9°</strong>. Le raccord n’est pas à 90° ; prévoir des joints souples ou un raccord coudé spécifique.</p>
 
-    <h3>Question 2 &mdash; Composante d&rsquo;une force selon CP (dimensionnement de fixation)</h3>
-    <p>Une force de traction \(\vec{F}\) de norme 500&nbsp;N est appliqu&eacute;e &agrave; 30&deg; de la direction de la canalisation principale. Calculer la composante de \(\vec{F}\) selon CP.</p>
+    <h3>Question 2 — Composante d’une force selon CP (dimensionnement de fixation)</h3>
+    <p>Une force de traction \(\vec{F}\) de norme 500 N est appliquée à 30° de la direction de la canalisation principale. Calculer la composante de \(\vec{F}\) selon CP.</p>
     \[
       F_{\text{CP}} = |\vec{F}| \times \cos(30°) = 500 \times \frac{\sqrt{3}}{2} \approx 500 \times 0{,}866 \approx 433\text{ N}
     \]
-    <p><strong>Conclusion&nbsp;:</strong> La composante axiale de la force vaut environ <strong>433&nbsp;N</strong>. Avec un coefficient de s&eacute;curit&eacute; de 1,5, la fixation doit &ecirc;tre homologu&eacute;e pour au moins \(433 \times 1{,}5 \approx 650\text{ N}\).</p>
+    <p><strong>Conclusion :</strong> La composante axiale de la force vaut environ <strong>433 N</strong>. Avec un coefficient de sécurité de 1,5, la fixation doit être homologuée pour au moins \(433 \times 1{,}5 \approx 650\text{ N}\).</p>
 
-    <h3>Question 3 &mdash; &Eacute;quation de CP et distance de la fixation \(P(5\,;\,4)\)</h3>
-    <p>Vecteur directeur de CP&nbsp;: \(\vec{u}\begin{pmatrix}4\\2\end{pmatrix}\) &rarr; vecteur normal&nbsp;: \(\vec{n}\begin{pmatrix}-2\\4\end{pmatrix}\), simplifi&eacute; en \(\vec{n}\begin{pmatrix}-1\\2\end{pmatrix}\).</p>
-    <div class="step"><strong>&Eacute;quation de CP&nbsp;:</strong> \(-x + 2y + c = 0\). Point \(R(2\,;\,1)\)&nbsp;: \(-2+2+c=0 \Rightarrow c=0\).<br>
-    &Eacute;quation de CP&nbsp;: \(-x + 2y = 0\).</div>
-    <div class="step"><strong>Distance de \(P(5\,;\,4)\) &agrave; CP&nbsp;:</strong>
+    <h3>Question 3 — Équation de CP et distance de la fixation \(P(5\,;\,4)\)</h3>
+    <p>Vecteur directeur de CP : \(\vec{u}\begin{pmatrix}4\\2\end{pmatrix}\) → vecteur normal : \(\vec{n}\begin{pmatrix}-2\\4\end{pmatrix}\), simplifié en \(\vec{n}\begin{pmatrix}-1\\2\end{pmatrix}\).</p>
+    <div class="step"><strong>Équation de CP :</strong> \(-x + 2y + c = 0\). Point \(R(2\,;\,1)\) : \(-2+2+c=0 \Rightarrow c=0\).<br>
+    Équation de CP : \(-x + 2y = 0\).</div>
+    <div class="step"><strong>Distance de \(P(5\,;\,4)\) à CP :</strong>
     \[
       d = \frac{|-5 + 2(4)|}{\sqrt{1+4}} = \frac{|-5+8|}{\sqrt{5}} = \frac{3}{\sqrt{5}} = \frac{3\sqrt{5}}{5} \approx 1{,}34\text{ m}
     \]
     </div>
-    <p><strong>Conclusion&nbsp;:</strong> La fixation murale est &agrave; environ <strong>1,34&nbsp;m</strong> de la canalisation principale. V&eacute;rifier que les colliers de fixation disponibles ont une longueur suffisante.</p>
+    <p><strong>Conclusion :</strong> La fixation murale est à environ <strong>1,34 m</strong> de la canalisation principale. Vérifier que les colliers de fixation disponibles ont une longueur suffisante.</p>
   </div>
 
   <!-- =========================================================
        SECTION 9 : PRODUIT SCALAIRE DANS L'ESPACE
        ========================================================= -->
-  <h2>9. Introduction au produit scalaire dans l&rsquo;espace</h2>
+  <h2>9. Introduction au produit scalaire dans l’espace</h2>
 
   <div class="def">
     <span class="label label-def">Extension en 3D</span><br>
-    Dans l&rsquo;espace, si \(\vec{u}\begin{pmatrix}a\\b\\c\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}d\\e\\f\end{pmatrix}\)&nbsp;:
+    Dans l’espace, si \(\vec{u}\begin{pmatrix}a\\b\\c\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}d\\e\\f\end{pmatrix}\) :
     \[
       \vec{u} \cdot \vec{v} = ad + be + cf
     \]
-    La formule de l&rsquo;angle reste identique&nbsp;:
+    La formule de l’angle reste identique :
     \[
       \cos(\theta) = \frac{\vec{u}\cdot\vec{v}}{|\vec{u}|\times|\vec{v}|}
       \qquad \text{avec} \qquad |\vec{u}| = \sqrt{a^2+b^2+c^2}
     \]
-    Toutes les propri&eacute;t&eacute;s (commutativit&eacute;, bilin&eacute;arit&eacute;, orthogonalit&eacute;) restent valables.
+    Toutes les propriétés (commutativité, bilinéarité, orthogonalité) restent valables.
   </div>
 
   <div class="ex">
-    <span class="label label-ex">Exemple professionnel &mdash; Angle entre deux conduites 3D</span><br>
+    <span class="label label-ex">Exemple professionnel — Angle entre deux conduites 3D</span><br>
     Deux conduites en espace 3D ont pour vecteurs directeurs \(\vec{u}\begin{pmatrix}1\\2\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}2\\-1\\2\end{pmatrix}\).
     \[
       \vec{u}\cdot\vec{v} = 1\times2 + 2\times(-1) + 2\times2 = 2 - 2 + 4 = 4
@@ -495,13 +495,13 @@ canvas{display:block;margin:0 auto;border-radius:6px}
     \[
       \cos(\theta) = \frac{4}{3 \times 3} = \frac{4}{9} \approx 0{,}444 \qquad \Rightarrow \qquad \theta = \arccos\!\left(\frac{4}{9}\right) \approx 63{,}6°
     \]
-    <p>L&rsquo;angle de raccordement des deux conduites en 3D est d&rsquo;environ <strong>63,6&deg;</strong>.</p>
+    <p>L’angle de raccordement des deux conduites en 3D est d’environ <strong>63,6°</strong>.</p>
   </div>
 
   <!-- =========================================================
        SECTION 10 : TABLEAU RÉCAP
        ========================================================= -->
-  <h2>10. Tableau r&eacute;capitulatif des formules</h2>
+  <h2>10. Tableau récapitulatif des formules</h2>
 
   <table>
     <tr>
@@ -510,35 +510,35 @@ canvas{display:block;margin:0 auto;border-radius:6px}
     <tr>
       <td>Norme et angle connus</td>
       <td>\(\vec{u}\cdot\vec{v} = |\vec{u}|\,|\vec{v}|\cos\theta\)</td>
-      <td>Angle en degr&eacute;s, mode DEG</td>
+      <td>Angle en degrés, mode DEG</td>
     </tr>
     <tr>
-      <td>Coordonn&eacute;es connues (2D)</td>
+      <td>Coordonnées connues (2D)</td>
       <td>\(\vec{u}\cdot\vec{v} = ac+bd\)</td>
       <td>Le plus rapide en pratique</td>
     </tr>
     <tr>
-      <td>Normes de somme/diff&eacute;rence</td>
+      <td>Normes de somme/différence</td>
       <td>\(\frac{1}{2}(|\vec{u}+\vec{v}|^2-|\vec{u}|^2-|\vec{v}|^2)\)</td>
-      <td>Utile en g&eacute;om&eacute;trie plane</td>
+      <td>Utile en géométrie plane</td>
     </tr>
     <tr>
-      <td>Orthogonalit&eacute;</td>
+      <td>Orthogonalité</td>
       <td>\(\vec{u}\cdot\vec{v}=0\)</td>
       <td>Vecteurs non nuls</td>
     </tr>
     <tr>
-      <td>Calcul d&rsquo;angle</td>
+      <td>Calcul d’angle</td>
       <td>\(\theta = \arccos\!\left(\dfrac{\vec{u}\cdot\vec{v}}{|\vec{u}|\,|\vec{v}|}\right)\)</td>
       <td>\(\theta \in [0°\,;\,180°]\)</td>
     </tr>
     <tr>
-      <td>&Eacute;quation de droite (vect. normal \(\vec{n}(a;b)\))</td>
+      <td>Équation de droite (vect. normal \(\vec{n}(a;b)\))</td>
       <td>\(ax+by+c=0\)</td>
-      <td>\(c\) trouv&eacute; par un point de la droite</td>
+      <td>\(c\) trouvé par un point de la droite</td>
     </tr>
     <tr>
-      <td>Distance point&ndash;droite</td>
+      <td>Distance point–droite</td>
       <td>\(d = \dfrac{|ax_M+by_M+c|}{\sqrt{a^2+b^2}}\)</td>
       <td>Valeur absolue obligatoire</td>
     </tr>
@@ -554,9 +554,9 @@ canvas{display:block;margin:0 auto;border-radius:6px}
     <strong>A retenir :</strong>
     <ul style="margin:8px 0 0 0;padding-left:20px">
       <li>Le produit scalaire est un <strong>nombre</strong> (scalaire), pas un vecteur.</li>
-      <li>\(\vec{u}\cdot\vec{v} = 0\) (avec \(\vec{u}\neq\vec{0}\) et \(\vec{v}\neq\vec{0}\)) &harr; vecteurs perpendiculaires.</li>
-      <li>Pour l&rsquo;angle&nbsp;: toujours diviser par le <strong>produit des normes</strong>.</li>
-      <li>Pour la distance point-droite&nbsp;: valeur absolue au num&eacute;rateur, racine carr&eacute;e au d&eacute;nominateur.</li>
+      <li>\(\vec{u}\cdot\vec{v} = 0\) (avec \(\vec{u}\neq\vec{0}\) et \(\vec{v}\neq\vec{0}\)) ↔ vecteurs perpendiculaires.</li>
+      <li>Pour l’angle : toujours diviser par le <strong>produit des normes</strong>.</li>
+      <li>Pour la distance point-droite : valeur absolue au numérateur, racine carrée au dénominateur.</li>
       <li>Le vecteur normal de la droite \(ax+by+c=0\) est \(\vec{n}\begin{pmatrix}a\\b\end{pmatrix}\).</li>
     </ul>
   </div>
@@ -564,89 +564,89 @@ canvas{display:block;margin:0 auto;border-radius:6px}
   <!-- =========================================================
        SECTION 11 : EXERCICES CORRIGÉS
        ========================================================= -->
-  <h2>11. Exercices corrig&eacute;s</h2>
+  <h2>11. Exercices corrigés</h2>
 
   <!-- Exercice 1 -->
   <div class="exo">
-    <span class="label label-ex">Exercice 1 &mdash; ERA/TMA</span>
-    <p>Sur un plan de menuiserie, deux rebords d&rsquo;un plan de travail sont mod&eacute;lis&eacute;s par les vecteurs \(\vec{u}\begin{pmatrix}6\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}-1\\3\end{pmatrix}\).</p>
+    <span class="label label-ex">Exercice 1 — ERA/TMA</span>
+    <p>Sur un plan de menuiserie, deux rebords d’un plan de travail sont modélisés par les vecteurs \(\vec{u}\begin{pmatrix}6\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}-1\\3\end{pmatrix}\).</p>
     <ol style="padding-left:20px">
       <li>Calculer \(\vec{u}\cdot\vec{v}\).</li>
-      <li>Les rebords sont-ils perpendiculaires&nbsp;?</li>
-      <li>Si non, calculer l&rsquo;angle entre eux.</li>
+      <li>Les rebords sont-ils perpendiculaires ?</li>
+      <li>Si non, calculer l’angle entre eux.</li>
     </ol>
     <details>
       <summary>Voir la correction</summary>
       <p><strong>1.</strong> \(\vec{u}\cdot\vec{v} = 6\times(-1)+2\times3 = -6+6 = 0\)</p>
-      <p><strong>2.</strong> Le produit scalaire est nul, donc <strong>oui</strong>&nbsp;: les deux rebords sont perpendiculaires. L&rsquo;angle est exactement <strong>90&deg;</strong>.</p>
-      <p><strong>3.</strong> Sans objet puisqu&rsquo;ils sont perpendiculaires (\(\theta = 90°\)).</p>
+      <p><strong>2.</strong> Le produit scalaire est nul, donc <strong>oui</strong> : les deux rebords sont perpendiculaires. L’angle est exactement <strong>90°</strong>.</p>
+      <p><strong>3.</strong> Sans objet puisqu’ils sont perpendiculaires (\(\theta = 90°\)).</p>
     </details>
   </div>
 
   <!-- Exercice 2 -->
   <div class="exo">
-    <span class="label label-ex">Exercice 2 &mdash; Installation thermique</span>
-    <p>Un collecteur de distribution a pour vecteur directeur \(\vec{u}\begin{pmatrix}5\\3\end{pmatrix}\). Une d&eacute;rivation part du point \(A(2\,;\,1)\) avec le vecteur directeur \(\vec{v}\begin{pmatrix}2\\-4\end{pmatrix}\).</p>
+    <span class="label label-ex">Exercice 2 — Installation thermique</span>
+    <p>Un collecteur de distribution a pour vecteur directeur \(\vec{u}\begin{pmatrix}5\\3\end{pmatrix}\). Une dérivation part du point \(A(2\,;\,1)\) avec le vecteur directeur \(\vec{v}\begin{pmatrix}2\\-4\end{pmatrix}\).</p>
     <ol style="padding-left:20px">
-      <li>Calculer l&rsquo;angle entre le collecteur et la d&eacute;rivation.</li>
-      <li>&Eacute;crire l&rsquo;&eacute;quation de la droite portant la d&eacute;rivation.</li>
-      <li>Calculer la distance du point \(B(6\,;\,3)\) &agrave; cette droite.</li>
+      <li>Calculer l’angle entre le collecteur et la dérivation.</li>
+      <li>Écrire l’équation de la droite portant la dérivation.</li>
+      <li>Calculer la distance du point \(B(6\,;\,3)\) à cette droite.</li>
     </ol>
     <details>
       <summary>Voir la correction</summary>
-      <p><strong>1. Angle&nbsp;:</strong><br>
+      <p><strong>1. Angle :</strong><br>
       \(\vec{u}\cdot\vec{v} = 5\times2+3\times(-4) = 10-12 = -2\)<br>
-      \(|\vec{u}|=\sqrt{25+9}=\sqrt{34}\approx5{,}831\)&nbsp;;&nbsp;\(|\vec{v}|=\sqrt{4+16}=\sqrt{20}\approx4{,}472\)<br>
+      \(|\vec{u}|=\sqrt{25+9}=\sqrt{34}\approx5{,}831\) ; \(|\vec{v}|=\sqrt{4+16}=\sqrt{20}\approx4{,}472\)<br>
       \(\cos\theta = \dfrac{-2}{\sqrt{34}\times\sqrt{20}} = \dfrac{-2}{\sqrt{680}} \approx \dfrac{-2}{26{,}08} \approx -0{,}0767\)<br>
       \(\theta = \arccos(-0{,}0767) \approx 94{,}4°\)</p>
-      <p><strong>2. &Eacute;quation de la d&eacute;rivation&nbsp;:</strong><br>
-      Vecteur directeur \(\vec{v}\begin{pmatrix}2\\-4\end{pmatrix}\) &rarr; vecteur normal \(\vec{n}\begin{pmatrix}4\\2\end{pmatrix}\), simplifi&eacute; en \(\vec{n}\begin{pmatrix}2\\1\end{pmatrix}\).<br>
-      Forme&nbsp;: \(2x+y+c=0\). Point \(A(2\,;\,1)\)&nbsp;: \(4+1+c=0 \Rightarrow c=-5\).<br>
-      &Eacute;quation&nbsp;: \(2x+y-5=0\)</p>
-      <p><strong>3. Distance de \(B(6\,;\,3)\)&nbsp;:</strong><br>
-      \(d = \dfrac{|2(6)+3-5|}{\sqrt{4+1}} = \dfrac{|12+3-5|}{\sqrt{5}} = \dfrac{10}{\sqrt{5}} = 2\sqrt{5} \approx 4{,}47\) unit&eacute;s</p>
+      <p><strong>2. Équation de la dérivation :</strong><br>
+      Vecteur directeur \(\vec{v}\begin{pmatrix}2\\-4\end{pmatrix}\) → vecteur normal \(\vec{n}\begin{pmatrix}4\\2\end{pmatrix}\), simplifié en \(\vec{n}\begin{pmatrix}2\\1\end{pmatrix}\).<br>
+      Forme : \(2x+y+c=0\). Point \(A(2\,;\,1)\) : \(4+1+c=0 \Rightarrow c=-5\).<br>
+      Équation : \(2x+y-5=0\)</p>
+      <p><strong>3. Distance de \(B(6\,;\,3)\) :</strong><br>
+      \(d = \dfrac{|2(6)+3-5|}{\sqrt{4+1}} = \dfrac{|12+3-5|}{\sqrt{5}} = \dfrac{10}{\sqrt{5}} = 2\sqrt{5} \approx 4{,}47\) unités</p>
     </details>
   </div>
 
   <!-- Exercice 3 -->
   <div class="exo">
-    <span class="label label-ex">Exercice 3 &mdash; TMA (Vecteur normal et droite)</span>
-    <p>Un plan de coupe repr&eacute;sente une tranche de fa&ccedil;ade. La fa&ccedil;ade est port&eacute;e par la droite \(d : 3x - 5y + 15 = 0\).</p>
+    <span class="label label-ex">Exercice 3 — TMA (Vecteur normal et droite)</span>
+    <p>Un plan de coupe représente une tranche de façade. La façade est portée par la droite \(d : 3x - 5y + 15 = 0\).</p>
     <ol style="padding-left:20px">
       <li>Donner un vecteur normal et un vecteur directeur de \(d\).</li>
-      <li>Une fen&ecirc;tre est centr&eacute;e en \(F(5\,;\,2)\). Calculer la distance de \(F\) &agrave; la fa&ccedil;ade.</li>
-      <li>Un tuyau d&rsquo;&eacute;vacuation passe par \(P(0\,;\,3)\) et est perpendiculaire &agrave; la fa&ccedil;ade. &Eacute;crire son &eacute;quation.</li>
+      <li>Une fenêtre est centrée en \(F(5\,;\,2)\). Calculer la distance de \(F\) à la façade.</li>
+      <li>Un tuyau d’évacuation passe par \(P(0\,;\,3)\) et est perpendiculaire à la façade. Écrire son équation.</li>
     </ol>
     <details>
       <summary>Voir la correction</summary>
-      <p><strong>1.</strong> Vecteur normal&nbsp;: \(\vec{n}\begin{pmatrix}3\\-5\end{pmatrix}\). Vecteur directeur (rotation 90&deg;)&nbsp;: \(\vec{u}\begin{pmatrix}5\\3\end{pmatrix}\).</p>
+      <p><strong>1.</strong> Vecteur normal : \(\vec{n}\begin{pmatrix}3\\-5\end{pmatrix}\). Vecteur directeur (rotation 90°) : \(\vec{u}\begin{pmatrix}5\\3\end{pmatrix}\).</p>
       <p><strong>2.</strong>
-      \(d(F,d) = \dfrac{|3(5)-5(2)+15|}{\sqrt{9+25}} = \dfrac{|15-10+15|}{\sqrt{34}} = \dfrac{20}{\sqrt{34}} \approx \dfrac{20}{5{,}83} \approx 3{,}43\) unit&eacute;s.</p>
-      <p><strong>3.</strong> Un tuyau perpendiculaire &agrave; la fa&ccedil;ade est <strong>parall&egrave;le au vecteur normal</strong> \(\vec{n}\begin{pmatrix}3\\-5\end{pmatrix}\). Son vecteur directeur est \(\begin{pmatrix}3\\-5\end{pmatrix}\), son vecteur normal est donc \(\begin{pmatrix}5\\3\end{pmatrix}\).<br>
-      Forme&nbsp;: \(5x+3y+c=0\). Point \(P(0\,;\,3)\)&nbsp;: \(0+9+c=0 \Rightarrow c=-9\).<br>
-      &Eacute;quation du tuyau&nbsp;: \(5x+3y-9=0\).</p>
+      \(d(F,d) = \dfrac{|3(5)-5(2)+15|}{\sqrt{9+25}} = \dfrac{|15-10+15|}{\sqrt{34}} = \dfrac{20}{\sqrt{34}} \approx \dfrac{20}{5{,}83} \approx 3{,}43\) unités.</p>
+      <p><strong>3.</strong> Un tuyau perpendiculaire à la façade est <strong>parallèle au vecteur normal</strong> \(\vec{n}\begin{pmatrix}3\\-5\end{pmatrix}\). Son vecteur directeur est \(\begin{pmatrix}3\\-5\end{pmatrix}\), son vecteur normal est donc \(\begin{pmatrix}5\\3\end{pmatrix}\).<br>
+      Forme : \(5x+3y+c=0\). Point \(P(0\,;\,3)\) : \(0+9+c=0 \Rightarrow c=-9\).<br>
+      Équation du tuyau : \(5x+3y-9=0\).</p>
     </details>
   </div>
 
   <!-- Exercice 4 -->
   <div class="exo">
-    <span class="label label-ex">Exercice 4 &mdash; Produit scalaire et forces</span>
-    <p>Une fixation subit une force \(\vec{F}\) de norme \(|\vec{F}|=800\)&nbsp;N. Cette force forme un angle de 40&deg; avec l&rsquo;axe de la canalisation d&eacute;fini par le vecteur unitaire \(\vec{u}\) (\(|\vec{u}|=1\)).</p>
+    <span class="label label-ex">Exercice 4 — Produit scalaire et forces</span>
+    <p>Une fixation subit une force \(\vec{F}\) de norme \(|\vec{F}|=800\) N. Cette force forme un angle de 40° avec l’axe de la canalisation défini par le vecteur unitaire \(\vec{u}\) (\(|\vec{u}|=1\)).</p>
     <ol style="padding-left:20px">
       <li>Calculer le produit scalaire \(\vec{F}\cdot\vec{u}\).</li>
-      <li>En d&eacute;duire la composante de la force dans l&rsquo;axe de la canalisation.</li>
-      <li>La fixation est homologu&eacute;e pour 700&nbsp;N dans l&rsquo;axe. Est-elle suffisante&nbsp;? (sans coefficient de s&eacute;curit&eacute;)</li>
+      <li>En déduire la composante de la force dans l’axe de la canalisation.</li>
+      <li>La fixation est homologuée pour 700 N dans l’axe. Est-elle suffisante ? (sans coefficient de sécurité)</li>
     </ol>
     <details>
       <summary>Voir la correction</summary>
-      <p><strong>1.</strong> \(\vec{F}\cdot\vec{u} = |\vec{F}|\times|\vec{u}|\times\cos(40°) = 800\times1\times\cos(40°) \approx 800\times0{,}766 \approx 613\)&nbsp;N</p>
-      <p><strong>2.</strong> La composante axiale vaut environ <strong>613&nbsp;N</strong>.</p>
-      <p><strong>3.</strong> 613&nbsp;N &lt; 700&nbsp;N, donc la fixation est <strong>suffisante</strong> (sans coefficient de s&eacute;curit&eacute;). En pratique, avec un coefficient de 1,3, il faudrait \(613 \times 1{,}3 \approx 797\)&nbsp;N, ce qui d&eacute;passe les 700&nbsp;N&nbsp;: il faudrait alors une fixation homologu&eacute;e &agrave; au moins <strong>800&nbsp;N</strong>.</p>
+      <p><strong>1.</strong> \(\vec{F}\cdot\vec{u} = |\vec{F}|\times|\vec{u}|\times\cos(40°) = 800\times1\times\cos(40°) \approx 800\times0{,}766 \approx 613\) N</p>
+      <p><strong>2.</strong> La composante axiale vaut environ <strong>613 N</strong>.</p>
+      <p><strong>3.</strong> 613 N &lt; 700 N, donc la fixation est <strong>suffisante</strong> (sans coefficient de sécurité). En pratique, avec un coefficient de 1,3, il faudrait \(613 \times 1{,}3 \approx 797\) N, ce qui dépasse les 700 N : il faudrait alors une fixation homologuée à au moins <strong>800 N</strong>.</p>
     </details>
   </div>
 
   <p style="text-align:center;color:#718096;font-size:.83em;margin-top:28px">
-    Ch11 &mdash; Produit scalaire &nbsp;|&nbsp; Terminale Bac Pro ERA, TMA, ICCER &nbsp;|&nbsp; 2025&ndash;2026
+    Ch11 — Produit scalaire  |  Terminale Bac Pro ERA, TMA, ICCER  |  2025–2026
   </p>
 
 </div><!-- /.c -->
@@ -816,5 +816,14 @@ canvas{display:block;margin:0 auto;border-radius:6px}
 </script>
 
 <script src="../../../nav.js"></script>
+
+<!-- Simulations interactives -->
+<div class="retenir" style="border-color:var(--p);background:var(--p-bg)">
+  <h3>Simulation interactive</h3>
+  <ul style="list-style:none;padding:0;margin:0">
+    <li style="margin:.4em 0"><a href="../../../simulations/scalaire.html" target="_blank" style="color:var(--p);font-weight:600;text-decoration:underline">Produit scalaire</a></li>
+  </ul>
+</div>
+
 </body>
 </html>

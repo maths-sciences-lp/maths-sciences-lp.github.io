@@ -90,6 +90,196 @@
   \[y = f'(a)(x - a) + f(a)\]
 </div>
 
+<!-- Animation interactive : tangente à la courbe -->
+<div class="anim-wrap" style="margin:1.5em 0">
+  <h3 style="text-align:center;margin-bottom:.5em;color:var(--p)">Tangente à la courbe de \(f(x) = x^2\)</h3>
+  <p style="text-align:center;font-size:.95em;margin-bottom:.5em;color:#555">
+    Déplacez le point sur la courbe pour voir la tangente et la pente \(f'(a)\).
+  </p>
+  <canvas id="cvTangente" style="display:block;margin:0 auto;border:1px solid var(--p-border);border-radius:8px;cursor:grab;max-width:100%;touch-action:none"></canvas>
+  <p id="infoTangente" style="text-align:center;margin-top:.6em;font-size:1.05em;font-weight:600;color:var(--p)"></p>
+</div>
+<script>
+(function(){
+  var cv = document.getElementById('cvTangente');
+  var info = document.getElementById('infoTangente');
+  var ctx = cv.getContext('2d');
+
+  /* Dimensions */
+  var W, H, dpr;
+  function resize(){
+    var container = cv.parentElement;
+    var w = Math.min(container.clientWidth - 20, 600);
+    dpr = window.devicePixelRatio || 1;
+    W = w; H = Math.round(w * 0.7);
+    cv.width = W * dpr; cv.height = H * dpr;
+    cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+
+  /* Repère : x in [-1, 5], y in [-2, 16] */
+  var xMin = -1, xMax = 5, yMin = -3, yMax = 18;
+  function toPixX(x){ return (x - xMin) / (xMax - xMin) * W; }
+  function toPixY(y){ return H - (y - yMin) / (yMax - yMin) * H; }
+  function fromPixX(px){ return xMin + px / W * (xMax - xMin); }
+  function fromPixY(py){ return yMax - py / H * (yMax - yMin); }
+
+  /* Fonction et dérivée */
+  function f(x){ return x * x; }
+  function fp(x){ return 2 * x; }
+
+  /* Point mobile */
+  var ax = 2;
+  var dragging = false;
+
+  /* Couleurs depuis CSS vars */
+  function getColor(v, fb){
+    try { return getComputedStyle(document.documentElement).getPropertyValue(v).trim() || fb; }
+    catch(e){ return fb; }
+  }
+
+  function draw(){
+    var colP = getColor('--p', '#0969da');
+    var colBg = getColor('--p-bg', '#dbeafe');
+    var colBorder = getColor('--p-border', '#93c5fd');
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#fafbfc';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Grille légère */
+    ctx.strokeStyle = '#e8e8e8'; ctx.lineWidth = 0.5;
+    for(var gx = Math.ceil(xMin); gx <= xMax; gx++){
+      ctx.beginPath(); ctx.moveTo(toPixX(gx), 0); ctx.lineTo(toPixX(gx), H); ctx.stroke();
+    }
+    for(var gy = Math.ceil(yMin); gy <= yMax; gy++){
+      ctx.beginPath(); ctx.moveTo(0, toPixY(gy)); ctx.lineTo(W, toPixY(gy)); ctx.stroke();
+    }
+
+    /* Axes */
+    ctx.strokeStyle = '#444'; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(toPixX(xMin), toPixY(0)); ctx.lineTo(toPixX(xMax), toPixY(0)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(toPixX(0), toPixY(yMin)); ctx.lineTo(toPixX(0), toPixY(yMax)); ctx.stroke();
+
+    /* Graduations */
+    ctx.fillStyle = '#444'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    for(var gx2 = Math.ceil(xMin); gx2 <= xMax; gx2++){
+      if(gx2 === 0) continue;
+      ctx.beginPath(); ctx.moveTo(toPixX(gx2), toPixY(0)-4); ctx.lineTo(toPixX(gx2), toPixY(0)+4); ctx.stroke();
+      ctx.fillText(gx2, toPixX(gx2), toPixY(0)+16);
+    }
+    ctx.textAlign = 'right';
+    for(var gy2 = Math.ceil(yMin); gy2 <= yMax; gy2 += 2){
+      if(gy2 === 0) continue;
+      ctx.beginPath(); ctx.moveTo(toPixX(0)-4, toPixY(gy2)); ctx.lineTo(toPixX(0)+4, toPixY(gy2)); ctx.stroke();
+      ctx.fillText(gy2, toPixX(0)-8, toPixY(gy2)+4);
+    }
+    ctx.fillText('O', toPixX(0)-8, toPixY(0)+14);
+
+    /* Courbe f(x) = x² */
+    ctx.strokeStyle = colP; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for(var px = 0; px <= W; px++){
+      var xx = fromPixX(px);
+      var yy = f(xx);
+      if(px === 0) ctx.moveTo(px, toPixY(yy));
+      else ctx.lineTo(px, toPixY(yy));
+    }
+    ctx.stroke();
+
+    /* Label courbe */
+    ctx.fillStyle = colP; ctx.font = 'italic 13px sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText('f(x) = x\u00B2', toPixX(3.6), toPixY(f(3.6)) - 8);
+
+    /* Tangente */
+    var ay = f(ax);
+    var slope = fp(ax);
+    var tx1 = xMin, ty1 = slope * (tx1 - ax) + ay;
+    var tx2 = xMax, ty2 = slope * (tx2 - ax) + ay;
+    ctx.strokeStyle = '#e63946'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
+    ctx.beginPath(); ctx.moveTo(toPixX(tx1), toPixY(ty1)); ctx.lineTo(toPixX(tx2), toPixY(ty2)); ctx.stroke();
+    ctx.setLineDash([]);
+
+    /* Label tangente */
+    ctx.fillStyle = '#e63946'; ctx.font = '12px sans-serif'; ctx.textAlign = 'left';
+    var lblX = Math.min(ax + 1.2, xMax - 1);
+    var lblY = slope * (lblX - ax) + ay;
+    if(toPixY(lblY) > 14 && toPixY(lblY) < H - 10){
+      ctx.fillText('tangente', toPixX(lblX), toPixY(lblY) - 8);
+    }
+
+    /* Lignes pointillées vers les axes */
+    ctx.strokeStyle = colBorder; ctx.lineWidth = 1; ctx.setLineDash([4, 3]);
+    ctx.beginPath(); ctx.moveTo(toPixX(ax), toPixY(ay)); ctx.lineTo(toPixX(ax), toPixY(0)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(toPixX(ax), toPixY(ay)); ctx.lineTo(toPixX(0), toPixY(ay)); ctx.stroke();
+    ctx.setLineDash([]);
+
+    /* Point A */
+    ctx.beginPath(); ctx.arc(toPixX(ax), toPixY(ay), 7, 0, 2*Math.PI);
+    ctx.fillStyle = colBg; ctx.fill();
+    ctx.strokeStyle = colP; ctx.lineWidth = 2; ctx.stroke();
+
+    /* Label du point */
+    ctx.fillStyle = '#222'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'left';
+    var aLabel = 'A(' + ax.toFixed(1) + ' ; ' + ay.toFixed(1) + ')';
+    ctx.fillText(aLabel, toPixX(ax) + 12, toPixY(ay) - 10);
+
+    /* Info sous le canvas */
+    var slopeStr = slope.toFixed(2).replace('.', ',');
+    var axStr = ax.toFixed(2).replace('.', ',');
+    info.textContent = 'a = ' + axStr + '    \u2192    f\'(a) = 2a = ' + slopeStr + '  (pente de la tangente)';
+  }
+
+  /* Interaction souris */
+  function getPos(e){
+    var rect = cv.getBoundingClientRect();
+    var clientX, clientY;
+    if(e.touches){ clientX = e.touches[0].clientX; clientY = e.touches[0].clientY; }
+    else { clientX = e.clientX; clientY = e.clientY; }
+    return { x: clientX - rect.left, y: clientY - rect.top };
+  }
+
+  function isNearPoint(pos){
+    var px = toPixX(ax), py = toPixY(f(ax));
+    var dx = pos.x - px, dy = pos.y - py;
+    return dx*dx + dy*dy < 400;
+  }
+
+  function onDown(e){
+    var pos = getPos(e);
+    if(isNearPoint(pos)){
+      dragging = true;
+      cv.style.cursor = 'grabbing';
+      e.preventDefault();
+    }
+  }
+  function onMove(e){
+    var pos = getPos(e);
+    if(dragging){
+      ax = fromPixX(pos.x);
+      ax = Math.max(xMin + 0.2, Math.min(xMax - 0.2, ax));
+      draw();
+      e.preventDefault();
+    } else {
+      cv.style.cursor = isNearPoint(pos) ? 'grab' : 'default';
+    }
+  }
+  function onUp(){ dragging = false; cv.style.cursor = 'grab'; }
+
+  cv.addEventListener('mousedown', onDown);
+  cv.addEventListener('mousemove', onMove);
+  cv.addEventListener('mouseup', onUp);
+  cv.addEventListener('mouseleave', onUp);
+  cv.addEventListener('touchstart', onDown, {passive:false});
+  cv.addEventListener('touchmove', onMove, {passive:false});
+  cv.addEventListener('touchend', onUp);
+
+  window.addEventListener('resize', resize);
+  resize();
+})();
+</script>
+
 <div class="ex">
   <strong>Exemple :</strong> Soit \(f(x) = x^2\). Calculons \(f'(3)\).<br><br>
   \[\frac{f(3 + h) - f(3)}{h} = \frac{(3+h)^2 - 9}{h} = \frac{9 + 6h + h^2 - 9}{h} = \frac{6h + h^2}{h} = 6 + h\]
@@ -456,6 +646,14 @@
     <li>Règles : \((u+v)' = u' + v'\) et \((ku)' = ku'\).</li>
     <li>\(f'(x) > 0\) → \(f\) croissante ; \(f'(x) < 0\) → \(f\) décroissante.</li>
     <li>Pour optimiser : dériver, résoudre \(f'(x) = 0\), étudier le signe de \(f'\).</li>
+  </ul>
+</div>
+
+<!-- Simulations interactives -->
+<div class="retenir" style="border-color:var(--p);background:var(--p-bg)">
+  <h3>Simulation interactive</h3>
+  <ul style="list-style:none;padding:0;margin:0">
+    <li style="margin:.4em 0"><a href="../../../simulations/derivee.html" target="_blank" style="color:var(--p);font-weight:600;text-decoration:underline">Fonction dérivée et tangente</a></li>
   </ul>
 </div>
 

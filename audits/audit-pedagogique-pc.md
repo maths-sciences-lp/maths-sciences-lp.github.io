@@ -421,16 +421,16 @@
 
 ### Priorite haute
 - [x] Supprimer les redefinitions CSS inline (`.exo .exo-num`, `details.corr`) dans les 14 fichiers seconde (2026-03-16)
-- [ ] Uniformiser les labels en `label label-def` dans les 10 fichiers premiere-iccer
-- [ ] Uniformiser les labels dans les 5 fichiers premiere-era concernes
-- [ ] Remplacer `class="appli"` par `class="situation"` dans les 8 fichiers terminale-era
+- [x] Uniformiser les labels en `label label-def` dans les 10 fichiers premiere-iccer (deja corrige session 1)
+- [x] Uniformiser les labels dans les 5 fichiers premiere-era concernes (deja corrige session 1)
+- [x] Remplacer `class="appli"` par `class="situation"` dans les 8 fichiers terminale-era (deja corrige session 1)
 - [x] Corriger le lien retour de `physique-chimie/seconde/ch12/lecon.html` (2026-03-16, aussi ch13)
 
 ### Priorite moyenne
 - [ ] Ajouter des blocs `.meth` dans les chapitres terminale-era (objectif : au moins 2 par chapitre)
 - [ ] Uniformiser le format des `<title>` dans toutes les sections
 - [ ] Corriger le placement des labels dans `seconde/ch04` et `seconde/ch05`
-- [ ] Remplacer `class="situation-pro"` par `class="situation"` dans les 7 fichiers premiere-iccer
+- [x] Remplacer `class="situation-pro"` par `class="situation"` dans les 7 fichiers premiere-iccer (deja corrige session 1)
 
 ### Priorite basse
 - [ ] Ajouter des mini-exercices dans les lecons de premiere-iccer

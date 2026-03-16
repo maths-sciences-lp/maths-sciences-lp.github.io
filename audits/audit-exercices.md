@@ -1,7 +1,7 @@
 # Audit Pédagogique des Exercices
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-16 (session 2)
+**Dernière mise à jour** : 2026-03-16 (session 5)
 **Périmètre** : exercices.html et ds.html — 8 sections (maths seconde/première/terminale, physique-chimie seconde/première-iccer/première-era/terminale-iccer/terminale-era)
 **Méthode** : échantillonnage de 2-3 fichiers exercices.html et 2-3 fichiers ds.html par section, lecture et analyse qualitative.
 
@@ -194,18 +194,35 @@ Les corrections utilisent deux patterns différents selon les sections :
 
 Les deux fonctionnent, mais l'incohérence peut créer de la confusion lors de la maintenance.
 
-### 6. Corrections potentiellement incomplètes
+### 6. Corrections massivement incomplètes
 
-**Gravité : MOYENNE**
+**Gravité : CRITIQUE**
 
-Un sondage sur les pages d'exercices montre un déséquilibre entre exercices et corrections :
+L'inventaire complet (2026-03-16) révèle un taux de couverture global de **41.2%** (1 433 `.corr` pour 3 479 `.exo`), soit **2 046 corrections manquantes**.
 
-| Page | Blocs `.exo` | Blocs `.corr` | Écart |
-|---|---|---|---|
-| `maths/seconde/ch01/exercices.html` | 39 | 12 | **-27** |
-| `maths/premiere/ch01/exercices.html` | 36 | 24 | **-12** |
+| Section | `.exo` | `.corr` | Écart | Couverture |
+|---|---|---|---|---|
+| Maths Seconde | 573 | 422 | 151 | 73.6% |
+| Maths Première | 219 | 85 | 134 | 38.8% |
+| Maths Terminale | 338 | 169 | 169 | 50.0% |
+| Maths BTS | 330 | 115 | 215 | 34.8% |
+| PC Seconde | 738 | 221 | 517 | 29.9% |
+| PC Première ICCER | 294 | 96 | 198 | 32.7% |
+| **PC Première ERA** | **99** | **99** | **0** | **100%** |
+| PC Terminale ICCER | 504 | 126 | 378 | 25.0% |
+| PC Terminale ERA | 384 | 96 | 288 | 25.0% |
+| **TOTAL** | **3 479** | **1 433** | **2 046** | **41.2%** |
 
-Un audit complet de toutes les pages d'exercices est nécessaire pour quantifier le problème.
+**Pires fichiers individuels (écart > 50) :**
+- `physique-chimie/terminale-iccer/ch03/exercices.html` : 84 exo / 21 corr (écart 63)
+- `physique-chimie/seconde/ch07/exercices.html` : 76 exo / 15 corr (écart 61)
+- `physique-chimie/seconde/ch05/exercices.html` : 80 exo / 20 corr (écart 60)
+- `physique-chimie/terminale-iccer/ch07/exercices.html` : 72 exo / 18 corr (écart 54)
+- `maths/bts/ch01/exercices.html` : 68 exo / 17 corr (écart 51)
+
+**Section exemplaire** : PC Première ERA (100% de couverture sur 10 chapitres).
+
+**Anomalies** : maths/seconde/ch07 et ch08 ont plus de `.corr` que de `.exo` (structure HTML à vérifier).
 
 ---
 
@@ -226,6 +243,7 @@ Un audit complet de toutes les pages d'exercices est nécessaire pour quantifier
 ## Corrections realisees
 
 - **2026-03-16** : Ajout de diff.js dans les 18 fichiers exercices.html et ds.html de maths/premiere (ch01-ch09)
+- **2026-03-16** : Inventaire complet `.exo` vs `.corr` réalisé — 3 479 exercices, 1 433 corrections, 41.2% couverture globale
 
 ---
 
@@ -235,7 +253,7 @@ Un audit complet de toutes les pages d'exercices est nécessaire pour quantifier
 - [ ] Compléter maths/premiere/ch05/exercices.html (polynômes degré 2)
 - [ ] Compléter maths/premiere/ch09/exercices.html (trigonométrie)
 - [x] Ajouter la différenciation (diff.js) dans les 18 fichiers de maths/premiere (2026-03-16)
-- [ ] Réaliser un inventaire complet : nombre de `.exo` vs `.corr` sur chaque page
+- [x] Réaliser un inventaire complet : nombre de `.exo` vs `.corr` sur chaque page (2026-03-16 — 41.2% couverture)
 
 ### Priorité moyenne
 - [ ] Vérifier la conformité au programme de maths/terminale/ch11 (produit scalaire)

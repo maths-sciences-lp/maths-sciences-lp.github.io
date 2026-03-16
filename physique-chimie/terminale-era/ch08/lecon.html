@@ -195,6 +195,29 @@ input[type=range]{accent-color:var(--p);width:200px}
   <small>L_i = niveau sonore incident (source) | L_t = niveau sonore transmis (après la paroi) | τ = rapport des pressions</small>
 </div>
 
+<div class="meth">
+  <span class="label-meth">Méthode</span>
+  <strong>Calculer l'indice d'affaiblissement R d'une paroi</strong>
+  <ol>
+    <li><strong>Repérer les données :</strong> identifier le niveau sonore incident L<sub>i</sub> (côté source, en dB) et le niveau sonore transmis L<sub>t</sub> (de l'autre côté de la paroi, en dB).</li>
+    <li><strong>Appliquer la formule :</strong> R = L<sub>i</sub> − L<sub>t</sub> (en dB).</li>
+    <li><strong>Vérifier la cohérence :</strong> R doit être positif (le son est toujours atténué en traversant une paroi). Si R est négatif, vérifier que L<sub>i</sub> et L<sub>t</sub> ne sont pas inversés.</li>
+    <li><strong>Interpréter le résultat :</strong> comparer R aux valeurs du tableau des matériaux pour identifier le type de paroi, ou vérifier si la norme réglementaire est respectée (D<sub>nT,A</sub> ≥ 53 dB entre logements).</li>
+  </ol>
+</div>
+
+<div class="meth">
+  <span class="label-meth">Méthode</span>
+  <strong>Calculer R à partir du coefficient d'atténuation τ</strong>
+  <ol>
+    <li><strong>Repérer la donnée :</strong> identifier la valeur de τ (rapport des pressions acoustiques, sans unité, compris entre 0 et 1).</li>
+    <li><strong>Appliquer la formule :</strong> R = −20 × log(τ).</li>
+    <li><strong>Calculer le logarithme :</strong> utiliser la touche « log » de la calculatrice (logarithme décimal, base 10).</li>
+    <li><strong>Attention au signe :</strong> log(τ) est négatif car τ < 1, donc −20 × log(τ) donne bien un résultat positif.</li>
+    <li><strong>Vérifier avec des ordres de grandeur :</strong> τ = 0,1 → R = 20 dB ; τ = 0,01 → R = 40 dB ; τ = 0,001 → R = 60 dB.</li>
+  </ol>
+</div>
+
 <div class="ex">
   <span class="label label-ex">Exemple résolu – Étape par étape</span><br>
   <strong>Problème :</strong> Un mur reçoit un niveau sonore de 72 dB côté source. On mesure 34 dB de l'autre côté du mur. Calculer R, puis vérifier en calculant τ.
@@ -639,6 +662,14 @@ new Chart(document.getElementById('chartR').getContext('2d'), {
 </div>
 
 <p style="text-align:center;margin-top:30px;font-size:.82em;color:#a0aec0">Chapitre 8 – Physique | Bac Pro ERA-MA Terminale | Groupement 3</p>
+
+<!-- Simulations interactives -->
+<div class="retenir" style="border-color:var(--p);background:var(--p-bg)">
+  <h3>Simulation interactive</h3>
+  <ul style="list-style:none;padding:0;margin:0">
+    <li style="margin:.4em 0"><a href="../../../simulations/son.html" target="_blank" style="color:var(--p);font-weight:600;text-decoration:underline">Signal sonore</a></li>
+  </ul>
+</div>
 
 </div>
 <script src="../../../nav.js"></script>

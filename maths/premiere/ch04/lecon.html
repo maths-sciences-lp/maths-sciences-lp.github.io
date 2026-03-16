@@ -152,6 +152,22 @@
   Les solutions de l'équation \(f(x) = g(x)\) sont les <strong>abscisses des points d'intersection</strong> des courbes \(\mathcal{C}_f\) et \(\mathcal{C}_g\).
 </div>
 
+<h3>Visualisation interactive — Résolution de f(x) = g(x)</h3>
+<p>Le graphique ci-dessous montre deux courbes : \(f(x) = x^2 - 2\) (parabole bleue) et \(g(x) = x + k\) (droite orange). Déplacez le curseur pour modifier la valeur de \(k\) et observer comment les points d'intersection (solutions de \(f(x) = g(x)\)) changent.</p>
+
+<div class="anim-wrap">
+  <div style="text-align:center;margin-bottom:.5em">
+    <label for="slider-k" style="font-weight:600">Décalage vertical de g(x) :&nbsp;</label>
+    <input type="range" id="slider-k" min="-4" max="4" step="0.1" value="0" style="width:200px;vertical-align:middle">
+    <span id="val-k" style="font-weight:600;min-width:4em;display:inline-block">k = 0</span>
+  </div>
+  <canvas id="canvas-fxgx" width="600" height="440" style="max-width:100%;display:block;margin:0 auto;border:1px solid #e2e8f0;border-radius:10px;background:#fafbfc"></canvas>
+  <p id="info-solutions" style="text-align:center;font-weight:600;margin-top:.5em;color:#0969da"></p>
+  <p style="text-align:center;font-size:.85em;color:#718096;margin-top:.25em">
+    Déplacez le curseur pour voir comment le nombre de solutions varie : 0, 1 ou 2 points d'intersection.
+  </p>
+</div>
+
 <!-- SVG illustrant f(x) = g(x) -->
 <div class="svg-wrap">
 <svg viewBox="0 0 520 360" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;background:#fafbfc;border:1px solid #e2e8f0;border-radius:10px">
@@ -519,7 +535,139 @@
   <a href="ds.html" class="nav-btn">DS du chapitre 4 →</a>
 </div>
 
+<!-- Simulations interactives -->
+<div class="retenir" style="border-color:var(--p);background:var(--p-bg)">
+  <h3>Simulation interactive</h3>
+  <ul style="list-style:none;padding:0;margin:0">
+    <li style="margin:.4em 0"><a href="../../../simulations/graphe-equation.html" target="_blank" style="color:var(--p);font-weight:600;text-decoration:underline">Résolution graphique d'équations</a></li>
+  </ul>
+</div>
+
 </div>
 <script src="../../../nav.js"></script>
+<script>
+(function(){
+  var canvas = document.getElementById('canvas-fxgx');
+  var ctx = canvas.getContext('2d');
+  var slider = document.getElementById('slider-k');
+  var valK = document.getElementById('val-k');
+  var info = document.getElementById('info-solutions');
+
+  // Coordinate system: x in [-3, 4], y in [-4, 8]
+  var xMin = -3, xMax = 4, yMin = -4, yMax = 8;
+  var pad = {left:50, right:20, top:20, bottom:40};
+
+  function toCanvasX(x){ return pad.left + (x - xMin)/(xMax - xMin)*(canvas.width - pad.left - pad.right); }
+  function toCanvasY(y){ return canvas.height - pad.bottom - (y - yMin)/(yMax - yMin)*(canvas.height - pad.top - pad.bottom); }
+
+  function f(x){ return x*x - 2; }
+  function g(x, k){ return x + k; }
+
+  function findIntersections(k){
+    // x^2 - 2 = x + k  =>  x^2 - x - (2+k) = 0
+    var a = 1, b = -1, c = -(2+k);
+    var disc = b*b - 4*a*c;
+    if(disc < 0) return [];
+    if(disc === 0) return [(-b)/(2*a)];
+    var sq = Math.sqrt(disc);
+    return [(-b - sq)/(2*a), (-b + sq)/(2*a)];
+  }
+
+  function draw(){
+    var k = parseFloat(slider.value);
+    valK.textContent = 'k = ' + k.toFixed(1);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // Grid
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 0.5;
+    for(var gx = Math.ceil(xMin); gx <= Math.floor(xMax); gx++){
+      ctx.beginPath(); ctx.moveTo(toCanvasX(gx), pad.top); ctx.lineTo(toCanvasX(gx), canvas.height-pad.bottom); ctx.stroke();
+    }
+    for(var gy = Math.ceil(yMin); gy <= Math.floor(yMax); gy++){
+      ctx.beginPath(); ctx.moveTo(pad.left, toCanvasY(gy)); ctx.lineTo(canvas.width-pad.right, toCanvasY(gy)); ctx.stroke();
+    }
+
+    // Axes
+    ctx.strokeStyle = '#333'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(pad.left, toCanvasY(0)); ctx.lineTo(canvas.width-pad.right, toCanvasY(0)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(toCanvasX(0), pad.top); ctx.lineTo(toCanvasX(0), canvas.height-pad.bottom); ctx.stroke();
+
+    // Ticks and labels
+    ctx.fillStyle = '#333'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    for(var tx = Math.ceil(xMin); tx <= Math.floor(xMax); tx++){
+      if(tx === 0) continue;
+      ctx.beginPath(); ctx.moveTo(toCanvasX(tx), toCanvasY(0)-4); ctx.lineTo(toCanvasX(tx), toCanvasY(0)+4); ctx.stroke();
+      ctx.fillText(tx, toCanvasX(tx), toCanvasY(0)+16);
+    }
+    ctx.textAlign = 'right';
+    for(var ty = Math.ceil(yMin); ty <= Math.floor(yMax); ty++){
+      if(ty === 0) continue;
+      ctx.beginPath(); ctx.moveTo(toCanvasX(0)-4, toCanvasY(ty)); ctx.lineTo(toCanvasX(0)+4, toCanvasY(ty)); ctx.stroke();
+      ctx.fillText(ty, toCanvasX(0)-8, toCanvasY(ty)+4);
+    }
+    ctx.fillText('O', toCanvasX(0)-8, toCanvasY(0)+16);
+    ctx.textAlign = 'center';
+    ctx.font = 'italic 13px serif';
+    ctx.fillText('x', canvas.width - pad.right + 10, toCanvasY(0)+4);
+    ctx.fillText('y', toCanvasX(0), pad.top - 6);
+
+    // Curve f(x) = x^2 - 2
+    ctx.strokeStyle = '#0969da'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    var step = 0.02;
+    for(var x = xMin; x <= xMax; x += step){
+      var y = f(x);
+      if(y < yMin - 1 || y > yMax + 1) { ctx.moveTo(toCanvasX(x+step), toCanvasY(f(x+step))); continue; }
+      if(x === xMin) ctx.moveTo(toCanvasX(x), toCanvasY(y));
+      else ctx.lineTo(toCanvasX(x), toCanvasY(y));
+    }
+    ctx.stroke();
+
+    // Curve g(x) = x + k
+    ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(toCanvasX(xMin), toCanvasY(g(xMin, k)));
+    ctx.lineTo(toCanvasX(xMax), toCanvasY(g(xMax, k)));
+    ctx.stroke();
+
+    // Labels
+    ctx.font = 'bold 13px sans-serif';
+    ctx.fillStyle = '#0969da';
+    ctx.fillText('f(x) = x\u00B2 \u2212 2', toCanvasX(2.5), toCanvasY(f(2.5)) - 10);
+    ctx.fillStyle = '#d97706';
+    var labelX = 3;
+    ctx.fillText('g(x) = x + ' + k.toFixed(1), toCanvasX(labelX), toCanvasY(g(labelX, k)) - 10);
+
+    // Intersections
+    var pts = findIntersections(k);
+    ctx.fillStyle = '#e53e3e';
+    pts.forEach(function(xi){
+      if(xi < xMin || xi > xMax) return;
+      var yi = f(xi);
+      if(yi < yMin || yi > yMax) return;
+      ctx.beginPath(); ctx.arc(toCanvasX(xi), toCanvasY(yi), 7, 0, 2*Math.PI); ctx.fill();
+      ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.stroke();
+      // Dashed projection
+      ctx.setLineDash([4,3]); ctx.strokeStyle = '#e53e3e'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(toCanvasX(xi), toCanvasY(yi)); ctx.lineTo(toCanvasX(xi), toCanvasY(0)); ctx.stroke();
+      ctx.setLineDash([]);
+      // Label
+      ctx.fillStyle = '#e53e3e'; ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('x \u2248 ' + xi.toFixed(2), toCanvasX(xi), toCanvasY(0) + 30);
+      ctx.fillStyle = '#e53e3e';
+    });
+
+    // Info text
+    var visiblePts = pts.filter(function(xi){ return xi >= xMin && xi <= xMax && f(xi) >= yMin && f(xi) <= yMax; });
+    if(visiblePts.length === 0) info.textContent = 'Aucune solution : les courbes ne se coupent pas.';
+    else if(visiblePts.length === 1) info.textContent = '1 solution : x \u2248 ' + visiblePts[0].toFixed(2) + ' (tangence)';
+    else info.textContent = '2 solutions : x\u2081 \u2248 ' + visiblePts[0].toFixed(2) + ' et x\u2082 \u2248 ' + visiblePts[1].toFixed(2);
+  }
+
+  slider.addEventListener('input', draw);
+  draw();
+})();
+</script>
 </body>
 </html>

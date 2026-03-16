@@ -22,7 +22,7 @@ Ce fichier est lu automatiquement par Claude Code à chaque session.
 │   ├── seconde/ch01..ch14/
 │   ├── premiere-iccer/ch01..ch10/  ← groupement 1 (ICCER)
 │   ├── premiere-era/ch01..ch10/    ← groupement 3 (ERA-MA)
-│   ├── terminale-iccer/ch01..ch11/
+│   ├── terminale-iccer/ch01..ch08/
 │   └── terminale-era/ch01..ch08/
 ├── simulations/                ← Pages interactives (Canvas/SVG/JS)
 ├── prompts/                    ← Prompts pédagogiques de référence

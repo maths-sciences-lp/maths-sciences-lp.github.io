@@ -1,7 +1,7 @@
 # Audit Pedagogique Global
 
 **Date** : 2026-03-16
-**Derniere mise a jour** : 2026-03-16 (session 2)
+**Derniere mise a jour** : 2026-03-16 (session 5)
 **Perimetre** : qualite des cours, clarte pedagogique, coherence inter-niveaux, progression 2nde-1ere-Tle, exemples, contextes professionnels
 **Methode** : lecture integrale ou partielle de 50+ fichiers lecon.html, analyses statistiques CSS, comparaison inter-sections
 **Rapports detailles** : `audit-pedagogique-maths.md`, `audit-pedagogique-pc.md`
@@ -17,14 +17,14 @@ Le site presente une **qualite pedagogique globalement bonne** (note moyenne 4/5
 | Section | Note | Cours complets | Points cles |
 |---|---|---|---|
 | **Maths Seconde** | 4/5 | 14/14 (100%) | Excellentes animations, CSS ancien dans ch02-ch05 |
-| **Maths Premiere** | 3.5/5 | 7/9 (78%) | 2 chapitres stubs (ch05, ch09) — critique |
+| **Maths Premiere** | 4/5 | 9/9 (100%) | ch05 et ch09 redigés (2026-03-16), diff. ajoutee |
 | **Maths Terminale** | 4/5 | 11/11 (100%) | Programme complementaire complet, double contexte ICCER/ERA |
 | **PC Seconde** | 4/5 | 14/14 (100%) | SVG de qualite, redefinitions CSS inline |
 | **PC 1ere ICCER** | 4.5/5 | 10/10 (100%) | Situations pro exemplaires, labels inconsistants |
 | **PC 1ere ERA** | 4/5 | 10/10 (100%) | Contextes menuiserie parfaits, moins de `.meth` |
 | **PC Tle ICCER** | 4.5/5 | 8/8 (100%) | Niveau scientifique eleve, interactivite |
-| **PC Tle ERA** | 3.5/5 | 8/8 (100%) | Peu de `.meth`, `.appli` au lieu de `.situation` |
-| **Moyenne** | **4.0/5** | **82/84 (98%)** | |
+| **PC Tle ERA** | 4/5 | 8/8 (100%) | `.appli`→`.situation` corrige, `.meth` ajoutes (ch01-ch08) |
+| **Moyenne** | **4.1/5** | **84/84 (100%)** | |
 
 ---
 
@@ -48,7 +48,7 @@ Le site presente une **qualite pedagogique globalement bonne** (note moyenne 4/5
 | `maths/premiere/ch09` | **Stub vide** — Trigonometrie (cos, sin, tan) | CRITIQUE |
 | `maths/seconde/ch02` | Incomplet (renvoie vers ch03), classes CSS non-standard | HAUTE |
 | `maths/seconde/ch03` | Container non-standard, classes CSS non-standard | HAUTE |
-| Tous les chapitres `PC Tle ERA` | Seulement 4 blocs `.meth` sur 8 chapitres | MOYENNE |
+| ~~Tous les chapitres `PC Tle ERA`~~ | ~~Seulement 4 blocs `.meth` sur 8 chapitres~~ — **CORRIGE** (2+ par chapitre) | ~~MOYENNE~~ |
 
 ---
 
@@ -68,10 +68,10 @@ Le site presente une **qualite pedagogique globalement bonne** (note moyenne 4/5
 |---|---|---|
 | Polynomes degre 2 | maths/premiere/ch05 | **Absent** — chapitre stub |
 | Trigonometrie | maths/premiere/ch09 | **Absent** — chapitre stub |
-| Resolution graphique | maths/premiere/ch04 | Pas de graphique interactif (paradoxal pour ce sujet) |
+| ~~Resolution graphique~~ | ~~maths/premiere/ch04~~ | ~~Pas de graphique interactif~~ — **CORRIGE** (2026-03-16) |
 | Geometrie dans l'espace | maths/premiere/ch07 | Pas de visualisation 3D |
-| Derivee (tangente) | maths/premiere/ch06 | Pas d'animation tangente glissante |
-| Suites (representation) | maths/premiere/ch03 | Pas de graphique Chart.js pour les termes (n, u_n) |
+| ~~Derivee (tangente)~~ | ~~maths/premiere/ch06~~ | ~~Pas d'animation tangente glissante~~ — **CORRIGE** (2026-03-16) |
+| ~~Suites (representation)~~ | ~~maths/premiere/ch03~~ | ~~Pas de graphique Chart.js~~ — **CORRIGE** (2026-03-16) |
 
 ---
 
@@ -189,11 +189,11 @@ Les modules communs (combustion, transferts thermiques, moments, pression, solut
 
 ### Priorite MOYENNE
 
-7. **PC Tle ERA : faible guidage methodologique** : seulement 4 blocs `.meth` sur 8 chapitres (vs 23 pour Tle ICCER).
+7. ~~**PC Tle ERA : faible guidage methodologique**~~ : **CORRIGE** — `.meth` ajoutes dans les 8 chapitres (2+ par chapitre).
 
 8. **Maths 1ere : pas de visualisations interactives** : contrairement a la Seconde, les chapitres 1ere n'ont quasiment pas de Chart.js, SVG ou Canvas.
 
-9. **Maths 1ere ch06** : pas d'animation tangente glissante pour la derivation.
+9. ~~**Maths 1ere ch06**~~ : **CORRIGE** — animation tangente glissante ajoutee (Canvas interactif).
 
 10. **PC 1ere ICCER** : `class="situation-pro"` au lieu de `class="situation"` dans 7 fichiers.
 
@@ -207,7 +207,7 @@ Les modules communs (combustion, transferts thermiques, moments, pression, solut
 
 14. **Maths seconde** : badges de niveaux heterogenes (`badge-niv badge-1` vs `badge badge-green`).
 
-15. **Maths terminale** : entites HTML (`&ndash;`, `&eacute;`) au lieu de caracteres UTF-8 dans certains titres.
+15. ~~**Maths terminale** : entites HTML (`&ndash;`, `&eacute;`) au lieu de caracteres UTF-8 dans certains titres.~~ — **CORRIGE 2026-03-16** (44 fichiers, 6 041 entites)
 
 16. **PC seconde** : pas de classe `.situation` (0 occurrences) — contextes pro non balises.
 
@@ -221,18 +221,23 @@ Les modules communs (combustion, transferts thermiques, moments, pression, solut
 - **2026-03-16** : Remplace `class="situation-pro"` par `class="situation"` dans les 7 fichiers `physique-chimie/premiere-iccer`
 - **2026-03-16** : Uniformise `label-def/prop/att/meth` en `label label-def/prop/att/meth` dans 17 fichiers `physique-chimie/premiere-iccer` (119 occurrences)
 - **2026-03-16** : Corrige le lien retour de `physique-chimie/seconde/ch12/lecon.html` et `fiche.html` (index.html → pc-2nde-pro.html)
+- **2026-03-16** : Converti 6 041 entites HTML en UTF-8 dans les 44 fichiers de maths/terminale
 - **2026-03-16** : Harmonise CSS maths/seconde/ch02-ch05 (def-box→def, exemple→ex, container→c, methode→meth)
 - **2026-03-16** : Supprime redefinitions CSS inline dans 28 fichiers physique-chimie/seconde (centralise dans styles.css)
 - **2026-03-16** : Ajoute diff.js dans 18 fichiers maths/premiere (exercices.html + ds.html)
 - **2026-03-16** : Corrige le lien retour de physique-chimie/seconde/ch13/lecon.html (index.html → pc-2nde-pro.html)
+- **2026-03-16** : Ajoute blocs `.meth` dans PC terminale-era ch07 et ch08 (2 par chapitre, total 8 chapitres couverts)
+- **2026-03-16** : Ajoute animation tangente glissante interactive dans maths/premiere/ch06 (Canvas)
+- **2026-03-16** : Uniformise labels dans PC premiere-era ch06-ch10 (`label-def` → `label label-def`)
+- **2026-03-16** : Corrige CLAUDE.md : terminale-iccer ch01..ch08 (et non ch11)
 
 ---
 
 ## Ameliorations restantes
 
 ### Priorite critique
-- [ ] Rediger `maths/premiere/ch05/lecon.html` (Polynomes degre 2)
-- [ ] Rediger `maths/premiere/ch09/lecon.html` (Trigonometrie)
+- [x] Rediger `maths/premiere/ch05/lecon.html` (Polynomes degre 2) (2026-03-16)
+- [x] Rediger `maths/premiere/ch09/lecon.html` (Trigonometrie) (2026-03-16)
 
 ### Priorite haute
 - [x] Ajouter diff.js et differenciation dans `maths/premiere` (18 fichiers exercices + ds) (2026-03-16)
@@ -242,17 +247,17 @@ Les modules communs (combustion, transferts thermiques, moments, pression, solut
 - [x] Remplacer `class="appli"` par `class="situation"` dans les 8 fichiers `terminale-era` (2026-03-16)
 
 ### Priorite moyenne
-- [ ] Ajouter des blocs `.meth` dans les chapitres `terminale-era` (objectif : 2+ par chapitre)
-- [ ] Ajouter visualisations interactives en `maths/premiere` (Chart.js pour ch03 suites, ch04 graphique, ch06 tangente)
+- [x] Ajouter des blocs `.meth` dans les chapitres `terminale-era` (objectif : 2+ par chapitre) (2026-03-16)
+- [x] Ajouter visualisations interactives en `maths/premiere` (Chart.js pour ch03 suites, ch04 graphique, ch06 tangente) (2026-03-16)
 - [x] Remplacer `class="situation-pro"` par `class="situation"` dans les 7 fichiers `premiere-iccer` (2026-03-16)
 - [x] Corriger lien retour de `physique-chimie/seconde/ch12/lecon.html` (2026-03-16)
-- [ ] Corriger placement des labels dans `seconde/ch04` et `seconde/ch05`
-- [ ] Uniformiser les labels dans les 5 fichiers `premiere-era` concernes
+- [x] Corriger placement des labels dans `seconde/ch04` et `seconde/ch05` (2026-03-16)
+- [x] Uniformiser les labels dans les 5 fichiers `premiere-era` concernes (2026-03-16)
 
 ### Priorite basse
 - [ ] Uniformiser le format des `<title>` dans toutes les sections
 - [ ] Harmoniser badges de niveaux dans mini-exercices `maths/seconde`
-- [ ] Convertir entites HTML en UTF-8 (maths terminale ch04, ch05, ch08)
+- [x] Convertir entites HTML en UTF-8 dans maths/terminale (44 fichiers, 6 041 entites) (2026-03-16)
 - [ ] Ajouter `.situation` aux contextes pro existants en `physique-chimie/seconde`
 - [ ] Ajouter mini-exercices dans les lecons de `premiere-iccer`
 - [ ] Enrichir situations pro de `terminale-era` (personnages, scenarios)
