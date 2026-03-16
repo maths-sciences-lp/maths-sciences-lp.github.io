@@ -286,13 +286,22 @@ Si de nouvelles classes communes sont ajoutées à plusieurs pages, les centrali
 
 ---
 
-## SYSTÈME D'AUDITS — DOCUMENTS VIVANTS
+## Audits du site
 
-### Principe
+Claude doit régulièrement proposer des audits du projet afin d'améliorer :
 
-Les fichiers dans `/audits/` sont des **documents vivants** qui suivent l'évolution du site. Ils constituent le tableau de bord du projet.
+- la qualité pédagogique
+- la cohérence avec les programmes scolaires
+- la structure du site
+- la qualité des exercices
+- la pertinence des simulations
+- la cohérence entre les niveaux (2nde, première, terminale)
 
-### Fichiers d'audit
+Les audits doivent être enregistrés dans le dossier `/audits/` sous forme de fichiers markdown.
+
+Les audits doivent être mis à jour lorsque le site évolue.
+
+### Fichiers d'audit existants
 
 | Fichier | Dimension auditée |
 |---|---|
@@ -333,9 +342,3 @@ Après correction :
 ## Corrections realisees
 - **2026-03-17** : Corrigé les 61 chemins absolus `/nav.js` → `../../../nav.js`
 ```
-
-### Objectifs du système
-- Éviter de refaire les mêmes analyses à chaque session
-- Suivre l'avancement du projet en temps réel
-- Identifier rapidement les priorités restantes
-- Garder une trace historique des corrections
