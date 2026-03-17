@@ -1,7 +1,7 @@
 # Audit Global du Site Pédagogique
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-16 (session 4)
+**Dernière mise à jour** : 2026-03-17
 **Périmètre** : ensemble du site maths-sciences-lp.github.io
 
 ---
@@ -56,6 +56,7 @@ Chaque chapitre existant possède les 3 types de pages (lecon, exercices, ds).
 
 - **2026-03-16 (sessions 1-3)** : Corrigé 104 chemins absolus (nav.js, nav.css, diff.js), ajouté diff.js à maths/premiere (18 fichiers), harmonisé CSS maths seconde + PC seconde, standardisé labels PC premiere, remplacé .appli→.situation PC terminale ERA, retiré nav.js de 26 simulations, rédigé maths premiere ch05 et ch09.
 - **2026-03-16 (session 4)** : Lié 63 simulations à 79 pages de cours (0 orpheline restante). Ajouté blocs .meth à PC terminale ERA ch01-ch06. Ajouté visualisations interactives à maths premiere ch03 et ch04.
+- **2026-03-17** : Rendu 97 SVG responsive dans 46 fichiers (arbres, schémas, graphiques) — suppression du débordement horizontal sur mobile/tablette.
 
 ---
 
@@ -72,6 +73,7 @@ Chaque chapitre existant possède les 3 types de pages (lecon, exercices, ds).
 - [ ] Compléter les corrections manquantes dans les pages d'exercices
 
 ### Priorité basse
+- [x] Rendre les SVG responsive sur l'ensemble du site (97 SVG dans 46 fichiers, 2026-03-17)
 - [ ] Compléter les 29 pages BTS stub (exercices et DS)
 - [ ] Harmoniser les conventions de nommage entre sections
 - [ ] Mettre en place un script de vérification automatique (CI)

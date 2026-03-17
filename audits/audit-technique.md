@@ -2,6 +2,7 @@
 
 **Date** : 2026-03-16
 **Derniere mise a jour** : 2026-03-17
+**Score de conformite** : 92/100
 **Perimetre** : HTML, CSS, JavaScript, chemins, accessibilite, simulations, performances
 **Nombre total de fichiers HTML audites** : 477 (191 maths, 180 physique-chimie, 63 simulations, 43 autres)
 
@@ -11,7 +12,7 @@
 
 Le site presente une bonne coherence globale dans sa structure HTML et son usage des classes CSS. Les variables de couleur par matiere/niveau sont correctement appliquees sur l'ensemble du site. Les **trois problemes critiques de chemins absolus** (nav.js, nav.css, diff.js) ont ete **corriges le 2026-03-16** (104 fichiers). Il reste des problemes de **liens casses** (5 sommaires + 1 lien interne), des **simulations non autonomes** (26/63 incluent nav.js) et la **differenciation absente en maths/premiere** (18 fichiers).
 
-**Score de conformite** : 90/100
+**Score de conformite** : 92/100
 
 | Dimension | Etat |
 |---|---|
@@ -22,6 +23,7 @@ Le site presente une bonne coherence globale dans sa structure HTML et son usage
 | Chemins vers nav.js | Conforme (corrige 2026-03-16) |
 | Chemins vers nav.css | Conforme (corrige 2026-03-16) |
 | Chemins vers diff.js | Conforme (corrige 2026-03-16) |
+| SVG responsive (width/max-width) | Conforme (corrige 2026-03-17) |
 | Simulations autonomes | NON CONFORME (26/63 avec nav.js) |
 | diff.js uniquement exercices/ds | NON CONFORME (present en Seconde) |
 | Liens de retour sommaire | Conforme (corrige 2026-03-16) |
@@ -173,7 +175,19 @@ MathJax est inclus dans la grande majorite des pages de cours et exercices (403 
 
 ---
 
-## 6. Accessibilite basique
+## 6. SVG responsive — CORRIGE
+
+### 6.1 SVG a dimensions fixes — CORRIGE
+
+~~**Gravite : MOYENNE** — 97 SVG dans 46 fichiers utilisaient des dimensions fixes (`width="700" height="320"`) sans `max-width:100%`, provoquant un debordement horizontal sur mobile/tablette.~~
+
+**Corrige le 2026-03-17** : 97 SVG corriges dans 46 fichiers. Remplacement de `width="NUM" height="NUM"` par `width="100%" style="max-width:NUMpx;height:auto"`. Les SVG < 200px (icones) n'ont pas ete modifies.
+
+Fichiers concernes : maths (seconde ch01-ch13, premiere ch07/ch09, terminale ch02/ch06/ch07, BTS ch17/ch18/ch20/ch21/ch24), physique-chimie (seconde ch01-ch13, premiere-era ch06/ch09, terminale-era ch05-ch08, terminale-iccer ch01-ch06), automatismes/polynomes.html.
+
+---
+
+## 7. Accessibilite basique
 
 ### 6.1 Images — Non applicable
 
@@ -208,8 +222,9 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 | 6 | ~~diff.js en Seconde (hors perimetre)~~ | ~~MOYENNE~~ | ~~56~~ | **RESOLU** — CLAUDE.md mis a jour, Seconde incluse |
 | ~~7~~ | ~~diff.js absent en Premiere maths~~ | ~~MOYENNE~~ | ~~18~~ | **CORRIGE 2026-03-16** |
 | 8 | Simulations non autonomes (nav.js) | MOYENNE | 26 | Non-conformite CLAUDE.md |
-| 9 | Tableaux sans `scope`/`caption` | BASSE | Generalise | Accessibilite reduite |
-| 10 | Boutons interactifs sans ARIA | BASSE | Generalise | Accessibilite reduite |
+| ~~9~~ | ~~SVG a dimensions fixes (debordement mobile)~~ | ~~MOYENNE~~ | ~~97 (46 fichiers)~~ | **CORRIGE 2026-03-17** |
+| 10 | Tableaux sans `scope`/`caption` | BASSE | Generalise | Accessibilite reduite |
+| 11 | Boutons interactifs sans ARIA | BASSE | Generalise | Accessibilite reduite |
 
 ---
 
@@ -232,6 +247,7 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - **2026-03-17** : Nettoie le CSS inline de maths/seconde/ch05/lecon.html (28→4 lignes), ch04/lecon.html et ch06/lecon.html (suppression des doublons)
 - **2026-03-17** : Remplace .hprog (classe inline) par .hors-prog (classe centralisée dans styles.css) dans maths/terminale/ch02/lecon.html
 - **2026-03-17** : Ajoute « Terminale Bac Pro » aux balises `<title>` de maths/terminale/ch02/ (lecon.html, exercices.html, ds.html)
+- **2026-03-17** : Rend 97 SVG responsive dans 46 fichiers (width="100%" + max-width) — supprime le debordement horizontal sur mobile/tablette pour tous les schemas, arbres et graphiques > 200px
 
 ---
 
@@ -252,6 +268,7 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - [x] Corriger les liens casses dans maths/seconde/ch05/ (lecon.html, simulation.html, exercices.html) (2026-03-17)
 - [x] Ajouter toggle() dans maths/seconde/ch05/lecon.html (2026-03-17)
 - [x] Supprimer le bloc HTML hors-conteneur dans maths/seconde/ch05/lecon.html (2026-03-17)
+- [x] Rendre les 97 SVG responsive (width="100%" + max-width) dans 46 fichiers (2026-03-17)
 - [ ] Retirer nav.js des 26 simulations pour les rendre autonomes conformement a CLAUDE.md
 
 ### Priorite BASSE
