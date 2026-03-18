@@ -15,9 +15,9 @@ Ce fichier est lu automatiquement par Claude Code à chaque session.
 ├── diff.js                     ← Toggle différenciation pédagogique (socle/standard/appro)
 ├── index.html                  ← Page d'accueil
 ├── maths/
-│   ├── seconde/ch01..ch14/     ← lecon.html, exercices.html, ds.html
-│   ├── premiere/ch01..ch09/    ← lecon.html, exercices.html, ds.html
-│   └── terminale/ch01..ch11/   ← lecon.html, exercices.html, ds.html
+│   ├── seconde/ch01..ch14/
+│   ├── premiere/ch01..ch09/
+│   └── terminale/ch01..ch11/
 ├── physique-chimie/
 │   ├── seconde/ch01..ch14/
 │   ├── premiere-iccer/ch01..ch10/  ← groupement 1 (ICCER)
@@ -30,6 +30,22 @@ Ce fichier est lu automatiquement par Claude Code à chaque session.
 ├── audits/                     ← Audits qualité (documents vivants)
 └── scripts/extract_css.py      ← Outil de maintenance CSS
 ```
+
+### Structure d'un chapitre (`subject/level/chNN/`)
+
+Chaque dossier de chapitre peut contenir les fichiers suivants :
+
+| Fichier | Rôle | Présence |
+|---|---|---|
+| `lecon.html` | Cours (identique pour tous les élèves) | **Obligatoire** — tous les chapitres |
+| `exercices.html` | Exercices d'entraînement (différenciés socle/standard/appro) | **Obligatoire** — tous les chapitres |
+| `ds.html` | Devoir surveillé (différencié socle/standard/appro) | **Obligatoire** — tous les chapitres |
+| `fiche.html` | Fiche de révision / mémo du chapitre | Standard — majorité des chapitres |
+| `qcm.html` | QCM interactif avec correction automatique et score (différencié) | Optionnel — à créer pour chaque chapitre |
+| `interro.html` | Interrogation écrite courte, 10-15 min, barème /20 (différenciée) | Optionnel — à créer pour chaque chapitre |
+| `simulation.html` | Simulation interactive liée au chapitre | Optionnel — si pertinent |
+
+**Objectif :** chaque chapitre devrait à terme contenir les 7 fichiers ci-dessus.
 
 ---
 
