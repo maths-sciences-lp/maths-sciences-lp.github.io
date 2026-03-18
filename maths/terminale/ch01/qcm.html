@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Statistiques à deux variables – QCM – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>QCM – Statistiques à deux variables</h1>
+  <p class="sous-titre">Chapitre 1 | Terminale Bac Pro | Mathématiques</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">⏱ <strong>Durée :</strong> 15–20 min</div>
+  <div class="dh-item">📄 <strong>15 questions</strong></div>
+  <div class="dh-item">🧮 <strong>Calculatrice autorisée</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne réponse</strong> puis cliquez sur « Valider le QCM » en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Nuage de points – Vocabulaire</p>
+  <p>Un nuage de points représente :</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> une seule variable statistique</label>
+    <label><input type="radio" name="s1" value="b"> des couples \((x_i\,;\,y_i)\) dans un repère</label>
+    <label><input type="radio" name="s1" value="c"> uniquement des histogrammes</label>
+    <label><input type="radio" name="s1" value="d"> la médiane d'une série</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 2</h3>
+  <p class="theme">Nuage de points – Liaison</p>
+  <p>Quand les points d'un nuage s'alignent en montant de gauche à droite, la liaison est :</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> positive</label>
+    <label><input type="radio" name="s2" value="b"> négative</label>
+    <label><input type="radio" name="s2" value="c"> nulle</label>
+    <label><input type="radio" name="s2" value="d"> non linéaire</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 3</h3>
+  <p class="theme">Nuage de points – Liaison négative</p>
+  <p>Pour les données chauffage (température vs consommation), quand la température augmente, la consommation :</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> augmente</label>
+    <label><input type="radio" name="s3" value="b"> reste constante</label>
+    <label><input type="radio" name="s3" value="c"> diminue</label>
+    <label><input type="radio" name="s3" value="d"> double</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Point moyen – Calcul</p>
+  <p>Pour les valeurs \(x\) : 2, 4, 6, la moyenne \(\bar{x}\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> 2</label>
+    <label><input type="radio" name="s4" value="b"> 6</label>
+    <label><input type="radio" name="s4" value="c"> 12</label>
+    <label><input type="radio" name="s4" value="d"> 4</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Point moyen – Propriété</p>
+  <p>La droite de régression passe obligatoirement par :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> l'origine du repère (0 ; 0)</label>
+    <label><input type="radio" name="s5" value="b"> le point moyen \(G(\bar{x}\,;\,\bar{y})\)</label>
+    <label><input type="radio" name="s5" value="c"> le point de coordonnées (1 ; 1)</label>
+    <label><input type="radio" name="s5" value="d"> le point le plus à gauche du nuage</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 6</h3>
+  <p class="theme">Droite de régression – Forme</p>
+  <p>L'équation d'une droite de régression s'écrit sous la forme :</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> \(y = ax + b\)</label>
+    <label><input type="radio" name="s6" value="b"> \(y = ax^2 + b\)</label>
+    <label><input type="radio" name="s6" value="c"> \(y = a/x\)</label>
+    <label><input type="radio" name="s6" value="d"> \(y = a^x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 7</h3>
+  <p class="theme">Coefficient de corrélation – Plage de valeurs</p>
+  <p>Le coefficient de corrélation \(r\) est toujours :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> compris entre 0 et 1</label>
+    <label><input type="radio" name="s7" value="b"> compris entre 0 et 100</label>
+    <label><input type="radio" name="s7" value="c"> compris entre −1 et 1</label>
+    <label><input type="radio" name="s7" value="d"> toujours positif</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 8</h3>
+  <p class="theme">Coefficient de corrélation – Interprétation</p>
+  <p>Si \(r = -0{,}98\), la liaison entre \(x\) et \(y\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> positive et forte</label>
+    <label><input type="radio" name="s8" value="b"> négative et forte</label>
+    <label><input type="radio" name="s8" value="c"> nulle</label>
+    <label><input type="radio" name="s8" value="d"> positive et faible</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 9</h3>
+  <p class="theme">Coefficient de corrélation – Seuil</p>
+  <p>L'ajustement affine est considéré comme acceptable quand :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> \(|r| < 0{,}5\)</label>
+    <label><input type="radio" name="s9" value="b"> \(r = 0\)</label>
+    <label><input type="radio" name="s9" value="c"> \(r > 2\)</label>
+    <label><input type="radio" name="s9" value="d"> \(|r| > 0{,}85\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">Utiliser la droite – Calcul</p>
+  <p>La droite d'ajustement est \(y = 3x + 5\). Pour \(x = 4\), on obtient \(y =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> 17</label>
+    <label><input type="radio" name="s10" value="b"> 12</label>
+    <label><input type="radio" name="s10" value="c"> 32</label>
+    <label><input type="radio" name="s10" value="d"> 7</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 11</h3>
+  <p class="theme">Interpolation – Définition</p>
+  <p>Interpoler, c'est estimer une valeur :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> en dehors des données connues</label>
+    <label><input type="radio" name="s11" value="b"> toujours plus grande que les données</label>
+    <label><input type="radio" name="s11" value="c"> pour un \(x\) situé à l'intérieur de l'intervalle des données</label>
+    <label><input type="radio" name="s11" value="d"> à partir d'un seul point</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 12</h3>
+  <p class="theme">Extrapolation – Risque</p>
+  <p>L'extrapolation est plus risquée que l'interpolation parce que :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> elle donne toujours un résultat négatif</label>
+    <label><input type="radio" name="s12" value="b"> le modèle peut ne plus être valable hors de la zone de données</label>
+    <label><input type="radio" name="s12" value="c"> elle est interdite en mathématiques</label>
+    <label><input type="radio" name="s12" value="d"> elle nécessite une calculatrice spéciale</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 13</h3>
+  <p class="theme">Nuage de points – Identification</p>
+  <p>Parmi ces descriptions de nuage, laquelle correspond à une liaison nulle ?</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> les points forment une droite montante</label>
+    <label><input type="radio" name="s13" value="b"> les points forment une droite descendante</label>
+    <label><input type="radio" name="s13" value="c"> les points forment une courbe en cloche</label>
+    <label><input type="radio" name="s13" value="d"> les points sont complètement dispersés, sans tendance visible</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">Point moyen – Application</p>
+  <p>Pour les couples (1 ; 10), (3 ; 20), (5 ; 30), le point moyen \(G\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> \(G(3\,;\,20)\)</label>
+    <label><input type="radio" name="s14" value="b"> \(G(1\,;\,30)\)</label>
+    <label><input type="radio" name="s14" value="c"> \(G(5\,;\,10)\)</label>
+    <label><input type="radio" name="s14" value="d"> \(G(9\,;\,60)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 15</h3>
+  <p class="theme">Droite de régression – Signe de \(a\)</p>
+  <p>Si la liaison entre \(x\) et \(y\) est négative, le coefficient directeur \(a\) de la droite de régression est :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> positif</label>
+    <label><input type="radio" name="s15" value="b"> nul</label>
+    <label><input type="radio" name="s15" value="c"> négatif</label>
+    <label><input type="radio" name="s15" value="d"> supérieur à 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Point moyen – Calcul</p>
+  <p>Pour les températures (°C) : 2, 5, 8, 10, 14, 17, 19, 22, la moyenne \(\bar{x}\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t1" value="a"> 10 °C</label>
+    <label><input type="radio" name="t1" value="b"> 12,1 °C</label>
+    <label><input type="radio" name="t1" value="c"> 14 °C</label>
+    <label><input type="radio" name="t1" value="d"> 97 °C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Droite de régression – Propriété</p>
+  <p>Vérifier que \(G\) appartient à \(y = -42{,}4x + 1063\) avec \(\bar{x} \approx 12{,}1\) donne \(y \approx\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t2" value="a"> 120 kWh</label>
+    <label><input type="radio" name="t2" value="b"> 980 kWh</label>
+    <label><input type="radio" name="t2" value="c"> 550 kWh</label>
+    <label><input type="radio" name="t2" value="d"> 1063 kWh</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Coefficient de corrélation – Qualité</p>
+  <p>Pour les données chauffage, la calculatrice donne \(r \approx -0{,}999\). Cela signifie que la liaison est :</p>
+  <div class="options">
+    <label><input type="radio" name="t3" value="a"> très forte et négative — l'ajustement est excellent</label>
+    <label><input type="radio" name="t3" value="b"> faible — il faut changer de modèle</label>
+    <label><input type="radio" name="t3" value="c"> positive et forte</label>
+    <label><input type="radio" name="t3" value="d"> nulle — pas de relation entre les variables</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Prévision – Interpolation</p>
+  <p>Avec \(y = -42{,}4x + 1063\), la consommation prévue pour \(x = 12\,°C\) (dans l'intervalle [2 ; 22]) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t4" value="a"> 1063 kWh</label>
+    <label><input type="radio" name="t4" value="b"> 42,4 kWh</label>
+    <label><input type="radio" name="t4" value="c"> 600 kWh</label>
+    <label><input type="radio" name="t4" value="d"> 554 kWh</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Interpolation vs extrapolation</p>
+  <p>Avec la droite de chauffage définie sur [2 ; 22], estimer la consommation pour \(x = 25\,°C\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t5" value="a"> une interpolation, car 25 est proche de 22</label>
+    <label><input type="radio" name="t5" value="b"> une extrapolation, car 25 est hors de l'intervalle [2 ; 22]</label>
+    <label><input type="radio" name="t5" value="c"> une interpolation, car la droite est définie pour tout \(x\)</label>
+    <label><input type="radio" name="t5" value="d"> impossible à calculer</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Coefficient \(r\) – Seuil d'acceptabilité</p>
+  <p>Un calcul donne \(r = 0{,}72\). Faut-il conserver l'ajustement affine ?</p>
+  <div class="options">
+    <label><input type="radio" name="t6" value="a"> Oui, car \(r > 0\)</label>
+    <label><input type="radio" name="t6" value="b"> Oui, car \(|r|\) est proche de 1</label>
+    <label><input type="radio" name="t6" value="c"> Non, car \(|r| = 0{,}72 < 0{,}85\) — la liaison est trop faible</label>
+    <label><input type="radio" name="t6" value="d"> Non, car \(r\) doit être négatif</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">COP d'une PAC – Interprétation</p>
+  <p>La droite d'ajustement du COP d'une PAC est \(y = 0{,}112x + 2{,}638\). Le coefficient \(a = 0{,}112\) signifie :</p>
+  <div class="options">
+    <label><input type="radio" name="t7" value="a"> quand la température augmente de 1°C, le COP augmente de 0,112</label>
+    <label><input type="radio" name="t7" value="b"> le COP vaut toujours 0,112</label>
+    <label><input type="radio" name="t7" value="c"> la température minimum est 0,112°C</label>
+    <label><input type="radio" name="t7" value="d"> quand la température augmente de 1°C, le COP diminue de 0,112</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">COP d'une PAC – Prévision</p>
+  <p>Avec \(y = 0{,}112x + 2{,}638\), le COP prévu pour une température extérieure de \(x = 3\,°C\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t8" value="a"> 2,638</label>
+    <label><input type="radio" name="t8" value="b"> 3,000</label>
+    <label><input type="radio" name="t8" value="c"> 2,750</label>
+    <label><input type="radio" name="t8" value="d"> 2,974</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Droite de régression – Ordonnée à l'origine</p>
+  <p>Dans la droite \(y = ax + b\), la valeur \(b\) représente :</p>
+  <div class="options">
+    <label><input type="radio" name="t9" value="a"> la pente de la droite</label>
+    <label><input type="radio" name="t9" value="b"> la valeur de \(y\) quand \(x = 0\)</label>
+    <label><input type="radio" name="t9" value="c"> le coefficient de corrélation</label>
+    <label><input type="radio" name="t9" value="d"> la moyenne de \(y\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Ajustement non affine – Principe</p>
+  <p>Quand le nuage de points n'est pas rectiligne, on peut :</p>
+  <div class="options">
+    <label><input type="radio" name="t10" value="a"> toujours utiliser quand même la droite de régression</label>
+    <label><input type="radio" name="t10" value="b"> abandonner toute modélisation</label>
+    <label><input type="radio" name="t10" value="c"> effectuer un changement de variable pour linéariser la relation</label>
+    <label><input type="radio" name="t10" value="d"> inverser les axes \(x\) et \(y\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Ajustement exponentiel – Changement de variable</p>
+  <p>Pour une relation de type \(y = A \cdot q^x\), le changement de variable à effectuer est :</p>
+  <div class="options">
+    <label><input type="radio" name="t11" value="a"> \(z = \log(y)\)</label>
+    <label><input type="radio" name="t11" value="b"> \(z = \sqrt{y}\)</label>
+    <label><input type="radio" name="t11" value="c"> \(z = y^2\)</label>
+    <label><input type="radio" name="t11" value="d"> \(z = 1/y\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Productivité – Prévision</p>
+  <p>La droite de régression d'une série est \(y = 2{,}19x + 10{,}2\). Pour un ouvrier ayant 6 ans d'expérience, la productivité prévue est :</p>
+  <div class="options">
+    <label><input type="radio" name="t12" value="a"> 10,2 pièces/heure</label>
+    <label><input type="radio" name="t12" value="b"> 12,19 pièces/heure</label>
+    <label><input type="radio" name="t12" value="c"> 19,2 pièces/heure</label>
+    <label><input type="radio" name="t12" value="d"> 23,3 pièces/heure</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Loi d'Ohm – Interprétation statistique</p>
+  <p>Pour les mesures tension/courant, la droite de régression donne \(U = 0{,}0495\,I - 0{,}02\) avec \(r = 0{,}9998\). La résistance vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t13" value="a"> 0,0495 Ω</label>
+    <label><input type="radio" name="t13" value="b"> 49,5 Ω</label>
+    <label><input type="radio" name="t13" value="c"> 0,02 Ω</label>
+    <label><input type="radio" name="t13" value="d"> 4,95 Ω</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Coefficient \(r\) – Signe</p>
+  <p>Pour les données chauffage (consommation diminue quand température augmente), le signe de \(r\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t14" value="a"> positif, car la consommation est positive</label>
+    <label><input type="radio" name="t14" value="b"> nul, car les variables sont indépendantes</label>
+    <label><input type="radio" name="t14" value="c"> négatif, car la liaison est négative</label>
+    <label><input type="radio" name="t14" value="d"> toujours positif quel que soit le contexte</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Ajustement – Choix du modèle</p>
+  <p>Si \(|r| = 0{,}60\) pour un ajustement affine, que doit-on faire ?</p>
+  <div class="options">
+    <label><input type="radio" name="t15" value="a"> Tenter un autre modèle (exponentiel, puissance…) avec un changement de variable</label>
+    <label><input type="radio" name="t15" value="b"> Garder cet ajustement, car il suffit que \(r > 0\)</label>
+    <label><input type="radio" name="t15" value="c"> Supprimer les points extrêmes du nuage pour améliorer \(r\)</label>
+    <label><input type="radio" name="t15" value="d"> Multiplier \(r\) par 2 pour obtenir un coefficient acceptable</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Formule de la pente – Moindres carrés</p>
+  <p>La formule exacte du coefficient directeur \(a\) de la droite des moindres carrés est :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> \(a = \dfrac{\bar{y}}{\bar{x}}\)</label>
+    <label><input type="radio" name="a1" value="b"> \(a = \dfrac{\sum x_i y_i}{n}\)</label>
+    <label><input type="radio" name="a1" value="c"> \(a = \dfrac{\displaystyle\sum(x_i - \bar{x})(y_i - \bar{y})}{\displaystyle\sum(x_i - \bar{x})^2}\)</label>
+    <label><input type="radio" name="a1" value="d"> \(a = \dfrac{\sum y_i - \sum x_i}{n}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Formule de \(b\) – Moindres carrés</p>
+  <p>Une fois \(a\) connu, l'ordonnée à l'origine \(b\) se calcule par :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> \(b = \bar{x} - a\bar{y}\)</label>
+    <label><input type="radio" name="a2" value="b"> \(b = \bar{y} - a\bar{x}\)</label>
+    <label><input type="radio" name="a2" value="c"> \(b = a\bar{x} + \bar{y}\)</label>
+    <label><input type="radio" name="a2" value="d"> \(b = \bar{x} + \bar{y}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Coefficient \(r^2\) – Interprétation</p>
+  <p>Pour un ajustement avec \(r = 0{,}97\), le coefficient de détermination \(r^2\) vaut environ :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> 0,97</label>
+    <label><input type="radio" name="a3" value="b"> 1,94</label>
+    <label><input type="radio" name="a3" value="c"> 0,485</label>
+    <label><input type="radio" name="a3" value="d"> 0,94</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">Coefficient \(r^2\) – Signification</p>
+  <p>Un \(r^2 = 0{,}94\) signifie que le modèle linéaire explique :</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> 94 % de la variabilité de \(y\)</label>
+    <label><input type="radio" name="a4" value="b"> 6 % de la variabilité de \(y\)</label>
+    <label><input type="radio" name="a4" value="c"> que \(r = 0{,}94\)</label>
+    <label><input type="radio" name="a4" value="d"> que les données ont 94 points</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Extrapolation – Limite du modèle</p>
+  <p>Avec \(y = -42{,}4x + 1063\) (données entre 2 et 22°C), la prévision pour \(x = 25\,°C\) donne \(y = 3\,\text{kWh}\). Que conclure ?</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> Ce résultat est parfaitement fiable car la formule reste valide</label>
+    <label><input type="radio" name="a5" value="b"> La consommation sera effectivement de 3 kWh à 25°C</label>
+    <label><input type="radio" name="a5" value="c"> Ce résultat est peu réaliste : à 25°C on ne chauffe plus, le modèle affine atteint ses limites</label>
+    <label><input type="radio" name="a5" value="d"> Il faut remplacer \(a\) par \(-a\) pour corriger</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">COP d'une PAC – Extrapolation</p>
+  <p>Avec \(y = 0{,}112x + 2{,}638\), pour quelle température extérieure le COP vaut-il 1 (seuil de rentabilité) ?</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> \(x \approx -10\,°C\)</label>
+    <label><input type="radio" name="a6" value="b"> \(x \approx -14{,}6\,°C\)</label>
+    <label><input type="radio" name="a6" value="c"> \(x \approx 0\,°C\)</label>
+    <label><input type="radio" name="a6" value="d"> \(x \approx 3{,}2\,°C\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Ajustement exponentiel – Retour de variable</p>
+  <p>On trouve \(z = \log(N) \approx 0{,}302\,t + 0{,}300\). Après retour en \(N\), le modèle est :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(N \approx 0{,}302t + 0{,}300\)</label>
+    <label><input type="radio" name="a7" value="b"> \(N \approx 10^{0,302} \times t\)</label>
+    <label><input type="radio" name="a7" value="c"> \(N \approx e^{0{,}302t + 0{,}300}\)</label>
+    <label><input type="radio" name="a7" value="d"> \(N \approx 10^{0{,}302t + 0{,}300} \approx 2 \times 2^t\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 8</h3>
+  <p class="theme">Ajustement puissance – Changement de variable</p>
+  <p>Pour un modèle de type \(y = A \cdot x^k\), la linéarisation s'obtient en posant :</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> \(z = \log(y)\) et \(u = \log(x)\), ce qui donne \(z = ku + \log(A)\)</label>
+    <label><input type="radio" name="a8" value="b"> \(z = \log(y)\) et \(u = x^2\)</label>
+    <label><input type="radio" name="a8" value="c"> \(z = \sqrt{y}\) et \(u = x\)</label>
+    <label><input type="radio" name="a8" value="d"> \(z = 1/y\) et \(u = 1/x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Cohérence signe \(a\) et \(r\)</p>
+  <p>Pour un ajustement affine, le signe de \(a\) et le signe de \(r\) doivent être :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> toujours opposés</label>
+    <label><input type="radio" name="a9" value="b"> toujours positifs</label>
+    <label><input type="radio" name="a9" value="c"> identiques (tous deux positifs ou tous deux négatifs)</label>
+    <label><input type="radio" name="a9" value="d"> indépendants l'un de l'autre</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">Coût de fabrication – Prévision</p>
+  <p>Un menuisier agenceur modélise le coût \(C\) (€) d'un meuble en fonction de la surface \(S\) (m²) : \(C = 85S + 120\). Pour \(S = 3{,}5\,\text{m}^2\), le coût est :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> 85 €</label>
+    <label><input type="radio" name="a10" value="b"> 417,5 €</label>
+    <label><input type="radio" name="a10" value="c"> 205 €</label>
+    <label><input type="radio" name="a10" value="d"> 297,5 €</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">Modèle inverse – Changement de variable</p>
+  <p>Pour une relation de type \(y = a/x + b\), le changement de variable adapté est :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> \(z = \log(x)\)</label>
+    <label><input type="radio" name="a11" value="b"> \(z = x^2\)</label>
+    <label><input type="radio" name="a11" value="c"> \(z = \sqrt{x}\)</label>
+    <label><input type="radio" name="a11" value="d"> \(z = 1/x\), ce qui donne \(y = az + b\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 12</h3>
+  <p class="theme">Bilan énergétique – Régression</p>
+  <p>Un technicien thermicien relève épaisseur d'isolant (cm) et consommation annuelle (kWh). Il obtient \(r = -0{,}96\). Que conclure ?</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> La liaison est forte et négative : plus l'isolation est épaisse, moins la consommation est grande — l'ajustement affine est pertinent</label>
+    <label><input type="radio" name="a12" value="b"> L'ajustement est rejeté car \(r < 0\)</label>
+    <label><input type="radio" name="a12" value="c"> La liaison est faible car \(|r| = 0{,}96 < 1\)</label>
+    <label><input type="radio" name="a12" value="d"> Il faut utiliser un modèle exponentiel car \(r\) est négatif</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Régression – Erreur fréquente</p>
+  <p>Un élève lit \(r^2 = 0{,}9801\) sur sa calculatrice et annonce \(r = 0{,}9801\). Quelle est l'erreur ?</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> Il n'y a pas d'erreur, \(r = r^2\) dans ce cas</label>
+    <label><input type="radio" name="a13" value="b"> La calculatrice affiche toujours \(r^2\) à la place de \(r\)</label>
+    <label><input type="radio" name="a13" value="c"> L'élève confond \(r\) et \(r^2\) : si \(r^2 = 0{,}9801\) alors \(r = \pm 0{,}99\)</label>
+    <label><input type="radio" name="a13" value="d"> La valeur \(r^2 = 0{,}9801\) est impossible</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 14</h3>
+  <p class="theme">Prévision BTS – Demande de production</p>
+  <p>Un modèle de ventes donne \(y = -2{,}5x + 300\) (en unités), où \(x\) est le prix en €. Pour \(x = 80\,€\), la demande prévue est :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> 80 unités</label>
+    <label><input type="radio" name="a14" value="b"> 100 unités</label>
+    <label><input type="radio" name="a14" value="c"> 500 unités</label>
+    <label><input type="radio" name="a14" value="d"> 220 unités</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 15</h3>
+  <p class="theme">Raisonnement complet – Seuil de rentabilité</p>
+  <p>Le chiffre d'affaires est \(\text{CA} = x \times y = x(-2{,}5x + 300)\). Pour maximiser le CA, quel prix \(x\) minimise les pertes si la droite est valide pour \(x \in [20\,;\,100]\) et que \(\text{CA}(60) = 3600\) et \(\text{CA}(80) = 3200\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> \(x = 80\,€\) car la demande est plus stable</label>
+    <label><input type="radio" name="a15" value="b"> \(x = 100\,€\) car le prix unitaire est maximal</label>
+    <label><input type="radio" name="a15" value="c"> \(x = 20\,€\) car la demande est maximale</label>
+    <label><input type="radio" name="a15" value="d"> \(x = 60\,€\) car \(\text{CA}(60) = 3600 > \text{CA}(80) = 3200\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "Un nuage de points représente des couples (x_i ; y_i) dans un repère orthogonal. Chaque point correspond à une observation.",
+  "s2": "Quand les points montent de gauche à droite, y augmente avec x : la liaison est positive.",
+  "s3": "Quand la température monte, la consommation de chauffage baisse : c'est une liaison négative.",
+  "s4": "x̄ = (2 + 4 + 6) / 3 = 12 / 3 = 4.",
+  "s5": "La droite de régression passe toujours par le point moyen G(x̄ ; ȳ). C'est une propriété fondamentale.",
+  "s6": "La droite de régression est de la forme y = ax + b, appelée ajustement affine.",
+  "s7": "Le coefficient de corrélation r est toujours compris entre −1 et 1 inclus.",
+  "s8": "r = −0,98 : la valeur absolue est proche de 1 (liaison forte) et le signe est négatif (liaison négative).",
+  "s9": "On considère l'ajustement affine acceptable quand |r| > 0,85. En dessous, il faut envisager un autre modèle.",
+  "s10": "y = 3 × 4 + 5 = 12 + 5 = 17.",
+  "s11": "L'interpolation consiste à estimer y pour un x situé à l'intérieur de l'intervalle des données connues.",
+  "s12": "L'extrapolation est plus risquée car on sort de la zone observée : le modèle peut ne plus être valable.",
+  "s13": "Une liaison nulle se traduit par des points dispersés sans tendance : aucune direction privilégiée.",
+  "s14": "x̄ = (1+3+5)/3 = 3 ; ȳ = (10+20+30)/3 = 20. Donc G(3 ; 20).",
+  "s15": "Si la liaison est négative (y diminue quand x augmente), le coefficient directeur a est négatif.",
+  /* === STANDARD === */
+  "t1": "x̄ = (2+5+8+10+14+17+19+22)/8 = 97/8 ≈ 12,1°C.",
+  "t2": "y = −42,4 × 12,1 + 1063 ≈ −513 + 1063 = 550 ≈ 551 kWh. Le point moyen appartient bien à la droite.",
+  "t3": "|r| = 0,999 ≈ 1 → liaison très forte. Le signe négatif indique une liaison négative. L'ajustement est excellent.",
+  "t4": "y = −42,4 × 12 + 1063 = −508,8 + 1063 = 554,2 ≈ 554 kWh. C'est une interpolation (12 est dans [2 ; 22]).",
+  "t5": "25°C est hors de l'intervalle [2 ; 22] : c'est une extrapolation, moins fiable qu'une interpolation.",
+  "t6": "|r| = 0,72 < 0,85 : la liaison linéaire est trop faible. Il faut tenter un autre modèle d'ajustement.",
+  "t7": "a = 0,112 représente la variation de COP par degré Celsius. Quand la température augmente de 1°C, le COP augmente de 0,112.",
+  "t8": "y = 0,112 × 3 + 2,638 = 0,336 + 2,638 = 2,974.",
+  "t9": "Dans y = ax + b, b est l'ordonnée à l'origine : c'est la valeur de y quand x = 0.",
+  "t10": "Quand la relation n'est pas linéaire, on effectue un changement de variable pour linéariser, puis on applique l'ajustement affine sur les nouvelles variables.",
+  "t11": "Pour y = A × q^x, on pose z = log(y). On obtient z = x·log(q) + log(A), qui est linéaire en x.",
+  "t12": "y = 2,19 × 6 + 10,2 = 13,14 + 10,2 = 23,34 ≈ 23,3 pièces/heure.",
+  "t13": "Le coefficient directeur a = 0,0495 V/mA = 49,5 V/A = 49,5 Ω, d'après la loi d'Ohm U = R·I.",
+  "t14": "La liaison est négative (consommation baisse quand température monte), donc r est négatif et a est négatif — les deux signes sont cohérents.",
+  "t15": "Si |r| < 0,85, l'ajustement affine est insuffisant. Il faut tenter un autre modèle via un changement de variable.",
+  /* === APPROFONDISSEMENT === */
+  "a1": "La formule exacte du coefficient directeur des moindres carrés est a = Σ(xi−x̄)(yi−ȳ) / Σ(xi−x̄)². Elle minimise la somme des carrés des écarts verticaux.",
+  "a2": "Puisque G(x̄ ; ȳ) appartient à la droite, on a ȳ = a·x̄ + b, donc b = ȳ − a·x̄.",
+  "a3": "r² = (0,97)² = 0,9409 ≈ 0,94. Le coefficient de détermination est le carré du coefficient de corrélation.",
+  "a4": "r² = 0,94 signifie que 94 % de la variabilité de y est expliquée par le modèle linéaire. Les 6 % restants sont dus à d'autres facteurs.",
+  "a5": "À 25°C on ne chauffe normalement plus. La prévision de 3 kWh est irréaliste : le modèle affine ne s'applique plus hors de sa zone de validité.",
+  "a6": "1 = 0,112x + 2,638 → 0,112x = 1 − 2,638 = −1,638 → x = −1,638/0,112 ≈ −14,6°C.",
+  "a7": "log(N) = 0,302t + 0,300 → N = 10^(0,302t + 0,300) = 10^0,300 × 10^(0,302t) ≈ 2 × (10^0,302)^t ≈ 2 × 2^t.",
+  "a8": "Pour y = A·x^k, on pose z = log(y) et u = log(x). On obtient z = k·u + log(A), qui est linéaire en u.",
+  "a9": "Le signe de a (pente) et le signe de r (corrélation) sont toujours identiques. Une pente positive implique r > 0 et vice versa.",
+  "a10": "C = 85 × 3,5 + 120 = 297,5 + 120 = 417,5 €.",
+  "a11": "Pour y = a/x + b, on pose z = 1/x. On obtient y = a·z + b, qui est linéaire en z.",
+  "a12": "|r| = 0,96 > 0,85 → liaison forte. Le signe négatif est cohérent : plus l'isolation est épaisse, moins on consomme. L'ajustement affine est pertinent.",
+  "a13": "Si r² = 0,9801 alors r = ±√0,9801 = ±0,99. L'élève a confondu r et r² : ce sont deux indicateurs différents.",
+  "a14": "y = −2,5 × 80 + 300 = −200 + 300 = 100 unités.",
+  "a15": "CA(60) = 60 × (−2,5×60+300) = 60×150 = 9000. Non, relisons : CA(60)=3600 est donné. On compare directement : CA(60)=3600 > CA(80)=3200, donc x=60€ est préférable."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '✅ Bonne réponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '❌ Mauvaise réponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '⚠️ Pas de réponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>
