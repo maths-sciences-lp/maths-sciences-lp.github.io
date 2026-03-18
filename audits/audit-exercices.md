@@ -1,7 +1,7 @@
 # Audit Pédagogique des Exercices
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-18
+**Dernière mise à jour** : 2026-03-18 (QCMs)
 **Périmètre** : exercices.html, ds.html, qcm.html et interro.html — 8 sections (maths seconde/première/terminale, physique-chimie seconde/première-iccer/première-era/terminale-iccer/terminale-era)
 **Méthode** : échantillonnage de 2-3 fichiers exercices.html et 2-3 fichiers ds.html par section, lecture et analyse qualitative.
 
@@ -250,6 +250,7 @@ L'inventaire complet (2026-03-16) révèle un taux de couverture global de **41.
 - **2026-03-17** : Harmonise l'indentation des arbres de probabilités (NBSP → &emsp;) dans exercices.html et ds.html de ch02
 - **2026-03-18** : Créé `maths/terminale/ch02/qcm.html` — QCM différencié (3×15 questions socle/standard/appro, auto-corrigé, feedback)
 - **2026-03-18** : Créé `maths/terminale/ch02/interro.html` — Interro différenciée (3×5 questions socle/standard/appro, barème, corrections)
+- **2026-03-18** : Créé 46 QCMs différenciés (3×15 questions) : maths/seconde (14/14), maths/premiere (9/9), maths/terminale (10/11, ch02 existant), physique-chimie/seconde (13/14, ch07 existant). Total : 48/84 QCMs (57%)
 
 ---
 
@@ -262,7 +263,7 @@ L'inventaire complet (2026-03-16) révèle un taux de couverture global de **41.
 - [x] Réaliser un inventaire complet : nombre de `.exo` vs `.corr` sur chaque page (2026-03-16 — 41.2% couverture)
 
 ### Priorité haute (uniformisation 2026-03-18)
-- [ ] Créer les 82 `qcm.html` restants (3×15 questions socle/standard/appro par chapitre)
+- [ ] Créer les 36 `qcm.html` restants (PC 1ere ICCER 10, PC 1ere ERA 10, PC Tle ICCER 8, PC Tle ERA 8) — 48/84 faits
 - [ ] Créer les 82 `interro.html` restants (3×5-8 questions socle/standard/appro par chapitre)
 - [ ] Créer les 7 `exercices.html` manquants (PC terminale)
 - [ ] Créer les 7 `ds.html` manquants (PC terminale)
@@ -318,7 +319,7 @@ L'inventaire complet (2026-03-16) révèle un taux de couverture global de **41.
 |---|---|---|---|---|
 | `exercices.html` | 77 | 84 | 7 | Oui (socle/standard/appro) |
 | `ds.html` | 77 | 84 | 7 | Oui (socle/standard/appro) |
-| `qcm.html` | 1 | 84 | 83 | Oui (3×15 questions) |
+| `qcm.html` | 48 | 84 | 36 | Oui (3×15 questions) |
 | `interro.html` | 1 | 84 | 83 | Oui (3×5-8 questions) |
 
 **Modèle existant QCM** : `physique-chimie/seconde/ch07/qcm.html` — QCM interactif auto-corrigé, feedback instantané, score.
