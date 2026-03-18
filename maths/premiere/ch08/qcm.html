@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Vecteurs du plan – QCM – 1ère Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>QCM – Vecteurs du plan</h1>
+  <p class="sous-titre">Chapitre 8 | 1ère Bac Pro | Mathématiques</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">⏱ <strong>Durée :</strong> 15–20 min</div>
+  <div class="dh-item">📄 <strong>15 questions</strong></div>
+  <div class="dh-item">🧮 <strong>Calculatrice autorisée</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne réponse</strong> puis cliquez sur « Valider le QCM » en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Définition – Caractéristiques d'un vecteur</p>
+  <p>Un vecteur est caractérisé par :</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> une couleur, une taille et un poids</label>
+    <label><input type="radio" name="s1" value="b"> une direction, un sens et une norme</label>
+    <label><input type="radio" name="s1" value="c"> une abscisse et une ordonnée uniquement</label>
+    <label><input type="radio" name="s1" value="d"> un angle et une coordonnée</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 2</h3>
+  <p class="theme">Définition – Vecteur nul</p>
+  <p>Le vecteur \(\vec{AA}\) s'appelle :</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> le vecteur nul, noté \(\vec{0}\)</label>
+    <label><input type="radio" name="s2" value="b"> le vecteur unité</label>
+    <label><input type="radio" name="s2" value="c"> un vecteur de norme 1</label>
+    <label><input type="radio" name="s2" value="d"> un vecteur indéfini</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 3</h3>
+  <p class="theme">Vecteur AB – Sens opposé</p>
+  <p>Lequel de ces énoncés est correct ?</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> \(\vec{AB} = \vec{BA}\)</label>
+    <label><input type="radio" name="s3" value="b"> \(\vec{AB}\) et \(\vec{BA}\) ont le même sens</label>
+    <label><input type="radio" name="s3" value="c"> \(\vec{BA} = -\vec{AB}\)</label>
+    <label><input type="radio" name="s3" value="d"> \(\vec{AB}\) et \(\vec{BA}\) n'ont pas la même norme</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Coordonnées d'un vecteur – Calcul</p>
+  <p>Soient \(A(1\,;\,3)\) et \(B(4\,;\,7)\). Les coordonnées de \(\vec{AB}\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> \(\begin{pmatrix} 5 \\ 10 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s4" value="b"> \(\begin{pmatrix} -3 \\ -4 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s4" value="c"> \(\begin{pmatrix} 1 \\ 3 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s4" value="d"> \(\begin{pmatrix} 3 \\ 4 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Coordonnées d'un vecteur – Formule</p>
+  <p>Si \(A(x_A\,;\,y_A)\) et \(B(x_B\,;\,y_B)\), les coordonnées de \(\vec{AB}\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> \(\begin{pmatrix} x_A - x_B \\ y_A - y_B \end{pmatrix}\)</label>
+    <label><input type="radio" name="s5" value="b"> \(\begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}\)</label>
+    <label><input type="radio" name="s5" value="c"> \(\begin{pmatrix} x_A + x_B \\ y_A + y_B \end{pmatrix}\)</label>
+    <label><input type="radio" name="s5" value="d"> \(\begin{pmatrix} x_A \times x_B \\ y_A \times y_B \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 6</h3>
+  <p class="theme">Égalité de vecteurs</p>
+  <p>Deux vecteurs sont égaux si et seulement si :</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> ils ont les mêmes coordonnées</label>
+    <label><input type="radio" name="s6" value="b"> ils partent du même point</label>
+    <label><input type="radio" name="s6" value="c"> ils ont la même longueur seulement</label>
+    <label><input type="radio" name="s6" value="d"> ils ont le même sens seulement</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 7</h3>
+  <p class="theme">Addition de vecteurs – Calcul</p>
+  <p>Soient \(\vec{u}\begin{pmatrix} 2 \\ 3 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} -1 \\ 4 \end{pmatrix}\). Alors \(\vec{u} + \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> \(\begin{pmatrix} -2 \\ 12 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s7" value="b"> \(\begin{pmatrix} 3 \\ -1 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s7" value="c"> \(\begin{pmatrix} 1 \\ 7 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s7" value="d"> \(\begin{pmatrix} 1 \\ -1 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 8</h3>
+  <p class="theme">Relation de Chasles</p>
+  <p>La relation de Chasles dit que pour tout points \(A\), \(B\), \(C\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> \(\vec{AB} + \vec{BC} = \vec{BC}\)</label>
+    <label><input type="radio" name="s8" value="b"> \(\vec{AB} + \vec{BC} = \vec{AC}\)</label>
+    <label><input type="radio" name="s8" value="c"> \(\vec{AB} + \vec{BC} = \vec{CA}\)</label>
+    <label><input type="radio" name="s8" value="d"> \(\vec{AB} + \vec{BC} = \vec{AB}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 9</h3>
+  <p class="theme">Produit par un scalaire</p>
+  <p>Soit \(\vec{u}\begin{pmatrix} 3 \\ -2 \end{pmatrix}\). Alors \(2\vec{u} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> \(\begin{pmatrix} 3 \\ -2 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s9" value="b"> \(\begin{pmatrix} 5 \\ 0 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s9" value="c"> \(\begin{pmatrix} 6 \\ 2 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s9" value="d"> \(\begin{pmatrix} 6 \\ -4 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">Norme d'un vecteur – Formule</p>
+  <p>La norme du vecteur \(\vec{u}\begin{pmatrix} x \\ y \end{pmatrix}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> \(\sqrt{x^2 + y^2}\)</label>
+    <label><input type="radio" name="s10" value="b"> \(x^2 + y^2\)</label>
+    <label><input type="radio" name="s10" value="c"> \(x + y\)</label>
+    <label><input type="radio" name="s10" value="d"> \(\sqrt{x + y}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 11</h3>
+  <p class="theme">Norme – Calcul simple</p>
+  <p>La norme du vecteur \(\vec{u}\begin{pmatrix} 3 \\ 4 \end{pmatrix}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> 7</label>
+    <label><input type="radio" name="s11" value="b"> 1</label>
+    <label><input type="radio" name="s11" value="c"> 5</label>
+    <label><input type="radio" name="s11" value="d"> 25</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 12</h3>
+  <p class="theme">Milieu d'un segment</p>
+  <p>Le milieu \(M\) de \([AB]\) avec \(A(2\,;\,4)\) et \(B(6\,;\,8)\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> \(M(8\,;\,12)\)</label>
+    <label><input type="radio" name="s12" value="b"> \(M(4\,;\,6)\)</label>
+    <label><input type="radio" name="s12" value="c"> \(M(2\,;\,2)\)</label>
+    <label><input type="radio" name="s12" value="d"> \(M(3\,;\,5)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 13</h3>
+  <p class="theme">Milieu – Formule</p>
+  <p>Les coordonnées du milieu \(M\) de \([AB]\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> \(M(x_B - x_A\,;\,y_B - y_A)\)</label>
+    <label><input type="radio" name="s13" value="b"> \(M(x_A \times x_B\,;\,y_A \times y_B)\)</label>
+    <label><input type="radio" name="s13" value="c"> \(M(x_A + x_B\,;\,y_A + y_B)\)</label>
+    <label><input type="radio" name="s13" value="d"> \(M\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">Vecteurs colinéaires – Définition</p>
+  <p>Deux vecteurs \(\vec{u}\) et \(\vec{v}\) sont colinéaires si :</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> il existe un réel \(k\) tel que \(\vec{v} = k\vec{u}\)</label>
+    <label><input type="radio" name="s14" value="b"> ils ont la même norme</label>
+    <label><input type="radio" name="s14" value="c"> ils sont perpendiculaires</label>
+    <label><input type="radio" name="s14" value="d"> ils partent du même point</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 15</h3>
+  <p class="theme">Sens opposé – Produit par −1</p>
+  <p>Le vecteur \(-\vec{u}\) avec \(\vec{u}\begin{pmatrix} 2 \\ -5 \end{pmatrix}\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> \(\begin{pmatrix} 2 \\ -5 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s15" value="b"> \(\begin{pmatrix} 5 \\ -2 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s15" value="c"> \(\begin{pmatrix} -2 \\ 5 \end{pmatrix}\)</label>
+    <label><input type="radio" name="s15" value="d"> \(\begin{pmatrix} -2 \\ -5 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Coordonnées d'un vecteur – Contexte professionnel</p>
+  <p>Un menuisier repère deux points sur un plan : \(A(3\,;\,1)\) et \(B(7\,;\,6)\). Les coordonnées de \(\vec{AB}\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="t1" value="a"> \(\begin{pmatrix} -4 \\ -5 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t1" value="b"> \(\begin{pmatrix} 4 \\ 5 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t1" value="c"> \(\begin{pmatrix} 10 \\ 7 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t1" value="d"> \(\begin{pmatrix} 3 \\ 6 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 2</h3>
+  <p class="theme">Norme – Calcul avec racine</p>
+  <p>La norme du vecteur \(\vec{u}\begin{pmatrix} 5 \\ 12 \end{pmatrix}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t2" value="a"> 17</label>
+    <label><input type="radio" name="t2" value="b"> \(\sqrt{17}\)</label>
+    <label><input type="radio" name="t2" value="c"> 60</label>
+    <label><input type="radio" name="t2" value="d"> 13</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Distance entre deux points</p>
+  <p>La distance \(AB\) avec \(A(1\,;\,2)\) et \(B(4\,;\,6)\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t3" value="a"> 5</label>
+    <label><input type="radio" name="t3" value="b"> 7</label>
+    <label><input type="radio" name="t3" value="c"> \(\sqrt{7}\)</label>
+    <label><input type="radio" name="t3" value="d"> 25</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 4</h3>
+  <p class="theme">Addition – Relation de Chasles</p>
+  <p>Avec \(\vec{AB}\begin{pmatrix} 2 \\ 3 \end{pmatrix}\) et \(\vec{BC}\begin{pmatrix} -4 \\ 1 \end{pmatrix}\), le vecteur \(\vec{AC}\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t4" value="a"> \(\begin{pmatrix} 6 \\ 2 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t4" value="b"> \(\begin{pmatrix} 2 \\ 4 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t4" value="c"> \(\begin{pmatrix} -2 \\ 4 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t4" value="d"> \(\begin{pmatrix} -2 \\ -4 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Produit par un scalaire – Norme</p>
+  <p>Si \(\|\vec{u}\| = 6\), alors \(\|3\vec{u}\| =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t5" value="a"> 6</label>
+    <label><input type="radio" name="t5" value="b"> 18</label>
+    <label><input type="radio" name="t5" value="c"> 9</label>
+    <label><input type="radio" name="t5" value="d"> 2</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 6</h3>
+  <p class="theme">Parallélogramme</p>
+  <p>Le quadrilatère \(ABCD\) est un parallélogramme si et seulement si :</p>
+  <div class="options">
+    <label><input type="radio" name="t6" value="a"> \(\vec{AB} = \vec{CD}\)</label>
+    <label><input type="radio" name="t6" value="b"> \(\vec{AB} = -\vec{DC}\)</label>
+    <label><input type="radio" name="t6" value="c"> \(\vec{AD} = \vec{CB}\)</label>
+    <label><input type="radio" name="t6" value="d"> \(\vec{AB} = \vec{DC}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Milieu – Trouver un point</p>
+  <p>\(M(4\,;\,5)\) est le milieu de \([AB]\) avec \(A(2\,;\,3)\). Les coordonnées de \(B\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="t7" value="a"> \(B(6\,;\,7)\)</label>
+    <label><input type="radio" name="t7" value="b"> \(B(3\,;\,4)\)</label>
+    <label><input type="radio" name="t7" value="c"> \(B(2\,;\,2)\)</label>
+    <label><input type="radio" name="t7" value="d"> \(B(8\,;\,10)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 8</h3>
+  <p class="theme">Colinéarité – Critère</p>
+  <p>Le critère de colinéarité pour \(\vec{u}\begin{pmatrix} x \\ y \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} x' \\ y' \end{pmatrix}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t8" value="a"> \(x = x'\) et \(y = y'\)</label>
+    <label><input type="radio" name="t8" value="b"> \(x \cdot x' + y \cdot y' = 0\)</label>
+    <label><input type="radio" name="t8" value="c"> \(xy' - x'y = 0\)</label>
+    <label><input type="radio" name="t8" value="d"> \(x + x' = y + y'\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Colinéarité – Application</p>
+  <p>Les vecteurs \(\vec{u}\begin{pmatrix} 4 \\ 6 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 2 \\ 3 \end{pmatrix}\) sont-ils colinéaires ?</p>
+  <div class="options">
+    <label><input type="radio" name="t9" value="a"> Non, car leurs coordonnées sont différentes</label>
+    <label><input type="radio" name="t9" value="b"> Oui, car \(4 \times 3 - 6 \times 2 = 0\)</label>
+    <label><input type="radio" name="t9" value="c"> Non, car \(4 \times 3 - 6 \times 2 = 24\)</label>
+    <label><input type="radio" name="t9" value="d"> Oui, car ils ont la même direction uniquement</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 10</h3>
+  <p class="theme">Alignement de trois points</p>
+  <p>Trois points \(A\), \(B\), \(C\) sont alignés si et seulement si :</p>
+  <div class="options">
+    <label><input type="radio" name="t10" value="a"> \(\|\vec{AB}\| = \|\vec{AC}\|\)</label>
+    <label><input type="radio" name="t10" value="b"> \(\vec{AB} = \vec{AC}\)</label>
+    <label><input type="radio" name="t10" value="c"> \(A\), \(B\) et \(C\) sont équidistants</label>
+    <label><input type="radio" name="t10" value="d"> les vecteurs \(\vec{AB}\) et \(\vec{AC}\) sont colinéaires</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Application – Déplacement professionnel</p>
+  <p>Un charpentier effectue un déplacement \(\vec{d_1}\begin{pmatrix} 3 \\ 2 \end{pmatrix}\) puis \(\vec{d_2}\begin{pmatrix} 1 \\ -5 \end{pmatrix}\). Le déplacement total est :</p>
+  <div class="options">
+    <label><input type="radio" name="t11" value="a"> \(\begin{pmatrix} 4 \\ -3 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t11" value="b"> \(\begin{pmatrix} 2 \\ 7 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t11" value="c"> \(\begin{pmatrix} 4 \\ 3 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t11" value="d"> \(\begin{pmatrix} 3 \\ -10 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 12</h3>
+  <p class="theme">Norme – Distance réelle</p>
+  <p>Sur un plan à l'échelle (1 unité = 1 m), un installateur repère \(P(2\,;\,1)\) et \(Q(8\,;\,9)\). La longueur \(PQ\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t12" value="a"> 14 m</label>
+    <label><input type="radio" name="t12" value="b"> \(\sqrt{136}\) m</label>
+    <label><input type="radio" name="t12" value="c"> 10 m</label>
+    <label><input type="radio" name="t12" value="d"> 100 m</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Produit scalaire – Sens du vecteur</p>
+  <p>Si \(k < 0\), le vecteur \(k\vec{u}\) est de :</p>
+  <div class="options">
+    <label><input type="radio" name="t13" value="a"> même sens que \(\vec{u}\) et de même norme</label>
+    <label><input type="radio" name="t13" value="b"> sens opposé à \(\vec{u}\) et de norme \(|k| \times \|\vec{u}\|\)</label>
+    <label><input type="radio" name="t13" value="c"> même sens que \(\vec{u}\) et de norme \(|k| \times \|\vec{u}\|\)</label>
+    <label><input type="radio" name="t13" value="d"> direction différente de \(\vec{u}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 14</h3>
+  <p class="theme">Équilibre de forces</p>
+  <p>Deux forces s'appliquent à un panneau : \(\vec{F_1}\begin{pmatrix} -3 \\ 5 \end{pmatrix}\) et \(\vec{F_2}\begin{pmatrix} 3 \\ 5 \end{pmatrix}\). La résultante \(\vec{F_1} + \vec{F_2}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t14" value="a"> \(\begin{pmatrix} 0 \\ 0 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t14" value="b"> \(\begin{pmatrix} 6 \\ 0 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t14" value="c"> \(\begin{pmatrix} -6 \\ 10 \end{pmatrix}\)</label>
+    <label><input type="radio" name="t14" value="d"> \(\begin{pmatrix} 0 \\ 10 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Colinéarité – Points non alignés</p>
+  <p>Soient \(A(0\,;\,0)\), \(B(2\,;\,3)\) et \(C(4\,;\,5)\). Les points \(A\), \(B\), \(C\) sont-ils alignés ?</p>
+  <div class="options">
+    <label><input type="radio" name="t15" value="a"> Non, car le déterminant de \(\vec{AB}\) et \(\vec{AC}\) vaut \(2 \times 5 - 3 \times 4 = -2 \neq 0\)</label>
+    <label><input type="radio" name="t15" value="b"> Oui, car \(\vec{AB}\) et \(\vec{AC}\) ont des coordonnées du même signe</label>
+    <label><input type="radio" name="t15" value="c"> Non, car \(A\) est à l'origine</label>
+    <label><input type="radio" name="t15" value="d"> Oui, car le déterminant de \(\vec{AB}\) et \(\vec{AC}\) vaut 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Colinéarité – Calcul du déterminant</p>
+  <p>Les vecteurs \(\vec{u}\begin{pmatrix} 3 \\ 5 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 6 \\ 10 \end{pmatrix}\) sont-ils colinéaires ?</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> Non, car \(3 \times 10 + 5 \times 6 = 60 \neq 0\)</label>
+    <label><input type="radio" name="a1" value="b"> Non, car leurs normes sont différentes</label>
+    <label><input type="radio" name="a1" value="c"> Oui, car \(3 \times 10 - 5 \times 6 = 0\)</label>
+    <label><input type="radio" name="a1" value="d"> Oui, car \(3 + 5 = 6 + 10 - 8\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Alignement – Vérification</p>
+  <p>Soient \(A(1\,;\,2)\), \(B(3\,;\,6)\) et \(C(5\,;\,10)\). Les points \(A\), \(B\), \(C\) sont-ils alignés ?</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> Non, car \(\|\vec{AB}\| \neq \|\vec{BC}\|\)</label>
+    <label><input type="radio" name="a2" value="b"> Oui, car \(\vec{AB}\begin{pmatrix} 2 \\ 4 \end{pmatrix}\) et \(\vec{AC}\begin{pmatrix} 4 \\ 8 \end{pmatrix}\) sont colinéaires (déterminant = 0)</label>
+    <label><input type="radio" name="a2" value="c"> Non, car les trois points ont des coordonnées différentes</label>
+    <label><input type="radio" name="a2" value="d"> Oui, car les abscisses forment une suite arithmétique</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Combinaison linéaire</p>
+  <p>Soient \(\vec{u}\begin{pmatrix} 1 \\ 2 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 3 \\ 1 \end{pmatrix}\). Alors \(2\vec{u} - \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> \(\begin{pmatrix} 5 \\ 5 \end{pmatrix}\)</label>
+    <label><input type="radio" name="a3" value="b"> \(\begin{pmatrix} 4 \\ 2 \end{pmatrix}\)</label>
+    <label><input type="radio" name="a3" value="c"> \(\begin{pmatrix} 1 \\ 4 \end{pmatrix}\)</label>
+    <label><input type="radio" name="a3" value="d"> \(\begin{pmatrix} -1 \\ 3 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">Parallélogramme – Trouver un sommet</p>
+  <p>\(ABCD\) est un parallélogramme avec \(A(1\,;\,1)\), \(B(4\,;\,2)\) et \(C(6\,;\,5)\). Les coordonnées de \(D\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> \(D(3\,;\,4)\)</label>
+    <label><input type="radio" name="a4" value="b"> \(D(5\,;\,6)\)</label>
+    <label><input type="radio" name="a4" value="c"> \(D(9\,;\,6)\)</label>
+    <label><input type="radio" name="a4" value="d"> \(D(2\,;\,3)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Norme – Calcul avancé</p>
+  <p>Un technicien d'agencement relève \(A(-2\,;\,3)\) et \(B(4\,;\,-5)\). La distance \(AB\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> \(\sqrt{28}\)</label>
+    <label><input type="radio" name="a5" value="b"> 14</label>
+    <label><input type="radio" name="a5" value="c"> \(10\)</label>
+    <label><input type="radio" name="a5" value="d"> \(\sqrt{136}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">Colinéarité – Valeur de paramètre</p>
+  <p>Les vecteurs \(\vec{u}\begin{pmatrix} 2 \\ k \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 6 \\ 9 \end{pmatrix}\) sont colinéaires. La valeur de \(k\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> \(k = 18\)</label>
+    <label><input type="radio" name="a6" value="b"> \(k = 3\)</label>
+    <label><input type="radio" name="a6" value="c"> \(k = 6\)</label>
+    <label><input type="radio" name="a6" value="d"> \(k = 27\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Décomposition de vecteur – Relation de Chasles étendue</p>
+  <p>Parmi les égalités suivantes, laquelle est correcte (relation de Chasles) ?</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(\vec{AB} = \vec{AC} + \vec{AB}\)</label>
+    <label><input type="radio" name="a7" value="b"> \(\vec{AC} = \vec{BC} + \vec{AB}\)</label>
+    <label><input type="radio" name="a7" value="c"> \(\vec{AB} + \vec{CA} = \vec{0}\)</label>
+    <label><input type="radio" name="a7" value="d"> \(\vec{AB} + \vec{BC} + \vec{CA} = \vec{0}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 8</h3>
+  <p class="theme">Milieu et vecteur – Relation</p>
+  <p>\(M\) est le milieu de \([AB]\). Lequel de ces vecteurs est-il correct ?</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> \(\vec{AM} = \dfrac{1}{2}\vec{AB}\)</label>
+    <label><input type="radio" name="a8" value="b"> \(\vec{AM} = 2\vec{AB}\)</label>
+    <label><input type="radio" name="a8" value="c"> \(\vec{AM} = \vec{MB}\)</label>
+    <label><input type="radio" name="a8" value="d"> \(\vec{AM} = -\vec{MB}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Colinéarité – Non-alignement</p>
+  <p>Soient \(A(0\,;\,0)\), \(B(3\,;\,2)\) et \(C(6\,;\,5)\). Le déterminant de \(\vec{AB}\) et \(\vec{AC}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> 0 (points alignés)</label>
+    <label><input type="radio" name="a9" value="b"> 12</label>
+    <label><input type="radio" name="a9" value="c"> 3 (points non alignés)</label>
+    <label><input type="radio" name="a9" value="d"> \(-3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">Problème ouvert – Équilibre de forces</p>
+  <p>Trois forces s'appliquent : \(\vec{F_1}\begin{pmatrix} -3 \\ 5 \end{pmatrix}\), \(\vec{F_2}\begin{pmatrix} 3 \\ 5 \end{pmatrix}\), \(\vec{P}\begin{pmatrix} 0 \\ -10 \end{pmatrix}\). La résultante est :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> \(\begin{pmatrix} 0 \\ -10 \end{pmatrix}\)</label>
+    <label><input type="radio" name="a10" value="b"> \(\begin{pmatrix} 0 \\ 0 \end{pmatrix}\) → équilibre</label>
+    <label><input type="radio" name="a10" value="c"> \(\begin{pmatrix} 6 \\ 0 \end{pmatrix}\)</label>
+    <label><input type="radio" name="a10" value="d"> \(\begin{pmatrix} -3 \\ -10 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">Norme – Produit par scalaire négatif</p>
+  <p>Soit \(\vec{u}\begin{pmatrix} 2 \\ -3 \end{pmatrix}\). La norme de \(-4\vec{u}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> \(-4\sqrt{13}\)</label>
+    <label><input type="radio" name="a11" value="b"> \(\sqrt{13}\)</label>
+    <label><input type="radio" name="a11" value="c"> \(-\sqrt{13}\)</label>
+    <label><input type="radio" name="a11" value="d"> \(4\sqrt{13}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 12</h3>
+  <p class="theme">Colinéarité – Interprétation géométrique</p>
+  <p>Si \(\vec{AB}\) et \(\vec{CD}\) sont colinéaires, alors les droites \((AB)\) et \((CD)\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> parallèles ou confondues</label>
+    <label><input type="radio" name="a12" value="b"> perpendiculaires</label>
+    <label><input type="radio" name="a12" value="c"> sécantes en un point unique</label>
+    <label><input type="radio" name="a12" value="d"> sans relation particulière</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Combinaison linéaire – Contexte BTS</p>
+  <p>On cherche le vecteur \(\vec{w} = 3\vec{u} + 2\vec{v}\) avec \(\vec{u}\begin{pmatrix} 1 \\ -1 \end{pmatrix}\) et \(\vec{v}\begin{pmatrix} 2 \\ 3 \end{pmatrix}\). On obtient :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> \(\begin{pmatrix} 5 \\ 2 \end{pmatrix}\)</label>
+    <label><input type="radio" name="a13" value="b"> \(\begin{pmatrix} 9 \\ 5 \end{pmatrix}\)</label>
+    <label><input type="radio" name="a13" value="c"> \(\begin{pmatrix} 7 \\ 3 \end{pmatrix}\)</label>
+    <label><input type="radio" name="a13" value="d"> \(\begin{pmatrix} 5 \\ -3 \end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 14</h3>
+  <p class="theme">Problème – Coordonnées d'un point</p>
+  <p>On sait que \(\vec{AB} = 2\vec{CD}\) avec \(A(1\,;\,2)\), \(B(5\,;\,4)\), \(C(0\,;\,1)\). Les coordonnées de \(D\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> \(D(8\,;\,5)\)</label>
+    <label><input type="radio" name="a14" value="b"> \(D(2\,;\,2)\)</label>
+    <label><input type="radio" name="a14" value="c"> \(D(4\,;\,4)\)</label>
+    <label><input type="radio" name="a14" value="d"> \(D(0\,;\,2)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 15</h3>
+  <p class="theme">Raisonnement – Valeur de paramètre (alignement)</p>
+  <p>Pour que \(A(1\,;\,2)\), \(B(3\,;\,k)\) et \(C(5\,;\,8)\) soient alignés, la valeur de \(k\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> \(k = 3\)</label>
+    <label><input type="radio" name="a15" value="b"> \(k = 6\)</label>
+    <label><input type="radio" name="a15" value="c"> \(k = 4\)</label>
+    <label><input type="radio" name="a15" value="d"> \(k = 5\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "Un vecteur est défini par trois caractéristiques : sa direction (la droite qui le porte), son sens (un des deux sens de cette droite) et sa norme (sa longueur).",
+  "s2": "Le vecteur \u20d7AA est le vecteur nul, noté \u20d70. Sa norme est 0 car A et A sont le même point.",
+  "s3": "\u20d7BA = −\u20d7AB : même direction, même norme, mais sens opposé. Les vecteurs \u20d7AB et \u20d7BA ne sont pas égaux.",
+  "s4": "\u20d7AB = (x_B − x_A ; y_B − y_A) = (4 − 1 ; 7 − 3) = (3 ; 4).",
+  "s5": "Les coordonnées de \u20d7AB sont (x_B − x_A ; y_B − y_A). On soustrait les coordonnées du point de départ A à celles du point d'arrivée B.",
+  "s6": "Deux vecteurs sont égaux si et seulement si ils ont exactement les mêmes coordonnées. Cela garantit même direction, même sens et même norme.",
+  "s7": "(2 + (−1) ; 3 + 4) = (1 ; 7). On additionne coordonnée par coordonnée.",
+  "s8": "La relation de Chasles : \u20d7AB + \u20d7BC = \u20d7AC. Les deux lettres du milieu (B) se « simplifient ».",
+  "s9": "2\u20d7u = (2×3 ; 2×(−2)) = (6 ; −4). On multiplie chaque coordonnée par le scalaire.",
+  "s10": "La norme de \u20d7u(x ; y) est √(x² + y²), obtenue par le théorème de Pythagore.",
+  "s11": "‖\u20d7u‖ = √(3² + 4²) = √(9 + 16) = √25 = 5. C'est un triplet pythagoricien classique.",
+  "s12": "M = ((2+6)/2 ; (4+8)/2) = (8/2 ; 12/2) = (4 ; 6).",
+  "s13": "Le milieu M de [AB] a pour coordonnées ((x_A + x_B)/2 ; (y_A + y_B)/2). On prend la moyenne des coordonnées.",
+  "s14": "Deux vecteurs sont colinéaires s'il existe k réel tel que \u20d7v = k\u20d7u. Géométriquement, ils ont la même direction (sont parallèles).",
+  "s15": "−\u20d7u = −1 × (2 ; −5) = (−2 ; 5). On multiplie chaque coordonnée par −1.",
+  /* === STANDARD === */
+  "t1": "\u20d7AB = (7 − 3 ; 6 − 1) = (4 ; 5). On fait arrivée moins départ.",
+  "t2": "‖\u20d7u‖ = √(5² + 12²) = √(25 + 144) = √169 = 13. C'est un triplet pythagoricien 5-12-13.",
+  "t3": "AB = √((4−1)² + (6−2)²) = √(9 + 16) = √25 = 5.",
+  "t4": "\u20d7AC = \u20d7AB + \u20d7BC = (2 + (−4) ; 3 + 1) = (−2 ; 4).",
+  "t5": "‖k\u20d7u‖ = |k| × ‖\u20d7u‖ = 3 × 6 = 18.",
+  "t6": "ABCD est un parallélogramme si et seulement si \u20d7AB = \u20d7DC (vecteurs de même départ A→B et D→C).",
+  "t7": "Si M((x_A+x_B)/2 ; (y_A+y_B)/2) = (4;5) et A(2;3), alors (2+x_B)/2 = 4 → x_B = 6 et (3+y_B)/2 = 5 → y_B = 7.",
+  "t8": "Le critère de colinéarité est le déterminant xy' − x'y = 0.",
+  "t9": "Déterminant : 4 × 3 − 6 × 2 = 12 − 12 = 0. Les vecteurs sont colinéaires.",
+  "t10": "Trois points sont alignés si et seulement si les vecteurs \u20d7AB et \u20d7AC sont colinéaires (déterminant nul).",
+  "t11": "\u20d7d = \u20d7d_1 + \u20d7d_2 = (3 + 1 ; 2 + (−5)) = (4 ; −3).",
+  "t12": "PQ = √((8−2)² + (9−1)²) = √(36 + 64) = √100 = 10 m.",
+  "t13": "Si k < 0, le vecteur k\u20d7u a le sens opposé à \u20d7u et sa norme est |k| × ‖\u20d7u‖.",
+  "t14": "\u20d7F_1 + \u20d7F_2 = (−3 + 3 ; 5 + 5) = (0 ; 10).",
+  "t15": "\u20d7AB = (2;3), \u20d7AC = (4;5). Déterminant : 2×5 − 3×4 = 10 − 12 = −2 ≠ 0. Les points ne sont pas alignés.",
+  /* === APPROFONDISSEMENT === */
+  "a1": "Déterminant : 3 × 10 − 5 × 6 = 30 − 30 = 0. Les vecteurs sont colinéaires (\u20d7v = 2\u20d7u).",
+  "a2": "\u20d7AB = (2;4), \u20d7AC = (4;8). Déterminant : 2×8 − 4×4 = 16 − 16 = 0. Les points sont alignés.",
+  "a3": "2\u20d7u − \u20d7v = 2(1;2) − (3;1) = (2;4) − (3;1) = (−1;3).",
+  "a4": "Dans ABCD parallélogramme, \u20d7AB = \u20d7DC. \u20d7AB = (3;1). D(x;y) tel que C−D = (3;1) → D = C − \u20d7AB = (6;5)−(3;1) = (3;4).",
+  "a5": "AB = √((4−(−2))² + (−5−3)²) = √(36 + 64) = √100 = 10.",
+  "a6": "Colinéarité : 2×9 − k×6 = 0 → 18 − 6k = 0 → k = 3.",
+  "a7": "\u20d7AB + \u20d7BC + \u20d7CA = \u20d7AC + \u20d7CA = \u20d7AA = \u20d70. C'est la relation de Chasles étendue à trois points formant un circuit fermé.",
+  "a8": "M milieu de [AB] signifie \u20d7AM = \u20d7MB, donc \u20d7AM = (1/2)\u20d7AB.",
+  "a9": "\u20d7AB = (3;2), \u20d7AC = (6;5). Déterminant : 3×5 − 2×6 = 15 − 12 = 3 ≠ 0. Les points ne sont pas alignés.",
+  "a10": "\u20d7F_1 + \u20d7F_2 + \u20d7P = (−3+3+0 ; 5+5−10) = (0;0) = \u20d70. Le système est en équilibre.",
+  "a11": "‖−4\u20d7u‖ = |−4| × ‖\u20d7u‖ = 4 × √(4+9) = 4√13. La norme est toujours positive.",
+  "a12": "Si \u20d7AB et \u20d7CD sont colinéaires, les droites (AB) et (CD) sont parallèles ou confondues.",
+  "a13": "3\u20d7u + 2\u20d7v = 3(1;−1) + 2(2;3) = (3;−3) + (4;6) = (7;3).",
+  "a14": "\u20d7AB = (4;2). \u20d7CD = (1/2)\u20d7AB = (2;1). D = C + \u20d7CD = (0;1) + (2;1) = (2;2).",
+  "a15": "Pour que A, B, C soient alignés : \u20d7AB = (2;k−2) et \u20d7AC = (4;6). Déterminant nul : 2×6 − (k−2)×4 = 0 → 12 − 4k + 8 = 0 → k = 5."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '\u2705 Bonne réponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '\u274C Mauvaise réponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '\u26A0\uFE0F Pas de réponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>
