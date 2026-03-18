@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch11 – Produit scalaire – QCM – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>QCM – Produit scalaire</h1>
+  <p class="sous-titre">Chapitre 11 | Terminale Bac Pro | Mathématiques</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">⏱ <strong>Durée :</strong> 15–20 min</div>
+  <div class="dh-item">📄 <strong>15 questions</strong></div>
+  <div class="dh-item">🧮 <strong>Calculatrice autorisée</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne réponse</strong> puis cliquez sur « Valider le QCM » en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Définition – Nature du produit scalaire</p>
+  <p>Le produit scalaire \(\vec{u} \cdot \vec{v}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> un vecteur</label>
+    <label><input type="radio" name="s1" value="b"> un nombre réel</label>
+    <label><input type="radio" name="s1" value="c"> une matrice</label>
+    <label><input type="radio" name="s1" value="d"> une équation</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Formule par coordonnées</p>
+  <p>Si \(\vec{u}\begin{pmatrix}2\\3\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}4\\1\end{pmatrix}\), alors \(\vec{u} \cdot \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> 5</label>
+    <label><input type="radio" name="s2" value="b"> 6</label>
+    <label><input type="radio" name="s2" value="c"> 11</label>
+    <label><input type="radio" name="s2" value="d"> 14</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Vecteurs orthogonaux</p>
+  <p>Deux vecteurs non nuls \(\vec{u}\) et \(\vec{v}\) sont orthogonaux si et seulement si :</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> \(\vec{u} \cdot \vec{v} = 0\)</label>
+    <label><input type="radio" name="s3" value="b"> \(\vec{u} \cdot \vec{v} = 1\)</label>
+    <label><input type="radio" name="s3" value="c"> \(\vec{u} \cdot \vec{v} = -1\)</label>
+    <label><input type="radio" name="s3" value="d"> \(\vec{u} \cdot \vec{v} > 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Calcul – Vérifier l'orthogonalité</p>
+  <p>\(\vec{u}\begin{pmatrix}3\\-2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}4\\6\end{pmatrix}\). Que vaut \(\vec{u} \cdot \vec{v}\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> 24</label>
+    <label><input type="radio" name="s4" value="b"> 10</label>
+    <label><input type="radio" name="s4" value="c"> -12</label>
+    <label><input type="radio" name="s4" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Carré scalaire – Norme</p>
+  <p>Le carré scalaire \(\vec{u} \cdot \vec{u}\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> \(2|\vec{u}|\)</label>
+    <label><input type="radio" name="s5" value="b"> \(|\vec{u}|^2\)</label>
+    <label><input type="radio" name="s5" value="c"> \(|\vec{u}|\)</label>
+    <label><input type="radio" name="s5" value="d"> \(0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Norme d'un vecteur</p>
+  <p>Si \(\vec{u}\begin{pmatrix}3\\4\end{pmatrix}\), quelle est la norme \(|\vec{u}|\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> 7</label>
+    <label><input type="radio" name="s6" value="b"> 1</label>
+    <label><input type="radio" name="s6" value="c"> 5</label>
+    <label><input type="radio" name="s6" value="d"> 12</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Commutativité</p>
+  <p>Laquelle de ces égalités est toujours vraie ?</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> \(\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}\)</label>
+    <label><input type="radio" name="s7" value="b"> \(\vec{u} \cdot \vec{v} = |\vec{u}| + |\vec{v}|\)</label>
+    <label><input type="radio" name="s7" value="c"> \(\vec{u} \cdot \vec{v} = |\vec{u}| \times |\vec{v}|\)</label>
+    <label><input type="radio" name="s7" value="d"> \(\vec{u} \cdot \vec{v} = |\vec{u}| - |\vec{v}|\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Produit scalaire – Calcul simple</p>
+  <p>Si \(\vec{u}\begin{pmatrix}5\\0\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}0\\3\end{pmatrix}\), alors \(\vec{u} \cdot \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> 15</label>
+    <label><input type="radio" name="s8" value="b"> 8</label>
+    <label><input type="radio" name="s8" value="c"> 5</label>
+    <label><input type="radio" name="s8" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Interprétation géométrique</p>
+  <p>Si \(\theta = 90°\) entre deux vecteurs non nuls, alors leur produit scalaire est :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> positif</label>
+    <label><input type="radio" name="s9" value="b"> nul</label>
+    <label><input type="radio" name="s9" value="c"> négatif</label>
+    <label><input type="radio" name="s9" value="d"> égal à 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Produit scalaire par la formule norme/angle</p>
+  <p>Si \(|\vec{u}| = 4\), \(|\vec{v}| = 3\) et \(\theta = 0°\), alors \(\vec{u} \cdot \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> 0</label>
+    <label><input type="radio" name="s10" value="b"> 7</label>
+    <label><input type="radio" name="s10" value="c"> 12</label>
+    <label><input type="radio" name="s10" value="d"> -12</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Calcul – Produit scalaire</p>
+  <p>\(\vec{u}\begin{pmatrix}1\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}-3\\4\end{pmatrix}\). Calculer \(\vec{u} \cdot \vec{v}\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> 5</label>
+    <label><input type="radio" name="s11" value="b"> -5</label>
+    <label><input type="radio" name="s11" value="c"> 11</label>
+    <label><input type="radio" name="s11" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Signe du produit scalaire</p>
+  <p>Si \(\vec{u} \cdot \vec{v} < 0\), alors l'angle \(\theta\) entre les deux vecteurs est :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> égal à 0°</label>
+    <label><input type="radio" name="s12" value="b"> égal à 90°</label>
+    <label><input type="radio" name="s12" value="c"> compris entre 0° et 90°</label>
+    <label><input type="radio" name="s12" value="d"> compris entre 90° et 180°</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Vecteurs orthogonaux – Vérification</p>
+  <p>\(\vec{u}\begin{pmatrix}2\\-3\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}6\\4\end{pmatrix}\). Ces vecteurs sont-ils orthogonaux ?</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> Non, car \(\vec{u} \cdot \vec{v} = 24\)</label>
+    <label><input type="radio" name="s13" value="b"> Oui, car \(\vec{u} \cdot \vec{v} = 0\)</label>
+    <label><input type="radio" name="s13" value="c"> Non, car \(\vec{u} \cdot \vec{v} = 12\)</label>
+    <label><input type="radio" name="s13" value="d"> Oui, car \(\vec{u} \cdot \vec{v} = 1\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Norme – Calcul</p>
+  <p>Si \(\vec{v}\begin{pmatrix}5\\12\end{pmatrix}\), quelle est la norme \(|\vec{v}|\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> 17</label>
+    <label><input type="radio" name="s14" value="b"> 60</label>
+    <label><input type="radio" name="s14" value="c"> 13</label>
+    <label><input type="radio" name="s14" value="d"> 7</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Produit scalaire – Angles remarquables</p>
+  <p>Si \(|\vec{u}| = 6\), \(|\vec{v}| = 5\) et \(\theta = 180°\), alors \(\vec{u} \cdot \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> -30</label>
+    <label><input type="radio" name="s15" value="b"> 30</label>
+    <label><input type="radio" name="s15" value="c"> 0</label>
+    <label><input type="radio" name="s15" value="d"> 11</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Formule norme/angle</p>
+  <p>Si \(|\vec{u}| = 5\), \(|\vec{v}| = 4\) et \(\theta = 60°\), alors \(\vec{u} \cdot \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t1" value="a"> 20</label>
+    <label><input type="radio" name="t1" value="b"> 10</label>
+    <label><input type="radio" name="t1" value="c"> \(20\sqrt{3}\)</label>
+    <label><input type="radio" name="t1" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Calcul d'un angle</p>
+  <p>On a \(\vec{u}\begin{pmatrix}3\\0\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}0\\2\end{pmatrix}\). L'angle entre ces deux vecteurs est :</p>
+  <div class="options">
+    <label><input type="radio" name="t2" value="a"> 0°</label>
+    <label><input type="radio" name="t2" value="b"> 45°</label>
+    <label><input type="radio" name="t2" value="c"> 90°</label>
+    <label><input type="radio" name="t2" value="d"> 180°</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Calcul d'angle – Contexte menuiserie</p>
+  <p>Deux arêtes d'un meuble ont pour vecteurs directeurs \(\vec{u}\begin{pmatrix}4\\1\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}1\\3\end{pmatrix}\). Le produit scalaire \(\vec{u} \cdot \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t3" value="a"> 7</label>
+    <label><input type="radio" name="t3" value="b"> 4</label>
+    <label><input type="radio" name="t3" value="c"> 3</label>
+    <label><input type="radio" name="t3" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Formule de l'angle</p>
+  <p>La formule permettant de calculer l'angle \(\theta\) entre deux vecteurs est :</p>
+  <div class="options">
+    <label><input type="radio" name="t4" value="a"> \(\theta = \dfrac{\vec{u} \cdot \vec{v}}{|\vec{u}| + |\vec{v}|}\)</label>
+    <label><input type="radio" name="t4" value="b"> \(\theta = \dfrac{|\vec{u}| \times |\vec{v}|}{\vec{u} \cdot \vec{v}}\)</label>
+    <label><input type="radio" name="t4" value="c"> \(\theta = \arcsin\!\left(\dfrac{\vec{u} \cdot \vec{v}}{|\vec{u}| \times |\vec{v}|}\right)\)</label>
+    <label><input type="radio" name="t4" value="d"> \(\theta = \arccos\!\left(\dfrac{\vec{u} \cdot \vec{v}}{|\vec{u}| \times |\vec{v}|}\right)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Calcul d'angle – Application numérique</p>
+  <p>\(\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}1\\1\end{pmatrix}\). Quelle est la valeur de \(\cos(\theta)\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="t5" value="a"> 1</label>
+    <label><input type="radio" name="t5" value="b"> \(\dfrac{\sqrt{2}}{2}\)</label>
+    <label><input type="radio" name="t5" value="c"> \(\dfrac{1}{2}\)</label>
+    <label><input type="radio" name="t5" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Vecteur normal à une droite</p>
+  <p>Si le vecteur directeur d'une droite est \(\vec{u}\begin{pmatrix}3\\5\end{pmatrix}\), un vecteur normal à cette droite est :</p>
+  <div class="options">
+    <label><input type="radio" name="t6" value="a"> \(\begin{pmatrix}3\\5\end{pmatrix}\)</label>
+    <label><input type="radio" name="t6" value="b"> \(\begin{pmatrix}5\\3\end{pmatrix}\)</label>
+    <label><input type="radio" name="t6" value="c"> \(\begin{pmatrix}-5\\3\end{pmatrix}\)</label>
+    <label><input type="radio" name="t6" value="d"> \(\begin{pmatrix}3\\-3\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Équation d'une droite – Vecteur normal</p>
+  <p>Une droite a pour vecteur normal \(\vec{n}\begin{pmatrix}2\\-3\end{pmatrix}\). Son équation est de la forme :</p>
+  <div class="options">
+    <label><input type="radio" name="t7" value="a"> \(2x - 3y + c = 0\)</label>
+    <label><input type="radio" name="t7" value="b"> \(-3x + 2y + c = 0\)</label>
+    <label><input type="radio" name="t7" value="c"> \(2x + 3y + c = 0\)</label>
+    <label><input type="radio" name="t7" value="d"> \(3x - 2y + c = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Équation de droite – Calcul de c</p>
+  <p>Une droite de vecteur normal \(\vec{n}\begin{pmatrix}4\\-1\end{pmatrix}\) passe par \(A(2\,;\,3)\). Quelle est l'équation de cette droite ?</p>
+  <div class="options">
+    <label><input type="radio" name="t8" value="a"> \(4x - y + 11 = 0\)</label>
+    <label><input type="radio" name="t8" value="b"> \(4x - y - 11 = 0\)</label>
+    <label><input type="radio" name="t8" value="c"> \(4x - y = 0\)</label>
+    <label><input type="radio" name="t8" value="d"> \(4x - y - 5 = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Distance d'un point à une droite</p>
+  <p>La formule de la distance du point \(M(x_M\,;\,y_M)\) à la droite \(ax + by + c = 0\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t9" value="a"> \(\dfrac{ax_M + by_M + c}{a^2 + b^2}\)</label>
+    <label><input type="radio" name="t9" value="b"> \(\dfrac{|ax_M + by_M + c|}{\sqrt{a^2 + b^2}}\)</label>
+    <label><input type="radio" name="t9" value="c"> \(\dfrac{ax_M + by_M + c}{\sqrt{a^2 + b^2}}\)</label>
+    <label><input type="radio" name="t9" value="d"> \(\sqrt{ax_M + by_M + c}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Distance point–droite – Calcul</p>
+  <p>Distance du point \(P(1\,;\,5)\) à la droite \(3x - 4y + 2 = 0\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t10" value="a"> \(\dfrac{10}{5} = 2\)</label>
+    <label><input type="radio" name="t10" value="b"> \(\dfrac{15}{7}\)</label>
+    <label><input type="radio" name="t10" value="c"> 3</label>
+    <label><input type="radio" name="t10" value="d"> \(\dfrac{17}{5}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Angle entre deux canalisations</p>
+  <p>Deux canalisations ont pour vecteurs directeurs \(\vec{u}\begin{pmatrix}3\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}-2\\3\end{pmatrix}\). Que vaut \(\vec{u} \cdot \vec{v}\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="t11" value="a"> 0</label>
+    <label><input type="radio" name="t11" value="b"> 12</label>
+    <label><input type="radio" name="t11" value="c"> -12</label>
+    <label><input type="radio" name="t11" value="d"> 6</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Interprétation du signe</p>
+  <p>Si \(\vec{u} \cdot \vec{v} > 0\), alors l'angle \(\theta\) entre les deux vecteurs est :</p>
+  <div class="options">
+    <label><input type="radio" name="t12" value="a"> supérieur à 90°</label>
+    <label><input type="radio" name="t12" value="b"> égal à 90°</label>
+    <label><input type="radio" name="t12" value="c"> égal à 180°</label>
+    <label><input type="radio" name="t12" value="d"> strictement inférieur à 90°</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Produit scalaire 3D</p>
+  <p>Dans l'espace, si \(\vec{u}\begin{pmatrix}1\\2\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}2\\-1\\2\end{pmatrix}\), alors \(\vec{u} \cdot \vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t13" value="a"> 0</label>
+    <label><input type="radio" name="t13" value="b"> 4</label>
+    <label><input type="radio" name="t13" value="c"> 9</label>
+    <label><input type="radio" name="t13" value="d"> -4</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Norme d'un vecteur 3D</p>
+  <p>Si \(\vec{u}\begin{pmatrix}1\\2\\2\end{pmatrix}\), quelle est la norme \(|\vec{u}|\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="t14" value="a"> 5</label>
+    <label><input type="radio" name="t14" value="b"> \(\sqrt{5}\)</label>
+    <label><input type="radio" name="t14" value="c"> 3</label>
+    <label><input type="radio" name="t14" value="d"> \(\sqrt{7}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Droites perpendiculaires</p>
+  <p>Deux droites sont perpendiculaires si et seulement si leurs vecteurs directeurs sont :</p>
+  <div class="options">
+    <label><input type="radio" name="t15" value="a"> orthogonaux (produit scalaire nul)</label>
+    <label><input type="radio" name="t15" value="b"> de même norme</label>
+    <label><input type="radio" name="t15" value="c"> colinéaires</label>
+    <label><input type="radio" name="t15" value="d"> de même direction</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Angle précis – Calcul complet</p>
+  <p>\(\vec{u}\begin{pmatrix}4\\1\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}1\\3\end{pmatrix}\). Quelle est la valeur de \(\cos(\theta)\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> \(\dfrac{7}{\sqrt{34}}\)</label>
+    <label><input type="radio" name="a1" value="b"> \(\dfrac{7}{17}\)</label>
+    <label><input type="radio" name="a1" value="c"> \(\dfrac{7}{\sqrt{170}}\)</label>
+    <label><input type="radio" name="a1" value="d"> \(\dfrac{7}{\sqrt{17}}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Démontrer l'orthogonalité</p>
+  <p>Pour démontrer que les droites \(d_1\) (vecteur \(\vec{u}\begin{pmatrix}2\\-3\end{pmatrix}\)) et \(d_2\) (vecteur \(\vec{v}\begin{pmatrix}6\\4\end{pmatrix}\)) sont perpendiculaires, on calcule :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> \(\vec{u} \cdot \vec{v} = 12\) → pas perpendiculaires</label>
+    <label><input type="radio" name="a2" value="b"> \(\vec{u} \cdot \vec{v} = 2 \times 6 + (-3) \times 4 = 12 - 12 = 0\) → perpendiculaires</label>
+    <label><input type="radio" name="a2" value="c"> \(|\vec{u}| = |\vec{v}|\) → perpendiculaires</label>
+    <label><input type="radio" name="a2" value="d"> \(\vec{u} \cdot \vec{v} = 2 \times 6 - (-3) \times 4 = 24\) → pas perpendiculaires</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Équation de droite – Méthode complète</p>
+  <p>Une cloison passe par \(D(3\,;\,0)\) et a pour vecteur directeur \(\begin{pmatrix}5\\4\end{pmatrix}\). Quelle est l'équation de la droite portant cette cloison ?</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> \(5x + 4y - 15 = 0\)</label>
+    <label><input type="radio" name="a3" value="b"> \(4x - 5y + 12 = 0\)</label>
+    <label><input type="radio" name="a3" value="c"> \(4x + 5y = 0\)</label>
+    <label><input type="radio" name="a3" value="d"> \(-4x + 5y + 12 = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">Distance – Contexte de construction</p>
+  <p>Une droite a pour équation \(-4x + 5y + 12 = 0\). Distance du point \(F(5\,;\,3)\) à cette droite :</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> \(\dfrac{7}{\sqrt{41}} \approx 1{,}09\)</label>
+    <label><input type="radio" name="a4" value="b"> \(\dfrac{7}{41}\)</label>
+    <label><input type="radio" name="a4" value="c"> \(\dfrac{3}{\sqrt{41}}\)</label>
+    <label><input type="radio" name="a4" value="d"> \(\dfrac{|-20 + 15 + 12|}{9} = \dfrac{7}{9}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Composante d'une force – Travail</p>
+  <p>Une force \(\vec{F}\) de norme 800 N est à 40° de l'axe d'une canalisation (vecteur unitaire \(\vec{u}\)). La composante axiale \(\vec{F} \cdot \vec{u}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> 800 N</label>
+    <label><input type="radio" name="a5" value="b"> 514 N</label>
+    <label><input type="radio" name="a5" value="c"> 613 N</label>
+    <label><input type="radio" name="a5" value="d"> 400 N</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">Travail d'une force – Définition</p>
+  <p>Le travail \(W\) d'une force \(\vec{F}\) le long d'un déplacement \(\vec{d}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> \(W = |\vec{F}| + |\vec{d}|\)</label>
+    <label><input type="radio" name="a6" value="b"> \(W = \vec{F} \cdot \vec{d} = |\vec{F}| \times |\vec{d}| \times \cos\theta\)</label>
+    <label><input type="radio" name="a6" value="c"> \(W = |\vec{F}| \times |\vec{d}|\)</label>
+    <label><input type="radio" name="a6" value="d"> \(W = \dfrac{|\vec{F}|}{|\vec{d}|}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Identité remarquable</p>
+  <p>L'identité \(|\vec{u} + \vec{v}|^2 =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(|\vec{u}|^2 + |\vec{v}|^2\)</label>
+    <label><input type="radio" name="a7" value="b"> \((|\vec{u}| + |\vec{v}|)^2\)</label>
+    <label><input type="radio" name="a7" value="c"> \(|\vec{u}|^2 - 2\,\vec{u}\cdot\vec{v} + |\vec{v}|^2\)</label>
+    <label><input type="radio" name="a7" value="d"> \(|\vec{u}|^2 + 2\,\vec{u}\cdot\vec{v} + |\vec{v}|^2\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 8</h3>
+  <p class="theme">Identité de polarisation</p>
+  <p>La formule \(\vec{u} \cdot \vec{v} = \dfrac{1}{2}\!\left(|\vec{u}+\vec{v}|^2 - |\vec{u}|^2 - |\vec{v}|^2\right)\) s'appelle :</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> identité de polarisation</label>
+    <label><input type="radio" name="a8" value="b"> théorème de Pythagore</label>
+    <label><input type="radio" name="a8" value="c"> formule de l'angle</label>
+    <label><input type="radio" name="a8" value="d"> formule des cosinus</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Angle 3D – Calcul</p>
+  <p>Deux conduites en 3D ont pour vecteurs \(\vec{u}\begin{pmatrix}1\\2\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}2\\-1\\2\end{pmatrix}\). \(\cos(\theta) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> \(\dfrac{4}{6}\)</label>
+    <label><input type="radio" name="a9" value="b"> \(\dfrac{2}{9}\)</label>
+    <label><input type="radio" name="a9" value="c"> \(\dfrac{4}{9}\)</label>
+    <label><input type="radio" name="a9" value="d"> \(\dfrac{2}{3}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">Projection orthogonale</p>
+  <p>La projection orthogonale de \(\vec{v}\) sur \(\vec{u}\) vaut \(\dfrac{\vec{u} \cdot \vec{v}}{|\vec{u}|^2}\,\vec{u}\). Si \(\vec{u}\begin{pmatrix}1\\0\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}3\\4\end{pmatrix}\), la projection de \(\vec{v}\) sur \(\vec{u}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> \(\begin{pmatrix}4\\0\end{pmatrix}\)</label>
+    <label><input type="radio" name="a10" value="b"> \(\begin{pmatrix}3\\0\end{pmatrix}\)</label>
+    <label><input type="radio" name="a10" value="c"> \(\begin{pmatrix}0\\4\end{pmatrix}\)</label>
+    <label><input type="radio" name="a10" value="d"> \(\begin{pmatrix}3\\4\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">Application – Force et angle de fixation</p>
+  <p>Une fixation subit une force de 500 N à 30° de l'axe d'ancrage. Avec un coefficient de sécurité de 1,5, la fixation doit être homologuée pour au moins :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> 433 N</label>
+    <label><input type="radio" name="a11" value="b"> 500 N</label>
+    <label><input type="radio" name="a11" value="c"> 576 N</label>
+    <label><input type="radio" name="a11" value="d"> 650 N</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 12</h3>
+  <p class="theme">Droite perpendiculaire – Construction</p>
+  <p>La façade est portée par la droite \(d : 3x - 5y + 15 = 0\). Un tuyau perpendiculaire à la façade passe par \(P(0\,;\,3)\). Son équation est :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> \(5x + 3y - 9 = 0\)</label>
+    <label><input type="radio" name="a12" value="b"> \(3x - 5y + 15 = 0\)</label>
+    <label><input type="radio" name="a12" value="c"> \(5x - 3y + 9 = 0\)</label>
+    <label><input type="radio" name="a12" value="d"> \(3x + 5y = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Distance – Réseau de canalisations</p>
+  <p>La canalisation principale CP a pour équation \(-x + 2y = 0\). Distance de la fixation \(P(5\,;\,4)\) à CP :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> \(\dfrac{3}{5}\)</label>
+    <label><input type="radio" name="a13" value="b"> \(\dfrac{3}{5} \approx 0{,}60\)</label>
+    <label><input type="radio" name="a13" value="c"> \(\dfrac{3}{\sqrt{5}} = \dfrac{3\sqrt{5}}{5} \approx 1{,}34\)</label>
+    <label><input type="radio" name="a13" value="d"> \(\dfrac{3}{\sqrt{10}} \approx 0{,}95\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 14</h3>
+  <p class="theme">Propriété – Distributivité</p>
+  <p>\(\vec{u} \cdot (\vec{v} + \vec{w}) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> \(\vec{u} \cdot \vec{v} \times \vec{u} \cdot \vec{w}\)</label>
+    <label><input type="radio" name="a14" value="b"> \(\vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}\)</label>
+    <label><input type="radio" name="a14" value="c"> \((\vec{u} \cdot \vec{v}) \cdot \vec{w}\)</label>
+    <label><input type="radio" name="a14" value="d"> \(\vec{v} \cdot \vec{w}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Angle de raccordement – Raisonnement complet</p>
+  <p>Deux canalisations ont pour vecteurs directeurs \(\vec{u}\begin{pmatrix}4\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}-1\\3\end{pmatrix}\). Quel est l'angle de raccordement approximatif ?</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> 81,9°</label>
+    <label><input type="radio" name="a15" value="b"> 45°</label>
+    <label><input type="radio" name="a15" value="c"> 63,4°</label>
+    <label><input type="radio" name="a15" value="d"> 90°</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "Le produit scalaire est un nombre réel (un scalaire), pas un vecteur.",
+  "s2": "u⃗·v⃗ = 2×4 + 3×1 = 8 + 3 = 11. On multiplie les coordonnées de même rang et on additionne.",
+  "s3": "Deux vecteurs non nuls sont orthogonaux si et seulement si leur produit scalaire est nul.",
+  "s4": "u⃗·v⃗ = 3×4 + (−2)×6 = 12 − 12 = 0. Le résultat est nul : les vecteurs sont orthogonaux.",
+  "s5": "u⃗·u⃗ = |u⃗|². C'est la définition du carré scalaire : il donne le carré de la norme.",
+  "s6": "|u⃗| = √(3²+4²) = √(9+16) = √25 = 5. C'est un triangle rectangle 3-4-5 classique.",
+  "s7": "Le produit scalaire est commutatif : u⃗·v⃗ = v⃗·u⃗. L'ordre n'importe pas.",
+  "s8": "u⃗·v⃗ = 5×0 + 0×3 = 0. Les axes des coordonnées sont orthogonaux.",
+  "s9": "cos(90°) = 0, donc u⃗·v⃗ = |u⃗|×|v⃗|×0 = 0. Les vecteurs perpendiculaires ont un produit scalaire nul.",
+  "s10": "u⃗·v⃗ = |u⃗|×|v⃗|×cos(0°) = 4×3×1 = 12. Vecteurs de même sens : θ = 0°, cos(0°) = 1.",
+  "s11": "u⃗·v⃗ = 1×(−3) + 2×4 = −3 + 8 = 5.",
+  "s12": "Si u⃗·v⃗ < 0, alors cos(θ) < 0, donc θ est dans ]90°; 180°].",
+  "s13": "u⃗·v⃗ = 2×6 + (−3)×4 = 12 − 12 = 0. Produit scalaire nul → vecteurs orthogonaux.",
+  "s14": "|v⃗| = √(5²+12²) = √(25+144) = √169 = 13. C'est un triangle rectangle 5-12-13.",
+  "s15": "u⃗·v⃗ = |u⃗|×|v⃗|×cos(180°) = 6×5×(−1) = −30. Vecteurs de sens opposé : cos(180°) = −1.",
+  /* === STANDARD === */
+  "t1": "u⃗·v⃗ = |u⃗|×|v⃗|×cos(60°) = 5×4×0,5 = 10.",
+  "t2": "u⃗·v⃗ = 3×0 + 0×2 = 0. Produit scalaire nul → angle de 90°.",
+  "t3": "u⃗·v⃗ = 4×1 + 1×3 = 4 + 3 = 7.",
+  "t4": "θ = arccos(u⃗·v⃗ / (|u⃗|×|v⃗|)). On utilise arccos car le produit scalaire fait intervenir cos(θ).",
+  "t5": "u⃗·v⃗ = 1×1 + 0×1 = 1. |u⃗| = 1, |v⃗| = √2. cos(θ) = 1/(1×√2) = √2/2.",
+  "t6": "Si le vecteur directeur est (a;b), un vecteur normal est (−b;a). Ici : (3;5) → (−5;3).",
+  "t7": "L'équation d'une droite de vecteur normal (a;b) est ax + by + c = 0. Ici : 2x − 3y + c = 0.",
+  "t8": "Vecteur normal (4;−1) → 4x − y + c = 0. Point A(2;3) : 8 − 3 + c = 0 → c = −5. Équation : 4x − y − 5 = 0.",
+  "t9": "La formule est d(M,d) = |ax_M + by_M + c| / √(a²+b²). La valeur absolue est obligatoire.",
+  "t10": "d = |3×1 − 4×5 + 2| / √(9+16) = |3 − 20 + 2| / 5 = |−15| / 5 = 15/5 = 3.",
+  "t11": "u⃗·v⃗ = 3×(−2) + 2×3 = −6 + 6 = 0. Ces canalisations se coupent à 90°.",
+  "t12": "Si u⃗·v⃗ > 0, alors cos(θ) > 0, donc θ est dans [0°; 90°[.",
+  "t13": "u⃗·v⃗ = 1×2 + 2×(−1) + 2×2 = 2 − 2 + 4 = 4.",
+  "t14": "|u⃗| = √(1²+2²+2²) = √(1+4+4) = √9 = 3.",
+  "t15": "Deux droites sont perpendiculaires si et seulement si leurs vecteurs directeurs sont orthogonaux, c'est-à-dire de produit scalaire nul.",
+  /* === APPROFONDISSEMENT === */
+  "a1": "u⃗·v⃗ = 7. |u⃗| = √(16+1) = √17. |v⃗| = √(1+9) = √10. cos(θ) = 7/(√17×√10) = 7/√170.",
+  "a2": "u⃗·v⃗ = 2×6 + (−3)×4 = 12 − 12 = 0. Produit scalaire nul → droites perpendiculaires. La démonstration est complète.",
+  "a3": "Vecteur directeur (5;4) → vecteur normal (−4;5). Forme : −4x + 5y + c = 0. Point D(3;0) : −12 + 0 + c = 0 → c = 12. Équation : −4x + 5y + 12 = 0.",
+  "a4": "d = |−4×5 + 5×3 + 12| / √(16+25) = |−20+15+12| / √41 = |7| / √41 ≈ 7/6,40 ≈ 1,09.",
+  "a5": "F·u⃗ = |F|×|u⃗|×cos(40°) = 800×1×cos(40°) ≈ 800×0,766 ≈ 613 N.",
+  "a6": "W = F⃗·d⃗ = |F⃗|×|d⃗|×cos(θ). Le travail d'une force est le produit scalaire de la force par le déplacement.",
+  "a7": "|u⃗+v⃗|² = u⃗·u⃗ + 2u⃗·v⃗ + v⃗·v⃗ = |u⃗|² + 2u⃗·v⃗ + |v⃗|². C'est l'identité remarquable du produit scalaire.",
+  "a8": "La formule u⃗·v⃗ = ½(|u⃗+v⃗|² − |u⃗|² − |v⃗|²) s'appelle identité de polarisation. Elle est utile quand on connaît les normes mais pas l'angle.",
+  "a9": "u⃗·v⃗ = 4. |u⃗| = √(1+4+4) = 3. |v⃗| = √(4+1+4) = 3. cos(θ) = 4/(3×3) = 4/9.",
+  "a10": "Proj = (u⃗·v⃗/|u⃗|²)×u⃗ = (3×1+4×0)/1² × (1;0) = 3×(1;0) = (3;0). La composante horizontale de v⃗ est 3.",
+  "a11": "Composante axiale = 500×cos(30°) ≈ 500×0,866 ≈ 433 N. Avec coeff. 1,5 : 433×1,5 ≈ 650 N.",
+  "a12": "Un tuyau perpendiculaire à 3x−5y+15=0 est parallèle au vecteur normal (3;−5). Son vecteur directeur est (3;−5), son vecteur normal est donc (5;3). Forme : 5x+3y+c=0. Point P(0;3) : 9+c=0 → c=−9. Équation : 5x+3y−9=0.",
+  "a13": "d = |−1×5+2×4+0| / √(1+4) = |−5+8| / √5 = 3/√5 = 3√5/5 ≈ 1,34 m.",
+  "a14": "Le produit scalaire est distributif (bilinéaire) : u⃗·(v⃗+w⃗) = u⃗·v⃗ + u⃗·w⃗.",
+  "a15": "u⃗·v⃗ = 4×(−1)+2×3 = −4+6 = 2. |u⃗| = √20 ≈ 4,47. |v⃗| = √10 ≈ 3,16. cos(θ) = 2/(4,47×3,16) ≈ 0,141. θ = arccos(0,141) ≈ 81,9°."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '✅ Bonne réponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '❌ Mauvaise réponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '⚠️ Pas de réponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>

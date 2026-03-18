@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch12 – Changements d'état et énergie thermique – QCM – 2nde Bac Pro</title>
+<script>
+MathJax = {tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]}};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>QCM &ndash; Changements d'&eacute;tat et &eacute;nergie thermique</h1>
+  <p class="sous-titre">Chapitre 12 | 2<sup>nde</sup> Bac Pro | Physique-Chimie</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">&#9201; <strong>Dur&eacute;e :</strong> 15&ndash;20 min</div>
+  <div class="dh-item">&#128196; <strong>15 questions</strong></div>
+  <div class="dh-item">&#129518; <strong>Calculatrice autoris&eacute;e</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne r&eacute;ponse</strong> puis cliquez sur &laquo; Valider le QCM &raquo; en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">&Eacute;tats de la mati&egrave;re &ndash; Vocabulaire</p>
+  <p>Combien d'&eacute;tats physiques de la mati&egrave;re existe-t-il au programme ?</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> 2</label>
+    <label><input type="radio" name="s1" value="b"> 3</label>
+    <label><input type="radio" name="s1" value="c"> 4</label>
+    <label><input type="radio" name="s1" value="d"> 5</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">&Eacute;tats de la mati&egrave;re &ndash; Caract&eacute;ristiques</p>
+  <p>Quel &eacute;tat poss&egrave;de une forme propre <strong>et</strong> un volume propre ?</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> Liquide</label>
+    <label><input type="radio" name="s2" value="b"> Gaz</label>
+    <label><input type="radio" name="s2" value="c"> Solide</label>
+    <label><input type="radio" name="s2" value="d"> Aucun</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">&Eacute;tats de la mati&egrave;re &ndash; Liquide</p>
+  <p>Un liquide poss&egrave;de :</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> un volume propre mais prend la forme du r&eacute;cipient</label>
+    <label><input type="radio" name="s3" value="b"> une forme propre et un volume propre</label>
+    <label><input type="radio" name="s3" value="c"> ni forme propre ni volume propre</label>
+    <label><input type="radio" name="s3" value="d"> une forme propre mais pas de volume propre</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Nommer</p>
+  <p>Le passage de l'&eacute;tat solide &agrave; l'&eacute;tat liquide s'appelle :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> la solidification</label>
+    <label><input type="radio" name="s4" value="b"> la vaporisation</label>
+    <label><input type="radio" name="s4" value="c"> la condensation</label>
+    <label><input type="radio" name="s4" value="d"> la fusion</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Nommer</p>
+  <p>Le passage de l'&eacute;tat liquide &agrave; l'&eacute;tat gazeux s'appelle :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> la condensation</label>
+    <label><input type="radio" name="s5" value="b"> la vaporisation</label>
+    <label><input type="radio" name="s5" value="c"> la sublimation</label>
+    <label><input type="radio" name="s5" value="d"> la solidification</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Inverse</p>
+  <p>Quel est le changement d'&eacute;tat inverse de la fusion ?</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> La vaporisation</label>
+    <label><input type="radio" name="s6" value="b"> La sublimation</label>
+    <label><input type="radio" name="s6" value="c"> La solidification</label>
+    <label><input type="radio" name="s6" value="d"> La condensation</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">&Eacute;nergie &ndash; Endothermique / exothermique</p>
+  <p>La fusion est un changement d'&eacute;tat qui :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> absorbe de la chaleur</label>
+    <label><input type="radio" name="s7" value="b"> d&eacute;gage de la chaleur</label>
+    <label><input type="radio" name="s7" value="c"> ne n&eacute;cessite aucune &eacute;nergie</label>
+    <label><input type="radio" name="s7" value="d"> produit de l'&eacute;lectricit&eacute;</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Palier de temp&eacute;rature &ndash; Principe</p>
+  <p>Lors de la fusion de la glace (corps pur), la temp&eacute;rature :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> augmente r&eacute;guli&egrave;rement</label>
+    <label><input type="radio" name="s8" value="b"> diminue</label>
+    <label><input type="radio" name="s8" value="c"> oscille</label>
+    <label><input type="radio" name="s8" value="d"> reste constante &agrave; 0 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Palier de temp&eacute;rature &ndash; &Eacute;bullition</p>
+  <p>&Agrave; quelle temp&eacute;rature l'eau bout-elle &agrave; pression normale ?</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> 0 &deg;C</label>
+    <label><input type="radio" name="s9" value="b"> 100 &deg;C</label>
+    <label><input type="radio" name="s9" value="c"> 50 &deg;C</label>
+    <label><input type="radio" name="s9" value="d"> 200 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Vaporisation &ndash; Deux formes</p>
+  <p>L'&eacute;vaporation est une vaporisation qui se produit :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> uniquement &agrave; 100 &deg;C</label>
+    <label><input type="radio" name="s10" value="b"> dans tout le liquide</label>
+    <label><input type="radio" name="s10" value="c"> lentement, &agrave; la surface du liquide, &agrave; n'importe quelle temp&eacute;rature</label>
+    <label><input type="radio" name="s10" value="d"> uniquement sous vide</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Sublimation &ndash; D&eacute;finition</p>
+  <p>La sublimation est le passage direct de l'&eacute;tat :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> solide &agrave; l'&eacute;tat gazeux</label>
+    <label><input type="radio" name="s11" value="b"> liquide &agrave; l'&eacute;tat gazeux</label>
+    <label><input type="radio" name="s11" value="c"> gazeux &agrave; l'&eacute;tat solide</label>
+    <label><input type="radio" name="s11" value="d"> gazeux &agrave; l'&eacute;tat liquide</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 12</h3>
+  <p class="theme">Formule &ndash; Unit&eacute;s</p>
+  <p>Dans la formule \(Q = m \times L\), l'&eacute;nergie \(Q\) s'exprime en :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> kilogrammes</label>
+    <label><input type="radio" name="s12" value="b"> joules</label>
+    <label><input type="radio" name="s12" value="c"> degr&eacute;s Celsius</label>
+    <label><input type="radio" name="s12" value="d"> m&egrave;tres</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 13</h3>
+  <p class="theme">Formule &ndash; Calcul simple</p>
+  <p>Quelle &eacute;nergie faut-il pour faire fondre 1 kg de glace ? (\(L_f = 334\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> 334 J</label>
+    <label><input type="radio" name="s13" value="b"> 33 400 J</label>
+    <label><input type="radio" name="s13" value="c"> 3 340 J</label>
+    <label><input type="radio" name="s13" value="d"> 334 000 J</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Application bois &ndash; S&eacute;chage</p>
+  <p>Le s&eacute;chage du bois est un changement d'&eacute;tat de l'eau contenue dans le bois. C'est une :</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> solidification</label>
+    <label><input type="radio" name="s14" value="b"> fusion</label>
+    <label><input type="radio" name="s14" value="c"> vaporisation</label>
+    <label><input type="radio" name="s14" value="d"> condensation</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">S&eacute;curit&eacute; &ndash; Solvants en atelier</p>
+  <p>Les vapeurs de solvants (white-spirit, ac&eacute;tone) pr&eacute;sentes dans les vernis sont :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> toxiques et/ou inflammables</label>
+    <label><input type="radio" name="s15" value="b"> totalement inoffensives</label>
+    <label><input type="radio" name="s15" value="c"> uniquement d&eacute;sagr&eacute;ables mais sans danger</label>
+    <label><input type="radio" name="s15" value="d"> solides &agrave; temp&eacute;rature ambiante</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="d">
+  <h3>Question 1</h3>
+  <p class="theme">&Eacute;tats de la mati&egrave;re &ndash; Gaz</p>
+  <p>Un gaz occupe :</p>
+  <div class="options">
+    <label><input type="radio" name="n1" value="a"> un volume propre et une forme propre</label>
+    <label><input type="radio" name="n1" value="b"> un volume propre mais pas de forme propre</label>
+    <label><input type="radio" name="n1" value="c"> une forme propre mais pas de volume propre</label>
+    <label><input type="radio" name="n1" value="d"> tout le volume du r&eacute;cipient et en prend la forme</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Nombre</p>
+  <p>Combien de changements d'&eacute;tat existe-t-il au total ?</p>
+  <div class="options">
+    <label><input type="radio" name="n2" value="a"> 3</label>
+    <label><input type="radio" name="n2" value="b"> 6</label>
+    <label><input type="radio" name="n2" value="c"> 4</label>
+    <label><input type="radio" name="n2" value="d"> 8</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Condensation</p>
+  <p>La condensation est le passage de l'&eacute;tat :</p>
+  <div class="options">
+    <label><input type="radio" name="n3" value="a"> gazeux &agrave; l'&eacute;tat liquide</label>
+    <label><input type="radio" name="n3" value="b"> liquide &agrave; l'&eacute;tat gazeux</label>
+    <label><input type="radio" name="n3" value="c"> solide &agrave; l'&eacute;tat liquide</label>
+    <label><input type="radio" name="n3" value="d"> liquide &agrave; l'&eacute;tat solide</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 4</h3>
+  <p class="theme">&Eacute;nergie &ndash; Exothermique</p>
+  <p>Parmi ces changements d'&eacute;tat, lequel <strong>d&eacute;gage</strong> de la chaleur ?</p>
+  <div class="options">
+    <label><input type="radio" name="n4" value="a"> La fusion</label>
+    <label><input type="radio" name="n4" value="b"> La vaporisation</label>
+    <label><input type="radio" name="n4" value="c"> La solidification</label>
+    <label><input type="radio" name="n4" value="d"> La sublimation</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Composition</p>
+  <p>Lors d'un changement d'&eacute;tat, la composition chimique du corps pur :</p>
+  <div class="options">
+    <label><input type="radio" name="n5" value="a"> change compl&egrave;tement</label>
+    <label><input type="radio" name="n5" value="b"> ne change pas</label>
+    <label><input type="radio" name="n5" value="c"> double</label>
+    <label><input type="radio" name="n5" value="d"> diminue de moiti&eacute;</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 6</h3>
+  <p class="theme">Palier &ndash; Courbe de chauffage</p>
+  <p>Combien de paliers observe-t-on sur la courbe de chauffage compl&egrave;te de l'eau (de glace &agrave; vapeur) ?</p>
+  <div class="options">
+    <label><input type="radio" name="n6" value="a"> 0</label>
+    <label><input type="radio" name="n6" value="b"> 1</label>
+    <label><input type="radio" name="n6" value="c"> 3</label>
+    <label><input type="radio" name="n6" value="d"> 2</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Palier &ndash; Explication</p>
+  <p>Pendant un palier de temp&eacute;rature, l'&eacute;nergie apport&eacute;e sert &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="n7" value="a"> modifier l'&eacute;tat physique du corps pur</label>
+    <label><input type="radio" name="n7" value="b"> augmenter la temp&eacute;rature du corps pur</label>
+    <label><input type="radio" name="n7" value="c"> diminuer la masse du corps pur</label>
+    <label><input type="radio" name="n7" value="d"> changer la composition chimique</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 8</h3>
+  <p class="theme">Vaporisation &ndash; &Eacute;bullition vs &eacute;vaporation</p>
+  <p>L'&eacute;bullition se distingue de l'&eacute;vaporation car elle se produit :</p>
+  <div class="options">
+    <label><input type="radio" name="n8" value="a"> lentement &agrave; la surface du liquide</label>
+    <label><input type="radio" name="n8" value="b"> uniquement en hiver</label>
+    <label><input type="radio" name="n8" value="c"> rapidement dans tout le liquide, &agrave; une temp&eacute;rature fix&eacute;e</label>
+    <label><input type="radio" name="n8" value="d"> sans apport d'&eacute;nergie</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Chaleur latente &ndash; D&eacute;finition</p>
+  <p>La chaleur latente \(L\) s'exprime en :</p>
+  <div class="options">
+    <label><input type="radio" name="n9" value="a"> joules (J)</label>
+    <label><input type="radio" name="n9" value="b"> joules par kilogramme (J/kg)</label>
+    <label><input type="radio" name="n9" value="c"> kilogrammes (kg)</label>
+    <label><input type="radio" name="n9" value="d"> degr&eacute;s par seconde (&deg;C/s)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 10</h3>
+  <p class="theme">Formule &ndash; Calcul</p>
+  <p>Quelle &eacute;nergie faut-il pour faire fondre 2 kg de glace ? (\(L_f = 334\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="n10" value="a"> 167 000 J</label>
+    <label><input type="radio" name="n10" value="b"> 334 000 J</label>
+    <label><input type="radio" name="n10" value="c"> 336 000 J</label>
+    <label><input type="radio" name="n10" value="d"> 668 000 J</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Formule &ndash; Comparaison \(L_f\) et \(L_v\)</p>
+  <p>Pour l'eau, la chaleur latente de vaporisation \(L_v\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="n11" value="a"> beaucoup plus grande que \(L_f\)</label>
+    <label><input type="radio" name="n11" value="b"> &eacute;gale &agrave; \(L_f\)</label>
+    <label><input type="radio" name="n11" value="c"> beaucoup plus petite que \(L_f\)</label>
+    <label><input type="radio" name="n11" value="d"> n&eacute;gative</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 12</h3>
+  <p class="theme">Condensation solide &ndash; D&eacute;finition</p>
+  <p>La condensation solide est le passage de l'&eacute;tat :</p>
+  <div class="options">
+    <label><input type="radio" name="n12" value="a"> solide &agrave; gazeux</label>
+    <label><input type="radio" name="n12" value="b"> liquide &agrave; solide</label>
+    <label><input type="radio" name="n12" value="c"> gazeux &agrave; solide</label>
+    <label><input type="radio" name="n12" value="d"> liquide &agrave; gazeux</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Application bois &ndash; Humidit&eacute;</p>
+  <p>Pour la menuiserie int&eacute;rieure, le bois doit &ecirc;tre s&eacute;ch&eacute; &agrave; un taux d'humidit&eacute; d'environ :</p>
+  <div class="options">
+    <label><input type="radio" name="n13" value="a"> 50 &agrave; 100 %</label>
+    <label><input type="radio" name="n13" value="b"> 6 &agrave; 12 %</label>
+    <label><input type="radio" name="n13" value="c"> 30 &agrave; 40 %</label>
+    <label><input type="radio" name="n13" value="d"> 0 %</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 14</h3>
+  <p class="theme">S&eacute;curit&eacute; &ndash; Pr&eacute;cautions</p>
+  <p>Lors de l'application de vernis solvant&eacute; en atelier, il est obligatoire d'assurer :</p>
+  <div class="options">
+    <label><input type="radio" name="n14" value="a"> un &eacute;clairage intense</label>
+    <label><input type="radio" name="n14" value="b"> un chauffage suppl&eacute;mentaire</label>
+    <label><input type="radio" name="n14" value="c"> la pr&eacute;sence d'une flamme pilote</label>
+    <label><input type="radio" name="n14" value="d"> une ventilation forc&eacute;e</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">S&eacute;curit&eacute; &ndash; Point d'&eacute;clair</p>
+  <p>Le white-spirit a un point d'&eacute;clair d'environ 40 &deg;C. Cela signifie que :</p>
+  <div class="options">
+    <label><input type="radio" name="s15b" value="a"> ses vapeurs peuvent s'enflammer d&egrave;s 40 &deg;C</label>
+    <label><input type="radio" name="s15b" value="b"> il g&egrave;le &agrave; 40 &deg;C</label>
+    <label><input type="radio" name="s15b" value="c"> il bout &agrave; 40 &deg;C</label>
+    <label><input type="radio" name="s15b" value="d"> il est totalement s&ucirc;r en dessous de 100 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="d">
+  <h3>Question 1</h3>
+  <p class="theme">&Eacute;tats de la mati&egrave;re &ndash; Particules</p>
+  <p>Dans un gaz, les particules sont :</p>
+  <div class="options">
+    <label><input type="radio" name="n1" value="a"> ordonn&eacute;es et proches</label>
+    <label><input type="radio" name="n1" value="b"> proches et mobiles</label>
+    <label><input type="radio" name="n1" value="c"> ordonn&eacute;es et vibrant sur place</label>
+    <label><input type="radio" name="n1" value="d"> tr&egrave;s &eacute;loign&eacute;es, en agitation rapide</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Nombre</p>
+  <p>Combien de changements d'&eacute;tat existe-t-il au total ?</p>
+  <div class="options">
+    <label><input type="radio" name="n2" value="a"> 3</label>
+    <label><input type="radio" name="n2" value="b"> 6</label>
+    <label><input type="radio" name="n2" value="c"> 4</label>
+    <label><input type="radio" name="n2" value="d"> 8</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Condensation</p>
+  <p>La condensation est le passage de l'&eacute;tat :</p>
+  <div class="options">
+    <label><input type="radio" name="n3" value="a"> gazeux &agrave; l'&eacute;tat liquide</label>
+    <label><input type="radio" name="n3" value="b"> liquide &agrave; l'&eacute;tat gazeux</label>
+    <label><input type="radio" name="n3" value="c"> solide &agrave; l'&eacute;tat liquide</label>
+    <label><input type="radio" name="n3" value="d"> liquide &agrave; l'&eacute;tat solide</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 4</h3>
+  <p class="theme">&Eacute;nergie &ndash; Exothermique</p>
+  <p>Parmi ces changements d'&eacute;tat, lequel <strong>d&eacute;gage</strong> de la chaleur ?</p>
+  <div class="options">
+    <label><input type="radio" name="n4" value="a"> La fusion</label>
+    <label><input type="radio" name="n4" value="b"> La vaporisation</label>
+    <label><input type="radio" name="n4" value="c"> La solidification</label>
+    <label><input type="radio" name="n4" value="d"> La sublimation</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Composition</p>
+  <p>Lors d'un changement d'&eacute;tat, la composition chimique du corps pur :</p>
+  <div class="options">
+    <label><input type="radio" name="n5" value="a"> change compl&egrave;tement</label>
+    <label><input type="radio" name="n5" value="b"> ne change pas</label>
+    <label><input type="radio" name="n5" value="c"> double</label>
+    <label><input type="radio" name="n5" value="d"> diminue de moiti&eacute;</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 6</h3>
+  <p class="theme">Palier &ndash; Courbe de chauffage</p>
+  <p>Combien de paliers observe-t-on sur la courbe de chauffage compl&egrave;te de l'eau (de glace &agrave; vapeur) ?</p>
+  <div class="options">
+    <label><input type="radio" name="n6" value="a"> 0</label>
+    <label><input type="radio" name="n6" value="b"> 1</label>
+    <label><input type="radio" name="n6" value="c"> 3</label>
+    <label><input type="radio" name="n6" value="d"> 2</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Palier &ndash; Explication</p>
+  <p>Pendant un palier de temp&eacute;rature, l'&eacute;nergie apport&eacute;e sert &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="n7" value="a"> modifier l'&eacute;tat physique du corps pur</label>
+    <label><input type="radio" name="n7" value="b"> augmenter la temp&eacute;rature du corps pur</label>
+    <label><input type="radio" name="n7" value="c"> diminuer la masse du corps pur</label>
+    <label><input type="radio" name="n7" value="d"> changer la composition chimique</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 8</h3>
+  <p class="theme">Vaporisation &ndash; &Eacute;bullition vs &eacute;vaporation</p>
+  <p>L'&eacute;bullition se distingue de l'&eacute;vaporation car elle se produit :</p>
+  <div class="options">
+    <label><input type="radio" name="n8" value="a"> lentement &agrave; la surface du liquide</label>
+    <label><input type="radio" name="n8" value="b"> uniquement en hiver</label>
+    <label><input type="radio" name="n8" value="c"> rapidement dans tout le liquide, &agrave; une temp&eacute;rature fix&eacute;e</label>
+    <label><input type="radio" name="n8" value="d"> sans apport d'&eacute;nergie</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Chaleur latente &ndash; Unit&eacute;</p>
+  <p>La chaleur latente \(L\) s'exprime en :</p>
+  <div class="options">
+    <label><input type="radio" name="n9" value="a"> joules (J)</label>
+    <label><input type="radio" name="n9" value="b"> joules par kilogramme (J/kg)</label>
+    <label><input type="radio" name="n9" value="c"> kilogrammes (kg)</label>
+    <label><input type="radio" name="n9" value="d"> degr&eacute;s par seconde (&deg;C/s)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 10</h3>
+  <p class="theme">Formule &ndash; Calcul</p>
+  <p>Quelle &eacute;nergie faut-il pour faire fondre 2 kg de glace ? (\(L_f = 334\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="n10" value="a"> 167 000 J</label>
+    <label><input type="radio" name="n10" value="b"> 334 000 J</label>
+    <label><input type="radio" name="n10" value="c"> 336 000 J</label>
+    <label><input type="radio" name="n10" value="d"> 668 000 J</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Formule &ndash; Vaporisation</p>
+  <p>Un menuisier doit vaporiser 0,5 kg d'eau contenu dans du bois. Quelle &eacute;nergie est n&eacute;cessaire ? (\(L_v = 2\,256\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="n11" value="a"> 1 128 000 J</label>
+    <label><input type="radio" name="n11" value="b"> 2 256 000 J</label>
+    <label><input type="radio" name="n11" value="c"> 4 512 000 J</label>
+    <label><input type="radio" name="n11" value="d"> 112 800 J</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 12</h3>
+  <p class="theme">Condensation solide &ndash; D&eacute;finition</p>
+  <p>La condensation solide est le passage de l'&eacute;tat :</p>
+  <div class="options">
+    <label><input type="radio" name="n12" value="a"> solide &agrave; gazeux</label>
+    <label><input type="radio" name="n12" value="b"> liquide &agrave; solide</label>
+    <label><input type="radio" name="n12" value="c"> gazeux &agrave; solide</label>
+    <label><input type="radio" name="n12" value="d"> liquide &agrave; gazeux</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Application bois &ndash; Humidit&eacute;</p>
+  <p>Pour la menuiserie int&eacute;rieure, le bois doit &ecirc;tre s&eacute;ch&eacute; &agrave; un taux d'humidit&eacute; d'environ :</p>
+  <div class="options">
+    <label><input type="radio" name="n13" value="a"> 50 &agrave; 100 %</label>
+    <label><input type="radio" name="n13" value="b"> 6 &agrave; 12 %</label>
+    <label><input type="radio" name="n13" value="c"> 30 &agrave; 40 %</label>
+    <label><input type="radio" name="n13" value="d"> 0 %</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 14</h3>
+  <p class="theme">S&eacute;curit&eacute; &ndash; Solvants volatils</p>
+  <p>Les solvants contenus dans les vernis passent de l'&eacute;tat liquide &agrave; l'&eacute;tat gazeux &agrave; temp&eacute;rature ambiante. Ce ph&eacute;nom&egrave;ne s'appelle :</p>
+  <div class="options">
+    <label><input type="radio" name="n14" value="a"> la condensation</label>
+    <label><input type="radio" name="n14" value="b"> la solidification</label>
+    <label><input type="radio" name="n14" value="c"> la sublimation</label>
+    <label><input type="radio" name="n14" value="d"> l'&eacute;vaporation</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Formule &ndash; Conversion</p>
+  <p>On trouve \(Q = 3\,384\,000\) J. Convertir en m&eacute;gajoules (MJ) :</p>
+  <div class="options">
+    <label><input type="radio" name="n15" value="a"> 3,384 MJ</label>
+    <label><input type="radio" name="n15" value="b"> 338,4 MJ</label>
+    <label><input type="radio" name="n15" value="c"> 33,84 MJ</label>
+    <label><input type="radio" name="n15" value="d"> 0,3384 MJ</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">&Eacute;tats de la mati&egrave;re &ndash; Particules</p>
+  <p>Dans un solide cristallin, les particules sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> d&eacute;sordonn&eacute;es et en mouvement rapide</label>
+    <label><input type="radio" name="a1" value="b"> mobiles et proches les unes des autres</label>
+    <label><input type="radio" name="a1" value="c"> ordonn&eacute;es, tr&egrave;s proches, vibrant sur place</label>
+    <label><input type="radio" name="a1" value="d"> tr&egrave;s &eacute;loign&eacute;es les unes des autres</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Changements d'&eacute;tat &ndash; Classification &eacute;nerg&eacute;tique</p>
+  <p>Les changements d'&eacute;tat endothermiques sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> solidification, condensation, condensation solide</label>
+    <label><input type="radio" name="a2" value="b"> fusion, vaporisation, sublimation</label>
+    <label><input type="radio" name="a2" value="c"> fusion, solidification, vaporisation</label>
+    <label><input type="radio" name="a2" value="d"> condensation, sublimation, fusion</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Palier &ndash; Analyse de courbe</p>
+  <p>Sur une courbe de chauffage d'un corps pur, la temp&eacute;rature augmente, puis reste constante, puis augmente &agrave; nouveau. Le palier correspond &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> un arr&ecirc;t du chauffage</label>
+    <label><input type="radio" name="a3" value="b"> une r&eacute;action chimique</label>
+    <label><input type="radio" name="a3" value="c"> une perte de masse</label>
+    <label><input type="radio" name="a3" value="d"> un changement d'&eacute;tat o&ugrave; toute l'&eacute;nergie sert &agrave; modifier l'&eacute;tat physique</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">Formule &ndash; Calcul de masse</p>
+  <p>On dispose de 1 002 kJ pour faire fondre de la glace. Quelle masse peut-on fondre ? (\(L_f = 334\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> 3 kg</label>
+    <label><input type="radio" name="a4" value="b"> 0,3 kg</label>
+    <label><input type="radio" name="a4" value="c"> 30 kg</label>
+    <label><input type="radio" name="a4" value="d"> 334 kg</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Formule &ndash; Vaporisation du bois</p>
+  <p>Une planche contient 1,5 kg d'eau &agrave; &eacute;vaporer. L'&eacute;nergie n&eacute;cessaire vaut : (\(L_v = 2\,256\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> 1 504 000 J</label>
+    <label><input type="radio" name="a5" value="b"> 2 256 000 J</label>
+    <label><input type="radio" name="a5" value="c"> 3 384 000 J</label>
+    <label><input type="radio" name="a5" value="d"> 4 512 000 J</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">Formule &ndash; Comparaison fusion / vaporisation</p>
+  <p>Pour 1 kg d'eau, le rapport \(\dfrac{L_v}{L_f}\) vaut environ : (\(L_f = 334\,000\) J/kg, \(L_v = 2\,256\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> 2</label>
+    <label><input type="radio" name="a6" value="b"> 6,8</label>
+    <label><input type="radio" name="a6" value="c"> 0,15</label>
+    <label><input type="radio" name="a6" value="d"> 10</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Formule &ndash; Isoler la masse</p>
+  <p>La formule \(Q = m \times L\) permet d'&eacute;crire \(m =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(Q \times L\)</label>
+    <label><input type="radio" name="a7" value="b"> \(L \div Q\)</label>
+    <label><input type="radio" name="a7" value="c"> \(Q - L\)</label>
+    <label><input type="radio" name="a7" value="d"> \(\dfrac{Q}{L}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 8</h3>
+  <p class="theme">Formule &ndash; &Eacute;nergie totale</p>
+  <p>Un menuisier doit s&eacute;cher 3 kg d'eau dans un lot de planches. L'&eacute;nergie n&eacute;cessaire vaut : (\(L_v = 2\,256\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> 6,77 MJ</label>
+    <label><input type="radio" name="a8" value="b"> 2,26 MJ</label>
+    <label><input type="radio" name="a8" value="c"> 0,68 MJ</label>
+    <label><input type="radio" name="a8" value="d"> 67,7 MJ</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Palier &ndash; Corps pur vs m&eacute;lange</p>
+  <p>Le palier de temp&eacute;rature lors d'un changement d'&eacute;tat est caract&eacute;ristique :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> de tous les corps, purs ou m&eacute;langes</label>
+    <label><input type="radio" name="a9" value="b"> uniquement des m&eacute;langes</label>
+    <label><input type="radio" name="a9" value="c"> uniquement des corps purs</label>
+    <label><input type="radio" name="a9" value="d"> uniquement de l'eau</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">Application &ndash; Comparaison de mat&eacute;riaux</p>
+  <p>Quel m&eacute;tal n&eacute;cessite le plus d'&eacute;nergie pour fondre 1 kg ? (Donn&eacute;es : \(L_f(\text{fer}) = 272\,000\) J/kg ; \(L_f(\text{alu}) = 397\,000\) J/kg ; \(L_f(\text{plomb}) = 22\,400\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> Le fer</label>
+    <label><input type="radio" name="a10" value="b"> L'aluminium</label>
+    <label><input type="radio" name="a10" value="c"> Le plomb</label>
+    <label><input type="radio" name="a10" value="d"> Ils n&eacute;cessitent tous la m&ecirc;me &eacute;nergie</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">S&eacute;chage du bois &ndash; Raisonnement</p>
+  <p>Le s&eacute;chage en &eacute;tuve est &eacute;nerg&eacute;tiquement co&ucirc;teux principalement parce que :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> le bois est tr&egrave;s lourd</label>
+    <label><input type="radio" name="a11" value="b"> la temp&eacute;rature de l'&eacute;tuve est tr&egrave;s &eacute;lev&eacute;e</label>
+    <label><input type="radio" name="a11" value="c"> le bois contient peu d'eau</label>
+    <label><input type="radio" name="a11" value="d"> la chaleur latente de vaporisation de l'eau est tr&egrave;s &eacute;lev&eacute;e (2,26 MJ/kg)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 12</h3>
+  <p class="theme">Formule &ndash; Calcul inverse</p>
+  <p>On fournit 4 512 kJ pour vaporiser de l'eau. Quelle masse d'eau a &eacute;t&eacute; vaporis&eacute;e ? (\(L_v = 2\,256\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> 2 kg</label>
+    <label><input type="radio" name="a12" value="b"> 0,5 kg</label>
+    <label><input type="radio" name="a12" value="c"> 4,5 kg</label>
+    <label><input type="radio" name="a12" value="d"> 20 kg</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Sublimation &ndash; Exemple</p>
+  <p>La naphtaline (antimites) dispara&icirc;t progressivement sans laisser de liquide. Ce ph&eacute;nom&egrave;ne est :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> une &eacute;vaporation</label>
+    <label><input type="radio" name="a13" value="b"> une fusion</label>
+    <label><input type="radio" name="a13" value="c"> une sublimation</label>
+    <label><input type="radio" name="a13" value="d"> une condensation</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 14</h3>
+  <p class="theme">S&eacute;curit&eacute; &ndash; Raisonnement complet</p>
+  <p>En &eacute;t&eacute;, un atelier de menuiserie mal ventil&eacute; atteint 42 &deg;C. Le white-spirit (point d'&eacute;clair : 40 &deg;C) utilis&eacute; pour nettoyer les outils :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> ne pr&eacute;sente aucun risque car il est liquide</label>
+    <label><input type="radio" name="a14" value="b"> pr&eacute;sente un risque d'inflammation car la temp&eacute;rature d&eacute;passe le point d'&eacute;clair</label>
+    <label><input type="radio" name="a14" value="c"> se solidifie &agrave; cette temp&eacute;rature</label>
+    <label><input type="radio" name="a14" value="d"> ne s'&eacute;vapore pas &agrave; 42 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 15</h3>
+  <p class="theme">Synth&egrave;se &ndash; Raisonnement global</p>
+  <p>Un artisan menuisier doit s&eacute;cher 10 kg de bois vert contenant 40 % d'eau en masse. Quelle masse d'eau doit &ecirc;tre &eacute;vapor&eacute;e et quelle &eacute;nergie cela repr&eacute;sente-t-il ? (\(L_v = 2\,256\,000\) J/kg)</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> 1 kg ; 2,256 MJ</label>
+    <label><input type="radio" name="a15" value="b"> 10 kg ; 22,56 MJ</label>
+    <label><input type="radio" name="a15" value="c"> 0,4 kg ; 0,902 MJ</label>
+    <label><input type="radio" name="a15" value="d"> 4 kg ; 9,024 MJ</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "La matiere existe sous trois etats physiques : solide, liquide et gazeux.",
+  "s2": "Le solide possede une forme propre et un volume propre. Les particules sont ordonnees et vibrent sur place.",
+  "s3": "Un liquide a un volume propre (on peut le mesurer) mais prend la forme du recipient qui le contient.",
+  "s4": "La fusion est le passage du solide au liquide. Exemple : la glace fond en eau liquide.",
+  "s5": "La vaporisation est le passage du liquide au gaz. Elle comprend l'ebullition et l'evaporation.",
+  "s6": "La solidification (liquide vers solide) est l'inverse de la fusion (solide vers liquide).",
+  "s7": "La fusion absorbe de la chaleur (endothermique) : il faut chauffer la glace pour la faire fondre.",
+  "s8": "Lors de la fusion d'un corps pur, la temperature reste constante (palier a 0 °C pour l'eau).",
+  "s9": "L'eau bout a 100 °C a pression atmospherique normale (1 013 hPa).",
+  "s10": "L'evaporation est une vaporisation lente qui se produit a la surface du liquide, a n'importe quelle temperature.",
+  "s11": "La sublimation est le passage direct de l'etat solide a l'etat gazeux, sans passer par le liquide.",
+  "s12": "Q s'exprime en joules (J). C'est une energie.",
+  "s13": "Q = m x Lf = 1 x 334 000 = 334 000 J.",
+  "s14": "Le sechage du bois est une vaporisation : l'eau liquide contenue dans le bois passe a l'etat gazeux.",
+  "s15b": "Les vapeurs de solvants sont toxiques (risque d'intoxication) et inflammables (risque d'incendie). La ventilation est obligatoire.",
+  /* === STANDARD === */
+  "n1": "Dans un gaz, les particules sont tres eloignees les unes des autres et en agitation rapide et desordonnee.",
+  "n2": "Il existe 6 changements d'etat : fusion, solidification, vaporisation, condensation, sublimation, condensation solide.",
+  "n3": "La condensation est le passage de l'etat gazeux a l'etat liquide. Exemple : la buee sur une vitre froide.",
+  "n4": "La solidification degage de la chaleur (exothermique). Les changements exothermiques sont : solidification, condensation, condensation solide.",
+  "n5": "Lors d'un changement d'etat, seul l'etat physique change. La composition chimique reste identique.",
+  "n6": "On observe 2 paliers : un a 0 °C (fusion) et un a 100 °C (ebullition).",
+  "n7": "Pendant le palier, toute l'energie apportee sert a modifier l'etat physique, pas a augmenter la temperature.",
+  "n8": "L'ebullition est une vaporisation rapide dans tout le liquide, a une temperature fixee (100 °C pour l'eau).",
+  "n9": "L est une energie par unite de masse, donc en J/kg.",
+  "n10": "Q = m x Lf = 2 x 334 000 = 668 000 J.",
+  "n11": "Q = m x Lv = 0,5 x 2 256 000 = 1 128 000 J.",
+  "n12": "La condensation solide est le passage direct du gaz au solide. C'est l'inverse de la sublimation.",
+  "n13": "Pour la menuiserie interieure, le bois doit etre seche entre 6 et 12 % d'humidite (sechage en etuve).",
+  "n14": "Les solvants s'evaporent spontanement a temperature ambiante : c'est une evaporation (vaporisation lente a la surface).",
+  "n15": "1 MJ = 1 000 000 J, donc 3 384 000 J = 3 384 000 / 1 000 000 = 3,384 MJ.",
+  /* === APPROFONDISSEMENT === */
+  "a1": "Dans un solide cristallin, les particules sont ordonnees en reseau, tres proches les unes des autres, et vibrent autour de positions fixes.",
+  "a2": "Les changements endothermiques (qui absorbent de la chaleur) sont : fusion, vaporisation et sublimation. Ils vont dans le sens solide vers gaz.",
+  "a3": "Le palier correspond a un changement d'etat : toute l'energie sert a modifier l'etat, pas la temperature.",
+  "a4": "m = Q / Lf = 1 002 000 / 334 000 = 3 kg.",
+  "a5": "Q = m x Lv = 1,5 x 2 256 000 = 3 384 000 J.",
+  "a6": "Lv / Lf = 2 256 000 / 334 000 = 6,75 soit environ 6,8. Il faut presque 7 fois plus d'energie pour vaporiser que pour fondre.",
+  "a7": "En isolant m dans Q = m x L, on obtient m = Q / L.",
+  "a8": "Q = 3 x 2 256 000 = 6 768 000 J = 6,77 MJ.",
+  "a9": "Le palier de temperature est une propriete des corps purs. Les melanges changent d'etat sur un intervalle de temperature.",
+  "a10": "L'aluminium a la plus grande chaleur latente de fusion (397 000 J/kg), donc il necessite le plus d'energie par kg.",
+  "a11": "La valeur tres elevee de Lv (2,26 MJ/kg) signifie qu'il faut enormement d'energie pour evaporer chaque kg d'eau du bois.",
+  "a12": "m = Q / Lv = 4 512 000 / 2 256 000 = 2 kg.",
+  "a13": "La naphtaline passe directement du solide au gaz sans phase liquide : c'est une sublimation.",
+  "a14": "A 42 °C, la temperature depasse le point d'eclair (40 °C), donc les vapeurs de white-spirit peuvent s'enflammer au contact d'une etincelle.",
+  "a15": "Masse d'eau = 40 % de 10 kg = 4 kg. Q = 4 x 2 256 000 = 9 024 000 J = 9,024 MJ."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '\u2705 Bonne r\u00e9ponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '\u274c Mauvaise r\u00e9ponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '\u26a0\ufe0f Pas de r\u00e9ponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>

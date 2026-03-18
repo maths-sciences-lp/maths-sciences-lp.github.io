@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Vecteurs du plan – QCM – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../sommaire.html" class="nb">&larr; RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>QCM &ndash; Vecteurs du plan</h1>
+  <p class="sous-titre">Chapitre 6 | Terminale Bac Pro | Math&eacute;matiques</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">&#9201; <strong>Dur&eacute;e :</strong> 15&ndash;20 min</div>
+  <div class="dh-item">&#128196; <strong>15 questions</strong></div>
+  <div class="dh-item">&#129518; <strong>Calculatrice autoris&eacute;e</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne r&eacute;ponse</strong> puis cliquez sur &laquo; Valider le QCM &raquo; en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Rappels &ndash; Caract&eacute;ristiques d'un vecteur</p>
+  <p>Un vecteur est caract&eacute;ris&eacute; par :</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> une longueur uniquement</label>
+    <label><input type="radio" name="s1" value="b"> une direction, un sens et une norme</label>
+    <label><input type="radio" name="s1" value="c"> un point de d&eacute;part uniquement</label>
+    <label><input type="radio" name="s1" value="d"> une couleur et une &eacute;paisseur</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 2</h3>
+  <p class="theme">Vecteur oppos&eacute;</p>
+  <p>Le vecteur oppos&eacute; de \(\overrightarrow{AB}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> \(\overrightarrow{BA}\)</label>
+    <label><input type="radio" name="s2" value="b"> \(\overrightarrow{AB}\)</label>
+    <label><input type="radio" name="s2" value="c"> \(\vec{0}\)</label>
+    <label><input type="radio" name="s2" value="d"> \(2\,\overrightarrow{AB}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 3</h3>
+  <p class="theme">Coordonn&eacute;es d'un vecteur</p>
+  <p>On donne \(A(1\,;\,3)\) et \(B(4\,;\,7)\). Les coordonn&eacute;es de \(\overrightarrow{AB}\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> \(\begin{pmatrix}1\\3\end{pmatrix}\)</label>
+    <label><input type="radio" name="s3" value="b"> \(\begin{pmatrix}5\\10\end{pmatrix}\)</label>
+    <label><input type="radio" name="s3" value="c"> \(\begin{pmatrix}3\\4\end{pmatrix}\)</label>
+    <label><input type="radio" name="s3" value="d"> \(\begin{pmatrix}-3\\-4\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Coordonn&eacute;es &ndash; Sens du calcul</p>
+  <p>Pour calculer les coordonn&eacute;es de \(\overrightarrow{AB}\), on fait :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> coordonn&eacute;es de A + coordonn&eacute;es de B</label>
+    <label><input type="radio" name="s4" value="b"> coordonn&eacute;es de A &minus; coordonn&eacute;es de B</label>
+    <label><input type="radio" name="s4" value="c"> coordonn&eacute;es de A &times; coordonn&eacute;es de B</label>
+    <label><input type="radio" name="s4" value="d"> coordonn&eacute;es de B &minus; coordonn&eacute;es de A</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Norme d'un vecteur &ndash; Calcul simple</p>
+  <p>On donne \(\vec{u} = \begin{pmatrix}3\\4\end{pmatrix}\). Sa norme \(\|\vec{u}\|\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> 7</label>
+    <label><input type="radio" name="s5" value="b"> 5</label>
+    <label><input type="radio" name="s5" value="c"> 12</label>
+    <label><input type="radio" name="s5" value="d"> 25</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 6</h3>
+  <p class="theme">Norme &ndash; Signe</p>
+  <p>La norme d'un vecteur est toujours :</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> positive ou nulle</label>
+    <label><input type="radio" name="s6" value="b"> n&eacute;gative</label>
+    <label><input type="radio" name="s6" value="c"> &eacute;gale &agrave; z&eacute;ro</label>
+    <label><input type="radio" name="s6" value="d"> sup&eacute;rieure &agrave; 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 7</h3>
+  <p class="theme">Somme de vecteurs</p>
+  <p>\(\vec{u} = \begin{pmatrix}2\\5\end{pmatrix}\) et \(\vec{v} = \begin{pmatrix}1\\{-3}\end{pmatrix}\). Alors \(\vec{u}+\vec{v} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> \(\begin{pmatrix}1\\8\end{pmatrix}\)</label>
+    <label><input type="radio" name="s7" value="b"> \(\begin{pmatrix}2\\{-15}\end{pmatrix}\)</label>
+    <label><input type="radio" name="s7" value="c"> \(\begin{pmatrix}3\\2\end{pmatrix}\)</label>
+    <label><input type="radio" name="s7" value="d"> \(\begin{pmatrix}3\\8\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Multiplication par un scalaire</p>
+  <p>Si \(\vec{u} = \begin{pmatrix}2\\{-1}\end{pmatrix}\), alors \(3\,\vec{u} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> \(\begin{pmatrix}5\\2\end{pmatrix}\)</label>
+    <label><input type="radio" name="s8" value="b"> \(\begin{pmatrix}2\\{-3}\end{pmatrix}\)</label>
+    <label><input type="radio" name="s8" value="c"> \(\begin{pmatrix}3\\{-1}\end{pmatrix}\)</label>
+    <label><input type="radio" name="s8" value="d"> \(\begin{pmatrix}6\\{-3}\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Relation de Chasles</p>
+  <p>\(\overrightarrow{AB} + \overrightarrow{BC} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> \(\overrightarrow{BA}\)</label>
+    <label><input type="radio" name="s9" value="b"> \(\overrightarrow{AC}\)</label>
+    <label><input type="radio" name="s9" value="c"> \(\overrightarrow{CB}\)</label>
+    <label><input type="radio" name="s9" value="d"> \(\overrightarrow{AB}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">Colinéarité &ndash; Définition</p>
+  <p>Deux vecteurs sont colinéaires lorsque :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> l'un est un multiple de l'autre (m&ecirc;me direction)</label>
+    <label><input type="radio" name="s10" value="b"> ils ont la m&ecirc;me norme</label>
+    <label><input type="radio" name="s10" value="c"> ils sont perpendiculaires</label>
+    <label><input type="radio" name="s10" value="d"> leur somme est nulle</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 11</h3>
+  <p class="theme">Colinéarité &ndash; Calcul du d&eacute;terminant</p>
+  <p>\(\vec{u} = \begin{pmatrix}2\\3\end{pmatrix}\) et \(\vec{v} = \begin{pmatrix}4\\6\end{pmatrix}\). Le d&eacute;terminant \(\det(\vec{u},\vec{v})\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> 24</label>
+    <label><input type="radio" name="s11" value="b"> &minus;6</label>
+    <label><input type="radio" name="s11" value="c"> 0</label>
+    <label><input type="radio" name="s11" value="d"> 12</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Milieu d'un segment</p>
+  <p>Le milieu \(I\) de \([AB]\) avec \(A(2\,;\,4)\) et \(B(6\,;\,8)\) a pour coordonn&eacute;es :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> \((8\,;\,12)\)</label>
+    <label><input type="radio" name="s12" value="b"> \((2\,;\,2)\)</label>
+    <label><input type="radio" name="s12" value="c"> \((3\,;\,5)\)</label>
+    <label><input type="radio" name="s12" value="d"> \((4\,;\,6)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Distance entre deux points</p>
+  <p>\(A(0\,;\,0)\) et \(B(6\,;\,8)\). La distance \(AB\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> 14</label>
+    <label><input type="radio" name="s13" value="b"> 10</label>
+    <label><input type="radio" name="s13" value="c"> 100</label>
+    <label><input type="radio" name="s13" value="d"> 48</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">Vecteur nul</p>
+  <p>Le vecteur \(\overrightarrow{AA}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> le vecteur nul \(\vec{0}\)</label>
+    <label><input type="radio" name="s14" value="b"> un vecteur de norme 1</label>
+    <label><input type="radio" name="s14" value="c"> le vecteur oppos&eacute; de \(\overrightarrow{AB}\)</label>
+    <label><input type="radio" name="s14" value="d"> un vecteur directeur de la droite \((AB)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 15</h3>
+  <p class="theme">Contexte professionnel &ndash; Distance</p>
+  <p>Un menuisier rep&egrave;re deux angles d'un panneau : \(P(1\,;\,2)\) et \(Q(4\,;\,6)\). La longueur de la diagonale \(PQ\) (en m) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> 7 m</label>
+    <label><input type="radio" name="s15" value="b"> 25 m</label>
+    <label><input type="radio" name="s15" value="c"> 5 m</label>
+    <label><input type="radio" name="s15" value="d"> 3,5 m</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="d">
+  <h3>Question 1</h3>
+  <p class="theme">Coordonn&eacute;es d'un vecteur &ndash; Coordonn&eacute;es n&eacute;gatives</p>
+  <p>On donne \(A(5\,;\,3)\) et \(B(2\,;\,{-1})\). Alors \(\overrightarrow{AB} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t1" value="a"> \(\begin{pmatrix}7\\2\end{pmatrix}\)</label>
+    <label><input type="radio" name="t1" value="b"> \(\begin{pmatrix}3\\4\end{pmatrix}\)</label>
+    <label><input type="radio" name="t1" value="c"> \(\begin{pmatrix}7\\4\end{pmatrix}\)</label>
+    <label><input type="radio" name="t1" value="d"> \(\begin{pmatrix}{-3}\\{-4}\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Norme &ndash; Coordonn&eacute;es n&eacute;gatives</p>
+  <p>\(\vec{u} = \begin{pmatrix}{-3}\\4\end{pmatrix}\). Alors \(\|\vec{u}\| =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t2" value="a"> 1</label>
+    <label><input type="radio" name="t2" value="b"> 5</label>
+    <label><input type="radio" name="t2" value="c"> 7</label>
+    <label><input type="radio" name="t2" value="d"> &minus;5</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Colinéarité &ndash; D&eacute;terminant</p>
+  <p>\(\vec{u} = \begin{pmatrix}1\\2\end{pmatrix}\) et \(\vec{v} = \begin{pmatrix}3\\5\end{pmatrix}\). Alors \(\det(\vec{u},\vec{v}) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t3" value="a"> &minus;1</label>
+    <label><input type="radio" name="t3" value="b"> 0</label>
+    <label><input type="radio" name="t3" value="c"> 11</label>
+    <label><input type="radio" name="t3" value="d"> 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 4</h3>
+  <p class="theme">Colinéarité &ndash; Cons&eacute;quence</p>
+  <p>Si \(\det(\vec{u},\vec{v}) = 0\), alors les droites de vecteurs directeurs \(\vec{u}\) et \(\vec{v}\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="t4" value="a"> perpendiculaires</label>
+    <label><input type="radio" name="t4" value="b"> s&eacute;cantes</label>
+    <label><input type="radio" name="t4" value="c"> parall&egrave;les ou confondues</label>
+    <label><input type="radio" name="t4" value="d"> de m&ecirc;me longueur</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">&Eacute;quation cart&eacute;sienne &ndash; Vecteur directeur</p>
+  <p>La droite \(3x - 2y + 5 = 0\) a pour vecteur directeur :</p>
+  <div class="options">
+    <label><input type="radio" name="t5" value="a"> \(\begin{pmatrix}3\\{-2}\end{pmatrix}\)</label>
+    <label><input type="radio" name="t5" value="b"> \(\begin{pmatrix}2\\3\end{pmatrix}\)</label>
+    <label><input type="radio" name="t5" value="c"> \(\begin{pmatrix}{-3}\\2\end{pmatrix}\)</label>
+    <label><input type="radio" name="t5" value="d"> \(\begin{pmatrix}5\\0\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 6</h3>
+  <p class="theme">&Eacute;quation cart&eacute;sienne &ndash; Vecteur normal</p>
+  <p>La droite \(3x - 2y + 5 = 0\) a pour vecteur normal :</p>
+  <div class="options">
+    <label><input type="radio" name="t6" value="a"> \(\begin{pmatrix}3\\{-2}\end{pmatrix}\)</label>
+    <label><input type="radio" name="t6" value="b"> \(\begin{pmatrix}2\\3\end{pmatrix}\)</label>
+    <label><input type="radio" name="t6" value="c"> \(\begin{pmatrix}{-2}\\{-3}\end{pmatrix}\)</label>
+    <label><input type="radio" name="t6" value="d"> \(\begin{pmatrix}5\\3\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Distance point-droite</p>
+  <p>La distance du point \(M(1\,;\,2)\) &agrave; la droite \(3x + 4y - 5 = 0\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t7" value="a"> 0</label>
+    <label><input type="radio" name="t7" value="b"> 2</label>
+    <label><input type="radio" name="t7" value="c"> 3</label>
+    <label><input type="radio" name="t7" value="d"> 1,2</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 8</h3>
+  <p class="theme">Parall&eacute;lisme de droites</p>
+  <p>Les droites \(2x + 3y - 1 = 0\) et \(4x + 6y + 7 = 0\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="t8" value="a"> perpendiculaires</label>
+    <label><input type="radio" name="t8" value="b"> s&eacute;cantes</label>
+    <label><input type="radio" name="t8" value="c"> parall&egrave;les</label>
+    <label><input type="radio" name="t8" value="d"> confondues</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Perpendicularit&eacute; de droites</p>
+  <p>Les droites \(2x + 3y = 0\) et \(3x - 2y + 1 = 0\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="t9" value="a"> parall&egrave;les</label>
+    <label><input type="radio" name="t9" value="b"> perpendiculaires</label>
+    <label><input type="radio" name="t9" value="c"> confondues</label>
+    <label><input type="radio" name="t9" value="d"> s&eacute;cantes (ni parall&egrave;les ni perpendiculaires)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">Alignement de trois points</p>
+  <p>Trois points \(A\), \(B\), \(C\) sont align&eacute;s si et seulement si :</p>
+  <div class="options">
+    <label><input type="radio" name="t10" value="a"> \(\overrightarrow{AB}\) et \(\overrightarrow{AC}\) sont colin&eacute;aires</label>
+    <label><input type="radio" name="t10" value="b"> \(\overrightarrow{AB}\) et \(\overrightarrow{AC}\) sont perpendiculaires</label>
+    <label><input type="radio" name="t10" value="c"> \(\|\overrightarrow{AB}\| = \|\overrightarrow{AC}\|\)</label>
+    <label><input type="radio" name="t10" value="d"> \(\overrightarrow{AB} + \overrightarrow{AC} = \vec{0}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">Contexte professionnel &ndash; Parall&eacute;lisme</p>
+  <p>Un menuisier agenceur v&eacute;rifie que deux murs sont parall&egrave;les. Les vecteurs directeurs sont \(\vec{u} = \begin{pmatrix}3\\{-2}\end{pmatrix}\) et \(\vec{v} = \begin{pmatrix}{-6}\\4\end{pmatrix}\). On calcule \(\det(\vec{u},\vec{v}) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t11" value="a"> &minus;6</label>
+    <label><input type="radio" name="t11" value="b"> 6</label>
+    <label><input type="radio" name="t11" value="c"> 24</label>
+    <label><input type="radio" name="t11" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 12</h3>
+  <p class="theme">Contexte professionnel &ndash; Distance</p>
+  <p>Un plombier chauffagiste trace une canalisation rectiligne entre \(P_1(0\,;\,0)\) et \(P_2(6\,;\,8)\) (en dm). La longueur de cette canalisation est :</p>
+  <div class="options">
+    <label><input type="radio" name="t12" value="a"> 14 dm</label>
+    <label><input type="radio" name="t12" value="b"> 48 dm</label>
+    <label><input type="radio" name="t12" value="c"> 10 dm</label>
+    <label><input type="radio" name="t12" value="d"> 100 dm</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Vecteurs dans l'espace &ndash; Coordonn&eacute;es</p>
+  <p>Dans l'espace, \(S(1\,;\,0\,;\,2)\) et \(T(5\,;\,3\,;\,6)\). Alors \(\overrightarrow{ST} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t13" value="a"> \(\begin{pmatrix}6\\3\\8\end{pmatrix}\)</label>
+    <label><input type="radio" name="t13" value="b"> \(\begin{pmatrix}4\\3\\4\end{pmatrix}\)</label>
+    <label><input type="radio" name="t13" value="c"> \(\begin{pmatrix}{-4}\\{-3}\\{-4}\end{pmatrix}\)</label>
+    <label><input type="radio" name="t13" value="d"> \(\begin{pmatrix}5\\3\\6\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">Norme dans l'espace</p>
+  <p>La norme de \(\vec{w} = \begin{pmatrix}2\\1\\2\end{pmatrix}\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t14" value="a"> 3</label>
+    <label><input type="radio" name="t14" value="b"> 5</label>
+    <label><input type="radio" name="t14" value="c"> 9</label>
+    <label><input type="radio" name="t14" value="d"> \(\sqrt{5}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 15</h3>
+  <p class="theme">Milieu dans l'espace</p>
+  <p>Le milieu de \([AB]\) avec \(A(2\,;\,4\,;\,0)\) et \(B(6\,;\,2\,;\,8)\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t15" value="a"> \((8\,;\,6\,;\,8)\)</label>
+    <label><input type="radio" name="t15" value="b"> \((2\,;\,1\,;\,4)\)</label>
+    <label><input type="radio" name="t15" value="c"> \((3\,;\,2\,;\,4)\)</label>
+    <label><input type="radio" name="t15" value="d"> \((4\,;\,3\,;\,4)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Coordonn&eacute;es &ndash; Vecteur &eacute;gaux</p>
+  <p>\(\overrightarrow{AB} = \begin{pmatrix}3\\{-2}\end{pmatrix}\) et \(A(1\,;\,5)\). Les coordonn&eacute;es de \(B\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> \(({-2}\,;\,7)\)</label>
+    <label><input type="radio" name="a1" value="b"> \((3\,;\,{-2})\)</label>
+    <label><input type="radio" name="a1" value="c"> \((4\,;\,3)\)</label>
+    <label><input type="radio" name="a1" value="d"> \((1\,;\,5)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">&Eacute;quation cart&eacute;sienne &ndash; D&eacute;termination</p>
+  <p>La droite passant par \(A(1\,;\,2)\) et \(B(4\,;\,5)\) a pour &eacute;quation cart&eacute;sienne :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> \(3x + 3y - 1 = 0\)</label>
+    <label><input type="radio" name="a2" value="b"> \(x - y + 1 = 0\)</label>
+    <label><input type="radio" name="a2" value="c"> \(x + y - 3 = 0\)</label>
+    <label><input type="radio" name="a2" value="d"> \(3x - 3y + 1 = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Distance point-droite &ndash; Calcul</p>
+  <p>Distance de \(M(3\,;\,1)\) &agrave; la droite \(4x - 3y + 2 = 0\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> 1</label>
+    <label><input type="radio" name="a3" value="b"> 3</label>
+    <label><input type="radio" name="a3" value="c"> \(\dfrac{11}{7}\)</label>
+    <label><input type="radio" name="a3" value="d"> \(\dfrac{11}{5}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">Colinéarité &ndash; Alignement</p>
+  <p>Les points \(A(1\,;\,1)\), \(B(3\,;\,5)\), \(C(4\,;\,7)\) sont-ils align&eacute;s ?</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> Oui, car \(\det(\overrightarrow{AB},\overrightarrow{AC}) = 0\)</label>
+    <label><input type="radio" name="a4" value="b"> Non, car \(\det(\overrightarrow{AB},\overrightarrow{AC}) = 2\)</label>
+    <label><input type="radio" name="a4" value="c"> Oui, car \(\|\overrightarrow{AB}\| = \|\overrightarrow{AC}\|\)</label>
+    <label><input type="radio" name="a4" value="d"> Non, car les coordonn&eacute;es sont diff&eacute;rentes</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Combinaison lin&eacute;aire</p>
+  <p>\(\vec{u} = \begin{pmatrix}1\\3\end{pmatrix}\), \(\vec{v} = \begin{pmatrix}{-2}\\1\end{pmatrix}\). Le vecteur \(2\vec{u} - 3\vec{v}\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> \(\begin{pmatrix}{-4}\\{-3}\end{pmatrix}\)</label>
+    <label><input type="radio" name="a5" value="b"> \(\begin{pmatrix}0\\7\end{pmatrix}\)</label>
+    <label><input type="radio" name="a5" value="c"> \(\begin{pmatrix}8\\3\end{pmatrix}\)</label>
+    <label><input type="radio" name="a5" value="d"> \(\begin{pmatrix}{-4}\\9\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">&Eacute;quation cart&eacute;sienne &ndash; V&eacute;rification</p>
+  <p>Le point \(C(2\,;\,3)\) appartient-il &agrave; la droite \(x - y + 1 = 0\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> Non, car \(2 - 3 + 1 = -1 \neq 0\)</label>
+    <label><input type="radio" name="a6" value="b"> Oui, car \(2 - 3 + 1 = 0\)</label>
+    <label><input type="radio" name="a6" value="c"> Non, car \(2 + 3 + 1 = 6 \neq 0\)</label>
+    <label><input type="radio" name="a6" value="d"> Oui, car \(2 + 3 = 5\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Contexte professionnel &ndash; &Eacute;quation de droite</p>
+  <p>Un technicien d'agencement trace une paroi rectiligne passant par \(P_1(0\,;\,2)\) et \(P_2(4\,;\,0)\). L'&eacute;quation de cette droite est :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(2x + 4y = 0\)</label>
+    <label><input type="radio" name="a7" value="b"> \(x - 2y + 4 = 0\)</label>
+    <label><input type="radio" name="a7" value="c"> \(2x - y + 2 = 0\)</label>
+    <label><input type="radio" name="a7" value="d"> \(x + 2y - 4 = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 8</h3>
+  <p class="theme">Distance point-droite &ndash; Contexte professionnel</p>
+  <p>Une canalisation suit la droite \(x + 2y - 4 = 0\). Un robinet est en \(R(2\,;\,5)\). La distance du robinet &agrave; la canalisation est :</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> \(\dfrac{8}{\sqrt{5}} \approx 3{,}6\) dm</label>
+    <label><input type="radio" name="a8" value="b"> 4 dm</label>
+    <label><input type="radio" name="a8" value="c"> \(\sqrt{5}\) dm</label>
+    <label><input type="radio" name="a8" value="d"> 8 dm</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Parall&eacute;lisme et perpendicularit&eacute;</p>
+  <p>Les droites \(D_1 : 2x + y - 3 = 0\) et \(D_2 : x - 2y + 1 = 0\) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> parall&egrave;les</label>
+    <label><input type="radio" name="a9" value="b"> confondues</label>
+    <label><input type="radio" name="a9" value="c"> perpendiculaires</label>
+    <label><input type="radio" name="a9" value="d"> s&eacute;cantes non perpendiculaires</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">Norme 3D &ndash; Contexte professionnel</p>
+  <p>Un installateur thermique trace un tuyau entre \(S(1\,;\,0\,;\,2)\) et \(T(5\,;\,3\,;\,6)\) (en dm). La longueur du tuyau est :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> \(\sqrt{29} \approx 5{,}4\) dm</label>
+    <label><input type="radio" name="a10" value="b"> \(\sqrt{41} \approx 6{,}4\) dm</label>
+    <label><input type="radio" name="a10" value="c"> 11 dm</label>
+    <label><input type="radio" name="a10" value="d"> \(\sqrt{32} \approx 5{,}7\) dm</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">Vecteur normal &ndash; Construction</p>
+  <p>Le vecteur directeur d'une droite est \(\vec{d} = \begin{pmatrix}3\\5\end{pmatrix}\). Un vecteur normal &agrave; cette droite est :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> \(\begin{pmatrix}3\\5\end{pmatrix}\)</label>
+    <label><input type="radio" name="a11" value="b"> \(\begin{pmatrix}{-3}\\{-5}\end{pmatrix}\)</label>
+    <label><input type="radio" name="a11" value="c"> \(\begin{pmatrix}3\\{-5}\end{pmatrix}\)</label>
+    <label><input type="radio" name="a11" value="d"> \(\begin{pmatrix}5\\{-3}\end{pmatrix}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 12</h3>
+  <p class="theme">Milieu &ndash; Contexte professionnel</p>
+  <p>Un &eacute;b&eacute;niste place un luminaire au milieu de la diagonale d'un meuble rectangulaire. Coins oppos&eacute;s : \(A(1\,;\,1)\) et \(C(5\,;\,4)\). Coordonn&eacute;es du luminaire :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> \((3\,;\,2{,}5)\)</label>
+    <label><input type="radio" name="a12" value="b"> \((6\,;\,5)\)</label>
+    <label><input type="radio" name="a12" value="c"> \((2\,;\,1{,}5)\)</label>
+    <label><input type="radio" name="a12" value="d"> \((4\,;\,3)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Relation de Chasles &ndash; Trois vecteurs</p>
+  <p>\(\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CA} =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> \(\overrightarrow{AC}\)</label>
+    <label><input type="radio" name="a13" value="b"> \(3\,\overrightarrow{AB}\)</label>
+    <label><input type="radio" name="a13" value="c"> \(\vec{0}\)</label>
+    <label><input type="radio" name="a13" value="d"> \(\overrightarrow{AA}\) seulement si le triangle est &eacute;quilat&eacute;ral</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 14</h3>
+  <p class="theme">Probl&egrave;me ouvert &ndash; Point d'intersection</p>
+  <p>Un point \(M\) appartient &agrave; la droite \(x - y + 1 = 0\) et v&eacute;rifie \(x = 3\). Ses coordonn&eacute;es sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> \((3\,;\,{-2})\)</label>
+    <label><input type="radio" name="a14" value="b"> \((3\,;\,4)\)</label>
+    <label><input type="radio" name="a14" value="c"> \((3\,;\,2)\)</label>
+    <label><input type="radio" name="a14" value="d"> \((3\,;\,3)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Probl&egrave;me de synth&egrave;se &ndash; Contexte professionnel</p>
+  <p>Un artisan menuisier v&eacute;rifie l'&eacute;querrage d'un panneau. Les c&ocirc;t&eacute;s ont pour vecteurs directeurs \(\vec{u} = \begin{pmatrix}4\\0\end{pmatrix}\) et \(\vec{v} = \begin{pmatrix}0\\3\end{pmatrix}\). Le produit \(aa' + bb'\) (test de perpendicularit&eacute;) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> 0 &mdash; les c&ocirc;t&eacute;s sont perpendiculaires</label>
+    <label><input type="radio" name="a15" value="b"> 12 &mdash; les c&ocirc;t&eacute;s ne sont pas perpendiculaires</label>
+    <label><input type="radio" name="a15" value="c"> 7 &mdash; les c&ocirc;t&eacute;s sont parall&egrave;les</label>
+    <label><input type="radio" name="a15" value="d"> &minus;12 &mdash; les c&ocirc;t&eacute;s sont perpendiculaires</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "Un vecteur est defini par trois caracteristiques : une direction, un sens et une norme (longueur).",
+  "s2": "Le vecteur oppose de AB est BA = -AB. Il a meme direction, meme norme, mais le sens contraire.",
+  "s3": "AB = (xB - xA ; yB - yA) = (4-1 ; 7-3) = (3 ; 4). On fait arrivee moins depart.",
+  "s4": "On calcule toujours coordonnees d'arrivee moins coordonnees de depart : B - A.",
+  "s5": "||u|| = sqrt(3^2 + 4^2) = sqrt(9 + 16) = sqrt(25) = 5.",
+  "s6": "La norme est toujours positive ou nulle. Meme si les coordonnees sont negatives, la norme ne l'est jamais.",
+  "s7": "u + v = (2+1 ; 5+(-3)) = (3 ; 2). On additionne coordonnee par coordonnee.",
+  "s8": "3u = (3x2 ; 3x(-1)) = (6 ; -3). On multiplie chaque coordonnee par le scalaire.",
+  "s9": "C'est la relation de Chasles : AB + BC = AC. Le point intermediaire B s'elimine.",
+  "s10": "Deux vecteurs colineaires ont la meme direction : l'un est un multiple de l'autre.",
+  "s11": "det(u,v) = 2x6 - 3x4 = 12 - 12 = 0. Le determinant nul confirme la colinearite.",
+  "s12": "I = ((2+6)/2 ; (4+8)/2) = (4 ; 6). On fait la moyenne des coordonnees.",
+  "s13": "AB = sqrt(6^2 + 8^2) = sqrt(36 + 64) = sqrt(100) = 10.",
+  "s14": "Le vecteur AA a pour coordonnees (0 ; 0), c'est le vecteur nul de norme zero.",
+  "s15": "PQ = sqrt((4-1)^2 + (6-2)^2) = sqrt(9 + 16) = sqrt(25) = 5 m.",
+  /* === STANDARD === */
+  "t1": "AB = (2-5 ; -1-3) = (-3 ; -4). Les coordonnees peuvent etre negatives.",
+  "t2": "||u|| = sqrt((-3)^2 + 4^2) = sqrt(9 + 16) = sqrt(25) = 5. La norme est toujours positive.",
+  "t3": "det(u,v) = 1x5 - 2x3 = 5 - 6 = -1. Le determinant est non nul, donc les vecteurs ne sont pas colineaires.",
+  "t4": "Un determinant nul signifie que les vecteurs sont colineaires, donc les droites sont paralleles ou confondues.",
+  "t5": "Pour la droite ax + by + c = 0, le vecteur directeur est (-b ; a) = (2 ; 3).",
+  "t6": "Pour la droite ax + by + c = 0, le vecteur normal est (a ; b) = (3 ; -2).",
+  "t7": "d = |3x1 + 4x2 - 5| / sqrt(9+16) = |3+8-5| / 5 = 6/5 = 1,2.",
+  "t8": "Les coefficients sont proportionnels : (4;6) = 2x(2;3). Les vecteurs normaux sont colineaires, donc les droites sont paralleles.",
+  "t9": "aa' + bb' = 2x3 + 3x(-2) = 6 - 6 = 0. Le produit est nul, les droites sont perpendiculaires.",
+  "t10": "Trois points sont alignes si et seulement si les vecteurs AB et AC sont colineaires (determinant nul).",
+  "t11": "det = 3x4 - (-2)x(-6) = 12 - 12 = 0. Les murs sont bien paralleles.",
+  "t12": "||P1P2|| = sqrt(36 + 64) = sqrt(100) = 10 dm.",
+  "t13": "ST = (5-1 ; 3-0 ; 6-2) = (4 ; 3 ; 4). On fait arrivee moins depart pour chaque coordonnee.",
+  "t14": "||w|| = sqrt(4 + 1 + 4) = sqrt(9) = 3.",
+  "t15": "Milieu = ((2+6)/2 ; (4+2)/2 ; (0+8)/2) = (4 ; 3 ; 4).",
+  /* === APPROFONDISSEMENT === */
+  "a1": "B = A + AB = (1+3 ; 5+(-2)) = (4 ; 3).",
+  "a2": "AB = (3;3), vecteur normal (3;-3) soit (1;-1). Equation : 1(x-1) -1(y-2) = 0, d'ou x - y + 1 = 0. Verification : A : 1-2+1=0, B : 4-5+1=0.",
+  "a3": "d = |4x3 - 3x1 + 2| / sqrt(16+9) = |12-3+2| / 5 = 11/5 = 2,2.",
+  "a4": "AB = (2;4), AC = (3;6). det = 2x6 - 4x3 = 12-12 = 0. Les vecteurs sont colineaires, les points sont alignes.",
+  "a5": "2u - 3v = (2x1 - 3x(-2) ; 2x3 - 3x1) = (2+6 ; 6-3) = (8 ; 3).",
+  "a6": "On remplace : 2 - 3 + 1 = 0. L'equation est verifiee, donc C appartient a la droite.",
+  "a7": "P1P2 = (4;-2), normal = (-2;-4) soit (1;2). Eq : 1(x-0) + 2(y-2) = 0 donne x + 2y - 4 = 0. Verif : P1 : 0+4-4=0, P2 : 4+0-4=0.",
+  "a8": "d = |1x2 + 2x5 - 4| / sqrt(1+4) = |2+10-4| / sqrt(5) = 8/sqrt(5) = 8sqrt(5)/5 ≈ 3,6 dm.",
+  "a9": "aa' + bb' = 2x1 + 1x(-2) = 2 - 2 = 0. Le produit est nul, les droites sont perpendiculaires.",
+  "a10": "||ST|| = sqrt(4^2 + 3^2 + 4^2) = sqrt(16+9+16) = sqrt(41) ≈ 6,4 dm.",
+  "a11": "Si d = (3;5), un vecteur normal est (5;-3) car 3x5 + 5x(-3) = 15-15 = 0 (produit scalaire nul).",
+  "a12": "I = ((1+5)/2 ; (1+4)/2) = (3 ; 2,5).",
+  "a13": "Par la relation de Chasles : AB + BC = AC, puis AC + CA = AA = vecteur nul.",
+  "a14": "On remplace x=3 dans x - y + 1 = 0 : 3 - y + 1 = 0, donc y = 4. M = (3 ; 4).",
+  "a15": "Le test de perpendicularite donne aa'+bb' = 4x0 + 0x3 = 0. Les cotes sont perpendiculaires, le panneau est bien d'equerre."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '\u2705 Bonne r\u00e9ponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '\u274c Mauvaise r\u00e9ponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '\u26a0\ufe0f Pas de r\u00e9ponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>

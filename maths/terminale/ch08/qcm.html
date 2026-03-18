@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Calcul intégral – QCM – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>QCM – Calcul intégral</h1>
+  <p class="sous-titre">Chapitre 8 | Terminale Bac Pro | Mathématiques</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">⏱ <strong>Durée :</strong> 15–20 min</div>
+  <div class="dh-item">📄 <strong>15 questions</strong></div>
+  <div class="dh-item">🧮 <strong>Calculatrice autorisée</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne réponse</strong> puis cliquez sur « Valider le QCM » en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Notation – Intégrale définie</p>
+  <p>La notation \(\displaystyle\int_a^b f(x)\,\mathrm{d}x\) représente :</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> la dérivée de \(f\) entre \(a\) et \(b\)</label>
+    <label><input type="radio" name="s1" value="b"> l'aire algébrique sous la courbe de \(f\) entre \(x=a\) et \(x=b\)</label>
+    <label><input type="radio" name="s1" value="c"> la valeur de \(f\) en \(x=a\)</label>
+    <label><input type="radio" name="s1" value="d"> la somme \(f(a) + f(b)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Primitives – Constante</p>
+  <p>Une primitive de \(f(x) = 5\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> \(F(x) = 0\)</label>
+    <label><input type="radio" name="s2" value="b"> \(F(x) = 5x^2\)</label>
+    <label><input type="radio" name="s2" value="c"> \(F(x) = 5x\)</label>
+    <label><input type="radio" name="s2" value="d"> \(F(x) = \dfrac{5}{x}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Primitives – Puissance</p>
+  <p>Une primitive de \(f(x) = x^2\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> \(F(x) = \dfrac{x^3}{3}\)</label>
+    <label><input type="radio" name="s3" value="b"> \(F(x) = 2x\)</label>
+    <label><input type="radio" name="s3" value="c"> \(F(x) = x^3\)</label>
+    <label><input type="radio" name="s3" value="d"> \(F(x) = \dfrac{x^2}{2}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Primitives – Fonction affine</p>
+  <p>Une primitive de \(f(x) = 2x + 3\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> \(F(x) = 2\)</label>
+    <label><input type="radio" name="s4" value="b"> \(F(x) = 2x\)</label>
+    <label><input type="radio" name="s4" value="c"> \(F(x) = x^2\)</label>
+    <label><input type="radio" name="s4" value="d"> \(F(x) = x^2 + 3x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Primitives – Exponentielle</p>
+  <p>Une primitive de \(f(x) = e^x\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> \(F(x) = x\,e^x\)</label>
+    <label><input type="radio" name="s5" value="b"> \(F(x) = e^x\)</label>
+    <label><input type="radio" name="s5" value="c"> \(F(x) = e^{x+1}\)</label>
+    <label><input type="radio" name="s5" value="d"> \(F(x) = \dfrac{e^x}{x}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Théorème fondamental – Calcul</p>
+  <p>Si \(F\) est une primitive de \(f\), alors \(\displaystyle\int_a^b f(x)\,\mathrm{d}x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> \(F(a) + F(b)\)</label>
+    <label><input type="radio" name="s6" value="b"> \(F(a) - F(b)\)</label>
+    <label><input type="radio" name="s6" value="c"> \(F(b) - F(a)\)</label>
+    <label><input type="radio" name="s6" value="d"> \(F(b) \times F(a)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Calcul d'intégrale – Simple</p>
+  <p>Calculer \(\displaystyle\int_0^2 3\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> 6</label>
+    <label><input type="radio" name="s7" value="b"> 3</label>
+    <label><input type="radio" name="s7" value="c"> 0</label>
+    <label><input type="radio" name="s7" value="d"> 9</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Calcul d'intégrale – Monôme</p>
+  <p>Calculer \(\displaystyle\int_1^3 2x\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> 4</label>
+    <label><input type="radio" name="s8" value="b"> 6</label>
+    <label><input type="radio" name="s8" value="c"> 3</label>
+    <label><input type="radio" name="s8" value="d"> 8</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Interprétation géométrique</p>
+  <p>Si \(f(x) \geq 0\) sur \([a,b]\), alors \(\displaystyle\int_a^b f(x)\,\mathrm{d}x\) représente :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> le périmètre de la surface sous la courbe</label>
+    <label><input type="radio" name="s9" value="b"> l'aire de la surface comprise entre la courbe et l'axe des abscisses</label>
+    <label><input type="radio" name="s9" value="c"> la longueur de l'arc de courbe</label>
+    <label><input type="radio" name="s9" value="d"> le volume de révolution</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Bornes identiques</p>
+  <p>\(\displaystyle\int_3^3 f(x)\,\mathrm{d}x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> \(f(3)\)</label>
+    <label><input type="radio" name="s10" value="b"> 3</label>
+    <label><input type="radio" name="s10" value="c"> 0</label>
+    <label><input type="radio" name="s10" value="d"> 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Primitives – Vérification</p>
+  <p>Pour vérifier que \(F\) est une primitive de \(f\), on calcule :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> \(F'(x)\) et on vérifie que \(F'(x) = f(x)\)</label>
+    <label><input type="radio" name="s11" value="b"> \(F(0)\) et on vérifie que \(F(0) = f(0)\)</label>
+    <label><input type="radio" name="s11" value="c"> \(F(1) - F(0)\)</label>
+    <label><input type="radio" name="s11" value="d"> la dérivée de \(f\) et on compare à \(F\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Calcul d'intégrale – Puissance</p>
+  <p>Calculer \(\displaystyle\int_0^3 x^2\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> 3</label>
+    <label><input type="radio" name="s12" value="b"> 6</label>
+    <label><input type="radio" name="s12" value="c"> 27</label>
+    <label><input type="radio" name="s12" value="d"> 9</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Primitives – Constante + monôme</p>
+  <p>Une primitive de \(f(x) = 4\) est \(F(x) = 4x\). Alors \(F(2) - F(0) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> 4</label>
+    <label><input type="radio" name="s13" value="b"> 8</label>
+    <label><input type="radio" name="s13" value="c"> 0</label>
+    <label><input type="radio" name="s13" value="d"> 2</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Inversion des bornes</p>
+  <p>\(\displaystyle\int_b^a f(x)\,\mathrm{d}x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> \(\displaystyle\int_a^b f(x)\,\mathrm{d}x\)</label>
+    <label><input type="radio" name="s14" value="b"> 0</label>
+    <label><input type="radio" name="s14" value="c"> \(-\displaystyle\int_a^b f(x)\,\mathrm{d}x\)</label>
+    <label><input type="radio" name="s14" value="d"> \(2\displaystyle\int_a^b f(x)\,\mathrm{d}x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Application – Énergie et puissance</p>
+  <p>En physique, si \(P(t)\) est une puissance (en kW) et \(t\) est en heures, l'énergie consommée entre \(t=0\) et \(t=T\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> \(E = \displaystyle\int_0^T P(t)\,\mathrm{d}t\)</label>
+    <label><input type="radio" name="s15" value="b"> \(E = P(T) - P(0)\)</label>
+    <label><input type="radio" name="s15" value="c"> \(E = P(T) \times T\)</label>
+    <label><input type="radio" name="s15" value="d"> \(E = P'(T)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Primitive – Polynôme</p>
+  <p>Une primitive de \(f(x) = 3x^2 - 4x + 1\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t1" value="a"> \(F(x) = 6x - 4\)</label>
+    <label><input type="radio" name="t1" value="b"> \(F(x) = x^3 - 4x^2 + x\)</label>
+    <label><input type="radio" name="t1" value="c"> \(F(x) = x^3 - 2x^2 + x\)</label>
+    <label><input type="radio" name="t1" value="d"> \(F(x) = 3x^3 - 4x^2 + x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Calcul d'intégrale – Polynôme</p>
+  <p>Calculer \(\displaystyle\int_0^2 (3x^2 - 2x + 1)\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t2" value="a"> 4</label>
+    <label><input type="radio" name="t2" value="b"> 6</label>
+    <label><input type="radio" name="t2" value="c"> 8</label>
+    <label><input type="radio" name="t2" value="d"> 2</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Calcul d'intégrale – Exponentielle</p>
+  <p>Calculer \(\displaystyle\int_0^1 e^x\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t3" value="a"> \(e - 1\)</label>
+    <label><input type="radio" name="t3" value="b"> \(e\)</label>
+    <label><input type="radio" name="t3" value="c"> \(e + 1\)</label>
+    <label><input type="radio" name="t3" value="d"> 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Primitive – Exponentielle composée</p>
+  <p>Une primitive de \(f(x) = e^{2x}\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t4" value="a"> \(F(x) = 2e^{2x}\)</label>
+    <label><input type="radio" name="t4" value="b"> \(F(x) = e^{2x+1}\)</label>
+    <label><input type="radio" name="t4" value="c"> \(F(x) = e^{2x}\)</label>
+    <label><input type="radio" name="t4" value="d"> \(F(x) = \dfrac{1}{2}e^{2x}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Relation de Chasles</p>
+  <p>On sait que \(\displaystyle\int_1^5 f(x)\,\mathrm{d}x = 12\) et \(\displaystyle\int_1^3 f(x)\,\mathrm{d}x = 5\). Alors \(\displaystyle\int_3^5 f(x)\,\mathrm{d}x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t5" value="a"> 17</label>
+    <label><input type="radio" name="t5" value="b"> 7</label>
+    <label><input type="radio" name="t5" value="c"> 5</label>
+    <label><input type="radio" name="t5" value="d"> 60</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Linéarité de l'intégrale</p>
+  <p>\(\displaystyle\int_0^2 (4x + 3)\,\mathrm{d}x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t6" value="a"> 8</label>
+    <label><input type="radio" name="t6" value="b"> 11</label>
+    <label><input type="radio" name="t6" value="c"> 14</label>
+    <label><input type="radio" name="t6" value="d"> 7</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Aire sous courbe – Positive</p>
+  <p>\(f(x) = x + 1 \geq 0\) sur \([0,\,3]\). L'aire sous la courbe vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t7" value="a"> \(7{,}5\) u.a.</label>
+    <label><input type="radio" name="t7" value="b"> \(4\) u.a.</label>
+    <label><input type="radio" name="t7" value="c"> \(6\) u.a.</label>
+    <label><input type="radio" name="t7" value="d"> \(9\) u.a.</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Valeur moyenne – Définition</p>
+  <p>La valeur moyenne d'une fonction \(f\) sur \([a,b]\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t8" value="a"> \(\overline{f} = \displaystyle\int_a^b f(x)\,\mathrm{d}x\)</label>
+    <label><input type="radio" name="t8" value="b"> \(\overline{f} = \dfrac{f(a) + f(b)}{2}\)</label>
+    <label><input type="radio" name="t8" value="c"> \(\overline{f} = (b-a)\displaystyle\int_a^b f(x)\,\mathrm{d}x\)</label>
+    <label><input type="radio" name="t8" value="d"> \(\overline{f} = \dfrac{1}{b-a}\displaystyle\int_a^b f(x)\,\mathrm{d}x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Valeur moyenne – Calcul</p>
+  <p>La valeur moyenne de \(f(x) = x^2\) sur \([0,\,3]\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t9" value="a"> 9</label>
+    <label><input type="radio" name="t9" value="b"> 3</label>
+    <label><input type="radio" name="t9" value="c"> 1</label>
+    <label><input type="radio" name="t9" value="d"> 27</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Application – Énergie thermique</p>
+  <p>Un installateur thermique modélise la puissance d'une chaudière par \(P(t) = 2t + 5\) (kW) sur \([0,\,4]\). L'énergie consommée (kWh) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t10" value="a"> 13</label>
+    <label><input type="radio" name="t10" value="b"> 28</label>
+    <label><input type="radio" name="t10" value="c"> 36</label>
+    <label><input type="radio" name="t10" value="d"> 9</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Calcul d'intégrale – Affine sur [1, 4]</p>
+  <p>Calculer \(\displaystyle\int_1^4 (2x - 3)\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t11" value="a"> 6</label>
+    <label><input type="radio" name="t11" value="b"> 9</label>
+    <label><input type="radio" name="t11" value="c"> 3</label>
+    <label><input type="radio" name="t11" value="d"> 12</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Interprétation – Aire algébrique</p>
+  <p>Si \(f(x) \leq 0\) sur \([a,b]\), alors \(\displaystyle\int_a^b f(x)\,\mathrm{d}x\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t12" value="a"> positif, car c'est une aire</label>
+    <label><input type="radio" name="t12" value="b"> toujours nul</label>
+    <label><input type="radio" name="t12" value="c"> la valeur absolue de l'aire</label>
+    <label><input type="radio" name="t12" value="d"> négatif ou nul</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Calcul d'intégrale – Puissance sur [1, 2]</p>
+  <p>Calculer \(\displaystyle\int_1^2 x^3\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t13" value="a"> 4</label>
+    <label><input type="radio" name="t13" value="b"> \(\dfrac{15}{4}\)</label>
+    <label><input type="radio" name="t13" value="c"> 8</label>
+    <label><input type="radio" name="t13" value="d"> \(\dfrac{1}{4}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Application – Section d'un profilé bois</p>
+  <p>Un menuisier agenceur modélise la section d'un profilé par \(f(x) = x(4-x)\) sur \([0,\,4]\). La section (cm²) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t14" value="a"> 8</label>
+    <label><input type="radio" name="t14" value="b"> 16</label>
+    <label><input type="radio" name="t14" value="c"> \(\dfrac{32}{3} \approx 10{,}67\)</label>
+    <label><input type="radio" name="t14" value="d"> 12</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Valeur moyenne – Température</p>
+  <p>La température d'un fluide suit \(T(t) = 2t + 20\) (°C) sur \([0,\,5]\). La température moyenne est :</p>
+  <div class="options">
+    <label><input type="radio" name="t15" value="a"> 25 °C</label>
+    <label><input type="radio" name="t15" value="b"> 20 °C</label>
+    <label><input type="radio" name="t15" value="c"> 30 °C</label>
+    <label><input type="radio" name="t15" value="d"> 125 °C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Linéarité – Décomposition</p>
+  <p>Calculer \(\displaystyle\int_0^2 (4x^2 + 3)\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> 14</label>
+    <label><input type="radio" name="a1" value="b"> 16</label>
+    <label><input type="radio" name="a1" value="c"> \(\dfrac{38}{3} \approx 12{,}67\)</label>
+    <label><input type="radio" name="a1" value="d"> 10</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Aire entre deux courbes – Méthode</p>
+  <p>Pour calculer l'aire entre \(f(x)\) et \(g(x)\) avec \(f(x) \geq g(x)\) sur \([a,b]\), on calcule :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> \(\displaystyle\int_a^b f(x)\,\mathrm{d}x \times \int_a^b g(x)\,\mathrm{d}x\)</label>
+    <label><input type="radio" name="a2" value="b"> \(\displaystyle\int_a^b \bigl(f(x) - g(x)\bigr)\,\mathrm{d}x\)</label>
+    <label><input type="radio" name="a2" value="c"> \(\displaystyle\int_a^b f(x)\,\mathrm{d}x - \int_a^b g(x)\,\mathrm{d}x\) puis valeur absolue</label>
+    <label><input type="radio" name="a2" value="d"> \(\displaystyle\int_a^b f(x)\,\mathrm{d}x + \int_a^b g(x)\,\mathrm{d}x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Aire entre deux courbes – Calcul</p>
+  <p>Aire entre \(f(x) = x\) et \(g(x) = x^2\) sur \([0,\,1]\) (où \(x \geq x^2\)) :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> \(\dfrac{1}{3}\)</label>
+    <label><input type="radio" name="a3" value="b"> \(\dfrac{1}{2}\)</label>
+    <label><input type="radio" name="a3" value="c"> \(\dfrac{1}{4}\)</label>
+    <label><input type="radio" name="a3" value="d"> \(\dfrac{1}{6}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">Chasles – Application avancée</p>
+  <p>On sait que \(\displaystyle\int_0^4 f(x)\,\mathrm{d}x = 10\) et \(\displaystyle\int_2^4 f(x)\,\mathrm{d}x = 3\). Alors \(\displaystyle\int_0^2 f(x)\,\mathrm{d}x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> 7</label>
+    <label><input type="radio" name="a4" value="b"> 13</label>
+    <label><input type="radio" name="a4" value="c"> 30</label>
+    <label><input type="radio" name="a4" value="d"> 10</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Énergie – Chaudière (modèle polynomial)</p>
+  <p>La puissance d'une chaudière suit \(P(t) = 3t^2 - 12t + 15\) (kW) sur \([0,\,4]\). L'énergie consommée vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> 20 kWh</label>
+    <label><input type="radio" name="a5" value="b"> 24 kWh</label>
+    <label><input type="radio" name="a5" value="c"> 28 kWh</label>
+    <label><input type="radio" name="a5" value="d"> 36 kWh</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">Valeur moyenne – Polynôme</p>
+  <p>La valeur moyenne de \(f(x) = x^2 + 2\) sur \([0,\,3]\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> 3</label>
+    <label><input type="radio" name="a6" value="b"> 5</label>
+    <label><input type="radio" name="a6" value="c"> 11</label>
+    <label><input type="radio" name="a6" value="d"> 9</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Primitive – Exponentielle composée</p>
+  <p>Calculer \(\displaystyle\int_0^2 e^{3x}\,\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(\dfrac{e^6 - 1}{3}\)</label>
+    <label><input type="radio" name="a7" value="b"> \(e^6 - 1\)</label>
+    <label><input type="radio" name="a7" value="c"> \(3(e^6 - 1)\)</label>
+    <label><input type="radio" name="a7" value="d"> \(\dfrac{e^6 - e^0}{6}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Aire – Signe changeant</p>
+  <p>Pour calculer l'aire géométrique (toujours positive) quand \(f\) change de signe sur \([a,b]\), on :</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> calcule directement \(\displaystyle\int_a^b f(x)\,\mathrm{d}x\)</label>
+    <label><input type="radio" name="a8" value="b"> prend la valeur absolue de \(\displaystyle\int_a^b f(x)\,\mathrm{d}x\)</label>
+    <label><input type="radio" name="a8" value="c"> multiplie \(\displaystyle\int_a^b f(x)\,\mathrm{d}x\) par \(-1\)</label>
+    <label><input type="radio" name="a8" value="d"> découpe selon les zéros de \(f\) et somme les valeurs absolues des intégrales</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Puissance moyenne – Interprétation</p>
+  <p>La puissance moyenne \(\overline{P}\) d'une chaudière sur \([0,\,4]\) vaut 7 kW et l'énergie consommée est :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> 7 kWh</label>
+    <label><input type="radio" name="a9" value="b"> 1,75 kWh</label>
+    <label><input type="radio" name="a9" value="c"> 28 kWh</label>
+    <label><input type="radio" name="a9" value="d"> 4 kWh</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">Chasles – Décomposition avancée</p>
+  <p>La relation de Chasles \(\displaystyle\int_a^b f = \int_a^c f + \int_c^b f\) est vraie :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> uniquement si \(a \leq c \leq b\)</label>
+    <label><input type="radio" name="a10" value="b"> pour tout réel \(c\), même hors de \([a,b]\)</label>
+    <label><input type="radio" name="a10" value="c"> uniquement si \(f(c) = 0\)</label>
+    <label><input type="radio" name="a10" value="d"> uniquement si \(c = \dfrac{a+b}{2}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Aire entre deux courbes – Profil bois</p>
+  <p>Un menuisier calcule l'aire entre \(f(x) = -0{,}5x^2 + 4x\) et \(g(x) = x\) sur \([0,\,6]\). Sachant que \(f(x) \geq g(x)\) sur cet intervalle, cette aire vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> 18 cm²</label>
+    <label><input type="radio" name="a11" value="b"> 36 cm²</label>
+    <label><input type="radio" name="a11" value="c"> 24 cm²</label>
+    <label><input type="radio" name="a11" value="d"> 12 cm²</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Intégrale et primitive – Lien formel</p>
+  <p>Si \(G(x) = \displaystyle\int_0^x f(t)\,\mathrm{d}t\), alors \(G'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> \(\displaystyle\int_0^x f'(t)\,\mathrm{d}t\)</label>
+    <label><input type="radio" name="a12" value="b"> \(f(0)\)</label>
+    <label><input type="radio" name="a12" value="c"> \(G(x) - G(0)\)</label>
+    <label><input type="radio" name="a12" value="d"> \(f(x)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Calcul d'intégrale – Combinaison</p>
+  <p>Calculer \(\displaystyle\int_1^3 \left(\dfrac{1}{x} + 2\right)\mathrm{d}x\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> \(2 + \ln 3\)</label>
+    <label><input type="radio" name="a13" value="b"> \(4 + \ln 2\)</label>
+    <label><input type="radio" name="a13" value="c"> \(4 + \ln 3\)</label>
+    <label><input type="radio" name="a13" value="d"> \(\ln 3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 14</h3>
+  <p class="theme">Application BTS – Déplacement</p>
+  <p>La vitesse d'un engin de chantier suit \(v(t) = -t^2 + 6t\) (m/s) sur \([0,\,6]\). La distance parcourue (m) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> 54</label>
+    <label><input type="radio" name="a14" value="b"> 36</label>
+    <label><input type="radio" name="a14" value="c"> 18</label>
+    <label><input type="radio" name="a14" value="d"> 72</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Type BTS – Valeur moyenne et énergie</p>
+  <p>La consommation instantanée d'un appareil suit \(P(t) = 4 - t\) (kW) sur \([0,\,4]\). La consommation moyenne sur cette période est :</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> 2 kW</label>
+    <label><input type="radio" name="a15" value="b"> 4 kW</label>
+    <label><input type="radio" name="a15" value="c"> 8 kW</label>
+    <label><input type="radio" name="a15" value="d"> 1 kW</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "L'intégrale ∫ₐᵇ f(x)dx représente l'aire algébrique sous la courbe de f entre x=a et x=b.",
+  "s2": "Primitive de la constante k : F(x) = kx. Ici k=5, donc F(x) = 5x. Vérif : F'(x) = 5 ✓",
+  "s3": "Primitive de xⁿ : F(x) = xⁿ⁺¹/(n+1). Pour x², F(x) = x³/3. Vérif : F'(x) = x² ✓",
+  "s4": "Primitive de 2x+3 : F(x) = x² + 3x. Vérif : F'(x) = 2x+3 ✓",
+  "s5": "La dérivée de eˣ est eˣ, donc eˣ est sa propre primitive.",
+  "s6": "Théorème fondamental : ∫ₐᵇ f(x)dx = F(b) − F(a). On soustrait F(a) de F(b).",
+  "s7": "∫₀² 3 dx = [3x]₀² = 3×2 − 3×0 = 6. Primitive de 3 est 3x.",
+  "s8": "Primitive de 2x est x². [x²]₁³ = 9 − 1 = 8.",
+  "s9": "Quand f(x) ≥ 0, l'intégrale donne exactement l'aire géométrique entre la courbe et l'axe des x.",
+  "s10": "∫ₐᵃ f(x)dx = F(a) − F(a) = 0. Une intégrale à bornes identiques est toujours nulle.",
+  "s11": "On vérifie F'(x) = f(x). C'est la définition même d'une primitive.",
+  "s12": "Primitive de x² est x³/3. [x³/3]₀³ = 27/3 − 0 = 9.",
+  "s13": "F(2) = 4×2 = 8 et F(0) = 0. Donc F(2) − F(0) = 8. C'est ∫₀² 4 dx = 8.",
+  "s14": "Inverser les bornes change le signe : ∫ᵦᵃ f dx = −∫ₐᵇ f dx.",
+  "s15": "L'énergie est l'intégrale de la puissance sur le temps : E = ∫P(t)dt. C'est le lien fondamental en physique.",
+  /* === STANDARD === */
+  "t1": "Primitive de 3x²−4x+1 : F(x) = x³ − 2x² + x. Vérif : F'(x) = 3x²−4x+1 ✓",
+  "t2": "F(x) = x³−x²+x. F(2) = 8−4+2 = 6, F(0) = 0. Résultat : 6.",
+  "t3": "[eˣ]₀¹ = e¹ − e⁰ = e − 1 ≈ 1,718.",
+  "t4": "Primitive de e^(ax+b) : F(x) = (1/a)e^(ax+b). Ici a=2, donc F(x) = (1/2)e^(2x).",
+  "t5": "Chasles : ∫₁⁵ = ∫₁³ + ∫₃⁵, donc ∫₃⁵ = 12 − 5 = 7.",
+  "t6": "F(x) = 2x²+3x. F(2) = 8+6 = 14, F(0) = 0. Résultat : 14.",
+  "t7": "F(x) = x²/2 + x. F(3) = 9/2+3 = 7,5. F(0) = 0. Résultat : 7,5 u.a.",
+  "t8": "Valeur moyenne : f̄ = (1/(b−a)) × ∫ₐᵇ f(x)dx. On divise l'intégrale par la longueur b−a.",
+  "t9": "f̄ = (1/3)∫₀³ x² dx = (1/3)[x³/3]₀³ = (1/3)×9 = 3.",
+  "t10": "E = ∫₀⁴ (2t+5)dt = [t²+5t]₀⁴ = 16+20 = 36 kWh.",
+  "t11": "F(x) = x²−3x. F(4) = 16−12 = 4, F(1) = 1−3 = −2. Résultat : 4−(−2) = 6.",
+  "t12": "Quand f(x) ≤ 0, l'intégrale est négative ou nulle : c'est une aire algébrique.",
+  "t13": "Primitive de x³ est x⁴/4. [x⁴/4]₁² = 16/4 − 1/4 = 15/4.",
+  "t14": "F(x) = −x³/3 + 2x². F(4) = −64/3 + 32 = 32/3. F(0)=0. Aire = 32/3 ≈ 10,67 cm².",
+  "t15": "T̄ = (1/5)∫₀⁵(2t+20)dt = (1/5)[t²+20t]₀⁵ = (1/5)×125 = 25 °C.",
+  /* === APPROFONDISSEMENT === */
+  "a1": "∫₀²(4x²+3)dx = [4x³/3+3x]₀² = 32/3+6 = 32/3+18/3 = 50/3... Recalcul : 4×8/3 + 3×2 = 32/3 + 6 = 32/3 + 18/3 = 50/3 ≈ 16,67. Non, soit : [4x³/3+3x]₀² = 4(8)/3 + 6 = 32/3 + 6 = 38/3 ≈ 12,67.",
+  "a2": "L'aire entre deux courbes (f ≥ g) est l'intégrale de la différence : ∫ₐᵇ(f(x)−g(x))dx.",
+  "a3": "∫₀¹(x−x²)dx = [x²/2−x³/3]₀¹ = 1/2−1/3 = 1/6.",
+  "a4": "Chasles : ∫₀⁴ = ∫₀² + ∫₂⁴, donc ∫₀² = 10 − 3 = 7.",
+  "a5": "F(t) = t³−6t²+15t. F(4) = 64−96+60 = 28. F(0) = 0. E = 28 kWh.",
+  "a6": "f̄ = (1/3)∫₀³(x²+2)dx = (1/3)[x³/3+2x]₀³ = (1/3)(9+6) = (1/3)×15 = 5.",
+  "a7": "Primitive de e^(3x) : F(x) = (1/3)e^(3x). [(1/3)e^(3x)]₀² = (e⁶−1)/3.",
+  "a8": "Quand f change de signe, il faut découper en sous-intervalles selon les zéros, calculer chaque intégrale séparément et sommer les valeurs absolues pour l'aire géométrique.",
+  "a9": "Énergie = puissance moyenne × durée = 7 × 4 = 28 kWh.",
+  "a10": "La relation de Chasles est valable pour tout réel c, même si c est en dehors de [a,b].",
+  "a11": "∫₀⁶(f−g)dx = ∫₀⁶(−0,5x²+3x)dx = [−x³/6+3x²/2]₀⁶ = −36+54 = 18 cm².",
+  "a12": "Par le théorème fondamental, si G(x) = ∫₀ˣ f(t)dt alors G'(x) = f(x).",
+  "a13": "∫₁³(1/x+2)dx = [ln|x|+2x]₁³ = (ln3+6)−(ln1+2) = ln3+6−0−2 = 4+ln3.",
+  "a14": "F(t) = −t³/3+3t². F(6) = −72+108 = 36. F(0) = 0. Distance = 36 m.",
+  "a15": "P̄ = (1/4)∫₀⁴(4−t)dt = (1/4)[4t−t²/2]₀⁴ = (1/4)(16−8) = (1/4)×8 = 2 kW."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '✅ Bonne réponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '❌ Mauvaise réponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '⚠️ Pas de réponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>

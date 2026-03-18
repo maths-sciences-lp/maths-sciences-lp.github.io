@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch14 – Lumière, couleurs et photodétecteurs – QCM – 2nde Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>QCM &ndash; Lumi&egrave;re, couleurs et photod&eacute;tecteurs</h1>
+  <p class="sous-titre">Chapitre 14 | 2nde Bac Pro | Physique-Chimie</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">&nbsp;<strong>Dur&eacute;e :</strong> 15&ndash;20 min</div>
+  <div class="dh-item">&nbsp;<strong>15 questions</strong></div>
+  <div class="dh-item">&nbsp;<strong>Calculatrice autoris&eacute;e</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne r&eacute;ponse</strong> puis cliquez sur &laquo;&nbsp;Valider le QCM&nbsp;&raquo; en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Nature de la lumi&egrave;re &ndash; Spectre visible</p>
+  <p>La lumi&egrave;re visible est un rayonnement dont la longueur d&rsquo;onde est comprise entre :</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> 100 nm et 300 nm</label>
+    <label><input type="radio" name="s1" value="b"> 380 nm et 780 nm</label>
+    <label><input type="radio" name="s1" value="c"> 800 nm et 1 200 nm</label>
+    <label><input type="radio" name="s1" value="d"> 1 nm et 100 nm</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 2</h3>
+  <p class="theme">Spectre visible &ndash; Couleur et longueur d&rsquo;onde</p>
+  <p>Parmi les couleurs suivantes, laquelle a la plus petite longueur d&rsquo;onde ?</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> Violet</label>
+    <label><input type="radio" name="s2" value="b"> Vert</label>
+    <label><input type="radio" name="s2" value="c"> Rouge</label>
+    <label><input type="radio" name="s2" value="d"> Jaune</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Relation c = &lambda; &times; f &ndash; Unit&eacute;s</p>
+  <p>Dans la formule \(c = \lambda \times f\), la c&eacute;l&eacute;rit&eacute; de la lumi&egrave;re \(c\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> 300 m/s</label>
+    <label><input type="radio" name="s3" value="b"> 3 000 m/s</label>
+    <label><input type="radio" name="s3" value="c"> \(3 \times 10^{6}\) m/s</label>
+    <label><input type="radio" name="s3" value="d"> \(3 \times 10^{8}\) m/s</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 4</h3>
+  <p class="theme">Synth&egrave;se additive &ndash; Principe</p>
+  <p>Les trois couleurs primaires de la synth&egrave;se additive (RGB) sont :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> Cyan, Magenta, Jaune</label>
+    <label><input type="radio" name="s4" value="b"> Rouge, Jaune, Bleu</label>
+    <label><input type="radio" name="s4" value="c"> Rouge, Vert, Bleu</label>
+    <label><input type="radio" name="s4" value="d"> Orange, Violet, Vert</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 5</h3>
+  <p class="theme">Synth&egrave;se additive &ndash; M&eacute;lange</p>
+  <p>En synth&egrave;se additive, la superposition de Rouge + Vert + Bleu donne :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> du Blanc</label>
+    <label><input type="radio" name="s5" value="b"> du Noir</label>
+    <label><input type="radio" name="s5" value="c"> du Gris</label>
+    <label><input type="radio" name="s5" value="d"> du Jaune</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">Synth&egrave;se soustractive &ndash; Principe</p>
+  <p>La synth&egrave;se soustractive s&rsquo;applique lorsque l&rsquo;on m&eacute;lange :</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> des lumi&egrave;res color&eacute;es</label>
+    <label><input type="radio" name="s6" value="b"> des mati&egrave;res color&eacute;es (peintures, encres)</label>
+    <label><input type="radio" name="s6" value="c"> des sons de diff&eacute;rentes fr&eacute;quences</label>
+    <label><input type="radio" name="s6" value="d"> des ondes radio</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 7</h3>
+  <p class="theme">Synth&egrave;se soustractive &ndash; M&eacute;lange</p>
+  <p>En synth&egrave;se soustractive, le m&eacute;lange Cyan + Magenta + Jaune donne (th&eacute;oriquement) :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> du Blanc</label>
+    <label><input type="radio" name="s7" value="b"> du Gris</label>
+    <label><input type="radio" name="s7" value="c"> du Noir</label>
+    <label><input type="radio" name="s7" value="d"> du Rouge</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Sources lumineuses &ndash; Temp&eacute;rature de couleur</p>
+  <p>La temp&eacute;rature de couleur d&rsquo;une source lumineuse s&rsquo;exprime en :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> degr&eacute;s Celsius (&deg;C)</label>
+    <label><input type="radio" name="s8" value="b"> watts (W)</label>
+    <label><input type="radio" name="s8" value="c"> lux (lx)</label>
+    <label><input type="radio" name="s8" value="d"> kelvins (K)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 9</h3>
+  <p class="theme">IRC &ndash; D&eacute;finition</p>
+  <p>L&rsquo;Indice de Rendu des Couleurs (IRC) mesure :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> la capacit&eacute; d&rsquo;une source &agrave; restituer fid&egrave;lement les couleurs</label>
+    <label><input type="radio" name="s9" value="b"> la puissance &eacute;lectrique consomm&eacute;e par la source</label>
+    <label><input type="radio" name="s9" value="c"> la temp&eacute;rature de la source en kelvins</label>
+    <label><input type="radio" name="s9" value="d"> la quantit&eacute; de lumi&egrave;re &eacute;mise en lumens</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">Photod&eacute;tecteurs &ndash; D&eacute;finition</p>
+  <p>Un photod&eacute;tecteur est un composant qui :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> convertit un signal &eacute;lectrique en lumi&egrave;re</label>
+    <label><input type="radio" name="s10" value="b"> convertit un signal lumineux en signal &eacute;lectrique</label>
+    <label><input type="radio" name="s10" value="c"> produit de la chaleur &agrave; partir de la lumi&egrave;re</label>
+    <label><input type="radio" name="s10" value="d"> amplifie la lumi&egrave;re re&ccedil;ue</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 11</h3>
+  <p class="theme">LDR &ndash; Comportement</p>
+  <p>Quand l&rsquo;&eacute;clairement augmente, la r&eacute;sistance d&rsquo;une LDR :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> augmente</label>
+    <label><input type="radio" name="s11" value="b"> ne change pas</label>
+    <label><input type="radio" name="s11" value="c"> diminue</label>
+    <label><input type="radio" name="s11" value="d"> devient infinie</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 12</h3>
+  <p class="theme">&Eacute;clairement &ndash; Unit&eacute;</p>
+  <p>L&rsquo;&eacute;clairement E s&rsquo;exprime en :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> lumens (lm)</label>
+    <label><input type="radio" name="s12" value="b"> lux (lx)</label>
+    <label><input type="radio" name="s12" value="c"> watts (W)</label>
+    <label><input type="radio" name="s12" value="d"> kelvins (K)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 13</h3>
+  <p class="theme">Loi en 1/d&sup2; &ndash; Principe</p>
+  <p>Quand on double la distance entre une source ponctuelle et une surface, l&rsquo;&eacute;clairement est :</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> divis&eacute; par 2</label>
+    <label><input type="radio" name="s13" value="b"> multipli&eacute; par 4</label>
+    <label><input type="radio" name="s13" value="c"> multipli&eacute; par 2</label>
+    <label><input type="radio" name="s13" value="d"> divis&eacute; par 4</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">LED &ndash; Avantage</p>
+  <p>Quel est le principal avantage de l&rsquo;&eacute;clairage LED par rapport aux ampoules &agrave; incandescence ?</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> Une bien meilleure efficacit&eacute; lumineuse (plus de lumens par watt)</label>
+    <label><input type="radio" name="s14" value="b"> Un co&ucirc;t d&rsquo;achat plus faible</label>
+    <label><input type="radio" name="s14" value="c"> Une temp&eacute;rature de couleur toujours identique</label>
+    <label><input type="radio" name="s14" value="d"> Un IRC toujours &eacute;gal &agrave; 100</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 15</h3>
+  <p class="theme">Lumi&egrave;re blanche &ndash; Dispersion</p>
+  <p>La lumi&egrave;re blanche est d&eacute;compos&eacute;e en arc-en-ciel par un prisme parce qu&rsquo;elle est :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> constitu&eacute;e d&rsquo;une seule longueur d&rsquo;onde</label>
+    <label><input type="radio" name="s15" value="b"> uniquement rouge et bleue</label>
+    <label><input type="radio" name="s15" value="c"> la superposition de toutes les radiations du spectre visible</label>
+    <label><input type="radio" name="s15" value="d"> invisible &agrave; l&rsquo;&oelig;il humain</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Relation c = &lambda; &times; f &ndash; Calcul de fr&eacute;quence</p>
+  <p>Une lumi&egrave;re verte a une longueur d&rsquo;onde \(\lambda = 500\) nm. Sa fr&eacute;quence vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="n1" value="a"> \(1{,}5 \times 10^{11}\) Hz</label>
+    <label><input type="radio" name="n1" value="b"> \(6 \times 10^{11}\) Hz</label>
+    <label><input type="radio" name="n1" value="c"> \(6 \times 10^{14}\) Hz</label>
+    <label><input type="radio" name="n1" value="d"> \(6 \times 10^{17}\) Hz</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Synth&egrave;se additive &ndash; M&eacute;lange deux &agrave; deux</p>
+  <p>En synth&egrave;se additive, la superposition de Rouge + Vert donne :</p>
+  <div class="options">
+    <label><input type="radio" name="n2" value="a"> Cyan</label>
+    <label><input type="radio" name="n2" value="b"> Jaune</label>
+    <label><input type="radio" name="n2" value="c"> Magenta</label>
+    <label><input type="radio" name="n2" value="d"> Blanc</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Synth&egrave;se additive &ndash; M&eacute;lange deux &agrave; deux</p>
+  <p>En synth&egrave;se additive, Vert + Bleu donne :</p>
+  <div class="options">
+    <label><input type="radio" name="n3" value="a"> Cyan</label>
+    <label><input type="radio" name="n3" value="b"> Magenta</label>
+    <label><input type="radio" name="n3" value="c"> Jaune</label>
+    <label><input type="radio" name="n3" value="d"> Orange</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Synth&egrave;se soustractive &ndash; M&eacute;lange</p>
+  <p>En synth&egrave;se soustractive, le m&eacute;lange de Magenta + Jaune donne :</p>
+  <div class="options">
+    <label><input type="radio" name="n4" value="a"> Bleu</label>
+    <label><input type="radio" name="n4" value="b"> Vert</label>
+    <label><input type="radio" name="n4" value="c"> Cyan</label>
+    <label><input type="radio" name="n4" value="d"> Rouge</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Temp&eacute;rature de couleur &ndash; Interpr&eacute;tation</p>
+  <p>Une source lumineuse &agrave; 2&nbsp;700&nbsp;K &eacute;met une lumi&egrave;re :</p>
+  <div class="options">
+    <label><input type="radio" name="n5" value="a"> bleut&eacute;e (froide)</label>
+    <label><input type="radio" name="n5" value="b"> jaun&acirc;tre (chaude)</label>
+    <label><input type="radio" name="n5" value="c"> verte</label>
+    <label><input type="radio" name="n5" value="d"> ultraviolette</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">IRC &ndash; Application atelier</p>
+  <p>Pour un poste de finition du bois (teinture, vernissage), l&rsquo;IRC de la source doit &ecirc;tre :</p>
+  <div class="options">
+    <label><input type="radio" name="n6" value="a"> IRC &lt; 60</label>
+    <label><input type="radio" name="n6" value="b"> IRC compris entre 70 et 80</label>
+    <label><input type="radio" name="n6" value="c"> IRC &ge; 90</label>
+    <label><input type="radio" name="n6" value="d"> IRC = 50</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">&Eacute;clairement &ndash; Formule</p>
+  <p>La formule de l&rsquo;&eacute;clairement est :</p>
+  <div class="options">
+    <label><input type="radio" name="n7" value="a"> \(E = \dfrac{\Phi}{S}\)</label>
+    <label><input type="radio" name="n7" value="b"> \(E = \Phi \times S\)</label>
+    <label><input type="radio" name="n7" value="c"> \(E = \dfrac{S}{\Phi}\)</label>
+    <label><input type="radio" name="n7" value="d"> \(E = \Phi + S\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">&Eacute;clairement &ndash; Calcul simple</p>
+  <p>Une lampe &eacute;met un flux lumineux de 1&nbsp;200 lm qui &eacute;claire uniform&eacute;ment une surface de 4&nbsp;m&sup2;. L&rsquo;&eacute;clairement vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="n8" value="a"> 4 800 lux</label>
+    <label><input type="radio" name="n8" value="b"> 1 200 lux</label>
+    <label><input type="radio" name="n8" value="c"> 400 lux</label>
+    <label><input type="radio" name="n8" value="d"> 300 lux</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Loi en 1/d&sup2; &ndash; Calcul</p>
+  <p>Une lampe produit 800 lux &agrave; 1&nbsp;m. L&rsquo;&eacute;clairement &agrave; 2&nbsp;m vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="n9" value="a"> 400 lux</label>
+    <label><input type="radio" name="n9" value="b"> 200 lux</label>
+    <label><input type="radio" name="n9" value="c"> 100 lux</label>
+    <label><input type="radio" name="n9" value="d"> 800 lux</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Photodiode &ndash; Caract&eacute;ristique</p>
+  <p>La photodiode g&eacute;n&egrave;re :</p>
+  <div class="options">
+    <label><input type="radio" name="n10" value="a"> une r&eacute;sistance variable selon la lumi&egrave;re</label>
+    <label><input type="radio" name="n10" value="b"> une image num&eacute;rique</label>
+    <label><input type="radio" name="n10" value="c"> un courant &eacute;lectrique proportionnel &agrave; l&rsquo;&eacute;clairement</label>
+    <label><input type="radio" name="n10" value="d"> de la chaleur proportionnelle &agrave; la lumi&egrave;re</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Phototransistor &ndash; Avantage</p>
+  <p>Par rapport &agrave; la photodiode, le phototransistor fournit :</p>
+  <div class="options">
+    <label><input type="radio" name="n11" value="a"> un courant amplifi&eacute;</label>
+    <label><input type="radio" name="n11" value="b"> une r&eacute;sistance variable</label>
+    <label><input type="radio" name="n11" value="c"> une image en pixels</label>
+    <label><input type="radio" name="n11" value="d"> un flux lumineux plus intense</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">CCD / CMOS &ndash; Principe</p>
+  <p>Les capteurs CCD et CMOS sont constitu&eacute;s de :</p>
+  <div class="options">
+    <label><input type="radio" name="n12" value="a"> une seule LDR &agrave; large surface</label>
+    <label><input type="radio" name="n12" value="b"> un filament chauff&eacute; par la lumi&egrave;re</label>
+    <label><input type="radio" name="n12" value="c"> un seul phototransistor tr&egrave;s sensible</label>
+    <label><input type="radio" name="n12" value="d"> une matrice de millions de photodiodes organis&eacute;es en pixels</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Application atelier &ndash; S&eacute;curit&eacute;</p>
+  <p>Les barri&egrave;res optiques de s&eacute;curit&eacute; autour des machines-outils utilisent :</p>
+  <div class="options">
+    <label><input type="radio" name="n13" value="a"> des LDR</label>
+    <label><input type="radio" name="n13" value="b"> des photodiodes</label>
+    <label><input type="radio" name="n13" value="c"> des capteurs CCD</label>
+    <label><input type="radio" name="n13" value="d"> des ampoules &agrave; incandescence</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">&Eacute;clairement &ndash; Norme atelier</p>
+  <p>L&rsquo;&eacute;clairement minimal recommand&eacute; pour un atelier de menuiserie g&eacute;n&eacute;ral est de :</p>
+  <div class="options">
+    <label><input type="radio" name="n14" value="a"> 100 lux</label>
+    <label><input type="radio" name="n14" value="b"> 300 lux</label>
+    <label><input type="radio" name="n14" value="c"> 750 lux</label>
+    <label><input type="radio" name="n14" value="d"> 2 000 lux</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Fr&eacute;quence et &eacute;nergie &ndash; Comparaison</p>
+  <p>Entre la lumi&egrave;re rouge et la lumi&egrave;re violette, la plus &eacute;nerg&eacute;tique est :</p>
+  <div class="options">
+    <label><input type="radio" name="n15" value="a"> la lumi&egrave;re violette, car sa longueur d&rsquo;onde est plus courte</label>
+    <label><input type="radio" name="n15" value="b"> la lumi&egrave;re rouge, car sa longueur d&rsquo;onde est plus grande</label>
+    <label><input type="radio" name="n15" value="c"> elles ont la m&ecirc;me &eacute;nergie</label>
+    <label><input type="radio" name="n15" value="d"> la lumi&egrave;re rouge, car sa fr&eacute;quence est plus &eacute;lev&eacute;e</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Relation c = &lambda; &times; f &ndash; Calcul de longueur d&rsquo;onde</p>
+  <p>Une radiation a une fr&eacute;quence \(f = 5 \times 10^{14}\) Hz. Sa longueur d&rsquo;onde vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> 150 nm</label>
+    <label><input type="radio" name="a1" value="b"> 600 nm</label>
+    <label><input type="radio" name="a1" value="c"> 60 nm</label>
+    <label><input type="radio" name="a1" value="d"> 6 000 nm</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Spectre visible &ndash; Radiation hors spectre</p>
+  <p>Une radiation de longueur d&rsquo;onde 850 nm appartient au domaine :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> ultraviolet</label>
+    <label><input type="radio" name="a2" value="b"> visible (rouge)</label>
+    <label><input type="radio" name="a2" value="c"> infrarouge</label>
+    <label><input type="radio" name="a2" value="d"> rayons X</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Synth&egrave;ses &ndash; Comparaison</p>
+  <p>La diff&eacute;rence fondamentale entre synth&egrave;se additive et synth&egrave;se soustractive est :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> l&rsquo;additive ajoute de la lumi&egrave;re (fond noir &rarr; blanc) ; la soustractive retire des longueurs d&rsquo;onde (fond blanc &rarr; noir)</label>
+    <label><input type="radio" name="a3" value="b"> l&rsquo;additive utilise des peintures ; la soustractive utilise des &eacute;crans</label>
+    <label><input type="radio" name="a3" value="c"> les deux utilisent les m&ecirc;mes couleurs primaires</label>
+    <label><input type="radio" name="a3" value="d"> la soustractive ne s&rsquo;applique qu&rsquo;&agrave; la lumi&egrave;re blanche</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Synth&egrave;se additive &ndash; Rouge + Bleu</p>
+  <p>En synth&egrave;se additive, la superposition de Rouge + Bleu donne :</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> Cyan</label>
+    <label><input type="radio" name="a4" value="b"> Jaune</label>
+    <label><input type="radio" name="a4" value="c"> Vert</label>
+    <label><input type="radio" name="a4" value="d"> Magenta</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Synth&egrave;se soustractive &ndash; Cyan + Jaune</p>
+  <p>En synth&egrave;se soustractive, le m&eacute;lange de Cyan + Jaune donne :</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> Rouge</label>
+    <label><input type="radio" name="a5" value="b"> Vert</label>
+    <label><input type="radio" name="a5" value="c"> Bleu</label>
+    <label><input type="radio" name="a5" value="d"> Noir</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Temp&eacute;rature de couleur &ndash; Choix pour finition</p>
+  <p>Pour la correspondance des couleurs en cabine de peinture, la temp&eacute;rature de couleur id&eacute;ale est :</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> 2 700 K (blanc chaud)</label>
+    <label><input type="radio" name="a6" value="b"> 3 500 K (blanc neutre)</label>
+    <label><input type="radio" name="a6" value="c"> 5 000 K (lumi&egrave;re du jour)</label>
+    <label><input type="radio" name="a6" value="d"> 7 000 K (bleu froid)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">&Eacute;clairement &ndash; Calcul inverse</p>
+  <p>Un atelier doit atteindre 750 lux sur un plan de travail de 6&nbsp;m&sup2;. Le flux lumineux total n&eacute;cessaire est :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> 4 500 lm</label>
+    <label><input type="radio" name="a7" value="b"> 125 lm</label>
+    <label><input type="radio" name="a7" value="c"> 750 lm</label>
+    <label><input type="radio" name="a7" value="d"> 6 000 lm</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Loi en 1/d&sup2; &ndash; Calcul invers&eacute;</p>
+  <p>Une lampe produit 1 000 lux &agrave; 1&nbsp;m. &Agrave; quelle distance obtient-on 250 lux ?</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> 0,5 m</label>
+    <label><input type="radio" name="a8" value="b"> 4 m</label>
+    <label><input type="radio" name="a8" value="c"> 1,5 m</label>
+    <label><input type="radio" name="a8" value="d"> 2 m</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Loi en 1/d&sup2; &ndash; Rapprochement</p>
+  <p>Une lampe produit 400 lux &agrave; 1&nbsp;m. L&rsquo;&eacute;clairement &agrave; 0,5&nbsp;m vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> 200 lux</label>
+    <label><input type="radio" name="a9" value="b"> 1 600 lux</label>
+    <label><input type="radio" name="a9" value="c"> 800 lux</label>
+    <label><input type="radio" name="a9" value="d"> 100 lux</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Efficacit&eacute; lumineuse &ndash; Comparaison</p>
+  <p>Une LED haute performance a une efficacit&eacute; d&rsquo;environ 160&nbsp;lm/W. Combien d&rsquo;ampoules &agrave; incandescence (15&nbsp;lm/W) faudrait-il pour produire le m&ecirc;me flux lumineux qu&rsquo;une seule LED de 10&nbsp;W ?</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> 2 ampoules de 10 W</label>
+    <label><input type="radio" name="a10" value="b"> 5 ampoules de 10 W</label>
+    <label><input type="radio" name="a10" value="c"> environ 11 ampoules de 10 W</label>
+    <label><input type="radio" name="a10" value="d"> 160 ampoules de 10 W</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">LDR &ndash; Valeurs typiques</p>
+  <p>En obscurit&eacute; totale, la r&eacute;sistance d&rsquo;une LDR peut atteindre :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> plusieurs m&eacute;gaohms (M&Omega;)</label>
+    <label><input type="radio" name="a11" value="b"> quelques ohms (&Omega;)</label>
+    <label><input type="radio" name="a11" value="c"> 0 ohm</label>
+    <label><input type="radio" name="a11" value="d"> quelques milliohms (m&Omega;)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Photodiode &ndash; Temps de r&eacute;ponse</p>
+  <p>Le temps de r&eacute;ponse d&rsquo;une photodiode est de l&rsquo;ordre de :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> plusieurs secondes</label>
+    <label><input type="radio" name="a12" value="b"> quelques millisecondes</label>
+    <label><input type="radio" name="a12" value="c"> quelques microsecondes</label>
+    <label><input type="radio" name="a12" value="d"> la nanoseconde</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Application atelier &ndash; Contr&ocirc;le qualit&eacute;</p>
+  <p>Pour d&eacute;tecter automatiquement les d&eacute;fauts de surface sur des panneaux stratifi&eacute;s en sortie de presse, on utilise :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> une LDR</label>
+    <label><input type="radio" name="a13" value="b"> une cam&eacute;ra CCD/CMOS coupl&eacute;e &agrave; un traitement logiciel</label>
+    <label><input type="radio" name="a13" value="c"> un phototransistor seul</label>
+    <label><input type="radio" name="a13" value="d"> un prisme optique</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Contexte professionnel &ndash; Perception des couleurs</p>
+  <p>Un menuisier agenceur choisit un plan de travail en ch&ecirc;ne clair sous un &eacute;clairage fluorescent &agrave; 4&nbsp;000&nbsp;K. Chez le client, sous des spots halog&egrave;nes &agrave; 3&nbsp;000&nbsp;K, la teinte semble plus :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> bleu&acirc;tre</label>
+    <label><input type="radio" name="a14" value="b"> verd&acirc;tre</label>
+    <label><input type="radio" name="a14" value="c"> jaune-dor&eacute;e (plus chaude)</label>
+    <label><input type="radio" name="a14" value="d"> identique</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Conversion &ndash; Longueur d&rsquo;onde</p>
+  <p>\(1\) nm &eacute;quivaut &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> \(10^{-9}\) m</label>
+    <label><input type="radio" name="a15" value="b"> \(10^{-6}\) m</label>
+    <label><input type="radio" name="a15" value="c"> \(10^{-3}\) m</label>
+    <label><input type="radio" name="a15" value="d"> \(10^{-12}\) m</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "La lumière visible a une longueur d'onde comprise entre 380 nm (violet) et 780 nm (rouge).",
+  "s2": "Le violet a la plus petite longueur d'onde du spectre visible (380–450 nm).",
+  "s3": "La célérité de la lumière dans le vide vaut c = 3 × 10⁸ m/s, soit 300 000 km/s.",
+  "s4": "Les couleurs primaires additives (RGB) sont Rouge, Vert (Green) et Bleu (Blue).",
+  "s5": "R + G + B = Blanc. C'est le principe de la synthèse additive : toutes les lumières superposées donnent du blanc.",
+  "s6": "La synthèse soustractive concerne le mélange de matières colorées (peintures, encres, teintures), pas de lumières.",
+  "s7": "C + M + J = Noir (théoriquement). Chaque pigment absorbe des longueurs d'onde ; les trois ensemble absorbent tout.",
+  "s8": "La température de couleur s'exprime en kelvins (K). Plus la valeur est basse, plus la lumière est chaude (jaunâtre).",
+  "s9": "L'IRC (0 à 100) mesure la capacité d'une source à restituer fidèlement les couleurs. IRC 100 = lumière du soleil.",
+  "s10": "Un photodétecteur convertit la lumière (signal lumineux) en signal électrique (tension, courant ou résistance).",
+  "s11": "La LDR est une photorésistance : plus l'éclairement augmente, plus sa résistance diminue.",
+  "s12": "L'éclairement E s'exprime en lux (lx). Le lumen (lm) est l'unité du flux lumineux.",
+  "s13": "Loi en 1/d² : si la distance double, l'éclairement est divisé par 2² = 4.",
+  "s14": "Les LED ont une efficacité de 100 à 180 lm/W contre 15 lm/W pour l'incandescence : bien plus de lumière par watt consommé.",
+  "s15": "La lumière blanche est la superposition de toutes les radiations du spectre visible. Le prisme les sépare (dispersion).",
+  /* === STANDARD === */
+  "n1": "f = c/λ = (3 × 10⁸)/(500 × 10⁻⁹) = 6 × 10¹⁴ Hz. Attention à convertir nm en m.",
+  "n2": "En synthèse additive : R + G = Jaune. C'est un mélange de lumières, pas de peintures.",
+  "n3": "En synthèse additive : G + B = Cyan.",
+  "n4": "En synthèse soustractive : M + J = Rouge. Le magenta absorbe le vert, le jaune absorbe le bleu : il reste le rouge.",
+  "n5": "2 700 K correspond au blanc chaud (jaunâtre), typique des anciennes ampoules à incandescence et des ambiances cosy.",
+  "n6": "Pour la finition du bois, un IRC ≥ 90 est indispensable pour percevoir fidèlement les teintes. IRC < 80 fausse les couleurs.",
+  "n7": "E = Φ/S. L'éclairement (lux) est le flux lumineux (lumens) divisé par la surface éclairée (m²).",
+  "n8": "E = Φ/S = 1 200/4 = 300 lux.",
+  "n9": "Loi en 1/d² : E₂ = E₁ × (d₁/d₂)² = 800 × (1/2)² = 800 × 0,25 = 200 lux.",
+  "n10": "La photodiode génère un courant électrique (en µA) proportionnel à l'éclairement reçu. Très rapide (ns).",
+  "n11": "Le phototransistor fournit un courant amplifié par rapport à la photodiode, utile pour les circuits d'alarme.",
+  "n12": "Les capteurs CCD et CMOS sont des matrices de millions de photodiodes organisées en pixels, capturant une image entière.",
+  "n13": "Les barrières optiques utilisent des émetteurs IR et des photodiodes réceptrices. Si le faisceau est interrompu, la machine s'arrête.",
+  "n14": "Un atelier de menuiserie général nécessite au minimum 750 lux selon les recommandations d'éclairage.",
+  "n15": "La lumière violette (λ courte) a une fréquence plus élevée, donc une énergie plus grande que la lumière rouge (λ longue).",
+  /* === APPROFONDISSEMENT === */
+  "a1": "λ = c/f = (3 × 10⁸)/(5 × 10¹⁴) = 6 × 10⁻⁷ m = 600 nm. C'est une radiation orange-rouge.",
+  "a2": "850 nm > 780 nm : cette radiation est au-delà du rouge visible, dans le domaine infrarouge (IR).",
+  "a3": "L'additive ajoute des lumières (fond noir → blanc), la soustractive retire des longueurs d'onde par absorption (fond blanc → noir).",
+  "a4": "En synthèse additive : R + B = Magenta.",
+  "a5": "En synthèse soustractive : C + J = Vert. Le cyan absorbe le rouge, le jaune absorbe le bleu : il reste le vert.",
+  "a6": "Pour la correspondance des couleurs, on choisit 5 000 K (lumière du jour) avec un IRC ≥ 90.",
+  "a7": "Φ = E × S = 750 × 6 = 4 500 lm. On utilise la formule E = Φ/S en isolant Φ.",
+  "a8": "E = E₀/d². 250 = 1 000/d², donc d² = 4, donc d = 2 m.",
+  "a9": "E = 400/(0,5)² = 400/0,25 = 1 600 lux. En rapprochant la source, l'éclairement augmente fortement.",
+  "a10": "LED 10 W × 160 lm/W = 1 600 lm. Incandescence : 1 600/150 = 10,67, soit environ 11 ampoules de 10 W (15 lm/W × 10 W = 150 lm chacune).",
+  "a11": "En obscurité totale, la résistance d'une LDR peut atteindre 1 MΩ (plusieurs mégaohms). En pleine lumière : quelques centaines d'ohms.",
+  "a12": "La photodiode a un temps de réponse de l'ordre de la nanoseconde (ns), bien plus rapide que la LDR (ms à s).",
+  "a13": "Le contrôle qualité par vision utilise des caméras CCD/CMOS couplées à un logiciel d'analyse pour détecter bulles, éraflures et défauts de teinte.",
+  "a14": "Les halogènes (3 000 K) émettent une lumière plus chaude (jaunâtre) que le fluorescent (4 000 K), d'où une teinte jaune-dorée perçue.",
+  "a15": "1 nm = 10⁻⁹ m. Le nanomètre est un milliardième de mètre."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = 'Bonne réponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = 'Mauvaise réponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = 'Pas de réponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 # Audit Global du Site Pédagogique
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-18
+**Dernière mise à jour** : 2026-03-18 (QCMs)
 **Périmètre** : ensemble du site maths-sciences-lp.github.io
 
 ---
@@ -42,7 +42,7 @@ Chaque chapitre doit proposer **6 types de pages** : lecon, exercices, ds, qcm, 
 | `exercices.html` | 77 | 84 | 92 % |
 | `ds.html` | 77 | 84 | 92 % |
 | `fiche.html` | 57 | 84 | 68 % |
-| `qcm.html` | 2 | 84 | 2 % |
+| `qcm.html` | 48 | 84 | 57 % |
 | `interro.html` | 2 | 84 | 2 % |
 
 **Référence specs :** `prompts/prompt-qcm-interro.md` — philosophie, différenciation et templates.
@@ -70,6 +70,7 @@ Chaque chapitre doit proposer **6 types de pages** : lecon, exercices, ds, qcm, 
 - **2026-03-16 (sessions 1-3)** : Corrigé 104 chemins absolus (nav.js, nav.css, diff.js), ajouté diff.js à maths/premiere (18 fichiers), harmonisé CSS maths seconde + PC seconde, standardisé labels PC premiere, remplacé .appli→.situation PC terminale ERA, retiré nav.js de 26 simulations, rédigé maths premiere ch05 et ch09.
 - **2026-03-16 (session 4)** : Lié 63 simulations à 79 pages de cours (0 orpheline restante). Ajouté blocs .meth à PC terminale ERA ch01-ch06. Ajouté visualisations interactives à maths premiere ch03 et ch04.
 - **2026-03-18** : Supprimé le doublon `automatismes.html` (racine), unifié les liens vers `automatismes/index.html`. Plan d'uniformisation : 6 types de pages par chapitre (ajout qcm.html et interro.html différenciés). Créé `prompts/prompt-qcm-interro.md`.
+- **2026-03-18** : Créé 46 QCMs différenciés (3×15 questions socle/standard/appro) : maths/seconde (14), maths/premiere (9), maths/terminale (9 + ch02 existant), physique-chimie/seconde (13 + ch07 existant). Total QCMs : 48/84 (57%).
 
 ---
 
@@ -81,7 +82,7 @@ Chaque chapitre doit proposer **6 types de pages** : lecon, exercices, ds, qcm, 
 - [ ] Clarifier le nombre de chapitres attendus en physique-chimie/terminale-iccer (mettre à jour CLAUDE.md : ch01-ch08)
 
 ### Priorité haute (uniformisation 2026-03-18)
-- [ ] Créer les 83 `qcm.html` manquants (QCM interactifs différenciés, 3×15 questions)
+- [ ] Créer les 36 `qcm.html` restants (PC 1ere ICCER 10, PC 1ere ERA 10, PC Tle ICCER 8, PC Tle ERA 8) — 48/84 faits
 - [ ] Créer les 83 `interro.html` manquants (interrogations diagnostiques différenciées, 3×5-8 questions)
 - [ ] Créer les 7 `exercices.html` et 7 `ds.html` manquants (PC terminale)
 - [ ] Centraliser les classes CSS QCM dans `styles.css` avant création en masse
