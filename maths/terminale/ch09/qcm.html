@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Fonctions ln et exponentielle – QCM – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>QCM – Fonctions ln et exponentielle</h1>
+  <p class="sous-titre">Chapitre 9 | Terminale Bac Pro | Mathématiques</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">⏱ <strong>Durée :</strong> 15–20 min</div>
+  <div class="dh-item">📄 <strong>15 questions</strong></div>
+  <div class="dh-item">🧮 <strong>Calculatrice autorisée</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne réponse</strong> puis cliquez sur « Valider le QCM » en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Valeur remarquable – ln(1)</p>
+  <p>Quelle est la valeur de \(\ln(1)\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> 1</label>
+    <label><input type="radio" name="s1" value="b"> 0</label>
+    <label><input type="radio" name="s1" value="c"> e</label>
+    <label><input type="radio" name="s1" value="d"> −1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Valeur remarquable – ln(e)</p>
+  <p>Quelle est la valeur de \(\ln(e)\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> 0</label>
+    <label><input type="radio" name="s2" value="b"> 2,718</label>
+    <label><input type="radio" name="s2" value="c"> 1</label>
+    <label><input type="radio" name="s2" value="d"> e²</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Valeur remarquable – e⁰</p>
+  <p>Quelle est la valeur de \(e^0\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> 1</label>
+    <label><input type="radio" name="s3" value="b"> 0</label>
+    <label><input type="radio" name="s3" value="c"> e</label>
+    <label><input type="radio" name="s3" value="d"> −1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Dérivée de eˣ</p>
+  <p>Si \(f(x) = e^x\), alors \(f'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> 1</label>
+    <label><input type="radio" name="s4" value="b"> \(x \cdot e^{x-1}\)</label>
+    <label><input type="radio" name="s4" value="c"> \(e^{x+1}\)</label>
+    <label><input type="radio" name="s4" value="d"> \(e^x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Dérivée de ln(x)</p>
+  <p>Si \(f(x) = \ln(x)\), alors \(f'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> \(\ln(x-1)\)</label>
+    <label><input type="radio" name="s5" value="b"> \(\dfrac{1}{x}\)</label>
+    <label><input type="radio" name="s5" value="c"> \(x\)</label>
+    <label><input type="radio" name="s5" value="d"> \(e^x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Fonctions réciproques</p>
+  <p>Que vaut \(\ln(e^5)\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> \(e^5\)</label>
+    <label><input type="radio" name="s6" value="b"> 0</label>
+    <label><input type="radio" name="s6" value="c"> 5</label>
+    <label><input type="radio" name="s6" value="d"> \(5e\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Fonctions réciproques</p>
+  <p>Que vaut \(e^{\ln(7)}\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> 7</label>
+    <label><input type="radio" name="s7" value="b"> \(\ln(7)\)</label>
+    <label><input type="radio" name="s7" value="c"> \(e^7\)</label>
+    <label><input type="radio" name="s7" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Domaine de définition de ln</p>
+  <p>\(\ln(x)\) est défini pour :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> tout réel x</label>
+    <label><input type="radio" name="s8" value="b"> \(x \geq 0\)</label>
+    <label><input type="radio" name="s8" value="c"> \(x \leq 0\)</label>
+    <label><input type="radio" name="s8" value="d"> \(x > 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Valeur approchée de e</p>
+  <p>La valeur approchée de e est :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> 3,141</label>
+    <label><input type="radio" name="s9" value="b"> 2,718</label>
+    <label><input type="radio" name="s9" value="c"> 1,414</label>
+    <label><input type="radio" name="s9" value="d"> 0,693</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">Signe de eˣ</p>
+  <p>Pour tout réel x, \(e^x\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> strictement positif</label>
+    <label><input type="radio" name="s10" value="b"> strictement négatif</label>
+    <label><input type="radio" name="s10" value="c"> nul en x = 0</label>
+    <label><input type="radio" name="s10" value="d"> parfois négatif</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 11</h3>
+  <p class="theme">Variations de eˣ</p>
+  <p>La fonction \(f(x) = e^x\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> strictement décroissante sur ℝ</label>
+    <label><input type="radio" name="s11" value="b"> constante sur ℝ</label>
+    <label><input type="radio" name="s11" value="c"> strictement croissante sur ℝ</label>
+    <label><input type="radio" name="s11" value="d"> décroissante pour x &lt; 0 et croissante pour x &gt; 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Résolution simple – équation exponentielle</p>
+  <p>Si \(e^x = 1\), alors \(x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> e</label>
+    <label><input type="radio" name="s12" value="b"> −1</label>
+    <label><input type="radio" name="s12" value="c"> 1</label>
+    <label><input type="radio" name="s12" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Résolution simple – équation logarithmique</p>
+  <p>Si \(\ln(x) = 0\), alors \(x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> 0</label>
+    <label><input type="radio" name="s13" value="b"> 1</label>
+    <label><input type="radio" name="s13" value="c"> e</label>
+    <label><input type="radio" name="s13" value="d"> −1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">Limite de eˣ en −∞</p>
+  <p>\(\lim_{x \to -\infty} e^x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> 0</label>
+    <label><input type="radio" name="s14" value="b"> −∞</label>
+    <label><input type="radio" name="s14" value="c"> +∞</label>
+    <label><input type="radio" name="s14" value="d"> 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 15</h3>
+  <p class="theme">Limite de ln(x) en 0⁺</p>
+  <p>\(\lim_{x \to 0^+} \ln(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> 0</label>
+    <label><input type="radio" name="s15" value="b"> +∞</label>
+    <label><input type="radio" name="s15" value="c"> −∞</label>
+    <label><input type="radio" name="s15" value="d"> 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Propriété algébrique – ln d'un produit</p>
+  <p>\(\ln(3 \times 5) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t1" value="a"> \(\ln(3) \times \ln(5)\)</label>
+    <label><input type="radio" name="t1" value="b"> \(\ln(15) \times 2\)</label>
+    <label><input type="radio" name="t1" value="c"> \(\ln(3) + \ln(5)\)</label>
+    <label><input type="radio" name="t1" value="d"> \(\ln(8)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 2</h3>
+  <p class="theme">Propriété algébrique – ln d'un quotient</p>
+  <p>\(\ln\!\left(\dfrac{a}{b}\right) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t2" value="a"> \(\ln(a) - \ln(b)\)</label>
+    <label><input type="radio" name="t2" value="b"> \(\dfrac{\ln(a)}{\ln(b)}\)</label>
+    <label><input type="radio" name="t2" value="c"> \(\ln(a) + \ln(b)\)</label>
+    <label><input type="radio" name="t2" value="d"> \(\ln(a) \times \ln(b)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Propriété algébrique – ln d'une puissance</p>
+  <p>\(\ln(a^3) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t3" value="a"> \(3^{\ln(a)}\)</label>
+    <label><input type="radio" name="t3" value="b"> \(\ln(3a)\)</label>
+    <label><input type="radio" name="t3" value="c"> \(\ln(a)^3\)</label>
+    <label><input type="radio" name="t3" value="d"> \(3\ln(a)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 4</h3>
+  <p class="theme">Résolution – équation exponentielle</p>
+  <p>On résout \(e^x = 5\). La solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="t4" value="a"> \(x = e^5\)</label>
+    <label><input type="radio" name="t4" value="b"> \(x = \ln(5)\)</label>
+    <label><input type="radio" name="t4" value="c"> \(x = 5e\)</label>
+    <label><input type="radio" name="t4" value="d"> \(x = \dfrac{5}{e}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Résolution – équation logarithmique</p>
+  <p>On résout \(\ln(x) = 3\). La solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="t5" value="a"> \(x = 3e\)</label>
+    <label><input type="radio" name="t5" value="b"> \(x = \ln(3)\)</label>
+    <label><input type="radio" name="t5" value="c"> \(x = e^3\)</label>
+    <label><input type="radio" name="t5" value="d"> \(x = 3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 6</h3>
+  <p class="theme">Résolution – équation exponentielle plus complexe</p>
+  <p>On résout \(2e^x = 10\). Alors :</p>
+  <div class="options">
+    <label><input type="radio" name="t6" value="a"> \(x = \ln(5)\)</label>
+    <label><input type="radio" name="t6" value="b"> \(x = \ln(10)\)</label>
+    <label><input type="radio" name="t6" value="c"> \(x = 2\ln(10)\)</label>
+    <label><input type="radio" name="t6" value="d"> \(x = \ln(2)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Primitive de eˣ</p>
+  <p>Une primitive de \(f(x) = e^x\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t7" value="a"> \(\dfrac{e^x}{x}\)</label>
+    <label><input type="radio" name="t7" value="b"> \(x e^x\)</label>
+    <label><input type="radio" name="t7" value="c"> \(e^{x+1}\)</label>
+    <label><input type="radio" name="t7" value="d"> \(e^x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 8</h3>
+  <p class="theme">Primitive de 1/x</p>
+  <p>Une primitive de \(f(x) = \dfrac{1}{x}\) (pour x &gt; 0) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t8" value="a"> \(\dfrac{-1}{x^2}\)</label>
+    <label><input type="radio" name="t8" value="b"> \(\ln(x)\)</label>
+    <label><input type="radio" name="t8" value="c"> \(\dfrac{1}{x^2}\)</label>
+    <label><input type="radio" name="t8" value="d"> \(\ln(x^2)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Application – refroidissement de Newton</p>
+  <p>Un local refroidit selon \(T(t) = 20 + 60 \cdot e^{-0{,}1t}\). Quelle est la température initiale (en t = 0) ?</p>
+  <div class="options">
+    <label><input type="radio" name="t9" value="a"> 20 °C</label>
+    <label><input type="radio" name="t9" value="b"> 60 °C</label>
+    <label><input type="radio" name="t9" value="c"> 80 °C</label>
+    <label><input type="radio" name="t9" value="d"> 0 °C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">Application – modèle de séchage du bois</p>
+  <p>Une planche sèche selon \(H(t) = 25 \cdot e^{-0{,}08t}\). Quelle est la teneur initiale en humidité ?</p>
+  <div class="options">
+    <label><input type="radio" name="t10" value="a"> 25 %</label>
+    <label><input type="radio" name="t10" value="b"> 0 %</label>
+    <label><input type="radio" name="t10" value="c"> 0,08 %</label>
+    <label><input type="radio" name="t10" value="d"> 12 %</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">Résolution dans un modèle – séchage du bois</p>
+  <p>Avec \(H(t) = 25 \cdot e^{-0{,}08t}\), pour trouver t tel que \(H(t) = 12\), on résout :</p>
+  <div class="options">
+    <label><input type="radio" name="t11" value="a"> \(25 - 0{,}08t = 12\)</label>
+    <label><input type="radio" name="t11" value="b"> \(e^{-0{,}08t} = 37\)</label>
+    <label><input type="radio" name="t11" value="c"> \(\ln(25) = -0{,}08t\)</label>
+    <label><input type="radio" name="t11" value="d"> \(e^{-0{,}08t} = \dfrac{12}{25}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 12</h3>
+  <p class="theme">Dérivée de e<sup>2x</sup></p>
+  <p>Si \(f(x) = e^{2x}\), alors \(f'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t12" value="a"> \(e^{2x}\)</label>
+    <label><input type="radio" name="t12" value="b"> \(2e^{2x}\)</label>
+    <label><input type="radio" name="t12" value="c"> \(2xe^{2x}\)</label>
+    <label><input type="radio" name="t12" value="d"> \(e^{2x-1}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Simplification – propriété réciproque</p>
+  <p>Simplifier \(\ln(e^3 \times e^2)\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t13" value="a"> 6</label>
+    <label><input type="radio" name="t13" value="b"> \(e^5\)</label>
+    <label><input type="radio" name="t13" value="c"> 5</label>
+    <label><input type="radio" name="t13" value="d"> \(\ln(5)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">Résolution – équation avec coefficient</p>
+  <p>On résout \(e^{2x} = 8\). Alors :</p>
+  <div class="options">
+    <label><input type="radio" name="t14" value="a"> \(x = \dfrac{\ln(8)}{2}\)</label>
+    <label><input type="radio" name="t14" value="b"> \(x = 2\ln(8)\)</label>
+    <label><input type="radio" name="t14" value="c"> \(x = \ln(4)\)</label>
+    <label><input type="radio" name="t14" value="d"> \(x = \ln(16)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 15</h3>
+  <p class="theme">Asymptote – modèle de refroidissement</p>
+  <p>Dans la loi \(T(t) = T_{\text{amb}} + (T_0 - T_{\text{amb}}) \cdot e^{-kt}\), la courbe de T(t) tend vers :</p>
+  <div class="options">
+    <label><input type="radio" name="t15" value="a"> 0</label>
+    <label><input type="radio" name="t15" value="b"> \(T_0\)</label>
+    <label><input type="radio" name="t15" value="c"> +∞</label>
+    <label><input type="radio" name="t15" value="d"> \(T_{\text{amb}}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Dérivée de ln(u(x)) – règle de la chaîne</p>
+  <p>Si \(f(x) = \ln(x^2 + 1)\), alors \(f'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> \(\dfrac{1}{x^2+1}\)</label>
+    <label><input type="radio" name="a1" value="b"> \(\dfrac{2x}{x^2+1}\)</label>
+    <label><input type="radio" name="a1" value="c"> \(2x \cdot \ln(x^2+1)\)</label>
+    <label><input type="radio" name="a1" value="d"> \(\dfrac{x^2}{x^2+1}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Dérivée de e<sup>u(x)</sup> – règle de la chaîne</p>
+  <p>Si \(f(x) = e^{x^2 + 1}\), alors \(f'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> \(e^{x^2+1}\)</label>
+    <label><input type="radio" name="a2" value="b"> \((x^2+1) \cdot e^{x^2}\)</label>
+    <label><input type="radio" name="a2" value="c"> \(2x \cdot e^{x^2+1}\)</label>
+    <label><input type="radio" name="a2" value="d"> \(2x + e^{x^2+1}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Dérivée de ln(2x + 5)</p>
+  <p>Si \(f(x) = \ln(2x + 5)\), alors \(f'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> \(\dfrac{2}{2x+5}\)</label>
+    <label><input type="radio" name="a3" value="b"> \(\dfrac{1}{2x+5}\)</label>
+    <label><input type="radio" name="a3" value="c"> \(2\ln(2x+5)\)</label>
+    <label><input type="radio" name="a3" value="d"> \(\dfrac{2x+5}{2}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Intégrale de 1/x</p>
+  <p>\(\displaystyle\int_1^e \frac{1}{x}\,dx =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> \(e - 1\)</label>
+    <label><input type="radio" name="a4" value="b"> 0</label>
+    <label><input type="radio" name="a4" value="c"> \(\ln(e-1)\)</label>
+    <label><input type="radio" name="a4" value="d"> 1</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Intégrale de eˣ</p>
+  <p>\(\displaystyle\int_0^1 e^x\,dx =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> 1</label>
+    <label><input type="radio" name="a5" value="b"> \(e - 1\)</label>
+    <label><input type="radio" name="a5" value="c"> \(e\)</label>
+    <label><input type="radio" name="a5" value="d"> \(e + 1\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Équation différentielle y' = ay</p>
+  <p>Les solutions de l'équation différentielle \(y' = 3y\) sont de la forme :</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> \(y = 3x + C\)</label>
+    <label><input type="radio" name="a6" value="b"> \(y = C \cdot e^{3x^2/2}\)</label>
+    <label><input type="radio" name="a6" value="c"> \(y = C \cdot e^{3x}\)</label>
+    <label><input type="radio" name="a6" value="d"> \(y = C \cdot x^3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Équation différentielle – condition initiale</p>
+  <p>La solution de \(y' = -0{,}1y\) avec \(y(0) = 60\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(y = 60 \cdot e^{-0{,}1x}\)</label>
+    <label><input type="radio" name="a7" value="b"> \(y = 60 - 0{,}1x\)</label>
+    <label><input type="radio" name="a7" value="c"> \(y = e^{-0{,}1x + 60}\)</label>
+    <label><input type="radio" name="a7" value="d"> \(y = -0{,}1 \cdot e^{60x}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Dérivée de e<sup>−kt</sup></p>
+  <p>Si \(f(t) = e^{-kt}\) (k constante positive), alors \(f'(t) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> \(e^{-kt}\)</label>
+    <label><input type="radio" name="a8" value="b"> \(k \cdot e^{-kt}\)</label>
+    <label><input type="radio" name="a8" value="c"> \(-e^{-kt+1}\)</label>
+    <label><input type="radio" name="a8" value="d"> \(-k \cdot e^{-kt}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Résolution – modèle de décroissance</p>
+  <p>Un installateur thermique mesure la décroissance d'une grandeur : \(N(t) = 500 \cdot e^{-0{,}2t}\). À quel instant t est-ce que \(N(t) = 100\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> \(t = \dfrac{\ln(100)}{0{,}2}\)</label>
+    <label><input type="radio" name="a9" value="b"> \(t = \dfrac{\ln(5)}{0{,}2}\)</label>
+    <label><input type="radio" name="a9" value="c"> \(t = 0{,}2 \cdot \ln(500)\)</label>
+    <label><input type="radio" name="a9" value="d"> \(t = \dfrac{\ln(400)}{0{,}2}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Dérivée de 5e<sup>2x</sup> + ln(x)</p>
+  <p>Si \(f(x) = 5e^{2x} + \ln(x)\), alors \(f'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> \(5e^{2x} + \dfrac{1}{x}\)</label>
+    <label><input type="radio" name="a10" value="b"> \(10xe^{2x} + \ln(x)\)</label>
+    <label><input type="radio" name="a10" value="c"> \(10e^{2x} + \dfrac{1}{x}\)</label>
+    <label><input type="radio" name="a10" value="d"> \(5e^{2x} + x\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Équation logarithmique – résolution complète</p>
+  <p>Résoudre \(\ln(2x - 1) = 0\). La solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> \(x = 1\)</label>
+    <label><input type="radio" name="a11" value="b"> \(x = \dfrac{1}{2}\)</label>
+    <label><input type="radio" name="a11" value="c"> \(x = e\)</label>
+    <label><input type="radio" name="a11" value="d"> \(x = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Propriété algébrique – ln(1/a)</p>
+  <p>\(\ln\!\left(\dfrac{1}{a}\right) =\) (avec a &gt; 0) :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> \(\dfrac{1}{\ln(a)}\)</label>
+    <label><input type="radio" name="a12" value="b"> \(\ln(a-1)\)</label>
+    <label><input type="radio" name="a12" value="c"> \(\ln(1) - a\)</label>
+    <label><input type="radio" name="a12" value="d"> \(-\ln(a)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Problème type BTS – modèle de refroidissement</p>
+  <p>Un technicien mesure \(T(t) = 10 + 50 \cdot e^{-0{,}05t}\). Pour que \(T \leq 25\,°C\), il faut :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> \(t \geq \dfrac{\ln(50)}{0{,}05}\)</label>
+    <label><input type="radio" name="a13" value="b"> \(t \geq \dfrac{\ln(10/3)}{0{,}05}\)</label>
+    <label><input type="radio" name="a13" value="c"> \(t \geq \dfrac{\ln(0{,}3)}{0{,}05}\)</label>
+    <label><input type="radio" name="a13" value="d"> \(t \geq \dfrac{25}{0{,}05}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Dérivée de ln(3x)</p>
+  <p>Si \(f(x) = \ln(3x)\) (x &gt; 0), alors \(f'(x) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> \(\dfrac{3}{x}\)</label>
+    <label><input type="radio" name="a14" value="b"> \(3\ln(x)\)</label>
+    <label><input type="radio" name="a14" value="c"> \(\dfrac{1}{x}\)</label>
+    <label><input type="radio" name="a14" value="d"> \(\dfrac{1}{3x}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Problème type BTS – temps de demi-vie</p>
+  <p>Une grandeur décroit selon \(N(t) = N_0 \cdot e^{-kt}\). Le temps nécessaire pour que N soit divisé par 2 (demi-vie) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> \(t_{1/2} = \dfrac{\ln(2)}{k}\)</label>
+    <label><input type="radio" name="a15" value="b"> \(t_{1/2} = \dfrac{2}{k}\)</label>
+    <label><input type="radio" name="a15" value="c"> \(t_{1/2} = k \cdot \ln(2)\)</label>
+    <label><input type="radio" name="a15" value="d"> \(t_{1/2} = \dfrac{1}{2k}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "ln(1) = 0 car e⁰ = 1. C'est une valeur fondamentale à mémoriser.",
+  "s2": "ln(e) = 1 car e¹ = e. Le logarithme népérien de e vaut toujours 1.",
+  "s3": "e⁰ = 1. Tout nombre non nul élevé à la puissance 0 vaut 1.",
+  "s4": "La fonction eˣ est l'unique fonction égale à sa propre dérivée : (eˣ)' = eˣ.",
+  "s5": "(ln x)' = 1/x pour x > 0. C'est la dérivée de base du logarithme.",
+  "s6": "ln et exp sont réciproques : ln(eˣ) = x pour tout réel x. Donc ln(e⁵) = 5.",
+  "s7": "ln et exp sont réciproques : e^(ln x) = x pour tout x > 0. Donc e^(ln 7) = 7.",
+  "s8": "ln(x) n'est défini que pour x > 0. ln(0) n'existe pas, et ln d'un nombre négatif non plus.",
+  "s9": "e ≈ 2,718 est la base naturelle des logarithmes, à distinguer de π ≈ 3,14.",
+  "s10": "eˣ > 0 pour tout réel x. La fonction exponentielle ne s'annule jamais.",
+  "s11": "Comme (eˣ)' = eˣ > 0 pour tout x, la fonction est strictement croissante sur ℝ.",
+  "s12": "eˣ = 1 = e⁰, donc x = 0. Ou bien : x = ln(1) = 0.",
+  "s13": "ln(x) = 0 ⟺ x = e⁰ = 1. C'est la valeur remarquable ln(1) = 0.",
+  "s14": "Quand x → −∞, eˣ → 0 par valeurs positives. La courbe se rapproche de l'axe des x.",
+  "s15": "Quand x → 0⁺, ln(x) → −∞. La courbe a une asymptote verticale en x = 0.",
+  /* === STANDARD === */
+  "t1": "ln(3 × 5) = ln(3) + ln(5). La propriété du produit transforme la multiplication en addition.",
+  "t2": "ln(a/b) = ln(a) − ln(b). La propriété du quotient transforme la division en soustraction.",
+  "t3": "ln(a³) = 3 × ln(a). La propriété de la puissance fait descendre l'exposant comme facteur.",
+  "t4": "eˣ = 5 ⟺ x = ln(5). Pour résoudre eˣ = k (k > 0), on passe au ln des deux membres.",
+  "t5": "ln(x) = 3 ⟺ x = e³. Pour résoudre ln(x) = b, on applique l'exponentielle des deux membres.",
+  "t6": "2eˣ = 10 ⟹ eˣ = 5 ⟹ x = ln(5). On isole d'abord l'exponentielle avant de passer au ln.",
+  "t7": "∫ eˣ dx = eˣ + C. La fonction eˣ est sa propre primitive.",
+  "t8": "∫ (1/x) dx = ln|x| + C, soit ln(x) + C pour x > 0.",
+  "t9": "T(0) = 20 + 60 × e⁰ = 20 + 60 × 1 = 80 °C. On substitue t = 0 dans la formule.",
+  "t10": "H(0) = 25 × e⁰ = 25 × 1 = 25 %. La valeur initiale est le coefficient devant l'exponentielle.",
+  "t11": "25 × e^(−0,08t) = 12 ⟹ e^(−0,08t) = 12/25. On isole l'exponentielle seule avant de passer au ln.",
+  "t12": "(e^(2x))' = 2 × e^(2x). On applique la règle de la chaîne : f'(x) = a × e^(ax).",
+  "t13": "ln(e³ × e²) = ln(e⁵) = 5. Ou bien ln e³ + ln e² = 3 + 2 = 5.",
+  "t14": "e^(2x) = 8 ⟹ 2x = ln(8) ⟹ x = ln(8)/2. On divise par 2 après passage au ln.",
+  "t15": "Quand t → +∞, e^(−kt) → 0, donc T(t) → T_amb. C'est l'asymptote horizontale du modèle.",
+  /* === APPROFONDISSEMENT === */
+  "a1": "u = x²+1, u' = 2x. Donc (ln u)' = u'/u = 2x/(x²+1).",
+  "a2": "u = x²+1, u' = 2x. Donc (e^u)' = u' × e^u = 2x × e^(x²+1).",
+  "a3": "u = 2x+5, u' = 2. Donc (ln u)' = u'/u = 2/(2x+5).",
+  "a4": "∫₁ᵉ (1/x) dx = [ln x]₁ᵉ = ln(e) − ln(1) = 1 − 0 = 1.",
+  "a5": "∫₀¹ eˣ dx = [eˣ]₀¹ = e¹ − e⁰ = e − 1.",
+  "a6": "L'équation y' = ay a pour solutions y = C × e^(ax), où C est une constante réelle.",
+  "a7": "y' = −0,1y avec y(0) = 60 : la solution est y = 60 × e^(−0,1x). On vérifie : y(0) = 60 ✓.",
+  "a8": "(e^(−kt))' = −k × e^(−kt). On applique la règle de la chaîne avec u = −kt, u' = −k.",
+  "a9": "N(t) = 100 ⟹ 500 × e^(−0,2t) = 100 ⟹ e^(−0,2t) = 1/5 ⟹ −0,2t = ln(1/5) = −ln(5) ⟹ t = ln(5)/0,2.",
+  "a10": "(5e^(2x))' = 10e^(2x) et (ln x)' = 1/x. Donc f'(x) = 10e^(2x) + 1/x.",
+  "a11": "ln(2x−1) = 0 ⟹ 2x−1 = e⁰ = 1 ⟹ x = 1. Vérification : 2×1−1 = 1 > 0 ✓.",
+  "a12": "ln(1/a) = ln(1) − ln(a) = 0 − ln(a) = −ln(a). C'est la propriété du quotient appliquée avec 1 au numérateur.",
+  "a13": "T ≤ 25 ⟹ 10 + 50e^(−0,05t) ≤ 25 ⟹ e^(−0,05t) ≤ 15/50 = 3/10 ⟹ −0,05t ≤ ln(3/10) ⟹ t ≥ −ln(3/10)/0,05 = ln(10/3)/0,05.",
+  "a14": "f(x) = ln(3x) = ln(3) + ln(x). Donc f'(x) = 0 + 1/x = 1/x. Ou bien : u = 3x, u' = 3, f'(x) = 3/(3x) = 1/x.",
+  "a15": "N(t₁/₂) = N₀/2 ⟹ e^(−k·t₁/₂) = 1/2 ⟹ −k·t₁/₂ = ln(1/2) = −ln(2) ⟹ t₁/₂ = ln(2)/k."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '✅ Bonne réponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '❌ Mauvaise réponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '⚠️ Pas de réponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>

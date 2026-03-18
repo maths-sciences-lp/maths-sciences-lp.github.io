@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Fonctions exponentielles et logarithme décimal – QCM – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>QCM – Fonctions exponentielles et logarithme décimal</h1>
+  <p class="sous-titre">Chapitre 5 | Terminale Bac Pro | Mathématiques</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">⏱ <strong>Durée :</strong> 15–20 min</div>
+  <div class="dh-item">📄 <strong>15 questions</strong></div>
+  <div class="dh-item">🧮 <strong>Calculatrice autorisée</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne réponse</strong> puis cliquez sur « Valider le QCM » en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Fonction exponentielle – Définition du domaine</p>
+  <p>La fonction \(f(x) = 2^x\) est définie pour :</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> \(x \geq 0\) seulement</label>
+    <label><input type="radio" name="s1" value="b"> tout réel \(x\)</label>
+    <label><input type="radio" name="s1" value="c"> \(x > 1\) seulement</label>
+    <label><input type="radio" name="s1" value="d"> \(x > 0\) seulement</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 2</h3>
+  <p class="theme">Propriétés algébriques – Multiplication</p>
+  <p>On simplifie \(3^4 \times 3^2\). Le résultat est :</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> \(3^6\)</label>
+    <label><input type="radio" name="s2" value="b"> \(3^8\)</label>
+    <label><input type="radio" name="s2" value="c"> \(9^6\)</label>
+    <label><input type="radio" name="s2" value="d"> \(3^{4 \times 2}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 3</h3>
+  <p class="theme">Valeur particulière – \(a^0\)</p>
+  <p>Quelle est la valeur de \(7^0\) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> 7</label>
+    <label><input type="radio" name="s3" value="b"> 0</label>
+    <label><input type="radio" name="s3" value="c"> 1</label>
+    <label><input type="radio" name="s3" value="d"> indéterminé</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Signe de \(a^x\)</p>
+  <p>Pour tout réel \(x\), \(2^x\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> positif ou négatif selon \(x\)</label>
+    <label><input type="radio" name="s4" value="b"> nul quand \(x = 0\)</label>
+    <label><input type="radio" name="s4" value="c"> négatif si \(x < 0\)</label>
+    <label><input type="radio" name="s4" value="d"> toujours strictement positif</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Variations – Base supérieure à 1</p>
+  <p>La fonction \(f(x) = 3^x\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> strictement décroissante</label>
+    <label><input type="radio" name="s5" value="b"> strictement croissante</label>
+    <label><input type="radio" name="s5" value="c"> constante</label>
+    <label><input type="radio" name="s5" value="d"> décroissante puis croissante</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 6</h3>
+  <p class="theme">Variations – Base entre 0 et 1</p>
+  <p>La fonction \(f(x) = (0{,}5)^x\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> strictement décroissante</label>
+    <label><input type="radio" name="s6" value="b"> strictement croissante</label>
+    <label><input type="radio" name="s6" value="c"> constante</label>
+    <label><input type="radio" name="s6" value="d"> nulle en 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 7</h3>
+  <p class="theme">Valeurs remarquables du logarithme</p>
+  <p>\(\log(1)\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> 1</label>
+    <label><input type="radio" name="s7" value="b"> 10</label>
+    <label><input type="radio" name="s7" value="c"> 0</label>
+    <label><input type="radio" name="s7" value="d"> indéfini</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 8</h3>
+  <p class="theme">Valeurs remarquables du logarithme</p>
+  <p>\(\log(10)\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> 0</label>
+    <label><input type="radio" name="s8" value="b"> 1</label>
+    <label><input type="radio" name="s8" value="c"> 10</label>
+    <label><input type="radio" name="s8" value="d"> 100</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 9</h3>
+  <p class="theme">Logarithme d'une puissance de 10</p>
+  <p>\(\log(10^3)\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> 0</label>
+    <label><input type="radio" name="s9" value="b"> 1</label>
+    <label><input type="radio" name="s9" value="c"> 10</label>
+    <label><input type="radio" name="s9" value="d"> 3</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">Domaine de définition du logarithme</p>
+  <p>\(\log(x)\) est défini pour :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> \(x > 0\)</label>
+    <label><input type="radio" name="s10" value="b"> tout réel \(x\)</label>
+    <label><input type="radio" name="s10" value="c"> \(x \geq 0\)</label>
+    <label><input type="radio" name="s10" value="d"> \(x \geq 1\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 11</h3>
+  <p class="theme">Propriété – Logarithme d'un produit</p>
+  <p>\(\log(a \times b)\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> \(\log(a) \times \log(b)\)</label>
+    <label><input type="radio" name="s11" value="b"> \(\log(a) - \log(b)\)</label>
+    <label><input type="radio" name="s11" value="c"> \(\log(a) + \log(b)\)</label>
+    <label><input type="radio" name="s11" value="d"> \(\dfrac{\log(a)}{\log(b)}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 12</h3>
+  <p class="theme">Calcul de logarithme</p>
+  <p>\(\log(100)\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> 1</label>
+    <label><input type="radio" name="s12" value="b"> 2</label>
+    <label><input type="radio" name="s12" value="c"> 10</label>
+    <label><input type="radio" name="s12" value="d"> 0</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 13</h3>
+  <p class="theme">Point commun des courbes \(a^x\)</p>
+  <p>Pour tout \(a > 0\), \(a \neq 1\), la courbe de \(f(x) = a^x\) passe toujours par le point :</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> \((0\,;\,1)\)</label>
+    <label><input type="radio" name="s13" value="b"> \((1\,;\,0)\)</label>
+    <label><input type="radio" name="s13" value="c"> \((1\,;\,1)\)</label>
+    <label><input type="radio" name="s13" value="d"> \((0\,;\,0)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 14</h3>
+  <p class="theme">Calcul – Puissance négative</p>
+  <p>\(2^{-3}\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> \(-8\)</label>
+    <label><input type="radio" name="s14" value="b"> \(-6\)</label>
+    <label><input type="radio" name="s14" value="c"> \(6\)</label>
+    <label><input type="radio" name="s14" value="d"> \(\dfrac{1}{8}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 15</h3>
+  <p class="theme">Variations de \(\log\)</p>
+  <p>La fonction \(\log\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> strictement décroissante sur \(]0\,;\,+\infty[\)</label>
+    <label><input type="radio" name="s15" value="b"> constante</label>
+    <label><input type="radio" name="s15" value="c"> strictement croissante sur \(]0\,;\,+\infty[\)</label>
+    <label><input type="radio" name="s15" value="d"> décroissante puis croissante</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Propriétés algébriques – Simplification</p>
+  <p>On simplifie \(\dfrac{5^7}{5^3}\). Le résultat est :</p>
+  <div class="options">
+    <label><input type="radio" name="t1" value="a"> \(5^{21}\)</label>
+    <label><input type="radio" name="t1" value="b"> \(1^4\)</label>
+    <label><input type="radio" name="t1" value="c"> \(5^4\)</label>
+    <label><input type="radio" name="t1" value="d"> \(5^{10}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Propriétés algébriques – Puissance d'une puissance</p>
+  <p>\(\left(2^3\right)^4\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="t2" value="a"> \(2^7\)</label>
+    <label><input type="radio" name="t2" value="b"> \(2^{12}\)</label>
+    <label><input type="radio" name="t2" value="c"> \(8^4\)</label>
+    <label><input type="radio" name="t2" value="d"> \(2^{34}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Calcul de logarithme – Propriété du produit</p>
+  <p>Sachant que \(\log 2 \approx 0{,}301\), calculer \(\log(200)\).</p>
+  <div class="options">
+    <label><input type="radio" name="t3" value="a"> \(0{,}602\)</label>
+    <label><input type="radio" name="t3" value="b"> \(1{,}301\)</label>
+    <label><input type="radio" name="t3" value="c"> \(20{,}1\)</label>
+    <label><input type="radio" name="t3" value="d"> \(2{,}301\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">Calcul de logarithme – Propriété de la puissance</p>
+  <p>Sachant que \(\log 2 \approx 0{,}301\), calculer \(\log(8)\).</p>
+  <div class="options">
+    <label><input type="radio" name="t4" value="a"> \(0{,}903\)</label>
+    <label><input type="radio" name="t4" value="b"> \(0{,}301\)</label>
+    <label><input type="radio" name="t4" value="c"> \(3{,}01\)</label>
+    <label><input type="radio" name="t4" value="d"> \(1{,}204\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Résolution d'équation exponentielle</p>
+  <p>Pour résoudre \(2^x = 32\), on constate que \(32 = 2^5\). Donc \(x =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t5" value="a"> \(4\)</label>
+    <label><input type="radio" name="t5" value="b"> \(3\)</label>
+    <label><input type="radio" name="t5" value="c"> \(5\)</label>
+    <label><input type="radio" name="t5" value="d"> \(6\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">Résolution par logarithme – Méthode</p>
+  <p>Pour résoudre \(a^x = b\) (avec \(a > 0\), \(a \neq 1\), \(b > 0\)), on obtient :</p>
+  <div class="options">
+    <label><input type="radio" name="t6" value="a"> \(x = \log(b) \times \log(a)\)</label>
+    <label><input type="radio" name="t6" value="b"> \(x = \dfrac{\log(b)}{\log(a)}\)</label>
+    <label><input type="radio" name="t6" value="c"> \(x = \log(b) - \log(a)\)</label>
+    <label><input type="radio" name="t6" value="d"> \(x = \log(b + a)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Résolution d'une équation logarithmique</p>
+  <p>On résout \(\log(x) = 2\). La solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="t7" value="a"> \(x = 2\)</label>
+    <label><input type="radio" name="t7" value="b"> \(x = 20\)</label>
+    <label><input type="radio" name="t7" value="c"> \(x = 0{,}01\)</label>
+    <label><input type="radio" name="t7" value="d"> \(x = 100\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 8</h3>
+  <p class="theme">Résolution d'équation – Calcul numérique</p>
+  <p>On résout \(2^x = 50\). Sachant que \(\log 2 \approx 0{,}301\) et \(\log 50 \approx 1{,}699\), la solution approchée est :</p>
+  <div class="options">
+    <label><input type="radio" name="t8" value="a"> \(x \approx 5{,}64\)</label>
+    <label><input type="radio" name="t8" value="b"> \(x \approx 0{,}51\)</label>
+    <label><input type="radio" name="t8" value="c"> \(x \approx 2\)</label>
+    <label><input type="radio" name="t8" value="d"> \(x \approx 48{,}3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Inéquation exponentielle – Sens de l'inégalité</p>
+  <p>On résout \(2^x \leq 50\). Sachant que \(\log 2 > 0\), le sens de l'inégalité lors de la division par \(\log 2\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t9" value="a"> s'inverse</label>
+    <label><input type="radio" name="t9" value="b"> est conservé</label>
+    <label><input type="radio" name="t9" value="c"> dépend de \(x\)</label>
+    <label><input type="radio" name="t9" value="d"> devient une égalité</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Inéquation exponentielle – Base inférieure à 1</p>
+  <p>On résout \((0{,}8)^n < 0{,}5\). Puisque \(\log(0{,}8) < 0\), lors de la division par \(\log(0{,}8)\) le sens de l'inégalité :</p>
+  <div class="options">
+    <label><input type="radio" name="t10" value="a"> est conservé</label>
+    <label><input type="radio" name="t10" value="b"> devient une égalité</label>
+    <label><input type="radio" name="t10" value="c"> s'inverse</label>
+    <label><input type="radio" name="t10" value="d"> disparaît</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Application – Dépréciation d'un équipement</p>
+  <p>Un équipement vaut 10 000 € et perd 10 % de sa valeur chaque année. Sa valeur après \(n\) années est modélisée par :</p>
+  <div class="options">
+    <label><input type="radio" name="t11" value="a"> \(V(n) = 10\,000 \times 0{,}9^n\)</label>
+    <label><input type="radio" name="t11" value="b"> \(V(n) = 10\,000 - 0{,}1 \times n\)</label>
+    <label><input type="radio" name="t11" value="c"> \(V(n) = 10\,000 \times 1{,}1^n\)</label>
+    <label><input type="radio" name="t11" value="d"> \(V(n) = 10\,000 \times 0{,}1^n\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Application – Niveau sonore en décibels</p>
+  <p>Le niveau sonore est donné par \(L = 10 \times \log\!\left(\dfrac{I}{I_0}\right)\). Si \(\dfrac{I}{I_0} = 10^6\), alors \(L =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="t12" value="a"> 6 dB</label>
+    <label><input type="radio" name="t12" value="b"> 10 dB</label>
+    <label><input type="radio" name="t12" value="c"> 1 dB</label>
+    <label><input type="radio" name="t12" value="d"> 60 dB</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Suite géométrique – Lien avec \(a^x\)</p>
+  <p>Une suite géométrique de premier terme \(u_0 = 500\) et de raison \(q = 1{,}04\) vérifie :</p>
+  <div class="options">
+    <label><input type="radio" name="t13" value="a"> \(u_n = 500 + 1{,}04 \times n\)</label>
+    <label><input type="radio" name="t13" value="b"> \(u_n = 500 \times 1{,}04^n\)</label>
+    <label><input type="radio" name="t13" value="c"> \(u_n = 500 \times n^{1{,}04}\)</label>
+    <label><input type="radio" name="t13" value="d"> \(u_n = 500 \div 1{,}04^n\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Résolution d'inéquation logarithmique</p>
+  <p>On résout \(\log(x) \geq 3\). La solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="t14" value="a"> \(x \geq 3\)</label>
+    <label><input type="radio" name="t14" value="b"> \(x \geq 30\)</label>
+    <label><input type="radio" name="t14" value="c"> \(x \geq 1000\)</label>
+    <label><input type="radio" name="t14" value="d"> \(x \leq 1000\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Application – Calcul de valeur après dépréciation</p>
+  <p>Un outil vaut 8 000 € et perd 20 % par an. Sa valeur après 3 ans est :</p>
+  <div class="options">
+    <label><input type="radio" name="t15" value="a"> \(8\,000 \times 0{,}8^3 \approx 4\,096\,\text{€}\)</label>
+    <label><input type="radio" name="t15" value="b"> \(8\,000 - 3 \times 0{,}20 = 7\,999{,}4\,\text{€}\)</label>
+    <label><input type="radio" name="t15" value="c"> \(8\,000 \times 1{,}2^3 \approx 13\,824\,\text{€}\)</label>
+    <label><input type="radio" name="t15" value="d"> \(8\,000 \times 0{,}2^3 = 64\,\text{€}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Résolution d'équation exponentielle – Calcul précis</p>
+  <p>On résout \(3^x = 100\). Sachant que \(\log 3 \approx 0{,}4771\), la solution approchée est :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> \(x \approx 2{,}10\)</label>
+    <label><input type="radio" name="a1" value="b"> \(x \approx 4{,}19\)</label>
+    <label><input type="radio" name="a1" value="c"> \(x \approx 33{,}3\)</label>
+    <label><input type="radio" name="a1" value="d"> \(x \approx 0{,}239\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 2</h3>
+  <p class="theme">Inéquation – Base inférieure à 1 et calcul</p>
+  <p>On résout \((0{,}85)^n < 0{,}5\). Sachant que \(\log(0{,}85) \approx -0{,}0706\) et \(\log(0{,}5) \approx -0{,}301\), la solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> \(n < 4{,}26\)</label>
+    <label><input type="radio" name="a2" value="b"> \(n < 0{,}234\)</label>
+    <label><input type="radio" name="a2" value="c"> \(n > 0{,}234\)</label>
+    <label><input type="radio" name="a2" value="d"> \(n > 4{,}26\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Suite géométrique – Recherche de rang</p>
+  <p>Soit \(u_n = 5000 \times 0{,}9^n\). À partir de quel rang \(n\) a-t-on \(u_n < 1000\) ? (\(\log(0{,}9) \approx -0{,}0458\), \(\log(0{,}2) \approx -0{,}699\))</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> À partir de \(n = 16\)</label>
+    <label><input type="radio" name="a3" value="b"> À partir de \(n = 5\)</label>
+    <label><input type="radio" name="a3" value="c"> À partir de \(n = 10\)</label>
+    <label><input type="radio" name="a3" value="d"> À partir de \(n = 3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 4</h3>
+  <p class="theme">Dépréciation – Recherche de l'année seuil</p>
+  <p>Un outil vaut 12 000 € et perd 15 % par an : \(V(n) = 12\,000 \times 0{,}85^n\). À partir de quel rang \(n\) entier \(V(n) < 2\,000\) ? (\(\log(0{,}85) \approx -0{,}0706\), \(\log(1/6) \approx -0{,}7782\))</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> À partir de \(n = 5\)</label>
+    <label><input type="radio" name="a4" value="b"> À partir de \(n = 8\)</label>
+    <label><input type="radio" name="a4" value="c"> À partir de \(n = 12\)</label>
+    <label><input type="radio" name="a4" value="d"> À partir de \(n = 20\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Calcul de logarithme – Quotient</p>
+  <p>Sachant que \(\log 2 \approx 0{,}301\), calculer \(\log(5)\).</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> \(0{,}301\)</label>
+    <label><input type="radio" name="a5" value="b"> \(0{,}699\)</label>
+    <label><input type="radio" name="a5" value="c"> \(1{,}301\)</label>
+    <label><input type="radio" name="a5" value="d"> \(2{,}5\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 6</h3>
+  <p class="theme">Niveau sonore – Calcul d'intensité</p>
+  <p>Le niveau sonore est \(L = 10 \times \log\!\left(\dfrac{I}{I_0}\right)\) avec \(I_0 = 10^{-12}\) W/m². Pour \(L = 80\) dB, le rapport \(\dfrac{I}{I_0}\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> \(10^{8{,}0}\) et donc \(I = 8 \times 10^{-12}\) W/m²</label>
+    <label><input type="radio" name="a6" value="b"> \(10^{80}\)</label>
+    <label><input type="radio" name="a6" value="c"> \(10^{0{,}8}\)</label>
+    <label><input type="radio" name="a6" value="d"> \(10^8\) et donc \(I = 10^{-4}\) W/m²</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Propriété – Logarithme d'une puissance</p>
+  <p>\(\log(a^n) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(n \times \log(a)\)</label>
+    <label><input type="radio" name="a7" value="b"> \(\log(a)^n\)</label>
+    <label><input type="radio" name="a7" value="c"> \(n + \log(a)\)</label>
+    <label><input type="radio" name="a7" value="d"> \(\dfrac{\log(a)}{n}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 8</h3>
+  <p class="theme">Résolution d'équation – Contexte professionnel</p>
+  <p>Un installateur thermique modélise la consommation énergétique par \(C(n) = 3000 \times 0{,}95^n\) (kWh). À partir de quel rang \(n\) la consommation passe-t-elle sous 1 500 kWh ? (\(\log(0{,}95) \approx -0{,}0223\), \(\log(0{,}5) \approx -0{,}301\))</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> À partir de \(n = 5\)</label>
+    <label><input type="radio" name="a8" value="b"> À partir de \(n = 10\)</label>
+    <label><input type="radio" name="a8" value="c"> À partir de \(n = 14\)</label>
+    <label><input type="radio" name="a8" value="d"> À partir de \(n = 20\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Inéquation logarithmique</p>
+  <p>On résout \(\log(x) < -1\). En tenant compte du domaine de définition, la solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> \(x < -0{,}1\)</label>
+    <label><input type="radio" name="a9" value="b"> \(0 < x < 0{,}1\)</label>
+    <label><input type="radio" name="a9" value="c"> \(x < 0{,}1\)</label>
+    <label><input type="radio" name="a9" value="d"> \(x \leq 0{,}1\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 10</h3>
+  <p class="theme">Propriété – Logarithme d'une fraction</p>
+  <p>\(\log\!\left(\dfrac{1}{a}\right) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> \(\log(a) + 1\)</label>
+    <label><input type="radio" name="a10" value="b"> \(\dfrac{1}{\log(a)}\)</label>
+    <label><input type="radio" name="a10" value="c"> \(1 - \log(a)\)</label>
+    <label><input type="radio" name="a10" value="d"> \(-\log(a)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Intérêts composés – Recherche de durée</p>
+  <p>Un capital de 2 000 € est placé à 4 % d'intérêts composés annuels : \(C(n) = 2000 \times 1{,}04^n\). Combien d'années pour dépasser 3 000 € ? (\(\log(1{,}04) \approx 0{,}0170\), \(\log(1{,}5) \approx 0{,}1761\))</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> Il faut \(n > 10{,}36\), donc à partir de \(n = 11\) ans</label>
+    <label><input type="radio" name="a11" value="b"> Il faut \(n > 4\), donc à partir de \(n = 5\) ans</label>
+    <label><input type="radio" name="a11" value="c"> Il faut \(n > 25\), donc à partir de \(n = 26\) ans</label>
+    <label><input type="radio" name="a11" value="d"> Il faut \(n > 3\), donc à partir de \(n = 4\) ans</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 12</h3>
+  <p class="theme">Calcul avancé – Logarithme de 0,01</p>
+  <p>\(\log(0{,}01)\) est égal à :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> 2</label>
+    <label><input type="radio" name="a12" value="b"> 0</label>
+    <label><input type="radio" name="a12" value="c"> \(-2\)</label>
+    <label><input type="radio" name="a12" value="d"> \(0{,}01\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Résolution d'équation – Calcul complet</p>
+  <p>On résout \(10^x = 3{,}16 \times 10^{-3}\). Sachant que \(\log(3{,}16) \approx 0{,}5\), la solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> \(x \approx 3{,}5\)</label>
+    <label><input type="radio" name="a13" value="b"> \(x \approx -2{,}5\)</label>
+    <label><input type="radio" name="a13" value="c"> \(x \approx -3{,}16\)</label>
+    <label><input type="radio" name="a13" value="d"> \(x \approx 0{,}5\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 14</h3>
+  <p class="theme">Contexte pro – Dépréciation et résolution</p>
+  <p>Un menuisier agenceur possède une machine à commande numérique valant 25 000 €. Elle se déprécie de 12 % par an : \(V(n) = 25\,000 \times 0{,}88^n\). À partir de quel rang entier \(n\) vaut-elle moins de 5 000 € ? (\(\log(0{,}88) \approx -0{,}0555\), \(\log(0{,}2) \approx -0{,}699\))</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> À partir de \(n = 5\)</label>
+    <label><input type="radio" name="a14" value="b"> À partir de \(n = 8\)</label>
+    <label><input type="radio" name="a14" value="c"> À partir de \(n = 10\)</label>
+    <label><input type="radio" name="a14" value="d"> À partir de \(n = 13\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Raisonnement – Signes et variations</p>
+  <p>Soit \(a > 1\). On veut résoudre \(a^x \geq a^k\) (avec \(k\) réel). Puisque \(f(x) = a^x\) est croissante pour \(a > 1\), la solution est :</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> \(x \geq k\)</label>
+    <label><input type="radio" name="a15" value="b"> \(x \leq k\)</label>
+    <label><input type="radio" name="a15" value="c"> \(x \geq -k\)</label>
+    <label><input type="radio" name="a15" value="d"> \(x \leq -k\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "La fonction \(a^x\) est définie pour tout réel \(x\), y compris les valeurs négatives.",
+  "s2": "\(a^x \times a^y = a^{x+y}\), donc \(3^4 \times 3^2 = 3^{4+2} = 3^6\).",
+  "s3": "Pour tout \(a > 0\), \(a^0 = 1\). C'est une propriété fondamentale.",
+  "s4": "\(a^x > 0\) pour tout réel \(x\) et tout \(a > 0\). La courbe est toujours au-dessus de l'axe des abscisses.",
+  "s5": "Quand \(a > 1\), la fonction \(a^x\) est strictement croissante : plus \(x\) augmente, plus \(a^x\) augmente.",
+  "s6": "Quand \(0 < a < 1\), la fonction \(a^x\) est strictement décroissante : plus \(x\) augmente, plus \(a^x\) diminue.",
+  "s7": "\(\log(1) = 0\) car \(10^0 = 1\). C'est une valeur remarquable à retenir.",
+  "s8": "\(\log(10) = 1\) car \(10^1 = 10\). C'est une valeur remarquable à retenir.",
+  "s9": "\(\log(10^3) = 3\) car la fonction \(\log\) est la réciproque de \(x \mapsto 10^x\). En général, \(\log(10^n) = n\).",
+  "s10": "Le logarithme n'est défini que pour les réels strictement positifs. \(\log(0)\) et \(\log(x)\) avec \(x < 0\) n'existent pas.",
+  "s11": "\(\log(a \times b) = \log(a) + \log(b)\). Le logarithme d'un produit est la somme des logarithmes.",
+  "s12": "\(\log(100) = \log(10^2) = 2\). En utilisant \(\log(10^n) = n\).",
+  "s13": "Pour tout \(a > 0\), \(a^0 = 1\), donc le point \((0\,;\,1)\) est commun à toutes les courbes \(y = a^x\).",
+  "s14": "\(2^{-3} = \dfrac{1}{2^3} = \dfrac{1}{8} = 0{,}125\). Une puissance négative donne l'inverse.",
+  "s15": "\(\log\) est strictement croissante sur \(]0\,;\,+\infty[\) : si \(0 < a < b\), alors \(\log(a) < \log(b)\).",
+  /* === STANDARD === */
+  "t1": "\(\dfrac{a^x}{a^y} = a^{x-y}\), donc \(\dfrac{5^7}{5^3} = 5^{7-3} = 5^4\).",
+  "t2": "\((a^x)^y = a^{x \cdot y}\), donc \((2^3)^4 = 2^{3 \times 4} = 2^{12}\).",
+  "t3": "\(\log(200) = \log(2 \times 100) = \log(2) + \log(100) = 0{,}301 + 2 = 2{,}301\).",
+  "t4": "\(\log(8) = \log(2^3) = 3 \times \log(2) = 3 \times 0{,}301 = 0{,}903\).",
+  "t5": "\(2^x = 32 = 2^5\). Comme \(f(x) = 2^x\) est injective, \(x = 5\).",
+  "t6": "On applique \(\log\) des deux membres : \(x \cdot \log(a) = \log(b)\), d'où \(x = \dfrac{\log(b)}{\log(a)}\).",
+  "t7": "\(\log(x) = 2 \Leftrightarrow x = 10^2 = 100\). On « exponentie » les deux membres.",
+  "t8": "\(x = \dfrac{\log(50)}{\log(2)} = \dfrac{1{,}699}{0{,}301} \approx 5{,}64\).",
+  "t9": "Quand \(\log(2) > 0\), diviser des deux membres par \(\log(2)\) conserve le sens de l'inégalité.",
+  "t10": "Quand on divise par un nombre négatif (\(\log(0{,}8) < 0\)), le sens de l'inégalité s'inverse.",
+  "t11": "Une perte de 10 % signifie qu'il reste 90 % = 0,9 de la valeur chaque année : \(V(n) = 10\,000 \times 0{,}9^n\).",
+  "t12": "\(L = 10 \times \log(10^6) = 10 \times 6 = 60\) dB.",
+  "t13": "La suite géométrique de terme général est \(u_n = u_0 \times q^n = 500 \times 1{,}04^n\).",
+  "t14": "\(\log(x) \geq 3 \Leftrightarrow x \geq 10^3 = 1000\), car \(\log\) est croissante.",
+  "t15": "\(V(3) = 8\,000 \times 0{,}8^3 = 8\,000 \times 0{,}512 = 4\,096\) €.",
+  /* === APPROFONDISSEMENT === */
+  "a1": "\(x = \dfrac{\log(100)}{\log(3)} = \dfrac{2}{0{,}4771} \approx 4{,}19\).",
+  "a2": "\(n \cdot \log(0{,}85) < \log(0{,}5)\). Puisque \(\log(0{,}85) < 0\), on divise et on inverse : \(n > \dfrac{-0{,}301}{-0{,}0706} \approx 4{,}26\). Donc \(n \geq 5\).",
+  "a3": "\(0{,}9^n < 0{,}2\) → \(n \cdot \log(0{,}9) < \log(0{,}2)\) → \(n > \dfrac{-0{,}699}{-0{,}0458} \approx 15{,}27\), donc à partir de \(n = 16\).",
+  "a4": "\(0{,}85^n < \dfrac{1}{6}\) → \(n > \dfrac{\log(1/6)}{\log(0{,}85)} = \dfrac{-0{,}7782}{-0{,}0706} \approx 11{,}02\), donc à partir de \(n = 12\).",
+  "a5": "\(\log(5) = \log\!\left(\dfrac{10}{2}\right) = \log(10) - \log(2) = 1 - 0{,}301 = 0{,}699\).",
+  "a6": "\(L = 80 \Rightarrow 10 \times \log\!\left(\dfrac{I}{I_0}\right) = 80 \Rightarrow \log\!\left(\dfrac{I}{I_0}\right) = 8 \Rightarrow \dfrac{I}{I_0} = 10^8\), donc \(I = 10^8 \times 10^{-12} = 10^{-4}\) W/m².",
+  "a7": "\(\log(a^n) = n \times \log(a)\). C'est la propriété de la puissance dans le logarithme.",
+  "a8": "\(0{,}95^n < 0{,}5\) → \(n > \dfrac{\log(0{,}5)}{\log(0{,}95)} = \dfrac{-0{,}301}{-0{,}0223} \approx 13{,}5\), donc à partir de \(n = 14\).",
+  "a9": "\(\log(x) < -1 \Leftrightarrow x < 10^{-1} = 0{,}1\). Comme \(\log\) nécessite \(x > 0\), la solution est \(0 < x < 0{,}1\).",
+  "a10": "\(\log\!\left(\dfrac{1}{a}\right) = \log(1) - \log(a) = 0 - \log(a) = -\log(a)\).",
+  "a11": "\(1{,}04^n > 1{,}5\) → \(n \cdot \log(1{,}04) > \log(1{,}5)\) → \(n > \dfrac{0{,}1761}{0{,}0170} \approx 10{,}36\), donc à partir de \(n = 11\) ans.",
+  "a12": "\(\log(0{,}01) = \log(10^{-2}) = -2\).",
+  "a13": "\(10^x = 3{,}16 \times 10^{-3}\) → \(\log(10^x) = \log(3{,}16) + \log(10^{-3})\) → \(x = 0{,}5 + (-3) = -2{,}5\).",
+  "a14": "\(0{,}88^n < 0{,}2\) → \(n > \dfrac{\log(0{,}2)}{\log(0{,}88)} = \dfrac{-0{,}699}{-0{,}0555} \approx 12{,}59\), donc à partir de \(n = 13\).",
+  "a15": "Puisque \(a^x\) est croissante pour \(a > 1\), l'ordre est conservé : \(a^x \geq a^k \Leftrightarrow x \geq k\)."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '✅ Bonne réponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '❌ Mauvaise réponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '⚠️ Pas de réponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>
