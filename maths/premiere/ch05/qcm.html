@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Fonctions polynômes de degré 2 – QCM – 1ère Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>QCM – Fonctions polynômes de degré 2</h1>
+  <p class="sous-titre">Chapitre 5 | 1ère Bac Pro | Mathématiques</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">⏱ <strong>Durée :</strong> 15–20 min</div>
+  <div class="dh-item">📄 <strong>15 questions</strong></div>
+  <div class="dh-item">🧮 <strong>Calculatrice autorisée</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne réponse</strong> puis cliquez sur « Valider le QCM » en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Reconnaître une fonction polynôme de degré 2</p>
+  <p>Laquelle de ces expressions est une fonction polynôme de degré 2 ?</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> \(f(x) = 3x + 5\)</label>
+    <label><input type="radio" name="s1" value="b"> \(f(x) = 2x^2 - 3x + 1\)</label>
+    <label><input type="radio" name="s1" value="c"> \(f(x) = x^3 + 2x\)</label>
+    <label><input type="radio" name="s1" value="d"> \(f(x) = \dfrac{1}{x^2}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Identifier les coefficients</p>
+  <p>Dans \(f(x) = 4x^2 - 7x + 3\), le coefficient \(a\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> \(-7\)</label>
+    <label><input type="radio" name="s2" value="b"> \(3\)</label>
+    <label><input type="radio" name="s2" value="c"> \(4\)</label>
+    <label><input type="radio" name="s2" value="d"> \(-4\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Sens d'ouverture de la parabole</p>
+  <p>Pour \(f(x) = -3x^2 + 2x - 1\), la parabole est :</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> tournée vers le bas (forme ∩)</label>
+    <label><input type="radio" name="s3" value="b"> tournée vers le haut (forme U)</label>
+    <label><input type="radio" name="s3" value="c"> une droite horizontale</label>
+    <label><input type="radio" name="s3" value="d"> impossible à déterminer</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Ordonnée à l'origine</p>
+  <p>Pour \(f(x) = 5x^2 - 2x + 7\), on a \(f(0) =\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> \(5\)</label>
+    <label><input type="radio" name="s4" value="b"> \(-2\)</label>
+    <label><input type="radio" name="s4" value="c"> \(0\)</label>
+    <label><input type="radio" name="s4" value="d"> \(7\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Calcul d'une image</p>
+  <p>Soit \(f(x) = x^2 - 4x + 3\). On cherche \(f(2)\). Le résultat est :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> \(7\)</label>
+    <label><input type="radio" name="s5" value="b"> \(-1\)</label>
+    <label><input type="radio" name="s5" value="c"> \(3\)</label>
+    <label><input type="radio" name="s5" value="d"> \(4\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Tester une racine</p>
+  <p>Soit \(f(x) = x^2 - x - 6\). On calcule \(f(3)\). Le résultat est :</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> \(-4\)</label>
+    <label><input type="radio" name="s6" value="b"> \(6\)</label>
+    <label><input type="radio" name="s6" value="c"> \(0\)</label>
+    <label><input type="radio" name="s6" value="d"> \(3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Définition d'une racine</p>
+  <p>Un nombre \(x_0\) est une racine de \(f(x) = ax^2 + bx + c\) si :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> \(f(x_0) = 0\)</label>
+    <label><input type="radio" name="s7" value="b"> \(f(x_0) = 1\)</label>
+    <label><input type="radio" name="s7" value="c"> \(x_0 = 0\)</label>
+    <label><input type="radio" name="s7" value="d"> \(f(x_0) = x_0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 8</h3>
+  <p class="theme">Axe de symétrie</p>
+  <p>Pour \(f(x) = ax^2 + bx + c\), l'équation de l'axe de symétrie est :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> \(x = \dfrac{b}{2a}\)</label>
+    <label><input type="radio" name="s8" value="b"> \(x = -\dfrac{b}{2a}\)</label>
+    <label><input type="radio" name="s8" value="c"> \(x = -\dfrac{a}{2b}\)</label>
+    <label><input type="radio" name="s8" value="d"> \(x = \dfrac{c}{a}\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 9</h3>
+  <p class="theme">Sens de variation – a > 0</p>
+  <p>Si \(a > 0\), le sommet de la parabole est :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> un maximum</label>
+    <label><input type="radio" name="s9" value="b"> un point d'inflexion</label>
+    <label><input type="radio" name="s9" value="c"> la valeur de \(c\)</label>
+    <label><input type="radio" name="s9" value="d"> un minimum</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">Nombre de racines</p>
+  <p>Graphiquement, une parabole peut couper l'axe des abscisses :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> 0, 1 ou 2 fois</label>
+    <label><input type="radio" name="s10" value="b"> exactement 1 fois</label>
+    <label><input type="radio" name="s10" value="c"> exactement 2 fois</label>
+    <label><input type="radio" name="s10" value="d"> 0 ou 3 fois</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 11</h3>
+  <p class="theme">Calcul de l'axe de symétrie</p>
+  <p>Pour \(f(x) = 2x^2 - 8x + 3\), l'abscisse du sommet \(x_S\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> \(-2\)</label>
+    <label><input type="radio" name="s11" value="b"> \(-\dfrac{3}{4}\)</label>
+    <label><input type="radio" name="s11" value="c"> \(2\)</label>
+    <label><input type="radio" name="s11" value="d"> \(4\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 12</h3>
+  <p class="theme">Forme factorisée</p>
+  <p>Si \(x_1 = 1\) et \(x_2 = 3\) sont les racines de \(f(x) = x^2 - 4x + 3\), la forme factorisée est :</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> \((x + 1)(x + 3)\)</label>
+    <label><input type="radio" name="s12" value="b"> \((x - 1)(x - 3)\)</label>
+    <label><input type="radio" name="s12" value="c"> \((x - 1)(x + 3)\)</label>
+    <label><input type="radio" name="s12" value="d"> \(x(x - 4)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 13</h3>
+  <p class="theme">Terme constant</p>
+  <p>Pour \(f(x) = 3x^2 + 5x - 8\), le terme constant \(c\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> \(3\)</label>
+    <label><input type="radio" name="s13" value="b"> \(5\)</label>
+    <label><input type="radio" name="s13" value="c"> \(0\)</label>
+    <label><input type="radio" name="s13" value="d"> \(-8\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">Vérifier une racine – Calcul guidé</p>
+  <p>Soit \(f(x) = x^2 + x - 2\). On calcule \(f(1)\) :</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> \(0\) — donc 1 est une racine</label>
+    <label><input type="radio" name="s14" value="b"> \(2\) — donc 1 n'est pas une racine</label>
+    <label><input type="radio" name="s14" value="c"> \(-2\) — donc 1 est une racine</label>
+    <label><input type="radio" name="s14" value="d"> \(4\) — donc 1 n'est pas une racine</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 15</h3>
+  <p class="theme">Signe de a et forme de la parabole</p>
+  <p>Pour \(g(x) = -x^2 + 4\), le sommet de la parabole est :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> un minimum car \(a = -1 < 0\)</label>
+    <label><input type="radio" name="s15" value="b"> un minimum car \(a = 1 > 0\)</label>
+    <label><input type="radio" name="s15" value="c"> un maximum car \(a = -1 < 0\)</label>
+    <label><input type="radio" name="s15" value="d"> indéterminé</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Identifier les coefficients et la forme</p>
+  <p>Pour \(f(x) = -2x^2 + 6x - 4\), quel est le coefficient dominant \(a\) et quel est le sens d'ouverture de la parabole ?</p>
+  <div class="options">
+    <label><input type="radio" name="t1" value="a"> \(a = 6\), parabole vers le haut</label>
+    <label><input type="radio" name="t1" value="b"> \(a = -2\), parabole vers le bas</label>
+    <label><input type="radio" name="t1" value="c"> \(a = -4\), parabole vers le bas</label>
+    <label><input type="radio" name="t1" value="d"> \(a = 2\), parabole vers le haut</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Calcul du sommet</p>
+  <p>Pour \(f(x) = x^2 - 6x + 5\), l'abscisse du sommet est :</p>
+  <div class="options">
+    <label><input type="radio" name="t2" value="a"> \(x_S = -3\)</label>
+    <label><input type="radio" name="t2" value="b"> \(x_S = 6\)</label>
+    <label><input type="radio" name="t2" value="c"> \(x_S = 3\)</label>
+    <label><input type="radio" name="t2" value="d"> \(x_S = -6\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Coordonnées du sommet</p>
+  <p>Pour \(f(x) = x^2 - 6x + 5\) (avec \(x_S = 3\)), l'ordonnée du sommet \(f(3)\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t3" value="a"> \(-4\)</label>
+    <label><input type="radio" name="t3" value="b"> \(5\)</label>
+    <label><input type="radio" name="t3" value="c"> \(0\)</label>
+    <label><input type="radio" name="t3" value="d"> \(14\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Racines par test de valeurs</p>
+  <p>Soit \(f(x) = x^2 - 5x + 6\). Parmi les valeurs proposées, lesquelles sont les deux racines ?</p>
+  <div class="options">
+    <label><input type="radio" name="t4" value="a"> \(x_1 = 1\) et \(x_2 = 6\)</label>
+    <label><input type="radio" name="t4" value="b"> \(x_1 = -2\) et \(x_2 = -3\)</label>
+    <label><input type="radio" name="t4" value="c"> \(x_1 = 1\) et \(x_2 = 5\)</label>
+    <label><input type="radio" name="t4" value="d"> \(x_1 = 2\) et \(x_2 = 3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Forme factorisée</p>
+  <p>Les racines de \(f(x) = 2x^2 - 10x + 12\) sont \(x_1 = 2\) et \(x_2 = 3\). La forme factorisée est :</p>
+  <div class="options">
+    <label><input type="radio" name="t5" value="a"> \((x - 2)(x - 3)\)</label>
+    <label><input type="radio" name="t5" value="b"> \(2(x - 2)(x - 3)\)</label>
+    <label><input type="radio" name="t5" value="c"> \(2(x + 2)(x + 3)\)</label>
+    <label><input type="radio" name="t5" value="d"> \(2(x - 2)(x + 3)\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Trouver la seconde racine</p>
+  <p>Pour \(f(x) = x^2 - 5x + 4\), on sait que \(x_1 = 1\) est une racine. La seconde racine est :</p>
+  <div class="options">
+    <label><input type="radio" name="t6" value="a"> \(x_2 = 1\)</label>
+    <label><input type="radio" name="t6" value="b"> \(x_2 = -4\)</label>
+    <label><input type="radio" name="t6" value="c"> \(x_2 = 4\)</label>
+    <label><input type="radio" name="t6" value="d"> \(x_2 = 5\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Variations – Tableau</p>
+  <p>Pour \(f(x) = 2x^2 - 8x + 3\) (sommet en \(x_S = 2\), \(a = 2 > 0\)), sur \(]-\infty\,;\,2[\), la fonction est :</p>
+  <div class="options">
+    <label><input type="radio" name="t7" value="a"> décroissante</label>
+    <label><input type="radio" name="t7" value="b"> croissante</label>
+    <label><input type="radio" name="t7" value="c"> constante</label>
+    <label><input type="radio" name="t7" value="d"> indéterminée</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Application – Trajectoire d'un objet</p>
+  <p>La hauteur d'une balle est \(h(x) = -0{,}5x^2 + 3x + 1\). L'abscisse du point le plus haut est :</p>
+  <div class="options">
+    <label><input type="radio" name="t8" value="a"> \(x = -3\)</label>
+    <label><input type="radio" name="t8" value="b"> \(x = 1\)</label>
+    <label><input type="radio" name="t8" value="c"> \(x = 6\)</label>
+    <label><input type="radio" name="t8" value="d"> \(x = 3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">Signe d'un polynôme – a > 0</p>
+  <p>Pour \(f(x) = (x - 1)(x - 4)\) (avec \(a > 0\)), le signe de \(f(x)\) sur \(]1\,;\,4[\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t9" value="a"> positif</label>
+    <label><input type="radio" name="t9" value="b"> négatif</label>
+    <label><input type="radio" name="t9" value="c"> nul</label>
+    <label><input type="radio" name="t9" value="d"> impossible à déterminer</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">Somme des racines</p>
+  <p>Pour \(f(x) = x^2 - 7x + 10\), la somme des racines vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t10" value="a"> \(10\)</label>
+    <label><input type="radio" name="t10" value="b"> \(-7\)</label>
+    <label><input type="radio" name="t10" value="c"> \(7\)</label>
+    <label><input type="radio" name="t10" value="d"> \(-10\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">Produit des racines</p>
+  <p>Pour \(f(x) = x^2 - 7x + 10\), le produit des racines vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="t11" value="a"> \(10\)</label>
+    <label><input type="radio" name="t11" value="b"> \(-7\)</label>
+    <label><input type="radio" name="t11" value="c"> \(7\)</label>
+    <label><input type="radio" name="t11" value="d"> \(-10\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Application – Surface d'un panneau</p>
+  <p>Un menuisier modélise l'aire d'un panneau par \(A(x) = (x+2)(x-1) = x^2 + x - 2\). Les valeurs de \(x\) pour lesquelles l'aire est nulle sont :</p>
+  <div class="options">
+    <label><input type="radio" name="t12" value="a"> \(x = -2\) et \(x = 1\) avec \(A(-2) = 4\)</label>
+    <label><input type="radio" name="t12" value="b"> \(x = 2\) et \(x = -1\)</label>
+    <label><input type="radio" name="t12" value="c"> \(x = 0\) uniquement</label>
+    <label><input type="radio" name="t12" value="d"> \(x = -2\) et \(x = 1\), ce sont les racines</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Signe – En dehors des racines</p>
+  <p>Pour \(f(x) = 2(x-1)(x-4)\) (avec \(a = 2 > 0\)), le signe de \(f(x)\) sur \(]-\infty\,;\,1[\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="t13" value="a"> négatif</label>
+    <label><input type="radio" name="t13" value="b"> positif</label>
+    <label><input type="radio" name="t13" value="c"> nul</label>
+    <label><input type="radio" name="t13" value="d"> égal à \(2\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">Maximum – Contexte professionnel</p>
+  <p>La hauteur (en m) d'un ballon de football est \(h(x) = -0{,}5x^2 + 3x + 1\). La hauteur maximale atteinte est :</p>
+  <div class="options">
+    <label><input type="radio" name="t14" value="a"> \(1\) m</label>
+    <label><input type="radio" name="t14" value="b"> \(3\) m</label>
+    <label><input type="radio" name="t14" value="c"> \(5{,}5\) m</label>
+    <label><input type="radio" name="t14" value="d"> \(6\) m</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Racine double</p>
+  <p>Le polynôme \(f(x) = (x - 3)^2\) admet :</p>
+  <div class="options">
+    <label><input type="radio" name="t15" value="a"> une racine double \(x_0 = 3\)</label>
+    <label><input type="radio" name="t15" value="b"> deux racines distinctes : \(x_1 = 3\) et \(x_2 = -3\)</label>
+    <label><input type="radio" name="t15" value="c"> aucune racine réelle</label>
+    <label><input type="radio" name="t15" value="d"> une racine \(x_0 = 9\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Discriminant – Calcul</p>
+  <p>Pour \(f(x) = x^2 - 5x + 4\), le discriminant \(\Delta = b^2 - 4ac\) vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> \(\Delta = -11\)</label>
+    <label><input type="radio" name="a1" value="b"> \(\Delta = 41\)</label>
+    <label><input type="radio" name="a1" value="c"> \(\Delta = 9\)</label>
+    <label><input type="radio" name="a1" value="d"> \(\Delta = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">Discriminant – Nombre de racines</p>
+  <p>Pour \(f(x) = x^2 + 2x + 5\), on calcule \(\Delta = 4 - 20 = -16\). Combien de racines réelles a ce polynôme ?</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> Deux racines réelles distinctes</label>
+    <label><input type="radio" name="a2" value="b"> Aucune racine réelle</label>
+    <label><input type="radio" name="a2" value="c"> Une racine double</label>
+    <label><input type="radio" name="a2" value="d"> Exactement une racine positive</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">Racines par discriminant</p>
+  <p>Pour \(f(x) = x^2 - 5x + 6\), on a \(\Delta = 25 - 24 = 1\). Les deux racines sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> \(x_1 = 1\) et \(x_2 = 6\)</label>
+    <label><input type="radio" name="a3" value="b"> \(x_1 = -2\) et \(x_2 = -3\)</label>
+    <label><input type="radio" name="a3" value="c"> \(x_1 = 1\) et \(x_2 = 5\)</label>
+    <label><input type="radio" name="a3" value="d"> \(x_1 = 2\) et \(x_2 = 3\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">Inéquation – Résoudre f(x) ≥ 0</p>
+  <p>Pour \(f(x) = (x - 2)(x - 5)\) (\(a = 1 > 0\)), résoudre \(f(x) \geq 0\) donne :</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> \(x \leq 2\) ou \(x \geq 5\)</label>
+    <label><input type="radio" name="a4" value="b"> \(2 \leq x \leq 5\)</label>
+    <label><input type="radio" name="a4" value="c"> \(x \leq -2\) ou \(x \geq -5\)</label>
+    <label><input type="radio" name="a4" value="d"> \(x \geq 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">Inéquation – f(x) ≤ 0</p>
+  <p>Pour \(f(x) = (x - 1)(x - 4)\) (\(a = 1 > 0\)), résoudre \(f(x) \leq 0\) donne :</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> \(x \leq 1\) ou \(x \geq 4\)</label>
+    <label><input type="radio" name="a5" value="b"> \(x < 0\)</label>
+    <label><input type="radio" name="a5" value="c"> \(1 \leq x \leq 4\)</label>
+    <label><input type="radio" name="a5" value="d"> \(-4 \leq x \leq -1\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">Optimisation – Profit maximal</p>
+  <p>Le profit d'un artisan menuisier est \(P(x) = -2x^2 + 20x - 30\) (en centaines d'euros), où \(x\) est le nombre de meubles vendus. Le nombre de meubles qui maximise le profit est :</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> \(x = 10\)</label>
+    <label><input type="radio" name="a6" value="b"> \(x = 5\)</label>
+    <label><input type="radio" name="a6" value="c"> \(x = 20\)</label>
+    <label><input type="radio" name="a6" value="d"> \(x = -5\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Optimisation – Valeur maximale</p>
+  <p>Pour \(P(x) = -2x^2 + 20x - 30\) (avec le sommet en \(x = 5\)), le profit maximal vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> \(-30\)</label>
+    <label><input type="radio" name="a7" value="b"> \(20\)</label>
+    <label><input type="radio" name="a7" value="c"> \(100\)</label>
+    <label><input type="radio" name="a7" value="d"> \(20\) (centaines d'euros)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 8</h3>
+  <p class="theme">Signe – a < 0</p>
+  <p>Pour \(f(x) = -(x - 2)(x - 6)\) (\(a = -1 < 0\)), le signe de \(f(x)\) sur \(]2\,;\,6[\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> positif</label>
+    <label><input type="radio" name="a8" value="b"> négatif</label>
+    <label><input type="radio" name="a8" value="c"> nul</label>
+    <label><input type="radio" name="a8" value="d"> impossible à déterminer</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Equation avec paramètre</p>
+  <p>Pour \(f(x) = x^2 - 2x + k\), on cherche \(k\) tel que l'équation ait une racine double. La condition est :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> \(k = 4\)</label>
+    <label><input type="radio" name="a9" value="b"> \(k = -1\)</label>
+    <label><input type="radio" name="a9" value="c"> \(k = 1\)</label>
+    <label><input type="radio" name="a9" value="d"> \(k = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">Application – Dimensions d'un enclos</p>
+  <p>Un installateur d'agencement veut clôturer un espace rectangulaire avec 20 m de clôture. Si la largeur est \(x\), la longueur est \(10 - x\) et l'aire est \(A(x) = x(10-x)\). La largeur qui maximise l'aire est :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> \(x = 10\)</label>
+    <label><input type="radio" name="a10" value="b"> \(x = 5\)</label>
+    <label><input type="radio" name="a10" value="c"> \(x = 2{,}5\)</label>
+    <label><input type="radio" name="a10" value="d"> \(x = 20\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">Inéquation de degré 2 – Contexte</p>
+  <p>L'aire d'un panneau vérifie \(A(x) = x^2 + x - 2 \geq 0\). Les racines de \(A\) sont \(x = 1\) et \(x = -2\) (\(a = 1 > 0\)). L'ensemble des solutions est :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> \(-2 \leq x \leq 1\)</label>
+    <label><input type="radio" name="a11" value="b"> \(x \leq -2\)</label>
+    <label><input type="radio" name="a11" value="c"> \(x \leq 1\)</label>
+    <label><input type="radio" name="a11" value="d"> \(x \leq -2\) ou \(x \geq 1\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 12</h3>
+  <p class="theme">Discriminant – Racine double</p>
+  <p>Pour \(f(x) = x^2 - 4x + 4\), on a \(\Delta = 16 - 16 = 0\). La racine double est :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> \(x_0 = 2\)</label>
+    <label><input type="radio" name="a12" value="b"> \(x_0 = 4\)</label>
+    <label><input type="radio" name="a12" value="c"> \(x_0 = -2\)</label>
+    <label><input type="radio" name="a12" value="d"> \(x_0 = 0\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Résoudre f(x) = k</p>
+  <p>Pour \(f(x) = x^2 - 4\), résoudre \(f(x) = 0\) revient à trouver les racines. Elles sont :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> \(x = 4\) uniquement</label>
+    <label><input type="radio" name="a13" value="b"> \(x = 0\) uniquement</label>
+    <label><input type="radio" name="a13" value="c"> \(x = -2\) et \(x = 2\)</label>
+    <label><input type="radio" name="a13" value="d"> Aucune racine réelle</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 14</h3>
+  <p class="theme">Problème type BTS – Optimisation</p>
+  <p>Le bénéfice d'un fabricant de meubles est \(B(x) = -3x^2 + 18x - 15\) (en k€). Quel est le bénéfice maximal ?</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> \(B = 18\) k€</label>
+    <label><input type="radio" name="a14" value="b"> \(B = 12\) k€</label>
+    <label><input type="radio" name="a14" value="c"> \(B = 15\) k€</label>
+    <label><input type="radio" name="a14" value="d"> \(B = 3\) k€</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 15</h3>
+  <p class="theme">Signe et inéquation – Problème ouvert</p>
+  <p>Pour \(f(x) = -2(x - 1)(x - 5)\), résoudre \(f(x) < 0\) donne :</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> \(1 < x < 5\)</label>
+    <label><input type="radio" name="a15" value="b"> \(x \leq 1\) ou \(x \geq 5\)</label>
+    <label><input type="radio" name="a15" value="c"> \(x < 0\)</label>
+    <label><input type="radio" name="a15" value="d"> \(x < 1\) ou \(x > 5\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "Un polynôme de degré 2 contient un terme en x² avec coefficient non nul. f(x) = 2x² − 3x + 1 correspond à la forme ax² + bx + c avec a = 2.",
+  "s2": "Dans f(x) = ax² + bx + c, le coefficient a est celui devant x². Ici a = 4.",
+  "s3": "Si a < 0, la parabole est tournée vers le bas (forme ∩) et le sommet est un maximum. Ici a = −3 < 0.",
+  "s4": "f(0) = c, le terme constant. Ici c = 7, donc f(0) = 7.",
+  "s5": "f(2) = 2² − 4×2 + 3 = 4 − 8 + 3 = −1.",
+  "s6": "f(3) = 3² − 3 − 6 = 9 − 3 − 6 = 0. Comme f(3) = 0, x = 3 est bien une racine.",
+  "s7": "Un nombre x₀ est une racine si et seulement si f(x₀) = 0 (image nulle).",
+  "s8": "L'équation de l'axe de symétrie est x = −b/(2a). Le signe moins est important !",
+  "s9": "Si a > 0, la parabole est en U et le sommet est le point le plus bas : c'est un minimum.",
+  "s10": "Selon la position de la parabole par rapport à l'axe des abscisses, il peut y avoir 0, 1 ou 2 intersections.",
+  "s11": "xS = −b/(2a) = −(−8)/(2×2) = 8/4 = 2.",
+  "s12": "Avec x₁ = 1, x₂ = 3 et a = 1, la forme factorisée est a(x−x₁)(x−x₂) = (x−1)(x−3).",
+  "s13": "Dans f(x) = ax² + bx + c, c est le terme constant (sans x). Ici c = −8.",
+  "s14": "f(1) = 1² + 1 − 2 = 1 + 1 − 2 = 0. Comme f(1) = 0, x = 1 est une racine.",
+  "s15": "a = −1 < 0 donc la parabole est tournée vers le bas et le sommet est un maximum.",
+  /* === STANDARD === */
+  "t1": "a est le coefficient de x². Ici a = −2 < 0, donc la parabole est tournée vers le bas.",
+  "t2": "xS = −b/(2a) = −(−6)/(2×1) = 6/2 = 3.",
+  "t3": "f(3) = 3² − 6×3 + 5 = 9 − 18 + 5 = −4. Le sommet est S(3 ; −4).",
+  "t4": "f(2) = 4 − 10 + 6 = 0 ✓ et f(3) = 9 − 15 + 6 = 0 ✓. Les racines sont bien x₁ = 2 et x₂ = 3.",
+  "t5": "Avec a = 2, x₁ = 2, x₂ = 3 : forme factorisée = 2(x−2)(x−3).",
+  "t6": "Somme des racines : x₁ + x₂ = −b/a = 5. Donc x₂ = 5 − x₁ = 5 − 1 = 4. Vérif : f(4) = 16 − 20 + 4 = 0 ✓.",
+  "t7": "Comme a = 2 > 0, f est décroissante avant le sommet (x < xS = 2) et croissante après.",
+  "t8": "xS = −b/(2a) = −3/(2×(−0,5)) = −3/(−1) = 3 m. C'est là que la hauteur est maximale.",
+  "t9": "Pour a > 0 et racines x₁ = 1, x₂ = 4, le polynôme est négatif entre les racines, donc sur ]1 ; 4[.",
+  "t10": "Somme des racines = −b/a = −(−7)/1 = 7.",
+  "t11": "Produit des racines = c/a = 10/1 = 10. On retrouve bien 2 × 5 = 10.",
+  "t12": "A(x) = (x+2)(x−1) = 0 donne x = −2 ou x = 1. Ce sont les valeurs pour lesquelles l'aire est nulle.",
+  "t13": "Pour a > 0, le polynôme est du même signe que a (positif) en dehors des racines, c'est-à-dire sur ]−∞ ; 1[ et ]4 ; +∞[.",
+  "t14": "xS = −3/(2×(−0,5)) = 3. h(3) = −0,5×9 + 3×3 + 1 = −4,5 + 9 + 1 = 5,5 m.",
+  "t15": "(x−3)² = 0 si et seulement si x − 3 = 0, soit x = 3. C'est une racine double (la parabole est tangente à l'axe Ox).",
+  /* === APPROFONDISSEMENT === */
+  "a1": "Δ = b² − 4ac = (−5)² − 4×1×4 = 25 − 16 = 9. Comme Δ > 0, il y a deux racines distinctes.",
+  "a2": "Δ = −16 < 0. Quand le discriminant est strictement négatif, le polynôme n'a aucune racine réelle.",
+  "a3": "Δ = 1 > 0. x₁ = (5−1)/2 = 2 et x₂ = (5+1)/2 = 3. Vérif : f(2) = 4−10+6 = 0 ✓ et f(3) = 9−15+6 = 0 ✓.",
+  "a4": "Pour a > 0, f(x) ≥ 0 en dehors des racines : solution x ≤ 2 ou x ≥ 5.",
+  "a5": "Pour a > 0, f(x) ≤ 0 entre les racines : solution 1 ≤ x ≤ 4.",
+  "a6": "xS = −b/(2a) = −20/(2×(−2)) = −20/(−4) = 5. Le profit est maximal pour x = 5 meubles.",
+  "a7": "P(5) = −2×25 + 20×5 − 30 = −50 + 100 − 30 = 20. Le profit maximal est 20 (centaines d'euros) = 2 000 €.",
+  "a8": "Pour a = −1 < 0, le signe de f(x) est positif entre les racines (opposé au signe de a).",
+  "a9": "Racine double ⟺ Δ = 0. Δ = b² − 4ac = 4 − 4k = 0 ⟹ k = 1.",
+  "a10": "A(x) = x(10−x) = −x² + 10x. xS = −10/(2×(−1)) = 5. La largeur optimale est x = 5 m.",
+  "a11": "Racines : x = −2 et x = 1 (avec a = 1 > 0). A(x) ≥ 0 en dehors des racines : x ≤ −2 ou x ≥ 1.",
+  "a12": "Δ = 0 ⟹ racine double x₀ = −b/(2a) = 4/2 = 2. En effet (x−2)² = x²−4x+4.",
+  "a13": "f(x) = x² − 4 = (x−2)(x+2) = 0 donne x = 2 ou x = −2.",
+  "a14": "xS = −18/(2×(−3)) = 3. B(3) = −3×9 + 18×3 − 15 = −27 + 54 − 15 = 12 k€.",
+  "a15": "Pour a = −2 < 0, f(x) est positif entre les racines (1 à 5) et négatif en dehors. f(x) < 0 ⟺ x < 1 ou x > 5."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '✅ Bonne réponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '❌ Mauvaise réponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '⚠️ Pas de réponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>
