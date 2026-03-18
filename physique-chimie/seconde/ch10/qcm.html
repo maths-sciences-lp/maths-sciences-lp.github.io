@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 &ndash; Temp&eacute;rature et capteurs thermiques &ndash; QCM &ndash; 2nde Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}
+
+.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
+.qcm-header strong{color:var(--p)}
+.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
+.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
+.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
+.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
+.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
+.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
+.options label.correct{background:#d1fae5;border-color:#34d399}
+.options label.incorrect{background:#fee2e2;border-color:#f87171}
+.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
+.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
+.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
+.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
+.btn-valider:hover{opacity:.85}
+.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-reset:hover{background:#cbd5e1}
+.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
+.score-box.show{display:block}
+.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
+.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
+@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>QCM &ndash; Temp&eacute;rature et capteurs thermiques</h1>
+  <p class="sous-titre">Chapitre 10 | 2nde Bac Pro | Physique-Chimie</p>
+</header>
+
+<div class="qcm-header">
+  <div class="dh-item">&#9201; <strong>Dur&eacute;e :</strong> 15&ndash;20 min</div>
+  <div class="dh-item">&#128196; <strong>15 questions</strong></div>
+  <div class="dh-item">&#129518; <strong>Calculatrice autoris&eacute;e</strong></div>
+</div>
+
+<p style="font-size:.9em;color:#4a5568">Pour chaque question, cochez la <strong>seule bonne r&eacute;ponse</strong> puis cliquez sur &laquo;&nbsp;Valider le QCM&nbsp;&raquo; en bas de page.</p>
+
+<!-- ========================= SOCLE ========================= -->
+<div class="diff-socle">
+<span class="tag-socle">Socle</span>
+
+<form id="qcm-socle">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">&Eacute;chelles de temp&eacute;rature &ndash; D&eacute;finition</p>
+  <p>La temp&eacute;rature est une grandeur physique qui traduit :</p>
+  <div class="options">
+    <label><input type="radio" name="s1" value="a"> la masse des particules</label>
+    <label><input type="radio" name="s1" value="b"> l'agitation thermique des particules</label>
+    <label><input type="radio" name="s1" value="c"> la couleur d'un objet</label>
+    <label><input type="radio" name="s1" value="d"> la pression atmosph&eacute;rique</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">&Eacute;chelles de temp&eacute;rature &ndash; Unit&eacute;s</p>
+  <p>Quelle est l'unit&eacute; de temp&eacute;rature du Syst&egrave;me international (SI) ?</p>
+  <div class="options">
+    <label><input type="radio" name="s2" value="a"> le degr&eacute; Celsius (&deg;C)</label>
+    <label><input type="radio" name="s2" value="b"> le degr&eacute; Fahrenheit (&deg;F)</label>
+    <label><input type="radio" name="s2" value="c"> le kelvin (K)</label>
+    <label><input type="radio" name="s2" value="d"> le joule (J)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Conversion &deg;C / K</p>
+  <p>Pour convertir une temp&eacute;rature de &deg;C en K, on utilise la formule :</p>
+  <div class="options">
+    <label><input type="radio" name="s3" value="a"> \(T(\text{K}) = \theta(\text{&deg;C}) + 273\)</label>
+    <label><input type="radio" name="s3" value="b"> \(T(\text{K}) = \theta(\text{&deg;C}) - 273\)</label>
+    <label><input type="radio" name="s3" value="c"> \(T(\text{K}) = \theta(\text{&deg;C}) \times 273\)</label>
+    <label><input type="radio" name="s3" value="d"> \(T(\text{K}) = \theta(\text{&deg;C}) \div 273\)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Conversion &deg;C / K &ndash; Application</p>
+  <p>Un four de s&eacute;chage du bois est r&eacute;gl&eacute; &agrave; 80&nbsp;&deg;C. Quelle est cette temp&eacute;rature en kelvin ?</p>
+  <div class="options">
+    <label><input type="radio" name="s4" value="a"> 193 K</label>
+    <label><input type="radio" name="s4" value="b"> 80 K</label>
+    <label><input type="radio" name="s4" value="c"> 273 K</label>
+    <label><input type="radio" name="s4" value="d"> 353 K</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">Z&eacute;ro absolu</p>
+  <p>Le z&eacute;ro absolu correspond &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="s5" value="a"> 0 &deg;C</label>
+    <label><input type="radio" name="s5" value="b"> &minus;273 &deg;C</label>
+    <label><input type="radio" name="s5" value="c"> 273 &deg;C</label>
+    <label><input type="radio" name="s5" value="d"> &minus;100 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">Z&eacute;ro absolu &ndash; Propri&eacute;t&eacute;</p>
+  <p>Au z&eacute;ro absolu, l'agitation thermique des particules :</p>
+  <div class="options">
+    <label><input type="radio" name="s6" value="a"> est maximale</label>
+    <label><input type="radio" name="s6" value="b"> double</label>
+    <label><input type="radio" name="s6" value="c"> cesse compl&egrave;tement</label>
+    <label><input type="radio" name="s6" value="d"> reste constante</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">Capteurs &ndash; R&ocirc;le</p>
+  <p>Un capteur de temp&eacute;rature convertit une temp&eacute;rature en :</p>
+  <div class="options">
+    <label><input type="radio" name="s7" value="a"> grandeur &eacute;lectrique (tension ou r&eacute;sistance)</label>
+    <label><input type="radio" name="s7" value="b"> grandeur m&eacute;canique (force)</label>
+    <label><input type="radio" name="s7" value="c"> grandeur chimique (concentration)</label>
+    <label><input type="radio" name="s7" value="d"> grandeur optique (couleur)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 8</h3>
+  <p class="theme">CTN &ndash; Comportement</p>
+  <p>Quand la temp&eacute;rature augmente, la r&eacute;sistance d'une CTN :</p>
+  <div class="options">
+    <label><input type="radio" name="s8" value="a"> augmente</label>
+    <label><input type="radio" name="s8" value="b"> diminue</label>
+    <label><input type="radio" name="s8" value="c"> reste constante</label>
+    <label><input type="radio" name="s8" value="d"> s'annule</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 9</h3>
+  <p class="theme">CTN &ndash; Signification du sigle</p>
+  <p>Le sigle CTN signifie :</p>
+  <div class="options">
+    <label><input type="radio" name="s9" value="a"> Capteur Thermique Num&eacute;rique</label>
+    <label><input type="radio" name="s9" value="b"> Composant &agrave; Tension Nominale</label>
+    <label><input type="radio" name="s9" value="c"> Coefficient de Temp&eacute;rature Nul</label>
+    <label><input type="radio" name="s9" value="d"> Coefficient de Temp&eacute;rature N&eacute;gatif</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 10</h3>
+  <p class="theme">CTP &ndash; Comportement</p>
+  <p>Une thermistance CTP voit sa r&eacute;sistance :</p>
+  <div class="options">
+    <label><input type="radio" name="s10" value="a"> augmenter tr&egrave;s fortement au-del&agrave; d'un seuil de temp&eacute;rature</label>
+    <label><input type="radio" name="s10" value="b"> diminuer quand la temp&eacute;rature augmente</label>
+    <label><input type="radio" name="s10" value="c"> rester toujours &agrave; z&eacute;ro</label>
+    <label><input type="radio" name="s10" value="d"> varier de fa&ccedil;on lin&eacute;aire</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 11</h3>
+  <p class="theme">Thermocouple &ndash; Principe</p>
+  <p>Un thermocouple fonctionne gr&acirc;ce &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="s11" value="a"> la dilatation d'un liquide</label>
+    <label><input type="radio" name="s11" value="b"> la variation de pression</label>
+    <label><input type="radio" name="s11" value="c"> la tension cr&eacute;&eacute;e entre deux m&eacute;taux diff&eacute;rents (effet Seebeck)</label>
+    <label><input type="radio" name="s11" value="d"> un faisceau laser</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 12</h3>
+  <p class="theme">Thermocouple &ndash; Plage de mesure</p>
+  <p>Parmi ces capteurs, lequel couvre la plus grande plage de temp&eacute;rature ?</p>
+  <div class="options">
+    <label><input type="radio" name="s12" value="a"> la CTN</label>
+    <label><input type="radio" name="s12" value="b"> le thermocouple</label>
+    <label><input type="radio" name="s12" value="c"> le capteur LM35</label>
+    <label><input type="radio" name="s12" value="d"> la CTP</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 13</h3>
+  <p class="theme">Capteur LM35 &ndash; Propri&eacute;t&eacute;</p>
+  <p>Le capteur LM35 fournit une tension de sortie :</p>
+  <div class="options">
+    <label><input type="radio" name="s13" value="a"> inversement proportionnelle &agrave; la temp&eacute;rature</label>
+    <label><input type="radio" name="s13" value="b"> constante quelle que soit la temp&eacute;rature</label>
+    <label><input type="radio" name="s13" value="c"> exponentielle en fonction de la temp&eacute;rature</label>
+    <label><input type="radio" name="s13" value="d"> directement proportionnelle &agrave; la temp&eacute;rature</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 14</h3>
+  <p class="theme">Application en atelier &ndash; S&eacute;chage du bois</p>
+  <p>Dans une &eacute;tuve de s&eacute;chage du bois, quel capteur est utilis&eacute; pour r&eacute;guler la temp&eacute;rature ?</p>
+  <div class="options">
+    <label><input type="radio" name="s14" value="a"> une CTN</label>
+    <label><input type="radio" name="s14" value="b"> un thermom&egrave;tre &agrave; mercure</label>
+    <label><input type="radio" name="s14" value="c"> une CTP</label>
+    <label><input type="radio" name="s14" value="d"> un barom&egrave;tre</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 15</h3>
+  <p class="theme">Application en atelier &ndash; Protection moteur</p>
+  <p>Pour prot&eacute;ger le moteur d'une toupie contre les surchauffes, on utilise :</p>
+  <div class="options">
+    <label><input type="radio" name="s15" value="a"> un thermocouple</label>
+    <label><input type="radio" name="s15" value="b"> un capteur LM35</label>
+    <label><input type="radio" name="s15" value="c"> une CTP</label>
+    <label><input type="radio" name="s15" value="d"> une CTN</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
+<div class="score-box" id="score-socle"></div>
+</form>
+</div>
+
+<!-- ========================= STANDARD ========================= -->
+<div class="diff-standard">
+<span class="tag-standard">Standard</span>
+
+<form id="qcm-standard">
+
+<div class="q-block" data-correct="b">
+  <h3>Question 1</h3>
+  <p class="theme">Conversion &deg;C / K &ndash; Calcul</p>
+  <p>La temp&eacute;rature d'application d'une colle thermofusible est d'environ 180&nbsp;&deg;C. En kelvin, cela donne :</p>
+  <div class="options">
+    <label><input type="radio" name="n1" value="a"> 93 K</label>
+    <label><input type="radio" name="n1" value="b"> 453 K</label>
+    <label><input type="radio" name="n1" value="c"> 180 K</label>
+    <label><input type="radio" name="n1" value="d"> 546 K</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 2</h3>
+  <p class="theme">Conversion K / &deg;C &ndash; Calcul</p>
+  <p>La temp&eacute;rature de sublimation de la glace carbonique est 194&nbsp;K. En &deg;C, cela correspond &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="n2" value="a"> 194 &deg;C</label>
+    <label><input type="radio" name="n2" value="b"> 467 &deg;C</label>
+    <label><input type="radio" name="n2" value="c"> &minus;79 &deg;C</label>
+    <label><input type="radio" name="n2" value="d"> &minus;194 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 3</h3>
+  <p class="theme">Diff&eacute;rence de temp&eacute;rature</p>
+  <p>Une diff&eacute;rence de temp&eacute;rature de 40&nbsp;&deg;C exprim&eacute;e en kelvin vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="n3" value="a"> 40 K</label>
+    <label><input type="radio" name="n3" value="b"> 313 K</label>
+    <label><input type="radio" name="n3" value="c"> 233 K</label>
+    <label><input type="radio" name="n3" value="d"> 0 K</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 4</h3>
+  <p class="theme">Z&eacute;ro absolu &ndash; Kelvin</p>
+  <p>Peut-on avoir une temp&eacute;rature n&eacute;gative en kelvin ?</p>
+  <div class="options">
+    <label><input type="radio" name="n4" value="a"> Oui, par exemple &minus;10 K</label>
+    <label><input type="radio" name="n4" value="b"> Oui, en dessous de 0 &deg;C</label>
+    <label><input type="radio" name="n4" value="c"> Oui, dans l'espace</label>
+    <label><input type="radio" name="n4" value="d"> Non, 0 K est le minimum possible</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 5</h3>
+  <p class="theme">CTN &ndash; Courbe R(T)</p>
+  <p>La courbe caract&eacute;ristique R(T) d'une CTN a une allure :</p>
+  <div class="options">
+    <label><input type="radio" name="n5" value="a"> lin&eacute;aire croissante</label>
+    <label><input type="radio" name="n5" value="b"> exponentielle d&eacute;croissante</label>
+    <label><input type="radio" name="n5" value="c"> constante (horizontale)</label>
+    <label><input type="radio" name="n5" value="d"> sinuso&iuml;dale</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 6</h3>
+  <p class="theme">CTN &ndash; Lecture de la courbe</p>
+  <p>On mesure 4,9&nbsp;k&Omega; sur une CTN dont le tableau de correspondance donne : 0&nbsp;&deg;C &rarr; 32,7&nbsp;k&Omega;, 20&nbsp;&deg;C &rarr; 12&nbsp;k&Omega;, 40&nbsp;&deg;C &rarr; 4,9&nbsp;k&Omega;, 60&nbsp;&deg;C &rarr; 2,2&nbsp;k&Omega;. La temp&eacute;rature vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="n6" value="a"> 20 &deg;C</label>
+    <label><input type="radio" name="n6" value="b"> 60 &deg;C</label>
+    <label><input type="radio" name="n6" value="c"> 40 &deg;C</label>
+    <label><input type="radio" name="n6" value="d"> 0 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 7</h3>
+  <p class="theme">CTN &ndash; Sens de variation</p>
+  <p>Une CTN dans une &eacute;tuve affiche R = 2,2&nbsp;k&Omega; (correspondant &agrave; 60&nbsp;&deg;C). La consigne est 40&nbsp;&deg;C. Il faut :</p>
+  <div class="options">
+    <label><input type="radio" name="n7" value="a"> r&eacute;duire la temp&eacute;rature de l'&eacute;tuve</label>
+    <label><input type="radio" name="n7" value="b"> augmenter la temp&eacute;rature de l'&eacute;tuve</label>
+    <label><input type="radio" name="n7" value="c"> la temp&eacute;rature est d&eacute;j&agrave; correcte</label>
+    <label><input type="radio" name="n7" value="d"> changer de capteur</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 8</h3>
+  <p class="theme">Thermocouple &ndash; Signal</p>
+  <p>Le signal produit par un thermocouple est :</p>
+  <div class="options">
+    <label><input type="radio" name="n8" value="a"> un courant de plusieurs amp&egrave;res</label>
+    <label><input type="radio" name="n8" value="b"> une r&eacute;sistance variable</label>
+    <label><input type="radio" name="n8" value="c"> une tension de plusieurs volts</label>
+    <label><input type="radio" name="n8" value="d"> une tension de quelques millivolts</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 9</h3>
+  <p class="theme">CTP &ndash; Application</p>
+  <p>Une CTP est utilis&eacute;e dans un pistolet &agrave; colle thermofusible pour :</p>
+  <div class="options">
+    <label><input type="radio" name="n9" value="a"> mesurer pr&eacute;cis&eacute;ment la temp&eacute;rature de la colle</label>
+    <label><input type="radio" name="n9" value="b"> couper l'alimentation si la temp&eacute;rature d&eacute;passe le seuil admissible</label>
+    <label><input type="radio" name="n9" value="c"> afficher la temp&eacute;rature sur un &eacute;cran</label>
+    <label><input type="radio" name="n9" value="d"> r&eacute;gler la vitesse de chauffage</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 10</h3>
+  <p class="theme">LM35 &ndash; Calcul de tension</p>
+  <p>Un capteur LM35 fournit 10&nbsp;mV/&deg;C. &Agrave; 25&nbsp;&deg;C, la tension de sortie vaut :</p>
+  <div class="options">
+    <label><input type="radio" name="n10" value="a"> 25 V</label>
+    <label><input type="radio" name="n10" value="b"> 2,5 V</label>
+    <label><input type="radio" name="n10" value="c"> 250 mV</label>
+    <label><input type="radio" name="n10" value="d"> 0,25 mV</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 11</h3>
+  <p class="theme">LM35 &ndash; Interface</p>
+  <p>Le capteur LM35 est particuli&egrave;rement adapt&eacute; pour &ecirc;tre reli&eacute; &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="n11" value="a"> un microcontr&ocirc;leur (Arduino, Raspberry Pi)</label>
+    <label><input type="radio" name="n11" value="b"> un thermom&egrave;tre &agrave; mercure</label>
+    <label><input type="radio" name="n11" value="c"> un manom&egrave;tre</label>
+    <label><input type="radio" name="n11" value="d"> un voltm&egrave;tre alternatif</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 12</h3>
+  <p class="theme">Choix de capteur &ndash; Four &agrave; c&eacute;ramique</p>
+  <p>Pour mesurer la temp&eacute;rature d'un four &agrave; c&eacute;ramique atteignant 900&nbsp;&deg;C, le capteur le plus adapt&eacute; est :</p>
+  <div class="options">
+    <label><input type="radio" name="n12" value="a"> une CTN (plage &minus;50 &agrave; +150 &deg;C)</label>
+    <label><input type="radio" name="n12" value="b"> un LM35 (plage &minus;55 &agrave; +150 &deg;C)</label>
+    <label><input type="radio" name="n12" value="c"> une CTP (seuil fixe)</label>
+    <label><input type="radio" name="n12" value="d"> un thermocouple (plage &minus;200 &agrave; +1 000 &deg;C)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 13</h3>
+  <p class="theme">Thermom&egrave;tre &agrave; mercure &ndash; Principe</p>
+  <p>Le thermom&egrave;tre &agrave; mercure repose sur le principe de :</p>
+  <div class="options">
+    <label><input type="radio" name="n13" value="a"> l'effet Seebeck</label>
+    <label><input type="radio" name="n13" value="b"> la dilatation du mercure avec la temp&eacute;rature</label>
+    <label><input type="radio" name="n13" value="c"> la variation de r&eacute;sistance d'un semi-conducteur</label>
+    <label><input type="radio" name="n13" value="d"> la variation de pression atmosph&eacute;rique</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 14</h3>
+  <p class="theme">S&eacute;chage du bois &ndash; Temp&eacute;rature</p>
+  <p>Dans une &eacute;tuve de s&eacute;chage du bois, la temp&eacute;rature est g&eacute;n&eacute;ralement maintenue entre :</p>
+  <div class="options">
+    <label><input type="radio" name="n14" value="a"> 0 et 20 &deg;C</label>
+    <label><input type="radio" name="n14" value="b"> 20 et 50 &deg;C</label>
+    <label><input type="radio" name="n14" value="c"> 60 et 90 &deg;C</label>
+    <label><input type="radio" name="n14" value="d"> 200 et 300 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 15</h3>
+  <p class="theme">Paliers de machines &ndash; Surveillance</p>
+  <p>Pour d&eacute;tecter l'&eacute;chauffement anormal d'un palier de machine &agrave; bois, on utilise :</p>
+  <div class="options">
+    <label><input type="radio" name="n15" value="a"> un thermocouple fix&eacute; sur le palier</label>
+    <label><input type="radio" name="n15" value="b"> un thermom&egrave;tre &agrave; mercure plong&eacute; dans l'huile</label>
+    <label><input type="radio" name="n15" value="c"> un barom&egrave;tre</label>
+    <label><input type="radio" name="n15" value="d"> un hygrom&egrave;tre</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
+</div>
+
+<!-- ========================= APPROFONDISSEMENT ========================= -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<form id="qcm-appro">
+
+<div class="q-block" data-correct="c">
+  <h3>Question 1</h3>
+  <p class="theme">Conversion &ndash; Calcul inverse</p>
+  <p>Une sonde mesure 373&nbsp;K dans une cuve. En &deg;C, cela correspond &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="a1" value="a"> 373 &deg;C</label>
+    <label><input type="radio" name="a1" value="b"> 646 &deg;C</label>
+    <label><input type="radio" name="a1" value="c"> 100 &deg;C</label>
+    <label><input type="radio" name="a1" value="d"> &minus;100 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 2</h3>
+  <p class="theme">CTN &ndash; Formule exponentielle</p>
+  <p>Dans la formule \(R = R_0 \cdot e^{B\left(\frac{1}{T}-\frac{1}{T_0}\right)}\), la grandeur \(B\) repr&eacute;sente :</p>
+  <div class="options">
+    <label><input type="radio" name="a2" value="a"> la r&eacute;sistance &agrave; 0 &deg;C</label>
+    <label><input type="radio" name="a2" value="b"> une constante caract&eacute;ristique du mat&eacute;riau, en kelvin</label>
+    <label><input type="radio" name="a2" value="c"> la temp&eacute;rature maximale d'utilisation</label>
+    <label><input type="radio" name="a2" value="d"> la tension de sortie du capteur</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 3</h3>
+  <p class="theme">CTN &ndash; Calcul num&eacute;rique</p>
+  <p>Une CTN a \(R_0 = 10\,\text{k}\Omega\) &agrave; \(T_0 = 298\,\text{K}\) et \(B = 3950\,\text{K}\). &Agrave; 80&nbsp;&deg;C (353&nbsp;K), sa r&eacute;sistance est d'environ :</p>
+  <div class="options">
+    <label><input type="radio" name="a3" value="a"> 10 k&Omega;</label>
+    <label><input type="radio" name="a3" value="b"> 32 k&Omega;</label>
+    <label><input type="radio" name="a3" value="c"> 5 k&Omega;</label>
+    <label><input type="radio" name="a3" value="d"> 1,27 k&Omega;</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 4</h3>
+  <p class="theme">CTN &ndash; Sens de l'exposant</p>
+  <p>Dans la formule de la CTN, si \(T > T_0\), alors l'exposant \(B\!\left(\frac{1}{T}-\frac{1}{T_0}\right)\) est :</p>
+  <div class="options">
+    <label><input type="radio" name="a4" value="a"> n&eacute;gatif, donc R diminue</label>
+    <label><input type="radio" name="a4" value="b"> positif, donc R augmente</label>
+    <label><input type="radio" name="a4" value="c"> nul, donc R est constante</label>
+    <label><input type="radio" name="a4" value="d"> ind&eacute;termin&eacute;</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 5</h3>
+  <p class="theme">LM35 &ndash; Lecture de tension</p>
+  <p>Un capteur LM35 d&eacute;livre 10&nbsp;mV/&deg;C. Si la tension mesur&eacute;e est 0,42&nbsp;V, la temp&eacute;rature est :</p>
+  <div class="options">
+    <label><input type="radio" name="a5" value="a"> 4,2 &deg;C</label>
+    <label><input type="radio" name="a5" value="b"> 420 &deg;C</label>
+    <label><input type="radio" name="a5" value="c"> 42 &deg;C</label>
+    <label><input type="radio" name="a5" value="d"> 0,42 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 6</h3>
+  <p class="theme">Thermocouple &ndash; Inconv&eacute;nient</p>
+  <p>Le principal inconv&eacute;nient du thermocouple est :</p>
+  <div class="options">
+    <label><input type="radio" name="a6" value="a"> sa plage de mesure tr&egrave;s limit&eacute;e</label>
+    <label><input type="radio" name="a6" value="b"> son signal tr&egrave;s faible n&eacute;cessitant un amplificateur</label>
+    <label><input type="radio" name="a6" value="c"> son co&ucirc;t tr&egrave;s &eacute;lev&eacute;</label>
+    <label><input type="radio" name="a6" value="d"> sa taille imposante</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 7</h3>
+  <p class="theme">Comparaison de capteurs &ndash; Lin&eacute;arit&eacute;</p>
+  <p>Parmi ces quatre capteurs, lequel a une relation lin&eacute;aire entre la grandeur &eacute;lectrique de sortie et la temp&eacute;rature ?</p>
+  <div class="options">
+    <label><input type="radio" name="a7" value="a"> la CTN (relation exponentielle)</label>
+    <label><input type="radio" name="a7" value="b"> la CTP (seuil brutal)</label>
+    <label><input type="radio" name="a7" value="c"> le thermocouple (quasi-lin&eacute;aire mais n&eacute;cessite calibration)</label>
+    <label><input type="radio" name="a7" value="d"> le capteur LM35 (\(V = 10\,\text{mV/&deg;C} \times \theta\))</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 8</h3>
+  <p class="theme">CTN &ndash; Sensibilit&eacute;</p>
+  <p>Une CTN passe de 32,7&nbsp;k&Omega; &agrave; 0&nbsp;&deg;C &agrave; 1,1&nbsp;k&Omega; &agrave; 80&nbsp;&deg;C. La variation relative de r&eacute;sistance est :</p>
+  <div class="options">
+    <label><input type="radio" name="a8" value="a"> tr&egrave;s importante, ce qui montre une grande sensibilit&eacute;</label>
+    <label><input type="radio" name="a8" value="b"> tr&egrave;s faible, la CTN est peu sensible</label>
+    <label><input type="radio" name="a8" value="c"> nulle, la r&eacute;sistance ne change pas</label>
+    <label><input type="radio" name="a8" value="d"> lin&eacute;aire et r&eacute;guli&egrave;re</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 9</h3>
+  <p class="theme">Mesure &ndash; Ohm&egrave;tre et CTN</p>
+  <p>Pour mesurer la r&eacute;sistance d'une CTN, on utilise un ohm&egrave;tre. Le circuit doit &ecirc;tre :</p>
+  <div class="options">
+    <label><input type="radio" name="a9" value="a"> sous tension maximale</label>
+    <label><input type="radio" name="a9" value="b"> en court-circuit</label>
+    <label><input type="radio" name="a9" value="c"> hors tension</label>
+    <label><input type="radio" name="a9" value="d"> en courant alternatif</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 10</h3>
+  <p class="theme">R&eacute;gulation &ndash; Principe</p>
+  <p>Dans une &eacute;tuve de s&eacute;chage, la CTN est reli&eacute;e &agrave; un r&eacute;gulateur. Si la temp&eacute;rature d&eacute;passe la consigne (R mesur&eacute;e trop faible), le r&eacute;gulateur doit :</p>
+  <div class="options">
+    <label><input type="radio" name="a10" value="a"> augmenter la puissance de chauffage</label>
+    <label><input type="radio" name="a10" value="b"> r&eacute;duire ou couper le chauffage</label>
+    <label><input type="radio" name="a10" value="c"> augmenter la ventilation et le chauffage</label>
+    <label><input type="radio" name="a10" value="d"> ne rien faire</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 11</h3>
+  <p class="theme">LM35 &ndash; Calcul inverse</p>
+  <p>Un capteur LM35 reli&eacute; &agrave; un Arduino affiche une tension de 0,85&nbsp;V. La temp&eacute;rature mesur&eacute;e est :</p>
+  <div class="options">
+    <label><input type="radio" name="a11" value="a"> 8,5 &deg;C</label>
+    <label><input type="radio" name="a11" value="b"> 850 &deg;C</label>
+    <label><input type="radio" name="a11" value="c"> 0,85 &deg;C</label>
+    <label><input type="radio" name="a11" value="d"> 85 &deg;C</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="a">
+  <h3>Question 12</h3>
+  <p class="theme">S&eacute;chage du bois &ndash; Humidit&eacute;</p>
+  <p>Le bois fra&icirc;chement coup&eacute; contient jusqu'&agrave; 50&nbsp;% d'eau. Le s&eacute;chage en &eacute;tuve vise &agrave; ramener ce taux &agrave; :</p>
+  <div class="options">
+    <label><input type="radio" name="a12" value="a"> 8 &agrave; 12 %</label>
+    <label><input type="radio" name="a12" value="b"> 0 %</label>
+    <label><input type="radio" name="a12" value="c"> 30 &agrave; 40 %</label>
+    <label><input type="radio" name="a12" value="d"> 50 &agrave; 60 %</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="c">
+  <h3>Question 13</h3>
+  <p class="theme">Thermocouple &ndash; Jonctions</p>
+  <p>Dans un thermocouple, la tension &eacute;lectrique est g&eacute;n&eacute;r&eacute;e par la diff&eacute;rence de temp&eacute;rature entre :</p>
+  <div class="options">
+    <label><input type="radio" name="a13" value="a"> deux jonctions de m&ecirc;me m&eacute;tal</label>
+    <label><input type="radio" name="a13" value="b"> l'int&eacute;rieur et l'ext&eacute;rieur du capteur</label>
+    <label><input type="radio" name="a13" value="c"> la jonction chaude et la jonction froide</label>
+    <label><input type="radio" name="a13" value="d"> l'anode et la cathode</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="b">
+  <h3>Question 14</h3>
+  <p class="theme">CTP &ndash; Fonctionnement comme fusible</p>
+  <p>Une CTP prot&egrave;ge un moteur &eacute;lectrique. Quand la temp&eacute;rature d&eacute;passe le seuil critique, sa r&eacute;sistance :</p>
+  <div class="options">
+    <label><input type="radio" name="a14" value="a"> chute &agrave; z&eacute;ro, laissant passer tout le courant</label>
+    <label><input type="radio" name="a14" value="b"> augmente brutalement, ce qui coupe le courant dans le circuit</label>
+    <label><input type="radio" name="a14" value="c"> reste stable</label>
+    <label><input type="radio" name="a14" value="d"> oscille p&eacute;riodiquement</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<div class="q-block" data-correct="d">
+  <h3>Question 15</h3>
+  <p class="theme">Synth&egrave;se &ndash; Choisir le bon capteur</p>
+  <p>Un artisan menuisier veut afficher la temp&eacute;rature de son atelier sur un &eacute;cran reli&eacute; &agrave; un Arduino. Le capteur le plus simple &agrave; utiliser est :</p>
+  <div class="options">
+    <label><input type="radio" name="a15" value="a"> un thermocouple (signal faible, amplificateur n&eacute;cessaire)</label>
+    <label><input type="radio" name="a15" value="b"> une CTP (pas de mesure fine)</label>
+    <label><input type="radio" name="a15" value="c"> une CTN (relation non lin&eacute;aire, calibration n&eacute;cessaire)</label>
+    <label><input type="radio" name="a15" value="d"> un capteur LM35 (sortie lin&eacute;aire, lecture directe par Arduino)</label>
+  </div>
+  <div class="q-feedback"></div>
+</div>
+
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
+</div>
+
+</div><!-- fin .c -->
+
+<script>
+var explications = {
+  /* === SOCLE === */
+  "s1": "La temp\u00e9rature traduit l'agitation thermique des particules (atomes, mol\u00e9cules). Plus elles s'agitent, plus la temp\u00e9rature est \u00e9lev\u00e9e.",
+  "s2": "L'unit\u00e9 SI de temp\u00e9rature est le kelvin (K). Le degr\u00e9 Celsius est une unit\u00e9 usuelle mais pas l'unit\u00e9 SI.",
+  "s3": "T(K) = \u03b8(\u00b0C) + 273. On ajoute 273 pour passer des \u00b0C aux K.",
+  "s4": "T = 80 + 273 = 353 K.",
+  "s5": "Le z\u00e9ro absolu vaut 0 K = \u2212273 \u00b0C. C'est la temp\u00e9rature la plus basse possible.",
+  "s6": "Au z\u00e9ro absolu (0 K), toute agitation thermique des particules cesse compl\u00e8tement.",
+  "s7": "Un capteur de temp\u00e9rature convertit la temp\u00e9rature en une grandeur \u00e9lectrique mesurable : tension ou r\u00e9sistance.",
+  "s8": "CTN = Coefficient de Temp\u00e9rature N\u00e9gatif : la r\u00e9sistance diminue quand la temp\u00e9rature augmente.",
+  "s9": "CTN signifie Coefficient de Temp\u00e9rature N\u00e9gatif : la r\u00e9sistance varie en sens inverse de la temp\u00e9rature.",
+  "s10": "Une CTP (Coefficient de Temp\u00e9rature Positif) voit sa r\u00e9sistance augmenter tr\u00e8s fortement au-del\u00e0 d'un seuil critique.",
+  "s11": "Le thermocouple repose sur l'effet Seebeck : deux m\u00e9taux diff\u00e9rents soud\u00e9s g\u00e9n\u00e8rent une tension quand il y a une diff\u00e9rence de temp\u00e9rature.",
+  "s12": "Le thermocouple couvre la plus grande plage : de \u2212200 \u00b0C \u00e0 +1 000 \u00b0C selon le type.",
+  "s13": "Le LM35 fournit une tension directement proportionnelle \u00e0 la temp\u00e9rature : V = 10 mV/\u00b0C \u00d7 \u03b8.",
+  "s14": "La CTN est utilis\u00e9e pour la r\u00e9gulation fine de temp\u00e9rature dans les \u00e9tuves de s\u00e9chage du bois (plage 0\u2013100 \u00b0C).",
+  "s15": "La CTP agit comme fusible thermique : sa r\u00e9sistance explose au-del\u00e0 du seuil et coupe le circuit, prot\u00e9geant le moteur.",
+  /* === STANDARD === */
+  "n1": "T = 180 + 273 = 453 K.",
+  "n2": "\u03b8 = 194 \u2212 273 = \u221279 \u00b0C.",
+  "n3": "Une diff\u00e9rence de temp\u00e9rature est identique en \u00b0C et en K : \u0394T = 40 K.",
+  "n4": "Non. 0 K est le minimum absolu. On ne peut pas avoir de temp\u00e9rature n\u00e9gative en kelvin.",
+  "n5": "La CTN suit une loi exponentielle d\u00e9croissante : R diminue rapidement quand T augmente.",
+  "n6": "R = 4,9 k\u03a9 correspond \u00e0 40 \u00b0C d'apr\u00e8s le tableau de correspondance.",
+  "n7": "R = 2,2 k\u03a9 correspond \u00e0 60 \u00b0C, soit au-dessus de la consigne de 40 \u00b0C. Il faut r\u00e9duire la temp\u00e9rature.",
+  "n8": "Le thermocouple g\u00e9n\u00e8re une tension de quelques millivolts, ce qui n\u00e9cessite un amplificateur.",
+  "n9": "La CTP dans un pistolet \u00e0 colle coupe l'alimentation si la temp\u00e9rature d\u00e9passe ~200 \u00b0C (protection automatique).",
+  "n10": "V = 10 mV/\u00b0C \u00d7 25 = 250 mV = 0,25 V.",
+  "n11": "Le LM35 a une sortie lin\u00e9aire en tension, directement lisible par l'entr\u00e9e analogique d'un Arduino.",
+  "n12": "Seul le thermocouple couvre une plage allant jusqu'\u00e0 +1 000 \u00b0C, suffisante pour 900 \u00b0C.",
+  "n13": "Le thermom\u00e8tre \u00e0 mercure utilise la dilatation thermique du mercure dans un tube capillaire.",
+  "n14": "Le s\u00e9chage du bois en \u00e9tuve s'effectue entre 60 et 90 \u00b0C pour \u00e9liminer l'humidit\u00e9 sans d\u00e9grader les fibres.",
+  "n15": "Un thermocouple fix\u00e9 sur le palier d\u00e9tecte les mont\u00e9es anormales de temp\u00e9rature (r\u00e9ponse rapide, robuste).",
+  /* === APPROFONDISSEMENT === */
+  "a1": "\u03b8 = 373 \u2212 273 = 100 \u00b0C. C'est la temp\u00e9rature d'\u00e9bullition de l'eau \u00e0 pression atmosph\u00e9rique.",
+  "a2": "B est la constante caract\u00e9ristique du mat\u00e9riau de la CTN, exprim\u00e9e en kelvin (typiquement 3000\u20134000 K).",
+  "a3": "R = 10 000 \u00d7 e^(3950 \u00d7 (1/353 \u2212 1/298)) \u2248 10 000 \u00d7 e^(\u22122,06) \u2248 10 000 \u00d7 0,127 \u2248 1,27 k\u03a9.",
+  "a4": "Si T > T\u2080, alors 1/T < 1/T\u2080, donc l'exposant est n\u00e9gatif et R < R\u2080 : la r\u00e9sistance diminue.",
+  "a5": "V = 0,42 V = 420 mV. \u03b8 = 420/10 = 42 \u00b0C.",
+  "a6": "Le thermocouple produit un signal de quelques mV, trop faible pour \u00eatre lu directement : il faut un amplificateur et une compensation de jonction froide.",
+  "a7": "Le LM35 a une relation strictement lin\u00e9aire : V = 10 mV/\u00b0C \u00d7 \u03b8. Les autres capteurs ont des relations non lin\u00e9aires.",
+  "a8": "De 32,7 k\u03a9 \u00e0 1,1 k\u03a9 (rapport \u00d730), la variation est tr\u00e8s importante, signe d'une grande sensibilit\u00e9 de la CTN.",
+  "a9": "Pour mesurer une r\u00e9sistance \u00e0 l'ohm\u00e8tre, le circuit doit \u00eatre hors tension pour \u00e9viter d'endommager l'appareil.",
+  "a10": "Si R mesur\u00e9e est trop faible (CTN), c'est que T est trop haute. Le r\u00e9gulateur doit couper ou r\u00e9duire le chauffage.",
+  "a11": "\u03b8 = V / (10 mV/\u00b0C) = 0,85 V / 0,010 V/\u00b0C = 85 \u00b0C.",
+  "a12": "Le s\u00e9chage en \u00e9tuve vise un taux d'humidit\u00e9 de 8 \u00e0 12 % pour le bois d'usage int\u00e9rieur.",
+  "a13": "La tension Seebeck est g\u00e9n\u00e9r\u00e9e par la diff\u00e9rence de temp\u00e9rature entre la jonction chaude (mesure) et la jonction froide (r\u00e9f\u00e9rence).",
+  "a14": "La CTP agit comme un fusible thermique : au-del\u00e0 du seuil, sa r\u00e9sistance augmente brutalement et coupe le courant.",
+  "a15": "Le LM35 offre une sortie lin\u00e9aire en tension directement lisible par l'entr\u00e9e analogique d'un Arduino, sans calibration ni amplificateur."
+};
+
+function corriger(formId, scoreId) {
+  var form = document.getElementById(formId);
+  var blocks = form.querySelectorAll('.q-block');
+  var score = 0;
+  var total = blocks.length;
+
+  blocks.forEach(function(block, i) {
+    var radios = block.querySelectorAll('input[type="radio"]');
+    var qName = radios.length > 0 ? radios[0].name : '';
+    var correct = block.getAttribute('data-correct');
+    var selected = block.querySelector('input[type="radio"]:checked');
+    var feedback = block.querySelector('.q-feedback');
+    var labels = block.querySelectorAll('.options label');
+
+    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+
+    labels.forEach(function(l) {
+      var input = l.querySelector('input');
+      if (input.value === correct) l.classList.add('correct');
+    });
+
+    if (selected) {
+      if (selected.value === correct) {
+        score++;
+        feedback.className = 'q-feedback ok';
+        feedback.textContent = '\u2705 Bonne r\u00e9ponse ! ' + (explications[qName] || '');
+      } else {
+        selected.parentElement.classList.add('incorrect');
+        feedback.className = 'q-feedback ko';
+        feedback.textContent = '\u274c Mauvaise r\u00e9ponse. ' + (explications[qName] || '');
+      }
+    } else {
+      feedback.className = 'q-feedback ko';
+      feedback.textContent = '\u26a0\ufe0f Pas de r\u00e9ponse. ' + (explications[qName] || '');
+    }
+  });
+
+  var scoreBox = document.getElementById(scoreId);
+  var pct = Math.round(score / total * 100);
+  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
+  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
+  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function reinitialiser(formId, scoreId) {
+  var form = document.getElementById(formId);
+  form.querySelectorAll('.q-block').forEach(function(block) {
+    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
+    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    var feedback = block.querySelector('.q-feedback');
+    feedback.className = 'q-feedback';
+    feedback.textContent = '';
+  });
+  var scoreBox = document.getElementById(scoreId);
+  scoreBox.className = 'score-box';
+  scoreBox.textContent = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+<script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
+</body>
+</html>
