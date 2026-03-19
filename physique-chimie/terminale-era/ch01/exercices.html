@@ -394,6 +394,58 @@
   </div>
 </div>
 
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 10</span>
+    <span class="exo-title">Optimisation d'une alimentation d'atelier de menuiserie</span>
+    <span class="diff diff-3">Niveau 3</span>
+  </div>
+  <p>Un atelier de menuiserie est alimenté en triphasé 400 V (\(\cos\varphi = 0{,}82\)) et regroupe les machines suivantes :</p>
+  <table>
+    <tr><th>Machine</th><th>Puissance mécanique</th><th>Rendement</th></tr>
+    <tr><td>Toupie</td><td>5,5 kW</td><td>0,91</td></tr>
+    <tr><td>Scie à ruban</td><td>3,0 kW</td><td>0,88</td></tr>
+    <tr><td>Dégauchisseuse</td><td>4,0 kW</td><td>0,90</td></tr>
+    <tr><td>Aspiration</td><td>2,2 kW</td><td>0,85</td></tr>
+  </table>
+  <p>On considère que toutes les machines peuvent fonctionner simultanément.</p>
+  <p class="q"><strong>1.</strong> Calculer la puissance électrique absorbée par chaque machine.</p>
+  <p class="q"><strong>2.</strong> Calculer la puissance électrique totale absorbée par l'atelier.</p>
+  <p class="q"><strong>3.</strong> Calculer le courant de ligne total \(I\) alimentant l'atelier.</p>
+  <p class="q"><strong>4.</strong> Le câble d'alimentation (longueur aller-retour 80 m, \(\rho_{\text{Cu}} = 1{,}7 \times 10^{-8}\ \Omega\cdot\text{m}\)) a une section de 16 mm². Calculer sa résistance et les pertes Joule.</p>
+  <p class="q"><strong>5.</strong> Quel est le rendement global de la ligne d'alimentation ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> Puissances électriques absorbées : Toupie : \(5500/0{,}91 \approx 6\,044\ \text{W}\) ; Scie : \(3000/0{,}88 \approx 3\,409\ \text{W}\) ; Dégauchisseuse : \(4000/0{,}90 \approx 4\,444\ \text{W}\) ; Aspiration : \(2200/0{,}85 \approx 2\,588\ \text{W}\)</p>
+    <p><strong>2.</strong> \(P_{\text{totale}} = 6\,044 + 3\,409 + 4\,444 + 2\,588 = \mathbf{16\,485\ W \approx 16{,}5\ kW}\)</p>
+    <p><strong>3.</strong> \(I = \dfrac{P_{\text{totale}}}{\sqrt{3} \cdot U \cdot \cos\varphi} = \dfrac{16\,485}{\sqrt{3} \times 400 \times 0{,}82} = \dfrac{16\,485}{568{,}5} \approx \mathbf{29{,}0\ A}\)</p>
+    <p><strong>4.</strong> Section : \(16\ \text{mm}^2 = 16 \times 10^{-6}\ \text{m}^2\). \(R = \dfrac{\rho \cdot L}{S} = \dfrac{1{,}7 \times 10^{-8} \times 80}{16 \times 10^{-6}} = \dfrac{1{,}36 \times 10^{-6}}{16 \times 10^{-6}} = \mathbf{0{,}085\ \Omega}\). Pertes Joule : \(P_J = R \cdot I^2 = 0{,}085 \times 29^2 = 0{,}085 \times 841 \approx \mathbf{71{,}5\ W}\)</p>
+    <p><strong>5.</strong> \(\eta = \dfrac{P_{\text{utile}}}{P_{\text{utile}} + P_J} = \dfrac{16\,485}{16\,485 + 71{,}5} \approx \dfrac{16\,485}{16\,557} \approx \mathbf{99{,}6\ \%}\). La ligne est bien dimensionnée.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 11</span>
+    <span class="exo-title">Étude d'un poste de livraison basse tension — type BTS</span>
+    <span class="diff diff-3">Niveau 3</span>
+  </div>
+  <p>Une entreprise d'agencement s'installe dans un nouveau bâtiment industriel. Elle dispose d'un poste de livraison BT avec un transformateur 20 kV / 400 V de puissance apparente \(S_n = 250\ \text{kVA}\). Le bilan de puissance de l'entreprise donne \(P_{\text{totale}} = 165\ \text{kW}\) avec \(\cos\varphi = 0{,}78\).</p>
+  <p class="q"><strong>1.</strong> Calculer la puissance apparente consommée \(S_{\text{conso}}\).</p>
+  <p class="q"><strong>2.</strong> Le transformateur est-il suffisamment dimensionné ? Calculer son taux de charge.</p>
+  <p class="q"><strong>3.</strong> Calculer le courant secondaire \(I_2\) du transformateur en régime nominal d'exploitation.</p>
+  <p class="q"><strong>4.</strong> La chute de tension dans le transformateur est modélisée par \(\Delta U \approx \varepsilon_u \cdot U_{2n}\) avec \(\varepsilon_u = 4\ \%\). Calculer \(\Delta U\) et la tension secondaire sous charge.</p>
+  <p class="q"><strong>5.</strong> Quel est l'impact de cette chute de tension sur les machines de l'atelier ? Proposer une solution.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(S_{\text{conso}} = \dfrac{P}{\cos\varphi} = \dfrac{165\,000}{0{,}78} \approx \mathbf{211{,}5\ kVA}\)</p>
+    <p><strong>2.</strong> Taux de charge : \(\tau = \dfrac{S_{\text{conso}}}{S_n} = \dfrac{211{,}5}{250} \approx \mathbf{84{,}6\ \%}\). Le transformateur est suffisamment dimensionné (taux < 100 %) mais proche de la saturation. Il sera légèrement surchargé si un équipement supplémentaire est ajouté.</p>
+    <p><strong>3.</strong> \(I_2 = \dfrac{S_{\text{conso}}}{\sqrt{3} \cdot U_2} = \dfrac{211\,500}{\sqrt{3} \times 400} = \dfrac{211\,500}{692{,}8} \approx \mathbf{305\ A}\)</p>
+    <p><strong>4.</strong> \(\Delta U = \varepsilon_u \times U_{2n} = 0{,}04 \times 400 = \mathbf{16\ V}\). Tension secondaire sous charge : \(U_2 = 400 - 16 = \mathbf{384\ V}\).</p>
+    <p><strong>5.</strong> Une tension de 384 V au lieu de 400 V peut réduire les performances des moteurs (couple réduit, risque d'échauffement). Solution : utiliser un transformateur avec prise de réglage, ou installer un variateur de tension. Alternativement, améliorer le facteur de puissance par compensation capacitive (réduction du courant réactif).</p>
+  </div>
+</div>
+
 </div><!-- fin diff-appro -->
 
 <!-- ===== À RETENIR ===== -->

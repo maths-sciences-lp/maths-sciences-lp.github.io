@@ -542,6 +542,63 @@
   </div>
 </div>
 
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 10</span>
+    <span class="exo-title">Conception acoustique d'un poste de défonçage insonorisé</span>
+    <span class="diff diff-3">Niveau 3</span>
+  </div>
+  <p>Un menuisier agenceur doit insonoriser son poste de défonçage CNC (\(L_{\text{source}} = 95\ \text{dB}\) à 1 m). L'objectif est 80 dB à l'extérieur. La cabine a \(S_{\text{cab}} = 12\ \text{m}^2\) de parois dont une porte de \(S_{\text{porte}} = 1{,}8\ \text{m}^2\) avec \(R_{\text{porte}} = 25\ \text{dB}\). Les parois opaques ont \(R_{\text{parois}} = 35\ \text{dB}\). \(I_0 = 10^{-12}\ \text{W/m}^2\).</p>
+  <p class="q"><strong>1.</strong> Calculer l'affaiblissement requis \(\Delta L\) (en dB).</p>
+  <p class="q"><strong>2.</strong> Les parois opaques (\(R = 35\ \text{dB}\)) sont-elles suffisantes seules ?</p>
+  <p class="q"><strong>3.</strong> Calculer l'affaiblissement global de la cabine composite (formule : \(R_{\text{global}} = -10\log\!\left(\dfrac{\sum S_i \cdot 10^{-R_i/10}}{\sum S_i}\right)\)).</p>
+  <p class="q"><strong>4.</strong> Le résultat respecte-t-il l'objectif ? Que faudrait-il améliorer en priorité ?</p>
+  <p class="q"><strong>5.</strong> Quelle règle générale retenir sur l'impact des ouvertures et points faibles en acoustique ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\Delta L = 95 - 80 = \mathbf{15\ dB}\)</p>
+    <p><strong>2.</strong> \(R_{\text{parois}} = 35\ \text{dB} > 15\ \text{dB}\) requis : oui, les parois opaques seules sont largement suffisantes. La contrainte vient de la porte.</p>
+    <p><strong>3.</strong> \(S_{\text{parois}} = 12 - 1{,}8 = 10{,}2\ \text{m}^2\). Calcul :<br>
+    \(\sum S_i \cdot 10^{-R_i/10} = 10{,}2 \times 10^{-3{,}5} + 1{,}8 \times 10^{-2{,}5}\)<br>
+    \(= 10{,}2 \times 3{,}162 \times 10^{-4} + 1{,}8 \times 3{,}162 \times 10^{-3}\)<br>
+    \(= 3{,}225 \times 10^{-3} + 5{,}692 \times 10^{-3} = 8{,}917 \times 10^{-3}\)<br>
+    \(R_{\text{global}} = -10\log(8{,}917 \times 10^{-3} / 12) = -10\log(7{,}431 \times 10^{-4}) \approx \mathbf{31{,}3\ dB}\)</p>
+    <p><strong>4.</strong> 31,3 dB > 15 dB requis : l'objectif est <strong>respecté</strong>. La porte dégrade la performance de 35 dB à 31 dB. Pour améliorer, remplacer la porte par une porte acoustique (\(R \geq 35\ \text{dB}\)) ou ajouter un sas d'entrée.</p>
+    <p><strong>5.</strong> Règle générale : <strong>la transmission acoustique est dominée par le maillon le plus faible</strong>. Un petit point faible (joint mal posé, grille de ventilation non traitée) peut annuler l'efficacité de toutes les autres parois. Il faut traiter l'ensemble de la "chaîne" : parois + porte + joints + passages de câbles + ventilation.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 11</span>
+    <span class="exo-title">Cumul de sources sonores dans un atelier — type BTS</span>
+    <span class="diff diff-3">Niveau 3</span>
+  </div>
+  <p>Un atelier de menuiserie comporte plusieurs machines fonctionnant simultanément :</p>
+  <table>
+    <tr><th>Machine</th><th>Niveau (dB)</th></tr>
+    <tr><td>Scie circulaire</td><td>98</td></tr>
+    <tr><td>Ponceuse à bande</td><td>90</td></tr>
+    <tr><td>Aspiration</td><td>85</td></tr>
+    <tr><td>Défonceuse</td><td>92</td></tr>
+  </table>
+  <p>Rappel : \(L_{\text{total}} = 10\log\!\left(\displaystyle\sum_i 10^{L_i/10}\right)\)</p>
+  <p class="q"><strong>1.</strong> Calculer \(L_{\text{total}}\) lorsque toutes les machines fonctionnent.</p>
+  <p class="q"><strong>2.</strong> La réglementation impose le port de protections auditives au-delà de 85 dB(A). Est-ce nécessaire ici ?</p>
+  <p class="q"><strong>3.</strong> On arrête la ponceuse (90 dB). Calculer le nouveau niveau total et commenter l'effet.</p>
+  <p class="q"><strong>4.</strong> Quel facteur détermine principalement le niveau global ?</p>
+  <p class="q"><strong>5.</strong> Si \(L_{\text{total}} = 99\ \text{dB}\), calculer le temps maximal d'exposition sans protection : \(t_{\max} = 8 \times 10^{(85-L)/10}\ \text{h}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(L_{\text{total}} = 10\log\left(10^{9{,}8} + 10^{9{,}0} + 10^{8{,}5} + 10^{9{,}2}\right)\)<br>
+    \(= 10\log(6{,}310 \times 10^9 + 10^9 + 3{,}162 \times 10^8 + 1{,}585 \times 10^9) = 10\log(9{,}211 \times 10^9) \approx \mathbf{99{,}6\ dB}\)</p>
+    <p><strong>2.</strong> 99,6 dB > 85 dB : le port de protections auditives est <strong>obligatoire</strong>.</p>
+    <p><strong>3.</strong> Sans la ponceuse : \(10\log(10^{9{,}8} + 10^{8{,}5} + 10^{9{,}2}) = 10\log(8{,}211 \times 10^9) \approx \mathbf{99{,}1\ dB}\). Gain : seulement 0,5 dB. Arrêter la ponceuse ne change presque rien car la scie (98 dB) domine largement.</p>
+    <p><strong>4.</strong> La <strong>source la plus intense</strong> (scie à 98 dB) détermine presque entièrement le niveau global. Pour réduire efficacement le niveau, il faut prioritairement agir sur la source dominante (capot d'insonorisation, découplage vibratoire, remplacement par un modèle moins bruyant).</p>
+    <p><strong>5.</strong> \(t_{\max} = 8 \times 10^{(85-99)/10} = 8 \times 10^{-1{,}4} \approx 8 \times 0{,}0398 \approx \mathbf{0{,}32\ h \approx 19\ \text{min}}\). Au-delà de 19 minutes sans protection, la dose journalière réglementaire est dépassée.</p>
+  </div>
+</div>
+
 </div><!-- fin diff-appro -->
 
 <!-- ENCADRES -->

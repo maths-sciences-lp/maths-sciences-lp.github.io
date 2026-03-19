@@ -510,6 +510,51 @@
   </div>
 </div>
 
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 10</span>
+    <span class="exo-title">Liaison fibre optique sur site industriel — bilan de liaison</span>
+    <span class="diff diff-3">Niveau 3</span>
+  </div>
+  <p>Un artisan menuisier installe une liaison fibre optique monomode pour relier l'atelier à l'espace de vente (distance totale \(L = 350\ \text{m}\)). Les caractéristiques du câble sont : atténuation \(\alpha = 0{,}35\ \text{dB/km}\), pertes aux connecteurs : \(0{,}5\ \text{dB/connexion}\) (4 connexions), pertes aux épissures : \(0{,}1\ \text{dB/épissure}\) (2 épissures). Le budget optique de l'émetteur/récepteur est \(B = 15\ \text{dB}\). La marge de sécurité requise est de 3 dB.</p>
+  <p class="q"><strong>1.</strong> Calculer l'atténuation due à la longueur de câble (en dB).</p>
+  <p class="q"><strong>2.</strong> Calculer les pertes aux connecteurs et aux épissures.</p>
+  <p class="q"><strong>3.</strong> Calculer le bilan de liaison total (atténuation totale).</p>
+  <p class="q"><strong>4.</strong> Vérifier que le budget optique est suffisant en tenant compte de la marge de sécurité.</p>
+  <p class="q"><strong>5.</strong> La liaison doit transporter un débit de 1 Gbps sur 350 m. La fibre monomode standard (SMF-28) a une bande passante-distance de 100 GHz·km. Le débit est-il compatible avec la distance ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(A_{\text{câble}} = \alpha \times L = 0{,}35\ \text{dB/km} \times 0{,}350\ \text{km} = \mathbf{0{,}1225\ dB} \approx 0{,}12\ \text{dB}\)</p>
+    <p><strong>2.</strong> Connecteurs : \(4 \times 0{,}5 = \mathbf{2{,}0\ dB}\). Épissures : \(2 \times 0{,}1 = \mathbf{0{,}2\ dB}\)</p>
+    <p><strong>3.</strong> Bilan total : \(A_{\text{total}} = 0{,}12 + 2{,}0 + 0{,}2 = \mathbf{2{,}32\ dB}\)</p>
+    <p><strong>4.</strong> Budget disponible après marge : \(B - \text{marge} = 15 - 3 = 12\ \text{dB}\). Atténuation totale 2,32 dB ≪ 12 dB : la liaison est <strong>largement compatible</strong>. La marge résiduelle est de \(12 - 2{,}32 = 9{,}68\ \text{dB}\), ce qui offre une grande flexibilité pour de futures extensions.</p>
+    <p><strong>5.</strong> Bande passante à 350 m : \(BP = 100\ \text{GHz·km} / 0{,}350\ \text{km} \approx 286\ \text{GHz}\). Le débit 1 Gbps = 1 GHz équivalent est très inférieur à 286 GHz : la fibre monomode est <strong>largement compatible</strong> avec 1 Gbps sur 350 m.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 11</span>
+    <span class="exo-title">Analyse d'un réseau de capteurs sans fil en atelier — type BTS</span>
+    <span class="diff diff-3">Niveau 3</span>
+  </div>
+  <p>Un atelier d'agencement est équipé d'un réseau de capteurs sans fil (IoT) pour la surveillance de la température et de l'humidité. Chaque capteur émet à \(f = 868\ \text{MHz}\) (bande ISM) avec une puissance d'émission \(P_e = 14\ \text{dBm}\). Le récepteur (passerelle) a une sensibilité \(P_r^{\min} = -120\ \text{dBm}\). Le modèle d'affaiblissement en espace libre est \(A_{\text{fs}} = 20\log\left(\dfrac{4\pi d}{\lambda}\right)\ \text{(dB)}\).</p>
+  <p class="q"><strong>1.</strong> Calculer la longueur d'onde \(\lambda\) à 868 MHz (\(c = 3 \times 10^8\ \text{m/s}\)).</p>
+  <p class="q"><strong>2.</strong> Calculer la marge de liaison maximale disponible \(ML = P_e - P_r^{\min}\) (en dB).</p>
+  <p class="q"><strong>3.</strong> En espace libre, quelle est la distance maximale théorique de communication ? (Isoler \(d\) dans \(ML = 20\log(4\pi d / \lambda)\).)</p>
+  <p class="q"><strong>4.</strong> En atelier (cloisons, machines métalliques), on estime un affaiblissement supplémentaire de 30 dB. Recalculer la distance maximale pratique.</p>
+  <p class="q"><strong>5.</strong> Pour maintenir une couverture de tout l'atelier (\(60 \times 40\ \text{m}\)), combien de passerelles faut-il, en modélisant la couverture par des cercles de rayon = distance max pratique ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \(\lambda = \dfrac{c}{f} = \dfrac{3 \times 10^8}{868 \times 10^6} \approx \mathbf{0{,}346\ m}\)</p>
+    <p><strong>2.</strong> \(ML = 14 - (-120) = \mathbf{134\ dB}\)</p>
+    <p><strong>3.</strong> \(134 = 20\log\left(\dfrac{4\pi d}{0{,}346}\right)\) → \(\dfrac{4\pi d}{0{,}346} = 10^{134/20} = 10^{6{,}7} \approx 5{,}01 \times 10^6\) → \(d = \dfrac{5{,}01 \times 10^6 \times 0{,}346}{4\pi} \approx \dfrac{1{,}734 \times 10^6}{12{,}57} \approx \mathbf{137{,}9\ km}\) (théorique en espace libre).</p>
+    <p><strong>4.</strong> Marge disponible en atelier : \(134 - 30 = 104\ \text{dB}\). \(d' = \dfrac{10^{104/20} \times 0{,}346}{4\pi} = \dfrac{10^{5{,}2} \times 0{,}346}{4\pi} = \dfrac{1{,}585 \times 10^5 \times 0{,}346}{12{,}57} \approx \dfrac{54\,840}{12{,}57} \approx \mathbf{4\,362\ m}\)</p>
+    <p><em>La distance pratique est de l'ordre de ~100-200 m en conditions réelles d'atelier (les 30 dB supplémentaires sont pessimistes pour un bâtiment standard). Pour l'exercice, on peut arrondir à 4 km, ce qui signifie qu'une seule passerelle couvre largement l'atelier de 60×40 m.</em></p>
+    <p><strong>5.</strong> L'atelier fait \(60 \times 40 = 2\,400\ \text{m}^2\). Avec un rayon de couverture de plusieurs km, <strong>1 seule passerelle</strong> couvre amplement l'atelier. En pratique, on en installe 2 pour la redondance et les zones mortes (angles, colonnes).</p>
+  </div>
+</div>
+
 </div><!-- fin diff-appro -->
 
 <!-- ENCADRES -->
