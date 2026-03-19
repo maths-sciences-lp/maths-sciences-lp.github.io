@@ -258,7 +258,7 @@ Les modules communs (combustion, transferts thermiques, moments, pression, solut
 - **2026-03-16** : Uniformise labels dans PC premiere-era ch06-ch10 (`label-def` → `label label-def`)
 - **2026-03-16** : Corrige CLAUDE.md : terminale-iccer ch01..ch08 (et non ch11)
 - **2026-03-19** : Bilan Seconde — la Seconde est confirmee comme section modele du site : 28/28 chapitres avec 6 types de pages (170 fichiers), differenciation systematique (337 blocs diff-* equilibres), 32 simulations interactives, 100% conformite programme
-- **2026-03-19** : Verification detaillee — (1) CSS ch02-ch05 : RESOLU, aucune classe non-standard residuelle sauf `niv1` dans ch03. (2) `.situation` PC Seconde : 3 occurrences sur 695 contextes pro = quasi-absence de balisage. (3) Corrections exercices reévaluées : maths 82%, PC ~100% (methodologie corrigee par conteneurs). DS : 33% maths
+- **2026-03-19** : Verification detaillee — (1) CSS ch02-ch05 : RESOLU, aucune classe non-standard residuelle sauf `niv1` dans ch03. (2) `.situation` PC Seconde : 3 occurrences sur 695 contextes pro = quasi-absence de balisage. (3) 3e comptage corrections : exercices maths 41% (79/191), PC 80% (159/199). DS 100%. 152 corrections manquantes (112 maths + 40 PC)
 
 ---
 

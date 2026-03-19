@@ -60,14 +60,14 @@ La **Seconde est la section modèle du site** — la seule avec une couverture d
 | Blocs diff-socle/standard/appro | 168 | 169 | **337** |
 | Simulations (`simulations/`) | 15 | 17 | **32** |
 | Couverture programme officiel | 100% | 100% | **100%** |
-| Corrections exercices (.corr/.exo) | 82% (455/553) | ~100% (177/173) | **88%** |
-| Corrections DS (.corr/.partie) | 33% (134/402) | 26% (105/402) | **30%** |
+| Corrections exercices (.corr/.exo) | 41% (79/191) | 80% (159/199) | **61%** |
+| Corrections DS (.corr/.partie) | 100% (124/124) | 100% (97/97) | **100%** |
 
-**Points forts** : différenciation systématique et équilibrée, 32 simulations de qualité, conformité programme 100%, règle sigles filière respectée.
+**Points forts** : différenciation systématique et équilibrée, 32 simulations de qualité, conformité programme 100%, règle sigles filière respectée, DS 100% corrigés.
 
-**Axes d'amélioration** : corrections DS (30% globalement), ajout `.situation` aux 695 contextes pro non tagués en PC Seconde, anomalie CSS `niv1` dans ch03.
+**Axes d'amélioration** : 152 corrections d'exercices manquantes (7 chapitres maths sans aucune correction + 3 chapitres PC sans correction), ajout `.situation` aux 695 contextes pro non tagués en PC Seconde, anomalie CSS `niv1` dans ch03.
 
-**Note méthodologique (2026-03-19)** : les taux de 73.6% (maths) et 29.9% (PC) de l'audit initial comptaient des sous-éléments (sous-questions, labels). La vérification par conteneurs principaux donne des chiffres plus fiables : exercices ~88%, DS ~30%.
+**Note méthodologique (2026-03-19)** : les taux de 73.6% (maths) et 29.9% (PC) de l'audit initial comptaient des sous-éléments (sous-questions, labels). Les taux de 82% et ~100% de la 2e estimation étaient aussi erronés (mauvaise méthodologie grep). La 3e vérification par comptage exact donne : exercices maths 41%, PC 80%, DS 100%.
 
 ---
 

@@ -202,39 +202,62 @@ L'inventaire initial (2026-03-16) donnait un taux de 41.2% mais le comptage incl
 
 **Méthodologie corrigée** : compter les blocs conteneurs `.exo` (exercices.html) et `.partie` (ds.html) vs les blocs `.corr`.
 
-#### Seconde — Vérification détaillée (2026-03-19)
+#### Seconde — Vérification détaillée (3e comptage, 2026-03-19)
+
+**Note méthodologique** : les 2 comptages précédents étaient erronés (sous-éléments inclus, puis mauvaise méthodologie grep). Ce 3e comptage est fiable : comptage exact des blocs conteneurs `.exo` et `.corr` par fichier.
 
 **Exercices (exercices.html)** :
 
-| Section | `.exo` | `.corr` | Couverture |
-|---|---|---|---|
-| Maths Seconde | 553 | 455 | **82%** |
-| PC Seconde | 173 | 177 | **~100%** |
+| Section | `.exo` | `.corr` | Manquant | Couverture |
+|---|---|---|---|---|
+| Maths Seconde | 191 | 79 | **112** | **41%** |
+| PC Seconde | 199 | 159 | **40** | **80%** |
 
 **DS (ds.html)** :
 
 | Section | `.partie` | `.corr` | Couverture |
 |---|---|---|---|
-| Maths Seconde | 402 | 134 | **33%** |
-| PC Seconde | 0 (structure `.q`) | 105 | N/A |
+| Maths Seconde | 124 | 124 | **100%** ✓ |
+| PC Seconde | 97 | 97 | **100%** ✓ |
 
-**Détail exercices Maths Seconde** (chapitres à compléter) :
+**Détail exercices Maths Seconde** :
 
-| Chapitre | `.exo` | `.corr` | Manquant |
-|---|---|---|---|
-| ch01 | 39 | 12 | 27 |
-| ch03 | 42 | 13 | 29 |
-| ch09 | 45 | 18 | 27 |
-| ch11 | 45 | 18 | 27 |
-| ch12 | 45 | 14 | 31 |
-| ch13 | 42 | 16 | 26 |
-| ch14 | 42 | 16 | 26 |
+| Chapitre | `.exo` | `.corr` | Manquant | Statut |
+|---|---|---|---|---|
+| ch01 | 13 | 12 | 1 | Quasi complet |
+| **ch02** | **11** | **0** | **11** | **Aucune correction** |
+| ch03 | 14 | 13 | 1 | Quasi complet |
+| **ch04** | **13** | **0** | **13** | **Aucune correction** |
+| **ch05** | **12** | **0** | **12** | **Aucune correction** |
+| **ch06** | **12** | **0** | **12** | **Aucune correction** |
+| **ch07** | **15** | **0** | **15** | **Aucune correction** |
+| **ch08** | **14** | **0** | **14** | **Aucune correction** |
+| ch09 | 15 | 10 | 5 | Partiel |
+| **ch10** | **14** | **0** | **14** | **Aucune correction** |
+| ch11 | 15 | 10 | 5 | Partiel |
+| ch12 | 15 | 14 | 1 | Quasi complet |
+| ch13 | 14 | 10 | 4 | Partiel |
+| ch14 | 14 | 10 | 4 | Partiel |
 
-**Détail exercices PC Seconde** : seul ch07 a 4 corrections manquantes (29 exo / 25 corr). Ch10, ch11, ch14 ont plus de `.corr` que de `.exo` (corrections multi-parties).
+**7 chapitres maths sans aucune correction** : ch02, ch04, ch05, ch06, ch07, ch08, ch10
+
+**Détail exercices PC Seconde** :
+
+| Chapitre | `.exo` | `.corr` | Manquant | Statut |
+|---|---|---|---|---|
+| ch01–ch06 | 83 | 83 | 0 | Complet ✓ |
+| **ch07** | **29** | **25** | **4** | Partiel |
+| ch08–ch09 | 26 | 26 | 0 | Complet ✓ |
+| **ch10** | **12** | **0** | **12** | **Aucune correction** |
+| **ch11** | **12** | **0** | **12** | **Aucune correction** |
+| ch12–ch13 | 25 | 25 | 0 | Complet ✓ |
+| **ch14** | **12** | **0** | **12** | **Aucune correction** |
+
+**3 chapitres PC sans aucune correction** : ch10, ch11, ch14
 
 **Section exemplaire** : PC Première ERA (100% de couverture sur 10 chapitres).
 
-**Conclusion** : le vrai problème est la **couverture des corrections dans les DS** (33% en maths Seconde), pas dans les exercices (82-100%).
+**Conclusion** : **152 corrections manquantes en Seconde** (112 maths + 40 PC). Les DS sont intégralement corrigés (100%). Le problème est concentré sur les exercices, en particulier 7 chapitres maths et 3 chapitres PC sans aucune correction.
 
 ---
 
@@ -264,7 +287,7 @@ L'inventaire initial (2026-03-16) donnait un taux de 41.2% mais le comptage incl
 - **2026-03-18** : Créé `maths/terminale/ch02/interro.html` — Interro différenciée (3×5 questions socle/standard/appro, barème, corrections)
 - **2026-03-18** : Créé 46 QCMs différenciés (3×15 questions) : maths/seconde (14/14), maths/premiere (9/9), maths/terminale (10/11, ch02 existant), physique-chimie/seconde (13/14, ch07 existant). Total : 48/84 QCMs (57%)
 - **2026-03-19** : Bilan Seconde — 28/28 interro.html créées (14 maths + 14 PC), toutes différenciées avec diff.js. Seconde 100% complète sur les 6 types de pages. Différenciation : 168 blocs maths + 169 blocs PC, distribution équilibrée socle/standard/appro
-- **2026-03-19** : Vérification détaillée des corrections Seconde — méthodologie corrigée (conteneurs principaux au lieu de sous-éléments). Exercices : maths 82% (553/455), PC ~100% (173/177). DS : maths 33% (402/134). Le vrai problème est la couverture DS, pas exercices
+- **2026-03-19** : 3e vérification détaillée des corrections Seconde — comptage exact par fichier. Exercices : maths 41% (79/191), PC 80% (159/199). DS : 100% pour les deux. **152 corrections d'exercices manquantes** (112 maths + 40 PC). 7 chapitres maths et 3 chapitres PC sans aucune correction
 
 ---
 
