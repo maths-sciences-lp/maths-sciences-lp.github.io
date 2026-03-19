@@ -7,33 +7,7 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
-<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-
-.qcm-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:24px}
-.qcm-header .dh-item{display:flex;align-items:center;gap:6px}
-.qcm-header strong{color:var(--p)}
-.q-block{border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin:16px 0;background:#fff}
-.q-block h3{margin:0 0 10px;font-size:1em;color:var(--p)}
-.q-block .theme{font-size:.78em;color:#718096;margin-bottom:8px;font-style:italic}
-.options label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;cursor:pointer;border:1.5px solid #e2e8f0;transition:background .15s,border-color .15s;font-size:.95em}
-.options label:hover{background:var(--p-bg);border-color:var(--p-border)}
-.options input[type="radio"]{margin-right:8px;accent-color:var(--p)}
-.options label.correct{background:#d1fae5;border-color:#34d399}
-.options label.incorrect{background:#fee2e2;border-color:#f87171}
-.q-feedback{margin-top:8px;padding:8px 12px;border-radius:6px;font-size:.88em;display:none}
-.q-feedback.ok{background:#d1fae5;color:#065f46;display:block}
-.q-feedback.ko{background:#fee2e2;color:#991b1b;display:block}
-.btn-valider{background:var(--p);color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px;display:block}
-.btn-valider:hover{opacity:.85}
-.btn-reset{background:#e2e8f0;color:#374151;border:none;padding:8px 20px;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:8px}
-.btn-reset:hover{background:#cbd5e1}
-.score-box{margin-top:24px;padding:18px 24px;border-radius:10px;text-align:center;font-size:1.15em;font-weight:700;display:none}
-.score-box.show{display:block}
-.score-good{background:#d1fae5;color:#065f46;border:2px solid #34d399}
-.score-avg{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
-.score-low{background:#fee2e2;color:#991b1b;border:2px solid #f87171}
-@media print{.nb,.btn-valider,.btn-reset,.diff-toggle-wrap{display:none}.options label{border:1px solid #ccc}}
-</style>
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
 </head>
 <body>
 <div class="c">
@@ -677,7 +651,6 @@
 
 <script>
 var explications = {
-  /* === SOCLE === */
   "s1": "Une probabilité est toujours comprise entre 0 (impossible) et 1 (certain).",
   "s2": "P(Ā) = 1 − P(A) = 1 − 0,3 = 0,7.",
   "s3": "P(A) = 280/400 = 0,70. On divise l'effectif de A par l'effectif total.",
@@ -726,66 +699,8 @@ var explications = {
   "a14": "P(NC) = 0,60×0,03 + 0,40×0,08 = 0,018 + 0,032 = 0,050. Sur 1000 : 0,050 × 1000 = 50.",
   "a15": "0,12 + 0,48 + 0,08 + 0,30 = 0,98 ≠ 1. L'arbre contient une erreur."
 };
-
-function corriger(formId, scoreId) {
-  var form = document.getElementById(formId);
-  var blocks = form.querySelectorAll('.q-block');
-  var score = 0;
-  var total = blocks.length;
-
-  blocks.forEach(function(block, i) {
-    var radios = block.querySelectorAll('input[type="radio"]');
-    var qName = radios.length > 0 ? radios[0].name : '';
-    var correct = block.getAttribute('data-correct');
-    var selected = block.querySelector('input[type="radio"]:checked');
-    var feedback = block.querySelector('.q-feedback');
-    var labels = block.querySelectorAll('.options label');
-
-    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
-
-    labels.forEach(function(l) {
-      var input = l.querySelector('input');
-      if (input.value === correct) l.classList.add('correct');
-    });
-
-    if (selected) {
-      if (selected.value === correct) {
-        score++;
-        feedback.className = 'q-feedback ok';
-        feedback.textContent = '✅ Bonne réponse ! ' + (explications[qName] || '');
-      } else {
-        selected.parentElement.classList.add('incorrect');
-        feedback.className = 'q-feedback ko';
-        feedback.textContent = '❌ Mauvaise réponse. ' + (explications[qName] || '');
-      }
-    } else {
-      feedback.className = 'q-feedback ko';
-      feedback.textContent = '⚠️ Pas de réponse. ' + (explications[qName] || '');
-    }
-  });
-
-  var scoreBox = document.getElementById(scoreId);
-  var pct = Math.round(score / total * 100);
-  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
-  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
-  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-function reinitialiser(formId, scoreId) {
-  var form = document.getElementById(formId);
-  form.querySelectorAll('.q-block').forEach(function(block) {
-    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
-    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
-    var feedback = block.querySelector('.q-feedback');
-    feedback.className = 'q-feedback';
-    feedback.textContent = '';
-  });
-  var scoreBox = document.getElementById(scoreId);
-  scoreBox.className = 'score-box';
-  scoreBox.textContent = '';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 </script>
+<script src="../../../qcm.js"></script>
 <script src="../../../nav.js"></script>
 <script src="../../../diff.js"></script>
 </body>
