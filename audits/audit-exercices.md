@@ -1,7 +1,7 @@
 # Audit Pédagogique des Exercices
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-18 (QCMs)
+**Dernière mise à jour** : 2026-03-19 (bilan Seconde)
 **Périmètre** : exercices.html, ds.html, qcm.html et interro.html — 8 sections (maths seconde/première/terminale, physique-chimie seconde/première-iccer/première-era/terminale-iccer/terminale-era)
 **Méthode** : échantillonnage de 2-3 fichiers exercices.html et 2-3 fichiers ds.html par section, lecture et analyse qualitative.
 
@@ -251,6 +251,7 @@ L'inventaire complet (2026-03-16) révèle un taux de couverture global de **41.
 - **2026-03-18** : Créé `maths/terminale/ch02/qcm.html` — QCM différencié (3×15 questions socle/standard/appro, auto-corrigé, feedback)
 - **2026-03-18** : Créé `maths/terminale/ch02/interro.html` — Interro différenciée (3×5 questions socle/standard/appro, barème, corrections)
 - **2026-03-18** : Créé 46 QCMs différenciés (3×15 questions) : maths/seconde (14/14), maths/premiere (9/9), maths/terminale (10/11, ch02 existant), physique-chimie/seconde (13/14, ch07 existant). Total : 48/84 QCMs (57%)
+- **2026-03-19** : Bilan Seconde — 28/28 interro.html créées (14 maths + 14 PC), toutes différenciées avec diff.js. Seconde 100% complète sur les 6 types de pages. Différenciation : 168 blocs maths + 169 blocs PC, distribution équilibrée socle/standard/appro
 
 ---
 
@@ -264,7 +265,7 @@ L'inventaire complet (2026-03-16) révèle un taux de couverture global de **41.
 
 ### Priorité haute (uniformisation 2026-03-18)
 - [ ] Créer les 36 `qcm.html` restants (PC 1ere ICCER 10, PC 1ere ERA 10, PC Tle ICCER 8, PC Tle ERA 8) — 48/84 faits
-- [ ] Créer les 82 `interro.html` restants (3×5-8 questions socle/standard/appro par chapitre)
+- [ ] Créer les 54 `interro.html` restants (30/84 faits : Seconde 28 + Terminale 2) — restent : maths/premiere 9, maths/terminale 9, PC 1ere ICCER 10, PC 1ere ERA 10, PC Tle ICCER 8, PC Tle ERA 8
 - [ ] Créer les 7 `exercices.html` manquants (PC terminale)
 - [ ] Créer les 7 `ds.html` manquants (PC terminale)
 
@@ -320,9 +321,11 @@ L'inventaire complet (2026-03-16) révèle un taux de couverture global de **41.
 | `exercices.html` | 77 | 84 | 7 | Oui (socle/standard/appro) |
 | `ds.html` | 77 | 84 | 7 | Oui (socle/standard/appro) |
 | `qcm.html` | 48 | 84 | 36 | Oui (3×15 questions) |
-| `interro.html` | 1 | 84 | 83 | Oui (3×5-8 questions) |
+| `interro.html` | 30 | 84 | 54 | Oui (3×5-8 questions) |
 
 **Modèle existant QCM** : `physique-chimie/seconde/ch07/qcm.html` — QCM interactif auto-corrigé, feedback instantané, score.
 **Modèle existant interro** : `maths/terminale/ch04/interro.html` — interrogation écrite, corrections, différenciée.
+
+**Bilan Seconde (2026-03-19)** : la Seconde est la **première section 100% complète** du site avec les 6 types de pages (lecon, exercices, ds, fiche, qcm, interro) sur les 28 chapitres. Différenciation systématique (56 fichiers exercices/ds + 28 interro avec diff.js). Total : 170 fichiers HTML en Seconde.
 
 **Specs détaillées** : voir `prompts/prompt-qcm-interro.md`.

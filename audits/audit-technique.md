@@ -1,7 +1,7 @@
 # Audit Technique
 
 **Date** : 2026-03-16
-**Derniere mise a jour** : 2026-03-18
+**Derniere mise a jour** : 2026-03-19 (bilan Seconde)
 **Perimetre** : HTML, CSS, JavaScript, chemins, accessibilite, simulations, performances
 **Nombre total de fichiers HTML audites** : 477 (191 maths, 180 physique-chimie, 63 simulations, 43 autres)
 
@@ -52,7 +52,7 @@ Les pages de cours suivent le template defini dans CLAUDE.md :
 | MathJax v3 | Present dans 403 fichiers (cours + exercices + DS + simulations). Quelques simulations sans MathJax n'utilisent pas de formules — correct. |
 | Chart.js | Present dans 124 fichiers (lecons avec graphiques principalement) |
 | nav.js | Present dans toutes les pages de cours (mais 61 en chemin absolu) |
-| diff.js | Present dans 150 fichiers (exercices + DS) |
+| diff.js | Present dans 178 fichiers (exercices + DS + interros) |
 
 **Note** : `automatismes.html` (racine) a ete supprime le 2026-03-18 (doublon de `automatismes/index.html`). Tous les liens ont ete unifies vers `automatismes/index.html`.
 
@@ -234,6 +234,7 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - **2026-03-17** : Nettoie le CSS inline de maths/seconde/ch05/lecon.html (28→4 lignes), ch04/lecon.html et ch06/lecon.html (suppression des doublons)
 - **2026-03-17** : Remplace .hprog (classe inline) par .hors-prog (classe centralisée dans styles.css) dans maths/terminale/ch02/lecon.html
 - **2026-03-17** : Ajoute « Terminale Bac Pro » aux balises `<title>` de maths/terminale/ch02/ (lecon.html, exercices.html, ds.html)
+- **2026-03-19** : Bilan technique Seconde — 170 fichiers HTML, 84/84 fichiers exercices/ds/interro avec diff.js, 0 chemin absolu, 0 lien cassé. Conformité technique Seconde : 95/100
 
 ---
 

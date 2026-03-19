@@ -1,7 +1,7 @@
 # Audit Pedagogique Global
 
 **Date** : 2026-03-16
-**Derniere mise a jour** : 2026-03-18 (QCMs)
+**Derniere mise a jour** : 2026-03-19 (bilan Seconde)
 **Perimetre** : qualite des cours, clarte pedagogique, coherence inter-niveaux, progression 2nde-1ere-Tle, exemples, contextes professionnels
 **Methode** : lecture integrale ou partielle de 50+ fichiers lecon.html, analyses statistiques CSS, comparaison inter-sections
 **Rapports detailles** : `audit-pedagogique-maths.md`, `audit-pedagogique-pc.md`
@@ -75,7 +75,7 @@ Le site presente une **qualite pedagogique globalement bonne** (note moyenne 4/5
 - Maths : calcul mental, lecture graphique, reconnaissance de formules
 - PC : unites, schemas, protocoles, vocabulaire scientifique, conversions
 
-**Couverture actuelle** : 48 QCMs sur 84 chapitres (57%) + 1 interro sur 84 chapitres (1%). Sections QCM complètes : maths/seconde (14/14), maths/premiere (9/9), maths/terminale (11/11), PC seconde (14/14). Restant : PC 1ere ICCER (0/10), PC 1ere ERA (0/10), PC Tle ICCER (0/8), PC Tle ERA (0/8).
+**Couverture actuelle** : 48 QCMs sur 84 chapitres (57%) + 30 interros sur 84 chapitres (36%). Sections QCM complètes : maths/seconde (14/14), maths/premiere (9/9), maths/terminale (11/11), PC seconde (14/14). Restant QCM : PC 1ere ICCER (0/10), PC 1ere ERA (0/10), PC Tle ICCER (0/8), PC Tle ERA (0/8). Sections interro complètes : maths/seconde (14/14), PC seconde (14/14). Restant interro : maths/premiere 0/9, maths/terminale 2/11, PC 1ere ICCER 0/10, PC 1ere ERA 0/10, PC Tle ICCER 0/8, PC Tle ERA 0/8.
 
 ---
 
@@ -257,6 +257,7 @@ Les modules communs (combustion, transferts thermiques, moments, pression, solut
 - **2026-03-16** : Ajoute animation tangente glissante interactive dans maths/premiere/ch06 (Canvas)
 - **2026-03-16** : Uniformise labels dans PC premiere-era ch06-ch10 (`label-def` → `label label-def`)
 - **2026-03-16** : Corrige CLAUDE.md : terminale-iccer ch01..ch08 (et non ch11)
+- **2026-03-19** : Bilan Seconde — la Seconde est confirmee comme section modele du site : 28/28 chapitres avec 6 types de pages (170 fichiers), differenciation systematique (337 blocs diff-* equilibres), 32 simulations interactives, 100% conformite programme. Reste a ameliorer : corrections PC Seconde (29.9%), ajout `.situation` en PC Seconde, CSS residuel ch02-ch05
 
 ---
 
@@ -283,7 +284,7 @@ Les modules communs (combustion, transferts thermiques, moments, pression, solut
 
 ### Priorite haute (uniformisation 2026-03-18)
 - [ ] Creer les 36 `qcm.html` restants (PC 1ere ICCER 10, PC 1ere ERA 10, PC Tle ICCER 8, PC Tle ERA 8) — 48/84 faits
-- [ ] Creer les 83 `interro.html` differencies (3×5-8 questions socle/standard/appro)
+- [ ] Creer les 54 `interro.html` restants (30/84 faits : Seconde 28 + Terminale 2)
 - [ ] Centraliser les classes CSS QCM dans `styles.css` (prerequis)
 
 ### Priorite basse
