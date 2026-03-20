@@ -463,13 +463,11 @@ MathJax = {tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]}};
     <li>Quel est l&apos;angle de r&eacute;flexion \(i_r\) ?</li>
     <li>Si le miroir tourne de 10°, de combien tourne le rayon r&eacute;fl&eacute;chi ?</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       a) D&apos;apr&egrave;s la loi de Descartes : \(i_r = i_1 = \mathbf{35°}\).<br>
       b) Si le miroir tourne de 10°, la normale tourne aussi de 10°. L&apos;angle d&apos;incidence varie de 10° et l&apos;angle de r&eacute;flexion aussi, donc le rayon r&eacute;fl&eacute;chi tourne de <strong>2 &times; 10° = 20°</strong> (propri&eacute;t&eacute; du miroir tournant).
-    </div>
-  </details>
+  </div>
 </div>
 
 <div class="exo">
@@ -479,15 +477,13 @@ MathJax = {tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]}};
     <li>Calculer l&apos;angle r&eacute;fract&eacute; \(i_2\).</li>
     <li>Le rayon se rapproche-t-il ou s&apos;&eacute;loigne-t-il de la normale ? Justifier.</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       a) \(n_1 \sin i_1 = n_2 \sin i_2\)<br>
       \[\sin i_2 = \frac{n_1 \sin i_1}{n_2} = \frac{1{,}33 \times \sin(25°)}{1{,}00} = 1{,}33 \times 0{,}423 = 0{,}562\]
       \[i_2 = \arcsin(0{,}562) \approx \mathbf{34{,}2°}\]<br>
       b) Le rayon <strong>s&apos;&eacute;loigne</strong> de la normale car \(i_2 = 34{,}2° > i_1 = 25°\). Cela est coh&eacute;rent : on passe d&apos;un milieu dense (eau, \(n = 1{,}33\)) vers un milieu moins dense (air, \(n = 1{,}00\)).
-    </div>
-  </details>
+  </div>
 </div>
 
 <div class="exo">
@@ -497,14 +493,12 @@ MathJax = {tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]}};
     <li>Calculer l&apos;angle limite de r&eacute;flexion totale \(i_\ell\).</li>
     <li>Un rayon arrive avec un angle \(i = 80°\). Y a-t-il r&eacute;flexion totale ? Justifier.</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       a) \(\sin i_\ell = \dfrac{n_2}{n_1} = \dfrac{1{,}42}{1{,}50} = 0{,}947\)<br>
       \[i_\ell = \arcsin(0{,}947) \approx \mathbf{71{,}4°}\]<br>
       b) L&apos;angle d&apos;incidence \(i = 80° > i_\ell = 71{,}4°\) : il y a bien <strong>r&eacute;flexion totale interne</strong>. Le rayon reste confin&eacute; dans le c&oelig;ur de la fibre et se propage sans sortir.
-    </div>
-  </details>
+  </div>
 </div>
 
 <div class="exo">
@@ -515,14 +509,12 @@ MathJax = {tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]}};
     <li>Dans quelle direction repart le faisceau r&eacute;fl&eacute;chi (vers le haut, le bas, horizontalement) ?</li>
     <li>Pourquoi utilise-t-on des miroirs plut&ocirc;t que des fibres optiques pour guider le faisceau laser CO&#8322; ?</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       a) La normale &agrave; un miroir &agrave; 45° fait 45° avec la surface. Un faisceau horizontal a donc un angle d&apos;incidence de <strong>45°</strong> par rapport &agrave; la normale.<br>
       b) D&apos;apr&egrave;s la loi de r&eacute;flexion : \(i_r = i_1 = 45°\). Le faisceau repart &agrave; <strong>90°</strong> du faisceau incident, donc <strong>verticalement vers le bas</strong> (vers la t&ecirc;te de coupe).<br>
       c) Les fibres optiques classiques ne transmettent pas efficacement la longueur d&apos;onde du laser CO&#8322; (10,6 &micro;m, infrarouge lointain). Les miroirs en cuivre ou molybd&egrave;ne r&eacute;fl&eacute;chissent &gt; 99 % de l&apos;&eacute;nergie &agrave; cette longueur d&apos;onde.
-    </div>
-  </details>
+  </div>
 </div>
 
 </div><!-- .c -->
@@ -773,6 +765,12 @@ MathJax = {tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]}};
 
   drawScene();
 })();
+
+function toggle(btn){
+  var c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
 </script>
 <script src="../../../nav.js"></script>
 

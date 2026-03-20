@@ -457,16 +457,14 @@
       <li>Calculer la r&eacute;sistance thermique \(R_{th}\) de ce panneau.</li>
       <li>Calculer le flux thermique \(\Phi\) qui le traverse si la diff&eacute;rence de temp&eacute;rature entre les deux faces est de 15&nbsp;&deg;C.</li>
     </ol>
-    <details class="corr">
-      <summary>Voir la correction</summary>
-      <div class="corr-body">
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
         <p><strong>a.</strong> \(e = 18\,\text{mm} = 0{,}018\,\text{m}\)</p>
         \[ R_{th} = \frac{e}{\lambda \cdot S} = \frac{0{,}018}{0{,}12 \times 1{,}8} = \frac{0{,}018}{0{,}216} \approx \mathbf{0{,}083\,\text{K/W}} \]
         <p><strong>b.</strong> \(\Delta T = 15\,\text{K}\)</p>
         \[ \Phi = \frac{\Delta T}{R_{th}} = \frac{15}{0{,}083} \approx \mathbf{181\,\text{W}} \]
         <p>Ce panneau laisse passer environ 181&nbsp;W de chaleur en r&eacute;gime permanent.</p>
-      </div>
-    </details>
+    </div>
   </div>
 
   <div class="exo">
@@ -479,9 +477,8 @@
       <li>Calculer \(R_{th}\) pour chaque mat&eacute;riau.</li>
       <li>Quel mat&eacute;riau isole le mieux&nbsp;? Quel est le rapport des r&eacute;sistances&nbsp;?</li>
     </ol>
-    <details class="corr">
-      <summary>Voir la correction</summary>
-      <div class="corr-body">
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
         <p>\(e = 0{,}04\,\text{m}\), \(S = 2\,\text{m}^2\)</p>
         <p><strong>Polystyr&egrave;ne :</strong>
         \[ R_{th}^{PS} = \frac{0{,}04}{0{,}035 \times 2} \approx \mathbf{0{,}57\,\text{K/W}} \]
@@ -493,8 +490,7 @@
         \[ \frac{R_{th}^{PS}}{R_{th}^{pin}} \approx \frac{0{,}57}{0{,}17} \approx 3{,}4 \]
         Le polystyr&egrave;ne isole environ <strong>3,4 fois mieux</strong> que le bois de pin &agrave; &eacute;paisseur &eacute;gale.
         </p>
-      </div>
-    </details>
+    </div>
   </div>
 
   <div class="exo">
@@ -508,9 +504,8 @@
       <li>Calculer le flux thermique \(\Phi\) qui s&rsquo;&eacute;chappe par le toit.</li>
       <li>Combien d&rsquo;&eacute;nergie (en kJ) est perdue en 1 heure&nbsp;?</li>
     </ol>
-    <details class="corr">
-      <summary>Voir la correction</summary>
-      <div class="corr-body">
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
         <p><strong>a.</strong> \(e = 0{,}10\,\text{m}\), \(\lambda = 0{,}04\,\text{W&middot;m}^{-1}\text{&middot;K}^{-1}\), \(S = 10\,\text{m}^2\)
         \[ R_{th} = \frac{0{,}10}{0{,}04 \times 10} = \frac{0{,}10}{0{,}40} = \mathbf{0{,}25\,\text{K/W}} \]
         </p>
@@ -520,8 +515,7 @@
         <p><strong>c.</strong> En 1&nbsp;heure : \(t = 3\,600\,\text{s}\)
         \[ Q = \Phi \times t = 80 \times 3\,600 = 288\,000\,\text{J} = \mathbf{288\,\text{kJ}} \]
         </p>
-      </div>
-    </details>
+    </div>
   </div>
 
   <div class="exo">
@@ -540,9 +534,8 @@
       <li>Calculer l&rsquo;&eacute;nergie totale \(Q\) perdue par cette fen&ecirc;tre en une journ&eacute;e compl&egrave;te (24&nbsp;heures). Donner le r&eacute;sultat en kWh et en MJ.</li>
       <li>Sachant qu&rsquo;un double vitrage avec lame d&rsquo;argon de 16&nbsp;mm r&eacute;duit le flux d&rsquo;un facteur 10, quelle serait l&rsquo;&eacute;conomie d&rsquo;&eacute;nergie sur une journ&eacute;e&nbsp;?</li>
     </ol>
-    <details class="corr">
-      <summary>Voir la correction</summary>
-      <div class="corr-body">
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
         <p><strong>a. R&eacute;sistance thermique :</strong></p>
         \[ R_{th} = \frac{e}{\lambda \cdot S} = \frac{0{,}006}{1{,}0 \times 1{,}5} = \frac{0{,}006}{1{,}5} = 4 \times 10^{-3}\,\text{K/W} \]
         <p><strong>b. Flux thermique :</strong></p>
@@ -559,8 +552,7 @@
         &Eacute;conomie en 24 h : \(\Delta Q = (5\,000 - 500) \times 86\,400 = 388\,800\,000\,\text{J} \approx \mathbf{388\,\text{MJ}}\),
         soit \(\mathbf{108\,\text{kWh}}\) &eacute;conom&eacute;s par jour et par fen&ecirc;tre.
         </p>
-      </div>
-    </details>
+    </div>
   </div>
 
 </div><!-- /.c -->
@@ -568,6 +560,12 @@
 <script src="../../../nav.js"></script>
 
 <script>
+function toggle(btn){
+  var c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+
 /* ============================================================
    Chart.js &mdash; Conductivit&eacute;s thermiques (logarithmic scale)
    ============================================================ */

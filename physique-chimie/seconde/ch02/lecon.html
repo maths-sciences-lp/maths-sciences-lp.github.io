@@ -578,9 +578,8 @@ svg text{font-family:'Segoe UI',system-ui,sans-serif}</style>
     <tr><td>R&eacute;sistance</td><td>???</td><td>???</td><td>???</td><td>???</td></tr>
     <tr><td>Puissance</td><td>???</td><td>???</td><td>???</td><td>???</td></tr>
   </table>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       <table>
         <tr><th>Grandeur</th><th>Symbole</th><th>Unit&eacute;</th><th>Abr.</th><th>Instrument</th></tr>
         <tr><td>Tension</td><td><strong>U</strong></td><td>Volt</td><td><strong>V</strong></td><td>Voltm&egrave;tre (parall&egrave;le)</td></tr>
@@ -588,8 +587,7 @@ svg text{font-family:'Segoe UI',system-ui,sans-serif}</style>
         <tr><td>R&eacute;sistance</td><td><strong>R</strong></td><td>Ohm</td><td><strong>&Omega;</strong></td><td>Ohm&egrave;tre</td></tr>
         <tr><td>Puissance</td><td><strong>P</strong></td><td>Watt</td><td><strong>W</strong></td><td>&mdash; (calcul P = U &times; I)</td></tr>
       </table>
-    </div>
-  </details>
+  </div>
 </div>
 
 <div class="exo">
@@ -601,9 +599,8 @@ svg text{font-family:'Segoe UI',system-ui,sans-serif}</style>
     <li>Calculez la tension aux bornes de chaque r&eacute;sistance.</li>
     <li>V&eacute;rifiez &agrave; l&apos;aide de la loi des mailles.</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       <p><strong>1.</strong> \( R_{tot} = R_1 + R_2 + R_3 = 3 + 5 + 4 = \mathbf{12\,\Omega} \)</p>
       <p><strong>2.</strong> \( I = \dfrac{U}{R_{tot}} = \dfrac{24}{12} = \mathbf{2\,A} \) (m&ecirc;me valeur partout en s&eacute;rie)</p>
       <p><strong>3.</strong><br>
@@ -612,8 +609,7 @@ svg text{font-family:'Segoe UI',system-ui,sans-serif}</style>
         \( U_3 = R_3 \times I = 4 \times 2 = \mathbf{8\,V} \)
       </p>
       <p><strong>4.</strong> Loi des mailles : \( U_1 + U_2 + U_3 = 6 + 10 + 8 = 24\,\text{V} = E \) &#10003;</p>
-    </div>
-  </details>
+  </div>
 </div>
 
 <div class="exo">
@@ -629,16 +625,14 @@ svg text{font-family:'Segoe UI',system-ui,sans-serif}</style>
     <li>Calculez l&apos;intensit&eacute; totale d&eacute;bit&eacute;e par le tableau &eacute;lectrique.</li>
     <li>Le disjoncteur d&eacute;clenche &agrave; 10&nbsp;A. Risque-t-il de sauter ?</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       <p><strong>1.</strong> Les machines sont en parall&egrave;le : chacune re&ccedil;oit la m&ecirc;me tension que le g&eacute;n&eacute;rateur, soit \( \mathbf{U = 230\,V} \).</p>
       <p><strong>2.</strong> Loi des n&oelig;uds :<br>
         \( I_{tot} = I_1 + I_2 + I_3 = 2{,}5 + 1{,}8 + 0{,}4 = \mathbf{4{,}7\,A} \)
       </p>
       <p><strong>3.</strong> \( I_{tot} = 4{,}7\,\text{A} < 10\,\text{A} \) &rarr; le disjoncteur <strong>ne sautera pas</strong>. Le circuit est en s&eacute;curit&eacute;.</p>
-    </div>
-  </details>
+  </div>
 </div>
 
 <!-- Simulations interactives -->
@@ -650,6 +644,13 @@ svg text{font-family:'Segoe UI',system-ui,sans-serif}</style>
 </div>
 
 </div>
+<script>
+function toggle(btn){
+  var c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="../../../nav.js"></script>
 </body>
 </html>
