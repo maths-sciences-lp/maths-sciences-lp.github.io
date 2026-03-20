@@ -301,17 +301,15 @@
       <li>La temp&eacute;rature de sublimation de la glace carbonique est 194&nbsp;K &mdash; combien est-ce en &deg;C&nbsp;?</li>
       <li>Combien vaut une diff&eacute;rence de 40&nbsp;&deg;C exprim&eacute;e en Kelvin&nbsp;?</li>
     </ol>
-    <details class="corr">
-      <summary>Voir la correction</summary>
-      <div class="corr-body">
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
         <ol type="a">
           <li>\(T = 85 + 273 = \mathbf{358\,\text{K}}\)</li>
           <li>\(\theta = 194 - 273 = \mathbf{-79\,\text{&deg;C}}\)</li>
           <li>Une <em>diff&eacute;rence</em> de temp&eacute;rature est identique en &deg;C et en K : \(\Delta T = \mathbf{40\,\text{K}}\).
           (Car \(\Delta T(\text{K}) = \Delta T(\text{&deg;C})\).)</li>
         </ol>
-      </div>
-    </details>
+    </div>
   </div>
 
   <div class="exo">
@@ -332,16 +330,14 @@
       <li>La r&eacute;sistance augmente ou diminue quand la temp&eacute;rature monte&nbsp;? Quel type de thermistance est-ce&nbsp;?</li>
       <li>On mesure 2,2&nbsp;k&Omega; dans l&rsquo;&eacute;tuve. Faut-il augmenter ou r&eacute;duire la temp&eacute;rature pour atteindre la consigne de 40&nbsp;&deg;C&nbsp;?</li>
     </ol>
-    <details class="corr">
-      <summary>Voir la correction</summary>
-      <div class="corr-body">
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
         <ol type="a">
           <li>R = 4,9&nbsp;k&Omega; correspond &agrave; <strong>T = 40&nbsp;&deg;C</strong> d&rsquo;apr&egrave;s le tableau.</li>
           <li>La r&eacute;sistance <strong>diminue</strong> quand T augmente &rarr; c&rsquo;est une <strong>CTN</strong> (Coefficient de Temp&eacute;rature N&eacute;gatif).</li>
           <li>R = 2,2&nbsp;k&Omega; correspond &agrave; 60&nbsp;&deg;C. L&rsquo;&eacute;tuve est <strong>trop chaude</strong> ; il faut <strong>r&eacute;duire</strong> la temp&eacute;rature pour revenir &agrave; la consigne de 40&nbsp;&deg;C.</li>
         </ol>
-      </div>
-    </details>
+    </div>
   </div>
 
   <div class="exo">
@@ -353,17 +349,15 @@
       <li>Afficher la temp&eacute;rature de l&rsquo;atelier sur un &eacute;cran Arduino.</li>
       <li>R&eacute;guler finement la temp&eacute;rature d&rsquo;une &eacute;tuve &agrave; 80&nbsp;&deg;C.</li>
     </ol>
-    <details class="corr">
-      <summary>Voir la correction</summary>
-      <div class="corr-body">
+    <button class="bc" onclick="toggle(this)">Voir la correction</button>
+    <div class="corr">
         <ol type="a">
           <li><strong>Thermocouple</strong> : seul capteur couvrant une plage jusqu&rsquo;&agrave; 900&nbsp;&deg;C.</li>
           <li><strong>CTP</strong> : d&egrave;s que la temp&eacute;rature d&eacute;passe un seuil, la r&eacute;sistance monte en fl&egrave;che et coupe le circuit &rarr; protection automatique du moteur.</li>
           <li><strong>Capteur LM35</strong> : sortie lin&eacute;aire en tension directement lisible par l&rsquo;entr&eacute;e analogique d&rsquo;un Arduino, simple &agrave; programmer.</li>
           <li><strong>CTN</strong> : tr&egrave;s sensible dans la plage 0&ndash;100&nbsp;&deg;C, id&eacute;ale pour la r&eacute;gulation fine d&rsquo;&eacute;tuve.</li>
         </ol>
-      </div>
-    </details>
+    </div>
   </div>
 
 </div><!-- /.c -->
@@ -428,6 +422,13 @@
     }
   });
 })();
+</script>
+<script>
+function toggle(btn){
+  var c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
 </script>
 <script src="../../../nav.js"></script>
 

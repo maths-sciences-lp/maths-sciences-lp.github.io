@@ -440,17 +440,15 @@ document.addEventListener('DOMContentLoaded', function(){
     <li>Calculer l&rsquo;amplitude U<sub>max</sub>.</li>
     <li>Calculer la valeur efficace U<sub>eff</sub>.</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       <ol>
         <li>T = 4 &times; 5 ms = <strong>20 ms = 0,020 s</strong></li>
         <li>f = 1/T = 1/0,020 = <strong>50 Hz</strong> (c&rsquo;est bien la fr&eacute;quence du secteur)</li>
         <li>U<sub>max</sub> = 3,2 &times; 50 = <strong>160 V</strong></li>
         <li>\( U_{\text{eff}} = \dfrac{160}{\sqrt{2}} \approx \dfrac{160}{1{,}414} \approx \mathbf{113\ V} \)</li>
       </ol>
-    </div>
-  </details>
+  </div>
 </div>
 
 <div class="exo">
@@ -464,16 +462,14 @@ document.addEventListener('DOMContentLoaded', function(){
     <li>Calculer la valeur efficace U<sub>eff</sub>.</li>
     <li>Calculer la p&eacute;riode T.</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       <ol>
         <li>Par identification avec \( u(t) = U_{\max} \cdot \sin(2\pi f t) \) : U<sub>max</sub> = <strong>311 V</strong> et f = <strong>50 Hz</strong></li>
         <li>\( U_{\text{eff}} = \dfrac{311}{\sqrt{2}} \approx \dfrac{311}{1{,}414} \approx \mathbf{220\ V} \)</li>
         <li>T = 1/f = 1/50 = <strong>0,020 s = 20 ms</strong></li>
       </ol>
-    </div>
-  </details>
+  </div>
 </div>
 
 <div class="exo">
@@ -486,19 +482,24 @@ document.addEventListener('DOMContentLoaded', function(){
     <li>Par quel facteur la fr&eacute;quence a-t-elle &eacute;t&eacute; multipli&eacute;e par rapport au secteur (50 Hz) ? Que peut-on en d&eacute;duire sur la vitesse du moteur ?</li>
     <li>Si la valeur efficace reste U<sub>eff</sub> = 230 V, calculer l&rsquo;amplitude U<sub>max</sub> du signal envoy&eacute; au moteur.</li>
   </ol>
-  <details class="corr">
-    <summary>Voir la correction</summary>
-    <div class="corr-body">
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
       <ol>
         <li>T = 1/f = 1/200 = <strong>0,005 s = 5 ms</strong></li>
         <li>Facteur = 200 / 50 = <strong>4</strong>. La fr&eacute;quence est 4 fois plus grande : le moteur tourne environ <strong>4 fois plus vite</strong> qu&rsquo;&agrave; 50 Hz.</li>
         <li>\( U_{\max} = 230 \times \sqrt{2} \approx 230 \times 1{,}414 \approx \mathbf{325\ V} \)</li>
       </ol>
-    </div>
-  </details>
+  </div>
 </div>
 
 </div><!-- fin .c -->
+<script>
+function toggle(btn){
+  var c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
 <script src="../../../nav.js"></script>
 
 <!-- Simulations interactives -->
