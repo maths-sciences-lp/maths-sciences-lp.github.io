@@ -503,6 +503,20 @@
   /* ── Chargement de nav.css ─────────────────────────────────────────── */
   injectCss();
 
+  /* ── Fonction toggle globale pour boutons « Voir la correction » ──── */
+  if (typeof window.toggle !== 'function') {
+    window.toggle = function (btn) {
+      var c = btn.nextElementSibling;
+      if (c.style.display === 'block') {
+        c.style.display = 'none';
+        btn.textContent = 'Voir la correction';
+      } else {
+        c.style.display = 'block';
+        btn.textContent = 'Masquer la correction';
+      }
+    };
+  }
+
 })();
 
 /* ── GoatCounter — Statistiques de visites ─────────────────────────── */
