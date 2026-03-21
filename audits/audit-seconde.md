@@ -1,7 +1,7 @@
 # Audit Seconde Bac Pro — Analyse complète
 
 **Date** : 2026-03-21
-**Dernière mise à jour** : 2026-03-21 (vérification exercices maths)
+**Dernière mise à jour** : 2026-03-21 (vérification exercices maths + PC, remplacement QCM)
 **Périmètre** : maths/seconde (14 chapitres) + physique-chimie/seconde (14 chapitres)
 
 ---
@@ -81,19 +81,21 @@ Thème CSS : `--p:#6f42c1` `--p-bg:#f5f0ff` `--p-border:#c4b5fd`
 
 Aucune erreur mathématique détectée dans les corrections.
 
-### 2. Corrections d'exercices manquantes en PC (gravité : MOYENNE) — À VÉRIFIER
+### 2. ~~Corrections d'exercices manquantes en PC~~ — RÉSOLU (2026-03-21)
 
-**40 exercices sur 199 n'ont pas de correction** (80 % de couverture) selon l'audit initial.
+**Vérification exhaustive des 14 chapitres PC** : tous les exercices ont une correction (`.corr` + `.bc` ou `<details>` + `<summary>`). Même constat que pour les maths : l'audit initial sous-estimait la couverture. **Couverture réelle : 100 %.**
 
-3 chapitres sans correction : ch10 (température), ch11 (transferts thermiques), ch14 (lumière/couleurs). ch07 a 4 corrections manquantes.
-
-*Note : la même sous-estimation que pour les maths est possible. Vérification à faire.*
+Aucune erreur scientifique détectée dans les corrections (lois physiques, calculs, unités).
 
 ### 3. Absence de balise `.situation` en PC (gravité : BASSE)
 
 Seulement 3 des ~695 contextes professionnels sont tagués avec la classe `.situation`. Les situations pro existent (menuiserie, atelier, chantier) mais manquent le balisage sémantique.
 
-### 4. Problèmes techniques mineurs (gravité : BASSE)
+### 4. QCM dans les fichiers exercices.html (gravité : MOYENNE) — CORRIGÉ (2026-03-21)
+
+8 chapitres maths/seconde contenaient un QCM (choix multiples) au lieu d'un vrai exercice dans leur fichier exercices.html : ch01, ch03, ch09, ch10, ch11, ch12, ch13, ch14. Les QCM ont été remplacés par des exercices de calcul avec correction complète.
+
+### 5. Problèmes techniques mineurs (gravité : BASSE)
 
 - `maths/seconde/ch03/exercices.html` utilise `.niv1/.niv2/.niv3/.niv4` au lieu de `.niveau-1/.niveau-2/.niveau-3/.niveau-4`
 - Labels `.label-def` placés avant le `<div class="def">` au lieu de dedans (PC ch04, ch05)
@@ -127,6 +129,8 @@ Seulement 3 des ~695 contextes professionnels sont tagués avec la classe `.situ
 ## Corrections realisees
 
 - **2026-03-21** : Vérification exhaustive des 14 fichiers exercices maths/seconde — 0 erreur mathématique, 100 % de corrections présentes
+- **2026-03-21** : Vérification exhaustive des 14 fichiers exercices PC/seconde — 0 erreur scientifique, 100 % de corrections présentes
+- **2026-03-21** : Remplacement des QCM par des exercices dans 8 fichiers maths/seconde (ch01, ch03, ch09, ch10, ch11, ch12, ch13, ch14)
 - **2026-03-21** : Correction `<title>` et sous-titre ch01/exercices.html ("Terminale" → "Seconde")
 - **2026-03-21** : Correction sous-titre ch03/exercices.html ("Terminale" → "Seconde")
 - **2026-03-17** : Correction de 9 liens dans maths/seconde/ch05/lecon.html
@@ -140,7 +144,8 @@ Seulement 3 des ~695 contextes professionnels sont tagués avec la classe `.situ
 
 ### Priorité haute
 - [x] ~~Ajouter les corrections des 112 exercices manquants en maths/seconde~~ — Déjà présentes (vérif. 2026-03-21)
-- [ ] Vérifier les corrections des exercices en PC/seconde (ch10, ch11, ch14, ch07 — même format `<details>` possible)
+- [x] ~~Vérifier les corrections des exercices en PC/seconde~~ — Toutes présentes (vérif. 2026-03-21)
+- [x] ~~Remplacer les QCM par des exercices dans 8 fichiers maths/seconde~~ — Fait (2026-03-21)
 
 ### Priorité moyenne
 - [ ] Ajouter le balisage `.situation` aux ~695 contextes professionnels en PC/seconde
