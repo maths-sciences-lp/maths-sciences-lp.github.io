@@ -403,6 +403,215 @@
   </div>
 </div>
 
+</div><!-- fin diff-standard -->
+
+
+<!-- ════════════ APPROFONDISSEMENT ════════════ -->
+<div class="diff-appro">
+<span class="tag-appro">Approfondissement</span>
+
+<table class="bareme-table">
+  <tr><th>Exercice</th><th>Questions</th><th>Compétences</th><th>Points</th></tr>
+  <tr><td>Exercice 1 — Réseau de communication d'un immeuble de bureaux</td><td>Q1 à Q5</td><td>APP, REA, ANA, VAL, COM</td><td>10 pts</td></tr>
+  <tr><td>Exercice 2 — Liaison fibre optique pour un atelier d'agencement</td><td>Q1 à Q5</td><td>APP, REA, ANA, VAL, COM</td><td>10 pts</td></tr>
+  <tr><td colspan="3"><strong>Total</strong></td><td><strong>20 pts</strong></td></tr>
+</table>
+
+<!-- EXERCICE 1 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Réseau de communication d'un immeuble de bureaux</span>
+    <span class="pts">10 points</span>
+  </div>
+
+  <div class="intro-box">
+    <strong>Contexte :</strong> Un technicien d'agencement participe à l'aménagement d'un immeuble de bureaux de 3 étages. Le réseau informatique utilise des câbles Ethernet Cat.6 (cuivre) pour relier les postes de travail aux switches d'étage, et une dorsale en fibre optique monomode pour relier les switches au serveur central situé au sous-sol. Le WiFi 5 GHz complète le dispositif pour les espaces de réunion. On cherche à caractériser et comparer ces différentes liaisons.
+  </div>
+
+  <div class="donnees">
+    <strong>Données :</strong><br>
+    Célérité de la lumière dans le vide : \(c = 3 \times 10^8\,\text{m/s}\)<br>
+    Fréquence du WiFi : \(f_{WiFi} = 5\,\text{GHz} = 5 \times 10^9\,\text{Hz}\)<br>
+    Longueur d'onde de la fibre optique : \(\lambda_{fibre} = 1\,310\,\text{nm} = 1{,}310 \times 10^{-6}\,\text{m}\)<br>
+    Atténuation du câble Ethernet Cat.6 : \(\alpha = 20\,\text{dB/100 m}\)<br>
+    Atténuation de la fibre optique : \(\alpha_{fibre} = 0{,}35\,\text{dB/km}\)<br>
+    Formule d'atténuation : \(A = 10 \cdot \log\!\left(\dfrac{P_e}{P_s}\right)\)<br>
+    Rappels : \(\log(2) \approx 0{,}30\) ; \(\log(5) \approx 0{,}70\)
+  </div>
+
+  <p class="q">
+    <span class="q-num">1.</span>
+    <span class="comp comp-app">APP</span>
+    Calculer la longueur d'onde \(\lambda_{WiFi}\) du signal WiFi à 5 GHz. Calculer la fréquence \(f_{fibre}\) de l'onde lumineuse utilisée dans la fibre optique. Exprimer les résultats avec les unités adaptées.
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:90px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(\lambda_{WiFi} = \dfrac{c}{f} = \dfrac{3 \times 10^8}{5 \times 10^9} = 6 \times 10^{-2}\,\text{m} = 6\,\text{cm}\)</p>
+    <p>\(f_{fibre} = \dfrac{c}{\lambda} = \dfrac{3 \times 10^8}{1{,}310 \times 10^{-6}} \approx 2{,}29 \times 10^{14}\,\text{Hz} \approx 229\,\text{THz}\)</p>
+  </div>
+
+  <p class="q">
+    <span class="q-num">2.</span>
+    <span class="comp comp-rea">REA</span>
+    Un câble Ethernet Cat.6 de 80 m relie un poste de travail au switch d'étage. La puissance en entrée est \(P_e = 100\,\text{mW}\). Calculer l'atténuation \(A\) du câble, puis la puissance en sortie \(P_s\).
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:90px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Atténuation : \(A = \dfrac{20 \times 80}{100} = 16\,\text{dB}\)</p>
+    <p>\(16 = 10 \cdot \log\!\left(\dfrac{100}{P_s}\right)\) → \(\log\!\left(\dfrac{100}{P_s}\right) = 1{,}6\) → \(\dfrac{100}{P_s} = 10^{1{,}6} \approx 39{,}8\)</p>
+    <p>\(P_s = \dfrac{100}{39{,}8} \approx 2{,}5\,\text{mW}\)</p>
+  </div>
+
+  <p class="q">
+    <span class="q-num">3.</span>
+    <span class="comp comp-ana">ANA</span>
+    La dorsale en fibre optique mesure 200 m entre le switch du 3e étage et le serveur au sous-sol. Calculer l'atténuation totale de cette liaison fibre. Comparer avec l'atténuation du câble Ethernet de la question 2 et expliquer la différence.
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:90px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(A_{fibre} = 0{,}35 \times 0{,}2 = 0{,}07\,\text{dB}\) (200 m = 0,2 km)</p>
+    <p>Comparaison : 0,07 dB (fibre, 200 m) contre 16 dB (cuivre, 80 m). La fibre optique atténue environ 230 fois moins que le cuivre par unité de longueur. Cela s'explique par la nature de la transmission : la fibre utilise la lumière guidée par réflexion totale interne, sans pertes résistives contrairement au courant électrique dans le cuivre.</p>
+  </div>
+
+  <p class="q">
+    <span class="q-num">4.</span>
+    <span class="comp comp-val">VAL</span>
+    Le constructeur du switch impose une puissance minimale de réception de \(P_{s,min} = 0{,}5\,\text{mW}\) pour garantir une liaison fiable. Vérifier si les deux liaisons (Ethernet 80 m et fibre 200 m) respectent cette contrainte avec \(P_e = 100\,\text{mW}\).
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:80px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Ethernet : \(P_s \approx 2{,}5\,\text{mW} > 0{,}5\,\text{mW}\) → Conforme.</p>
+    <p>Fibre : \(A = 0{,}07\,\text{dB}\), donc \(P_s \approx 100 \times 10^{-0{,}007} \approx 98{,}4\,\text{mW} \gg 0{,}5\,\text{mW}\) → Très largement conforme.</p>
+  </div>
+
+  <p class="q">
+    <span class="q-num">5.</span>
+    <span class="comp comp-com">COM</span>
+    Rédiger un paragraphe argumenté expliquant pourquoi on utilise la fibre optique pour la dorsale de l'immeuble et le cuivre pour la distribution aux postes de travail. Mentionner les critères de débit, d'atténuation, de coût et de praticité.
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:100px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La fibre optique est utilisée pour la dorsale car elle offre un très faible taux d'atténuation (0,35 dB/km), un débit très élevé (10 Gbit/s et plus) et une immunité totale aux perturbations électromagnétiques. Elle est idéale pour les longues distances entre étages.</p>
+    <p>Le câble Ethernet Cat.6 est préféré pour la distribution aux postes car il est plus simple à installer (connecteurs RJ45 standards), moins coûteux, compatible avec tous les équipements bureautiques, et suffisant pour les distances courtes (&lt; 100 m) avec un débit de 1 à 10 Gbit/s.</p>
+    <p>Cette architecture hybride optimise le rapport performance/coût de l'installation réseau.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 2 -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Liaison fibre optique pour un atelier d'agencement</span>
+    <span class="pts">10 points</span>
+  </div>
+
+  <div class="intro-box">
+    <strong>Contexte :</strong> Un menuisier agenceur installe un système de supervision numérique dans son atelier. Une fibre optique multimode relie le serveur de supervision aux machines à commande numérique (CNC). Le technicien de maintenance doit vérifier les performances de la liaison et diagnostiquer un problème d'atténuation excessive signalé par un opérateur.
+  </div>
+
+  <div class="donnees">
+    <strong>Données :</strong><br>
+    Puissance émise par le module optique : \(P_e = 2\,\text{mW}\)<br>
+    Puissance reçue mesurée : \(P_s = 0{,}2\,\text{mW}\)<br>
+    Longueur de la fibre : \(L = 150\,\text{m}\)<br>
+    Atténuation nominale de la fibre : \(\alpha = 3{,}5\,\text{dB/km}\)<br>
+    Atténuation d'un connecteur : \(A_c = 0{,}5\,\text{dB}\)<br>
+    Atténuation d'une soudure : \(A_s = 0{,}1\,\text{dB}\)<br>
+    La liaison comporte 4 connecteurs et 2 soudures.<br>
+    Sensibilité du récepteur : \(P_{min} = 0{,}05\,\text{mW}\)<br>
+    Rappels : \(\log(2) \approx 0{,}30\) ; \(\log(10) = 1\)
+  </div>
+
+  <p class="q">
+    <span class="q-num">1.</span>
+    <span class="comp comp-app">APP</span>
+    Calculer l'atténuation totale mesurée \(A_{mes}\) de la liaison à partir des puissances \(P_e\) et \(P_s\).
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:70px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(A_{mes} = 10 \cdot \log\!\left(\dfrac{P_e}{P_s}\right) = 10 \cdot \log\!\left(\dfrac{2}{0{,}2}\right) = 10 \cdot \log(10) = 10\,\text{dB}\)</p>
+  </div>
+
+  <p class="q">
+    <span class="q-num">2.</span>
+    <span class="comp comp-rea">REA</span>
+    Calculer le bilan d'atténuation théorique de la liaison en additionnant : l'atténuation de la fibre (longueur × atténuation linéique), l'atténuation des 4 connecteurs et l'atténuation des 2 soudures.
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:90px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Atténuation fibre : \(3{,}5 \times 0{,}15 = 0{,}525\,\text{dB}\)</p>
+    <p>Atténuation connecteurs : \(4 \times 0{,}5 = 2{,}0\,\text{dB}\)</p>
+    <p>Atténuation soudures : \(2 \times 0{,}1 = 0{,}2\,\text{dB}\)</p>
+    <p>\(A_{théo} = 0{,}525 + 2{,}0 + 0{,}2 = 2{,}725\,\text{dB} \approx 2{,}7\,\text{dB}\)</p>
+  </div>
+
+  <p class="q">
+    <span class="q-num">3.</span>
+    <span class="comp comp-ana">ANA</span>
+    Comparer l'atténuation mesurée (question 1) et l'atténuation théorique (question 2). Calculer l'écart. Proposer au moins deux causes possibles expliquant cet excès d'atténuation.
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:90px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Écart : \(A_{mes} - A_{théo} = 10 - 2{,}7 = 7{,}3\,\text{dB}\)</p>
+    <p>L'atténuation mesurée est 3,7 fois supérieure à la valeur théorique. Causes possibles :</p>
+    <p>— Connecteur sale ou mal poli (poussière sur la face optique)</p>
+    <p>— Rayon de courbure trop faible (la fibre est pliée, provoquant des pertes par macro-courbure)</p>
+    <p>— Fibre endommagée (micro-fissure due à un écrasement ou un choc lors de l'installation)</p>
+    <p>— Mauvais alignement d'un connecteur (désaxé ou mal enfiché)</p>
+  </div>
+
+  <p class="q">
+    <span class="q-num">4.</span>
+    <span class="comp comp-val">VAL</span>
+    Malgré l'excès d'atténuation, la liaison fonctionne-t-elle encore ? Calculer la marge de puissance disponible : \(M = P_s - P_{min}\). Calculer également l'atténuation maximale admissible \(A_{max}\) pour que la liaison reste fonctionnelle.
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:90px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Marge : \(M = P_s - P_{min} = 0{,}2 - 0{,}05 = 0{,}15\,\text{mW}\) → La liaison fonctionne encore.</p>
+    <p>\(A_{max} = 10 \cdot \log\!\left(\dfrac{P_e}{P_{min}}\right) = 10 \cdot \log\!\left(\dfrac{2}{0{,}05}\right) = 10 \cdot \log(40) = 10 \times 1{,}60 = 16\,\text{dB}\)</p>
+    <p>La liaison supporte jusqu'à 16 dB d'atténuation avant de tomber en panne. Avec 10 dB actuellement, il reste une marge de 6 dB, mais celle-ci est fragile et pourrait se dégrader.</p>
+  </div>
+
+  <p class="q">
+    <span class="q-num">5.</span>
+    <span class="comp comp-com">COM</span>
+    Rédiger un rapport de diagnostic pour le menuisier agenceur : résumer le problème identifié, proposer les actions correctives à mener et justifier l'urgence de l'intervention.
+    <span class="pts-q">2 pts</span>
+  </p>
+  <div class="rep-zone" style="min-height:100px">...</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Rapport de diagnostic :</strong></p>
+    <p>La liaison fibre optique entre le serveur et les machines CNC présente une atténuation de 10 dB, soit 7,3 dB de plus que la valeur théorique (2,7 dB). La liaison fonctionne encore (marge de 6 dB) mais sa fiabilité est compromise.</p>
+    <p><strong>Actions correctives recommandées :</strong></p>
+    <p>1. Nettoyer tous les connecteurs optiques avec un kit de nettoyage adapté (cause la plus fréquente).</p>
+    <p>2. Vérifier le cheminement de la fibre : s'assurer qu'aucun rayon de courbure n'est inférieur au minimum spécifié (généralement 30 mm).</p>
+    <p>3. Réaliser un test de réflectométrie (OTDR) pour localiser précisément le défaut.</p>
+    <p><strong>Urgence :</strong> intervention recommandée sous 48 h. Une dégradation supplémentaire (poussière, vibration des machines) pourrait faire basculer l'atténuation au-delà de 16 dB et provoquer une coupure de la supervision des machines CNC.</p>
+  </div>
+</div>
+
+</div><!-- fin diff-appro -->
+
 </div>
 <script>function toggle(b){var d=b.nextElementSibling;if(d.style.display==='block'){d.style.display='none';b.textContent='Voir la correction'}else{d.style.display='block';b.textContent='Masquer la correction'}}</script>
 <script src="../../../nav.js"></script>

@@ -158,7 +158,7 @@ Les textes du bouton retour varient d'un chapitre a l'autre :
 
 | Ressource | Maths Term | PC ICCER | PC ERA | Statut |
 |---|---|---|---|---|
-| MathJax | 10/11 | 8/8 | 8/8 | **ch09 manquant** |
+| MathJax | 11/11 (ch09 corrige) | 8/8 | 8/8 | OK |
 | styles.css | 11/11 | 8/8 | 8/8 | OK |
 | print.css | 11/11 | 8/8 | 8/8 | OK |
 | nav.js | 11/11 | 8/8 | 8/8 | OK |
@@ -172,7 +172,7 @@ Les textes du bouton retour varient d'un chapitre a l'autre :
 |---|---|---|---|---|
 | Maths Term (11 ch) | 11/11 complet | 11/11 complet | 11/11 complet | 11/11 complet |
 | PC ICCER (8 ch) | 8/8 complet | 8/8 complet | 8/8 complet | 8/8 complet |
-| PC ERA (8 ch) | 8/8 complet | **7/8** (ch07 manque appro) | 8/8 complet | 8/8 complet |
+| PC ERA (8 ch) | 8/8 complet | 8/8 complet (ch07 corrige 2026-03-22) | 8/8 complet | 8/8 complet |
 
 ### Corrections d'exercices
 
@@ -236,26 +236,32 @@ Les textes du bouton retour varient d'un chapitre a l'autre :
 
 ## Corrections realisees
 
-_(aucune correction realisee a ce jour — audit initial)_
+- **2026-03-22** : Ajout de MathJax dans `maths/terminale/ch09/lecon.html` (CRITIQUE)
+- **2026-03-22** : Ajout section Approfondissement complete (2 exercices, 10 questions, 20 pts) dans `physique-chimie/terminale-era/ch07/ds.html` (CRITIQUE)
+- **2026-03-22** : Correction du sous-titre ICCER ch01 : « TICCER (Grpt 1) / ICCER » → « ICCER (Grpt 1) » (HAUTE)
+- **2026-03-22** : Remplacement commentaires `<!-- APPLICATION ERA-MA -->` par `<!-- APPLICATION PROFESSIONNELLE -->` dans PC ERA ch01/ch02 (BASSE)
+- **2026-03-22** : Standardisation des textes de navigation en Maths Terminale : ch06 « Retour au cours de Terminale » et ch07 « Retour au programme » → « Retour au sommaire » (BASSE)
+- **2026-03-22** : DS PC ICCER ch03 verifie : deja complet (3 exercices Socle, 3 Standard, 2 Appro — faux positif)
 
 ---
 
 ## Ameliorations restantes
 
 ### Priorite critique
-- [ ] Ajouter MathJax dans `maths/terminale/ch09/lecon.html`
-- [ ] Ajouter section Approfondissement dans `physique-chimie/terminale-era/ch07/ds.html`
+- [x] ~~Ajouter MathJax dans `maths/terminale/ch09/lecon.html`~~ (corrige 2026-03-22)
+- [x] ~~Ajouter section Approfondissement dans `physique-chimie/terminale-era/ch07/ds.html`~~ (corrige 2026-03-22)
 
 ### Priorite haute
-- [ ] Corriger le sous-titre de `physique-chimie/terminale-iccer/ch01/lecon.html` : remplacer « TICCER (Grpt 1) / ICCER » par « ICCER (Grpt 1) »
+- [x] ~~Corriger le sous-titre de `physique-chimie/terminale-iccer/ch01/lecon.html`~~ (corrige 2026-03-22)
 
 ### Priorite moyenne
-- [ ] Developper le DS de `physique-chimie/terminale-iccer/ch03/ds.html` (1 exercice/niveau → 3-4 exercices/niveau)
+- [x] ~~Developper le DS de `physique-chimie/terminale-iccer/ch03/ds.html`~~ (verifie 2026-03-22 : deja complet)
 - [ ] Harmoniser le mecanisme de corrections en Maths Terminale (details/summary vs boutons .bc) — optionnel si coherence souhaitee
 - [ ] Verifier que les lecons PC ERA ne sont pas trop courtes par rapport a celles de PC ICCER (comparer le contenu pedagogique)
 
 ### Priorite basse
-- [ ] Remplacer commentaires `<!-- APPLICATION ERA-MA -->` par `<!-- APPLICATION PROFESSIONNELLE -->` dans PC ERA ch01/ch02
+- [x] ~~Remplacer commentaires `<!-- APPLICATION ERA-MA -->`~~ (corrige 2026-03-22)
+- [x] ~~Standardiser les textes de navigation maths terminale~~ (corrige 2026-03-22)
 - [ ] Envisager la factorisation du CSS inline volumineux (ch04, ch05 maths ; ch06, ch07 ICCER) dans styles.css
 - [ ] Generaliser l'utilisation de `qcm.js` dans tous les QCM (au lieu du JS inline)
 - [ ] Creer des simulations interactives pour les chapitres qui s'y pretent (mecanique, ondes, fonctions)
