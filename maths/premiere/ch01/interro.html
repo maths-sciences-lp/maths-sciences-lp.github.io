@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
 .pts{font-size:.82em;color:#718096;font-weight:normal}
+.sujet-header{background:var(--p);color:#fff;padding:.5em 1em;border-radius:6px;margin:1.5em 0 1em;font-size:1.15em}
 </style>
 </head>
 <body>
@@ -27,6 +28,8 @@
 <!-- ========================= SOCLE ========================= -->
 <div class="diff-socle">
 <span class="tag-socle">Socle</span>
+
+<h3 class="sujet-header">Sujet A</h3>
 <p><strong>Bar&egrave;me :</strong> 20 points</p>
 
 <div class="exo">
@@ -103,11 +106,90 @@
   </div>
 </div>
 
+<h3 class="sujet-header">Sujet B</h3>
+<p><strong>Bar&egrave;me :</strong> 20 points</p>
+
+<div class="exo">
+  <h2>Question 1 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> Le point moyen \(G\) a pour coordonn&eacute;es \(G(\bar{x}\,;\,\bar{y})\) avec \(\bar{x} = \dfrac{\text{somme des } x_i}{n}\) et \(\bar{y} = \dfrac{\text{somme des } y_i}{n}\).</div>
+  <p>Un installateur thermique rel&egrave;ve la temp&eacute;rature ext&eacute;rieure \(x\) (en &deg;C) et la consommation de gaz \(y\) (en MWh) sur 4 mois :</p>
+  <table>
+    <tr><th>Temp&eacute;rature \(x\) (&deg;C)</th><td>2</td><td>6</td><td>10</td><td>14</td></tr>
+    <tr><th>Consommation \(y\) (MWh)</th><td>35</td><td>27</td><td>19</td><td>11</td></tr>
+  </table>
+  <p>a) Calculer \(\bar{x} = \dfrac{2 + 6 + 10 + 14}{4} = \dfrac{...}{4} = ...\)</p>
+  <p>b) Calculer \(\bar{y} = \dfrac{35 + 27 + 19 + 11}{4} = \dfrac{...}{4} = ...\)</p>
+  <p>c) En d&eacute;duire les coordonn&eacute;es du point moyen \(G(...\,;\,...)\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(\bar{x} = \dfrac{2+6+10+14}{4} = \dfrac{32}{4} = \mathbf{8}\)</p>
+    <p>b) \(\bar{y} = \dfrac{35+27+19+11}{4} = \dfrac{92}{4} = \mathbf{23}\)</p>
+    <p>c) Le point moyen est \(G(\mathbf{8}\,;\,\mathbf{23})\).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> Pour utiliser la droite de r&eacute;gression \(y = ax + b\), on remplace \(x\) par la valeur donn&eacute;e et on calcule \(y\).</div>
+  <p>La droite de r&eacute;gression obtenue &agrave; la calculatrice est : \(y = -2x + 39\).</p>
+  <p>a) V&eacute;rifier que la droite passe par le point moyen \(G(8\,;\,23)\) : calculer \(-2 \times 8 + 39 = ...\)</p>
+  <p>b) Estimer la consommation pour une temp&eacute;rature de 7 &deg;C : \(y = -2 \times 7 + 39 = ...\)</p>
+  <p>c) Cette estimation est-elle une interpolation ou une extrapolation ? Justifier.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(-2 \times 8 + 39 = -16 + 39 = \mathbf{23}\). On retrouve bien \(\bar{y} = 23\), la droite passe par \(G\).</p>
+    <p>b) \(y = -2 \times 7 + 39 = -14 + 39 = \mathbf{25}\) MWh.</p>
+    <p>c) C'est une <strong>interpolation</strong> car 7 &deg;C est &agrave; l'int&eacute;rieur de la plage de donn&eacute;es [2 ; 14].</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> \(R^2\) proche de 1 = bon ajustement ; \(R^2\) proche de 0 = mauvais ajustement.</div>
+  <p>La calculatrice affiche \(R^2 = 0{,}99\).</p>
+  <p>a) L'ajustement affine est-il de bonne qualit&eacute; ? Justifier.</p>
+  <p>b) Que signifie \(R^2 = 0{,}99\) en termes de pourcentage ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Oui, l'ajustement est de <strong>bonne qualit&eacute;</strong> car \(R^2 = 0{,}99\) est tr&egrave;s proche de 1 (\(R^2 \geqslant 0{,}90\)).</p>
+    <p>b) Cela signifie que <strong>99 %</strong> de la variation de \(y\) est expliqu&eacute;e par la relation lin&eacute;aire avec \(x\).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> L'extrapolation est risqu&eacute;e car le mod&egrave;le peut ne plus &ecirc;tre valable en dehors des donn&eacute;es.</div>
+  <p>Toujours avec la droite \(y = -2x + 39\) :</p>
+  <p>a) Estimer la consommation pour \(x = 25\) &deg;C : \(y = -2 \times 25 + 39 = ...\)</p>
+  <p>b) Ce r&eacute;sultat est-il r&eacute;aliste ? Pourquoi ?</p>
+  <p>c) S'agit-il d'une interpolation ou d'une extrapolation ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(y = -2 \times 25 + 39 = -50 + 39 = \mathbf{-11}\) MWh.</p>
+    <p>b) Ce r&eacute;sultat n'est <strong>pas r&eacute;aliste</strong> : une consommation n&eacute;gative n'a pas de sens. En &eacute;t&eacute;, le chauffage est simplement &eacute;teint.</p>
+    <p>c) C'est une <strong>extrapolation</strong> car 25 &deg;C est en dehors de la plage [2 ; 14].</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="pts">(4 points)</span></h2>
+  <p>Indiquer si les affirmations suivantes sont vraies ou fausses. Justifier chaque r&eacute;ponse.</p>
+  <p>a) &laquo; La droite de r&eacute;gression passe toujours par l'origine du rep&egrave;re. &raquo;</p>
+  <p>b) &laquo; Si \(R^2 = 0{,}95\), l'ajustement lin&eacute;aire est de bonne qualit&eacute;. &raquo;</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) <strong>FAUX.</strong> La droite de r&eacute;gression passe toujours par le <strong>point moyen</strong> \(G(\bar{x}\,;\,\bar{y})\), pas n&eacute;cessairement par l'origine.</p>
+    <p>b) <strong>VRAI.</strong> \(R^2 = 0{,}95 \geqslant 0{,}90\), donc l'ajustement est de bonne qualit&eacute; : 95 % de la variation est expliqu&eacute;e par le mod&egrave;le lin&eacute;aire.</p>
+  </div>
+</div>
+
 </div>
 
 <!-- ========================= STANDARD ========================= -->
 <div class="diff-standard">
 <span class="tag-standard">Standard</span>
+
+<h3 class="sujet-header">Sujet A</h3>
 <p><strong>Bar&egrave;me :</strong> 20 points</p>
 
 <div class="exo">

@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
 .pts{font-size:.82em;color:#718096;font-weight:normal}
+.sujet-header{background:var(--p);color:#fff;padding:.5em 1em;border-radius:6px;margin:1.5em 0 1em;font-size:1.15em}
 </style>
 </head>
 <body>
@@ -27,6 +28,8 @@
 <!-- ========================= SOCLE ========================= -->
 <div class="diff-socle">
 <span class="tag-socle">Socle</span>
+
+<h3 class="sujet-header">Sujet A</h3>
 <p><strong>Barème :</strong> 20 points</p>
 
 <div class="exo">
@@ -102,11 +105,89 @@
   </div>
 </div>
 
+<h3 class="sujet-header">Sujet B</h3>
+<p><strong>Barème :</strong> 20 points</p>
+
+<div class="exo">
+  <h2>Question 1 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> Le point moyen \(G(\bar{x}\,;\,\bar{y})\) a pour coordonnées les moyennes de chaque série : \(\bar{x} = \dfrac{x_1 + x_2 + \cdots + x_n}{n}\).</div>
+  <p>Un menuisier agenceur relève la longueur \(x\) (en mètres) des pièces de bois et le temps de découpe \(y\) (en minutes) pour 4 pièces :</p>
+  <table>
+    <tr><th>Longueur \(x\) (m)</th><td>2</td><td>4</td><td>6</td><td>8</td></tr>
+    <tr><th>Temps \(y\) (min)</th><td>10</td><td>18</td><td>28</td><td>36</td></tr>
+  </table>
+  <p>a) Calculer \(\bar{x} = \dfrac{2 + 4 + 6 + 8}{4} = \dfrac{...}{4} = ...\)</p>
+  <p>b) Calculer \(\bar{y} = \dfrac{10 + 18 + 28 + 36}{4} = \dfrac{...}{4} = ...\)</p>
+  <p>c) En déduire les coordonnées du point moyen \(G\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(\bar{x} = \dfrac{2 + 4 + 6 + 8}{4} = \dfrac{20}{4} = \mathbf{5\,\text{m}}\)</p>
+    <p>b) \(\bar{y} = \dfrac{10 + 18 + 28 + 36}{4} = \dfrac{92}{4} = \mathbf{23\,\text{min}}\)</p>
+    <p>c) Le point moyen est \(G(\mathbf{5\,;\,23})\).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> Le coefficient de corrélation \(r\) mesure la qualité de la liaison linéaire. Si \(|r| > 0{,}95\), l'ajustement affine est excellent.</div>
+  <p>La calculatrice donne \(r = 0{,}99\) pour les données de la question 1.</p>
+  <p>a) La liaison entre la longueur et le temps de découpe est-elle forte ou faible ? Justifier.</p>
+  <p>b) \(r\) est positif. Que signifie le signe de \(r\) ? Compléter : « Quand la longueur ..., le temps de découpe ... »</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(|r| = 0{,}99 > 0{,}95\), donc la liaison est <strong>très forte</strong>. L'ajustement affine est excellent.</p>
+    <p>b) \(r > 0\) signifie une liaison <strong>positive</strong> : « Quand la longueur <strong>augmente</strong>, le temps de découpe <strong>augmente</strong>. »</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> Pour estimer \(y\) à partir de \(x_0\), on remplace \(x\) par \(x_0\) dans l'équation de la droite : \(y = a \times x_0 + b\).</div>
+  <p>La droite de régression est \(y = 4{,}4x + 1\).</p>
+  <p>a) Calculer le temps prévu pour \(x = 5\,\text{m}\) : \(y = 4{,}4 \times 5 + 1 = ...\)</p>
+  <p>b) Vérifier que le point moyen \(G(5\,;\,23)\) appartient bien à cette droite.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(y = 4{,}4 \times 5 + 1 = 22 + 1 = \mathbf{23\,\text{min}}\)</p>
+    <p>b) Pour \(x = 5\) : \(y = 23\). On retrouve bien les coordonnées de \(G(5\,;\,23)\). Le point moyen <strong>appartient à la droite</strong> de régression. ✓</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> Interpolation = estimation dans l'intervalle des données. Extrapolation = estimation en dehors de l'intervalle.</div>
+  <p>Les données vont de \(x = 2\,\text{m}\) à \(x = 8\,\text{m}\).</p>
+  <p>a) Estimer le temps de découpe pour \(x = 3\,\text{m}\) avec la droite \(y = 4{,}4x + 1\). Est-ce une interpolation ou une extrapolation ?</p>
+  <p>b) Estimer le temps de découpe pour \(x = 15\,\text{m}\). Est-ce une interpolation ou une extrapolation ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(y = 4{,}4 \times 3 + 1 = 13{,}2 + 1 = \mathbf{14{,}2\,\text{min}}\). C'est une <strong>interpolation</strong> car 3 m est dans l'intervalle [2 ; 8].</p>
+    <p>b) \(y = 4{,}4 \times 15 + 1 = 66 + 1 = \mathbf{67\,\text{min}}\). C'est une <strong>extrapolation</strong> car 15 m est hors de l'intervalle. Le résultat peut être peu fiable : le modèle a ses limites.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="pts">(4 points)</span></h2>
+  <div class="meth"><strong>Rappel :</strong> La droite de régression passe toujours par le point moyen \(G(\bar{x}\,;\,\bar{y})\).</div>
+  <p>Parmi les affirmations suivantes, indiquer si elles sont <strong>vraies</strong> ou <strong>fausses</strong>. Justifier.</p>
+  <p>a) « Si \(r = -0{,}50\), l'ajustement affine est excellent. »</p>
+  <p>b) « Un coefficient \(r\) positif signifie que les deux grandeurs évoluent dans le même sens. »</p>
+  <p>c) « On peut utiliser la droite de régression pour estimer n'importe quelle valeur avec certitude. »</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) <strong>Faux.</strong> \(|r| = 0{,}50 < 0{,}85\), la liaison est faible. L'ajustement affine n'est pas fiable.</p>
+    <p>b) <strong>Vrai.</strong> Un \(r > 0\) signifie une liaison positive : quand \(x\) augmente, \(y\) augmente aussi.</p>
+    <p>c) <strong>Faux.</strong> La droite de régression est un modèle qui a ses limites, notamment en extrapolation (hors de l'intervalle des données).</p>
+  </div>
+</div>
+
 </div>
 
 <!-- ========================= STANDARD ========================= -->
 <div class="diff-standard">
 <span class="tag-standard">Standard</span>
+
+<h3 class="sujet-header">Sujet A</h3>
 <p><strong>Barème :</strong> 20 points</p>
 
 <div class="exo">
