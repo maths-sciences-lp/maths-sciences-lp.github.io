@@ -91,23 +91,19 @@ Le DS du chapitre 07 (Transmettre l'information) ne contient que les niveaux Soc
 **Fichier** : `physique-chimie/terminale-era/ch07/ds.html`
 **Correction** : Ajouter une section Approfondissement avec exercices ouverts, /20 points.
 
-### 3. Commentaires HTML avec sigles interdits dans PC ERA ch01-ch02 (gravite : BASSE)
+### 3. DS PC ICCER ch03 — contenu reduit (gravite : MOYENNE)
 
-Les lecons ch01 et ch02 de PC ERA contiennent des commentaires HTML `<!-- APPLICATION ERA-MA -->`. Bien qu'invisibles pour les eleves, cela ne respecte pas la convention du projet.
+Le DS du chapitre 03 (Moteur electrique) ne contient que 1 exercice par niveau (socle, standard, appro) soit 3 exercices au total, contre 6 a 12 pour les autres chapitres.
 
-**Fichiers** :
-- `physique-chimie/terminale-era/ch01/lecon.html` (ligne 473)
-- `physique-chimie/terminale-era/ch02/lecon.html` (ligne 553)
+**Fichier** : `physique-chimie/terminale-iccer/ch03/ds.html`
+**Correction** : Developper le DS avec 3-4 exercices par niveau.
 
-**Correction** : Remplacer par `<!-- APPLICATION PROFESSIONNELLE -->`.
+### 4. Sous-titre incoherent dans PC ICCER ch01 (gravite : HAUTE)
 
-### 4. Boutons "Voir la correction" (bc) absents en Maths Terminale (gravite : MOYENNE)
+Le sous-titre de ch01 indique « TICCER (Grpt 1) / ICCER » au lieu de « ICCER (Grpt 1) ». « TICCER » est une variante non standard.
 
-Les exercices de Maths Terminale utilisent `<details><summary>` pour les corrections (ce qui fonctionne), mais n'utilisent pas la classe `.bc` (bouton "Voir la correction") presente dans styles.css, contrairement aux sections PC qui l'utilisent systematiquement.
-
-**Fichiers** : tous les `maths/terminale/ch*/exercices.html`
-**Impact** : Fonctionnel mais inconsistant avec le reste du site. Les `<details>` fonctionnent bien.
-**Correction** : Harmonisation optionnelle — le mecanisme `<details>` est acceptable.
+**Fichier** : `physique-chimie/terminale-iccer/ch01/lecon.html`
+**Correction** : Harmoniser avec les autres chapitres : « Terminale Bac Pro ICCER (Grpt 1) ».
 
 ### 5. CSS inline volumineux dans certaines lecons (gravite : BASSE)
 
@@ -119,7 +115,25 @@ Quelques lecons contiennent beaucoup de CSS inline (classes specifiques a la pag
 
 **Impact** : Pas de redefinition des classes styles.css (verifie). Ce sont des classes specifiques (`.tv-table`, `.classif`, `.calc-box`, etc.). Acceptable mais pourrait etre factorise dans styles.css si ces classes sont reutilisees.
 
-### 6. qcm.js non utilise dans la majorite des QCM (gravite : BASSE)
+### 6. Commentaires HTML avec sigles interdits dans PC ERA ch01-ch02 (gravite : BASSE)
+
+Les lecons ch01 et ch02 de PC ERA contiennent des commentaires HTML `<!-- APPLICATION ERA-MA -->`. Bien qu'invisibles pour les eleves, cela ne respecte pas la convention du projet.
+
+**Fichiers** :
+- `physique-chimie/terminale-era/ch01/lecon.html` (ligne 473)
+- `physique-chimie/terminale-era/ch02/lecon.html` (ligne 553)
+
+**Correction** : Remplacer par `<!-- APPLICATION PROFESSIONNELLE -->`.
+
+### 7. Boutons "Voir la correction" (bc) absents en Maths Terminale (gravite : MOYENNE)
+
+Les exercices de Maths Terminale utilisent `<details><summary>` pour les corrections (ce qui fonctionne), mais n'utilisent pas la classe `.bc` (bouton "Voir la correction") presente dans styles.css, contrairement aux sections PC qui l'utilisent systematiquement.
+
+**Fichiers** : tous les `maths/terminale/ch*/exercices.html`
+**Impact** : Fonctionnel mais inconsistant avec le reste du site. Les `<details>` fonctionnent bien.
+**Correction** : Harmonisation optionnelle — le mecanisme `<details>` est acceptable.
+
+### 8. qcm.js non utilise dans la majorite des QCM (gravite : BASSE)
 
 Sur 27 chapitres, seul `maths/terminale/ch02/qcm.html` inclut `qcm.js`. Tous les autres QCM gerent le scoring en JS inline.
 
@@ -222,9 +236,10 @@ _(aucune correction realisee a ce jour — audit initial)_
 - [ ] Ajouter section Approfondissement dans `physique-chimie/terminale-era/ch07/ds.html`
 
 ### Priorite haute
-_(aucune)_
+- [ ] Corriger le sous-titre de `physique-chimie/terminale-iccer/ch01/lecon.html` : remplacer « TICCER (Grpt 1) / ICCER » par « ICCER (Grpt 1) »
 
 ### Priorite moyenne
+- [ ] Developper le DS de `physique-chimie/terminale-iccer/ch03/ds.html` (1 exercice/niveau → 3-4 exercices/niveau)
 - [ ] Harmoniser le mecanisme de corrections en Maths Terminale (details/summary vs boutons .bc) — optionnel si coherence souhaitee
 - [ ] Verifier que les lecons PC ERA ne sont pas trop courtes par rapport a celles de PC ICCER (comparer le contenu pedagogique)
 
