@@ -92,16 +92,16 @@ Tous les fichiers utilisent le thème Première Pro : `--p:#0969da; --p-bg:#dbea
 | Chapitre | Simulation liée | Commentaire |
 |---|---|---|
 | ch01 | ✅ simulations/stats-2var.html | OK |
-| ch02 | ❌ Aucune | Simulation de probabilités souhaitable |
+| ch02 | ✅ simulations/probabilites.html | Lien ajouté 2026-03-22 |
 | ch03 | ✅ simulations/suites.html | OK |
 | ch04 | ✅ simulations/graphe-equation.html | OK |
 | ch05 | ✅ simulations/derivee.html | OK (partagée avec ch06) |
 | ch06 | ✅ simulations/derivee.html | OK |
-| ch07 | ❌ Aucune | Visualisation 3D des solides souhaitable |
-| ch08 | ❌ Aucune | Manipulation de vecteurs souhaitable |
+| ch07 | ✅ simulations/solides.html | Lien ajouté 2026-03-22 |
+| ch08 | ✅ simulations/vecteurs.html | Lien ajouté 2026-03-22 |
 | ch09 | ✅ simulations/trigonometrie.html | OK |
 
-**Chapitres sans simulation** : ch02 (Probabilités), ch07 (Géométrie espace), ch08 (Vecteurs)
+**~~Chapitres sans simulation~~** — CORRIGÉ 2026-03-22 : les simulations existaient déjà, les liens ont été ajoutés aux leçons.
 
 ### 4. Page sommaire : simulation manquante dans l'index (gravité : BASSE)
 
@@ -150,6 +150,7 @@ Contrairement aux cours de Seconde qui utilisent systématiquement les blocs d'a
 - **2026-03-22** : Création des 9 interrogations avec différenciation et barème /20
 - **2026-03-22** : Ajout différenciation exercices.html (ch01-ch08) — balises diff-socle/standard/appro + exercices standard intermédiaires
 - **2026-03-22** : Ajout différenciation ds.html (ch01-ch09) — versions socle guidée, standard, approfondissement BTS (/20 chacune)
+- **2026-03-22** : Liaison des simulations existantes aux leçons ch02 (probabilites.html), ch07 (solides.html), ch08 (vecteurs.html)
 
 ---
 
@@ -160,9 +161,9 @@ Contrairement aux cours de Seconde qui utilisent systématiquement les blocs d'a
 - [x] ~~Ajouter la différenciation aux 9 fichiers ds.html~~ — **FAIT 2026-03-22**
 
 ### Priorité moyenne
-- [ ] Créer une simulation pour ch02 (Probabilités) — arbre de probabilités interactif
-- [ ] Créer une simulation pour ch07 (Géométrie espace) — visualisation 3D des solides
-- [ ] Créer une simulation pour ch08 (Vecteurs) — manipulation graphique de vecteurs
+- [x] ~~Lier simulation probabilités (ch02)~~ — **FAIT 2026-03-22** (simulation existante, lien ajouté)
+- [x] ~~Lier simulation solides (ch07)~~ — **FAIT 2026-03-22** (simulation existante, lien ajouté)
+- [x] ~~Lier simulation vecteurs (ch08)~~ — **FAIT 2026-03-22** (simulation existante, lien ajouté)
 - [ ] Mettre à jour l'index des simulations pour référencer toutes les simulations liées à Première
 
 ### Priorité basse
