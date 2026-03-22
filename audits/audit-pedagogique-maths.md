@@ -373,7 +373,7 @@ La section V "Representation graphique des suites" (ligne 273-309) explique comm
 
 ### Uniformisation QCM et interro (2026-03-18)
 - [ ] Creer `qcm.html` pour les 34 chapitres maths (14 seconde + 9 premiere + 11 terminale) — QCM differencies 3×15 questions
-- [ ] Creer `interro.html` pour les 34 chapitres maths (14 seconde + 9 premiere + 11 terminale) — interros differenciees 3×5-8 questions
+- [x] ~~Creer `interro.html` pour les 34 chapitres maths~~ — **34/34 complet** (2026-03-22, + Sujet B)
 - [ ] QCM maths : privilegier calcul mental, reconnaissance de formules, lecture graphique, vrai/faux sur proprietes
 - [ ] Interro maths : privilegier calculs directs, tableaux a completer, exercices de reconnaissance
 - [ ] Specs detaillees : voir `prompts/prompt-qcm-interro.md`

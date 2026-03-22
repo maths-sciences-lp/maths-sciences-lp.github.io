@@ -64,14 +64,14 @@ Interrogation ecrite sur les polynomes de degre 3. Page de qualite, liee depuis 
 | `ds.html` | 14 | 9 | 11 | 14 | 10 | 10 | 5 | 4 | **77/84** |
 | `fiche.html` | 14 | 2 | 11 | 14 | 0 | 0 | 8 | 8 | **57/84** |
 | `qcm.html` | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | **1/84** |
-| `interro.html` | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | **1/84** |
+| `interro.html` | 14 | 9 | 11 | 14 | 10 | 10 | 8 | 8 | **84/84** |
 
 **Pages manquantes a creer :**
 
 | Type | Nombre a creer | Priorite |
 |---|---|---|
 | `qcm.html` | 83 | Haute |
-| `interro.html` | 83 | Haute |
+| `interro.html` | 0 | ~~Haute~~ Terminé |
 | `fiche.html` | 27 | Moyenne |
 | `exercices.html` | 7 | Haute |
 | `ds.html` | 7 | Haute |
@@ -163,7 +163,7 @@ subject/level/chNN/
 - [ ] Centraliser les classes CSS QCM dans `styles.css` (prerequis avant creation en masse)
 - [ ] Ajouter le lien `qcm.html` du ch07 PC dans le sommaire `pc-2nde-pro.html`
 - [ ] Creer `qcm.html` pour les 83 chapitres manquants
-- [ ] Creer `interro.html` pour les 83 chapitres manquants
+- [x] ~~Creer `interro.html` pour les 83 chapitres manquants~~ — **84/84 complet** (2026-03-22, + Sujet B sur chaque fichier)
 - [ ] Creer les 7 `exercices.html` manquants (PC terminale-iccer ch04-08, terminale-era ch05-08)
 - [ ] Creer les 7 `ds.html` manquants (memes chapitres)
 - [ ] Mettre a jour les sommaires pour lister qcm.html et interro.html pour chaque chapitre

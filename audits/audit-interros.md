@@ -1,7 +1,7 @@
 # Audit des interrogations ecrites (interro.html)
 
 **Date** : 2026-03-22
-**Derniere mise a jour** : 2026-03-22
+**Derniere mise a jour** : 2026-03-22 (ajout Sujet B)
 **Fichiers audites** : 85 interro.html
 **Criteres evalues** : 10
 
@@ -191,7 +191,7 @@ Tous les chapitres (ch01-ch08) : 5 questions par niveau, bareme /20, couleurs co
 
 ## Corrections realisees
 
-_(Aucune correction realisee a ce jour — audit initial)_
+- **2026-03-22** : Ajout d'un **Sujet B** sur les 84 fichiers interro.html Bac Pro. Chaque niveau (socle/standard/appro) dispose desormais de deux sujets (A et B) avec des valeurs et contextes professionnels differents, couvrant les memes notions. Total : 252 sujets B ajoutes (~1 260 nouvelles questions avec corrections).
 
 ---
 

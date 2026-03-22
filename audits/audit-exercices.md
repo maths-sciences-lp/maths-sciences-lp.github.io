@@ -471,6 +471,7 @@ De nombreux fichiers `exercices.html` redéfinissent des classes déjà présent
   - Identification de problèmes structurels : numérotation, mécanismes de correction, CSS inline, liens retour
 - **2026-03-19** : Bilan Seconde — 28/28 interro.html créées (14 maths + 14 PC), toutes différenciées avec diff.js. Seconde 100% complète sur les 6 types de pages
 - **2026-03-19** : 3e vérification détaillée des corrections Seconde — comptage exact par fichier. Exercices : maths 41% (79/191), PC 80% (159/199). DS : 100% pour les deux. **152 corrections d'exercices manquantes** (112 maths + 40 PC)
+- **2026-03-22** : 84/84 interro.html complètes (Bac Pro). Ajout d'un Sujet B à chaque interro (252 sujets B, ~1 260 nouvelles questions avec corrections)
 
 ---
 
@@ -494,7 +495,8 @@ De nombreux fichiers `exercices.html` redéfinissent des classes déjà présent
 
 ### Priorité haute (uniformisation 2026-03-18)
 - [ ] Créer les 36 `qcm.html` restants (PC 1ere ICCER 10, PC 1ere ERA 10, PC Tle ICCER 8, PC Tle ERA 8) — 48/84 faits
-- [ ] Créer les 54 `interro.html` restants (30/84 faits : Seconde 28 + Terminale 2) — restent : maths/premiere 9, maths/terminale 9, PC 1ere ICCER 10, PC 1ere ERA 10, PC Tle ICCER 8, PC Tle ERA 8
+- [x] ~~Créer les 54 `interro.html` restants~~ — **84/84 complet** (rectifié 2026-03-22)
+- [x] Ajouter un Sujet B à chaque interro.html (84 fichiers, 252 sujets B, ~1 260 questions) — **complet 2026-03-22**
 - [x] ~~Créer les 7 `exercices.html` manquants (PC terminale)~~ — **déjà complets** (rectifié 2026-03-19)
 - [x] ~~Créer les 7 `ds.html` manquants (PC terminale)~~ — **déjà complets** (rectifié 2026-03-19)
 
@@ -559,7 +561,7 @@ De nombreux fichiers `exercices.html` redéfinissent des classes déjà présent
 | `exercices.html` | 77 | 84 | 7 | Oui (socle/standard/appro) |
 | `ds.html` | 77 | 84 | 7 | Oui (socle/standard/appro) |
 | `qcm.html` | 48 | 84 | 36 | Oui (3×15 questions) |
-| `interro.html` | 30 | 84 | 54 | Oui (3×5-8 questions) |
+| `interro.html` | 84 | 84 | 0 | Oui (3×5-8 questions, 2 sujets A/B) |
 
 **Modèle existant QCM** : `physique-chimie/seconde/ch07/qcm.html` — QCM interactif auto-corrigé, feedback instantané, score.
 **Modèle existant interro** : `maths/terminale/ch04/interro.html` — interrogation écrite, corrections, différenciée.

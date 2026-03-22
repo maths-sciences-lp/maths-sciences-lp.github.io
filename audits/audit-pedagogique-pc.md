@@ -440,7 +440,7 @@
 
 ### Uniformisation QCM et interro (2026-03-18)
 - [ ] Creer `qcm.html` pour les 50 chapitres PC (14 seconde + 10 1ere-ICCER + 10 1ere-ERA + 8 Tle-ICCER + 8 Tle-ERA) — QCM differencies 3×15 questions
-- [ ] Creer `interro.html` pour les 50 chapitres PC — interros differenciees 3×5-8 questions
+- [x] ~~Creer `interro.html` pour les 50 chapitres PC~~ — **50/50 complet** (2026-03-22, + Sujet B)
 - [ ] Ajouter le lien `qcm.html` du ch07 seconde dans le sommaire `pc-2nde-pro.html` (page orpheline existante)
 - [ ] QCM PC : privilegier unites/conversions, schemas, protocoles, vocabulaire scientifique, securite
 - [ ] Interro PC : privilegier applications numeriques, schemas a legender, questions de cours, analyse de documents

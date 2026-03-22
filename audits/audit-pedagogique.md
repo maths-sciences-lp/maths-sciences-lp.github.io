@@ -285,7 +285,7 @@ Les modules communs (combustion, transferts thermiques, moments, pression, solut
 
 ### Priorite haute (uniformisation 2026-03-18)
 - [ ] Creer les 36 `qcm.html` restants (PC 1ere ICCER 10, PC 1ere ERA 10, PC Tle ICCER 8, PC Tle ERA 8) — 48/84 faits
-- [ ] Creer les 54 `interro.html` restants (30/84 faits : Seconde 28 + Terminale 2)
+- [x] ~~Creer les 54 `interro.html` restants~~ — **84/84 complet** (2026-03-22, + Sujet B sur chaque fichier)
 - [ ] Centraliser les classes CSS QCM dans `styles.css` (prerequis)
 
 ### Priorite basse
