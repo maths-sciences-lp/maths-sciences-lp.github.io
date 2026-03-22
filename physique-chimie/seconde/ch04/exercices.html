@@ -847,6 +847,138 @@
   </div>
 </div>
 
+<!-- EXO 7-A APPRO -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 7-A</span>
+    <span class="exo-title">Machine CNC – contrôle de la broche par variateur</span>
+    <span class="diff diff-3">Avancé</span>
+  </div>
+  <p>Un technicien d'agencement programme une machine à commande numérique (CNC) pour usiner un panneau de MDF. Le variateur de fréquence alimente le moteur de broche avec un signal sinusoïdal dont il peut régler la fréquence entre 10 Hz et 400 Hz. La tension efficace reste constante à \( U_{eff} = 230\,\text{V} \).</p>
+  <p>À 50 Hz, le moteur tourne à 1 500 tr/min (vitesse nominale).</p>
+  <p class="q"><strong>1.</strong> Calculer la période \( T \) du signal à 50 Hz, puis à 400 Hz.</p>
+  <p class="q"><strong>2.</strong> Calculer \( U_{max} \) du signal. Cette valeur dépend-elle de la fréquence ?</p>
+  <p class="q"><strong>3.</strong> La vitesse du moteur est proportionnelle à la fréquence. Calculer la vitesse de rotation à 400 Hz et à 10 Hz.</p>
+  <p class="q"><strong>4.</strong> Pour usiner du MDF, la vitesse de broche recommandée est de 18 000 tr/min. À quelle fréquence faut-il régler le variateur ?</p>
+  <p class="q"><strong>5.</strong> Écrire l'équation du signal \( u(t) \) envoyé au moteur pour la fréquence calculée en question 4.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> À 50 Hz : \( T = 1/50 = 0{,}02\,\text{s} = 20\,\text{ms} \). À 400 Hz : \( T = 1/400 = 0{,}0025\,\text{s} = 2{,}5\,\text{ms} \).</p>
+    <p><strong>2.</strong> \( U_{max} = 230 \times \sqrt{2} \approx 325\,\text{V} \). Non, \( U_{max} \) ne dépend pas de la fréquence : seule la tension efficace détermine \( U_{max} \).</p>
+    <p><strong>3.</strong> À 400 Hz : \( n = 1500 \times 400/50 = 1500 \times 8 = 12\,000\,\text{tr/min} \). À 10 Hz : \( n = 1500 \times 10/50 = 300\,\text{tr/min} \).</p>
+    <p><strong>4.</strong> \( f = 50 \times 18\,000 / 1\,500 = 50 \times 12 = 600\,\text{Hz} \). Attention : cette fréquence dépasse la plage du variateur (400 Hz max). Il faudrait un moteur avec moins de pôles ou un variateur avec une plage plus étendue.</p>
+    <p><strong>5.</strong> Si on prenait 600 Hz : \( u(t) = 325 \cdot \sin(2\pi \cdot 600 \cdot t) = 325 \cdot \sin(1200\pi t) \). En pratique, on se limiterait à 400 Hz avec ce variateur.</p>
+  </div>
+</div>
+
+<!-- EXO 8-A APPRO -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 8-A</span>
+    <span class="exo-title">Installation photovoltaïque d'un atelier</span>
+    <span class="diff diff-3">Avancé</span>
+  </div>
+  <p>Un artisan menuisier installe des panneaux solaires sur le toit de son atelier. Les panneaux produisent une tension continue de 400 V CC. Un onduleur convertit cette tension en courant alternatif sinusoïdal 230 V / 50 Hz pour alimenter les machines.</p>
+  <p class="q"><strong>1.</strong> Calculer \( U_{max} \) du signal en sortie de l'onduleur.</p>
+  <p class="q"><strong>2.</strong> La tension CC des panneaux (400 V) est-elle supérieure ou inférieure à \( U_{max} \) du signal alternatif en sortie ? Commenter.</p>
+  <p class="q"><strong>3.</strong> Écrire l'équation du signal sinusoïdal en sortie de l'onduleur.</p>
+  <p class="q"><strong>4.</strong> L'onduleur a un rendement de 95 %. Si les panneaux fournissent une puissance de 3 000 W, quelle puissance est réellement disponible en sortie ?</p>
+  <p class="q"><strong>5.</strong> Une scie circulaire consomme 2 200 W. Peut-elle fonctionner seule sur cette installation ? Et si on ajoute une défonceuse de 1 400 W en même temps ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \( U_{max} = 230 \times \sqrt{2} \approx 325\,\text{V} \)</p>
+    <p><strong>2.</strong> 400 V CC > 325 V (\( U_{max} \)). C'est normal : l'onduleur a besoin d'une tension CC d'entrée supérieure à \( U_{max} \) pour pouvoir générer correctement le signal sinusoïdal.</p>
+    <p><strong>3.</strong> \( u(t) = 325 \cdot \sin(2\pi \cdot 50 \cdot t) = 325 \cdot \sin(100\pi t) \)</p>
+    <p><strong>4.</strong> \( P_{sortie} = 3\,000 \times 0{,}95 = 2\,850\,\text{W} \)</p>
+    <p><strong>5.</strong> Scie seule : 2 200 W < 2 850 W → oui, elle peut fonctionner. Scie + défonceuse : \( 2\,200 + 1\,400 = 3\,600\,\text{W} > 2\,850\,\text{W} \) → non, la puissance disponible est insuffisante pour les deux machines en même temps.</p>
+  </div>
+</div>
+
+<!-- EXO 9-A APPRO -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 9-A</span>
+    <span class="exo-title">Réseau triphasé industriel – atelier de production</span>
+    <span class="diff diff-3">Avancé</span>
+  </div>
+  <p>Un atelier de fabrication de meubles est alimenté en triphasé 400 V / 50 Hz. Chaque phase a une tension efficace de 230 V par rapport au neutre. Les trois phases sont décalées d'un tiers de période les unes par rapport aux autres.</p>
+  <p class="q"><strong>1.</strong> Calculer la période \( T \) du réseau et le décalage temporel entre deux phases consécutives.</p>
+  <p class="q"><strong>2.</strong> Écrire l'équation de la tension de la phase 1 : \( u_1(t) \).</p>
+  <p class="q"><strong>3.</strong> Calculer \( U_{max} \) pour chaque phase.</p>
+  <p class="q"><strong>4.</strong> La tension entre deux phases (tension composée) vaut \( U_{composée} = U_{eff} \times \sqrt{3} \). Calculer cette tension. Retrouve-t-on la valeur de 400 V annoncée ?</p>
+  <p class="q"><strong>5.</strong> Pourquoi les gros moteurs de l'atelier (toupie, dégauchisseuse) sont-ils alimentés en triphasé plutôt qu'en monophasé ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \( T = 1/50 = 0{,}02\,\text{s} = 20\,\text{ms} \). Décalage = \( T/3 = 20/3 \approx 6{,}67\,\text{ms} \).</p>
+    <p><strong>2.</strong> \( u_1(t) = 325 \cdot \sin(2\pi \cdot 50 \cdot t) = 325 \cdot \sin(100\pi t) \)</p>
+    <p><strong>3.</strong> \( U_{max} = 230 \times \sqrt{2} \approx 325\,\text{V} \) pour chaque phase.</p>
+    <p><strong>4.</strong> \( U_{composée} = 230 \times \sqrt{3} \approx 230 \times 1{,}732 \approx 398\,\text{V} \approx 400\,\text{V} \). Oui, on retrouve bien la tension 400 V annoncée.</p>
+    <p><strong>5.</strong> Le triphasé permet d'avoir une puissance trois fois supérieure à celle du monophasé, avec un couple moteur plus régulier (pas de « trous » de puissance). Les gros moteurs (puissance > 2-3 kW) nécessitent cette alimentation pour fonctionner efficacement. De plus, les câbles peuvent être de section plus faible qu'en monophasé pour la même puissance.</p>
+  </div>
+</div>
+
+<!-- EXO 10-A APPRO -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 10-A</span>
+    <span class="exo-title">Calcul de la tension instantanée</span>
+    <span class="diff diff-3">Avancé</span>
+  </div>
+  <p>Le signal du secteur français s'écrit : \( u(t) = 325 \cdot \sin(100\pi t) \) avec \( t \) en secondes et \( u \) en volts.</p>
+  <p class="q"><strong>1.</strong> Vérifier que cette équation correspond bien à \( f = 50\,\text{Hz} \) et \( U_{max} = 325\,\text{V} \).</p>
+  <p class="q"><strong>2.</strong> Calculer la tension instantanée \( u \) aux instants suivants :</p>
+  <table>
+    <tr><th>\( t \) (ms)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th></tr>
+    <tr><td>\( u(t) \) (V)</td><td>……</td><td>……</td><td>……</td><td>……</td><td>……</td></tr>
+  </table>
+  <p class="q"><strong>3.</strong> À quel instant la tension est-elle maximale ? À quel instant est-elle nulle ?</p>
+  <p class="q"><strong>4.</strong> Un disjoncteur différentiel coupe le circuit en 30 ms. Combien de périodes complètes se sont écoulées pendant ce temps ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \( u(t) = 325 \cdot \sin(2\pi \cdot 50 \cdot t) = 325 \cdot \sin(100\pi t) \). On identifie bien \( U_{max} = 325\,\text{V} \) et \( 2\pi f = 100\pi \) donc \( f = 50\,\text{Hz} \).</p>
+    <p><strong>2.</strong></p>
+    <table>
+      <tr><th>\( t \) (ms)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th></tr>
+      <tr><td>\( u(t) \) (V)</td><td>0</td><td>325</td><td>0</td><td>−325</td><td>0</td></tr>
+    </table>
+    <p>Détail : à \( t = 5\,\text{ms} = 0{,}005\,\text{s} \) : \( u = 325 \cdot \sin(100\pi \times 0{,}005) = 325 \cdot \sin(\pi/2) = 325 \times 1 = 325\,\text{V} \).</p>
+    <p><strong>3.</strong> La tension est maximale (+325 V) à \( t = 5\,\text{ms} \) (quart de période). Elle est nulle à \( t = 0 \), \( t = 10\,\text{ms} \) et \( t = 20\,\text{ms} \) (début, milieu et fin de période).</p>
+    <p><strong>4.</strong> Nombre de périodes = \( 30\,\text{ms} / 20\,\text{ms} = 1{,}5 \). Il s'est écoulé 1 période et demie, soit 1 période complète.</p>
+  </div>
+</div>
+
+<!-- EXO 11-A APPRO -->
+<div class="exo">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 11-A</span>
+    <span class="exo-title">Problème ouvert – dimensionner une installation électrique</span>
+    <span class="diff diff-3">Avancé</span>
+  </div>
+  <p>Un fabricant de mobilier souhaite équiper son nouvel atelier. Il doit choisir entre une alimentation monophasée (230 V / 50 Hz) et une alimentation triphasée (400 V / 50 Hz). Ses machines sont :</p>
+  <table>
+    <tr><th>Machine</th><th>Puissance</th><th>Type d'alimentation</th></tr>
+    <tr><td>Scie à ruban</td><td>2 200 W</td><td>Monophasé ou triphasé</td></tr>
+    <tr><td>Toupie</td><td>4 500 W</td><td>Triphasé uniquement</td></tr>
+    <tr><td>Raboteuse-dégauchisseuse</td><td>3 000 W</td><td>Triphasé uniquement</td></tr>
+    <tr><td>Ponceuse à bande</td><td>1 500 W</td><td>Monophasé</td></tr>
+    <tr><td>Aspiration copeaux</td><td>2 000 W</td><td>Monophasé ou triphasé</td></tr>
+    <tr><td>Éclairage + prises</td><td>3 000 W</td><td>Monophasé</td></tr>
+  </table>
+  <p class="q"><strong>1.</strong> Calculer la puissance totale nécessaire si toutes les machines fonctionnent en même temps.</p>
+  <p class="q"><strong>2.</strong> La toupie et la raboteuse nécessitent du triphasé. L'artisan peut-il se contenter d'une alimentation monophasée ? Justifier.</p>
+  <p class="q"><strong>3.</strong> En triphasé 400 V, calculer \( U_{max} \) entre deux phases.</p>
+  <p class="q"><strong>4.</strong> Calculer \( U_{max} \) sur chaque phase (230 V par rapport au neutre).</p>
+  <p class="q"><strong>5.</strong> En supposant que l'artisan ne fait jamais tourner la toupie et la raboteuse en même temps, quelle est la puissance maximale simultanée ? En déduire le calibre minimal du disjoncteur général (en ampères), sachant que \( P = U \times I \) avec \( U = 400\,\text{V} \) en triphasé.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>1.</strong> \( P_{totale} = 2\,200 + 4\,500 + 3\,000 + 1\,500 + 2\,000 + 3\,000 = 16\,200\,\text{W} = 16{,}2\,\text{kW} \)</p>
+    <p><strong>2.</strong> Non, une alimentation monophasée ne suffit pas. La toupie (4 500 W) et la raboteuse (3 000 W) nécessitent obligatoirement du triphasé. L'artisan doit souscrire un abonnement triphasé.</p>
+    <p><strong>3.</strong> \( U_{max,composée} = 400 \times \sqrt{2} \approx 400 \times 1{,}414 \approx 566\,\text{V} \)</p>
+    <p><strong>4.</strong> \( U_{max,phase} = 230 \times \sqrt{2} \approx 325\,\text{V} \)</p>
+    <p><strong>5.</strong> Sans la raboteuse (on garde la toupie, plus puissante) : \( P_{max} = 2\,200 + 4\,500 + 1\,500 + 2\,000 + 3\,000 = 13\,200\,\text{W} \). Intensité : \( I = P / (U \times \sqrt{3}) = 13\,200 / (400 \times 1{,}732) \approx 13\,200 / 693 \approx 19\,\text{A} \). Un disjoncteur de <strong>20 A</strong> (ou 25 A avec marge de sécurité) serait nécessaire.</p>
+  </div>
+</div>
+
 </div><!-- fin diff-appro -->
 
 
