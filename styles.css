@@ -733,6 +733,42 @@ body.mode-appro .diff-standard { display: none !important; }
 .tag-standard { background: #dbeafe; color: #1e40af; }
 .tag-appro    { background: #ede9fe; color: #5b21b6; }
 
+/* ── Toggle Sujet A / B (interrogations) ── */
+.sujet-toggle {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  margin: 0 auto 24px;
+  border: 2px solid var(--p);
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 260px;
+}
+.sujet-toggle button {
+  flex: 1;
+  padding: 10px 18px;
+  border: none;
+  border-right: 1px solid var(--p-border);
+  background: #fff;
+  color: var(--p);
+  font-size: .88em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.sujet-toggle button:last-child { border-right: none; }
+.sujet-toggle button.active {
+  background: var(--p);
+  color: #fff;
+}
+.sujet-toggle button:not(.active):hover {
+  background: var(--p-bg);
+}
+
+/* Masquage des sujets selon le mode */
+body.show-sujet-a .sujet-b { display: none !important; }
+body.show-sujet-b .sujet-a { display: none !important; }
+
 /* Encadré "Pour aller plus loin" dans les cours */
 .plus-loin {
   background: #faf5ff;
