@@ -25,8 +25,8 @@
     <strong>Objectifs du chapitre</strong>
     <ul>
       <li>Conna&icirc;tre les deux &eacute;chelles de temp&eacute;rature (Celsius et Kelvin) et savoir convertir.</li>
-      <li>Identifier les principaux capteurs de temp&eacute;rature et leurs principes de fonctionnement.</li>
-      <li>Lire et exploiter la caract&eacute;ristique R(T) d&rsquo;une thermistance CTN.</li>
+      <li>Identifier les principaux types de thermom&egrave;tres : &agrave; r&eacute;sistance (CTN, Pt100), thermocouple, infrarouge, cristaux liquides.</li>
+      <li>Lire et exploiter la caract&eacute;ristique R(T) d&rsquo;une CTN &agrave; partir d&rsquo;une courbe ou d&rsquo;une table.</li>
       <li>Associer un capteur &agrave; une application industrielle en atelier de menuiserie.</li>
     </ul>
   </div>
@@ -153,12 +153,22 @@
 
   <h3>Thermom&egrave;tre &agrave; mercure</h3>
   <p>
-    Bas&eacute; sur la dilatation du mercure. Simple et historiquement r&eacute;pandu, mais son <strong>usage est aujourd&rsquo;hui r&eacute;duit</strong> pour des raisons environnementales (mercure toxique). Pr&eacute;cision : &plusmn;0,5&nbsp;&deg;C. Plage : &minus;39&nbsp;&deg;C &agrave; +360&nbsp;&deg;C.
+    Bas&eacute; sur la dilatation du mercure. Simple et historiquement r&eacute;pandu, mais son <strong>usage est aujourd&rsquo;hui interdit</strong> en Europe pour des raisons environnementales (mercure toxique). Il reste un repère historique pour comprendre le principe de mesure par dilatation.
   </p>
 
-  <h3>Thermom&egrave;tre &eacute;lectronique</h3>
+  <h3>Thermom&egrave;tre &eacute;lectronique &agrave; sonde de r&eacute;sistance</h3>
   <p>
-    Utilise une <strong>sonde de r&eacute;sistance</strong> (ou un capteur &agrave; semi-conducteur) dont la valeur &eacute;lectrique varie avec la temp&eacute;rature. Affichage num&eacute;rique. Pr&eacute;cision courante : &plusmn;0,1&nbsp;&deg;C. Facilement reli&eacute; &agrave; un syst&egrave;me d&rsquo;acquisition ou un microcontr&ocirc;leur.
+    Utilise une <strong>sonde dont la r&eacute;sistance &eacute;lectrique varie avec la temp&eacute;rature</strong>. Affichage num&eacute;rique. Pr&eacute;cision courante : &plusmn;0,1&nbsp;&deg;C. Facilement reli&eacute; &agrave; un syst&egrave;me d&rsquo;acquisition ou un microcontr&ocirc;leur. C&rsquo;est le principe des thermistances (CTN) et de la sonde Pt100.
+  </p>
+
+  <h3>Thermom&egrave;tre &agrave; infrarouge (sans contact)</h3>
+  <p>
+    Mesure le <strong>rayonnement infrarouge</strong> &eacute;mis naturellement par tout corps chaud, sans contact physique. Tr&egrave;s utile en atelier pour mesurer la temp&eacute;rature d&rsquo;une surface en mouvement (lame de scie, bande de placage) ou d&rsquo;un objet inaccessible. Pr&eacute;cision : &plusmn;1 &agrave; 2&nbsp;&deg;C selon le mod&egrave;le.
+  </p>
+
+  <h3>Thermom&egrave;tre &agrave; cristaux liquides</h3>
+  <p>
+    Utilise des <strong>cristaux liquides thermochromes</strong> qui changent de couleur selon la temp&eacute;rature. Usage simple et visuel (bandelettes, &eacute;tiquettes). Pr&eacute;cision limit&eacute;e (&plusmn;1&nbsp;&deg;C), mais pratique pour une lecture rapide sans &eacute;lectronique (contr&ocirc;le de la temp&eacute;rature de la pi&egrave;ce, piscines, aquariums).
   </p>
 
   <div class="ex">
@@ -193,16 +203,7 @@
   <div class="def">
     <span class="label label-def">Principe</span><br>
     La r&eacute;sistance d&rsquo;une CTN <strong>diminue</strong> lorsque la temp&eacute;rature <strong>augmente</strong>.
-    C&rsquo;est un composant &agrave; base de semi-conducteur dont la loi est de forme exponentielle :
-  </div>
-
-  <div class="formule">
-    \( R = R_0 \cdot \exp\!\left[B\!\left(\dfrac{1}{T} - \dfrac{1}{T_0}\right)\right] \)
-    <small>
-      \(R_0\) : r&eacute;sistance &agrave; la temp&eacute;rature de r&eacute;f&eacute;rence \(T_0\) (en K) &mdash;
-      \(B\) : constante caract&eacute;ristique du mat&eacute;riau (en K) &mdash;
-      \(T\) : temp&eacute;rature en Kelvin
-    </small>
+    C&rsquo;est un composant &agrave; base de semi-conducteur. La relation R(T) est <strong>non lin&eacute;aire</strong> : on l&rsquo;exploite gr&acirc;ce &agrave; une courbe ou une table de correspondance fournie par le fabricant.
   </div>
   <ul>
     <li><strong>Plage</strong> : &minus;50&nbsp;&deg;C &agrave; +150&nbsp;&deg;C.</li>
@@ -210,7 +211,18 @@
     <li><strong>Usage en atelier</strong> : mesure et r&eacute;gulation de temp&eacute;rature dans les &eacute;tuves de s&eacute;chage, thermostat d&rsquo;atelier.</li>
   </ul>
 
-  <h3>3.3 La thermistance CTP (Coefficient de Temp&eacute;rature Positif)</h3>
+  <h3>3.3 La thermosonde Pt100</h3>
+  <div class="def">
+    <span class="label label-def">Principe</span><br>
+    La sonde Pt100 est une <strong>r&eacute;sistance en platine</strong> (Pt) dont la valeur augmente r&eacute;guli&egrave;rement avec la temp&eacute;rature. Sa valeur de r&eacute;f&eacute;rence est <strong>100&nbsp;&Omega; &agrave; 0&nbsp;&deg;C</strong> (d&rsquo;o&ugrave; son nom). La relation R(T) est quasi lin&eacute;aire, ce qui la rend tr&egrave;s pr&eacute;cise.
+  </div>
+  <ul>
+    <li><strong>Plage</strong> : &minus;200&nbsp;&deg;C &agrave; +850&nbsp;&deg;C.</li>
+    <li><strong>Avantage</strong> : tr&egrave;s pr&eacute;cise (&plusmn;0,1&nbsp;&deg;C), stable dans le temps, utilis&eacute;e comme r&eacute;f&eacute;rence industrielle.</li>
+    <li><strong>Usage</strong> : fours industriels, r&eacute;gulateurs de temp&eacute;rature, &eacute;quipements de laboratoire.</li>
+  </ul>
+
+  <h3>3.4 La thermistance CTP (Coefficient de Temp&eacute;rature Positif)</h3>
   <div class="def">
     <span class="label label-def">Principe</span><br>
     La r&eacute;sistance d&rsquo;une CTP <strong>augmente</strong> tr&egrave;s fortement lorsque la temp&eacute;rature d&eacute;passe un seuil critique.
@@ -221,7 +233,7 @@
     <li><strong>Limitation</strong> : pas adapt&eacute;e &agrave; une mesure fine de temp&eacute;rature.</li>
   </ul>
 
-  <h3>3.4 Le capteur &agrave; semi-conducteur (ex. LM35)</h3>
+  <h3>3.5 Le capteur &agrave; semi-conducteur (ex. LM35)</h3>
   <div class="prop">
     <span class="label label-prop">Propri&eacute;t&eacute;</span><br>
     Ce type de capteur fournit une <strong>tension de sortie directement proportionnelle</strong> &agrave; la temp&eacute;rature en degr&eacute;s Celsius.
@@ -276,14 +288,6 @@
     Un thermocouple fix&eacute; sur le palier d&eacute;tecte toute mont&eacute;e anormale de temp&eacute;rature et d&eacute;clenche une alarme ou l&rsquo;arr&ecirc;t de la machine.
   </p>
 
-  <div class="ex">
-    <span class="label label-ex">Exemple num&eacute;rique</span><br>
-    Une CTN a une r&eacute;sistance de <strong>10&nbsp;k&Omega;</strong> &agrave; 25&nbsp;&deg;C et une constante \(B = 3950\,\text{K}\).
-    Calculer la r&eacute;sistance &agrave; 80&nbsp;&deg;C.<br><br>
-    \(T = 80 + 273 = 353\,\text{K}\) &mdash; \(T_0 = 25 + 273 = 298\,\text{K}\)<br>
-    \[ R = 10\,000 \times e^{\,3950\left(\frac{1}{353}-\frac{1}{298}\right)} \approx 10\,000 \times e^{-2{,}06} \approx 10\,000 \times 0{,}127 \approx 1{,}27\,\text{k}\Omega \]
-  </div>
-
   <!-- ============================================================ -->
   <h2>6. Tableau de synth&egrave;se des capteurs</h2>
 
@@ -297,17 +301,24 @@
     </tr>
     <tr>
       <td><strong>Thermocouple</strong></td>
-      <td>Tension Seebeck entre deux m&eacute;taux diff&eacute;rents</td>
+      <td>Tension entre deux m&eacute;taux diff&eacute;rents</td>
       <td>&minus;200 &agrave; +1&nbsp;000</td>
-      <td>Grande plage, robuste, tr&egrave;s rapide</td>
+      <td>Grande plage, robuste, rapide</td>
       <td>Signal faible (mV), n&eacute;cessite amplificateur</td>
     </tr>
     <tr>
       <td><strong>CTN</strong></td>
-      <td>R&eacute;sistance d&eacute;cro&icirc;t avec T</td>
+      <td>R&eacute;sistance d&eacute;cro&icirc;t quand T augmente</td>
       <td>&minus;50 &agrave; +150</td>
       <td>Tr&egrave;s sensible, peu co&ucirc;teux</td>
-      <td>Relation non lin&eacute;aire, plage limit&eacute;e</td>
+      <td>Relation non lin&eacute;aire</td>
+    </tr>
+    <tr>
+      <td><strong>Pt100</strong></td>
+      <td>R&eacute;sistance platine cro&icirc;t lin&eacute;airement avec T</td>
+      <td>&minus;200 &agrave; +850</td>
+      <td>Tr&egrave;s pr&eacute;cise, stable, lin&eacute;aire</td>
+      <td>Plus co&ucirc;teuse, fragile aux chocs</td>
     </tr>
     <tr>
       <td><strong>CTP</strong></td>
@@ -317,11 +328,18 @@
       <td>Pas de mesure fine de T</td>
     </tr>
     <tr>
-      <td><strong>Semi-conducteur (LM35)</strong></td>
-      <td>Tension proportionnelle &agrave; T</td>
-      <td>&minus;55 &agrave; +150</td>
-      <td>Sortie lin&eacute;aire, interface microcontr&ocirc;leur facile</td>
-      <td>Plage limit&eacute;e, fragile aux surtensions</td>
+      <td><strong>Infrarouge</strong></td>
+      <td>Mesure le rayonnement IR &eacute;mis par le corps</td>
+      <td>&minus;50 &agrave; +1&nbsp;000</td>
+      <td>Sans contact, rapide, &agrave; distance</td>
+      <td>Sensible &agrave; l&rsquo;&eacute;missivit&eacute; de la surface</td>
+    </tr>
+    <tr>
+      <td><strong>Cristaux liquides</strong></td>
+      <td>Changement de couleur selon T</td>
+      <td>0 &agrave; +50 (selon mod&egrave;le)</td>
+      <td>Visuel, sans alimentation</td>
+      <td>Peu pr&eacute;cis, plage tr&egrave;s limit&eacute;e</td>
     </tr>
   </table>
 
@@ -329,13 +347,14 @@
   <h2>7. &Agrave; retenir</h2>
 
   <div class="retenir">
-    <span class="label label-ret">5 points cl&eacute;s</span>
+    <span class="label label-ret">6 points cl&eacute;s</span>
     <ol>
       <li>La temp&eacute;rature mesure l&rsquo;<strong>agitation thermique</strong> des particules de la mati&egrave;re.</li>
       <li>Conversion : \(T(\text{K}) = \theta(\text{&deg;C}) + 273\). Le z&eacute;ro absolu est 0&nbsp;K = &minus;273&nbsp;&deg;C.</li>
       <li>Une <strong>CTN</strong> voit sa r&eacute;sistance <em>diminuer</em> quand T augmente ; une <strong>CTP</strong> la voit <em>augmenter brutalement</em> au-del&agrave; d&rsquo;un seuil.</li>
-      <li>Le <strong>thermocouple</strong> couvre la plus grande plage de mesure (jusqu&rsquo;&agrave; +1&nbsp;000&nbsp;&deg;C).</li>
-      <li>En atelier de menuiserie : CTN pour les &eacute;tuves de s&eacute;chage, CTP pour la protection des moteurs des machines-outils, thermocouple pour les paliers de machines.</li>
+      <li>La <strong>sonde Pt100</strong> (platine) est la r&eacute;f&eacute;rence industrielle pour la pr&eacute;cision : 100&nbsp;&Omega; &agrave; 0&nbsp;&deg;C, relation quasi lin&eacute;aire.</li>
+      <li>Le <strong>thermocouple</strong> couvre la plus grande plage (jusqu&rsquo;&agrave; +1&nbsp;000&nbsp;&deg;C) ; le <strong>thermom&egrave;tre infrarouge</strong> mesure sans contact ; les <strong>cristaux liquides</strong> donnent une lecture visuelle directe.</li>
+      <li>En atelier : CTN ou Pt100 pour les &eacute;tuves de s&eacute;chage, CTP pour la protection des moteurs, thermocouple pour les paliers de machines, IR pour les surfaces en mouvement.</li>
     </ol>
   </div>
 
@@ -391,20 +410,20 @@
 
   <div class="exo">
     <div class="exo-num">Exercice 3 &mdash; Choisir le bon capteur</div>
-    <p>Pour chaque application, indiquer quel capteur est le plus adapt&eacute; parmi : <em>thermocouple, CTN, CTP, LM35</em>. Justifier bri&egrave;vement.</p>
+    <p>Pour chaque application, indiquer quel capteur est le plus adapt&eacute; parmi : <em>thermocouple, CTN, Pt100, CTP, infrarouge</em>. Justifier bri&egrave;vement.</p>
     <ol type="a">
       <li>Mesurer la temp&eacute;rature d&rsquo;un four &agrave; c&eacute;ramique atteignant 900&nbsp;&deg;C.</li>
       <li>Prot&eacute;ger le moteur d&rsquo;une toupie contre les surchauffes.</li>
-      <li>Afficher la temp&eacute;rature de l&rsquo;atelier sur un &eacute;cran Arduino.</li>
-      <li>R&eacute;guler finement la temp&eacute;rature d&rsquo;une &eacute;tuve &agrave; 80&nbsp;&deg;C.</li>
+      <li>Contr&ocirc;ler avec pr&eacute;cision la temp&eacute;rature d&rsquo;un r&eacute;gulateur industriel (&eacute;tuve de labo).</li>
+      <li>Mesurer la temp&eacute;rature d&rsquo;une lame de scie &agrave; ruban en rotation, sans la toucher.</li>
     </ol>
     <button class="bc" onclick="toggle(this)">Voir la correction</button>
     <div class="corr">
         <ol type="a">
           <li><strong>Thermocouple</strong> : seul capteur couvrant une plage jusqu&rsquo;&agrave; 900&nbsp;&deg;C.</li>
           <li><strong>CTP</strong> : d&egrave;s que la temp&eacute;rature d&eacute;passe un seuil, la r&eacute;sistance monte en fl&egrave;che et coupe le circuit &rarr; protection automatique du moteur.</li>
-          <li><strong>Capteur LM35</strong> : sortie lin&eacute;aire en tension directement lisible par l&rsquo;entr&eacute;e analogique d&rsquo;un Arduino, simple &agrave; programmer.</li>
-          <li><strong>CTN</strong> : tr&egrave;s sensible dans la plage 0&ndash;100&nbsp;&deg;C, id&eacute;ale pour la r&eacute;gulation fine d&rsquo;&eacute;tuve.</li>
+          <li><strong>Pt100</strong> : relation quasi lin&eacute;aire, tr&egrave;s pr&eacute;cise, r&eacute;f&eacute;rence pour les r&eacute;gulateurs industriels.</li>
+          <li><strong>Thermom&egrave;tre infrarouge</strong> : mesure sans contact, id&eacute;al pour une pi&egrave;ce en mouvement inaccessible physiquement.</li>
         </ol>
     </div>
   </div>
@@ -454,7 +473,7 @@
       plugins: {
         title: {
           display: true,
-          text: 'Caract\u00e9ristique R(T) d\u2019une CTN  (B\u00a0=\u00a03950\u00a0K,  R\u2080\u00a0=\u00a010\u00a0k\u03a9 \u00e0 25\u00b0C)',
+          text: 'Caract\u00e9ristique R(T) d\u2019une CTN typique',
           color: '#2d3748',
           font: { size: 13 }
         },
