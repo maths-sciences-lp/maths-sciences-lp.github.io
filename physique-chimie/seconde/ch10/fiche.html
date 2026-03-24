@@ -63,42 +63,44 @@
   </div>
 
   <div class="fiche-card">
-    <h3>Les 4 capteurs</h3>
+    <h3>Les capteurs principaux</h3>
     <ul>
-      <li><strong>Thermocouple</strong> : tension Seebeck, plage -200 à +1 000 °C</li>
-      <li><strong>CTN</strong> : R diminue quand T augmente, très sensible 0-100 °C</li>
-      <li><strong>CTP</strong> : R augmente brutalement au seuil, protection moteurs</li>
-      <li><strong>LM35</strong> : tension proportionnelle à T, facile avec Arduino</li>
+      <li><strong>Thermocouple</strong> : tension Seebeck entre deux métaux, plage −200 à +1 000 °C</li>
+      <li><strong>CTN</strong> : R diminue quand T augmente, très sensible 0–100 °C</li>
+      <li><strong>Pt100</strong> : R platine croît de façon linéaire, 100 Ω à 0 °C, très précis</li>
+      <li><strong>CTP</strong> : R explose au-delà d'un seuil, protection moteurs</li>
+      <li><strong>Infrarouge</strong> : mesure sans contact, capte le rayonnement thermique émis</li>
+      <li><strong>Cristaux liquides</strong> : changement de couleur, lecture visuelle directe</li>
     </ul>
   </div>
 
   <div class="fiche-card">
-    <h3>CTN — formule</h3>
-    <div class="fiche-formula">\( R = R_0 \cdot e^{B\left(\frac{1}{T} - \frac{1}{T_0}\right)} \)</div>
+    <h3>CTN et Pt100 — caractéristiques</h3>
     <ul>
-      <li>\(R_0\) : résistance à \(T_0\) (en K)</li>
-      <li>\(B\) : constante du matériau (en K)</li>
-      <li>Courbe R(T) : décroissance exponentielle</li>
+      <li><strong>CTN</strong> : R décroît de façon non linéaire quand T augmente</li>
+      <li>Exploiter la <strong>table de correspondance</strong> ou la courbe R(T) du fabricant</li>
+      <li><strong>Pt100</strong> : R croît quasi linéairement, vaut 100 Ω à 0 °C</li>
     </ul>
+    <div class="fiche-formula">Méthode CTN / Pt100 : mesurer R → lire T sur la table</div>
   </div>
 
   <div class="fiche-card full">
     <h3>Applications en atelier</h3>
     <ul>
-      <li><strong>Étuves de séchage du bois</strong> : CTN + régulateur maintient 70-85 °C</li>
+      <li><strong>Étuves de séchage du bois</strong> : CTN ou Pt100 + régulateur maintient 70–85 °C</li>
       <li><strong>Colle thermofusible</strong> : CTP coupe l'alimentation si T > 200 °C</li>
       <li><strong>Paliers de machines</strong> : thermocouple détecte les échauffements anormaux</li>
-      <li><strong>Affichage atelier</strong> : LM35 + Arduino pour température ambiante</li>
+      <li><strong>Surfaces en mouvement</strong> : thermomètre infrarouge pour mesure sans contact (lame de scie, bande de placage)</li>
     </ul>
   </div>
 
 </div>
 
 <div class="piege"><strong>Piège 1 :</strong> Confondre CTN et CTP. CTN : résistance <em>diminue</em> avec T (Négatif). CTP : résistance <em>augmente</em> brutalement (Positif).</div>
-<div class="piege"><strong>Piège 2 :</strong> Oublier de convertir les °C en K dans la formule de la CTN. La formule utilise \(T\) en Kelvin : ajouter 273.</div>
+<div class="piege"><strong>Piège 2 :</strong> Confondre CTN et Pt100. La CTN a une résistance qui <em>diminue</em> avec T (Négatif) et est non linéaire ; la Pt100 a une résistance qui <em>augmente</em> de façon quasi linéaire.</div>
 <div class="piege"><strong>Piège 3 :</strong> Penser que la différence de température change entre °C et K. En réalité, \(\Delta T\) est le même en °C et en K (seul le zéro est décalé).</div>
 
-<div class="astuce"><strong>Astuce :</strong> Pour choisir le bon capteur, retenir : grande plage = thermocouple, mesure fine = CTN, protection = CTP, Arduino = LM35.</div>
+<div class="astuce"><strong>Astuce :</strong> Pour choisir le bon capteur, retenir : grande plage = thermocouple, haute précision industrielle = Pt100, régulation courante = CTN, protection moteur = CTP, mesure sans contact = infrarouge.</div>
 <div class="astuce"><strong>Astuce :</strong> Pour lire une courbe R(T) de CTN : on mesure R à l'ohmmètre, on reporte sur l'axe vertical, on lit la température en face sur l'axe horizontal.</div>
 
 <div class="fiche-grid">
