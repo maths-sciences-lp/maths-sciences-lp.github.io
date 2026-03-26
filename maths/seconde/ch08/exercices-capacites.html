@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Exercices par capacités – Fonction linéaire – 2nde MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 8 – Exercices par capacités</h1>
+  <p class="sous-titre">Fonction linéaire et proportionnalité &nbsp;|&nbsp; Seconde Bac Pro MAMA &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Reconnaître une situation de proportionnalité et une fonction linéaire</li>
+    <li><strong>C2</strong> — Déterminer le coefficient de proportionnalité \(k\)</li>
+    <li><strong>C3</strong> — Calculer une image avec \(f(x) = kx\)</li>
+    <li><strong>C4</strong> — Construire le tableau de valeurs et tracer la droite passant par l'origine</li>
+    <li><strong>C5</strong> — Lire graphiquement une fonction linéaire</li>
+    <li><strong>C6</strong> — Résoudre un problème de proportionnalité</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Reconnaître</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Trouver k</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Calculer f(x)</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Tableau / tracé</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Lecture graphique</button>
+  <button class="btn-cap" data-filtre="C6">C6 – Problèmes</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Reconnaître une situation de proportionnalité et une fonction linéaire</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Pour chaque tableau, dire s'il s'agit d'un tableau de proportionnalité. Justifier en calculant les rapports.</p>
+  <p><strong>Tableau A :</strong></p>
+  <table>
+    <tr><th>Longueur (m)</th><td>2</td><td>4</td><td>6</td><td>10</td></tr>
+    <tr><th>Prix (€)</th><td>14</td><td>28</td><td>42</td><td>70</td></tr>
+  </table>
+  <p><strong>Tableau B :</strong></p>
+  <table>
+    <tr><th>Temps (h)</th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+    <tr><th>Distance (km)</th><td>60</td><td>110</td><td>180</td><td>240</td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>Tableau A :</strong> rapports \(\frac{14}{2} = 7\), \(\frac{28}{4} = 7\), \(\frac{42}{6} = 7\), \(\frac{70}{10} = 7\). Tous égaux → <strong>tableau de proportionnalité</strong>, \(k = 7\).<br><br>
+    <strong>Tableau B :</strong> rapports \(\frac{60}{1} = 60\), \(\frac{110}{2} = 55\), \(\frac{180}{3} = 60\), \(\frac{240}{4} = 60\). Pas tous égaux (55 ≠ 60) → <strong>pas proportionnel</strong>.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Parmi les fonctions suivantes, lesquelles sont des fonctions linéaires ?</p>
+  <ol type="a">
+    <li>\(f(x) = 5x\)</li>
+    <li>\(g(x) = 3x + 2\)</li>
+    <li>\(h(x) = -4x\)</li>
+    <li>\(k(x) = x^2\)</li>
+    <li>\(m(x) = 0{,}5x\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Une fonction linéaire est de la forme \(f(x) = kx\) (terme constant nul, degré 1).<br>
+    <strong>Linéaires :</strong> a) \(f(x) = 5x\) ✔ ; c) \(h(x) = -4x\) ✔ ; e) \(m(x) = 0{,}5x\) ✔<br>
+    <strong>Pas linéaires :</strong> b) \(g(x) = 3x + 2\) (terme +2 → fonction affine) ; d) \(k(x) = x^2\) (degré 2).
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Déterminer le coefficient de proportionnalité \(k\)</h2>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Déterminer le coefficient \(k\) de la fonction linéaire \(f(x) = kx\) dans chaque cas :</p>
+  <ol type="a">
+    <li>\(f(4) = 20\)</li>
+    <li>\(f(3) = -9\)</li>
+    <li>\(f(0{,}5) = 3\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    On utilise \(k = \dfrac{f(x)}{x}\) :
+    <ol type="a">
+      <li>\(k = \dfrac{20}{4} = 5\) donc \(f(x) = 5x\)</li>
+      <li>\(k = \dfrac{-9}{3} = -3\) donc \(f(x) = -3x\)</li>
+      <li>\(k = \dfrac{3}{0{,}5} = 6\) donc \(f(x) = 6x\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Un poseur de parquet facture 12 € par m² posé. Écrire la fonction linéaire modélisant le coût, puis identifier \(k\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(C(x) = 12x\) où \(x\) est la surface en m² et \(C(x)\) le coût en €.<br>
+    Le coefficient de proportionnalité est \(k = 12\) (€/m²).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un tableau de proportionnalité donne : pour 5 m de planche, le prix est 17,50 €. Trouver \(k\) puis calculer le prix pour 8 m.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(k = \dfrac{17{,}50}{5} = 3{,}50\) €/m<br>
+    Prix pour 8 m : \(f(8) = 3{,}50 \times 8 = 28\) €
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Calculer une image avec \(f(x) = kx\)</h2>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Soit \(f(x) = 6x\). Calculer :</p>
+  <ol type="a">
+    <li>\(f(0)\)</li>
+    <li>\(f(7)\)</li>
+    <li>\(f(-3)\)</li>
+    <li>\(f(1{,}5)\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(f(0) = 6 \times 0 = 0\) (toute fonction linéaire s'annule en 0)</li>
+      <li>\(f(7) = 6 \times 7 = 42\)</li>
+      <li>\(f(-3) = 6 \times (-3) = -18\)</li>
+      <li>\(f(1{,}5) = 6 \times 1{,}5 = 9\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Un fabricant de meubles consomme 2,4 litres de vernis par m² de surface. Calculer la quantité nécessaire pour des surfaces de 3 m², 7,5 m² et 12 m².</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(V(x) = 2{,}4x\) litres<br>
+    \(V(3) = 2{,}4 \times 3 = 7{,}2\) L<br>
+    \(V(7{,}5) = 2{,}4 \times 7{,}5 = 18\) L<br>
+    \(V(12) = 2{,}4 \times 12 = 28{,}8\) L
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Construire le tableau de valeurs et tracer la droite</h2>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Compléter le tableau de valeurs de \(f(x) = 3x\) :</p>
+  <table>
+    <tr><th>\(x\)</th><td>−3</td><td>−1</td><td>0</td><td>1</td><td>2</td><td>4</td></tr>
+    <tr><th>\(f(x)\)</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <p>Que remarque-t-on en \(x = 0\) ? Que peut-on en déduire sur la droite représentative ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>\(x\)</th><td>−3</td><td>−1</td><td>0</td><td>1</td><td>2</td><td>4</td></tr>
+      <tr><th>\(f(x)\)</th><td>−9</td><td>−3</td><td>0</td><td>3</td><td>6</td><td>12</td></tr>
+    </table>
+    En \(x = 0\), \(f(0) = 0\) : la droite passe par l'<strong>origine</strong> du repère \((0\,;\,0)\). C'est une propriété de toutes les fonctions linéaires.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Pour tracer la droite de \(f(x) = 4x\), on a besoin d'au moins deux points. Calculer les coordonnées de deux points et expliquer pourquoi l'un d'eux est toujours évident.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Point évident : \(f(0) = 0\) → le point \(O(0\,;\,0)\) est toujours sur la droite d'une fonction linéaire.<br>
+    Deuxième point : par exemple \(f(1) = 4\) → point \(A(1\,;\,4)\).<br>
+    On trace la droite passant par \(O\) et \(A\).
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Lire graphiquement une fonction linéaire</h2>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>La droite représentative d'une fonction linéaire \(f\) passe par les points \(O(0\,;\,0)\) et \(A(4\,;\,10)\).</p>
+  <ol type="a">
+    <li>Calculer le coefficient \(k\).</li>
+    <li>Écrire l'expression de \(f(x)\).</li>
+    <li>Calculer \(f(6)\).</li>
+    <li>Trouver l'antécédent de 25.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(k = \dfrac{10}{4} = 2{,}5\)</li>
+      <li>\(f(x) = 2{,}5x\)</li>
+      <li>\(f(6) = 2{,}5 \times 6 = 15\)</li>
+      <li>\(2{,}5x = 25 \Rightarrow x = 10\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Sur un graphique, la droite d'une fonction linéaire passe par \(O(0\,;\,0)\) et \(B(3\,;\,-6)\).</p>
+  <ol type="a">
+    <li>La droite monte ou descend-elle ?</li>
+    <li>Quel est le coefficient \(k\) ?</li>
+    <li>Calculer \(f(5)\) et \(f(-2)\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La droite <strong>descend</strong> (quand \(x\) augmente, \(f(x)\) diminue).</li>
+      <li>\(k = \dfrac{-6}{3} = -2\) → \(f(x) = -2x\)</li>
+      <li>\(f(5) = -2 \times 5 = -10\) ; \(f(-2) = -2 \times (-2) = 4\)</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C6 ===== -->
+<div class="cap-section" data-cap="C6">
+<h2>C6 — Résoudre un problème de proportionnalité</h2>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un artisan menuisier achète des lames de bois à 4,50 € le mètre linéaire. Il a besoin de 14 m pour une commande.</p>
+  <ol type="a">
+    <li>Modéliser le coût par une fonction linéaire.</li>
+    <li>Calculer le coût total de la commande.</li>
+    <li>Avec un budget de 90 €, quelle longueur peut-il acheter ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(C(x) = 4{,}50x\)</li>
+      <li>\(C(14) = 4{,}50 \times 14 = 63\) €</li>
+      <li>\(4{,}50x = 90 \Rightarrow x = 20\) m</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Pour peindre 20 m² de surface, il faut 2,5 L de peinture. En supposant une proportionnalité :</p>
+  <ol type="a">
+    <li>Calculer le coefficient de proportionnalité (en L/m²).</li>
+    <li>Combien de litres faut-il pour 48 m² ?</li>
+    <li>Quelle surface peut-on couvrir avec 10 L ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(k = \dfrac{2{,}5}{20} = 0{,}125\) L/m²</li>
+      <li>\(V(48) = 0{,}125 \times 48 = 6\) L</li>
+      <li>\(0{,}125 \times x = 10 \Rightarrow x = \dfrac{10}{0{,}125} = 80\) m²</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un cycliste parcourt 90 km en 3 h à vitesse constante. Calculer sa vitesse, puis la distance parcourue en 5 h et le temps nécessaire pour parcourir 210 km.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Vitesse : \(k = \dfrac{90}{3} = 30\) km/h → \(d(t) = 30t\)<br>
+    En 5 h : \(d(5) = 30 \times 5 = 150\) km<br>
+    Pour 210 km : \(30t = 210 \Rightarrow t = 7\) h
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Exercices par capacités – Trigonométrie – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 7 – Exercices par capacités</h1>
+  <p class="sous-titre">Trigonométrie &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Calculer sin, cos, tan dans un triangle rectangle (définitions et calculatrice)</li>
+    <li><strong>C2</strong> — Utiliser les valeurs remarquables : sin, cos, tan de 0°, 30°, 45°, 60°, 90°</li>
+    <li><strong>C3</strong> — Convertir des angles entre degrés et radians</li>
+    <li><strong>C4</strong> — Utiliser le cercle trigonométrique ; connaître les propriétés de symétrie (\(\sin(-x)=-\sin(x)\), \(\cos(-x)=\cos(x)\), etc.)</li>
+    <li><strong>C5</strong> — Résoudre des problèmes de hauteur, de distance ou d'angle en contexte professionnel</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – sin, cos, tan</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Valeurs remarquables</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Degrés / radians</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Cercle trigo</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Problèmes pro</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Calculer sin, cos, tan dans un triangle rectangle</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Dans un triangle rectangle en C, on a AC = 6 cm et BC = 8 cm.</p>
+  <ol type="a">
+    <li>Calculer AB (hypoténuse).</li>
+    <li>Calculer \(\sin(\hat{A})\), \(\cos(\hat{A})\) et \(\tan(\hat{A})\).</li>
+    <li>En déduire la mesure de l'angle \(\hat{A}\) en degrés (arrondir au degré).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Par Pythagore : \(AB^2 = AC^2 + BC^2 = 36 + 64 = 100\), donc \(AB = 10\) cm.</li>
+      <li>Le côté opposé à \(\hat{A}\) est BC = 8 cm ; l'hypoténuse est AB = 10 cm ; le côté adjacent est AC = 6 cm.<br>
+        \(\sin(\hat{A}) = \dfrac{BC}{AB} = \dfrac{8}{10} = 0{,}8\)<br>
+        \(\cos(\hat{A}) = \dfrac{AC}{AB} = \dfrac{6}{10} = 0{,}6\)<br>
+        \(\tan(\hat{A}) = \dfrac{BC}{AC} = \dfrac{8}{6} \approx 1{,}333\)
+      </li>
+      <li>\(\hat{A} = \arcsin(0{,}8) \approx 53°\) (ou \(\arctan(1{,}333) \approx 53°\)).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Dans un triangle rectangle en B, on connaît l'angle \(\hat{A} = 38°\) et l'hypoténuse AC = 12 cm.</p>
+  <ol type="a">
+    <li>Calculer le côté BC (opposé à \(\hat{A}\)).</li>
+    <li>Calculer le côté AB (adjacent à \(\hat{A}\)).</li>
+    <li>Vérifier par Pythagore.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\sin(38°) = \dfrac{BC}{AC}\) donc \(BC = 12 \times \sin(38°) \approx 12 \times 0{,}6157 \approx 7{,}39\) cm.</li>
+      <li>\(\cos(38°) = \dfrac{AB}{AC}\) donc \(AB = 12 \times \cos(38°) \approx 12 \times 0{,}7880 \approx 9{,}46\) cm.</li>
+      <li>\(BC^2 + AB^2 \approx 54{,}60 + 89{,}49 \approx 144 = AC^2\). ✓</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un technicien installe un câble qui relie deux points A et B. La distance horizontale entre A et B est de 9 m, et B est 4 m plus haut que A.</p>
+  <ol type="a">
+    <li>Schématiser la situation sous la forme d'un triangle rectangle.</li>
+    <li>Calculer \(\tan(\alpha)\) où \(\alpha\) est l'angle d'inclinaison du câble par rapport à l'horizontale.</li>
+    <li>En déduire la valeur de \(\alpha\) en degrés.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Triangle rectangle : côté horizontal = 9 m, côté vertical = 4 m, angle \(\alpha\) à la base.</li>
+      <li>\(\tan(\alpha) = \dfrac{4}{9} \approx 0{,}444\)</li>
+      <li>\(\alpha = \arctan(0{,}444) \approx 24°\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Dans un triangle rectangle en C, \(\sin(\hat{B}) = 0{,}65\).</p>
+  <ol type="a">
+    <li>Calculer \(\cos(\hat{B})\) à l'aide de la relation fondamentale \(\cos^2 + \sin^2 = 1\).</li>
+    <li>Calculer \(\tan(\hat{B})\).</li>
+    <li>Calculer la mesure de \(\hat{B}\) en degrés, puis la mesure de \(\hat{A}\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\cos^2(\hat{B}) = 1 - \sin^2(\hat{B}) = 1 - 0{,}4225 = 0{,}5775\), donc \(\cos(\hat{B}) \approx 0{,}760\).</li>
+      <li>\(\tan(\hat{B}) = \dfrac{\sin(\hat{B})}{\cos(\hat{B})} = \dfrac{0{,}65}{0{,}760} \approx 0{,}855\)</li>
+      <li>\(\hat{B} = \arcsin(0{,}65) \approx 41°\). Dans un triangle rectangle, \(\hat{A} + \hat{B} = 90°\), donc \(\hat{A} \approx 49°\).</li>
+    </ol>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Valeurs remarquables</h2>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Compléter le tableau des valeurs remarquables sans calculatrice :</p>
+  <table>
+    <thead><tr><th>Angle</th><th>\(\sin\)</th><th>\(\cos\)</th><th>\(\tan\)</th></tr></thead>
+    <tbody>
+      <tr><td>0°</td><td>?</td><td>?</td><td>?</td></tr>
+      <tr><td>30°</td><td>?</td><td>?</td><td>?</td></tr>
+      <tr><td>45°</td><td>?</td><td>?</td><td>?</td></tr>
+      <tr><td>60°</td><td>?</td><td>?</td><td>?</td></tr>
+      <tr><td>90°</td><td>?</td><td>?</td><td>?</td></tr>
+    </tbody>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Angle</th><th>\(\sin\)</th><th>\(\cos\)</th><th>\(\tan\)</th></tr></thead>
+      <tbody>
+        <tr><td>0°</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>30°</td><td>\(\dfrac{1}{2}\)</td><td>\(\dfrac{\sqrt{3}}{2}\)</td><td>\(\dfrac{1}{\sqrt{3}} \approx 0{,}577\)</td></tr>
+        <tr><td>45°</td><td>\(\dfrac{\sqrt{2}}{2}\)</td><td>\(\dfrac{\sqrt{2}}{2}\)</td><td>1</td></tr>
+        <tr><td>60°</td><td>\(\dfrac{\sqrt{3}}{2}\)</td><td>\(\dfrac{1}{2}\)</td><td>\(\sqrt{3} \approx 1{,}732\)</td></tr>
+        <tr><td>90°</td><td>1</td><td>0</td><td>indéfini</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Sans calculatrice, calculer les expressions suivantes en utilisant les valeurs remarquables :</p>
+  <ol type="a">
+    <li>\(2\sin(30°) + \cos(60°)\)</li>
+    <li>\(\sin^2(45°) + \cos^2(45°)\)</li>
+    <li>\(\tan(45°) \times \cos(60°)\)</li>
+    <li>\(\dfrac{\sin(60°)}{\cos(30°)}\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(2 \times \dfrac{1}{2} + \dfrac{1}{2} = 1 + \dfrac{1}{2} = \dfrac{3}{2}\)</li>
+      <li>\(\left(\dfrac{\sqrt{2}}{2}\right)^2 + \left(\dfrac{\sqrt{2}}{2}\right)^2 = \dfrac{1}{2} + \dfrac{1}{2} = 1\) (relation fondamentale vérifiée)</li>
+      <li>\(1 \times \dfrac{1}{2} = \dfrac{1}{2}\)</li>
+      <li>\(\dfrac{\sqrt{3}/2}{\sqrt{3}/2} = 1\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Un charpentier pose un chevron formant un angle de 30° avec l'horizontale. La longueur du chevron est 4 m.</p>
+  <ol type="a">
+    <li>Quelle est la hauteur verticale gagnée (sans calculatrice) ?</li>
+    <li>Quelle est la projection horizontale du chevron ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Hauteur = \(4 \times \sin(30°) = 4 \times \dfrac{1}{2} = 2\) m.</li>
+      <li>Projection horizontale = \(4 \times \cos(30°) = 4 \times \dfrac{\sqrt{3}}{2} = 2\sqrt{3} \approx 3{,}46\) m.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Laquelle de ces affirmations est vraie ? Justifier sans calculatrice.</p>
+  <ol type="a">
+    <li>\(\sin(60°) = 2\sin(30°)\)</li>
+    <li>\(\cos(60°) = \cos^2(30°) - \sin^2(30°)\)</li>
+    <li>\(\tan(90°) = 1\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(2\sin(30°) = 2 \times \dfrac{1}{2} = 1\) mais \(\sin(60°) = \dfrac{\sqrt{3}}{2} \approx 0{,}866\). <strong>Faux.</strong></li>
+      <li>\(\cos^2(30°) - \sin^2(30°) = \dfrac{3}{4} - \dfrac{1}{4} = \dfrac{2}{4} = \dfrac{1}{2} = \cos(60°)\). <strong>Vrai</strong> (formule de duplication).</li>
+      <li>\(\tan(90°)\) est <strong>indéfini</strong> (division par \(\cos(90°) = 0\)). <strong>Faux.</strong></li>
+    </ol>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Convertir des angles entre degrés et radians</h2>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Convertir les angles suivants en radians (laisser les réponses sous forme fractionnaire en multiple de \(\pi\)) :</p>
+  <ol type="a">
+    <li>180°</li>
+    <li>90°</li>
+    <li>45°</li>
+    <li>60°</li>
+    <li>30°</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Rappel : \(180° = \pi\) rad, donc \(1° = \dfrac{\pi}{180}\) rad.</p>
+    <ol type="a">
+      <li>\(180° = \pi\) rad</li>
+      <li>\(90° = \dfrac{\pi}{2}\) rad</li>
+      <li>\(45° = \dfrac{\pi}{4}\) rad</li>
+      <li>\(60° = \dfrac{\pi}{3}\) rad</li>
+      <li>\(30° = \dfrac{\pi}{6}\) rad</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Convertir les angles suivants en degrés :</p>
+  <ol type="a">
+    <li>\(\dfrac{3\pi}{4}\) rad</li>
+    <li>\(\dfrac{5\pi}{6}\) rad</li>
+    <li>\(\dfrac{2\pi}{3}\) rad</li>
+    <li>2 rad (arrondir au degré)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Rappel : \(1\) rad \(= \dfrac{180°}{\pi} \approx 57{,}3°\).</p>
+    <ol type="a">
+      <li>\(\dfrac{3\pi}{4} \times \dfrac{180}{\pi} = \dfrac{3 \times 180}{4} = 135°\)</li>
+      <li>\(\dfrac{5\pi}{6} \times \dfrac{180}{\pi} = \dfrac{5 \times 180}{6} = 150°\)</li>
+      <li>\(\dfrac{2\pi}{3} \times \dfrac{180}{\pi} = \dfrac{2 \times 180}{3} = 120°\)</li>
+      <li>\(2 \times \dfrac{180}{\pi} \approx 2 \times 57{,}3 \approx 115°\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un installateur thermique règle l'orientation d'un panneau solaire. L'angle d'inclinaison optimal est de \(\dfrac{\pi}{5}\) rad.</p>
+  <ol type="a">
+    <li>Convertir cet angle en degrés.</li>
+    <li>Un second panneau est incliné à 40°. Convertir cet angle en radians (fraction de \(\pi\)).</li>
+    <li>Lequel des deux panneaux est le plus incliné ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\dfrac{\pi}{5} \times \dfrac{180}{\pi} = \dfrac{180}{5} = 36°\)</li>
+      <li>\(40° \times \dfrac{\pi}{180} = \dfrac{40\pi}{180} = \dfrac{2\pi}{9}\) rad</li>
+      <li>36° &lt; 40°, donc le second panneau (40°) est plus incliné.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Placer sur un cercle trigonométrique les angles suivants, exprimés en radians, et indiquer leur valeur en degrés :</p>
+  <p>\(0\) ; \(\dfrac{\pi}{6}\) ; \(\dfrac{\pi}{4}\) ; \(\dfrac{\pi}{3}\) ; \(\dfrac{\pi}{2}\) ; \(\pi\) ; \(\dfrac{3\pi}{2}\) ; \(2\pi\)</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Radians</th><th>Degrés</th><th>Position sur le cercle</th></tr></thead>
+      <tbody>
+        <tr><td>\(0\)</td><td>0°</td><td>Point (1, 0) — axe des x positifs</td></tr>
+        <tr><td>\(\dfrac{\pi}{6}\)</td><td>30°</td><td>Premier quadrant</td></tr>
+        <tr><td>\(\dfrac{\pi}{4}\)</td><td>45°</td><td>Premier quadrant</td></tr>
+        <tr><td>\(\dfrac{\pi}{3}\)</td><td>60°</td><td>Premier quadrant</td></tr>
+        <tr><td>\(\dfrac{\pi}{2}\)</td><td>90°</td><td>Point (0, 1) — sommet</td></tr>
+        <tr><td>\(\pi\)</td><td>180°</td><td>Point (−1, 0) — gauche</td></tr>
+        <tr><td>\(\dfrac{3\pi}{2}\)</td><td>270°</td><td>Point (0, −1) — bas</td></tr>
+        <tr><td>\(2\pi\)</td><td>360°</td><td>Retour au point (1, 0)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Cercle trigonométrique et propriétés de symétrie</h2>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Le point M du cercle trigonométrique a pour coordonnées \((\cos\theta ; \sin\theta)\). Utiliser les propriétés de symétrie pour compléter :</p>
+  <ol type="a">
+    <li>\(\sin(-\theta) = \) ?</li>
+    <li>\(\cos(-\theta) = \) ?</li>
+    <li>\(\sin(\pi - \theta) = \) ?</li>
+    <li>\(\cos(\pi - \theta) = \) ?</li>
+    <li>\(\sin(\pi + \theta) = \) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\sin(-\theta) = -\sin(\theta)\) — symétrie par rapport à l'axe des x (sin est impaire).</li>
+      <li>\(\cos(-\theta) = \cos(\theta)\) — symétrie par rapport à l'axe des x (cos est paire).</li>
+      <li>\(\sin(\pi - \theta) = \sin(\theta)\) — symétrie par rapport à l'axe des y.</li>
+      <li>\(\cos(\pi - \theta) = -\cos(\theta)\) — symétrie par rapport à l'axe des y.</li>
+      <li>\(\sin(\pi + \theta) = -\sin(\theta)\) — symétrie par rapport à l'origine.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Utiliser les propriétés du cercle trigonométrique pour calculer sans calculatrice :</p>
+  <ol type="a">
+    <li>\(\sin(-30°)\)</li>
+    <li>\(\cos(-60°)\)</li>
+    <li>\(\sin(150°)\)</li>
+    <li>\(\cos(120°)\)</li>
+    <li>\(\sin(210°)\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\sin(-30°) = -\sin(30°) = -\dfrac{1}{2}\)</li>
+      <li>\(\cos(-60°) = \cos(60°) = \dfrac{1}{2}\)</li>
+      <li>\(\sin(150°) = \sin(180° - 30°) = \sin(30°) = \dfrac{1}{2}\)</li>
+      <li>\(\cos(120°) = \cos(180° - 60°) = -\cos(60°) = -\dfrac{1}{2}\)</li>
+      <li>\(\sin(210°) = \sin(180° + 30°) = -\sin(30°) = -\dfrac{1}{2}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Donner les coordonnées du point M du cercle trigonométrique correspondant aux angles suivants, en utilisant les valeurs remarquables :</p>
+  <ol type="a">
+    <li>135°</li>
+    <li>240°</li>
+    <li>300°</li>
+    <li>\(-\dfrac{\pi}{4}\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>135° = 180° − 45°, donc \(M = (\cos(135°)\,;\,\sin(135°)) = \left(-\dfrac{\sqrt{2}}{2}\,;\,\dfrac{\sqrt{2}}{2}\right)\)</li>
+      <li>240° = 180° + 60°, donc \(M = (-\cos(60°)\,;\,-\sin(60°)) = \left(-\dfrac{1}{2}\,;\,-\dfrac{\sqrt{3}}{2}\right)\)</li>
+      <li>300° = 360° − 60°, donc \(M = (\cos(-60°)\,;\,\sin(-60°)) = \left(\dfrac{1}{2}\,;\,-\dfrac{\sqrt{3}}{2}\right)\)</li>
+      <li>\(-\dfrac{\pi}{4}\) = −45°, donc \(M = \left(\dfrac{\sqrt{2}}{2}\,;\,-\dfrac{\sqrt{2}}{2}\right)\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Soit un angle \(\theta\) tel que \(\cos\theta = 0{,}6\) et \(\theta \in [0° ; 90°]\).</p>
+  <ol type="a">
+    <li>Calculer \(\sin\theta\) (relation \(\cos^2 + \sin^2 = 1\)).</li>
+    <li>Donner la valeur de \(\sin(-\theta)\), \(\cos(-\theta)\), \(\cos(\pi - \theta)\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\sin^2\theta = 1 - 0{,}36 = 0{,}64\). Comme \(\theta \in [0°; 90°]\), \(\sin\theta \geq 0\), donc \(\sin\theta = 0{,}8\).</li>
+      <li>\(\sin(-\theta) = -0{,}8\) ; \(\cos(-\theta) = 0{,}6\) ; \(\cos(\pi - \theta) = -\cos\theta = -0{,}6\).</li>
+    </ol>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Résoudre des problèmes professionnels</h2>
+
+<div class="exo">
+  <h3>Exercice 17</h3>
+  <p>Un menuisier agenceur installe une cloison inclinée dans un comble. La cloison forme un angle de 62° avec le sol. La largeur au sol disponible est de 2,40 m.</p>
+  <ol type="a">
+    <li>Calculer la hauteur de la cloison.</li>
+    <li>Calculer la longueur réelle de la cloison (hypoténuse).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Dans le triangle rectangle : \(\tan(62°) = \dfrac{h}{2{,}40}\), donc \(h = 2{,}40 \times \tan(62°) \approx 2{,}40 \times 1{,}8807 \approx 4{,}51\) m.</li>
+      <li>\(\cos(62°) = \dfrac{2{,}40}{L}\), donc \(L = \dfrac{2{,}40}{\cos(62°)} \approx \dfrac{2{,}40}{0{,}4695} \approx 5{,}11\) m.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 18</h3>
+  <p>Un installateur thermique pose une canalisation inclinée pour évacuer les condensats. La canalisation doit descendre de 18 cm sur une longueur horizontale de 3,2 m.</p>
+  <ol type="a">
+    <li>Calculer l'angle d'inclinaison \(\alpha\) de la canalisation par rapport à l'horizontale.</li>
+    <li>La norme impose un angle minimum de 3°. Cette installation est-elle conforme ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\tan(\alpha) = \dfrac{0{,}18}{3{,}2} = 0{,}05625\), donc \(\alpha = \arctan(0{,}05625) \approx 3{,}2°\).</li>
+      <li>3,2° > 3°, donc l'installation est <strong>conforme</strong> à la norme.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19</h3>
+  <p>Un artisan menuisier veut mesurer la hauteur d'un mur sans y accéder. Depuis un point A situé à 8 m du pied du mur, il mesure un angle d'élévation de 47° vers le sommet du mur.</p>
+  <ol type="a">
+    <li>Calculer la hauteur \(h\) du mur.</li>
+    <li>Depuis un second point B situé à 5 m du pied du mur, quel serait l'angle d'élévation ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\tan(47°) = \dfrac{h}{8}\), donc \(h = 8 \times \tan(47°) \approx 8 \times 1{,}0724 \approx 8{,}58\) m.</li>
+      <li>\(\tan(\beta) = \dfrac{8{,}58}{5} = 1{,}716\), donc \(\beta = \arctan(1{,}716) \approx 60°\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20</h3>
+  <p>Un technicien chauffagiste installe un panneau solaire thermique sur un toit en pente. Le toit forme un angle de 35° avec l'horizontale. Pour optimiser le rendement, le panneau doit être incliné à 45° sur l'horizontale.</p>
+  <ol type="a">
+    <li>Quel angle doit faire le panneau avec la surface du toit ?</li>
+    <li>La fixation du panneau a une hauteur de 12 cm (mesurée perpendiculairement au toit). Calculer la hauteur réelle (verticale) de la fixation.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>L'angle entre le panneau et le toit = angle du panneau sur l'horizontal − angle du toit = 45° − 35° = <strong>10°</strong>.</li>
+      <li>La hauteur verticale = \(12 \times \cos(35°) \approx 12 \times 0{,}8192 \approx 9{,}83\) cm.<br>
+          (La fixation est perpendiculaire au toit qui est incliné à 35° ; sa composante verticale est \(h_{fixation} \times \cos(35°)\)).</li>
+    </ol>
+  </div>
+</div>
+
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Exercices par capacités – Calcul intégral – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 8 – Exercices par capacités</h1>
+  <p class="sous-titre">Calcul intégral &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Calculer une primitive d'une fonction usuelle (\(x^n\), \(e^x\), \(\sin x\), \(\cos x\), \(\frac{1}{x}\))</li>
+    <li><strong>C2</strong> — Calculer une intégrale définie \(\displaystyle\int_a^b f(x)\,\mathrm{d}x\) à partir d'une primitive</li>
+    <li><strong>C3</strong> — Interpréter géométriquement une intégrale (aire algébrique sous une courbe)</li>
+    <li><strong>C4</strong> — Calculer une aire entre deux courbes</li>
+    <li><strong>C5</strong> — Appliquer le calcul intégral à des problèmes concrets (énergie, déplacement, consommation)</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Primitives</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Intégrale définie</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Interprétation géométrique</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Aire entre deux courbes</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Applications concrètes</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Calculer une primitive d'une fonction usuelle</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Donner une primitive \(F\) de chacune des fonctions suivantes :</p>
+  <ol type="a">
+    <li>\(f(x) = 3\)</li>
+    <li>\(f(x) = 2x\)</li>
+    <li>\(f(x) = x^3\)</li>
+    <li>\(f(x) = 5x^4\)</li>
+    <li>\(f(x) = \dfrac{1}{x^2} = x^{-2}\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>On utilise la règle : si \(f(x) = x^n\) alors \(F(x) = \dfrac{x^{n+1}}{n+1}\) (pour \(n \neq -1\)).</p>
+    <ol type="a">
+      <li>\(F(x) = 3x\) (constante : primitiver = multiplier par \(x\))</li>
+      <li>\(F(x) = x^2\)</li>
+      <li>\(F(x) = \dfrac{x^4}{4}\)</li>
+      <li>\(F(x) = x^5\)</li>
+      <li>\(F(x) = \dfrac{x^{-1}}{-1} = -\dfrac{1}{x}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Calculer une primitive de chaque fonction :</p>
+  <ol type="a">
+    <li>\(f(x) = e^x\)</li>
+    <li>\(f(x) = 3e^x\)</li>
+    <li>\(f(x) = \sin(x)\)</li>
+    <li>\(f(x) = \cos(x)\)</li>
+    <li>\(f(x) = \dfrac{1}{x}\) (sur \(]0 ; +\infty[\))</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(F(x) = e^x\) (l'exponentielle est sa propre primitive)</li>
+      <li>\(F(x) = 3e^x\)</li>
+      <li>\(F(x) = -\cos(x)\) (car \((-\cos x)' = \sin x\))</li>
+      <li>\(F(x) = \sin(x)\) (car \((\sin x)' = \cos x\))</li>
+      <li>\(F(x) = \ln(x)\) (sur \(]0 ; +\infty[\))</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Déterminer une primitive de chaque fonction en utilisant la linéarité :</p>
+  <ol type="a">
+    <li>\(f(x) = 4x^3 - 2x + 7\)</li>
+    <li>\(f(x) = 2\cos(x) - 3\sin(x)\)</li>
+    <li>\(f(x) = e^x + \dfrac{1}{x}\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(F(x) = x^4 - x^2 + 7x\)</li>
+      <li>\(F(x) = 2\sin(x) + 3\cos(x)\)</li>
+      <li>\(F(x) = e^x + \ln(x)\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Trouver la primitive \(F\) vérifiant la condition initiale donnée :</p>
+  <ol type="a">
+    <li>\(f(x) = 2x + 1\) avec \(F(0) = 3\)</li>
+    <li>\(f(x) = e^x\) avec \(F(0) = 0\)</li>
+    <li>\(f(x) = \cos(x)\) avec \(F(0) = 2\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La forme générale est \(F(x) = x^2 + x + C\). \(F(0) = C = 3\), donc \(F(x) = x^2 + x + 3\).</li>
+      <li>La forme générale est \(F(x) = e^x + C\). \(F(0) = 1 + C = 0\), donc \(C = -1\) et \(F(x) = e^x - 1\).</li>
+      <li>La forme générale est \(F(x) = \sin(x) + C\). \(F(0) = 0 + C = 2\), donc \(F(x) = \sin(x) + 2\).</li>
+    </ol>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer une intégrale définie</h2>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Calculer les intégrales suivantes :</p>
+  <ol type="a">
+    <li>\(\displaystyle\int_0^2 3\,\mathrm{d}x\)</li>
+    <li>\(\displaystyle\int_1^3 2x\,\mathrm{d}x\)</li>
+    <li>\(\displaystyle\int_0^1 x^2\,\mathrm{d}x\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>On utilise \(\displaystyle\int_a^b f(x)\,\mathrm{d}x = [F(x)]_a^b = F(b) - F(a)\).</p>
+    <ol type="a">
+      <li>\([3x]_0^2 = 3 \times 2 - 3 \times 0 = 6\)</li>
+      <li>\([x^2]_1^3 = 9 - 1 = 8\)</li>
+      <li>\(\left[\dfrac{x^3}{3}\right]_0^1 = \dfrac{1}{3} - 0 = \dfrac{1}{3}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Calculer :</p>
+  <ol type="a">
+    <li>\(\displaystyle\int_0^\pi \sin(x)\,\mathrm{d}x\)</li>
+    <li>\(\displaystyle\int_0^{\pi/2} \cos(x)\,\mathrm{d}x\)</li>
+    <li>\(\displaystyle\int_0^1 e^x\,\mathrm{d}x\)</li>
+    <li>\(\displaystyle\int_1^e \dfrac{1}{x}\,\mathrm{d}x\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\([-\cos(x)]_0^\pi = -\cos(\pi) - (-\cos(0)) = -(-1) - (-1) = 1 + 1 = 2\)</li>
+      <li>\([\sin(x)]_0^{\pi/2} = \sin\!\left(\dfrac{\pi}{2}\right) - \sin(0) = 1 - 0 = 1\)</li>
+      <li>\([e^x]_0^1 = e^1 - e^0 = e - 1 \approx 1{,}718\)</li>
+      <li>\([\ln(x)]_1^e = \ln(e) - \ln(1) = 1 - 0 = 1\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Calculer \(\displaystyle\int_1^3 (2x^2 - 3x + 1)\,\mathrm{d}x\) et vérifier le résultat.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Une primitive de \(2x^2 - 3x + 1\) est \(F(x) = \dfrac{2x^3}{3} - \dfrac{3x^2}{2} + x\).</p>
+    <p>\(F(3) = \dfrac{2 \times 27}{3} - \dfrac{3 \times 9}{2} + 3 = 18 - 13{,}5 + 3 = 7{,}5\)</p>
+    <p>\(F(1) = \dfrac{2}{3} - \dfrac{3}{2} + 1 = \dfrac{4}{6} - \dfrac{9}{6} + \dfrac{6}{6} = \dfrac{1}{6}\)</p>
+    <p>\(\displaystyle\int_1^3 (2x^2 - 3x + 1)\,\mathrm{d}x = 7{,}5 - \dfrac{1}{6} = \dfrac{45}{6} - \dfrac{1}{6} = \dfrac{44}{6} = \dfrac{22}{3} \approx 7{,}33\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Vérifier la relation de Chasles : si \(c\) est un point intermédiaire dans \([a, b]\), alors
+  \(\displaystyle\int_a^b f = \int_a^c f + \int_c^b f\).</p>
+  <p>Calculer séparément \(\displaystyle\int_0^1 x^2\,\mathrm{d}x\) et \(\displaystyle\int_1^3 x^2\,\mathrm{d}x\), puis leur somme. Vérifier avec \(\displaystyle\int_0^3 x^2\,\mathrm{d}x\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(\displaystyle\int_0^1 x^2\,\mathrm{d}x = \left[\dfrac{x^3}{3}\right]_0^1 = \dfrac{1}{3}\)</p>
+    <p>\(\displaystyle\int_1^3 x^2\,\mathrm{d}x = \left[\dfrac{x^3}{3}\right]_1^3 = \dfrac{27}{3} - \dfrac{1}{3} = 9 - \dfrac{1}{3} = \dfrac{26}{3}\)</p>
+    <p>Somme : \(\dfrac{1}{3} + \dfrac{26}{3} = \dfrac{27}{3} = 9\)</p>
+    <p>Vérification : \(\displaystyle\int_0^3 x^2\,\mathrm{d}x = \dfrac{27}{3} - 0 = 9\) ✓</p>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Interprétation géométrique d'une intégrale</h2>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>La courbe de la fonction \(f(x) = x + 1\) est tracée sur \([0\,;\,3]\).</p>
+  <ol type="a">
+    <li>Calculer \(\displaystyle\int_0^3 (x+1)\,\mathrm{d}x\).</li>
+    <li>Décrire la surface que représente cette intégrale (forme géométrique simple).</li>
+    <li>Vérifier le résultat en calculant l'aire de cette surface par une formule géométrique.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\displaystyle\int_0^3 (x+1)\,\mathrm{d}x = \left[\dfrac{x^2}{2} + x\right]_0^3 = \dfrac{9}{2} + 3 = \dfrac{9}{2} + \dfrac{6}{2} = \dfrac{15}{2} = 7{,}5\)</li>
+      <li>La surface est un trapèze : en \(x=0\), \(f(0)=1\) ; en \(x=3\), \(f(3)=4\). La base est 3, les deux hauteurs parallèles sont 1 et 4.</li>
+      <li>Aire du trapèze \(= \dfrac{(1+4) \times 3}{2} = \dfrac{15}{2} = 7{,}5\) u.a. ✓</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Soit \(f(x) = x^2 - 4\) définie sur \([-2\,;\,4]\).</p>
+  <ol type="a">
+    <li>Vérifier que \(f(x) \leq 0\) sur \([-2\,;\,2]\) et \(f(x) \geq 0\) sur \([2\,;\,4]\).</li>
+    <li>Calculer \(\displaystyle\int_{-2}^{2} f(x)\,\mathrm{d}x\). Interpréter le signe du résultat.</li>
+    <li>Calculer l'aire de la surface comprise entre la courbe et l'axe des x sur \([-2\,;\,2]\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(x^2 - 4 \leq 0 \Leftrightarrow x^2 \leq 4 \Leftrightarrow -2 \leq x \leq 2\). Vérifié. Sur \([2\,;\,4]\), \(x^2 \geq 4\) donc \(f(x) \geq 0\). ✓</li>
+      <li>\(\displaystyle\int_{-2}^{2}(x^2-4)\,\mathrm{d}x = \left[\dfrac{x^3}{3} - 4x\right]_{-2}^{2} = \left(\dfrac{8}{3}-8\right) - \left(\dfrac{-8}{3}+8\right) = \dfrac{16}{3} - 16 = -\dfrac{32}{3} \approx -10{,}67\)</li>
+      Le résultat est négatif car la courbe est <em>en dessous</em> de l'axe des x sur cet intervalle.
+      <li>L'aire géométrique est \(\left|\displaystyle\int_{-2}^{2}(x^2-4)\,\mathrm{d}x\right| = \dfrac{32}{3} \approx 10{,}67\) u.a.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>On donne le graphique d'une fonction \(f\) positive sur \([0\,;\,4]\). Les valeurs lues sont :</p>
+  <ul>
+    <li>\(f(0) = 0\), \(f(1) = 3\), \(f(2) = 4\), \(f(3) = 3\), \(f(4) = 0\)</li>
+  </ul>
+  <p>En utilisant la méthode des trapèzes avec 4 intervalles, estimer \(\displaystyle\int_0^4 f(x)\,\mathrm{d}x\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Méthode des trapèzes : \(\displaystyle\int_0^4 f \approx \dfrac{h}{2}\left[f(x_0) + 2f(x_1) + 2f(x_2) + 2f(x_3) + f(x_4)\right]\) avec \(h = 1\).</p>
+    <p>\(\approx \dfrac{1}{2}(0 + 2\times3 + 2\times4 + 2\times3 + 0) = \dfrac{1}{2}(0 + 6 + 8 + 6 + 0) = \dfrac{20}{2} = 10\) u.a.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Expliquer pourquoi \(\displaystyle\int_0^{2\pi} \sin(x)\,\mathrm{d}x = 0\) sans calculer, puis vérifier par le calcul.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Explication géométrique :</strong> sur \([0\,;\,\pi]\), \(\sin(x) \geq 0\) (aire positive) ; sur \([\pi\,;\,2\pi]\), \(\sin(x) \leq 0\) (aire négative). Par symétrie, ces deux aires sont opposées en valeur ; leur somme algébrique est nulle.</p>
+    <p><strong>Vérification :</strong> \([-\cos(x)]_0^{2\pi} = -\cos(2\pi) + \cos(0) = -1 + 1 = 0\) ✓</p>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Calculer une aire entre deux courbes</h2>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Calculer l'aire de la surface délimitée par les courbes de \(f(x) = x^2\) et \(g(x) = x\) sur \([0\,;\,1]\).</p>
+  <ol type="a">
+    <li>Vérifier que \(g(x) \geq f(x)\) sur \([0\,;\,1]\).</li>
+    <li>Calculer \(\displaystyle\int_0^1 (g(x) - f(x))\,\mathrm{d}x\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Sur \([0\,;\,1]\) : \(g(x) - f(x) = x - x^2 = x(1-x) \geq 0\) car \(x \geq 0\) et \(1 - x \geq 0\). ✓</li>
+      <li>\(\displaystyle\int_0^1 (x - x^2)\,\mathrm{d}x = \left[\dfrac{x^2}{2} - \dfrac{x^3}{3}\right]_0^1 = \dfrac{1}{2} - \dfrac{1}{3} = \dfrac{3}{6} - \dfrac{2}{6} = \dfrac{1}{6}\) u.a.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Trouver les points d'intersection de \(f(x) = x^2 - 1\) et \(g(x) = 2x + 2\), puis calculer l'aire comprise entre les deux courbes.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Points d'intersection :</strong> \(x^2 - 1 = 2x + 2 \Rightarrow x^2 - 2x - 3 = 0 \Rightarrow (x-3)(x+1) = 0\), donc \(x = -1\) et \(x = 3\).</p>
+    <p>Sur \([-1\,;\,3]\) : \(g(x) - f(x) = 2x + 2 - x^2 + 1 = -x^2 + 2x + 3\).</p>
+    <p>On vérifie que \(-x^2 + 2x + 3 \geq 0\) sur \([-1\,;\,3]\) (les racines sont −1 et 3, et le coefficient de \(x^2\) est négatif).</p>
+    <p>\(\displaystyle\int_{-1}^3 (-x^2 + 2x + 3)\,\mathrm{d}x = \left[-\dfrac{x^3}{3} + x^2 + 3x\right]_{-1}^3\)</p>
+    <p>\(= \left(-9 + 9 + 9\right) - \left(\dfrac{1}{3} + 1 - 3\right) = 9 - \left(\dfrac{1}{3} - 2\right) = 9 + 2 - \dfrac{1}{3} = 11 - \dfrac{1}{3} = \dfrac{32}{3} \approx 10{,}67\) u.a.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Calculer l'aire de la surface délimitée par \(f(x) = \cos(x)\) et l'axe des x sur \([0\,;\,\pi]\).</p>
+  <ol type="a">
+    <li>Sur quel sous-intervalle \(\cos(x) \geq 0\) ? Sur lequel \(\cos(x) \leq 0\) ?</li>
+    <li>Calculer l'aire géométrique totale.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\cos(x) \geq 0\) sur \(\left[0\,;\,\dfrac{\pi}{2}\right]\) ; \(\cos(x) \leq 0\) sur \(\left[\dfrac{\pi}{2}\,;\,\pi\right]\).</li>
+      <li>
+        Aire sur \(\left[0\,;\,\dfrac{\pi}{2}\right]\) : \(\displaystyle\int_0^{\pi/2}\cos(x)\,\mathrm{d}x = [\sin(x)]_0^{\pi/2} = 1 - 0 = 1\) u.a.<br>
+        Aire sur \(\left[\dfrac{\pi}{2}\,;\,\pi\right]\) : \(\left|\displaystyle\int_{\pi/2}^{\pi}\cos(x)\,\mathrm{d}x\right| = |[\sin(x)]_{\pi/2}^\pi| = |\sin(\pi) - \sin(\pi/2)| = |0-1| = 1\) u.a.<br>
+        Aire totale = \(1 + 1 = 2\) u.a.
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Un installateur thermique modélise le profil de deux surfaces de vitrage. La première est décrite par \(f(x) = \sqrt{x}\) et la seconde par \(g(x) = x^2\) sur \([0\,;\,1]\) (en mètres).</p>
+  <p>Calculer l'aire de la surface comprise entre les deux profils.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Sur \([0\,;\,1]\) : \(f(x) = \sqrt{x} = x^{1/2}\) et \(g(x) = x^2\). On vérifie que \(\sqrt{x} \geq x^2\) sur \([0\,;\,1]\) (en \(x=0{,}5\) : \(0{,}707 > 0{,}25\)). ✓</p>
+    <p>\(\displaystyle\int_0^1 (\sqrt{x} - x^2)\,\mathrm{d}x = \left[\dfrac{x^{3/2}}{3/2} - \dfrac{x^3}{3}\right]_0^1 = \left[\dfrac{2}{3}x^{3/2} - \dfrac{x^3}{3}\right]_0^1\)</p>
+    <p>\(= \dfrac{2}{3} - \dfrac{1}{3} = \dfrac{1}{3} \approx 0{,}333\) m²</p>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Applications concrètes du calcul intégral</h2>
+
+<div class="exo">
+  <h3>Exercice 17</h3>
+  <p>La puissance instantanée (en kW) fournie par un panneau solaire est modélisée sur la journée par :</p>
+  <p>\(P(t) = 4\sin\!\left(\dfrac{\pi t}{12}\right)\) pour \(t \in [0\,;\,12]\) (heures depuis le lever du soleil).</p>
+  <ol type="a">
+    <li>Calculer l'énergie produite (en kWh) sur la journée : \(E = \displaystyle\int_0^{12} P(t)\,\mathrm{d}t\).</li>
+    <li>Interpréter le résultat.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>On pose \(u = \dfrac{\pi t}{12}\) ; une primitive de \(\sin(u)\) est \(-\cos(u)\).
+        <br>\(E = \left[-\dfrac{12}{\pi} \times 4\cos\!\left(\dfrac{\pi t}{12}\right)\right]_0^{12} = -\dfrac{48}{\pi}\left[\cos(\pi) - \cos(0)\right] = -\dfrac{48}{\pi}(-1-1) = \dfrac{96}{\pi} \approx 30{,}6\) kWh</li>
+      <li>Le panneau solaire produit environ <strong>30,6 kWh</strong> sur cette journée de 12 heures d'ensoleillement.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 18</h3>
+  <p>La vitesse (en m/s) d'un véhicule lors d'un freinage est modélisée par \(v(t) = 20 - 5t\) pour \(t \in [0\,;\,4]\) (en secondes).</p>
+  <ol type="a">
+    <li>Calculer la distance parcourue : \(d = \displaystyle\int_0^4 v(t)\,\mathrm{d}t\).</li>
+    <li>Vérifier que le véhicule est bien arrêté à \(t = 4\) s.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(d = \displaystyle\int_0^4 (20-5t)\,\mathrm{d}t = [20t - \dfrac{5t^2}{2}]_0^4 = 80 - 40 = 40\) m</li>
+      <li>\(v(4) = 20 - 5 \times 4 = 0\) m/s ✓ — le véhicule est arrêté.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19</h3>
+  <p>La consommation de gaz d'une chaudière (en m³/h) est donnée par \(C(t) = 0{,}5 + 0{,}3e^{-0{,}2t}\) pour \(t \in [0\,;\,8]\) (heures).</p>
+  <p>Calculer la consommation totale de gaz sur ces 8 heures.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(\displaystyle\int_0^8 C(t)\,\mathrm{d}t = \int_0^8 (0{,}5 + 0{,}3e^{-0{,}2t})\,\mathrm{d}t\)</p>
+    <p>Primitive de \(0{,}3e^{-0{,}2t}\) : on a \(\dfrac{0{,}3}{-0{,}2}e^{-0{,}2t} = -1{,}5\,e^{-0{,}2t}\).</p>
+    <p>\(= [0{,}5t - 1{,}5e^{-0{,}2t}]_0^8 = (4 - 1{,}5e^{-1{,}6}) - (0 - 1{,}5e^0)\)</p>
+    <p>\(= 4 - 1{,}5 \times 0{,}2019 + 1{,}5 = 5{,}5 - 0{,}303 \approx 5{,}20\) m³</p>
+    <p>La chaudière consomme environ <strong>5,2 m³</strong> de gaz sur 8 heures.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20</h3>
+  <p>La valeur moyenne d'une fonction \(f\) sur \([a\,;\,b]\) est définie par \(\overline{f} = \dfrac{1}{b-a}\displaystyle\int_a^b f(x)\,\mathrm{d}x\).</p>
+  <p>La température (en °C) dans un entrepôt de bois est modélisée par \(T(t) = 15 + 5\cos\!\left(\dfrac{\pi t}{12}\right)\) pour \(t \in [0\,;\,24]\) (heures).</p>
+  <p>Calculer la température moyenne sur une journée entière.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(\overline{T} = \dfrac{1}{24}\displaystyle\int_0^{24}\left(15 + 5\cos\!\left(\dfrac{\pi t}{12}\right)\right)\mathrm{d}t\)</p>
+    <p>Primitive : \(15t + 5 \times \dfrac{12}{\pi}\sin\!\left(\dfrac{\pi t}{12}\right) = 15t + \dfrac{60}{\pi}\sin\!\left(\dfrac{\pi t}{12}\right)\)</p>
+    <p>\(\displaystyle\int_0^{24} = \left[15t + \dfrac{60}{\pi}\sin\!\left(\dfrac{\pi t}{12}\right)\right]_0^{24} = (360 + \dfrac{60}{\pi}\sin(2\pi)) - (0 + 0) = 360\) (car \(\sin(2\pi) = 0\))</p>
+    <p>\(\overline{T} = \dfrac{360}{24} = 15°C\)</p>
+    <p>La température moyenne dans l'entrepôt est de <strong>15°C</strong>, ce qui correspond à la composante constante du modèle.</p>
+  </div>
+</div>
+
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

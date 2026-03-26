@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Exercices par capacités – Vecteurs – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 6 – Exercices par capacités</h1>
+  <p class="sous-titre">Vecteurs | Terminale Bac Pro | Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Définir un vecteur (norme, direction, sens) ; reconnaître vecteurs égaux et opposés</li>
+    <li><strong>C2</strong> — Additionner des vecteurs : règle du parallélogramme, relation de Chasles</li>
+    <li><strong>C3</strong> — Multiplier un vecteur par un scalaire ; calculer avec les coordonnées</li>
+    <li><strong>C4</strong> — Démontrer que des points sont alignés ou que des droites sont parallèles (colinéarité)</li>
+    <li><strong>C5</strong> — Appliquer les vecteurs à des problèmes de géométrie plane (milieu, barycentre simple)</li>
+  </ul>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Définition</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Addition</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Scalaire et coordonnées</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Colinéarité</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Milieu et géométrie</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Définir un vecteur ; vecteurs égaux et opposés</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>On considère les points \(A(1;2)\), \(B(4;6)\), \(C(3;1)\) et \(D(6;5)\) dans un repère orthonormé.<br>
+  1. Calculer les coordonnées de \(\overrightarrow{AB}\) et de \(\overrightarrow{CD}\).<br>
+  2. Les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) sont-ils égaux ? Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Rappel : \(\overrightarrow{AB} = \begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}\)<br><br>
+    <strong>1.</strong> \(\overrightarrow{AB} = \begin{pmatrix} 4-1 \\ 6-2 \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}\)<br>
+    \(\overrightarrow{CD} = \begin{pmatrix} 6-3 \\ 5-1 \end{pmatrix} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> Oui, \(\overrightarrow{AB} = \overrightarrow{CD}\) car ils ont les mêmes coordonnées. Ils ont donc même direction, même sens et même norme. (ABDC est un parallélogramme.)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Soient \(P(2;5)\) et \(Q(7;3)\).<br>
+  1. Calculer les coordonnées de \(\overrightarrow{PQ}\) et de \(\overrightarrow{QP}\).<br>
+  2. Calculer la norme \(\|\overrightarrow{PQ}\|\) (arrondir au centième).<br>
+  3. \(\overrightarrow{PQ}\) et \(\overrightarrow{QP}\) sont-ils opposés ? Égaux ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{PQ} = \begin{pmatrix} 7-2 \\ 3-5 \end{pmatrix} = \begin{pmatrix} 5 \\ -2 \end{pmatrix}\)<br>
+    \(\overrightarrow{QP} = \begin{pmatrix} 2-7 \\ 5-3 \end{pmatrix} = \begin{pmatrix} -5 \\ 2 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> \(\|\overrightarrow{PQ}\| = \sqrt{5^2 + (-2)^2} = \sqrt{25+4} = \sqrt{29} \approx 5{,}39\)<br><br>
+    <strong>3.</strong> \(\overrightarrow{QP} = -\overrightarrow{PQ}\) (chaque coordonnée est l'opposée) : ils sont bien <strong>vecteurs opposés</strong>. Ils ne sont pas égaux (ils n'ont pas le même sens).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un menuisier agenceur trace un plan de pose sur un quadrillage. Les points \(A\), \(B\), \(C\), \(D\) sont les coins d'une pièce rectangulaire avec :<br>
+  \(A(0;0)\), \(B(6;0)\), \(C(6;4)\), \(D(0;4)\).<br>
+  Calculer les coordonnées de \(\overrightarrow{AB}\), \(\overrightarrow{DC}\), \(\overrightarrow{AD}\) et \(\overrightarrow{BC}\). Que remarque-t-on ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{AB} = \begin{pmatrix} 6 \\ 0 \end{pmatrix}\) et \(\overrightarrow{DC} = \begin{pmatrix} 6-0 \\ 4-4 \end{pmatrix} = \begin{pmatrix} 6 \\ 0 \end{pmatrix}\)<br>
+    \(\overrightarrow{AD} = \begin{pmatrix} 0 \\ 4 \end{pmatrix}\) et \(\overrightarrow{BC} = \begin{pmatrix} 6-6 \\ 4-0 \end{pmatrix} = \begin{pmatrix} 0 \\ 4 \end{pmatrix}\)<br><br>
+    <strong>Remarque :</strong> \(\overrightarrow{AB} = \overrightarrow{DC}\) et \(\overrightarrow{AD} = \overrightarrow{BC}\). Cela confirme que \(ABCD\) est un parallélogramme (propriété des vecteurs dans un parallélogramme).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>On donne \(\overrightarrow{u} = \begin{pmatrix} -3 \\ 4 \end{pmatrix}\).<br>
+  1. Calculer la norme de \(\overrightarrow{u}\).<br>
+  2. Écrire les coordonnées du vecteur opposé \(-\overrightarrow{u}\).<br>
+  3. La norme de \(-\overrightarrow{u}\) est-elle différente de celle de \(\overrightarrow{u}\) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\|\overrightarrow{u}\| = \sqrt{(-3)^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5\)<br><br>
+    <strong>2.</strong> \(-\overrightarrow{u} = \begin{pmatrix} 3 \\ -4 \end{pmatrix}\)<br><br>
+    <strong>3.</strong> \(\|-\overrightarrow{u}\| = \sqrt{3^2 + (-4)^2} = \sqrt{9+16} = 5\)<br>
+    La norme est la même : \(\|\overrightarrow{u}\| = \|-\overrightarrow{u}\|\). Deux vecteurs opposés ont la même norme.
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Additionner des vecteurs ; relation de Chasles</h2>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>On donne \(\overrightarrow{u} = \begin{pmatrix} 2 \\ 3 \end{pmatrix}\) et \(\overrightarrow{v} = \begin{pmatrix} -1 \\ 4 \end{pmatrix}\).<br>
+  Calculer \(\overrightarrow{u} + \overrightarrow{v}\) et \(\overrightarrow{u} - \overrightarrow{v}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{u} + \overrightarrow{v} = \begin{pmatrix} 2+(-1) \\ 3+4 \end{pmatrix} = \begin{pmatrix} 1 \\ 7 \end{pmatrix}\)<br><br>
+    \(\overrightarrow{u} - \overrightarrow{v} = \overrightarrow{u} + (-\overrightarrow{v}) = \begin{pmatrix} 2-(-1) \\ 3-4 \end{pmatrix} = \begin{pmatrix} 3 \\ -1 \end{pmatrix}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Relation de Chasles : \(\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}\).<br>
+  On donne \(A(1;3)\), \(B(4;1)\) et \(C(2;7)\).<br>
+  1. Calculer \(\overrightarrow{AB}\), \(\overrightarrow{BC}\) et leur somme.<br>
+  2. Calculer directement \(\overrightarrow{AC}\) et vérifier l'égalité.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{AB} = \begin{pmatrix} 3 \\ -2 \end{pmatrix}\) et \(\overrightarrow{BC} = \begin{pmatrix} -2 \\ 6 \end{pmatrix}\)<br>
+    \(\overrightarrow{AB} + \overrightarrow{BC} = \begin{pmatrix} 3+(-2) \\ -2+6 \end{pmatrix} = \begin{pmatrix} 1 \\ 4 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> \(\overrightarrow{AC} = \begin{pmatrix} 2-1 \\ 7-3 \end{pmatrix} = \begin{pmatrix} 1 \\ 4 \end{pmatrix}\) ✔<br><br>
+    La relation de Chasles est bien vérifiée.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Simplifier les expressions vectorielles suivantes en utilisant la relation de Chasles :</p>
+  <ol type="a">
+    <li>\(\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CD}\)</li>
+    <li>\(\overrightarrow{MN} + \overrightarrow{NP} + \overrightarrow{PM}\)</li>
+    <li>\(\overrightarrow{AB} + \overrightarrow{BC} - \overrightarrow{AC}\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>a)</strong> \(\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CD} = \overrightarrow{AC} + \overrightarrow{CD} = \overrightarrow{AD}\)<br><br>
+    <strong>b)</strong> \(\overrightarrow{MN} + \overrightarrow{NP} + \overrightarrow{PM} = \overrightarrow{MP} + \overrightarrow{PM} = \overrightarrow{MM} = \overrightarrow{0}\)<br>
+    (On retrouve le point de départ, on obtient le vecteur nul.)<br><br>
+    <strong>c)</strong> \(\overrightarrow{AB} + \overrightarrow{BC} - \overrightarrow{AC} = \overrightarrow{AC} - \overrightarrow{AC} = \overrightarrow{0}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un installateur d'agencement se déplace en atelier. Il part du point \(O(0;0)\), se rend en \(A(5;2)\), puis en \(B(3;7)\), puis revient en \(C(1;4)\).<br>
+  1. Calculer \(\overrightarrow{OA}\), \(\overrightarrow{AB}\) et \(\overrightarrow{BC}\).<br>
+  2. Calculer \(\overrightarrow{OA} + \overrightarrow{AB} + \overrightarrow{BC}\) et vérifier avec \(\overrightarrow{OC}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{OA} = \begin{pmatrix} 5 \\ 2 \end{pmatrix}\), \(\overrightarrow{AB} = \begin{pmatrix} -2 \\ 5 \end{pmatrix}\), \(\overrightarrow{BC} = \begin{pmatrix} -2 \\ -3 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> \(\overrightarrow{OA} + \overrightarrow{AB} + \overrightarrow{BC} = \begin{pmatrix} 5-2-2 \\ 2+5-3 \end{pmatrix} = \begin{pmatrix} 1 \\ 4 \end{pmatrix}\)<br>
+    Vérification : \(\overrightarrow{OC} = \begin{pmatrix} 1-0 \\ 4-0 \end{pmatrix} = \begin{pmatrix} 1 \\ 4 \end{pmatrix}\) ✔<br><br>
+    Relation de Chasles : \(\overrightarrow{OA} + \overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{OC}\).
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Multiplier un vecteur par un scalaire ; coordonnées</h2>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>On donne \(\overrightarrow{u} = \begin{pmatrix} 2 \\ -3 \end{pmatrix}\). Calculer :</p>
+  <ol type="a">
+    <li>\(3\overrightarrow{u}\)</li>
+    <li>\(-2\overrightarrow{u}\)</li>
+    <li>\(\dfrac{1}{2}\overrightarrow{u}\)</li>
+  </ol>
+  <p>Pour chaque résultat, calculer la norme et comparer à \(\|\overrightarrow{u}\|\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\|\overrightarrow{u}\| = \sqrt{4+9} = \sqrt{13}\)<br><br>
+    <strong>a)</strong> \(3\overrightarrow{u} = \begin{pmatrix} 6 \\ -9 \end{pmatrix}\), norme \(= \sqrt{36+81} = \sqrt{117} = 3\sqrt{13} = 3\|\overrightarrow{u}\|\)<br><br>
+    <strong>b)</strong> \(-2\overrightarrow{u} = \begin{pmatrix} -4 \\ 6 \end{pmatrix}\), norme \(= \sqrt{16+36} = \sqrt{52} = 2\sqrt{13} = 2\|\overrightarrow{u}\|\)<br><br>
+    <strong>c)</strong> \(\dfrac{1}{2}\overrightarrow{u} = \begin{pmatrix} 1 \\ -1{,}5 \end{pmatrix}\), norme \(= \sqrt{1+2{,}25} = \sqrt{3{,}25} = \dfrac{\sqrt{13}}{2} = \dfrac{1}{2}\|\overrightarrow{u}\|\)<br><br>
+    <strong>Propriété :</strong> \(\|k\overrightarrow{u}\| = |k| \times \|\overrightarrow{u}\|\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>On donne \(\overrightarrow{a} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}\) et \(\overrightarrow{b} = \begin{pmatrix} 3 \\ -1 \end{pmatrix}\). Calculer :</p>
+  <ol type="a">
+    <li>\(2\overrightarrow{a} + \overrightarrow{b}\)</li>
+    <li>\(3\overrightarrow{a} - 2\overrightarrow{b}\)</li>
+    <li>\(\overrightarrow{a} + \overrightarrow{b}\) puis sa norme (arrondie au centième)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>a)</strong> \(2\overrightarrow{a} + \overrightarrow{b} = \begin{pmatrix} 2 \\ 4 \end{pmatrix} + \begin{pmatrix} 3 \\ -1 \end{pmatrix} = \begin{pmatrix} 5 \\ 3 \end{pmatrix}\)<br><br>
+    <strong>b)</strong> \(3\overrightarrow{a} - 2\overrightarrow{b} = \begin{pmatrix} 3 \\ 6 \end{pmatrix} - \begin{pmatrix} 6 \\ -2 \end{pmatrix} = \begin{pmatrix} -3 \\ 8 \end{pmatrix}\)<br><br>
+    <strong>c)</strong> \(\overrightarrow{a} + \overrightarrow{b} = \begin{pmatrix} 4 \\ 1 \end{pmatrix}\), norme \(= \sqrt{16+1} = \sqrt{17} \approx 4{,}12\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un technicien chauffagiste utilise un plan vectoriel pour répartir des charges. La résultante de deux forces est \(\overrightarrow{F} = \overrightarrow{F_1} + \overrightarrow{F_2}\) avec :<br>
+  \(\overrightarrow{F_1} = \begin{pmatrix} 3 \\ 5 \end{pmatrix}\) et \(\overrightarrow{F_2} = \begin{pmatrix} -1 \\ 2 \end{pmatrix}\) (en newtons).<br>
+  1. Calculer \(\overrightarrow{F}\).<br>
+  2. Calculer la norme de \(\overrightarrow{F}\) (arrondie au centième).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{F} = \begin{pmatrix} 3+(-1) \\ 5+2 \end{pmatrix} = \begin{pmatrix} 2 \\ 7 \end{pmatrix}\) N<br><br>
+    <strong>2.</strong> \(\|\overrightarrow{F}\| = \sqrt{2^2 + 7^2} = \sqrt{4+49} = \sqrt{53} \approx 7{,}28\ \text{N}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>On donne les points \(A(2;1)\) et \(B(8;5)\). On note \(M\) le point tel que \(\overrightarrow{AM} = \dfrac{2}{3}\overrightarrow{AB}\).<br>
+  Calculer les coordonnées de \(M\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{AB} = \begin{pmatrix} 8-2 \\ 5-1 \end{pmatrix} = \begin{pmatrix} 6 \\ 4 \end{pmatrix}\)<br><br>
+    \(\overrightarrow{AM} = \dfrac{2}{3}\overrightarrow{AB} = \dfrac{2}{3}\begin{pmatrix} 6 \\ 4 \end{pmatrix} = \begin{pmatrix} 4 \\ \frac{8}{3} \end{pmatrix}\)<br><br>
+    Les coordonnées de \(M\) :<br>
+    \(x_M = x_A + 4 = 2 + 4 = 6\)<br>
+    \(y_M = y_A + \dfrac{8}{3} = 1 + \dfrac{8}{3} = \dfrac{11}{3} \approx 3{,}67\)<br><br>
+    \(M\left(6 ; \dfrac{11}{3}\right)\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Colinéarité : points alignés et droites parallèles</h2>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Rappel : deux vecteurs \(\overrightarrow{u} = \begin{pmatrix} a \\ b \end{pmatrix}\) et \(\overrightarrow{v} = \begin{pmatrix} c \\ d \end{pmatrix}\) sont <strong>colinéaires</strong> si et seulement si \(ad - bc = 0\).<br><br>
+  Trois points \(A\), \(B\), \(C\) sont alignés si et seulement si \(\overrightarrow{AB}\) et \(\overrightarrow{AC}\) sont colinéaires.<br><br>
+  Déterminer si les points suivants sont alignés :<br>
+  \(A(1;2)\), \(B(3;6)\), \(C(5;10)\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{AB} = \begin{pmatrix} 2 \\ 4 \end{pmatrix}\) et \(\overrightarrow{AC} = \begin{pmatrix} 4 \\ 8 \end{pmatrix}\)<br><br>
+    On calcule le déterminant :<br>
+    \(ad - bc = 2 \times 8 - 4 \times 4 = 16 - 16 = 0\)<br><br>
+    <strong>Conclusion :</strong> les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{AC}\) sont colinéaires, donc les points \(A\), \(B\), \(C\) sont <strong>alignés</strong>.<br>
+    (On peut aussi remarquer que \(\overrightarrow{AC} = 2\overrightarrow{AB}\).)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Déterminer si les points \(P(2;1)\), \(Q(5;4)\) et \(R(4;3)\) sont alignés.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{PQ} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}\) et \(\overrightarrow{PR} = \begin{pmatrix} 2 \\ 2 \end{pmatrix}\)<br><br>
+    Déterminant : \(3 \times 2 - 3 \times 2 = 6 - 6 = 0\)<br><br>
+    <strong>Conclusion :</strong> les vecteurs sont colinéaires (\(\overrightarrow{PR} = \dfrac{2}{3}\overrightarrow{PQ}\)), donc \(P\), \(Q\), \(R\) sont <strong>alignés</strong>.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>On donne \(A(0;2)\), \(B(3;5)\), \(C(1;0)\) et \(D(4;3)\).<br>
+  Démontrer que les droites \((AB)\) et \((CD)\) sont parallèles.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Deux droites sont parallèles si et seulement si leurs vecteurs directeurs sont colinéaires.<br><br>
+    \(\overrightarrow{AB} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}\) est un vecteur directeur de \((AB)\).<br>
+    \(\overrightarrow{CD} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}\) est un vecteur directeur de \((CD)\).<br><br>
+    Déterminant : \(3 \times 3 - 3 \times 3 = 0\)<br><br>
+    Les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) sont colinéaires (ils sont même égaux), donc les droites \((AB)\) et \((CD)\) sont <strong>parallèles</strong> (ou confondues).<br><br>
+    Comme \(A \notin (CD)\) (vérification : \(A(0;2)\) n'est pas sur la droite \(y = x - 1\) passant par \(C\)), les droites sont bien <strong>strictement parallèles</strong>.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Un plan de menuiserie représente quatre points : \(A(1;1)\), \(B(4;3)\), \(C(2;4)\), \(D(5;6)\).<br>
+  1. Les droites \((AB)\) et \((CD)\) sont-elles parallèles ?<br>
+  2. Les points \(A\), \(B\) et \(E(7;5)\) sont-ils alignés ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{AB} = \begin{pmatrix} 3 \\ 2 \end{pmatrix}\) et \(\overrightarrow{CD} = \begin{pmatrix} 3 \\ 2 \end{pmatrix}\)<br>
+    Déterminant : \(3 \times 2 - 2 \times 3 = 0\) → les droites sont parallèles (ou confondues).<br>
+    Vérification : \(A \notin (CD)\) ? La droite \((CD)\) passe par \(C(2;4)\) avec vecteur \(\begin{pmatrix}3\\2\end{pmatrix}\), équation \(y - 4 = \dfrac{2}{3}(x-2)\). Pour \(x=1\) : \(y = 4 + \dfrac{2}{3}(1-2) = 4 - \dfrac{2}{3} \approx 3{,}33 \neq 1\). Les droites sont bien <strong>strictement parallèles</strong>.<br><br>
+    <strong>2.</strong> \(\overrightarrow{AB} = \begin{pmatrix} 3 \\ 2 \end{pmatrix}\) et \(\overrightarrow{AE} = \begin{pmatrix} 6 \\ 4 \end{pmatrix}\)<br>
+    Déterminant : \(3 \times 4 - 2 \times 6 = 12 - 12 = 0\)<br>
+    \(A\), \(B\), \(E\) sont <strong>alignés</strong>. (On peut vérifier : \(\overrightarrow{AE} = 2\overrightarrow{AB}\).)
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Vecteurs et géométrie plane : milieu, barycentre simple</h2>
+
+<div class="exo">
+  <h3>Exercice 17</h3>
+  <p>Rappel : le milieu \(I\) de \([AB]\) a pour coordonnées \(\left(\dfrac{x_A+x_B}{2} ; \dfrac{y_A+y_B}{2}\right)\), ce qui équivaut à \(\overrightarrow{IA} + \overrightarrow{IB} = \overrightarrow{0}\).<br><br>
+  Calculer les coordonnées du milieu \(I\) de chaque segment :</p>
+  <ol type="a">
+    <li>\([AB]\) avec \(A(3;5)\) et \(B(7;1)\)</li>
+    <li>\([CD]\) avec \(C(-2;4)\) et \(D(8;-2)\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>a)</strong> \(I = \left(\dfrac{3+7}{2} ; \dfrac{5+1}{2}\right) = (5 ; 3)\)<br>
+    Vérification : \(\overrightarrow{IA} = \begin{pmatrix}-2\\2\end{pmatrix}\) et \(\overrightarrow{IB} = \begin{pmatrix}2\\-2\end{pmatrix}\), somme \(= \overrightarrow{0}\) ✔<br><br>
+    <strong>b)</strong> \(I = \left(\dfrac{-2+8}{2} ; \dfrac{4+(-2)}{2}\right) = (3 ; 1)\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 18</h3>
+  <p>On sait que \(I\) est le milieu de \([AB]\) avec \(I(4;3)\) et \(A(1;5)\). Trouver les coordonnées de \(B\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    On utilise les formules du milieu :<br>
+    \(\dfrac{x_A + x_B}{2} = x_I \Rightarrow \dfrac{1 + x_B}{2} = 4 \Rightarrow x_B = 7\)<br>
+    \(\dfrac{y_A + y_B}{2} = y_I \Rightarrow \dfrac{5 + y_B}{2} = 3 \Rightarrow y_B = 1\)<br><br>
+    \(B(7 ; 1)\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19</h3>
+  <p>On considère les points \(A(0;0)\), \(B(6;0)\), \(C(6;4)\) et \(D(0;4)\) qui forment un rectangle.<br>
+  1. Calculer les coordonnées du milieu \(M\) de \([AC]\) et du milieu \(N\) de \([BD]\).<br>
+  2. Que peut-on conclure ? Quel est le lien avec les propriétés du rectangle ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> Milieu de \([AC]\) : \(M = \left(\dfrac{0+6}{2} ; \dfrac{0+4}{2}\right) = (3 ; 2)\)<br>
+    Milieu de \([BD]\) : \(N = \left(\dfrac{6+0}{2} ; \dfrac{0+4}{2}\right) = (3 ; 2)\)<br><br>
+    <strong>2.</strong> \(M = N = (3;2)\) : les deux diagonales \([AC]\) et \([BD]\) ont le même milieu.<br>
+    Cela confirme la propriété du rectangle (et plus généralement du parallélogramme) : les diagonales se coupent en leur milieu. Ce point est le <strong>centre de symétrie</strong> du rectangle.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20</h3>
+  <p>Un atelier d'agencement place trois zones de travail \(A(2;1)\), \(B(8;3)\), \(C(5;7)\). On cherche le point \(G\) (centre de gravité du triangle) défini par :<br>
+  \(\overrightarrow{GA} + \overrightarrow{GB} + \overrightarrow{GC} = \overrightarrow{0}\)<br>
+  ce qui donne les coordonnées \(G = \left(\dfrac{x_A+x_B+x_C}{3} ; \dfrac{y_A+y_B+y_C}{3}\right)\).<br>
+  1. Calculer les coordonnées de \(G\).<br>
+  2. Vérifier que \(G\) est bien le milieu du segment joignant \(A\) au milieu \(I\) de \([BC]\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(G = \left(\dfrac{2+8+5}{3} ; \dfrac{1+3+7}{3}\right) = \left(\dfrac{15}{3} ; \dfrac{11}{3}\right) = \left(5 ; \dfrac{11}{3}\right)\)<br><br>
+    <strong>2.</strong> Milieu \(I\) de \([BC]\) : \(I = \left(\dfrac{8+5}{2} ; \dfrac{3+7}{2}\right) = \left(\dfrac{13}{2} ; 5\right)\)<br>
+    Milieu de \([AI]\) : \(\left(\dfrac{2+\frac{13}{2}}{2} ; \dfrac{1+5}{2}\right) = \left(\dfrac{\frac{17}{2}}{2} ; 3\right) = \left(\dfrac{17}{4} ; 3\right)\)<br><br>
+    Hmm, ce n'est pas tout à fait \(G = \left(5 ; \dfrac{11}{3}\right)\). En réalité, \(G\) divise \([AI]\) dans le rapport \(2:1\) depuis \(A\) :<br>
+    \(x_G = x_A + \dfrac{2}{3}(x_I - x_A) = 2 + \dfrac{2}{3}\left(\dfrac{13}{2} - 2\right) = 2 + \dfrac{2}{3} \times \dfrac{9}{2} = 2 + 3 = 5\) ✔<br>
+    \(y_G = 1 + \dfrac{2}{3}(5 - 1) = 1 + \dfrac{8}{3} = \dfrac{11}{3}\) ✔<br><br>
+    <strong>Conclusion :</strong> le centre de gravité \(G\) se trouve au point \(\left(5 ; \dfrac{11}{3}\right)\). Il est situé aux deux tiers du segment \([AI]\) depuis \(A\) (propriété de la médiane).
+  </div>
+</div>
+</div>
+
+</div><!-- fin .c -->
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

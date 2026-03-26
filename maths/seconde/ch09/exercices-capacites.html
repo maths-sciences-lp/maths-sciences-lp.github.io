@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Exercices par capacités – Fonction affine – 2nde MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 9 – Exercices par capacités</h1>
+  <p class="sous-titre">Fonction affine &nbsp;|&nbsp; Seconde Bac Pro MAMA &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Identifier les paramètres \(a\) et \(b\) d'une fonction affine \(f(x) = ax + b\)</li>
+    <li><strong>C2</strong> — Calculer des images et construire un tableau de valeurs</li>
+    <li><strong>C3</strong> — Tracer la droite représentative d'une fonction affine</li>
+    <li><strong>C4</strong> — Déterminer le sens de variation selon le signe de \(a\)</li>
+    <li><strong>C5</strong> — Déterminer l'expression d'une fonction affine à partir de deux points</li>
+    <li><strong>C6</strong> — Résoudre graphiquement un système de deux équations</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Paramètres a, b</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Images / tableau</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Tracer la droite</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Variations</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Déterminer f</button>
+  <button class="btn-cap" data-filtre="C6">C6 – Système graphique</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Identifier les paramètres \(a\) et \(b\)</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Pour chaque fonction, identifier \(a\) (coefficient directeur) et \(b\) (ordonnée à l'origine) :</p>
+  <ol type="a">
+    <li>\(f(x) = 3x + 5\)</li>
+    <li>\(g(x) = -2x + 7\)</li>
+    <li>\(h(x) = 4x\)</li>
+    <li>\(k(x) = -6\)</li>
+    <li>\(m(x) = 0{,}5x - 3\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(a = 3\), \(b = 5\)</li>
+      <li>\(a = -2\), \(b = 7\)</li>
+      <li>\(a = 4\), \(b = 0\) → fonction linéaire (cas particulier)</li>
+      <li>\(a = 0\), \(b = -6\) → fonction constante (cas particulier)</li>
+      <li>\(a = 0{,}5\), \(b = -3\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un menuisier facture ses interventions selon la formule \(C(h) = 45h + 60\) €.</p>
+  <ol type="a">
+    <li>Identifier \(a\) et \(b\) et expliquer leur signification concrète.</li>
+    <li>Calculer \(C(0)\) et interpréter le résultat.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(a = 45\) : taux horaire de 45 €/h. \(b = 60\) : forfait fixe (déplacement) de 60 €.</li>
+      <li>\(C(0) = 60\) € : même sans travailler, le déplacement coûte 60 €. C'est l'ordonnée à l'origine.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer des images et construire un tableau de valeurs</h2>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Soit \(f(x) = -x + 4\). Calculer \(f(-2)\), \(f(0)\), \(f(1)\), \(f(3)\), \(f(5)\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(f(-2) = -(-2) + 4 = 6\)<br>
+    \(f(0) = 0 + 4 = 4\)<br>
+    \(f(1) = -1 + 4 = 3\)<br>
+    \(f(3) = -3 + 4 = 1\)<br>
+    \(f(5) = -5 + 4 = -1\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Construire le tableau de valeurs de \(g(x) = 2x - 3\) pour \(x \in \{-1, 0, 1, 2, 3, 4\}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>\(x\)</th><td>−1</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+      <tr><th>\(g(x)\)</th><td>−5</td><td>−3</td><td>−1</td><td>1</td><td>3</td><td>5</td></tr>
+    </table>
+    Calcul : \(g(-1) = 2\times(-1) - 3 = -5\) ; \(g(4) = 8 - 3 = 5\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Le coût de fabrication d'une étagère est modélisé par \(C(n) = 12n + 80\) €, où \(n\) est le nombre d'étagères. Calculer le coût pour 0, 5, 10 et 15 étagères.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(C(0) = 80\) € (coût fixe : outillage, réglages)<br>
+    \(C(5) = 60 + 80 = 140\) €<br>
+    \(C(10) = 120 + 80 = 200\) €<br>
+    \(C(15) = 180 + 80 = 260\) €
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Tracer la droite représentative</h2>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Pour tracer la droite de \(f(x) = 2x + 1\), calculer deux points caractéristiques et expliquer la méthode.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    On choisit deux valeurs de \(x\) faciles :<br>
+    \(f(0) = 1\) → point \(A(0\,;\,1)\) (ordonnée à l'origine)<br>
+    \(f(2) = 5\) → point \(B(2\,;\,5)\)<br>
+    On place \(A\) et \(B\) dans le repère, puis on trace la droite.<br>
+    <em>Vérification :</em> \(f(1) = 3\) → point \(C(1\,;\,3)\) doit être sur la droite.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Deux droites ont pour équations \(y = x + 2\) et \(y = x - 3\). Sans tracer, dire si elles sont parallèles. Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Les deux fonctions ont le même coefficient directeur \(a = 1\) mais des ordonnées à l'origine différentes (\(b = 2\) et \(b = -3\)).<br>
+    → Les droites sont <strong>parallèles</strong> (même pente, positions différentes).
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Déterminer le sens de variation selon le signe de \(a\)</h2>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Sans calculer, dire si chaque fonction est croissante ou décroissante :</p>
+  <ol type="a">
+    <li>\(f(x) = 5x + 2\)</li>
+    <li>\(g(x) = -3x + 8\)</li>
+    <li>\(h(x) = 0{,}1x - 7\)</li>
+    <li>\(k(x) = -0{,}5x\)</li>
+    <li>\(m(x) = 4\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(a = 5 > 0\) → <strong>croissante</strong></li>
+      <li>\(a = -3 < 0\) → <strong>décroissante</strong></li>
+      <li>\(a = 0{,}1 > 0\) → <strong>croissante</strong></li>
+      <li>\(a = -0{,}5 < 0\) → <strong>décroissante</strong></li>
+      <li>\(a = 0\) → <strong>constante</strong> (ni croissante ni décroissante)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Un agenceur vend des placards. Son bénéfice diminue de 15 € par placard vendu en dessous du prix cible (à cause des remises). Le bénéfice de base est 500 €. Modéliser par une fonction affine et préciser son sens de variation.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(B(x) = -15x + 500\) où \(x\) est le nombre de remises accordées.<br>
+    \(a = -15 < 0\) → la fonction est <strong>décroissante</strong> : plus on accorde de remises, moins le bénéfice est élevé.
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Déterminer l'expression d'une fonction affine à partir de deux points</h2>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Trouver la fonction affine \(f(x) = ax + b\) sachant que :</p>
+  <ol type="a">
+    <li>\(f(0) = 3\) et \(f(2) = 9\)</li>
+    <li>\(f(1) = 5\) et \(f(3) = 11\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(a = \dfrac{9 - 3}{2 - 0} = 3\)<br>
+        \(f(0) = 3\) → \(b = 3\)<br>
+        \(f(x) = 3x + 3\)
+      </li>
+      <li>
+        \(a = \dfrac{11 - 5}{3 - 1} = 3\)<br>
+        \(f(1) = 5\) → \(3 \times 1 + b = 5 \Rightarrow b = 2\)<br>
+        \(f(x) = 3x + 2\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un artisan mesure que sa machine consomme 3 kWh pour 0 pièce (veille) et 11 kWh pour 4 pièces produites. Trouver la fonction affine modélisant la consommation en fonction du nombre de pièces.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Points : \((0\,;\,3)\) et \((4\,;\,11)\)<br>
+    \(a = \dfrac{11 - 3}{4 - 0} = 2\)<br>
+    \(b = 3\) (valeur en \(x = 0\))<br>
+    \(C(n) = 2n + 3\) kWh<br>
+    Interprétation : 2 kWh par pièce produite + 3 kWh de veille.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Une droite passe par les points \(A(2\,;\,1)\) et \(B(5\,;\,7)\). Déterminer son équation \(y = ax + b\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(a = \dfrac{7 - 1}{5 - 2} = \dfrac{6}{3} = 2\)<br>
+    Avec \(A(2\,;\,1)\) : \(1 = 2 \times 2 + b \Rightarrow b = 1 - 4 = -3\)<br>
+    \(y = 2x - 3\)<br>
+    Vérification avec \(B\) : \(2 \times 5 - 3 = 7\) ✔
+  </div>
+</div>
+</div>
+
+<!-- ===== C6 ===== -->
+<div class="cap-section" data-cap="C6">
+<h2>C6 — Résoudre graphiquement un système de deux équations</h2>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>On considère le système : \(\begin{cases} y = x + 1 \\ y = -x + 5 \end{cases}\)</p>
+  <ol type="a">
+    <li>Calculer quelques valeurs de chaque fonction pour les tracer.</li>
+    <li>Trouver graphiquement le point d'intersection.</li>
+    <li>Vérifier algébriquement en résolvant \(x + 1 = -x + 5\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Valeurs de \(y = x + 1\) : \((0\,;\,1)\), \((1\,;\,2)\), \((2\,;\,3)\), \((3\,;\,4)\)<br>
+    Valeurs de \(y = -x + 5\) : \((0\,;\,5)\), \((1\,;\,4)\), \((2\,;\,3)\), \((3\,;\,2)\)<br>
+    Les deux courbes se croisent en \((2\,;\,3)\).<br><br>
+    Vérification : \(x + 1 = -x + 5 \Rightarrow 2x = 4 \Rightarrow x = 2\), puis \(y = 3\). ✔<br>
+    <strong>Solution :</strong> \(x = 2\) et \(y = 3\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Deux artisans proposent des tarifs pour la pose de parquet :<br>
+  — Artisan A : \(C_A(x) = 15x + 80\)<br>
+  — Artisan B : \(C_B(x) = 20x + 30\)<br>
+  où \(x\) est la surface en m².</p>
+  <ol type="a">
+    <li>Pour quelle surface les deux artisans pratiquent-ils le même tarif ?</li>
+    <li>Quel artisan est moins cher pour une surface de 5 m² ? Pour 15 m² ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(15x + 80 = 20x + 30 \Rightarrow 50 = 5x \Rightarrow x = 10\) m²<br>
+        Pour 10 m², les deux artisans coûtent \(15 \times 10 + 80 = 230\) €.
+      </li>
+      <li>
+        Pour 5 m² : \(C_A(5) = 155\) € ; \(C_B(5) = 130\) € → <strong>Artisan B</strong> moins cher.<br>
+        Pour 15 m² : \(C_A(15) = 305\) € ; \(C_B(15) = 330\) € → <strong>Artisan A</strong> moins cher.
+      </li>
+    </ol>
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

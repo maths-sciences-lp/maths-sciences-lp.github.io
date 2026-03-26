@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Exercices par capacités – Statistiques : représentations graphiques – 2nde MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 2 – Exercices par capacités</h1>
+  <p class="sous-titre">Statistiques : représentations graphiques &nbsp;|&nbsp; Seconde Bac Pro MAMA &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Lire, compléter et interpréter un tableau statistique (effectifs, fréquences)</li>
+    <li><strong>C2</strong> — Calculer des fréquences et des fréquences cumulées croissantes</li>
+    <li><strong>C3</strong> — Construire et lire un diagramme en bâtons ou en barres</li>
+    <li><strong>C4</strong> — Construire et lire un diagramme en secteurs (camembert)</li>
+    <li><strong>C5</strong> — Choisir le type de représentation graphique adapté à une situation</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Tableau statistique</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Fréquences</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Diagramme en bâtons / barres</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Diagramme en secteurs</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Choix du diagramme</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Lire et interpréter un tableau statistique</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un contrôleur mesure l'épaisseur (en mm) de 20 panneaux produits en atelier. Voici les résultats :</p>
+  <p>18 ; 19 ; 18 ; 20 ; 19 ; 18 ; 21 ; 19 ; 20 ; 18 ; 19 ; 20 ; 18 ; 19 ; 21 ; 20 ; 19 ; 18 ; 20 ; 19</p>
+  <ol type="a">
+    <li>Compléter le tableau en notant l'effectif de chaque valeur.</li>
+    <li>Vérifier que la somme des effectifs vaut 20.</li>
+  </ol>
+  <table>
+    <tr><th>Épaisseur (mm)</th><td>18</td><td>19</td><td>20</td><td>21</td><th>Total</th></tr>
+    <tr><th>Effectif</th><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>Épaisseur (mm)</th><td>18</td><td>19</td><td>20</td><td>21</td><th>Total</th></tr>
+      <tr><th>Effectif</th><td>6</td><td>7</td><td>5</td><td>2</td><td>20</td></tr>
+    </table>
+    Vérification : \(6 + 7 + 5 + 2 = 20\) ✔
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un chef d'atelier relève le nombre de défauts par lot de 10 portes sur 5 semaines :</p>
+  <table>
+    <tr><th>Semaine</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+    <tr><th>Nombre de défauts</th><td>3</td><td>1</td><td>4</td><td>2</td><td>0</td></tr>
+  </table>
+  <ol type="a">
+    <li>Quelle semaine a le plus de défauts ?</li>
+    <li>Quelle est la valeur qui apparaît le plus souvent (le mode) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Semaine 3 (4 défauts).</li>
+      <li>Chaque valeur n'apparaît qu'une fois — il n'y a pas de mode unique dans cette série. La valeur la plus basse est 0 (semaine 5).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer des fréquences et fréquences cumulées croissantes</h2>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>En reprenant le tableau de l'exercice 1, calculer les fréquences de chaque épaisseur (en % et en fraction décimale), puis les fréquences cumulées croissantes.</p>
+  <table>
+    <tr><th>Épaisseur (mm)</th><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+    <tr><th>Effectif</th><td>6</td><td>7</td><td>5</td><td>2</td></tr>
+    <tr><th>Fréquence (%)</th><td></td><td></td><td></td><td></td></tr>
+    <tr><th>Fréq. cumulée (%)</th><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>Épaisseur (mm)</th><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+      <tr><th>Effectif</th><td>6</td><td>7</td><td>5</td><td>2</td></tr>
+      <tr><th>Fréquence (%)</th><td>30 %</td><td>35 %</td><td>25 %</td><td>10 %</td></tr>
+      <tr><th>Fréq. cumulée (%)</th><td>30 %</td><td>65 %</td><td>90 %</td><td>100 %</td></tr>
+    </table>
+    Calcul : \(\frac{6}{20} = 0{,}30 = 30\%\) ; \(\frac{7}{20} = 35\%\) ; etc.<br>
+    Fréquence cumulée à 19 mm : \(30 + 35 = 65\%\) → 65 % des panneaux ont une épaisseur ≤ 19 mm.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Un installateur thermique note les types de pannes rencontrées en 50 interventions :</p>
+  <table>
+    <tr><th>Type de panne</th><td>Fuite</td><td>Pression</td><td>Électrique</td><td>Autre</td><th>Total</th></tr>
+    <tr><th>Effectif</th><td>18</td><td>12</td><td>15</td><td>5</td><td>50</td></tr>
+    <tr><th>Fréquence (%)</th><td></td><td></td><td></td><td></td><td>100 %</td></tr>
+  </table>
+  <p>Compléter les fréquences. Quel type de panne est le plus fréquent ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>Type de panne</th><td>Fuite</td><td>Pression</td><td>Électrique</td><td>Autre</td></tr>
+      <tr><th>Fréquence (%)</th><td>36 %</td><td>24 %</td><td>30 %</td><td>10 %</td></tr>
+    </table>
+    Le type le plus fréquent est <strong>Fuite</strong> (36 %).<br>
+    Calcul : \(\frac{18}{50} \times 100 = 36\%\) ; \(\frac{12}{50} \times 100 = 24\%\) ; etc.
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Construire et lire un diagramme en bâtons ou en barres</h2>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Voici les notes obtenues par 15 élèves à un devoir de maths :</p>
+  <table>
+    <tr><th>Note</th><td>8</td><td>10</td><td>12</td><td>14</td><td>16</td></tr>
+    <tr><th>Effectif</th><td>2</td><td>5</td><td>4</td><td>3</td><td>1</td></tr>
+  </table>
+  <ol type="a">
+    <li>Décrire un diagramme en bâtons (axes, hauteur de chaque bâton).</li>
+    <li>Quelle note est la plus fréquente ? Combien d'élèves ont eu 12 ou plus ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Axe horizontal : notes (8, 10, 12, 14, 16). Axe vertical : effectifs (0 à 5). Les bâtons ont des hauteurs : 2, 5, 4, 3, 1.</li>
+      <li>Note la plus fréquente : <strong>10</strong> (effectif 5).<br>
+      Élèves ayant ≥ 12 : \(4 + 3 + 1 = 8\) élèves.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un gestionnaire relève le nombre de commandes reçues chaque mois pendant 6 mois :</p>
+  <table>
+    <tr><th>Mois</th><td>Jan</td><td>Fév</td><td>Mar</td><td>Avr</td><td>Mai</td><td>Jun</td></tr>
+    <tr><th>Commandes</th><td>32</td><td>28</td><td>45</td><td>50</td><td>38</td><td>41</td></tr>
+  </table>
+  <ol type="a">
+    <li>Lire le diagramme en barres : quel mois a le plus de commandes ?</li>
+    <li>Quelle est la différence entre le mois le plus actif et le moins actif ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Mois le plus actif : <strong>Avril</strong> (50 commandes).</li>
+      <li>Différence : \(50 - 28 = 22\) commandes entre Avril (max) et Février (min).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Construire et lire un diagramme en secteurs</h2>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Un atelier produit 4 types de meubles. Voici la répartition pour un mois :</p>
+  <table>
+    <tr><th>Type</th><td>Cuisine</td><td>Dressing</td><td>Bureau</td><td>Rangement</td><th>Total</th></tr>
+    <tr><th>Nb produits</th><td>60</td><td>30</td><td>45</td><td>15</td><td>150</td></tr>
+  </table>
+  <ol type="a">
+    <li>Calculer le pourcentage de chaque type.</li>
+    <li>Calculer l'angle de chaque secteur (en degrés, sachant que 360° = 100 %).</li>
+    <li>Quel type représente le quart de la production ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Cuisine : \(\frac{60}{150} = 40\%\) ; Dressing : \(20\%\) ; Bureau : \(30\%\) ; Rangement : \(10\%\)</li>
+      <li>Cuisine : \(40\% \times 360 = 144°\) ; Dressing : \(72°\) ; Bureau : \(108°\) ; Rangement : \(36°\)</li>
+      <li>Aucun type ne représente exactement 25 %. Le plus proche est <strong>Bureau</strong> (30 %).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un diagramme en secteurs montre la composition d'une commande de bois. Le secteur Chêne mesure 126°, le secteur Pin 90°, le secteur MDF 72°, le reste étant Hêtre.</p>
+  <ol type="a">
+    <li>Calculer la fréquence (en %) de chaque essence.</li>
+    <li>Quelle essence est la moins présente ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Chêne : \(\frac{126}{360} \times 100 = 35\%\) ; Pin : \(\frac{90}{360} \times 100 = 25\%\) ; MDF : \(\frac{72}{360} \times 100 = 20\%\) ; Hêtre : \(100 - 35 - 25 - 20 = 20\%\)</li>
+      <li>MDF et Hêtre sont ex-æquo, les moins présents (20 % chacun).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Choisir le type de représentation graphique adapté</h2>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Pour chaque situation, indiquer le type de diagramme le plus adapté (bâtons, barres, secteurs, ou courbe d'évolution) et justifier :</p>
+  <ol type="a">
+    <li>La répartition des matériaux (bois, métal, plastique) utilisés dans un chantier.</li>
+    <li>L'évolution du chiffre d'affaires d'un atelier sur 12 mois consécutifs.</li>
+    <li>Le nombre de pièces produites pour des dimensions : 80 cm, 100 cm, 120 cm, 140 cm.</li>
+    <li>La comparaison du nombre d'heures travaillées par 5 ouvriers.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li><strong>Diagramme en secteurs</strong> : il s'agit de montrer des proportions (parts d'un tout).</li>
+      <li><strong>Courbe d'évolution</strong> (diagramme en ligne) : données chronologiques, on veut voir la tendance.</li>
+      <li><strong>Diagramme en bâtons</strong> : valeurs discrètes peu nombreuses, comparaison des effectifs pour chaque valeur.</li>
+      <li><strong>Diagramme en barres</strong> : comparaison de catégories (les 5 ouvriers), les barres facilitent la comparaison.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Un responsable d'atelier veut présenter à sa hiérarchie deux informations : (1) la répartition des causes d'arrêt machine (panne, maintenance, changement de série, autre) ; (2) l'évolution du nombre d'arrêts par semaine sur 8 semaines.</p>
+  <p>Quels deux types de graphiques recommandez-vous ? Pourquoi ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>(1) <strong>Diagramme en secteurs</strong> pour les causes d'arrêt : on veut montrer la part relative de chaque cause (proportions d'un tout).</p>
+    <p>(2) <strong>Courbe d'évolution</strong> (ou diagramme en barres) pour l'évolution temporelle : on veut visualiser la tendance semaine par semaine.</p>
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

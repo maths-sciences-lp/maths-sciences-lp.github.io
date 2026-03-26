@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Exercices par capacités – Statistiques à deux variables – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 1 – Exercices par capacités</h1>
+  <p class="sous-titre">Statistiques à deux variables &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Représenter un nuage de points dans un repère orthogonal</li>
+    <li><strong>C2</strong> — Calculer les coordonnées du point moyen \(G(\bar{x}, \bar{y})\)</li>
+    <li><strong>C3</strong> — Déterminer et utiliser la droite d'ajustement affine (régression linéaire)</li>
+    <li><strong>C4</strong> — Calculer et interpréter le coefficient de corrélation linéaire \(r\)</li>
+    <li><strong>C5</strong> — Faire des prévisions à partir de la droite d'ajustement</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Nuage de points</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Point moyen</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Droite d'ajustement</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Coefficient r</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Prévisions</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Représenter un nuage de points</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un menuisier relève la surface traitée (en m²) et le temps passé (en heures) sur 6 chantiers :</p>
+  <table>
+    <tr><th>Surface \(x\) (m²)</th><td>10</td><td>15</td><td>20</td><td>25</td><td>30</td><td>35</td></tr>
+    <tr><th>Temps \(y\) (h)</th><td>3</td><td>4</td><td>6</td><td>7</td><td>9</td><td>10</td></tr>
+  </table>
+  <ol type="a">
+    <li>Placer les 6 points dans un repère (axe x de 0 à 40, axe y de 0 à 12).</li>
+    <li>La relation semble-t-elle linéaire ? Croissante ou décroissante ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Points à placer : (10 ; 3), (15 ; 4), (20 ; 6), (25 ; 7), (30 ; 9), (35 ; 10).</li>
+      <li>Les points semblent s'aligner approximativement le long d'une droite croissante → relation linéaire positive : plus la surface est grande, plus le temps augmente.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un technicien chauffagiste note la consommation de gaz (en kWh) selon la température extérieure (en °C) pour 5 relevés :</p>
+  <table>
+    <tr><th>Température \(x\) (°C)</th><td>−5</td><td>0</td><td>5</td><td>10</td><td>15</td></tr>
+    <tr><th>Consommation \(y\) (kWh)</th><td>120</td><td>95</td><td>70</td><td>50</td><td>30</td></tr>
+  </table>
+  <ol type="a">
+    <li>Représenter le nuage de points.</li>
+    <li>Décrire la tendance : croissante ou décroissante ? Quelle interprétation physique ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Points : (−5 ; 120), (0 ; 95), (5 ; 70), (10 ; 50), (15 ; 30).</li>
+      <li>Tendance décroissante : quand la température extérieure augmente, la consommation de chauffage diminue. C'est cohérent : moins il fait froid, moins on chauffe.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un atelier d'agencement relève le chiffre d'affaires mensuel (en k€) sur 6 mois :</p>
+  <table>
+    <tr><th>Mois \(x\)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+    <tr><th>CA \(y\) (k€)</th><td>42</td><td>45</td><td>48</td><td>51</td><td>53</td><td>57</td></tr>
+  </table>
+  <p>Représenter le nuage de points et décrire la tendance générale.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Points : (1 ; 42), (2 ; 45), (3 ; 48), (4 ; 51), (5 ; 53), (6 ; 57).<br>
+    Tendance croissante et quasi-linéaire : le chiffre d'affaires augmente régulièrement d'environ 3 k€ par mois.
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer le point moyen \(G(\bar{x}, \bar{y})\)</h2>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>En reprenant les données de l'exercice 1 (surface / temps), calculer les coordonnées du point moyen \(G\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\bar{x} = \frac{10 + 15 + 20 + 25 + 30 + 35}{6} = \frac{135}{6} = 22{,}5\) m²<br>
+    \(\bar{y} = \frac{3 + 4 + 6 + 7 + 9 + 10}{6} = \frac{39}{6} = 6{,}5\) h<br>
+    \(G(22{,}5 \;;\; 6{,}5)\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un fabricant de cuisines relève le nombre de meubles posés (\(x\)) et le temps de pose (\(y\) en h) sur 5 chantiers :</p>
+  <table>
+    <tr><th>\(x\) (meubles)</th><td>8</td><td>12</td><td>10</td><td>15</td><td>5</td></tr>
+    <tr><th>\(y\) (h)</th><td>6</td><td>9</td><td>7</td><td>11</td><td>4</td></tr>
+  </table>
+  <p>Calculer le point moyen \(G\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\bar{x} = \frac{8 + 12 + 10 + 15 + 5}{5} = \frac{50}{5} = 10\) meubles<br>
+    \(\bar{y} = \frac{6 + 9 + 7 + 11 + 4}{5} = \frac{37}{5} = 7{,}4\) h<br>
+    \(G(10 \;;\; 7{,}4)\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>On a \(\bar{x} = 18\) et la somme \(\sum y_i = 216\) pour \(n = 8\) données. Calculer \(\bar{y}\) et les coordonnées de \(G\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\bar{y} = \frac{216}{8} = 27\)<br>
+    \(G(18 \;;\; 27)\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Droite d'ajustement affine</h2>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Pour les données de l'exercice 1 (surface / temps), la droite d'ajustement par la méthode des moindres carrés est \(y = 0{,}28x - 0{,}79\).</p>
+  <ol type="a">
+    <li>Vérifier que le point moyen \(G(22{,}5 ; 6{,}5)\) est bien sur cette droite.</li>
+    <li>Tracer cette droite dans le repère du nuage de points.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(0{,}28 \times 22{,}5 - 0{,}79 = 6{,}3 - 0{,}79 = 5{,}51\). Ce n'est pas exactement 6,5 (arrondi des coefficients). En pratique, la droite d'ajustement passe toujours par G — les coefficients arrondis introduisent un léger écart.</li>
+      <li>Pour tracer : prendre deux valeurs extrêmes, ex. \(x = 5\) → \(y = 0{,}28 \times 5 - 0{,}79 = 0{,}61\) et \(x = 40\) → \(y = 0{,}28 \times 40 - 0{,}79 = 10{,}41\). Tracer la droite passant par ces deux points.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>La droite d'ajustement du chiffre d'affaires (exercice 3) est \(y = 2{,}97x + 39{,}57\).</p>
+  <ol type="a">
+    <li>Interpréter le coefficient directeur 2,97.</li>
+    <li>Interpréter l'ordonnée à l'origine 39,57.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Le CA augmente en moyenne de <strong>2,97 k€ par mois</strong> (soit environ +3 k€/mois).</li>
+      <li>À \(x = 0\) (avant le premier mois), le CA estimé serait de <strong>39,57 k€</strong>. C'est une extrapolation théorique (valeur du modèle au démarrage).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Pour une série, on a calculé \(G(12 ; 8{,}4)\) et le coefficient directeur de la droite de régression est \(a = 0{,}6\). Déterminer l'équation complète de la droite d'ajustement.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    La droite passe par \(G\) donc : \(8{,}4 = 0{,}6 \times 12 + b\)<br>
+    \(8{,}4 = 7{,}2 + b\)<br>
+    \(b = 1{,}2\)<br>
+    Équation : \(y = 0{,}6x + 1{,}2\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Coefficient de corrélation linéaire \(r\)</h2>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Pour chaque valeur de \(r\), décrire la nature de la liaison et son intensité :</p>
+  <ol type="a">
+    <li>\(r = 0{,}97\)</li>
+    <li>\(r = -0{,}85\)</li>
+    <li>\(r = 0{,}32\)</li>
+    <li>\(r = -0{,}98\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(r = 0{,}97\) : liaison linéaire <strong>forte positive</strong> (proche de 1). Ajustement affine très pertinent.</li>
+      <li>\(r = -0{,}85\) : liaison linéaire <strong>forte négative</strong>. Quand \(x\) augmente, \(y\) diminue fortement.</li>
+      <li>\(r = 0{,}32\) : liaison linéaire <strong>faible positive</strong>. Le modèle affine est peu pertinent.</li>
+      <li>\(r = -0{,}98\) : liaison linéaire <strong>très forte négative</strong>. Le modèle affine est très bien adapté.</li>
+    </ol>
+    <strong>Règle pratique :</strong> on considère la liaison forte si \(|r| \geq 0{,}9\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un installateur thermique obtient \(r = 0{,}92\) pour la liaison entre la puissance installée (kW) et la surface chauffée (m²) sur 10 logements. Peut-il utiliser la droite d'ajustement pour faire des estimations ? Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(|r| = 0{,}92 \geq 0{,}9\) → la liaison est <strong>forte</strong>. Le modèle affine est pertinent.<br>
+    Oui, l'installateur peut utiliser la droite d'ajustement pour estimer la puissance nécessaire à partir de la surface d'un logement.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Deux séries donnent \(r_A = 0{,}78\) et \(r_B = -0{,}95\). Pour laquelle la droite d'ajustement est-elle la plus fiable ? Expliquer.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(|r_A| = 0{,}78\) et \(|r_B| = 0{,}95\).<br>
+    La série B (\(|r| = 0{,}95\)) a une liaison plus forte → la droite d'ajustement est plus fiable pour la série B.<br>
+    Le signe de \(r\) indique seulement le sens de la liaison (positive pour A, négative pour B), pas la qualité de l'ajustement.
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Prévisions à partir de la droite d'ajustement</h2>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>La droite d'ajustement entre la surface (m²) et le temps de pose (h) est \(y = 0{,}28x - 0{,}79\). Estimer :</p>
+  <ol type="a">
+    <li>Le temps pour traiter une surface de 50 m².</li>
+    <li>La surface traitée en 8 heures.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(y = 0{,}28 \times 50 - 0{,}79 = 14 - 0{,}79 = \mathbf{13{,}21}\) h</li>
+      <li>\(8 = 0{,}28x - 0{,}79 \Rightarrow 0{,}28x = 8{,}79 \Rightarrow x = \frac{8{,}79}{0{,}28} \approx \mathbf{31{,}4}\) m²</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>La droite de régression du CA est \(y = 2{,}97x + 39{,}57\). Estimer le CA pour les mois 8, 10 et 12. Le résultat au mois 20 vous semble-t-il fiable ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Mois 8 : \(y = 2{,}97 \times 8 + 39{,}57 = 23{,}76 + 39{,}57 = 63{,}33\) k€<br>
+    Mois 10 : \(y = 29{,}7 + 39{,}57 = 69{,}27\) k€<br>
+    Mois 12 : \(y = 35{,}64 + 39{,}57 = 75{,}21\) k€<br>
+    Mois 20 : \(y = 59{,}4 + 39{,}57 = 98{,}97\) k€ — résultat <strong>peu fiable</strong> : on extrapole loin des données initiales (mois 1 à 6). Une tendance linéaire peut ne pas se maintenir sur la durée.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Un technicien chauffagiste dispose de la droite \(y = -6x + 90\) liant température extérieure (\(x\) en °C) et consommation (\(y\) en kWh). Estimer la consommation pour \(-10\)°C, 0°C et 20°C. Interpréter le résultat pour 20°C.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(-10\)°C : \(y = -6 \times (-10) + 90 = 60 + 90 = \mathbf{150}\) kWh<br>
+    0°C : \(y = 0 + 90 = \mathbf{90}\) kWh<br>
+    20°C : \(y = -6 \times 20 + 90 = -120 + 90 = \mathbf{-30}\) kWh<br>
+    Une consommation négative est physiquement impossible → le modèle n'est pas valide pour des températures trop élevées. Il faut utiliser la droite uniquement dans l'intervalle des données observées.
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

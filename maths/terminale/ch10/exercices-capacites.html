@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 – Exercices par capacités – Nombres complexes – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 10 – Exercices par capacités</h1>
+  <p class="sous-titre">Nombres complexes &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Écrire un nombre complexe sous forme algébrique \(z = a + ib\) ; identifier partie réelle et imaginaire</li>
+    <li><strong>C2</strong> — Effectuer des opérations sur les nombres complexes (addition, soustraction, multiplication)</li>
+    <li><strong>C3</strong> — Calculer le conjugué \(\bar{z}\) et le module \(|z|\) d'un nombre complexe</li>
+    <li><strong>C4</strong> — Calculer le quotient de deux nombres complexes (multiplication par le conjugué du dénominateur)</li>
+    <li><strong>C5</strong> — Résoudre une équation du second degré à discriminant négatif (solutions complexes conjuguées)</li>
+  </ul>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Forme algébrique</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Opérations</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Conjugué et module</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Quotient</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Équation du 2nd degré</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Écrire un nombre complexe sous forme algébrique ; identifier partie réelle et imaginaire</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Pour chacun des nombres complexes suivants, identifier la partie réelle \(a\) et la partie imaginaire \(b\) :</p>
+  <ol type="a">
+    <li>\(z_1 = 3 + 5i\)</li>
+    <li>\(z_2 = -2 + 7i\)</li>
+    <li>\(z_3 = 4 - i\)</li>
+    <li>\(z_4 = -6i\)</li>
+    <li>\(z_5 = 9\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(z_1 = 3 + 5i\) : \(\text{Re}(z_1) = 3\) ; \(\text{Im}(z_1) = 5\)</li>
+      <li>\(z_2 = -2 + 7i\) : \(\text{Re}(z_2) = -2\) ; \(\text{Im}(z_2) = 7\)</li>
+      <li>\(z_3 = 4 - i = 4 + (-1)i\) : \(\text{Re}(z_3) = 4\) ; \(\text{Im}(z_3) = -1\)</li>
+      <li>\(z_4 = -6i = 0 + (-6)i\) : \(\text{Re}(z_4) = 0\) ; \(\text{Im}(z_4) = -6\) (imaginaire pur)</li>
+      <li>\(z_5 = 9 = 9 + 0 \cdot i\) : \(\text{Re}(z_5) = 9\) ; \(\text{Im}(z_5) = 0\) (réel)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Écrire chacun des nombres suivants sous la forme \(z = a + ib\) où \(a\) et \(b\) sont des réels. Préciser \(a\) et \(b\).</p>
+  <ol type="a">
+    <li>\(z_1 = 5 - 3i + 2i\)</li>
+    <li>\(z_2 = \sqrt{2} + 0 \cdot i\)</li>
+    <li>\(z_3 = i^2\)</li>
+    <li>\(z_4 = 3i^2 - 4i\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(z_1 = 5 + (-3+2)i = 5 - i\) → \(a = 5\), \(b = -1\)</li>
+      <li>\(z_2 = \sqrt{2} + 0i\) → \(a = \sqrt{2}\), \(b = 0\) (nombre réel)</li>
+      <li>\(z_3 = i^2 = -1 = -1 + 0i\) → \(a = -1\), \(b = 0\)</li>
+      <li>\(z_4 = 3 \times (-1) - 4i = -3 - 4i\) → \(a = -3\), \(b = -4\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un technicien en installation thermique modélise une impédance par \(Z = 8 + 6i\) (en ohms).</p>
+  <ol type="a">
+    <li>Quelle est la résistance (partie réelle) de ce circuit ?</li>
+    <li>Quelle est la réactance (partie imaginaire) de ce circuit ?</li>
+    <li>Ce nombre complexe est-il un réel pur ? Un imaginaire pur ? Justifier.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La résistance est \(\text{Re}(Z) = 8\) Ω.</li>
+      <li>La réactance est \(\text{Im}(Z) = 6\) Ω.</li>
+      <li>Non : \(\text{Im}(Z) = 6 \neq 0\) donc ce n'est pas un réel pur. \(\text{Re}(Z) = 8 \neq 0\) donc ce n'est pas un imaginaire pur. C'est un nombre complexe « général ».</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Deux nombres complexes \(z_1 = a + 3i\) et \(z_2 = 5 + bi\) sont égaux. Déterminer \(a\) et \(b\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Deux nombres complexes sont égaux si et seulement si leurs parties réelles sont égales <strong>et</strong> leurs parties imaginaires sont égales.<br>
+    \(\begin{cases} a = 5 \\ 3 = b \end{cases}\)<br>
+    Donc \(a = 5\) et \(b = 3\).
+  </div>
+</div>
+
+</div><!-- fin C1 -->
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Effectuer des opérations sur les nombres complexes (addition, soustraction, multiplication)</h2>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Calculer les sommes et différences suivantes et écrire le résultat sous la forme \(a + ib\) :</p>
+  <ol type="a">
+    <li>\(z_1 + z_2\) avec \(z_1 = 4 + 3i\) et \(z_2 = 1 - 5i\)</li>
+    <li>\(z_3 - z_4\) avec \(z_3 = -2 + 7i\) et \(z_4 = 3 + 2i\)</li>
+    <li>\(z_5 + z_6\) avec \(z_5 = 6 - 4i\) et \(z_6 = -6 + 4i\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(z_1 + z_2 = (4+1) + (3-5)i = 5 - 2i\)</li>
+      <li>\(z_3 - z_4 = (-2-3) + (7-2)i = -5 + 5i\)</li>
+      <li>\(z_5 + z_6 = (6-6) + (-4+4)i = 0\) (les deux complexes sont opposés)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Calculer les produits suivants et écrire le résultat sous la forme \(a + ib\) :</p>
+  <ol type="a">
+    <li>\((2 + i)(3 + 4i)\)</li>
+    <li>\((1 - 2i)(1 + 2i)\)</li>
+    <li>\((3 + i)^2\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\((2+i)(3+4i) = 6 + 8i + 3i + 4i^2 = 6 + 11i + 4(-1) = 2 + 11i\)</li>
+      <li>\((1-2i)(1+2i) = 1 + 2i - 2i - 4i^2 = 1 - 4(-1) = 5\) (produit de deux conjugués → réel)</li>
+      <li>\((3+i)^2 = 9 + 6i + i^2 = 9 + 6i - 1 = 8 + 6i\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>En électricité, deux impédances en série s'ajoutent : \(Z_{total} = Z_1 + Z_2\).<br>
+  Un installateur thermique mesure \(Z_1 = 50 + 30i\) Ω et \(Z_2 = 20 - 10i\) Ω.<br>
+  Calculer \(Z_{total}\) sous forme algébrique.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(Z_{total} = Z_1 + Z_2 = (50 + 20) + (30 - 10)i = 70 + 20i\) Ω.<br>
+    La résistance totale est 70 Ω et la réactance totale est 20 Ω.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Développer et simplifier les expressions suivantes :</p>
+  <ol type="a">
+    <li>\(i \times (3 + 2i)\)</li>
+    <li>\((2 - 3i)(4 + i)\)</li>
+    <li>\((-1 + 2i)(3 - i)\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(i(3+2i) = 3i + 2i^2 = 3i + 2(-1) = -2 + 3i\)</li>
+      <li>\((2-3i)(4+i) = 8 + 2i - 12i - 3i^2 = 8 - 10i + 3 = 11 - 10i\)</li>
+      <li>\((-1+2i)(3-i) = -3 + i + 6i - 2i^2 = -3 + 7i + 2 = -1 + 7i\)</li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- fin C2 -->
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Calculer le conjugué \(\bar{z}\) et le module \(|z|\) d'un nombre complexe</h2>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Donner le conjugué \(\bar{z}\) de chacun des nombres complexes suivants :</p>
+  <ol type="a">
+    <li>\(z_1 = 4 + 3i\)</li>
+    <li>\(z_2 = -2 - 5i\)</li>
+    <li>\(z_3 = 7\)</li>
+    <li>\(z_4 = -i\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Le conjugué de \(z = a + ib\) est \(\bar{z} = a - ib\).<br>
+    <ol type="a">
+      <li>\(\bar{z_1} = 4 - 3i\)</li>
+      <li>\(\bar{z_2} = -2 + 5i\)</li>
+      <li>\(\bar{z_3} = 7\) (un réel est égal à son conjugué)</li>
+      <li>\(\bar{z_4} = i\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Calculer le module \(|z|\) de chacun des nombres complexes suivants :</p>
+  <ol type="a">
+    <li>\(z_1 = 3 + 4i\)</li>
+    <li>\(z_2 = 5 - 12i\)</li>
+    <li>\(z_3 = -6i\)</li>
+    <li>\(z_4 = 2 + 2i\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Le module de \(z = a + ib\) est \(|z| = \sqrt{a^2 + b^2}\).<br>
+    <ol type="a">
+      <li>\(|z_1| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5\)</li>
+      <li>\(|z_2| = \sqrt{5^2 + (-12)^2} = \sqrt{25 + 144} = \sqrt{169} = 13\)</li>
+      <li>\(|z_3| = \sqrt{0^2 + (-6)^2} = \sqrt{36} = 6\)</li>
+      <li>\(|z_4| = \sqrt{2^2 + 2^2} = \sqrt{4 + 4} = \sqrt{8} = 2\sqrt{2}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>En courant alternatif, l'impédance d'un circuit est \(Z = 6 + 8i\) Ω.</p>
+  <ol type="a">
+    <li>Calculer \(\bar{Z}\) le conjugué de \(Z\).</li>
+    <li>Calculer \(|Z|\) le module de \(Z\) (c'est le module de l'impédance, en Ω).</li>
+    <li>Vérifier que \(Z \times \bar{Z} = |Z|^2\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\bar{Z} = 6 - 8i\)</li>
+      <li>\(|Z| = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10\) Ω</li>
+      <li>\(Z \times \bar{Z} = (6+8i)(6-8i) = 36 - 48i + 48i - 64i^2 = 36 + 64 = 100 = 10^2 = |Z|^2\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Déterminer le module de \(z = (3 + 4i)(1 + i)\) sans calculer directement le produit.<br>
+  <em>Rappel : \(|z_1 \times z_2| = |z_1| \times |z_2|\)</em></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(|3+4i| = \sqrt{9+16} = 5\)<br>
+    \(|1+i| = \sqrt{1+1} = \sqrt{2}\)<br>
+    Donc \(|z| = |3+4i| \times |1+i| = 5\sqrt{2}\).<br>
+    <em>Vérification :</em> \((3+4i)(1+i) = 3 + 3i + 4i + 4i^2 = -1 + 7i\), et \(|-1+7i| = \sqrt{1+49} = \sqrt{50} = 5\sqrt{2}\) ✔
+  </div>
+</div>
+
+</div><!-- fin C3 -->
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Calculer le quotient de deux nombres complexes</h2>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Calculer le quotient \(\dfrac{z_1}{z_2}\) sous la forme \(a + ib\) en multipliant le numérateur et le dénominateur par le conjugué du dénominateur :</p>
+  <ol type="a">
+    <li>\(\dfrac{1}{2 + i}\)</li>
+    <li>\(\dfrac{3}{1 - i}\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        On multiplie par \(\dfrac{2-i}{2-i}\) :<br>
+        \(\dfrac{1}{2+i} = \dfrac{1 \times (2-i)}{(2+i)(2-i)} = \dfrac{2-i}{4+1} = \dfrac{2-i}{5} = \dfrac{2}{5} - \dfrac{1}{5}i\)
+      </li>
+      <li>
+        On multiplie par \(\dfrac{1+i}{1+i}\) :<br>
+        \(\dfrac{3}{1-i} = \dfrac{3(1+i)}{(1-i)(1+i)} = \dfrac{3+3i}{2} = \dfrac{3}{2} + \dfrac{3}{2}i\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Calculer sous la forme \(a + ib\) :</p>
+  <ol type="a">
+    <li>\(\dfrac{3 + 4i}{1 + i}\)</li>
+    <li>\(\dfrac{2 - i}{3 + 2i}\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(\dfrac{3+4i}{1+i} = \dfrac{(3+4i)(1-i)}{(1+i)(1-i)} = \dfrac{3 - 3i + 4i - 4i^2}{1+1} = \dfrac{3 + i + 4}{2} = \dfrac{7+i}{2} = \dfrac{7}{2} + \dfrac{1}{2}i\)
+      </li>
+      <li>
+        \(\dfrac{2-i}{3+2i} = \dfrac{(2-i)(3-2i)}{(3+2i)(3-2i)} = \dfrac{6 - 4i - 3i + 2i^2}{9+4} = \dfrac{6 - 7i - 2}{13} = \dfrac{4-7i}{13} = \dfrac{4}{13} - \dfrac{7}{13}i\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Un technicien chauffagiste calcule la tension complexe \(U = Z \times I\) où \(Z = 2 + 4i\) Ω est l'impédance et \(I = 3 + i\) A l'intensité complexe.<br>
+  On souhaite retrouver \(Z\) à partir de \(U\) et \(I\) en calculant \(Z = \dfrac{U}{I}\).</p>
+  <ol type="a">
+    <li>Calculer d'abord \(U = Z \times I\).</li>
+    <li>Vérifier en calculant \(\dfrac{U}{I}\) que l'on retrouve bien \(Z = 2 + 4i\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(U = (2+4i)(3+i) = 6 + 2i + 12i + 4i^2 = 6 + 14i - 4 = 2 + 14i\) V
+      </li>
+      <li>
+        \(\dfrac{U}{I} = \dfrac{2+14i}{3+i} = \dfrac{(2+14i)(3-i)}{(3+i)(3-i)} = \dfrac{6 - 2i + 42i - 14i^2}{9+1} = \dfrac{6 + 40i + 14}{10} = \dfrac{20 + 40i}{10} = 2 + 4i\) ✔
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Calculer et simplifier :</p>
+  <ol type="a">
+    <li>\(\dfrac{5 + 5i}{1 - i}\)</li>
+    <li>\(\dfrac{(2+i)^2}{1+i}\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(\dfrac{5+5i}{1-i} = \dfrac{5(1+i)}{1-i} \times \dfrac{1+i}{1+i} = \dfrac{5(1+i)^2}{2}\)<br>
+        \((1+i)^2 = 1 + 2i + i^2 = 2i\)<br>
+        Donc \(\dfrac{5 \times 2i}{2} = 5i\)
+      </li>
+      <li>
+        \((2+i)^2 = 4 + 4i + i^2 = 3 + 4i\)<br>
+        \(\dfrac{3+4i}{1+i} = \dfrac{(3+4i)(1-i)}{(1+i)(1-i)} = \dfrac{3 - 3i + 4i - 4i^2}{2} = \dfrac{3 + i + 4}{2} = \dfrac{7+i}{2} = \dfrac{7}{2} + \dfrac{1}{2}i\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- fin C4 -->
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Résoudre une équation du second degré à discriminant négatif</h2>
+
+<div class="exo">
+  <h3>Exercice 17</h3>
+  <p>Résoudre dans \(\mathbb{C}\) l'équation \(x^2 + 4 = 0\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(x^2 + 4 = 0 \Leftrightarrow x^2 = -4\)<br>
+    On cherche \(x\) tel que \(x^2 = -4\). Comme \((2i)^2 = 4i^2 = -4\) et \((-2i)^2 = -4\) :<br>
+    Les solutions sont \(x_1 = 2i\) et \(x_2 = -2i\).<br>
+    <em>Ces solutions sont bien complexes conjuguées.</em>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 18</h3>
+  <p>Calculer le discriminant et résoudre dans \(\mathbb{C}\) : \(x^2 - 2x + 5 = 0\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\Delta = b^2 - 4ac = (-2)^2 - 4 \times 1 \times 5 = 4 - 20 = -16 < 0\)<br>
+    Le discriminant est négatif, donc pas de solution réelle. On pose :<br>
+    \(\sqrt{\Delta} = \sqrt{-16} = 4i\)<br>
+    \(x_1 = \dfrac{2 + 4i}{2} = 1 + 2i\) et \(x_2 = \dfrac{2 - 4i}{2} = 1 - 2i\)<br>
+    Les solutions sont \(x_1 = 1 + 2i\) et \(x_2 = 1 - 2i\) (conjuguées l'une de l'autre).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19</h3>
+  <p>Résoudre dans \(\mathbb{C}\) les équations suivantes :</p>
+  <ol type="a">
+    <li>\(x^2 + 2x + 2 = 0\)</li>
+    <li>\(x^2 - 4x + 13 = 0\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(\Delta = 4 - 8 = -4\)<br>
+        \(\sqrt{\Delta} = 2i\)<br>
+        \(x_1 = \dfrac{-2 + 2i}{2} = -1 + i\) et \(x_2 = -1 - i\)
+      </li>
+      <li>
+        \(\Delta = 16 - 52 = -36\)<br>
+        \(\sqrt{\Delta} = 6i\)<br>
+        \(x_1 = \dfrac{4 + 6i}{2} = 2 + 3i\) et \(x_2 = 2 - 3i\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20</h3>
+  <p>Dans un modèle mathématique de circuit électrique, l'équation caractéristique est :<br>
+  \[2x^2 - 4x + 10 = 0\]
+  <ol type="a">
+    <li>Calculer le discriminant \(\Delta\).</li>
+    <li>Les solutions sont-elles réelles ou complexes ? Justifier.</li>
+    <li>Résoudre l'équation dans \(\mathbb{C}\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\Delta = (-4)^2 - 4 \times 2 \times 10 = 16 - 80 = -64\)</li>
+      <li>\(\Delta = -64 < 0\) donc les solutions sont <strong>complexes</strong> (pas de solution réelle).</li>
+      <li>
+        \(\sqrt{\Delta} = \sqrt{-64} = 8i\)<br>
+        \(x_1 = \dfrac{4 + 8i}{2 \times 2} = \dfrac{4 + 8i}{4} = 1 + 2i\)<br>
+        \(x_2 = \dfrac{4 - 8i}{4} = 1 - 2i\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 21</h3>
+  <p>Résoudre dans \(\mathbb{C}\) : \(3x^2 + 6x + 6 = 0\), puis vérifier que les solutions trouvées vérifient bien l'équation.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    On peut simplifier par 3 : \(x^2 + 2x + 2 = 0\)<br>
+    \(\Delta = 4 - 8 = -4\)<br>
+    \(\sqrt{\Delta} = 2i\)<br>
+    \(x_1 = \dfrac{-2 + 2i}{2} = -1 + i\) et \(x_2 = -1 - i\)<br><br>
+    <strong>Vérification pour \(x_1 = -1 + i\) :</strong><br>
+    \(x_1^2 = (-1+i)^2 = 1 - 2i + i^2 = 1 - 2i - 1 = -2i\)<br>
+    \(3(-2i) + 6(-1+i) + 6 = -6i - 6 + 6i + 6 = 0\) ✔
+  </div>
+</div>
+
+</div><!-- fin C5 -->
+
+</div><!-- fin .c -->
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

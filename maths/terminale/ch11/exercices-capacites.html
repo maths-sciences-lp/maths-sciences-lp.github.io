@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch11 – Exercices par capacités – Produit scalaire – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 11 – Exercices par capacités</h1>
+  <p class="sous-titre">Produit scalaire &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Calculer un produit scalaire à partir des coordonnées : \(\vec{u} \cdot \vec{v} = x_1 x_2 + y_1 y_2\)</li>
+    <li><strong>C2</strong> — Calculer un produit scalaire à partir de la norme et de l'angle : \(\vec{u} \cdot \vec{v} = |\vec{u}||\vec{v}|\cos\theta\)</li>
+    <li><strong>C3</strong> — Démontrer que deux vecteurs sont orthogonaux (produit scalaire nul)</li>
+    <li><strong>C4</strong> — Calculer un angle entre deux vecteurs (ou entre deux droites) en utilisant le produit scalaire</li>
+    <li><strong>C5</strong> — Appliquer le produit scalaire à des problèmes de géométrie (distance, projection, problèmes professionnels)</li>
+  </ul>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Par coordonnées</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Par norme et angle</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Orthogonalité</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Calcul d'angle</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Applications</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Calculer un produit scalaire à partir des coordonnées</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Calculer le produit scalaire \(\vec{u} \cdot \vec{v}\) pour chaque paire de vecteurs :</p>
+  <ol type="a">
+    <li>\(\vec{u}(3 ; 4)\) et \(\vec{v}(2 ; -1)\)</li>
+    <li>\(\vec{u}(-1 ; 5)\) et \(\vec{v}(3 ; 2)\)</li>
+    <li>\(\vec{u}(6 ; 0)\) et \(\vec{v}(0 ; -4)\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Formule : \(\vec{u} \cdot \vec{v} = x_1 x_2 + y_1 y_2\)<br>
+    <ol type="a">
+      <li>\(\vec{u} \cdot \vec{v} = 3 \times 2 + 4 \times (-1) = 6 - 4 = 2\)</li>
+      <li>\(\vec{u} \cdot \vec{v} = (-1) \times 3 + 5 \times 2 = -3 + 10 = 7\)</li>
+      <li>\(\vec{u} \cdot \vec{v} = 6 \times 0 + 0 \times (-4) = 0\) (les vecteurs sont orthogonaux)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>On donne les points \(A(1 ; 2)\), \(B(4 ; 6)\) et \(C(7 ; 3)\).<br>
+  Calculer \(\overrightarrow{AB} \cdot \overrightarrow{AC}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{AB} = B - A = (4-1 ; 6-2) = (3 ; 4)\)<br>
+    \(\overrightarrow{AC} = C - A = (7-1 ; 3-2) = (6 ; 1)\)<br>
+    \(\overrightarrow{AB} \cdot \overrightarrow{AC} = 3 \times 6 + 4 \times 1 = 18 + 4 = 22\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Dans un plan de coupe, un menuisier repère les points \(A(0 ; 0)\), \(B(8 ; 0)\) et \(C(5 ; 6)\) (coordonnées en cm).<br>
+  Calculer \(\overrightarrow{AB} \cdot \overrightarrow{AC}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{AB} = (8-0 ; 0-0) = (8 ; 0)\)<br>
+    \(\overrightarrow{AC} = (5-0 ; 6-0) = (5 ; 6)\)<br>
+    \(\overrightarrow{AB} \cdot \overrightarrow{AC} = 8 \times 5 + 0 \times 6 = 40\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Calculer les normes \(|\vec{u}|\) et \(|\vec{v}|\) puis le produit scalaire \(\vec{u} \cdot \vec{v}\) avec \(\vec{u}(4 ; -3)\) et \(\vec{v}(6 ; 2)\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(|\vec{u}| = \sqrt{4^2 + (-3)^2} = \sqrt{16+9} = \sqrt{25} = 5\)<br>
+    \(|\vec{v}| = \sqrt{6^2 + 2^2} = \sqrt{36+4} = \sqrt{40} = 2\sqrt{10}\)<br>
+    \(\vec{u} \cdot \vec{v} = 4 \times 6 + (-3) \times 2 = 24 - 6 = 18\)
+  </div>
+</div>
+
+</div><!-- fin C1 -->
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer un produit scalaire à partir de la norme et de l'angle</h2>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Calculer le produit scalaire \(\vec{u} \cdot \vec{v}\) en utilisant la formule \(\vec{u} \cdot \vec{v} = |\vec{u}||\vec{v}|\cos\theta\) :</p>
+  <ol type="a">
+    <li>\(|\vec{u}| = 3\), \(|\vec{v}| = 4\), \(\theta = 60°\)</li>
+    <li>\(|\vec{u}| = 5\), \(|\vec{v}| = 2\), \(\theta = 90°\)</li>
+    <li>\(|\vec{u}| = 6\), \(|\vec{v}| = 3\), \(\theta = 0°\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\vec{u} \cdot \vec{v} = 3 \times 4 \times \cos(60°) = 12 \times 0{,}5 = 6\)</li>
+      <li>\(\vec{u} \cdot \vec{v} = 5 \times 2 \times \cos(90°) = 10 \times 0 = 0\)</li>
+      <li>\(\vec{u} \cdot \vec{v} = 6 \times 3 \times \cos(0°) = 18 \times 1 = 18\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un artisan agenceur tire une planche en exerçant une force \(\vec{F}\) de norme 80 N selon une direction faisant un angle de 30° avec l'axe de déplacement \(\vec{d}\) de norme 1,5 m.<br>
+  Calculer le travail \(W = \vec{F} \cdot \vec{d}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(W = \vec{F} \cdot \vec{d} = |\vec{F}| \times |\vec{d}| \times \cos(30°)\)<br>
+    \(W = 80 \times 1{,}5 \times \cos(30°) = 120 \times \dfrac{\sqrt{3}}{2} \approx 120 \times 0{,}866 \approx 103{,}9\) J
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Dans un triangle \(ABC\), on sait que \(AB = 5\), \(AC = 8\) et l'angle \(\widehat{BAC} = 45°\).<br>
+  Calculer \(\overrightarrow{AB} \cdot \overrightarrow{AC}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{AB} \cdot \overrightarrow{AC} = AB \times AC \times \cos(\widehat{BAC})\)<br>
+    \(= 5 \times 8 \times \cos(45°) = 40 \times \dfrac{\sqrt{2}}{2} = 20\sqrt{2} \approx 28{,}3\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Calculer \(\vec{u} \cdot \vec{v}\) dans chacun des cas suivants :</p>
+  <ol type="a">
+    <li>\(|\vec{u}| = 4\), \(|\vec{v}| = 7\), angle de 120°</li>
+    <li>\(|\vec{u}| = \sqrt{2}\), \(|\vec{v}| = \sqrt{2}\), angle de 90°</li>
+    <li>\(|\vec{u}| = 10\), \(|\vec{v}| = 3\), angle de 180°</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\vec{u} \cdot \vec{v} = 4 \times 7 \times \cos(120°) = 28 \times (-0{,}5) = -14\)</li>
+      <li>\(\vec{u} \cdot \vec{v} = \sqrt{2} \times \sqrt{2} \times \cos(90°) = 2 \times 0 = 0\)</li>
+      <li>\(\vec{u} \cdot \vec{v} = 10 \times 3 \times \cos(180°) = 30 \times (-1) = -30\)</li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- fin C2 -->
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Démontrer que deux vecteurs sont orthogonaux</h2>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Parmi les paires de vecteurs suivantes, identifier celles qui sont orthogonales :</p>
+  <ol type="a">
+    <li>\(\vec{u}(3 ; -2)\) et \(\vec{v}(4 ; 6)\)</li>
+    <li>\(\vec{u}(5 ; 2)\) et \(\vec{v}(-2 ; 5)\)</li>
+    <li>\(\vec{u}(1 ; -3)\) et \(\vec{v}(3 ; 1)\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul.<br>
+    <ol type="a">
+      <li>\(\vec{u} \cdot \vec{v} = 3 \times 4 + (-2) \times 6 = 12 - 12 = 0\) → <strong>orthogonaux</strong> ✔</li>
+      <li>\(\vec{u} \cdot \vec{v} = 5 \times (-2) + 2 \times 5 = -10 + 10 = 0\) → <strong>orthogonaux</strong> ✔</li>
+      <li>\(\vec{u} \cdot \vec{v} = 1 \times 3 + (-3) \times 1 = 3 - 3 = 0\) → <strong>orthogonaux</strong> ✔</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>On donne les points \(A(1 ; 3)\), \(B(5 ; 1)\) et \(C(3 ; 7)\).<br>
+  Démontrer que les droites \(AB\) et \(AC\) sont perpendiculaires.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{AB} = (5-1 ; 1-3) = (4 ; -2)\)<br>
+    \(\overrightarrow{AC} = (3-1 ; 7-3) = (2 ; 4)\)<br>
+    \(\overrightarrow{AB} \cdot \overrightarrow{AC} = 4 \times 2 + (-2) \times 4 = 8 - 8 = 0\)<br>
+    Comme le produit scalaire est nul, les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{AC}\) sont orthogonaux, donc les droites \(AB\) et \(AC\) sont perpendiculaires.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Dans un plan d'agencement (coordonnées en cm), un menuisier agenceur repère trois points caractéristiques :<br>
+  \(P(0 ; 0)\), \(Q(6 ; 0)\) et \(R(0 ; 8)\).<br>
+  Vérifier que les deux parois \(PQ\) et \(PR\) se rejoignent à angle droit en \(P\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{PQ} = (6 ; 0)\) et \(\overrightarrow{PR} = (0 ; 8)\)<br>
+    \(\overrightarrow{PQ} \cdot \overrightarrow{PR} = 6 \times 0 + 0 \times 8 = 0\)<br>
+    Le produit scalaire est nul, donc les vecteurs sont orthogonaux. Les deux parois se rejoignent bien à angle droit en \(P\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Trouver la valeur de \(k\) pour que les vecteurs \(\vec{u}(k ; 3)\) et \(\vec{v}(4 ; -6)\) soient orthogonaux.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Condition d'orthogonalité : \(\vec{u} \cdot \vec{v} = 0\)<br>
+    \(k \times 4 + 3 \times (-6) = 0\)<br>
+    \(4k - 18 = 0\)<br>
+    \(4k = 18\)<br>
+    \(k = \dfrac{18}{4} = \dfrac{9}{2} = 4{,}5\)
+  </div>
+</div>
+
+</div><!-- fin C3 -->
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Calculer un angle entre deux vecteurs en utilisant le produit scalaire</h2>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Calculer l'angle \(\theta\) entre les vecteurs \(\vec{u}(3 ; 4)\) et \(\vec{v}(4 ; 3)\).<br>
+  <em>Rappel : \(\cos\theta = \dfrac{\vec{u} \cdot \vec{v}}{|\vec{u}| \times |\vec{v}|}\)</em></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\vec{u} \cdot \vec{v} = 3 \times 4 + 4 \times 3 = 12 + 12 = 24\)<br>
+    \(|\vec{u}| = \sqrt{9+16} = 5\) ; \(|\vec{v}| = \sqrt{16+9} = 5\)<br>
+    \(\cos\theta = \dfrac{24}{5 \times 5} = \dfrac{24}{25} = 0{,}96\)<br>
+    \(\theta = \arccos(0{,}96) \approx 16{,}3°\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>On donne les points \(A(2 ; 1)\), \(B(6 ; 3)\) et \(C(4 ; 5)\).<br>
+  Calculer l'angle \(\widehat{BAC}\) (l'angle en \(A\) du triangle \(ABC\)).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{AB} = (4 ; 2)\) et \(\overrightarrow{AC} = (2 ; 4)\)<br>
+    \(\overrightarrow{AB} \cdot \overrightarrow{AC} = 4 \times 2 + 2 \times 4 = 8 + 8 = 16\)<br>
+    \(|\overrightarrow{AB}| = \sqrt{16+4} = \sqrt{20} = 2\sqrt{5}\)<br>
+    \(|\overrightarrow{AC}| = \sqrt{4+16} = \sqrt{20} = 2\sqrt{5}\)<br>
+    \(\cos(\widehat{BAC}) = \dfrac{16}{2\sqrt{5} \times 2\sqrt{5}} = \dfrac{16}{4 \times 5} = \dfrac{16}{20} = 0{,}8\)<br>
+    \(\widehat{BAC} = \arccos(0{,}8) \approx 36{,}9°\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Un technicien chauffagiste pose deux canalisations depuis un point \(O(0;0)\) :<br>
+  — Canalisation 1 vers le point \(A(5 ; 2)\)<br>
+  — Canalisation 2 vers le point \(B(1 ; 4)\)<br>
+  Calculer l'angle entre les deux canalisations en \(O\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\overrightarrow{OA} = (5 ; 2)\) et \(\overrightarrow{OB} = (1 ; 4)\)<br>
+    \(\overrightarrow{OA} \cdot \overrightarrow{OB} = 5 \times 1 + 2 \times 4 = 5 + 8 = 13\)<br>
+    \(|\overrightarrow{OA}| = \sqrt{25+4} = \sqrt{29}\)<br>
+    \(|\overrightarrow{OB}| = \sqrt{1+16} = \sqrt{17}\)<br>
+    \(\cos\theta = \dfrac{13}{\sqrt{29} \times \sqrt{17}} = \dfrac{13}{\sqrt{493}} \approx \dfrac{13}{22{,}2} \approx 0{,}585\)<br>
+    \(\theta = \arccos(0{,}585) \approx 54{,}2°\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Calculer l'angle entre les droites \(d_1\) et \(d_2\) sachant que :</p>
+  <ul>
+    <li>\(d_1\) a pour vecteur directeur \(\vec{u}(1 ; 2)\)</li>
+    <li>\(d_2\) a pour vecteur directeur \(\vec{v}(3 ; -1)\)</li>
+  </ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\vec{u} \cdot \vec{v} = 1 \times 3 + 2 \times (-1) = 3 - 2 = 1\)<br>
+    \(|\vec{u}| = \sqrt{1+4} = \sqrt{5}\) ; \(|\vec{v}| = \sqrt{9+1} = \sqrt{10}\)<br>
+    \(\cos\theta = \dfrac{1}{\sqrt{5} \times \sqrt{10}} = \dfrac{1}{\sqrt{50}} = \dfrac{1}{5\sqrt{2}} \approx \dfrac{1}{7{,}07} \approx 0{,}141\)<br>
+    \(\theta = \arccos(0{,}141) \approx 81{,}9°\)<br>
+    <em>L'angle entre deux droites est toujours entre 0° et 90°. On prend ici \(\theta \approx 81{,}9°\).</em>
+  </div>
+</div>
+
+</div><!-- fin C4 -->
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Appliquer le produit scalaire à des problèmes de géométrie et professionnels</h2>
+
+<div class="exo">
+  <h3>Exercice 17 – Distance d'un point à une droite</h3>
+  <p>On donne les points \(A(1 ; 1)\) et \(B(5 ; 1)\) (longueurs en cm). Le point \(H\) est le pied de la perpendiculaire abaissée de \(C(3 ; 4)\) sur la droite \(AB\).<br>
+  En déduire la distance \(CH\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    La droite \(AB\) est horizontale (\(y = 1\)).<br>
+    Le pied de la perpendiculaire issue de \(C(3;4)\) sur \(AB\) est \(H(3 ; 1)\) (même abscisse, ordonnée sur la droite).<br>
+    \(\overrightarrow{CH} = (3-3 ; 1-4) = (0 ; -3)\)<br>
+    Distance \(CH = |\overrightarrow{CH}| = \sqrt{0^2 + (-3)^2} = 3\) cm.<br>
+    <em>Vérification :</em> \(\overrightarrow{AB} = (4 ; 0)\) et \(\overrightarrow{CH} = (0 ; -3)\) ; \(\overrightarrow{AB} \cdot \overrightarrow{CH} = 0\) → bien perpendiculaire ✔
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 18 – Application au triangle rectangle</h3>
+  <p>On considère un triangle \(ABC\) de sommets \(A(0 ; 0)\), \(B(4 ; 0)\) et \(C(0 ; 3)\).</p>
+  <ol type="a">
+    <li>Démontrer que le triangle est rectangle en \(A\).</li>
+    <li>Calculer l'hypoténuse \(BC\).</li>
+    <li>Calculer l'angle \(\widehat{ABC}\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(\overrightarrow{AB} = (4 ; 0)\) et \(\overrightarrow{AC} = (0 ; 3)\)<br>
+        \(\overrightarrow{AB} \cdot \overrightarrow{AC} = 4 \times 0 + 0 \times 3 = 0\) → le triangle est rectangle en \(A\).
+      </li>
+      <li>
+        \(BC = \sqrt{(4-0)^2 + (0-3)^2} = \sqrt{16+9} = \sqrt{25} = 5\)
+      </li>
+      <li>
+        \(\overrightarrow{BA} = (-4 ; 0)\) et \(\overrightarrow{BC} = (-4 ; 3)\)<br>
+        \(\overrightarrow{BA} \cdot \overrightarrow{BC} = (-4)(-4) + 0 \times 3 = 16\)<br>
+        \(|\overrightarrow{BA}| = 4\) ; \(|\overrightarrow{BC}| = 5\)<br>
+        \(\cos(\widehat{ABC}) = \dfrac{16}{4 \times 5} = \dfrac{16}{20} = 0{,}8\)<br>
+        \(\widehat{ABC} = \arccos(0{,}8) \approx 36{,}9°\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19 – Plan d'agencement</h3>
+  <p>Sur un plan d'un local (coordonnées en mètres), un artisan agenceur repère quatre coins d'un meuble encastré :<br>
+  \(P(1 ; 1)\), \(Q(4 ; 1)\), \(R(4 ; 3)\) et \(S(1 ; 3)\).</p>
+  <ol type="a">
+    <li>Calculer \(\overrightarrow{PQ} \cdot \overrightarrow{PS}\) et vérifier que l'angle en \(P\) est bien droit.</li>
+    <li>Calculer les dimensions du meuble (longueur \(PQ\) et largeur \(PS\)).</li>
+    <li>En déduire la diagonale \(PR\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(\overrightarrow{PQ} = (3 ; 0)\) et \(\overrightarrow{PS} = (0 ; 2)\)<br>
+        \(\overrightarrow{PQ} \cdot \overrightarrow{PS} = 3 \times 0 + 0 \times 2 = 0\) → angle droit en \(P\) ✔
+      </li>
+      <li>
+        Longueur \(PQ = |\overrightarrow{PQ}| = \sqrt{9+0} = 3\) m<br>
+        Largeur \(PS = |\overrightarrow{PS}| = \sqrt{0+4} = 2\) m
+      </li>
+      <li>
+        \(\overrightarrow{PR} = (3 ; 2)\)<br>
+        \(PR = \sqrt{9+4} = \sqrt{13} \approx 3{,}61\) m
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20 – Réseau de canalisations</h3>
+  <p>Sur un plan de chantier (coordonnées en mètres), un technicien chauffagiste trace deux tronçons de canalisation : du point \(O(0 ; 0)\) au point \(A(6 ; 4)\), et du point \(O\) au point \(B(2 ; -3)\).</p>
+  <ol type="a">
+    <li>Calculer la longueur \(OA\) et la longueur \(OB\).</li>
+    <li>Calculer le produit scalaire \(\overrightarrow{OA} \cdot \overrightarrow{OB}\).</li>
+    <li>En déduire l'angle entre les deux canalisations en \(O\). Donner une valeur approchée au degré.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(OA = \sqrt{36+16} = \sqrt{52} = 2\sqrt{13} \approx 7{,}21\) m<br>
+        \(OB = \sqrt{4+9} = \sqrt{13} \approx 3{,}61\) m
+      </li>
+      <li>
+        \(\overrightarrow{OA} \cdot \overrightarrow{OB} = 6 \times 2 + 4 \times (-3) = 12 - 12 = 0\)
+      </li>
+      <li>
+        Le produit scalaire est nul, donc \(\cos\theta = 0\), donc \(\theta = 90°\).<br>
+        Les deux canalisations se croisent à angle droit en \(O\).
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 21 – Identité remarquable vectorielle</h3>
+  <p>Soit un triangle \(ABC\) avec \(\overrightarrow{AB}(5 ; 0)\) et \(\overrightarrow{AC}(3 ; 4)\).</p>
+  <ol type="a">
+    <li>Calculer \(\overrightarrow{BC} = \overrightarrow{AC} - \overrightarrow{AB}\).</li>
+    <li>Calculer \(BC^2 = |\overrightarrow{BC}|^2\).</li>
+    <li>Vérifier la relation d'Al-Kashi : \(BC^2 = AB^2 + AC^2 - 2 \cdot \overrightarrow{AB} \cdot \overrightarrow{AC}\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\overrightarrow{BC} = (3-5 ; 4-0) = (-2 ; 4)\)</li>
+      <li>\(BC^2 = (-2)^2 + 4^2 = 4 + 16 = 20\), donc \(BC = \sqrt{20} = 2\sqrt{5}\)</li>
+      <li>
+        \(AB^2 = 25\), \(AC^2 = 9+16 = 25\)<br>
+        \(\overrightarrow{AB} \cdot \overrightarrow{AC} = 5 \times 3 + 0 \times 4 = 15\)<br>
+        \(AB^2 + AC^2 - 2 \cdot \overrightarrow{AB} \cdot \overrightarrow{AC} = 25 + 25 - 30 = 20 = BC^2\) ✔
+      </li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- fin C5 -->
+
+</div><!-- fin .c -->
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Exercices par capacités – Suites géométriques – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 3 – Exercices par capacités</h1>
+  <p class="sous-titre">Suites géométriques &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Reconnaître une suite géométrique ; identifier la raison \(q\) et le premier terme \(u_0\)</li>
+    <li><strong>C2</strong> — Calculer le terme général \(u_n = u_0 \times q^n\)</li>
+    <li><strong>C3</strong> — Calculer la somme des \(n\) premiers termes d'une suite géométrique</li>
+    <li><strong>C4</strong> — Modéliser une situation de croissance ou décroissance exponentielle</li>
+    <li><strong>C5</strong> — Résoudre des problèmes concrets (capital, amortissement, doublement)</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Reconnaître une suite géométrique</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Terme général</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Somme des termes</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Modélisation</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Problèmes concrets</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Reconnaître une suite géométrique</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Parmi les suites suivantes, lesquelles sont géométriques ? Pour celles qui le sont, préciser \(u_0\) et \(q\).</p>
+  <ol type="a">
+    <li>2 ; 6 ; 18 ; 54 ; 162</li>
+    <li>5 ; 10 ; 15 ; 20 ; 25</li>
+    <li>100 ; 85 ; 72{,}25 ; 61{,}41 ; …</li>
+    <li>1 ; −2 ; 4 ; −8 ; 16</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Géométrique : \(\frac{6}{2} = \frac{18}{6} = \frac{54}{18} = 3\) → \(u_0 = 2\), \(q = 3\)</li>
+      <li>Arithmétique (raison +5), pas géométrique.</li>
+      <li>\(\frac{85}{100} = 0{,}85\) ; \(\frac{72{,}25}{85} = 0{,}85\) → Géométrique : \(u_0 = 100\), \(q = 0{,}85\)</li>
+      <li>\(\frac{-2}{1} = -2\) ; \(\frac{4}{-2} = -2\) → Géométrique : \(u_0 = 1\), \(q = -2\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>La valeur d'une pompe à chaleur diminue de 15 % chaque année. Elle vaut 12 000 € à l'achat.</p>
+  <ol type="a">
+    <li>Quelle est la raison de la suite géométrique modélisant cette dépréciation ?</li>
+    <li>Écrire les 4 premiers termes \(u_0, u_1, u_2, u_3\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Une diminution de 15 % signifie qu'on conserve 85 % → \(q = 1 - 0{,}15 = \mathbf{0{,}85}\)</li>
+      <li>\(u_0 = 12\,000\) ; \(u_1 = 12\,000 \times 0{,}85 = 10\,200\) ; \(u_2 = 10\,200 \times 0{,}85 = 8\,670\) ; \(u_3 = 8\,670 \times 0{,}85 = 7\,369{,}50\) €</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Le chiffre d'affaires d'un atelier de menuiserie augmente de 6 % chaque année. Il est de 180 000 € la première année. Identifier \(u_0\) et \(q\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Une augmentation de 6 % : \(q = 1 + 0{,}06 = \mathbf{1{,}06}\)<br>
+    \(u_0 = 180\,000\) €<br>
+    Suite : \(u_n = 180\,000 \times 1{,}06^n\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer le terme général \(u_n = u_0 \times q^n\)</h2>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Calculer les termes demandés :</p>
+  <ol type="a">
+    <li>Suite géométrique : \(u_0 = 3\), \(q = 2\). Calculer \(u_5\).</li>
+    <li>Suite géométrique : \(u_0 = 100\), \(q = 0{,}9\). Calculer \(u_4\).</li>
+    <li>Suite géométrique : \(u_0 = 500\), \(q = 1{,}05\). Calculer \(u_{10}\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(u_5 = 3 \times 2^5 = 3 \times 32 = \mathbf{96}\)</li>
+      <li>\(u_4 = 100 \times 0{,}9^4 = 100 \times 0{,}6561 = \mathbf{65{,}61}\)</li>
+      <li>\(u_{10} = 500 \times 1{,}05^{10} \approx 500 \times 1{,}6289 \approx \mathbf{814{,}45}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>La valeur d'un équipement de génie climatique diminue de 15 % par an. Il vaut 12 000 € à l'achat. Quelle sera sa valeur après 5 ans ? Après 8 ans ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(u_n = 12\,000 \times 0{,}85^n\)<br>
+    Après 5 ans : \(u_5 = 12\,000 \times 0{,}85^5 \approx 12\,000 \times 0{,}4437 \approx \mathbf{5\,325}\) €<br>
+    Après 8 ans : \(u_8 = 12\,000 \times 0{,}85^8 \approx 12\,000 \times 0{,}2725 \approx \mathbf{3\,270}\) €
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un artisan place 8 000 € sur un livret rémunéré à 3,5 % par an. Calculer le capital disponible après 6 ans.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(u_n = 8\,000 \times 1{,}035^n\)<br>
+    Après 6 ans : \(u_6 = 8\,000 \times 1{,}035^6 \approx 8\,000 \times 1{,}2293 \approx \mathbf{9\,834}\) €
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Somme des premiers termes</h2>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Rappel : \(S_n = u_0 \times \frac{1 - q^n}{1 - q}\) (pour \(q \neq 1\)).<br>
+  Calculer la somme \(u_0 + u_1 + \cdots + u_{n-1}\) pour :</p>
+  <ol type="a">
+    <li>\(u_0 = 1\), \(q = 2\), \(n = 6\) termes.</li>
+    <li>\(u_0 = 100\), \(q = 0{,}5\), \(n = 4\) termes.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(S = 1 \times \frac{1 - 2^6}{1 - 2} = \frac{1 - 64}{-1} = \frac{-63}{-1} = \mathbf{63}\)</li>
+      <li>\(S = 100 \times \frac{1 - 0{,}5^4}{1 - 0{,}5} = 100 \times \frac{1 - 0{,}0625}{0{,}5} = 100 \times \frac{0{,}9375}{0{,}5} = 100 \times 1{,}875 = \mathbf{187{,}5}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un menuisier verse 2 000 € par an pendant 10 ans sur un compte à 4 % annuels. Quel est le montant total versé ? (Somme des 10 versements, sans capitalisation.)</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Total versé (sans intérêts) : \(10 \times 2\,000 = \mathbf{20\,000}\) €<br>
+    Avec capitalisation (chaque versement génère des intérêts) :<br>
+    Le premier versement de 2000 € génère \(2000 \times 1{,}04^9\) après 10 ans, etc.<br>
+    \(S = 2000 \times \frac{1{,}04^{10} - 1}{0{,}04} \approx 2000 \times \frac{0{,}4802}{0{,}04} \approx 2000 \times 12 = \mathbf{24\,012}\) €
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Le chiffre d'affaires d'un atelier est de 180 000 € la 1re année et augmente de 6 % par an. Calculer le CA cumulé sur 8 ans (\(u_0 + u_1 + \cdots + u_7\)).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(S = 180\,000 \times \frac{1 - 1{,}06^8}{1 - 1{,}06} = 180\,000 \times \frac{1 - 1{,}5938}{-0{,}06} = 180\,000 \times \frac{-0{,}5938}{-0{,}06}\)<br>
+    \(= 180\,000 \times 9{,}897 \approx \mathbf{1\,781\,000}\) €
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Modéliser croissance et décroissance exponentielle</h2>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Mettre en place le modèle de suite géométrique pour chaque situation (donner \(u_0\), \(q\) et l'expression de \(u_n\)) :</p>
+  <ol type="a">
+    <li>Un capital de 5 000 € placé à 2,5 % annuels.</li>
+    <li>Un stock de matériaux qui diminue de 20 % par mois.</li>
+    <li>La consommation énergétique d'un bâtiment rénovée : économie de 8 % par an, consommation initiale 25 000 kWh.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(u_0 = 5\,000\) ; \(q = 1{,}025\) ; \(u_n = 5\,000 \times 1{,}025^n\) €</li>
+      <li>\(u_0 = \text{stock initial}\) ; \(q = 0{,}80\) ; \(u_n = u_0 \times 0{,}80^n\)</li>
+      <li>\(u_0 = 25\,000\) ; \(q = 0{,}92\) (100 % − 8 %) ; \(u_n = 25\,000 \times 0{,}92^n\) kWh</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>La concentration d'un produit chimique dans un circuit de chauffage diminue de 12 % par mois. La concentration initiale est 80 mg/L. Modéliser et calculer la concentration après 6 mois. En dessous de quelle valeur sera-t-elle après un an ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(u_n = 80 \times 0{,}88^n\)<br>
+    Après 6 mois : \(u_6 = 80 \times 0{,}88^6 \approx 80 \times 0{,}4644 \approx \mathbf{37{,}2}\) mg/L<br>
+    Après 12 mois : \(u_{12} = 80 \times 0{,}88^{12} \approx 80 \times 0{,}2157 \approx \mathbf{17{,}3}\) mg/L
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Problèmes concrets : capital, amortissement, doublement</h2>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>La valeur d'une machine-outil est de 18 000 € à l'achat. Elle se déprécie de 20 % par an. Au bout de combien d'années sa valeur sera-t-elle inférieure à 4 000 € ? (Faire des calculs successifs.)</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(u_n = 18\,000 \times 0{,}8^n\)<br>
+    \(u_1 = 14\,400\) ; \(u_2 = 11\,520\) ; \(u_3 = 9\,216\) ; \(u_4 = 7\,373\) ; \(u_5 = 5\,898\) ; \(u_6 = 4\,719\) ; \(u_7 = 3\,775 &lt; 4\,000\)<br>
+    La machine vaudra moins de 4 000 € à partir de l'année <strong>7</strong>.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Un artisan souhaite que son chiffre d'affaires double en partant de 120 000 €. Son CA augmente de 8 % par an. Au bout de combien d'années aura-t-il doublé ? (Calculer les termes jusqu'à atteindre 240 000 €.)</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(u_n = 120\,000 \times 1{,}08^n\)<br>
+    \(u_5 \approx 176\,319\) ; \(u_8 \approx 222\,039\) ; \(u_9 \approx 239\,802\) ; \(u_{10} \approx 258\,987 &gt; 240\,000\)<br>
+    Le CA double approximativement à l'année <strong>9</strong> (il dépasse 240 000 € au cours de la 10e année).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un installateur thermique achète du matériel à crédit. Il rembourse 3 600 € la première année, puis chaque annuité est réduite de 5 % par rapport à la précédente. Calculer le total remboursé sur 6 ans.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Suite géométrique : \(u_0 = 3\,600\), \(q = 0{,}95\)<br>
+    \(S = 3\,600 \times \frac{1 - 0{,}95^6}{1 - 0{,}95} = 3\,600 \times \frac{1 - 0{,}7351}{0{,}05} = 3\,600 \times \frac{0{,}2649}{0{,}05} = 3\,600 \times 5{,}298 \approx \mathbf{19\,073}\) €
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

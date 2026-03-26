@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Exercices par capacités – Probabilités conditionnelles – Terminale Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 2 – Exercices par capacités</h1>
+  <p class="sous-titre">Probabilités conditionnelles &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Définir et calculer une probabilité conditionnelle \(P(B \mid A)\)</li>
+    <li><strong>C2</strong> — Lire et compléter un tableau de probabilités (tableau croisé)</li>
+    <li><strong>C3</strong> — Construire et utiliser un arbre de probabilités</li>
+    <li><strong>C4</strong> — Appliquer la formule des probabilités totales</li>
+    <li><strong>C5</strong> — Appliquer la formule de Bayes (probabilité des causes)</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Probabilité conditionnelle</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Tableau croisé</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Arbre de probabilités</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Probabilités totales</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Formule de Bayes</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Probabilité conditionnelle \(P(B \mid A)\)</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Dans un atelier, 60 pièces ont été contrôlées. 15 sont défectueuses. Parmi les défectueuses, 9 ont une anomalie de surface.</p>
+  <ol type="a">
+    <li>Calculer \(P(\text{défectueuse})\).</li>
+    <li>Calculer \(P(\text{anomalie de surface} \mid \text{défectueuse})\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(D) = \frac{15}{60} = 0{,}25\)</li>
+      <li>\(P(A \mid D) = \frac{9}{15} = 0{,}6\)</li>
+    </ol>
+    Formule : \(P(B \mid A) = \frac{P(A \cap B)}{P(A)}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Lors d'une livraison, la probabilité qu'un colis soit endommagé est 0,08. Si un colis est endommagé, la probabilité qu'il soit retourné est 0,75. Calculer \(P(\text{endommagé ET retourné})\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(E \cap R) = P(E) \times P(R \mid E) = 0{,}08 \times 0{,}75 = \mathbf{0{,}06}\)<br>
+    6 % des colis sont à la fois endommagés et retournés.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Dans un lot de 200 panneaux, 50 viennent du fournisseur A et 150 du fournisseur B. Parmi les panneaux A, 4 sont défectueux. Parmi les panneaux B, 6 sont défectueux. Calculer la probabilité qu'un panneau tiré au hasard soit défectueux sachant qu'il vient du fournisseur A.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(D \mid A) = \frac{4}{50} = \mathbf{0{,}08}\)<br>
+    8 % des panneaux du fournisseur A sont défectueux.
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Tableau croisé de probabilités</h2>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Un contrôleur examine 400 pièces. Compléter le tableau :</p>
+  <table>
+    <tr><th></th><th>Conforme (C)</th><th>Défectueux (D)</th><th>Total</th></tr>
+    <tr><th>Machine 1</th><td>180</td><td>20</td><td>200</td></tr>
+    <tr><th>Machine 2</th><td>?</td><td>30</td><td>200</td></tr>
+    <tr><th>Total</th><td>?</td><td>50</td><td>400</td></tr>
+  </table>
+  <ol type="a">
+    <li>Compléter le tableau.</li>
+    <li>Calculer \(P(D)\), \(P(D \mid M_1)\) et \(P(D \mid M_2)\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Machine 2 conforme : 170 ; Total conforme : 350.</li>
+      <li>\(P(D) = \frac{50}{400} = 0{,}125\)<br>
+        \(P(D \mid M_1) = \frac{20}{200} = 0{,}10\)<br>
+        \(P(D \mid M_2) = \frac{30}{200} = 0{,}15\)<br>
+        La machine 2 produit proportionnellement plus de défauts.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un installateur thermique a travaillé sur 300 chantiers. Le tableau croisé donne :</p>
+  <table>
+    <tr><th></th><th>Chaudière gaz</th><th>Pompe à chaleur</th><th>Total</th></tr>
+    <tr><th>Neuf</th><td>90</td><td>60</td><td>150</td></tr>
+    <tr><th>Rénovation</th><td>80</td><td>70</td><td>150</td></tr>
+    <tr><th>Total</th><td>170</td><td>130</td><td>300</td></tr>
+  </table>
+  <p>Calculer \(P(\text{PAC})\), \(P(\text{PAC} \mid \text{neuf})\) et \(P(\text{PAC} \mid \text{rénov})\). Le type d'installation dépend-il du contexte (neuf/rénov) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(\text{PAC}) = \frac{130}{300} \approx 0{,}43\)<br>
+    \(P(\text{PAC} \mid \text{neuf}) = \frac{60}{150} = 0{,}40\)<br>
+    \(P(\text{PAC} \mid \text{rénov}) = \frac{70}{150} \approx 0{,}47\)<br>
+    Les probabilités conditionnelles diffèrent légèrement de la probabilité globale → le contexte influence (faiblement) le choix de l'installation.
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Arbre de probabilités</h2>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un lot de pièces contient 40 % de pièces de type A et 60 % de type B. Une pièce A est défectueuse avec probabilité 0,05 ; une pièce B avec probabilité 0,10.</p>
+  <ol type="a">
+    <li>Construire l'arbre de probabilités (2 niveaux : type puis état).</li>
+    <li>Calculer \(P(A \cap D)\) et \(P(B \cap D)\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Niveau 1 : A (0,4) et B (0,6). Niveau 2 : D (0,05) ou \(\overline{D}\) (0,95) pour A ; D (0,10) ou \(\overline{D}\) (0,90) pour B.</li>
+      <li>\(P(A \cap D) = 0{,}4 \times 0{,}05 = 0{,}020\)<br>
+          \(P(B \cap D) = 0{,}6 \times 0{,}10 = 0{,}060\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Un client commande une cuisine. La probabilité que la livraison soit à l'heure est 0,85. Si la livraison est à l'heure, la probabilité que la pose soit réussie le jour même est 0,92. Si la livraison est en retard, cette probabilité n'est que de 0,60.</p>
+  <p>Construire l'arbre et calculer \(P(\text{livraison à l'heure ET pose réussie})\) et \(P(\text{livraison en retard ET pose réussie})\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(L \cap R) = 0{,}85 \times 0{,}92 = \mathbf{0{,}782}\)<br>
+    \(P(\overline{L} \cap R) = 0{,}15 \times 0{,}60 = \mathbf{0{,}090}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Lors d'un audit, 30 % des chantiers sont en zone urbaine (U) et 70 % en zone rurale (R). En zone U, la probabilité d'un dépassement de budget est 0,25. En zone R, elle est 0,12. Construire l'arbre et identifier toutes les probabilités de branches.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Niveau 1 : U (0,30), R (0,70).<br>
+    Niveau 2 (depuis U) : dépassement D (0,25), non-dépassement \(\overline{D}\) (0,75).<br>
+    Niveau 2 (depuis R) : D (0,12), \(\overline{D}\) (0,88).<br>
+    \(P(U \cap D) = 0{,}30 \times 0{,}25 = 0{,}075\)<br>
+    \(P(R \cap D) = 0{,}70 \times 0{,}12 = 0{,}084\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Formule des probabilités totales</h2>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>En reprenant l'exercice 6 (pièces A et B), calculer la probabilité qu'une pièce choisie au hasard soit défectueuse.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(D) = P(A \cap D) + P(B \cap D) = 0{,}020 + 0{,}060 = \mathbf{0{,}080}\)<br>
+    8 % des pièces sont défectueuses au total (formule des probabilités totales).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>En reprenant l'exercice 7 (livraison cuisine), calculer la probabilité que la pose soit réussie le jour même.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(R) = P(L \cap R) + P(\overline{L} \cap R) = 0{,}782 + 0{,}090 = \mathbf{0{,}872}\)<br>
+    87,2 % des poses sont réussies le jour même.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un atelier utilise deux fournisseurs : F1 fournit 60 % des matières, F2 fournit 40 %. Le taux de non-conformité est 3 % pour F1 et 7 % pour F2. Calculer la probabilité qu'une matière prise au hasard soit non conforme.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(NC) = P(F_1) \times P(NC \mid F_1) + P(F_2) \times P(NC \mid F_2)\)<br>
+    \(= 0{,}60 \times 0{,}03 + 0{,}40 \times 0{,}07 = 0{,}018 + 0{,}028 = \mathbf{0{,}046}\)<br>
+    4,6 % des matières sont non conformes.
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Formule de Bayes (probabilité des causes)</h2>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>En reprenant l'exercice 6, sachant qu'une pièce est défectueuse, calculer la probabilité qu'elle soit de type A.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(A \mid D) = \frac{P(A \cap D)}{P(D)} = \frac{0{,}020}{0{,}080} = \mathbf{0{,}25}\)<br>
+    25 % des pièces défectueuses sont de type A (alors que A représente 40 % du lot → les pièces A sont proportionnellement moins défectueuses).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>En reprenant l'exercice 11, une matière est non conforme. Calculer la probabilité qu'elle vienne du fournisseur F2.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(F_2 \mid NC) = \frac{P(F_2 \cap NC)}{P(NC)} = \frac{0{,}028}{0{,}046} \approx \mathbf{0{,}609}\)<br>
+    60,9 % des matières non conformes viennent de F2 (même si F2 ne fournit que 40 % du total — son taux de défaut plus élevé l'explique).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un technicien diagnostique des pannes de chaudières. 70 % des pannes sont électriques (E), 30 % sont hydrauliques (H). Il détecte correctement une panne électrique dans 90 % des cas et une panne hydraulique dans 80 % des cas. Sachant qu'il a détecté une panne (\(D\)), calculer \(P(E \mid D)\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(E \cap D) = 0{,}70 \times 0{,}90 = 0{,}630\)<br>
+    \(P(H \cap D) = 0{,}30 \times 0{,}80 = 0{,}240\)<br>
+    \(P(D) = 0{,}630 + 0{,}240 = 0{,}870\)<br>
+    \(P(E \mid D) = \frac{0{,}630}{0{,}870} \approx \mathbf{0{,}724}\)<br>
+    Si une panne est détectée, il y a 72,4 % de chances que ce soit une panne électrique.
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>
