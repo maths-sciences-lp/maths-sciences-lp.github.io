@@ -114,6 +114,11 @@
 <div class="cap-section" data-cap="C2">
 <h2>C2 — Calculer le point moyen \(G(\bar{x}, \bar{y})\)</h2>
 
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Le <strong>point moyen</strong> \(G\) a pour coordonnées \(\bar{x} = \dfrac{\sum x_i}{n}\) et \(\bar{y} = \dfrac{\sum y_i}{n}\). Il est toujours situé sur la droite d'ajustement. Calculer \(G\) est la première étape avant de déterminer la droite de régression.</p>
+</div>
+
 <div class="exo">
   <h3>Exercice 4</h3>
   <p>En reprenant les données de l'exercice 1 (surface / temps), calculer les coordonnées du point moyen \(G\).</p>
@@ -155,6 +160,45 @@
 <!-- ===== C3 ===== -->
 <div class="cap-section" data-cap="C3">
 <h2>C3 — Droite d'ajustement affine</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>La <strong>droite d'ajustement</strong> (droite de régression) a pour équation \(y = ax + b\). Elle passe toujours par le point moyen \(G(\bar{x}; \bar{y})\). Le coefficient \(a\) est la pente (variation de \(y\) pour +1 unité de \(x\)) ; \(b\) est l'ordonnée à l'origine. On calcule \(b\) en écrivant que G est sur la droite : \(b = \bar{y} - a\bar{x}\).</p>
+</div>
+
+<div class="svg-wrap" style="margin:16px 0">
+<svg viewBox="0 0 320 200" width="320" height="200" aria-label="Nuage de points avec droite d'ajustement">
+  <!-- Axes -->
+  <line x1="40" y1="170" x2="300" y2="170" stroke="#64748b" stroke-width="1.5"/>
+  <line x1="40" y1="170" x2="40" y2="20" stroke="#64748b" stroke-width="1.5"/>
+  <!-- Flèches axes -->
+  <polygon points="300,166 308,170 300,174" fill="#64748b"/>
+  <polygon points="36,20 40,12 44,20" fill="#64748b"/>
+  <!-- Étiquettes axes -->
+  <text x="305" y="174" font-size="12" fill="#475569">x</text>
+  <text x="28" y="16" font-size="12" fill="#475569">y</text>
+  <text x="150" y="190" font-size="11" fill="#475569" text-anchor="middle">variable explicative</text>
+  <text x="12" y="100" font-size="11" fill="#475569" text-anchor="middle" transform="rotate(-90,12,100)">variable réponse</text>
+  <!-- Points du nuage -->
+  <circle cx="70"  cy="148" r="4" fill="#0969da"/>
+  <circle cx="100" cy="130" r="4" fill="#0969da"/>
+  <circle cx="130" cy="118" r="4" fill="#0969da"/>
+  <circle cx="160" cy="100" r="4" fill="#0969da"/>
+  <circle cx="190" cy="88"  r="4" fill="#0969da"/>
+  <circle cx="220" cy="72"  r="4" fill="#0969da"/>
+  <circle cx="255" cy="58"  r="4" fill="#0969da"/>
+  <!-- Droite d'ajustement -->
+  <line x1="55" y1="158" x2="275" y2="48" stroke="#e11d48" stroke-width="2" stroke-dasharray="5,3"/>
+  <!-- Point moyen G -->
+  <circle cx="163" cy="97" r="5" fill="#f59e0b" stroke="#fff" stroke-width="1.5"/>
+  <text x="170" y="92" font-size="11" fill="#d97706" font-weight="bold">G</text>
+  <!-- Légende -->
+  <circle cx="55" cy="15" r="4" fill="#0969da"/>
+  <text x="64" y="19" font-size="10" fill="#334155">nuage de points</text>
+  <line x1="160" y1="15" x2="185" y2="15" stroke="#e11d48" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="190" y="19" font-size="10" fill="#334155">droite d'ajustement</text>
+</svg>
+</div>
 
 <div class="exo">
   <h3>Exercice 7</h3>
@@ -205,6 +249,11 @@
 <div class="cap-section" data-cap="C4">
 <h2>C4 — Coefficient de corrélation linéaire \(r\)</h2>
 
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>Le <strong>coefficient de corrélation</strong> \(r\) mesure la force et le sens de la liaison linéaire entre \(x\) et \(y\). Il est toujours compris entre \(-1\) et \(1\). Si \(r > 0\) : liaison croissante ; si \(r < 0\) : liaison décroissante. Plus \(|r|\) est proche de 1, plus la liaison est forte. En pratique, on considère le modèle affine pertinent si \(|r| \geq 0{,}9\).</p>
+</div>
+
 <div class="exo">
   <h3>Exercice 10</h3>
   <p>Pour chaque valeur de \(r\), décrire la nature de la liaison et son intensité :</p>
@@ -251,6 +300,11 @@
 <!-- ===== C5 ===== -->
 <div class="cap-section" data-cap="C5">
 <h2>C5 — Prévisions à partir de la droite d'ajustement</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Pour <strong>estimer \(y\)</strong> à partir d'une valeur de \(x\) : remplacer \(x\) dans l'équation \(y = ax + b\). Pour <strong>estimer \(x\)</strong> à partir d'une valeur de \(y\) : résoudre \(ax + b = y_0\). Attention : les prévisions ne sont fiables que dans l'intervalle des valeurs observées (interpolation). En dehors de cet intervalle (extrapolation), les résultats sont peu fiables.</p>
+</div>
 
 <div class="exo">
   <h3>Exercice 13</h3>
