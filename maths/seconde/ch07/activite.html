@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Activité – Notion de fonction – 2nde MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité — Notion de fonction</h1>
+  <p class="sous-titre">Chapitre 7 &nbsp;|&nbsp; Seconde Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 30 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre ce qu'est une fonction : une règle qui associe une sortie à chaque entrée</li>
+    <li>Calculer l'image d'un nombre par une fonction</li>
+    <li>Trouver un antécédent (l'entrée qui donne une sortie donnée)</li>
+  </ul>
+</div>
+
+
+<!-- DOCUMENT D'ACCROCHE -->
+<div class="situation">
+  <h2>Situation professionnelle — Tarifs de pose de sol</h2>
+  <p><em>Artisan poseur de sol : Alex Dumas — entreprise <strong>Sol Pro 31</strong>, Toulouse.</em></p>
+
+  <p>
+    Alex pose des revêtements de sol. Il facture <strong>15 € par m²</strong> de surface posée,
+    auxquels il ajoute un <strong>forfait matériel de 30 €</strong> par chantier.
+  </p>
+
+  <p>Voici les données de quatre chantiers récents :</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Chantier</th>
+        <th>Surface posée \(x\) (m²)</th>
+        <th>Montant facturé (€)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Appartement A</td><td>10</td><td>180</td></tr>
+      <tr><td>Appartement B</td><td>20</td><td>330</td></tr>
+      <tr><td>Bureau C</td><td>35</td><td>555</td></tr>
+      <tr><td>Villa D</td><td>50</td><td>780</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:12px">
+    Alex utilise une <strong>formule de calcul</strong> pour établir rapidement ses factures.
+    Quelle est cette formule ?
+  </p>
+</div>
+
+
+<!-- QUESTIONS -->
+<div class="exo">
+  <h2>Question 1 &nbsp;<span class="badge-blue">APP</span></h2>
+  <p>Lis le document d'Alex.</p>
+  <ol type="a">
+    <li>Quelle grandeur joue le rôle d'<strong>entrée</strong> (ce qu'on connaît) ?</li>
+    <li>Quelle grandeur joue le rôle de <strong>sortie</strong> (ce qu'on calcule) ?</li>
+    <li>Pour le chantier A (10 m²), le montant facturé est 180 €. Vérifie ce calcul avec la description du tarif.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>L'<strong>entrée</strong> est la surface posée \(x\) (en m²).</li>
+      <li>La <strong>sortie</strong> est le montant facturé (en €).</li>
+      <li>\(15 \times 10 + 30 = 150 + 30 = 180\,€\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 2 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>On note \(f(x)\) le montant facturé pour une surface de \(x\) m².</p>
+  <ol type="a">
+    <li>D'après la description du tarif, propose une formule pour \(f(x)\).</li>
+    <li>Vérifie que ta formule donne bien 330 € pour le chantier B (20 m²).</li>
+    <li>Vérifie également pour le chantier D (50 m²).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(f(x) = 15x + 30\) (15 €/m² + 30 € de forfait).</li>
+      <li>\(f(20) = 15 \times 20 + 30 = 300 + 30 = 330\,€\) ✔</li>
+      <li>\(f(50) = 15 \times 50 + 30 = 750 + 30 = 780\,€\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 3 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Avec \(f(x) = 15x + 30\), calcule les images suivantes.</p>
+  <ol type="a">
+    <li>\(f(0)\) — qu'est-ce que cela représente concrètement ?</li>
+    <li>\(f(8)\)</li>
+    <li>\(f(25)\)</li>
+    <li>\(f(100)\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(f(0) = 15 \times 0 + 30 = 30\,€\) — c'est le <strong>forfait matériel seul</strong>, sans aucune surface posée.</li>
+      <li>\(f(8) = 15 \times 8 + 30 = 120 + 30 = 150\,€\)</li>
+      <li>\(f(25) = 15 \times 25 + 30 = 375 + 30 = 405\,€\)</li>
+      <li>\(f(100) = 15 \times 100 + 30 = 1\,500 + 30 = 1\,530\,€\)</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 4 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>Un client demande à Alex : « Pour quel surface ma facture sera-t-elle exactement de <strong>480 €</strong> ? »</p>
+  <p>On cherche donc \(x\) tel que \(f(x) = 480\), c'est-à-dire \(15x + 30 = 480\).</p>
+  <ol type="a">
+    <li>Résous cette équation pour trouver \(x\).</li>
+    <li>Ce nombre \(x\) s'appelle l'<strong>antécédent</strong> de 480 par \(f\). Explique ce mot avec tes propres mots.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(15x + 30 = 480\)<br>
+        \(15x = 480 - 30 = 450\)<br>
+        \(x = \dfrac{450}{15} = 30\,\text{m}²\)
+      </li>
+      <li>L'antécédent de 480, c'est la <strong>valeur d'entrée</strong> (la surface) qui donne 480 € en sortie. Ici, 30 m² est l'antécédent de 480 par \(f\).</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 5 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Complète le tableau de valeurs de \(f(x) = 15x + 30\) :</p>
+  <table>
+    <thead>
+      <tr>
+        <th>\(x\) (m²)</th>
+        <th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>30</th><th>40</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>\(f(x)\) (€)</td>
+        <td>?</td><td>?</td><td>180</td><td>?</td><td>330</td><td>?</td><td>?</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead>
+        <tr>
+          <th>\(x\)</th>
+          <th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>30</th><th>40</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>\(f(x)\)</td>
+          <td>30</td><td>105</td><td>180</td><td>255</td><td>330</td><td>480</td><td>630</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 6 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>Alex peut-il poser une surface négative ? Peut-il poser une surface de 0 m² ?</p>
+  <ol type="a">
+    <li>Quelles valeurs de \(x\) ont un sens concret dans ce contexte professionnel ?</li>
+    <li>On appelle cet ensemble de valeurs le <strong>domaine de définition</strong> de la fonction. Que vaut-il ici ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La surface doit être positive ou nulle : \(x \geq 0\). On ne peut pas poser une surface négative. 0 m² est théoriquement possible (forfait seul).</li>
+      <li>Le domaine de définition est \([0\,;\,+\infty[\) — tous les réels positifs ou nuls.</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 7 &nbsp;<span class="badge-green">VAL</span></h2>
+  <p>
+    Un concurrent d'Alex, Paul, facture selon la formule \(g(x) = 18x\) (sans forfait fixe).
+  </p>
+  <ol type="a">
+    <li>Calcule \(g(10)\), \(g(20)\) et \(g(30)\).</li>
+    <li>Pour chaque surface, lequel de Paul ou Alex est moins cher ?</li>
+    <li>À partir de quelle surface Alex devient-il moins cher que Paul ? (Résoudre \(f(x) = g(x)\).)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(g(10) = 180\,€\) ; \(g(20) = 360\,€\) ; \(g(30) = 540\,€\)</li>
+      <li>
+        Pour 10 m² : Alex = 180 €, Paul = 180 € → <strong>même prix</strong><br>
+        Pour 20 m² : Alex = 330 €, Paul = 360 € → <strong>Alex moins cher</strong><br>
+        Pour 30 m² : Alex = 480 €, Paul = 540 € → <strong>Alex moins cher</strong>
+      </li>
+      <li>
+        \(f(x) = g(x) \Rightarrow 15x + 30 = 18x \Rightarrow 30 = 3x \Rightarrow x = 10\,\text{m}²\)<br>
+        Pour \(x > 10\,\text{m}²\), Alex est moins cher. À partir de <strong>10 m²</strong>, il vaut mieux choisir Alex.
+      </li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 8 &nbsp;<span class="badge-yellow">COM</span></h2>
+  <p>Complète le résumé en t'appuyant sur l'activité :</p>
+  <blockquote style="background:#f8fafc;border-left:4px solid var(--p);padding:14px 18px;margin:10px 0;border-radius:0 8px 8px 0;line-height:2.1">
+    Une <strong>fonction</strong> est une règle qui, à chaque valeur d'entrée \(x\),
+    associe <em>une seule et unique</em> valeur de sortie notée ____.<br>
+    Calculer \(f(3)\), c'est calculer l'<strong>____</strong> de 3 par \(f\).<br>
+    Trouver \(x\) tel que \(f(x) = 480\), c'est trouver l'<strong>____</strong> de 480 par \(f\).<br>
+    Pour trouver un antécédent, on résout une ____.
+  </blockquote>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Une fonction est une règle qui, à chaque valeur d'entrée \(x\),
+    associe une seule et unique valeur de sortie notée <strong>\(f(x)\)</strong>.<br>
+    Calculer \(f(3)\) : c'est calculer l'<strong>image</strong> de 3 par \(f\).<br>
+    Trouver \(x\) tel que \(f(x) = 480\) : c'est trouver l'<strong>antécédent</strong> de 480 par \(f\).<br>
+    Pour trouver un antécédent, on résout une <strong>équation</strong>.
+  </div>
+</div>
+
+
+<!-- SYNTHÈSE -->
+<div class="retenir">
+  <strong>À retenir — Ce que tu as découvert dans cette activité</strong>
+
+  <h3 style="margin-top:14px;color:#1e3a8a">Fonction</h3>
+  <p>
+    Une <strong>fonction</strong> \(f\) est une règle qui, à chaque valeur \(x\), associe
+    <em>une seule et unique</em> valeur \(f(x)\) (lire : « f de x »).
+  </p>
+
+  <h3 style="color:#1e3a8a">Image et antécédent</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li><strong>Image :</strong> \(f(a)\) est l'image de \(a\). On la calcule en remplaçant \(x\) par \(a\) dans la formule.</li>
+    <li><strong>Antécédent :</strong> \(x_0\) est un antécédent de \(b\) si \(f(x_0) = b\). On le trouve en résolvant l'équation \(f(x) = b\).</li>
+  </ul>
+</div>
+
+<div class="nav-footer">
+  <a href="lecon.html" class="nav-btn">Cours Ch07 →</a>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

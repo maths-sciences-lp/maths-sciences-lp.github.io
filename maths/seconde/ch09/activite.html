@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Activité – Fonction affine – 2nde MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité — Fonction affine</h1>
+  <p class="sous-titre">Chapitre 9 &nbsp;|&nbsp; Seconde Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Reconnaître la forme \(f(x) = ax + b\) dans une situation concrète</li>
+    <li>Identifier le coefficient directeur \(a\) et l'ordonnée à l'origine \(b\)</li>
+    <li>Interpréter le signe de \(a\) et construire un tableau de valeurs</li>
+    <li>Comparer deux fonctions affines pour prendre une décision</li>
+  </ul>
+</div>
+
+
+<!-- DOCUMENT D'ACCROCHE -->
+<div class="situation">
+  <h2>Situation professionnelle — Tarifs de deux artisans menuisiers</h2>
+  <p><em>Entreprise de menuiserie : <strong>Atelier du Bois Gascon</strong>, Agen.</em></p>
+
+  <p>
+    Un responsable de chantier doit choisir entre deux artisans menuisiers pour des interventions de pose de placards.
+    Voici les tarifs affichés :
+  </p>
+
+  <div class="grid2" style="gap:14px;margin:14px 0">
+    <div style="border:2px solid #0056b3;border-radius:10px;padding:14px;background:#ebf5ff">
+      <strong style="color:#0056b3">Artisan DUVAL</strong>
+      <ul style="margin:8px 0;padding-left:18px">
+        <li>Forfait déplacement : <strong>60 €</strong></li>
+        <li>Taux horaire : <strong>45 € / heure</strong></li>
+      </ul>
+      <p style="margin:0;font-size:.9em">Facture : \(D(h) = 45h + 60\)</p>
+    </div>
+    <div style="border:2px solid #2f855a;border-radius:10px;padding:14px;background:#f0fff4">
+      <strong style="color:#2f855a">Artisan MARTIN</strong>
+      <ul style="margin:8px 0;padding-left:18px">
+        <li>Forfait déplacement : <strong>90 €</strong></li>
+        <li>Taux horaire : <strong>40 € / heure</strong></li>
+      </ul>
+      <p style="margin:0;font-size:.9em">Facture : \(M(h) = 40h + 90\)</p>
+    </div>
+  </div>
+
+  <p>Le responsable veut choisir l'artisan le moins cher selon la durée de l'intervention.</p>
+</div>
+
+
+<!-- QUESTIONS -->
+<div class="exo">
+  <h2>Question 1 &nbsp;<span class="badge-blue">APP</span></h2>
+  <p>Analyse les deux fiches tarifaires.</p>
+  <ol type="a">
+    <li>Dans \(D(h) = 45h + 60\), identifie \(a\) et \(b\). Que représentent-ils concrètement ?</li>
+    <li>Fais de même pour \(M(h) = 40h + 90\).</li>
+    <li>Que se passe-t-il si l'intervention dure 0 heure (\(h = 0\)) ? Calcule \(D(0)\) et \(M(0)\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Pour Duval : \(a = 45\) (taux horaire en €/h), \(b = 60\) (forfait déplacement en €).</li>
+      <li>Pour Martin : \(a = 40\) (taux horaire), \(b = 90\) (forfait déplacement).</li>
+      <li>\(D(0) = 45 \times 0 + 60 = 60\,€\) — seulement le déplacement, sans travail.<br>
+      \(M(0) = 40 \times 0 + 90 = 90\,€\) — idem pour Martin.</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 2 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Complète le tableau de valeurs des deux fonctions :</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Durée \(h\) (heures)</th>
+        <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>\(D(h) = 45h + 60\) (€)</td>
+        <td>60</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td>
+      </tr>
+      <tr>
+        <td>\(M(h) = 40h + 90\) (€)</td>
+        <td>90</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead>
+        <tr>
+          <th>\(h\)</th>
+          <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>\(D(h)\)</td>
+          <td>60</td><td>105</td><td>150</td><td>195</td><td>240</td><td>285</td><td>330</td>
+        </tr>
+        <tr>
+          <td>\(M(h)\)</td>
+          <td>90</td><td>130</td><td>170</td><td>210</td><td>250</td><td>290</td><td>330</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 3 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>Observe les valeurs du tableau.</p>
+  <ol type="a">
+    <li>Quand \(h\) augmente de 1 heure, de combien augmente la facture de Duval ? Et celle de Martin ?</li>
+    <li>Qu'est-ce que cela représente par rapport aux formules \(D(h)\) et \(M(h)\) ?</li>
+    <li>Les factures augmentent-elles ou diminuent-elles quand \(h\) augmente ? Que peut-on dire du signe de \(a\) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Duval : +45 € par heure. Martin : +40 € par heure.</li>
+      <li>C'est le <strong>coefficient directeur \(a\)</strong> — il mesure l'augmentation de la facture par heure supplémentaire (la pente).</li>
+      <li>Les factures augmentent quand \(h\) augmente → les deux fonctions sont <strong>croissantes</strong> car \(a > 0\) dans les deux cas.</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 4 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>En observant le tableau, pour quelle durée les deux artisans facturent-ils le même montant ?</p>
+  <ol type="a">
+    <li>Lis la réponse dans le tableau.</li>
+    <li>Pour les interventions courtes (moins de cette durée), lequel est moins cher ?</li>
+    <li>Pour les interventions longues (plus de cette durée), lequel est moins cher ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Pour \(h = 6\) heures, les deux facturent <strong>330 €</strong>.</li>
+      <li>Pour les interventions courtes (\(h < 6\)) : Duval est moins cher (ex. 3h : 195 € contre 210 €).</li>
+      <li>Pour les interventions longues (\(h > 6\)) : Martin est moins cher (taux horaire plus faible).</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 5 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Vérifie algébriquement que \(h = 6\) est bien le point d'égalité.</p>
+  <ol type="a">
+    <li>Résous l'équation \(D(h) = M(h)\), c'est-à-dire \(45h + 60 = 40h + 90\).</li>
+    <li>Vérification : calcule \(D(6)\) et \(M(6)\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(45h + 60 = 40h + 90\)<br>
+        \(45h - 40h = 90 - 60\)<br>
+        \(5h = 30\)<br>
+        \(h = 6\)
+      </li>
+      <li>\(D(6) = 45 \times 6 + 60 = 270 + 60 = 330\,€\)<br>
+      \(M(6) = 40 \times 6 + 90 = 240 + 90 = 330\,€\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 6 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>
+    Un troisième artisan, Petit, propose un tarif différent : son taux horaire augmente avec la durée,
+    selon la formule \(P(h) = h^2 + 50\).
+  </p>
+  <ol type="a">
+    <li>Calcule \(P(1)\), \(P(2)\), \(P(3)\), \(P(4)\).</li>
+    <li>Quand \(h\) augmente de 1 heure, la facture augmente-t-elle du même montant à chaque fois ?</li>
+    <li>Le tarif de Petit est-il une fonction affine ? Justifie.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(1) = 1 + 50 = 51\,€\) ; \(P(2) = 4 + 50 = 54\,€\) ; \(P(3) = 9 + 50 = 59\,€\) ; \(P(4) = 16 + 50 = 66\,€\)</li>
+      <li>Non : de \(h=1\) à \(h=2\) : +3 €. De \(h=2\) à \(h=3\) : +5 €. De \(h=3\) à \(h=4\) : +7 €. L'augmentation n'est <strong>pas constante</strong>.</li>
+      <li>\(P(h) = h^2 + 50\) <strong>n'est pas une fonction affine</strong> : elle contient \(h^2\) (degré 2, pas degré 1).</li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 7 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>
+    On ajoute une contrainte : l'artisan Duval augmente ses tarifs de <strong>10 %</strong> l'année prochaine.
+    Écris la nouvelle formule \(D'(h)\) après augmentation.
+  </p>
+  <div class="meth"><strong>Rappel :</strong> augmenter de 10 % = multiplier par 1,10</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(D'(h) = 1{,}10 \times (45h + 60) = 49{,}5h + 66\)<br>
+    Soit : forfait = 66 €, taux horaire = 49,50 €/h.<br>
+    C'est toujours une fonction affine, avec \(a = 49{,}5\) et \(b = 66\).
+  </div>
+</div>
+
+
+<div class="exo">
+  <h2>Question 8 &nbsp;<span class="badge-yellow">COM</span></h2>
+  <p>Complète le résumé à partir de ce que tu viens de découvrir :</p>
+  <blockquote style="background:#f8fafc;border-left:4px solid var(--p);padding:14px 18px;margin:10px 0;border-radius:0 8px 8px 0;line-height:2.1">
+    Une <strong>fonction affine</strong> est de la forme \(f(x) = \)____ \(+ \)____.<br>
+    Le coefficient \(a\) s'appelle le <strong>____</strong> directeur : il mesure l'augmentation de \(f(x)\)
+    quand \(x\) augmente de 1.<br>
+    Le coefficient \(b\) est l'<strong>____</strong> à l'origine : c'est la valeur de \(f(0)\).<br>
+    Si \(a > 0\), la fonction est ____. Si \(a < 0\), elle est ____.
+  </blockquote>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Une fonction affine est de la forme \(f(x) = \mathbf{a}x + \mathbf{b}\).<br>
+    \(a\) : <strong>coefficient</strong> directeur — augmentation de \(f(x)\) par unité de \(x\).<br>
+    \(b\) : <strong>ordonnée</strong> à l'origine — valeur en \(x = 0\).<br>
+    Si \(a > 0\) : fonction <strong>croissante</strong>. Si \(a < 0\) : fonction <strong>décroissante</strong>.
+  </div>
+</div>
+
+
+<!-- SYNTHÈSE -->
+<div class="retenir">
+  <strong>À retenir — Ce que tu as découvert dans cette activité</strong>
+
+  <h3 style="margin-top:14px;color:#1e3a8a">Fonction affine \(f(x) = ax + b\)</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>\(a\) = <strong>coefficient directeur</strong> (pente) : variation de \(f(x)\) par unité de \(x\).</li>
+    <li>\(b\) = <strong>ordonnée à l'origine</strong> : valeur en \(x = 0\).</li>
+    <li>La courbe représentative est une <strong>droite</strong>.</li>
+  </ul>
+
+  <h3 style="color:#1e3a8a">Sens de variation</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>\(a > 0\) → fonction <strong>croissante</strong> (la droite monte)</li>
+    <li>\(a < 0\) → fonction <strong>décroissante</strong> (la droite descend)</li>
+    <li>\(a = 0\) → fonction <strong>constante</strong> (droite horizontale)</li>
+  </ul>
+
+  <h3 style="color:#1e3a8a">Comparer deux fonctions affines</h3>
+  <p>Pour trouver le point d'égalité, on résout \(f(x) = g(x)\) — c'est une équation du premier degré.</p>
+</div>
+
+<div class="nav-footer">
+  <a href="lecon.html" class="nav-btn">Cours Ch09 →</a>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>
