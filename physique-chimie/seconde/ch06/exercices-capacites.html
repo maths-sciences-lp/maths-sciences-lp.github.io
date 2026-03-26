@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Exercices par capacités – Forces et équilibre – 2nde Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 6 – Exercices par capacités</h1>
+  <p class="sous-titre">Forces et équilibre &nbsp;|&nbsp; 2nde Bac Pro &nbsp;|&nbsp; Physique-Chimie</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Identifier les forces qui s'exercent sur un solide</li>
+    <li><strong>C2</strong> — Représenter une force par un vecteur (point d'application, direction, sens, norme)</li>
+    <li><strong>C3</strong> — Énoncer la condition d'équilibre d'un solide (somme des forces nulle)</li>
+    <li><strong>C4</strong> — Appliquer le principe des actions réciproques (3e loi de Newton)</li>
+    <li><strong>C5</strong> — Résoudre un problème d'équilibre statique simple</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Identifier les forces</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Représenter une force</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Condition d'équilibre</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Actions réciproques</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Équilibre statique</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Identifier les forces qui s'exercent sur un solide</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Pour identifier les forces exercées sur un solide, on recense toutes les <strong>interactions</strong> entre ce solide et son environnement :</p>
+  <ul>
+    <li><strong>Poids</strong> \(\vec{P}\) : exercé par la Terre sur l'objet, toujours vertical vers le bas, en tout point.</li>
+    <li><strong>Réaction du support</strong> \(\vec{R}\) : exercée par la surface d'appui sur l'objet, perpendiculaire à la surface (réaction normale) + frottement éventuel.</li>
+    <li><strong>Tension d'un câble ou d'une corde</strong> \(\vec{T}\) : exercée le long du câble, orientée vers le point d'attache.</li>
+    <li><strong>Force exercée par un ressort, une poussée manuelle, etc.</strong></li>
+  </ul>
+  <p>Rappel : \(P = m \times g\) avec \(g = 9{,}81\ \text{m/s}^2 \approx 10\ \text{N/kg}\) et \(m\) en kg.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un panneau de menuiserie de masse 12 kg est posé à plat sur une table horizontale.</p>
+  <ol type="a">
+    <li>Lister toutes les forces qui s'exercent sur le panneau.</li>
+    <li>Calculer le poids du panneau (prendre \(g = 10\ \text{N/kg}\)).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Deux forces s'exercent sur le panneau :
+        <ul>
+          <li>Le <strong>poids</strong> \(\vec{P}\) exercé par la Terre, vertical, vers le bas.</li>
+          <li>La <strong>réaction normale du support</strong> \(\vec{R}\) exercée par la table, verticale, vers le haut.</li>
+        </ul>
+      </li>
+      <li>\(P = m \times g = 12 \times 10 = \mathbf{120\ \text{N}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un électricien suspend un luminaire de masse 2,5 kg à un câble accroché au plafond.</p>
+  <ol type="a">
+    <li>Identifier toutes les forces exercées sur le luminaire.</li>
+    <li>Calculer la valeur du poids du luminaire.</li>
+    <li>Quelle est la valeur de la tension dans le câble si le luminaire est à l'équilibre ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Deux forces :
+        <ul>
+          <li><strong>Poids</strong> \(\vec{P}\) : vertical, vers le bas, exercé par la Terre.</li>
+          <li><strong>Tension</strong> \(\vec{T}\) du câble : verticale, vers le haut, exercée par le câble.</li>
+        </ul>
+      </li>
+      <li>\(P = 2{,}5 \times 10 = \mathbf{25\ \text{N}}\)</li>
+      <li>À l'équilibre : \(T = P = \mathbf{25\ \text{N}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Une caisse d'outils de masse 8 kg est posée sur un plan incliné à 30° par rapport à l'horizontale. Elle ne glisse pas.</p>
+  <ol type="a">
+    <li>Identifier les trois forces qui s'exercent sur la caisse.</li>
+    <li>Préciser la direction et le sens de chacune.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Trois forces :
+        <ul>
+          <li><strong>Poids</strong> \(\vec{P}\) exercé par la Terre.</li>
+          <li><strong>Réaction normale</strong> \(\vec{N}\) du plan incliné sur la caisse.</li>
+          <li><strong>Force de frottement</strong> \(\vec{f}\) du plan incliné sur la caisse (empêche le glissement).</li>
+        </ul>
+      </li>
+      <li>
+        \(\vec{P}\) : vertical, vers le bas.<br>
+        \(\vec{N}\) : perpendiculaire au plan incliné, orientée en s'éloignant du plan.<br>
+        \(\vec{f}\) : parallèle au plan incliné, orientée vers le haut du plan (s'oppose au glissement potentiel).
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Un menuisier agenceur tire une lame de parquet de masse 0,5 kg à l'aide d'une corde faisant un angle de 20° avec l'horizontale, sur un sol plat. La lame glisse sans frottement.</p>
+  <ol type="a">
+    <li>Lister les forces exercées sur la lame.</li>
+    <li>Parmi ces forces, lesquelles sont de contact ? Lesquelles sont à distance ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Trois forces :
+        <ul>
+          <li><strong>Poids</strong> \(\vec{P}\) (Terre → lame), vertical vers le bas.</li>
+          <li><strong>Réaction normale du sol</strong> \(\vec{N}\), perpendiculaire au sol, vers le haut.</li>
+          <li><strong>Tension de la corde</strong> \(\vec{T}\), orientée dans la direction de la corde, à 20° au-dessus de l'horizontale.</li>
+        </ul>
+      </li>
+      <li>Forces de <strong>contact</strong> : \(\vec{N}\) (sol en contact avec la lame) et \(\vec{T}\) (corde en contact). Force à <strong>distance</strong> : \(\vec{P}\) (la Terre agit sans contact direct).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Représenter une force par un vecteur</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Une force est représentée par un <strong>vecteur</strong> caractérisé par 4 éléments :</p>
+  <ul>
+    <li><strong>Point d'application</strong> : l'endroit où la force s'exerce (souvent le centre de gravité pour le poids).</li>
+    <li><strong>Direction</strong> : la droite support (ex. : verticale, horizontale, oblique à 45°).</li>
+    <li><strong>Sens</strong> : vers le haut, vers le bas, vers la gauche, etc.</li>
+    <li><strong>Norme (valeur)</strong> : la longueur du vecteur dessiné à l'échelle (ex. : 1 cm représente 10 N).</li>
+  </ul>
+  <p>Notation : \(\vec{F}\) est le vecteur force, et \(F = \|\vec{F}\|\) est sa norme en Newtons (N).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un technicien applique une force horizontale de 60 N vers la droite sur une caisse posée sur le sol.</p>
+  <p>En utilisant l'échelle 1 cm ↔ 20 N, décrire précisément le vecteur représentant cette force (point d'application, direction, sens, longueur).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>
+      <strong>Point d'application :</strong> au milieu de la face gauche de la caisse (là où la poussée s'exerce).<br>
+      <strong>Direction :</strong> horizontale.<br>
+      <strong>Sens :</strong> vers la droite.<br>
+      <strong>Longueur :</strong> \(60 / 20 = 3\ \text{cm}\).
+    </p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Une poutre de masse 50 kg est suspendue à un câble vertical.</p>
+  <ol type="a">
+    <li>Calculer le poids de la poutre (\(g = 10\ \text{N/kg}\)).</li>
+    <li>Décrire le vecteur poids \(\vec{P}\) (point d'application, direction, sens, norme).</li>
+    <li>En utilisant l'échelle 1 cm ↔ 100 N, quelle longueur doit faire le vecteur ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P = 50 \times 10 = \mathbf{500\ \text{N}}\)</li>
+      <li>
+        <strong>Point d'application :</strong> centre de gravité de la poutre.<br>
+        <strong>Direction :</strong> verticale.<br>
+        <strong>Sens :</strong> vers le bas.<br>
+        <strong>Norme :</strong> 500 N.
+      </li>
+      <li>\(500 / 100 = \mathbf{5\ \text{cm}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Un menuisier exerce une poussée oblique à 30° au-dessus de l'horizontale, d'intensité 80 N, sur un meuble.</p>
+  <ol type="a">
+    <li>Donner les 4 caractéristiques du vecteur représentant cette force.</li>
+    <li>Quelle longueur lui donner avec l'échelle 1 cm ↔ 10 N ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        <strong>Point d'application :</strong> point de contact entre la main du menuisier et le meuble.<br>
+        <strong>Direction :</strong> oblique, faisant 30° avec l'horizontale.<br>
+        <strong>Sens :</strong> vers l'avant et vers le haut (dans la direction de la poussée).<br>
+        <strong>Norme :</strong> 80 N.
+      </li>
+      <li>\(80 / 10 = \mathbf{8\ \text{cm}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Deux forces horizontales et opposées s'exercent sur un bloc : \(\vec{F_1}\) de 40 N vers la droite et \(\vec{F_2}\) de 40 N vers la gauche. Elles s'appliquent toutes les deux au centre du bloc.</p>
+  <ol type="a">
+    <li>Décrire le vecteur \(\vec{F_1}\) (4 caractéristiques).</li>
+    <li>Décrire le vecteur \(\vec{F_2}\) (4 caractéristiques).</li>
+    <li>Ces deux forces sont-elles identiques ? Justifier.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\vec{F_1}\) : point d'application = centre du bloc ; direction = horizontale ; sens = vers la droite ; norme = 40 N.</li>
+      <li>\(\vec{F_2}\) : point d'application = centre du bloc ; direction = horizontale ; sens = vers la gauche ; norme = 40 N.</li>
+      <li>Non : les deux forces ont la même norme et la même direction, mais des <strong>sens opposés</strong>. Ce ne sont pas les mêmes vecteurs (\(\vec{F_1} \neq \vec{F_2}\)).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Énoncer la condition d'équilibre d'un solide</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Un solide est en <strong>équilibre</strong> (immobile ou en mouvement rectiligne uniforme) si et seulement si la <strong>somme vectorielle de toutes les forces</strong> qui lui sont appliquées est nulle :</p>
+  <p>\[\sum \vec{F} = \vec{0}\]</p>
+  <p>Pour un solide soumis à deux forces : équilibre si les deux forces sont <strong>opposées, colinéaires et de même norme</strong>.</p>
+  <p>Pour un solide soumis à trois forces coplanaires : équilibre si les trois forces sont <strong>concourantes</strong> (passent par un même point) et si la somme vectorielle est nulle.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Un panneau de 15 kg est posé sur une table horizontale sans frottement ni mouvement.</p>
+  <ol type="a">
+    <li>Énoncer la condition d'équilibre du panneau.</li>
+    <li>Calculer le poids \(P\) du panneau (\(g = 10\ \text{N/kg}\)).</li>
+    <li>En déduire la valeur de la réaction normale \(R\) de la table.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Condition d'équilibre : \(\sum \vec{F} = \vec{0}\), soit \(\vec{P} + \vec{R} = \vec{0}\).</li>
+      <li>\(P = 15 \times 10 = \mathbf{150\ \text{N}}\)</li>
+      <li>Puisque \(\vec{P} + \vec{R} = \vec{0}\), on a \(R = P = \mathbf{150\ \text{N}}\) (la réaction est de même valeur que le poids, orientée vers le haut).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Un faux-plafond de masse 20 kg est maintenu à l'équilibre par deux câbles, un de chaque côté, qui exercent chacun la même tension verticale vers le haut.</p>
+  <ol type="a">
+    <li>Calculer le poids du faux-plafond.</li>
+    <li>Quelle est la valeur de la tension dans chaque câble pour que le système soit en équilibre ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P = 20 \times 10 = \mathbf{200\ \text{N}}\)</li>
+      <li>Condition d'équilibre : \(\vec{P} + \vec{T_1} + \vec{T_2} = \vec{0}\) avec \(T_1 = T_2 = T\).<br>
+      \(2T = P \Rightarrow T = \frac{200}{2} = \mathbf{100\ \text{N}}\) par câble.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un ébéniste pousse horizontalement une armoire de masse 60 kg avec une force de 80 N vers la droite. L'armoire reste immobile.</p>
+  <ol type="a">
+    <li>La condition d'équilibre est-elle satisfaite ? Que peut-on en conclure ?</li>
+    <li>Quelle est la valeur de la force de frottement exercée par le sol sur l'armoire ?</li>
+    <li>Dans quel sens est orientée cette force de frottement ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Oui, l'armoire est immobile donc la somme des forces est nulle : la condition d'équilibre est bien vérifiée.</li>
+      <li>En projection horizontale : \(F_{poussée} + f = 0 \Rightarrow f = 80\ \text{N}\)</li>
+      <li>La force de frottement est orientée <strong>vers la gauche</strong>, opposée à la poussée.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Une caisse de 25 kg est suspendue par deux câbles qui forment chacun un angle de 60° avec la verticale. Le système est en équilibre. En considérant uniquement les composantes verticales :</p>
+  <ol type="a">
+    <li>Écrire l'équation d'équilibre en projection sur l'axe vertical.</li>
+    <li>Calculer la tension dans chaque câble (\(g = 10\ \text{N/kg}\)).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(T_1\cos(60°) + T_2\cos(60°) - P = 0\). Par symétrie \(T_1 = T_2 = T\) :<br>
+      \(2T\cos(60°) = P\)</li>
+      <li>\(P = 25 \times 10 = 250\ \text{N}\)<br>
+      \(T = \frac{P}{2\cos(60°)} = \frac{250}{2 \times 0{,}5} = \frac{250}{1} = \mathbf{250\ \text{N}}\)</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Appliquer le principe des actions réciproques (3e loi de Newton)</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Le <strong>principe des actions réciproques</strong> (3e loi de Newton) stipule que :</p>
+  <p><em>Si un objet A exerce une force \(\vec{F}_{A/B}\) sur un objet B, alors B exerce sur A une force \(\vec{F}_{B/A}\) telle que :</em></p>
+  <p>\[\vec{F}_{B/A} = -\vec{F}_{A/B}\]</p>
+  <p>Les deux forces sont <strong>de même norme, de même direction, de sens opposés</strong>, et s'appliquent sur deux objets <strong>différents</strong>.</p>
+  <div class="att"><strong>Attention :</strong> ces deux forces ne se compensent pas car elles s'appliquent sur des objets différents. On ne les additionne pas pour étudier l'équilibre d'un seul objet.</div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Un menuisier appuie avec sa main sur une paroi avec une force de 30 N horizontalement vers la droite.</p>
+  <ol type="a">
+    <li>Quelle force la paroi exerce-t-elle sur la main du menuisier ?</li>
+    <li>Cette force est-elle de même direction ? De même sens ? De même norme ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La paroi exerce sur la main une force de <strong>30 N horizontalement vers la gauche</strong>.</li>
+      <li>Même direction (horizontale) ✓ ; même norme (30 N) ✓ ; sens <strong>opposé</strong> (vers la gauche au lieu de vers la droite) ✓.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>La Terre exerce sur un meuble de masse 40 kg une force appelée poids \(\vec{P}\) de 400 N vers le bas.</p>
+  <ol type="a">
+    <li>Décrire la force que le meuble exerce sur la Terre.</li>
+    <li>Cette force a-t-elle un effet notable sur la Terre ? Pourquoi ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Le meuble attire la Terre avec une force de <strong>400 N vers le haut</strong>, de même direction (verticale) et même norme que le poids.</li>
+      <li>Non : la masse de la Terre est si grande (\(\approx 6 \times 10^{24}\ \text{kg}\)) que cette force de 400 N ne produit aucun effet mesurable sur elle.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Un électricien pose une boîte de jonction de masse 0,8 kg sur un rail DIN. La boîte est à l'équilibre.</p>
+  <ol type="a">
+    <li>Identifier la force exercée par le rail sur la boîte.</li>
+    <li>Par le principe des actions réciproques, décrire la force exercée par la boîte sur le rail.</li>
+    <li>Calculer la valeur de ces forces (\(g = 10\ \text{N/kg}\)).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Le rail exerce sur la boîte une <strong>réaction normale</strong> \(\vec{R}\), verticale vers le haut, de valeur \(R = P = 8\ \text{N}\).</li>
+      <li>La boîte exerce sur le rail une force de même norme (8 N), de même direction (verticale), mais de <strong>sens opposé</strong> (vers le bas).</li>
+      <li>\(P = 0{,}8 \times 10 = \mathbf{8\ \text{N}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Lors d'une démonstration, un installateur de pompes à chaleur percute avec un marteau un clou dans le mur avec une force de 150 N.</p>
+  <ol type="a">
+    <li>Quelle force le clou exerce-t-il sur le marteau ?</li>
+    <li>Pourquoi le marteau s'arrête-t-il lors du choc ?</li>
+    <li>Comment appelle-t-on le principe mis en jeu ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Le clou exerce sur le marteau une force de <strong>150 N</strong> en sens opposé (repoussant le marteau en arrière).</li>
+      <li>Le marteau s'arrête car la réaction du clou sur le marteau s'oppose à son mouvement.</li>
+      <li>Il s'agit du <strong>principe des actions réciproques</strong> (3e loi de Newton).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Résoudre un problème d'équilibre statique simple</h2>
+
+<div class="retenir">
+  <strong>Méthode pour résoudre un problème d'équilibre statique</strong>
+  <ol>
+    <li>Définir clairement le <strong>solide étudié</strong>.</li>
+    <li>Faire un <strong>bilan des forces</strong> : lister toutes les forces appliquées à ce solide.</li>
+    <li>Écrire la condition d'équilibre : \(\sum \vec{F} = \vec{0}\).</li>
+    <li>Projeter sur les axes (souvent vertical et horizontal).</li>
+    <li>Résoudre le système d'équations obtenu.</li>
+    <li>Vérifier la cohérence des résultats (signe, ordre de grandeur).</li>
+  </ol>
+</div>
+
+<div class="exo">
+  <h3>Exercice 17</h3>
+  <p>Un ébéniste accroche un tableau de masse 4 kg à un clou unique fixé dans un mur. La corde forme deux segments symétriques faisant chacun 45° avec l'horizontale.</p>
+  <ol type="a">
+    <li>Calculer le poids du tableau (\(g = 10\ \text{N/kg}\)).</li>
+    <li>Écrire la condition d'équilibre verticale.</li>
+    <li>En déduire la tension dans chaque brin de corde.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P = 4 \times 10 = \mathbf{40\ \text{N}}\)</li>
+      <li>Équilibre vertical : la somme des composantes verticales des deux tensions doit compenser le poids.<br>
+      \(T_1\sin(45°) + T_2\sin(45°) = P\)</li>
+      <li>Par symétrie \(T_1 = T_2 = T\) :<br>
+      \(2T\sin(45°) = 40 \Rightarrow T = \frac{40}{2 \times \frac{\sqrt{2}}{2}} = \frac{40}{\sqrt{2}} \approx \mathbf{28{,}3\ \text{N}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 18</h3>
+  <p>Un technicien de maintenance pose une caisse de masse 30 kg sur un plan horizontal sans frottement. Il exerce une poussée horizontale de 50 N vers la droite.</p>
+  <ol type="a">
+    <li>Lister toutes les forces appliquées à la caisse.</li>
+    <li>Écrire la condition d'équilibre horizontal. La caisse est-elle en équilibre horizontal ?</li>
+    <li>Écrire la condition d'équilibre vertical et calculer la réaction du sol.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Forces : poids \(\vec{P}\) (vers le bas), réaction normale \(\vec{N}\) (vers le haut), poussée \(\vec{F}\) (horizontale vers la droite). Sans frottement, pas de force horizontale de réaction du sol.</li>
+      <li>Horizontalement : \(F = 50\ \text{N} \neq 0\). La caisse <strong>n'est pas en équilibre horizontal</strong> : elle va se déplacer.</li>
+      <li>Verticalement : \(N - P = 0 \Rightarrow N = P = 30 \times 10 = \mathbf{300\ \text{N}}\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19</h3>
+  <p>Un portique de chantier permet de soulever des matériaux de masse 500 kg à l'aide d'un câble vertical. Le câble est à l'arrêt (le chargement est suspendu et immobile).</p>
+  <ol type="a">
+    <li>Calculer le poids de la charge (\(g = 9{,}81\ \text{N/kg}\)).</li>
+    <li>Appliquer la condition d'équilibre pour calculer la tension dans le câble.</li>
+    <li>Exprimer le résultat en kN (kilonewtons).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P = 500 \times 9{,}81 = \mathbf{4905\ \text{N}}\)</li>
+      <li>Équilibre : \(T - P = 0 \Rightarrow T = P = \mathbf{4905\ \text{N}}\)</li>
+      <li>\(4905\ \text{N} = \mathbf{4{,}905\ \text{kN}} \approx 4{,}9\ \text{kN}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20</h3>
+  <p>Un poteau de clôture de masse 25 kg est maintenu en position verticale par deux câbles horizontaux symétriques. Chaque câble exerce une tension de 80 N sur le poteau. Le poteau est à l'équilibre.</p>
+  <ol type="a">
+    <li>Calculer le poids du poteau.</li>
+    <li>Identifier toutes les forces exercées sur le poteau.</li>
+    <li>Vérifier que la condition d'équilibre est satisfaite dans les deux directions.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P = 25 \times 10 = \mathbf{250\ \text{N}}\)</li>
+      <li>Forces : poids \(\vec{P}\) (vertical bas), réaction du sol \(\vec{R}\) (vertical haut), tension câble 1 \(\vec{T_1}\) (horizontal gauche), tension câble 2 \(\vec{T_2}\) (horizontal droite).</li>
+      <li>
+        Verticalement : \(R - P = 0 \Rightarrow R = 250\ \text{N}\) ✓<br>
+        Horizontalement : \(-T_1 + T_2 = -80 + 80 = 0\) ✓<br>
+        La condition d'équilibre est bien vérifiée dans les deux directions.
+      </li>
+    </ol>
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Exercices par capacités – Signaux alternatifs – 2nde Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 4 – Exercices par capacités</h1>
+  <p class="sous-titre">Signaux électriques alternatifs &nbsp;|&nbsp; 2nde Bac Pro &nbsp;|&nbsp; Physique-Chimie</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Identifier les caractéristiques d'un signal alternatif : période T, fréquence f, valeur maximale U<sub>max</sub></li>
+    <li><strong>C2</strong> — Lire et interpréter un oscillogramme</li>
+    <li><strong>C3</strong> — Calculer la fréquence à partir de la période : f = 1/T</li>
+    <li><strong>C4</strong> — Calculer la valeur efficace d'un signal sinusoïdal : U<sub>eff</sub> = U<sub>max</sub> / √2</li>
+    <li><strong>C5</strong> — Connaître les caractéristiques du courant alternatif du réseau (230 V / 50 Hz)</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Caractéristiques</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Oscillogramme</button>
+  <button class="btn-cap" data-filtre="C3">C3 – f = 1/T</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Valeur efficace</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Réseau 230 V / 50 Hz</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- C1 -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Caractéristiques d'un signal alternatif</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Un signal alternatif sinusoïdal se caractérise par :<br>
+  — la <strong>période T</strong> (en s) : durée d'un cycle complet<br>
+  — la <strong>fréquence f</strong> (en Hz) : nombre de cycles par seconde<br>
+  — la <strong>valeur maximale</strong> \(U_{max}\) (ou amplitude) : valeur de crête du signal (en V)</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un signal alternatif a une période de 20 ms et une valeur maximale de 325 V. Donner sa fréquence et sa valeur maximale en précisant les unités.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Période : \(T = 20 \text{ ms} = 0{,}020 \text{ s}\)<br>
+    Fréquence : \(f = \dfrac{1}{T} = \dfrac{1}{0{,}020} = \mathbf{50 \text{ Hz}}\)<br>
+    Valeur maximale : \(U_{max} = \mathbf{325 \text{ V}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un signal audio a une fréquence de 440 Hz (note La). Quelle est sa période en millisecondes ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(T = \dfrac{1}{f} = \dfrac{1}{440} \approx 0{,}00227 \text{ s} \approx \mathbf{2{,}27 \text{ ms}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Parmi ces signaux, lequel a la plus haute fréquence : A (T = 1 ms), B (T = 50 ms), C (T = 0,1 s) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(f_A = \dfrac{1}{0{,}001} = 1000 \text{ Hz}\), \(f_B = \dfrac{1}{0{,}050} = 20 \text{ Hz}\), \(f_C = \dfrac{1}{0{,}1} = 10 \text{ Hz}\)<br>
+    Le signal <strong>A</strong> a la plus haute fréquence (1 000 Hz = 1 kHz).</p>
+  </div>
+</div>
+</div>
+
+<!-- C2 -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Lire et interpréter un oscillogramme</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Un <strong>oscilloscope</strong> affiche la tension en fonction du temps. L'écran est gradué en divisions :<br>
+  — axe horizontal : sensibilité temporelle (ex. 5 ms/div)<br>
+  — axe vertical : sensibilité en tension (ex. 50 V/div)<br>
+  Pour lire \(T\) : compter les divisions d'un cycle complet et multiplier par la sensibilité temporelle.<br>
+  Pour lire \(U_{max}\) : mesurer la demi-hauteur en divisions et multiplier par la sensibilité verticale.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Sur un oscillogramme, la sensibilité horizontale est 5 ms/div. Un cycle occupe 4 divisions. Calculer la période et la fréquence.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(T = 4 \times 5 = \mathbf{20 \text{ ms}} = 0{,}020 \text{ s}\)<br>
+    \(f = \dfrac{1}{0{,}020} = \mathbf{50 \text{ Hz}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>La sensibilité verticale est 100 V/div. Le signal mesure 3,25 divisions de crête à crête. Calculer la valeur maximale U<sub>max</sub>.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La valeur crête à crête est : \(3{,}25 \times 100 = 325 \text{ V}\)<br>
+    La valeur maximale (demi-hauteur) : \(U_{max} = \dfrac{325}{2} = \mathbf{162{,}5 \text{ V}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un technicien observe un signal sur un oscilloscope. La sensibilité est 2 ms/div et 20 V/div. Il voit 2,5 cycles en 10 divisions horizontales, et le signal monte jusqu'à 2 divisions au-dessus du zéro. Calculer T, f et U<sub>max</sub>.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Un cycle occupe : \(\dfrac{10}{2{,}5} = 4 \text{ div}\)<br>
+    \(T = 4 \times 2 = \mathbf{8 \text{ ms}}\)<br>
+    \(f = \dfrac{1}{0{,}008} = \mathbf{125 \text{ Hz}}\)<br>
+    \(U_{max} = 2 \times 20 = \mathbf{40 \text{ V}}\)</p>
+  </div>
+</div>
+</div>
+
+<!-- C3 -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Calculer la fréquence à partir de la période</h2>
+<div class="retenir">
+  <strong>Rappel de cours</strong>
+  <p>\[f = \frac{1}{T} \qquad \text{et} \qquad T = \frac{1}{f}\]
+  \(f\) en hertz (Hz), \(T\) en secondes (s).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Calculer la fréquence d'un signal dont la période est : a) T = 0,1 s ; b) T = 4 ms ; c) T = 25 µs.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>a) \(f = \dfrac{1}{0{,}1} = \mathbf{10 \text{ Hz}}\)</li>
+      <li>b) \(f = \dfrac{1}{0{,}004} = \mathbf{250 \text{ Hz}}\)</li>
+      <li>c) \(f = \dfrac{1}{25 \times 10^{-6}} = \mathbf{40\,000 \text{ Hz} = 40 \text{ kHz}}\)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>La fréquence du secteur électrique en France est 50 Hz. Quelle est la période correspondante en millisecondes ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(T = \dfrac{1}{f} = \dfrac{1}{50} = 0{,}020 \text{ s} = \mathbf{20 \text{ ms}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Un variateur de vitesse produit un signal à 400 Hz. Quelle est sa période ? Combien de cycles se produisent en 1 seconde ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(T = \dfrac{1}{400} = 0{,}0025 \text{ s} = \mathbf{2{,}5 \text{ ms}}\)<br>
+    En 1 seconde : \(\mathbf{400 \text{ cycles}}\) (c'est la définition de la fréquence).</p>
+  </div>
+</div>
+</div>
+
+<!-- C4 -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Calculer la valeur efficace</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Pour un signal sinusoïdal, la <strong>valeur efficace</strong> \(U_{eff}\) est liée à la valeur maximale \(U_{max}\) par :<br>
+  \[U_{eff} = \frac{U_{max}}{\sqrt{2}} \approx \frac{U_{max}}{1{,}414}\]
+  La valeur efficace est celle lue par un multimètre en mode AC (courant alternatif).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Le réseau électrique français a une valeur maximale de 325 V. Calculer la valeur efficace.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(U_{eff} = \dfrac{325}{\sqrt{2}} = \dfrac{325}{1{,}414} \approx \mathbf{230 \text{ V}}\)<br>
+    C'est bien la tension de 230 V indiquée sur les prises françaises.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un oscilloscope mesure une valeur maximale de 56,5 V. Quelle valeur afficherait un voltmètre (valeur efficace) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(U_{eff} = \dfrac{56{,}5}{\sqrt{2}} \approx \dfrac{56{,}5}{1{,}414} \approx \mathbf{40 \text{ V}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un transformateur délivre une tension efficace de 12 V. Quelle est la valeur maximale du signal ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(U_{max} = U_{eff} \times \sqrt{2} = 12 \times 1{,}414 \approx \mathbf{17 \text{ V}}\)</p>
+  </div>
+</div>
+</div>
+
+<!-- C5 -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Le réseau électrique : 230 V / 50 Hz</h2>
+<div class="retenir">
+  <strong>Rappel de cours</strong>
+  <p>Le réseau électrique français distribue un courant alternatif sinusoïdal :<br>
+  — tension efficace : <strong>230 V</strong><br>
+  — fréquence : <strong>50 Hz</strong> (soit une période de 20 ms)<br>
+  — valeur maximale : \(U_{max} = 230 \times \sqrt{2} \approx 325 \text{ V}\)</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Un plombier chauffagiste branche un appareil sur le réseau 230 V / 50 Hz. Donner : a) la fréquence ; b) la période ; c) la valeur maximale de la tension.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>a) Fréquence : \(\mathbf{50 \text{ Hz}}\)</li>
+      <li>b) Période : \(T = \dfrac{1}{50} = \mathbf{20 \text{ ms}}\)</li>
+      <li>c) Valeur maximale : \(U_{max} = 230 \times \sqrt{2} \approx \mathbf{325 \text{ V}}\)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Pourquoi dit-on que le réseau français est en « 230 V » alors que la tension peut atteindre 325 V ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Les 230 V désignent la <strong>valeur efficace</strong> de la tension. C'est la valeur qui produit le même effet thermique (même puissance) qu'une tension continue de 230 V. La valeur de 325 V est la valeur de crête (maximale), qui n'est atteinte qu'instantanément.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>En Europe, le réseau est à 50 Hz. Aux États-Unis, il est à 60 Hz. Quel serait la période du réseau américain ? Un appareil conçu pour 50 Hz fonctionnerait-il à la même vitesse sur le réseau américain ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(T_{USA} = \dfrac{1}{60} \approx \mathbf{16{,}7 \text{ ms}}\)<br>
+    Un appareil dépendant de la fréquence (moteur synchrone, horloge) <strong>tournerait plus vite</strong> aux États-Unis (60/50 = 1,2 fois plus vite). Les appareils modernes à alimentation universelle s'adaptent automatiquement.</p>
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+</body>
+</html>

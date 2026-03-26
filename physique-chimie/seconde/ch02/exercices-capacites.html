@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Exercices par capacités – Grandeurs électriques – 2nde Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 2 – Exercices par capacités</h1>
+  <p class="sous-titre">Grandeurs électriques et circuits &nbsp;|&nbsp; 2nde Bac Pro &nbsp;|&nbsp; Physique-Chimie</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Mesurer une tension et une intensité (voltmètre/ampèremètre)</li>
+    <li><strong>C2</strong> — Distinguer circuit série et circuit parallèle</li>
+    <li><strong>C3</strong> — Appliquer les lois d'additivité des tensions et des intensités</li>
+    <li><strong>C4</strong> — Calculer une puissance et une énergie électrique (P = UI, W = Pt)</li>
+    <li><strong>C5</strong> — Lire un schéma électrique normalisé</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Mesures</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Série / parallèle</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Lois d'additivité</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Puissance et énergie</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Schéma électrique</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- C1 -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Mesurer une tension et une intensité</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Le <strong>voltmètre</strong> mesure une tension (en V) : il se branche <em>en dérivation</em> (en parallèle) aux bornes du dipôle.<br>
+  L'<strong>ampèremètre</strong> mesure une intensité (en A) : il se branche <em>en série</em> dans le circuit.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un électricien mesure la tension aux bornes d'un radiateur électrique. Où et comment branche-t-il le voltmètre ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le voltmètre se branche <strong>en parallèle</strong> aux bornes du radiateur, c'est-à-dire directement entre les deux fils d'alimentation du radiateur. Il ne faut pas couper le circuit pour brancher un voltmètre.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un technicien veut mesurer le courant traversant une lampe. Décrire le branchement de l'ampèremètre.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'ampèremètre se branche <strong>en série</strong> dans le circuit : il faut couper le fil et insérer l'ampèremètre dans la coupure. La borne + de l'ampèremètre est côté potentiel positif (bornier phase).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un ampèremètre affiche 2,4 A et un voltmètre 12 V aux bornes d'un moteur. Ces appareils sont-ils bien branchés si l'on souhaitait mesurer la puissance consommée ? Que calcule-t-on ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Oui, l'ampèremètre est en série (mesure I = 2,4 A) et le voltmètre en dérivation (mesure U = 12 V).<br>
+    On calcule : \(P = U \times I = 12 \times 2{,}4 = 28{,}8 \text{ W}\).</p>
+  </div>
+</div>
+</div>
+
+<!-- C2 -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Distinguer circuit série et circuit parallèle</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p><strong>Série</strong> : les composants sont branchés les uns après les autres, le même courant les traverse.<br>
+  <strong>Parallèle (dérivation)</strong> : les composants sont branchés entre les mêmes nœuds, ils ont la même tension.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Dans une installation électrique, les prises de courant d'une pièce sont-elles montées en série ou en parallèle ? Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>En <strong>parallèle</strong>. Chaque prise reçoit la même tension (230 V). Si elles étaient en série, débrancher un appareil couperait toutes les autres prises — ce qui n'est pas le cas dans une installation normale.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un guirlande lumineuse de vieux modèle s'éteint entièrement quand une ampoule est défectueuse. Quel montage est utilisé ? Quel est l'inconvénient ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Montage en <strong>série</strong>. Inconvénient : si une ampoule est grillée (circuit ouvert), toutes les ampoules s'éteignent car le courant ne peut plus circuler dans le circuit complet.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Dans un tableau électrique, les disjoncteurs de chaque circuit (cuisine, chambre, salon) sont-ils en série ou en parallèle entre eux ? Pourquoi ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>En <strong>parallèle</strong>. Chaque circuit est indépendant : si le disjoncteur de la cuisine déclenche, l'alimentation des autres pièces n'est pas coupée. Cela permet aussi à chaque circuit de recevoir la tension secteur (230 V).</p>
+  </div>
+</div>
+</div>
+
+<!-- C3 -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Appliquer les lois d'additivité des tensions et des intensités</h2>
+<div class="retenir">
+  <strong>Rappel de cours</strong>
+  <p><strong>Circuit série</strong> : \(U_{total} = U_1 + U_2 + \ldots\) et \(I_1 = I_2 = \ldots = I\)<br>
+  <strong>Circuit parallèle</strong> : \(U_1 = U_2 = \ldots = U\) et \(I_{total} = I_1 + I_2 + \ldots\)</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Deux résistances R₁ et R₂ sont montées en série sous une tension totale de 24 V. La tension aux bornes de R₁ est 9 V. Quelle est la tension aux bornes de R₂ ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>En série : \(U = U_1 + U_2\)<br>
+    \(U_2 = U - U_1 = 24 - 9 = \mathbf{15 \text{ V}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Deux lampes sont branchées en parallèle sur 230 V. La lampe 1 consomme 0,5 A et la lampe 2 consomme 0,8 A. Quelle est l'intensité totale fournie par le réseau ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>En parallèle : \(I = I_1 + I_2 = 0{,}5 + 0{,}8 = \mathbf{1{,}3 \text{ A}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Un circuit série comporte trois résistances sous 12 V. On mesure U₁ = 3 V et U₃ = 5 V. Quelle est la tension U₂ ? L'intensité vaut 0,2 A partout : vrai ou faux ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(U_2 = 12 - 3 - 5 = \mathbf{4 \text{ V}}\)<br>
+    <strong>Vrai</strong> : en série, l'intensité est identique en tout point du circuit.</p>
+  </div>
+</div>
+</div>
+
+<!-- C4 -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Calculer une puissance et une énergie électrique</h2>
+<div class="retenir">
+  <strong>Rappel de cours</strong>
+  <p>\(P = U \times I\) (en watts W)<br>
+  \(W = P \times t\) (en joules J ou en kWh : 1 kWh = 3 600 000 J)</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Un chauffe-eau électrique fonctionne sous 230 V et absorbe une intensité de 13 A. Calculer sa puissance.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(P = U \times I = 230 \times 13 = \mathbf{2\,990 \text{ W} \approx 3 \text{ kW}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un four industriel de 4 kW fonctionne 6 heures par jour. Calculer l'énergie consommée en kWh, puis en joules.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(W = P \times t = 4 \times 6 = \mathbf{24 \text{ kWh}}\)<br>
+    En joules : \(24 \times 3\,600\,000 = 86\,400\,000 \text{ J} = 8{,}64 \times 10^7 \text{ J}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un éclairage d'atelier consomme 24 kWh par jour. Le coût du kWh est 0,18 €. Quel est le coût mensuel (30 jours) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Énergie mensuelle : \(24 \times 30 = 720 \text{ kWh}\)<br>
+    Coût : \(720 \times 0{,}18 = \mathbf{129{,}60 \text{ €}}\)</p>
+  </div>
+</div>
+</div>
+
+<!-- C5 -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Lire un schéma électrique normalisé</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Les symboles normalisés (CEI) : résistance (rectangle), lampe (cercle avec croix), interrupteur (trait ouvert/fermé), générateur (cercle avec + et −), condensateur (deux barres), moteur (cercle avec M).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Identifier les composants suivants dans un schéma de circuit : un rectangle, un cercle avec une croix, deux barres parallèles, un cercle avec + et −.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Rectangle → <strong>résistance (résistor)</strong></li>
+      <li>Cercle avec croix → <strong>lampe</strong></li>
+      <li>Deux barres parallèles (inégales) → <strong>condensateur</strong> ou <strong>pile</strong> (selon contexte)</li>
+      <li>Cercle avec + et − → <strong>générateur (pile ou batterie)</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un technicien lit un schéma où une lampe et un interrupteur sont en série, alimentés par une batterie 12 V. Décrire le fonctionnement du circuit quand l'interrupteur est ouvert, puis fermé.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Interrupteur ouvert</strong> : le circuit est ouvert, aucun courant ne circule, la lampe est éteinte.<br>
+    <strong>Interrupteur fermé</strong> : le circuit est fermé, le courant circule de la borne + de la batterie à travers l'interrupteur, puis la lampe, puis revient à la borne −. La lampe s'allume.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Sur un schéma, deux lampes sont en parallèle avec un interrupteur général en série avec l'ensemble. Que se passe-t-il si une lampe est grillée ? Et si l'interrupteur est ouvert ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Lampe grillée</strong> : la branche de la lampe grillée est ouverte, mais l'autre lampe continue de fonctionner (montage parallèle).<br>
+    <strong>Interrupteur ouvert</strong> : les deux lampes s'éteignent car le courant ne peut plus atteindre aucune des deux branches.</p>
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+</body>
+</html>

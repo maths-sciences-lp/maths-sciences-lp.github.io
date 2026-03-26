@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Exercices par capacités – Loi d'Ohm – 2nde Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 3 – Exercices par capacités</h1>
+  <p class="sous-titre">Loi d'Ohm et caractéristiques d'un dipôle &nbsp;|&nbsp; 2nde Bac Pro &nbsp;|&nbsp; Physique-Chimie</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Énoncer et appliquer la loi d'Ohm : U = R × I</li>
+    <li><strong>C2</strong> — Tracer et exploiter une caractéristique I(U) d'un dipôle</li>
+    <li><strong>C3</strong> — Distinguer un conducteur ohmique d'un dipôle non ohmique</li>
+    <li><strong>C4</strong> — Calculer une résistance, une tension ou une intensité à partir des deux autres</li>
+    <li><strong>C5</strong> — Connaître l'unité de la résistance et l'ordre de grandeur des résistances usuelles</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Loi d'Ohm</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Caractéristique I(U)</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Ohmique / non ohmique</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Calcul R, U, I</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Résistances usuelles</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- C1 -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Énoncer et appliquer la loi d'Ohm</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La <strong>loi d'Ohm</strong> relie la tension \(U\), la résistance \(R\) et l'intensité \(I\) d'un conducteur ohmique :<br>
+  \[U = R \times I\]
+  avec \(U\) en volts (V), \(R\) en ohms (Ω), \(I\) en ampères (A).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Une résistance de 100 Ω est parcourue par un courant de 0,5 A. Calculer la tension à ses bornes.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(U = R \times I = 100 \times 0{,}5 = \mathbf{50 \text{ V}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>La tension aux bornes d'une résistance est 12 V et elle vaut 47 Ω. Calculer l'intensité qui la traverse.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(I = \dfrac{U}{R} = \dfrac{12}{47} \approx \mathbf{0{,}255 \text{ A} \approx 255 \text{ mA}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un technicien chauffagiste mesure une tension de 24 V aux bornes d'un thermostat électronique traversé par un courant de 80 mA. Quelle est la résistance du thermostat ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Conversion : \(I = 80 \text{ mA} = 0{,}080 \text{ A}\)<br>
+    \(R = \dfrac{U}{I} = \dfrac{24}{0{,}080} = \mathbf{300 \text{ Ω}}\)</p>
+  </div>
+</div>
+</div>
+
+<!-- C2 -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Tracer et exploiter une caractéristique I(U)</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La <strong>caractéristique I(U)</strong> d'un dipôle est la courbe représentant \(I\) en fonction de \(U\).<br>
+  Pour un conducteur ohmique, la caractéristique est une droite passant par l'origine, de pente \(\dfrac{1}{R}\).<br>
+  La résistance se lit graphiquement : \(R = \dfrac{U}{I}\) pour un point quelconque de la droite.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>La caractéristique d'un dipôle passe par les points (0 V ; 0 A) et (10 V ; 0,2 A). Ce dipôle est-il ohmique ? Si oui, calculer sa résistance.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La caractéristique est une droite passant par l'origine : le dipôle est <strong>ohmique</strong>.<br>
+    \(R = \dfrac{U}{I} = \dfrac{10}{0{,}2} = \mathbf{50 \text{ Ω}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un élève mesure les couples (U ; I) suivants pour un dipôle : (2 V ; 40 mA), (4 V ; 80 mA), (6 V ; 120 mA). Tracer qualitativement la caractéristique et en déduire la résistance.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Les points sont alignés et passent par l'origine → droite de pente constante → dipôle ohmique.<br>
+    \(R = \dfrac{U}{I} = \dfrac{2}{0{,}040} = \dfrac{4}{0{,}080} = \dfrac{6}{0{,}120} = \mathbf{50 \text{ Ω}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>La caractéristique d'une diode est une courbe non linéaire : pour U = 0,6 V, I = 20 mA ; pour U = 0 V, I = 0. La pente est-elle constante ? Ce composant est-il ohmique ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La pente n'est pas constante (la courbe n'est pas une droite). La diode est un composant <strong>non ohmique</strong> : on ne peut pas lui attribuer une résistance constante.</p>
+  </div>
+</div>
+</div>
+
+<!-- C3 -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Distinguer un conducteur ohmique d'un dipôle non ohmique</h2>
+<div class="retenir">
+  <strong>Rappel de cours</strong>
+  <p><strong>Conducteur ohmique (résistor)</strong> : la caractéristique I(U) est une droite passant par l'origine. La résistance \(R\) est constante quelle que soit la tension.<br>
+  <strong>Dipôle non ohmique</strong> (diode, lampe à filament, DEL…) : la caractéristique est une courbe. La résistance apparente varie avec la tension ou le courant.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>On étudie deux composants A et B. Pour A : doubler la tension double l'intensité. Pour B : doubler la tension multiplie l'intensité par 4. Lequel est ohmique ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le composant <strong>A est ohmique</strong> : \(I \propto U\) (proportionnalité), ce qui correspond à la loi d'Ohm \(U = RI\).<br>
+    Le composant B est <strong>non ohmique</strong> : la relation est quadratique, pas linéaire.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Une lampe à filament : à froid, sa résistance est 10 Ω ; à chaud, elle est 100 Ω. Est-ce un conducteur ohmique ? Expliquer.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Non, la lampe à filament n'est <strong>pas un conducteur ohmique</strong>. Sa résistance varie avec la température (et donc avec le courant qui la traverse). Pour un conducteur ohmique, la résistance est constante.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Un installateur thermique utilise une sonde de température (CTN). La résistance de la CTN diminue quand la température augmente. Peut-on appliquer la loi d'Ohm à cette sonde pour obtenir une résistance fixe ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Non. La CTN est un composant <strong>non ohmique</strong> : sa résistance dépend de la température. On peut appliquer \(U = R \times I\) à un instant donné (pour une température donnée), mais \(R\) n'est pas une constante.</p>
+  </div>
+</div>
+</div>
+
+<!-- C4 -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Calculer R, U ou I à partir des deux autres grandeurs</h2>
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>À partir de \(U = R \times I\), on tire les trois formules :<br>
+  \[U = R \times I \qquad R = \frac{U}{I} \qquad I = \frac{U}{R}\]</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Un chauffe-eau électrique est modélisé par une résistance de 14,4 Ω branchée sur 230 V. Calculer le courant qui le traverse.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(I = \dfrac{U}{R} = \dfrac{230}{14{,}4} \approx \mathbf{16 \text{ A}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un détecteur de présence est alimenté sous 12 V. Sa résistance interne est 2 400 Ω. Calculer l'intensité consommée en mA.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(I = \dfrac{U}{R} = \dfrac{12}{2\,400} = 0{,}005 \text{ A} = \mathbf{5 \text{ mA}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un moteur de pompe est traversé par 4 A sous une tension de 48 V. Quelle est la résistance équivalente du moteur ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(R = \dfrac{U}{I} = \dfrac{48}{4} = \mathbf{12 \text{ Ω}}\)</p>
+  </div>
+</div>
+</div>
+
+<!-- C5 -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Unité et ordres de grandeur des résistances</h2>
+<div class="retenir">
+  <strong>Rappel de cours</strong>
+  <p>L'unité de résistance est l'<strong>ohm (Ω)</strong>.<br>
+  Multiples courants : 1 kΩ = 1 000 Ω ; 1 MΩ = 1 000 000 Ω.<br>
+  Ordres de grandeur : résistance de câble (quelques mΩ à Ω), résistance de chauffage (quelques Ω à centaines de Ω), résistance électronique (centaines de Ω à MΩ).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Convertir les résistances suivantes en ohms : a) 4,7 kΩ ; b) 0,22 MΩ ; c) 330 Ω.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>a) \(4{,}7 \text{ kΩ} = 4\,700 \text{ Ω}\)</li>
+      <li>b) \(0{,}22 \text{ MΩ} = 220\,000 \text{ Ω}\)</li>
+      <li>c) \(330 \text{ Ω} = 330 \text{ Ω}\)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un câble d'alimentation a une résistance de 0,05 Ω. Un résistor de précision vaut 10 kΩ. Lequel a la plus grande résistance ? Dans quel rapport ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le résistor : 10 kΩ = 10 000 Ω ≫ 0,05 Ω.<br>
+    Rapport : \(\dfrac{10\,000}{0{,}05} = \mathbf{200\,000}\) — le résistor est 200 000 fois plus résistant que le câble.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Un technicien en maintenance mesure 2,2 kΩ avec son ohmmètre. La résistance mesurée est-elle dans la plage normale pour une résistance électronique de protection ? Donner sa valeur en ohms.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>\(2{,}2 \text{ kΩ} = \mathbf{2\,200 \text{ Ω}}\). Oui, c'est une valeur courante pour une résistance électronique de protection dans un circuit de commande.</p>
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+</body>
+</html>

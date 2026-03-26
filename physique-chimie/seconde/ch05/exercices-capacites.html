@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Exercices par capacités – Mouvement et trajectoire – 2nde Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 5 – Exercices par capacités</h1>
+  <p class="sous-titre">Mouvement et trajectoire &nbsp;|&nbsp; 2nde Bac Pro &nbsp;|&nbsp; Physique-Chimie</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Distinguer les types de mouvements et de trajectoires (rectiligne, circulaire, uniforme, varié)</li>
+    <li><strong>C2</strong> — Calculer une vitesse moyenne (\(v = d/t\))</li>
+    <li><strong>C3</strong> — Convertir des unités de vitesse (m/s ↔ km/h)</li>
+    <li><strong>C4</strong> — Interpréter un diagramme espace-temps ou vitesse-temps</li>
+    <li><strong>C5</strong> — Identifier un mouvement rectiligne uniforme ou uniformément varié</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Types de mouvements</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Vitesse moyenne</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Conversions de vitesse</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Diagrammes</button>
+  <button class="btn-cap" data-filtre="C5">C5 – MRU / MRUV</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Distinguer les types de mouvements et de trajectoires</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La <strong>trajectoire</strong> est l'ensemble des positions successives occupées par un objet en mouvement.</p>
+  <ul>
+    <li><strong>Trajectoire rectiligne</strong> : l'objet se déplace en ligne droite.</li>
+    <li><strong>Trajectoire circulaire</strong> : l'objet se déplace sur un cercle (ex. : rotation d'une scie).</li>
+    <li><strong>Trajectoire curviligne</strong> : courbe quelconque (ex. : projectile).</li>
+  </ul>
+  <p>Un mouvement est <strong>uniforme</strong> si la vitesse reste constante, <strong>accéléré</strong> si elle augmente, <strong>décéléré</strong> si elle diminue.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un menuisier pousse un chariot de planches en ligne droite d'un bout à l'autre de l'atelier. La vitesse du chariot est constante tout au long du trajet.</p>
+  <ol type="a">
+    <li>Quelle est la forme de la trajectoire du chariot ?</li>
+    <li>Comment qualifie-t-on ce mouvement (uniforme, accéléré, décéléré) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La trajectoire est <strong>rectiligne</strong> (ligne droite).</li>
+      <li>Le mouvement est <strong>uniforme</strong> : la vitesse reste constante.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>La lame d'une scie circulaire tourne autour de son axe. Une dent de la lame parcourt un cercle de diamètre 25 cm.</p>
+  <ol type="a">
+    <li>Quelle est la forme de la trajectoire d'une dent de la lame ?</li>
+    <li>Si la scie tourne à vitesse constante, comment qualifie-t-on ce mouvement ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La trajectoire d'une dent est <strong>circulaire</strong> (cercle de diamètre 25 cm).</li>
+      <li>Le mouvement est <strong>circulaire uniforme</strong> : la trajectoire est un cercle et la vitesse est constante.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un technicien de maintenance observe les mouvements suivants dans son atelier. Pour chacun, indiquer le type de trajectoire (rectiligne, circulaire, curviligne) et préciser si le mouvement est uniforme ou varié.</p>
+  <ol type="a">
+    <li>Un véhicule de chantier qui freine en ligne droite jusqu'à l'arrêt complet.</li>
+    <li>La roue d'un tour mécanique qui tourne à vitesse constante.</li>
+    <li>Une pièce de bois projetée par une machine qui suit une courbe parabolique.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Trajectoire <strong>rectiligne</strong> — mouvement <strong>décéléré</strong> (la vitesse diminue).</li>
+      <li>Trajectoire <strong>circulaire</strong> — mouvement <strong>uniforme</strong> (vitesse constante).</li>
+      <li>Trajectoire <strong>curviligne</strong> — mouvement <strong>varié</strong> (vitesse et direction changent).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Un électricien déplace un câble depuis un dévidoir. Il observe que les anneaux du câble décrivent des cercles autour de l'axe du dévidoir, et que le câble lui-même avance en ligne droite jusqu'à son point de fixation.</p>
+  <ol type="a">
+    <li>Quelle est la trajectoire des anneaux du câble par rapport à l'axe du dévidoir ?</li>
+    <li>Quelle est la trajectoire du bout du câble par rapport au sol ?</li>
+    <li>Un même point peut-il avoir des trajectoires différentes selon le référentiel choisi ? Justifier.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Les anneaux décrivent une trajectoire <strong>circulaire</strong> autour de l'axe du dévidoir.</li>
+      <li>Le bout du câble suit une trajectoire <strong>rectiligne</strong> par rapport au sol.</li>
+      <li>Oui : le mouvement et la trajectoire dépendent du <strong>référentiel</strong> choisi. Dans le référentiel du dévidoir, les anneaux tournent ; dans le référentiel du sol, le bout du câble avance en ligne droite.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer une vitesse moyenne</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La <strong>vitesse moyenne</strong> d'un objet est le rapport entre la distance parcourue et la durée du trajet :</p>
+  <p>\[v = \frac{d}{t}\]</p>
+  <p>avec \(v\) en m/s (ou km/h), \(d\) la distance en m (ou km), et \(t\) la durée en s (ou h). On peut aussi calculer \(d = v \times t\) ou \(t = d / v\).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un livreur de matériaux parcourt 180 km en 2 h pour livrer un chantier de menuiserie.</p>
+  <ol type="a">
+    <li>Calculer sa vitesse moyenne en km/h.</li>
+    <li>La route fait-elle de lui un conducteur raisonnable si la limite est de 110 km/h sur autoroute ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(v = \frac{d}{t} = \frac{180}{2} = \mathbf{90\ \text{km/h}}\)</li>
+      <li>Oui : 90 km/h &lt; 110 km/h, le conducteur respecte la limitation.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un technicien chauffagiste doit se rendre chez un client situé à 45 km. Il roule à une vitesse moyenne de 60 km/h.</p>
+  <ol type="a">
+    <li>Calculer la durée du trajet en heures.</li>
+    <li>Exprimer cette durée en minutes.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(t = \frac{d}{v} = \frac{45}{60} = 0{,}75\ \text{h}\)</li>
+      <li>\(0{,}75\ \text{h} \times 60 = \mathbf{45\ \text{min}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Sur un chantier, un robot de découpe laser se déplace en ligne droite à une vitesse moyenne de 0,12 m/s pendant 25 s pour usiner une planche.</p>
+  <ol type="a">
+    <li>Calculer la distance parcourue par la tête de découpe.</li>
+    <li>Exprimer cette distance en centimètres.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(d = v \times t = 0{,}12 \times 25 = \mathbf{3\ \text{m}}\)</li>
+      <li>\(3\ \text{m} = \mathbf{300\ \text{cm}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un contrôleur de chantier mesure qu'une grue soulève une charge de 4,80 m en 16 s à vitesse constante.</p>
+  <ol type="a">
+    <li>Calculer la vitesse de montée de la charge en m/s.</li>
+    <li>Un arrêté municipal limite la vitesse des charges en élévation à 0,25 m/s. La grue respecte-t-elle cette limite ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(v = \frac{d}{t} = \frac{4{,}80}{16} = \mathbf{0{,}30\ \text{m/s}}\)</li>
+      <li>Non : 0,30 m/s &gt; 0,25 m/s. La vitesse dépasse la limite autorisée.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Convertir des unités de vitesse (m/s ↔ km/h)</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Les deux unités de vitesse les plus courantes sont le mètre par seconde (m/s) et le kilomètre par heure (km/h). Pour passer de l'une à l'autre :</p>
+  <p>\[1\ \text{m/s} = 3{,}6\ \text{km/h} \qquad \Leftrightarrow \qquad 1\ \text{km/h} = \frac{1}{3{,}6}\ \text{m/s}\]</p>
+  <p>Astuce : <strong>pour convertir de m/s en km/h</strong>, multiplier par 3,6. <strong>Pour convertir de km/h en m/s</strong>, diviser par 3,6.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Une bande transporteuse dans une menuiserie industrielle avance à 0,50 m/s.</p>
+  <ol type="a">
+    <li>Convertir cette vitesse en km/h.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(0{,}50 \times 3{,}6 = \mathbf{1{,}8\ \text{km/h}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Sur une autoroute, un camion roule à 90 km/h.</p>
+  <ol type="a">
+    <li>Convertir cette vitesse en m/s.</li>
+    <li>Quelle distance (en m) ce camion parcourt-il en 5 s à cette vitesse ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(v = \frac{90}{3{,}6} = \mathbf{25\ \text{m/s}}\)</li>
+      <li>\(d = v \times t = 25 \times 5 = \mathbf{125\ \text{m}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un installateur thermique conduit son véhicule de service à 50 km/h en ville, puis à 25 m/s sur autoroute.</p>
+  <ol type="a">
+    <li>Convertir 25 m/s en km/h.</li>
+    <li>Quelle vitesse est la plus élevée ?</li>
+    <li>La vitesse sur autoroute respecte-t-elle la limite de 130 km/h ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(25 \times 3{,}6 = \mathbf{90\ \text{km/h}}\)</li>
+      <li>90 km/h &gt; 50 km/h : la vitesse sur autoroute est la plus élevée.</li>
+      <li>Oui : 90 km/h &lt; 130 km/h.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un sportif court le 100 m en 12,5 s. Un cycliste pédale à 36 km/h.</p>
+  <ol type="a">
+    <li>Calculer la vitesse moyenne du coureur en m/s.</li>
+    <li>Convertir la vitesse du cycliste en m/s.</li>
+    <li>Qui est le plus rapide ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(v = \frac{100}{12{,}5} = \mathbf{8\ \text{m/s}}\)</li>
+      <li>\(v = \frac{36}{3{,}6} = \mathbf{10\ \text{m/s}}\)</li>
+      <li>Le cycliste est plus rapide : 10 m/s &gt; 8 m/s.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Interpréter un diagramme espace-temps ou vitesse-temps</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Un <strong>diagramme espace-temps</strong> (ou position-temps) représente la position \(d\) d'un objet en fonction du temps \(t\) :</p>
+  <ul>
+    <li>Une droite de pente positive → mouvement rectiligne uniforme (vitesse constante).</li>
+    <li>Une courbe croissante de plus en plus raide → mouvement accéléré.</li>
+    <li>Une droite horizontale → objet à l'arrêt.</li>
+  </ul>
+  <p>Un <strong>diagramme vitesse-temps</strong> représente la vitesse \(v\) en fonction du temps \(t\) :</p>
+  <ul>
+    <li>Une droite horizontale → vitesse constante (MRU).</li>
+    <li>Une droite croissante → mouvement uniformément accéléré.</li>
+    <li>Une droite décroissante → mouvement uniformément décéléré.</li>
+  </ul>
+  <p>La pente d'une courbe vitesse-temps représente l'<strong>accélération</strong>.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Un chariot élévateur se déplace dans un entrepôt. On relève ses positions à intervalles réguliers de 2 s :</p>
+  <table>
+    <tr><th>\(t\) (s)</th><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td></tr>
+    <tr><th>\(d\) (m)</th><td>0</td><td>3</td><td>6</td><td>9</td><td>12</td></tr>
+  </table>
+  <ol type="a">
+    <li>Calculer la distance parcourue entre chaque intervalle de 2 s.</li>
+    <li>Que peut-on dire de la vitesse du chariot ?</li>
+    <li>Quel type de mouvement s'agit-il ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>À chaque intervalle, la distance parcourue est 3 m (0→3, 3→6, 6→9, 9→12).</li>
+      <li>La vitesse est <strong>constante</strong> : \(v = \frac{3}{2} = 1{,}5\ \text{m/s}\) à chaque intervalle.</li>
+      <li>C'est un mouvement <strong>rectiligne uniforme</strong>. Sur un diagramme espace-temps, cela se représente par une droite dont la pente est 1,5 m/s.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Le diagramme vitesse-temps d'un véhicule de chantier présente trois phases :</p>
+  <ul>
+    <li>Phase A (0 à 10 s) : la vitesse passe de 0 à 20 m/s.</li>
+    <li>Phase B (10 à 30 s) : la vitesse reste constante à 20 m/s.</li>
+    <li>Phase C (30 à 40 s) : la vitesse diminue de 20 m/s à 0.</li>
+  </ul>
+  <ol type="a">
+    <li>Décrire le mouvement pendant chacune des trois phases.</li>
+    <li>Calculer la distance totale parcourue (aire sous la courbe).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Phase A : mouvement <strong>uniformément accéléré</strong> (vitesse croissante). Phase B : mouvement <strong>rectiligne uniforme</strong>. Phase C : mouvement <strong>uniformément décéléré</strong> (freinage).</li>
+      <li>
+        Distance totale = aire sous la courbe :<br>
+        Phase A (triangle) : \(\frac{1}{2} \times 10 \times 20 = 100\ \text{m}\)<br>
+        Phase B (rectangle) : \(20 \times 20 = 400\ \text{m}\)<br>
+        Phase C (triangle) : \(\frac{1}{2} \times 10 \times 20 = 100\ \text{m}\)<br>
+        Total : \(100 + 400 + 100 = \mathbf{600\ \text{m}}\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Un robot de soudure industrielle possède le diagramme espace-temps suivant :</p>
+  <table>
+    <tr><th>\(t\) (s)</th><td>0</td><td>5</td><td>10</td><td>15</td><td>20</td></tr>
+    <tr><th>\(d\) (cm)</th><td>0</td><td>10</td><td>20</td><td>20</td><td>20</td></tr>
+  </table>
+  <ol type="a">
+    <li>Décrire le mouvement du robot entre 0 et 15 s.</li>
+    <li>Que se passe-t-il entre 15 s et 20 s ?</li>
+    <li>Calculer la vitesse moyenne du robot entre 0 et 10 s.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Entre 0 et 10 s : le robot avance uniformément (2 cm/s). Entre 10 s et 15 s : le robot reste à 20 cm.</li>
+      <li>Entre 15 s et 20 s : la position reste à 20 cm → le robot est <strong>à l'arrêt</strong>.</li>
+      <li>\(v = \frac{20 - 0}{10 - 0} = \frac{20}{10} = \mathbf{2\ \text{cm/s}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Un mécanicien réalise des mesures de vitesse sur une fraiseuse numérique. Sur le diagramme vitesse-temps, la vitesse passe de 0 à 3 m/s en 6 s de façon linéaire.</p>
+  <ol type="a">
+    <li>La droite est-elle croissante ou décroissante ?</li>
+    <li>Quel type de mouvement cela représente-t-il ?</li>
+    <li>Calculer la pente de la droite (valeur de l'accélération en m/s²).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La droite est <strong>croissante</strong> (la vitesse augmente).</li>
+      <li>Il s'agit d'un mouvement <strong>uniformément accéléré</strong>.</li>
+      <li>Pente = accélération : \(a = \frac{\Delta v}{\Delta t} = \frac{3 - 0}{6 - 0} = \mathbf{0{,}5\ \text{m/s}^2}\)</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Identifier un mouvement rectiligne uniforme ou uniformément varié</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Mouvement rectiligne uniforme (MRU)</strong> : trajectoire droite + vitesse constante. Sur le tableau des distances : distances égales à intervalles égaux.</li>
+    <li><strong>Mouvement rectiligne uniformément accéléré (MRUA)</strong> : trajectoire droite + vitesse qui augmente régulièrement. Les distances successives augmentent.</li>
+    <li><strong>Mouvement rectiligne uniformément décéléré (MRUD)</strong> : trajectoire droite + vitesse qui diminue régulièrement. Les distances successives diminuent.</li>
+  </ul>
+</div>
+
+<div class="exo">
+  <h3>Exercice 17</h3>
+  <p>Une bande abrasive dans une ponceuse à bande se déplace en ligne droite. Les positions relevées toutes les secondes sont :</p>
+  <table>
+    <tr><th>\(t\) (s)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+    <tr><th>Position (cm)</th><td>0</td><td>8</td><td>16</td><td>24</td><td>32</td></tr>
+  </table>
+  <ol type="a">
+    <li>Calculer les distances parcourue chaque seconde.</li>
+    <li>S'agit-il d'un MRU ou d'un mouvement varié ? Justifier.</li>
+    <li>Calculer la vitesse de la bande.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Chaque seconde : 8 − 0 = 8 cm ; 16 − 8 = 8 cm ; 24 − 16 = 8 cm ; 32 − 24 = 8 cm. Distances égales.</li>
+      <li>Il s'agit d'un <strong>MRU</strong> : la trajectoire est rectiligne et la vitesse est constante (distances égales par unité de temps).</li>
+      <li>\(v = \frac{8\ \text{cm}}{1\ \text{s}} = \mathbf{8\ \text{cm/s}} = 0{,}08\ \text{m/s}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 18</h3>
+  <p>Un technicien observe une pièce métallique lancée sur un plan incliné. Il note les positions toutes les 0,5 s :</p>
+  <table>
+    <tr><th>\(t\) (s)</th><td>0</td><td>0,5</td><td>1,0</td><td>1,5</td><td>2,0</td></tr>
+    <tr><th>Position (m)</th><td>0</td><td>0,5</td><td>1,5</td><td>3,0</td><td>5,0</td></tr>
+  </table>
+  <ol type="a">
+    <li>Calculer les distances parcourues à chaque intervalle de 0,5 s.</li>
+    <li>Comment évoluent ces distances ? Quel type de mouvement s'agit-il ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Distances : 0,5 m ; 1,0 m ; 1,5 m ; 2,0 m.</li>
+      <li>Les distances <strong>augmentent régulièrement</strong> de 0,5 m à chaque intervalle : il s'agit d'un mouvement <strong>rectiligne uniformément accéléré</strong> (MRUA).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19</h3>
+  <p>Un installateur de pompes à chaleur filme un chariot sur un rail. Il relève les vitesses suivantes toutes les 2 s :</p>
+  <table>
+    <tr><th>\(t\) (s)</th><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td></tr>
+    <tr><th>\(v\) (m/s)</th><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td></tr>
+  </table>
+  <ol type="a">
+    <li>La vitesse varie-t-elle ?</li>
+    <li>De quel type de mouvement s'agit-il ? Donner les deux conditions nécessaires.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Non, la vitesse est constante et égale à 6 m/s à chaque instant.</li>
+      <li>Il s'agit d'un <strong>mouvement rectiligne uniforme (MRU)</strong>. Conditions : (1) la trajectoire est rectiligne ; (2) la vitesse reste constante au cours du temps.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20</h3>
+  <p>Un véhicule d'entretien freine en ligne droite. Ses vitesses relevées toutes les secondes sont :</p>
+  <table>
+    <tr><th>\(t\) (s)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+    <tr><th>\(v\) (m/s)</th><td>20</td><td>15</td><td>10</td><td>5</td><td>0</td></tr>
+  </table>
+  <ol type="a">
+    <li>La vitesse diminue-t-elle régulièrement ? De combien par seconde ?</li>
+    <li>Quel type de mouvement s'agit-il ?</li>
+    <li>La trajectoire est-elle rectiligne ? Pourquoi ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Oui : la vitesse diminue de 5 m/s à chaque seconde (20→15→10→5→0).</li>
+      <li>Il s'agit d'un <strong>mouvement rectiligne uniformément décéléré (MRUD)</strong> : la vitesse décroît de façon régulière.</li>
+      <li>Oui, car le véhicule freine en ligne droite sans changer de direction.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+</body>
+</html>
