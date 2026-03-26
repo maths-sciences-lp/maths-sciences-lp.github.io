@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Déperditions thermiques et puissance de chauffage — Co-intervention ERA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">← Retour à l'index co-intervention</a>
+
+<header>
+  <h1>Déperditions thermiques et puissance de chauffage</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Première Bac Pro ERA | Savoir S4.1 — CME 6</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Calculer les déperditions thermiques d'un local à partir de la formule \(\Phi = U \times S \times \Delta T\)</li>
+    <li>Additionner les déperditions de chaque paroi pour obtenir la perte totale</li>
+    <li>Dimensionner un appareil de chauffage avec une marge de sécurité de 20 %</li>
+    <li>Calculer l'énergie consommée et le coût mensuel d'un chauffage électrique</li>
+    <li>Comparer l'impact de l'isolation sur la facture d'énergie</li>
+  </ul>
+</div>
+
+<!-- BADGE IDENTIFICATION -->
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ERA :</strong> S4.1 — Isolation thermique</li>
+    <li><strong>Module sciences :</strong> CME 6 — Comment fonctionnent certains dispositifs de chauffage ?</li>
+    <li><strong>Notions mathématiques :</strong> Multiplication, unités de puissance/énergie, calcul de coût</li>
+    <li><strong>Niveau :</strong> Première Bac Pro ERA</li>
+  </ul>
+</div>
+
+<!-- MISE EN SITUATION -->
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel — Bureau d'accueil agencé</strong><br><br>
+  Un menuisier agenceur vient de terminer l'installation complète d'un bureau d'accueil dans des locaux commerciaux. La pièce mesure <strong>5 m × 4 m</strong> pour une hauteur sous plafond de <strong>2,5 m</strong>.
+  <br><br>
+  Les parois présentent les caractéristiques suivantes :
+  <ul>
+    <li>Murs extérieurs (déduction faite de la fenêtre) : S = 40 m², U = 0,35 W/(m²·K)</li>
+    <li>Fenêtre double vitrage : S = 5 m², U = 1,4 W/(m²·K)</li>
+    <li>Plafond isolé : S = 20 m², U = 0,20 W/(m²·K)</li>
+    <li>Plancher sur terre-plein : S = 20 m², U = 0,40 W/(m²·K)</li>
+  </ul>
+  Le client vous demande : <em>« Quel radiateur électrique faut-il installer pour maintenir 20 °C quand il fait −5 °C dehors ? Et combien ça va coûter par mois ? »</em>
+</div>
+
+<!-- COURS -->
+<h2>2. Les déperditions thermiques par transmission</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Déperditions thermiques Φ</span><br>
+  Les <strong>déperditions thermiques</strong> d'une paroi représentent la puissance thermique perdue à travers cette paroi. On les calcule par :
+  \[ \Phi = U \times S \times \Delta T \]
+  <ul>
+    <li>\(\Phi\) : déperditions en <strong>watts (W)</strong></li>
+    <li>\(U\) : coefficient de transmission thermique en <strong>W/(m²·K)</strong></li>
+    <li>\(S\) : surface de la paroi en <strong>m²</strong></li>
+    <li>\(\Delta T = T_{\text{int}} - T_{\text{ext}}\) : écart de température en <strong>°C</strong> ou <strong>K</strong></li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Déperditions totales</span><br>
+  Les déperditions totales d'un local sont la <strong>somme</strong> des déperditions de chaque paroi :
+  \[ \Phi_{\text{total}} = \Phi_{\text{murs}} + \Phi_{\text{fenêtres}} + \Phi_{\text{plafond}} + \Phi_{\text{sol}} \]
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  \(\Delta T\) est toujours positif pour un calcul de chauffage : c'est la différence entre la température intérieure souhaitée et la température extérieure de dimensionnement.<br>
+  Ex. : T_int = 20 °C, T_ext = −5 °C → \(\Delta T = 20 - (-5) = 25\) °C.
+</div>
+
+<h2>3. Dimensionner le chauffage</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Puissance de chauffage</span><br>
+  Le radiateur doit fournir au minimum autant de puissance que les déperditions totales.
+  En pratique, on applique une <strong>marge de sécurité de 20 %</strong> pour compenser les ponts thermiques, l'ouverture des portes, etc. :
+  \[ P_{\text{chauf}} = 1{,}2 \times \Phi_{\text{total}} \]
+  On choisit ensuite le modèle commercial immédiatement supérieur (500 W, 750 W, 1 000 W, 1 500 W, 2 000 W…).
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Démarche de dimensionnement</span><br>
+  <ol>
+    <li>Lister toutes les parois du local avec leur surface S et leur coefficient U</li>
+    <li>Calculer \(\Delta T\) entre la température intérieure souhaitée et la température extérieure de projet</li>
+    <li>Calculer \(\Phi_i = U_i \times S_i \times \Delta T\) pour chaque paroi</li>
+    <li>Faire la somme : \(\Phi_{\text{total}} = \sum \Phi_i\)</li>
+    <li>Calculer \(P_{\text{chauf}} = 1{,}2 \times \Phi_{\text{total}}\)</li>
+    <li>Choisir le radiateur commercial de puissance immédiatement supérieure</li>
+  </ol>
+</div>
+
+<h2>4. Coût énergétique</h2>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Énergie et coût</span><br>
+  L'énergie consommée par un chauffage électrique de puissance P fonctionnant pendant une durée t :
+  \[ E = P \times t \quad \text{(P en kW, t en h, E en kWh)} \]
+  Le coût de la consommation est :
+  \[ \text{Coût} = E \times p_{\text{kWh}} \quad \text{(€)} \]
+  où \(p_{\text{kWh}}\) est le prix du kilowattheure (environ 0,20 €/kWh en 2024).
+</div>
+
+<!-- APPLICATION COMPLÈTE -->
+<h2>5. Application complète — Bureau d'accueil</h2>
+
+<div class="ex">
+  <span class="label label-def">Application — Calcul complet pour le bureau d'accueil</span><br>
+
+  <strong>Données :</strong> T_int = 20 °C, T_ext = −5 °C → \(\Delta T = 25\) °C<br><br>
+
+  <strong>Étape 1 — Déperditions par paroi :</strong>
+  <table style="width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.9rem">
+    <thead>
+      <tr style="background:var(--p-bg)">
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:left">Paroi</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem">U (W/m²·K)</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem">S (m²)</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem">ΔT (°C)</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem">Φ (W)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.4rem .6rem">Murs</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">0,35</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">40</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">25</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center"><strong>350</strong></td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.4rem .6rem">Fenêtre</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">1,4</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">5</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">25</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center"><strong>175</strong></td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.4rem .6rem">Plafond</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">0,20</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">20</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">25</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center"><strong>100</strong></td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.4rem .6rem">Plancher</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">0,40</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">20</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">25</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center"><strong>200</strong></td></tr>
+      <tr style="background:var(--p-bg);font-weight:700"><td style="border:1px solid var(--p-border);padding:.4rem .6rem" colspan="4">Total</td><td style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:center">825 W</td></tr>
+    </tbody>
+  </table>
+
+  <strong>Étape 2 — Puissance avec marge de sécurité :</strong><br>
+  \[ P_{\text{chauf}} = 1{,}2 \times 825 = 990 \text{ W} \]
+  → On choisit un radiateur de <strong>1 000 W</strong> (gamme commerciale).<br><br>
+
+  <strong>Étape 3 — Coût mensuel (8 h/jour, 30 jours, prix = 0,20 €/kWh) :</strong><br>
+  \[ t = 8 \times 30 = 240 \text{ h} \]
+  \[ E = 1{,}0 \text{ kW} \times 240 \text{ h} = 240 \text{ kWh} \]
+  \[ \text{Coût} = 240 \times 0{,}20 = \mathbf{48{,}00 \text{ €}} \]
+</div>
+
+<!-- À RETENIR -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>\(\Phi = U \times S \times \Delta T\) — déperditions en W</li>
+    <li>\(\Phi_{\text{total}} = \sum \Phi_i\) — somme de toutes les parois</li>
+    <li>\(P_{\text{chauf}} = 1{,}2 \times \Phi_{\text{total}}\) — marge de sécurité 20 %</li>
+    <li>\(E = P \times t\) — énergie en kWh (P en kW, t en h)</li>
+    <li>\(\text{Coût} = E \times p_{\text{kWh}}\) — coût en €</li>
+    <li>La fenêtre est souvent le point faible thermique (U élevé) malgré une petite surface</li>
+  </ul>
+</div>
+
+<!-- ==================== EXERCICES ==================== -->
+<h2>Exercices</h2>
+
+<!-- SOCLE -->
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Calcul d'une déperdition (guidé)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Un mur de paroi d'agencement a les caractéristiques suivantes : U = 0,40 W/(m²·K), S = 15 m².<br>
+  La température intérieure est 19 °C et la température extérieure est −1 °C.<br><br>
+  <strong>Étape 1 :</strong> Calculer \(\Delta T\).<br>
+  \(\Delta T = T_{\text{int}} - T_{\text{ext}} = \ldots - (\ldots) = \ldots\) °C<br><br>
+  <strong>Étape 2 :</strong> Écrire la formule des déperditions.<br>
+  \(\Phi = \ldots \times \ldots \times \ldots\)<br><br>
+  <strong>Étape 3 :</strong> Calculer numériquement.<br>
+  \(\Phi = \ldots \times \ldots \times \ldots = \ldots\) W
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    Étape 1 : \(\Delta T = 19 - (-1) = 20\) °C<br>
+    Étape 2 : \(\Phi = U \times S \times \Delta T\)<br>
+    Étape 3 : \(\Phi = 0{,}40 \times 15 \times 20 = \mathbf{120 \text{ W}}\)
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Puissance de chauffage avec marge</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Les déperditions totales d'une cabine d'essayage agencée sont \(\Phi_{\text{total}} = 480\) W.<br><br>
+  <strong>Étape 1 :</strong> Calculer la puissance de chauffage avec la marge de 20 %.<br>
+  \(P_{\text{chauf}} = 1{,}2 \times \ldots = \ldots\) W<br><br>
+  <strong>Étape 2 :</strong> Choisir dans la gamme : 250 W, 500 W, 750 W, 1 000 W.<br>
+  Je choisis : ……… W
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    Étape 1 : \(P_{\text{chauf}} = 1{,}2 \times 480 = 576\) W<br>
+    Étape 2 : 576 W → on choisit le modèle immédiatement supérieur : <strong>750 W</strong>
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<!-- STANDARD -->
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Bilan thermique d'une cabine d'essayage</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Une cabine d'essayage agencée dans un magasin a les caractéristiques suivantes :<br>
+  <ul>
+    <li>Murs : S = 18 m², U = 0,35 W/(m²·K)</li>
+    <li>Plafond : S = 12 m², U = 0,22 W/(m²·K)</li>
+    <li>Plancher : S = 12 m², U = 0,45 W/(m²·K)</li>
+  </ul>
+  Conditions : T_int = 20 °C, T_ext = −2 °C.<br><br>
+  <strong>1.</strong> Calculer \(\Phi\) pour chaque paroi.<br>
+  <strong>2.</strong> Calculer \(\Phi_{\text{total}}\).<br>
+  <strong>3.</strong> Calculer \(P_{\text{chauf}}\) et choisir le radiateur dans la gamme : 500 W / 750 W / 1 000 W / 1 500 W.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    \(\Delta T = 20 - (-2) = 22\) °C<br>
+    \(\Phi_{\text{murs}} = 0{,}35 \times 18 \times 22 = 138{,}6\) W<br>
+    \(\Phi_{\text{plafond}} = 0{,}22 \times 12 \times 22 = 58{,}1\) W<br>
+    \(\Phi_{\text{sol}} = 0{,}45 \times 12 \times 22 = 118{,}8\) W<br>
+    \(\Phi_{\text{total}} = 138{,}6 + 58{,}1 + 118{,}8 = 315{,}5\) W<br>
+    \(P_{\text{chauf}} = 1{,}2 \times 315{,}5 = 378{,}6\) W → on choisit <strong>500 W</strong>
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Coût mensuel de chauffage</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Un radiateur électrique de 1 200 W chauffe un espace de présentation agencé.<br>
+  Il fonctionne 6 h par jour pendant 25 jours. Le prix de l'électricité est 0,20 €/kWh.<br><br>
+  <strong>1.</strong> Calculer la durée totale de fonctionnement en heures.<br>
+  <strong>2.</strong> Calculer l'énergie consommée en kWh.<br>
+  <strong>3.</strong> Calculer le coût total.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(t = 6 \times 25 = 150\) h<br>
+    2. \(E = 1{,}2 \text{ kW} \times 150 \text{ h} = 180\) kWh<br>
+    3. Coût \(= 180 \times 0{,}20 = \mathbf{36{,}00 \text{ €}}\)
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<!-- APPROFONDISSEMENT -->
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">Rentabilité d'une amélioration d'isolation</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un agenceur propose à son client deux solutions pour une cloison de cuisine (S = 12 m², ΔT = 25 °C) :
+  <ul>
+    <li>Solution A : cloison standard — U = 0,35 W/(m²·K)</li>
+    <li>Solution B : cloison renforcée — U = 0,22 W/(m²·K) — surcoût de 180 €</li>
+  </ul>
+  Le chauffage fonctionne 2 000 h/an. Le prix de l'électricité est 0,20 €/kWh.<br><br>
+  <strong>1.</strong> Calculer \(\Phi_A\) et \(\Phi_B\).<br>
+  <strong>2.</strong> Calculer l'économie annuelle d'énergie en kWh, puis en euros.<br>
+  <strong>3.</strong> Calculer le temps de retour sur investissement (en années).<br>
+  <strong>4.</strong> Conclure sur l'intérêt économique de la solution B.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(\Phi_A = 0{,}35 \times 12 \times 25 = 105\) W ; \(\Phi_B = 0{,}22 \times 12 \times 25 = 66\) W<br>
+    2. \(\Delta\Phi = 105 - 66 = 39\) W = 0,039 kW<br>
+    Économie annuelle : \(E = 0{,}039 \times 2\,000 = 78\) kWh → \(78 \times 0{,}20 = 15{,}60\) €/an<br>
+    3. Retour = \(180 \div 15{,}60 \approx 11{,}5\) ans<br>
+    4. Sur le plan purement économique, le retour est long (≈ 12 ans). Mais la solution B améliore aussi le confort thermique et peut valoriser le bien. Pour un client sensible à la performance énergétique, elle reste intéressante.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">Comparaison avant/après isolation — rentabilité sur 15 ans</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un menuisier agenceur propose d'isoler les murs d'un espace bureau de 25 m² : U actuel = 0,80 W/(m²·K), U cible = 0,28 W/(m²·K). ΔT = 22 °C.<br>
+  Le chauffage fonctionne 2 200 h/an. Électricité à 0,22 €/kWh. Coût des travaux : 2 400 €.<br><br>
+  <strong>1.</strong> Calculer \(\Phi_{\text{avant}}\) et \(\Phi_{\text{après}}\).<br>
+  <strong>2.</strong> Calculer l'économie annuelle d'énergie en euros.<br>
+  <strong>3.</strong> Sur 15 ans, le client récupère-t-il la mise de 2 400 € ?<br>
+  <strong>4.</strong> Quels arguments non financiers peut avancer l'agenceur pour convaincre le client ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(\Phi_{\text{avant}} = 0{,}80 \times 25 \times 22 = 440\) W ; \(\Phi_{\text{après}} = 0{,}28 \times 25 \times 22 = 154\) W<br>
+    2. \(\Delta\Phi = 440 - 154 = 286\) W = 0,286 kW<br>
+    Économie annuelle : \(0{,}286 \times 2\,200 \times 0{,}22 = 138{,}4\) €/an<br>
+    3. Sur 15 ans : \(138{,}4 \times 15 = 2\,076\) € → le client récupère <strong>2 076 €</strong> sur 2 400 € investis. L'investissement n'est pas totalement remboursé en 15 ans (retour ≈ 17 ans).<br>
+    4. Arguments non financiers : meilleur confort thermique (pas de murs froids, pas de courant d'air), valorisation du bien immobilier, réduction de l'empreinte carbone, potentielle amélioration du DPE.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){
+  const c=btn.previousElementSibling;
+  if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}
+  else{c.style.display='none';btn.textContent='Voir la correction';}
+}
+</script>
+</body>
+</html>

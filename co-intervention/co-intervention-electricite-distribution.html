@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Distribution électrique d'un atelier d'agencement — Co-intervention ERA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">← Retour à l'index co-intervention</a>
+
+<header>
+  <h1>Distribution électrique d'un atelier d'agencement</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Seconde Bac Pro ERA | Module CME 7</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Connaître la tension du réseau monophasé : U = 230 V</li>
+    <li>Appliquer la relation \(P = U \times I\) pour calculer la puissance ou l'intensité</li>
+    <li>Calculer l'intensité absorbée par une machine à partir de sa puissance nominale</li>
+    <li>Choisir le calibre d'un disjoncteur adapté à un circuit</li>
+    <li>Lire une plaque signalétique de machine-outil</li>
+  </ul>
+</div>
+
+<!-- BADGE -->
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Module sciences :</strong> CME 7 — Distribution électrique, sécurité électrique</li>
+    <li><strong>Notions mathématiques :</strong> Calcul littéral, formule \(P = U \times I\), division, unités (W, kW, A, V)</li>
+    <li><strong>Niveau :</strong> Seconde Bac Pro ERA</li>
+  </ul>
+</div>
+
+<!-- MISE EN SITUATION -->
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel — Atelier de fabrication d'agencement</strong><br><br>
+  Vous êtes apprenti menuisier agenceur dans un atelier de fabrication de mobilier sur mesure. L'atelier est équipé de plusieurs machines électriques :
+  <ul>
+    <li>Scie à format : P = 3 000 W</li>
+    <li>Défonceuse sur table : P = 2 200 W</li>
+    <li>Ponceuse à bande : P = 1 500 W</li>
+    <li>Aspirateur à copeaux : P = 1 100 W</li>
+    <li>Éclairage atelier : P = 400 W</li>
+  </ul>
+  L'électricien qui installe le tableau électrique vous demande : <em>« Tu peux calculer l'intensité de chaque machine pour qu'on choisisse les bons disjoncteurs ? »</em>
+</div>
+
+<!-- COURS -->
+<h2>2. Tension et courant électrique</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Tension électrique U</span><br>
+  La <strong>tension électrique</strong> U est la « pression » qui pousse le courant dans le circuit. Elle se mesure en <strong>volts (V)</strong>.<br><br>
+  En France, la tension du réseau domestique et des ateliers est :<br>
+  <strong>U = 230 V</strong> (monophasé — prises courantes et la majorité des machines d'atelier de menuiserie).
+</div>
+
+<div class="def">
+  <span class="label label-def">Définition — Intensité électrique I</span><br>
+  L'<strong>intensité électrique</strong> I représente la quantité de courant qui circule dans les fils. Elle se mesure en <strong>ampères (A)</strong>.<br><br>
+  Plus une machine est puissante, plus elle absorbe un courant intense.
+</div>
+
+<!-- SVG schéma circuit simplifié -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="480" height="120" viewBox="0 0 480 120" style="max-width:100%;font-family:sans-serif;font-size:13px">
+  <!-- fil haut -->
+  <line x1="40" y1="30" x2="440" y2="30" stroke="#333" stroke-width="2"/>
+  <!-- fil bas -->
+  <line x1="40" y1="90" x2="440" y2="90" stroke="#333" stroke-width="2"/>
+  <!-- source 230V -->
+  <rect x="10" y="50" width="30" height="20" rx="4" fill="#0ea5e9" stroke="#0369a1" stroke-width="1.5"/>
+  <text x="25" y="64" text-anchor="middle" fill="white" font-size="10" font-weight="bold">230V</text>
+  <line x1="10" y1="30" x2="10" y2="50" stroke="#333" stroke-width="2"/>
+  <line x1="10" y1="70" x2="10" y2="90" stroke="#333" stroke-width="2"/>
+  <!-- interrupteur -->
+  <circle cx="160" cy="30" r="4" fill="#333"/>
+  <line x1="160" y1="30" x2="185" y2="18" stroke="#333" stroke-width="2"/>
+  <circle cx="190" cy="30" r="4" fill="#333"/>
+  <text x="175" y="12" text-anchor="middle" fill="#555" font-size="11">interrupteur</text>
+  <!-- machine (rectangle) -->
+  <rect x="270" y="15" width="80" height="30" rx="5" fill="#f0fff4" stroke="#2da44e" stroke-width="2"/>
+  <text x="310" y="35" text-anchor="middle" fill="#2da44e" font-weight="bold" font-size="12">Machine</text>
+  <!-- ampèremètre -->
+  <circle cx="420" cy="30" r="12" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="420" y="34" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold">A</text>
+  <text x="420" y="55" text-anchor="middle" fill="#555" font-size="11">I = ?</text>
+  <!-- flèche courant -->
+  <defs><marker id="arr" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#2da44e"/></marker></defs>
+  <line x1="200" y1="90" x2="270" y2="90" stroke="#2da44e" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="235" y="108" text-anchor="middle" fill="#2da44e" font-size="11">courant I</text>
+</svg>
+</div>
+
+<h2>3. Puissance électrique</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Puissance électrique P</span><br>
+  La <strong>puissance électrique</strong> P représente l'énergie consommée par seconde. Elle se calcule par :
+  \[ P = U \times I \]
+  <ul>
+    <li>\(P\) : puissance en <strong>watts (W)</strong></li>
+    <li>\(U\) : tension en <strong>volts (V)</strong></li>
+    <li>\(I\) : intensité en <strong>ampères (A)</strong></li>
+  </ul>
+  On en déduit l'intensité : \(\displaystyle I = \frac{P}{U}\)
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété — Multiples courants</span><br>
+  <strong>1 kW = 1 000 W</strong> — les machines d'atelier ont souvent leur puissance indiquée en kW sur la plaque signalétique.<br>
+  Ex. : une scie à format de 3 kW = 3 000 W.
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple — Scie à format</span><br>
+  La scie à format de l'atelier a une puissance P = 3 000 W. Elle est branchée sur le réseau U = 230 V.<br>
+  \[ I = \frac{P}{U} = \frac{3\,000}{230} \approx 13{,}0 \text{ A} \]
+</div>
+
+<h2>4. Protection par disjoncteur</h2>
+
+<div class="def">
+  <span class="label label-def">Définition — Disjoncteur</span><br>
+  Un <strong>disjoncteur</strong> coupe automatiquement le circuit si l'intensité dépasse son <strong>calibre</strong> (valeur nominale). Il protège les fils contre la surchauffe et l'incendie.
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode — Choix du calibre</span><br>
+  <ol>
+    <li>Calculer l'intensité du circuit : \(I = P/U\)</li>
+    <li>Repérer le calibre standard immédiatement supérieur parmi : <strong>6 A — 10 A — 16 A — 20 A — 25 A — 32 A</strong></li>
+    <li>Ne jamais choisir un calibre inférieur à l'intensité calculée (surtension constante)</li>
+  </ol>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  <ul>
+    <li>Un disjoncteur <strong>sous-calibré</strong> disjoncte en permanence → machine inutilisable.</li>
+    <li>Un disjoncteur <strong>sur-calibré</strong> ne protège pas les fils → risque d'incendie.</li>
+    <li>Un circuit 16 A à 230 V supporte au maximum : \(P_{\max} = 230 \times 16 = 3\,680\) W.</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Tableau — Puissance max par calibre (230 V)</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead>
+      <tr style="background:var(--p-bg)">
+        <th style="border:1px solid var(--p-border);padding:.4rem .7rem">Calibre disjoncteur</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .7rem">Puissance max (230 V)</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .7rem">Usage typique atelier</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .7rem">6 A</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">1 380 W</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">Éclairage, ponceuse légère</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .7rem">10 A</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">2 300 W</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">Aspirateur, perceuse à colonne</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .7rem">16 A</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">3 680 W</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">Défonceuse, ponceuse à bande</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .7rem">20 A</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">4 600 W</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">Scie à format légère</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .7rem">25 A</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">5 750 W</td><td style="border:1px solid var(--p-border);padding:.35rem .7rem">Grandes machines CN</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- APPLICATION -->
+<h2>5. Application — Tableau de l'atelier</h2>
+
+<div class="ex">
+  <span class="label label-def">Application complète — Machines de l'atelier</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead>
+      <tr style="background:var(--p-bg)">
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem;text-align:left">Machine</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem">P (W)</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem">I = P/230 (A)</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem .6rem">Disjoncteur</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .6rem">Scie à format</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">3 000</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">13,0 A</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center"><strong>16 A</strong></td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .6rem">Défonceuse</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">2 200</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">9,6 A</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center"><strong>16 A</strong></td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .6rem">Ponceuse à bande</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">1 500</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">6,5 A</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center"><strong>10 A</strong></td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .6rem">Aspirateur</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">1 100</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">4,8 A</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center"><strong>6 A</strong></td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem .6rem">Éclairage</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">400</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center">1,7 A</td><td style="border:1px solid var(--p-border);padding:.35rem .6rem;text-align:center"><strong>6 A</strong></td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:.7rem;font-size:.9rem">En pratique, chaque machine de forte puissance dispose de son propre circuit dédié pour faciliter la protection et la maintenance.</p>
+</div>
+
+<!-- À RETENIR -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>\(P = U \times I\) — puissance en W, tension en V, intensité en A</li>
+    <li>\(I = P / U\) — pour calculer l'intensité à partir de la puissance</li>
+    <li>En France, réseau monophasé : <strong>U = 230 V</strong></li>
+    <li>Calibres standard : 6 A, 10 A, 16 A, 20 A, 25 A, 32 A — choisir le calibre juste au-dessus de I calculé</li>
+    <li>Circuit 16 A à 230 V → puissance max 3 680 W</li>
+  </ul>
+</div>
+
+<!-- ==================== EXERCICES ==================== -->
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Intensité d'une ponceuse (guidé)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Une ponceuse orbitale est branchée sur le secteur (U = 230 V). Sa puissance est P = 350 W.<br><br>
+  <strong>Étape 1 :</strong> Écrire la formule de l'intensité.<br>
+  \(I = \dfrac{\ldots}{\ldots}\)<br><br>
+  <strong>Étape 2 :</strong> Remplacer par les valeurs numériques.<br>
+  \(I = \dfrac{\ldots}{\ldots} = \ldots\) A<br><br>
+  <strong>Étape 3 :</strong> Quel disjoncteur choisir parmi 6 A / 10 A / 16 A ?<br>
+  Je choisis : ……… A
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    Étape 1 : \(I = P / U\)<br>
+    Étape 2 : \(I = 350 / 230 = 1{,}52\) A<br>
+    Étape 3 : 1,52 A → disjoncteur <strong>6 A</strong> (premier calibre au-dessus)
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Compléter un tableau (guidé)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Compléter le tableau suivant pour deux machines de l'atelier (U = 230 V) :<br><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">Machine</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">P (W)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">I = P/230 (A)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Disjoncteur</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.4rem">Scie sauteuse</td><td style="border:1px solid var(--p-border);padding:.4rem;text-align:center">700</td><td style="border:1px solid var(--p-border);padding:.4rem;text-align:center">…</td><td style="border:1px solid var(--p-border);padding:.4rem;text-align:center">…</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.4rem">Fraiseuse</td><td style="border:1px solid var(--p-border);padding:.4rem;text-align:center">1 200</td><td style="border:1px solid var(--p-border);padding:.4rem;text-align:center">…</td><td style="border:1px solid var(--p-border);padding:.4rem;text-align:center">…</td></tr>
+    </tbody>
+  </table>
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    Scie sauteuse : \(I = 700/230 = 3{,}04\) A → disjoncteur <strong>6 A</strong><br>
+    Fraiseuse : \(I = 1\,200/230 = 5{,}22\) A → disjoncteur <strong>6 A</strong>
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Circuit partagé — est-ce possible ?</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Un atelier dispose d'un circuit 16 A (230 V) sur lequel sont déjà branchés :<br>
+  une perceuse à colonne (700 W) + un touret à meuler (400 W) + l'éclairage (300 W).<br><br>
+  <strong>1.</strong> Calculer la puissance totale déjà sur ce circuit.<br>
+  <strong>2.</strong> Calculer l'intensité totale.<br>
+  <strong>3.</strong> Le disjoncteur 16 A est-il suffisant ? Justifier.<br>
+  <strong>4.</strong> Peut-on ajouter une défonceuse de 1 800 W sur ce même circuit ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(P_{\text{total}} = 700 + 400 + 300 = 1\,400\) W<br>
+    2. \(I = 1\,400 / 230 = 6{,}09\) A<br>
+    3. 6,09 A &lt; 16 A → le disjoncteur 16 A est largement suffisant.<br>
+    4. Avec la défonceuse : \(P = 1\,400 + 1\,800 = 3\,200\) W → \(I = 3\,200/230 = 13{,}9\) A &lt; 16 A. C'est possible techniquement, mais peu recommandé (peu de marge, courant d'appel au démarrage). Mieux vaut un circuit dédié pour la défonceuse.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Plaque signalétique et choix de protection</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  On lit sur la plaque signalétique d'une raboteuse :<br>
+  <em>« 230 V — 50 Hz — 2,2 kW — IP 54 »</em><br><br>
+  <strong>1.</strong> Convertir la puissance en watts.<br>
+  <strong>2.</strong> Calculer l'intensité nominale.<br>
+  <strong>3.</strong> Quel disjoncteur choisir ? Justifier.<br>
+  <strong>4.</strong> Un électricien installe un disjoncteur 10 A. Est-ce correct ? Expliquer le risque.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(P = 2{,}2 \times 1\,000 = 2\,200\) W<br>
+    2. \(I = 2\,200 / 230 = 9{,}57\) A<br>
+    3. Calibre immédiatement supérieur : <strong>10 A</strong>. Mais en pratique, les moteurs ont un fort courant d'appel au démarrage (jusqu'à 5–7× le courant nominal). Un <strong>16 A</strong> est plus sûr pour ce type d'usage.<br>
+    4. Un disjoncteur 10 A est juste à la limite : \(I_{\text{nom}} = 9{,}57\) A ≈ 10 A. Au démarrage, le courant d'appel peut dépasser 10 A et provoquer des déclenchements intempestifs. L'électricien devrait choisir un <strong>16 A</strong>.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">Répartition optimale des circuits</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un atelier reçoit 4 nouvelles machines : scie à format (3 000 W), défonceuse CN (2 200 W), raboteuse (3 000 W), ponceuse à bande (1 500 W).<br>
+  Le tableau électrique dispose de disjoncteurs 16 A et 20 A uniquement.<br><br>
+  <strong>1.</strong> Calculer l'intensité de chaque machine.<br>
+  <strong>2.</strong> Peut-on regrouper scie (3 000 W) + ponceuse (1 500 W) sur un seul circuit 20 A ? Justifier par le calcul.<br>
+  <strong>3.</strong> Proposer une répartition sur le minimum de circuits possibles, en respectant les limites de chaque disjoncteur.<br>
+  <strong>4.</strong> Expliquer pourquoi, en pratique professionnelle, on préfère un circuit dédié par machine puissante.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. Scie : \(I = 3\,000/230 = 13{,}0\) A ; Défonceuse : \(I = 2\,200/230 = 9{,}6\) A ; Raboteuse : \(I = 3\,000/230 = 13{,}0\) A ; Ponceuse : \(I = 1\,500/230 = 6{,}5\) A<br><br>
+    2. Scie + ponceuse : \(P = 3\,000 + 1\,500 = 4\,500\) W → \(I = 4\,500/230 = 19{,}6\) A &lt; 20 A. Techniquement possible, mais très limite (courant d'appel dépasserait 20 A).<br><br>
+    3. Minimum 3 circuits avec 20 A :<br>
+    — Circuit 1 (20 A) : scie 3 000 W + ponceuse 1 500 W = 4 500 W (19,6 A)<br>
+    — Circuit 2 (16 A) : défonceuse 2 200 W (9,6 A)<br>
+    — Circuit 3 (16 A) : raboteuse 3 000 W (13,0 A)<br><br>
+    4. Un circuit dédié par machine permet : (a) de localiser facilement une panne, (b) d'éviter qu'une surcharge sur une machine coupe toutes les autres, (c) de simplifier la maintenance et le dépannage, (d) de réserver de la capacité pour les courants d'appel au démarrage.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">Analyse de consommation mensuelle</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  La facture électrique d'un atelier indique une consommation de <strong>450 kWh</strong> pour le mois. Les machines fonctionnent en moyenne 6 h/jour pendant 22 jours ouvrés.<br><br>
+  <strong>1.</strong> Calculer la durée totale de fonctionnement sur le mois.<br>
+  <strong>2.</strong> En déduire la puissance moyenne simultanément consommée.<br>
+  <strong>3.</strong> Calculer l'intensité moyenne correspondante (U = 230 V).<br>
+  <strong>4.</strong> Le disjoncteur général de l'atelier est de 32 A. Est-il suffisant pour cette consommation moyenne ? Y a-t-il un risque en pointe ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(t = 6 \times 22 = 132\) h<br>
+    2. \(P_{\text{moy}} = E / t = 450 / 132 = 3{,}41\) kW = 3 410 W<br>
+    3. \(I_{\text{moy}} = 3\,410 / 230 = 14{,}8\) A<br>
+    4. 14,8 A &lt; 32 A → le disjoncteur 32 A est suffisant pour la consommation <em>moyenne</em>. Mais si plusieurs machines démarrent simultanément (courant d'appel), la pointe peut dépasser 32 A. Il faut s'assurer que les démarrages ne sont pas tous simultanés (démarrage séquentiel), ou dimensionner le disjoncteur général à 40 A.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){
+  const c=btn.previousElementSibling;
+  if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}
+  else{c.style.display='none';btn.textContent='Voir la correction';}
+}
+</script>
+</body>
+</html>
