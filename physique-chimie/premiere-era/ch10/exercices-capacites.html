@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 – Exercices par capacités – Propagation d'un signal sonore – 1ère Bac Pro ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-erama.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 10 – Exercices par capacités</h1>
+  <p class="sous-titre">Propagation d'un signal sonore &nbsp;|&nbsp; 1ère Bac Pro ERA-MA &nbsp;|&nbsp; Physique-Chimie</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Caractériser un signal sonore (fréquence, période, amplitude)</li>
+    <li><strong>C2</strong> — Calculer période et fréquence (\(T = 1/f\))</li>
+    <li><strong>C3</strong> — Calculer la vitesse de propagation du son \(v = d/t\)</li>
+    <li><strong>C4</strong> — Interpréter un niveau sonore en dB et évaluer les risques auditifs</li>
+    <li><strong>C5</strong> — Appliquer dans un contexte d'atelier bois (bruit des machines)</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Caractéristiques du son</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Période et fréquence</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Vitesse de propagation</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Niveau sonore en dB</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Atelier bois</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Caractériser un signal sonore</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Un signal sonore est une onde mécanique (nécessite un milieu matériel pour se propager). Ses caractéristiques :</p>
+  <ul>
+    <li><strong>Fréquence \(f\)</strong> (en Hz) : nombre d'oscillations par seconde. Détermine la <em>hauteur</em> du son (grave ↔ aigu). Audible : 20 Hz à 20 000 Hz.</li>
+    <li><strong>Période \(T\)</strong> (en s) : durée d'un cycle. \(T = 1/f\)</li>
+    <li><strong>Amplitude</strong> : valeur maximale de la perturbation. Détermine l'<em>intensité</em> du son (fort ↔ faible).</li>
+  </ul>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Associer chaque caractéristique à ce qu'elle détermine pour le son :</p>
+  <ul>
+    <li>A — Fréquence élevée</li>
+    <li>B — Amplitude forte</li>
+    <li>C — Fréquence faible</li>
+    <li>D — Amplitude faible</li>
+  </ul>
+  <ol type="a">
+    <li>Son grave</li>
+    <li>Son fort</li>
+    <li>Son aigu</li>
+    <li>Son faible</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    A → c (son aigu) ; B → b (son fort) ; C → a (son grave) ; D → d (son faible)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>La note La est \(f = 440\) Hz. La note Sol est \(f = 392\) Hz. Laquelle est plus aiguë ? Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Le <strong>La (440 Hz)</strong> est plus aigu car il a une fréquence plus élevée (440 > 392 Hz).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un sonar industriel émet des ultrasons à \(f = 40\,000\) Hz. Ce son est-il audible par l'oreille humaine ? Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    L'oreille humaine perçoit les sons entre 20 Hz et 20 000 Hz. 40 000 Hz > 20 000 Hz : ce son est un <strong>ultrason</strong>, non audible par l'homme. Il est utilisé pour des mesures de distance ou des détections sans contact.
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer période et fréquence</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>\(T = \dfrac{1}{f}\) et \(f = \dfrac{1}{T}\)</p>
+  <ul>
+    <li>\(T\) en secondes (s)</li>
+    <li>\(f\) en hertz (Hz = s⁻¹)</li>
+  </ul>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>La scie circulaire d'un menuisier tourne à 2 800 tr/min. Le bruit généré a une fréquence principale de 2 800 Hz (1 Hz pour chaque tr/min). Calculer la période de ce signal sonore.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(T = \dfrac{1}{f} = \dfrac{1}{2\,800} \approx \mathbf{3{,}57 \times 10^{-4}}\) s = 0,357 ms
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un oscilloscope montre un signal sonore de période \(T = 0{,}025\) s. Calculer la fréquence correspondante. Ce son est-il grave ou aigu ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(f = \dfrac{1}{T} = \dfrac{1}{0{,}025} = \mathbf{40}\) Hz<br>
+    40 Hz est dans les graves (proche du seuil inférieur d'audition de 20 Hz) : son très grave.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Compléter le tableau :</p>
+  <table>
+    <tr><th>Son</th><th>Fréquence (Hz)</th><th>Période (s)</th></tr>
+    <tr><td>Voix humaine grave</td><td>100</td><td>…</td></tr>
+    <tr><td>Sifflement aigu</td><td>…</td><td>\(5 \times 10^{-4}\)</td></tr>
+    <tr><td>Note La standard</td><td>440</td><td>…</td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>Son</th><th>Fréquence (Hz)</th><th>Période (s)</th></tr>
+      <tr><td>Voix grave</td><td>100</td><td>\(T = 1/100 = \mathbf{0{,}01}\) s</td></tr>
+      <tr><td>Sifflement aigu</td><td>\(f = 1/(5\times10^{-4}) = \mathbf{2\,000}\) Hz</td><td>\(5 \times 10^{-4}\)</td></tr>
+      <tr><td>Note La</td><td>440</td><td>\(T = 1/440 \approx \mathbf{2{,}27 \times 10^{-3}}\) s</td></tr>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Calculer la vitesse de propagation du son</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Le son se propage à une vitesse qui dépend du milieu :</p>
+  <ul>
+    <li>Air (20°C) : \(v \approx 340\) m/s</li>
+    <li>Eau : \(v \approx 1\,500\) m/s</li>
+    <li>Bois (selon l'essence) : \(v \approx 3\,000-5\,000\) m/s</li>
+    <li>Acier : \(v \approx 5\,100\) m/s</li>
+  </ul>
+  <p>Formule : \(v = \dfrac{d}{t}\) → \(d = v \times t\) → \(t = \dfrac{d}{v}\)</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Un menuisier entend le bruit d'une scie provenant d'un autre atelier situé à 85 m. Combien de temps met le son pour parvenir à ses oreilles ? (\(v = 340\) m/s)</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(t = \dfrac{d}{v} = \dfrac{85}{340} = \mathbf{0{,}25}\) s = 250 ms
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un contrôleur ultrasonique vérifie l'épaisseur d'un panneau de chêne en mesurant le temps de parcours aller-retour d'une impulsion ultrasonique : \(t = 40\) μs. La vitesse du son dans le chêne est \(v = 4\,000\) m/s. Calculer l'épaisseur du panneau.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Distance aller-retour : \(d = v \times t = 4\,000 \times 40 \times 10^{-6} = 0{,}16\) m<br>
+    Épaisseur = aller seulement : \(e = 0{,}16 / 2 = \mathbf{0{,}08}\) m = <strong>80 mm</strong>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Un technicien d'agencement frappe sur une cloison en bois à 6 m de distance. Un collaborateur perçoit le son \(t = 0{,}15\) s après la frappe. Calculer la vitesse apparente de propagation. Comparer à 340 m/s et expliquer la différence.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(v = d/t = 6/0{,}15 = 40\) m/s<br>
+    Cette vitesse est bien inférieure à 340 m/s car la valeur de 0,15 s inclut probablement un <strong>temps de réaction</strong> du collaborateur. La vitesse réelle du son dans l'air est bien 340 m/s.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>La relation entre longueur d'onde, vitesse et fréquence est \(\lambda = v/f\). Calculer la longueur d'onde d'un son à 440 Hz dans l'air (\(v = 340\) m/s), puis dans le bois (\(v = 4\,000\) m/s).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Dans l'air : \(\lambda = 340 / 440 \approx \mathbf{0{,}77}\) m<br>
+    Dans le bois : \(\lambda = 4\,000 / 440 \approx \mathbf{9{,}1}\) m<br>
+    La longueur d'onde est plus grande dans le bois (même fréquence, vitesse plus élevée).
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Interpréter un niveau sonore en dB et évaluer les risques auditifs</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Le <strong>niveau sonore</strong> se mesure en <strong>décibels (dB)</strong> à l'aide d'un sonomètre. L'échelle est logarithmique.</p>
+  <table>
+    <tr><th>Niveau (dB)</th><th>Source</th><th>Risque</th></tr>
+    <tr><td>0</td><td>Seuil d'audition</td><td>Aucun</td></tr>
+    <tr><td>30–50</td><td>Conversation calme</td><td>Aucun</td></tr>
+    <tr><td>80</td><td>Trafic urbain intense</td><td>Risque si exposition prolongée</td></tr>
+    <tr><td>85</td><td>Seuil réglementaire (8h/j)</td><td>EPI obligatoire au-delà</td></tr>
+    <tr><td>90–110</td><td>Machines de menuiserie</td><td>Danger — protections obligatoires</td></tr>
+    <tr><td>120</td><td>Seuil de douleur</td><td>Danger immédiat</td></tr>
+    <tr><td>140+</td><td>Explosion, avion</td><td>Lésion irréversible immédiate</td></tr>
+  </table>
+  <p>Propriété clé : augmenter de <strong>+3 dB</strong> = doubler l'intensité sonore. Augmenter de <strong>+10 dB</strong> = multiplier par 10.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Le niveau sonore d'une scie circulaire est mesuré à 105 dB. Analyser le risque et indiquer les mesures de prévention.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    105 dB est <strong>très dangereux</strong> pour l'ouïe. La réglementation impose :<br>
+    - Seuil d'action : 85 dB → information et mise à disposition d'EPI.<br>
+    - Seuil de valeur limite : 87 dB → interdiction de dépasser (avec protections).<br>
+    À 105 dB, le port de <strong>protections auditives</strong> (bouchons anti-bruit ou casque anti-bruit) est <strong>obligatoire</strong>. Une exposition sans protection de quelques minutes peut provoquer des lésions auditives irréversibles.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Dans un atelier de menuiserie, on mesure 90 dB près d'une ponceuse. On ajoute une deuxième ponceuse identique. Quel sera le nouveau niveau sonore ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Doubler l'intensité sonore augmente le niveau de +3 dB.<br>
+    Nouveau niveau : \(90 + 3 = \mathbf{93}\) dB.<br>
+    Les dB ne s'additionnent pas directement (90 + 90 ≠ 180 dB !).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Un menuisier agenceur travaille dans un atelier à 95 dB pendant 4 heures. La réglementation limite l'exposition à 87 dB sur 8 heures. Doit-il porter des protections auditives ? Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Le niveau de 95 dB dépasse largement le seuil de 87 dB. Le port de protections auditives est <strong>obligatoire</strong> dès que le niveau dépasse 85 dB. Une exposition à 95 dB sans protection présente un risque sérieux de surdité professionnelle irréversible.
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Applications en atelier bois : bruit des machines</h2>
+
+<div class="retenir">
+  <strong>Niveaux sonores typiques en atelier de menuiserie</strong>
+  <table>
+    <tr><th>Machine</th><th>Niveau sonore (dB)</th></tr>
+    <tr><td>Scie circulaire à lame</td><td>95 – 110</td></tr>
+    <tr><td>Dégauchisseuse / rabot</td><td>90 – 100</td></tr>
+    <tr><td>Ponceuse à bande</td><td>85 – 95</td></tr>
+    <tr><td>Cloueur pneumatique</td><td>100 – 110</td></tr>
+    <tr><td>Aspiration copeaux</td><td>80 – 90</td></tr>
+  </table>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un apprenti menuisier travaille 7 heures dans un atelier. Pendant 4 heures, il utilise la scie circulaire (105 dB) et pendant 3 heures, il ponce (88 dB). Il ne porte aucune protection. Identifier les risques.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>105 dB (scie) : danger sévère dès 15 min d'exposition sans protection. Sur 4 h, le risque de <strong>surdité irréversible</strong> est très élevé.</li>
+      <li>88 dB (ponçage) : dépasse le seuil de 85 dB → port de protections obligatoire.</li>
+      <li>Sans EPI, l'apprenti est exposé à un <strong>risque de surdité professionnelle</strong> et à une infraction à la réglementation du travail (Code du Travail, articles L4121-1 et suivants).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Pour réduire le bruit dans un atelier, un fabricant de meubles envisage trois actions. Classer-les de la plus efficace à la moins efficace selon la démarche de prévention collective :</p>
+  <ol type="a">
+    <li>Distribuer des bouchons anti-bruit aux opérateurs.</li>
+    <li>Remplacer les scies bruyantes par des machines moins sonores.</li>
+    <li>Installer des capots insonorisants sur les machines.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Selon la hiérarchie des mesures de prévention (principe STOP : Substitution, ingénierie, Organisation, Protection individuelle) :<br>
+    <ol>
+      <li><strong>b — Remplacer les machines bruyantes</strong> : action à la source, la plus efficace (suppression du risque).</li>
+      <li><strong>c — Capots insonorisants</strong> : réduction à la source, collective (isolation).</li>
+      <li><strong>a — Bouchons anti-bruit</strong> : protection individuelle, dernière ligne de défense, moins fiable (dépend du port effectif).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Un atelier de menuiserie est soumis à un contrôle de l'inspecteur du travail. Le sonomètre indique 92 dB en continu. L'employeur prétend que le port de protections auditives est « facultatif ». A-t-il raison ? Citer la valeur limite réglementaire.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>Non</strong>. La réglementation française (Code du Travail, décret 2006-892) fixe :<br>
+    - Seuil d'exposition inférieur : 80 dB → information des travailleurs, mise à disposition d'EPI.<br>
+    - Seuil d'exposition supérieur : <strong>85 dB</strong> → port des EPI <strong>obligatoire</strong>.<br>
+    - Valeur limite d'exposition : 87 dB (avec protections).<br>
+    À 92 dB, le port de protections auditives est <strong>obligatoire</strong>. L'employeur s'expose à des sanctions.
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Exercices par capacités – Ondes électromagnétiques – 1ère Bac Pro ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-erama.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 9 – Exercices par capacités</h1>
+  <p class="sous-titre">Ondes électromagnétiques &nbsp;|&nbsp; 1ère Bac Pro ERA-MA &nbsp;|&nbsp; Physique-Chimie</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Classer les ondes électromagnétiques dans le spectre</li>
+    <li><strong>C2</strong> — Appliquer la relation \(c = \lambda \cdot f\)</li>
+    <li><strong>C3</strong> — Identifier les domaines utiles (visible, IR, UV)</li>
+    <li><strong>C4</strong> — Distinguer transmission, absorption et réflexion d'un rayonnement</li>
+    <li><strong>C5</strong> — Applications industrielles : capteurs, traitement de surface, séchage UV</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Spectre électromagnétique</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Relation c = λf</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Domaines utiles</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Transmission, absorption, réflexion</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Applications pro</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Classer les ondes électromagnétiques dans le spectre</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Les <strong>ondes électromagnétiques</strong> se propagent dans le vide à la vitesse de la lumière \(c = 3 \times 10^8\) m/s. Le spectre complet, classé par longueurs d'onde croissantes (ou fréquences décroissantes) :</p>
+  <p style="text-align:center;font-weight:bold">Rayons γ | Rayons X | UV | Visible | IR | Micro-ondes | Radio</p>
+  <p>Longueurs d'onde du visible : 400 nm (violet) à 700 nm (rouge).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Classer les rayonnements suivants dans l'ordre des longueurs d'onde croissantes :</p>
+  <p>Micro-ondes (four) — Lumière visible — Rayons X — Infrarouge — Ultraviolets</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Longueurs d'onde croissantes (fréquences décroissantes) :<br>
+    <strong>Rayons X &lt; UV &lt; Visible &lt; IR &lt; Micro-ondes</strong>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Indiquer à quel domaine du spectre électromagnétique appartient chaque rayonnement et sa longueur d'onde approximative :</p>
+  <ol type="a">
+    <li>Lumière rouge d'une diode de détecteur</li>
+    <li>Rayonnement d'une lampe de séchage UV en finition bois</li>
+    <li>Chaleur émise par un panneau chauffant infrarouge</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li><strong>Visible</strong>, rouge : \(\lambda \approx 620-700\) nm</li>
+      <li><strong>Ultraviolet (UV)</strong> : \(\lambda \approx 200-400\) nm</li>
+      <li><strong>Infrarouge (IR)</strong> : \(\lambda \approx 700\) nm à quelques μm</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Une onde radio FM a une fréquence de 100 MHz (\(10^8\) Hz). Une lumière verte a \(\lambda = 550\) nm = \(550 \times 10^{-9}\) m. Laquelle a la plus grande longueur d'onde ? Justifier.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\lambda_{\text{radio}} = c/f = 3\times10^8 / 10^8 = 3\) m<br>
+    \(\lambda_{\text{verte}} = 550 \times 10^{-9}\) m = \(5{,}5 \times 10^{-7}\) m<br>
+    L'<strong>onde radio</strong> a une longueur d'onde bien plus grande (3 m contre 550 nm).
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Appliquer la relation \(c = \lambda \cdot f\)</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>\(c = \lambda \times f\) avec :</p>
+  <ul>
+    <li>\(c = 3 \times 10^8\) m/s (vitesse de la lumière dans le vide)</li>
+    <li>\(\lambda\) : longueur d'onde en mètres (m)</li>
+    <li>\(f\) : fréquence en hertz (Hz)</li>
+  </ul>
+  <p>On en déduit : \(\lambda = c/f\) et \(f = c/\lambda\)</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Une lampe UV de séchage émet à une longueur d'onde \(\lambda = 365\) nm. Calculer la fréquence de ce rayonnement.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\lambda = 365 \text{ nm} = 365 \times 10^{-9} \text{ m}\)<br>
+    \(f = \dfrac{c}{\lambda} = \dfrac{3 \times 10^8}{365 \times 10^{-9}} = \dfrac{3 \times 10^8}{3{,}65 \times 10^{-7}} \approx \mathbf{8{,}22 \times 10^{14}}\) Hz
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un capteur de sécurité infrarouge émet à \(f = 3 \times 10^{13}\) Hz. Calculer la longueur d'onde correspondante et vérifier que c'est bien de l'infrarouge (λ > 700 nm).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\lambda = \dfrac{c}{f} = \dfrac{3 \times 10^8}{3 \times 10^{13}} = \mathbf{10^{-5}}\) m = 10 μm = 10 000 nm<br>
+    Oui, 10 000 nm &gt; 700 nm → c'est bien de l'<strong>infrarouge</strong>.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>La lumière bleue d'un laser de gravure a \(\lambda = 450\) nm. La lumière rouge d'un pointeur laser a \(\lambda = 650\) nm. Calculer les fréquences respectives et indiquer laquelle est la plus énergétique.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Bleue : \(f_b = 3\times10^8 / (450\times10^{-9}) \approx 6{,}67 \times 10^{14}\) Hz<br>
+    Rouge : \(f_r = 3\times10^8 / (650\times10^{-9}) \approx 4{,}62 \times 10^{14}\) Hz<br>
+    La lumière <strong>bleue</strong> a une fréquence plus élevée → elle est plus énergétique (ce qui explique que les UV et la lumière bleue sont plus nocifs pour les yeux).
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Identifier les domaines utiles (visible, IR, UV)</h2>
+
+<div class="retenir">
+  <strong>Trois domaines principaux</strong>
+  <table>
+    <tr><th>Domaine</th><th>Longueur d'onde</th><th>Usages courants</th></tr>
+    <tr><td>UV (ultraviolet)</td><td>100–400 nm</td><td>Séchage UV, stérilisation, détection de fluorescence</td></tr>
+    <tr><td>Visible</td><td>400–700 nm</td><td>Éclairage, capteurs optiques, lasers de guidage</td></tr>
+    <tr><td>IR (infrarouge)</td><td>700 nm – 1 mm</td><td>Capteurs de présence, chauffage radiant, caméras thermiques</td></tr>
+  </table>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Identifier le domaine du rayonnement utilisé dans chaque application :</p>
+  <ol type="a">
+    <li>Séchage d'un vernis photosensible sur un panneau bois en 10 secondes.</li>
+    <li>Détection de présence humaine dans un couloir d'atelier.</li>
+    <li>Contrôle de la mesure de distance d'une machine à commande numérique (laser visible rouge).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li><strong>UV</strong> : les vernis « UV » polymérisent sous rayonnement ultraviolet.</li>
+      <li><strong>IR</strong> : les détecteurs de présence (PIR = Passif InfraRouge) détectent la chaleur du corps humain.</li>
+      <li><strong>Visible</strong> : laser rouge de guidage ou de mesure (λ ≈ 630–650 nm).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un technicien d'agencement travaille avec une lampe UV de séchage (λ = 365 nm). Quels risques présente l'exposition aux UV ? Quelles précautions prendre ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>Risques :</strong> brûlures oculaires (kératite), brûlures cutanées (érythème), risque à long terme de cataracte et de cancer de la peau.<br>
+    <strong>Précautions :</strong> lunettes de protection anti-UV, ne pas regarder directement la lampe, protéger la peau exposée, ne pas exposer les pièces d'appareillage non conformes.
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Distinguer transmission, absorption, réflexion</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Quand un rayonnement atteint une surface :</p>
+  <ul>
+    <li><strong>Transmission</strong> : le rayonnement traverse le matériau (verre transparent à la lumière visible).</li>
+    <li><strong>Absorption</strong> : le rayonnement est absorbé et transformé en chaleur (bois foncé absorbe la lumière).</li>
+    <li><strong>Réflexion</strong> : le rayonnement est renvoyé (miroir, surface métallique polie).</li>
+  </ul>
+  <p>Conservation de l'énergie : \(\tau + \alpha + \rho = 1\) (où \(\tau\) = coefficient de transmission, \(\alpha\) = absorption, \(\rho\) = réflexion).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Un vitrage a un coefficient de transmission \(\tau = 0{,}80\) et de réflexion \(\rho = 0{,}10\). Calculer le coefficient d'absorption \(\alpha\). Que devient la lumière absorbée ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\alpha = 1 - \tau - \rho = 1 - 0{,}80 - 0{,}10 = \mathbf{0{,}10}\)<br>
+    La lumière absorbée est transformée en <strong>chaleur</strong> dans le vitrage, ce qui le réchauffe légèrement.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>On éclaire une plaque de bois avec un faisceau lumineux de 100 W. La plaque absorbe 85 % et réfléchit 10 %. Calculer la puissance transmise, absorbée et réfléchie.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Absorbée : \(85\% \times 100 = 85\) W<br>
+    Réfléchie : \(10\% \times 100 = 10\) W<br>
+    Transmise : \((100 - 85 - 10) = \mathbf{5}\) W (5 %)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un double vitrage est constitué de deux verres (\(\tau = 0{,}90\) chacun) et une lame d'argon (considérée comme transparente). Calculer la transmission totale du système.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Chaque verre transmet 90 % du flux incident. Pour deux verres en série :<br>
+    \(\tau_{\text{total}} = \tau_1 \times \tau_2 = 0{,}90 \times 0{,}90 = \mathbf{0{,}81}\) = 81 %<br>
+    Le double vitrage transmet 81 % de la lumière visible.
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Applications : capteurs, traitement de surface, séchage UV</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Les ondes électromagnétiques ont de nombreuses applications industrielles en menuiserie et agencement :</p>
+  <ul>
+    <li><strong>Séchage UV</strong> : vernis photosensibles polymérisés en quelques secondes par des lampes UV. Avantage : séchage instantané, pas de solvant.</li>
+    <li><strong>Capteurs IR</strong> : détection de présence, mesure de température sans contact (pyromètre).</li>
+    <li><strong>Traitement de surface</strong> : plasma UV-ozone pour améliorer l'adhérence des vernis sur les plastiques.</li>
+    <li><strong>Codes-barres et QR codes</strong> : lecture par laser visible.</li>
+  </ul>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un atelier de finition remplace le séchage à l'air (4 h) par le séchage UV (20 s) pour ses panneaux laqués. Calculer le facteur d'accélération du séchage.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Séchage à l'air : 4 h = \(4 \times 3\,600 = 14\,400\) s<br>
+    Facteur d'accélération = \(14\,400 / 20 = \mathbf{720}\)<br>
+    Le séchage UV est 720 fois plus rapide que le séchage à l'air.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Un pyromètre infrarouge mesure la température d'un panneau de bois en sortie de presse chauffante. Il indique 65°C. L'opérateur touche le panneau avec un gant et estime « environ 60°C ».</p>
+  <ol type="a">
+    <li>Quel mode de mesure est sans contact ?</li>
+    <li>Quel avantage offre le pyromètre par rapport à la mesure au contact ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Le <strong>pyromètre infrarouge</strong> : il mesure le rayonnement IR émis par la surface sans la toucher.</li>
+      <li>Mesure plus précise, instantanée, sans risque de brûlure, sans perturber la température de la surface mesurée.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un technicien d'agencement utilise un laser de mesure (lumière visible rouge, \(\lambda = 650\) nm) pour mesurer des distances dans un chantier d'installation. La lumière met \(t = 2 \times 10^{-8}\) s pour aller et revenir. Calculer la distance mesurée.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Distance totale parcourue (aller-retour) : \(d_{\text{AR}} = c \times t = 3 \times 10^8 \times 2 \times 10^{-8} = 6\) m<br>
+    Distance mesurée (aller seulement) : \(d = 6/2 = \mathbf{3}\) m
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+</body>
+</html>
