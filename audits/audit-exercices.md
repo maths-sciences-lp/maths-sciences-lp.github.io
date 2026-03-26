@@ -1,7 +1,7 @@
 # Audit Pédagogique des Exercices
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-22 (augmentation exercices PC Terminale ICCER & ERA → 30/chapitre)
+**Dernière mise à jour** : 2026-03-25 (audit exhaustif Maths Seconde — 14 chapitres analysés)
 **Périmètre** : exercices.html, ds.html, qcm.html et interro.html — 8 sections (maths seconde/première/terminale, physique-chimie seconde/première-iccer/première-era/terminale-iccer/terminale-era)
 **Méthode** : échantillonnage de 2-3 fichiers exercices.html et 2-3 fichiers ds.html par section, lecture et analyse qualitative.
 
@@ -18,20 +18,48 @@
 
 ### 1. Maths — Seconde
 
-**Qualité globale : 5/5**
+**Qualité globale : 4.5/5** *(révisé 2026-03-25 — audit exhaustif des 14 chapitres avec lecture directe des fichiers ; était 5/5 basé sur un échantillon de 3 chapitres, puis 4/5 sur la base d'un audit périmé)*
 
-**Fichiers analysés** : ch01/exercices.html, ch07/exercices.html, ch14/exercices.html, ch01/ds.html, ch07/ds.html, ch14/ds.html
+**Fichiers analysés** : tous les 14 chapitres (ch01-ch14), exercices.html — vérification directe fichier par fichier, 2026-03-25
+
+**Couverture des fichiers** : 14/14 chapitres ont les 6 types obligatoires (lecon, exercices, ds, fiche, qcm, interro). 2/14 ont simulation.html (ch05, ch06). **0/14 ont activite.html.**
+
+#### Tableau par chapitre — état vérifié au 25 mars 2026
+
+| Ch | Titre | Exercices | Corrigés | Couverture | Socle | Std | Appro |
+|----|-------|-----------|----------|-----------|-------|-----|-------|
+| 01 | Proportionnalité et pourcentages | 30 | 30 | **100%** ✓ | 12 | 10 | 8 |
+| 02 | Statistiques à une variable | 30 | 30 | **100%** ✓ | 15 | 11 | **4** ⚠ |
+| 03 | Indicateurs statistiques | 30 | 30 | **100%** ✓ | 17 | 10 | **3** ⚠ |
+| 04 | Probabilités et fluctuation | 30 | 30 | **100%** ✓ | 15 | **8** ⚠ | 7 |
+| 05 | Équations du premier degré | 30 | 30 | **100%** ✓ | 12 | 10 | 8 |
+| 06 | Inéquations du premier degré | 42 | 42 | **100%** ✓ | 19 | 12 | 11 |
+| 07 | Notion de fonction | 40 | 40 | **100%** ✓ | 18 | 12 | 10 |
+| 08 | Fonction linéaire | 41 | 41 | **100%** ✓ | 18 | 12 | 11 |
+| 09 | Fonction affine | 48 | 48 | **100%** ✓ | 23 | 14 | 11 |
+| 10 | Fonction carré et variations | 46 | 46 | **100%** ✓ | 19 | 15 | 12 |
+| 11 | Figures planes | 40 | 40 | **100%** ✓ | 15 | 14 | 11 |
+| 12 | Pythagore et réciproque | 40 | 40 | **100%** ✓ | 15 | 14 | 11 |
+| 13 | Thalès dans le triangle | 45 | 45 | **100%** ✓ | 19 | 15 | 11 |
+| 14 | Solides, volumes, agrandissement | 46 | 46 | **100%** ✓ | 16 | 15 | **15** ★ |
+| **Total** | | **518** | **518** | **100% ✓** | | | |
 
 **Points forts** :
-- Différenciation pédagogique complète et systématique (socle/standard/appro) sur tous les fichiers.
-- Corrections présentes pour tous les exercices (`.corr` + bouton `.bc`).
-- Progression de difficulté claire : Niveau 1 (bases) → Niveau 2 (guidé) → Niveau 3 (autonomie) → Niveau 4 (contexte pro).
-- Contextes professionnels variés et pertinents : menuiserie (colle à bois, pose parquet, étagères), maintenance automobile, tuyauterie, béton.
-- Éléments interactifs de qualité : graphiques Chart.js (ch01), graphes SVG (ch07), canvas interactif pour tracer des fonctions (ch07), QCM (ch14).
-- DS très bien structurés avec barèmes, compétences (APP/ANA/REA/VAL/COM), et versions socle pré-remplies.
+- **518 exercices, 100% corrigés** (mises à jour du 2026-03-22 : augmentation à 30–48 exercices par chapitre, numérotation séquentielle harmonisée, format uniformisé).
+- Différenciation (socle/standard/appro avec diff.js) systématique sur les 14 chapitres.
+- Contextes professionnels menuiserie-agencement bien intégrés, dont ch12 (équerrage de cadres, tracé chantier) et ch13 (réduction/agrandissement en atelier).
+- Ch06, ch07, ch08 : exercices avec textarea (espace de travail élève) et canvas/Chart.js.
+- Ch14 : différenciation exemplaire (16/15/15 — parfaitement équilibré).
+- DS 100% corrigés avec barèmes, compétences (APP/ANA/REA/VAL/COM).
+- Liens retour corrects sur tous les chapitres (ch11 et ch12 corrigés).
 
 **Points faibles** :
-- L'exercice 12 du ch07 est étiqueté « type BTS » — potentiellement trop ambitieux pour une seconde Bac Pro, même en approfondissement.
+- Ch02 (4 blocs appro) et ch03 (3 blocs appro) : approfondissement très insuffisant pour les élèves en poursuite BTS. Objectif : 10-12 blocs.
+- Ch04 : standard faible (8 blocs) et approfondissement limité (7 blocs).
+- Aucun `activite.html` dans les 14 chapitres (situation-problème de découverte).
+- Simulations uniquement pour ch05 et ch06 — ch07-ch10 (fonctions) bénéficieraient d'outils de visualisation interactive.
+- CSS inline : `.methode` et `.cell-blank` redéfinis dans ch10 (et ch06, ch09) alors que `.meth` est déjà dans styles.css.
+- Ch07 exercice 12 : étiquette « type BTS » potentiellement décourageante pour une seconde Bac Pro.
 
 ---
 
@@ -417,6 +445,36 @@ Les deux fonctionnent, mais l'incohérence peut créer de la confusion lors de l
 
 ---
 
+### 8. activite.html manquant dans tous les chapitres de Maths Seconde (2026-03-25)
+
+**Gravité : MOYENNE**
+
+Aucun des 14 chapitres de `maths/seconde/` ne possède de fichier `activite.html` (situation-problème guidée vers la notion). Ce fichier est recommandé par la structure de chapitre du projet. Les simulations sont également absentes de 12 chapitres sur 14 (seuls ch05 et ch06 en ont une).
+
+Les chapitres suivants bénéficieraient particulièrement d'une activité de découverte ou d'une simulation :
+- ch07-ch10 (Fonctions) : visualisation des tracés, exploration des paramètres a, b
+- ch11-ch14 (Géométrie) : manipulation de figures, mesures interactives
+
+**Chapitres concernés** : ch01 à ch14 (0/14 activite.html)
+
+---
+
+### 9. Approfondissement insuffisant en statistiques/probabilités Seconde (2026-03-25)
+
+**Gravité : HAUTE**
+
+Les chapitres ch02, ch03, ch04 ont un nombre de blocs `diff-appro` très inférieur aux autres chapitres et aux attentes pour des élèves en poursuite BTS :
+
+| Chapitre | Blocs appro | Objectif | Écart |
+|---|---|---|---|
+| ch02 (Statistiques à une variable) | 4 | 10-12 | **−6 à −8** |
+| ch03 (Indicateurs statistiques) | 3 | 10-12 | **−7 à −9** |
+| ch04 (Probabilités) | 7 | 10-12 | **−3 à −5** |
+
+Les statistiques et probabilités font partie des thèmes clés du programme BTS. Un élève de Seconde en poursuite manque de matière d'approfondissement sur ces notions fondamentales.
+
+---
+
 ### 7. Problèmes structurels identifiés en Seconde (2026-03-19)
 
 **Gravité : MOYENNE**
@@ -484,6 +542,7 @@ De nombreux fichiers `exercices.html` redéfinissent des classes déjà présent
   - Tous différenciés (socle/standard/appro) avec corrections complètes
   - Contextes professionnels ICCER (chauffagiste, CVC, PAC, solaire) et ERA (menuisier, agenceur, ébéniste)
 - **2026-03-22** : 84/84 interro.html complètes (Bac Pro). Ajout d'un Sujet B à chaque interro (252 sujets B, ~1 260 nouvelles questions avec corrections)
+- **2026-03-25** : Audit exhaustif Maths Seconde — vérification directe des 14 fichiers exercices.html. État réel : 518 exercices, **100% corrigés** (les audits précédents étaient périmés ou inexacts). Révision note : 4.5/5. Problèmes résolus depuis 2026-03-22 : numérotation séquentielle harmonisée, liens retour ch11/ch12 corrigés. Problèmes restants : approfondissement insuffisant ch02 (4), ch03 (3), ch04 (7) ; 0/14 activite.html ; simulations absentes ch07-ch10
 
 ---
 
@@ -518,10 +577,21 @@ De nombreux fichiers `exercices.html` redéfinissent des classes déjà présent
 - [ ] Vérifier la présence de boutons `.bc` pour chaque bloc `.corr`
 - [ ] Auditer les DS : barème, durée, couverture des capacités
 
+### Priorité haute (Maths Seconde, 2026-03-25)
+- [ ] Renforcer l'approfondissement de ch02 (4→10 blocs) — statistiques à une variable pour BTS
+- [ ] Renforcer l'approfondissement de ch03 (3→10 blocs) — indicateurs statistiques pour BTS
+- [ ] Renforcer l'approfondissement de ch04 (7→10 blocs) — probabilités pour BTS
+
+### Priorité moyenne (Maths Seconde, 2026-03-25)
+- [ ] Créer les 14 `activite.html` manquants (0/14) — situations-problèmes de découverte
+- [ ] Ajouter simulation.html pour les chapitres fonctions (ch07, ch08, ch09, ch10) — tracé interactif
+- [ ] Remplacer le label « type BTS » → « Approfondissement » dans ch07/exercices.html
+- [ ] Nettoyer le CSS inline redéfini : `.methode` dans ch06, ch09, ch10 (utiliser `.meth` de styles.css)
+
 ### Priorité moyenne (structurel Seconde, 2026-03-19)
-- [ ] Harmoniser la numérotation des exercices : adopter la numérotation séquentielle (comme maths ch05) ou préfixée (S1/S2/S3 comme maths ch07) pour éviter les doublons en mode "Tout voir"
+- [x] ~~Harmoniser la numérotation des exercices~~ — **RÉSOLU 2026-03-22** (numérotation séquentielle sur tous les chapitres)
 - [ ] Nettoyer le CSS inline redéfini dans les fichiers exercices.html de Seconde (centraliser dans `styles.css`)
-- [ ] Corriger les liens retour dans maths/seconde/ch11 et ch12 (`index.html` → `maths-2nde-mama.html`)
+- [x] ~~Corriger les liens retour dans maths/seconde/ch11 et ch12~~ — **RÉSOLU** (vérifié 2026-03-25, liens corrects)
 - [ ] Supprimer la fonction `toggle()` morte dans physique-chimie/seconde/ch11/exercices.html
 
 ### Priorité basse
@@ -536,11 +606,11 @@ De nombreux fichiers `exercices.html` redéfinissent des classes déjà présent
 
 ## Synthese
 
-**Note globale du site : 4.6/5** *(rectifié 2026-03-22, était 4.5/5 — PC Terminale ICCER et ERA passent à 5/5)*
+**Note globale du site : 4.6/5** *(rectifié 2026-03-25 — Maths Seconde 4.5/5 après vérification directe : 518 exercices tous corrigés)*
 
 | Section | Note | Statut |
 |---|---|---|
-| Maths Seconde | 5/5 | Exemplaire — modèle à suivre |
+| Maths Seconde | 4.5/5 | Très bon — 518 exercices 100% corrigés, différenciation systématique, DS exemplaires ; approfondissement ch02-ch04 insuffisant, 0/14 activite.html, simulations à créer pour ch07-ch10 |
 | Maths Première | 4/5 | Complet, différenciation formelle à généraliser (seul ch09 utilise diff.js) |
 | Maths Terminale | 4.5/5 | Très bon, différenciation systématique, ch11 à vérifier (programme) |
 | PC Seconde | 4/5 | Bon, différenciation à systématiser |
