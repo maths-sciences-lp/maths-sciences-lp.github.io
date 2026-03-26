@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Activité – Fonctions exponentielles et logarithme décimal – Terminale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header>
+  <h1>Activité — Fonctions exponentielles et logarithme décimal</h1>
+  <p class="sous-titre">Chapitre 5 &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 30 min</p>
+</header>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre le lien entre suite géométrique et fonction exponentielle</li>
+    <li>Utiliser le logarithme décimal pour résoudre \(a^x = b\)</li>
+    <li>Appliquer ces outils à un problème de dépréciation ou de croissance</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation professionnelle — Dépréciation d'une machine CNC</h2>
+  <p><em>Responsable d'atelier : Sophie Leroy — menuiserie <strong>Leroy Agencement</strong>, Auch.</em></p>
+  <p>Sophie achète une machine CNC pour <strong>45 000 €</strong>. Sa valeur diminue de <strong>18 %</strong> chaque année. On note \(V(t)\) la valeur après \(t\) années.</p>
+  <p>On a : \(V(t) = 45\,000 \times 0{,}82^t\)</p>
+  <table>
+    <thead><tr><th>Année \(t\)</th><th>0</th><th>1</th><th>2</th><th>5</th></tr></thead>
+    <tbody>
+      <tr><td>Valeur \(V(t)\) (€)</td><td>45 000</td><td>36 900</td><td>?</td><td>?</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="exo">
+  <h2>Question 1 &nbsp;<span class="badge-blue">APP</span></h2>
+  <ol type="a">
+    <li>Pourquoi la raison de la suite est-elle \(q = 0{,}82\) ? (Lien avec −18 %)</li>
+    <li>La fonction \(V(t) = 45\,000 \times 0{,}82^t\) est-elle du type \(a^t\) ? Quelle est la base \(a\) ?</li>
+    <li>La valeur de la machine peut-elle atteindre 0 € ? Justifie.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Perdre 18 % = garder 82 % = multiplier par \(1 - 0{,}18 = 0{,}82\).</li>
+      <li>Oui, c'est de la forme \(45\,000 \times a^t\) avec \(a = 0{,}82\). Comme \(0 < a < 1\), la fonction est décroissante.</li>
+      <li>Non : \(0{,}82^t > 0\) pour tout \(t\), donc \(V(t) > 0\) toujours. La valeur décroît sans jamais atteindre 0.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Complète le tableau : calcule \(V(2)\) et \(V(5)\). Utilise une calculatrice.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(V(2) = 45\,000 \times 0{,}82^2 = 45\,000 \times 0{,}6724 \approx 30\,258\,€\)<br>
+    \(V(5) = 45\,000 \times 0{,}82^5 = 45\,000 \times 0{,}3707 \approx 16\,682\,€\)
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>Sophie veut savoir à partir de quelle année la machine vaut moins de <strong>10 000 €</strong>.</p>
+  <p>On cherche \(t\) tel que \(45\,000 \times 0{,}82^t < 10\,000\).</p>
+  <ol type="a">
+    <li>Simplifie l'inégalité pour obtenir \(0{,}82^t < k\). Quelle est la valeur de \(k\) ?</li>
+    <li>Teste \(t = 8\), \(t = 9\) et \(t = 10\) pour trouver la première année où cela se produit.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(0{,}82^t < \dfrac{10\,000}{45\,000} = \dfrac{2}{9} \approx 0{,}222\)</li>
+      <li>
+        \(0{,}82^8 \approx 0{,}2044 < 0{,}222\) ✔ → \(V(8) \approx 45\,000 \times 0{,}2044 \approx 9\,200\,€ < 10\,000\)<br>
+        \(0{,}82^7 \approx 0{,}2493 > 0{,}222\) → \(V(7) \approx 11\,219\,€ > 10\,000\)<br>
+        La machine passe sous 10 000 € à partir de l'<strong>année 8</strong>.
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>On peut aussi résoudre \(0{,}82^t = 0{,}222\) avec le logarithme décimal.</p>
+  <div class="meth"><strong>Propriété :</strong> \(\log(a^t) = t \times \log(a)\) &nbsp;|&nbsp; Résoudre \(a^t = b\) : \(t = \dfrac{\log b}{\log a}\)</div>
+  <ol type="a">
+    <li>Calcule \(\log(0{,}222)\) et \(\log(0{,}82)\) à la calculatrice.</li>
+    <li>En déduire la valeur exacte de \(t\) (non entière). Est-ce cohérent avec la question 3 ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\log(0{,}222) \approx -0{,}654\) &nbsp;et&nbsp; \(\log(0{,}82) \approx -0{,}0862\)</li>
+      <li>\(t = \dfrac{-0{,}654}{-0{,}0862} \approx 7{,}59\) — la machine passe sous 10 000 € entre \(t=7\) et \(t=8\), donc à partir de l'année 8 (entier supérieur). ✔</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 &nbsp;<span class="badge-green">VAL</span></h2>
+  <p>Un concurrent a une fraiseuse dont la valeur suit \(W(t) = 30\,000 \times 0{,}75^t\).</p>
+  <ol type="a">
+    <li>Quel est le taux annuel de dépréciation de cette fraiseuse ?</li>
+    <li>Après combien d'années vaut-elle moins de 5 000 € ? (Utilise \(\log\).)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Base \(a = 0{,}75\) → dépréciation de \(1 - 0{,}75 = 0{,}25 = \mathbf{25\,\%}\) par an.</li>
+      <li>\(30\,000 \times 0{,}75^t < 5\,000\) → \(0{,}75^t < \dfrac{1}{6}\)<br>
+      \(t > \dfrac{\log(1/6)}{\log(0{,}75)} = \dfrac{-0{,}778}{-0{,}125} \approx 6{,}23\) → à partir de l'<strong>année 7</strong>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <h3 style="margin-top:12px;color:#1e3a8a">Fonction exponentielle et logarithme décimal</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>\(f(t) = a^t\) : si \(0 < a < 1\) → décroissante ; si \(a > 1\) → croissante</li>
+    <li>\(\log(a^t) = t \times \log(a)\)</li>
+    <li>Résoudre \(a^t = b\) : \(t = \dfrac{\log b}{\log a}\)</li>
+    <li>Dépréciation de \(p\,\%\) → \(V(t) = V_0 \times (1 - \tfrac{p}{100})^t\)</li>
+  </ul>
+</div>
+<div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch05 →</a></div>
+</div>
+<script src="../../../nav.js"></script>
+<script>function toggle(btn){var corr=btn.nextElementSibling;if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}else{corr.style.display='block';btn.textContent='Masquer la correction';}}</script>
+</body>
+</html>

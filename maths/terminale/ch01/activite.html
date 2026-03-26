@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Activité – Statistiques à deux variables – Terminale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header>
+  <h1>Activité — Statistiques à deux variables</h1>
+  <p class="sous-titre">Chapitre 1 &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 35 min</p>
+</header>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Représenter un nuage de points et identifier le point moyen</li>
+    <li>Comprendre la notion d'ajustement affine (droite de régression)</li>
+    <li>Interpréter le coefficient de corrélation \(r\)</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation professionnelle — Analyse coût/surface de chantiers</h2>
+  <p><em>Technicien d'agencement : Romain Bex — bureau d'études <strong>Bois Concept 64</strong>, Pau.</em></p>
+  <p>Romain analyse 6 chantiers récents pour établir un modèle de tarification. Il relève la surface aménagée (en m²) et le coût de revient (en €) :</p>
+  <table>
+    <thead><tr><th>Chantier</th><th>Surface \(x\) (m²)</th><th>Coût \(y\) (€)</th></tr></thead>
+    <tbody>
+      <tr><td>A</td><td>15</td><td>2 100</td></tr>
+      <tr><td>B</td><td>22</td><td>2 900</td></tr>
+      <tr><td>C</td><td>30</td><td>4 050</td></tr>
+      <tr><td>D</td><td>35</td><td>4 600</td></tr>
+      <tr><td>E</td><td>42</td><td>5 500</td></tr>
+      <tr><td>F</td><td>50</td><td>6 400</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="exo">
+  <h2>Question 1 &nbsp;<span class="badge-blue">APP</span></h2>
+  <ol type="a">
+    <li>Quelle est la variable explicative (\(x\)) ? Quelle est la variable expliquée (\(y\)) ?</li>
+    <li>Quand la surface augmente, que fait le coût ? Parle-t-on de liaison positive ou négative ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(x\) = surface (m²) — variable explicative. \(y\) = coût (€) — variable expliquée.</li>
+      <li>Quand \(x\) augmente, \(y\) augmente aussi → <strong>liaison positive</strong>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Calcule les coordonnées du <strong>point moyen</strong> \(G(\bar{x}\,;\,\bar{y})\).</p>
+  <div class="meth"><strong>Rappel :</strong> \(\bar{x} = \dfrac{\sum x_i}{n}\) &nbsp;et&nbsp; \(\bar{y} = \dfrac{\sum y_i}{n}\)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\bar{x} = \dfrac{15+22+30+35+42+50}{6} = \dfrac{194}{6} \approx 32{,}3\,\text{m}^2\)<br>
+    \(\bar{y} = \dfrac{2100+2900+4050+4600+5500+6400}{6} = \dfrac{25550}{6} \approx 4\,258\,€\)<br>
+    Point moyen : \(G(32{,}3\,;\,4258)\)
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>La droite de régression de \(y\) en \(x\) est : \(y = 121{,}4x + 340\).</p>
+  <ol type="a">
+    <li>Que représente le coefficient 121,4 dans ce contexte professionnel ?</li>
+    <li>Que représente le terme 340 ?</li>
+    <li>Vérifie que le point moyen \(G\) est (approximativement) sur cette droite.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>121,4 €/m² : le coût augmente d'environ <strong>121 € par m² supplémentaire</strong>.</li>
+      <li>340 € : coût fixe (déplacement, frais de chantier) indépendant de la surface.</li>
+      <li>\(121{,}4 \times 32{,}3 + 340 \approx 3921 + 340 = 4261\,€ \approx 4258\,€\) ✔ (écart dû aux arrondis)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Utilise la droite de régression pour estimer le coût d'un chantier de :</p>
+  <ol type="a">
+    <li>25 m² (<strong>interpolation</strong> — dans l'intervalle des données)</li>
+    <li>60 m² (<strong>extrapolation</strong> — hors de l'intervalle)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(y = 121{,}4 \times 25 + 340 = 3035 + 340 = 3\,375\,€\) — estimation fiable.</li>
+      <li>\(y = 121{,}4 \times 60 + 340 = 7284 + 340 = 7\,624\,€\) — à utiliser avec prudence : l'extrapolation peut être imprécise.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>Le coefficient de corrélation linéaire vaut \(r = 0{,}998\).</p>
+  <ol type="a">
+    <li>\(r\) est-il proche de 1, de 0 ou de −1 ? Que peut-on en déduire ?</li>
+    <li>La droite de régression est-elle un bon modèle pour ces données ? Justifie.</li>
+    <li>Si \(r = 0{,}3\), que changerait-il ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(r = 0{,}998 \approx 1\) → <strong>liaison linéaire très forte et positive</strong>.</li>
+      <li>Oui, excellent modèle : les points sont très proches de la droite.</li>
+      <li>Si \(r = 0{,}3\), la liaison linéaire serait faible — la droite ne serait pas un bon modèle.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 &nbsp;<span class="badge-yellow">COM</span></h2>
+  <p>Complète le résumé :</p>
+  <blockquote style="background:#f8fafc;border-left:4px solid var(--p);padding:14px 18px;margin:10px 0;border-radius:0 8px 8px 0;line-height:2.1">
+    Le <strong>nuage de points</strong> représente graphiquement la série (____ ; ____).<br>
+    Le <strong>point moyen</strong> \(G\) a pour coordonnées (\(\bar{x}\) ; ____).<br>
+    La droite de régression passe toujours par ____.<br>
+    Le coefficient \(r\) mesure l'intensité de la liaison : \(|r|\) proche de ____ = liaison forte.
+  </blockquote>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Nuage de points : (\(x_i\) ; \(y_i\)).<br>
+    Point moyen : (\(\bar{x}\) ; <strong>\(\bar{y}\)</strong>).<br>
+    La droite passe par <strong>le point moyen \(G\)</strong>.<br>
+    \(|r|\) proche de <strong>1</strong> = liaison forte.
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <h3 style="margin-top:12px;color:#1e3a8a">Statistiques à deux variables</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li><strong>Point moyen :</strong> \(G(\bar{x}\,;\,\bar{y})\)</li>
+    <li><strong>Droite de régression :</strong> \(y = ax + b\) — passe par \(G\)</li>
+    <li><strong>Coefficient de corrélation \(r\) :</strong> \(-1 \leq r \leq 1\)<br>
+    \(|r| \approx 1\) → liaison forte &nbsp;|&nbsp; \(r > 0\) → liaison positive</li>
+  </ul>
+</div>
+<div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch01 →</a></div>
+</div>
+<script src="../../../nav.js"></script>
+<script>function toggle(btn){var corr=btn.nextElementSibling;if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}else{corr.style.display='block';btn.textContent='Masquer la correction';}}</script>
+</body>
+</html>

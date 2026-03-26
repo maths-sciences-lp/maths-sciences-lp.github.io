@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Activité – Fonctions polynômes de degré 3 – Terminale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header>
+  <h1>Activité — Fonctions polynômes de degré 3</h1>
+  <p class="sous-titre">Chapitre 4 &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 35 min</p>
+</header>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier un polynôme de degré 3 et calculer sa dérivée</li>
+    <li>Étudier le signe de la dérivée pour dresser un tableau de variations</li>
+    <li>Trouver le maximum ou minimum d'une fonction dans un contexte d'optimisation</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation professionnelle — Fabrication d'une boîte de rangement</h2>
+  <p><em>Menuisier : Martin Rousseau — atelier <strong>Bois &amp; Volume</strong>, Tarbes.</em></p>
+  <p>Martin découpe une plaque carrée de MDF de <strong>30 cm de côté</strong>. Il enlève un carré de côté \(x\) cm à chaque coin, puis relève les côtés pour former une boîte ouverte.</p>
+  <p>Le volume de la boîte est : \(V(x) = x(30 - 2x)^2\), avec \(0 < x < 15\).</p>
+  <p>En développant : \(V(x) = 4x^3 - 120x^2 + 900x\).</p>
+</div>
+
+<div class="exo">
+  <h2>Question 1 &nbsp;<span class="badge-blue">APP</span></h2>
+  <ol type="a">
+    <li>Quel est le degré de \(V(x) = 4x^3 - 120x^2 + 900x\) ? Identifie les coefficients \(a\), \(b\), \(c\), \(d\).</li>
+    <li>Que représente \(x\) physiquement ? Pourquoi doit-on avoir \(0 < x < 15\) ?</li>
+    <li>Calcule \(V(5)\) et \(V(10)\). Que représentent ces valeurs ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Degré 3 : \(a=4\), \(b=-120\), \(c=900\), \(d=0\).</li>
+      <li>\(x\) est le côté du carré découpé. Si \(x \geq 15\), il ne reste rien à relever.</li>
+      <li>\(V(5) = 4 \times 125 - 120 \times 25 + 900 \times 5 = 500 - 3000 + 4500 = \mathbf{2\,000\,\text{cm}^3}\)<br>
+      \(V(10) = 4 \times 1000 - 120 \times 100 + 900 \times 10 = 4000 - 12000 + 9000 = \mathbf{1\,000\,\text{cm}^3}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Calcule la dérivée \(V'(x)\) de \(V(x) = 4x^3 - 120x^2 + 900x\).</p>
+  <div class="meth"><strong>Rappel :</strong> \((ax^3)' = 3ax^2\) &nbsp;|&nbsp; \((bx^2)' = 2bx\) &nbsp;|&nbsp; \((cx)' = c\)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(V'(x) = 3 \times 4x^2 - 2 \times 120x + 900 = 12x^2 - 240x + 900\)
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Pour trouver les extremums, on résout \(V'(x) = 0\).</p>
+  <ol type="a">
+    <li>Mets en évidence un facteur commun dans \(V'(x) = 12x^2 - 240x + 900\).</li>
+    <li>Résous \(V'(x) = 0\) (équation du 2nd degré après simplification).</li>
+    <li>Les solutions sont-elles dans l'intervalle \(]0\,;\,15[\) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(V'(x) = 12(x^2 - 20x + 75)\)</li>
+      <li>\(\Delta = 400 - 300 = 100\) → \(x_1 = \dfrac{20 - 10}{2} = 5\) &nbsp;et&nbsp; \(x_2 = \dfrac{20 + 10}{2} = 15\)</li>
+      <li>\(x_1 = 5 \in \,]0\,;\,15[\) ✔ &nbsp;|&nbsp; \(x_2 = 15 \notin \,]0\,;\,15[\) (borne exclue)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>Signe de \(V'(x) = 12(x-5)(x-15)\) sur \(]0\,;\,15[\).</p>
+  <ol type="a">
+    <li>Complète le tableau de signes : pour \(0 < x < 5\), le facteur \((x-5)\) est-il positif ou négatif ? Et \((x-15)\) ?</li>
+    <li>En déduire le signe de \(V'(x)\) sur chaque intervalle.</li>
+    <li>La fonction \(V\) est-elle croissante ou décroissante sur \(]0\,;\,5[\) ? Sur \(]5\,;\,15[\) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Sur \(]0\,;\,5[\) : \((x-5) < 0\) et \((x-15) < 0\).<br>
+      Sur \(]5\,;\,15[\) : \((x-5) > 0\) et \((x-15) < 0\).</li>
+      <li>Sur \(]0\,;\,5[\) : \(V'(x) = 12 \times (-) \times (-) > 0\) — positif.<br>
+      Sur \(]5\,;\,15[\) : \(V'(x) = 12 \times (+) \times (-) < 0\) — négatif.</li>
+      <li>\(V\) est <strong>croissante</strong> sur \(]0\,;\,5[\) puis <strong>décroissante</strong> sur \(]5\,;\,15[\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <ol type="a">
+    <li>La fonction \(V\) admet-elle un maximum ou un minimum en \(x = 5\) ? Justifie.</li>
+    <li>Calcule \(V(5)\). Quelle doit être la découpe pour maximiser le volume ?</li>
+    <li>Quelles sont les dimensions de la boîte optimale ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>En \(x=5\), \(V'\) change de signe de \(+\) à \(-\) → c'est un <strong>maximum local</strong>.</li>
+      <li>\(V(5) = 4 \times 125 - 120 \times 25 + 900 \times 5 = 500 - 3000 + 4500 = \mathbf{2\,000\,\text{cm}^3}\)<br>
+      Il faut découper des carrés de <strong>5 cm de côté</strong>.</li>
+      <li>Longueur = largeur = \(30 - 2 \times 5 = 20\) cm, hauteur = 5 cm → boîte 20 × 20 × 5 cm.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <h3 style="margin-top:12px;color:#1e3a8a">Fonctions polynômes de degré 3</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>Forme : \(f(x) = ax^3 + bx^2 + cx + d\) avec \(a \neq 0\)</li>
+    <li>Dérivée : \(f'(x) = 3ax^2 + 2bx + c\) (polynôme de degré 2)</li>
+    <li>Si \(f'(x) > 0\) : \(f\) est croissante &nbsp;|&nbsp; Si \(f'(x) < 0\) : \(f\) est décroissante</li>
+    <li>Là où \(f'\) change de signe : <strong>extremum local</strong> (max ou min)</li>
+  </ul>
+</div>
+<div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch04 →</a></div>
+</div>
+<script src="../../../nav.js"></script>
+<script>function toggle(btn){var corr=btn.nextElementSibling;if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}else{corr.style.display='block';btn.textContent='Masquer la correction';}}</script>
+</body>
+</html>

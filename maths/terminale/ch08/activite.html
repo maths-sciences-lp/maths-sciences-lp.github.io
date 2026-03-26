@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Activité – Calcul intégral – Terminale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header>
+  <h1>Activité — Calcul intégral</h1>
+  <p class="sous-titre">Chapitre 8 &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 35 min</p>
+</header>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre que l'intégrale mesure une aire sous une courbe</li>
+    <li>Calculer une intégrale à partir d'une primitive</li>
+    <li>Appliquer le calcul intégral à une situation professionnelle (section, énergie)</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation professionnelle — Section d'un profil bois cintré</h2>
+  <p><em>Ébéniste : Émilie Bonnet — atelier <strong>Bonnet Ébénisterie</strong>, Rodez.</em></p>
+  <p>Émilie crée des pièces de bois cintrées dont la section transversale est délimitée par la courbe \(f(x) = -x^2 + 4\) (en cm) et l'axe des abscisses, pour \(x \in [-2\,;\,2]\).</p>
+  <p>Elle veut calculer la <strong>section</strong> (aire en cm²) de cette pièce pour estimer la quantité de matière.</p>
+</div>
+
+<div class="exo">
+  <h2>Question 1 &nbsp;<span class="badge-blue">APP</span></h2>
+  <ol type="a">
+    <li>Calcule \(f(0)\), \(f(1)\) et \(f(2)\). Que représentent ces valeurs ?</li>
+    <li>Où la courbe coupe-t-elle l'axe des abscisses ? (Résous \(f(x) = 0\).)</li>
+    <li>La courbe est-elle au-dessus ou en dessous de l'axe sur \([-2\,;\,2]\) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(f(0) = 4\) cm, \(f(1) = 3\) cm, \(f(2) = 0\) cm — ce sont les hauteurs du profil à chaque abscisse.</li>
+      <li>\(-x^2 + 4 = 0\) → \(x^2 = 4\) → \(x = -2\) ou \(x = 2\). La courbe coupe l'axe en \(x = \pm 2\).</li>
+      <li>Sur \(]-2\,;\,2[\), \(f(x) = 4 - x^2 > 0\) : la courbe est <strong>au-dessus</strong> de l'axe.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>L'aire sous la courbe entre \(x = -2\) et \(x = 2\) est donnée par :</p>
+  <p style="text-align:center">\(\mathcal{A} = \displaystyle\int_{-2}^{2} f(x)\,\mathrm{d}x = \displaystyle\int_{-2}^{2} (-x^2 + 4)\,\mathrm{d}x\)</p>
+  <ol type="a">
+    <li>Quelle primitive \(F(x)\) de \(f(x) = -x^2 + 4\) peux-tu trouver ?</li>
+    <li>Rappelle la méthode : que vaut \(\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x\) en fonction de \(F\) ?</li>
+  </ol>
+  <div class="meth"><strong>Primitives usuelles :</strong> \(\displaystyle\int x^n\,\mathrm{d}x = \dfrac{x^{n+1}}{n+1}\) &nbsp;|&nbsp; \(\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x = F(b) - F(a)\)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(F(x) = -\dfrac{x^3}{3} + 4x\)</li>
+      <li>\(\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x = F(b) - F(a)\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Calcule la section de la pièce en appliquant \(\mathcal{A} = F(2) - F(-2)\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(F(2) = -\dfrac{8}{3} + 8 = \dfrac{-8 + 24}{3} = \dfrac{16}{3}\)<br><br>
+    \(F(-2) = -\dfrac{-8}{3} + 4 \times (-2) = \dfrac{8}{3} - 8 = \dfrac{8 - 24}{3} = -\dfrac{16}{3}\)<br><br>
+    \(\mathcal{A} = \dfrac{16}{3} - \left(-\dfrac{16}{3}\right) = \dfrac{32}{3} \approx 10{,}67\,\text{cm}^2\)
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Calcule les intégrales suivantes (primitives simples) :</p>
+  <ol type="a">
+    <li>\(\displaystyle\int_{0}^{3} (2x + 1)\,\mathrm{d}x\)</li>
+    <li>\(\displaystyle\int_{1}^{4} x^2\,\mathrm{d}x\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Primitive : \(F(x) = x^2 + x\) &nbsp;→&nbsp; \(F(3) - F(0) = (9+3) - 0 = \mathbf{12}\)</li>
+      <li>Primitive : \(F(x) = \dfrac{x^3}{3}\) &nbsp;→&nbsp; \(F(4) - F(1) = \dfrac{64}{3} - \dfrac{1}{3} = \dfrac{63}{3} = \mathbf{21}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>Émilie produit 500 pièces identiques. La valeur moyenne du profil sur \([-2\,;\,2]\) est :</p>
+  <p style="text-align:center">\(\overline{f} = \dfrac{1}{b-a}\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x\)</p>
+  <ol type="a">
+    <li>Calcule la valeur moyenne de \(f\) sur \([-2\,;\,2]\).</li>
+    <li>Interprète ce résultat : que représente-t-il pour la pièce en bois ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\overline{f} = \dfrac{1}{2-(-2)} \times \dfrac{32}{3} = \dfrac{1}{4} \times \dfrac{32}{3} = \dfrac{32}{12} = \dfrac{8}{3} \approx 2{,}67\,\text{cm}\)</li>
+      <li>La hauteur moyenne de la section est d'environ <strong>2,67 cm</strong>. C'est comme si la pièce avait un profil rectangulaire de 4 cm × 2,67 cm de même aire.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <h3 style="margin-top:12px;color:#1e3a8a">Calcul intégral</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>\(\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x\) = aire algébrique sous la courbe entre \(a\) et \(b\)</li>
+    <li>Méthode : trouver une primitive \(F\) (telle que \(F' = f\)), puis calculer \(F(b) - F(a)\)</li>
+    <li>Primitives : \(\displaystyle\int x^n\,\mathrm{d}x = \dfrac{x^{n+1}}{n+1}\) &nbsp;|&nbsp; \(\displaystyle\int k\,\mathrm{d}x = kx\)</li>
+    <li>Valeur moyenne : \(\overline{f} = \dfrac{1}{b-a}\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x\)</li>
+  </ul>
+</div>
+<div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch08 →</a></div>
+</div>
+<script src="../../../nav.js"></script>
+<script>function toggle(btn){var corr=btn.nextElementSibling;if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}else{corr.style.display='block';btn.textContent='Masquer la correction';}}</script>
+</body>
+</html>

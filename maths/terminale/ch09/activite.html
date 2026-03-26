@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Activité – Fonctions ln et exponentielle – Terminale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header>
+  <h1>Activité — Fonctions ln et exponentielle</h1>
+  <p class="sous-titre">Chapitre 9 &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 30 min</p>
+</header>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Reconnaître la fonction exponentielle \(e^x\) et le logarithme naturel \(\ln(x)\)</li>
+    <li>Utiliser les propriétés de \(\ln\) pour résoudre des équations</li>
+    <li>Modéliser un phénomène de séchage ou de refroidissement</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation professionnelle — Séchage de planches de bois</h2>
+  <p><em>Responsable sécherie : Marc Faure — scierie <strong>Faure Bois</strong>, Aurillac.</em></p>
+  <p>Marc fait sécher des planches de chêne. L'humidité initiale est \(H_0 = 40\,\%\). Après \(t\) jours, l'humidité suit le modèle :</p>
+  <p style="text-align:center;font-size:1.1em">\(H(t) = 40 \times e^{-0{,}1t}\)</p>
+  <p>L'objectif est d'atteindre une humidité inférieure à <strong>12 %</strong> avant livraison.</p>
+</div>
+
+<div class="exo">
+  <h2>Question 1 &nbsp;<span class="badge-blue">APP</span></h2>
+  <ol type="a">
+    <li>Calcule \(H(0)\). Est-ce cohérent avec l'humidité initiale ?</li>
+    <li>La fonction \(H(t) = 40 \times e^{-0{,}1t}\) est-elle croissante ou décroissante ? Pourquoi ?</li>
+    <li>Calcule \(H(10)\) et \(H(20)\) (utilise \(e^{-1} \approx 0{,}368\) et \(e^{-2} \approx 0{,}135\)).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(H(0) = 40 \times e^0 = 40 \times 1 = \mathbf{40\,\%}\) ✔</li>
+      <li>L'exposant \(-0{,}1t\) est négatif et décroît → \(e^{-0{,}1t}\) décroît → \(H(t)\) est <strong>décroissante</strong>.</li>
+      <li>\(H(10) = 40 \times e^{-1} \approx 40 \times 0{,}368 = \mathbf{14{,}7\,\%}\)<br>
+      \(H(20) = 40 \times e^{-2} \approx 40 \times 0{,}135 = \mathbf{5{,}4\,\%}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 &nbsp;<span class="badge-blue">ANA</span></h2>
+  <p>Pour résoudre \(H(t) < 12\), on cherche \(t\) tel que \(40 \times e^{-0{,}1t} = 12\).</p>
+  <ol type="a">
+    <li>Isole \(e^{-0{,}1t}\) en divisant des deux membres.</li>
+    <li>Pour résoudre \(e^{u} = k\), on utilise \(u = \ln(k)\). Applique cette propriété.</li>
+    <li>Résous pour \(t\).</li>
+  </ol>
+  <div class="meth"><strong>Propriété fondamentale :</strong> \(e^u = k \Leftrightarrow u = \ln(k)\) &nbsp;(pour \(k > 0\))</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(e^{-0{,}1t} = \dfrac{12}{40} = 0{,}3\)</li>
+      <li>\(-0{,}1t = \ln(0{,}3)\)</li>
+      <li>\(t = \dfrac{\ln(0{,}3)}{-0{,}1} = \dfrac{-1{,}204}{-0{,}1} \approx \mathbf{12{,}0\,\text{jours}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Simplifie les expressions suivantes <strong>sans calculatrice</strong> :</p>
+  <ol type="a">
+    <li>\(\ln(e^3)\)</li>
+    <li>\(e^{\ln(5)}\)</li>
+    <li>\(\ln(e)\)</li>
+    <li>\(\ln(1)\)</li>
+  </ol>
+  <div class="meth"><strong>Rappels :</strong> \(\ln(e^a) = a\) &nbsp;|&nbsp; \(e^{\ln(a)} = a\) &nbsp;|&nbsp; \(\ln(e) = 1\) &nbsp;|&nbsp; \(\ln(1) = 0\)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\ln(e^3) = 3\)</li>
+      <li>\(e^{\ln(5)} = 5\)</li>
+      <li>\(\ln(e) = 1\)</li>
+      <li>\(\ln(1) = 0\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 &nbsp;<span class="badge-green">REA</span></h2>
+  <p>Utilise les propriétés du logarithme pour simplifier :</p>
+  <ol type="a">
+    <li>\(\ln(4) + \ln(25)\)</li>
+    <li>\(\ln(100) - \ln(4)\)</li>
+    <li>\(3\ln(2)\)</li>
+  </ol>
+  <div class="meth">\(\ln(ab) = \ln a + \ln b\) &nbsp;|&nbsp; \(\ln\!\left(\dfrac{a}{b}\right) = \ln a - \ln b\) &nbsp;|&nbsp; \(\ln(a^n) = n\ln a\)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(\ln(4 \times 25) = \ln(100) = \ln(10^2) = 2\ln(10) \approx 2 \times 2{,}303 \approx 4{,}605\)</li>
+      <li>\(\ln\!\left(\dfrac{100}{4}\right) = \ln(25)\)</li>
+      <li>\(\ln(2^3) = \ln(8)\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 &nbsp;<span class="badge-green">VAL</span></h2>
+  <p>Une autre planche suit \(T(t) = 20 + 60 \times e^{-0{,}05t}\) (modèle de Newton pour la température en °C).</p>
+  <ol type="a">
+    <li>Quelle est la température initiale \(T(0)\) ?</li>
+    <li>Vers quelle valeur tend \(T(t)\) quand \(t \to +\infty\) ? Que représente-t-elle ?</li>
+    <li>Après combien de temps la planche atteint-elle 35 °C ? (Résous l'équation.)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(T(0) = 20 + 60 \times 1 = \mathbf{80\,°C}\)</li>
+      <li>Quand \(t \to +\infty\), \(e^{-0{,}05t} \to 0\) → \(T(t) \to 20\,°C\). C'est la <strong>température ambiante</strong>.</li>
+      <li>\(20 + 60e^{-0{,}05t} = 35\) → \(60e^{-0{,}05t} = 15\) → \(e^{-0{,}05t} = 0{,}25\)<br>
+      \(-0{,}05t = \ln(0{,}25) \approx -1{,}386\) → \(t \approx \mathbf{27{,}7\,\text{min}}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <h3 style="margin-top:12px;color:#1e3a8a">Fonctions ln et exponentielle</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>\(e^x\) : toujours \(> 0\), croissante, \((e^x)' = e^x\)</li>
+    <li>\(\ln(x)\) : définie pour \(x > 0\), \(\ln(1) = 0\), \(\ln(e) = 1\)</li>
+    <li>Réciproques : \(e^{\ln x} = x\) et \(\ln(e^x) = x\)</li>
+    <li>Résoudre \(e^u = k\) : \(u = \ln(k)\) &nbsp;|&nbsp; Résoudre \(\ln(u) = b\) : \(u = e^b\)</li>
+    <li>Modèle exponentiel : \(f(t) = f_0 \times e^{-kt}\) (décroissance) ou \(f_0 \times e^{kt}\) (croissance)</li>
+  </ul>
+</div>
+<div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch09 →</a></div>
+</div>
+<script src="../../../nav.js"></script>
+<script>function toggle(btn){var corr=btn.nextElementSibling;if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}else{corr.style.display='block';btn.textContent='Masquer la correction';}}</script>
+</body>
+</html>
