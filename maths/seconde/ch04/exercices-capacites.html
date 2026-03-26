@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Exercices par capacités – Probabilités – 2nde MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 4 – Exercices par capacités</h1>
+  <p class="sous-titre">Probabilités &nbsp;|&nbsp; Seconde Bac Pro MAMA &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Identifier une expérience aléatoire ; définir l'univers et ses issues</li>
+    <li><strong>C2</strong> — Définir un événement ; calculer sa probabilité (équiprobabilité)</li>
+    <li><strong>C3</strong> — Utiliser les règles de calcul : événement contraire, réunion, intersection</li>
+    <li><strong>C4</strong> — Distinguer fréquence observée et probabilité théorique</li>
+    <li><strong>C5</strong> — Comprendre et illustrer la stabilisation des fréquences (loi des grands nombres)</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Univers et issues</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Probabilité d'un événement</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Calcul de probabilités</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Fréquence vs probabilité</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Stabilisation des fréquences</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Identifier une expérience aléatoire, définir l'univers</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Pour chaque situation, indiquer si c'est une expérience aléatoire et, si oui, écrire l'univers \(\Omega\) :</p>
+  <ol type="a">
+    <li>On tire une carte dans un jeu de 4 cartes numérotées 1, 2, 3, 4.</li>
+    <li>On mesure la longueur d'un litteau taillé à exactement 200 cm.</li>
+    <li>On choisit au hasard une pièce dans un lot de 5 pièces : 3 conformes (C) et 2 défectueuses (D).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Oui — \(\Omega = \{1, 2, 3, 4\}\)</li>
+      <li>Non — si la machine est parfaitement réglée, le résultat est certain (200 cm) : pas d'aléatoire.</li>
+      <li>Oui — \(\Omega = \{C_1, C_2, C_3, D_1, D_2\}\) (ou simplement \(\{C, D\}\) si on ne distingue pas les pièces)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>On lance un dé équilibré à 6 faces. Écrire l'univers, puis lister les issues de l'événement A « obtenir un nombre pair » et de l'événement B « obtenir un nombre supérieur ou égal à 4 ».</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\Omega = \{1, 2, 3, 4, 5, 6\}\)<br>
+    A = « pair » = \(\{2, 4, 6\}\) → 3 issues<br>
+    B = « ≥ 4 » = \(\{4, 5, 6\}\) → 3 issues
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un lot de 20 vis comprend 5 de type A, 8 de type B et 7 de type C. On tire une vis au hasard. Écrire l'univers et l'événement « tirer une vis de type B ou C ».</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\Omega = \{A, B, C\}\) (avec effectifs respectifs 5, 8, 7 — total 20)<br>
+    Événement « B ou C » = \(\{B, C\}\), il regroupe \(8 + 7 = 15\) issues sur 20.
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Calculer la probabilité d'un événement (équiprobabilité)</h2>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>On tire au hasard une carte parmi 10 cartes numérotées de 1 à 10 (équiprobabilité). Calculer :</p>
+  <ol type="a">
+    <li>\(P(\text{tirer le } 7)\)</li>
+    <li>\(P(\text{tirer un nombre pair})\)</li>
+    <li>\(P(\text{tirer un nombre supérieur à 7})\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    En équiprobabilité : \(P(A) = \frac{\text{nombre d'issues favorables}}{\text{nombre total d'issues}}\)
+    <ol type="a">
+      <li>\(P(7) = \frac{1}{10} = 0{,}1\)</li>
+      <li>Nombres pairs : 2, 4, 6, 8, 10 → 5 issues → \(P = \frac{5}{10} = 0{,}5\)</li>
+      <li>Nombres &gt; 7 : 8, 9, 10 → 3 issues → \(P = \frac{3}{10} = 0{,}3\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un lot de 50 panneaux comporte 40 conformes et 10 défectueux. On prélève un panneau au hasard. Calculer la probabilité de tirer un panneau conforme et celle de tirer un panneau défectueux.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(\text{conforme}) = \frac{40}{50} = 0{,}8 = 80\%\)<br>
+    \(P(\text{défectueux}) = \frac{10}{50} = 0{,}2 = 20\%\)<br>
+    Vérification : \(0{,}8 + 0{,}2 = 1\) ✔
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>On lance deux pièces de monnaie équilibrées. Lister les 4 issues possibles de l'univers, puis calculer la probabilité d'obtenir exactement une face (F).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(\Omega = \{PP, PF, FP, FF\}\) (P = pile, F = face) → 4 issues équiprobables.<br>
+    « Exactement une face » = \(\{PF, FP\}\) → 2 issues<br>
+    \(P = \frac{2}{4} = \frac{1}{2} = 0{,}5\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Événement contraire, réunion, intersection</h2>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>On tire une carte dans un jeu de 52 cartes. On sait que \(P(\text{cœur}) = \frac{13}{52} = \frac{1}{4}\). Calculer \(P(\overline{\text{cœur}})\) (événement contraire : ne pas tirer un cœur).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(P(\overline{A}) = 1 - P(A)\)<br>
+    \(P(\overline{\text{cœur}}) = 1 - \frac{1}{4} = \frac{3}{4} = 0{,}75\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Dans un lot de 100 pièces : 70 sont conformes (C), 20 ont un défaut de surface (DS) et 10 ont un défaut de forme (DF). Ces catégories sont <strong>incompatibles</strong> (une pièce ne peut avoir qu'un seul type de défaut).</p>
+  <ol type="a">
+    <li>Calculer \(P(\text{DS})\) et \(P(\text{DF})\).</li>
+    <li>Calculer \(P(\text{DS ou DF})\) = probabilité d'avoir un défaut.</li>
+    <li>Calculer \(P(\text{C})\) par l'événement contraire.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(\text{DS}) = \frac{20}{100} = 0{,}2\) ; \(P(\text{DF}) = \frac{10}{100} = 0{,}1\)</li>
+      <li>Événements incompatibles : \(P(\text{DS ou DF}) = 0{,}2 + 0{,}1 = 0{,}3\)</li>
+      <li>\(P(\text{C}) = 1 - 0{,}3 = 0{,}7\) ou directement \(\frac{70}{100} = 0{,}7\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>La probabilité qu'une livraison soit en retard est 0,15. La probabilité qu'une livraison soit incomplète est 0,10. La probabilité qu'elle soit à la fois en retard ET incomplète est 0,04.</p>
+  <ol type="a">
+    <li>Calculer la probabilité qu'elle soit en retard OU incomplète.</li>
+    <li>Calculer la probabilité qu'elle soit parfaite (ni retard, ni incomplète).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(\text{retard} \cup \text{incomplet}) = 0{,}15 + 0{,}10 - 0{,}04 = \mathbf{0{,}21}\)</li>
+      <li>\(P(\text{parfaite}) = 1 - 0{,}21 = \mathbf{0{,}79}\)</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Fréquence observée et probabilité théorique</h2>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>On lance un dé équilibré 60 fois et on obtient le résultat suivant :</p>
+  <table>
+    <tr><th>Face</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+    <tr><th>Nb de sorties</th><td>8</td><td>11</td><td>9</td><td>12</td><td>10</td><td>10</td></tr>
+  </table>
+  <ol type="a">
+    <li>Calculer la fréquence observée de chaque face.</li>
+    <li>Quelle est la probabilité théorique d'obtenir chaque face ?</li>
+    <li>Les fréquences observées sont-elles égales aux probabilités ? Pourquoi ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Fréquences : 8/60 ≈ 0,133 ; 11/60 ≈ 0,183 ; 9/60 = 0,15 ; 12/60 = 0,2 ; 10/60 ≈ 0,167 ; 10/60 ≈ 0,167</li>
+      <li>Probabilité théorique de chaque face : \(\frac{1}{6} \approx 0{,}167\) (dé équilibré)</li>
+      <li>Non, elles ne sont pas exactement égales : avec 60 lancers, il existe une <strong>fluctuation aléatoire</strong>. En augmentant le nombre de lancers, les fréquences se rapprocheraient de \(\frac{1}{6}\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un contrôleur observe que sur 200 pièces vérifiées, 14 sont défectueuses. Estimer la probabilité qu'une pièce soit défectueuse. Comparer avec la norme de l'atelier qui exige un taux de défaut inférieur à 5 %.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Fréquence observée : \(\frac{14}{200} = 0{,}07 = 7\%\)<br>
+    La fréquence dépasse 5 % → l'atelier ne respecte pas la norme. Il faut investiguer les causes de défaut.
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Stabilisation des fréquences (loi des grands nombres)</h2>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>On lance une pièce de monnaie équilibrée et on note la fréquence de « pile » après chaque lancer. Voici les résultats :</p>
+  <table>
+    <tr><th>Nb de lancers</th><td>5</td><td>10</td><td>20</td><td>50</td><td>100</td><td>1000</td></tr>
+    <tr><th>Fréquence de pile</th><td>0,80</td><td>0,60</td><td>0,55</td><td>0,52</td><td>0,49</td><td>0,502</td></tr>
+  </table>
+  <ol type="a">
+    <li>Quelle est la probabilité théorique d'obtenir pile ?</li>
+    <li>Décrire la tendance de la fréquence quand le nombre de lancers augmente.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(\text{pile}) = \frac{1}{2} = 0{,}5\) (pièce équilibrée)</li>
+      <li>La fréquence oscille beaucoup au début (0,80 pour 5 lancers) puis se rapproche de 0,5 au fur et à mesure que le nombre de lancers augmente. C'est la <strong>stabilisation des fréquences</strong> (loi des grands nombres).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Un technicien vérifie des pièces sorties d'une machine. Il note s'il y a un défaut (D) ou non (N). Sur les 5 premières pièces : N, D, N, N, N → fréquence de défaut = 1/5 = 20 %. Sur 100 pièces au total, il observe 8 défauts.</p>
+  <ol type="a">
+    <li>Calculer la fréquence de défaut sur 100 pièces.</li>
+    <li>Quelle valeur estime-t-on comme probabilité de tirer une pièce défectueuse ?</li>
+    <li>Pourquoi la fréquence sur 5 pièces était-elle peu fiable ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Fréquence = \(\frac{8}{100} = 0{,}08 = 8\%\)</li>
+      <li>On estime \(P(\text{défaut}) \approx 0{,}08\) (8 %) à partir de cet échantillon.</li>
+      <li>Avec seulement 5 pièces, un seul défaut suffit à donner une fréquence de 20 %, très éloignée de la vraie probabilité. L'estimation est <strong>instable avec un petit échantillon</strong>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>La probabilité qu'une couleur de peinture soit mal mélangée est estimée à 0,03 (3 %). Sur une série de 10 pots, on n'en observe aucun mal mélangé. Est-ce surprenant ? Comment améliorer l'estimation de la probabilité ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Non, ce n'est pas surprenant : avec \(p = 0{,}03\) et \(n = 10\), on s'attend à \(0{,}03 \times 10 = 0{,}3\) pot défectueux en moyenne → il est tout à fait possible de n'en observer aucun sur seulement 10 pots.<br>
+    Pour améliorer l'estimation : il faut <strong>augmenter la taille de l'échantillon</strong> (100, 500, 1000 pots), car la fréquence se stabilise autour de la vraie probabilité quand \(n\) est grand.
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Exercices par capacités – Indicateurs statistiques – 2nde MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 3 – Exercices par capacités</h1>
+  <p class="sous-titre">Indicateurs statistiques &nbsp;|&nbsp; Seconde Bac Pro MAMA &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Calculer la moyenne d'une série statistique (données brutes et tableau effectifs)</li>
+    <li><strong>C2</strong> — Déterminer la médiane d'une série statistique</li>
+    <li><strong>C3</strong> — Déterminer les quartiles Q1 et Q3 ; calculer l'écart interquartile</li>
+    <li><strong>C4</strong> — Calculer l'étendue d'une série</li>
+    <li><strong>C5</strong> — Construire et interpréter une boîte à moustaches (diagramme en boîte)</li>
+  </ul>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Moyenne</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Médiane</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Quartiles / IQR</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Étendue</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Boîte à moustaches</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Calculer la moyenne</h2>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un apprenti menuisier obtient les notes suivantes sur 5 travaux pratiques : 12 ; 15 ; 9 ; 14 ; 10. Calculer sa moyenne.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \[\bar{x} = \frac{12 + 15 + 9 + 14 + 10}{5} = \frac{60}{5} = \mathbf{12}\]
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un atelier produit des tasseaux dont les longueurs (en cm) sont regroupées dans le tableau suivant. Calculer la longueur moyenne.</p>
+  <table>
+    <tr><th>Longueur \(x_i\) (cm)</th><td>195</td><td>198</td><td>200</td><td>202</td><td>205</td></tr>
+    <tr><th>Effectif \(n_i\)</th><td>3</td><td>5</td><td>8</td><td>6</td><td>3</td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Effectif total : \(N = 3 + 5 + 8 + 6 + 3 = 25\)<br>
+    \[\bar{x} = \frac{3 \times 195 + 5 \times 198 + 8 \times 200 + 6 \times 202 + 3 \times 205}{25}\]
+    \[= \frac{585 + 990 + 1600 + 1212 + 615}{25} = \frac{5002}{25} = \mathbf{200{,}08} \text{ cm}\]
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Les temps de pose (en minutes) de 6 menuisiers sur le même type de travail sont : 45 ; 38 ; 52 ; 41 ; 49 ; 43. Calculer le temps moyen. Un menuisier débutant met 70 minutes. Si on l'ajoute à la série, comment évolue la moyenne ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Moyenne des 6 : \(\bar{x} = \frac{45+38+52+41+49+43}{6} = \frac{268}{6} \approx \mathbf{44{,}7}\) min<br>
+    Avec le débutant : \(\bar{x} = \frac{268 + 70}{7} = \frac{338}{7} \approx \mathbf{48{,}3}\) min<br>
+    La valeur élevée (70) tire la moyenne vers le haut.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Un chef d'atelier souhaite que la moyenne des temps de pose de son équipe soit inférieure à 50 minutes. Les 5 premiers temps sont 47, 52, 48, 55, 44 min. Quel temps maximum le 6e ouvrier doit-il réaliser pour que l'objectif soit atteint ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Somme des 5 premiers : \(47 + 52 + 48 + 55 + 44 = 246\) min<br>
+    Pour une moyenne \(< 50\) sur 6 valeurs, il faut : somme \(< 300\)<br>
+    6e ouvrier \(< 300 - 246 = \mathbf{54}\) minutes.
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Déterminer la médiane</h2>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Déterminer la médiane des séries suivantes :</p>
+  <ol type="a">
+    <li>7 valeurs : 12 ; 8 ; 15 ; 9 ; 11 ; 14 ; 10</li>
+    <li>6 valeurs : 23 ; 18 ; 25 ; 20 ; 22 ; 19</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Classement croissant : 8 ; 9 ; 10 ; <strong>11</strong> ; 12 ; 14 ; 15<br>
+        \(n = 7\) impair → la médiane est la 4e valeur : \(\text{Me} = \mathbf{11}\)</li>
+      <li>Classement croissant : 18 ; 19 ; <strong>20 ; 22</strong> ; 23 ; 25<br>
+        \(n = 6\) pair → la médiane est la moyenne des 3e et 4e valeurs : \(\text{Me} = \frac{20+22}{2} = \mathbf{21}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un contrôleur mesure l'épaisseur (en mm) de 9 panneaux : 18,2 ; 17,8 ; 18,5 ; 18,0 ; 18,3 ; 17,9 ; 18,1 ; 18,4 ; 18,0. Quelle est la médiane ? Que signifie-t-elle ici ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Classement : 17,8 ; 17,9 ; 18,0 ; 18,0 ; <strong>18,1</strong> ; 18,2 ; 18,3 ; 18,4 ; 18,5<br>
+    \(n = 9\) impair → médiane = 5e valeur : \(\text{Me} = \mathbf{18{,}1}\) mm<br>
+    Cela signifie que 50 % des panneaux ont une épaisseur ≤ 18,1 mm et 50 % ont ≥ 18,1 mm.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Comparer moyenne et médiane pour la série : 10 ; 12 ; 11 ; 13 ; 95. Quelle mesure décrit le mieux la série ? Pourquoi ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Moyenne : \(\frac{10+12+11+13+95}{5} = \frac{141}{5} = 28{,}2\)<br>
+    Médiane (classement : 10 ; 11 ; 12 ; 13 ; 95) : 3e valeur = <strong>12</strong><br>
+    La <strong>médiane</strong> représente mieux la série : la valeur 95 est un outlier (valeur aberrante) qui tire la moyenne vers le haut. La médiane est robuste aux valeurs extrêmes.
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Quartiles Q1, Q3 et écart interquartile</h2>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Pour la série ordonnée : 5 ; 8 ; 10 ; 12 ; 15 ; 18 ; 20 ; 22 ; 25 ; 28 ; 30 ; 32, déterminer Q1, la médiane et Q3, puis calculer l'écart interquartile.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(n = 12\) valeurs.<br>
+    Médiane : moyenne des 6e et 7e valeurs : \(\text{Me} = \frac{18+20}{2} = 19\)<br>
+    Q1 : médiane de la moitié inférieure (6 premières valeurs : 5 ; 8 ; 10 ; 12 ; 15 ; 18) : \(Q_1 = \frac{10+12}{2} = 11\)<br>
+    Q3 : médiane de la moitié supérieure (6 dernières : 20 ; 22 ; 25 ; 28 ; 30 ; 32) : \(Q_3 = \frac{25+28}{2} = 26{,}5\)<br>
+    Écart interquartile : \(Q_3 - Q_1 = 26{,}5 - 11 = \mathbf{15{,}5}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Les salaires mensuels nets (en €) de 10 employés d'un atelier sont : 1 550 ; 1 620 ; 1 480 ; 1 700 ; 1 590 ; 1 750 ; 1 530 ; 1 680 ; 1 600 ; 1 800.</p>
+  <ol type="a">
+    <li>Déterminer Q1 et Q3.</li>
+    <li>Calculer l'écart interquartile. Que représente-t-il ?</li>
+    <li>50 % des salaires se situent dans quel intervalle ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Ordre croissant : 1 480 ; 1 530 ; 1 550 ; 1 590 ; 1 600 ; 1 620 ; 1 680 ; 1 700 ; 1 750 ; 1 800<br>
+    Médiane : \(\frac{1600+1620}{2} = 1610\) €<br>
+    Q1 : médiane des 5 premières : 1 550 €<br>
+    Q3 : médiane des 5 dernières : 1 700 €<br>
+    <ol type="a">
+      <li>\(Q_1 = 1\,550\) € ; \(Q_3 = 1\,700\) €</li>
+      <li>IQR = \(1\,700 - 1\,550 = \mathbf{150}\) € → l'écart interquartile mesure la dispersion des 50 % de salaires centraux.</li>
+      <li>50 % des salaires sont dans l'intervalle \([1\,550 ; 1\,700]\) €.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Deux équipes A et B ont des temps de pose (en min) avec les indicateurs suivants :</p>
+  <table>
+    <tr><th></th><th>Min</th><th>Q1</th><th>Médiane</th><th>Q3</th><th>Max</th></tr>
+    <tr><th>Équipe A</th><td>30</td><td>38</td><td>45</td><td>50</td><td>65</td></tr>
+    <tr><th>Équipe B</th><td>25</td><td>40</td><td>45</td><td>48</td><td>70</td></tr>
+  </table>
+  <p>Comparer l'IQR des deux équipes. Quelle équipe est la plus régulière ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    IQR équipe A : \(50 - 38 = 12\) min<br>
+    IQR équipe B : \(48 - 40 = 8\) min<br>
+    L'équipe B a un IQR plus faible → elle est <strong>plus régulière</strong> (les valeurs centrales sont moins dispersées).
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Calculer l'étendue d'une série</h2>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Calculer l'étendue des séries suivantes :</p>
+  <ol type="a">
+    <li>Longueurs (cm) : 48 ; 51 ; 49 ; 52 ; 50 ; 47 ; 53</li>
+    <li>Notes : 8 ; 14 ; 12 ; 7 ; 15 ; 9 ; 11 ; 13</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Min = 47 ; Max = 53 → Étendue = \(53 - 47 = \mathbf{6}\) cm</li>
+      <li>Min = 7 ; Max = 15 → Étendue = \(15 - 7 = \mathbf{8}\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Dans un atelier, la tolérance sur la longueur d'un litteau est ± 3 mm (donc étendue maximale admissible = 6 mm). Un technicien mesure 8 liteaux et obtient : 200 ; 202 ; 199 ; 201 ; 203 ; 200 ; 198 ; 201 mm. Le lot est-il conforme ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Min = 198 mm ; Max = 203 mm<br>
+    Étendue = \(203 - 198 = 5\) mm<br>
+    5 mm ≤ 6 mm → Le lot est <strong>conforme</strong> à la tolérance.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>L'étendue mesure-t-elle bien la dispersion d'une série ? Comparer les deux séries :</p>
+  <p>Série A : 10 ; 20 ; 30 ; 40 ; 50<br>Série B : 10 ; 10 ; 30 ; 50 ; 50</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Les deux séries ont la même étendue : \(50 - 10 = 40\).<br>
+    Pourtant, elles sont différentes : la série B est « bimodale » (concentrée aux extrêmes) alors que A est régulièrement espacée.<br>
+    <strong>Limite de l'étendue :</strong> elle ne tient compte que des valeurs extrêmes, pas de la distribution des valeurs intermédiaires.
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Construire et interpréter une boîte à moustaches</h2>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Les 5 indicateurs d'une série de temps de travail (en min) sont : Min = 20 ; Q1 = 28 ; Médiane = 33 ; Q3 = 40 ; Max = 55.</p>
+  <ol type="a">
+    <li>Décrire la construction de la boîte à moustaches (où placer chaque élément).</li>
+    <li>La distribution est-elle symétrique ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La <strong>boîte</strong> va de Q1 = 28 à Q3 = 40 ; le trait vertical à l'intérieur marque la médiane à 33.<br>
+        La <strong>moustache gauche</strong> va de Min = 20 à Q1 = 28 ; la <strong>moustache droite</strong> va de Q3 = 40 à Max = 55.</li>
+      <li>La boîte n'est pas centrée sur la médiane (33 − 28 = 5 à gauche vs 40 − 33 = 7 à droite) et la moustache droite (15 min) est plus longue que la gauche (8 min) → distribution <strong>asymétrique</strong>, avec un étalement vers les grandes valeurs.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Voici les indicateurs de deux machines de découpe (durées d'arrêt en heures sur un mois) :</p>
+  <table>
+    <tr><th></th><th>Min</th><th>Q1</th><th>Médiane</th><th>Q3</th><th>Max</th></tr>
+    <tr><th>Machine 1</th><td>1</td><td>3</td><td>5</td><td>7</td><td>12</td></tr>
+    <tr><th>Machine 2</th><td>2</td><td>4</td><td>6</td><td>8</td><td>9</td></tr>
+  </table>
+  <ol type="a">
+    <li>Laquelle a la plus grande étendue ? Le plus grand IQR ?</li>
+    <li>Quelle machine est la plus fiable (temps d'arrêt les plus réguliers) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Étendue : M1 = 11 h, M2 = 7 h → <strong>Machine 1</strong> a la plus grande étendue.<br>
+        IQR : M1 = 4 h, M2 = 4 h → <strong>égalité</strong>.</li>
+      <li>Machine 2 : étendue plus faible (7 h vs 11 h) et pas de valeur extrême comme 12 h → la <strong>Machine 2</strong> est plus fiable.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>À partir de la série suivante, construire tous les indicateurs puis dessiner la boîte à moustaches :<br>
+  Durées d'intervention (min) : 25 ; 30 ; 18 ; 45 ; 22 ; 35 ; 28 ; 40 ; 20 ; 32</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Ordre croissant : 18 ; 20 ; 22 ; 25 ; 28 ; 30 ; 32 ; 35 ; 40 ; 45<br>
+    \(n = 10\)<br>
+    Min = 18 ; Max = 45<br>
+    Médiane : \(\frac{28 + 30}{2} = 29\) min<br>
+    Q1 : médiane des 5 premières (18 ; 20 ; 22 ; 25 ; 28) = 22 min<br>
+    Q3 : médiane des 5 dernières (30 ; 32 ; 35 ; 40 ; 45) = 35 min<br>
+    Étendue = 27 min ; IQR = 13 min<br>
+    <strong>Boîte à moustaches :</strong> moustache gauche [18 ; 22], boîte [22 ; 35] avec médiane à 29, moustache droite [35 ; 45].
+  </div>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>
