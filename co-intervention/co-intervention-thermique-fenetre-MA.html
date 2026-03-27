@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Résistance thermique d'une fenêtre double vitrage — Co-intervention MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>R&eacute;sistance thermique d'une fen&ecirc;tre double vitrage</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro MA | S0.4 + S3.1 &mdash; Thermique</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Comprendre la structure d'un double vitrage (verre + lame d'air + verre)</li>
+    <li>Calculer la r&eacute;sistance thermique d'un vitrage : \(R = e / \lambda\)</li>
+    <li>D&eacute;terminer le coefficient \(U_w\) d'une fen&ecirc;tre compl&egrave;te</li>
+    <li>V&eacute;rifier la conformit&eacute; &agrave; la r&eacute;glementation thermique</li>
+  </ul>
+</div>
+
+<!-- BADGE -->
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel MA :</strong> S0.4 (r&eacute;glementation thermique) + S3.1 (isolation thermique)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Fractions, sommes, inverse, calcul litt&eacute;ral</li>
+    <li><strong>Notions sciences :</strong> Conduction thermique, transferts de chaleur</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro MA</li>
+  </ul>
+</div>
+
+<!-- MISE EN SITUATION -->
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Remplacement de fen&ecirc;tres dans une maison</strong><br><br>
+  Un menuisier agenceur remplace les anciennes fen&ecirc;tres simple vitrage d'une maison par des fen&ecirc;tres bois &agrave; double vitrage. Le client demande : <em>&laquo;&nbsp;Mon artisan pr&eacute;c&eacute;dent m'a dit que le double vitrage isole 3 fois mieux que le simple. C'est vrai ? Et est-ce que vos fen&ecirc;tres respectent la r&eacute;glementation thermique ?&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG coupe double vitrage -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="400" height="220" viewBox="0 0 400 220" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- extérieur -->
+  <rect x="10" y="20" width="60" height="180" fill="#e0f2fe" stroke="none"/>
+  <text x="40" y="15" text-anchor="middle" fill="#0ea5e9" font-weight="bold">Ext&eacute;rieur</text>
+  <!-- verre ext -->
+  <rect x="70" y="20" width="15" height="180" fill="#bfdbfe" stroke="#333" stroke-width="1.5"/>
+  <text x="77" y="215" text-anchor="middle" fill="#333" font-size="10">4 mm</text>
+  <!-- lame air/argon -->
+  <rect x="85" y="20" width="50" height="180" fill="#f0fdf4" stroke="#333" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="110" y="115" text-anchor="middle" fill="#2da44e" font-weight="bold" font-size="10">Lame</text>
+  <text x="110" y="128" text-anchor="middle" fill="#2da44e" font-size="10">16 mm</text>
+  <!-- verre int -->
+  <rect x="135" y="20" width="15" height="180" fill="#bfdbfe" stroke="#333" stroke-width="1.5"/>
+  <text x="142" y="215" text-anchor="middle" fill="#333" font-size="10">4 mm</text>
+  <!-- cadre bois -->
+  <rect x="170" y="20" width="40" height="180" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+  <text x="190" y="115" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="10">Cadre</text>
+  <text x="190" y="128" text-anchor="middle" fill="#92400e" font-size="10">bois</text>
+  <!-- intérieur -->
+  <rect x="230" y="20" width="60" height="180" fill="#fff7ed" stroke="none"/>
+  <text x="260" y="15" text-anchor="middle" fill="#f97316" font-weight="bold">Int&eacute;rieur</text>
+  <!-- flèches chaleur -->
+  <defs><marker id="ath" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#dc2626"/></marker></defs>
+  <line x1="250" y1="60" x2="50" y2="60" stroke="#dc2626" stroke-width="2" marker-end="url(#ath)"/>
+  <text x="150" y="55" text-anchor="middle" fill="#dc2626" font-size="10">Flux de chaleur &rarr;</text>
+  <!-- légende -->
+  <text x="300" y="50" fill="#333" font-size="11" font-weight="bold">Notation :</text>
+  <text x="300" y="70" fill="#333" font-size="10">4/16/4 = verre/lame/verre</text>
+  <text x="300" y="90" fill="#333" font-size="10">U<tspan baseline-shift="sub" font-size="8">g</tspan> = coeff. du vitrage</text>
+  <text x="300" y="110" fill="#333" font-size="10">U<tspan baseline-shift="sub" font-size="8">f</tspan> = coeff. du cadre</text>
+  <text x="300" y="130" fill="#333" font-size="10">U<tspan baseline-shift="sub" font-size="8">w</tspan> = coeff. de la fen&ecirc;tre</text>
+</svg>
+</div>
+
+<!-- COURS -->
+<h2>2. Structure d'un double vitrage</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Double vitrage</span><br>
+  Un <strong>double vitrage</strong> est compos&eacute; de deux plaques de verre s&eacute;par&eacute;es par une <strong>lame d'air</strong> (ou d'argon) immobile. La lame d'air est le principal isolant car l'air immobile conduit tr&egrave;s mal la chaleur.<br><br>
+  Notation courante : <strong>4/16/4</strong> signifie verre 4 mm / lame 16 mm / verre 4 mm.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Conductivit&eacute;s thermiques</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Mat&eacute;riau</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&lambda; (W/(m&middot;K))</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Verre</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,00</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Lame d'air immobile</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,025</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Lame d'argon</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,018</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Bois massif (cadre)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,13</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">PVC (cadre)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,17</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Aluminium (cadre)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">160</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>3. Coefficient U du vitrage</h2>
+
+<div class="prop">
+  <span class="label label-prop">Calcul simplifi&eacute; du U<sub>g</sub></span><br>
+  Pour un double vitrage, la r&eacute;sistance thermique du vitrage seul est :
+  \[ R_g = \frac{e_1}{\lambda_{\text{verre}}} + \frac{e_{\text{lame}}}{\lambda_{\text{lame}}} + \frac{e_2}{\lambda_{\text{verre}}} \]
+  Le coefficient de transmission du vitrage est :
+  \[ U_g = \frac{1}{R_g} \]
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Double vitrage 4/16/4 air</span><br>
+  \(R_g = \dfrac{0{,}004}{1{,}00} + \dfrac{0{,}016}{0{,}025} + \dfrac{0{,}004}{1{,}00} = 0{,}004 + 0{,}640 + 0{,}004 = 0{,}648\) m&sup2;&middot;K/W<br><br>
+  \(U_g = 1 / 0{,}648 = 1{,}54\) W/(m&sup2;&middot;K)<br><br>
+  <em>En pratique, U<sub>g</sub> r&eacute;el &asymp; 1,1 W/(m&sup2;&middot;K) avec un traitement basse &eacute;missivit&eacute; (ITR) sur un verre.</em>
+</div>
+
+<div class="att">
+  <span class="label label-att">Simple vitrage vs double vitrage</span><br>
+  Simple vitrage 4 mm : \(R = 0{,}004 / 1{,}00 = 0{,}004\) &rarr; \(U = 250\) W/(m&sup2;&middot;K) (en conduction seule).<br>
+  En r&eacute;alit&eacute;, avec les r&eacute;sistances superficielles (convection air), U<sub>simple</sub> &asymp; <strong>5,8</strong> W/(m&sup2;&middot;K).<br>
+  Double vitrage 4/16/4 : U<sub>g</sub> &asymp; <strong>1,1 &agrave; 1,5</strong> W/(m&sup2;&middot;K).<br>
+  Le double vitrage isole <strong>4 &agrave; 5 fois mieux</strong> que le simple vitrage.
+</div>
+
+<h2>4. Coefficient U<sub>w</sub> de la fen&ecirc;tre compl&egrave;te</h2>
+
+<div class="prop">
+  <span class="label label-prop">Formule simplifi&eacute;e</span><br>
+  Le coefficient de la fen&ecirc;tre enti&egrave;re (vitrage + cadre) se calcule par une moyenne pond&eacute;r&eacute;e :
+  \[ U_w = \frac{U_g \times S_g + U_f \times S_f}{S_g + S_f} \]
+  <ul>
+    <li>\(U_g\) : coefficient du vitrage, \(S_g\) : surface du vitrage</li>
+    <li>\(U_f\) : coefficient du cadre, \(S_f\) : surface du cadre</li>
+    <li>\(U_w\) : coefficient de la fen&ecirc;tre (w = window)</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Valeurs r&eacute;glementaires (RE 2020)</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Type de fen&ecirc;tre</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">U<sub>w</sub> max (W/(m&sup2;&middot;K))</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Fen&ecirc;tre bois DV</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,6</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Fen&ecirc;tre PVC DV</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,4</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Fen&ecirc;tre alu DV (avec rupture de pont thermique)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,8</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Triple vitrage (tout mat&eacute;riau)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,0</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- À RETENIR -->
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>Double vitrage : deux verres + lame d'air (ou argon) isolante</li>
+    <li>\(R_g = e_1/\lambda_1 + e_{\text{lame}}/\lambda_{\text{lame}} + e_2/\lambda_2\)</li>
+    <li>Simple vitrage : U &asymp; 5,8 &mdash; Double vitrage : U &asymp; 1,1 &agrave; 1,5</li>
+    <li>U<sub>w</sub> de la fen&ecirc;tre = moyenne pond&eacute;r&eacute;e vitrage + cadre</li>
+    <li>Le cadre aluminium (sans RPT) est le <strong>point faible</strong> thermique d'une fen&ecirc;tre</li>
+  </ul>
+</div>
+
+<!-- ==================== EXERCICES ==================== -->
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">R d'une couche de verre (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Calculer la r&eacute;sistance thermique d'une plaque de verre de 4 mm (\(\lambda = 1{,}00\)) :<br><br>
+  <strong>&Eacute;tape 1 :</strong> Convertir : e = 4 mm = &hellip; m<br>
+  <strong>&Eacute;tape 2 :</strong> \(R = e / \lambda = \ldots / \ldots = \ldots\) m&sup2;&middot;K/W<br><br>
+  Le verre isole-t-il bien ? Comparer avec la lame d'air de 16 mm (\(\lambda = 0{,}025\)).
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    &Eacute;tape 1 : e = 0,004 m<br>
+    &Eacute;tape 2 : R = 0,004 / 1,00 = <strong>0,004</strong> m&sup2;&middot;K/W<br>
+    Lame d'air : R = 0,016 / 0,025 = <strong>0,640</strong> m&sup2;&middot;K/W<br>
+    La lame d'air isole <strong>160 fois mieux</strong> que le verre ! C'est la lame d'air qui fait l'isolation, pas le verre.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">R total d'un double vitrage (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Double vitrage 4/12/4 (lame d'air de 12 mm) :<br><br>
+  <strong>1.</strong> \(R_{\text{verre 1}} = 0{,}004 / 1{,}00 = \ldots\)<br>
+  <strong>2.</strong> \(R_{\text{lame}} = 0{,}012 / 0{,}025 = \ldots\)<br>
+  <strong>3.</strong> \(R_{\text{verre 2}} = \ldots\)<br>
+  <strong>4.</strong> \(R_g = \ldots + \ldots + \ldots = \ldots\) m&sup2;&middot;K/W<br>
+  <strong>5.</strong> \(U_g = 1 / R_g = \ldots\) W/(m&sup2;&middot;K)
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. 0,004 &emsp; 2. 0,480 &emsp; 3. 0,004<br>
+    4. R_g = 0,004 + 0,480 + 0,004 = <strong>0,488</strong><br>
+    5. U_g = 1 / 0,488 = <strong>2,05</strong> W/(m&sup2;&middot;K)
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Comparer air et argon (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Double vitrage 4/16/4. Calculer U<sub>g</sub> avec :<br>
+  <strong>a)</strong> Lame d'<strong>air</strong> (\(\lambda = 0{,}025\))<br>
+  <strong>b)</strong> Lame d'<strong>argon</strong> (\(\lambda = 0{,}018\))<br>
+  <strong>c)</strong> Lequel isole le mieux ? De combien de % ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    a) Air : R = 0,004 + 0,640 + 0,004 = 0,648 &rarr; U = <strong>1,54</strong><br>
+    b) Argon : R = 0,004 + 0,016/0,018 + 0,004 = 0,004 + 0,889 + 0,004 = 0,897 &rarr; U = <strong>1,11</strong><br>
+    c) L'argon isole mieux. Am&eacute;lioration : (1,54 &minus; 1,11) / 1,54 &times; 100 = <strong>28 %</strong> de mieux.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Lire les valeurs r&eacute;glementaires (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  &Agrave; l'aide du tableau RE 2020 :<br><br>
+  <strong>a)</strong> Quel U<sub>w</sub> max pour une fen&ecirc;tre bois double vitrage ?<br>
+  <strong>b)</strong> Une fen&ecirc;tre PVC avec U<sub>w</sub> = 1,5 est-elle conforme ?<br>
+  <strong>c)</strong> Quel type de vitrage permet d'atteindre U<sub>w</sub> &le; 1,0 ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    a) U<sub>w</sub> max = <strong>1,6</strong> W/(m&sup2;&middot;K)<br>
+    b) 1,5 &gt; 1,4 &rarr; <strong>non conforme</strong> pour le PVC<br>
+    c) Le <strong>triple vitrage</strong>
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">U<sub>w</sub> d'une fen&ecirc;tre bois compl&egrave;te</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Une fen&ecirc;tre bois de 1,20 m &times; 1,40 m a les caract&eacute;ristiques suivantes :<br>
+  &bull; Surface totale : \(S_w = 1{,}68\) m&sup2;<br>
+  &bull; Surface de vitrage : \(S_g = 1{,}20\) m&sup2; avec \(U_g = 1{,}1\) W/(m&sup2;&middot;K)<br>
+  &bull; Surface de cadre : \(S_f = 0{,}48\) m&sup2; avec \(U_f = 1{,}5\) W/(m&sup2;&middot;K)<br><br>
+  <strong>1.</strong> Calculer \(U_w\) avec la formule de la moyenne pond&eacute;r&eacute;e.<br>
+  <strong>2.</strong> Cette fen&ecirc;tre est-elle conforme &agrave; la RE 2020 (bois DV : U<sub>w</sub> &le; 1,6) ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(U_w = \dfrac{1{,}1 \times 1{,}20 + 1{,}5 \times 0{,}48}{1{,}20 + 0{,}48} = \dfrac{1{,}32 + 0{,}72}{1{,}68} = \dfrac{2{,}04}{1{,}68} = 1{,}21\) W/(m&sup2;&middot;K)<br>
+    2. 1,21 &lt; 1,6 &rarr; <strong>conforme</strong>.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">D&eacute;perditions par les fen&ecirc;tres</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Une maison a 8 fen&ecirc;tres identiques (U<sub>w</sub> = 1,3 W/(m&sup2;&middot;K), S = 1,5 m&sup2; chacune). Temp&eacute;ratures : int&eacute;rieur 20 &deg;C, ext&eacute;rieur 2 &deg;C.<br><br>
+  <strong>1.</strong> Calculer \(\Delta T\).<br>
+  <strong>2.</strong> Calculer les d&eacute;perditions d'une fen&ecirc;tre : \(\Phi_1 = U_w \times S \times \Delta T\).<br>
+  <strong>3.</strong> Calculer les d&eacute;perditions totales des 8 fen&ecirc;tres.<br>
+  <strong>4.</strong> Si on remplace par du triple vitrage (U<sub>w</sub> = 0,8), quelle &eacute;conomie de puissance r&eacute;alise-t-on ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. &Delta;T = 20 &minus; 2 = 18 &deg;C<br>
+    2. &Phi;<sub>1</sub> = 1,3 &times; 1,5 &times; 18 = <strong>35,1 W</strong><br>
+    3. &Phi;<sub>total</sub> = 8 &times; 35,1 = <strong>280,8 W</strong><br>
+    4. Triple : &Phi; = 8 &times; 0,8 &times; 1,5 &times; 18 = 172,8 W. &Eacute;conomie : 280,8 &minus; 172,8 = <strong>108 W</strong> (r&eacute;duction de 38 %).
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 7</span>
+    <span class="exo-title">Influence du cadre &mdash; bois vs aluminium</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Deux fen&ecirc;tres de m&ecirc;mes dimensions (\(S_g = 1{,}20\) m&sup2;, \(S_f = 0{,}48\) m&sup2;) avec le m&ecirc;me vitrage (\(U_g = 1{,}1\)).<br>
+  &bull; Fen&ecirc;tre A : cadre <strong>bois</strong>, \(U_f = 1{,}5\)<br>
+  &bull; Fen&ecirc;tre B : cadre <strong>aluminium sans RPT</strong>, \(U_f = 5{,}0\)<br><br>
+  <strong>1.</strong> Calculer U<sub>w</sub> pour chaque fen&ecirc;tre.<br>
+  <strong>2.</strong> Laquelle est conforme &agrave; la RE 2020 ?<br>
+  <strong>3.</strong> Pourquoi le cadre aluminium d&eacute;grade-t-il autant les performances ? Quel lien avec la conductivit&eacute; \(\lambda\) de l'aluminium ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. Bois : \(U_w = (1{,}1 \times 1{,}20 + 1{,}5 \times 0{,}48) / 1{,}68 = 2{,}04 / 1{,}68 = 1{,}21\)<br>
+    Alu : \(U_w = (1{,}1 \times 1{,}20 + 5{,}0 \times 0{,}48) / 1{,}68 = (1{,}32 + 2{,}40) / 1{,}68 = 2{,}21\)<br><br>
+    2. Bois : 1,21 &lt; 1,6 &rarr; <strong>conforme</strong>. Alu : 2,21 &gt; 1,8 &rarr; <strong>non conforme</strong>.<br><br>
+    3. L'aluminium a \(\lambda = 160\) W/(m&middot;K), soit <strong>1 200 fois plus</strong> que le bois (0,13). Le cadre alu laisse passer &eacute;norm&eacute;ment de chaleur &rarr; c'est un <strong>pont thermique</strong>. Solution : la <strong>rupture de pont thermique</strong> (RPT) ins&egrave;re un isolant dans le profil alu.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 8</span>
+    <span class="exo-title">Triple vitrage &mdash; calcul et int&eacute;r&ecirc;t</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un triple vitrage 4/12/4/12/4 comporte 3 vitres et 2 lames d'argon (\(\lambda = 0{,}018\)).<br><br>
+  <strong>1.</strong> Calculer R<sub>g</sub> du triple vitrage.<br>
+  <strong>2.</strong> Calculer U<sub>g</sub>.<br>
+  <strong>3.</strong> Comparer avec le double vitrage 4/16/4 argon (exercice 3).<br>
+  <strong>4.</strong> Le triple vitrage est plus lourd (3 vitres au lieu de 2). Quel impact pour le menuisier qui fabrique et pose les fen&ecirc;tres ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. R = 3 &times; (0,004/1,00) + 2 &times; (0,012/0,018) = 0,012 + 2 &times; 0,667 = 0,012 + 1,333 = <strong>1,345</strong><br>
+    2. U<sub>g</sub> = 1 / 1,345 = <strong>0,74</strong> W/(m&sup2;&middot;K)<br>
+    3. DV argon 4/16/4 : U = 1,11. Le triple vitrage est <strong>33 % meilleur</strong>.<br>
+    4. Masse plus &eacute;lev&eacute;e &rarr; quincaillerie plus robuste (paumelles, compas), cadre renforc&eacute;, manutention plus difficile en pose. Le menuisier doit adapter ses fixations et v&eacute;rifier que le dormant supporte le poids suppl&eacute;mentaire.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 9</span>
+    <span class="exo-title">Rentabilit&eacute; du remplacement simple &rarr; double</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Une maison a 10 fen&ecirc;tres simple vitrage (U<sub>w</sub> = 5,0, S = 1,5 m&sup2;). On les remplace par du double vitrage bois (U<sub>w</sub> = 1,3). Conditions : &Delta;T = 18 &deg;C, chauffage 10 h/jour, 180 jours/an, 0,25 &euro;/kWh. Co&ucirc;t du remplacement : 8 000 &euro;.<br><br>
+  <strong>1.</strong> Calculer les d&eacute;perditions totales avant et apr&egrave;s remplacement.<br>
+  <strong>2.</strong> Calculer l'&eacute;conomie annuelle en &euro;.<br>
+  <strong>3.</strong> Calculer le temps de retour sur investissement.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. Avant : &Phi; = 10 &times; 5,0 &times; 1,5 &times; 18 = <strong>1 350 W</strong><br>
+    Apr&egrave;s : &Phi; = 10 &times; 1,3 &times; 1,5 &times; 18 = <strong>351 W</strong><br><br>
+    2. &Delta;&Phi; = 1 350 &minus; 351 = 999 W = 0,999 kW<br>
+    &Eacute;nergie : 0,999 &times; 10 &times; 180 = 1 798 kWh/an<br>
+    &Eacute;conomie : 1 798 &times; 0,25 = <strong>449,50 &euro;/an</strong><br><br>
+    3. Retour : 8 000 / 449,50 = <strong>17,8 ans</strong> &asymp; 18 ans.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 10</span>
+    <span class="exo-title">Concevoir une fen&ecirc;tre conforme RE 2020</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un menuisier doit concevoir une fen&ecirc;tre bois conforme RE 2020 (U<sub>w</sub> &le; 1,6). Les dimensions sont : S<sub>g</sub> = 0,90 m&sup2; et S<sub>f</sub> = 0,60 m&sup2; (petite fen&ecirc;tre avec beaucoup de cadre). Le cadre bois a U<sub>f</sub> = 1,5.<br><br>
+  <strong>1.</strong> Quel U<sub>g</sub> maximal le vitrage doit-il avoir pour que U<sub>w</sub> &le; 1,6 ?<br>
+  <em>Indication : poser l'in&eacute;galit&eacute; \(\dfrac{U_g \times 0{,}90 + 1{,}5 \times 0{,}60}{1{,}50} \leq 1{,}6\) et r&eacute;soudre.</em><br><br>
+  <strong>2.</strong> Quel type de vitrage choisir (simple, double air, double argon, triple) ?<br>
+  <strong>3.</strong> Pourquoi les petites fen&ecirc;tres (avec beaucoup de cadre par rapport au vitrage) sont-elles plus difficiles &agrave; rendre conformes ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(U_g \times 0{,}90 + 0{,}90 \leq 1{,}6 \times 1{,}50 = 2{,}40\)<br>
+    \(U_g \times 0{,}90 \leq 2{,}40 - 0{,}90 = 1{,}50\)<br>
+    \(U_g \leq 1{,}50 / 0{,}90 = 1{,}67\) W/(m&sup2;&middot;K)<br><br>
+    2. DV 4/16/4 air : U<sub>g</sub> &asymp; 1,54 &lt; 1,67 &rarr; <strong>conforme</strong> (de justesse).<br>
+    DV 4/16/4 argon : U<sub>g</sub> &asymp; 1,11 &rarr; conforme avec marge.<br>
+    Un double vitrage argon est le choix optimal.<br><br>
+    3. Plus le rapport S<sub>f</sub>/S<sub>g</sub> est &eacute;lev&eacute;, plus le cadre (moins isolant que le vitrage) p&egrave;se dans la moyenne &rarr; U<sub>w</sub> augmente. Les petites fen&ecirc;tres ont proportionnellement plus de cadre &rarr; plus difficiles &agrave; rendre conformes.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<!-- BARRE D'IMPRESSION -->
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){
+  const c=btn.previousElementSibling;
+  if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}
+  else{c.style.display='none';btn.textContent='Voir la correction';}
+}
+document.getElementById('sn-print-corr').addEventListener('click',function(){
+  var corrs=document.querySelectorAll('.corr');
+  for(var i=0;i<corrs.length;i++) corrs[i].style.setProperty('display','block','important');
+  window.addEventListener('afterprint',function cleanup(){
+    for(var j=0;j<corrs.length;j++) corrs[j].style.removeProperty('display');
+    window.removeEventListener('afterprint',cleanup);
+  });
+  setTimeout(function(){window.print();},100);
+});
+</script>
+</body>
+</html>
