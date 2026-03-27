@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Point de fonctionnement d'une pompe — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Point de fonctionnement d'une pompe</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.6 &mdash; Fluidique</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Lire une courbe caract&eacute;ristique de pompe (Q, H)</li>
+    <li>Comprendre la courbe de r&eacute;seau (pertes de charge)</li>
+    <li>D&eacute;terminer le point de fonctionnement (intersection des deux courbes)</li>
+    <li>Choisir un circulateur adapt&eacute; &agrave; un r&eacute;seau de chauffage</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.6 &mdash; Courbe de r&eacute;seau, point de fonctionnement</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Lecture de graphiques, fonctions, intersection de courbes</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Choix d'un circulateur</strong><br><br>
+  Un technicien chauffagiste dimensionne le circulateur d'une installation de chauffage. L'installateur doit fournir un d&eacute;bit de 1 200 L/h et vaincre des pertes de charge de 3,5 mCE (m&egrave;tres de colonne d'eau). Il consulte les fiches techniques de plusieurs circulateurs pour choisir le mod&egrave;le adapt&eacute;.
+</div>
+
+<h2>2. Courbe caract&eacute;ristique d'une pompe</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span><br>
+  La <strong>courbe caract&eacute;ristique</strong> d'une pompe (ou circulateur) repr&eacute;sente la <strong>hauteur manom&eacute;trique H</strong> (en mCE) qu'elle peut fournir en fonction du <strong>d&eacute;bit Q</strong> (en m&sup3;/h ou L/h).<br><br>
+  C'est une courbe <strong>d&eacute;croissante</strong> : plus le d&eacute;bit augmente, moins la pompe peut &laquo;&nbsp;pousser&nbsp;&raquo; haut.
+</div>
+
+<h2>3. Courbe de r&eacute;seau</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span><br>
+  La <strong>courbe de r&eacute;seau</strong> repr&eacute;sente les <strong>pertes de charge</strong> du circuit de chauffage en fonction du d&eacute;bit. C'est une courbe <strong>croissante</strong> (parabolique) : plus le d&eacute;bit est &eacute;lev&eacute;, plus les pertes de charge augmentent.<br><br>
+  Approximation : \(H_{\text{r&eacute;seau}} = k \times Q^2\) (k = constante du r&eacute;seau)
+</div>
+
+<h2>4. Point de fonctionnement</h2>
+
+<div class="prop">
+  <span class="label label-prop">D&eacute;finition</span><br>
+  Le <strong>point de fonctionnement</strong> est l'intersection de la courbe de la pompe et de la courbe du r&eacute;seau. C'est le d&eacute;bit et la HMT r&eacute;els de l'installation en fonctionnement.
+</div>
+
+<!-- SVG graphique simplifié -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="400" height="280" viewBox="0 0 400 280" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- axes -->
+  <line x1="60" y1="240" x2="380" y2="240" stroke="#333" stroke-width="2"/>
+  <line x1="60" y1="240" x2="60" y2="20" stroke="#333" stroke-width="2"/>
+  <text x="220" y="270" text-anchor="middle" fill="#333" font-weight="bold">D&eacute;bit Q (m&sup3;/h)</text>
+  <text x="20" y="130" text-anchor="middle" fill="#333" font-weight="bold" transform="rotate(-90,20,130)">H (mCE)</text>
+  <!-- graduations -->
+  <text x="55" y="245" text-anchor="end" fill="#888">0</text>
+  <text x="55" y="195" text-anchor="end" fill="#888">2</text>
+  <text x="55" y="145" text-anchor="end" fill="#888">4</text>
+  <text x="55" y="95" text-anchor="end" fill="#888">6</text>
+  <text x="55" y="45" text-anchor="end" fill="#888">8</text>
+  <text x="140" y="255" text-anchor="middle" fill="#888">0,5</text>
+  <text x="220" y="255" text-anchor="middle" fill="#888">1,0</text>
+  <text x="300" y="255" text-anchor="middle" fill="#888">1,5</text>
+  <!-- courbe pompe (décroissante) -->
+  <path d="M 60,55 Q 180,80 360,220" fill="none" stroke="#0ea5e9" stroke-width="3"/>
+  <text x="350" y="210" fill="#0ea5e9" font-weight="bold">Pompe</text>
+  <!-- courbe réseau (croissante, parabolique) -->
+  <path d="M 60,240 Q 200,200 360,60" fill="none" stroke="#dc2626" stroke-width="3"/>
+  <text x="350" y="55" fill="#dc2626" font-weight="bold">R&eacute;seau</text>
+  <!-- point de fonctionnement -->
+  <circle cx="215" cy="145" r="6" fill="#2da44e" stroke="#fff" stroke-width="2"/>
+  <text x="225" y="138" fill="#2da44e" font-weight="bold" font-size="12">P.F.</text>
+  <!-- lignes pointillées -->
+  <line x1="215" y1="145" x2="215" y2="240" stroke="#2da44e" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="60" y1="145" x2="215" y2="145" stroke="#2da44e" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="215" y="252" text-anchor="middle" fill="#2da44e" font-weight="bold">Q<sub>pf</sub></text>
+  <text x="45" y="148" fill="#2da44e" font-weight="bold">H<sub>pf</sub></text>
+</svg>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Choisir un circulateur</span><br>
+  <ol>
+    <li>Calculer le <strong>d&eacute;bit n&eacute;cessaire</strong> Q (en m&sup3;/h) &agrave; partir de la puissance</li>
+    <li>Calculer les <strong>pertes de charge</strong> H du r&eacute;seau (en mCE)</li>
+    <li>Reporter le point (Q, H) sur les courbes des circulateurs disponibles</li>
+    <li>Choisir le circulateur dont la courbe <strong>passe au-dessus</strong> du point (Q, H)</li>
+    <li>Le point de fonctionnement r&eacute;el sera l&eacute;g&egrave;rement diff&eacute;rent (intersection courbe pompe / courbe r&eacute;seau)</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple</span><br>
+  D&eacute;bit n&eacute;cessaire : Q = 1,2 m&sup3;/h. Pertes de charge : H = 3,5 mCE.<br>
+  Le circulateur A fournit 4,0 mCE &agrave; 1,2 m&sup3;/h &rarr; <strong>convient</strong> (4,0 &gt; 3,5).<br>
+  Le circulateur B fournit 2,8 mCE &agrave; 1,2 m&sup3;/h &rarr; <strong>insuffisant</strong> (2,8 &lt; 3,5).
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>Courbe pompe : d&eacute;croissante (H diminue quand Q augmente)</li>
+    <li>Courbe r&eacute;seau : croissante (pertes de charge augmentent avec Q)</li>
+    <li>Point de fonctionnement = intersection des deux courbes</li>
+    <li>Choisir un circulateur dont la courbe passe au-dessus du point (Q, H) n&eacute;cessaire</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Lire une courbe de pompe (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Sur le graphique du cours, lire approximativement :<br>
+  <strong>a)</strong> H de la pompe pour Q = 0,5 m&sup3;/h &asymp; &hellip; mCE<br>
+  <strong>b)</strong> H de la pompe pour Q = 1,5 m&sup3;/h &asymp; &hellip; mCE<br>
+  <strong>c)</strong> Le d&eacute;bit max de la pompe (H = 0) &asymp; &hellip; m&sup3;/h
+  <div class="corr"><strong>Correction :</strong><br>a) &asymp; <strong>7 mCE</strong> b) &asymp; <strong>2 mCE</strong> c) &asymp; <strong>1,7 m&sup3;/h</strong> (lecture approximative)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Le circulateur convient-il ? (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Besoins : Q = 0,8 m&sup3;/h, H = 2,5 mCE. Le circulateur fournit 3,2 mCE &agrave; 0,8 m&sup3;/h.<br>
+  3,2 &hellip; 2,5 (&gt; ou &lt;) &rarr; le circulateur &hellip; (convient / ne convient pas).
+  <div class="corr"><strong>Correction :</strong> 3,2 &gt; 2,5 &rarr; le circulateur <strong>convient</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Convertir le d&eacute;bit (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  <strong>a)</strong> 1 200 L/h = &hellip; m&sup3;/h <strong>b)</strong> 0,6 m&sup3;/h = &hellip; L/h <strong>c)</strong> 800 L/h = &hellip; m&sup3;/h
+  <div class="corr"><strong>Correction :</strong> a) <strong>1,2</strong> b) <strong>600</strong> c) <strong>0,8</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Comparer deux circulateurs (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Besoins : Q = 1,0 m&sup3;/h, H = 3,0 mCE.<br>
+  &bull; Circulateur A : 3,5 mCE &agrave; 1,0 m&sup3;/h &bull; Circulateur B : 2,5 mCE &agrave; 1,0 m&sup3;/h<br>
+  Lequel convient ? Lequel est surdimensionn&eacute; ?
+  <div class="corr"><strong>Correction :</strong><br>A : 3,5 &gt; 3,0 &rarr; <strong>convient</strong>. B : 2,5 &lt; 3,0 &rarr; <strong>insuffisant</strong>.<br>A est <strong>l&eacute;g&egrave;rement surdimensionn&eacute;</strong> (marge de 0,5 mCE), ce qui est acceptable.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Calculer le d&eacute;bit n&eacute;cessaire</span><span class="tag-standard">Standard</span></div>
+  Chaudi&egrave;re de 24 kW, &Delta;T = 20 &deg;C (d&eacute;part 70 &deg;C, retour 50 &deg;C).<br>
+  \(Q = \dfrac{P}{c \times \rho \times \Delta T} = \dfrac{24\,000}{4\,186 \times 1\,000 \times 20} \times 3\,600\)<br><br>
+  <strong>1.</strong> Calculer Q en m&sup3;/h. <strong>2.</strong> Les pertes de charge sont de 3,0 mCE. Reporter (Q, H) et choisir parmi les circulateurs : A (5 mCE &agrave; 1,0 m&sup3;/h), B (3,5 mCE &agrave; 1,0 m&sup3;/h), C (2,5 mCE &agrave; 1,0 m&sup3;/h).
+  <div class="corr"><strong>Correction :</strong><br>1. Q = 24 000 / (4 186 &times; 20) &times; 3,6 = 24 000 / 83 720 &times; 3 600 = <strong>1,03 m&sup3;/h</strong><br>2. Point (1,03 ; 3,0). A : 5,0 &gt; 3,0 (convient mais surdimensionn&eacute;). <strong>B : 3,5 &gt; 3,0 (convient, bon choix)</strong>. C : 2,5 &lt; 3,0 (insuffisant).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Montages s&eacute;rie et parall&egrave;le</span><span class="tag-standard">Standard</span></div>
+  <strong>En s&eacute;rie</strong> : 2 pompes identiques &rarr; m&ecirc;me d&eacute;bit, HMT doubl&eacute;e.<br>
+  <strong>En parall&egrave;le</strong> : 2 pompes identiques &rarr; d&eacute;bit doubl&eacute;, m&ecirc;me HMT.<br><br>
+  Une pompe donne 4 mCE &agrave; 1 m&sup3;/h.<br>
+  <strong>1.</strong> Que donne-t-on en s&eacute;rie ? <strong>2.</strong> En parall&egrave;le ?<br>
+  <strong>3.</strong> Un r&eacute;seau n&eacute;cessite Q = 1,8 m&sup3;/h et H = 3,5 mCE. Quel montage choisir ?
+  <div class="corr"><strong>Correction :</strong><br>1. S&eacute;rie : <strong>8 mCE &agrave; 1 m&sup3;/h</strong><br>2. Parall&egrave;le : <strong>4 mCE &agrave; 2 m&sup3;/h</strong><br>3. On a besoin de plus de d&eacute;bit (1,8 &gt; 1) mais pas n&eacute;cessairement plus de HMT (3,5 &lt; 4). &rarr; <strong>Parall&egrave;le</strong> (2 m&sup3;/h &gt; 1,8 et 4 mCE &gt; 3,5).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Vitesse variable &mdash; 3 courbes</span><span class="tag-standard">Standard</span></div>
+  Un circulateur &agrave; vitesse variable a 3 vitesses. &Agrave; Q = 0,8 m&sup3;/h :<br>
+  &bull; Vitesse 1 : H = 1,5 mCE &bull; Vitesse 2 : H = 2,8 mCE &bull; Vitesse 3 : H = 4,2 mCE<br><br>
+  Le r&eacute;seau a des pertes de charge de 2,5 mCE &agrave; ce d&eacute;bit.<br>
+  <strong>1.</strong> Quelle vitesse convient ? <strong>2.</strong> Pourquoi ne pas toujours mettre en vitesse 3 ?
+  <div class="corr"><strong>Correction :</strong><br>1. V1 : 1,5 &lt; 2,5 &rarr; insuffisant. <strong>V2 : 2,8 &gt; 2,5 &rarr; convient</strong>. V3 : 4,2 &gt; 2,5 &rarr; convient mais surdimensionn&eacute;.<br>2. En vitesse 3, le circulateur consomme plus d'&eacute;lectricit&eacute; inutilement et le d&eacute;bit r&eacute;el sera trop &eacute;lev&eacute; &rarr; bruit dans les tuyaux et usure acc&eacute;l&eacute;r&eacute;e.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Courbe de r&eacute;seau &mdash; calcul de k</span><span class="tag-appro">Approfondissement</span></div>
+  La courbe de r&eacute;seau est \(H = k \times Q^2\). On mesure H = 3,0 mCE &agrave; Q = 1,0 m&sup3;/h.<br><br>
+  <strong>1.</strong> Calculer k. <strong>2.</strong> Calculer H pour Q = 0,5, 1,0, 1,5 et 2,0 m&sup3;/h.<br>
+  <strong>3.</strong> Que constatez-vous quand Q double ?
+  <div class="corr"><strong>Correction :</strong><br>1. k = 3,0 / 1,0&sup2; = <strong>3,0</strong><br>2. Q = 0,5 : H = 3&times;0,25 = <strong>0,75</strong>. Q = 1,0 : <strong>3,0</strong>. Q = 1,5 : 3&times;2,25 = <strong>6,75</strong>. Q = 2,0 : 3&times;4 = <strong>12</strong>.<br>3. Quand Q double (de 1,0 &agrave; 2,0), H est multipli&eacute; par <strong>4</strong> (car Q&sup2;). Les pertes de charge augmentent beaucoup plus vite que le d&eacute;bit.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Ajout d'une vanne &mdash; modification du r&eacute;seau</span><span class="tag-appro">Approfondissement</span></div>
+  On ferme partiellement une vanne sur le r&eacute;seau. La constante k passe de 3,0 &agrave; 5,0 (plus de r&eacute;sistance).<br><br>
+  <strong>1.</strong> Comment la courbe de r&eacute;seau se d&eacute;place-t-elle (monte ou descend) ?<br>
+  <strong>2.</strong> Le point de fonctionnement se d&eacute;place-t-il vers plus ou moins de d&eacute;bit ?<br>
+  <strong>3.</strong> Calculer le nouveau d&eacute;bit si la pompe fournit H = 5,0 mCE &agrave; ce d&eacute;bit (H<sub>pompe</sub> = H<sub>r&eacute;seau</sub> &rarr; 5Q&sup2; = 5 &minus; 2Q approximation).
+  <div class="corr"><strong>Correction :</strong><br>1. La courbe de r&eacute;seau <strong>monte</strong> (plus de pertes &agrave; chaque d&eacute;bit).<br>2. Le point de fonctionnement se d&eacute;place vers <strong>moins de d&eacute;bit</strong> (et plus de HMT).<br>3. &Agrave; l'intersection : 5Q&sup2; &asymp; H<sub>pompe</sub>(Q). Si la pompe donne environ 4 mCE &agrave; 0,9 m&sup3;/h : 5&times;0,9&sup2; = 4,05 &asymp; 4 &rarr; Q &asymp; <strong>0,9 m&sup3;/h</strong> (au lieu de ~1,0 sans la vanne).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Dimensionnement complet &mdash; installation de chauffage</span><span class="tag-appro">Approfondissement</span></div>
+  Installation de chauffage : chaudi&egrave;re 30 kW, &Delta;T = 15 &deg;C, longueur totale du r&eacute;seau 80 m, perte de charge lin&eacute;ique 20 mmCE/m, singularit&eacute;s +30 %.<br><br>
+  <strong>1.</strong> Calculer le d&eacute;bit n&eacute;cessaire en m&sup3;/h.<br>
+  <strong>2.</strong> Calculer les pertes de charge lin&eacute;aires en mCE.<br>
+  <strong>3.</strong> Ajouter 30 % de singularit&eacute;s. Pertes totales ?<br>
+  <strong>4.</strong> Reporter le point (Q, H) et choisir un circulateur.
+  <div class="corr"><strong>Correction :</strong><br>1. Q = 30 000 / (4 186 &times; 15) &times; 3,6 = 30 000 / 62 790 &times; 3 600 = <strong>1,72 m&sup3;/h</strong><br>2. H<sub>lin</sub> = 80 &times; 20 = 1 600 mmCE = <strong>1,6 mCE</strong><br>3. H<sub>total</sub> = 1,6 &times; 1,30 = <strong>2,08 mCE</strong><br>4. Point (1,72 ; 2,08). Choisir un circulateur qui fournit au moins 2,5 mCE &agrave; 1,7 m&sup3;/h (marge de s&eacute;curit&eacute;).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>

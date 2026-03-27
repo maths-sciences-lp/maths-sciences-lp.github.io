@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Diagramme enthalpique — Cycle frigorifique — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Diagramme enthalpique &mdash; Cycle frigorifique</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.10 &mdash; Thermodynamique</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Conna&icirc;tre les 4 &eacute;tapes du cycle frigorifique</li>
+    <li>Lire un diagramme enthalpique (pression-enthalpie)</li>
+    <li>Identifier les points caract&eacute;ristiques du cycle sur le diagramme</li>
+    <li>Calculer les puissances frigorifique, calorifique et le COP &agrave; partir du diagramme</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.10 &mdash; Cycle frigorifique, diagramme de Mollier</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Lecture de graphiques, soustraction, division</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Mise en service d'une climatisation</strong><br><br>
+  Un technicien climatisation met en service un split syst&egrave;me au R32. Il doit v&eacute;rifier les pressions et temp&eacute;ratures du circuit frigorifique et les reporter sur le diagramme enthalpique pour contr&ocirc;ler le bon fonctionnement du cycle.
+</div>
+
+<h2>2. Les 4 &eacute;tapes du cycle frigorifique</h2>
+
+<!-- SVG cycle simplifié -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="440" height="260" viewBox="0 0 440 260" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- Composants -->
+  <rect x="160" y="20" width="120" height="40" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="220" y="44" text-anchor="middle" fill="#f97316" font-weight="bold">CONDENSEUR</text>
+  <rect x="160" y="190" width="120" height="40" rx="8" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="220" y="214" text-anchor="middle" fill="#0ea5e9" font-weight="bold">&Eacute;VAPORATEUR</text>
+  <rect x="330" y="100" width="90" height="50" rx="8" fill="#f0fdf4" stroke="#2da44e" stroke-width="2"/>
+  <text x="375" y="122" text-anchor="middle" fill="#2da44e" font-weight="bold" font-size="10">COMPRESSEUR</text>
+  <text x="375" y="138" text-anchor="middle" fill="#2da44e" font-size="9">(W)</text>
+  <rect x="20" y="100" width="90" height="50" rx="8" fill="#faf5ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="65" y="122" text-anchor="middle" fill="#7c3aed" font-weight="bold" font-size="10">D&Eacute;TENDEUR</text>
+  <!-- Flèches -->
+  <defs><marker id="acyc" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#333"/></marker></defs>
+  <!-- 1→2 compression -->
+  <path d="M 330,125 Q 300,80 280,40" fill="none" stroke="#333" stroke-width="2" marker-end="url(#acyc)"/>
+  <text x="320" y="70" fill="#2da44e" font-weight="bold" font-size="10">1&rarr;2</text>
+  <!-- 2→3 condensation -->
+  <path d="M 160,40 Q 120,40 65,100" fill="none" stroke="#333" stroke-width="2" marker-end="url(#acyc)"/>
+  <text x="100" y="55" fill="#f97316" font-weight="bold" font-size="10">2&rarr;3</text>
+  <!-- 3→4 détente -->
+  <path d="M 65,150 Q 100,190 160,210" fill="none" stroke="#333" stroke-width="2" marker-end="url(#acyc)"/>
+  <text x="100" y="195" fill="#7c3aed" font-weight="bold" font-size="10">3&rarr;4</text>
+  <!-- 4→1 évaporation -->
+  <path d="M 280,210 Q 330,210 375,150" fill="none" stroke="#333" stroke-width="2" marker-end="url(#acyc)"/>
+  <text x="340" y="195" fill="#0ea5e9" font-weight="bold" font-size="10">4&rarr;1</text>
+  <!-- Labels énergie -->
+  <text x="220" y="8" fill="#f97316" font-size="10">Q<tspan baseline-shift="sub" font-size="8">c</tspan> lib&eacute;r&eacute;e (chauffage)</text>
+  <text x="220" y="250" fill="#0ea5e9" font-size="10">Q<tspan baseline-shift="sub" font-size="8">f</tspan> absorb&eacute;e (source froide)</text>
+</svg>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Les 4 &eacute;tapes</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">&Eacute;tape</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Composant</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Ce qui se passe</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&Eacute;tat du fluide</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">1 &rarr; 2</td><td style="border:1px solid var(--p-border);padding:.35rem">Compresseur</td><td style="border:1px solid var(--p-border);padding:.35rem">Compression (P et T augmentent)</td><td style="border:1px solid var(--p-border);padding:.35rem">Gaz &rarr; gaz chaud HP</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">2 &rarr; 3</td><td style="border:1px solid var(--p-border);padding:.35rem">Condenseur</td><td style="border:1px solid var(--p-border);padding:.35rem">Condensation (lib&egrave;re Q<sub>c</sub>)</td><td style="border:1px solid var(--p-border);padding:.35rem">Gaz &rarr; liquide HP</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">3 &rarr; 4</td><td style="border:1px solid var(--p-border);padding:.35rem">D&eacute;tendeur</td><td style="border:1px solid var(--p-border);padding:.35rem">D&eacute;tente (P et T diminuent)</td><td style="border:1px solid var(--p-border);padding:.35rem">Liquide HP &rarr; m&eacute;lange BP</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">4 &rarr; 1</td><td style="border:1px solid var(--p-border);padding:.35rem">&Eacute;vaporateur</td><td style="border:1px solid var(--p-border);padding:.35rem">&Eacute;vaporation (absorbe Q<sub>f</sub>)</td><td style="border:1px solid var(--p-border);padding:.35rem">M&eacute;lange &rarr; gaz BP</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>3. Le diagramme enthalpique</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span><br>
+  Le <strong>diagramme enthalpique</strong> (ou diagramme de Mollier, ou diagramme log P &ndash; h) repr&eacute;sente le cycle du fluide frigorig&egrave;ne :<br>
+  &bull; Axe horizontal : <strong>enthalpie h</strong> en kJ/kg<br>
+  &bull; Axe vertical : <strong>pression P</strong> en bar (&eacute;chelle logarithmique)<br><br>
+  Le cycle se lit en lisant les enthalpies aux 4 points caract&eacute;ristiques.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Formules du diagramme</span><br>
+  <ul>
+    <li>Puissance frigorifique : \(q_f = h_1 - h_4\) en kJ/kg</li>
+    <li>Travail du compresseur : \(w = h_2 - h_1\) en kJ/kg</li>
+    <li>Puissance calorifique : \(q_c = h_2 - h_3\) en kJ/kg</li>
+    <li>COP<sub>chaud</sub> = q<sub>c</sub> / w &emsp; COP<sub>froid</sub> = q<sub>f</sub> / w</li>
+  </ul>
+  <strong>V&eacute;rification :</strong> \(q_c = q_f + w\)
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Cycle R32 simplifi&eacute;</span><br>
+  Points lus sur le diagramme :<br>
+  h<sub>1</sub> = 520 kJ/kg &emsp; h<sub>2</sub> = 570 kJ/kg &emsp; h<sub>3</sub> = 270 kJ/kg &emsp; h<sub>4</sub> = 270 kJ/kg<br><br>
+  q<sub>f</sub> = 520 &minus; 270 = <strong>250 kJ/kg</strong><br>
+  w = 570 &minus; 520 = <strong>50 kJ/kg</strong><br>
+  q<sub>c</sub> = 570 &minus; 270 = <strong>300 kJ/kg</strong><br>
+  V&eacute;rification : 250 + 50 = 300 &check;<br>
+  COP<sub>chaud</sub> = 300/50 = <strong>6</strong> &emsp; COP<sub>froid</sub> = 250/50 = <strong>5</strong>
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>4 &eacute;tapes : compression &rarr; condensation &rarr; d&eacute;tente &rarr; &eacute;vaporation</li>
+    <li>Diagramme : axe h (enthalpie) et axe P (pression)</li>
+    <li>q<sub>f</sub> = h<sub>1</sub> &minus; h<sub>4</sub> &emsp; w = h<sub>2</sub> &minus; h<sub>1</sub> &emsp; q<sub>c</sub> = h<sub>2</sub> &minus; h<sub>3</sub></li>
+    <li>COP = q<sub>c</sub> / w (chauffage) ou q<sub>f</sub> / w (climatisation)</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Nommer les 4 &eacute;tapes (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Associer chaque num&eacute;ro &agrave; l'&eacute;tape :<br>
+  <strong>a)</strong> 1&rarr;2 : &hellip; <strong>b)</strong> 2&rarr;3 : &hellip; <strong>c)</strong> 3&rarr;4 : &hellip; <strong>d)</strong> 4&rarr;1 : &hellip;
+  <div class="corr"><strong>Correction :</strong> a) <strong>Compression</strong> b) <strong>Condensation</strong> c) <strong>D&eacute;tente</strong> d) <strong>&Eacute;vaporation</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Calculer q<sub>f</sub> (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  h<sub>1</sub> = 510 kJ/kg, h<sub>4</sub> = 260 kJ/kg.<br>
+  q<sub>f</sub> = h<sub>1</sub> &minus; h<sub>4</sub> = &hellip; kJ/kg
+  <div class="corr"><strong>Correction :</strong> q<sub>f</sub> = 510 &minus; 260 = <strong>250 kJ/kg</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Calculer w et q<sub>c</sub> (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  h<sub>1</sub> = 510, h<sub>2</sub> = 560, h<sub>3</sub> = 260 kJ/kg.<br>
+  w = h<sub>2</sub> &minus; h<sub>1</sub> = &hellip; kJ/kg<br>
+  q<sub>c</sub> = h<sub>2</sub> &minus; h<sub>3</sub> = &hellip; kJ/kg<br>
+  V&eacute;rifier : q<sub>f</sub> + w = &hellip; = q<sub>c</sub> ?
+  <div class="corr"><strong>Correction :</strong><br>w = 560 &minus; 510 = <strong>50 kJ/kg</strong><br>q<sub>c</sub> = 560 &minus; 260 = <strong>300 kJ/kg</strong><br>V&eacute;rif : 250 + 50 = 300 = q<sub>c</sub> &check;</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Calculer le COP (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  q<sub>c</sub> = 300 kJ/kg, w = 50 kJ/kg.<br>
+  COP<sub>chaud</sub> = q<sub>c</sub> / w = &hellip;<br>
+  COP<sub>froid</sub> = q<sub>f</sub> / w = &hellip; (avec q<sub>f</sub> = 250)
+  <div class="corr"><strong>Correction :</strong><br>COP<sub>chaud</sub> = 300/50 = <strong>6</strong><br>COP<sub>froid</sub> = 250/50 = <strong>5</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Puissances avec d&eacute;bit massique</span><span class="tag-standard">Standard</span></div>
+  Un cycle a : q<sub>f</sub> = 200 kJ/kg, w = 60 kJ/kg. D&eacute;bit massique du fluide : &dot;m = 0,04 kg/s.<br><br>
+  <strong>1.</strong> P<sub>f</sub> (puissance frigorifique) = &dot;m &times; q<sub>f</sub>. <strong>2.</strong> P<sub>comp</sub> = &dot;m &times; w.<br>
+  <strong>3.</strong> P<sub>c</sub> (puissance calorifique). <strong>4.</strong> COP<sub>chaud</sub>.
+  <div class="corr"><strong>Correction :</strong><br>1. P<sub>f</sub> = 0,04 &times; 200 = <strong>8 kW</strong><br>2. P<sub>comp</sub> = 0,04 &times; 60 = <strong>2,4 kW</strong><br>3. P<sub>c</sub> = 8 + 2,4 = <strong>10,4 kW</strong><br>4. COP = 10,4/2,4 = <strong>4,3</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Lecture du diagramme &mdash; valeurs donn&eacute;es</span><span class="tag-standard">Standard</span></div>
+  Sur le diagramme d'un R32, on lit :<br>
+  Point 1 : P = 8 bar, h = 525 kJ/kg<br>
+  Point 2 : P = 25 bar, h = 580 kJ/kg<br>
+  Point 3 : P = 25 bar, h = 275 kJ/kg<br>
+  Point 4 : P = 8 bar, h = 275 kJ/kg<br><br>
+  <strong>1.</strong> Calculer q<sub>f</sub>, w, q<sub>c</sub>. <strong>2.</strong> COP<sub>chaud</sub> et COP<sub>froid</sub>.
+  <div class="corr"><strong>Correction :</strong><br>1. q<sub>f</sub> = 525 &minus; 275 = <strong>250</strong>. w = 580 &minus; 525 = <strong>55</strong>. q<sub>c</sub> = 580 &minus; 275 = <strong>305</strong>.<br>V&eacute;rif : 250 + 55 = 305 &check;<br>2. COP<sub>chaud</sub> = 305/55 = <strong>5,5</strong>. COP<sub>froid</sub> = 250/55 = <strong>4,5</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">D&eacute;bit massique n&eacute;cessaire</span><span class="tag-standard">Standard</span></div>
+  On veut une puissance calorifique de 12 kW. Le cycle a q<sub>c</sub> = 300 kJ/kg.<br><br>
+  <strong>1.</strong> Calculer le d&eacute;bit massique : &dot;m = P<sub>c</sub> / q<sub>c</sub>.<br>
+  <strong>2.</strong> Avec w = 50 kJ/kg, calculer la puissance &eacute;lectrique du compresseur.
+  <div class="corr"><strong>Correction :</strong><br>1. &dot;m = 12/300 = <strong>0,04 kg/s</strong><br>2. P<sub>comp</sub> = 0,04 &times; 50 = <strong>2 kW</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Influence de la temp&eacute;rature de condensation</span><span class="tag-appro">Approfondissement</span></div>
+  On compare deux r&eacute;gimes de fonctionnement d'une m&ecirc;me PAC :<br><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.88rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem"></th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">h<sub>1</sub></th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">h<sub>2</sub></th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">h<sub>3</sub>=h<sub>4</sub></th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">R&eacute;gime A (condensation 35 &deg;C)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">520</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">555</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">250</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">R&eacute;gime B (condensation 55 &deg;C)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">520</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">590</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">280</td></tr>
+    </tbody>
+  </table><br>
+  <strong>1.</strong> Calculer COP<sub>chaud</sub> pour chaque r&eacute;gime.<br>
+  <strong>2.</strong> Quel r&eacute;gime est le plus efficace ?<br>
+  <strong>3.</strong> Pourquoi un plancher chauffant (35 &deg;C) est-il plus adapt&eacute; &agrave; une PAC qu'un radiateur haute temp&eacute;rature (55 &deg;C) ?
+  <div class="corr"><strong>Correction :</strong><br>1. A : w = 35, q<sub>c</sub> = 305 &rarr; COP = 305/35 = <strong>8,7</strong>. B : w = 70, q<sub>c</sub> = 310 &rarr; COP = 310/70 = <strong>4,4</strong><br>2. R&eacute;gime A (<strong>COP 8,7</strong>) est beaucoup plus efficace.<br>3. Plus la temp&eacute;rature de condensation est basse, moins le compresseur travaille (w faible) &rarr; meilleur COP. Un plancher chauffant fonctionne &agrave; basse temp&eacute;rature &rarr; id&eacute;al pour une PAC.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Sous-refroidissement et surchauffe</span><span class="tag-appro">Approfondissement</span></div>
+  En pratique, le technicien mesure :<br>
+  &bull; La <strong>surchauffe</strong> &agrave; l'&eacute;vaporateur : diff&eacute;rence entre T<sub>gaz sortie</sub> et T<sub>&eacute;vaporation</sub> (typ. 5&ndash;8 K)<br>
+  &bull; Le <strong>sous-refroidissement</strong> au condenseur : diff&eacute;rence entre T<sub>condensation</sub> et T<sub>liquide sortie</sub> (typ. 3&ndash;5 K)<br><br>
+  <strong>1.</strong> Si T<sub>&eacute;vaporation</sub> = &minus;5 &deg;C et T<sub>gaz sortie &eacute;vaporateur</sub> = 2 &deg;C, quelle est la surchauffe ?<br>
+  <strong>2.</strong> Si T<sub>condensation</sub> = 45 &deg;C et T<sub>liquide sortie</sub> = 40 &deg;C, quel est le sous-refroidissement ?<br>
+  <strong>3.</strong> Si la surchauffe est de 0 K, quel risque pour le compresseur ?<br>
+  <strong>4.</strong> Sur le diagramme, o&ugrave; se situe la surchauffe par rapport au point 1 ?
+  <div class="corr"><strong>Correction :</strong><br>1. Surchauffe = 2 &minus; (&minus;5) = <strong>7 K</strong> &rarr; dans la plage (5&ndash;8 K) &check;<br>2. Sous-refroidissement = 45 &minus; 40 = <strong>5 K</strong> &check;<br>3. Surchauffe = 0 &rarr; du liquide risque d'entrer dans le compresseur &rarr; <strong>coup de liquide</strong> &rarr; destruction du compresseur.<br>4. La surchauffe se situe &agrave; <strong>droite de la courbe de saturation</strong> (zone vapeur surchauff&eacute;e), entre la courbe et le point 1.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Probl&egrave;me complet &mdash; dimensionner un cycle</span><span class="tag-appro">Approfondissement</span></div>
+  On veut dimensionner une PAC air-eau au R32 pour fournir 15 kW de chauffage. Le cycle a les points suivants (lus sur le diagramme) :<br>
+  h<sub>1</sub> = 515 kJ/kg, h<sub>2</sub> = 575 kJ/kg, h<sub>3</sub> = h<sub>4</sub> = 268 kJ/kg.<br><br>
+  <strong>1.</strong> Calculer q<sub>f</sub>, w, q<sub>c</sub>.<br>
+  <strong>2.</strong> COP<sub>chaud</sub>.<br>
+  <strong>3.</strong> D&eacute;bit massique de fluide pour P<sub>c</sub> = 15 kW.<br>
+  <strong>4.</strong> Puissance &eacute;lectrique du compresseur.<br>
+  <strong>5.</strong> Co&ucirc;t &eacute;lectrique annuel (1 800 h, 0,25 &euro;/kWh).
+  <div class="corr"><strong>Correction :</strong><br>1. q<sub>f</sub> = 515 &minus; 268 = <strong>247</strong>. w = 575 &minus; 515 = <strong>60</strong>. q<sub>c</sub> = 575 &minus; 268 = <strong>307</strong>. V&eacute;rif : 247+60 = 307 &check;<br>2. COP = 307/60 = <strong>5,1</strong><br>3. &dot;m = 15/307 = <strong>0,0489 kg/s</strong><br>4. P<sub>comp</sub> = 0,0489 &times; 60 = <strong>2,93 kW</strong><br>5. E = 2,93 &times; 1 800 = 5 274 kWh. Co&ucirc;t = 5 274 &times; 0,25 = <strong>1 319 &euro;/an</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>
