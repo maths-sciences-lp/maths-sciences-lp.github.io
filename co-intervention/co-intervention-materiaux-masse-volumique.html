@@ -323,12 +323,32 @@
 </div>
 <script src="../nav.js"></script>
 <script src="../diff.js"></script>
+
+<!-- BARRE D'IMPRESSION -->
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+
+<!-- SIGNATURE AUTEUR -->
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+
 <script>
 function toggle(btn){
   const c=btn.previousElementSibling;
   if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}
   else{c.style.display='none';btn.textContent='Voir la correction';}
 }
+document.getElementById('sn-print-corr').addEventListener('click',function(){
+  var corrs=document.querySelectorAll('.corr');
+  for(var i=0;i<corrs.length;i++) corrs[i].style.setProperty('display','block','important');
+  window.addEventListener('afterprint',function cleanup(){
+    for(var j=0;j<corrs.length;j++) corrs[j].style.removeProperty('display');
+    window.removeEventListener('afterprint',cleanup);
+  });
+  setTimeout(function(){window.print();},100);
+});
 </script>
 </body>
 </html>
