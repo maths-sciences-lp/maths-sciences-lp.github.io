@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>COP d'une pompe à chaleur — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>COP d'une pompe &agrave; chaleur</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.10 &mdash; Thermodynamique</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Comprendre le principe de fonctionnement d'une pompe &agrave; chaleur (PAC)</li>
+    <li>Calculer le COP : \(\text{COP} = Q_c / W\)</li>
+    <li>Comparer PAC et chauffage direct (gaz, &eacute;lectrique)</li>
+    <li>Comprendre l'influence de la temp&eacute;rature ext&eacute;rieure sur le COP</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.10 &mdash; Thermodynamique (COP, PAC)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Division, pourcentages, comparaisons, graphiques</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Remplacement d'une chaudi&egrave;re fioul par une PAC</strong><br><br>
+  Un technicien en &eacute;nergies renouvelables remplace une vieille chaudi&egrave;re fioul par une pompe &agrave; chaleur air-eau. Le client h&eacute;site : <em>&laquo;&nbsp;On m'a dit qu'une PAC consomme 1 kWh d'&eacute;lectricit&eacute; pour produire 3 kWh de chaleur. Comment est-ce possible ? &Ccedil;a viole la physique, non ?&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG principe PAC -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="460" height="200" viewBox="0 0 460 200" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- Source froide -->
+  <rect x="20" y="60" width="100" height="80" rx="8" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="70" y="95" text-anchor="middle" fill="#0ea5e9" font-weight="bold">Source froide</text>
+  <text x="70" y="115" text-anchor="middle" fill="#0ea5e9" font-size="10">(air ext&eacute;rieur)</text>
+  <!-- PAC -->
+  <rect x="170" y="40" width="120" height="120" rx="10" fill="#f0fdf4" stroke="#2da44e" stroke-width="3"/>
+  <text x="230" y="95" text-anchor="middle" fill="#2da44e" font-weight="bold" font-size="13">PAC</text>
+  <text x="230" y="115" text-anchor="middle" fill="#2da44e" font-size="10">Compresseur</text>
+  <!-- Source chaude -->
+  <rect x="340" y="60" width="100" height="80" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="390" y="95" text-anchor="middle" fill="#f97316" font-weight="bold">Source chaude</text>
+  <text x="390" y="115" text-anchor="middle" fill="#f97316" font-size="10">(radiateurs)</text>
+  <!-- Flèches -->
+  <defs><marker id="apc" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#0ea5e9"/></marker>
+  <marker id="apc2" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#f97316"/></marker>
+  <marker id="apc3" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#2da44e"/></marker></defs>
+  <!-- Qf -->
+  <line x1="120" y1="85" x2="165" y2="85" stroke="#0ea5e9" stroke-width="2.5" marker-end="url(#apc)"/>
+  <text x="143" y="78" text-anchor="middle" fill="#0ea5e9" font-weight="bold">Q<tspan baseline-shift="sub" font-size="8">f</tspan></text>
+  <!-- Qc -->
+  <line x1="290" y1="85" x2="335" y2="85" stroke="#f97316" stroke-width="2.5" marker-end="url(#apc2)"/>
+  <text x="313" y="78" text-anchor="middle" fill="#f97316" font-weight="bold">Q<tspan baseline-shift="sub" font-size="8">c</tspan></text>
+  <!-- W -->
+  <line x1="230" y1="15" x2="230" y2="35" stroke="#2da44e" stroke-width="2.5" marker-end="url(#apc3)"/>
+  <text x="230" y="12" text-anchor="middle" fill="#2da44e" font-weight="bold">W (&eacute;lec.)</text>
+  <!-- Bilan -->
+  <text x="230" y="185" text-anchor="middle" fill="#333" font-weight="bold">Q<tspan baseline-shift="sub" font-size="9">c</tspan> = Q<tspan baseline-shift="sub" font-size="9">f</tspan> + W</text>
+</svg>
+</div>
+
+<h2>2. Principe de la pompe &agrave; chaleur</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; PAC</span><br>
+  Une <strong>pompe &agrave; chaleur</strong> pr&eacute;l&egrave;ve de la chaleur &agrave; une <strong>source froide</strong> (air ext&eacute;rieur, sol, nappe d'eau) et la restitue &agrave; une <strong>source chaude</strong> (radiateurs, plancher chauffant). Le compresseur consomme de l'&eacute;lectricit&eacute; W pour &laquo;&nbsp;pomper&nbsp;&raquo; la chaleur du froid vers le chaud.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Bilan &eacute;nerg&eacute;tique</span><br>
+  \[ Q_c = Q_f + W \]
+  <ul>
+    <li>\(Q_c\) : chaleur fournie &agrave; la maison (kWh)</li>
+    <li>\(Q_f\) : chaleur pr&eacute;lev&eacute;e &agrave; l'ext&eacute;rieur (gratuite)</li>
+    <li>\(W\) : &eacute;nergie &eacute;lectrique du compresseur (pay&eacute;e)</li>
+  </ul>
+  La PAC ne cr&eacute;e pas d'&eacute;nergie : elle <strong>d&eacute;place</strong> la chaleur de l'ext&eacute;rieur vers l'int&eacute;rieur.
+</div>
+
+<h2>3. Coefficient de performance (COP)</h2>
+
+<div class="prop">
+  <span class="label label-prop">Formule du COP</span><br>
+  \[ \text{COP} = \frac{Q_c}{W} \]
+  <ul>
+    <li>COP = 3 signifie : pour 1 kWh d'&eacute;lectricit&eacute; consomm&eacute;, la PAC fournit <strong>3 kWh de chaleur</strong></li>
+    <li>COP typique d'une PAC air-eau : <strong>2,5 &agrave; 4</strong> selon la temp&eacute;rature ext&eacute;rieure</li>
+    <li>Un radiateur &eacute;lectrique a un COP = 1 (1 kWh &eacute;lec &rarr; 1 kWh chaleur)</li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label label-att">Le COP d&eacute;pend de la temp&eacute;rature ext&eacute;rieure</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">T ext&eacute;rieure (&deg;C)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">COP typique (air-eau)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">+7</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">3,5 &agrave; 4,0</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">2,8 &agrave; 3,2</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&minus;7</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">2,0 &agrave; 2,5</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&minus;15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,5 &agrave; 2,0</td></tr>
+    </tbody>
+  </table>
+  Plus il fait froid, plus le COP <strong>diminue</strong> (la PAC travaille plus dur pour extraire la chaleur d'un air tr&egrave;s froid).
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple</span><br>
+  PAC air-eau de 12 kW thermique, COP = 3.<br>
+  Puissance &eacute;lectrique consomm&eacute;e : \(W = Q_c / \text{COP} = 12 / 3 = 4\) kW<br>
+  Chaleur pr&eacute;lev&eacute;e &agrave; l'ext&eacute;rieur : \(Q_f = Q_c - W = 12 - 4 = 8\) kW<br><br>
+  Sur 8 kW pay&eacute;s &agrave; EDF, 8 kW sont &laquo;&nbsp;gratuits&nbsp;&raquo; (pr&eacute;lev&eacute;s dans l'air ext&eacute;rieur).
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>\(\text{COP} = Q_c / W\) &mdash; chaleur fournie / &eacute;lectricit&eacute; consomm&eacute;e</li>
+    <li>COP = 3 &rarr; 3 kWh chaleur pour 1 kWh &eacute;lectrique</li>
+    <li>PAC air-eau : COP &asymp; 2,5 &agrave; 4 selon T ext&eacute;rieure</li>
+    <li>Plus il fait froid, plus le COP baisse</li>
+    <li>SCOP (COP saisonnier moyen) : valeur moyenne sur toute la saison</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Calculer W &agrave; partir du COP (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  PAC fournit Q<sub>c</sub> = 9 kW, COP = 3.<br>
+  W = Q<sub>c</sub> / COP = 9 / 3 = &hellip; kW
+  <div class="corr"><strong>Correction :</strong> W = <strong>3 kW</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Calculer Q<sub>f</sub> (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Q<sub>c</sub> = 12 kW, W = 4 kW.<br>
+  Q<sub>f</sub> = Q<sub>c</sub> &minus; W = &hellip; kW. D'o&ugrave; vient cette &eacute;nergie ?
+  <div class="corr"><strong>Correction :</strong> Q<sub>f</sub> = 12 &minus; 4 = <strong>8 kW</strong>. Elle vient de l'<strong>air ext&eacute;rieur</strong> (gratuit).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">COP d'un radiateur &eacute;lectrique (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Un radiateur &eacute;lectrique consomme 2 kW et fournit 2 kW de chaleur.<br>
+  COP = Q<sub>c</sub> / W = 2 / 2 = &hellip;<br>
+  Comparer avec une PAC de COP = 3. Laquelle est la plus &eacute;conome ?
+  <div class="corr"><strong>Correction :</strong> COP = <strong>1</strong>. La PAC est <strong>3 fois plus &eacute;conome</strong> en &eacute;lectricit&eacute;.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Co&ucirc;t de chauffage avec PAC (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Besoins : 15 000 kWh/an. PAC de COP = 3. &Eacute;lectricit&eacute; : 0,25 &euro;/kWh.<br>
+  W = 15 000 / 3 = &hellip; kWh. Co&ucirc;t = &hellip; &times; 0,25 = &hellip; &euro;/an.
+  <div class="corr"><strong>Correction :</strong> W = <strong>5 000 kWh</strong>. Co&ucirc;t = 5 000 &times; 0,25 = <strong>1 250 &euro;/an</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">PAC vs chaudi&egrave;re gaz &mdash; co&ucirc;t annuel</span><span class="tag-standard">Standard</span></div>
+  Besoins : 18 000 kWh/an.<br>
+  &bull; Chaudi&egrave;re gaz (&eta; = 105 %) : gaz &agrave; 0,12 &euro;/kWh<br>
+  &bull; PAC air-eau (SCOP = 3,2) : &eacute;lec &agrave; 0,25 &euro;/kWh<br><br>
+  <strong>1.</strong> Co&ucirc;t annuel gaz. <strong>2.</strong> Co&ucirc;t annuel PAC. <strong>3.</strong> &Eacute;conomie de la PAC.
+  <div class="corr"><strong>Correction :</strong><br>1. Gaz : 18 000/1,05 &times; 0,12 = <strong>2 057 &euro;</strong><br>2. PAC : 18 000/3,2 &times; 0,25 = <strong>1 406 &euro;</strong><br>3. &Eacute;conomie : 2 057 &minus; 1 406 = <strong>651 &euro;/an</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Influence de la temp&eacute;rature ext&eacute;rieure</span><span class="tag-standard">Standard</span></div>
+  PAC de 12 kW thermique. Calculer W pour :<br>
+  <strong>a)</strong> T<sub>ext</sub> = +7 &deg;C, COP = 3,8<br>
+  <strong>b)</strong> T<sub>ext</sub> = 0 &deg;C, COP = 3,0<br>
+  <strong>c)</strong> T<sub>ext</sub> = &minus;7 &deg;C, COP = 2,2<br>
+  <strong>d)</strong> T<sub>ext</sub> = &minus;15 &deg;C, COP = 1,6<br><br>
+  Que constatez-vous ? Quand fait-il le plus froid, la PAC consomme-t-elle plus ou moins ?
+  <div class="corr"><strong>Correction :</strong><br>a) W = 12/3,8 = <strong>3,16 kW</strong><br>b) W = 12/3,0 = <strong>4,00 kW</strong><br>c) W = 12/2,2 = <strong>5,45 kW</strong><br>d) W = 12/1,6 = <strong>7,50 kW</strong><br><br>Quand il fait plus froid, le COP baisse et la PAC consomme <strong>plus d'&eacute;lectricit&eacute;</strong> pour la m&ecirc;me chaleur fournie.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Rentabilit&eacute; du remplacement fioul &rarr; PAC</span><span class="tag-standard">Standard</span></div>
+  Un client passe du fioul (consommation 2 000 L/an &agrave; 1,20 &euro;/L) &agrave; une PAC (SCOP = 3, &eacute;lec 0,25 &euro;/kWh). PCI fioul = 10 kWh/L, rendement chaudi&egrave;re = 85 %. La PAC co&ucirc;te 12 000 &euro; (aides d&eacute;duites).<br><br>
+  <strong>1.</strong> &Eacute;nergie utile annuelle (via fioul).<br>
+  <strong>2.</strong> Co&ucirc;t fioul annuel.<br>
+  <strong>3.</strong> Co&ucirc;t PAC annuel.<br>
+  <strong>4.</strong> Temps de retour sur investissement.
+  <div class="corr"><strong>Correction :</strong><br>1. E<sub>utile</sub> = 2 000 &times; 10 &times; 0,85 = <strong>17 000 kWh</strong><br>2. Co&ucirc;t fioul = 2 000 &times; 1,20 = <strong>2 400 &euro;</strong><br>3. PAC : W = 17 000/3 = 5 667 kWh. Co&ucirc;t = 5 667 &times; 0,25 = <strong>1 417 &euro;</strong><br>4. &Eacute;conomie = 2 400 &minus; 1 417 = 983 &euro;/an. Retour = 12 000/983 = <strong>12,2 ans</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">SCOP &mdash; COP saisonnier moyen</span><span class="tag-appro">Approfondissement</span></div>
+  Le SCOP est la moyenne pond&eacute;r&eacute;e du COP sur toute la saison. La r&eacute;partition horaire du chauffage est :<br>
+  &bull; 600 h &agrave; T<sub>ext</sub> = +7 &deg;C (COP = 3,8)<br>
+  &bull; 800 h &agrave; T<sub>ext</sub> = 0 &deg;C (COP = 3,0)<br>
+  &bull; 400 h &agrave; T<sub>ext</sub> = &minus;7 &deg;C (COP = 2,2)<br>
+  &bull; 200 h &agrave; T<sub>ext</sub> = &minus;15 &deg;C (COP = 1,6)<br><br>
+  <strong>1.</strong> Calculer le SCOP (moyenne pond&eacute;r&eacute;e par les heures).<br>
+  <strong>2.</strong> Comparer avec le COP nominal (&agrave; +7 &deg;C). Pourquoi le SCOP est-il toujours inf&eacute;rieur ?
+  <div class="corr"><strong>Correction :</strong><br>1. SCOP = (600&times;3,8 + 800&times;3,0 + 400&times;2,2 + 200&times;1,6) / (600+800+400+200)<br>= (2 280 + 2 400 + 880 + 320) / 2 000 = 5 880 / 2 000 = <strong>2,94</strong><br>2. COP nominal = 3,8 mais SCOP = 2,94 : le SCOP est <strong>23 % plus bas</strong> car la PAC fonctionne souvent par temps froid o&ugrave; le COP est d&eacute;grad&eacute;. Le SCOP est plus r&eacute;aliste pour estimer les co&ucirc;ts.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">PAC air-eau vs g&eacute;othermie</span><span class="tag-appro">Approfondissement</span></div>
+  <table style="border-collapse:collapse;width:100%;font-size:.88rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem"></th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">PAC air-eau</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">PAC g&eacute;othermique</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">SCOP</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">3,0</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">4,5</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">Co&ucirc;t install.</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">10 000 &euro;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">25 000 &euro;</td></tr>
+    </tbody>
+  </table><br>
+  Besoins : 20 000 kWh/an, &eacute;lec 0,25 &euro;/kWh.<br><br>
+  <strong>1.</strong> Co&ucirc;t annuel pour chaque PAC. <strong>2.</strong> &Eacute;conomie annuelle de la g&eacute;othermie.<br>
+  <strong>3.</strong> Temps de retour du surco&ucirc;t de la g&eacute;othermie.<br>
+  <strong>4.</strong> Pourquoi le COP de la g&eacute;othermie est-il plus stable que celui de l'air-eau ?
+  <div class="corr"><strong>Correction :</strong><br>1. Air-eau : 20 000/3 &times; 0,25 = <strong>1 667 &euro;</strong>. G&eacute;o : 20 000/4,5 &times; 0,25 = <strong>1 111 &euro;</strong><br>2. &Eacute;conomie : 1 667 &minus; 1 111 = <strong>556 &euro;/an</strong><br>3. Surco&ucirc;t : 25 000 &minus; 10 000 = 15 000 &euro;. Retour : 15 000/556 = <strong>27 ans</strong><br>4. La source froide de la g&eacute;othermie est le <strong>sol</strong>, dont la temp&eacute;rature reste constante toute l'ann&eacute;e (&asymp; 12 &deg;C en France). L'air ext&eacute;rieur varie de &minus;15 &agrave; +35 &deg;C &rarr; COP tr&egrave;s variable.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Bilan global &mdash; &eacute;conomique + environnemental</span><span class="tag-appro">Approfondissement</span></div>
+  Un client h&eacute;site entre 3 solutions pour chauffer sa maison (besoins : 15 000 kWh/an) :<br>
+  &bull; Chaudi&egrave;re gaz condensation (&eta; = 105 %, gaz 0,12 &euro;/kWh, CO<sub>2</sub> gaz = 0,227 kg/kWh)<br>
+  &bull; PAC air-eau (SCOP = 3, &eacute;lec 0,25 &euro;/kWh, CO<sub>2</sub> &eacute;lec = 0,052 kg/kWh)<br>
+  &bull; PAC + panneaux solaires thermiques (couvrent 30 % des besoins, reste PAC SCOP = 3)<br><br>
+  <strong>1.</strong> Co&ucirc;t annuel de chaque solution.<br>
+  <strong>2.</strong> &Eacute;missions CO<sub>2</sub> annuelles de chaque solution.<br>
+  <strong>3.</strong> Classer du plus &eacute;conome au plus cher et du plus &eacute;cologique au plus polluant.<br>
+  <strong>4.</strong> Quelle solution recommander et pourquoi ?
+  <div class="corr"><strong>Correction :</strong><br>1. Gaz : 15 000/1,05 &times; 0,12 = <strong>1 714 &euro;</strong>. PAC : 15 000/3 &times; 0,25 = <strong>1 250 &euro;</strong>. PAC+solaire : (15 000&times;0,70)/3 &times; 0,25 = <strong>875 &euro;</strong><br>2. Gaz : 14 286 &times; 0,227 = <strong>3 243 kg</strong>. PAC : 5 000 &times; 0,052 = <strong>260 kg</strong>. PAC+solaire : 3 500 &times; 0,052 = <strong>182 kg</strong><br>3. Co&ucirc;t : PAC+solaire &lt; PAC &lt; gaz. CO<sub>2</sub> : PAC+solaire &lt; PAC &lt;&lt; gaz.<br>4. La <strong>PAC seule</strong> est le meilleur compromis co&ucirc;t/environnement. La PAC+solaire est la meilleure mais n&eacute;cessite un investissement initial plus &eacute;lev&eacute;. Le gaz est &agrave; &eacute;viter (&eacute;missions 12&times; plus &eacute;lev&eacute;es).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>
