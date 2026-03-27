@@ -25,6 +25,7 @@
     <li><strong>C3</strong> — Distinguer sons audibles, infrasons et ultrasons (20 Hz – 20 kHz)</li>
     <li><strong>C4</strong> — Calculer une vitesse de propagation \(v = d/t\)</li>
     <li><strong>C5</strong> — Lire et exploiter un oscillogramme sonore</li>
+    <li><strong>C6</strong> — Mesurer et exploiter le niveau d'intensité acoustique en décibels (seuils de danger)</li>
   </ul>
 </div>
 
@@ -35,6 +36,7 @@
   <button class="btn-cap" data-filtre="C3">C3 – Domaines sonores</button>
   <button class="btn-cap" data-filtre="C4">C4 – Vitesse de propagation</button>
   <button class="btn-cap" data-filtre="C5">C5 – Oscillogramme</button>
+  <button class="btn-cap" data-filtre="C6">C6 – Décibels et seuils</button>
 </div>
 <p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
 
@@ -390,6 +392,115 @@
 </div>
 </div>
 
+</div>
+
+<!-- ===== C6 ===== -->
+<div class="cap-section" data-cap="C6">
+<h2>C6 — Niveau d'intensité acoustique en décibels ; seuils de danger</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>Le <strong>niveau d'intensité acoustique</strong> se mesure en <strong>décibels (dB)</strong> avec un sonomètre.<br>
+  — 0 dB : seuil d'audibilité<br>
+  — 60 dB : conversation normale<br>
+  — <strong>85 dB : seuil de dangerosité</strong> (port de protections obligatoire en milieu professionnel)<br>
+  — <strong>120 dB : seuil de douleur</strong><br>
+  Une exposition prolongée au-dessus de 85 dB provoque des lésions irréversibles de l'oreille interne.</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="320" height="100" viewBox="0 0 320 100">
+      <rect width="320" height="100" fill="#f8fafc" rx="6"/>
+      <!-- Barre de niveaux -->
+      <rect x="20" y="20" width="280" height="25" rx="4" fill="#d1fae5"/>
+      <rect x="20" y="20" width="200" height="25" rx="4" fill="#fef3c7"/>
+      <rect x="20" y="20" width="140" height="25" rx="4" fill="#d1fae5"/>
+      <!-- Zones danger -->
+      <rect x="160" y="20" width="60" height="25" fill="#fef3c7"/>
+      <rect x="220" y="20" width="80" height="25" rx="0 4 4 0" fill="#fee2e2"/>
+      <!-- Graduations -->
+      <text x="20" y="60" font-size="9" fill="#333">0 dB</text>
+      <text x="80" y="60" font-size="9" fill="#333">40</text>
+      <text x="120" y="60" font-size="9" fill="#333">60</text>
+      <text x="160" y="60" font-size="9" fill="#d97706" font-weight="bold">85</text>
+      <text x="220" y="60" font-size="9" fill="#c53030" font-weight="bold">120</text>
+      <text x="280" y="60" font-size="9" fill="#333">140</text>
+      <!-- Labels -->
+      <text x="60" y="15" font-size="9" fill="#2f855a">Confort</text>
+      <text x="155" y="15" font-size="9" fill="#d97706">Danger</text>
+      <text x="235" y="15" font-size="9" fill="#c53030">Douleur</text>
+      <!-- Exemples -->
+      <text x="25" y="80" font-size="8" fill="#555">Chuchotement</text>
+      <text x="100" y="80" font-size="8" fill="#555">Conversation</text>
+      <text x="165" y="80" font-size="8" fill="#555">Scie circulaire</text>
+      <text x="235" y="80" font-size="8" fill="#555">Marteau-piqueur</text>
+      <!-- Lignes seuils -->
+      <line x1="160" y1="18" x2="160" y2="48" stroke="#d97706" stroke-width="2"/>
+      <line x1="220" y1="18" x2="220" y2="48" stroke="#c53030" stroke-width="2"/>
+    </svg>
+    <figcaption style="font-size:.85em;color:#555;margin-top:2px">Échelle de niveaux sonores en décibels — seuils de dangerosité et de douleur</figcaption>
+  </figure>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20</h3>
+  <p>Un menuisier utilise différents outils dans son atelier. Voici les niveaux sonores mesurés :</p>
+  <table>
+    <tr><th>Outil</th><td>Ponceuse à bande</td><td>Scie circulaire</td><td>Défonceuse</td><td>Conversation</td></tr>
+    <tr><th>Niveau (dB)</th><td>92</td><td>105</td><td>98</td><td>60</td></tr>
+  </table>
+  <ol type="a">
+    <li>Quels outils dépassent le seuil de dangerosité (85 dB) ?</li>
+    <li>Quel EPI est obligatoire pour ces outils ?</li>
+    <li>Un outil atteint-il le seuil de douleur (120 dB) ?</li>
+    <li>Classer les sons du plus faible au plus fort.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Ponceuse (92), scie circulaire (105) et défonceuse (98) dépassent 85 dB → <strong>dangereux</strong>.</li>
+      <li>Port de <strong>protections auditives</strong> obligatoire (casque anti-bruit ou bouchons d'oreilles).</li>
+      <li>Non, aucun n'atteint 120 dB. Mais 105 dB est déjà très dangereux pour une exposition prolongée.</li>
+      <li>Conversation (60) &lt; Ponceuse (92) &lt; Défonceuse (98) &lt; Scie circulaire (105).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 21</h3>
+  <p>La réglementation impose le port de protections auditives au-delà de 85 dB et limite l'exposition à 8h à 85 dB, 4h à 88 dB, 1h à 94 dB et 15 min à 100 dB.</p>
+  <ol type="a">
+    <li>Un ouvrier utilise une meuleuse (95 dB) pendant 2 heures. Est-il en conformité avec la durée maximale ?</li>
+    <li>Un apprenti travaille avec une perceuse (88 dB) toute la journée (7h). Est-ce conforme ?</li>
+    <li>Pourquoi la durée maximale diminue-t-elle quand le niveau sonore augmente ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>À 95 dB (entre 94 et 100 dB), la durée max est entre 1h et 15 min. 2 heures <strong>dépassent</strong> la limite → <strong>non conforme</strong>.</li>
+      <li>À 88 dB, la durée max est 4h. 7h &gt; 4h → <strong>non conforme</strong>. Il faudrait alterner avec des tâches moins bruyantes.</li>
+      <li>Car l'énergie sonore reçue par l'oreille augmente avec le niveau. Plus le son est fort, plus les dommages sont rapides et les lésions irréversibles.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 22</h3>
+  <p>Lors d'un contrôle dans un atelier de menuiserie, un sonomètre mesure les niveaux suivants :</p>
+  <table>
+    <tr><th>Zone</th><td>Bureau</td><td>Zone d'assemblage</td><td>Zone de débit</td><td>Zone de finition</td></tr>
+    <tr><th>Niveau (dB)</th><td>55</td><td>78</td><td>102</td><td>88</td></tr>
+  </table>
+  <ol type="a">
+    <li>Dans quelles zones le port de protections est-il obligatoire ?</li>
+    <li>Le responsable souhaite installer un isolant phonique autour de la zone de débit. Quel effet espère-t-il sur le niveau sonore dans les zones voisines ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Zone de débit (102 dB) et zone de finition (88 dB) dépassent 85 dB → <strong>protections obligatoires</strong>. Le bureau (55 dB) et l'assemblage (78 dB) sont en-dessous du seuil.</li>
+      <li>L'isolant phonique <strong>absorbe</strong> une partie de l'énergie sonore et réduit le niveau dans les zones voisines. C'est l'<strong>atténuation phonique</strong>. L'objectif est de ramener les zones voisines sous 85 dB.</li>
+    </ol>
+  </div>
+</div>
 </div>
 
 <script src="../../../nav.js"></script>

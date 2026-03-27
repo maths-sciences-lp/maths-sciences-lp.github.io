@@ -25,6 +25,7 @@
     <li><strong>C3</strong> — Calculer une concentration molaire \(C = n/V\)</li>
     <li><strong>C4</strong> — Réaliser une dilution et appliquer la relation \(C_1 V_1 = C_2 V_2\)</li>
     <li><strong>C5</strong> — Identifier le soluté et le solvant dans une solution</li>
+    <li><strong>C6</strong> — Reconnaître le caractère acide, basique ou neutre d'une solution ; mesurer un pH</li>
   </ul>
 </div>
 
@@ -32,9 +33,10 @@
   <button class="btn-cap active" data-filtre="toutes">Toutes</button>
   <button class="btn-cap" data-filtre="C1">C1 – Dissolution</button>
   <button class="btn-cap" data-filtre="C2">C2 – Concentration massique</button>
-  <button class="btn-cap" data-filtre="C3">C3 – Concentration molaire</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Concentration molaire (HP)</button>
   <button class="btn-cap" data-filtre="C4">C4 – Dilution</button>
   <button class="btn-cap" data-filtre="C5">C5 – Soluté / solvant</button>
+  <button class="btn-cap" data-filtre="C6">C6 – pH et acidité</button>
 </div>
 <p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
 
@@ -344,6 +346,91 @@
 </div>
 </div>
 
+</div>
+
+<!-- ===== C6 ===== -->
+<div class="cap-section" data-cap="C6">
+<h2>C6 — pH : caractère acide, basique ou neutre d'une solution</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>Le <strong>pH</strong> mesure l'acidité d'une solution sur une échelle de 0 à 14 :<br>
+  — pH &lt; 7 : solution <strong>acide</strong><br>
+  — pH = 7 : solution <strong>neutre</strong><br>
+  — pH &gt; 7 : solution <strong>basique</strong><br>
+  La <strong>dilution</strong> rapproche le pH de 7 (une solution acide diluée devient moins acide).</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="320" height="60" viewBox="0 0 320 60">
+      <rect width="320" height="60" fill="#f8fafc" rx="6"/>
+      <!-- Échelle pH -->
+      <defs><linearGradient id="phgrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c53030"/><stop offset="50%" stop-color="#2f855a"/><stop offset="100%" stop-color="#0056b3"/></linearGradient></defs>
+      <rect x="20" y="10" width="280" height="20" rx="4" fill="url(#phgrad)"/>
+      <text x="20" y="45" font-size="10" fill="#c53030" font-weight="bold">0</text>
+      <text x="150" y="45" font-size="10" fill="#2f855a" font-weight="bold">7</text>
+      <text x="290" y="45" font-size="10" fill="#0056b3" font-weight="bold">14</text>
+      <text x="70" y="8" font-size="10" fill="#c53030">ACIDE</text>
+      <text x="140" y="8" font-size="10" fill="#2f855a">NEUTRE</text>
+      <text x="220" y="8" font-size="10" fill="#0056b3">BASIQUE</text>
+      <line x1="160" y1="10" x2="160" y2="30" stroke="#333" stroke-width="2"/>
+    </svg>
+    <figcaption style="font-size:.85em;color:#555;margin-top:2px">Échelle de pH</figcaption>
+  </figure>
+</div>
+
+<div class="exo">
+  <h3>Exercice 22</h3>
+  <p>Classer les solutions suivantes en acide, neutre ou basique :</p>
+  <table>
+    <tr><th>Solution</th><td>Vinaigre</td><td>Eau pure</td><td>Soude diluée</td><td>Jus de citron</td><td>Eau de Javel</td></tr>
+    <tr><th>pH mesuré</th><td>3,0</td><td>7,0</td><td>12,5</td><td>2,5</td><td>11,5</td></tr>
+    <tr><th>Nature</th><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>Solution</th><td>Vinaigre</td><td>Eau pure</td><td>Soude</td><td>Jus de citron</td><td>Eau de Javel</td></tr>
+      <tr><th>pH</th><td>3,0</td><td>7,0</td><td>12,5</td><td>2,5</td><td>11,5</td></tr>
+      <tr><th>Nature</th><td><strong>Acide</strong></td><td><strong>Neutre</strong></td><td><strong>Basique</strong></td><td><strong>Acide</strong></td><td><strong>Basique</strong></td></tr>
+    </table>
+    Rappel : pH &lt; 7 → acide ; pH = 7 → neutre ; pH &gt; 7 → basique.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 23</h3>
+  <p>Un technicien mesure le pH d'une solution d'acide chlorhydrique : pH = 1,5. Il dilue cette solution en ajoutant de l'eau distillée (volume doublé). Le nouveau pH mesuré est 2,1.</p>
+  <ol type="a">
+    <li>La solution initiale est-elle acide ou basique ?</li>
+    <li>Comment évolue le pH lors de la dilution ? Dans quel sens se rapproche-t-il ?</li>
+    <li>Si on continue à diluer, le pH peut-il dépasser 7 ? Justifier.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>pH = 1,5 &lt; 7 → solution <strong>acide</strong>.</li>
+      <li>Le pH augmente (1,5 → 2,1) : il se rapproche de <strong>7</strong>. La dilution rend la solution moins acide.</li>
+      <li><strong>Non</strong>, en diluant un acide, le pH se rapproche de 7 mais ne le dépasse jamais. On ne peut pas transformer un acide en base par dilution.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 24</h3>
+  <p>Un menuisier utilise un décapant basique (pH = 13). Après rinçage à l'eau, le pH de l'eau de rinçage est mesuré successivement : 11, puis 9, puis 8.</p>
+  <ol type="a">
+    <li>Le décapant est-il acide ou basique ?</li>
+    <li>Comment évolue le pH de l'eau de rinçage au fil des rinçages ?</li>
+    <li>À partir de quelle valeur de pH peut-on considérer que le rinçage est suffisant ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>pH = 13 &gt; 7 → <strong>basique</strong> (très basique).</li>
+      <li>Le pH diminue (11 → 9 → 8) et se rapproche de 7 : l'eau de rinçage devient de moins en moins basique.</li>
+      <li>Quand le pH est proche de <strong>7</strong> (entre 6,5 et 7,5), le rinçage est considéré comme suffisant. Ici, à pH = 8, un dernier rinçage serait conseillé.</li>
+    </ol>
+  </div>
+</div>
 </div>
 
 <script src="../../../nav.js"></script>

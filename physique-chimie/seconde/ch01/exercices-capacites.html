@@ -25,6 +25,8 @@
     <li><strong>C3</strong> — Lire une fiche de données de sécurité (FDS)</li>
     <li><strong>C4</strong> — Appliquer les règles de sécurité en laboratoire et en atelier</li>
     <li><strong>C5</strong> — Identifier les gestes de premiers secours adaptés</li>
+    <li><strong>C6</strong> — Justifier les dispositifs de protection électrique (fusible, disjoncteur, DDR, mise à la terre)</li>
+    <li><strong>C7</strong> — Identifier les dangers d'une source lumineuse (laser, UV) et les protections adaptées</li>
   </ul>
 </div>
 
@@ -35,6 +37,8 @@
   <button class="btn-cap" data-filtre="C3">C3 – Fiche FDS</button>
   <button class="btn-cap" data-filtre="C4">C4 – Règles de sécurité</button>
   <button class="btn-cap" data-filtre="C5">C5 – Premiers secours</button>
+  <button class="btn-cap" data-filtre="C6">C6 – Protection électrique</button>
+  <button class="btn-cap" data-filtre="C7">C7 – Dangers laser et UV</button>
 </div>
 <p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
 
@@ -324,6 +328,115 @@
 </div>
 
 </div>
+
+<!-- ===== C6 ===== -->
+<div class="cap-section" data-cap="C6">
+<h2>C6 — Dispositifs de protection électrique</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>Une installation électrique est protégée par :<br>
+  — <strong>Fusible</strong> : fond quand le courant dépasse une valeur limite → coupe le circuit<br>
+  — <strong>Disjoncteur</strong> : coupe automatiquement en cas de surintensité (réarmable)<br>
+  — <strong>Disjoncteur différentiel (DDR)</strong> : détecte une fuite de courant vers la terre (protection des personnes)<br>
+  — <strong>Mise à la terre</strong> : évacue le courant de défaut vers le sol au lieu de traverser le corps humain</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 17</h3>
+  <p>Associer chaque dispositif à son rôle :</p>
+  <table>
+    <tr><th>Dispositif</th><th>Rôle</th></tr>
+    <tr><td>Fusible 16 A</td><td>?</td></tr>
+    <tr><td>Disjoncteur différentiel 30 mA</td><td>?</td></tr>
+    <tr><td>Fil vert-jaune (terre)</td><td>?</td></tr>
+    <tr><td>Disjoncteur divisionnaire 20 A</td><td>?</td></tr>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>Dispositif</th><th>Rôle</th></tr>
+      <tr><td>Fusible 16 A</td><td>Coupe le circuit si I &gt; 16 A (protection du matériel contre la surintensité)</td></tr>
+      <tr><td>DDR 30 mA</td><td>Coupe si fuite de courant &gt; 30 mA vers la terre (protection des <strong>personnes</strong>)</td></tr>
+      <tr><td>Fil vert-jaune</td><td>Relie les masses métalliques à la terre (évacuation du courant de défaut)</td></tr>
+      <tr><td>Disjoncteur 20 A</td><td>Coupe le circuit si surintensité (réarmable, protège un circuit spécifique)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 18</h3>
+  <p>Un apprenti branche une rallonge sur laquelle il connecte : une scie circulaire (2 200 W), un aspirateur (1 500 W) et une lampe (100 W). La rallonge est protégée par un fusible de 16 A. La tension du réseau est 230 V.</p>
+  <ol type="a">
+    <li>Calculer la puissance totale demandée.</li>
+    <li>Calculer l'intensité totale : \(I = P/U\).</li>
+    <li>Le fusible va-t-il fondre ? Justifier.</li>
+    <li>Quel est le danger si le fusible n'existait pas ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P = 2\,200 + 1\,500 + 100 = 3\,800\) W</li>
+      <li>\(I = \frac{3\,800}{230} \approx 16{,}5\) A</li>
+      <li><strong>Oui</strong>, 16,5 A &gt; 16 A → le fusible fond et coupe le circuit.</li>
+      <li>Sans fusible, le câble chaufferait excessivement → risque d'<strong>incendie</strong> par surchauffe des conducteurs.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C7 ===== -->
+<div class="cap-section" data-cap="C7">
+<h2>C7 — Dangers des sources lumineuses (laser, UV)</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>Un <strong>laser</strong> émet un faisceau lumineux très concentré (monochromatique, directif, puissant). Dangers :<br>
+  — <strong>Yeux</strong> : brûlure de la rétine (vision directe ou par réflexion sur surface brillante)<br>
+  — <strong>Peau</strong> : brûlure cutanée pour les lasers de forte puissance<br>
+  Les lasers sont classés en <strong>classes</strong> (1 à 4) selon leur dangerosité. Classe 1 = sans danger ; classe 4 = très dangereux.<br>
+  Les <strong>UV</strong> (soudure, soleil) provoquent des brûlures et des lésions oculaires. Les <strong>IR</strong> provoquent un échauffement.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19</h3>
+  <p>Un technicien utilise un laser de classe 3B pour aligner des cloisons.</p>
+  <ol type="a">
+    <li>Pourquoi ne doit-on jamais regarder directement le faisceau ?</li>
+    <li>Pourquoi faut-il aussi éviter la réflexion du faisceau sur une surface métallique polie ?</li>
+    <li>Quel EPI doit-il porter ? Justifier.</li>
+    <li>Un collègue entre dans la zone sans prévenir. Quelle mesure de prévention aurait dû être mise en place ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Le faisceau laser est très concentré → il peut <strong>brûler la rétine</strong> de l'œil en une fraction de seconde, causant des lésions <strong>irréversibles</strong>.</li>
+      <li>Une surface polie (métal, verre) réfléchit le faisceau comme un miroir → le rayon réfléchi est aussi dangereux que le rayon direct.</li>
+      <li><strong>Lunettes de protection laser</strong> adaptées à la longueur d'onde du laser (filtre spécifique). Des lunettes de soleil classiques ne suffisent PAS.</li>
+      <li>La zone doit être <strong>balisée</strong> avec un panneau « danger laser » et l'accès doit être <strong>restreint</strong> pendant l'utilisation.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 20</h3>
+  <p>Un soudeur à l'arc travaille dans l'atelier. La soudure émet des UV intenses.</p>
+  <ol type="a">
+    <li>Quels risques pour les yeux si le soudeur ne porte pas de masque ?</li>
+    <li>Quels risques pour les autres personnes présentes dans l'atelier ?</li>
+    <li>Citer les EPI nécessaires pour la soudure à l'arc.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Les UV provoquent le <strong>« coup d'arc »</strong> : inflammation de la cornée (kératite), très douloureuse, pouvant causer des lésions permanentes.</li>
+      <li>Les personnes à proximité risquent aussi le coup d'arc si elles regardent l'arc. Il faut un <strong>écran de protection</strong> ou des <strong>rideaux de soudure</strong>.</li>
+      <li>Masque de soudure (filtre auto-obscurcissant), gants en cuir, tablier, chaussures de sécurité, vêtements couvrants (pas de peau exposée aux UV).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
 <script src="../../../nav.js"></script>
 <script src="../../../comp.js"></script>
 </body>
