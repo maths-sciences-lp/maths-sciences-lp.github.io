@@ -25,6 +25,7 @@
     <li><strong>C3</strong> — Identifier absorption et transmission d'un filtre coloré</li>
     <li><strong>C4</strong> — Distinguer synthèse additive et soustractive</li>
     <li><strong>C5</strong> — Identifier le principe d'un photodétecteur (photodiode, photorésistance)</li>
+    <li><strong>C6</strong> — Représenter le modèle simplifié de l'œil ; calculer l'énergie d'un photon \(E = hc/\lambda\)</li>
   </ul>
 </div>
 
@@ -35,6 +36,7 @@
   <button class="btn-cap" data-filtre="C3">C3 – Filtres colorés</button>
   <button class="btn-cap" data-filtre="C4">C4 – Synthèse additive/soustractive</button>
   <button class="btn-cap" data-filtre="C5">C5 – Photodétecteurs</button>
+  <button class="btn-cap" data-filtre="C6">C6 – Œil et photon</button>
 </div>
 <p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
 
@@ -142,14 +144,14 @@
 
 <div class="exo">
   <h3>Exercice 6</h3>
-  <p>Un installateur d'enseignes lumineuses utilise des tubes à néon qui émettent principalement à 589 nm et 670 nm. Identifier les couleurs émises.</p>
+  <p>Un installateur d'enseignes lumineuses utilise des tubes à décharge. L'un émet à 589 nm (vapeur de sodium) et l'autre à 640 nm (néon). Identifier les couleurs émises.</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <ul>
-      <li>589 nm : dans la plage 560–590 nm → <strong>jaune</strong></li>
-      <li>670 nm : dans la plage 625–780 nm → <strong>rouge</strong></li>
+      <li>589 nm (sodium) : dans la plage 560–590 nm → <strong>jaune</strong> (raie D du sodium, utilisée dans l'éclairage public)</li>
+      <li>640 nm (néon) : dans la plage 625–780 nm → <strong>rouge-orangé</strong> (couleur caractéristique du néon pur)</li>
     </ul>
-    <p>L'enseigne émet une lumière jaune-orangée caractéristique des tubes au néon.</p>
+    <p><em>Remarque :</em> les "tubes néon" du commerce contiennent souvent d'autres gaz ou des poudres fluorescentes, pas uniquement du néon.</p>
   </div>
 </div>
 </div>
@@ -383,7 +385,77 @@
 </div>
 </div>
 
+<!-- ===== C6 ===== -->
+<div class="cap-section" data-cap="C6">
+<h2>C6 — Modèle simplifié de l'œil ; énergie d'un photon</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p><strong>Modèle de l'œil :</strong> l'œil se comporte comme un appareil photo : le cristallin (lentille convergente) forme une image renversée sur la rétine (capteur). L'œil réalise une <strong>synthèse additive</strong> des couleurs grâce à 3 types de cônes (rouge, vert, bleu).<br>
+  <strong>Photon :</strong> la lumière transporte de l'énergie sous forme de photons. L'énergie d'un photon dépend de sa longueur d'onde : \(E = \frac{hc}{\lambda}\) avec \(h = 6{,}63 \times 10^{-34}\) J·s et \(c = 3 \times 10^8\) m/s. Plus \(\lambda\) est petit (violet), plus le photon est énergétique.</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="280" height="100" viewBox="0 0 280 100">
+      <rect width="280" height="100" fill="#f8fafc" rx="6"/>
+      <!-- Œil simplifié -->
+      <ellipse cx="140" cy="50" rx="60" ry="40" fill="none" stroke="#6f42c1" stroke-width="2"/>
+      <!-- Cristallin -->
+      <ellipse cx="100" cy="50" rx="8" ry="25" fill="#dbeafe" stroke="#0056b3" stroke-width="1.5"/>
+      <!-- Rétine -->
+      <path d="M 185,20 Q 200,50 185,80" fill="none" stroke="#c53030" stroke-width="2"/>
+      <!-- Rayons -->
+      <line x1="20" y1="30" x2="92" y2="45" stroke="#d97706" stroke-width="1"/>
+      <line x1="20" y1="70" x2="92" y2="55" stroke="#d97706" stroke-width="1"/>
+      <line x1="108" y1="45" x2="190" y2="60" stroke="#d97706" stroke-width="1"/>
+      <line x1="108" y1="55" x2="190" y2="40" stroke="#d97706" stroke-width="1"/>
+      <!-- Labels -->
+      <text x="85" y="95" font-size="9" fill="#0056b3">Cristallin</text>
+      <text x="180" y="95" font-size="9" fill="#c53030">Rétine</text>
+      <text x="225" y="50" font-size="9" fill="#6f42c1">Œil</text>
+      <circle cx="190" cy="40" r="2" fill="#c53030"/>
+      <text x="195" y="38" font-size="8" fill="#555">image</text>
+    </svg>
+    <figcaption style="font-size:.85em;color:#555;margin-top:2px">Modèle simplifié de l'œil — le cristallin forme une image renversée sur la rétine</figcaption>
+  </figure>
 </div>
+
+<div class="exo">
+  <h3>Exercice 18</h3>
+  <p>L'œil humain possède 3 types de cônes sensibles au rouge, au vert et au bleu.</p>
+  <ol type="a">
+    <li>Quel type de synthèse l'œil réalise-t-il : additive ou soustractive ?</li>
+    <li>Si les 3 types de cônes sont stimulés simultanément, quelle couleur perçoit-on ?</li>
+    <li>Si seuls les cônes rouges et verts sont stimulés, quelle couleur perçoit-on ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>L'œil réalise une <strong>synthèse additive</strong> (il additionne les signaux des 3 types de cônes).</li>
+      <li>Rouge + Vert + Bleu = <strong>Blanc</strong>.</li>
+      <li>Rouge + Vert = <strong>Jaune</strong>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 19</h3>
+  <p>Calculer l'énergie d'un photon pour chaque longueur d'onde. Données : \(h = 6{,}63 \times 10^{-34}\) J·s, \(c = 3 \times 10^8\) m/s.</p>
+  <ol type="a">
+    <li>LED rouge : \(\lambda = 650\) nm</li>
+    <li>LED bleue : \(\lambda = 450\) nm</li>
+    <li>Lequel est le plus énergétique ? Pourquoi ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Formule : \(E = \frac{hc}{\lambda}\). Attention : convertir \(\lambda\) en mètres !<br><br>
+    <ol type="a">
+      <li>\(E = \frac{6{,}63 \times 10^{-34} \times 3 \times 10^8}{650 \times 10^{-9}} = \frac{1{,}989 \times 10^{-25}}{6{,}5 \times 10^{-7}} = \mathbf{3{,}06 \times 10^{-19}\ \text{J}}\)</li>
+      <li>\(E = \frac{1{,}989 \times 10^{-25}}{450 \times 10^{-9}} = \frac{1{,}989 \times 10^{-25}}{4{,}5 \times 10^{-7}} = \mathbf{4{,}42 \times 10^{-19}\ \text{J}}\)</li>
+      <li>Le photon <strong>bleu</strong> est plus énergétique (\(4{,}42 > 3{,}06\)). Plus la longueur d'onde est courte, plus le photon transporte d'énergie.</li>
+    </ol>
+  </div>
+</div>
+</div>
+</div><!-- fin .c -->
 
 <script src="../../../nav.js"></script>
 <script src="../../../comp.js"></script>
