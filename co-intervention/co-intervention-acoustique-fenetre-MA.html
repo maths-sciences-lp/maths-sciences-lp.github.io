@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Isolation phonique d'une fenêtre — Co-intervention MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Isolation phonique d'une fen&ecirc;tre</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro MA | S3.2 &mdash; Acoustique</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Conna&icirc;tre l'unit&eacute; du niveau sonore : le d&eacute;cibel (dB)</li>
+    <li>Comprendre l'indice d'affaiblissement acoustique R<sub>w</sub> d'une menuiserie</li>
+    <li>Calculer le niveau sonore apr&egrave;s att&eacute;nuation par une fen&ecirc;tre</li>
+    <li>Comparer les performances phoniques de diff&eacute;rents vitrages</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel MA :</strong> S3.2 &mdash; Isolation phonique et correction acoustique</li>
+    <li><strong>Notions sciences :</strong> Propagation du son, fr&eacute;quences, d&eacute;cibels</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Soustraction, ordres de grandeur, lecture de tableaux</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro MA</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Remplacement de fen&ecirc;tres en bord de route</strong><br><br>
+  Un menuisier agenceur remplace les fen&ecirc;tres d'un appartement situ&eacute; en bord de route nationale. Le client se plaint du bruit de la circulation (&asymp; 75 dB). Il souhaite que le bruit int&eacute;rieur ne d&eacute;passe pas 35 dB (niveau de confort pour un salon).<br><br>
+  Le chef d'&eacute;quipe demande : <em>&laquo;&nbsp;Quelle menuiserie choisir pour att&eacute;nuer le bruit de 40 dB ?&nbsp;&raquo;</em>
+</div>
+
+<h2>2. Le niveau sonore et le d&eacute;cibel</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Niveau sonore</span><br>
+  Le <strong>niveau sonore</strong> se mesure en <strong>d&eacute;cibels (dB)</strong>. L'&eacute;chelle est <strong>logarithmique</strong> : +10 dB = son per&ccedil;u <strong>2 fois plus fort</strong>.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Tableau &mdash; Niveaux sonores courants</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Source</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Niveau (dB)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Seuil d'audibilit&eacute;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Chambre calme</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">25&ndash;30</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Conversation normale</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">60</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Circulation routi&egrave;re (bord de route)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">70&ndash;80</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Atelier de menuiserie (machines)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">85&ndash;95</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Seuil de douleur</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">120</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>3. Affaiblissement acoustique R<sub>w</sub></h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; R<sub>w</sub></span><br>
+  L'<strong>indice d'affaiblissement acoustique</strong> R<sub>w</sub> (en dB) d'une menuiserie indique de combien de d&eacute;cibels elle r&eacute;duit le bruit :
+  \[ L_{\text{int}} = L_{\text{ext}} - R_w \]
+  <ul>
+    <li>\(L_{\text{int}}\) : niveau sonore int&eacute;rieur (dB)</li>
+    <li>\(L_{\text{ext}}\) : niveau sonore ext&eacute;rieur (dB)</li>
+    <li>\(R_w\) : affaiblissement de la fen&ecirc;tre (dB)</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Tableau &mdash; R<sub>w</sub> de diff&eacute;rents vitrages</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Type de vitrage</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">R<sub>w</sub> (dB)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Simple vitrage 4 mm</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">25</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Double vitrage 4/16/4</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">29</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Double vitrage asym&eacute;trique 4/16/6</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">33</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Double vitrage acoustique 6/16/4 feuillet&eacute;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">37</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Double vitrage acoustique renforc&eacute; 10/16/44.2</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">42</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention &mdash; R&egrave;gle de l'asym&eacute;trie</span><br>
+  Un double vitrage <strong>sym&eacute;trique</strong> (4/16/4) est moins performant en acoustique qu'un <strong>asym&eacute;trique</strong> (4/16/6). Avec deux vitres identiques, elles entrent en r&eacute;sonance &agrave; la m&ecirc;me fr&eacute;quence, ce qui laisse passer plus de bruit. Des vitres d'&eacute;paisseurs diff&eacute;rentes n'ont pas la m&ecirc;me fr&eacute;quence de r&eacute;sonance &rarr; meilleure isolation.
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple</span><br>
+  Bruit ext&eacute;rieur : 75 dB. Fen&ecirc;tre avec R<sub>w</sub> = 37 dB :<br>
+  \(L_{\text{int}} = 75 - 37 = 38\) dB &rarr; proche du confort (35 dB), acceptable.
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>Niveau sonore en dB &mdash; +10 dB = son per&ccedil;u 2&times; plus fort</li>
+    <li>\(L_{\text{int}} = L_{\text{ext}} - R_w\)</li>
+    <li>Confort int&eacute;rieur : salon &le; 35 dB, chambre &le; 30 dB</li>
+    <li>Vitrage asym&eacute;trique &gt; sym&eacute;trique en acoustique</li>
+    <li>Vitrage feuillet&eacute; (PVB acoustique) = meilleure solution</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Niveaux sonores courants (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Classer du plus silencieux au plus bruyant : atelier de menuiserie, chambre calme, conversation, circulation, seuil de douleur.
+  <div class="corr"><strong>Correction :</strong> Chambre (25 dB) &lt; Conversation (60 dB) &lt; Circulation (75 dB) &lt; Atelier (90 dB) &lt; Seuil douleur (120 dB)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Calculer le niveau int&eacute;rieur (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Bruit ext&eacute;rieur = 70 dB. Calculer L<sub>int</sub> pour chaque fen&ecirc;tre :<br>
+  <strong>a)</strong> Simple vitrage (R<sub>w</sub> = 25) : L<sub>int</sub> = 70 &minus; 25 = &hellip; dB<br>
+  <strong>b)</strong> DV 4/16/4 (R<sub>w</sub> = 29) : L<sub>int</sub> = &hellip; dB<br>
+  <strong>c)</strong> DV acoustique (R<sub>w</sub> = 37) : L<sub>int</sub> = &hellip; dB
+  <div class="corr"><strong>Correction :</strong><br>a) 70 &minus; 25 = <strong>45 dB</strong><br>b) 70 &minus; 29 = <strong>41 dB</strong><br>c) 70 &minus; 37 = <strong>33 dB</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Quel vitrage pour atteindre le confort ? (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Le bruit ext&eacute;rieur est de 80 dB. L'objectif est L<sub>int</sub> &le; 35 dB.<br><br>
+  <strong>1.</strong> Quel R<sub>w</sub> minimum faut-il ? \(R_w \geq L_{\text{ext}} - L_{\text{int}} = 80 - 35 = \ldots\) dB<br>
+  <strong>2.</strong> &Agrave; l'aide du tableau, quel vitrage choisir ?
+  <div class="corr"><strong>Correction :</strong><br>1. R<sub>w</sub> &ge; 80 &minus; 35 = <strong>45 dB</strong><br>2. Le vitrage acoustique renforc&eacute; (R<sub>w</sub> = 42 dB) ne suffit pas (42 &lt; 45). Il faut un vitrage encore plus performant ou combiner avec des entr&eacute;es d'air acoustiques et un cadre tr&egrave;s &eacute;tanche.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Compl&eacute;ter un tableau (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">L<sub>ext</sub> (dB)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">R<sub>w</sub> (dB)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">L<sub>int</sub> (dB)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">65</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">29</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">75</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">38</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">42</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">30</td></tr>
+    </tbody>
+  </table>
+  <div class="corr"><strong>Correction :</strong><br>Ligne 1 : 65 &minus; 29 = <strong>36 dB</strong><br>Ligne 2 : R<sub>w</sub> = 75 &minus; 38 = <strong>37 dB</strong><br>Ligne 3 : L<sub>ext</sub> = 30 + 42 = <strong>72 dB</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Choisir le vitrage pour trois pi&egrave;ces</span><span class="tag-standard">Standard</span></div>
+  Un appartement en bord de rue (bruit ext. = 72 dB) a 3 pi&egrave;ces avec des exigences diff&eacute;rentes :<br>
+  &bull; Salon : L<sub>int</sub> &le; 35 dB<br>
+  &bull; Chambre : L<sub>int</sub> &le; 30 dB<br>
+  &bull; Cuisine : L<sub>int</sub> &le; 45 dB<br><br>
+  <strong>1.</strong> Calculer le R<sub>w</sub> minimum pour chaque pi&egrave;ce.<br>
+  <strong>2.</strong> Choisir le vitrage adapt&eacute; dans le tableau.<br>
+  <strong>3.</strong> Peut-on mettre le m&ecirc;me vitrage partout pour simplifier la commande ?
+  <div class="corr"><strong>Correction :</strong><br>1. Salon : R<sub>w</sub> &ge; 72 &minus; 35 = 37 dB. Chambre : R<sub>w</sub> &ge; 72 &minus; 30 = 42 dB. Cuisine : R<sub>w</sub> &ge; 72 &minus; 45 = 27 dB.<br>2. Salon : DV acoustique 6/16/4 feuillet&eacute; (37 dB). Chambre : DV acoustique renforc&eacute; (42 dB). Cuisine : DV standard 4/16/4 (29 dB).<br>3. On pourrait mettre du 42 dB partout, mais c'est plus cher. Mieux vaut adapter le vitrage &agrave; chaque pi&egrave;ce.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Sym&eacute;trique vs asym&eacute;trique</span><span class="tag-standard">Standard</span></div>
+  Bruit ext&eacute;rieur = 68 dB. Comparer deux vitrages :<br>
+  &bull; DV 4/16/4 (R<sub>w</sub> = 29 dB) &mdash; prix : 45 &euro;/m&sup2;<br>
+  &bull; DV 4/16/6 (R<sub>w</sub> = 33 dB) &mdash; prix : 55 &euro;/m&sup2;<br><br>
+  <strong>1.</strong> Calculer L<sub>int</sub> pour chaque vitrage.<br>
+  <strong>2.</strong> Le surco&ucirc;t est de combien par m&sup2; ? En pourcentage ?<br>
+  <strong>3.</strong> Pour une maison avec 15 m&sup2; de vitrages, calculer le surco&ucirc;t total.<br>
+  <strong>4.</strong> Ce surco&ucirc;t est-il justifi&eacute; ? Pour quel type de client ?
+  <div class="corr"><strong>Correction :</strong><br>1. Sym&eacute;trique : 68 &minus; 29 = 39 dB. Asym&eacute;trique : 68 &minus; 33 = 35 dB.<br>2. Surco&ucirc;t : 55 &minus; 45 = 10 &euro;/m&sup2; soit 10/45 = 22 %.<br>3. 15 &times; 10 = <strong>150 &euro;</strong> de surco&ucirc;t total.<br>4. Pour 150 &euro;, on gagne 4 dB (35 au lieu de 39). Justifi&eacute; pour un client en zone bruyante (bord de route), surtout pour les chambres.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">R&eacute;glementation NRA</span><span class="tag-standard">Standard</span></div>
+  La NRA (Nouvelle R&eacute;glementation Acoustique) impose un isolement minimum de la fa&ccedil;ade de 30 dB en zone mod&eacute;r&eacute;e et 45 dB en zone de bruit (a&eacute;roport, autoroute).<br><br>
+  <strong>1.</strong> En zone mod&eacute;r&eacute;e, quel vitrage minimum parmi le tableau ?<br>
+  <strong>2.</strong> En zone de bruit, quel vitrage minimum ?<br>
+  <strong>3.</strong> En zone de bruit, le vitrage seul suffit-il ? Quels autres &eacute;l&eacute;ments le menuisier doit-il soigner ?
+  <div class="corr"><strong>Correction :</strong><br>1. R<sub>w</sub> &ge; 30 &rarr; DV asym&eacute;trique 4/16/6 (33 dB) au minimum.<br>2. R<sub>w</sub> &ge; 45 &rarr; aucun vitrage du tableau ne suffit seul (max 42 dB). Il faut combiner.<br>3. Le menuisier doit soigner : joints d'&eacute;tanch&eacute;it&eacute; du cadre, entr&eacute;es d'air acoustiques, coffre de volet roulant isol&eacute;, et s'assurer que le mur lui-m&ecirc;me est suffisamment isolant phoniquement.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Fen&ecirc;tre vs mur &mdash; maillon faible</span><span class="tag-appro">Approfondissement</span></div>
+  Un mur en b&eacute;ton de 20 cm a un affaiblissement R<sub>w</sub> = 55 dB. La fen&ecirc;tre dans ce mur a R<sub>w</sub> = 33 dB. Le bruit ext&eacute;rieur est de 70 dB.<br><br>
+  <strong>1.</strong> Calculer le niveau sonore qui traverse le mur seul.<br>
+  <strong>2.</strong> Calculer le niveau sonore qui traverse la fen&ecirc;tre.<br>
+  <strong>3.</strong> Par o&ugrave; passe principalement le bruit ?<br>
+  <strong>4.</strong> Pourquoi dit-on que la fen&ecirc;tre est le &laquo;&nbsp;maillon faible&nbsp;&raquo; acoustique d'une fa&ccedil;ade ?
+  <div class="corr"><strong>Correction :</strong><br>1. Mur : 70 &minus; 55 = <strong>15 dB</strong><br>2. Fen&ecirc;tre : 70 &minus; 33 = <strong>37 dB</strong><br>3. Le bruit passe <strong>principalement par la fen&ecirc;tre</strong> (37 dB vs 15 dB pour le mur). La fen&ecirc;tre laisse passer 22 dB de plus que le mur.<br>4. L'isolation acoustique globale d'une fa&ccedil;ade est limit&eacute;e par son &eacute;l&eacute;ment le plus faible. M&ecirc;me avec un mur tr&egrave;s isolant, une fen&ecirc;tre m&eacute;diocre annule le b&eacute;n&eacute;fice. C'est le menuisier qui d&eacute;tient la cl&eacute; de la performance acoustique.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Protection auditive en atelier</span><span class="tag-appro">Approfondissement</span></div>
+  Dans un atelier de menuiserie, le niveau sonore avec les machines en fonctionnement est de 92 dB. La r&eacute;glementation impose un port de protections auditives au-del&agrave; de 85 dB. Les bouchons d'oreilles att&eacute;nuent de 25 dB, le casque anti-bruit de 30 dB.<br><br>
+  <strong>1.</strong> Avec des bouchons, quel niveau per&ccedil;u ? Est-ce conforme ?<br>
+  <strong>2.</strong> Avec un casque, quel niveau per&ccedil;u ?<br>
+  <strong>3.</strong> La VME (exposition 8 h) ne doit pas d&eacute;passer 80 dB. Quelle protection choisir ?<br>
+  <strong>4.</strong> Quelles autres mesures (non individuelles) le chef d'atelier peut-il prendre ?
+  <div class="corr"><strong>Correction :</strong><br>1. Bouchons : 92 &minus; 25 = <strong>67 dB</strong> &lt; 85 &rarr; conforme pour le seuil de port.<br>2. Casque : 92 &minus; 30 = <strong>62 dB</strong><br>3. Pour la VME de 80 dB, les deux conviennent (67 et 62 &lt; 80). Les bouchons suffisent.<br>4. Mesures collectives : capotage des machines, aspiration int&eacute;gr&eacute;e (r&eacute;duit le bruit des copeaux), isolation phonique entre postes, sols absorbants, organisation du travail (ne pas faire tourner toutes les machines en m&ecirc;me temps).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Devis acoustique &mdash; conseiller un client</span><span class="tag-appro">Approfondissement</span></div>
+  Un client habite pr&egrave;s d'une voie ferr&eacute;e (bruit ext. = 78 dB). Il a 6 fen&ecirc;tres (S = 1,5 m&sup2; chacune). Il h&eacute;site entre :<br>
+  &bull; Option A : DV 4/16/4 (R<sub>w</sub> = 29 dB) &mdash; 120 &euro;/fen&ecirc;tre<br>
+  &bull; Option B : DV acoustique 6/16/4 feuillet&eacute; (R<sub>w</sub> = 37 dB) &mdash; 250 &euro;/fen&ecirc;tre<br><br>
+  <strong>1.</strong> Calculer L<sub>int</sub> pour chaque option.<br>
+  <strong>2.</strong> Calculer le co&ucirc;t total de chaque option.<br>
+  <strong>3.</strong> Le surco&ucirc;t de l'option B est de combien ? En euros et en pourcentage.<br>
+  <strong>4.</strong> Quelle option recommander pour une chambre &agrave; coucher (&le; 30 dB) ? Et pour un salon (&le; 35 dB) ?
+  <div class="corr"><strong>Correction :</strong><br>1. A : 78 &minus; 29 = <strong>49 dB</strong>. B : 78 &minus; 37 = <strong>41 dB</strong>.<br>2. A : 6 &times; 120 = <strong>720 &euro;</strong>. B : 6 &times; 250 = <strong>1 500 &euro;</strong>.<br>3. Surco&ucirc;t : 1 500 &minus; 720 = <strong>780 &euro;</strong> soit 780/720 = 108 % de plus.<br>4. Ni A (49 dB) ni B (41 dB) n'atteignent 30 dB pour une chambre. Il faut un vitrage encore plus performant (R<sub>w</sub> &ge; 48 dB) ou des travaux compl&eacute;mentaires. Pour un salon (&le; 35 dB), m&ecirc;me l'option B (41 dB) ne suffit pas. Avec 78 dB ext&eacute;rieurs, il faudra combiner menuiserie + mur isol&eacute; + entr&eacute;es d'air acoustiques.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>
