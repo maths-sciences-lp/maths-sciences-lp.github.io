@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Moment d'une force — Étagère murale — Co-intervention ERA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Moment d'une force &mdash; &Eacute;tag&egrave;re murale</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ERA | Statique &mdash; S5.2</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Repr&eacute;senter une force par un vecteur (intensit&eacute;, direction, sens, point d'application)</li>
+    <li>Calculer le moment d'une force par rapport &agrave; un point : \(\mathcal{M} = F \times d\)</li>
+    <li>Appliquer la condition d'&eacute;quilibre en rotation : \(\sum \mathcal{M} = 0\)</li>
+    <li>V&eacute;rifier la tenue d'une &eacute;tag&egrave;re murale charg&eacute;e</li>
+  </ul>
+</div>
+
+<!-- BADGE -->
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ERA :</strong> S5.2 &mdash; Statique (moment d'une force)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Vecteurs, multiplication, r&eacute;solution d'&eacute;quations</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ERA</li>
+  </ul>
+</div>
+
+<!-- MISE EN SITUATION -->
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Fixation d'une &eacute;tag&egrave;re murale dans une boutique</strong><br><br>
+  Un menuisier agenceur installe des &eacute;tag&egrave;res murales dans une boutique de d&eacute;coration. Chaque &eacute;tag&egrave;re est fix&eacute;e au mur par deux &eacute;querres. Le g&eacute;rant veut y poser des objets lourds (vases, livres).<br><br>
+  Le chef d'&eacute;quipe vous demande : <em>&laquo;&nbsp;V&eacute;rifie que les &eacute;querres supportent la charge. Calcule le moment de la force exerc&eacute;e par les objets pour v&eacute;rifier que l'&eacute;tag&egrave;re ne bascule pas.&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG étagère -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="440" height="250" viewBox="0 0 440 250" style="max-width:100%;font-family:sans-serif;font-size:12px">
+  <!-- mur -->
+  <rect x="10" y="10" width="30" height="230" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1.5"/>
+  <line x1="12" y1="12" x2="38" y2="38" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="12" y1="40" x2="38" y2="66" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="12" y1="68" x2="38" y2="94" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="12" y1="96" x2="38" y2="122" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="12" y1="124" x2="38" y2="150" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="12" y1="152" x2="38" y2="178" stroke="#d1d5db" stroke-width="1"/>
+  <line x1="12" y1="180" x2="38" y2="206" stroke="#d1d5db" stroke-width="1"/>
+  <text x="25" y="245" text-anchor="middle" fill="#888" font-size="10">Mur</text>
+  <!-- étagère -->
+  <rect x="40" y="100" width="300" height="12" rx="2" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+  <!-- équerre -->
+  <polygon points="40,112 40,160 80,112" fill="#d1d5db" stroke="#6b7280" stroke-width="1.5"/>
+  <!-- point A (pivot) -->
+  <circle cx="40" cy="106" r="5" fill="#dc2626"/>
+  <text x="30" y="95" fill="#dc2626" font-weight="bold" font-size="13">A</text>
+  <!-- force poids -->
+  <defs><marker id="af" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0,0 10,3.5 0,7" fill="#0969da"/></marker></defs>
+  <line x1="250" y1="112" x2="250" y2="190" stroke="#0969da" stroke-width="2.5" marker-end="url(#af)"/>
+  <text x="260" y="160" fill="#0969da" font-weight="bold" font-size="13">\(\vec{P}\)</text>
+  <text x="260" y="178" fill="#0969da" font-size="11">Poids des objets</text>
+  <!-- distance d -->
+  <line x1="40" y1="210" x2="250" y2="210" stroke="#2da44e" stroke-width="1.5"/>
+  <line x1="40" y1="205" x2="40" y2="215" stroke="#2da44e" stroke-width="1.5"/>
+  <line x1="250" y1="205" x2="250" y2="215" stroke="#2da44e" stroke-width="1.5"/>
+  <text x="145" y="228" text-anchor="middle" fill="#2da44e" font-weight="bold">d = distance au pivot</text>
+  <!-- cote étagère -->
+  <line x1="40" y1="85" x2="340" y2="85" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="190" y="80" text-anchor="middle" fill="#888" font-size="11">L = 30 cm</text>
+</svg>
+</div>
+
+<!-- COURS -->
+<h2>2. Repr&eacute;sentation d'une force</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Force</span><br>
+  Une <strong>force</strong> est une action m&eacute;canique caract&eacute;ris&eacute;e par :
+  <ul>
+    <li>Son <strong>point d'application</strong> (o&ugrave; elle s'exerce)</li>
+    <li>Sa <strong>direction</strong> (droite d'action) et son <strong>sens</strong></li>
+    <li>Son <strong>intensit&eacute;</strong> (valeur en <strong>newtons, N</strong>)</li>
+  </ul>
+  On la repr&eacute;sente par un <strong>vecteur</strong> \(\vec{F}\).
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute; &mdash; Poids d'un objet</span><br>
+  Le poids d'un objet est la force exerc&eacute;e par la Terre. Il est dirig&eacute; <strong>vers le bas</strong> (vertical) :
+  \[ P = m \times g \]
+  <ul>
+    <li>\(P\) : poids en <strong>newtons (N)</strong></li>
+    <li>\(m\) : masse en <strong>kilogrammes (kg)</strong></li>
+    <li>\(g = 9{,}81\) N/kg &asymp; <strong>10 N/kg</strong> (acc&eacute;l&eacute;ration de la pesanteur)</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple</span><br>
+  Un vase de 3 kg pos&eacute; sur une &eacute;tag&egrave;re exerce un poids :<br>
+  \(P = 3 \times 10 = 30\) N (dirig&eacute; vers le bas)
+</div>
+
+<h2>3. Moment d'une force</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Moment d'une force par rapport &agrave; un point</span><br>
+  Le <strong>moment</strong> d'une force \(\vec{F}\) par rapport &agrave; un point A mesure sa capacit&eacute; &agrave; faire <strong>tourner</strong> le syst&egrave;me autour de A :
+  \[ \mathcal{M}_A(\vec{F}) = F \times d \]
+  <ul>
+    <li>\(\mathcal{M}\) : moment en <strong>newton-m&egrave;tres (N&middot;m)</strong></li>
+    <li>\(F\) : intensit&eacute; de la force en <strong>N</strong></li>
+    <li>\(d\) : <strong>bras de levier</strong> = distance perpendiculaire entre le point A et la droite d'action de la force, en <strong>m</strong></li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention &mdash; Signe du moment</span><br>
+  <ul>
+    <li>Moment <strong>positif (+)</strong> : la force tend &agrave; faire tourner dans le sens <strong>anti-horaire</strong> (&circlearrowleft;)</li>
+    <li>Moment <strong>n&eacute;gatif (&minus;)</strong> : la force tend &agrave; faire tourner dans le sens <strong>horaire</strong> (&circlearrowright;)</li>
+  </ul>
+  Convention usuelle en m&eacute;canique : sens anti-horaire = positif.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Condition d'&eacute;quilibre en rotation</span><br>
+  Un syst&egrave;me est en &eacute;quilibre de rotation si la <strong>somme des moments</strong> par rapport &agrave; un point est nulle :
+  \[ \sum \mathcal{M}_A = 0 \]
+  Cela signifie que les moments &laquo;&nbsp;qui font tourner dans un sens&nbsp;&raquo; compensent exactement ceux &laquo;&nbsp;qui font tourner dans l'autre sens&nbsp;&raquo;.
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; &Eacute;tag&egrave;re murale</span><br>
+  Une &eacute;tag&egrave;re de 30 cm de profondeur est fix&eacute;e au mur au point A. Un vase de 3 kg est pos&eacute; &agrave; 25 cm du mur (d = 0,25 m).<br><br>
+  Poids du vase : \(P = 3 \times 10 = 30\) N<br>
+  Moment par rapport &agrave; A : \(\mathcal{M}_A = P \times d = 30 \times 0{,}25 = 7{,}5\) N&middot;m<br><br>
+  L'&eacute;querre de fixation doit exercer un moment oppos&eacute; de 7,5 N&middot;m pour maintenir l'&eacute;tag&egrave;re en &eacute;quilibre.
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; V&eacute;rifier l'&eacute;quilibre d'une &eacute;tag&egrave;re</span><br>
+  <ol>
+    <li>Identifier le <strong>point de pivot</strong> A (fixation au mur)</li>
+    <li>Lister toutes les forces (poids des objets, poids de l'&eacute;tag&egrave;re, r&eacute;action de la fixation)</li>
+    <li>Calculer le <strong>bras de levier</strong> d de chaque force par rapport &agrave; A</li>
+    <li>Calculer chaque moment : \(\mathcal{M} = F \times d\)</li>
+    <li>V&eacute;rifier que \(\sum \mathcal{M} = 0\)</li>
+  </ol>
+</div>
+
+<!-- À RETENIR -->
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>Poids : \(P = m \times g\) avec \(g \approx 10\) N/kg</li>
+    <li>Moment : \(\mathcal{M}_A(\vec{F}) = F \times d\) en N&middot;m</li>
+    <li>&Eacute;quilibre de rotation : \(\sum \mathcal{M}_A = 0\)</li>
+    <li>Plus la charge est &eacute;loign&eacute;e du mur, plus le moment est grand &rarr; plus la fixation est sollicit&eacute;e</li>
+  </ul>
+</div>
+
+<!-- ==================== EXERCICES ==================== -->
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Calculer un poids (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Calculer le poids des objets suivants (\(g = 10\) N/kg) :<br><br>
+  <strong>a)</strong> Un livre de 1,5 kg : \(P = \ldots \times \ldots = \ldots\) N<br>
+  <strong>b)</strong> Un vase de 4 kg : \(P = \ldots\) N<br>
+  <strong>c)</strong> Une &eacute;tag&egrave;re en ch&ecirc;ne de 6 kg : \(P = \ldots\) N<br>
+  <strong>d)</strong> Un lot de 8 assiettes, chacune de 0,4 kg : \(P = \ldots\) N
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    a) \(P = 1{,}5 \times 10 = 15\) N<br>
+    b) \(P = 4 \times 10 = 40\) N<br>
+    c) \(P = 6 \times 10 = 60\) N<br>
+    d) Masse totale : \(8 \times 0{,}4 = 3{,}2\) kg &rarr; \(P = 3{,}2 \times 10 = 32\) N
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Calculer un moment (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  <!-- SVG simple -->
+  <div class="svg-wrap" style="margin:.5rem 0">
+  <svg width="300" height="100" viewBox="0 0 300 100" style="max-width:100%;font-family:sans-serif;font-size:11px">
+    <rect x="10" y="10" width="20" height="80" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1.5"/>
+    <rect x="30" y="35" width="200" height="8" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+    <circle cx="30" cy="39" r="4" fill="#dc2626"/>
+    <text x="22" y="30" fill="#dc2626" font-weight="bold">A</text>
+    <line x1="180" y1="43" x2="180" y2="85" stroke="#0969da" stroke-width="2" marker-end="url(#af)"/>
+    <text x="192" y="70" fill="#0969da" font-weight="bold">P = 50 N</text>
+    <line x1="30" y1="93" x2="180" y2="93" stroke="#2da44e" stroke-width="1.5"/>
+    <text x="105" y="88" text-anchor="middle" fill="#2da44e" font-weight="bold">d = 0,20 m</text>
+  </svg>
+  </div>
+  Un objet de poids P = 50 N est pos&eacute; sur une &eacute;tag&egrave;re, &agrave; une distance d = 0,20 m du point de fixation A.<br><br>
+  <strong>&Eacute;tape 1 :</strong> &Eacute;crire la formule du moment.<br>
+  \(\mathcal{M}_A = \ldots \times \ldots\)<br><br>
+  <strong>&Eacute;tape 2 :</strong> Remplacer par les valeurs.<br>
+  \(\mathcal{M}_A = \ldots \times \ldots = \ldots\) N&middot;m
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    &Eacute;tape 1 : \(\mathcal{M}_A = F \times d\)<br>
+    &Eacute;tape 2 : \(\mathcal{M}_A = 50 \times 0{,}20 = 10\) N&middot;m
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Comparer deux positions de charge (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Un m&ecirc;me objet de P = 30 N est pos&eacute; sur une &eacute;tag&egrave;re dans deux positions :<br>
+  &bull; Position 1 : &agrave; 10 cm du mur (d = 0,10 m)<br>
+  &bull; Position 2 : &agrave; 25 cm du mur (d = 0,25 m)<br><br>
+  <strong>1.</strong> Calculer le moment dans chaque position.<br>
+  <strong>2.</strong> Dans quelle position la fixation est-elle la plus sollicit&eacute;e ?<br>
+  <strong>3.</strong> Pourquoi conseille-t-on de placer les objets lourds <strong>pr&egrave;s du mur</strong> ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. Position 1 : \(\mathcal{M} = 30 \times 0{,}10 = 3\) N&middot;m<br>
+    Position 2 : \(\mathcal{M} = 30 \times 0{,}25 = 7{,}5\) N&middot;m<br>
+    2. La fixation est <strong>2,5 fois plus sollicit&eacute;e</strong> en position 2.<br>
+    3. Plus l'objet est pr&egrave;s du mur, plus le bras de levier est court, et plus le moment est faible &rarr; moins de risque d'arrachement.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Convertir cm en m puis calculer (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Compl&eacute;ter le tableau :<br><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">Objet</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">m (kg)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">P (N)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">d (cm)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">d (m)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">\(\mathcal{M}\) (N&middot;m)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Livre</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">2</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Pot</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">5</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">20</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Cadre</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,5</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">30</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+    </tbody>
+  </table>
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    Livre : P = 20 N, d = 0,15 m, \(\mathcal{M}\) = 20 &times; 0,15 = <strong>3,0</strong> N&middot;m<br>
+    Pot : P = 50 N, d = 0,20 m, \(\mathcal{M}\) = 50 &times; 0,20 = <strong>10,0</strong> N&middot;m<br>
+    Cadre : P = 15 N, d = 0,30 m, \(\mathcal{M}\) = 15 &times; 0,30 = <strong>4,5</strong> N&middot;m
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">&Eacute;tag&egrave;re avec plusieurs objets</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Une &eacute;tag&egrave;re de 40 cm de profondeur est fix&eacute;e au mur au point A. On y pose :<br>
+  &bull; Un vase de 2 kg &agrave; 10 cm du mur<br>
+  &bull; Trois livres (total 4 kg) &agrave; 20 cm du mur<br>
+  &bull; Un cadre photo de 1 kg &agrave; 35 cm du mur<br><br>
+  <strong>1.</strong> Calculer le poids de chaque charge.<br>
+  <strong>2.</strong> Calculer le moment de chaque charge par rapport &agrave; A.<br>
+  <strong>3.</strong> Calculer le moment total.<br>
+  <strong>4.</strong> Les &eacute;querres de fixation supportent un moment maximal de 20 N&middot;m. L'&eacute;tag&egrave;re tient-elle ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. Vase : P = 20 N ; Livres : P = 40 N ; Cadre : P = 10 N<br>
+    2. Vase : \(\mathcal{M} = 20 \times 0{,}10 = 2\) N&middot;m<br>
+    Livres : \(\mathcal{M} = 40 \times 0{,}20 = 8\) N&middot;m<br>
+    Cadre : \(\mathcal{M} = 10 \times 0{,}35 = 3{,}5\) N&middot;m<br>
+    3. \(\mathcal{M}_{\text{total}} = 2 + 8 + 3{,}5 = 13{,}5\) N&middot;m<br>
+    4. 13,5 N&middot;m &lt; 20 N&middot;m &rarr; <strong>oui, l'&eacute;tag&egrave;re tient</strong>. Marge : 6,5 N&middot;m.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">Charge maximale admissible</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Une &eacute;tag&egrave;re est fix&eacute;e par deux &eacute;querres qui supportent chacune un moment maximal de 15 N&middot;m (soit 30 N&middot;m au total). L'&eacute;tag&egrave;re elle-m&ecirc;me p&egrave;se 4 kg et son centre de gravit&eacute; est &agrave; 15 cm du mur.<br><br>
+  <strong>1.</strong> Calculer le moment d&ucirc; au poids propre de l'&eacute;tag&egrave;re.<br>
+  <strong>2.</strong> Quel moment reste-t-il disponible pour les objets ?<br>
+  <strong>3.</strong> On veut poser une charge unique au bord de l'&eacute;tag&egrave;re (d = 28 cm du mur). Quelle masse maximale peut-on poser ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(P_{\text{&eacute;tag}} = 4 \times 10 = 40\) N &rarr; \(\mathcal{M}_{\text{&eacute;tag}} = 40 \times 0{,}15 = 6\) N&middot;m<br>
+    2. Moment disponible : \(30 - 6 = 24\) N&middot;m<br>
+    3. \(\mathcal{M}_{\max} = P \times d\) &rarr; \(P = \mathcal{M} / d = 24 / 0{,}28 = 85{,}7\) N<br>
+    Masse : \(m = P / g = 85{,}7 / 10 = 8{,}6\) kg &rarr; on peut poser au maximum <strong>8,5 kg</strong> au bord.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 7</span>
+    <span class="exo-title">&Eacute;quilibre d'une planche en porte-&agrave;-faux</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  <!-- SVG porte-à-faux -->
+  <div class="svg-wrap" style="margin:.5rem 0">
+  <svg width="380" height="130" viewBox="0 0 380 130" style="max-width:100%;font-family:sans-serif;font-size:11px">
+    <rect x="60" y="50" width="300" height="10" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+    <rect x="50" y="60" width="30" height="50" fill="#d1d5db" stroke="#6b7280" stroke-width="1.5"/>
+    <text x="65" y="125" text-anchor="middle" fill="#333" font-size="10">Appui</text>
+    <circle cx="65" cy="55" r="4" fill="#dc2626"/>
+    <text x="55" y="45" fill="#dc2626" font-weight="bold">B</text>
+    <!-- charge droite -->
+    <line x1="320" y1="60" x2="320" y2="110" stroke="#0969da" stroke-width="2" marker-end="url(#af)"/>
+    <text x="332" y="90" fill="#0969da" font-weight="bold">P = ?</text>
+    <line x1="65" y1="120" x2="320" y2="120" stroke="#2da44e" stroke-width="1.5"/>
+    <text x="192" y="118" text-anchor="middle" fill="#2da44e" font-weight="bold">d = 0,50 m</text>
+    <!-- contrepoids gauche -->
+    <line x1="60" y1="60" x2="60" y2="30" stroke="#dc2626" stroke-width="2"/>
+    <text x="35" y="25" fill="#dc2626" font-size="10">Contrepoids</text>
+  </svg>
+  </div>
+  Un menuisier utilise une planche de 1 m pos&eacute;e sur un tr&eacute;teau comme &laquo;&nbsp;balance&nbsp;&raquo; pour peser un lot de pi&egrave;ces. Le tr&eacute;teau est plac&eacute; &agrave; 15 cm de l'extr&eacute;mit&eacute; gauche (point B). Les pi&egrave;ces sont pos&eacute;es &agrave; l'extr&eacute;mit&eacute; droite (d = 0,50 m du tr&eacute;teau). Pour &eacute;quilibrer, il place un contrepoids de 8 kg &agrave; l'extr&eacute;mit&eacute; gauche (d = 0,15 m du tr&eacute;teau).<br><br>
+  <strong>1.</strong> Calculer le moment du contrepoids par rapport &agrave; B.<br>
+  <strong>2.</strong> &Agrave; l'&eacute;quilibre, \(\sum \mathcal{M}_B = 0\). &Eacute;crire l'&eacute;quation d'&eacute;quilibre.<br>
+  <strong>3.</strong> En d&eacute;duire le poids P des pi&egrave;ces, puis leur masse.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(\mathcal{M}_{\text{contrepoids}} = 80 \times 0{,}15 = 12\) N&middot;m (sens anti-horaire)<br>
+    2. &Eacute;quilibre : \(80 \times 0{,}15 = P \times 0{,}50\)<br>
+    3. \(P = 12 / 0{,}50 = 24\) N &rarr; \(m = 24 / 10 = 2{,}4\) kg
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 8</span>
+    <span class="exo-title">&Eacute;tag&egrave;re &agrave; deux &eacute;querres &mdash; r&eacute;partition des efforts</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Une &eacute;tag&egrave;re de 80 cm de long est fix&eacute;e au mur par deux &eacute;querres plac&eacute;es &agrave; 10 cm de chaque extr&eacute;mit&eacute;. La profondeur de l'&eacute;tag&egrave;re est de 30 cm. On pose une charge de 15 kg au centre de l'&eacute;tag&egrave;re (centr&eacute;e &agrave; 15 cm du mur).<br><br>
+  <strong>1.</strong> Calculer le poids total de la charge.<br>
+  <strong>2.</strong> Comme la charge est centr&eacute;e entre les deux &eacute;querres, chaque &eacute;querre supporte la moiti&eacute; du poids. Calculer le poids sur chaque &eacute;querre.<br>
+  <strong>3.</strong> Calculer le moment exerc&eacute; sur chaque &eacute;querre (d = 0,15 m).<br>
+  <strong>4.</strong> Le fabricant d'&eacute;querres indique une capacit&eacute; de 12 N&middot;m par &eacute;querre. L'installation est-elle conforme ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(P = 15 \times 10 = 150\) N<br>
+    2. Par &eacute;querre : \(150 / 2 = 75\) N<br>
+    3. \(\mathcal{M} = 75 \times 0{,}15 = 11{,}25\) N&middot;m par &eacute;querre<br>
+    4. 11,25 &lt; 12 N&middot;m &rarr; <strong>conforme</strong>, mais tr&egrave;s juste (marge de seulement 6 %). Il serait prudent d'utiliser des &eacute;querres renforc&eacute;es ou de r&eacute;partir la charge diff&eacute;remment.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 9</span>
+    <span class="exo-title">Dimensionner les fixations d'un meuble suspendu</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un technicien d'agencement installe un meuble haut de cuisine suspendu au mur. Le meuble a une profondeur de 35 cm et p&egrave;se 12 kg &agrave; vide. Son centre de gravit&eacute; est &agrave; 18 cm du mur. Une fois rempli (vaisselle), la masse totale sera de 40 kg et le centre de gravit&eacute; se d&eacute;placera &agrave; 20 cm du mur.<br><br>
+  <strong>1.</strong> Calculer le moment par rapport au point de fixation, meuble vide.<br>
+  <strong>2.</strong> Calculer le moment, meuble plein.<br>
+  <strong>3.</strong> Le meuble est fix&eacute; par 4 vis. Quel moment doit supporter chaque vis au minimum (meuble plein) ?<br>
+  <strong>4.</strong> Pourquoi fixe-t-on toujours les meubles hauts de cuisine avec des rails de suspension (et non de simples vis) ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. Meuble vide : \(P = 120\) N &rarr; \(\mathcal{M} = 120 \times 0{,}18 = 21{,}6\) N&middot;m<br>
+    2. Meuble plein : \(P = 400\) N &rarr; \(\mathcal{M} = 400 \times 0{,}20 = 80\) N&middot;m<br>
+    3. Par vis : \(80 / 4 = 20\) N&middot;m minimum<br>
+    4. Un rail de suspension r&eacute;partit la charge sur toute la largeur du meuble (et non sur 4 points). Il permet aussi un <strong>r&eacute;glage</strong> en hauteur et en profondeur, et il r&eacute;duit le risque d'arrachement car la force est transmise au mur par cisaillement plut&ocirc;t que par traction.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 10</span>
+    <span class="exo-title">Probl&egrave;me inverse &mdash; &agrave; quelle distance maximale ?</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Une &eacute;tag&egrave;re de 50 cm de profondeur est fix&eacute;e par une &eacute;querre dont le moment maximal admissible est de 25 N&middot;m. L'&eacute;tag&egrave;re elle-m&ecirc;me p&egrave;se 3 kg (centre de gravit&eacute; &agrave; 25 cm du mur). On veut y poser un gros dictionnaire de 5 kg.<br><br>
+  <strong>1.</strong> Calculer le moment d&ucirc; au poids propre de l'&eacute;tag&egrave;re.<br>
+  <strong>2.</strong> Quel moment reste-t-il disponible pour le dictionnaire ?<br>
+  <strong>3.</strong> &Agrave; quelle distance maximale du mur peut-on poser le dictionnaire ? Exprimer la r&eacute;ponse en cm.<br>
+  <strong>4.</strong> Peut-on le poser au bord de l'&eacute;tag&egrave;re (d = 50 cm) ? Justifier.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. \(\mathcal{M}_{\text{&eacute;tag}} = 30 \times 0{,}25 = 7{,}5\) N&middot;m<br>
+    2. Moment disponible : \(25 - 7{,}5 = 17{,}5\) N&middot;m<br>
+    3. \(d_{\max} = \mathcal{M} / P = 17{,}5 / 50 = 0{,}35\) m = <strong>35 cm</strong><br>
+    4. Au bord (d = 0,50 m) : \(\mathcal{M} = 50 \times 0{,}50 = 25\) N&middot;m. Moment total : \(7{,}5 + 25 = 32{,}5\) N&middot;m &gt; 25 N&middot;m &rarr; <strong>non</strong>, l'&eacute;querre c&egrave;derait. Il faut poser le dictionnaire &agrave; 35 cm du mur au maximum.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<!-- BARRE D'IMPRESSION -->
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){
+  const c=btn.previousElementSibling;
+  if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}
+  else{c.style.display='none';btn.textContent='Voir la correction';}
+}
+document.getElementById('sn-print-corr').addEventListener('click',function(){
+  var corrs=document.querySelectorAll('.corr');
+  for(var i=0;i<corrs.length;i++) corrs[i].style.setProperty('display','block','important');
+  window.addEventListener('afterprint',function cleanup(){
+    for(var j=0;j<corrs.length;j++) corrs[j].style.removeProperty('display');
+    window.removeEventListener('afterprint',cleanup);
+  });
+  setTimeout(function(){window.print();},100);
+});
+</script>
+</body>
+</html>
