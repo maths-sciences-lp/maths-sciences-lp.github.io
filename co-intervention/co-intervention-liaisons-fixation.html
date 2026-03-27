@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dimensionnement d'une fixation — Co-intervention ERA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Dimensionnement d'une fixation</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ERA | Liaisons &mdash; S5.4</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Distinguer effort d'arrachement et effort de cisaillement</li>
+    <li>Lire un abaque fabricant pour choisir une cheville adapt&eacute;e</li>
+    <li>Calculer la charge admissible d'une fixation avec un coefficient de s&eacute;curit&eacute;</li>
+    <li>D&eacute;terminer le nombre de fixations n&eacute;cessaires pour supporter une charge</li>
+  </ul>
+</div>
+
+<!-- BADGE -->
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ERA :</strong> S5.4 &mdash; Liaisons et stabilit&eacute; (fixations, ancrages)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Division, in&eacute;galit&eacute;s, lecture de tableaux, proportionnalit&eacute;</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ERA</li>
+  </ul>
+</div>
+
+<!-- MISE EN SITUATION -->
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Fixation d'un meuble haut de cuisine</strong><br><br>
+  Un technicien d'agencement doit fixer un meuble haut de cuisine au mur. Le meuble p&egrave;se 15 kg &agrave; vide et contiendra jusqu'&agrave; 30 kg de vaisselle (soit 45 kg au total). Le mur est en b&eacute;ton.<br><br>
+  Le chef de chantier vous demande : <em>&laquo;&nbsp;Choisis les chevilles adapt&eacute;es au support et &agrave; la charge. V&eacute;rifie avec le tableau du fabricant que &ccedil;a tient, avec une marge de s&eacute;curit&eacute;.&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG arrachement / cisaillement -->
+<h2>2. Deux types de sollicitation d'une fixation</h2>
+
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="500" height="180" viewBox="0 0 500 180" style="max-width:100%;font-family:sans-serif;font-size:12px">
+  <!-- ARRACHEMENT -->
+  <rect x="20" y="10" width="200" height="160" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="120" y="30" text-anchor="middle" font-weight="bold" fill="#f97316">ARRACHEMENT</text>
+  <!-- mur -->
+  <rect x="40" y="50" width="30" height="90" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1.5"/>
+  <!-- cheville -->
+  <rect x="70" y="85" width="60" height="8" rx="3" fill="#6b7280" stroke="#333" stroke-width="1"/>
+  <!-- vis -->
+  <line x1="130" y1="89" x2="170" y2="89" stroke="#333" stroke-width="2"/>
+  <!-- flèche F -->
+  <defs><marker id="ax" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0,0 10,3.5 0,7" fill="#dc2626"/></marker></defs>
+  <line x1="170" y1="89" x2="210" y2="89" stroke="#dc2626" stroke-width="2.5" marker-end="url(#ax)"/>
+  <text x="195" y="80" fill="#dc2626" font-weight="bold">F</text>
+  <text x="120" y="160" text-anchor="middle" fill="#555" font-size="11">La force tire la cheville</text>
+  <text x="120" y="172" text-anchor="middle" fill="#555" font-size="11">hors du mur</text>
+
+  <!-- CISAILLEMENT -->
+  <rect x="270" y="10" width="200" height="160" rx="8" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="370" y="30" text-anchor="middle" font-weight="bold" fill="#0ea5e9">CISAILLEMENT</text>
+  <!-- mur -->
+  <rect x="290" y="50" width="30" height="90" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1.5"/>
+  <!-- cheville -->
+  <rect x="320" y="85" width="60" height="8" rx="3" fill="#6b7280" stroke="#333" stroke-width="1"/>
+  <!-- vis -->
+  <line x1="380" y1="89" x2="410" y2="89" stroke="#333" stroke-width="2"/>
+  <!-- charge suspendue -->
+  <rect x="395" y="89" width="30" height="30" rx="3" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+  <!-- flèche F vers le bas -->
+  <line x1="410" y1="119" x2="410" y2="155" stroke="#dc2626" stroke-width="2.5" marker-end="url(#ax)"/>
+  <text x="425" y="142" fill="#dc2626" font-weight="bold">F</text>
+  <text x="370" y="160" text-anchor="middle" fill="#555" font-size="11">La force tend &agrave; couper</text>
+  <text x="370" y="172" text-anchor="middle" fill="#555" font-size="11">la vis au ras du mur</text>
+</svg>
+</div>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Arrachement</span><br>
+  L'<strong>arrachement</strong> est la sollicitation qui tend &agrave; <strong>extraire la cheville du mur</strong> (force perpendiculaire au mur, dirig&eacute;e vers l'ext&eacute;rieur). Exemple : &eacute;tag&egrave;re charg&eacute;e qui tire sur les fixations hautes.
+</div>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Cisaillement</span><br>
+  Le <strong>cisaillement</strong> est la sollicitation qui tend &agrave; <strong>couper la vis au ras du mur</strong> (force parall&egrave;le au mur, dirig&eacute;e vers le bas). Exemple : meuble suspendu dont le poids tire vers le bas.
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span><br>
+  En pratique, la plupart des fixations de meubles subissent un <strong>effort combin&eacute;</strong> : cisaillement (poids vers le bas) + arrachement (moment qui tire sur les vis hautes). Il faut toujours v&eacute;rifier les <strong>deux</strong> types d'effort.
+</div>
+
+<!-- ABAQUE -->
+<h2>3. Lire un abaque fabricant</h2>
+
+<div class="prop">
+  <span class="label label-prop">Tableau &mdash; Charges admissibles de chevilles (exemple)</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.88rem;margin-top:.5rem">
+    <thead>
+      <tr style="background:var(--p-bg)">
+        <th style="border:1px solid var(--p-border);padding:.4rem" rowspan="2">Cheville</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem" rowspan="2">&oslash; (mm)</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem" colspan="2">B&eacute;ton plein</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem" colspan="2">Brique creuse</th>
+        <th style="border:1px solid var(--p-border);padding:.4rem" colspan="2">Plaque de pl&acirc;tre</th>
+      </tr>
+      <tr style="background:var(--p-bg)">
+        <th style="border:1px solid var(--p-border);padding:.35rem;font-size:.8rem">Cisaill. (N)</th>
+        <th style="border:1px solid var(--p-border);padding:.35rem;font-size:.8rem">Arrach. (N)</th>
+        <th style="border:1px solid var(--p-border);padding:.35rem;font-size:.8rem">Cisaill. (N)</th>
+        <th style="border:1px solid var(--p-border);padding:.35rem;font-size:.8rem">Arrach. (N)</th>
+        <th style="border:1px solid var(--p-border);padding:.35rem;font-size:.8rem">Cisaill. (N)</th>
+        <th style="border:1px solid var(--p-border);padding:.35rem;font-size:.8rem">Arrach. (N)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Nylon S6</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">6</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">600</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">350</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">250</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">150</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">80</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">50</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Nylon S8</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">8</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1 200</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">700</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">500</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">300</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">150</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">100</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Nylon S10</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">10</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">2 000</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1 200</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">800</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">500</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">250</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">150</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">M&eacute;tallique M6</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">6</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1 500</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1 000</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">600</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">400</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">—</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">—</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Molly M5</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">5</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">—</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">—</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">—</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">—</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">200</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">120</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:.5rem;font-size:.82rem;color:#555">Valeurs indicatives. Se r&eacute;f&eacute;rer &agrave; la notice du fabricant pour les valeurs exactes.</p>
+</div>
+
+<h2>4. Coefficient de s&eacute;curit&eacute;</h2>
+
+<div class="prop">
+  <span class="label label-prop">R&egrave;gle &mdash; Coefficient de s&eacute;curit&eacute;</span><br>
+  On ne doit <strong>jamais charger une fixation &agrave; sa limite</strong>. On applique un <strong>coefficient de s&eacute;curit&eacute;</strong> (g&eacute;n&eacute;ralement 2 ou 3) :
+  \[ F_{\text{admissible}} = \frac{F_{\text{abaque}}}{k} \]
+  <ul>
+    <li>\(k = 2\) : usage courant (meubles, &eacute;tag&egrave;res)</li>
+    <li>\(k = 3\) : usage s&eacute;curitaire (meubles hauts au-dessus de personnes)</li>
+  </ul>
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; Choisir et v&eacute;rifier une fixation</span><br>
+  <ol>
+    <li>Identifier le <strong>support</strong> (b&eacute;ton, brique, placo)</li>
+    <li>Calculer le <strong>poids total</strong> &agrave; supporter : \(P = m \times g\)</li>
+    <li>D&eacute;terminer le type d'effort (cisaillement, arrachement, ou les deux)</li>
+    <li>Lire la charge admissible dans l'abaque pour le support concern&eacute;</li>
+    <li>Appliquer le coefficient de s&eacute;curit&eacute; : \(F_{\text{adm}} = F_{\text{abaque}} / k\)</li>
+    <li>V&eacute;rifier que le poids par fixation &le; \(F_{\text{adm}}\)</li>
+    <li>Si non : augmenter le diam&egrave;tre ou le nombre de fixations</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Meuble haut de cuisine sur b&eacute;ton</span><br>
+  Masse totale : 45 kg &rarr; P = 450 N. Le meuble est fix&eacute; par 4 vis. Effort principal : <strong>cisaillement</strong> (poids vers le bas).<br><br>
+  Poids par vis : \(450 / 4 = 112{,}5\) N<br><br>
+  Cheville S8 dans b&eacute;ton : 1 200 N en cisaillement.<br>
+  Avec k = 2 : \(F_{\text{adm}} = 1\,200 / 2 = 600\) N<br>
+  112,5 N &lt; 600 N &rarr; <strong>la cheville S8 convient largement</strong>.
+</div>
+
+<!-- À RETENIR -->
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li><strong>Cisaillement</strong> = force parall&egrave;le au mur (poids) &mdash; <strong>Arrachement</strong> = force perpendiculaire (traction)</li>
+    <li>Toujours appliquer un coefficient de s&eacute;curit&eacute; : \(F_{\text{adm}} = F_{\text{abaque}} / k\)</li>
+    <li>La charge admissible d&eacute;pend du <strong>support</strong> : b&eacute;ton &gt; brique &gt; placo</li>
+    <li>En cas de doute : augmenter le diam&egrave;tre ou le nombre de fixations</li>
+  </ul>
+</div>
+
+<!-- ==================== EXERCICES ==================== -->
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 1</span>
+    <span class="exo-title">Lire l'abaque (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  &Agrave; l'aide du tableau de la section 3, r&eacute;pondre :<br><br>
+  <strong>a)</strong> Charge de cisaillement d'une cheville S8 dans le b&eacute;ton : &hellip; N<br>
+  <strong>b)</strong> Charge d'arrachement d'une cheville S10 dans la brique creuse : &hellip; N<br>
+  <strong>c)</strong> Charge de cisaillement d'une Molly M5 dans le placo : &hellip; N<br>
+  <strong>d)</strong> Peut-on utiliser une cheville m&eacute;tallique M6 dans le placo ? Justifier.
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    a) <strong>1 200 N</strong><br>
+    b) <strong>500 N</strong><br>
+    c) <strong>200 N</strong><br>
+    d) <strong>Non</strong>, le tableau indique &laquo;&nbsp;&mdash;&nbsp;&raquo; : cette cheville n'est pas adapt&eacute;e au placo.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 2</span>
+    <span class="exo-title">Poids par fixation (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Un meuble de 60 kg est fix&eacute; par 4 vis.<br><br>
+  <strong>&Eacute;tape 1 :</strong> Calculer le poids total : \(P = \ldots \times 10 = \ldots\) N<br>
+  <strong>&Eacute;tape 2 :</strong> Calculer le poids par vis : \(P / 4 = \ldots\) N<br>
+  <strong>&Eacute;tape 3 :</strong> Avec un coefficient k = 2 et une cheville S10 dans le b&eacute;ton (cisaillement = 2 000 N), calculer \(F_{\text{adm}}\). La fixation tient-elle ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    &Eacute;tape 1 : P = 60 &times; 10 = 600 N<br>
+    &Eacute;tape 2 : 600 / 4 = 150 N par vis<br>
+    &Eacute;tape 3 : \(F_{\text{adm}} = 2\,000 / 2 = 1\,000\) N. 150 &lt; 1 000 &rarr; <strong>oui, largement</strong>.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 3</span>
+    <span class="exo-title">Arrachement ou cisaillement ? (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Pour chaque situation, indiquer si la fixation travaille en <strong>arrachement</strong>, en <strong>cisaillement</strong>, ou les <strong>deux</strong> :<br><br>
+  <strong>a)</strong> Un tableau accroch&eacute; &agrave; un clou &rarr; &hellip;<br>
+  <strong>b)</strong> Un crochet porte-manteau tir&eacute; vers l'ext&eacute;rieur quand on y accroche un manteau &rarr; &hellip;<br>
+  <strong>c)</strong> Une tringle &agrave; rideaux charg&eacute;e de rideaux lourds &rarr; &hellip;<br>
+  <strong>d)</strong> Un meuble haut de cuisine avec la porte ouverte &rarr; &hellip;
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    a) <strong>Cisaillement</strong> (le poids tire vers le bas, la vis travaille au ras du mur)<br>
+    b) <strong>Arrachement</strong> (le manteau tire la vis hors du mur)<br>
+    c) <strong>Les deux</strong> (poids des rideaux = cisaillement, tringle qui s'&eacute;carte du mur = arrachement)<br>
+    d) <strong>Les deux</strong> (poids = cisaillement, porte ouverte cr&eacute;e un moment qui tire les vis hautes en arrachement)
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 4</span>
+    <span class="exo-title">Appliquer le coefficient de s&eacute;curit&eacute; (guid&eacute;)</span>
+    <span class="tag-socle">Socle</span>
+  </div>
+  Compl&eacute;ter le tableau :<br><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">F abaque (N)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">k</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">F admissible (N)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">600</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">2</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1 200</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">3</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">2 000</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">2</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+    </tbody>
+  </table>
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    600 / 2 = <strong>300 N</strong><br>
+    1 200 / 3 = <strong>400 N</strong><br>
+    2 000 / 2 = <strong>1 000 N</strong>
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 5</span>
+    <span class="exo-title">Fixer une &eacute;tag&egrave;re sur mur en brique</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Un menuisier fixe une &eacute;tag&egrave;re de 5 kg sur un mur en brique creuse avec 2 &eacute;querres (2 vis par &eacute;querre = 4 vis au total). L'&eacute;tag&egrave;re supporte 20 kg de livres.<br><br>
+  <strong>1.</strong> Calculer le poids total et le poids par vis (cisaillement).<br>
+  <strong>2.</strong> Lire la charge de cisaillement d'une cheville S6 dans la brique creuse.<br>
+  <strong>3.</strong> Appliquer le coefficient k = 2. La cheville S6 convient-elle ?<br>
+  <strong>4.</strong> Si non, quelle cheville choisir ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. P = (5 + 20) &times; 10 = 250 N. Par vis : 250 / 4 = 62,5 N<br>
+    2. S6 dans brique creuse, cisaillement = 250 N<br>
+    3. F_adm = 250 / 2 = 125 N. 62,5 &lt; 125 &rarr; <strong>oui, la S6 convient</strong>.<br>
+    4. (La S6 convient d&eacute;j&agrave;.)
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 6</span>
+    <span class="exo-title">Nombre de fixations n&eacute;cessaires</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Un installateur d'agencement doit fixer un meuble TV (masse totale charg&eacute; : 80 kg) sur un mur en b&eacute;ton. Il utilise des chevilles nylon S8. Coefficient de s&eacute;curit&eacute; k = 2.<br><br>
+  <strong>1.</strong> Calculer le poids total.<br>
+  <strong>2.</strong> Lire la charge de cisaillement admissible d'une S8 dans le b&eacute;ton (avec k = 2).<br>
+  <strong>3.</strong> Combien de vis faut-il au minimum ? (arrondir au nombre entier sup&eacute;rieur)
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. P = 80 &times; 10 = 800 N<br>
+    2. F_adm = 1 200 / 2 = 600 N par vis<br>
+    3. Nombre = 800 / 600 = 1,33 &rarr; <strong>2 vis minimum</strong>. En pratique, on met 4 vis pour la stabilit&eacute;.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 7</span>
+    <span class="exo-title">Fixation sur plaque de pl&acirc;tre</span>
+    <span class="tag-standard">Standard</span>
+  </div>
+  Un client veut accrocher un miroir de 12 kg sur un mur en plaque de pl&acirc;tre (placo). Le miroir sera fix&eacute; par 2 crochets.<br><br>
+  <strong>1.</strong> Calculer le poids par crochet.<br>
+  <strong>2.</strong> Le miroir travaille principalement en cisaillement ou en arrachement ?<br>
+  <strong>3.</strong> Choisir la cheville adapt&eacute;e au placo dans le tableau (k = 2).<br>
+  <strong>4.</strong> Si le client veut poser un miroir de 25 kg, la m&ecirc;me solution convient-elle ? Que proposer ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. P par crochet = 120 / 2 = 60 N<br>
+    2. <strong>Cisaillement</strong> (le poids tire vers le bas)<br>
+    3. Molly M5 dans placo : cisaillement = 200 N, F_adm = 200/2 = 100 N. 60 &lt; 100 &rarr; <strong>Molly M5 convient</strong>.<br>
+    4. P par crochet = 250/2 = 125 N &gt; 100 N &rarr; <strong>non</strong>. Solutions : ajouter un 3e crochet (83 N &lt; 100 N), ou utiliser un rail de fixation dans les montants de l'ossature m&eacute;tallique du placo (bien plus r&eacute;sistant).
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 8</span>
+    <span class="exo-title">Meuble haut &mdash; effort combin&eacute;</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un meuble haut de cuisine (masse totale : 50 kg) est fix&eacute; au mur en b&eacute;ton par un rail m&eacute;tallique avec 4 vis. Le meuble a une profondeur de 35 cm et son centre de gravit&eacute; est &agrave; 18 cm du mur.<br><br>
+  <strong>1.</strong> Calculer l'effort de cisaillement par vis (poids r&eacute;parti sur 4 vis).<br>
+  <strong>2.</strong> Calculer le moment total par rapport aux vis du bas.<br>
+  <strong>3.</strong> Les 2 vis du haut reprennent l'effort d'arrachement d&ucirc; au moment. Si la distance entre les vis du haut et du bas est de 30 cm, calculer la force d'arrachement sur chaque vis du haut : \(F = \mathcal{M} / (2 \times d)\)<br>
+  <strong>4.</strong> V&eacute;rifier que les chevilles S8 dans le b&eacute;ton supportent ces deux efforts (k = 2).
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. P = 500 N. Cisaillement par vis : 500/4 = <strong>125 N</strong><br>
+    2. \(\mathcal{M} = 500 \times 0{,}18 = 90\) N&middot;m<br>
+    3. F_arrachement par vis haute = 90 / (2 &times; 0,30) = <strong>150 N</strong><br>
+    4. S8 b&eacute;ton :<br>
+    Cisaillement : F_adm = 1200/2 = 600 N &gt; 125 N &check;<br>
+    Arrachement : F_adm = 700/2 = 350 N &gt; 150 N &check;<br>
+    <strong>Les chevilles S8 conviennent</strong> pour les deux efforts.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 9</span>
+    <span class="exo-title">Comparer les supports &mdash; m&ecirc;me meuble, trois murs</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un m&ecirc;me meuble de 35 kg doit &ecirc;tre fix&eacute; sur 3 types de murs diff&eacute;rents chez 3 clients. On utilise 4 vis &agrave; chaque fois. Coefficient k = 2.<br><br>
+  <strong>1.</strong> Calculer le poids par vis.<br>
+  <strong>2.</strong> Pour chaque support, d&eacute;terminer la plus petite cheville qui convient (cisaillement) :<br>
+  &bull; Client A : mur b&eacute;ton<br>
+  &bull; Client B : mur brique creuse<br>
+  &bull; Client C : cloison placo<br>
+  <strong>3.</strong> Chez le client C (placo), la charge est-elle r&eacute;alisable avec des chevilles Molly M5 ? Si non, combien de vis faut-il ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. P = 350 N. Par vis : 350/4 = 87,5 N<br>
+    2.<br>
+    &bull; B&eacute;ton : S6, F_adm = 600/2 = 300 N &gt; 87,5 &check; &rarr; <strong>S6 suffit</strong><br>
+    &bull; Brique : S6, F_adm = 250/2 = 125 N &gt; 87,5 &check; &rarr; <strong>S6 suffit</strong><br>
+    &bull; Placo : Molly M5, F_adm = 200/2 = 100 N &gt; 87,5 &check; &rarr; <strong>Molly M5 suffit</strong> (mais juste !)<br>
+    3. 87,5 &lt; 100 &rarr; &ccedil;a passe avec 4 vis, mais la marge est faible (12,5 N). Avec 6 vis : 350/6 = 58,3 N &lt; 100 N &rarr; marge plus confortable. <strong>Recommandation : 6 vis en placo</strong>.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header">
+    <span class="exo-num">Exercice 10</span>
+    <span class="exo-title">Probl&egrave;me inverse &mdash; masse maximale admissible</span>
+    <span class="tag-appro">Approfondissement</span>
+  </div>
+  Un technicien d'agencement doit fixer une &eacute;tag&egrave;re de pr&eacute;sentation sur un mur en brique creuse. Il dispose de 6 chevilles nylon S8 (cisaillement dans brique : 500 N). Coefficient k = 3 (espace public, s&eacute;curit&eacute; renforc&eacute;e).<br><br>
+  <strong>1.</strong> Calculer la charge admissible par cheville.<br>
+  <strong>2.</strong> Calculer la charge totale admissible pour les 6 chevilles.<br>
+  <strong>3.</strong> En d&eacute;duire la masse maximale que l'&eacute;tag&egrave;re peut supporter (contenu inclus).<br>
+  <strong>4.</strong> L'&eacute;tag&egrave;re p&egrave;se 8 kg. Quelle masse de marchandise peut-on y poser au maximum ?<br>
+  <strong>5.</strong> Si le mur &eacute;tait en b&eacute;ton (cisaillement S8 = 1 200 N), quelle serait la masse maximale de marchandise ?
+  <div class="corr">
+    <strong>Correction :</strong><br>
+    1. F_adm = 500 / 3 = 166,7 N<br>
+    2. F_totale = 6 &times; 166,7 = 1 000 N<br>
+    3. m_max = 1 000 / 10 = <strong>100 kg</strong><br>
+    4. Marchandise max : 100 &minus; 8 = <strong>92 kg</strong><br>
+    5. En b&eacute;ton : F_adm = 1 200/3 = 400 N &times; 6 = 2 400 N &rarr; m_max = 240 kg &rarr; marchandise : 240 &minus; 8 = <strong>232 kg</strong>. Le b&eacute;ton permet 2,5 fois plus de charge que la brique.
+  </div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<!-- BARRE D'IMPRESSION -->
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){
+  const c=btn.previousElementSibling;
+  if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}
+  else{c.style.display='none';btn.textContent='Voir la correction';}
+}
+document.getElementById('sn-print-corr').addEventListener('click',function(){
+  var corrs=document.querySelectorAll('.corr');
+  for(var i=0;i<corrs.length;i++) corrs[i].style.setProperty('display','block','important');
+  window.addEventListener('afterprint',function cleanup(){
+    for(var j=0;j<corrs.length;j++) corrs[j].style.removeProperty('display');
+    window.removeEventListener('afterprint',cleanup);
+  });
+  setTimeout(function(){window.print();},100);
+});
+</script>
+</body>
+</html>
