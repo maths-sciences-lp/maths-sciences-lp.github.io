@@ -157,6 +157,39 @@ Ces compétences sont trop larges. Utiliser uniquement des capacités disciplina
 - Corrections **complètes et rédigées** : montrer toutes les étapes
 - Pas de correction partielle ou abrégée
 
+### Figures et illustrations SVG
+
+Les exercices de géométrie, de fonctions et de statistiques doivent inclure des **figures SVG inline** pour aider l'élève à visualiser la situation.
+
+**Quand ajouter une figure :**
+- Exercices de géométrie (triangles, figures planes, solides) : **systématiquement**
+- Exercices de fonctions (courbes, droites, paraboles) : dans le rappel de cours et les exercices de lecture graphique
+- Exercices de statistiques : diagrammes en bâtons, barres, circulaires
+- Exercices de proportionnalité/Thalès : figure avec segments cotés
+- Tout exercice décrivant une situation spatiale (échelle, toiture, rampe, pièce mécanique…)
+
+**Style SVG à respecter :**
+```html
+<figure class="schema" style="text-align:center;margin:12px 0">
+  <svg width="250" height="170" viewBox="0 0 250 170" xmlns="http://www.w3.org/2000/svg">
+    <!-- Contenu -->
+  </svg>
+  <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Légende</figcaption>
+</figure>
+```
+
+**Conventions graphiques :**
+- Remplissage des formes : `fill="#ebf5ff"` (bleu très clair)
+- Contour principal : `stroke="#0056b3"` (bleu primaire), `stroke-width="2"`
+- Longueurs inconnues : `stroke-dasharray="6,3"` + couleur `#c53030` (rouge)
+- Labels sommets : `font-size="13"`, `fill="#0056b3"`, `font-weight="bold"`
+- Labels dimensions : `font-size="11-12"`, `fill="#555"`
+- Angle droit : petit carré via `<polyline>` dans le coin
+- Grilles (graphiques) : `stroke="#e2e8f0"`, `stroke-width="0.5"`
+- Axes : `stroke="#333"`, `stroke-width="1.5"`, flèches aux extrémités
+- Deuxième courbe/droite : `stroke="#c53030"` (rouge)
+- Solides 3D : arêtes cachées en `stroke-dasharray="4,2"`
+
 ### Différenciation
 
 **Ne pas appliquer de différenciation sur cette page.**
@@ -206,3 +239,5 @@ Avant de générer la page, toujours :
 - [ ] Couleurs CSS conformes au thème matière/niveau
 - [ ] Lien retour vers le sommaire
 - [ ] Page `exercices.html` originale non modifiée
+- [ ] Figures SVG inline pour les exercices géométriques, graphiques et statistiques
+- [ ] Style SVG conforme aux conventions (fill #ebf5ff, stroke #0056b3, labels #555)

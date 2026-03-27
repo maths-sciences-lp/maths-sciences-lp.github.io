@@ -17,6 +17,7 @@ Ce fichier est lu automatiquement par Claude Code à chaque session.
 ├── nav.css                     ← Styles de navigation
 ├── diff.js                     ← Toggle différenciation pédagogique (socle/standard/appro)
 ├── qcm.js                     ← Fonctions partagées pour les QCM interactifs
+├── comp.js                    ← Filtrage par capacité (exercices-capacites.html)
 ├── index.html                  ← Page d'accueil
 ├── maths-*.html / pc-*.html    ← Pages sommaire par matière/niveau
 ├── maths/
@@ -56,10 +57,11 @@ Chaque dossier de chapitre peut contenir les fichiers suivants :
 | `fiche.html` | Fiche de révision / mémo du chapitre | Standard — majorité des chapitres |
 | `qcm.html` | QCM interactif avec correction automatique et score (différencié) | Optionnel — à créer pour chaque chapitre |
 | `interro.html` | Interrogation écrite courte, 10-15 min, barème /20 (différenciée) | Optionnel — à créer pour chaque chapitre |
+| `exercices-capacites.html` | Exercices organisés par capacités du programme (filtrage comp.js) | Standard — 14/14 en Seconde maths |
 | `activite.html` | Activité de découverte (situation-problème guidée vers la notion) | Optionnel — recommandé |
 | `simulation.html` | Simulation interactive liée au chapitre | Optionnel — si pertinent |
 
-**Objectif :** chaque chapitre devrait à terme contenir les 7 fichiers ci-dessus.
+**Objectif :** chaque chapitre devrait à terme contenir les 8 fichiers ci-dessus.
 
 ### Pages sommaire (racine)
 
