@@ -57,6 +57,51 @@
   <p>On considère les points \(A(1;2)\), \(B(4;6)\), \(C(3;1)\) et \(D(6;5)\) dans un repère orthonormé.<br>
   1. Calculer les coordonnées de \(\overrightarrow{AB}\) et de \(\overrightarrow{CD}\).<br>
   2. Les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) sont-ils égaux ? Justifier.</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="280" height="240" viewBox="0 0 280 240" aria-label="Points A, B, C, D et vecteurs AB et CD">
+      <rect width="280" height="240" fill="#f8fafc" rx="6"/>
+      <!-- Grille -->
+      <g stroke="#e2e8f0" stroke-width="0.5">
+        <line x1="40" y1="20" x2="40" y2="220"/><line x1="80" y1="20" x2="80" y2="220"/>
+        <line x1="120" y1="20" x2="120" y2="220"/><line x1="160" y1="20" x2="160" y2="220"/>
+        <line x1="200" y1="20" x2="200" y2="220"/><line x1="240" y1="20" x2="240" y2="220"/>
+        <line x1="20" y1="40" x2="260" y2="40"/><line x1="20" y1="80" x2="260" y2="80"/>
+        <line x1="20" y1="120" x2="260" y2="120"/><line x1="20" y1="160" x2="260" y2="160"/>
+        <line x1="20" y1="200" x2="260" y2="200"/>
+      </g>
+      <!-- Axes -->
+      <line x1="20" y1="200" x2="265" y2="200" stroke="#333" stroke-width="1.5"/>
+      <line x1="20" y1="215" x2="20" y2="15" stroke="#333" stroke-width="1.5"/>
+      <polygon points="265,197 273,200 265,203" fill="#333"/>
+      <polygon points="17,15 20,7 23,15" fill="#333"/>
+      <!-- Graduations -->
+      <text x="37" y="214" font-size="9" fill="#333">1</text><text x="77" y="214" font-size="9" fill="#333">2</text>
+      <text x="117" y="214" font-size="9" fill="#333">3</text><text x="157" y="214" font-size="9" fill="#333">4</text>
+      <text x="197" y="214" font-size="9" fill="#333">5</text><text x="237" y="214" font-size="9" fill="#333">6</text>
+      <text x="5" y="163" font-size="9" fill="#333">1</text><text x="5" y="123" font-size="9" fill="#333">2</text>
+      <text x="5" y="83" font-size="9" fill="#333">3</text><text x="5" y="43" font-size="9" fill="#333">4</text>
+      <text x="10" y="214" font-size="9" fill="#333">O</text>
+      <!-- Points: 1 unité = 40px. A(1,2)=(40,120) B(4,6)=(160,−40)→(160,−40 hors zone) -->
+      <!-- Ajuster: A(1,2)=(40,120) B(4,6)=(160,−40) → échelle trop grande, prendre y inversé: y_px = 200 - y*40 -->
+      <!-- A(1,2)→(40,120) B(4,6)→(160,-40) hors zone. Réduire: 1u=30px -->
+      <!-- Non, gardons 40px mais limitons. B(4,6) sort. Mettons 1u=30px -->
+      <!-- A(1,2)→(20+30,200-60)=(50,140) B(4,6)→(20+120,200-180)=(140,20) C(3,1)→(20+90,200-30)=(110,170) D(6,5)→(20+180,200-150)=(200,50) -->
+      <!-- Vecteur AB -->
+      <line x1="50" y1="140" x2="140" y2="20" stroke="#0969da" stroke-width="2" marker-end="url(#arr)"/>
+      <!-- Vecteur CD -->
+      <line x1="110" y1="170" x2="200" y2="50" stroke="#c53030" stroke-width="2" marker-end="url(#arr2)"/>
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#0969da"/></marker>
+        <marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#c53030"/></marker>
+      </defs>
+      <!-- Points -->
+      <circle cx="50" cy="140" r="4" fill="#0969da"/><text x="30" y="137" font-size="11" fill="#0969da" font-weight="bold">A</text>
+      <circle cx="140" cy="20" r="4" fill="#0969da"/><text x="144" y="18" font-size="11" fill="#0969da" font-weight="bold">B</text>
+      <circle cx="110" cy="170" r="4" fill="#c53030"/><text x="94" y="183" font-size="11" fill="#c53030" font-weight="bold">C</text>
+      <circle cx="200" cy="50" r="4" fill="#c53030"/><text x="204" y="48" font-size="11" fill="#c53030" font-weight="bold">D</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Vecteurs \(\overrightarrow{AB}\) (bleu) et \(\overrightarrow{CD}\) (rouge) — même direction, même sens, même norme</figcaption>
+  </figure>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     Rappel : \(\overrightarrow{AB} = \begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}\)<br><br>
@@ -119,6 +164,32 @@
   <p>Par coordonnées : \(\overrightarrow{u} + \overrightarrow{v} = \begin{pmatrix} x_u + x_v \\ y_u + y_v \end{pmatrix}\).<br>
   Relation de Chasles : \(\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}\) (le point intermédiaire se simplifie).<br>
   En particulier : \(\overrightarrow{AB} + \overrightarrow{BA} = \overrightarrow{0}\) et \(\overrightarrow{AA} = \overrightarrow{0}\).</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="240" height="170" viewBox="0 0 240 170" aria-label="Règle du parallélogramme : u + v">
+      <rect width="240" height="170" fill="#f8fafc" rx="6"/>
+      <!-- Vecteur u : A(30,130) → B(130,130) -->
+      <line x1="30" y1="130" x2="130" y2="130" stroke="#0969da" stroke-width="2.5" marker-end="url(#arB)"/>
+      <!-- Vecteur v : A(30,130) → C(70,40) -->
+      <line x1="30" y1="130" x2="70" y2="40" stroke="#c53030" stroke-width="2.5" marker-end="url(#arR)"/>
+      <!-- Parallélogramme : B→D et C→D, D=(170,40) -->
+      <line x1="130" y1="130" x2="170" y2="40" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+      <line x1="70" y1="40" x2="170" y2="40" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+      <!-- Vecteur somme u+v : A→D -->
+      <line x1="30" y1="130" x2="170" y2="40" stroke="#2f855a" stroke-width="2.5" marker-end="url(#arG)"/>
+      <defs>
+        <marker id="arB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#0969da"/></marker>
+        <marker id="arR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#c53030"/></marker>
+        <marker id="arG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2f855a"/></marker>
+      </defs>
+      <!-- Labels -->
+      <text x="70" y="148" font-size="13" fill="#0969da" font-weight="bold">→u</text>
+      <text x="35" y="80" font-size="13" fill="#c53030" font-weight="bold">→v</text>
+      <text x="105" y="75" font-size="13" fill="#2f855a" font-weight="bold">→u + →v</text>
+      <circle cx="30" cy="130" r="3" fill="#333"/>
+      <text x="15" y="145" font-size="11" fill="#333">A</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Règle du parallélogramme : \(\overrightarrow{u} + \overrightarrow{v}\)</figcaption>
+  </figure>
 </div>
 
 <div class="exo">
