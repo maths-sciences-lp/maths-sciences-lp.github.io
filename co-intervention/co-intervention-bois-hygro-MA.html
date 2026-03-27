@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Retrait du bois lors du séchage — Co-intervention MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Retrait du bois lors du s&eacute;chage</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro MA | S6.1 &mdash; Mat&eacute;riaux bois</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Comprendre la notion d'humidit&eacute; du bois et d'&eacute;quilibre hygroscopique</li>
+    <li>Calculer le taux d'humidit&eacute; du bois : \(H = \dfrac{m_h - m_0}{m_0} \times 100\)</li>
+    <li>Calculer le retrait dimensionnel lors du s&eacute;chage</li>
+    <li>Appliquer le coefficient de retrait pour anticiper les variations dimensionnelles</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel MA :</strong> S6.1 &mdash; Matériaux bois (hygrométrie, séchage, retrait)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Pourcentages, proportionnalit&eacute;, formule litt&eacute;rale</li>
+    <li><strong>Notions sciences :</strong> Propri&eacute;t&eacute;s physiques de l'eau, &eacute;quilibre hygroscopique</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro MA</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Fabrication d'un parquet massif</strong><br><br>
+  Un menuisier fabrique un parquet en ch&ecirc;ne massif. Les lames arrivent du s&eacute;choir &agrave; 12 % d'humidit&eacute;. Le chauffagiste vient d'installer un plancher chauffant dans la maison du client. Le chef d'atelier pr&eacute;vient : <em>&laquo;&nbsp;Attention, avec le chauffage au sol, le bois va s&eacute;cher davantage et r&eacute;tr&eacute;cir. Il faut pr&eacute;voir des joints de dilatation et v&eacute;rifier que les lames ne vont pas trop se contracter.&nbsp;&raquo;</em>
+</div>
+
+<h2>2. Humidit&eacute; du bois</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Taux d'humidit&eacute; H</span><br>
+  Le taux d'humidit&eacute; du bois est le rapport entre la masse d'eau contenue dans le bois et la masse du bois anhydre (compl&egrave;tement sec) :
+  \[ H = \frac{m_h - m_0}{m_0} \times 100 \]
+  <ul>
+    <li>\(m_h\) : masse du bois humide (kg)</li>
+    <li>\(m_0\) : masse du bois anhydre (kg) &mdash; s&eacute;ch&eacute; en &eacute;tuve &agrave; 103 &deg;C</li>
+    <li>\(H\) : taux d'humidit&eacute; en <strong>%</strong></li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Taux d'humidit&eacute; courants</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Usage</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">H recommand&eacute;</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Menuiserie int&eacute;rieure (meuble, parquet)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">8 &agrave; 12 %</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Menuiserie ext&eacute;rieure (fen&ecirc;tre, volet)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">12 &agrave; 15 %</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Charpente</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">18 &agrave; 22 %</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Bois vert (fra&icirc;chement sci&eacute;)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">40 &agrave; 80 %</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>3. Retrait du bois</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Retrait</span><br>
+  Le <strong>retrait</strong> est la diminution des dimensions du bois lorsque son humidit&eacute; diminue en dessous du <strong>point de saturation des fibres</strong> (PSF &asymp; 30 %). Le retrait est diff&eacute;rent selon la direction :
+  <ul>
+    <li><strong>Tangentiel</strong> (le long des cernes) : le plus important (0,20 &agrave; 0,35 %/% H)</li>
+    <li><strong>Radial</strong> (perpendiculaire aux cernes) : moyen (0,10 &agrave; 0,20 %/% H)</li>
+    <li><strong>Axial</strong> (le long du fil) : n&eacute;gligeable (0,01 %/% H)</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Formule du retrait</span><br>
+  \[ \Delta L = L \times \alpha \times \Delta H \]
+  <ul>
+    <li>\(\Delta L\) : variation de dimension en mm</li>
+    <li>\(L\) : dimension initiale en mm</li>
+    <li>\(\alpha\) : coefficient de retrait (%/% H = sans unit&eacute;, en valeur d&eacute;cimale)</li>
+    <li>\(\Delta H = H_i - H_f\) : variation d'humidit&eacute; en %</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Tableau &mdash; Coefficients de retrait</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Essence</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&alpha; tangentiel (%/%H)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&alpha; radial (%/%H)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Ch&ecirc;ne</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,28</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,16</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">H&ecirc;tre</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,36</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,18</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Sapin / &Eacute;pic&eacute;a</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,24</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,12</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Noyer</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,26</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,14</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Lame de parquet ch&ecirc;ne</span><br>
+  Lame de largeur 90 mm (direction tangentielle), H passe de 12 % &agrave; 8 % (&Delta;H = 4 %).<br>
+  \(\alpha_{\text{tang}} = 0{,}28\) %/%H = 0,0028 en valeur d&eacute;cimale.<br><br>
+  \(\Delta L = 90 \times 0{,}0028 \times 4 = 1{,}01\) mm<br><br>
+  Chaque lame r&eacute;tr&eacute;cit d'environ <strong>1 mm</strong>. Sur 10 lames c&ocirc;te &agrave; c&ocirc;te, cela repr&eacute;sente un jeu de 10 mm !
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>\(H = (m_h - m_0) / m_0 \times 100\) &mdash; taux d'humidit&eacute; du bois</li>
+    <li>Menuiserie int&eacute;rieure : H = 8&ndash;12 % &mdash; ext&eacute;rieure : 12&ndash;15 %</li>
+    <li>\(\Delta L = L \times \alpha \times \Delta H\) &mdash; retrait dimensionnel</li>
+    <li>Retrait tangentiel &gt; radial &gt; axial</li>
+    <li>Il faut toujours usiner du bois au bon taux d'humidit&eacute; pour &eacute;viter les d&eacute;formations</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Calculer un taux d'humidit&eacute; (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Un &eacute;chantillon de bois p&egrave;se 580 g. Apr&egrave;s s&eacute;chage en &eacute;tuve, il p&egrave;se 520 g.<br><br>
+  \(H = \dfrac{m_h - m_0}{m_0} \times 100 = \dfrac{\ldots - \ldots}{\ldots} \times 100 = \ldots\) %
+  <div class="corr"><strong>Correction :</strong> \(H = \dfrac{580 - 520}{520} \times 100 = \dfrac{60}{520} \times 100 = 11{,}5\) %</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Cet &eacute;chantillon est-il pr&ecirc;t ? (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  D'apr&egrave;s le r&eacute;sultat de l'exercice 1 (H = 11,5 %) :<br>
+  <strong>a)</strong> Ce bois convient-il pour une menuiserie int&eacute;rieure (8&ndash;12 %) ?<br>
+  <strong>b)</strong> Convient-il pour une menuiserie ext&eacute;rieure (12&ndash;15 %) ?<br>
+  <strong>c)</strong> Convient-il pour une charpente (18&ndash;22 %) ?
+  <div class="corr"><strong>Correction :</strong><br>a) 11,5 est dans 8&ndash;12 &rarr; <strong>oui</strong><br>b) 11,5 &lt; 12 &rarr; trop sec pour l'ext&eacute;rieur, il reprendrait de l'humidit&eacute; et gonflerait &rarr; <strong>non id&eacute;al</strong><br>c) 11,5 &lt;&lt; 18 &rarr; <strong>non</strong>, beaucoup trop sec</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Calculer un retrait (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Une planche de h&ecirc;tre de largeur 150 mm (tangentiel) s&egrave;che de 14 % &agrave; 10 %.<br>
+  \(\alpha_{\text{tang}} = 0{,}36\) %/%H.<br><br>
+  <strong>1.</strong> \(\Delta H = \ldots - \ldots = \ldots\) %<br>
+  <strong>2.</strong> \(\Delta L = 150 \times 0{,}0036 \times \ldots = \ldots\) mm
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;H = 14 &minus; 10 = 4 %<br>2. &Delta;L = 150 &times; 0,0036 &times; 4 = <strong>2,16 mm</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Tangentiel vs radial (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Une pi&egrave;ce de ch&ecirc;ne de 100 mm s&egrave;che de 12 &agrave; 8 %. Calculer le retrait :<br>
+  <strong>a)</strong> En direction tangentielle (&alpha; = 0,28)<br>
+  <strong>b)</strong> En direction radiale (&alpha; = 0,16)<br>
+  <strong>c)</strong> Lequel est le plus important ?
+  <div class="corr"><strong>Correction :</strong><br>a) &Delta;L = 100 &times; 0,0028 &times; 4 = <strong>1,12 mm</strong><br>b) &Delta;L = 100 &times; 0,0016 &times; 4 = <strong>0,64 mm</strong><br>c) Le retrait <strong>tangentiel</strong> est 1,75 fois plus important.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Parquet ch&ecirc;ne sur plancher chauffant</span><span class="tag-standard">Standard</span></div>
+  Un parquet ch&ecirc;ne est pos&eacute; en lames de 90 mm de large (tangentiel) sur 5 m de largeur de pi&egrave;ce. Le bois est &agrave; 12 % &agrave; la pose. Avec le plancher chauffant, l'humidit&eacute; d'&eacute;quilibre descend &agrave; 7 %.<br><br>
+  <strong>1.</strong> Calculer le retrait d'une lame.<br>
+  <strong>2.</strong> Combien de lames sur 5 m ? (arrondir)<br>
+  <strong>3.</strong> Calculer le retrait total cumul&eacute; sur la largeur de la pi&egrave;ce.<br>
+  <strong>4.</strong> Quel jeu p&eacute;riph&eacute;rique (le long des murs) le menuisier doit-il pr&eacute;voir ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;L = 90 &times; 0,0028 &times; 5 = <strong>1,26 mm</strong> par lame<br>2. 5 000 / 90 &asymp; <strong>56 lames</strong><br>3. Retrait total : 56 &times; 1,26 = <strong>70,6 mm</strong> &asymp; 7 cm<br>4. Jeu p&eacute;riph&eacute;rique : 70,6 / 2 = <strong>35 mm de chaque c&ocirc;t&eacute;</strong>. En pratique, on pr&eacute;voit un jeu de 8 &agrave; 10 mm car le retrait n'est pas maximal partout. Mais avec un plancher chauffant, il faut &ecirc;tre g&eacute;n&eacute;reux (15 mm mini de chaque c&ocirc;t&eacute;).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Porte int&eacute;rieure &mdash; gonflement en &eacute;t&eacute;</span><span class="tag-standard">Standard</span></div>
+  Une porte int&eacute;rieure en h&ecirc;tre massif mesure 830 mm de large (&agrave; H = 10 %). En &eacute;t&eacute;, l'humidit&eacute; du bois augmente &agrave; 14 %. Le jeu entre la porte et le b&acirc;ti est de 3 mm de chaque c&ocirc;t&eacute; (6 mm au total). Direction tangentielle.<br><br>
+  <strong>1.</strong> Le bois gonfle-t-il ou r&eacute;tr&eacute;cit-il ?<br>
+  <strong>2.</strong> Calculer le gonflement de la porte.<br>
+  <strong>3.</strong> La porte va-t-elle coincer dans son cadre ?
+  <div class="corr"><strong>Correction :</strong><br>1. H augmente &rarr; le bois <strong>gonfle</strong><br>2. &Delta;L = 830 &times; 0,0036 &times; 4 = <strong>11,95 mm</strong><br>3. Jeu disponible : 6 mm. Gonflement : 12 mm &gt; 6 mm &rarr; <strong>oui, la porte va coincer</strong>. Il faut pr&eacute;voir un jeu plus important ou utiliser du bois pr&eacute;-stabilis&eacute;.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Contr&ocirc;le hygrom&eacute;trique &agrave; r&eacute;ception</span><span class="tag-standard">Standard</span></div>
+  Un lot de planches de ch&ecirc;ne arrive &agrave; l'atelier. Le menuisier pr&eacute;l&egrave;ve 3 &eacute;chantillons, les p&egrave;se, puis les s&egrave;che en &eacute;tuve :<br><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">&Eacute;chantillon</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">m<sub>h</sub> (g)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">m<sub>0</sub> (g)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">H (%)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">A</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">645</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">580</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">B</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">510</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">470</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">C</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">720</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">620</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+    </tbody>
+  </table><br>
+  <strong>1.</strong> Calculer H pour chaque &eacute;chantillon.<br>
+  <strong>2.</strong> Le lot est destin&eacute; &agrave; de la menuiserie int&eacute;rieure (8&ndash;12 %). Tous les &eacute;chantillons sont-ils conformes ?<br>
+  <strong>3.</strong> Que faire si un &eacute;chantillon est trop humide ?
+  <div class="corr"><strong>Correction :</strong><br>1. A : (645&minus;580)/580 &times; 100 = <strong>11,2 %</strong>. B : (510&minus;470)/470 &times; 100 = <strong>8,5 %</strong>. C : (720&minus;620)/620 &times; 100 = <strong>16,1 %</strong>.<br>2. A (11,2) et B (8,5) : <strong>conformes</strong>. C (16,1) : <strong>non conforme</strong> (trop humide).<br>3. Soit repasser l'&eacute;chantillon C au s&eacute;choir, soit le r&eacute;server pour de la menuiserie ext&eacute;rieure, soit le refuser au fournisseur.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Table en ch&ecirc;ne massif &mdash; plateau coll&eacute;</span><span class="tag-appro">Approfondissement</span></div>
+  Un &eacute;b&eacute;niste fabrique un plateau de table en ch&ecirc;ne massif de 900 mm de large (5 planches coll&eacute;es, direction tangentielle). Le bois est &agrave; 10 % d'humidit&eacute;. Le plateau sera install&eacute; dans un salon chauff&eacute; o&ugrave; H d'&eacute;quilibre = 8 %.<br><br>
+  <strong>1.</strong> Calculer le retrait du plateau.<br>
+  <strong>2.</strong> Si le plateau est fix&eacute; rigidement au pi&egrave;tement, que risque-t-il de se passer ?<br>
+  <strong>3.</strong> Comment l'&eacute;b&eacute;niste doit-il fixer le plateau pour &eacute;viter les probl&egrave;mes ?<br>
+  <strong>4.</strong> En &eacute;t&eacute; (H &eacute;quilibre = 14 %), calculer le gonflement depuis l'&eacute;tat initial (10 %). Quelle variation totale saisonni&egrave;re (hiver &agrave; 8 % &rarr; &eacute;t&eacute; &agrave; 14 %) ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;L = 900 &times; 0,0028 &times; 2 = <strong>5,04 mm</strong> de retrait<br>2. Le bois veut r&eacute;tr&eacute;cir mais le pi&egrave;tement l'en emp&ecirc;che &rarr; <strong>fissuration du plateau</strong> ou arrachement des fixations.<br>3. Utiliser des <strong>pattes de fixation coulissantes</strong> (Z ou &eacute;querres oblong) qui permettent au plateau de bouger lat&eacute;ralement tout en restant fix&eacute; au pi&egrave;tement.<br>4. Gonflement : &Delta;L = 900 &times; 0,0028 &times; 4 = 10,08 mm. Variation saisonni&egrave;re totale (8 &agrave; 14 %) : &Delta;L = 900 &times; 0,0028 &times; 6 = <strong>15,12 mm</strong> (&asymp; 1,5 cm !).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Comparer les essences</span><span class="tag-appro">Approfondissement</span></div>
+  Un menuisier fabrique un dormant de fen&ecirc;tre de 100 mm de large (tangentiel). H varie entre 12 et 16 % au fil des saisons. Calculer le retrait/gonflement pour :<br>
+  <strong>a)</strong> Ch&ecirc;ne (&alpha; = 0,28)<br>
+  <strong>b)</strong> H&ecirc;tre (&alpha; = 0,36)<br>
+  <strong>c)</strong> Sapin (&alpha; = 0,24)<br>
+  <strong>d)</strong> Quelle essence est la plus stable ? Laquelle recommander pour une menuiserie ext&eacute;rieure expos&eacute;e aux int&eacute;mp&eacute;ries ?
+  <div class="corr"><strong>Correction :</strong><br>&Delta;H = 4 %.<br>a) Ch&ecirc;ne : 100 &times; 0,0028 &times; 4 = <strong>1,12 mm</strong><br>b) H&ecirc;tre : 100 &times; 0,0036 &times; 4 = <strong>1,44 mm</strong><br>c) Sapin : 100 &times; 0,0024 &times; 4 = <strong>0,96 mm</strong><br>d) Le <strong>sapin</strong> est le plus stable dimensionnellement. Pour l'ext&eacute;rieur, on recommande le ch&ecirc;ne (bonne durabilit&eacute; naturelle et retrait mod&eacute;r&eacute;) ou le sapin trait&eacute;. Le h&ecirc;tre est d&eacute;conseill&eacute; en ext&eacute;rieur (instable et peu durable).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Probl&egrave;me inverse &mdash; quel &eacute;tait le taux initial ?</span><span class="tag-appro">Approfondissement</span></div>
+  Un menuisier constate qu'un panneau de ch&ecirc;ne de 200 mm de large (tangentiel) a r&eacute;tr&eacute;ci de 1,68 mm depuis la r&eacute;ception. L'humidit&eacute; actuelle est de 9 %.<br><br>
+  <strong>1.</strong> &Eacute;crire la formule &Delta;L = L &times; &alpha; &times; &Delta;H et isoler &Delta;H.<br>
+  <strong>2.</strong> Calculer &Delta;H.<br>
+  <strong>3.</strong> En d&eacute;duire le taux d'humidit&eacute; initial H<sub>i</sub> du bois &agrave; la r&eacute;ception.<br>
+  <strong>4.</strong> Ce taux initial &eacute;tait-il conforme pour de la menuiserie int&eacute;rieure ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;H = &Delta;L / (L &times; &alpha;)<br>2. &Delta;H = 1,68 / (200 &times; 0,0028) = 1,68 / 0,56 = <strong>3 %</strong><br>3. H<sub>i</sub> = H<sub>f</sub> + &Delta;H = 9 + 3 = <strong>12 %</strong><br>4. 12 % est &agrave; la limite haute de la plage 8&ndash;12 % pour la menuiserie int&eacute;rieure. Le bois &eacute;tait tout juste conforme &agrave; la r&eacute;ception, mais il a s&eacute;ch&eacute; en atelier (chauff&eacute;) jusqu'&agrave; 9 %. Id&eacute;alement, il aurait fallu r&eacute;ceptionner &agrave; 10 % pour minimiser le retrait post-usinage.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>
