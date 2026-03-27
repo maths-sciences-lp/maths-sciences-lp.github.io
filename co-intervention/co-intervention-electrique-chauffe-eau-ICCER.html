@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Puissance d'un chauffe-eau électrique — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Puissance d'un chauffe-eau &eacute;lectrique</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.7 &mdash; &Eacute;lectricit&eacute;</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Calculer la puissance &eacute;lectrique d'un chauffe-eau : \(P = U \times I\)</li>
+    <li>Calculer l'&eacute;nergie consomm&eacute;e en kWh</li>
+    <li>Relier puissance &eacute;lectrique et puissance thermique : \(Q = m \times c \times \Delta T\)</li>
+    <li>Calculer le temps de chauffe et le co&ucirc;t de fonctionnement</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.7 &mdash; &Eacute;lectricit&eacute; (puissance, &eacute;nergie)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> P = UI, E = Pt, conversions kWh, co&ucirc;t</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Remplacement d'un ballon d'eau chaude</strong><br><br>
+  Un plombier chauffagiste remplace un chauffe-eau &eacute;lectrique de 200 litres chez un client. Le client demande : <em>&laquo;&nbsp;Combien me co&ucirc;te l'eau chaude par mois ? Et combien de temps met le ballon pour chauffer compl&egrave;tement ?&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG chauffe-eau -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="300" height="240" viewBox="0 0 300 240" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- ballon -->
+  <rect x="80" y="20" width="100" height="170" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <!-- résistance -->
+  <path d="M 110,160 L 120,145 L 130,160 L 140,145 L 150,160" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="130" y="175" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="bold">R&eacute;sistance</text>
+  <!-- eau chaude en haut -->
+  <rect x="85" y="25" width="90" height="60" rx="5" fill="#fde68a" opacity=".5"/>
+  <text x="130" y="55" text-anchor="middle" fill="#92400e" font-size="10">Eau chaude</text>
+  <!-- eau froide en bas -->
+  <rect x="85" y="95" width="90" height="55" rx="5" fill="#bfdbfe" opacity=".5"/>
+  <text x="130" y="125" text-anchor="middle" fill="#0969da" font-size="10">Eau froide</text>
+  <!-- tuyaux -->
+  <line x1="100" y1="190" x2="100" y2="220" stroke="#0ea5e9" stroke-width="3"/>
+  <text x="100" y="235" text-anchor="middle" fill="#0ea5e9" font-size="9">Arriv&eacute;e froide</text>
+  <line x1="160" y1="20" x2="160" y2="0" stroke="#dc2626" stroke-width="3"/>
+  <text x="160" y="0" text-anchor="middle" fill="#dc2626" font-size="9">D&eacute;part chaud</text>
+  <!-- données -->
+  <text x="220" y="50" fill="#333" font-size="10" font-weight="bold">200 L</text>
+  <text x="220" y="70" fill="#333" font-size="10">P = 2 400 W</text>
+  <text x="220" y="90" fill="#333" font-size="10">230 V ~ 50 Hz</text>
+  <text x="220" y="110" fill="#333" font-size="10">T<tspan baseline-shift="sub" font-size="8">consigne</tspan> = 65 &deg;C</text>
+</svg>
+</div>
+
+<h2>2. Puissance &eacute;lectrique</h2>
+
+<div class="prop">
+  <span class="label label-prop">Rappel &mdash; Puissance et &eacute;nergie</span><br>
+  \[ P = U \times I \qquad E = P \times t \]
+  <ul>
+    <li>P en W, U en V, I en A</li>
+    <li>E en J si t en s &mdash; ou E en <strong>kWh</strong> si P en kW et t en h</li>
+    <li>1 kWh = 3 600 000 J = 3 600 kJ</li>
+  </ul>
+</div>
+
+<h2>3. &Eacute;nergie thermique pour chauffer l'eau</h2>
+
+<div class="prop">
+  <span class="label label-prop">Formule</span><br>
+  \[ Q = m \times c \times \Delta T \]
+  Avec l'eau : \(c = 4\,186\) J/(kg&middot;&deg;C) et \(\rho = 1\) kg/L (donc 200 L = 200 kg).
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Ballon de 200 L</span><br>
+  Eau froide &agrave; 15 &deg;C, consigne &agrave; 65 &deg;C &rarr; &Delta;T = 50 &deg;C.<br><br>
+  <strong>&Eacute;nergie :</strong> \(Q = 200 \times 4\,186 \times 50 = 41\,860\,000\) J = 41 860 kJ = <strong>11,63 kWh</strong><br><br>
+  <strong>Temps de chauffe :</strong> \(t = Q / P = 41\,860\,000 / 2\,400 = 17\,442\) s = <strong>4 h 51 min</strong><br><br>
+  <strong>Co&ucirc;t :</strong> 11,63 &times; 0,25 = <strong>2,91 &euro;</strong> par chauffe compl&egrave;te.<br>
+  Si le ballon chauffe une fois par jour (heures creuses) : ~2,91 &times; 30 = <strong>87 &euro;/mois</strong>.
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Tarif heures creuses</span><br>
+  Les chauffe-eau sont g&eacute;n&eacute;ralement programm&eacute;s pour chauffer pendant les <strong>heures creuses</strong> (22 h &agrave; 6 h) o&ugrave; l'&eacute;lectricit&eacute; est moins ch&egrave;re (~0,18 &euro;/kWh au lieu de 0,25 &euro;/kWh). Le contacteur heures creuses est pilot&eacute; par le compteur Linky.
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>\(P = U \times I\) &mdash; puissance &eacute;lectrique en W</li>
+    <li>\(Q = m \times c \times \Delta T\) &mdash; &eacute;nergie thermique en J</li>
+    <li>\(t = Q / P\) &mdash; temps de chauffe en s</li>
+    <li>\(E = P \times t\) en kWh &mdash; \(\text{co&ucirc;t} = E \times \text{prix}\)</li>
+    <li>200 L : ~5 h de chauffe avec 2 400 W &mdash; ~12 kWh &mdash; ~3 &euro;/jour</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Intensit&eacute; d'un chauffe-eau (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Chauffe-eau de 2 400 W sur 230 V.<br>
+  I = P / U = 2 400 / 230 = &hellip; A. Quel disjoncteur choisir (10, 16, 20 A) ?
+  <div class="corr"><strong>Correction :</strong> I = <strong>10,4 A</strong>. Disjoncteur <strong>16 A</strong> (premier calibre au-dessus).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">&Eacute;nergie pour chauffer 100 L (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  100 L d'eau (= 100 kg), de 12 &deg;C &agrave; 65 &deg;C.<br>
+  &Delta;T = &hellip; &deg;C. Q = 100 &times; 4 186 &times; &hellip; = &hellip; J = &hellip; kWh
+  <div class="corr"><strong>Correction :</strong> &Delta;T = 53 &deg;C. Q = 100 &times; 4 186 &times; 53 = 22 185 800 J = <strong>6,16 kWh</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Temps de chauffe (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Q = 22 185 800 J, P = 1 800 W.<br>
+  t = Q / P = &hellip; s = &hellip; h &hellip; min
+  <div class="corr"><strong>Correction :</strong> t = 22 185 800 / 1 800 = 12 325 s = 3 h 25 min = <strong>3 h 25 min</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Co&ucirc;t journalier (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Le ballon consomme 12 kWh par chauffe. Prix HC : 0,18 &euro;/kWh.<br>
+  Co&ucirc;t/jour = &hellip; &euro;. Co&ucirc;t/mois (30 j) = &hellip; &euro;. Co&ucirc;t/an = &hellip; &euro;.
+  <div class="corr"><strong>Correction :</strong> Jour : 12 &times; 0,18 = <strong>2,16 &euro;</strong>. Mois : 2,16 &times; 30 = <strong>64,80 &euro;</strong>. An : 64,80 &times; 12 = <strong>777,60 &euro;</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Choisir le volume du ballon</span><span class="tag-standard">Standard</span></div>
+  Besoins en ECS d'une famille de 4 personnes : 50 L/personne/jour &agrave; 40 &deg;C. L'eau froide arrive &agrave; 15 &deg;C, le ballon stocke &agrave; 65 &deg;C.<br><br>
+  <strong>1.</strong> Volume d'eau &agrave; 40 &deg;C n&eacute;cessaire par jour.<br>
+  <strong>2.</strong> En m&eacute;langeant eau &agrave; 65 &deg;C et eau &agrave; 15 &deg;C, combien de litres &agrave; 65 &deg;C faut-il pour obtenir 200 L &agrave; 40 &deg;C ? (R&egrave;gle de m&eacute;lange : \(V_{65} = V_{40} \times \dfrac{40 - 15}{65 - 15}\)).<br>
+  <strong>3.</strong> Quel volume de ballon choisir (100, 150, 200, 300 L) ?
+  <div class="corr"><strong>Correction :</strong><br>1. V = 4 &times; 50 = <strong>200 L</strong> &agrave; 40 &deg;C<br>2. V<sub>65</sub> = 200 &times; 25/50 = <strong>100 L</strong> &agrave; 65 &deg;C<br>3. Ballon de <strong>150 L</strong> minimum (100 L utile + marge). En pratique, on choisit <strong>200 L</strong> pour le confort.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Heures creuses &mdash; le ballon a-t-il le temps de chauffer ?</span><span class="tag-standard">Standard</span></div>
+  Ballon de 300 L, r&eacute;sistance 3 000 W. Eau froide 12 &deg;C, consigne 65 &deg;C. Les heures creuses durent de 22 h &agrave; 6 h (8 h).<br><br>
+  <strong>1.</strong> Calculer l'&eacute;nergie n&eacute;cessaire.<br>
+  <strong>2.</strong> Calculer le temps de chauffe.<br>
+  <strong>3.</strong> Le ballon a-t-il le temps de chauffer enti&egrave;rement pendant les HC ?
+  <div class="corr"><strong>Correction :</strong><br>1. Q = 300 &times; 4 186 &times; 53 = 66 557 400 J = <strong>18,49 kWh</strong><br>2. t = 66 557 400 / 3 000 = 22 186 s = <strong>6 h 10 min</strong><br>3. 6 h 10 min &lt; 8 h &rarr; <strong>oui</strong>, il a le temps (marge de 1 h 50).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Comparer chauffe-eau &eacute;lectrique et thermodynamique</span><span class="tag-standard">Standard</span></div>
+  Un chauffe-eau thermodynamique (CET) a un COP de 3 : il consomme 1 kWh d'&eacute;lectricit&eacute; pour produire 3 kWh de chaleur.<br><br>
+  Pour chauffer 200 L de 15 &agrave; 65 &deg;C (Q = 11,63 kWh) :<br>
+  <strong>1.</strong> &Eacute;nergie &eacute;lectrique du chauffe-eau classique.<br>
+  <strong>2.</strong> &Eacute;nergie &eacute;lectrique du CET.<br>
+  <strong>3.</strong> &Eacute;conomie annuelle (365 jours, HC &agrave; 0,18 &euro;/kWh).
+  <div class="corr"><strong>Correction :</strong><br>1. Classique : <strong>11,63 kWh</strong><br>2. CET : 11,63 / 3 = <strong>3,88 kWh</strong><br>3. &Eacute;conomie/jour : (11,63 &minus; 3,88) &times; 0,18 = 1,40 &euro;. Annuel : 1,40 &times; 365 = <strong>510 &euro;/an</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Rendement et pertes statiques</span><span class="tag-appro">Approfondissement</span></div>
+  Un ballon de 200 L perd de la chaleur par ses parois m&ecirc;me quand personne ne puise d'eau. Ces <strong>pertes statiques</strong> sont d'environ 1,5 kWh/jour pour un ballon standard.<br><br>
+  <strong>1.</strong> Calculer la consommation totale journali&egrave;re (chauffe + pertes).<br>
+  <strong>2.</strong> Calculer le co&ucirc;t annuel total (HC 0,18 &euro;/kWh).<br>
+  <strong>3.</strong> Un ballon haute isolation a des pertes de 0,8 kWh/jour. Calculer l'&eacute;conomie annuelle.<br>
+  <strong>4.</strong> Le surco&ucirc;t du ballon haute isolation est de 150 &euro;. En combien d'ann&eacute;es est-il rentabilis&eacute; ?
+  <div class="corr"><strong>Correction :</strong><br>1. 11,63 + 1,5 = <strong>13,13 kWh/jour</strong><br>2. 13,13 &times; 0,18 &times; 365 = <strong>862,65 &euro;/an</strong><br>3. Haute iso : 11,63 + 0,8 = 12,43 kWh/jour &rarr; 12,43 &times; 0,18 &times; 365 = 816,65 &euro;. &Eacute;conomie : 862,65 &minus; 816,65 = <strong>46 &euro;/an</strong><br>4. 150 / 46 = <strong>3,3 ans</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Chauffe-eau solaire &mdash; compl&eacute;ment &eacute;lectrique</span><span class="tag-appro">Approfondissement</span></div>
+  Un chauffe-eau solaire couvre 60 % des besoins annuels en ECS. Le compl&eacute;ment est assur&eacute; par une r&eacute;sistance &eacute;lectrique. Besoins annuels : 200 L/jour, Q = 11,63 kWh/jour.<br><br>
+  <strong>1.</strong> Calculer l'&eacute;nergie fournie par le solaire sur l'ann&eacute;e.<br>
+  <strong>2.</strong> Calculer l'&eacute;nergie &eacute;lectrique de compl&eacute;ment.<br>
+  <strong>3.</strong> Co&ucirc;t &eacute;lectrique annuel (0,25 &euro;/kWh, tarif normal car le solaire d&eacute;cale la chauffe en journ&eacute;e).<br>
+  <strong>4.</strong> Comparer avec un chauffe-eau 100 % &eacute;lectrique (HC 0,18 &euro;/kWh). Le solaire est-il &eacute;conomique ?
+  <div class="corr"><strong>Correction :</strong><br>1. Solaire : 11,63 &times; 365 &times; 0,60 = <strong>2 547 kWh</strong><br>2. Compl&eacute;ment : 11,63 &times; 365 &times; 0,40 = <strong>1 698 kWh</strong><br>3. 1 698 &times; 0,25 = <strong>424,50 &euro;/an</strong><br>4. 100 % &eacute;lectrique HC : 11,63 &times; 365 &times; 0,18 = <strong>764 &euro;/an</strong>. &Eacute;conomie solaire : 764 &minus; 424,50 = <strong>339,50 &euro;/an</strong>. Le solaire est &eacute;conomique, mais il faut amortir l'installation (3 000 &agrave; 5 000 &euro; &rarr; 9 &agrave; 15 ans).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Probl&egrave;me complet &mdash; devis ECS</span><span class="tag-appro">Approfondissement</span></div>
+  Un plombier doit chiffrer l'ECS pour un g&icirc;te rural (6 personnes, 60 L/pers/jour &agrave; 40 &deg;C). Eau froide &agrave; 10 &deg;C, stockage &agrave; 65 &deg;C. R&eacute;sistance 3 kW. &Eacute;lectricit&eacute; HC : 0,18 &euro;/kWh. Saison : 200 jours/an.<br><br>
+  <strong>1.</strong> Volume d'eau &agrave; 40 &deg;C par jour. Volume &agrave; 65 &deg;C n&eacute;cessaire (m&eacute;lange).<br>
+  <strong>2.</strong> Choisir le ballon (150, 200, 300 L).<br>
+  <strong>3.</strong> Calculer Q et le temps de chauffe. Le ballon a-t-il le temps en HC (8 h) ?<br>
+  <strong>4.</strong> Calculer le co&ucirc;t annuel d'ECS pour le g&icirc;te.
+  <div class="corr"><strong>Correction :</strong><br>1. V<sub>40</sub> = 6 &times; 60 = 360 L. V<sub>65</sub> = 360 &times; (40&minus;10)/(65&minus;10) = 360 &times; 30/55 = <strong>196 L</strong><br>2. Ballon <strong>300 L</strong> (marge pour 196 L utile).<br>3. Q = 300 &times; 4 186 &times; 55 = 69 069 000 J = <strong>19,19 kWh</strong>. t = 69 069 000 / 3 000 = 23 023 s = <strong>6 h 24 min</strong>. 6 h 24 &lt; 8 h &rarr; OK.<br>4. Co&ucirc;t/jour = 19,19 &times; 0,18 = 3,45 &euro;. Annuel : 3,45 &times; 200 = <strong>690 &euro;/an</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>

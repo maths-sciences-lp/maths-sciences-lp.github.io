@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dilatation d'un réseau de chauffage — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Dilatation d'un r&eacute;seau de chauffage</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.4 + S4.6 &mdash; Dilatation</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Comprendre le ph&eacute;nom&egrave;ne de dilatation thermique des solides</li>
+    <li>Appliquer la formule \(\Delta L = L_0 \times \alpha \times \Delta T\)</li>
+    <li>Calculer la longueur d'une lyre de compensation</li>
+    <li>Conna&icirc;tre les coefficients de dilatation des mat&eacute;riaux de tuyauterie</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.4 &mdash; Dilatation lin&eacute;ique (sp&eacute;cifique ICCER)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Formule litt&eacute;rale, puissances de 10, conversions</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Canalisation de chauffage en sous-sol</strong><br><br>
+  Un technicien chauffagiste installe une canalisation de chauffage en acier de 30 m de long dans le sous-sol d'un immeuble. L'eau circule &agrave; 80 &deg;C en hiver et le tuyau est &agrave; 15 &deg;C lors de la pose. Le chef de chantier pr&eacute;vient : <em>&laquo;&nbsp;Pr&eacute;vois des lyres de dilatation, sinon le tuyau va pousser les murs.&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG lyre -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="440" height="140" viewBox="0 0 440 140" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- tuyau droit -->
+  <line x1="20" y1="70" x2="140" y2="70" stroke="#dc2626" stroke-width="4"/>
+  <!-- lyre -->
+  <path d="M 140,70 L 140,30 L 300,30 L 300,70" fill="none" stroke="#dc2626" stroke-width="4"/>
+  <!-- tuyau droit suite -->
+  <line x1="300" y1="70" x2="420" y2="70" stroke="#dc2626" stroke-width="4"/>
+  <!-- points fixes -->
+  <rect x="15" y="60" width="10" height="20" fill="#333"/>
+  <rect x="415" y="60" width="10" height="20" fill="#333"/>
+  <text x="20" y="100" fill="#333" font-size="10">Point fixe</text>
+  <text x="415" y="100" fill="#333" font-size="10">Point fixe</text>
+  <!-- flèches dilatation -->
+  <defs><marker id="adl" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#0ea5e9"/></marker></defs>
+  <line x1="100" y1="110" x2="130" y2="110" stroke="#0ea5e9" stroke-width="2" marker-end="url(#adl)"/>
+  <line x1="340" y1="110" x2="310" y2="110" stroke="#0ea5e9" stroke-width="2" marker-end="url(#adl)"/>
+  <text x="220" y="125" text-anchor="middle" fill="#0ea5e9" font-weight="bold">La lyre absorbe la dilatation</text>
+  <!-- label -->
+  <text x="220" y="22" text-anchor="middle" fill="#dc2626" font-weight="bold">Lyre de dilatation</text>
+</svg>
+</div>
+
+<h2>2. Dilatation lin&eacute;ique</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span><br>
+  Quand un mat&eacute;riau solide est chauff&eacute;, ses dimensions <strong>augmentent</strong>. C'est la <strong>dilatation thermique</strong>. L'allongement est proportionnel &agrave; la longueur initiale et &agrave; l'&eacute;cart de temp&eacute;rature.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Formule de la dilatation lin&eacute;ique</span><br>
+  \[ \Delta L = L_0 \times \alpha \times \Delta T \]
+  <ul>
+    <li>\(\Delta L\) : allongement en <strong>m</strong> (ou mm)</li>
+    <li>\(L_0\) : longueur initiale en <strong>m</strong> (ou mm)</li>
+    <li>\(\alpha\) : coefficient de dilatation lin&eacute;ique en <strong>&deg;C<sup>&minus;1</sup></strong> (ou K<sup>&minus;1</sup>)</li>
+    <li>\(\Delta T\) : &eacute;cart de temp&eacute;rature en <strong>&deg;C</strong></li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Coefficients de dilatation</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Mat&eacute;riau</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&alpha; (&times;10<sup>&minus;6</sup> /&deg;C)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Usage en plomberie</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Acier</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">12</td><td style="border:1px solid var(--p-border);padding:.35rem">Chauffage, gaz</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Cuivre</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">17</td><td style="border:1px solid var(--p-border);padding:.35rem">Eau chaude, chauffage</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">PER (poly&eacute;thyl&egrave;ne)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">150</td><td style="border:1px solid var(--p-border);padding:.35rem">Plancher chauffant</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Multicouche</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">25</td><td style="border:1px solid var(--p-border);padding:.35rem">Eau chaude, chauffage</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Inox</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">16</td><td style="border:1px solid var(--p-border);padding:.35rem">Industrie, ECS</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Tuyau acier de 30 m</span><br>
+  \(L_0 = 30\) m, \(\alpha = 12 \times 10^{-6}\) /&deg;C, \(\Delta T = 80 - 15 = 65\) &deg;C.<br>
+  \(\Delta L = 30 \times 12 \times 10^{-6} \times 65 = 0{,}0234\) m = <strong>23,4 mm</strong><br><br>
+  Le tuyau s'allonge de plus de 2 cm ! Sans lyre, il pourrait casser un raccord ou fissurer un mur.
+</div>
+
+<div class="att">
+  <span class="label label-att">Le PER se dilate 12 fois plus que l'acier</span><br>
+  Un tube PER de 10 m avec &Delta;T = 50 &deg;C :<br>
+  \(\Delta L = 10 \times 150 \times 10^{-6} \times 50 = 0{,}075\) m = <strong>75 mm</strong> !<br>
+  C'est pourquoi le PER est toujours pos&eacute; <strong>en encastr&eacute;</strong> (dans la dalle ou la cloison) avec des marges de mouvement.
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>\(\Delta L = L_0 \times \alpha \times \Delta T\)</li>
+    <li>Acier : &alpha; = 12 &times; 10<sup>&minus;6</sup> &mdash; Cuivre : 17 &mdash; PER : 150</li>
+    <li>Solutions : lyre, joint de dilatation, compensateur &agrave; soufflet</li>
+    <li>Toujours pr&eacute;voir la dilatation sur les longues canalisations</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Calcul de &Delta;L (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Tube acier de 20 m, &alpha; = 12 &times; 10<sup>&minus;6</sup>, &Delta;T = 50 &deg;C.<br>
+  \(\Delta L = 20 \times 12 \times 10^{-6} \times 50 = \ldots\) m = &hellip; mm
+  <div class="corr"><strong>Correction :</strong> &Delta;L = 20 &times; 12 &times; 10<sup>&minus;6</sup> &times; 50 = 0,012 m = <strong>12 mm</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Tube cuivre (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Tube cuivre de 15 m, pos&eacute; &agrave; 20 &deg;C, eau &agrave; 70 &deg;C.<br>
+  <strong>1.</strong> &Delta;T = &hellip; &deg;C <strong>2.</strong> &Delta;L = 15 &times; 17 &times; 10<sup>&minus;6</sup> &times; &hellip; = &hellip; mm
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;T = 50 &deg;C<br>2. &Delta;L = 15 &times; 17 &times; 10<sup>&minus;6</sup> &times; 50 = 0,01275 m = <strong>12,75 mm</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Classer les mat&eacute;riaux (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Classer du moins au plus dilatable : PER, acier, cuivre, multicouche.
+  <div class="corr"><strong>Correction :</strong> Acier (12) &lt; Cuivre (17) &lt; Multicouche (25) &lt; <strong>PER (150)</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Compl&eacute;ter un tableau (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">Mat&eacute;riau</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">L<sub>0</sub> (m)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&alpha; (&times;10<sup>&minus;6</sup>)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&Delta;T (&deg;C)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&Delta;L (mm)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Acier</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">10</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">12</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">60</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Cuivre</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">10</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">17</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">60</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">PER</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">10</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">150</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">60</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+    </tbody>
+  </table>
+  <div class="corr"><strong>Correction :</strong><br>Acier : 10 &times; 12 &times; 10<sup>&minus;6</sup> &times; 60 = <strong>7,2 mm</strong><br>Cuivre : 10 &times; 17 &times; 10<sup>&minus;6</sup> &times; 60 = <strong>10,2 mm</strong><br>PER : 10 &times; 150 &times; 10<sup>&minus;6</sup> &times; 60 = <strong>90 mm</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Nombre de lyres n&eacute;cessaires</span><span class="tag-standard">Standard</span></div>
+  Canalisation acier de 50 m en sous-sol, &Delta;T = 65 &deg;C. Une lyre absorbe au maximum 15 mm de dilatation.<br><br>
+  <strong>1.</strong> Calculer &Delta;L total. <strong>2.</strong> Combien de lyres faut-il au minimum ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;L = 50 &times; 12 &times; 10<sup>&minus;6</sup> &times; 65 = <strong>39 mm</strong><br>2. 39 / 15 = 2,6 &rarr; <strong>3 lyres</strong> minimum</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Cuivre vs multicouche</span><span class="tag-standard">Standard</span></div>
+  Colonne montante de 12 m, &Delta;T = 55 &deg;C. Comparer cuivre (&alpha; = 17) et multicouche (&alpha; = 25).<br><br>
+  <strong>1.</strong> &Delta;L pour chaque mat&eacute;riau. <strong>2.</strong> Lequel n&eacute;cessite plus de pr&eacute;cautions ?<br>
+  <strong>3.</strong> Le multicouche est-il plus facile &agrave; poser malgr&eacute; sa dilatation ? Pourquoi ?
+  <div class="corr"><strong>Correction :</strong><br>1. Cuivre : 12 &times; 17 &times; 10<sup>&minus;6</sup> &times; 55 = <strong>11,2 mm</strong>. Multicouche : 12 &times; 25 &times; 10<sup>&minus;6</sup> &times; 55 = <strong>16,5 mm</strong>.<br>2. Le <strong>multicouche</strong> se dilate 47 % de plus.<br>3. Oui, car le multicouche est <strong>flexible</strong> : il peut absorber la dilatation par des courbes naturelles dans les gaines techniques, sans lyre rigide.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Plancher chauffant en PER</span><span class="tag-standard">Standard</span></div>
+  Un plancher chauffant utilise 80 m de tube PER (&alpha; = 150). L'eau passe de 20 &agrave; 40 &deg;C.<br><br>
+  <strong>1.</strong> Calculer &Delta;L. <strong>2.</strong> Pourquoi cette dilatation ne pose-t-elle pas de probl&egrave;me en plancher chauffant ?<br>
+  <strong>3.</strong> Pourrait-on utiliser du PER pour une colonne montante visible de 10 m ? Justifier.
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;L = 80 &times; 150 &times; 10<sup>&minus;6</sup> &times; 20 = <strong>240 mm</strong> = 24 cm !<br>2. En plancher chauffant, le tube est <strong>noy&eacute; dans la chape</strong> (b&eacute;ton). La dilatation est absorb&eacute;e par la <strong>flexibilit&eacute;</strong> du tube et par les courbes. Le tube n'est pas contraint lin&eacute;airement.<br>3. <strong>Non</strong> : 10 m de PER en vertical avec &Delta;T = 20 &deg;C &rarr; &Delta;L = 30 mm. C'est visible et les raccords seraient sollicit&eacute;s. On utilise du cuivre ou du multicouche pour les colonnes visibles.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Dimensionner une lyre</span><span class="tag-appro">Approfondissement</span></div>
+  La longueur de bras d'une lyre en acier se calcule par :
+  \[ l = K \times \sqrt{D \times \Delta L} \]
+  o&ugrave; K = 55 (constante pour l'acier), D = diam&egrave;tre ext&eacute;rieur du tube (mm), &Delta;L = dilatation (mm).<br><br>
+  Tube acier &oslash; ext. 42 mm, L<sub>0</sub> = 25 m, &Delta;T = 60 &deg;C.<br><br>
+  <strong>1.</strong> Calculer &Delta;L. <strong>2.</strong> Calculer la longueur de bras l de la lyre. <strong>3.</strong> La lyre occupe un espace de l &times; l. Quel espace pr&eacute;voir ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;L = 25 &times; 12 &times; 10<sup>&minus;6</sup> &times; 60 = 0,018 m = <strong>18 mm</strong><br>2. l = 55 &times; &radic;(42 &times; 18) = 55 &times; &radic;756 = 55 &times; 27,5 = <strong>1 513 mm</strong> &asymp; 1,5 m<br>3. Espace : environ <strong>1,5 m &times; 1,5 m</strong> en plan. C'est pourquoi les lyres sont pr&eacute;vues d&egrave;s la conception.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Joint de dilatation d'un b&acirc;timent</span><span class="tag-appro">Approfondissement</span></div>
+  Un b&acirc;timent en b&eacute;ton (&alpha; = 10 &times; 10<sup>&minus;6</sup>) fait 60 m de long. La temp&eacute;rature varie de &minus;10 &deg;C (hiver) &agrave; +40 &deg;C (&eacute;t&eacute;).<br><br>
+  <strong>1.</strong> Calculer &Delta;T entre les deux extr&ecirc;mes. <strong>2.</strong> Calculer &Delta;L du b&acirc;timent.<br>
+  <strong>3.</strong> Les joints de dilatation du b&acirc;timent sont plac&eacute;s tous les 25 m. Combien de joints ?<br>
+  <strong>4.</strong> Comment le plombier doit-il traverser un joint de dilatation avec une canalisation ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;T = 40 &minus; (&minus;10) = <strong>50 &deg;C</strong><br>2. &Delta;L = 60 &times; 10 &times; 10<sup>&minus;6</sup> &times; 50 = <strong>30 mm</strong><br>3. 60 / 25 = 2,4 &rarr; <strong>2 joints</strong> (aux positions 25 m et 50 m)<br>4. La canalisation doit traverser le joint avec un <strong>compensateur &agrave; soufflet</strong> ou un <strong>raccord coulissant</strong> qui permet le mouvement relatif entre les deux parties du b&acirc;timent. Ne jamais poser un tube rigide &agrave; travers un joint de dilatation.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Dilatation volumique de l'eau &mdash; vase d'expansion</span><span class="tag-appro">Approfondissement</span></div>
+  L'eau se dilate quand elle chauffe. Le coefficient de dilatation volumique de l'eau est \(\beta \approx 4 \times 10^{-4}\) /&deg;C (moyenne entre 20 et 80 &deg;C).<br>
+  \(\Delta V = V_0 \times \beta \times \Delta T\)<br><br>
+  Un r&eacute;seau de chauffage contient 300 litres d'eau. L'eau passe de 15 &deg;C &agrave; 80 &deg;C.<br><br>
+  <strong>1.</strong> Calculer &Delta;V (augmentation de volume en litres).<br>
+  <strong>2.</strong> Le vase d'expansion a une capacit&eacute; utile de 12 litres. Est-il suffisant ?<br>
+  <strong>3.</strong> Si le vase est trop petit, que se passe-t-il quand l'eau chauffe ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;V = 300 &times; 4 &times; 10<sup>&minus;4</sup> &times; 65 = <strong>7,8 litres</strong><br>2. 7,8 &lt; 12 &rarr; <strong>oui, suffisant</strong> (marge de 4,2 litres).<br>3. Si le vase est trop petit, la pression monte au-del&agrave; du tarage de la soupape de s&eacute;curit&eacute; &rarr; la soupape s'ouvre &rarr; perte d'eau &rarr; le circuit se vide partiellement &rarr; risque de surchauffe et d'embouage.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>
