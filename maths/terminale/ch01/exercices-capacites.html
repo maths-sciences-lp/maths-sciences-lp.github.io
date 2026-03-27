@@ -25,6 +25,7 @@
     <li><strong>C3</strong> — Déterminer et utiliser la droite d'ajustement affine (régression linéaire)</li>
     <li><strong>C4</strong> — Calculer et interpréter le coefficient de corrélation linéaire \(r\)</li>
     <li><strong>C5</strong> — Faire des prévisions à partir de la droite d'ajustement</li>
+    <li><strong>C6</strong> — Réaliser un ajustement non affine par changement de variable</li>
   </ul>
 </div>
 
@@ -35,6 +36,7 @@
   <button class="btn-cap" data-filtre="C3">C3 – Droite d'ajustement</button>
   <button class="btn-cap" data-filtre="C4">C4 – Coefficient r</button>
   <button class="btn-cap" data-filtre="C5">C5 – Prévisions</button>
+  <button class="btn-cap" data-filtre="C6">C6 – Ajustement non affine</button>
 </div>
 <p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
 
@@ -340,6 +342,31 @@
 </div>
 </div>
 
+</div>
+
+<!-- ===== C6 ===== -->
+<div class="cap-section" data-cap="C6">
+<h2>C6 — Ajustement non affine par changement de variable</h2>
+<div class="meth">
+  <strong>Rappel</strong>
+  <p>Nuage courbe → changement de variable pour le rendre linéaire : \(z=\log(y)\) (exponentielle), \(z=1/x\) (hyperbole), etc. On ajuste le nouveau nuage, puis on revient à la variable initiale.</p>
+</div>
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Consommation \(E\) (kWh) selon le nombre de machines \(x\) :</p>
+  <table><tr><th>\(x\)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th>\(E\)</th><td>10</td><td>42</td><td>95</td><td>175</td><td>310</td></tr></table>
+  <p>a) Nuage aligné ? b) Poser \(z=\log(E)\), calculer. c) Droite : \(z\approx 0{,}37x+0{,}58\). d) En déduire \(E(x)\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">a) Non, croissance accélérée. b) \(z\) : 1 ; 1,62 ; 1,98 ; 2,24 ; 2,49. c) Nuage \((x;z)\) aligné. d) \(E=10^{0{,}37x+0{,}58}\approx 3{,}8\times 2{,}34^x\).</div>
+</div>
+<div class="exo">
+  <h3>Exercice 17</h3>
+  <p>Temps de séchage \(t\) (h) selon épaisseur \(e\) (mm) :</p>
+  <table><tr><th>\(e\)</th><td>0,5</td><td>1</td><td>1,5</td><td>2</td><td>3</td></tr><tr><th>\(t\)</th><td>12</td><td>6</td><td>4,2</td><td>3</td><td>2,1</td></tr></table>
+  <p>a) Poser \(z=1/e\). b) On obtient \(t\approx 6z\). En déduire \(t(e)\). c) Estimer \(t(4)\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">a) \(z\) : 2, 1, 0.67, 0.5, 0.33 → nuage \((z;t)\) aligné. b) \(t=6/e\). c) \(t(4)=6/4=1{,}5\) h.</div>
+</div>
 </div>
 
 <script src="../../../nav.js"></script>
