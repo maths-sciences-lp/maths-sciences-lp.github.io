@@ -104,15 +104,90 @@ Le contenu doit rester **lisible, clair et structuré** — la différenciation 
 
 ---
 
+## VÉRIFICATION PROGRAMME OFFICIEL
+
+Avant de générer, lire OBLIGATOIREMENT le fichier programme (.md) correspondant :
+- `programme-maths-2nde-bac-pro.md`, `programme-maths-terminale-bac-pro.md`
+- `programme-physique-chimie-2nde-bac-pro.md`, `programme-physique-chimie-terminale-bac-pro.md`
+- `programme_maths_premiere_bacpro.md`, `programme_pc_premiere_bacpro.md`
+
+**Chaque capacité du programme** doit être couverte par au moins un exercice dans la page. Si une capacité est absente, ajouter un exercice.
+
+**Contenus hors programme** : ne pas supprimer, mais signaler avec une mention **(HP)** dans le titre de l'exercice ou de la section.
+
+### Cohérence avec exercices-capacités
+
+Les pages `exercices.html` et `exercices-capacites.html` couvrent le **même programme** avec des approches différentes :
+- `exercices.html` : par difficulté (socle / standard / appro) via `diff.js`
+- `exercices-capacites.html` : par capacité du programme via `comp.js`
+
+Vérifier qu'il n'y a pas de capacité couverte dans l'une mais absente de l'autre.
+
+---
+
+## FIGURES ET ILLUSTRATIONS SVG
+
+### Figures liées aux capacités (OBLIGATOIRES)
+
+Certaines capacités du programme **exigent** une figure pour être travaillées. Sans figure, l'exercice ne couvre PAS la capacité.
+
+**Règle absolue :** si l'énoncé dit "le graphique ci-dessous", "l'oscillogramme ci-dessous", "le schéma ci-dessous", alors la figure SVG **DOIT** être présente. Ne JAMAIS décrire textuellement un graphique que l'élève doit lire.
+
+**Capacités nécessitant une figure (maths) :**
+- Lecture graphique de fonctions (extremums, antécédents, variations)
+- Diagrammes statistiques (bâtons, circulaires, boîte à moustaches)
+- Figures géométriques (triangles, Thalès, Pythagore, solides)
+- Vecteurs (représentation, parallélogramme)
+- Arbres de probabilités
+
+**Capacités nécessitant une figure (physique-chimie) :**
+- Oscillogrammes (lecture de T, Umax, f)
+- Schémas de circuits électriques
+- Bilans de forces (vecteurs)
+- Diagrammes espace-temps et vitesse-temps
+- Courbes d'étalonnage de capteurs
+- Diagrammes de changement d'état T(t)
+- Schémas d'optique (rayon, normale, miroir, dioptre)
+- Échelles de niveaux sonores (dB)
+- Schémas de verrerie (fiole jaugée, dilution)
+- Spectres d'émission
+
+### Style SVG
+
+```html
+<figure class="schema" style="text-align:center;margin:12px 0">
+  <svg width="250" height="170" viewBox="0 0 250 170" xmlns="http://www.w3.org/2000/svg">
+    <!-- Contenu -->
+  </svg>
+  <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Légende</figcaption>
+</figure>
+```
+
+Conventions : fill `#ebf5ff`, stroke `#0056b3`, labels `#555`, inconnues `#c53030` en pointillés. Voir `prompt-exercices-capacites.md` pour les conventions détaillées.
+
+---
+
+## VÉRIFICATION SCIENTIFIQUE
+
+Vérifier systématiquement :
+- **Refaire chaque calcul** des corrections
+- **Unités SI** cohérentes
+- **Valeurs physiques réalistes** (ex : vitesse du son dans un solide ≠ 340 m/s ; indice eau = 1,33 ; g = 9,81 m/s²)
+- **Formules conformes au niveau** (signaler si hors programme)
+- **Identifications correctes** (ex : raie 589 nm = sodium, pas néon)
+
+---
+
 ## CONTRAINTES TECHNIQUES
 
 - produire une page HTML propre
 - utiliser des sections bien structurées
-- utiliser des classes CSS simples
-- intégrer les graphiques directement dans la page si nécessaire
+- utiliser les classes CSS de `styles.css` (voir CLAUDE.md)
+- intégrer les figures SVG directement dans la page (pas d'images externes)
+- inclure `styles.css`, `print.css`, `nav.js`, `diff.js`, MathJax
 
 ---
 
 ## OBJECTIF FINAL
 
-Produire une page d'exercices riche, claire et très pédagogique, utilisable directement sur un site éducatif.
+Produire une page d'exercices riche, claire et très pédagogique, utilisable directement sur un site éducatif. Chaque capacité du programme doit être couverte. Chaque exercice de lecture graphique doit avoir sa figure.

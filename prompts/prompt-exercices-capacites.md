@@ -161,12 +161,42 @@ Ces compétences sont trop larges. Utiliser uniquement des capacités disciplina
 
 Les exercices de géométrie, de fonctions et de statistiques doivent inclure des **figures SVG inline** pour aider l'élève à visualiser la situation.
 
-**Quand ajouter une figure :**
+**IMPORTANT — Figures liées aux capacités du programme**
+
+Certaines capacités du programme **exigent** une figure pour être travaillées. Sans figure, l'exercice ne couvre PAS la capacité. Ne JAMAIS décrire textuellement un graphique que l'élève doit lire. Si l'énoncé dit "le graphique ci-dessous", le graphique DOIT être présent en SVG.
+
+**Capacités qui NÉCESSITENT une figure (la figure EST l'exercice) :**
+
+*Mathématiques :*
+- "Lire graphiquement les extremums / variations" → fournir la courbe SVG
+- "Construire / lire un diagramme statistique" → fournir le diagramme SVG
+- "Construire / lire un diagramme en boîte" → fournir le box plot SVG
+- "Représenter le nuage (n ; un)" → fournir le nuage de points
+- "Lire un tableau de variations" → la courbe aide à comprendre
+- "Résoudre graphiquement f(x) = g(x)" → fournir les deux courbes
+- "Tracer la droite représentative" → fournir le repère avec les points
+
+*Physique-Chimie :*
+- "Lire un oscillogramme" → fournir le SVG de l'oscillogramme
+- "Représenter une force par un vecteur" → fournir le schéma avec repère
+- "Exploiter une caractéristique I(U)" → fournir la courbe SVG
+- "Lire un diagramme de changement d'état" → fournir le diagramme T(t)
+- "Exploiter une courbe d'étalonnage" → fournir la courbe SVG
+- "Exploiter une échelle de niveaux sonores" → fournir l'échelle en dB
+- "Vérifier les lois de la réflexion/réfraction" → fournir le schéma rayon/normale
+- "Identifier un mouvement à partir d'un enregistrement" → fournir le diagramme v(t)
+- "Lire un schéma électrique" → fournir le schéma du circuit
+- "Exploiter le spectre d'émission d'une lampe" → fournir le spectre SVG
+- "Exploiter des images de caméra thermique" → fournir un schéma thermique
+
+**Quand ajouter une figure (aide visuelle, pas obligatoire mais recommandé) :**
 - Exercices de géométrie (triangles, figures planes, solides) : **systématiquement**
 - Exercices de fonctions (courbes, droites, paraboles) : dans le rappel de cours et les exercices de lecture graphique
 - Exercices de statistiques : diagrammes en bâtons, barres, circulaires
 - Exercices de proportionnalité/Thalès : figure avec segments cotés
 - Tout exercice décrivant une situation spatiale (échelle, toiture, rampe, pièce mécanique…)
+- Exercices de probabilités : arbres, tableaux à double entrée
+- Exercices de chimie : schéma de verrerie (fiole jaugée, dilution)
 
 **Style SVG à respecter :**
 ```html
@@ -217,11 +247,32 @@ La page est conçue pour un usage ciblé (remédiation, révision par compétenc
 Avant de générer la page, toujours :
 
 1. **Reformuler la demande** : quel chapitre, quelle classe, quelle matière ?
-2. **Lire `lecon.html`** du chapitre pour identifier les notions enseignées
-3. **Lire le programme officiel** dans `/pdf/` et extraire les capacités liées
-4. **Lister les capacités retenues** et les soumettre avant génération
-5. **Proposer la structure** : capacités C1, C2, C3… avec leur intitulé
-6. **Indiquer les fichiers à créer** : `exercices-capacites.html` uniquement (ne pas toucher aux autres fichiers)
+2. **Lire le fichier programme officiel (.md)** correspondant au niveau :
+   - Maths 2nde : `programme-maths-2nde-bac-pro.md`
+   - Maths 1ère : `programme_maths_premiere_bacpro.md`
+   - Maths Terminale : `programme-maths-terminale-bac-pro.md`
+   - PC 2nde : `programme-physique-chimie-2nde-bac-pro.md`
+   - PC 1ère : `programme_pc_premiere_bacpro.md`
+   - PC Terminale : `programme-physique-chimie-terminale-bac-pro.md`
+3. **Extraire les capacités et connaissances** du tableau officiel pour le module concerné
+4. **Lire `lecon.html`** du chapitre pour identifier les notions enseignées
+5. **Vérifier que chaque capacité du programme** a au moins 2 exercices
+6. **Proposer la structure** : capacités C1, C2, C3… avec leur intitulé
+7. **Indiquer les fichiers à créer** : `exercices-capacites.html` uniquement
+
+### Contenus hors programme
+
+Si un exercice dépasse le programme officiel (notion de classe supérieure ou complément), **ne pas le supprimer** mais :
+- Ajouter **(HP)** dans le titre de la capacité
+- Ajouter une note dans le rappel de cours : *"Cette notion dépasse le programme de [niveau]. Elle est proposée en complément pour la poursuite d'études."*
+
+### Vérification scientifique
+
+Vérifier systématiquement dans chaque correction :
+- **Refaire chaque calcul** (ne pas faire confiance aux résultats "évidents")
+- **Cohérence des unités** (SI, conversions correctes)
+- **Valeurs physiques réalistes** (vitesse du son dans un solide ≠ 340 m/s, indice de l'eau = 1,33, etc.)
+- **Formules conformes au niveau** (pas de formules hors programme sans le signaler)
 
 ---
 
