@@ -8,8 +8,8 @@
 
 ### Groupements de spécialités
 Les spécialités de Bac Pro sont réparties en **trois groupements** :
-- **Groupement A** : spécialités avec enseignement de physique-chimie, programme de trigonométrie (ex. : ERA, Menuisier Agenceur, TMA, ICCER…)
-- **Groupement B** : spécialités avec enseignement de physique-chimie, programme de vecteurs dans l'espace
+- **Groupement A** : spécialités avec enseignement de physique-chimie, programme de trigonométrie (ex. : spécialités industrielles type électrotechnique, maintenance…)
+- **Groupement B** : spécialités avec enseignement de physique-chimie, programme de vecteurs dans l'espace (ex. : ERA, Menuisier Agenceur, TMA, ICCER…)
 - **Groupement C** : spécialités sans enseignement de physique-chimie
 
 > La liste actualisée des spécialités par groupement est publiée par le ministère.
@@ -385,9 +385,9 @@ Les spécialités de Bac Pro sont réparties en **trois groupements** :
 
 ## Note sur les filières bâtiment (ERA, Menuisier Agenceur, TMA, ICCER)
 
-Ces spécialités appartiennent au **groupement A**. Le programme de terminale inclut donc :
+Ces spécialités appartiennent au **groupement B**. Le programme de terminale inclut donc :
 - tous les modules communs (A, B, C) ;
-- le module **Trigonométrie / Fresnel** (et non Vecteurs dans l'espace) ;
+- le module **Vecteurs dans l'espace** (et non Trigonométrie / Fresnel) ;
 - **pas** de module Calculs commerciaux et financiers (présence de physique-chimie).
 
 ---

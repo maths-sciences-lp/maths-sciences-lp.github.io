@@ -32,7 +32,7 @@ Plus trois modules transversaux : **Automatismes**, **Algorithmique et programma
 | Automatismes | ✓ | ✓ | ✓ |
 | Vocabulaire ensembliste et logique | ✓ | ✓ | ✓ |
 
-> **Groupement A** inclut : ICCER, ERA, Menuisier Agenceur, et autres spécialités industrielles avec physique-chimie.  
+> **Groupement B** inclut : ICCER, ERA, Menuisier Agenceur (spécialités bâtiment/bois avec physique-chimie).  
 > **Groupement C** : spécialités sans enseignement de physique-chimie (calculs commerciaux et financiers à la place).
 
 ---

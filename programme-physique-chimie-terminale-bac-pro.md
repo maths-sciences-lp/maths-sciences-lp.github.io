@@ -11,7 +11,7 @@
 | **Groupement 1** | ICCER (Installation du Génie Climatique et de la Construction, Énergie et Réseaux) | **Mécanique** |
 | **Groupement 3** | ERA (Études et Réalisations Agencement), Menuisier Agenceur | **Thermique** |
 
-> Les deux groupements sont en **maths groupement A** : programme trigonométrie/Fresnel (pas vecteurs dans l'espace).
+> Les deux groupements sont en **maths groupement B** : programme vecteurs dans l'espace (pas trigonométrie/Fresnel).
 
 ---
 
@@ -251,7 +251,7 @@
 | **Mécanique** | Pression dans un fluide (Pascal) ; débit et écoulement | Accélération et vitesse en ligne droite |
 | **Chimie** | Oxydoréduction + corrosion des métaux | Oxydoréduction + corrosion des métaux |
 | **Signaux** | Propagation sonore (vitesse, intensité, dB) | Sources lumineuses ; transmission de l'information ; atténuation acoustique (affaiblissement phonique) |
-| **Maths terminale** | Groupement A — Trigonométrie/Fresnel | Groupement A — Trigonométrie/Fresnel |
+| **Maths terminale** | Groupement B — Vecteurs dans l'espace | Groupement B — Vecteurs dans l'espace |
 
 ---
 
