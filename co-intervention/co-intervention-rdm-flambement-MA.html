@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Flambement d'un poteau bois — Co-intervention MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Flambement d'un poteau bois</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro MA | S4.3 &mdash; RDM (flambement)</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Comprendre le ph&eacute;nom&egrave;ne de flambement (instabilit&eacute; en compression)</li>
+    <li>Calculer l'&eacute;lancement d'un poteau : \(\lambda = L_f / i\)</li>
+    <li>D&eacute;terminer le rayon de giration d'une section rectangulaire</li>
+    <li>V&eacute;rifier qu'un poteau ne risque pas de flamber</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel MA :</strong> S4.3 &mdash; RDM, &eacute;lancement, flambement (sp&eacute;cifique MA)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Racine carr&eacute;e, fractions, in&eacute;galit&eacute;s</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro MA</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Poteaux d'une pergola</strong><br><br>
+  Un menuisier fabrique une pergola en bois massif (ch&ecirc;ne). Les poteaux verticaux de 2,50 m de haut supportent la structure du toit. Le client veut des poteaux aussi fins que possible pour l'esth&eacute;tique.<br><br>
+  Le chef d'atelier pr&eacute;vient : <em>&laquo;&nbsp;Attention, des poteaux trop fins risquent de <strong>flamber</strong> sous la charge. V&eacute;rifie l'&eacute;lancement avant de lancer la fabrication.&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG flambement -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="400" height="250" viewBox="0 0 400 250" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- poteau droit -->
+  <rect x="60" y="30" width="30" height="180" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+  <text x="75" y="25" text-anchor="middle" fill="#333" font-weight="bold">Poteau droit</text>
+  <!-- charge -->
+  <defs><marker id="afl" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#dc2626"/></marker></defs>
+  <line x1="75" y1="5" x2="75" y2="25" stroke="#dc2626" stroke-width="2.5" marker-end="url(#afl)"/>
+  <text x="75" y="3" text-anchor="middle" fill="#dc2626" font-weight="bold">F</text>
+  <!-- sol -->
+  <line x1="40" y1="210" x2="120" y2="210" stroke="#333" stroke-width="2"/>
+  <text x="75" y="230" text-anchor="middle" fill="#333" font-size="10">OK</text>
+
+  <!-- poteau flambé -->
+  <path d="M 275,30 Q 300,120 275,210" fill="none" stroke="#92400e" stroke-width="3"/>
+  <rect x="260" y="27" width="30" height="6" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+  <text x="275" y="25" text-anchor="middle" fill="#dc2626" font-weight="bold">Poteau flamb&eacute;</text>
+  <line x1="275" y1="5" x2="275" y2="25" stroke="#dc2626" stroke-width="2.5" marker-end="url(#afl)"/>
+  <text x="275" y="3" text-anchor="middle" fill="#dc2626" font-weight="bold">F</text>
+  <line x1="240" y1="210" x2="320" y2="210" stroke="#333" stroke-width="2"/>
+  <text x="275" y="230" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="bold">DANGER !</text>
+
+  <!-- flèche déformation -->
+  <line x1="305" y1="120" x2="330" y2="120" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#afl2)"/>
+  <defs><marker id="afl2" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#0ea5e9"/></marker></defs>
+  <text x="340" y="124" fill="#0ea5e9" font-size="10">D&eacute;formation</text>
+
+  <!-- Lf -->
+  <line x1="170" y1="30" x2="170" y2="210" stroke="#2da44e" stroke-width="1.5"/>
+  <line x1="165" y1="30" x2="175" y2="30" stroke="#2da44e" stroke-width="1.5"/>
+  <line x1="165" y1="210" x2="175" y2="210" stroke="#2da44e" stroke-width="1.5"/>
+  <text x="185" y="125" fill="#2da44e" font-weight="bold">L<tspan baseline-shift="sub" font-size="8">f</tspan></text>
+</svg>
+</div>
+
+<h2>2. Le ph&eacute;nom&egrave;ne de flambement</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Flambement</span><br>
+  Le <strong>flambement</strong> est un ph&eacute;nom&egrave;ne d'instabilit&eacute; : une pi&egrave;ce longue et fine soumise &agrave; une compression axiale se <strong>d&eacute;forme lat&eacute;ralement</strong> de mani&egrave;re brutale et irr&eacute;versible. C'est une rupture par <strong>instabilit&eacute;</strong>, pas par d&eacute;passement de la r&eacute;sistance du mat&eacute;riau.
+</div>
+
+<div class="att">
+  <span class="label label-att">Plus une pi&egrave;ce est longue et fine, plus elle risque de flamber.</span><br>
+  Un poteau court et trapu ne flambe jamais &mdash; il casse en compression. Un poteau long et fin flambe avant d'atteindre la r&eacute;sistance en compression du mat&eacute;riau.
+</div>
+
+<h2>3. &Eacute;lancement &lambda;</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; &Eacute;lancement</span><br>
+  L'<strong>&eacute;lancement</strong> \(\lambda\) est le rapport qui caract&eacute;rise le risque de flambement :
+  \[ \lambda = \frac{L_f}{i} \]
+  <ul>
+    <li>\(L_f\) : <strong>longueur de flambement</strong> en mm (= longueur du poteau pour un poteau encastr&eacute;/libre ou L/2 pour encastr&eacute;/encastr&eacute;)</li>
+    <li>\(i\) : <strong>rayon de giration</strong> de la section en mm</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Rayon de giration d'une section rectangulaire</span><br>
+  Pour une section rectangulaire de c&ocirc;t&eacute;s b et h (h &le; b) :
+  \[ i = \frac{h}{\sqrt{12}} \approx \frac{h}{3{,}46} \]
+  On prend la <strong>plus petite dimension</strong> h, car le flambement se produit dans la direction la plus faible.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Crit&egrave;re de flambement</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">&Eacute;lancement &lambda;</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Risque</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&lambda; &le; 50</td><td style="border:1px solid var(--p-border);padding:.35rem"><strong>Pas de risque</strong> de flambement &mdash; ruine par compression</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">50 &lt; &lambda; &le; 100</td><td style="border:1px solid var(--p-border);padding:.35rem"><strong>Risque mod&eacute;r&eacute;</strong> &mdash; v&eacute;rifier avec un coefficient de r&eacute;duction</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&lambda; &gt; 100</td><td style="border:1px solid var(--p-border);padding:.35rem"><strong>Risque &eacute;lev&eacute;</strong> &mdash; le poteau flambera avant de casser en compression</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:.5rem;font-size:.85rem"><strong>R&egrave;gle pratique en menuiserie bois :</strong> \(\lambda \leq 50\) pour &eacute;viter tout probl&egrave;me.</p>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Poteau de pergola</span><br>
+  Poteau ch&ecirc;ne de 2 500 mm de haut, section 100 &times; 100 mm.<br>
+  Longueur de flambement : \(L_f = 2\,500\) mm (poteau articul&eacute; aux deux extr&eacute;mit&eacute;s).<br><br>
+  \(i = \dfrac{100}{3{,}46} = 28{,}9\) mm<br><br>
+  \(\lambda = \dfrac{2\,500}{28{,}9} = 86{,}5\)<br><br>
+  &lambda; = 86,5 &gt; 50 &rarr; <strong>risque de flambement mod&eacute;r&eacute;</strong>. Il faut soit augmenter la section, soit ajouter un contreventement.
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; V&eacute;rifier le flambement</span><br>
+  <ol>
+    <li>Mesurer la longueur L<sub>f</sub> du poteau</li>
+    <li>Identifier la plus petite dimension h de la section</li>
+    <li>Calculer \(i = h / 3{,}46\)</li>
+    <li>Calculer \(\lambda = L_f / i\)</li>
+    <li>V&eacute;rifier : \(\lambda \leq 50\) &rarr; OK ; \(\lambda > 50\) &rarr; risque</li>
+  </ol>
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>Flambement = instabilit&eacute; d'une pi&egrave;ce longue et fine en compression</li>
+    <li>\(\lambda = L_f / i\) &mdash; &eacute;lancement</li>
+    <li>\(i = h / \sqrt{12} \approx h / 3{,}46\) pour une section rectangulaire</li>
+    <li>\(\lambda \leq 50\) &rarr; pas de risque &mdash; \(\lambda > 100\) &rarr; danger</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Calculer un rayon de giration (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Calculer i pour les sections suivantes :<br>
+  <strong>a)</strong> Section 80 &times; 80 mm : i = 80 / 3,46 = &hellip; mm<br>
+  <strong>b)</strong> Section 60 &times; 100 mm : i = &hellip; / 3,46 = &hellip; mm (prendre la plus petite dimension)<br>
+  <strong>c)</strong> Section 120 &times; 120 mm : i = &hellip; mm
+  <div class="corr"><strong>Correction :</strong><br>a) i = 80/3,46 = <strong>23,1 mm</strong><br>b) i = 60/3,46 = <strong>17,3 mm</strong> (on prend 60, la plus petite)<br>c) i = 120/3,46 = <strong>34,7 mm</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Calculer un &eacute;lancement (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Poteau de L<sub>f</sub> = 2 000 mm, section 80 &times; 80 mm (i = 23,1 mm).<br><br>
+  \(\lambda = L_f / i = 2\,000 / 23{,}1 = \ldots\)<br><br>
+  Ce poteau risque-t-il de flamber ? (&lambda; &le; 50 ?)
+  <div class="corr"><strong>Correction :</strong> &lambda; = 2 000/23,1 = <strong>86,6</strong>. 86,6 &gt; 50 &rarr; <strong>risque de flambement</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Comparer deux sections (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Un poteau de 1 800 mm. Comparer :<br>
+  <strong>a)</strong> Section 60 &times; 60 mm &rarr; i = &hellip; &rarr; &lambda; = &hellip;<br>
+  <strong>b)</strong> Section 100 &times; 100 mm &rarr; i = &hellip; &rarr; &lambda; = &hellip;<br>
+  Lequel est s&ucirc;r ?
+  <div class="corr"><strong>Correction :</strong><br>a) i = 17,3 mm &rarr; &lambda; = 1 800/17,3 = <strong>104</strong> &rarr; DANGER<br>b) i = 28,9 mm &rarr; &lambda; = 1 800/28,9 = <strong>62,3</strong> &rarr; risque mod&eacute;r&eacute;<br>Le 100 &times; 100 est meilleur mais pas encore s&ucirc;r (&lambda; &gt; 50).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Section minimale pour &lambda; &le; 50 (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Un poteau de L<sub>f</sub> = 2 000 mm doit avoir &lambda; &le; 50.<br><br>
+  <strong>1.</strong> Calculer i<sub>min</sub> = L<sub>f</sub> / 50 = &hellip; mm<br>
+  <strong>2.</strong> Calculer h<sub>min</sub> = i<sub>min</sub> &times; 3,46 = &hellip; mm<br>
+  <strong>3.</strong> Quelle section carr&eacute;e minimale ?
+  <div class="corr"><strong>Correction :</strong><br>1. i<sub>min</sub> = 2 000/50 = <strong>40 mm</strong><br>2. h<sub>min</sub> = 40 &times; 3,46 = <strong>138,4 mm</strong><br>3. Section carr&eacute;e minimale : <strong>140 &times; 140 mm</strong> (arrondi au-dessus)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Poteau de pergola &mdash; v&eacute;rification</span><span class="tag-standard">Standard</span></div>
+  Pergola en ch&ecirc;ne, poteaux de 2 800 mm, section 120 &times; 120 mm.<br><br>
+  <strong>1.</strong> Calculer i et &lambda;.<br>
+  <strong>2.</strong> Le poteau est-il conforme (&lambda; &le; 50) ?<br>
+  <strong>3.</strong> Si non, quelle section carr&eacute;e minimale faut-il ?
+  <div class="corr"><strong>Correction :</strong><br>1. i = 120/3,46 = 34,7 mm. &lambda; = 2 800/34,7 = <strong>80,7</strong><br>2. 80,7 &gt; 50 &rarr; <strong>non conforme</strong><br>3. h<sub>min</sub> = (2 800/50) &times; 3,46 = 56 &times; 3,46 = <strong>193,8 mm</strong> &rarr; section <strong>200 &times; 200 mm</strong> minimum. Ou bien r&eacute;duire la hauteur libre en ajoutant des traverses de contreventement.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Section rectangulaire &mdash; sens du flambement</span><span class="tag-standard">Standard</span></div>
+  Un montant de cloison en sapin fait 2 400 mm de haut, section 40 &times; 90 mm.<br><br>
+  <strong>1.</strong> Calculer &lambda; pour le flambement dans le sens des 40 mm (le plus faible).<br>
+  <strong>2.</strong> Calculer &lambda; pour le flambement dans le sens des 90 mm.<br>
+  <strong>3.</strong> Dans quel sens le montant risque-t-il de flamber ?<br>
+  <strong>4.</strong> Comment emp&ecirc;cher le flambement dans le sens faible ?
+  <div class="corr"><strong>Correction :</strong><br>1. i = 40/3,46 = 11,6 mm &rarr; &lambda; = 2 400/11,6 = <strong>207</strong> &rarr; tr&egrave;s &eacute;lanc&eacute;<br>2. i = 90/3,46 = 26,0 mm &rarr; &lambda; = 2 400/26,0 = <strong>92,3</strong><br>3. Le montant flambera dans le sens des <strong>40 mm</strong> (&lambda; = 207 &gt;&gt; 100).<br>4. Fixer des <strong>entretoises</strong> (tasseaux horizontaux) entre les montants pour r&eacute;duire la longueur de flambement dans ce sens. Avec une entretoise &agrave; mi-hauteur : L<sub>f</sub> = 1 200 mm &rarr; &lambda; = 1 200/11,6 = 103 (am&eacute;lior&eacute; mais encore &eacute;lev&eacute;). Avec 2 entretoises : L<sub>f</sub> = 800 mm &rarr; &lambda; = 69 (correct).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Contreventement &mdash; r&eacute;duction de L<sub>f</sub></span><span class="tag-standard">Standard</span></div>
+  Un poteau de 3 000 mm, section 100 &times; 100 mm (&lambda; = 103,8, dangereux). On ajoute un contreventement &agrave; mi-hauteur.<br><br>
+  <strong>1.</strong> Quelle est la nouvelle longueur de flambement ?<br>
+  <strong>2.</strong> Calculer le nouveau &lambda;.<br>
+  <strong>3.</strong> Le poteau est-il maintenant conforme (&lambda; &le; 50) ?<br>
+  <strong>4.</strong> Combien de contreventements faudrait-il pour atteindre &lambda; &le; 50 ?
+  <div class="corr"><strong>Correction :</strong><br>1. L<sub>f</sub> = 3 000 / 2 = <strong>1 500 mm</strong><br>2. i = 28,9 mm. &lambda; = 1 500/28,9 = <strong>51,9</strong><br>3. 51,9 &asymp; 50 &rarr; <strong>juste &agrave; la limite</strong>.<br>4. Avec 2 contreventements : L<sub>f</sub> = 1 000 mm &rarr; &lambda; = 1 000/28,9 = <strong>34,6</strong> &le; 50 &check;</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Poteau porteur d'une mezzanine</span><span class="tag-appro">Approfondissement</span></div>
+  Un menuisier fabrique une mezzanine. Le poteau porteur en ch&ecirc;ne fait 2 600 mm de haut et supporte une charge de 8 000 N. Section : 100 &times; 140 mm.<br><br>
+  <strong>1.</strong> V&eacute;rifier le flambement (&lambda; &le; 50 ?).<br>
+  <strong>2.</strong> V&eacute;rifier la compression (&sigma;<sub>adm</sub> = 10 MPa).<br>
+  <strong>3.</strong> Le poteau est-il s&ucirc;r pour les deux crit&egrave;res ?
+  <div class="corr"><strong>Correction :</strong><br>1. h = 100 mm (plus petite dimension). i = 100/3,46 = 28,9 mm. &lambda; = 2 600/28,9 = <strong>89,9</strong> &gt; 50 &rarr; <strong>risque flambement</strong>.<br>2. S = 100 &times; 140 = 14 000 mm&sup2;. &sigma; = 8 000/14 000 = <strong>0,57 MPa</strong> &lt; 10 &rarr; compression OK.<br>3. Le poteau r&eacute;siste en compression mais <strong>risque de flamber</strong>. Il faut augmenter la section &agrave; au minimum 150 &times; 150 mm (&lambda; = 2 600/43,4 = 59,9 &asymp; 60, encore limite) ou ajouter un contreventement.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Section ronde vs carr&eacute;e</span><span class="tag-appro">Approfondissement</span></div>
+  Pour une section circulaire de diam&egrave;tre d, le rayon de giration est :
+  \[ i = \frac{d}{4} \]
+  Un poteau de 2 000 mm est disponible en deux sections :<br>
+  <strong>a)</strong> Carr&eacute;e 100 &times; 100 mm (S = 10 000 mm&sup2;)<br>
+  <strong>b)</strong> Ronde &oslash; 113 mm (S = 10 029 mm&sup2; &asymp; m&ecirc;me section)<br><br>
+  <strong>1.</strong> Calculer i et &lambda; pour les deux sections.<br>
+  <strong>2.</strong> Laquelle est la plus r&eacute;sistante au flambement ?<br>
+  <strong>3.</strong> Pourquoi les poteaux ronds sont-ils rares en menuiserie ?
+  <div class="corr"><strong>Correction :</strong><br>1. Carr&eacute;e : i = 100/3,46 = 28,9 mm &rarr; &lambda; = 69,2. Ronde : i = 113/4 = 28,25 mm &rarr; &lambda; = 70,8.<br>2. &Agrave; section &eacute;gale, les deux sont <strong>quasi &eacute;quivalentes</strong> (diff&eacute;rence n&eacute;gligeable).<br>3. Les poteaux ronds sont plus difficiles &agrave; assembler (&eacute;querrage, tenon-mortaise impossible), plus chers &agrave; usiner (tournage), et les sections carr&eacute;es s'int&egrave;grent mieux dans l'agencement.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Probl&egrave;me complet &mdash; escalier &agrave; poteau central</span><span class="tag-appro">Approfondissement</span></div>
+  Un menuisier fabrique un escalier &agrave; quart tournant avec un poteau central en h&ecirc;tre de 3 200 mm de haut. Le poteau supporte une charge de 4 500 N (poids de l'escalier + 2 personnes). Il est fix&eacute; en pied (encastr&eacute;) et libre en t&ecirc;te.<br><br>
+  Pour un poteau encastr&eacute;/libre : \(L_f = 2 \times L\) (la longueur de flambement double).<br><br>
+  <strong>1.</strong> Calculer L<sub>f</sub>.<br>
+  <strong>2.</strong> Calculer la section carr&eacute;e minimale pour &lambda; &le; 50.<br>
+  <strong>3.</strong> V&eacute;rifier la compression pour cette section (&sigma;<sub>adm</sub> = 10 MPa).<br>
+  <strong>4.</strong> Le client veut un poteau de 120 &times; 120 mm (esth&eacute;tique). Que proposer ?
+  <div class="corr"><strong>Correction :</strong><br>1. L<sub>f</sub> = 2 &times; 3 200 = <strong>6 400 mm</strong><br>2. i<sub>min</sub> = 6 400/50 = 128 mm. h = 128 &times; 3,46 = <strong>443 mm</strong>. Section carr&eacute;e 450 &times; 450 mm ! Beaucoup trop gros.<br>3. &sigma; = 4 500 / (450 &times; 450) = 0,022 MPa &lt;&lt; 10 MPa. Compression OK mais la section est absurde.<br>4. Le poteau 120 &times; 120 seul est impossible (&lambda; = 6 400/34,7 = 184). Solutions :<br>&bull; Fixer le poteau en t&ecirc;te (encastr&eacute;/encastr&eacute;) : L<sub>f</sub> = L/2 = 1 600 mm &rarr; &lambda; = 1 600/34,7 = <strong>46,1</strong> &le; 50 &check;<br>&bull; Ou utiliser un poteau m&eacute;tallique (tube acier &oslash; 60 mm, beaucoup plus rigide).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>

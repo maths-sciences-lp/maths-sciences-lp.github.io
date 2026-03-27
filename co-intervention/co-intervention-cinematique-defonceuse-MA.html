@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Vitesse de coupe d'une défonceuse — Co-intervention MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Vitesse de coupe d'une d&eacute;fonceuse</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro MA | S7.3 &mdash; Cin&eacute;matique de la coupe</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Appliquer \(V_c = \dfrac{\pi \times D \times n}{1\,000}\) &agrave; une d&eacute;fonceuse et une toupie</li>
+    <li>Choisir la fr&eacute;quence de rotation en fonction du diam&egrave;tre de la fraise</li>
+    <li>Comprendre l'influence de V<sub>c</sub> sur la qualit&eacute; de l'&eacute;tat de surface</li>
+    <li>Calculer la vitesse d'avance et le d&eacute;bit copeaux</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel MA :</strong> S7.3 &mdash; Cin&eacute;matique de la coupe (d&eacute;fonceuse, toupie, fraises)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Formule litt&eacute;rale, \(\pi\), conversions d'unit&eacute;s</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro MA</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Profilage de chants sur un lot de portes</strong><br><br>
+  Un menuisier agenceur doit r&eacute;aliser un profil moulur&eacute; sur les chants de 40 portes en ch&ecirc;ne massif &agrave; la toupie. Il dispose de trois fraises de profils diff&eacute;rents, de diam&egrave;tres 80 mm, 120 mm et 160 mm. La machine propose des vitesses de broche de 3&nbsp;000 &agrave; 10&nbsp;000 tr/min.<br><br>
+  Le chef d'atelier rappelle : <em>&laquo;&nbsp;Attention, avec les petits diam&egrave;tres tu peux monter en vitesse, mais avec les gros outils il faut baisser la rotation. Calcule-moi la bonne vitesse pour chaque fraise.&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG fraise défonceuse -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="300" height="200" viewBox="0 0 300 200" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- arbre -->
+  <rect x="140" y="10" width="20" height="60" fill="#9ca3af" stroke="#333" stroke-width="1.5"/>
+  <text x="150" y="8" text-anchor="middle" fill="#333" font-size="10">Broche</text>
+  <!-- fraise -->
+  <circle cx="150" cy="120" r="50" fill="none" stroke="#2da44e" stroke-width="3"/>
+  <circle cx="150" cy="120" r="10" fill="#6b7280" stroke="#333" stroke-width="2"/>
+  <!-- dents -->
+  <rect x="98" y="116" width="8" height="8" fill="#333" rx="1"/>
+  <rect x="194" y="116" width="8" height="8" fill="#333" rx="1"/>
+  <rect x="146" y="68" width="8" height="8" fill="#333" rx="1"/>
+  <rect x="146" y="164" width="8" height="8" fill="#333" rx="1"/>
+  <!-- D -->
+  <line x1="100" y1="120" x2="200" y2="120" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="150" y="140" text-anchor="middle" fill="#0ea5e9" font-weight="bold">D</text>
+  <!-- flèche rotation -->
+  <path d="M 190,80 A 55,55 0 0,1 210,110" fill="none" stroke="#e65100" stroke-width="2" marker-end="url(#adf)"/>
+  <defs><marker id="adf" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#e65100"/></marker></defs>
+  <text x="225" y="95" fill="#e65100" font-weight="bold">n</text>
+  <!-- pièce bois -->
+  <rect x="60" y="155" width="180" height="30" rx="3" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+  <text x="150" y="175" text-anchor="middle" fill="#92400e" font-size="10">Pi&egrave;ce bois</text>
+  <!-- Vf -->
+  <line x1="60" y1="195" x2="30" y2="195" stroke="#dc2626" stroke-width="2" marker-end="url(#avf)"/>
+  <defs><marker id="avf" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#dc2626"/></marker></defs>
+  <text x="45" y="192" fill="#dc2626" font-weight="bold" font-size="10">V<tspan baseline-shift="sub" font-size="8">f</tspan></text>
+</svg>
+</div>
+
+<h2>2. Rappel &mdash; formule de la vitesse de coupe</h2>
+
+<div class="prop">
+  <span class="label label-prop">Formules</span><br>
+  \[ V_c = \frac{\pi \times D \times n}{1\,000} \quad \text{(m/min)} \qquad n = \frac{1\,000 \times V_c}{\pi \times D} \quad \text{(tr/min)} \]
+  Conversion : 1 m/s = 60 m/min
+</div>
+
+<div class="att">
+  <span class="label label-att">Sp&eacute;cificit&eacute; d&eacute;fonceuse / toupie</span><br>
+  Les d&eacute;fonceuses portatives tournent &agrave; <strong>haute vitesse</strong> (10&nbsp;000 &agrave; 30&nbsp;000 tr/min) avec de <strong>petits outils</strong> (&oslash; 6 &agrave; 50 mm).<br>
+  Les toupies d'atelier tournent &agrave; <strong>vitesse mod&eacute;r&eacute;e</strong> (3&nbsp;000 &agrave; 10&nbsp;000 tr/min) avec de <strong>gros outils</strong> (&oslash; 80 &agrave; 200 mm).<br><br>
+  <strong>R&egrave;gle de s&eacute;curit&eacute;</strong> : la vitesse de rotation maximale de l'outil est grav&eacute;e sur le corps de la fraise. <strong>Ne jamais la d&eacute;passer.</strong>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Tableau &mdash; V<sub>c</sub> recommand&eacute;es (fraises carbure)</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Mat&eacute;riau</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">V<sub>c</sub> (m/s)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Bois massif r&eacute;sineux</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">50 &ndash; 70</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Bois massif feuillu (ch&ecirc;ne, h&ecirc;tre)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">40 &ndash; 60</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">MDF</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">50 &ndash; 70</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Stratifi&eacute; HPL</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">30 &ndash; 50</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>3. Influence du diam&egrave;tre sur la rotation</h2>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Trois fraises sur toupie</span><br>
+  V<sub>c</sub> souhait&eacute;e = 50 m/s = 3&nbsp;000 m/min pour du ch&ecirc;ne.<br><br>
+  &bull; Fraise &oslash; 80 mm : \(n = \dfrac{1\,000 \times 3\,000}{3{,}14 \times 80} = 11\,942\) tr/min<br>
+  &bull; Fraise &oslash; 120 mm : \(n = 7\,962\) tr/min<br>
+  &bull; Fraise &oslash; 160 mm : \(n = 5\,971\) tr/min<br><br>
+  Plus le diam&egrave;tre est grand, plus la rotation doit &ecirc;tre <strong>basse</strong>.
+</div>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode &mdash; R&eacute;gler la d&eacute;fonceuse / toupie</span><br>
+  <ol>
+    <li>Identifier le mat&eacute;riau &rarr; lire V<sub>c</sub> recommand&eacute;e</li>
+    <li>Mesurer le diam&egrave;tre D de la fraise (en mm)</li>
+    <li>Calculer \(n = 1\,000 \times V_c / (\pi \times D)\)</li>
+    <li>V&eacute;rifier que n ne d&eacute;passe pas la vitesse max de l'outil</li>
+    <li>R&eacute;gler la machine sur la vitesse disponible la plus proche</li>
+  </ol>
+</div>
+
+<h2>4. Vitesse d'avance et &eacute;tat de surface</h2>
+
+<div class="prop">
+  <span class="label label-prop">Formule &mdash; Vitesse d'avance</span><br>
+  \[ V_f = n \times Z \times f_z \quad \text{(mm/min)} \]
+  <ul>
+    <li>\(Z\) : nombre de dents (ar&ecirc;tes) de la fraise</li>
+    <li>\(f_z\) : avance par dent en mm (&asymp; 0,3 &agrave; 1,0 mm pour le bois massif)</li>
+  </ul>
+  <strong>Avance trop rapide</strong> &rarr; &eacute;tat de surface rugueux, effort excessif.<br>
+  <strong>Avance trop lente</strong> &rarr; &eacute;chauffement, br&ucirc;lure du bois, usure de l'outil.
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>\(V_c = \pi D n / 1\,000\) &mdash; \(n = 1\,000 \times V_c / (\pi D)\)</li>
+    <li>Plus D est grand, plus n doit &ecirc;tre bas</li>
+    <li>Ne jamais d&eacute;passer la vitesse max grav&eacute;e sur l'outil</li>
+    <li>\(V_f = n \times Z \times f_z\) &mdash; vitesse d'avance en mm/min</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Calculer n pour une d&eacute;fonceuse (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Fraise &agrave; d&eacute;foncer &oslash; 20 mm, V<sub>c</sub> = 50 m/s = 3&nbsp;000 m/min.<br><br>
+  \(n = \dfrac{1\,000 \times 3\,000}{3{,}14 \times 20} = \dfrac{\ldots}{\ldots} = \ldots\) tr/min
+  <div class="corr"><strong>Correction :</strong> \(n = 3\,000\,000 / 62{,}8 = 47\,771\) tr/min.<br>C'est au-del&agrave; de la plage d'une d&eacute;fonceuse classique (max 30&nbsp;000 tr/min). Il faut baisser V<sub>c</sub> ou utiliser une fraise plus grande.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">V<sub>c</sub> d'une fraise &agrave; profiler (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Une toupie tourne &agrave; 6&nbsp;000 tr/min avec une fraise &oslash; 120 mm.<br>
+  \(V_c = \dfrac{3{,}14 \times \ldots \times \ldots}{1\,000} = \ldots\) m/min = \(\ldots / 60 = \ldots\) m/s
+  <div class="corr"><strong>Correction :</strong> \(V_c = 3{,}14 \times 120 \times 6\,000 / 1\,000 = 2\,261\) m/min = <strong>37,7 m/s</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Fraise &agrave; rainurer &mdash; d&eacute;fonceuse portative (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Un menuisier utilise une d&eacute;fonceuse portative (&agrave; 24&nbsp;000 tr/min) avec une fraise &agrave; rainurer &oslash; 8 mm pour du sapin.<br><br>
+  <strong>1.</strong> Calculer V<sub>c</sub>. <strong>2.</strong> Est-ce dans la plage recommand&eacute;e (50&ndash;70 m/s) ?
+  <div class="corr"><strong>Correction :</strong><br>1. \(V_c = 3{,}14 \times 8 \times 24\,000 / 60\,000 = 10{,}1\) m/s<br>2. 10,1 m/s est <strong>tr&egrave;s en dessous</strong> de 50 m/s. Avec un si petit diam&egrave;tre, m&ecirc;me &agrave; 24&nbsp;000 tr/min la V<sub>c</sub> est faible. Ce n'est pas un probl&egrave;me pour une rainure, mais l'&eacute;tat de surface sera m&eacute;diocre.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">V&eacute;rifier la vitesse max de l'outil (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Une fraise &agrave; profiler &oslash; 160 mm porte l'inscription <strong>&laquo;&nbsp;n<sub>max</sub> = 6&nbsp;000 tr/min&nbsp;&raquo;</strong>. Un menuisier veut atteindre V<sub>c</sub> = 60 m/s.<br><br>
+  <strong>1.</strong> Calculer n n&eacute;cessaire.<br>
+  <strong>2.</strong> Ce r&eacute;glage d&eacute;passe-t-il la vitesse max de l'outil ?<br>
+  <strong>3.</strong> Que risque-t-il si on d&eacute;passe n<sub>max</sub> ?
+  <div class="corr"><strong>Correction :</strong><br>1. \(n = 1\,000 \times 3\,600 / (3{,}14 \times 160) = 7\,166\) tr/min<br>2. 7&nbsp;166 &gt; 6&nbsp;000 &rarr; <strong>oui, d&eacute;passement</strong><br>3. Risque d'<strong>&eacute;clatement de l'outil</strong> (force centrifuge excessive), projection de fragments &rarr; danger mortel. Il faut baisser V<sub>c</sub> &agrave; 50 m/s max (\(n = 5\,971\) tr/min &lt; 6&nbsp;000 &check;).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Tableau &mdash; trois fraises sur toupie</span><span class="tag-standard">Standard</span></div>
+  Compl&eacute;ter le tableau pour V<sub>c</sub> = 50 m/s (ch&ecirc;ne). La toupie propose : 3&nbsp;000, 4&nbsp;500, 6&nbsp;000, 8&nbsp;000, 10&nbsp;000 tr/min.<br><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">Fraise</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">D (mm)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">n calcul&eacute;e</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">n r&eacute;gl&eacute;e</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">n<sub>max</sub> outil</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">OK ?</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Quart-de-rond</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">80</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">12 000</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Doucine</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">120</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">8 000</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Profil porte</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">160</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">6 000</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td></tr>
+    </tbody>
+  </table>
+  <div class="corr"><strong>Correction :</strong><br>V<sub>c</sub> = 3&nbsp;000 m/min.<br>Quart-de-rond : n = 3&nbsp;000&nbsp;000/(3,14&times;80) = <strong>11&nbsp;942</strong> &rarr; r&eacute;glage <strong>10&nbsp;000</strong> &rarr; 10&nbsp;000 &lt; 12&nbsp;000 &check;<br>Doucine : n = <strong>7&nbsp;962</strong> &rarr; r&eacute;glage <strong>8&nbsp;000</strong> &rarr; 8&nbsp;000 = 8&nbsp;000 &check; (limite)<br>Profil porte : n = <strong>5&nbsp;971</strong> &rarr; r&eacute;glage <strong>6&nbsp;000</strong> &rarr; 6&nbsp;000 = 6&nbsp;000 &check; (limite)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Vitesse d'avance sur toupie</span><span class="tag-standard">Standard</span></div>
+  La fraise doucine (&oslash; 120 mm, Z = 3 dents) tourne &agrave; 8&nbsp;000 tr/min. L'avance par dent recommand&eacute;e pour le ch&ecirc;ne est f<sub>z</sub> = 0,5 mm.<br><br>
+  <strong>1.</strong> Calculer V<sub>f</sub> en mm/min.<br>
+  <strong>2.</strong> Convertir en m/min.<br>
+  <strong>3.</strong> Le menuisier pousse la pi&egrave;ce &agrave; environ 8 m/min. Est-ce trop rapide ou trop lent ?
+  <div class="corr"><strong>Correction :</strong><br>1. V<sub>f</sub> = 8&nbsp;000 &times; 3 &times; 0,5 = <strong>12&nbsp;000 mm/min</strong><br>2. = <strong>12 m/min</strong><br>3. 8 m/min &lt; 12 m/min &rarr; l&eacute;g&egrave;rement <strong>trop lent</strong>. Risque de br&ucirc;lure du bois (l'outil frotte au lieu de couper). Il faudrait pousser un peu plus vite.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">D&eacute;fonceuse CN &mdash; programmation</span><span class="tag-standard">Standard</span></div>
+  Une d&eacute;fonceuse &agrave; commande num&eacute;rique usine du MDF avec une fraise &oslash; 16 mm, Z = 2 dents. Le programme demande V<sub>c</sub> = 55 m/s et f<sub>z</sub> = 0,3 mm.<br><br>
+  <strong>1.</strong> Calculer n.<br>
+  <strong>2.</strong> Calculer V<sub>f</sub> en mm/min.<br>
+  <strong>3.</strong> La machine a une avance max de 15&nbsp;000 mm/min. Le r&eacute;glage est-il faisable ?
+  <div class="corr"><strong>Correction :</strong><br>1. V<sub>c</sub> = 3&nbsp;300 m/min. n = 3&nbsp;300&nbsp;000 / (3,14 &times; 16) = <strong>65&nbsp;712</strong> tr/min. C'est tr&egrave;s &eacute;lev&eacute; — une broche haute fr&eacute;quence est n&eacute;cessaire (disponible sur CN).<br>2. V<sub>f</sub> = 65&nbsp;712 &times; 2 &times; 0,3 = <strong>39&nbsp;427 mm/min</strong><br>3. 39&nbsp;427 &gt; 15&nbsp;000 &rarr; <strong>non faisable</strong> &agrave; cette V<sub>c</sub>. Il faut r&eacute;duire n ou augmenter f<sub>z</sub>. Avec n = 25&nbsp;000 tr/min : V<sub>f</sub> = 25&nbsp;000 &times; 2 &times; 0,3 = 15&nbsp;000 mm/min &rarr; juste faisable.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Dur&eacute;e de vie de l'outil</span><span class="tag-appro">Approfondissement</span></div>
+  Le fabricant d'une fraise carbure &oslash; 120 mm indique une dur&eacute;e de vie de <strong>8 heures d'usinage effectif</strong> dans le ch&ecirc;ne &agrave; V<sub>c</sub> = 50 m/s. Si V<sub>c</sub> augmente &agrave; 70 m/s, la dur&eacute;e de vie est r&eacute;duite &agrave; 3 heures.<br><br>
+  <strong>1.</strong> Calculer n pour chaque V<sub>c</sub>.<br>
+  <strong>2.</strong> Le menuisier usine 40 portes, chacune n&eacute;cessitant 5 min d'usinage effectif. Dur&eacute;e totale d'usinage ?<br>
+  <strong>3.</strong> Combien de fraises seront n&eacute;cessaires &agrave; V<sub>c</sub> = 50 m/s ? Et &agrave; 70 m/s ?<br>
+  <strong>4.</strong> Une fraise co&ucirc;te 85 &euro;. Quel est le surco&ucirc;t en outils si on travaille &agrave; 70 m/s au lieu de 50 ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Agrave; 50 m/s : n = 7&nbsp;962 tr/min. &Agrave; 70 m/s : n = 11&nbsp;147 tr/min.<br>2. 40 &times; 5 = <strong>200 min</strong> = 3 h 20 min.<br>3. &Agrave; 50 m/s (dur&eacute;e 8 h) : 200 min &lt; 480 min &rarr; <strong>1 fraise</strong> suffit.<br>&Agrave; 70 m/s (dur&eacute;e 3 h = 180 min) : 200 &gt; 180 &rarr; <strong>2 fraises</strong> n&eacute;cessaires.<br>4. Surco&ucirc;t : 1 fraise suppl&eacute;mentaire = <strong>85 &euro;</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Qualit&eacute; de surface &mdash; pas d'onde</span><span class="tag-appro">Approfondissement</span></div>
+  La qualit&eacute; de l'&eacute;tat de surface d&eacute;pend du <strong>pas d'onde</strong> p (distance entre deux marques de dents cons&eacute;cutives) :
+  \[ p = \frac{V_f}{n \times Z} = f_z \]
+  Plus p est petit, plus la surface est lisse. Pour un &eacute;tat de surface &laquo;&nbsp;finition&nbsp;&raquo;, on recommande p &le; 0,5 mm.<br><br>
+  Une toupie (&oslash; 120 mm, Z = 4 dents, n = 8&nbsp;000 tr/min) avance &agrave; V<sub>f</sub> = 10 m/min.<br><br>
+  <strong>1.</strong> Calculer f<sub>z</sub> = V<sub>f</sub> / (n &times; Z).<br>
+  <strong>2.</strong> L'&eacute;tat de surface est-il &laquo;&nbsp;finition&nbsp;&raquo; ?<br>
+  <strong>3.</strong> Si on veut p &le; 0,3 mm, quelle V<sub>f</sub> max ?
+  <div class="corr"><strong>Correction :</strong><br>1. f<sub>z</sub> = 10&nbsp;000 / (8&nbsp;000 &times; 4) = <strong>0,3125 mm</strong><br>2. 0,3125 &lt; 0,5 &rarr; <strong>oui, finition acceptable</strong>.<br>3. V<sub>f</sub> = 0,3 &times; 8&nbsp;000 &times; 4 = <strong>9&nbsp;600 mm/min</strong> = 9,6 m/min.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Probl&egrave;me complet &mdash; choisir tous les param&egrave;tres</span><span class="tag-appro">Approfondissement</span></div>
+  Un menuisier doit profiler 100 m lin&eacute;aires de plinthes en h&ecirc;tre sur une toupie. Fraise quart-de-rond &oslash; 80 mm, Z = 3 dents, n<sub>max</sub> outil = 12&nbsp;000 tr/min. Vitesses machine : 4&nbsp;500, 6&nbsp;000, 8&nbsp;000, 10&nbsp;000 tr/min.<br><br>
+  <strong>1.</strong> V<sub>c</sub> recommand&eacute;e pour le h&ecirc;tre : 40&ndash;60 m/s. Calculer n pour V<sub>c</sub> = 50 m/s. Quel r&eacute;glage choisir ?<br>
+  <strong>2.</strong> Calculer V<sub>f</sub> avec f<sub>z</sub> = 0,4 mm.<br>
+  <strong>3.</strong> Combien de temps pour usiner les 100 m ?<br>
+  <strong>4.</strong> L'avance est limit&eacute;e &agrave; 8 m/min sur cette toupie. Le menuisier doit-il ajuster f<sub>z</sub> ? Si oui, quelle valeur ?
+  <div class="corr"><strong>Correction :</strong><br>1. n = 1&nbsp;000 &times; 3&nbsp;000 / (3,14 &times; 80) = 11&nbsp;942 &rarr; r&eacute;glage <strong>10&nbsp;000 tr/min</strong> (10&nbsp;000 &lt; 12&nbsp;000 &check;).<br>V<sub>c</sub> r&eacute;elle = 3,14 &times; 80 &times; 10&nbsp;000 / 60&nbsp;000 = <strong>41,9 m/s</strong> (dans la plage).<br>2. V<sub>f</sub> = 10&nbsp;000 &times; 3 &times; 0,4 = <strong>12&nbsp;000 mm/min</strong> = 12 m/min<br>3. t = 100&nbsp;000 / 12&nbsp;000 = <strong>8,3 min</strong> &asymp; 8 min 20 s<br>4. 12 m/min &gt; 8 m/min &rarr; oui, il faut r&eacute;duire f<sub>z</sub>.<br>f<sub>z</sub> = 8&nbsp;000 / (10&nbsp;000 &times; 3) = <strong>0,27 mm</strong>. Temps : 100&nbsp;000 / 8&nbsp;000 = <strong>12,5 min</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>

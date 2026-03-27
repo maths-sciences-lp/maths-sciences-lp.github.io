@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Efforts dans un treillis de charpente — Co-intervention MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Efforts dans un treillis de charpente</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro MA | S4.24 &mdash; Syst&egrave;mes triangul&eacute;s</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Reconna&icirc;tre un syst&egrave;me triangul&eacute; (treillis, ferme de charpente)</li>
+    <li>Identifier les barres en traction et en compression</li>
+    <li>Utiliser la trigonom&eacute;trie (sin, cos, tan) pour d&eacute;composer les forces aux n&oelig;uds</li>
+    <li>Calculer les efforts dans les barres d'un treillis simple</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel MA :</strong> S4.24 &mdash; Efforts dans les syst&egrave;mes triangul&eacute;s (sp&eacute;cifique MA)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Trigonom&eacute;trie (sin, cos, tan), vecteurs, &eacute;quations</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro MA</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Charpente l&eacute;g&egrave;re d'un appentis</strong><br><br>
+  Un menuisier fabrique une charpente l&eacute;g&egrave;re pour un appentis. La ferme triangul&eacute;e est compos&eacute;e d'un <strong>entrait</strong> (barre horizontale), de deux <strong>arbal&eacute;triers</strong> (barres inclin&eacute;es) et d'un <strong>poin&ccedil;on</strong> (barre verticale centrale). L'architecte demande de v&eacute;rifier que les sections de bois sont suffisantes pour reprendre les efforts.
+</div>
+
+<!-- SVG treillis -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="460" height="220" viewBox="0 0 460 220" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <!-- entrait -->
+  <line x1="50" y1="170" x2="410" y2="170" stroke="#92400e" stroke-width="4"/>
+  <!-- arbalétriers -->
+  <line x1="50" y1="170" x2="230" y2="50" stroke="#2da44e" stroke-width="4"/>
+  <line x1="410" y1="170" x2="230" y2="50" stroke="#2da44e" stroke-width="4"/>
+  <!-- poinçon -->
+  <line x1="230" y1="170" x2="230" y2="50" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="8,4"/>
+  <!-- noeuds -->
+  <circle cx="50" cy="170" r="5" fill="#333"/>
+  <circle cx="410" cy="170" r="5" fill="#333"/>
+  <circle cx="230" cy="50" r="5" fill="#333"/>
+  <circle cx="230" cy="170" r="5" fill="#333"/>
+  <!-- labels -->
+  <text x="230" y="190" text-anchor="middle" fill="#92400e" font-weight="bold">Entrait</text>
+  <text x="125" y="100" text-anchor="middle" fill="#2da44e" font-weight="bold" transform="rotate(-33,125,100)">Arbal&eacute;trier</text>
+  <text x="335" y="100" text-anchor="middle" fill="#2da44e" font-weight="bold" transform="rotate(33,335,100)">Arbal&eacute;trier</text>
+  <text x="245" y="115" fill="#0ea5e9" font-weight="bold">Poin&ccedil;on</text>
+  <!-- appuis -->
+  <polygon points="50,175 40,195 60,195" fill="#6b7280"/>
+  <polygon points="410,175 400,195 420,195" fill="#6b7280"/>
+  <!-- charge -->
+  <defs><marker id="atf" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#dc2626"/></marker></defs>
+  <line x1="230" y1="15" x2="230" y2="45" stroke="#dc2626" stroke-width="2.5" marker-end="url(#atf)"/>
+  <text x="230" y="12" text-anchor="middle" fill="#dc2626" font-weight="bold">F</text>
+  <!-- angle -->
+  <path d="M 80,170 A 30,30 0 0,0 68,155" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="90" y="158" fill="#333" font-weight="bold">&alpha;</text>
+  <!-- cotes -->
+  <line x1="50" y1="205" x2="410" y2="205" stroke="#888" stroke-width="1"/>
+  <text x="230" y="218" text-anchor="middle" fill="#888">L</text>
+</svg>
+</div>
+
+<h2>2. Principe du treillis</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; Syst&egrave;me triangul&eacute;</span><br>
+  Un <strong>treillis</strong> (ou syst&egrave;me triangul&eacute;) est une structure form&eacute;e de barres articul&eacute;es aux n&oelig;uds, assembl&eacute;es en <strong>triangles</strong>. Le triangle est la seule forme g&eacute;om&eacute;trique ind&eacute;formable &rarr; tr&egrave;s utilis&eacute; en charpente.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Traction et compression</span><br>
+  <ul>
+    <li>Une barre en <strong>traction</strong> est &laquo;&nbsp;&eacute;tir&eacute;e&nbsp;&raquo; &rarr; l'entrait est souvent en traction</li>
+    <li>Une barre en <strong>compression</strong> est &laquo;&nbsp;pouss&eacute;e&nbsp;&raquo; &rarr; les arbal&eacute;triers sont souvent en compression</li>
+    <li>Le poin&ccedil;on vertical est en <strong>traction</strong> (il retient l'entrait)</li>
+  </ul>
+</div>
+
+<h2>3. D&eacute;composition des forces &mdash; trigonom&eacute;trie</h2>
+
+<div class="prop">
+  <span class="label label-prop">Rappels trigonom&eacute;triques</span><br>
+  Dans un triangle rectangle d'angle \(\alpha\) :
+  \[ \cos \alpha = \frac{\text{adjacent}}{\text{hypot&eacute;nuse}} \qquad \sin \alpha = \frac{\text{oppos&eacute;}}{\text{hypot&eacute;nuse}} \qquad \tan \alpha = \frac{\text{oppos&eacute;}}{\text{adjacent}} \]
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Effort dans l'arbal&eacute;trier</span><br>
+  Pour une ferme simple avec une charge F au sommet et un angle &alpha; entre l'arbal&eacute;trier et l'horizontale :<br><br>
+  Effort dans chaque arbal&eacute;trier :
+  \[ N_{\text{arb}} = \frac{F}{2 \times \sin \alpha} \]
+  Effort dans l'entrait (traction horizontale) :
+  \[ N_{\text{ent}} = \frac{F}{2 \times \tan \alpha} \]
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Ferme d'appentis</span><br>
+  Charge au sommet F = 6 000 N (poids toiture + neige). Angle &alpha; = 30&deg;.<br><br>
+  Arbal&eacute;trier : \(N = \dfrac{6\,000}{2 \times \sin 30°} = \dfrac{6\,000}{2 \times 0{,}5} = 6\,000\) N (compression)<br><br>
+  Entrait : \(N = \dfrac{6\,000}{2 \times \tan 30°} = \dfrac{6\,000}{2 \times 0{,}577} = 5\,196\) N (traction)
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention &mdash; Faible pente</span><br>
+  Plus l'angle &alpha; est petit (toit plat), plus les efforts dans les barres sont <strong>grands</strong>. &Agrave; &alpha; = 15° : \(N_{\text{arb}} = F / (2 \times 0{,}259) = 1{,}93 \times F\) ! Un toit &agrave; faible pente sollicite beaucoup plus la structure.
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>Le triangle est ind&eacute;formable &rarr; base des charpentes</li>
+    <li>Arbal&eacute;triers : compression &mdash; Entrait : traction &mdash; Poin&ccedil;on : traction</li>
+    <li>\(N_{\text{arb}} = F / (2 \sin \alpha)\) &mdash; \(N_{\text{ent}} = F / (2 \tan \alpha)\)</li>
+    <li>Plus la pente est faible, plus les efforts sont grands</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Rappels trigonom&eacute;trie (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Calculer &agrave; la calculatrice :<br>
+  <strong>a)</strong> sin 30° = &hellip; <strong>b)</strong> cos 30° = &hellip; <strong>c)</strong> tan 30° = &hellip;<br>
+  <strong>d)</strong> sin 45° = &hellip; <strong>e)</strong> cos 45° = &hellip; <strong>f)</strong> tan 45° = &hellip;<br>
+  <strong>g)</strong> sin 60° = &hellip; <strong>h)</strong> tan 60° = &hellip;
+  <div class="corr"><strong>Correction :</strong><br>a) 0,500 b) 0,866 c) 0,577 d) 0,707 e) 0,707 f) 1,000 g) 0,866 h) 1,732</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Traction ou compression ? (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Pour la ferme du sch&eacute;ma du cours, indiquer si chaque barre est en traction (T) ou compression (C) :<br>
+  <strong>a)</strong> Arbal&eacute;trier gauche : &hellip; <strong>b)</strong> Arbal&eacute;trier droit : &hellip;<br>
+  <strong>c)</strong> Entrait : &hellip; <strong>d)</strong> Poin&ccedil;on : &hellip;
+  <div class="corr"><strong>Correction :</strong><br>a) <strong>C</strong> (compression) b) <strong>C</strong> c) <strong>T</strong> (traction) d) <strong>T</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Effort arbal&eacute;trier &agrave; 45° (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  F = 4 000 N, &alpha; = 45°, sin 45° = 0,707.<br><br>
+  \(N_{\text{arb}} = \dfrac{F}{2 \times \sin \alpha} = \dfrac{4\,000}{2 \times \ldots} = \dfrac{4\,000}{\ldots} = \ldots\) N
+  <div class="corr"><strong>Correction :</strong> \(N = 4\,000 / (2 \times 0{,}707) = 4\,000 / 1{,}414 = 2\,829\) N</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Effort dans l'entrait (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  M&ecirc;mes donn&eacute;es : F = 4 000 N, &alpha; = 45°, tan 45° = 1,000.<br><br>
+  \(N_{\text{ent}} = \dfrac{4\,000}{2 \times 1{,}000} = \ldots\) N
+  <div class="corr"><strong>Correction :</strong> \(N = 4\,000 / 2 = 2\,000\) N</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Comparer deux pentes</span><span class="tag-standard">Standard</span></div>
+  Charge F = 8 000 N. Calculer N<sub>arb</sub> et N<sub>ent</sub> pour :<br>
+  <strong>a)</strong> &alpha; = 30° <strong>b)</strong> &alpha; = 45° <strong>c)</strong> &alpha; = 60°<br><br>
+  Que constatez-vous quand l'angle augmente ?
+  <div class="corr"><strong>Correction :</strong><br>a) N<sub>arb</sub> = 8 000/(2&times;0,5) = <strong>8 000 N</strong>. N<sub>ent</sub> = 8 000/(2&times;0,577) = <strong>6 928 N</strong><br>b) N<sub>arb</sub> = 8 000/1,414 = <strong>5 657 N</strong>. N<sub>ent</sub> = 8 000/2 = <strong>4 000 N</strong><br>c) N<sub>arb</sub> = 8 000/1,732 = <strong>4 619 N</strong>. N<sub>ent</sub> = 8 000/3,464 = <strong>2 309 N</strong><br><br>Quand &alpha; augmente (pente plus raide), les efforts <strong>diminuent</strong> dans les deux barres.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">V&eacute;rifier la section de l'entrait</span><span class="tag-standard">Standard</span></div>
+  L'entrait d'une ferme en sapin (&alpha; = 30°, F = 6 000 N) travaille en traction. La contrainte admissible du sapin en traction est \(\sigma_{\text{adm}} = 8\) MPa (= 8 N/mm&sup2;).<br><br>
+  <strong>1.</strong> Calculer N<sub>ent</sub>.<br>
+  <strong>2.</strong> La section minimale de l'entrait est : \(S_{\min} = N / \sigma_{\text{adm}}\). Calculer.<br>
+  <strong>3.</strong> L'entrait fait 80 &times; 100 mm. Sa section est-elle suffisante ?
+  <div class="corr"><strong>Correction :</strong><br>1. N<sub>ent</sub> = 6 000 / (2 &times; 0,577) = <strong>5 196 N</strong><br>2. S<sub>min</sub> = 5 196 / 8 = <strong>650 mm&sup2;</strong><br>3. Section r&eacute;elle : 80 &times; 100 = <strong>8 000 mm&sup2;</strong> &gt;&gt; 650 &rarr; <strong>largement suffisante</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Ferme avec charge de neige</span><span class="tag-standard">Standard</span></div>
+  Une ferme de charpente a une port&eacute;e L = 6 m et une pente &alpha; = 35°. Les charges sont :<br>
+  &bull; Poids propre toiture : 1 500 N<br>
+  &bull; Charge de neige : 2 400 N<br><br>
+  <strong>1.</strong> Calculer la charge totale F au sommet.<br>
+  <strong>2.</strong> Calculer N<sub>arb</sub> et N<sub>ent</sub>.<br>
+  <strong>3.</strong> En hiver (avec neige), les efforts sont-ils plus importants qu'en &eacute;t&eacute; (sans neige) ? De combien ?
+  <div class="corr"><strong>Correction :</strong><br>1. F = 1 500 + 2 400 = <strong>3 900 N</strong><br>2. sin 35° = 0,574, tan 35° = 0,700<br>N<sub>arb</sub> = 3 900 / (2 &times; 0,574) = <strong>3 397 N</strong><br>N<sub>ent</sub> = 3 900 / (2 &times; 0,700) = <strong>2 786 N</strong><br>3. Sans neige : N<sub>arb</sub> = 1 500 / 1,148 = 1 307 N. Avec neige : 3 397 N &rarr; <strong>2,6 fois plus</strong> d'effort en hiver.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Trouver l'angle &agrave; partir des dimensions</span><span class="tag-appro">Approfondissement</span></div>
+  Une ferme a une port&eacute;e de 5 m et une hauteur au fa&icirc;tage de 2 m.<br><br>
+  <strong>1.</strong> Calculer la demi-port&eacute;e.<br>
+  <strong>2.</strong> Calculer l'angle &alpha; de l'arbal&eacute;trier avec \(\tan \alpha = \text{hauteur} / \text{demi-port&eacute;e}\).<br>
+  <strong>3.</strong> Calculer la longueur de l'arbal&eacute;trier (Pythagore).<br>
+  <strong>4.</strong> Pour F = 5 000 N, calculer N<sub>arb</sub> et N<sub>ent</sub>.
+  <div class="corr"><strong>Correction :</strong><br>1. Demi-port&eacute;e = 5/2 = <strong>2,5 m</strong><br>2. tan &alpha; = 2/2,5 = 0,800 &rarr; &alpha; = arctan(0,8) = <strong>38,7°</strong><br>3. L<sub>arb</sub> = &radic;(2,5&sup2; + 2&sup2;) = &radic;(6,25 + 4) = &radic;10,25 = <strong>3,20 m</strong><br>4. sin 38,7° = 0,625. N<sub>arb</sub> = 5 000 / (2 &times; 0,625) = <strong>4 000 N</strong>. N<sub>ent</sub> = 5 000 / (2 &times; 0,800) = <strong>3 125 N</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Pente minimale pour une section donn&eacute;e</span><span class="tag-appro">Approfondissement</span></div>
+  Un menuisier dispose de bois de section 60 &times; 80 mm (S = 4 800 mm&sup2;) pour l'entrait. La contrainte admissible en traction est 8 N/mm&sup2;. La charge est F = 10 000 N.<br><br>
+  <strong>1.</strong> Calculer l'effort maximal que l'entrait peut supporter.<br>
+  <strong>2.</strong> &Eacute;crire l'in&eacute;galit&eacute; N<sub>ent</sub> &le; N<sub>max</sub> en fonction de &alpha;.<br>
+  <strong>3.</strong> En d&eacute;duire tan &alpha; minimum, puis &alpha; minimum.<br>
+  <strong>4.</strong> Quelle est la pente minimale du toit pour que l'entrait tienne ?
+  <div class="corr"><strong>Correction :</strong><br>1. N<sub>max</sub> = &sigma; &times; S = 8 &times; 4 800 = <strong>38 400 N</strong><br>2. F / (2 tan &alpha;) &le; 38 400 &rarr; 10 000 / (2 tan &alpha;) &le; 38 400<br>3. tan &alpha; &ge; 10 000 / (2 &times; 38 400) = 0,130 &rarr; &alpha; &ge; arctan(0,130) = <strong>7,4°</strong><br>4. Pente minimale &asymp; <strong>7,5°</strong>. En pratique, les charpentes bois ont rarement moins de 15° (&eacute;coulement des eaux).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Ferme compl&egrave;te &mdash; dimensionnement</span><span class="tag-appro">Approfondissement</span></div>
+  Ferme de charpente en ch&ecirc;ne pour un garage : port&eacute;e 7 m, hauteur 3 m. Charges : toiture 2 000 N, neige 3 500 N, vent (soulèvement) &minus;800 N.<br><br>
+  <strong>1.</strong> Calculer &alpha; et la longueur de l'arbal&eacute;trier.<br>
+  <strong>2.</strong> Calculer N<sub>arb</sub> et N<sub>ent</sub> en charge maximale (toiture + neige).<br>
+  <strong>3.</strong> V&eacute;rifier l'arbal&eacute;trier (section 80 &times; 120 mm, &sigma;<sub>compression</sub> = 10 MPa).<br>
+  <strong>4.</strong> En cas de vent (soulèvement), la charge F diminue. Quel effet sur les efforts ? L'entrait reste-t-il en traction ?
+  <div class="corr"><strong>Correction :</strong><br>1. Demi-port&eacute;e = 3,5 m. tan &alpha; = 3/3,5 = 0,857 &rarr; &alpha; = <strong>40,6°</strong>. sin 40,6° = 0,651. L<sub>arb</sub> = &radic;(3,5&sup2; + 3&sup2;) = &radic;(12,25+9) = <strong>4,61 m</strong>.<br>2. F = 2 000 + 3 500 = 5 500 N. N<sub>arb</sub> = 5 500 / (2 &times; 0,651) = <strong>4 224 N</strong>. N<sub>ent</sub> = 5 500 / (2 &times; 0,857) = <strong>3 209 N</strong>.<br>3. S = 80 &times; 120 = 9 600 mm&sup2;. &sigma; = 4 224 / 9 600 = 0,44 MPa &lt;&lt; 10 MPa &rarr; <strong>largement suffisant</strong>.<br>4. F = 2 000 &minus; 800 = 1 200 N (r&eacute;duit). N<sub>ent</sub> = 1 200 / 1,714 = 700 N. L'entrait reste en <strong>traction</strong> (F reste positif = charge vers le bas). Si le vent &eacute;tait assez fort pour cr&eacute;er un soulèvement net (F &lt; 0), l'entrait passerait en compression.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>
