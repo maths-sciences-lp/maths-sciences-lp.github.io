@@ -1,7 +1,7 @@
 # Audit Seconde Bac Pro — Analyse complète
 
 **Date** : 2026-03-21
-**Dernière mise à jour** : 2026-03-21 (vérification exercices maths + PC, remplacement QCM)
+**Dernière mise à jour** : 2026-03-27 (ajout figures SVG dans exercices-capacités maths)
 **Périmètre** : maths/seconde (14 chapitres) + physique-chimie/seconde (14 chapitres)
 
 ---
@@ -47,6 +47,8 @@ Thème CSS : `--p:#0056b3` `--p-bg:#ebf5ff` `--p-border:#bee3f8`
 | 14 | Solides, volumes, agrandissement | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | — | ~90 % |
 
 **Note pédagogique : 4/5** — Progression exemplaire, illustrations interactives riches (Chart.js, SVG, Canvas), différenciation systématique.
+
+**Figures SVG dans exercices-capacités (2026-03-27) :** ajout de ~20 figures SVG inline dans les chapitres ch02, ch09, ch10, ch11, ch12, ch13, ch14 (diagrammes statistiques, graphiques de fonctions, triangles de Pythagore/Thalès, solides en perspective).
 
 ### Physique-Chimie Seconde
 
