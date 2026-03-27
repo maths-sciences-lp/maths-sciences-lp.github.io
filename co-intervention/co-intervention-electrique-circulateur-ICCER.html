@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Puissance d'un circulateur — Loi d'Ohm — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>Puissance d'un circulateur &mdash; Loi d'Ohm</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.7 &mdash; &Eacute;lectricit&eacute;</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Appliquer la loi d'Ohm : \(U = R \times I\)</li>
+    <li>Calculer la puissance &eacute;lectrique d'un circulateur : \(P = U \times I\)</li>
+    <li>Choisir le calibre de protection adapt&eacute;</li>
+    <li>Calculer la consommation &eacute;nerg&eacute;tique annuelle d'un circulateur</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.7 &mdash; &Eacute;lectricit&eacute; (loi d'Ohm, puissance, protection)</li>
+    <li><strong>Notions math&eacute;matiques :</strong> U = RI, P = UI, conversions kWh</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Remplacement d'un circulateur de chauffage</strong><br><br>
+  Un technicien chauffagiste remplace un vieux circulateur de chauffage par un mod&egrave;le &agrave; vitesse variable (classe A). La plaque signal&eacute;tique indique : 230 V ~ 50 Hz, 5&ndash;45 W. Il doit c&acirc;bler le circulateur sur le tableau &eacute;lectrique et choisir le bon disjoncteur.
+</div>
+
+<!-- SVG circuit -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="380" height="130" viewBox="0 0 380 130" style="max-width:100%;font-family:sans-serif;font-size:11px">
+  <rect x="10" y="30" width="60" height="70" rx="5" fill="#e5e7eb" stroke="#333" stroke-width="2"/>
+  <text x="40" y="60" text-anchor="middle" fill="#333" font-size="10" font-weight="bold">Tableau</text>
+  <text x="40" y="75" text-anchor="middle" fill="#333" font-size="9">230 V</text>
+  <!-- disjoncteur -->
+  <rect x="90" y="45" width="40" height="30" rx="3" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+  <text x="110" y="64" text-anchor="middle" fill="#92400e" font-size="9" font-weight="bold">DJ 2A</text>
+  <!-- fils -->
+  <line x1="70" y1="55" x2="90" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="130" y1="55" x2="200" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="70" y1="75" x2="90" y2="75" stroke="#333" stroke-width="2"/>
+  <line x1="130" y1="75" x2="200" y2="75" stroke="#333" stroke-width="2"/>
+  <!-- circulateur -->
+  <circle cx="240" cy="65" r="35" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2.5"/>
+  <text x="240" y="62" text-anchor="middle" fill="#0ea5e9" font-weight="bold" font-size="12">M</text>
+  <text x="240" y="78" text-anchor="middle" fill="#0ea5e9" font-size="9">Circulateur</text>
+  <!-- plaque -->
+  <rect x="290" y="35" width="80" height="60" rx="4" fill="#f8f8f8" stroke="#333" stroke-width="1.5"/>
+  <text x="330" y="52" text-anchor="middle" fill="#333" font-size="9" font-weight="bold">Plaque</text>
+  <text x="330" y="65" text-anchor="middle" fill="#333" font-size="9">230V ~ 50Hz</text>
+  <text x="330" y="78" text-anchor="middle" fill="#333" font-size="9">P : 5&ndash;45 W</text>
+  <text x="330" y="91" text-anchor="middle" fill="#333" font-size="9">I<sub>max</sub> : 0,20 A</text>
+</svg>
+</div>
+
+<h2>2. Rappels &eacute;lectriques</h2>
+
+<div class="prop">
+  <span class="label label-prop">Loi d'Ohm et puissance</span><br>
+  \[ U = R \times I \qquad P = U \times I \qquad I = \frac{P}{U} \]
+  <ul>
+    <li>U : tension en V &emsp; I : intensit&eacute; en A &emsp; R : r&eacute;sistance en &Omega;</li>
+    <li>P : puissance en W</li>
+  </ul>
+  Aussi : \(P = R \times I^2\) et \(P = U^2 / R\)
+</div>
+
+<h2>3. Le circulateur de chauffage</h2>
+
+<div class="def">
+  <span class="label label-def">R&ocirc;le du circulateur</span><br>
+  Le <strong>circulateur</strong> (ou pompe de circulation) fait circuler l'eau dans le circuit de chauffage. C'est un petit moteur &eacute;lectrique qui tourne en permanence pendant la saison de chauffe.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Puissances typiques</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Type de circulateur</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">P (W)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Classe</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Ancien (vitesse fixe)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">60 &agrave; 100</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">D &agrave; E</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Moderne (vitesse variable)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">5 &agrave; 45</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">A</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple</span><br>
+  Circulateur P<sub>max</sub> = 45 W sur 230 V.<br>
+  \(I = P/U = 45/230 = 0{,}196\) A &asymp; <strong>0,20 A</strong><br>
+  Disjoncteur : <strong>2 A</strong> (calibre minimum, car I est tr&egrave;s faible).
+</div>
+
+<div class="meth">
+  <span class="label label-meth">&Eacute;conomie : ancien vs moderne</span><br>
+  Ancien circulateur 80 W fonctionnant 5 000 h/an : E = 80 &times; 5 000 / 1 000 = <strong>400 kWh</strong> &rarr; 100 &euro;/an.<br>
+  Moderne 15 W moyen : E = 15 &times; 5 000 / 1 000 = <strong>75 kWh</strong> &rarr; 19 &euro;/an.<br>
+  &Eacute;conomie : <strong>81 &euro;/an</strong>. Rentabilis&eacute; en 2&ndash;3 ans.
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>\(P = U \times I\) &mdash; \(I = P / U\)</li>
+    <li>Circulateur moderne : 5&ndash;45 W, classe A, vitesse variable</li>
+    <li>Toujours lire la plaque signal&eacute;tique pour conna&icirc;tre P et I<sub>max</sub></li>
+    <li>Le remplacement d'un ancien circulateur est souvent tr&egrave;s rentable</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Intensit&eacute; d'un circulateur (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Circulateur de 60 W sur 230 V. I = P / U = 60 / 230 = &hellip; A
+  <div class="corr"><strong>Correction :</strong> I = <strong>0,26 A</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Lire une plaque signal&eacute;tique (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Plaque : 230 V ~ 50 Hz, P = 5&ndash;45 W, I<sub>max</sub> = 0,20 A.<br>
+  <strong>a)</strong> Quelle est la tension ? <strong>b)</strong> Puissance max ? <strong>c)</strong> V&eacute;rifier : I = 45/230 = &hellip; A &asymp; 0,20 ?
+  <div class="corr"><strong>Correction :</strong><br>a) <strong>230 V</strong><br>b) <strong>45 W</strong><br>c) 45/230 = 0,196 &asymp; <strong>0,20 A</strong> &check;</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">&Eacute;nergie annuelle (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Circulateur de 40 W fonctionnant 4 000 h/an.<br>
+  E = P &times; t = 40 &times; 4 000 / 1 000 = &hellip; kWh. Co&ucirc;t (0,25 &euro;/kWh) = &hellip; &euro;.
+  <div class="corr"><strong>Correction :</strong> E = <strong>160 kWh</strong>. Co&ucirc;t = 160 &times; 0,25 = <strong>40 &euro;</strong>/an</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Choisir le disjoncteur (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Trois appareils sur un m&ecirc;me circuit :<br>
+  &bull; Circulateur : 45 W <strong>b)</strong> Vanne motoris&eacute;e : 10 W <strong>c)</strong> Thermostat : 5 W<br>
+  <strong>1.</strong> P totale. <strong>2.</strong> I total. <strong>3.</strong> Calibre parmi 2, 6, 10 A.
+  <div class="corr"><strong>Correction :</strong><br>1. P = 45 + 10 + 5 = <strong>60 W</strong><br>2. I = 60/230 = <strong>0,26 A</strong><br>3. Calibre <strong>2 A</strong> (premier au-dessus de 0,26 A)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Ancien vs moderne &mdash; &eacute;conomie</span><span class="tag-standard">Standard</span></div>
+  Remplacement d'un circulateur classe D (85 W en continu) par un classe A (puissance moyenne 12 W). Fonctionnement 5 500 h/an, &eacute;lectricit&eacute; 0,25 &euro;/kWh. Co&ucirc;t du nouveau circulateur : 250 &euro;.<br><br>
+  <strong>1.</strong> E annuelle de chaque. <strong>2.</strong> Co&ucirc;t annuel de chaque. <strong>3.</strong> &Eacute;conomie. <strong>4.</strong> Temps de retour.
+  <div class="corr"><strong>Correction :</strong><br>1. Ancien : 85&times;5 500/1 000 = <strong>468 kWh</strong>. Nouveau : 12&times;5 500/1 000 = <strong>66 kWh</strong><br>2. Ancien : 468&times;0,25 = <strong>117 &euro;</strong>. Nouveau : 66&times;0,25 = <strong>17 &euro;</strong><br>3. &Eacute;conomie : 117 &minus; 17 = <strong>100 &euro;/an</strong><br>4. 250/100 = <strong>2,5 ans</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">R&eacute;sistance d'un &eacute;l&eacute;ment chauffant</span><span class="tag-standard">Standard</span></div>
+  Un &eacute;l&eacute;ment chauffant de chauffe-eau a une puissance de 2 400 W sur 230 V.<br>
+  <strong>1.</strong> Calculer I. <strong>2.</strong> Calculer R avec la loi d'Ohm (R = U/I).<br>
+  <strong>3.</strong> V&eacute;rifier avec P = U&sup2;/R.
+  <div class="corr"><strong>Correction :</strong><br>1. I = 2 400/230 = <strong>10,4 A</strong><br>2. R = 230/10,4 = <strong>22,1 &Omega;</strong><br>3. P = 230&sup2;/22,1 = 52 900/22,1 = <strong>2 394 W</strong> &asymp; 2 400 &check;</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Bilan &eacute;lectrique d'une chaufferie</span><span class="tag-standard">Standard</span></div>
+  Une chaufferie comprend :<br>
+  &bull; Chaudi&egrave;re (br&ucirc;leur + r&eacute;gulation) : 150 W<br>
+  &bull; 2 circulateurs : 45 W chacun<br>
+  &bull; 3 vannes motoris&eacute;es : 10 W chacune<br>
+  &bull; &Eacute;clairage chaufferie : 60 W<br><br>
+  <strong>1.</strong> P totale. <strong>2.</strong> I total (230 V). <strong>3.</strong> Calibre disjoncteur g&eacute;n&eacute;ral chaufferie. <strong>4.</strong> E annuelle (2 000 h).
+  <div class="corr"><strong>Correction :</strong><br>1. P = 150 + 2&times;45 + 3&times;10 + 60 = <strong>330 W</strong><br>2. I = 330/230 = <strong>1,43 A</strong><br>3. Disjoncteur <strong>6 A</strong> (marge pour les courants d'appel des moteurs)<br>4. E = 330 &times; 2 000 / 1 000 = <strong>660 kWh</strong> &rarr; 660 &times; 0,25 = 165 &euro;/an</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Puissance absorb&eacute;e vs puissance utile</span><span class="tag-appro">Approfondissement</span></div>
+  Un circulateur a un rendement moteur de 65 %. Sa puissance &eacute;lectrique absorb&eacute;e est de 40 W.<br><br>
+  <strong>1.</strong> Quelle puissance m&eacute;canique utile (hydraulique) ? <strong>2.</strong> O&ugrave; vont les 35 % perdus ?<br>
+  <strong>3.</strong> Ces pertes sont-elles totalement gaspill&eacute;es dans un r&eacute;seau de chauffage ?
+  <div class="corr"><strong>Correction :</strong><br>1. P<sub>utile</sub> = 40 &times; 0,65 = <strong>26 W</strong><br>2. Les 14 W perdus sont transform&eacute;s en <strong>chaleur</strong> (effet Joule dans le moteur).<br>3. <strong>Non, pas totalement gaspill&eacute;s</strong> : comme le circulateur est dans le circuit de chauffage, la chaleur dissip&eacute;e par le moteur chauffe l'eau du circuit ! En chauffage, les pertes du circulateur contribuent (modestement) au chauffage.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Section de c&acirc;ble</span><span class="tag-appro">Approfondissement</span></div>
+  La section de c&acirc;ble d&eacute;pend de l'intensit&eacute; et de la longueur :<br>
+  &bull; I &le; 6 A, longueur &le; 50 m : c&acirc;ble <strong>1,5 mm&sup2;</strong><br>
+  &bull; I &le; 10 A : <strong>1,5 mm&sup2;</strong><br>
+  &bull; I &le; 16 A : <strong>2,5 mm&sup2;</strong><br><br>
+  Le circulateur (45 W) est &agrave; 25 m du tableau. <strong>1.</strong> Calculer I. <strong>2.</strong> Quelle section de c&acirc;ble ?<br>
+  Le chauffe-eau (2 400 W) est &agrave; 10 m. <strong>3.</strong> Calculer I. <strong>4.</strong> Section ?
+  <div class="corr"><strong>Correction :</strong><br>1. I = 45/230 = 0,20 A<br>2. 0,20 &lt; 6 A et 25 &lt; 50 m &rarr; <strong>1,5 mm&sup2;</strong><br>3. I = 2 400/230 = 10,4 A<br>4. 10,4 &lt; 16 A &rarr; <strong>2,5 mm&sup2;</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Probl&egrave;me complet &mdash; installation &eacute;lectrique chaufferie</span><span class="tag-appro">Approfondissement</span></div>
+  Un technicien c&acirc;ble une chaufferie avec :<br>
+  &bull; Chaudi&egrave;re gaz (br&ucirc;leur 200 W, circulateur int&eacute;gr&eacute; 45 W) sur un circuit d&eacute;di&eacute;<br>
+  &bull; Chauffe-eau &eacute;lectrique 3 000 W sur un circuit d&eacute;di&eacute; (contact HC)<br>
+  &bull; &Eacute;clairage + prise 400 W sur un circuit d&eacute;di&eacute;<br><br>
+  <strong>1.</strong> Calculer I pour chaque circuit et choisir les disjoncteurs (2, 6, 10, 16, 20 A).<br>
+  <strong>2.</strong> Calculer I total de la chaufferie.<br>
+  <strong>3.</strong> Tous les appareils fonctionnent-ils en m&ecirc;me temps ? Quel est le pire cas ?<br>
+  <strong>4.</strong> Choisir le disjoncteur g&eacute;n&eacute;ral chaufferie.
+  <div class="corr"><strong>Correction :</strong><br>1. Chaudi&egrave;re : (200+45)/230 = 1,07 A &rarr; <strong>2 A</strong> ou <strong>6 A</strong> (marge d&eacute;marrage).<br>Chauffe-eau : 3 000/230 = 13,0 A &rarr; <strong>16 A</strong>.<br>&Eacute;clairage : 400/230 = 1,74 A &rarr; <strong>6 A</strong>.<br>2. Pire cas (tout allum&eacute;) : 1,07 + 13,0 + 1,74 = <strong>15,8 A</strong><br>3. Le chauffe-eau ne fonctionne qu'en HC (nuit). En journ&eacute;e : I = 1,07 + 1,74 = 2,81 A. En HC : I max = 15,8 A.<br>4. Disjoncteur g&eacute;n&eacute;ral <strong>20 A</strong> (marge pour le courant d'appel du chauffe-eau).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>

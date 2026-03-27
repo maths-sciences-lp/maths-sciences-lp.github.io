@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>pH de l'eau d'une installation — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>pH de l'eau d'une installation</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.9 &mdash; Chimie</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Conna&icirc;tre l'&eacute;chelle de pH (0 &agrave; 14) et son interpr&eacute;tation</li>
+    <li>Comprendre les notions de duret&eacute; de l'eau (TH) et d'agressivit&eacute;</li>
+    <li>Identifier les risques d'entartrage et de corrosion dans un r&eacute;seau</li>
+    <li>Choisir un traitement d'eau adapt&eacute;</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.9 &mdash; Traitement des eaux (pH, TH, entartrage, corrosion)</li>
+    <li><strong>Notions sciences :</strong> Acido-basicit&eacute;, pH, chimie de l'eau</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Lecture de tableaux, comparaisons, in&eacute;galit&eacute;s</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Entretien annuel d'une chaudi&egrave;re</strong><br><br>
+  Lors de l'entretien annuel d'une chaudi&egrave;re gaz, un technicien chauffagiste constate du <strong>tartre</strong> dans l'&eacute;changeur et de la <strong>boue noire</strong> (embouage) dans le circuit. Il doit analyser l'eau du circuit pour d&eacute;terminer la cause et proposer un traitement.
+</div>
+
+<!-- SVG échelle pH -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="460" height="90" viewBox="0 0 460 90" style="max-width:100%;font-family:sans-serif;font-size:10px">
+  <!-- barre pH -->
+  <defs>
+    <linearGradient id="phg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect x="30" y="20" width="400" height="25" rx="5" fill="url(#phg)"/>
+  <!-- graduations -->
+  <text x="30" y="15" text-anchor="middle" fill="#dc2626" font-weight="bold">0</text>
+  <text x="87" y="15" text-anchor="middle" fill="#dc2626">2</text>
+  <text x="144" y="15" text-anchor="middle" fill="#f97316">4</text>
+  <text x="201" y="15" text-anchor="middle" fill="#ca8a04">6</text>
+  <text x="230" y="15" text-anchor="middle" fill="#22c55e" font-weight="bold">7</text>
+  <text x="259" y="15" text-anchor="middle" fill="#0ea5e9">8</text>
+  <text x="316" y="15" text-anchor="middle" fill="#0ea5e9">10</text>
+  <text x="373" y="15" text-anchor="middle" fill="#2563eb">12</text>
+  <text x="430" y="15" text-anchor="middle" fill="#2563eb" font-weight="bold">14</text>
+  <!-- labels -->
+  <text x="115" y="62" text-anchor="middle" fill="#dc2626" font-weight="bold">ACIDE</text>
+  <text x="115" y="75" text-anchor="middle" fill="#dc2626" font-size="9">corrosion</text>
+  <text x="230" y="62" text-anchor="middle" fill="#22c55e" font-weight="bold">NEUTRE</text>
+  <text x="345" y="62" text-anchor="middle" fill="#2563eb" font-weight="bold">BASIQUE</text>
+  <text x="345" y="75" text-anchor="middle" fill="#2563eb" font-size="9">entartrage</text>
+  <!-- zone idéale -->
+  <rect x="213" y="48" width="60" height="14" rx="3" fill="none" stroke="#22c55e" stroke-width="2"/>
+  <text x="243" y="88" text-anchor="middle" fill="#22c55e" font-size="9">Zone id&eacute;ale : 7&ndash;8,5</text>
+</svg>
+</div>
+
+<h2>2. Le pH</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; pH</span><br>
+  Le <strong>pH</strong> mesure l'acidit&eacute; ou la basicit&eacute; d'une solution sur une &eacute;chelle de <strong>0 &agrave; 14</strong> :
+  <ul>
+    <li>pH &lt; 7 : solution <strong>acide</strong> (vinaigre, acide chlorhydrique)</li>
+    <li>pH = 7 : solution <strong>neutre</strong> (eau pure)</li>
+    <li>pH &gt; 7 : solution <strong>basique</strong> (soude, eau de Javel)</li>
+  </ul>
+</div>
+
+<h2>3. Duret&eacute; de l'eau (TH)</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition &mdash; TH (Titre Hydrotim&eacute;trique)</span><br>
+  Le <strong>TH</strong> mesure la concentration en calcium (Ca&sup2;+) et magn&eacute;sium (Mg&sup2;+) dans l'eau, en <strong>degr&eacute;s fran&ccedil;ais (&deg;f)</strong> :
+  <ul>
+    <li>TH &lt; 15 &deg;f : eau <strong>douce</strong> (peu de calcaire)</li>
+    <li>15 &le; TH &le; 30 &deg;f : eau <strong>moyennement dure</strong></li>
+    <li>TH &gt; 30 &deg;f : eau <strong>dure</strong> (beaucoup de calcaire &rarr; entartrage)</li>
+  </ul>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Cons&eacute;quences pour une installation</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">Probl&egrave;me</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Cause</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Cons&eacute;quence</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Solution</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">Entartrage</td><td style="border:1px solid var(--p-border);padding:.35rem">Eau dure (TH &gt; 25), T &gt; 60 &deg;C</td><td style="border:1px solid var(--p-border);padding:.35rem">D&eacute;p&ocirc;t de calcaire, perte de rendement</td><td style="border:1px solid var(--p-border);padding:.35rem">Adoucisseur</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">Corrosion</td><td style="border:1px solid var(--p-border);padding:.35rem">pH &lt; 7, eau agressive</td><td style="border:1px solid var(--p-border);padding:.35rem">Perforation des tuyaux, fuites</td><td style="border:1px solid var(--p-border);padding:.35rem">Neutraliseur, inhibiteur</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;font-weight:bold">Embouage</td><td style="border:1px solid var(--p-border);padding:.35rem">Corrosion + boues</td><td style="border:1px solid var(--p-border);padding:.35rem">Radiateurs froids en bas, bruit</td><td style="border:1px solid var(--p-border);padding:.35rem">D&eacute;sembouage, pot &agrave; boues</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="att">
+  <span class="label label-att">1 mm de tartre = 10 % de perte de rendement</span><br>
+  Le tartre est un isolant thermique. 1 mm de d&eacute;p&ocirc;t sur l'&eacute;changeur r&eacute;duit le transfert de chaleur de <strong>10 %</strong>. La chaudi&egrave;re consomme plus pour le m&ecirc;me r&eacute;sultat.
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>pH &lt; 7 : acide (corrosion) &mdash; pH = 7 : neutre &mdash; pH &gt; 7 : basique (entartrage)</li>
+    <li>Zone id&eacute;ale chauffage : pH entre 7 et 8,5</li>
+    <li>TH &gt; 25 &deg;f &rarr; risque d'entartrage &rarr; adoucisseur</li>
+    <li>1 mm de tartre = 10 % de perte de rendement</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Acide, neutre ou basique ? (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Classer : <strong>a)</strong> pH = 3 <strong>b)</strong> pH = 7 <strong>c)</strong> pH = 11 <strong>d)</strong> pH = 6,5 <strong>e)</strong> pH = 8,2
+  <div class="corr"><strong>Correction :</strong><br>a) <strong>Acide</strong> b) <strong>Neutre</strong> c) <strong>Basique</strong> d) <strong>L&eacute;g&egrave;rement acide</strong> e) <strong>L&eacute;g&egrave;rement basique</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">Eau douce ou dure ? (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  <strong>a)</strong> TH = 8 &deg;f &rarr; &hellip; <strong>b)</strong> TH = 25 &deg;f &rarr; &hellip; <strong>c)</strong> TH = 38 &deg;f &rarr; &hellip; <strong>d)</strong> TH = 12 &deg;f &rarr; &hellip;
+  <div class="corr"><strong>Correction :</strong><br>a) <strong>Douce</strong> b) <strong>Moyennement dure</strong> c) <strong>Dure</strong> d) <strong>Douce</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Risque entartrage ou corrosion ? (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Pour chaque eau, indiquer le risque principal :<br>
+  <strong>a)</strong> pH = 6,2, TH = 8 &deg;f <strong>b)</strong> pH = 8,5, TH = 35 &deg;f <strong>c)</strong> pH = 7,5, TH = 20 &deg;f
+  <div class="corr"><strong>Correction :</strong><br>a) pH acide + eau douce &rarr; <strong>corrosion</strong><br>b) pH basique + eau dure &rarr; <strong>entartrage</strong><br>c) pH neutre + duret&eacute; moyenne &rarr; <strong>peu de risque</strong> (eau &eacute;quilibr&eacute;e)</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Perte de rendement par le tartre (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  1 mm de tartre = 10 % de perte. Calculer la perte pour :<br>
+  <strong>a)</strong> 2 mm <strong>b)</strong> 3 mm <strong>c)</strong> 0,5 mm<br>
+  Si la chaudi&egrave;re a un rendement de 95 % sans tartre, quel rendement avec 2 mm de tartre ?
+  <div class="corr"><strong>Correction :</strong><br>a) <strong>20 %</strong> b) <strong>30 %</strong> c) <strong>5 %</strong><br>Rendement avec 2 mm : 95 &times; (1 &minus; 0,20) = 95 &times; 0,80 = <strong>76 %</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Analyse d'eau &mdash; diagnostic</span><span class="tag-standard">Standard</span></div>
+  Le technicien analyse l'eau du circuit de chauffage et obtient : pH = 6,8, TH = 32 &deg;f, conductivit&eacute; = 850 &micro;S/cm.<br><br>
+  <strong>1.</strong> L'eau est-elle acide, neutre ou basique ?<br>
+  <strong>2.</strong> Quelle est la duret&eacute; ?<br>
+  <strong>3.</strong> Quels risques pour l'installation ?<br>
+  <strong>4.</strong> Quel traitement proposer ?
+  <div class="corr"><strong>Correction :</strong><br>1. pH 6,8 &rarr; <strong>l&eacute;g&egrave;rement acide</strong><br>2. TH 32 &deg;f &rarr; <strong>eau dure</strong><br>3. Double risque : <strong>corrosion</strong> (pH &lt; 7) ET <strong>entartrage</strong> (TH &gt; 30). L'installation va souffrir des deux.<br>4. <strong>Adoucisseur</strong> pour r&eacute;duire le TH + <strong>inhibiteur de corrosion</strong> dans le circuit + <strong>pot &agrave; boues magn&eacute;tique</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Co&ucirc;t du tartre</span><span class="tag-standard">Standard</span></div>
+  Une chaudi&egrave;re de 24 kW (&eta; = 105 %) a 3 mm de tartre. Consommation sans tartre : 15 000 kWh/an (gaz 0,12 &euro;/kWh).<br><br>
+  <strong>1.</strong> Rendement avec 3 mm de tartre.<br>
+  <strong>2.</strong> Nouvelle consommation de gaz.<br>
+  <strong>3.</strong> Surco&ucirc;t annuel d&ucirc; au tartre.<br>
+  <strong>4.</strong> Un d&eacute;tartrage co&ucirc;te 200 &euro;. En combien de mois est-il rentabilis&eacute; ?
+  <div class="corr"><strong>Correction :</strong><br>1. &eta;<sub>tartre</sub> = 105 &times; 0,70 = <strong>73,5 %</strong><br>2. E utile = 15 000 &times; 1,05 = 15 750 kWh. Avec tartre : E<sub>gaz</sub> = 15 750 / 0,735 = <strong>21 429 kWh</strong><br>3. Co&ucirc;t sans tartre : 15 000 &times; 0,12 = 1 800 &euro;. Avec tartre : 21 429 &times; 0,12 = 2 571 &euro;. Surco&ucirc;t : <strong>771 &euro;/an</strong><br>4. 200 / (771/12) = 200 / 64,25 = <strong>3,1 mois</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Adoucisseur &mdash; principe</span><span class="tag-standard">Standard</span></div>
+  Un adoucisseur r&eacute;duit le TH en &eacute;changeant les ions Ca&sup2;+ par des ions Na+. L'eau d'entr&eacute;e a TH = 35 &deg;f, l'adoucisseur la ram&egrave;ne &agrave; TH = 8 &deg;f.<br><br>
+  <strong>1.</strong> De combien de degr&eacute;s le TH a-t-il baiss&eacute; ?<br>
+  <strong>2.</strong> L'eau adoucie (&lt; 15 &deg;f) est-elle bonne pour le chauffage ?<br>
+  <strong>3.</strong> Pourquoi ne faut-il pas trop adoucir l'eau (TH &lt; 5 &deg;f) ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Delta;TH = 35 &minus; 8 = <strong>27 &deg;f</strong><br>2. <strong>Oui</strong>, l'eau douce ne d&eacute;pose pas de tartre.<br>3. L'eau trop douce devient <strong>agressive</strong> (corrosive) car elle dissout les d&eacute;p&ocirc;ts protecteurs dans les tuyaux. Id&eacute;al : TH entre 8 et 15 &deg;f.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Temp&eacute;rature et entartrage</span><span class="tag-appro">Approfondissement</span></div>
+  Le calcaire se d&eacute;pose principalement au-dessus de 60 &deg;C. C'est pourquoi les chaudi&egrave;res &agrave; condensation (retour &agrave; 40 &deg;C) s'entartrent moins que les classiques (retour &agrave; 70 &deg;C).<br><br>
+  <strong>1.</strong> Pourquoi la temp&eacute;rature favorise-t-elle le d&eacute;p&ocirc;t de calcaire ?<br>
+  <strong>2.</strong> Un chauffe-eau stock&eacute; &agrave; 65 &deg;C est-il &agrave; risque ?<br>
+  <strong>3.</strong> Pourquoi ne peut-on pas simplement baisser la temp&eacute;rature du chauffe-eau &agrave; 50 &deg;C ?<br>
+  <strong>4.</strong> Quelle solution technique permet de limiter l'entartrage tout en maintenant 65 &deg;C ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Agrave; haute temp&eacute;rature, le CO<sub>2</sub> dissous s'&eacute;chappe de l'eau, ce qui d&eacute;place l'&eacute;quilibre chimique vers la pr&eacute;cipitation du CaCO<sub>3</sub> (calcaire).<br>2. <strong>Oui</strong>, 65 &gt; 60 &deg;C &rarr; risque d'entartrage.<br>3. En dessous de 55 &deg;C, les bact&eacute;ries <strong>Legionella</strong> se d&eacute;veloppent (risque sanitaire grave &mdash; l&eacute;gionellose). La r&eacute;glementation impose T &ge; 55 &deg;C en stockage et un choc thermique p&eacute;riodique &agrave; 65&ndash;70 &deg;C.<br>4. Un <strong>adoucisseur</strong> en amont du chauffe-eau &eacute;limine le calcaire avant qu'il n'entre.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">D&eacute;sembouage &mdash; diagnostic terrain</span><span class="tag-appro">Approfondissement</span></div>
+  Un client se plaint que ses radiateurs sont chauds en haut mais froids en bas. Le technicien suspecte un <strong>embouage</strong>.<br><br>
+  <strong>1.</strong> Expliquer pourquoi la boue (oxydes de fer) s'accumule en bas des radiateurs.<br>
+  <strong>2.</strong> Quelles sont les causes de l'embouage (3 causes principales) ?<br>
+  <strong>3.</strong> D&eacute;crire le proc&eacute;d&eacute; de d&eacute;sembouage chimique.<br>
+  <strong>4.</strong> Comment pr&eacute;venir l'embouage sur une installation neuve ?
+  <div class="corr"><strong>Correction :</strong><br>1. La boue (particules d'oxyde de fer) est plus dense que l'eau &rarr; elle <strong>s&eacute;dimente en bas</strong> des radiateurs, bloquant la circulation.<br>2. Causes : (1) <strong>corrosion</strong> des tuyaux acier (eau agressive, entr&eacute;e d'air) ; (2) <strong>appoints d'eau fr&eacute;quents</strong> (eau neuve riche en oxyg&egrave;ne) ; (3) <strong>absence de traitement</strong> (pas d'inhibiteur).<br>3. D&eacute;sembouage : injecter un produit chimique (acide + dispersant), laisser agir 24&ndash;48 h, puis rincer abondamment tout le circuit.<br>4. Pr&eacute;vention : <strong>pot &agrave; boues magn&eacute;tique</strong> (capture les oxydes), inhibiteur de corrosion, &eacute;tanch&eacute;it&eacute; du circuit (limiter les appoints d'eau).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Probl&egrave;me complet &mdash; traitement d'eau</span><span class="tag-appro">Approfondissement</span></div>
+  Un technicien installe une chaudi&egrave;re &agrave; condensation dans une r&eacute;gion o&ugrave; l'eau est dure (TH = 40 &deg;f, pH = 8,0). L'installation fait 200 litres de volume d'eau.<br><br>
+  <strong>1.</strong> Sans traitement, quel est le risque principal ? Pourquoi ?<br>
+  <strong>2.</strong> Il installe un adoucisseur qui ram&egrave;ne le TH &agrave; 10 &deg;f. L'eau est-elle maintenant &eacute;quilibr&eacute;e ?<br>
+  <strong>3.</strong> Il ajoute un inhibiteur de corrosion &agrave; 1 % du volume d'eau. Quel volume de produit ?<br>
+  <strong>4.</strong> Il pose un pot &agrave; boues magn&eacute;tique. O&ugrave; doit-il le placer sur le circuit (aller ou retour chaudi&egrave;re) ? Pourquoi ?
+  <div class="corr"><strong>Correction :</strong><br>1. <strong>Entartrage</strong> : TH = 40 &deg;f (tr&egrave;s dur) et pH = 8,0 (l&eacute;g&egrave;rement basique). Le calcaire se d&eacute;posera rapidement dans l'&eacute;changeur de la chaudi&egrave;re.<br>2. TH = 10, pH = 8,0 &rarr; <strong>oui, &eacute;quilibr&eacute;e</strong> (TH entre 8 et 15, pH entre 7 et 8,5).<br>3. V<sub>inhibiteur</sub> = 200 &times; 0,01 = <strong>2 litres</strong><br>4. Sur le <strong>retour chaudi&egrave;re</strong> (juste avant l'entr&eacute;e dans la chaudi&egrave;re). Les boues sont capt&eacute;es avant d'entrer dans l'&eacute;changeur, qui est la partie la plus sensible.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>
