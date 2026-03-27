@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Débit de renouvellement d'air — VMC — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>D&eacute;bit de renouvellement d'air &mdash; VMC</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.5 &mdash; Ventilation</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Conna&icirc;tre les d&eacute;bits hygi&eacute;niques r&eacute;glementaires de renouvellement d'air</li>
+    <li>Calculer le d&eacute;bit total d'une VMC pour un logement</li>
+    <li>Distinguer VMC simple flux et double flux</li>
+    <li>Calculer la puissance thermique perdue par le renouvellement d'air</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.5 &mdash; Renouvellement d'air, VMC, d&eacute;bits hygi&eacute;niques</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Addition, proportionnalit&eacute;, conversions (m&sup3;/h), pourcentages</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Installation d'une VMC dans un appartement</strong><br><br>
+  Un installateur thermique doit poser une VMC simple flux hygror&eacute;glable dans un appartement T4 (4 pi&egrave;ces principales). Il doit dimensionner les bouches d'extraction et choisir le groupe d'extraction adapt&eacute;.<br><br>
+  Le ma&icirc;tre d'&oelig;uvre demande : <em>&laquo;&nbsp;Calcule le d&eacute;bit total d'extraction et v&eacute;rifie que le groupe VMC a une capacit&eacute; suffisante.&nbsp;&raquo;</em>
+</div>
+
+<h2>2. Pourquoi renouveler l'air ?</h2>
+
+<div class="def">
+  <span class="label label-def">Raisons du renouvellement d'air</span><br>
+  <ul>
+    <li><strong>Hygi&egrave;ne</strong> : &eacute;vacuer le CO&sub2;, les odeurs, l'humidit&eacute; (douche, cuisine)</li>
+    <li><strong>Sant&eacute;</strong> : &eacute;viter les moisissures, les polluants int&eacute;rieurs (COV, radon)</li>
+    <li><strong>R&eacute;glementation</strong> : arr&ecirc;t&eacute; du 24 mars 1982 &mdash; d&eacute;bits minimaux obligatoires</li>
+  </ul>
+</div>
+
+<h2>3. D&eacute;bits r&eacute;glementaires</h2>
+
+<div class="prop">
+  <span class="label label-prop">Tableau &mdash; D&eacute;bits d'extraction (arr&ecirc;t&eacute; du 24 mars 1982)</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem" rowspan="2">Nombre de pi&egrave;ces principales</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem" colspan="4">D&eacute;bits d'extraction (m&sup3;/h)</th>
+    </tr><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.35rem">Cuisine</th>
+      <th style="border:1px solid var(--p-border);padding:.35rem">SdB/douche</th>
+      <th style="border:1px solid var(--p-border);padding:.35rem">WC</th>
+      <th style="border:1px solid var(--p-border);padding:.35rem">D&eacute;bit total min.</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">75</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center;font-weight:bold">35</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">2</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">90</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center;font-weight:bold">60</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">3</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">105</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">30</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center;font-weight:bold">75</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">4</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">120</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">30</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center;font-weight:bold">90</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">5+</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">135</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">30</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">15</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center;font-weight:bold">105</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:.82rem;color:#555;margin-top:.3rem">D&eacute;bits en cuisine = d&eacute;bit de pointe (hotte en marche). Le d&eacute;bit total minimal correspond au d&eacute;bit r&eacute;duit (fonctionnement permanent).</p>
+</div>
+
+<h2>4. VMC simple flux vs double flux</h2>
+
+<div class="def">
+  <span class="label label-def">VMC simple flux</span><br>
+  L'air neuf entre par des <strong>entr&eacute;es d'air</strong> dans les pi&egrave;ces principales (s&eacute;jour, chambres) et est extrait par des <strong>bouches d'extraction</strong> dans les pi&egrave;ces humides (cuisine, SdB, WC). Un seul ventilateur (extracteur) en toiture ou combles.
+</div>
+
+<div class="def">
+  <span class="label label-def">VMC double flux</span><br>
+  L'air neuf et l'air extrait passent dans un <strong>&eacute;changeur de chaleur</strong>. L'air chaud extrait r&eacute;chauffe l'air froid entrant &rarr; <strong>r&eacute;cup&eacute;ration de chaleur</strong> (rendement 70 &agrave; 90 %). Deux ventilateurs (soufflage + extraction).
+</div>
+
+<h2>5. Puissance thermique perdue par le renouvellement d'air</h2>
+
+<div class="prop">
+  <span class="label label-prop">Formule</span><br>
+  \[ \Phi_{\text{air}} = \frac{\dot{V} \times \rho \times c \times \Delta T}{3\,600} \]
+  <ul>
+    <li>\(\dot{V}\) : d&eacute;bit d'air en <strong>m&sup3;/h</strong></li>
+    <li>\(\rho = 1{,}2\) kg/m&sup3; (masse volumique de l'air)</li>
+    <li>\(c = 1\,005\) J/(kg&middot;&deg;C)</li>
+    <li>\(\Delta T\) : &eacute;cart de temp&eacute;rature (&deg;C)</li>
+    <li>3 600 : conversion h &rarr; s</li>
+  </ul>
+  Avec une VMC double flux (rendement &eta;), la puissance r&eacute;cup&eacute;r&eacute;e est :
+  \[ \Phi_{\text{r&eacute;cup}} = \eta \times \Phi_{\text{air}} \]
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; T4, d&eacute;bit total 90 m&sup3;/h, &Delta;T = 20 &deg;C</span><br>
+  \(\Phi = \dfrac{90 \times 1{,}2 \times 1\,005 \times 20}{3\,600} = \dfrac{2\,170\,800}{3\,600} = 603\) W<br><br>
+  Avec VMC double flux (&eta; = 85 %) : chaleur r&eacute;cup&eacute;r&eacute;e = 0,85 &times; 603 = 512 W.<br>
+  Puissance r&eacute;ellement perdue : 603 &minus; 512 = <strong>91 W</strong> seulement (au lieu de 603 W).
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>Le renouvellement d'air est <strong>obligatoire</strong> (qualit&eacute; de l'air int&eacute;rieur)</li>
+    <li>D&eacute;bits fix&eacute;s par l'arr&ecirc;t&eacute; du 24 mars 1982 selon le nombre de pi&egrave;ces</li>
+    <li>VMC simple flux : pas de r&eacute;cup&eacute;ration de chaleur</li>
+    <li>VMC double flux : r&eacute;cup&egrave;re 70 &agrave; 90 % de la chaleur de l'air extrait</li>
+    <li>\(\Phi_{\text{air}} = \dot{V} \times \rho \times c \times \Delta T / 3\,600\)</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">Lire le tableau r&eacute;glementaire (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  <strong>a)</strong> D&eacute;bit de cuisine pour un T3 : &hellip; m&sup3;/h<br>
+  <strong>b)</strong> D&eacute;bit total minimal pour un T2 : &hellip; m&sup3;/h<br>
+  <strong>c)</strong> D&eacute;bit d'extraction WC (tous logements) : &hellip; m&sup3;/h
+  <div class="corr"><strong>Correction :</strong><br>a) <strong>105</strong> m&sup3;/h<br>b) <strong>60</strong> m&sup3;/h<br>c) <strong>15</strong> m&sup3;/h</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">D&eacute;bit total d'un T3 (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Un T3 a : 1 cuisine, 1 SdB, 1 WC.<br>
+  D&eacute;bit de pointe = cuisine + SdB + WC = 105 + 30 + 15 = &hellip; m&sup3;/h<br>
+  D&eacute;bit r&eacute;duit minimal = &hellip; m&sup3;/h (tableau)
+  <div class="corr"><strong>Correction :</strong><br>D&eacute;bit pointe : 105 + 30 + 15 = <strong>150</strong> m&sup3;/h<br>D&eacute;bit r&eacute;duit : <strong>75</strong> m&sup3;/h</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Simple flux ou double flux ? (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Indiquer pour chaque affirmation si elle concerne la VMC <strong>simple flux (SF)</strong> ou <strong>double flux (DF)</strong> :<br>
+  <strong>a)</strong> Poss&egrave;de un &eacute;changeur de chaleur &rarr; &hellip;<br>
+  <strong>b)</strong> L'air entre par des grilles dans les fen&ecirc;tres &rarr; &hellip;<br>
+  <strong>c)</strong> R&eacute;cup&egrave;re 85 % de la chaleur &rarr; &hellip;<br>
+  <strong>d)</strong> Un seul ventilateur &rarr; &hellip;
+  <div class="corr"><strong>Correction :</strong><br>a) <strong>DF</strong> b) <strong>SF</strong> c) <strong>DF</strong> d) <strong>SF</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">Puissance perdue (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  D&eacute;bit = 60 m&sup3;/h, &Delta;T = 15 &deg;C.<br><br>
+  \(\Phi = \dfrac{60 \times 1{,}2 \times 1\,005 \times 15}{3\,600} = \dfrac{\ldots}{3\,600} = \ldots\) W
+  <div class="corr"><strong>Correction :</strong> Num&eacute;rateur = 60 &times; 1,2 &times; 1 005 &times; 15 = 1 084 860. &Phi; = 1 084 860 / 3 600 = <strong>301 W</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">Dimensionner une VMC pour un T5</span><span class="tag-standard">Standard</span></div>
+  Un T5 a : 1 cuisine, 2 SdB, 2 WC.<br><br>
+  <strong>1.</strong> Lire les d&eacute;bits dans le tableau pour 5 pi&egrave;ces.<br>
+  <strong>2.</strong> Calculer le d&eacute;bit de pointe total.<br>
+  <strong>3.</strong> Le groupe VMC propos&eacute; a un d&eacute;bit max de 200 m&sup3;/h. Convient-il ?<br>
+  <strong>4.</strong> Calculer la puissance perdue pour &Delta;T = 22 &deg;C (d&eacute;bit r&eacute;duit).
+  <div class="corr"><strong>Correction :</strong><br>1. Cuisine : 135, SdB : 30, WC : 15. D&eacute;bit r&eacute;duit : 105.<br>2. Pointe : 135 + 2&times;30 + 2&times;15 = <strong>225</strong> m&sup3;/h<br>3. 225 &gt; 200 &rarr; <strong>non, groupe insuffisant</strong>. Il faut un groupe de 250 m&sup3;/h minimum.<br>4. &Phi; = 105 &times; 1,2 &times; 1 005 &times; 22 / 3 600 = <strong>774 W</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Simple flux vs double flux &mdash; &eacute;conomie</span><span class="tag-standard">Standard</span></div>
+  T4, d&eacute;bit r&eacute;duit 90 m&sup3;/h, &Delta;T = 20 &deg;C, chauffage 2 000 h/an, 0,25 &euro;/kWh.<br><br>
+  <strong>1.</strong> Calculer &Phi;<sub>air</sub> en VMC simple flux.<br>
+  <strong>2.</strong> Calculer &Phi;<sub>air</sub> r&eacute;elle en VMC double flux (&eta; = 85 %).<br>
+  <strong>3.</strong> Calculer l'&eacute;conomie annuelle (&euro;).<br>
+  <strong>4.</strong> La VMC double flux co&ucirc;te 3 000 &euro; de plus que la simple flux. En combien d'ann&eacute;es est-elle rentabilis&eacute;e ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Phi;<sub>SF</sub> = 90 &times; 1,2 &times; 1 005 &times; 20 / 3 600 = <strong>603 W</strong><br>2. R&eacute;cup&eacute;r&eacute; : 0,85 &times; 603 = 512 W. &Phi;<sub>DF</sub> = 603 &minus; 512 = <strong>91 W</strong><br>3. &Delta;&Phi; = 603 &minus; 91 = 512 W = 0,512 kW. &Eacute;nergie : 0,512 &times; 2 000 = 1 024 kWh. &Eacute;conomie : 1 024 &times; 0,25 = <strong>256 &euro;/an</strong><br>4. 3 000 / 256 = <strong>11,7 ans</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">Section de gaine</span><span class="tag-standard">Standard</span></div>
+  La vitesse de l'air dans les gaines de VMC ne doit pas d&eacute;passer 3 m/s (bruit). Le d&eacute;bit dans la gaine principale est de 120 m&sup3;/h.<br><br>
+  <strong>1.</strong> Convertir le d&eacute;bit en m&sup3;/s.<br>
+  <strong>2.</strong> Calculer la section minimale de la gaine : S = Q / v.<br>
+  <strong>3.</strong> En d&eacute;duire le diam&egrave;tre d'une gaine circulaire (\(S = \pi D^2 / 4\)).<br>
+  <strong>4.</strong> Le diam&egrave;tre commercial le plus proche est 125 mm ou 160 mm. Lequel choisir ?
+  <div class="corr"><strong>Correction :</strong><br>1. Q = 120 / 3 600 = <strong>0,0333 m&sup3;/s</strong><br>2. S = 0,0333 / 3 = <strong>0,0111 m&sup2;</strong> = 111 cm&sup2;<br>3. D = &radic;(4S/&pi;) = &radic;(4 &times; 0,0111 / 3,14) = &radic;(0,01414) = <strong>0,119 m</strong> = 119 mm<br>4. 119 &gt; 125 ? Non, 119 &lt; 125 &rarr; gaine <strong>125 mm</strong> convient.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Impact du renouvellement d'air sur la facture</span><span class="tag-appro">Approfondissement</span></div>
+  Un immeuble de 20 logements T3 est &eacute;quip&eacute; d'une VMC simple flux collective. D&eacute;bit r&eacute;duit par logement : 75 m&sup3;/h. &Delta;T moyen hivernal = 18 &deg;C, dur&eacute;e de chauffe 2 200 h/an.<br><br>
+  <strong>1.</strong> Calculer le d&eacute;bit total de l'immeuble.<br>
+  <strong>2.</strong> Calculer la puissance perdue par le renouvellement d'air.<br>
+  <strong>3.</strong> Calculer le co&ucirc;t annuel (gaz : 0,10 &euro;/kWh, rendement chaudi&egrave;re 90 %).<br>
+  <strong>4.</strong> Si on remplace par une VMC double flux (&eta; = 80 %), calculer l'&eacute;conomie annuelle.
+  <div class="corr"><strong>Correction :</strong><br>1. Q<sub>total</sub> = 20 &times; 75 = <strong>1 500 m&sup3;/h</strong><br>2. &Phi; = 1 500 &times; 1,2 &times; 1 005 &times; 18 / 3 600 = <strong>9 045 W</strong> = 9,05 kW<br>3. &Eacute;nergie utile : 9,05 &times; 2 200 = 19 910 kWh. &Eacute;nergie primaire (rendement 90 %) : 19 910 / 0,9 = 22 122 kWh. Co&ucirc;t : 22 122 &times; 0,10 = <strong>2 212 &euro;/an</strong><br>4. DF : &Phi; = 9 045 &times; (1 &minus; 0,80) = 1 809 W. &Eacute;nergie : 1,809 &times; 2 200 / 0,9 &times; 0,10 = <strong>443 &euro;/an</strong>. &Eacute;conomie : 2 212 &minus; 443 = <strong>1 769 &euro;/an</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Hygror&eacute;glable vs autor&eacute;glable</span><span class="tag-appro">Approfondissement</span></div>
+  Une VMC hygror&eacute;glable adapte le d&eacute;bit &agrave; l'humidit&eacute; de l'air. En moyenne, elle r&eacute;duit le d&eacute;bit de 30 % par rapport &agrave; une VMC autor&eacute;glable (d&eacute;bit constant).<br><br>
+  T4, d&eacute;bit autor&eacute;glable = 90 m&sup3;/h. &Delta;T = 20 &deg;C.<br><br>
+  <strong>1.</strong> Calculer le d&eacute;bit moyen d'une hygror&eacute;glable.<br>
+  <strong>2.</strong> Calculer &Phi; pour chaque type.<br>
+  <strong>3.</strong> Calculer l'&eacute;conomie annuelle (2 000 h, 0,25 &euro;/kWh).<br>
+  <strong>4.</strong> La VMC hygro co&ucirc;te 200 &euro; de plus. Est-ce rentable ?
+  <div class="corr"><strong>Correction :</strong><br>1. Q<sub>hygro</sub> = 90 &times; 0,70 = <strong>63 m&sup3;/h</strong><br>2. Auto : &Phi; = 603 W. Hygro : &Phi; = 90 &times; 0,70 / 90 &times; 603 = 603 &times; 0,70 = <strong>422 W</strong><br>3. &Delta;&Phi; = 603 &minus; 422 = 181 W = 0,181 kW. &Eacute;nergie : 0,181 &times; 2 000 = 362 kWh. &Eacute;conomie : 362 &times; 0,25 = <strong>90,50 &euro;/an</strong><br>4. 200 / 90,50 = 2,2 ans &rarr; <strong>rentable en 2 ans</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Bilan a&eacute;raulique complet d'un logement</span><span class="tag-appro">Approfondissement</span></div>
+  Un installateur thermique r&eacute;alise le bilan a&eacute;raulique d'un T4 &eacute;quip&eacute; d'une VMC double flux (&eta; = 85 %). Le logement fait 95 m&sup2;, hauteur 2,50 m. &Delta;T = 22 &deg;C.<br><br>
+  <strong>1.</strong> Calculer le volume du logement.<br>
+  <strong>2.</strong> Calculer le taux de renouvellement d'air (n = Q / V) pour Q = 90 m&sup3;/h.<br>
+  <strong>3.</strong> Calculer &Phi;<sub>air</sub> (VMC SF) et &Phi;<sub>air r&eacute;el</sub> (VMC DF).<br>
+  <strong>4.</strong> Comparer &Phi;<sub>air r&eacute;el</sub> avec les d&eacute;perditions par les parois (&Phi;<sub>parois</sub> = 2 500 W). Quel pourcentage du total repr&eacute;sente le renouvellement d'air avec la DF ? Et sans ?
+  <div class="corr"><strong>Correction :</strong><br>1. V = 95 &times; 2,50 = <strong>237,5 m&sup3;</strong><br>2. n = 90 / 237,5 = <strong>0,38 vol/h</strong> (l'air est renouvel&eacute; 0,38 fois par heure)<br>3. &Phi;<sub>SF</sub> = 90 &times; 1,2 &times; 1 005 &times; 22 / 3 600 = <strong>663 W</strong>. &Phi;<sub>DF</sub> = 663 &times; (1&minus;0,85) = <strong>99 W</strong><br>4. Sans DF : &Phi;<sub>total</sub> = 2 500 + 663 = 3 163 W. Air = 663/3 163 = <strong>21 %</strong>.<br>Avec DF : &Phi;<sub>total</sub> = 2 500 + 99 = 2 599 W. Air = 99/2 599 = <strong>3,8 %</strong>.<br>La VMC double flux r&eacute;duit la part du renouvellement d'air de 21 % &agrave; seulement 4 % du bilan thermique.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>

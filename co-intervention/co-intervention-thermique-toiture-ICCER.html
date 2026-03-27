@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Résistance thermique d'un toit-terrasse — Co-intervention ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9;--s-bg:#e0f2fe;--s-border:#7dd3fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="index.html" class="nb">&larr; Retour &agrave; l'index co-intervention</a>
+
+<header>
+  <h1>R&eacute;sistance thermique d'un toit-terrasse</h1>
+  <p class="sous-titre">Co-intervention Maths-Sciences | Premi&egrave;re Bac Pro ICCER | S4.5 &mdash; Thermique</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs</strong>
+  <ul>
+    <li>Calculer la r&eacute;sistance thermique d'une toiture-terrasse multicouche</li>
+    <li>D&eacute;terminer le coefficient U et v&eacute;rifier la conformit&eacute; r&eacute;glementaire</li>
+    <li>Choisir l'&eacute;paisseur d'isolant adapt&eacute;e</li>
+    <li>Calculer les d&eacute;perditions par la toiture</li>
+  </ul>
+</div>
+
+<div style="border:1px solid var(--s-border);background:var(--s-bg);border-radius:8px;padding:1rem;margin:1rem 0;font-size:.9rem">
+  <strong>Identification de la ressource</strong>
+  <ul style="margin:.5rem 0 0">
+    <li><strong>Savoir professionnel ICCER :</strong> S4.5 &mdash; Caract&eacute;ristiques thermiques</li>
+    <li><strong>Notions math&eacute;matiques :</strong> Fractions, sommes, inverse, calcul litt&eacute;ral, in&eacute;galit&eacute;s</li>
+    <li><strong>Niveau :</strong> Premi&egrave;re Bac Pro ICCER</li>
+  </ul>
+</div>
+
+<h2>1. Mise en situation professionnelle</h2>
+
+<div class="situation">
+  <strong>Contexte professionnel &mdash; Isolation d'un toit-terrasse pour pose d'une PAC</strong><br><br>
+  Un installateur thermique doit poser une pompe &agrave; chaleur (PAC) air-eau sur le toit-terrasse d'un immeuble de bureaux. Avant l'installation, l'architecte demande de v&eacute;rifier l'isolation de la toiture : <em>&laquo;&nbsp;Le toit repr&eacute;sente 30 % des d&eacute;perditions du b&acirc;timent. V&eacute;rifie que le coefficient U est conforme &agrave; la RE 2020 avant qu'on installe la PAC.&nbsp;&raquo;</em>
+</div>
+
+<!-- SVG coupe toiture -->
+<div class="svg-wrap" style="margin:1rem 0">
+<svg width="440" height="180" viewBox="0 0 440 180" style="max-width:100%;font-family:sans-serif;font-size:10px">
+  <!-- couches de haut en bas -->
+  <rect x="40" y="10" width="360" height="20" fill="#9ca3af" stroke="#333" stroke-width="1.5"/>
+  <text x="220" y="24" text-anchor="middle" fill="#fff" font-weight="bold">Gravillons / &eacute;tanch&eacute;it&eacute;</text>
+
+  <rect x="40" y="30" width="360" height="50" fill="#fde68a" stroke="#333" stroke-width="1.5"/>
+  <text x="220" y="60" text-anchor="middle" fill="#92400e" font-weight="bold">Isolant (polyur&eacute;thane ou polystyr&egrave;ne)</text>
+
+  <rect x="40" y="80" width="360" height="10" fill="#e5e7eb" stroke="#333" stroke-width="1"/>
+  <text x="220" y="88" text-anchor="middle" fill="#333" font-size="9">Pare-vapeur</text>
+
+  <rect x="40" y="90" width="360" height="40" fill="#d1d5db" stroke="#333" stroke-width="1.5"/>
+  <text x="220" y="114" text-anchor="middle" fill="#333" font-weight="bold">Dalle b&eacute;ton (20 cm)</text>
+
+  <rect x="40" y="130" width="360" height="15" fill="#fafafa" stroke="#333" stroke-width="1"/>
+  <text x="220" y="141" text-anchor="middle" fill="#333" font-size="9">Enduit pl&acirc;tre int&eacute;rieur</text>
+
+  <!-- flèches chaleur -->
+  <defs><marker id="aic" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#dc2626"/></marker></defs>
+  <line x1="420" y1="140" x2="420" y2="20" stroke="#dc2626" stroke-width="2" marker-end="url(#aic)"/>
+  <text x="435" y="80" fill="#dc2626" font-size="10" font-weight="bold">Chaleur</text>
+
+  <!-- labels -->
+  <text x="220" y="165" text-anchor="middle" fill="#555" font-size="11">Int&eacute;rieur (chauff&eacute;)</text>
+  <text x="220" y="178" text-anchor="middle" fill="#0ea5e9" font-size="11">Ext&eacute;rieur (froid)</text>
+</svg>
+</div>
+
+<h2>2. Rappel &mdash; R&eacute;sistance thermique et coefficient U</h2>
+
+<div class="prop">
+  <span class="label label-prop">Formules</span><br>
+  \[ R_{\text{total}} = \sum \frac{e_i}{\lambda_i} \qquad U = \frac{1}{R_{\text{total}}} \]
+  D&eacute;perditions : \(\Phi = U \times S \times \Delta T\) en watts
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Conductivit&eacute;s thermiques des mat&eacute;riaux de toiture</span><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem;margin-top:.5rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem;text-align:left">Mat&eacute;riau</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&lambda; (W/(m&middot;K))</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Dalle b&eacute;ton arm&eacute;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,75</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Polyur&eacute;thane (PUR)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,022</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Polystyr&egrave;ne extrud&eacute; (XPS)</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,032</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Laine de roche</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,036</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Enduit pl&acirc;tre</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,35</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">&Eacute;tanch&eacute;it&eacute; bitume</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,23</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Exigence RE 2020 &mdash; Toiture</span><br>
+  U<sub>toiture</sub> &le; <strong>0,20 W/(m&sup2;&middot;K)</strong> &rarr; R<sub>total</sub> &ge; 5,0 m&sup2;&middot;K/W
+</div>
+
+<div class="ex">
+  <span class="label label-def">Exemple &mdash; Toiture-terrasse isol&eacute;e PUR</span><br>
+  Composition : enduit 1,5 cm + b&eacute;ton 20 cm + PUR 12 cm + &eacute;tanch&eacute;it&eacute; 1 cm.<br><br>
+  \(R = \dfrac{0{,}015}{0{,}35} + \dfrac{0{,}20}{1{,}75} + \dfrac{0{,}12}{0{,}022} + \dfrac{0{,}01}{0{,}23}\)<br>
+  \(= 0{,}043 + 0{,}114 + 5{,}455 + 0{,}043 = 5{,}655\) m&sup2;&middot;K/W<br><br>
+  \(U = 1 / 5{,}655 = 0{,}177\) W/(m&sup2;&middot;K) &le; 0,20 &rarr; <strong>conforme RE 2020</strong>
+</div>
+
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li>Toiture-terrasse : dalle b&eacute;ton + isolant + &eacute;tanch&eacute;it&eacute;</li>
+    <li>L'isolant (PUR, XPS, laine de roche) fournit &gt; 95 % de la r&eacute;sistance thermique</li>
+    <li>RE 2020 toiture : U &le; 0,20 W/(m&sup2;&middot;K) &rarr; R &ge; 5,0</li>
+    <li>Le PUR (&lambda; = 0,022) est le plus performant &agrave; &eacute;paisseur &eacute;gale</li>
+  </ul>
+</div>
+
+<h2>Exercices</h2>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 1</span><span class="exo-title">R de chaque couche (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Calculer R pour chaque couche :<br>
+  <strong>a)</strong> B&eacute;ton 20 cm : R = 0,20 / 1,75 = &hellip;<br>
+  <strong>b)</strong> PUR 10 cm : R = 0,10 / 0,022 = &hellip;<br>
+  <strong>c)</strong> Enduit 1,5 cm : R = 0,015 / 0,35 = &hellip;<br>
+  <strong>d)</strong> Quelle couche contribue le plus &agrave; l'isolation ?
+  <div class="corr"><strong>Correction :</strong><br>a) 0,114 b) <strong>4,545</strong> c) 0,043<br>d) Le <strong>PUR</strong> (4,545 sur un total d'environ 4,7) repr&eacute;sente 97 % de l'isolation.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 2</span><span class="exo-title">R total et U (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Toiture : enduit 1,5 cm + b&eacute;ton 20 cm + XPS 8 cm + &eacute;tanch&eacute;it&eacute; 1 cm.<br><br>
+  R = 0,043 + 0,114 + 0,08/0,032 + 0,043 = 0,043 + 0,114 + &hellip; + 0,043 = &hellip;<br>
+  U = 1 / &hellip; = &hellip; W/(m&sup2;&middot;K). Conforme RE 2020 (U &le; 0,20) ?
+  <div class="corr"><strong>Correction :</strong><br>R<sub>XPS</sub> = 0,08/0,032 = 2,500. R<sub>total</sub> = 0,043 + 0,114 + 2,500 + 0,043 = <strong>2,700</strong>.<br>U = 1/2,700 = <strong>0,370</strong>. 0,370 &gt; 0,20 &rarr; <strong>non conforme</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 3</span><span class="exo-title">Comparer PUR et laine de roche (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Calculer R pour 10 cm d'isolant :<br>
+  <strong>a)</strong> PUR (&lambda; = 0,022) : R = &hellip;<br>
+  <strong>b)</strong> Laine de roche (&lambda; = 0,036) : R = &hellip;<br>
+  <strong>c)</strong> Lequel isole le mieux ? Combien de fois ?
+  <div class="corr"><strong>Correction :</strong><br>a) R = 0,10/0,022 = <strong>4,545</strong><br>b) R = 0,10/0,036 = <strong>2,778</strong><br>c) Le PUR isole 4,545/2,778 = <strong>1,64 fois mieux</strong> &agrave; &eacute;paisseur &eacute;gale.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-socle">
+  <div class="exo-header"><span class="exo-num">Exercice 4</span><span class="exo-title">D&eacute;perditions par la toiture (guid&eacute;)</span><span class="tag-socle">Socle</span></div>
+  Toiture de S = 200 m&sup2;, U = 0,18 W/(m&sup2;&middot;K). T<sub>int</sub> = 20 &deg;C, T<sub>ext</sub> = 2 &deg;C.<br><br>
+  &Phi; = U &times; S &times; &Delta;T = 0,18 &times; 200 &times; &hellip; = &hellip; W
+  <div class="corr"><strong>Correction :</strong> &Delta;T = 18 &deg;C. &Phi; = 0,18 &times; 200 &times; 18 = <strong>648 W</strong></div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 5</span><span class="exo-title">&Eacute;paisseur minimale d'isolant</span><span class="tag-standard">Standard</span></div>
+  Une toiture-terrasse (b&eacute;ton 20 cm + enduit 1,5 cm + &eacute;tanch&eacute;it&eacute; 1 cm) doit atteindre U &le; 0,20 (R &ge; 5,0). On utilise du XPS (&lambda; = 0,032).<br><br>
+  <strong>1.</strong> Calculer R sans l'isolant.<br>
+  <strong>2.</strong> Quel R minimum doit fournir l'isolant ?<br>
+  <strong>3.</strong> Quelle &eacute;paisseur minimale de XPS ?
+  <div class="corr"><strong>Correction :</strong><br>1. R<sub>sans</sub> = 0,043 + 0,114 + 0,043 = 0,200<br>2. R<sub>isolant</sub> &ge; 5,0 &minus; 0,200 = <strong>4,800</strong><br>3. e = R &times; &lambda; = 4,800 &times; 0,032 = <strong>0,154 m = 16 cm</strong> (arrondir &agrave; 16 cm).</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 6</span><span class="exo-title">Comparer trois isolants</span><span class="tag-standard">Standard</span></div>
+  Pour atteindre R<sub>isolant</sub> = 5,0, calculer l'&eacute;paisseur n&eacute;cessaire avec :<br>
+  <strong>a)</strong> PUR (&lambda; = 0,022) <strong>b)</strong> XPS (&lambda; = 0,032) <strong>c)</strong> Laine de roche (&lambda; = 0,036)<br><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.9rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">Isolant</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">&lambda;</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">e (cm)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">Prix indicatif (&euro;/m&sup2;)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">PUR</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,022</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">35</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">XPS</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,032</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">25</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Laine de roche</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,036</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">&hellip;</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">18</td></tr>
+    </tbody>
+  </table>
+  Quel est le meilleur choix pour un toit-terrasse o&ugrave; l'&eacute;paisseur est limit&eacute;e ?
+  <div class="corr"><strong>Correction :</strong><br>a) PUR : e = 5,0 &times; 0,022 = <strong>11 cm</strong><br>b) XPS : e = 5,0 &times; 0,032 = <strong>16 cm</strong><br>c) Laine de roche : e = 5,0 &times; 0,036 = <strong>18 cm</strong><br><br>Si l'&eacute;paisseur est limit&eacute;e, le <strong>PUR</strong> est le meilleur choix (11 cm au lieu de 18 cm), malgr&eacute; un prix plus &eacute;lev&eacute;.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-standard">
+  <div class="exo-header"><span class="exo-num">Exercice 7</span><span class="exo-title">D&eacute;perditions avant/apr&egrave;s isolation</span><span class="tag-standard">Standard</span></div>
+  Toiture de 300 m&sup2;. Avant isolation : U = 2,5 W/(m&sup2;&middot;K) (b&eacute;ton seul). Apr&egrave;s isolation PUR 12 cm : U = 0,18. &Delta;T = 20 &deg;C, chauffage 2 000 h/an, &eacute;lectricit&eacute; 0,25 &euro;/kWh.<br><br>
+  <strong>1.</strong> Calculer &Phi; avant et apr&egrave;s.<br>
+  <strong>2.</strong> Calculer l'&eacute;conomie annuelle d'&eacute;nergie (kWh) et d'argent (&euro;).
+  <div class="corr"><strong>Correction :</strong><br>1. Avant : &Phi; = 2,5 &times; 300 &times; 20 = <strong>15 000 W</strong>. Apr&egrave;s : &Phi; = 0,18 &times; 300 &times; 20 = <strong>1 080 W</strong>.<br>2. &Delta;&Phi; = 15 000 &minus; 1 080 = 13 920 W = 13,92 kW. &Eacute;nergie : 13,92 &times; 2 000 = <strong>27 840 kWh/an</strong>. &Eacute;conomie : 27 840 &times; 0,25 = <strong>6 960 &euro;/an</strong>.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 8</span><span class="exo-title">Toiture v&eacute;g&eacute;talis&eacute;e</span><span class="tag-appro">Approfondissement</span></div>
+  Une toiture v&eacute;g&eacute;talis&eacute;e ajoute une couche de substrat (terre + plantes) de 10 cm (&lambda; = 0,50) au-dessus de l'&eacute;tanch&eacute;it&eacute;. La toiture de base (b&eacute;ton 20 cm + PUR 10 cm + &eacute;tanch&eacute;it&eacute; 1 cm + enduit 1,5 cm) a R = 4,745.<br><br>
+  <strong>1.</strong> Calculer R du substrat v&eacute;g&eacute;tal.<br>
+  <strong>2.</strong> Calculer le nouveau R<sub>total</sub> et U.<br>
+  <strong>3.</strong> Le substrat am&eacute;liore-t-il significativement l'isolation ?<br>
+  <strong>4.</strong> Quels sont les autres avantages d'une toiture v&eacute;g&eacute;talis&eacute;e (non thermiques) ?
+  <div class="corr"><strong>Correction :</strong><br>1. R = 0,10/0,50 = <strong>0,200</strong><br>2. R<sub>total</sub> = 4,745 + 0,200 = <strong>4,945</strong>. U = 1/4,945 = <strong>0,202</strong><br>3. Am&eacute;lioration marginale (R passe de 4,745 &agrave; 4,945, soit +4 %). Le substrat n'est <strong>pas un isolant performant</strong>.<br>4. Avantages : r&eacute;tention des eaux pluviales, biodiversit&eacute;, protection de l'&eacute;tanch&eacute;it&eacute; (UV, chocs thermiques), r&eacute;duction des &icirc;lots de chaleur urbains, esth&eacute;tique.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 9</span><span class="exo-title">Dimensionner l'isolation pour une PAC</span><span class="tag-appro">Approfondissement</span></div>
+  Un technicien chauffagiste dimensionne une PAC air-eau pour un b&acirc;timent de bureaux (500 m&sup2; au sol). La toiture repr&eacute;sente 30 % des d&eacute;perditions totales. L'objectif est de limiter les d&eacute;perditions totales &agrave; 15 kW (pour dimensionner la PAC).<br><br>
+  <strong>1.</strong> Quelles d&eacute;perditions maximales par la toiture ?<br>
+  <strong>2.</strong> Pour &Delta;T = 25 &deg;C, quel U<sub>max</sub> pour la toiture ?<br>
+  <strong>3.</strong> Quelle &eacute;paisseur de PUR (&lambda; = 0,022) faut-il (en n&eacute;gligeant les autres couches) ?<br>
+  <strong>4.</strong> Pourquoi une bonne isolation de la toiture permet-elle de choisir une PAC plus petite (et moins ch&egrave;re) ?
+  <div class="corr"><strong>Correction :</strong><br>1. &Phi;<sub>toiture</sub> = 15 000 &times; 0,30 = <strong>4 500 W</strong><br>2. U = &Phi; / (S &times; &Delta;T) = 4 500 / (500 &times; 25) = <strong>0,36</strong> W/(m&sup2;&middot;K)<br>3. R = 1/0,36 = 2,78. e = 2,78 &times; 0,022 = 0,061 m = <strong>7 cm</strong> minimum (mais pour RE 2020, il faut U &le; 0,20 &rarr; 11 cm).<br>4. La PAC est dimensionn&eacute;e pour compenser les d&eacute;perditions maximales. Si le b&acirc;timent est mieux isol&eacute;, les d&eacute;perditions sont plus faibles &rarr; la PAC peut &ecirc;tre <strong>plus petite</strong>, moins ch&egrave;re &agrave; l'achat et plus &eacute;conome en fonctionnement.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+<div class="exo diff-appro">
+  <div class="exo-header"><span class="exo-num">Exercice 10</span><span class="exo-title">Bilan thermique complet &mdash; toiture + murs + vitrages</span><span class="tag-appro">Approfondissement</span></div>
+  Un b&acirc;timent de bureaux a les parois ext&eacute;rieures suivantes :<br><br>
+  <table style="border-collapse:collapse;width:100%;font-size:.88rem">
+    <thead><tr style="background:var(--p-bg)">
+      <th style="border:1px solid var(--p-border);padding:.4rem">Paroi</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">S (m&sup2;)</th>
+      <th style="border:1px solid var(--p-border);padding:.4rem">U (W/(m&sup2;&middot;K))</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Toiture</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">400</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,18</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Murs isol&eacute;s</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">600</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,28</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Vitrages DV</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">120</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">1,20</td></tr>
+      <tr><td style="border:1px solid var(--p-border);padding:.35rem">Sol</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">400</td><td style="border:1px solid var(--p-border);padding:.35rem;text-align:center">0,30</td></tr>
+    </tbody>
+  </table><br>
+  &Delta;T = 22 &deg;C. Renouvellement d'air : 2 000 m&sup3;/h (&rho; = 1,2 kg/m&sup3;, c = 1 005 J/(kg&middot;&deg;C)).<br><br>
+  <strong>1.</strong> Calculer &Phi; pour chaque paroi et le total parois.<br>
+  <strong>2.</strong> Calculer &Phi;<sub>air</sub> = &dot;m &times; c &times; &Delta;T / 3 600.<br>
+  <strong>3.</strong> Calculer &Phi; total. Quelle puissance de PAC faut-il (marge 20 %) ?<br>
+  <strong>4.</strong> Quel poste repr&eacute;sente le plus de d&eacute;perditions ? En pourcentage.
+  <div class="corr"><strong>Correction :</strong><br>1. Toiture : 0,18 &times; 400 &times; 22 = 1 584 W. Murs : 0,28 &times; 600 &times; 22 = 3 696 W. Vitrages : 1,20 &times; 120 &times; 22 = 3 168 W. Sol : 0,30 &times; 400 &times; 22 = 2 640 W. Total parois : <strong>11 088 W</strong>.<br>2. &dot;m = 2 000 &times; 1,2 = 2 400 kg/h. &Phi;<sub>air</sub> = 2 400 &times; 1 005 &times; 22 / 3 600 = <strong>14 740 W</strong>.<br>3. &Phi;<sub>total</sub> = 11 088 + 14 740 = <strong>25 828 W</strong> &asymp; 26 kW. PAC : 26 &times; 1,2 = <strong>31 kW</strong>.<br>4. Le <strong>renouvellement d'air</strong> est le premier poste (14 740 / 25 828 = <strong>57 %</strong>). Ensuite les murs (14 %), les vitrages (12 %), le sol (10 %) et la toiture (6 %). D'o&ugrave; l'importance de la VMC double flux pour r&eacute;cup&eacute;rer la chaleur de l'air extrait.</div>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+</div>
+
+</div>
+
+<div class="print-bar">
+  <span>Imprimer / G&eacute;n&eacute;rer un PDF</span>
+  <button class="print-btn" onclick="window.print()">&#x1F4C4; Version &eacute;l&egrave;ve (sans correction)</button>
+  <button class="print-btn print-btn-corr" id="sn-print-corr">&#x2705; Version corrig&eacute; (avec corrections)</button>
+</div>
+<footer class="sn-author">Na&iuml;m Azzouz</footer>
+<script src="../nav.js"></script>
+<script src="../diff.js"></script>
+<script>
+function toggle(btn){const c=btn.previousElementSibling;if(c.style.display==='none'||!c.style.display){c.style.display='block';btn.textContent='Masquer la correction';}else{c.style.display='none';btn.textContent='Voir la correction';}}
+document.getElementById('sn-print-corr').addEventListener('click',function(){var c=document.querySelectorAll('.corr');for(var i=0;i<c.length;i++)c[i].style.setProperty('display','block','important');window.addEventListener('afterprint',function x(){for(var j=0;j<c.length;j++)c[j].style.removeProperty('display');window.removeEventListener('afterprint',x);});setTimeout(function(){window.print();},100);});
+</script>
+</body>
+</html>
