@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Exercices par capacités – Probabilités – 1ère Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#b45309;--p-bg:#fffbeb;--p-border:#fde68a}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 2 – Exercices par capacités</h1>
+  <p class="sous-titre">Probabilités &nbsp;|&nbsp; Première Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Calculer la probabilité d'un événement (événements élémentaires, événement contraire, réunion d'incompatibles)</li>
+    <li><strong>C2</strong> — Compléter et exploiter des tableaux croisés d'effectifs</li>
+    <li><strong>C3</strong> — Calculer \(P(A \cup B)\) et \(P(A \cap B)\) ; utiliser la formule \(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</li>
+    <li><strong>C4</strong> — Calculer des fréquences conditionnelles à partir de tableaux croisés</li>
+    <li><strong>C5</strong> — Déterminer une probabilité conditionnelle \(P_A(B) = \dfrac{P(A \cap B)}{P(A)}\)</li>
+  </ul>
+  <p style="font-size:0.9em;color:#b45309;margin-top:8px"><em>Remarque : les arbres de probabilités pondérés et la formule des probabilités totales sont hors programme en Première (reportés en Terminale).</em></p>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Probabilité d'un événement</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Tableaux croisés</button>
+  <button class="btn-cap" data-filtre="C3">C3 – P(A&cup;B) et P(A&cap;B)</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Fréquence conditionnelle</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Probabilité conditionnelle</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Calculer la probabilité d'un événement</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Dans un univers fini \(\Omega\), la probabilité d'un événement \(A\) est la somme des probabilités des événements élémentaires qui composent \(A\). Si les issues sont équiprobables : \(P(A) = \dfrac{\text{nombre d'issues favorables}}{\text{nombre total d'issues}}\). On a \(P(\bar{A}) = 1 - P(A)\). Si \(A\) et \(B\) sont incompatibles : \(P(A \cup B) = P(A) + P(B)\).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un lot de 50 pièces d'agencement sort d'un atelier de menuiserie. Le contrôle qualité révèle : 42 pièces conformes, 5 avec un défaut mineur et 3 avec un défaut majeur. On tire une pièce au hasard.</p>
+  <ol type="a">
+    <li>Quelle est la probabilité de tirer une pièce conforme ?</li>
+    <li>Quelle est la probabilité de tirer une pièce défectueuse (mineure ou majeure) ?</li>
+    <li>Vérifier en utilisant la probabilité de l'événement contraire.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(\text{conforme}) = \dfrac{42}{50} = 0{,}84\)</li>
+      <li>Les événements « défaut mineur » et « défaut majeur » sont <strong>incompatibles</strong> (une pièce ne peut avoir les deux à la fois dans ce classement).<br>
+      \(P(\text{défectueuse}) = P(\text{mineur}) + P(\text{majeur}) = \dfrac{5}{50} + \dfrac{3}{50} = \dfrac{8}{50} = 0{,}16\)</li>
+      <li>\(P(\bar{\text{conforme}}) = 1 - P(\text{conforme}) = 1 - 0{,}84 = 0{,}16\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un fournisseur livre des panneaux de bois en trois essences : chêne, hêtre et pin. Sur une livraison de 80 panneaux, 30 sont en chêne, 25 en hêtre et 25 en pin. On prélève un panneau au hasard.</p>
+  <ol type="a">
+    <li>Calculer la probabilité de tirer un panneau en chêne.</li>
+    <li>Calculer la probabilité de ne pas tirer un panneau en pin.</li>
+    <li>Calculer la probabilité de tirer un panneau en chêne ou en hêtre.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(\text{chêne}) = \dfrac{30}{80} = \dfrac{3}{8} = 0{,}375\)</li>
+      <li>\(P(\overline{\text{pin}}) = 1 - P(\text{pin}) = 1 - \dfrac{25}{80} = 1 - \dfrac{5}{16} = \dfrac{11}{16} = 0{,}6875\)</li>
+      <li>Les événements « chêne » et « hêtre » sont incompatibles (un panneau est d'une seule essence).<br>
+      \(P(\text{chêne} \cup \text{hêtre}) = \dfrac{30}{80} + \dfrac{25}{80} = \dfrac{55}{80} = \dfrac{11}{16} = 0{,}6875\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un dé à 6 faces est truqué. Les probabilités sont : \(P(1) = P(2) = P(3) = 0{,}1\) ; \(P(4) = 0{,}2\) ; \(P(5) = 0{,}2\) ; \(P(6) = 0{,}3\).</p>
+  <ol type="a">
+    <li>Vérifier que la somme des probabilités vaut 1.</li>
+    <li>Calculer \(P(\text{obtenir un nombre pair})\).</li>
+    <li>Calculer \(P(\text{obtenir un nombre } \geqslant 4)\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(0{,}1 + 0{,}1 + 0{,}1 + 0{,}2 + 0{,}2 + 0{,}3 = 1{,}0\) ✔</li>
+      <li>\(P(\text{pair}) = P(2) + P(4) + P(6) = 0{,}1 + 0{,}2 + 0{,}3 = 0{,}6\)</li>
+      <li>\(P(\geqslant 4) = P(4) + P(5) + P(6) = 0{,}2 + 0{,}2 + 0{,}3 = 0{,}7\)</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Compléter et exploiter des tableaux croisés d'effectifs</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Un <strong>tableau croisé d'effectifs</strong> (ou tableau à double entrée) croise deux caractères. Les totaux en ligne et en colonne permettent de reconstituer les effectifs manquants. On peut ensuite calculer des probabilités en divisant chaque effectif par l'effectif total.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Un atelier de menuiserie fabrique des portes et des fenêtres, en bois ou en PVC. Les données sont :</p>
+  <table>
+    <tr><th></th><th>Bois</th><th>PVC</th><th>Total</th></tr>
+    <tr><th>Portes</th><td>35</td><td>?</td><td>55</td></tr>
+    <tr><th>Fenêtres</th><td>?</td><td>30</td><td>?</td></tr>
+    <tr><th>Total</th><td>?</td><td>50</td><td>100</td></tr>
+  </table>
+  <ol type="a">
+    <li>Compléter le tableau.</li>
+    <li>On choisit un article au hasard. Calculer la probabilité qu'il s'agisse d'une fenêtre en bois.</li>
+    <li>Calculer la probabilité qu'il s'agisse d'un article en PVC.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        Portes PVC : \(55 - 35 = 20\)<br>
+        Total Bois : \(100 - 50 = 50\)<br>
+        Fenêtres Bois : \(50 - 35 = 15\)<br>
+        Total Fenêtres : \(15 + 30 = 45\)
+        <table>
+          <tr><th></th><th>Bois</th><th>PVC</th><th>Total</th></tr>
+          <tr><th>Portes</th><td>35</td><td>20</td><td>55</td></tr>
+          <tr><th>Fenêtres</th><td>15</td><td>30</td><td>45</td></tr>
+          <tr><th>Total</th><td>50</td><td>50</td><td>100</td></tr>
+        </table>
+      </li>
+      <li>\(P(\text{fenêtre en bois}) = \dfrac{15}{100} = 0{,}15\)</li>
+      <li>\(P(\text{PVC}) = \dfrac{50}{100} = 0{,}50\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Une enquête porte sur 200 menuisiers-agenceurs, classés selon leur expérience et leur spécialité :</p>
+  <table>
+    <tr><th></th><th>Agencement</th><th>Charpente</th><th>Ébénisterie</th><th>Total</th></tr>
+    <tr><th>Moins de 5 ans</th><td>30</td><td>20</td><td>10</td><td>?</td></tr>
+    <tr><th>5 à 15 ans</th><td>35</td><td>25</td><td>20</td><td>?</td></tr>
+    <tr><th>Plus de 15 ans</th><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+    <tr><th>Total</th><td>80</td><td>60</td><td>60</td><td>200</td></tr>
+  </table>
+  <ol type="a">
+    <li>Compléter le tableau.</li>
+    <li>On interroge un menuisier au hasard. Quelle est la probabilité qu'il soit spécialisé en agencement ?</li>
+    <li>Quelle est la probabilité qu'il ait moins de 5 ans d'expérience ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        Moins de 5 ans total : \(30 + 20 + 10 = 60\)<br>
+        5 à 15 ans total : \(35 + 25 + 20 = 80\)<br>
+        Plus de 15 ans total : \(200 - 60 - 80 = 60\)<br>
+        Plus de 15 ans agencement : \(80 - 30 - 35 = 15\)<br>
+        Plus de 15 ans charpente : \(60 - 20 - 25 = 15\)<br>
+        Plus de 15 ans ébénisterie : \(60 - 10 - 20 = 30\)
+        <table>
+          <tr><th></th><th>Agencement</th><th>Charpente</th><th>Ébénisterie</th><th>Total</th></tr>
+          <tr><th>Moins de 5 ans</th><td>30</td><td>20</td><td>10</td><td>60</td></tr>
+          <tr><th>5 à 15 ans</th><td>35</td><td>25</td><td>20</td><td>80</td></tr>
+          <tr><th>Plus de 15 ans</th><td>15</td><td>15</td><td>30</td><td>60</td></tr>
+          <tr><th>Total</th><td>80</td><td>60</td><td>60</td><td>200</td></tr>
+        </table>
+      </li>
+      <li>\(P(\text{agencement}) = \dfrac{80}{200} = 0{,}40\)</li>
+      <li>\(P(\text{moins de 5 ans}) = \dfrac{60}{200} = 0{,}30\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un magasin de bricolage classe ses 150 clients du mois selon le type d'achat et le mode de paiement :</p>
+  <table>
+    <tr><th></th><th>Carte bancaire</th><th>Espèces</th><th>Chèque</th><th>Total</th></tr>
+    <tr><th>Bois</th><td>40</td><td>15</td><td>5</td><td>60</td></tr>
+    <tr><th>Quincaillerie</th><td>30</td><td>20</td><td>10</td><td>60</td></tr>
+    <tr><th>Outillage</th><td>15</td><td>10</td><td>5</td><td>30</td></tr>
+    <tr><th>Total</th><td>85</td><td>45</td><td>20</td><td>150</td></tr>
+  </table>
+  <p>On choisit un client au hasard.</p>
+  <ol type="a">
+    <li>Quelle est la probabilité qu'il ait acheté de l'outillage ?</li>
+    <li>Quelle est la probabilité qu'il ait payé par carte bancaire ?</li>
+    <li>Quelle est la probabilité qu'il ait acheté du bois et payé en espèces ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(\text{outillage}) = \dfrac{30}{150} = \dfrac{1}{5} = 0{,}20\)</li>
+      <li>\(P(\text{CB}) = \dfrac{85}{150} = \dfrac{17}{30} \approx 0{,}567\)</li>
+      <li>\(P(\text{bois} \cap \text{espèces}) = \dfrac{15}{150} = \dfrac{1}{10} = 0{,}10\)</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Calculer \(P(A \cup B)\) et \(P(A \cap B)\) ; utiliser la formule</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Pour deux événements \(A\) et \(B\) quelconques :<br>
+  \[P(A \cup B) = P(A) + P(B) - P(A \cap B)\]
+  \(A \cup B\) signifie « \(A\) ou \(B\) » (au moins l'un des deux).<br>
+  \(A \cap B\) signifie « \(A\) et \(B\) » (les deux simultanément).<br>
+  Si \(A\) et \(B\) sont <strong>incompatibles</strong> : \(P(A \cap B) = 0\), donc \(P(A \cup B) = P(A) + P(B)\).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Dans un atelier de menuiserie de 80 employés :</p>
+  <ul>
+    <li>\(A\) = « l'employé maîtrise le travail du bois massif » : \(P(A) = 0{,}60\)</li>
+    <li>\(B\) = « l'employé maîtrise le travail du stratifié » : \(P(B) = 0{,}45\)</li>
+    <li>\(P(A \cap B) = 0{,}25\) (maîtrise les deux)</li>
+  </ul>
+  <ol type="a">
+    <li>Calculer \(P(A \cup B)\).</li>
+    <li>Interpréter le résultat.</li>
+    <li>Calculer la probabilité qu'un employé ne maîtrise ni l'un ni l'autre.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0{,}60 + 0{,}45 - 0{,}25 = 0{,}80\)</li>
+      <li>80 % des employés maîtrisent <strong>au moins un</strong> des deux matériaux (bois massif ou stratifié).</li>
+      <li>\(P(\overline{A \cup B}) = 1 - P(A \cup B) = 1 - 0{,}80 = 0{,}20\).<br>
+      20 % des employés ne maîtrisent ni le bois massif ni le stratifié.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un contrôle qualité sur 100 pièces d'agencement donne :</p>
+  <table>
+    <tr><th></th><th>Défaut de coupe</th><th>Pas de défaut de coupe</th><th>Total</th></tr>
+    <tr><th>Défaut de finition</th><td>5</td><td>10</td><td>15</td></tr>
+    <tr><th>Pas de défaut de finition</th><td>8</td><td>77</td><td>85</td></tr>
+    <tr><th>Total</th><td>13</td><td>87</td><td>100</td></tr>
+  </table>
+  <p>Soit \(A\) = « défaut de finition » et \(B\) = « défaut de coupe ».</p>
+  <ol type="a">
+    <li>Déterminer \(P(A)\), \(P(B)\), \(P(A \cap B)\).</li>
+    <li>Calculer \(P(A \cup B)\) avec la formule.</li>
+    <li>Vérifier en comptant directement dans le tableau.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P(A) = \dfrac{15}{100} = 0{,}15\) ; \(P(B) = \dfrac{13}{100} = 0{,}13\) ; \(P(A \cap B) = \dfrac{5}{100} = 0{,}05\)</li>
+      <li>\(P(A \cup B) = 0{,}15 + 0{,}13 - 0{,}05 = 0{,}23\)</li>
+      <li>Nombre de pièces ayant au moins un défaut : \(5 + 10 + 8 = 23\).<br>
+      \(P(A \cup B) = \dfrac{23}{100} = 0{,}23\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Dans une entreprise de menuiserie, on sait que :</p>
+  <ul>
+    <li>\(P(A) = 0{,}35\) (l'employé travaille sur chantier)</li>
+    <li>\(P(B) = 0{,}50\) (l'employé a le permis de conduire)</li>
+    <li>\(P(A \cup B) = 0{,}65\)</li>
+  </ul>
+  <ol type="a">
+    <li>Calculer \(P(A \cap B)\).</li>
+    <li>Les événements \(A\) et \(B\) sont-ils incompatibles ? Justifier.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>D'après la formule : \(P(A \cap B) = P(A) + P(B) - P(A \cup B) = 0{,}35 + 0{,}50 - 0{,}65 = 0{,}20\)</li>
+      <li>\(P(A \cap B) = 0{,}20 \neq 0\), donc \(A\) et \(B\) ne sont <strong>pas incompatibles</strong>. Il existe des employés qui travaillent sur chantier et qui ont le permis (20 % d'entre eux).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Calculer des fréquences conditionnelles à partir de tableaux croisés</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La <strong>fréquence conditionnelle</strong> de \(B\) sachant \(A\) est la proportion d'individus vérifiant \(B\) <em>parmi ceux qui vérifient déjà \(A\)</em>. On la calcule en divisant l'effectif de \(A \cap B\) par l'effectif de \(A\). C'est une lecture « en ligne » ou « en colonne » du tableau croisé.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Reprenons le tableau de l'exercice 4 :</p>
+  <table>
+    <tr><th></th><th>Bois</th><th>PVC</th><th>Total</th></tr>
+    <tr><th>Portes</th><td>35</td><td>20</td><td>55</td></tr>
+    <tr><th>Fenêtres</th><td>15</td><td>30</td><td>45</td></tr>
+    <tr><th>Total</th><td>50</td><td>50</td><td>100</td></tr>
+  </table>
+  <ol type="a">
+    <li>Parmi les portes, quelle est la fréquence de celles en bois ?</li>
+    <li>Parmi les articles en PVC, quelle est la fréquence des fenêtres ?</li>
+    <li>Parmi les fenêtres, quelle est la fréquence de celles en PVC ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Fréquence de « bois » parmi les portes : \(\dfrac{35}{55} = \dfrac{7}{11} \approx 0{,}636\), soit environ <strong>63,6 %</strong>.</li>
+      <li>Fréquence de « fenêtres » parmi les PVC : \(\dfrac{30}{50} = 0{,}60\), soit <strong>60 %</strong>.</li>
+      <li>Fréquence de « PVC » parmi les fenêtres : \(\dfrac{30}{45} = \dfrac{2}{3} \approx 0{,}667\), soit environ <strong>66,7 %</strong>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Un atelier d'agencement emploie 60 personnes réparties ainsi :</p>
+  <table>
+    <tr><th></th><th>CDI</th><th>CDD</th><th>Total</th></tr>
+    <tr><th>Pose</th><td>20</td><td>10</td><td>30</td></tr>
+    <tr><th>Fabrication</th><td>18</td><td>12</td><td>30</td></tr>
+    <tr><th>Total</th><td>38</td><td>22</td><td>60</td></tr>
+  </table>
+  <ol type="a">
+    <li>Quelle est la fréquence des CDI parmi le personnel de pose ?</li>
+    <li>Quelle est la fréquence des CDD parmi le personnel de fabrication ?</li>
+    <li>Les deux services ont-ils la même proportion de CDI ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Fréquence CDI parmi pose : \(\dfrac{20}{30} \approx 0{,}667\), soit environ <strong>66,7 %</strong>.</li>
+      <li>Fréquence CDD parmi fabrication : \(\dfrac{12}{30} = 0{,}40\), soit <strong>40 %</strong>.</li>
+      <li>Fréquence CDI parmi fabrication : \(\dfrac{18}{30} = 0{,}60\), soit 60 %. Les deux services n'ont <strong>pas la même proportion</strong> de CDI (66,7 % en pose contre 60 % en fabrication).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un grossiste en quincaillerie classe 200 commandes selon la taille et la provenance :</p>
+  <table>
+    <tr><th></th><th>Particuliers</th><th>Professionnels</th><th>Total</th></tr>
+    <tr><th>Petite commande (&lt; 50 €)</th><td>60</td><td>20</td><td>80</td></tr>
+    <tr><th>Moyenne (50–200 €)</th><td>30</td><td>40</td><td>70</td></tr>
+    <tr><th>Grosse (&gt; 200 €)</th><td>10</td><td>40</td><td>50</td></tr>
+    <tr><th>Total</th><td>100</td><td>100</td><td>200</td></tr>
+  </table>
+  <ol type="a">
+    <li>Parmi les professionnels, quelle est la fréquence des grosses commandes ?</li>
+    <li>Parmi les particuliers, quelle est la fréquence des petites commandes ?</li>
+    <li>Comparer les profils de commande des particuliers et des professionnels.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Fréquence grosse commande parmi les professionnels : \(\dfrac{40}{100} = 0{,}40\), soit <strong>40 %</strong>.</li>
+      <li>Fréquence petite commande parmi les particuliers : \(\dfrac{60}{100} = 0{,}60\), soit <strong>60 %</strong>.</li>
+      <li>Les profils sont très différents : les particuliers font majoritairement de petites commandes (60 %) alors que les professionnels font surtout des commandes moyennes (40 %) ou grosses (40 %). Seulement 20 % des commandes professionnelles sont petites, contre 60 % chez les particuliers.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Déterminer une probabilité conditionnelle</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La <strong>probabilité conditionnelle</strong> de \(B\) sachant \(A\) est :<br>
+  \[P_A(B) = \frac{P(A \cap B)}{P(A)} \quad \text{avec } P(A) \neq 0\]
+  Elle correspond à la probabilité que \(B\) se réalise <em>sachant que</em> \(A\) est déjà réalisé. En pratique, on la calcule souvent à partir d'un tableau croisé d'effectifs : c'est la fréquence conditionnelle interprétée comme une probabilité.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Reprenons le tableau de l'exercice 8 (contrôle qualité sur 100 pièces) :</p>
+  <table>
+    <tr><th></th><th>Défaut de coupe</th><th>Pas de défaut de coupe</th><th>Total</th></tr>
+    <tr><th>Défaut de finition</th><td>5</td><td>10</td><td>15</td></tr>
+    <tr><th>Pas de défaut de finition</th><td>8</td><td>77</td><td>85</td></tr>
+    <tr><th>Total</th><td>13</td><td>87</td><td>100</td></tr>
+  </table>
+  <p>Soit \(A\) = « défaut de finition » et \(B\) = « défaut de coupe ».</p>
+  <ol type="a">
+    <li>Calculer \(P_A(B)\) (probabilité d'un défaut de coupe sachant qu'il y a un défaut de finition).</li>
+    <li>Calculer \(P_B(A)\) (probabilité d'un défaut de finition sachant qu'il y a un défaut de coupe).</li>
+    <li>A-t-on \(P_A(B) = P_B(A)\) ? Commenter.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P_A(B) = \dfrac{P(A \cap B)}{P(A)} = \dfrac{5/100}{15/100} = \dfrac{5}{15} = \dfrac{1}{3} \approx 0{,}333\)<br>
+      Parmi les pièces ayant un défaut de finition, un tiers ont aussi un défaut de coupe.</li>
+      <li>\(P_B(A) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{5/100}{13/100} = \dfrac{5}{13} \approx 0{,}385\)<br>
+      Parmi les pièces ayant un défaut de coupe, environ 38,5 % ont aussi un défaut de finition.</li>
+      <li>Non, \(P_A(B) \neq P_B(A)\) en général. L'ordre compte : « B sachant A » et « A sachant B » sont des probabilités différentes.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Dans une formation de menuisiers-agenceurs, on classe 120 stagiaires :</p>
+  <table>
+    <tr><th></th><th>Réussite à l'examen</th><th>Échec</th><th>Total</th></tr>
+    <tr><th>Stage en entreprise effectué</th><td>70</td><td>10</td><td>80</td></tr>
+    <tr><th>Stage non effectué</th><td>20</td><td>20</td><td>40</td></tr>
+    <tr><th>Total</th><td>90</td><td>30</td><td>120</td></tr>
+  </table>
+  <p>Soit \(S\) = « stage effectué » et \(R\) = « réussite ».</p>
+  <ol type="a">
+    <li>Calculer \(P_S(R)\) : probabilité de réussir sachant que le stage a été effectué.</li>
+    <li>Calculer \(P_{\bar{S}}(R)\) : probabilité de réussir sachant que le stage n'a pas été effectué.</li>
+    <li>Le stage semble-t-il avoir un impact sur la réussite ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P_S(R) = \dfrac{70}{80} = 0{,}875\), soit <strong>87,5 %</strong>.</li>
+      <li>\(P_{\bar{S}}(R) = \dfrac{20}{40} = 0{,}50\), soit <strong>50 %</strong>.</li>
+      <li>Oui, le stage semble avoir un impact positif : le taux de réussite passe de 50 % (sans stage) à 87,5 % (avec stage). Les stagiaires ayant effectué leur stage réussissent nettement mieux.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>On sait que dans un lot de 200 pièces : \(P(A) = 0{,}30\) (pièce en chêne) et \(P(A \cap B) = 0{,}12\) (pièce en chêne et de première qualité).</p>
+  <ol type="a">
+    <li>Calculer \(P_A(B)\) : probabilité qu'une pièce soit de première qualité sachant qu'elle est en chêne.</li>
+    <li>Si \(P(B) = 0{,}45\), calculer \(P_B(A)\).</li>
+    <li>Le chêne est-il davantage représenté parmi les pièces de première qualité que dans l'ensemble du lot ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(P_A(B) = \dfrac{P(A \cap B)}{P(A)} = \dfrac{0{,}12}{0{,}30} = 0{,}40\).<br>
+      Parmi les pièces en chêne, <strong>40 %</strong> sont de première qualité.</li>
+      <li>\(P_B(A) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{0{,}12}{0{,}45} = \dfrac{12}{45} = \dfrac{4}{15} \approx 0{,}267\).<br>
+      Parmi les pièces de première qualité, environ <strong>26,7 %</strong> sont en chêne.</li>
+      <li>Dans l'ensemble du lot, le chêne représente 30 %. Parmi les pièces de première qualité, il représente 26,7 %. Le chêne est donc <strong>légèrement sous-représenté</strong> parmi les premières qualités.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+</div><!-- fin .c -->
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

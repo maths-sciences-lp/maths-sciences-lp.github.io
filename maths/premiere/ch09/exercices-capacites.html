@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Exercices par capacités – Trigonométrie – Première Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#b45309;--p-bg:#fffbeb;--p-border:#fde68a}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-mama.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 9 – Exercices par capacités</h1>
+  <p class="sous-titre">Trigonométrie &nbsp;|&nbsp; Première Bac Pro &nbsp;|&nbsp; Mathématiques<br><em>(Groupements A et B uniquement)</em></p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Cercle trigonométrique, enroulement et conversions degrés/radians</li>
+    <li><strong>C2</strong> — Cosinus et sinus d'un réel ; valeurs particulières ; propriétés de symétrie</li>
+    <li><strong>C3</strong> — Courbe de la fonction sinus ; périodicité ; lecture graphique</li>
+  </ul>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Cercle et radians</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Cos, sin, symétries</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Courbe sinus</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Cercle trigonométrique, enroulement et conversions</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Le <strong>cercle trigonométrique</strong> est le cercle de centre \(O\) et de rayon 1 dans un repère orthonormé direct.<br>
+  On enroule la droite des réels sur le cercle : au réel \(x\) on associe le point \(M\) tel que l'arc \(\widehat{IM} = x\) (sens direct si \(x > 0\)).<br>
+  <strong>Conversion :</strong> \(\pi\) rad \(= 180°\), donc \(x° = x \times \dfrac{\pi}{180}\) rad et \(\alpha\) rad \(= \alpha \times \dfrac{180}{\pi}\) degrés.</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="260" height="260" viewBox="0 0 260 260" aria-label="Cercle trigonométrique avec points remarquables">
+      <rect width="260" height="260" fill="#f8fafc" rx="6"/>
+      <!-- Axes -->
+      <line x1="10" y1="130" x2="250" y2="130" stroke="#333" stroke-width="1.2"/>
+      <line x1="130" y1="250" x2="130" y2="10" stroke="#333" stroke-width="1.2"/>
+      <polygon points="250,127 258,130 250,133" fill="#333"/>
+      <polygon points="127,10 130,2 133,10" fill="#333"/>
+      <text x="240" y="145" font-size="10" fill="#333">x</text>
+      <text x="135" y="18" font-size="10" fill="#333">y</text>
+      <!-- Cercle -->
+      <circle cx="130" cy="130" r="100" fill="none" stroke="#b45309" stroke-width="2"/>
+      <!-- Points remarquables -->
+      <!-- I = (1,0) -->
+      <circle cx="230" cy="130" r="4" fill="#b45309"/>
+      <text x="234" y="125" font-size="10" fill="#b45309" font-weight="bold">I (0)</text>
+      <!-- pi/6 = 30° -->
+      <circle cx="217" cy="80" r="3" fill="#c53030"/>
+      <text x="220" y="75" font-size="9" fill="#c53030">\u03c0/6</text>
+      <!-- pi/4 = 45° -->
+      <circle cx="201" cy="59" r="3" fill="#c53030"/>
+      <text x="204" y="54" font-size="9" fill="#c53030">\u03c0/4</text>
+      <!-- pi/3 = 60° -->
+      <circle cx="180" cy="44" r="3" fill="#c53030"/>
+      <text x="183" y="39" font-size="9" fill="#c53030">\u03c0/3</text>
+      <!-- pi/2 = 90° -->
+      <circle cx="130" cy="30" r="4" fill="#b45309"/>
+      <text x="136" y="24" font-size="10" fill="#b45309" font-weight="bold">\u03c0/2</text>
+      <!-- pi = 180° -->
+      <circle cx="30" cy="130" r="4" fill="#b45309"/>
+      <text x="6" y="125" font-size="10" fill="#b45309" font-weight="bold">\u03c0</text>
+      <!-- 3pi/2 -->
+      <circle cx="130" cy="230" r="4" fill="#b45309"/>
+      <text x="136" y="245" font-size="10" fill="#b45309">3\u03c0/2</text>
+      <!-- O -->
+      <text x="118" y="145" font-size="10" fill="#333">O</text>
+      <!-- Sens direct -->
+      <path d="M 240,110 A 112,112 0 0,0 150,22" fill="none" stroke="#2f855a" stroke-width="1.5" marker-end="url(#arSens)"/>
+      <defs>
+        <marker id="arSens" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2f855a"/></marker>
+      </defs>
+      <text x="210" y="50" font-size="9" fill="#2f855a">sens +</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Cercle trigonométrique et angles remarquables</figcaption>
+  </figure>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Convertir les angles suivants de degrés en radians (donner la valeur exacte en fraction de \(\pi\)) :<br>
+  a) \(30°\) &emsp; b) \(45°\) &emsp; c) \(90°\) &emsp; d) \(120°\) &emsp; e) \(360°\)</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    On utilise la formule : \(x° = x \times \dfrac{\pi}{180}\) rad.<br><br>
+    <strong>a)</strong> \(30° = 30 \times \dfrac{\pi}{180} = \dfrac{\pi}{6}\) rad<br><br>
+    <strong>b)</strong> \(45° = 45 \times \dfrac{\pi}{180} = \dfrac{\pi}{4}\) rad<br><br>
+    <strong>c)</strong> \(90° = 90 \times \dfrac{\pi}{180} = \dfrac{\pi}{2}\) rad<br><br>
+    <strong>d)</strong> \(120° = 120 \times \dfrac{\pi}{180} = \dfrac{2\pi}{3}\) rad<br><br>
+    <strong>e)</strong> \(360° = 360 \times \dfrac{\pi}{180} = 2\pi\) rad
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Convertir les angles suivants de radians en degrés :<br>
+  a) \(\dfrac{\pi}{3}\) &emsp; b) \(\dfrac{3\pi}{4}\) &emsp; c) \(\dfrac{5\pi}{6}\) &emsp; d) \(\dfrac{7\pi}{4}\)</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    On utilise la formule : \(\alpha\) rad \(= \alpha \times \dfrac{180}{\pi}\) degrés.<br><br>
+    <strong>a)</strong> \(\dfrac{\pi}{3} = \dfrac{1}{3} \times 180° = 60°\)<br><br>
+    <strong>b)</strong> \(\dfrac{3\pi}{4} = \dfrac{3}{4} \times 180° = 135°\)<br><br>
+    <strong>c)</strong> \(\dfrac{5\pi}{6} = \dfrac{5}{6} \times 180° = 150°\)<br><br>
+    <strong>d)</strong> \(\dfrac{7\pi}{4} = \dfrac{7}{4} \times 180° = 315°\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un menuisier doit couper une pièce avec un angle de 60°. Sa machine affiche les angles en radians.<br>
+  1. Convertir 60° en radians.<br>
+  2. La machine propose aussi 150° et 210°. Convertir ces angles en radians.<br>
+  3. Placer les trois angles sur un schéma de cercle trigonométrique.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(60° = \dfrac{\pi}{3}\) rad<br><br>
+    <strong>2.</strong> \(150° = \dfrac{5\pi}{6}\) rad &emsp; ; &emsp; \(210° = \dfrac{7\pi}{6}\) rad<br><br>
+    <strong>3.</strong> Sur le cercle trigonométrique :<br>
+    - \(\dfrac{\pi}{3}\) est dans le premier quadrant (entre \(0\) et \(\dfrac{\pi}{2}\))<br>
+    - \(\dfrac{5\pi}{6}\) est dans le deuxième quadrant (entre \(\dfrac{\pi}{2}\) et \(\pi\))<br>
+    - \(\dfrac{7\pi}{6}\) est dans le troisième quadrant (entre \(\pi\) et \(\dfrac{3\pi}{2}\))
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Cosinus et sinus ; valeurs particulières ; symétries</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Sur le cercle trigonométrique, le point \(M\) associé au réel \(x\) a pour coordonnées \((\cos x ; \sin x)\).<br>
+  <strong>Valeurs particulières :</strong></p>
+  <table style="margin:8px auto;border-collapse:collapse;font-size:0.95em">
+    <tr style="border-bottom:2px solid var(--p)"><th style="padding:4px 10px">\(x\)</th><th style="padding:4px 10px">0</th><th style="padding:4px 10px">\(\frac{\pi}{6}\)</th><th style="padding:4px 10px">\(\frac{\pi}{4}\)</th><th style="padding:4px 10px">\(\frac{\pi}{3}\)</th><th style="padding:4px 10px">\(\frac{\pi}{2}\)</th><th style="padding:4px 10px">\(\pi\)</th></tr>
+    <tr><td style="padding:4px 10px;font-weight:bold">\(\cos x\)</td><td style="padding:4px 10px">1</td><td style="padding:4px 10px">\(\frac{\sqrt{3}}{2}\)</td><td style="padding:4px 10px">\(\frac{\sqrt{2}}{2}\)</td><td style="padding:4px 10px">\(\frac{1}{2}\)</td><td style="padding:4px 10px">0</td><td style="padding:4px 10px">\(-1\)</td></tr>
+    <tr><td style="padding:4px 10px;font-weight:bold">\(\sin x\)</td><td style="padding:4px 10px">0</td><td style="padding:4px 10px">\(\frac{1}{2}\)</td><td style="padding:4px 10px">\(\frac{\sqrt{2}}{2}\)</td><td style="padding:4px 10px">\(\frac{\sqrt{3}}{2}\)</td><td style="padding:4px 10px">1</td><td style="padding:4px 10px">0</td></tr>
+  </table>
+  <p><strong>Propriétés de symétrie :</strong><br>
+  \(\cos(-x) = \cos x\) ; \(\sin(-x) = -\sin x\) (angles opposés)<br>
+  \(\cos(\pi - x) = -\cos x\) ; \(\sin(\pi - x) = \sin x\) (supplémentaires)<br>
+  \(\cos(\pi + x) = -\cos x\) ; \(\sin(\pi + x) = -\sin x\)<br>
+  \(\cos^2 x + \sin^2 x = 1\)</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Donner les valeurs exactes de :<br>
+  a) \(\cos\dfrac{\pi}{3}\) et \(\sin\dfrac{\pi}{3}\)<br>
+  b) \(\cos\dfrac{\pi}{4}\) et \(\sin\dfrac{\pi}{4}\)<br>
+  c) \(\cos\dfrac{\pi}{6}\) et \(\sin\dfrac{\pi}{6}\)<br>
+  d) Vérifier que \(\cos^2\dfrac{\pi}{3} + \sin^2\dfrac{\pi}{3} = 1\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>a)</strong> \(\cos\dfrac{\pi}{3} = \dfrac{1}{2}\) et \(\sin\dfrac{\pi}{3} = \dfrac{\sqrt{3}}{2}\)<br><br>
+    <strong>b)</strong> \(\cos\dfrac{\pi}{4} = \dfrac{\sqrt{2}}{2}\) et \(\sin\dfrac{\pi}{4} = \dfrac{\sqrt{2}}{2}\)<br><br>
+    <strong>c)</strong> \(\cos\dfrac{\pi}{6} = \dfrac{\sqrt{3}}{2}\) et \(\sin\dfrac{\pi}{6} = \dfrac{1}{2}\)<br><br>
+    <strong>d)</strong> \(\cos^2\dfrac{\pi}{3} + \sin^2\dfrac{\pi}{3} = \left(\dfrac{1}{2}\right)^2 + \left(\dfrac{\sqrt{3}}{2}\right)^2 = \dfrac{1}{4} + \dfrac{3}{4} = 1\) ✔
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>En utilisant les propriétés de symétrie, déterminer les valeurs exactes de :<br>
+  a) \(\cos\left(-\dfrac{\pi}{3}\right)\) et \(\sin\left(-\dfrac{\pi}{3}\right)\)<br>
+  b) \(\cos\dfrac{2\pi}{3}\) et \(\sin\dfrac{2\pi}{3}\) (sachant que \(\dfrac{2\pi}{3} = \pi - \dfrac{\pi}{3}\))<br>
+  c) \(\cos\dfrac{4\pi}{3}\) et \(\sin\dfrac{4\pi}{3}\) (sachant que \(\dfrac{4\pi}{3} = \pi + \dfrac{\pi}{3}\))</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>a)</strong> Angles opposés : \(\cos(-x) = \cos x\) et \(\sin(-x) = -\sin x\).<br>
+    \(\cos\left(-\dfrac{\pi}{3}\right) = \cos\dfrac{\pi}{3} = \dfrac{1}{2}\)<br>
+    \(\sin\left(-\dfrac{\pi}{3}\right) = -\sin\dfrac{\pi}{3} = -\dfrac{\sqrt{3}}{2}\)<br><br>
+    <strong>b)</strong> Supplémentaires : \(\cos(\pi - x) = -\cos x\) et \(\sin(\pi - x) = \sin x\).<br>
+    \(\cos\dfrac{2\pi}{3} = -\cos\dfrac{\pi}{3} = -\dfrac{1}{2}\)<br>
+    \(\sin\dfrac{2\pi}{3} = \sin\dfrac{\pi}{3} = \dfrac{\sqrt{3}}{2}\)<br><br>
+    <strong>c)</strong> \(\cos(\pi + x) = -\cos x\) et \(\sin(\pi + x) = -\sin x\).<br>
+    \(\cos\dfrac{4\pi}{3} = -\cos\dfrac{\pi}{3} = -\dfrac{1}{2}\)<br>
+    \(\sin\dfrac{4\pi}{3} = -\sin\dfrac{\pi}{3} = -\dfrac{\sqrt{3}}{2}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un charpentier doit incliner une poutre selon un angle de \(\dfrac{\pi}{6}\) rad par rapport à l'horizontale.<br>
+  1. Convertir cet angle en degrés.<br>
+  2. Donner \(\cos\dfrac{\pi}{6}\) et \(\sin\dfrac{\pi}{6}\).<br>
+  3. Si la poutre mesure 4 m, calculer sa projection horizontale et sa projection verticale (valeurs exactes puis arrondies au centième).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\dfrac{\pi}{6} = 30°\)<br><br>
+    <strong>2.</strong> \(\cos\dfrac{\pi}{6} = \dfrac{\sqrt{3}}{2}\) et \(\sin\dfrac{\pi}{6} = \dfrac{1}{2}\)<br><br>
+    <strong>3.</strong> Projection horizontale : \(L \times \cos\dfrac{\pi}{6} = 4 \times \dfrac{\sqrt{3}}{2} = 2\sqrt{3} \approx 3{,}46\ \text{m}\)<br>
+    Projection verticale : \(L \times \sin\dfrac{\pi}{6} = 4 \times \dfrac{1}{2} = 2\ \text{m}\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Courbe de la fonction sinus ; périodicité</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La fonction sinus est définie sur \(\mathbb{R}\) par \(x \mapsto \sin x\).<br>
+  Elle est <strong>périodique de période \(2\pi\)</strong> : \(\sin(x + 2\pi) = \sin x\).<br>
+  Elle est <strong>impaire</strong> : \(\sin(-x) = -\sin x\).<br>
+  \(-1 \leqslant \sin x \leqslant 1\) pour tout \(x\).<br>
+  La courbe de la fonction cosinus se déduit par translation : \(\cos x = \sin\left(x + \dfrac{\pi}{2}\right)\).</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="400" height="200" viewBox="0 0 400 200" aria-label="Courbe de la fonction sinus sur [-pi, 3pi]">
+      <rect width="400" height="200" fill="#f8fafc" rx="6"/>
+      <!-- Axes -->
+      <line x1="10" y1="100" x2="390" y2="100" stroke="#333" stroke-width="1.2"/>
+      <line x1="60" y1="190" x2="60" y2="10" stroke="#333" stroke-width="1.2"/>
+      <polygon points="390,97 398,100 390,103" fill="#333"/>
+      <polygon points="57,10 60,2 63,10" fill="#333"/>
+      <text x="382" y="115" font-size="10" fill="#333">x</text>
+      <text x="65" y="18" font-size="10" fill="#333">y</text>
+      <!-- Grille horizontale -->
+      <line x1="10" y1="30" x2="390" y2="30" stroke="#e2e8f0" stroke-width="0.5"/>
+      <line x1="10" y1="170" x2="390" y2="170" stroke="#e2e8f0" stroke-width="0.5"/>
+      <text x="42" y="34" font-size="9" fill="#333">1</text>
+      <text x="38" y="174" font-size="9" fill="#333">-1</text>
+      <!-- Graduations en pi -->
+      <!-- 1 unité pi = 100px, O est à x=60 -->
+      <!-- -pi = -40(hors), 0 = 60, pi/2 = 110, pi = 160, 3pi/2 = 210, 2pi = 260, 5pi/2 = 310, 3pi = 360 -->
+      <text x="55" y="115" font-size="9" fill="#333">0</text>
+      <line x1="110" y1="95" x2="110" y2="105" stroke="#333" stroke-width="1"/>
+      <text x="98" y="118" font-size="8" fill="#333">\u03c0/2</text>
+      <line x1="160" y1="95" x2="160" y2="105" stroke="#333" stroke-width="1"/>
+      <text x="154" y="118" font-size="8" fill="#333">\u03c0</text>
+      <line x1="210" y1="95" x2="210" y2="105" stroke="#333" stroke-width="1"/>
+      <text x="196" y="118" font-size="8" fill="#333">3\u03c0/2</text>
+      <line x1="260" y1="95" x2="260" y2="105" stroke="#333" stroke-width="1"/>
+      <text x="251" y="118" font-size="8" fill="#333">2\u03c0</text>
+      <line x1="310" y1="95" x2="310" y2="105" stroke="#333" stroke-width="1"/>
+      <text x="296" y="118" font-size="8" fill="#333">5\u03c0/2</text>
+      <line x1="360" y1="95" x2="360" y2="105" stroke="#333" stroke-width="1"/>
+      <text x="351" y="118" font-size="8" fill="#333">3\u03c0</text>
+      <!-- Courbe sinus : sin(x) avec 100px = pi, amplitude 70px -->
+      <!-- Points calculés : (60,100), (85,51), (110,30), (135,51), (160,100), (185,149), (210,170), (235,149), (260,100), (285,51), (310,30), (335,51), (360,100) -->
+      <polyline points="10,149 20,134 30,118 40,109 50,103 60,100 70,93 80,72 85,58 90,47 95,38 100,33 105,31 110,30 115,31 120,33 125,38 130,47 135,58 140,72 145,86 150,93 155,97 160,100 165,103 170,109 175,118 180,134 185,149 190,158 195,165 200,168 205,170 210,170 215,168 220,165 225,158 230,149 235,134 240,118 245,109 250,103 255,100 260,100 265,93 270,72 275,58 280,47 285,38 290,33 295,31 300,30 305,31 310,30 315,33 320,38 325,47 330,58 335,72 340,86 345,93 350,97 355,100 360,100 365,103 370,109 375,118 380,134 385,149 390,158"
+        fill="none" stroke="#b45309" stroke-width="2.5"/>
+      <!-- Points remarquables -->
+      <circle cx="110" cy="30" r="4" fill="#c53030"/>
+      <text x="114" y="24" font-size="9" fill="#c53030">max</text>
+      <circle cx="210" cy="170" r="4" fill="#c53030"/>
+      <text x="214" y="185" font-size="9" fill="#c53030">min</text>
+      <circle cx="310" cy="30" r="4" fill="#c53030"/>
+      <text x="314" y="24" font-size="9" fill="#c53030">max</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Courbe de \(y = \sin x\) — période \(2\pi\), amplitude 1</figcaption>
+  </figure>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>On considère la fonction \(f(x) = \sin x\) sur l'intervalle \([0 ; 2\pi]\).<br>
+  1. Compléter le tableau de valeurs :</p>
+  <table style="margin:8px auto;border-collapse:collapse;font-size:0.95em">
+    <tr style="border-bottom:2px solid var(--p)"><th style="padding:4px 8px">\(x\)</th><td style="padding:4px 8px">0</td><td style="padding:4px 8px">\(\frac{\pi}{6}\)</td><td style="padding:4px 8px">\(\frac{\pi}{4}\)</td><td style="padding:4px 8px">\(\frac{\pi}{3}\)</td><td style="padding:4px 8px">\(\frac{\pi}{2}\)</td><td style="padding:4px 8px">\(\pi\)</td><td style="padding:4px 8px">\(\frac{3\pi}{2}\)</td><td style="padding:4px 8px">\(2\pi\)</td></tr>
+    <tr><td style="padding:4px 8px;font-weight:bold">\(\sin x\)</td><td style="padding:4px 8px">...</td><td style="padding:4px 8px">...</td><td style="padding:4px 8px">...</td><td style="padding:4px 8px">...</td><td style="padding:4px 8px">...</td><td style="padding:4px 8px">...</td><td style="padding:4px 8px">...</td><td style="padding:4px 8px">...</td></tr>
+  </table>
+  <p>2. Sur quel intervalle la fonction sinus est-elle croissante ? Décroissante ?<br>
+  3. Quelles sont les valeurs maximale et minimale de \(\sin x\) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong>
+    <table style="margin:8px auto;border-collapse:collapse;font-size:0.95em">
+      <tr style="border-bottom:2px solid var(--p)"><th style="padding:4px 8px">\(x\)</th><td style="padding:4px 8px">0</td><td style="padding:4px 8px">\(\frac{\pi}{6}\)</td><td style="padding:4px 8px">\(\frac{\pi}{4}\)</td><td style="padding:4px 8px">\(\frac{\pi}{3}\)</td><td style="padding:4px 8px">\(\frac{\pi}{2}\)</td><td style="padding:4px 8px">\(\pi\)</td><td style="padding:4px 8px">\(\frac{3\pi}{2}\)</td><td style="padding:4px 8px">\(2\pi\)</td></tr>
+      <tr><td style="padding:4px 8px;font-weight:bold">\(\sin x\)</td><td style="padding:4px 8px">0</td><td style="padding:4px 8px">\(\frac{1}{2}\)</td><td style="padding:4px 8px">\(\frac{\sqrt{2}}{2}\)</td><td style="padding:4px 8px">\(\frac{\sqrt{3}}{2}\)</td><td style="padding:4px 8px">1</td><td style="padding:4px 8px">0</td><td style="padding:4px 8px">\(-1\)</td><td style="padding:4px 8px">0</td></tr>
+    </table><br>
+    <strong>2.</strong> La fonction sinus est <strong>croissante</strong> sur \(\left[0 ; \dfrac{\pi}{2}\right]\), puis <strong>décroissante</strong> sur \(\left[\dfrac{\pi}{2} ; \dfrac{3\pi}{2}\right]\), puis à nouveau <strong>croissante</strong> sur \(\left[\dfrac{3\pi}{2} ; 2\pi\right]\).<br><br>
+    <strong>3.</strong> Valeur maximale : \(\sin\dfrac{\pi}{2} = 1\). Valeur minimale : \(\sin\dfrac{3\pi}{2} = -1\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>On donne la courbe de \(y = \sin x\) sur \([0 ; 4\pi]\).<br>
+  1. Résoudre graphiquement \(\sin x = 0\) sur \([0 ; 4\pi]\).<br>
+  2. Résoudre graphiquement \(\sin x = \dfrac{1}{2}\) sur \([0 ; 2\pi]\).<br>
+  3. Expliquer pourquoi \(\sin(x + 2\pi) = \sin x\). Comment cela se traduit-il sur la courbe ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\sin x = 0\) pour \(x = 0\), \(x = \pi\), \(x = 2\pi\), \(x = 3\pi\), \(x = 4\pi\).<br>
+    La courbe coupe l'axe des abscisses en ces points.<br><br>
+    <strong>2.</strong> Sur \([0 ; 2\pi]\), \(\sin x = \dfrac{1}{2}\) pour \(x = \dfrac{\pi}{6}\) et \(x = \pi - \dfrac{\pi}{6} = \dfrac{5\pi}{6}\).<br><br>
+    <strong>3.</strong> La fonction sinus est <strong>périodique de période \(2\pi\)</strong> : le motif de la courbe se répète identiquement tous les \(2\pi\). On dit que la courbe est invariante par la translation de vecteur \(\begin{pmatrix} 2\pi \\ 0 \end{pmatrix}\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Dans un atelier de menuiserie, une machine de découpe effectue un mouvement oscillant dont la position verticale (en cm) est modélisée par \(h(t) = 5\sin(t)\), où \(t\) est le temps en secondes.<br>
+  1. Quelle est l'amplitude du mouvement ?<br>
+  2. Quelle est la période du mouvement (arrondir au centième) ?<br>
+  3. Calculer \(h(0)\), \(h\left(\dfrac{\pi}{2}\right)\), \(h(\pi)\) et \(h\left(\dfrac{3\pi}{2}\right)\).<br>
+  4. À quel instant la lame atteint-elle sa position la plus haute pour la première fois ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> L'amplitude est le coefficient devant le sinus : <strong>5 cm</strong>. La position varie entre \(-5\) cm et \(+5\) cm.<br><br>
+    <strong>2.</strong> La période de \(\sin(t)\) est \(T = 2\pi \approx 6{,}28\) s.<br><br>
+    <strong>3.</strong> \(h(0) = 5\sin(0) = 0\ \text{cm}\)<br>
+    \(h\left(\dfrac{\pi}{2}\right) = 5\sin\dfrac{\pi}{2} = 5 \times 1 = 5\ \text{cm}\)<br>
+    \(h(\pi) = 5\sin(\pi) = 5 \times 0 = 0\ \text{cm}\)<br>
+    \(h\left(\dfrac{3\pi}{2}\right) = 5\sin\dfrac{3\pi}{2} = 5 \times (-1) = -5\ \text{cm}\)<br><br>
+    <strong>4.</strong> La position la plus haute correspond à \(\sin(t) = 1\), soit \(t = \dfrac{\pi}{2} \approx 1{,}57\) s.
+  </div>
+</div>
+</div>
+
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

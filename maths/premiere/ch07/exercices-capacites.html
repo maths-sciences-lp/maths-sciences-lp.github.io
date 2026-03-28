@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Exercices par capacités – Géométrie dans l'espace – Première Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#b45309;--p-bg:#fffbeb;--p-border:#fde68a}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-mama.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 7 – Exercices par capacités</h1>
+  <p class="sous-titre">Géométrie dans l'espace &nbsp;|&nbsp; Première Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Représenter un solide usuel (cube, pavé droit, pyramide, cylindre, cône, boule)</li>
+    <li><strong>C2</strong> — Exploiter une représentation d'un solide usuel ou d'un assemblage de solides</li>
+    <li><strong>C3</strong> — Réaliser et exploiter la section d'un solide usuel par un plan</li>
+  </ul>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Représenter</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Exploiter</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Section plane</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Représenter un solide usuel</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Les solides usuels sont le <strong>cube</strong>, le <strong>pavé droit</strong>, la <strong>pyramide</strong>, le <strong>cylindre droit</strong>, le <strong>cône</strong> et la <strong>boule</strong>.<br>
+  En perspective cavalière, les arêtes cachées sont représentées en pointillés. Les faces parallèles conservent le parallélisme et les rapports de longueur sur une même direction.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un menuisier réalise un caisson cubique d'arête 40 cm pour un meuble d'agencement.<br>
+  1. Représenter ce cube en perspective cavalière en nommant ses sommets \(ABCDEFGH\).<br>
+  2. Combien ce solide possède-t-il de faces, d'arêtes et de sommets ?<br>
+  3. Calculer le volume du caisson.</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="260" height="240" viewBox="0 0 260 240" aria-label="Cube ABCDEFGH en perspective cavalière">
+      <rect width="260" height="240" fill="#f8fafc" rx="6"/>
+      <!-- Face avant ABCD -->
+      <polygon points="40,180 160,180 160,60 40,60" fill="none" stroke="#b45309" stroke-width="2"/>
+      <!-- Face arrière EFGH -->
+      <polygon points="100,140 220,140 220,20 100,20" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <!-- Arêtes latérales -->
+      <line x1="40" y1="180" x2="100" y2="140" stroke="#b45309" stroke-width="2"/>
+      <line x1="160" y1="180" x2="220" y2="140" stroke="#b45309" stroke-width="2"/>
+      <line x1="160" y1="60" x2="220" y2="20" stroke="#b45309" stroke-width="2"/>
+      <line x1="40" y1="60" x2="100" y2="20" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <!-- Arêtes cachées -->
+      <line x1="100" y1="140" x2="100" y2="20" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <line x1="100" y1="20" x2="220" y2="20" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <line x1="100" y1="140" x2="220" y2="140" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <!-- Sommets -->
+      <text x="25" y="196" font-size="12" fill="#b45309" font-weight="bold">A</text>
+      <text x="162" y="196" font-size="12" fill="#b45309" font-weight="bold">B</text>
+      <text x="162" y="54" font-size="12" fill="#b45309" font-weight="bold">C</text>
+      <text x="25" y="54" font-size="12" fill="#b45309" font-weight="bold">D</text>
+      <text x="86" y="152" font-size="12" fill="#92400e" font-weight="bold">E</text>
+      <text x="224" y="152" font-size="12" fill="#92400e" font-weight="bold">F</text>
+      <text x="224" y="16" font-size="12" fill="#92400e" font-weight="bold">G</text>
+      <text x="86" y="16" font-size="12" fill="#92400e" font-weight="bold">H</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Cube \(ABCDEFGH\) en perspective cavalière</figcaption>
+  </figure>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> Voir la figure ci-dessus. Les arêtes cachées \([AE]\), \([EH]\), \([EF]\) et \([DH]\) sont en pointillés.<br><br>
+    <strong>2.</strong> Le cube possède <strong>6 faces</strong>, <strong>12 arêtes</strong> et <strong>8 sommets</strong>.<br><br>
+    <strong>3.</strong> \(V = a^3 = 40^3 = 64\,000\ \text{cm}^3 = 0{,}064\ \text{m}^3\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un artisan fabrique une pyramide décorative en bois à base carrée de côté 12 cm et de hauteur 20 cm.<br>
+  1. Nommer ce solide et indiquer le nombre de faces, d'arêtes et de sommets.<br>
+  2. Représenter cette pyramide en perspective cavalière.<br>
+  3. Calculer son volume.</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="220" height="240" viewBox="0 0 220 240" aria-label="Pyramide à base carrée en perspective cavalière">
+      <rect width="220" height="240" fill="#f8fafc" rx="6"/>
+      <!-- Base ABCD -->
+      <line x1="50" y1="200" x2="170" y2="200" stroke="#b45309" stroke-width="2"/>
+      <line x1="170" y1="200" x2="190" y2="160" stroke="#b45309" stroke-width="2"/>
+      <line x1="190" y1="160" x2="70" y2="160" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <line x1="70" y1="160" x2="50" y2="200" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <!-- Sommet S -->
+      <circle cx="120" cy="30" r="3" fill="#b45309"/>
+      <!-- Arêtes latérales -->
+      <line x1="50" y1="200" x2="120" y2="30" stroke="#b45309" stroke-width="2"/>
+      <line x1="170" y1="200" x2="120" y2="30" stroke="#b45309" stroke-width="2"/>
+      <line x1="190" y1="160" x2="120" y2="30" stroke="#b45309" stroke-width="2"/>
+      <line x1="70" y1="160" x2="120" y2="30" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <!-- Hauteur en pointillés -->
+      <line x1="120" y1="30" x2="120" y2="180" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+      <circle cx="120" cy="180" r="2" fill="#888"/>
+      <text x="125" y="120" font-size="10" fill="#888">h</text>
+      <!-- Labels -->
+      <text x="34" y="214" font-size="12" fill="#b45309" font-weight="bold">A</text>
+      <text x="172" y="214" font-size="12" fill="#b45309" font-weight="bold">B</text>
+      <text x="194" y="156" font-size="12" fill="#b45309" font-weight="bold">C</text>
+      <text x="54" y="156" font-size="12" fill="#92400e" font-weight="bold">D</text>
+      <text x="124" y="24" font-size="12" fill="#b45309" font-weight="bold">S</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Pyramide \(SABCD\) à base carrée</figcaption>
+  </figure>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> C'est une <strong>pyramide à base carrée</strong>. Elle possède <strong>5 faces</strong> (1 carrée + 4 triangulaires), <strong>8 arêtes</strong> et <strong>5 sommets</strong>.<br><br>
+    <strong>2.</strong> Voir la figure ci-dessus.<br><br>
+    <strong>3.</strong> \(V = \dfrac{1}{3} \times A_{\text{base}} \times h = \dfrac{1}{3} \times 12^2 \times 20 = \dfrac{1}{3} \times 144 \times 20 = 960\ \text{cm}^3\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un installateur conçoit un conduit cylindrique de rayon 8 cm et de longueur 50 cm.<br>
+  1. Représenter ce cylindre droit en perspective.<br>
+  2. Combien de faces, d'arêtes et de sommets possède-t-il ?<br>
+  3. Calculer son volume (arrondir au cm\(^3\) près).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> Le cylindre droit se représente avec deux ellipses (bases circulaires) reliées par deux segments latéraux.<br><br>
+    <strong>2.</strong> Le cylindre droit possède <strong>3 faces</strong> (2 disques + 1 surface latérale), <strong>2 arêtes</strong> (les deux cercles) et <strong>0 sommet</strong>.<br><br>
+    <strong>3.</strong> \(V = \pi r^2 h = \pi \times 8^2 \times 50 = 3\,200\pi \approx 10\,053\ \text{cm}^3\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Exploiter une représentation d'un solide</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Exploiter une représentation en perspective, c'est identifier des éléments géométriques (arêtes parallèles, perpendiculaires, diagonales de face, diagonales de l'espace), calculer des longueurs et reconnaître des propriétés de position (parallélisme, perpendicularité).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>On considère le pavé droit \(ABCDEFGH\) tel que \(AB = 6\) cm, \(BC = 4\) cm et \(AE = 3\) cm.<br>
+  1. Citer toutes les arêtes parallèles à \([AB]\).<br>
+  2. Citer toutes les arêtes perpendiculaires à \([AB]\).<br>
+  3. Calculer la longueur de la diagonale de la face \(ABCD\) (arrondir au dixième).</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="280" height="200" viewBox="0 0 280 200" aria-label="Pavé droit ABCDEFGH avec dimensions">
+      <rect width="280" height="200" fill="#f8fafc" rx="6"/>
+      <!-- Face avant ABFE -->
+      <polygon points="30,160 180,160 180,90 30,90" fill="none" stroke="#b45309" stroke-width="2"/>
+      <!-- Face arrière DCGH -->
+      <polygon points="80,130 230,130 230,60 80,60" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <!-- Arêtes latérales -->
+      <line x1="30" y1="160" x2="80" y2="130" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <line x1="180" y1="160" x2="230" y2="130" stroke="#b45309" stroke-width="2"/>
+      <line x1="180" y1="90" x2="230" y2="60" stroke="#b45309" stroke-width="2"/>
+      <line x1="30" y1="90" x2="80" y2="60" stroke="#b45309" stroke-width="2"/>
+      <!-- Arêtes cachées supplémentaires -->
+      <line x1="80" y1="130" x2="80" y2="60" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <line x1="80" y1="130" x2="230" y2="130" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <!-- Labels -->
+      <text x="14" y="176" font-size="11" fill="#b45309" font-weight="bold">A</text>
+      <text x="182" y="176" font-size="11" fill="#b45309" font-weight="bold">B</text>
+      <text x="182" y="84" font-size="11" fill="#b45309" font-weight="bold">F</text>
+      <text x="14" y="84" font-size="11" fill="#b45309" font-weight="bold">E</text>
+      <text x="64" y="142" font-size="11" fill="#92400e" font-weight="bold">D</text>
+      <text x="234" y="142" font-size="11" fill="#92400e" font-weight="bold">C</text>
+      <text x="234" y="56" font-size="11" fill="#92400e" font-weight="bold">G</text>
+      <text x="64" y="56" font-size="11" fill="#92400e" font-weight="bold">H</text>
+      <!-- Dimensions -->
+      <text x="95" y="188" font-size="10" fill="#333">6 cm</text>
+      <text x="210" y="152" font-size="10" fill="#333">4 cm</text>
+      <text x="186" y="130" font-size="10" fill="#333">3 cm</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Pavé droit \(ABCDEFGH\)</figcaption>
+  </figure>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> Les arêtes parallèles à \([AB]\) sont : \([DC]\), \([EF]\) et \([HG]\).<br><br>
+    <strong>2.</strong> Les arêtes perpendiculaires à \([AB]\) sont : \([AD]\), \([BC]\), \([AE]\) et \([BF]\).<br><br>
+    <strong>3.</strong> La diagonale \([AC]\) de la face \(ABCD\) :<br>
+    \(AC = \sqrt{AB^2 + BC^2} = \sqrt{6^2 + 4^2} = \sqrt{36 + 16} = \sqrt{52} \approx 7{,}2\ \text{cm}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un agenceur doit poser un tube diagonal à l'intérieur d'un meuble parallélépipédique de dimensions \(L = 80\) cm, \(\ell = 60\) cm, \(h = 50\) cm.<br>
+  Calculer la longueur de la diagonale de l'espace de ce pavé droit (arrondir au dixième).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    La diagonale de l'espace du pavé droit vaut :<br>
+    \(d = \sqrt{L^2 + \ell^2 + h^2} = \sqrt{80^2 + 60^2 + 50^2}\)<br>
+    \(d = \sqrt{6\,400 + 3\,600 + 2\,500} = \sqrt{12\,500} \approx 111{,}8\ \text{cm}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>On considère un cube \(ABCDEFGH\) d'arête 5 cm. Le point \(I\) est le milieu de \([EF]\).<br>
+  1. Calculer la longueur \(AI\).<br>
+  2. Le segment \([AG]\) est une diagonale de l'espace. Calculer \(AG\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> On place le cube dans un repère : \(A(0;0;0)\), \(E(0;0;5)\), \(F(5;0;5)\), donc \(I(2{,}5;0;5)\).<br>
+    \(AI = \sqrt{2{,}5^2 + 0^2 + 5^2} = \sqrt{6{,}25 + 25} = \sqrt{31{,}25} \approx 5{,}59\ \text{cm}\)<br><br>
+    <strong>2.</strong> \(G(5;5;5)\), donc \(AG = \sqrt{5^2 + 5^2 + 5^2} = \sqrt{75} = 5\sqrt{3} \approx 8{,}66\ \text{cm}\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Section d'un solide par un plan</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La <strong>section</strong> d'un solide par un plan est la figure obtenue par l'intersection du plan avec le solide.<br>
+  Exemples : la section d'un cube par un plan parallèle à une face est un <strong>carré</strong> ; la section d'un cube par un plan passant par une diagonale peut donner un <strong>rectangle</strong> ou un <strong>hexagone</strong>.<br>
+  La section d'une pyramide par un plan parallèle à la base est un <strong>polygone semblable</strong> à la base (réduction).</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="260" height="240" viewBox="0 0 260 240" aria-label="Section d'un cube par un plan parallèle à une face">
+      <rect width="260" height="240" fill="#f8fafc" rx="6"/>
+      <!-- Cube -->
+      <polygon points="40,200 160,200 160,80 40,80" fill="none" stroke="#b45309" stroke-width="1.5"/>
+      <polygon points="100,160 220,160 220,40 100,40" fill="none" stroke="#b45309" stroke-width="1" stroke-dasharray="5,3"/>
+      <line x1="40" y1="200" x2="100" y2="160" stroke="#b45309" stroke-width="1" stroke-dasharray="5,3"/>
+      <line x1="160" y1="200" x2="220" y2="160" stroke="#b45309" stroke-width="1.5"/>
+      <line x1="160" y1="80" x2="220" y2="40" stroke="#b45309" stroke-width="1.5"/>
+      <line x1="40" y1="80" x2="100" y2="40" stroke="#b45309" stroke-width="1.5"/>
+      <!-- Section (plan parallèle à la face, à mi-hauteur) -->
+      <polygon points="40,140 160,140 220,100 100,100" fill="#fde68a" fill-opacity="0.4" stroke="#c53030" stroke-width="2.5"/>
+      <text x="115" y="125" font-size="11" fill="#c53030" font-weight="bold">Section</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Section d'un cube par un plan parallèle à une face : un carré</figcaption>
+  </figure>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Un cube \(ABCDEFGH\) a une arête de 6 cm. Un plan parallèle à la face \(ABFE\) coupe les arêtes \([AD]\), \([BC]\), \([FG]\) et \([EH]\) à 2 cm de \(A\), \(B\), \(F\) et \(E\) respectivement.<br>
+  1. Quelle est la nature de la section ?<br>
+  2. Calculer l'aire de cette section.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> Le plan de section est parallèle à la face \(ABFE\). La section d'un cube par un plan parallèle à une face est un <strong>carré</strong> de même dimension que la face.<br><br>
+    <strong>2.</strong> Le carré a pour côté 6 cm (la longueur de l'arête).<br>
+    \(\mathcal{A} = 6^2 = 36\ \text{cm}^2\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Une pyramide régulière \(SABCD\) à base carrée a pour base un carré \(ABCD\) de côté 10 cm et pour hauteur \(SH = 15\) cm (\(H\) centre de la base).<br>
+  Un plan parallèle à la base coupe la pyramide à 5 cm du sommet \(S\).<br>
+  1. Quelle est la nature de la section ?<br>
+  2. Quel est le rapport de réduction ?<br>
+  3. Calculer le côté et l'aire de la section.</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="220" height="240" viewBox="0 0 220 240" aria-label="Section d'une pyramide par un plan parallèle à la base">
+      <rect width="220" height="240" fill="#f8fafc" rx="6"/>
+      <!-- Pyramide -->
+      <line x1="30" y1="210" x2="190" y2="210" stroke="#b45309" stroke-width="2"/>
+      <line x1="190" y1="210" x2="200" y2="180" stroke="#b45309" stroke-width="2"/>
+      <line x1="200" y1="180" x2="40" y2="180" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <line x1="40" y1="180" x2="30" y2="210" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <line x1="30" y1="210" x2="115" y2="30" stroke="#b45309" stroke-width="2"/>
+      <line x1="190" y1="210" x2="115" y2="30" stroke="#b45309" stroke-width="2"/>
+      <line x1="200" y1="180" x2="115" y2="30" stroke="#b45309" stroke-width="2"/>
+      <line x1="40" y1="180" x2="115" y2="30" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <circle cx="115" cy="30" r="3" fill="#b45309"/>
+      <text x="118" y="24" font-size="11" fill="#b45309" font-weight="bold">S</text>
+      <!-- Section à 1/3 depuis S -->
+      <polygon points="87,90 143,90 147,80 83,80" fill="#fde68a" fill-opacity="0.4" stroke="#c53030" stroke-width="2"/>
+      <text x="96" y="74" font-size="10" fill="#c53030" font-weight="bold">section</text>
+      <!-- Hauteur -->
+      <line x1="115" y1="30" x2="115" y2="195" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Section d'une pyramide par un plan parallèle à la base</figcaption>
+  </figure>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> La section d'une pyramide par un plan parallèle à la base est un polygone <strong>semblable</strong> à la base. Ici, c'est un <strong>carré</strong>.<br><br>
+    <strong>2.</strong> Le plan coupe à 5 cm du sommet, sur une hauteur totale de 15 cm.<br>
+    Rapport de réduction : \(k = \dfrac{5}{15} = \dfrac{1}{3}\)<br><br>
+    <strong>3.</strong> Côté de la section : \(c = k \times 10 = \dfrac{10}{3} \approx 3{,}33\ \text{cm}\)<br>
+    Aire : \(\mathcal{A} = c^2 = \left(\dfrac{10}{3}\right)^2 = \dfrac{100}{9} \approx 11{,}1\ \text{cm}^2\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Sur un chantier, un menuisier doit couper un bloc parallélépipédique (pavé droit) de dimensions 30 cm &times; 20 cm &times; 15 cm par un plan passant par les milieux de trois arêtes verticales consécutives.<br>
+  Le plan de coupe passe par les points \(I\) (milieu de \([AE]\)), \(J\) (milieu de \([BF]\)) et \(K\) (milieu de \([CG]\)).<br>
+  1. Quelle est la nature de la section \(IJK...\) ?<br>
+  2. Quelles sont les dimensions de cette section ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> Les points \(I\), \(J\), \(K\) sont situés à mi-hauteur sur trois arêtes verticales consécutives. Le plan passant par ces trois points est <strong>parallèle</strong> aux faces horizontales (bases du pavé). Le quatrième point de la section, \(L\) (milieu de \([DH]\)), complète la figure.<br>
+    La section \(IJKL\) est un <strong>rectangle</strong>.<br><br>
+    <strong>2.</strong> Ce rectangle a les mêmes dimensions que la base du pavé :<br>
+    \(IJ = AB = 30\ \text{cm}\) et \(JK = BC = 20\ \text{cm}\).<br>
+    Aire : \(\mathcal{A} = 30 \times 20 = 600\ \text{cm}^2\)
+  </div>
+</div>
+</div>
+
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

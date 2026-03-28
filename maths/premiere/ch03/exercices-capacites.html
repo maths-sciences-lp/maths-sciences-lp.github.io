@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Exercices par capacités – Suites numériques (suites arithmétiques) – 1ère Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#b45309;--p-bg:#fffbeb;--p-border:#fde68a}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 3 – Exercices par capacités</h1>
+  <p class="sous-titre">Suites numériques (suites arithmétiques) &nbsp;|&nbsp; Première Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Générer les termes d'une suite numérique (par calcul ou outil numérique)</li>
+    <li><strong>C2</strong> — Reconnaître une suite arithmétique et calculer un terme de rang donné</li>
+    <li><strong>C3</strong> — Déterminer le terme général d'une suite arithmétique et son sens de variation</li>
+    <li><strong>C4</strong> — Réaliser et exploiter le nuage de points \((n\,;\,u_n)\)</li>
+    <li><strong>C5</strong> — Calculer la somme des \(n\) premiers termes d'une suite arithmétique</li>
+  </ul>
+  <p style="font-size:0.9em;color:#b45309;margin-top:8px"><em>Remarque : la formule de la somme n'est pas exigible (non à mémoriser). Les suites définies par récurrence autres qu'arithmétiques sont hors programme.</em></p>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Générer des termes</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Suite arithmétique</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Terme général / variations</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Nuage (n ; u_n)</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Somme des termes</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Générer les termes d'une suite numérique</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Une <strong>suite numérique</strong> \((u_n)\) associe à chaque entier naturel \(n\) un nombre réel \(u_n\). On peut la définir par une formule explicite \(u_n = f(n)\) ou par une relation de récurrence \(u_{n+1} = g(u_n)\). Pour calculer les termes, on remplace \(n\) par les valeurs successives 0, 1, 2, 3...</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>On considère la suite \((u_n)\) définie par \(u_n = 3n + 5\).</p>
+  <ol type="a">
+    <li>Calculer \(u_0\), \(u_1\), \(u_2\), \(u_3\) et \(u_4\).</li>
+    <li>Calculer \(u_{10}\) et \(u_{100}\).</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(u_0 = 3 \times 0 + 5 = 5\)<br>
+        \(u_1 = 3 \times 1 + 5 = 8\)<br>
+        \(u_2 = 3 \times 2 + 5 = 11\)<br>
+        \(u_3 = 3 \times 3 + 5 = 14\)<br>
+        \(u_4 = 3 \times 4 + 5 = 17\)
+      </li>
+      <li>
+        \(u_{10} = 3 \times 10 + 5 = 35\)<br>
+        \(u_{100} = 3 \times 100 + 5 = 305\)
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un menuisier agenceur fabrique des étagères. La suite \((v_n)\) donne le nombre total de vis utilisées pour \(n\) étagères : \(v_n = 8n + 4\) (4 vis pour le cadre de base, puis 8 vis par étagère).</p>
+  <ol type="a">
+    <li>Calculer le nombre de vis pour 1, 2, 3, 4 et 5 étagères.</li>
+    <li>Combien de vis faut-il pour 12 étagères ?</li>
+    <li>Un menuisier dispose de 100 vis. Combien d'étagères peut-il fabriquer au maximum ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(v_1 = 8 \times 1 + 4 = 12\) vis<br>
+        \(v_2 = 8 \times 2 + 4 = 20\) vis<br>
+        \(v_3 = 8 \times 3 + 4 = 28\) vis<br>
+        \(v_4 = 8 \times 4 + 4 = 36\) vis<br>
+        \(v_5 = 8 \times 5 + 4 = 44\) vis
+      </li>
+      <li>\(v_{12} = 8 \times 12 + 4 = 100\) vis.</li>
+      <li>On résout \(8n + 4 \leqslant 100\), soit \(8n \leqslant 96\), donc \(n \leqslant 12\). Il peut fabriquer <strong>12 étagères</strong> au maximum.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>On considère la suite \((w_n)\) définie par \(w_n = n^2 - 2n + 3\).</p>
+  <ol type="a">
+    <li>Calculer \(w_0\), \(w_1\), \(w_2\), \(w_3\), \(w_4\) et \(w_5\).</li>
+    <li>Cette suite est-elle arithmétique ? Justifier en calculant les différences \(w_{n+1} - w_n\) pour les premières valeurs.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(w_0 = 0 - 0 + 3 = 3\)<br>
+        \(w_1 = 1 - 2 + 3 = 2\)<br>
+        \(w_2 = 4 - 4 + 3 = 3\)<br>
+        \(w_3 = 9 - 6 + 3 = 6\)<br>
+        \(w_4 = 16 - 8 + 3 = 11\)<br>
+        \(w_5 = 25 - 10 + 3 = 18\)
+      </li>
+      <li>
+        \(w_1 - w_0 = 2 - 3 = -1\)<br>
+        \(w_2 - w_1 = 3 - 2 = 1\)<br>
+        \(w_3 - w_2 = 6 - 3 = 3\)<br>
+        Les différences ne sont <strong>pas constantes</strong> : cette suite n'est <strong>pas arithmétique</strong>.
+      </li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Reconnaître une suite arithmétique et calculer un terme de rang donné</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Une suite \((u_n)\) est <strong>arithmétique</strong> si la différence entre deux termes consécutifs est constante : \(u_{n+1} = u_n + r\), où \(r\) est la <strong>raison</strong>. Pour calculer un terme de rang donné, on peut partir du premier terme et ajouter la raison successivement, ou utiliser la formule explicite : \(u_n = u_0 + n \times r\).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Parmi les suites suivantes, indiquer lesquelles sont arithmétiques. Préciser la raison.</p>
+  <ol type="a">
+    <li>5 ; 8 ; 11 ; 14 ; 17 ; ...</li>
+    <li>100 ; 90 ; 80 ; 70 ; 60 ; ...</li>
+    <li>2 ; 4 ; 8 ; 16 ; 32 ; ...</li>
+    <li>1,5 ; 3 ; 4,5 ; 6 ; 7,5 ; ...</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(8 - 5 = 3\), \(11 - 8 = 3\), \(14 - 11 = 3\) : <strong>arithmétique</strong>, raison \(r = 3\).</li>
+      <li>\(90 - 100 = -10\), \(80 - 90 = -10\) : <strong>arithmétique</strong>, raison \(r = -10\).</li>
+      <li>\(4 - 2 = 2\), \(8 - 4 = 4\) : les différences ne sont pas constantes. <strong>Non arithmétique</strong> (c'est une suite géométrique).</li>
+      <li>\(3 - 1{,}5 = 1{,}5\), \(4{,}5 - 3 = 1{,}5\), \(6 - 4{,}5 = 1{,}5\) : <strong>arithmétique</strong>, raison \(r = 1{,}5\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un menuisier agenceur livre des placards. Le premier mois, il en livre 8. Chaque mois, il en livre 3 de plus que le mois précédent.</p>
+  <ol type="a">
+    <li>Justifier que le nombre de placards livrés chaque mois forme une suite arithmétique. Préciser \(u_0\) et \(r\).</li>
+    <li>Calculer le nombre de placards livrés les mois 2, 3, 4 et 5 (en partant du mois 0).</li>
+    <li>Combien de placards livre-t-il au mois 12 ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Chaque mois, on ajoute 3 au nombre précédent : c'est une suite arithmétique de premier terme \(u_0 = 8\) et de raison \(r = 3\).</li>
+      <li>
+        \(u_1 = 8 + 3 = 11\)<br>
+        \(u_2 = 11 + 3 = 14\)<br>
+        \(u_3 = 14 + 3 = 17\)<br>
+        \(u_4 = 17 + 3 = 20\)<br>
+        \(u_5 = 20 + 3 = 23\)
+      </li>
+      <li>\(u_{12} = u_0 + 12 \times r = 8 + 12 \times 3 = 8 + 36 = 44\).<br>
+      Au mois 12, il livre <strong>44 placards</strong>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>La suite \((u_n)\) est arithmétique de raison \(r = -4\) et de premier terme \(u_0 = 50\).</p>
+  <ol type="a">
+    <li>Calculer \(u_1\), \(u_2\), \(u_3\).</li>
+    <li>Calculer \(u_{10}\).</li>
+    <li>À partir de quel rang \(n\) a-t-on \(u_n < 0\) ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(u_1 = 50 + (-4) = 46\)<br>
+        \(u_2 = 46 + (-4) = 42\)<br>
+        \(u_3 = 42 + (-4) = 38\)
+      </li>
+      <li>\(u_{10} = 50 + 10 \times (-4) = 50 - 40 = 10\)</li>
+      <li>On résout \(50 - 4n < 0\), soit \(50 < 4n\), donc \(n > 12{,}5\).<br>
+      Le premier entier vérifiant cette condition est \(n = 13\) : \(u_{13} = 50 - 52 = -2 < 0\).<br>
+      Vérification : \(u_{12} = 50 - 48 = 2 > 0\) ✔</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Déterminer le terme général et le sens de variation</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Le <strong>terme général</strong> d'une suite arithmétique est : \(u_n = u_0 + n \times r\).<br>
+  <strong>Sens de variation :</strong> si \(r > 0\), la suite est <strong>croissante</strong> ; si \(r < 0\), la suite est <strong>décroissante</strong> ; si \(r = 0\), la suite est <strong>constante</strong>.<br>
+  Lien avec les fonctions affines : le terme général \(u_n = rn + u_0\) est une fonction affine de \(n\).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Pour chaque suite arithmétique, donner le terme général \(u_n\) et préciser le sens de variation :</p>
+  <ol type="a">
+    <li>\(u_0 = 10\), \(r = 4\)</li>
+    <li>\(u_0 = 200\), \(r = -15\)</li>
+    <li>\(u_0 = -3\), \(r = 0{,}5\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(u_n = 10 + 4n\). Comme \(r = 4 > 0\), la suite est <strong>croissante</strong>.</li>
+      <li>\(u_n = 200 - 15n\). Comme \(r = -15 < 0\), la suite est <strong>décroissante</strong>.</li>
+      <li>\(u_n = -3 + 0{,}5n\). Comme \(r = 0{,}5 > 0\), la suite est <strong>croissante</strong>.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un stock de planches dans un atelier de menuiserie diminue régulièrement : chaque semaine, 12 planches sont utilisées. Le stock initial est de 180 planches.</p>
+  <ol type="a">
+    <li>Modéliser la situation par une suite arithmétique. Donner \(u_0\), \(r\) et le terme général \(u_n\).</li>
+    <li>La suite est-elle croissante ou décroissante ? Justifier.</li>
+    <li>Au bout de combien de semaines le stock sera-t-il épuisé ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(u_0 = 180\), \(r = -12\). Le terme général est \(u_n = 180 - 12n\).</li>
+      <li>\(r = -12 < 0\), donc la suite est <strong>décroissante</strong>. Le stock diminue au fil des semaines.</li>
+      <li>On résout \(180 - 12n = 0\), soit \(n = \dfrac{180}{12} = 15\).<br>
+      Le stock est épuisé au bout de <strong>15 semaines</strong>.<br>
+      Vérification : \(u_{15} = 180 - 12 \times 15 = 180 - 180 = 0\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>On sait que \(u_5 = 32\) et \(u_8 = 47\) pour une suite arithmétique \((u_n)\).</p>
+  <ol type="a">
+    <li>Déterminer la raison \(r\).</li>
+    <li>Déterminer \(u_0\).</li>
+    <li>Écrire le terme général \(u_n\) et préciser le sens de variation.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>De \(u_5\) à \(u_8\), il y a \(8 - 5 = 3\) pas.<br>
+      \(r = \dfrac{u_8 - u_5}{8 - 5} = \dfrac{47 - 32}{3} = \dfrac{15}{3} = 5\)</li>
+      <li>\(u_5 = u_0 + 5r\), donc \(u_0 = u_5 - 5r = 32 - 5 \times 5 = 32 - 25 = 7\).</li>
+      <li>\(u_n = 7 + 5n\). Comme \(r = 5 > 0\), la suite est <strong>croissante</strong>.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Réaliser et exploiter le nuage de points \((n\,;\,u_n)\)</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Pour représenter graphiquement une suite \((u_n)\), on place les points de coordonnées \((n\,;\,u_n)\) dans un repère. Pour une suite arithmétique, les points sont <strong>alignés</strong> (car \(u_n = rn + u_0\) est une fonction affine de \(n\)). On peut lire graphiquement les termes ou vérifier le caractère arithmétique.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>On considère la suite arithmétique \(u_n = 2n + 3\).</p>
+  <ol type="a">
+    <li>Calculer les termes de \(u_0\) à \(u_6\).</li>
+    <li>Placer les points \((n\,;\,u_n)\) dans un repère.</li>
+    <li>Que constate-t-on ? Expliquer.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        \(u_0 = 3\), \(u_1 = 5\), \(u_2 = 7\), \(u_3 = 9\), \(u_4 = 11\), \(u_5 = 13\), \(u_6 = 15\).
+      </li>
+      <li>
+        <svg viewBox="0 0 400 250" style="max-width:400px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="250" fill="#fffbeb" rx="6"/>
+          <line x1="50" y1="210" x2="380" y2="210" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="210" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+          <!-- grad x -->
+          <text x="50" y="228" text-anchor="middle" font-size="11">0</text>
+          <text x="100" y="228" text-anchor="middle" font-size="11">1</text>
+          <text x="150" y="228" text-anchor="middle" font-size="11">2</text>
+          <text x="200" y="228" text-anchor="middle" font-size="11">3</text>
+          <text x="250" y="228" text-anchor="middle" font-size="11">4</text>
+          <text x="300" y="228" text-anchor="middle" font-size="11">5</text>
+          <text x="350" y="228" text-anchor="middle" font-size="11">6</text>
+          <!-- grad y -->
+          <text x="40" y="210" text-anchor="end" font-size="11">0</text>
+          <text x="40" y="158" text-anchor="end" font-size="11">5</text>
+          <text x="40" y="106" text-anchor="end" font-size="11">10</text>
+          <text x="40" y="54" text-anchor="end" font-size="11">15</text>
+          <!-- points : x->50+50*n, y->210-10.4*un -->
+          <circle cx="50" cy="179" r="4.5" fill="#b45309"/>
+          <circle cx="100" cy="158" r="4.5" fill="#b45309"/>
+          <circle cx="150" cy="137" r="4.5" fill="#b45309"/>
+          <circle cx="200" cy="117" r="4.5" fill="#b45309"/>
+          <circle cx="250" cy="96" r="4.5" fill="#b45309"/>
+          <circle cx="300" cy="75" r="4.5" fill="#b45309"/>
+          <circle cx="350" cy="54" r="4.5" fill="#b45309"/>
+          <!-- droite guide -->
+          <line x1="50" y1="179" x2="350" y2="54" stroke="#b45309" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+          <text x="215" y="246" text-anchor="middle" font-size="11" font-style="italic">n</text>
+          <text x="16" y="115" text-anchor="middle" font-size="11" font-style="italic" transform="rotate(-90 16 115)">u_n</text>
+        </svg>
+      </li>
+      <li>Les points sont <strong>alignés</strong>. C'est normal car \(u_n = 2n + 3\) est une fonction affine de \(n\) : la représentation est une droite de pente 2 (la raison) et d'ordonnée à l'origine 3 (\(u_0\)).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Le graphique ci-dessous représente le nuage de points \((n\,;\,u_n)\) d'une suite :</p>
+  <svg viewBox="0 0 400 250" style="max-width:400px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="250" fill="#fffbeb" rx="6"/>
+    <line x1="50" y1="210" x2="380" y2="210" stroke="#333" stroke-width="1.5"/>
+    <line x1="50" y1="210" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+    <text x="50" y="228" text-anchor="middle" font-size="11">0</text>
+    <text x="110" y="228" text-anchor="middle" font-size="11">1</text>
+    <text x="170" y="228" text-anchor="middle" font-size="11">2</text>
+    <text x="230" y="228" text-anchor="middle" font-size="11">3</text>
+    <text x="290" y="228" text-anchor="middle" font-size="11">4</text>
+    <text x="350" y="228" text-anchor="middle" font-size="11">5</text>
+    <text x="40" y="210" text-anchor="end" font-size="11">0</text>
+    <text x="40" y="172" text-anchor="end" font-size="11">10</text>
+    <text x="40" y="134" text-anchor="end" font-size="11">20</text>
+    <text x="40" y="96" text-anchor="end" font-size="11">30</text>
+    <text x="40" y="58" text-anchor="end" font-size="11">40</text>
+    <!-- points : suite u_n = 40-6n => 40,34,28,22,16,10 ; y->210-3.8*un -->
+    <circle cx="50" cy="58" r="4.5" fill="#b45309"/>
+    <circle cx="110" cy="81" r="4.5" fill="#b45309"/>
+    <circle cx="170" cy="104" r="4.5" fill="#b45309"/>
+    <circle cx="230" cy="126" r="4.5" fill="#b45309"/>
+    <circle cx="290" cy="149" r="4.5" fill="#b45309"/>
+    <circle cx="350" cy="172" r="4.5" fill="#b45309"/>
+    <text x="215" y="246" text-anchor="middle" font-size="11" font-style="italic">n</text>
+    <text x="16" y="115" text-anchor="middle" font-size="11" font-style="italic" transform="rotate(-90 16 115)">u_n</text>
+  </svg>
+  <ol type="a">
+    <li>Lire graphiquement \(u_0\), \(u_1\), \(u_2\), \(u_3\), \(u_4\), \(u_5\).</li>
+    <li>La suite semble-t-elle arithmétique ? Si oui, donner sa raison.</li>
+    <li>La suite est-elle croissante ou décroissante ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(u_0 = 40\), \(u_1 = 34\), \(u_2 = 28\), \(u_3 = 22\), \(u_4 = 16\), \(u_5 = 10\).</li>
+      <li>Les points semblent alignés. Vérifions : \(u_1 - u_0 = -6\), \(u_2 - u_1 = -6\), \(u_3 - u_2 = -6\), etc. La différence est constante : la suite est <strong>arithmétique</strong> de raison \(r = -6\).</li>
+      <li>Comme \(r = -6 < 0\), la suite est <strong>décroissante</strong>. Graphiquement, les points descendent de gauche à droite.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un menuisier reçoit des commandes croissantes. Le mois 0, il a 15 commandes. Chaque mois, il en reçoit 5 de plus.</p>
+  <ol type="a">
+    <li>Donner le terme général \(u_n\).</li>
+    <li>Représenter le nuage \((n\,;\,u_n)\) pour \(n\) de 0 à 8.</li>
+    <li>Lire graphiquement le mois où il atteint 40 commandes.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(u_n = 15 + 5n\)</li>
+      <li>
+        <svg viewBox="0 0 440 260" style="max-width:440px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="440" height="260" fill="#fffbeb" rx="6"/>
+          <line x1="50" y1="220" x2="420" y2="220" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="220" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+          <text x="50" y="238" text-anchor="middle" font-size="10">0</text>
+          <text x="92" y="238" text-anchor="middle" font-size="10">1</text>
+          <text x="134" y="238" text-anchor="middle" font-size="10">2</text>
+          <text x="176" y="238" text-anchor="middle" font-size="10">3</text>
+          <text x="218" y="238" text-anchor="middle" font-size="10">4</text>
+          <text x="260" y="238" text-anchor="middle" font-size="10">5</text>
+          <text x="302" y="238" text-anchor="middle" font-size="10">6</text>
+          <text x="344" y="238" text-anchor="middle" font-size="10">7</text>
+          <text x="386" y="238" text-anchor="middle" font-size="10">8</text>
+          <text x="40" y="220" text-anchor="end" font-size="10">0</text>
+          <text x="40" y="183" text-anchor="end" font-size="10">10</text>
+          <text x="40" y="147" text-anchor="end" font-size="10">20</text>
+          <text x="40" y="110" text-anchor="end" font-size="10">30</text>
+          <text x="40" y="73" text-anchor="end" font-size="10">40</text>
+          <text x="40" y="37" text-anchor="end" font-size="10">50</text>
+          <!-- points : un=15+5n => 15,20,25,30,35,40,45,50,55 ; y->220-3.7*un -->
+          <circle cx="50" cy="165" r="4" fill="#b45309"/>
+          <circle cx="92" cy="146" r="4" fill="#b45309"/>
+          <circle cx="134" cy="128" r="4" fill="#b45309"/>
+          <circle cx="176" cy="109" r="4" fill="#b45309"/>
+          <circle cx="218" cy="91" r="4" fill="#b45309"/>
+          <circle cx="260" cy="72" r="4" fill="#b45309"/>
+          <circle cx="302" cy="54" r="4" fill="#b45309"/>
+          <circle cx="344" cy="35" r="4" fill="#b45309"/>
+          <circle cx="386" cy="17" r="4" fill="#b45309"/>
+          <!-- ligne horizontale y=40 -->
+          <line x1="50" y1="72" x2="270" y2="72" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="260" y1="72" x2="260" y2="220" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+        </svg>
+      </li>
+      <li>On lit graphiquement que \(u_n = 40\) pour \(n = 5\). Vérification : \(u_5 = 15 + 5 \times 5 = 40\) ✔. Il atteint 40 commandes au <strong>mois 5</strong>.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Calculer la somme des \(n\) premiers termes d'une suite arithmétique</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La somme des \((n+1)\) premiers termes d'une suite arithmétique (de \(u_0\) à \(u_n\)) est :<br>
+  \[S = u_0 + u_1 + \cdots + u_n = \frac{(n+1)(u_0 + u_n)}{2} = \text{nombre de termes} \times \frac{\text{premier terme} + \text{dernier terme}}{2}\]
+  Cette formule est donnée (non exigible). On peut aussi la retrouver en calculant la somme « à l'endroit et à l'envers ».</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Calculer la somme des 10 premiers termes (de \(u_0\) à \(u_9\)) de la suite arithmétique \(u_n = 3n + 2\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Premier terme : \(u_0 = 2\).<br>
+    Dernier terme : \(u_9 = 3 \times 9 + 2 = 29\).<br>
+    Nombre de termes : \(9 - 0 + 1 = 10\).<br>
+    \[S = \frac{10 \times (2 + 29)}{2} = \frac{10 \times 31}{2} = \frac{310}{2} = 155\]
+    <strong>Vérification :</strong> \(2 + 5 + 8 + 11 + 14 + 17 + 20 + 23 + 26 + 29 = 155\) ✔
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un menuisier agenceur pose des placards dans un immeuble neuf. Au 1er étage, il pose 4 placards. À chaque étage, il en pose 2 de plus que l'étage précédent. L'immeuble a 8 étages.</p>
+  <ol type="a">
+    <li>Modéliser le nombre de placards par étage par une suite arithmétique.</li>
+    <li>Combien de placards pose-t-il au 8e étage ?</li>
+    <li>Combien de placards pose-t-il au total dans l'immeuble ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Notons \(u_1 = 4\) (1er étage), raison \(r = 2\). Le terme général est \(u_n = 4 + (n-1) \times 2 = 2n + 2\) pour \(n \geqslant 1\).</li>
+      <li>\(u_8 = 2 \times 8 + 2 = 18\) placards au 8e étage.</li>
+      <li>Somme de \(u_1\) à \(u_8\) :<br>
+      Nombre de termes : 8.<br>
+      \[S = \frac{8 \times (u_1 + u_8)}{2} = \frac{8 \times (4 + 18)}{2} = \frac{8 \times 22}{2} = \frac{176}{2} = 88\]
+      <strong>Réponse :</strong> le menuisier pose <strong>88 placards</strong> au total.<br>
+      Vérification : \(4 + 6 + 8 + 10 + 12 + 14 + 16 + 18 = 88\) ✔</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Calculer \(S = 1 + 2 + 3 + \cdots + 50\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    C'est la somme des 51 premiers termes de la suite \(u_n = n\) (de \(u_0 = 0\) à \(u_{50} = 50\)), mais ici on part de 1.<br>
+    \(S = 1 + 2 + 3 + \cdots + 50\). C'est la somme de 50 termes, premier = 1, dernier = 50.<br>
+    \[S = \frac{50 \times (1 + 50)}{2} = \frac{50 \times 51}{2} = \frac{2\,550}{2} = 1\,275\]
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Un atelier de menuiserie produit des moulures. La première semaine, 20 moulures sont fabriquées. Chaque semaine, la production augmente de 5 moulures (montée en compétence des apprentis).</p>
+  <ol type="a">
+    <li>Donner le terme général \(u_n\) (\(n = 0\) pour la 1re semaine).</li>
+    <li>Calculer la production totale sur les 10 premières semaines (de la semaine 0 à la semaine 9).</li>
+    <li>À partir de quelle semaine la production totale dépasse-t-elle 500 moulures ? (On pourra utiliser un tableau de valeurs.)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(u_0 = 20\), \(r = 5\), donc \(u_n = 20 + 5n\).</li>
+      <li>\(u_9 = 20 + 5 \times 9 = 65\).<br>
+      Nombre de termes : 10 (de \(u_0\) à \(u_9\)).<br>
+      \[S = \frac{10 \times (20 + 65)}{2} = \frac{10 \times 85}{2} = \frac{850}{2} = 425 \text{ moulures}\]</li>
+      <li>On cherche le plus petit \(n\) tel que la somme de \(u_0\) à \(u_n\) dépasse 500.<br>
+      Somme de \(u_0\) à \(u_n\) : \(S_n = \dfrac{(n+1)(20 + 20 + 5n)}{2} = \dfrac{(n+1)(40 + 5n)}{2}\).<br>
+      Pour \(n = 9\) : \(S_9 = 425\) (calculé ci-dessus).<br>
+      Pour \(n = 10\) : \(u_{10} = 70\), \(S_{10} = 425 + 70 = 495\).<br>
+      Pour \(n = 11\) : \(u_{11} = 75\), \(S_{11} = 495 + 75 = 570 > 500\).<br>
+      La production totale dépasse 500 moulures à la <strong>semaine 11</strong> (la 12e semaine).</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+</div><!-- fin .c -->
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

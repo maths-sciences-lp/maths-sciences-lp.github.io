@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Exercices par capacités – Vecteurs du plan – Première Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#b45309;--p-bg:#fffbeb;--p-border:#fde68a}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-mama.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 8 – Exercices par capacités</h1>
+  <p class="sous-titre">Vecteurs du plan &nbsp;|&nbsp; Première Bac Pro &nbsp;|&nbsp; Mathématiques<br><em>(Groupements A et B uniquement)</em></p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Construire un vecteur ; reconnaître vecteurs égaux, opposés, colinéaires</li>
+    <li><strong>C2</strong> — Construire la somme de deux vecteurs et le produit d'un vecteur par un réel</li>
+    <li><strong>C3</strong> — Coordonnées d'un vecteur ; norme ; opérations avec les coordonnées</li>
+  </ul>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Vecteurs et caractéristiques</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Somme et produit</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Coordonnées et norme</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Construire un vecteur ; vecteurs égaux, opposés, colinéaires</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Un vecteur \(\overrightarrow{AB}\) est caractérisé par sa <strong>direction</strong>, son <strong>sens</strong> et sa <strong>norme</strong> (longueur).<br>
+  Deux vecteurs sont <strong>égaux</strong> s'ils ont mêmes direction, sens et norme.<br>
+  Le vecteur <strong>opposé</strong> de \(\overrightarrow{AB}\) est \(\overrightarrow{BA} = -\overrightarrow{AB}\).<br>
+  Deux vecteurs sont <strong>colinéaires</strong> si l'un est un multiple de l'autre : \(\overrightarrow{v} = k\overrightarrow{u}\).</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="300" height="200" viewBox="0 0 300 200" aria-label="Vecteurs égaux, opposés et colinéaires dans un repère">
+      <rect width="300" height="200" fill="#f8fafc" rx="6"/>
+      <!-- Axes -->
+      <line x1="20" y1="170" x2="290" y2="170" stroke="#333" stroke-width="1.5"/>
+      <line x1="20" y1="185" x2="20" y2="10" stroke="#333" stroke-width="1.5"/>
+      <polygon points="290,167 298,170 290,173" fill="#333"/>
+      <polygon points="17,10 20,2 23,10" fill="#333"/>
+      <text x="282" y="185" font-size="10" fill="#333">x</text>
+      <text x="6" y="18" font-size="10" fill="#333">y</text>
+      <text x="8" y="185" font-size="10" fill="#333">O</text>
+      <!-- Grille légère -->
+      <g stroke="#e2e8f0" stroke-width="0.5">
+        <line x1="60" y1="10" x2="60" y2="170"/><line x1="100" y1="10" x2="100" y2="170"/>
+        <line x1="140" y1="10" x2="140" y2="170"/><line x1="180" y1="10" x2="180" y2="170"/>
+        <line x1="220" y1="10" x2="220" y2="170"/><line x1="260" y1="10" x2="260" y2="170"/>
+        <line x1="20" y1="130" x2="290" y2="130"/><line x1="20" y1="90" x2="290" y2="90"/>
+        <line x1="20" y1="50" x2="290" y2="50"/>
+      </g>
+      <defs>
+        <marker id="arB" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#b45309"/></marker>
+        <marker id="arR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#c53030"/></marker>
+        <marker id="arV" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2f855a"/></marker>
+      </defs>
+      <!-- Vecteur u : A(1,1) → B(3,3) -->
+      <line x1="60" y1="130" x2="140" y2="50" stroke="#b45309" stroke-width="2.5" marker-end="url(#arB)"/>
+      <text x="82" y="82" font-size="12" fill="#b45309" font-weight="bold">\u20d7u</text>
+      <!-- Vecteur égal : C(4,1) → D(6,3) -->
+      <line x1="180" y1="130" x2="260" y2="50" stroke="#b45309" stroke-width="2.5" marker-end="url(#arB)"/>
+      <text x="210" y="82" font-size="12" fill="#b45309" font-weight="bold">\u20d7u</text>
+      <!-- Vecteur opposé : E(3,3) → F(1,1) = -u depuis (180,50) -->
+      <line x1="140" y1="130" x2="60" y2="50" stroke="#c53030" stroke-width="2" marker-end="url(#arR)"/>
+      <text x="80" y="108" font-size="12" fill="#c53030" font-weight="bold">-\u20d7u</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Vecteurs \(\overrightarrow{u}\) (ambré), vecteur égal (ambré, translaté) et vecteur opposé \(-\overrightarrow{u}\) (rouge)</figcaption>
+  </figure>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>On donne les points \(A(1;2)\), \(B(4;5)\), \(C(3;0)\) et \(D(6;3)\) dans un repère orthonormé.<br>
+  1. Calculer les coordonnées de \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\).<br>
+  2. Les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) sont-ils égaux ? Justifier.<br>
+  3. Que peut-on dire du quadrilatère \(ABDC\) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{AB} = \begin{pmatrix} 4-1 \\ 5-2 \end{pmatrix} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}\)<br>
+    \(\overrightarrow{CD} = \begin{pmatrix} 6-3 \\ 3-0 \end{pmatrix} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> Oui, \(\overrightarrow{AB} = \overrightarrow{CD}\) car ils ont les mêmes coordonnées (même direction, même sens, même norme).<br><br>
+    <strong>3.</strong> \(ABDC\) est un <strong>parallélogramme</strong> car \(\overrightarrow{AB} = \overrightarrow{CD}\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Soient \(P(2;4)\) et \(Q(5;1)\).<br>
+  1. Calculer les coordonnées de \(\overrightarrow{PQ}\) et de \(\overrightarrow{QP}\).<br>
+  2. Vérifier que \(\overrightarrow{QP} = -\overrightarrow{PQ}\) (vecteurs opposés).<br>
+  3. Les vecteurs \(\overrightarrow{PQ}\) et \(\overrightarrow{QP}\) sont-ils colinéaires ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{PQ} = \begin{pmatrix} 5-2 \\ 1-4 \end{pmatrix} = \begin{pmatrix} 3 \\ -3 \end{pmatrix}\)<br>
+    \(\overrightarrow{QP} = \begin{pmatrix} 2-5 \\ 4-1 \end{pmatrix} = \begin{pmatrix} -3 \\ 3 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> \(-\overrightarrow{PQ} = \begin{pmatrix} -3 \\ 3 \end{pmatrix} = \overrightarrow{QP}\) : ce sont bien des vecteurs <strong>opposés</strong>.<br><br>
+    <strong>3.</strong> Oui, \(\overrightarrow{QP} = (-1) \times \overrightarrow{PQ}\), donc ils sont <strong>colinéaires</strong> (de sens contraire).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un menuisier agenceur trace un plan de pose. On donne \(\overrightarrow{u} = \begin{pmatrix} 2 \\ 6 \end{pmatrix}\) et \(\overrightarrow{v} = \begin{pmatrix} 3 \\ 9 \end{pmatrix}\).<br>
+  1. Les vecteurs \(\overrightarrow{u}\) et \(\overrightarrow{v}\) sont-ils colinéaires ? (Utiliser le critère \(ad - bc = 0\).)<br>
+  2. On donne un troisième vecteur \(\overrightarrow{w} = \begin{pmatrix} 4 \\ 10 \end{pmatrix}\). Est-il colinéaire à \(\overrightarrow{u}\) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> Critère de colinéarité : \(ad - bc = 2 \times 9 - 6 \times 3 = 18 - 18 = 0\).<br>
+    Donc \(\overrightarrow{u}\) et \(\overrightarrow{v}\) sont <strong>colinéaires</strong>. (On vérifie : \(\overrightarrow{v} = 1{,}5 \times \overrightarrow{u}\).)<br><br>
+    <strong>2.</strong> \(ad - bc = 2 \times 10 - 6 \times 4 = 20 - 24 = -4 \neq 0\).<br>
+    Les vecteurs \(\overrightarrow{u}\) et \(\overrightarrow{w}\) ne sont <strong>pas colinéaires</strong>.
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Somme de vecteurs et produit par un réel</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p><strong>Somme :</strong> \(\overrightarrow{u} + \overrightarrow{v} = \begin{pmatrix} x_u + x_v \\ y_u + y_v \end{pmatrix}\). Graphiquement, on utilise la <strong>règle du parallélogramme</strong>.<br>
+  <strong>Produit par un réel :</strong> \(k\overrightarrow{u} = \begin{pmatrix} kx \\ ky \end{pmatrix}\). Si \(k > 0\) : même sens ; si \(k < 0\) : sens contraire.</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="260" height="180" viewBox="0 0 260 180" aria-label="Règle du parallélogramme">
+      <rect width="260" height="180" fill="#f8fafc" rx="6"/>
+      <defs>
+        <marker id="a1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#b45309"/></marker>
+        <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#c53030"/></marker>
+        <marker id="a3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2f855a"/></marker>
+      </defs>
+      <!-- u -->
+      <line x1="30" y1="140" x2="150" y2="140" stroke="#b45309" stroke-width="2.5" marker-end="url(#a1)"/>
+      <!-- v -->
+      <line x1="30" y1="140" x2="70" y2="50" stroke="#c53030" stroke-width="2.5" marker-end="url(#a2)"/>
+      <!-- parallélogramme -->
+      <line x1="150" y1="140" x2="190" y2="50" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+      <line x1="70" y1="50" x2="190" y2="50" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+      <!-- u+v -->
+      <line x1="30" y1="140" x2="190" y2="50" stroke="#2f855a" stroke-width="2.5" marker-end="url(#a3)"/>
+      <circle cx="30" cy="140" r="3" fill="#333"/>
+      <text x="80" y="160" font-size="12" fill="#b45309" font-weight="bold">\u20d7u</text>
+      <text x="32" y="90" font-size="12" fill="#c53030" font-weight="bold">\u20d7v</text>
+      <text x="115" y="85" font-size="12" fill="#2f855a" font-weight="bold">\u20d7u + \u20d7v</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Règle du parallélogramme : \(\overrightarrow{u} + \overrightarrow{v}\)</figcaption>
+  </figure>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>On donne \(\overrightarrow{u} = \begin{pmatrix} 3 \\ 1 \end{pmatrix}\) et \(\overrightarrow{v} = \begin{pmatrix} -1 \\ 4 \end{pmatrix}\).<br>
+  1. Calculer \(\overrightarrow{u} + \overrightarrow{v}\).<br>
+  2. Calculer \(\overrightarrow{u} - \overrightarrow{v}\).<br>
+  3. Représenter graphiquement \(\overrightarrow{u}\), \(\overrightarrow{v}\) et \(\overrightarrow{u} + \overrightarrow{v}\) en utilisant la règle du parallélogramme.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{u} + \overrightarrow{v} = \begin{pmatrix} 3+(-1) \\ 1+4 \end{pmatrix} = \begin{pmatrix} 2 \\ 5 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> \(\overrightarrow{u} - \overrightarrow{v} = \begin{pmatrix} 3-(-1) \\ 1-4 \end{pmatrix} = \begin{pmatrix} 4 \\ -3 \end{pmatrix}\)<br><br>
+    <strong>3.</strong> On place \(\overrightarrow{u}\) et \(\overrightarrow{v}\) à partir du même point, on complète le parallélogramme. La diagonale donne \(\overrightarrow{u} + \overrightarrow{v}\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>On donne \(\overrightarrow{u} = \begin{pmatrix} 2 \\ -3 \end{pmatrix}\). Calculer :<br>
+  a) \(3\overrightarrow{u}\) &emsp; b) \(-2\overrightarrow{u}\) &emsp; c) \(\dfrac{1}{2}\overrightarrow{u}\)<br>
+  Pour chaque cas, préciser si le vecteur obtenu a le même sens que \(\overrightarrow{u}\) ou le sens contraire.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>a)</strong> \(3\overrightarrow{u} = \begin{pmatrix} 6 \\ -9 \end{pmatrix}\) — même sens (\(k = 3 > 0\)).<br><br>
+    <strong>b)</strong> \(-2\overrightarrow{u} = \begin{pmatrix} -4 \\ 6 \end{pmatrix}\) — sens contraire (\(k = -2 < 0\)).<br><br>
+    <strong>c)</strong> \(\dfrac{1}{2}\overrightarrow{u} = \begin{pmatrix} 1 \\ -1{,}5 \end{pmatrix}\) — même sens (\(k = 0{,}5 > 0\)).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un agenceur doit calculer l'effet combiné de deux déplacements lors de la pose de panneaux.<br>
+  Le premier déplacement est \(\overrightarrow{d_1} = \begin{pmatrix} 4 \\ 2 \end{pmatrix}\) (en mètres) et le second \(\overrightarrow{d_2} = \begin{pmatrix} -1 \\ 3 \end{pmatrix}\).<br>
+  1. Calculer le déplacement total \(\overrightarrow{d} = \overrightarrow{d_1} + \overrightarrow{d_2}\).<br>
+  2. Calculer \(2\overrightarrow{d_1} - \overrightarrow{d_2}\) (déplacement si l'on double le premier et inverse le second).<br>
+  3. Calculer la norme de \(\overrightarrow{d}\) (arrondir au centième).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{d} = \begin{pmatrix} 4+(-1) \\ 2+3 \end{pmatrix} = \begin{pmatrix} 3 \\ 5 \end{pmatrix}\) m<br><br>
+    <strong>2.</strong> \(2\overrightarrow{d_1} - \overrightarrow{d_2} = \begin{pmatrix} 8 \\ 4 \end{pmatrix} - \begin{pmatrix} -1 \\ 3 \end{pmatrix} = \begin{pmatrix} 9 \\ 1 \end{pmatrix}\) m<br><br>
+    <strong>3.</strong> \(\|\overrightarrow{d}\| = \sqrt{3^2 + 5^2} = \sqrt{9 + 25} = \sqrt{34} \approx 5{,}83\ \text{m}\)
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Coordonnées d'un vecteur, norme, opérations</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Dans un repère orthonormé, si \(A(x_A;y_A)\) et \(B(x_B;y_B)\) :<br>
+  \(\overrightarrow{AB} = \begin{pmatrix} x_B - x_A \\ y_B - y_A \end{pmatrix}\) et \(\|\overrightarrow{AB}\| = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}\).<br>
+  Deux vecteurs sont <strong>égaux</strong> si et seulement si ils ont les mêmes coordonnées.<br>
+  Deux vecteurs \(\begin{pmatrix} a \\ b \end{pmatrix}\) et \(\begin{pmatrix} c \\ d \end{pmatrix}\) sont <strong>colinéaires</strong> si \(ad - bc = 0\).</p>
+  <figure class="schema" style="text-align:center;margin:12px 0">
+    <svg width="280" height="220" viewBox="0 0 280 220" aria-label="Vecteur AB dans un repère orthonormé avec coordonnées">
+      <rect width="280" height="220" fill="#f8fafc" rx="6"/>
+      <!-- Axes -->
+      <line x1="30" y1="180" x2="270" y2="180" stroke="#333" stroke-width="1.5"/>
+      <line x1="30" y1="195" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
+      <polygon points="270,177 278,180 270,183" fill="#333"/>
+      <polygon points="27,15 30,7 33,15" fill="#333"/>
+      <text x="18" y="195" font-size="10" fill="#333">O</text>
+      <!-- Grille -->
+      <g stroke="#e2e8f0" stroke-width="0.5">
+        <line x1="70" y1="15" x2="70" y2="180"/><line x1="110" y1="15" x2="110" y2="180"/>
+        <line x1="150" y1="15" x2="150" y2="180"/><line x1="190" y1="15" x2="190" y2="180"/>
+        <line x1="230" y1="15" x2="230" y2="180"/>
+        <line x1="30" y1="140" x2="270" y2="140"/><line x1="30" y1="100" x2="270" y2="100"/>
+        <line x1="30" y1="60" x2="270" y2="60"/><line x1="30" y1="20" x2="270" y2="20"/>
+      </g>
+      <text x="67" y="195" font-size="9" fill="#333">1</text><text x="107" y="195" font-size="9" fill="#333">2</text>
+      <text x="147" y="195" font-size="9" fill="#333">3</text><text x="187" y="195" font-size="9" fill="#333">4</text>
+      <text x="227" y="195" font-size="9" fill="#333">5</text>
+      <text x="15" y="143" font-size="9" fill="#333">1</text><text x="15" y="103" font-size="9" fill="#333">2</text>
+      <text x="15" y="63" font-size="9" fill="#333">3</text><text x="15" y="23" font-size="9" fill="#333">4</text>
+      <defs>
+        <marker id="aV" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#b45309"/></marker>
+      </defs>
+      <!-- A(1,1) → B(4,3) -->
+      <line x1="70" y1="140" x2="190" y2="60" stroke="#b45309" stroke-width="2.5" marker-end="url(#aV)"/>
+      <circle cx="70" cy="140" r="4" fill="#b45309"/>
+      <circle cx="190" cy="60" r="4" fill="#b45309"/>
+      <text x="50" y="136" font-size="12" fill="#b45309" font-weight="bold">A</text>
+      <text x="196" y="56" font-size="12" fill="#b45309" font-weight="bold">B</text>
+      <!-- Projections -->
+      <line x1="70" y1="140" x2="190" y2="140" stroke="#b45309" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="190" y1="140" x2="190" y2="60" stroke="#b45309" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="120" y="155" font-size="10" fill="#b45309">3</text>
+      <text x="196" y="105" font-size="10" fill="#b45309">2</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">\(\overrightarrow{AB} = \begin{pmatrix} 3 \\ 2 \end{pmatrix}\) : lecture des coordonnées sur le repère</figcaption>
+  </figure>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>On donne \(A(2;1)\), \(B(5;4)\) et \(C(-1;3)\) dans un repère orthonormé.<br>
+  1. Calculer les coordonnées de \(\overrightarrow{AB}\), \(\overrightarrow{AC}\) et \(\overrightarrow{BC}\).<br>
+  2. Vérifier la relation de Chasles : \(\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}\) (en coordonnées).<br>
+  3. Calculer \(\|\overrightarrow{AB}\|\) et \(\|\overrightarrow{AC}\|\) (arrondir au centième).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{AB} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}\), \(\overrightarrow{AC} = \begin{pmatrix} -3 \\ 2 \end{pmatrix}\), \(\overrightarrow{BC} = \begin{pmatrix} -6 \\ -1 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> \(\overrightarrow{AB} + \overrightarrow{BC} = \begin{pmatrix} 3+(-6) \\ 3+(-1) \end{pmatrix} = \begin{pmatrix} -3 \\ 2 \end{pmatrix} = \overrightarrow{AC}\) ✔<br><br>
+    <strong>3.</strong> \(\|\overrightarrow{AB}\| = \sqrt{9+9} = \sqrt{18} = 3\sqrt{2} \approx 4{,}24\)<br>
+    \(\|\overrightarrow{AC}\| = \sqrt{9+4} = \sqrt{13} \approx 3{,}61\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>On donne \(\overrightarrow{u} = \begin{pmatrix} 4 \\ -2 \end{pmatrix}\) et \(\overrightarrow{v} = \begin{pmatrix} -6 \\ 3 \end{pmatrix}\).<br>
+  1. Calculer \(\overrightarrow{u} + \overrightarrow{v}\) et \(2\overrightarrow{u} + \overrightarrow{v}\).<br>
+  2. Les vecteurs \(\overrightarrow{u}\) et \(\overrightarrow{v}\) sont-ils colinéaires ?<br>
+  3. Calculer la norme de \(\overrightarrow{u}\) et celle de \(\overrightarrow{v}\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{u} + \overrightarrow{v} = \begin{pmatrix} -2 \\ 1 \end{pmatrix}\)<br>
+    \(2\overrightarrow{u} + \overrightarrow{v} = \begin{pmatrix} 8 \\ -4 \end{pmatrix} + \begin{pmatrix} -6 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> Déterminant : \(4 \times 3 - (-2) \times (-6) = 12 - 12 = 0\). Oui, \(\overrightarrow{u}\) et \(\overrightarrow{v}\) sont <strong>colinéaires</strong>.<br>
+    On vérifie : \(\overrightarrow{v} = -\dfrac{3}{2}\overrightarrow{u}\).<br><br>
+    <strong>3.</strong> \(\|\overrightarrow{u}\| = \sqrt{16+4} = \sqrt{20} = 2\sqrt{5} \approx 4{,}47\)<br>
+    \(\|\overrightarrow{v}\| = \sqrt{36+9} = \sqrt{45} = 3\sqrt{5} \approx 6{,}71\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Un charpentier trace un plan de toiture sur un repère orthonormé. Les points de fixation sont \(A(1;0)\), \(B(7;0)\) et \(C(4;5)\).<br>
+  1. Calculer les coordonnées de \(\overrightarrow{AB}\), \(\overrightarrow{AC}\) et \(\overrightarrow{BC}\).<br>
+  2. Calculer les longueurs \(AB\), \(AC\) et \(BC\) (arrondir au dixième).<br>
+  3. Déterminer si le triangle \(ABC\) est isocèle.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>1.</strong> \(\overrightarrow{AB} = \begin{pmatrix} 6 \\ 0 \end{pmatrix}\), \(\overrightarrow{AC} = \begin{pmatrix} 3 \\ 5 \end{pmatrix}\), \(\overrightarrow{BC} = \begin{pmatrix} -3 \\ 5 \end{pmatrix}\)<br><br>
+    <strong>2.</strong> \(AB = \sqrt{36+0} = 6\)<br>
+    \(AC = \sqrt{9+25} = \sqrt{34} \approx 5{,}8\)<br>
+    \(BC = \sqrt{9+25} = \sqrt{34} \approx 5{,}8\)<br><br>
+    <strong>3.</strong> \(AC = BC = \sqrt{34}\), donc le triangle \(ABC\) est <strong>isocèle en \(C\)</strong>.
+  </div>
+</div>
+</div>
+
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

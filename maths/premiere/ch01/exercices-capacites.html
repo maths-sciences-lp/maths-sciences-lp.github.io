@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Exercices par capacités – Statistique à deux variables – 1ère Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#b45309;--p-bg:#fffbeb;--p-border:#fde68a}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 1 – Exercices par capacités</h1>
+  <p class="sous-titre">Statistique à deux variables &nbsp;|&nbsp; Première Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Représenter un nuage de points d'une série à deux variables quantitatives</li>
+    <li><strong>C2</strong> — Réaliser un ajustement affine et déterminer l'équation de la droite des moindres carrés</li>
+    <li><strong>C3</strong> — Déterminer le coefficient de détermination \(R^2\) et évaluer la pertinence d'un ajustement</li>
+    <li><strong>C4</strong> — Interpoler ou extrapoler des valeurs à l'aide de la droite d'ajustement</li>
+    <li><strong>C5</strong> — Résoudre un problème complet (nuage, ajustement, \(R^2\), prévision) en contexte professionnel</li>
+  </ul>
+</div>
+
+<!-- Boutons de filtre -->
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Nuage de points</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Ajustement affine</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Coefficient R²</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Interpoler / Extrapoler</button>
+  <button class="btn-cap" data-filtre="C5">C5 – Problème complet</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Représenter un nuage de points d'une série à deux variables quantitatives</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Une série statistique à deux variables quantitatives associe à chaque individu un couple \((x_i\,;\,y_i)\). On représente ces couples dans un repère orthogonal : chaque point du <strong>nuage de points</strong> a pour abscisse \(x_i\) et pour ordonnée \(y_i\). Le choix des échelles et des graduations doit permettre une lecture claire.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Un atelier de menuiserie relève la consommation de vernis (en litres) en fonction de la surface traitée (en m²) :</p>
+  <table>
+    <tr><th>Surface (m²)</th><td>5</td><td>10</td><td>15</td><td>20</td><td>25</td><td>30</td></tr>
+    <tr><th>Vernis (L)</th><td>0,8</td><td>1,5</td><td>2,4</td><td>3,1</td><td>3,9</td><td>4,5</td></tr>
+  </table>
+  <ol type="a">
+    <li>Placer le nuage de points dans un repère adapté.</li>
+    <li>Les points semblent-ils alignés ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        On place chaque couple \((x\,;\,y)\) dans un repère avec en abscisse la surface (de 0 à 35 m²) et en ordonnée la consommation (de 0 à 5 L).
+        <svg viewBox="0 0 420 260" style="max-width:420px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="420" height="260" fill="#fffbeb" rx="6"/>
+          <!-- axes -->
+          <line x1="50" y1="220" x2="400" y2="220" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="220" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+          <!-- graduations x -->
+          <text x="50" y="240" text-anchor="middle" font-size="11">0</text>
+          <text x="108" y="240" text-anchor="middle" font-size="11">5</text>
+          <text x="166" y="240" text-anchor="middle" font-size="11">10</text>
+          <text x="224" y="240" text-anchor="middle" font-size="11">15</text>
+          <text x="282" y="240" text-anchor="middle" font-size="11">20</text>
+          <text x="340" y="240" text-anchor="middle" font-size="11">25</text>
+          <text x="398" y="240" text-anchor="middle" font-size="11">30</text>
+          <!-- graduations y -->
+          <text x="40" y="224" text-anchor="end" font-size="11">0</text>
+          <text x="40" y="184" text-anchor="end" font-size="11">1</text>
+          <text x="40" y="144" text-anchor="end" font-size="11">2</text>
+          <text x="40" y="104" text-anchor="end" font-size="11">3</text>
+          <text x="40" y="64" text-anchor="end" font-size="11">4</text>
+          <text x="40" y="30" text-anchor="end" font-size="11">5</text>
+          <!-- grille -->
+          <line x1="50" y1="180" x2="400" y2="180" stroke="#ddd" stroke-width="0.5"/>
+          <line x1="50" y1="140" x2="400" y2="140" stroke="#ddd" stroke-width="0.5"/>
+          <line x1="50" y1="100" x2="400" y2="100" stroke="#ddd" stroke-width="0.5"/>
+          <line x1="50" y1="60" x2="400" y2="60" stroke="#ddd" stroke-width="0.5"/>
+          <!-- points : x -> 50+11.6*x, y -> 220-40*y -->
+          <circle cx="108" cy="188" r="4.5" fill="#b45309"/>
+          <circle cx="166" cy="160" r="4.5" fill="#b45309"/>
+          <circle cx="224" cy="124" r="4.5" fill="#b45309"/>
+          <circle cx="282" cy="96" r="4.5" fill="#b45309"/>
+          <circle cx="340" cy="64" r="4.5" fill="#b45309"/>
+          <circle cx="398" cy="40" r="4.5" fill="#b45309"/>
+          <!-- légendes -->
+          <text x="225" y="256" text-anchor="middle" font-size="11" font-style="italic">Surface (m²)</text>
+          <text x="16" y="120" text-anchor="middle" font-size="11" font-style="italic" transform="rotate(-90 16 120)">Vernis (L)</text>
+        </svg>
+      </li>
+      <li>Les points sont quasiment alignés : un ajustement affine semble pertinent.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>Un menuisier agenceur mesure le temps de pose (en minutes) de placards en fonction du nombre de modules :</p>
+  <table>
+    <tr><th>Nombre de modules</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+    <tr><th>Temps de pose (min)</th><td>45</td><td>80</td><td>120</td><td>155</td><td>195</td><td>230</td></tr>
+  </table>
+  <ol type="a">
+    <li>Représenter le nuage de points.</li>
+    <li>Peut-on envisager un ajustement affine ? Justifier.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        On place les points dans un repère : en abscisse le nombre de modules (de 0 à 7), en ordonnée le temps (de 0 à 250 min).
+        <svg viewBox="0 0 400 260" style="max-width:400px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="260" fill="#fffbeb" rx="6"/>
+          <line x1="50" y1="220" x2="380" y2="220" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="220" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+          <!-- grad x -->
+          <text x="50" y="238" text-anchor="middle" font-size="11">0</text>
+          <text x="100" y="238" text-anchor="middle" font-size="11">1</text>
+          <text x="150" y="238" text-anchor="middle" font-size="11">2</text>
+          <text x="200" y="238" text-anchor="middle" font-size="11">3</text>
+          <text x="250" y="238" text-anchor="middle" font-size="11">4</text>
+          <text x="300" y="238" text-anchor="middle" font-size="11">5</text>
+          <text x="350" y="238" text-anchor="middle" font-size="11">6</text>
+          <!-- grad y -->
+          <text x="40" y="224" text-anchor="end" font-size="11">0</text>
+          <text x="40" y="184" text-anchor="end" font-size="11">50</text>
+          <text x="40" y="144" text-anchor="end" font-size="11">100</text>
+          <text x="40" y="104" text-anchor="end" font-size="11">150</text>
+          <text x="40" y="64" text-anchor="end" font-size="11">200</text>
+          <text x="40" y="28" text-anchor="end" font-size="11">250</text>
+          <!-- points : x->50+50*n, y->220-0.8*t -->
+          <circle cx="100" cy="184" r="4.5" fill="#b45309"/>
+          <circle cx="150" cy="156" r="4.5" fill="#b45309"/>
+          <circle cx="200" cy="124" r="4.5" fill="#b45309"/>
+          <circle cx="250" cy="96" r="4.5" fill="#b45309"/>
+          <circle cx="300" cy="64" r="4.5" fill="#b45309"/>
+          <circle cx="350" cy="36" r="4.5" fill="#b45309"/>
+          <text x="215" y="256" text-anchor="middle" font-size="11" font-style="italic">Nombre de modules</text>
+          <text x="16" y="120" text-anchor="middle" font-size="11" font-style="italic" transform="rotate(-90 16 120)">Temps (min)</text>
+        </svg>
+      </li>
+      <li>Oui, les points sont quasiment alignés. L'augmentation du temps semble proportionnelle au nombre de modules : un ajustement affine est pertinent.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un fournisseur de bois relève le prix du mètre linéaire de tasseau (en euros) sur 6 années :</p>
+  <table>
+    <tr><th>Année</th><td>2019</td><td>2020</td><td>2021</td><td>2022</td><td>2023</td><td>2024</td></tr>
+    <tr><th>Prix (€/ml)</th><td>1,20</td><td>1,35</td><td>1,55</td><td>1,70</td><td>1,80</td><td>1,95</td></tr>
+  </table>
+  <p>On pose \(x_i = \text{année} - 2019\) (ainsi \(x_1 = 0\), \(x_2 = 1\), etc.).</p>
+  <ol type="a">
+    <li>Recopier le tableau avec les valeurs de \(x_i\).</li>
+    <li>Représenter le nuage de points \((x_i\,;\,y_i)\).</li>
+    <li>Un ajustement affine semble-t-il adapté ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        <table>
+          <tr><th>\(x_i\)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+          <tr><th>\(y_i\) (€/ml)</th><td>1,20</td><td>1,35</td><td>1,55</td><td>1,70</td><td>1,80</td><td>1,95</td></tr>
+        </table>
+      </li>
+      <li>
+        On place les points dans un repère avec \(x_i\) en abscisse (de 0 à 6) et \(y_i\) en ordonnée (de 1 à 2,1).
+        <svg viewBox="0 0 380 240" style="max-width:380px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="380" height="240" fill="#fffbeb" rx="6"/>
+          <line x1="50" y1="200" x2="360" y2="200" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="200" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+          <text x="50" y="218" text-anchor="middle" font-size="11">0</text>
+          <text x="110" y="218" text-anchor="middle" font-size="11">1</text>
+          <text x="170" y="218" text-anchor="middle" font-size="11">2</text>
+          <text x="230" y="218" text-anchor="middle" font-size="11">3</text>
+          <text x="290" y="218" text-anchor="middle" font-size="11">4</text>
+          <text x="350" y="218" text-anchor="middle" font-size="11">5</text>
+          <text x="40" y="200" text-anchor="end" font-size="11">1,0</text>
+          <text x="40" y="140" text-anchor="end" font-size="11">1,5</text>
+          <text x="40" y="80" text-anchor="end" font-size="11">2,0</text>
+          <!-- points : x->50+60*xi, y -> 200-120*(yi-1) -->
+          <circle cx="50" cy="176" r="4.5" fill="#b45309"/>
+          <circle cx="110" cy="158" r="4.5" fill="#b45309"/>
+          <circle cx="170" cy="134" r="4.5" fill="#b45309"/>
+          <circle cx="230" cy="116" r="4.5" fill="#b45309"/>
+          <circle cx="290" cy="104" r="4.5" fill="#b45309"/>
+          <circle cx="350" cy="86" r="4.5" fill="#b45309"/>
+          <text x="205" y="236" text-anchor="middle" font-size="11" font-style="italic">Rang (x = année − 2019)</text>
+        </svg>
+      </li>
+      <li>Oui, les points sont presque alignés : un ajustement affine semble adapté.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Réaliser un ajustement affine et déterminer l'équation de la droite des moindres carrés</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>La <strong>méthode des moindres carrés</strong> fournit la droite \(y = ax + b\) qui minimise la somme des carrés des écarts entre les valeurs observées et les valeurs prédites. En pratique, on utilise la calculatrice ou un tableur pour obtenir les coefficients \(a\) (pente) et \(b\) (ordonnée à l'origine). L'ajustement à réaliser (\(y\) en fonction de \(x\) ou \(x\) en fonction de \(y\)) est toujours indiqué.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Reprenons les données de l'exercice 1 (consommation de vernis en fonction de la surface traitée). À l'aide de la calculatrice, on obtient la droite d'ajustement de \(y\) en \(x\) :</p>
+  <p>\[y = 0{,}15x + 0{,}05\]</p>
+  <ol type="a">
+    <li>Tracer cette droite sur le nuage de points.</li>
+    <li>Que représente le coefficient 0,15 dans le contexte ?</li>
+    <li>Que représente 0,05 ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        On trace la droite passant par \((0\,;\,0{,}05)\) et par exemple \((30\,;\,4{,}55)\).
+        <svg viewBox="0 0 420 260" style="max-width:420px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="420" height="260" fill="#fffbeb" rx="6"/>
+          <line x1="50" y1="220" x2="400" y2="220" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="220" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+          <text x="108" y="240" text-anchor="middle" font-size="11">5</text>
+          <text x="166" y="240" text-anchor="middle" font-size="11">10</text>
+          <text x="224" y="240" text-anchor="middle" font-size="11">15</text>
+          <text x="282" y="240" text-anchor="middle" font-size="11">20</text>
+          <text x="340" y="240" text-anchor="middle" font-size="11">25</text>
+          <text x="398" y="240" text-anchor="middle" font-size="11">30</text>
+          <text x="40" y="224" text-anchor="end" font-size="11">0</text>
+          <text x="40" y="184" text-anchor="end" font-size="11">1</text>
+          <text x="40" y="144" text-anchor="end" font-size="11">2</text>
+          <text x="40" y="104" text-anchor="end" font-size="11">3</text>
+          <text x="40" y="64" text-anchor="end" font-size="11">4</text>
+          <text x="40" y="30" text-anchor="end" font-size="11">5</text>
+          <!-- points -->
+          <circle cx="108" cy="188" r="4" fill="#b45309"/>
+          <circle cx="166" cy="160" r="4" fill="#b45309"/>
+          <circle cx="224" cy="124" r="4" fill="#b45309"/>
+          <circle cx="282" cy="96" r="4" fill="#b45309"/>
+          <circle cx="340" cy="64" r="4" fill="#b45309"/>
+          <circle cx="398" cy="40" r="4" fill="#b45309"/>
+          <!-- droite y=0.15x+0.05 : (0,0.05)->(30,4.55) => (50,218)->(398,38) -->
+          <line x1="50" y1="218" x2="398" y2="38" stroke="#b45309" stroke-width="2" stroke-dasharray="6,3"/>
+          <text x="300" y="30" font-size="11" fill="#b45309" font-style="italic">y = 0,15x + 0,05</text>
+        </svg>
+      </li>
+      <li>Le coefficient 0,15 est la <strong>pente</strong> : chaque m² supplémentaire de surface consomme environ <strong>0,15 L</strong> de vernis.</li>
+      <li>La valeur 0,05 est l'<strong>ordonnée à l'origine</strong> : c'est la consommation théorique pour une surface nulle (en pratique, quasi nulle).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Un atelier d'agencement relève le coût de production (en euros) de cuisines en fonction du nombre de meubles fabriqués :</p>
+  <table>
+    <tr><th>Nombre de meubles \(x\)</th><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td></tr>
+    <tr><th>Coût total \(y\) (€)</th><td>650</td><td>1 180</td><td>1 750</td><td>2 280</td><td>2 850</td></tr>
+  </table>
+  <p>La calculatrice donne : \(y = 275x + 95\).</p>
+  <ol type="a">
+    <li>Vérifier que le point \((6\,;\,1\,750)\) est proche de la droite.</li>
+    <li>Interpréter les coefficients 275 et 95 dans le contexte.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Pour \(x = 6\) : \(y = 275 \times 6 + 95 = 1\,650 + 95 = 1\,745\). La valeur observée est 1 750 : l'écart est de 5 €, ce qui est très faible. Le point est bien proche de la droite.</li>
+      <li>Le coefficient \(275\) signifie que chaque meuble supplémentaire coûte environ <strong>275 €</strong> de plus en production. Le coefficient \(95\) représente le <strong>coût fixe</strong> de l'atelier (charges incompressibles).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un menuisier agenceur relève la durée de fabrication (en heures) de lots d'étagères sur mesure en fonction du nombre de tablettes :</p>
+  <table>
+    <tr><th>Tablettes \(x\)</th><td>3</td><td>5</td><td>7</td><td>9</td><td>12</td></tr>
+    <tr><th>Durée \(y\) (h)</th><td>2,5</td><td>3,8</td><td>5,2</td><td>6,5</td><td>8,4</td></tr>
+  </table>
+  <p>À l'aide de la calculatrice, déterminer l'équation de la droite d'ajustement de \(y\) en \(x\) par la méthode des moindres carrés.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    En saisissant les données dans la calculatrice (mode Statistique à 2 variables), on obtient :<br>
+    \[y \approx 0{,}66x + 0{,}56\]
+    <strong>Vérification :</strong> pour \(x = 7\), \(y = 0{,}66 \times 7 + 0{,}56 = 4{,}62 + 0{,}56 = 5{,}18\). La valeur observée est 5,2 : l'écart est faible (0,02 h soit environ 1 min).<br>
+    <strong>Interprétation :</strong> chaque tablette supplémentaire ajoute environ <strong>0,66 h</strong> (soit ~40 min) au temps de fabrication.
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Déterminer le coefficient de détermination \(R^2\) et évaluer la pertinence d'un ajustement</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Le <strong>coefficient de détermination</strong> \(R^2\) est le carré du coefficient de corrélation linéaire. Il s'obtient par outil numérique (calculatrice ou tableur). On a \(0 \leqslant R^2 \leqslant 1\). Plus \(R^2\) est proche de 1, meilleur est l'ajustement affine. En pratique, si \(R^2 > 0{,}9\), l'ajustement est considéré comme bon. <strong>Attention :</strong> une forte corrélation ne signifie pas nécessairement une relation de cause à effet.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Pour les données de l'exercice 1 (vernis / surface), la calculatrice affiche \(R^2 = 0{,}998\).</p>
+  <ol type="a">
+    <li>Que peut-on dire de la qualité de l'ajustement affine ?</li>
+    <li>L'ajustement affine est-il pertinent pour prédire la consommation de vernis ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(R^2 = 0{,}998\) est très proche de 1 : l'ajustement affine est <strong>excellent</strong>. Les points du nuage sont quasiment alignés.</li>
+      <li>Oui, l'ajustement est pertinent pour prédire la consommation de vernis en fonction de la surface, dans la plage des données observées (5 à 30 m²).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Un atelier de menuiserie relève le taux de défauts (en %) en fonction de la température de l'atelier (en °C) :</p>
+  <table>
+    <tr><th>Température (°C)</th><td>15</td><td>18</td><td>20</td><td>22</td><td>25</td><td>28</td></tr>
+    <tr><th>Taux de défauts (%)</th><td>8</td><td>5</td><td>3</td><td>4</td><td>6</td><td>9</td></tr>
+  </table>
+  <p>La calculatrice donne \(R^2 = 0{,}12\) pour un ajustement affine.</p>
+  <ol type="a">
+    <li>L'ajustement affine est-il pertinent ? Justifier.</li>
+    <li>Pourquoi ce résultat est-il prévisible au vu des données ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(R^2 = 0{,}12\) est très éloigné de 1 : l'ajustement affine n'est <strong>pas pertinent</strong>.</li>
+      <li>En observant les données, le taux de défauts diminue puis augmente : la relation n'est pas linéaire (elle a une forme de « creux »). Un modèle affine ne convient pas dans ce cas.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>Deux élèves étudient l'évolution du nombre de vis vendues par un grossiste en fonction des mois écoulés depuis janvier. Ils trouvent \(R^2 = 0{,}95\) et concluent : « Le passage des mois cause l'augmentation des ventes de vis. »</p>
+  <p>Cette conclusion est-elle correcte ? Expliquer.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Non, cette conclusion est <strong>incorrecte</strong>. Un coefficient \(R^2 = 0{,}95\) indique une forte <strong>corrélation</strong> entre les deux variables, mais <strong>corrélation n'implique pas causalité</strong>. L'augmentation des ventes peut être due à d'autres facteurs (saisonnalité des chantiers, promotions commerciales, croissance du marché, etc.). Le temps qui passe n'est pas en soi la cause des ventes.
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Interpoler ou extrapoler des valeurs à l'aide de la droite d'ajustement</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p><strong>Interpoler</strong> : estimer une valeur \(y\) pour un \(x\) situé <em>à l'intérieur</em> de la plage des données observées. <strong>Extrapoler</strong> : estimer une valeur pour un \(x\) situé <em>en dehors</em> de cette plage. L'extrapolation est moins fiable que l'interpolation car rien ne garantit que le modèle reste valable au-delà des données.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>On reprend la droite d'ajustement de l'exercice 4 : \(y = 0{,}15x + 0{,}05\) (vernis en L, surface en m²).</p>
+  <ol type="a">
+    <li>Estimer la consommation de vernis pour une surface de 12 m². S'agit-il d'une interpolation ou d'une extrapolation ?</li>
+    <li>Estimer la consommation pour une surface de 50 m². S'agit-il d'une interpolation ou d'une extrapolation ? Cette estimation est-elle fiable ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(y = 0{,}15 \times 12 + 0{,}05 = 1{,}80 + 0{,}05 = 1{,}85\) L.<br>
+      12 m² est situé entre 10 et 15 (plage des données) : c'est une <strong>interpolation</strong>.</li>
+      <li>\(y = 0{,}15 \times 50 + 0{,}05 = 7{,}50 + 0{,}05 = 7{,}55\) L.<br>
+      50 m² est situé au-delà de 30 m² (dernière donnée) : c'est une <strong>extrapolation</strong>. Cette estimation est <strong>moins fiable</strong> car le modèle linéaire n'a pas été vérifié au-delà de 30 m².</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Reprenons les données du prix du tasseau (exercice 3) avec la droite d'ajustement \(y = 0{,}148x + 1{,}19\) (où \(x = \text{année} - 2019\)).</p>
+  <ol type="a">
+    <li>Estimer le prix du tasseau en 2025 (\(x = 6\)). Est-ce une interpolation ou une extrapolation ?</li>
+    <li>À l'aide de la droite, estimer en quelle année le prix atteindra 2,50 €/ml.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(y = 0{,}148 \times 6 + 1{,}19 = 0{,}888 + 1{,}19 = 2{,}08\) €/ml.<br>
+      Les données vont de \(x = 0\) à \(x = 5\) : \(x = 6\) est en dehors de cette plage, c'est une <strong>extrapolation</strong>.</li>
+      <li>On résout \(0{,}148x + 1{,}19 = 2{,}50\) :<br>
+      \(0{,}148x = 1{,}31\)<br>
+      \(x = \dfrac{1{,}31}{0{,}148} \approx 8{,}85\)<br>
+      Année estimée : \(2019 + 9 = 2028\).<br>
+      <strong>Attention :</strong> cette extrapolation est lointaine (au-delà de la plage), donc peu fiable.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Un menuisier modélise le poids (en kg) de panneaux de MDF en fonction de leur épaisseur (en mm) par la droite \(y = 0{,}72x + 0{,}5\) (valable pour des épaisseurs de 3 à 22 mm).</p>
+  <ol type="a">
+    <li>Estimer le poids d'un panneau de 10 mm d'épaisseur.</li>
+    <li>Estimer le poids d'un panneau de 40 mm. Commenter la fiabilité.</li>
+    <li>Un panneau pèse 12 kg. Estimer son épaisseur.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(y = 0{,}72 \times 10 + 0{,}5 = 7{,}7\) kg. C'est une <strong>interpolation</strong> (10 mm est dans la plage 3–22 mm).</li>
+      <li>\(y = 0{,}72 \times 40 + 0{,}5 = 29{,}3\) kg. C'est une <strong>extrapolation</strong> (40 mm est très au-delà de 22 mm). La fiabilité est <strong>incertaine</strong> : la densité ou la structure du panneau peut changer pour de fortes épaisseurs.</li>
+      <li>On résout \(0{,}72x + 0{,}5 = 12\) :<br>
+      \(0{,}72x = 11{,}5\)<br>
+      \(x = \dfrac{11{,}5}{0{,}72} \approx 15{,}97 \approx 16\) mm.<br>
+      C'est une interpolation (16 mm est dans la plage). L'épaisseur estimée est d'environ <strong>16 mm</strong>.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Résoudre un problème complet en contexte professionnel</h2>
+
+<div class="meth">
+  <strong>Rappel de cours</strong>
+  <p>Un problème complet de statistique à deux variables combine toutes les capacités : représenter le nuage, réaliser l'ajustement affine, calculer \(R^2\) pour valider le modèle, puis utiliser la droite pour interpoler ou extrapoler. Toujours vérifier la cohérence du résultat dans le contexte professionnel.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Un atelier de menuiserie-agencement étudie la relation entre le nombre d'heures de travail et le nombre de portes de placard livrées sur 6 mois :</p>
+  <table>
+    <tr><th>Mois</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+    <tr><th>Heures de travail \(x\)</th><td>80</td><td>120</td><td>150</td><td>180</td><td>210</td><td>250</td></tr>
+    <tr><th>Portes livrées \(y\)</th><td>18</td><td>28</td><td>34</td><td>40</td><td>48</td><td>56</td></tr>
+  </table>
+  <ol type="a">
+    <li>Représenter le nuage de points.</li>
+    <li>La calculatrice donne \(y = 0{,}224x + 0{,}5\) avec \(R^2 = 0{,}999\). L'ajustement est-il pertinent ?</li>
+    <li>Estimer le nombre de portes livrées pour 200 heures de travail.</li>
+    <li>L'atelier souhaite livrer 70 portes. Estimer le nombre d'heures nécessaires. Commenter.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        <svg viewBox="0 0 420 260" style="max-width:420px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="420" height="260" fill="#fffbeb" rx="6"/>
+          <line x1="50" y1="220" x2="400" y2="220" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="220" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+          <text x="50" y="238" text-anchor="middle" font-size="10">0</text>
+          <text x="120" y="238" text-anchor="middle" font-size="10">50</text>
+          <text x="190" y="238" text-anchor="middle" font-size="10">100</text>
+          <text x="260" y="238" text-anchor="middle" font-size="10">150</text>
+          <text x="330" y="238" text-anchor="middle" font-size="10">200</text>
+          <text x="400" y="238" text-anchor="middle" font-size="10">250</text>
+          <text x="40" y="224" text-anchor="end" font-size="10">0</text>
+          <text x="40" y="190" text-anchor="end" font-size="10">10</text>
+          <text x="40" y="157" text-anchor="end" font-size="10">20</text>
+          <text x="40" y="124" text-anchor="end" font-size="10">30</text>
+          <text x="40" y="91" text-anchor="end" font-size="10">40</text>
+          <text x="40" y="58" text-anchor="end" font-size="10">50</text>
+          <text x="40" y="27" text-anchor="end" font-size="10">60</text>
+          <!-- points x->50+1.4*x, y->220-3.3*y -->
+          <circle cx="162" cy="161" r="4.5" fill="#b45309"/>
+          <circle cx="218" cy="128" r="4.5" fill="#b45309"/>
+          <circle cx="260" cy="108" r="4.5" fill="#b45309"/>
+          <circle cx="302" cy="88" r="4.5" fill="#b45309"/>
+          <circle cx="344" cy="62" r="4.5" fill="#b45309"/>
+          <circle cx="400" cy="35" r="4.5" fill="#b45309"/>
+          <!-- droite -->
+          <line x1="50" y1="218" x2="400" y2="35" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+          <text x="225" y="256" text-anchor="middle" font-size="10" font-style="italic">Heures de travail</text>
+          <text x="16" y="120" text-anchor="middle" font-size="10" font-style="italic" transform="rotate(-90 16 120)">Portes livrées</text>
+        </svg>
+      </li>
+      <li>\(R^2 = 0{,}999\) est très proche de 1 : l'ajustement affine est <strong>excellent</strong>. La relation est quasi linéaire.</li>
+      <li>\(y = 0{,}224 \times 200 + 0{,}5 = 44{,}8 + 0{,}5 = 45{,}3\).<br>
+      200 h est dans la plage (80–250 h), c'est une interpolation. On estime environ <strong>45 portes</strong>.</li>
+      <li>On résout \(0{,}224x + 0{,}5 = 70\) :<br>
+      \(0{,}224x = 69{,}5\)<br>
+      \(x = \dfrac{69{,}5}{0{,}224} \approx 310\) h.<br>
+      C'est une <strong>extrapolation</strong> (310 h dépasse les 250 h de la plage). L'estimation est à prendre avec prudence : au-delà d'un certain volume, il peut y avoir des contraintes (fatigue, capacité de l'atelier) qui rendent le modèle moins fiable.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Un fournisseur de panneaux de bois relève les ventes mensuelles (en m³) en fonction du prix unitaire (en €/m³) pratiqué :</p>
+  <table>
+    <tr><th>Prix (€/m³)</th><td>40</td><td>45</td><td>50</td><td>55</td><td>60</td><td>65</td><td>70</td></tr>
+    <tr><th>Ventes (m³)</th><td>120</td><td>108</td><td>95</td><td>85</td><td>72</td><td>62</td><td>50</td></tr>
+  </table>
+  <p>La calculatrice donne : \(y = -2{,}32x + 212\) avec \(R^2 = 0{,}998\).</p>
+  <ol type="a">
+    <li>\(R^2\) est-il satisfaisant ? Justifier.</li>
+    <li>Estimer les ventes pour un prix de 52 €/m³.</li>
+    <li>À quel prix les ventes tombent-elles à 30 m³ ? Commenter la fiabilité.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>\(R^2 = 0{,}998\) est quasiment égal à 1 : l'ajustement affine est <strong>très bon</strong>. La relation entre prix et ventes est quasi linéaire sur cette plage.</li>
+      <li>\(y = -2{,}32 \times 52 + 212 = -120{,}64 + 212 = 91{,}36 \approx 91\) m³.<br>
+      52 €/m³ est dans la plage (40–70) : c'est une <strong>interpolation</strong>.</li>
+      <li>On résout \(-2{,}32x + 212 = 30\) :<br>
+      \(-2{,}32x = -182\)<br>
+      \(x = \dfrac{182}{2{,}32} \approx 78{,}4\) €/m³.<br>
+      C'est une <strong>extrapolation</strong> (78,4 € dépasse la plage 40–70). Le modèle linéaire n'a pas été vérifié à ces prix : en réalité, la baisse des ventes pourrait s'accélérer ou au contraire se stabiliser.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>Un menuisier agenceur relève la quantité de colle utilisée (en kg) en fonction du nombre de panneaux assemblés lors de chantiers :</p>
+  <table>
+    <tr><th>Panneaux assemblés</th><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td></tr>
+    <tr><th>Colle utilisée (kg)</th><td>1,8</td><td>3,2</td><td>4,9</td><td>6,3</td><td>8,1</td></tr>
+  </table>
+  <ol type="a">
+    <li>Représenter le nuage de points.</li>
+    <li>La calculatrice donne \(y = 0{,}157x + 0{,}17\) et \(R^2 = 0{,}998\). Commenter.</li>
+    <li>Estimer la quantité de colle pour 35 panneaux.</li>
+    <li>Un chantier dispose de 5 kg de colle. Combien de panneaux peut-on assembler au maximum ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>
+        <svg viewBox="0 0 400 250" style="max-width:400px;width:100%;display:block;margin:10px auto" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="250" fill="#fffbeb" rx="6"/>
+          <line x1="50" y1="210" x2="380" y2="210" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="210" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
+          <text x="50" y="228" text-anchor="middle" font-size="11">0</text>
+          <text x="116" y="228" text-anchor="middle" font-size="11">10</text>
+          <text x="182" y="228" text-anchor="middle" font-size="11">20</text>
+          <text x="248" y="228" text-anchor="middle" font-size="11">30</text>
+          <text x="314" y="228" text-anchor="middle" font-size="11">40</text>
+          <text x="380" y="228" text-anchor="middle" font-size="11">50</text>
+          <text x="40" y="214" text-anchor="end" font-size="11">0</text>
+          <text x="40" y="167" text-anchor="end" font-size="11">2</text>
+          <text x="40" y="120" text-anchor="end" font-size="11">4</text>
+          <text x="40" y="73" text-anchor="end" font-size="11">6</text>
+          <text x="40" y="26" text-anchor="end" font-size="11">8</text>
+          <!-- points : x->50+6.6*x, y->210-23.5*y -->
+          <circle cx="116" cy="168" r="4.5" fill="#b45309"/>
+          <circle cx="182" cy="135" r="4.5" fill="#b45309"/>
+          <circle cx="248" cy="95" r="4.5" fill="#b45309"/>
+          <circle cx="314" cy="62" r="4.5" fill="#b45309"/>
+          <circle cx="380" cy="20" r="4.5" fill="#b45309"/>
+          <line x1="50" y1="206" x2="380" y2="20" stroke="#b45309" stroke-width="1.5" stroke-dasharray="6,3"/>
+        </svg>
+      </li>
+      <li>\(R^2 = 0{,}998\) est quasiment égal à 1 : l'ajustement affine est excellent. La quantité de colle est quasi proportionnelle au nombre de panneaux.</li>
+      <li>\(y = 0{,}157 \times 35 + 0{,}17 = 5{,}495 + 0{,}17 = 5{,}67\) kg.<br>
+      35 panneaux est dans la plage (10–50) : <strong>interpolation</strong>. Il faut environ <strong>5,7 kg</strong> de colle.</li>
+      <li>On résout \(0{,}157x + 0{,}17 = 5\) :<br>
+      \(0{,}157x = 4{,}83\)<br>
+      \(x = \dfrac{4{,}83}{0{,}157} \approx 30{,}8\)<br>
+      On arrondit à l'entier inférieur : on peut assembler au maximum <strong>30 panneaux</strong> avec 5 kg de colle.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+</div><!-- fin .c -->
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr = btn.nextElementSibling;
+  if(corr.style.display === 'block'){
+    corr.style.display = 'none';
+    btn.textContent = 'Voir la correction';
+  } else {
+    corr.style.display = 'block';
+    btn.textContent = 'Masquer la correction';
+  }
+}
+</script>
+</body>
+</html>

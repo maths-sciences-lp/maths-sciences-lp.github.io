@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Exercices par capacités – Fonctions polynômes de degré 2 – 1re MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#b45309;--p-bg:#fffbeb;--p-border:#fde68a}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-mama.html" class="nb">&larr; Retour au sommaire</a>
+<header>
+  <h1>Chapitre 5 – Exercices par capacités</h1>
+  <p class="sous-titre">Fonctions polynômes de degré 2 &nbsp;|&nbsp; Première Bac Pro &nbsp;|&nbsp; Mathématiques</p>
+</header>
+
+<div class="objectifs">
+  <strong>Capacités et connaissances du programme :</strong>
+  <ul>
+    <li><strong>C1</strong> — Visualiser graphiquement le nombre de solutions de \(f(x) = 0\)</li>
+    <li><strong>C2</strong> — Donner l'allure de la parabole d'un polynôme sous forme factorisée</li>
+    <li><strong>C3</strong> — Tester si un réel est racine ; factoriser un polynôme de degré 2</li>
+    <li><strong>C4</strong> — Déterminer les racines et le signe d'un polynôme sous forme factorisée</li>
+    <li><strong>C5</strong> — Déterminer la 2<sup>e</sup> solution lorsqu'une solution est connue</li>
+  </ul>
+  <p style="margin-top:8px;padding:6px 10px;background:#fef2f2;border-left:3px solid #dc2626;border-radius:4px;font-size:0.92em">
+    <strong>Attention :</strong> le calcul des racines par le discriminant est <strong>hors programme</strong> en Première Bac Pro.
+  </p>
+</div>
+
+<div class="cap-filtres">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 – Nombre de solutions</button>
+  <button class="btn-cap" data-filtre="C2">C2 – Allure parabole</button>
+  <button class="btn-cap" data-filtre="C3">C3 – Racines / factoriser</button>
+  <button class="btn-cap" data-filtre="C4">C4 – Signe forme factorisée</button>
+  <button class="btn-cap" data-filtre="C5">C5 – 2<sup>e</sup> solution</button>
+</div>
+<p id="cap-active-label" style="font-weight:700;color:var(--p);margin:0 0 12px;font-size:1.05em"></p>
+
+<!-- ===== C1 ===== -->
+<div class="cap-section" data-cap="C1">
+<h2>C1 — Visualiser graphiquement le nombre de solutions de \(f(x) = 0\)</h2>
+
+<div class="retenir">
+  <strong>Rappel de cours — Polynôme de degré 2 et nombre de solutions</strong>
+  <p>Un <strong>polynôme de degré 2</strong> est une fonction de la forme \(f(x) = ax^2 + bx + c\) avec \(a \neq 0\).</p>
+  <p>Sa représentation graphique est une <strong>parabole</strong> :</p>
+  <ul>
+    <li>ouverte vers le <strong>haut</strong> si \(a > 0\)</li>
+    <li>ouverte vers le <strong>bas</strong> si \(a < 0\)</li>
+  </ul>
+  <figure class="schema" style="text-align:center;margin:16px 0">
+    <svg width="500" height="200" viewBox="0 0 500 200" aria-label="Trois cas : 2 solutions, 1 solution, 0 solution">
+      <rect width="500" height="200" fill="#f8fafc" rx="6"/>
+      <!-- Cas 1 : 2 solutions -->
+      <text x="80" y="18" font-size="12" fill="#333" font-weight="bold" text-anchor="middle">2 solutions</text>
+      <!-- Axe x -->
+      <line x1="10" y1="130" x2="150" y2="130" stroke="#333" stroke-width="1"/>
+      <!-- Parabole : passe par (30,130), (80,40), (130,130) -->
+      <path d="M 20,150 Q 80,20 140,150" stroke="#b45309" stroke-width="2.5" fill="none"/>
+      <circle cx="35" cy="130" r="4" fill="#16a34a"/><circle cx="125" cy="130" r="4" fill="#16a34a"/>
+      <text x="27" y="148" font-size="10" fill="#16a34a">x₁</text>
+      <text x="117" y="148" font-size="10" fill="#16a34a">x₂</text>
+
+      <!-- Cas 2 : 1 solution (racine double) -->
+      <text x="250" y="18" font-size="12" fill="#333" font-weight="bold" text-anchor="middle">1 solution (double)</text>
+      <line x1="180" y1="130" x2="320" y2="130" stroke="#333" stroke-width="1"/>
+      <path d="M 195,150 Q 250,110 305,150" stroke="#b45309" stroke-width="2.5" fill="none"/>
+      <circle cx="250" cy="130" r="4" fill="#16a34a"/>
+      <text x="242" y="148" font-size="10" fill="#16a34a">x₀</text>
+
+      <!-- Cas 3 : 0 solution -->
+      <text x="420" y="18" font-size="12" fill="#333" font-weight="bold" text-anchor="middle">0 solution</text>
+      <line x1="350" y1="130" x2="490" y2="130" stroke="#333" stroke-width="1"/>
+      <path d="M 370,120 Q 420,50 470,120" stroke="#b45309" stroke-width="2.5" fill="none"/>
+      <text x="400" y="180" font-size="10" fill="#999" font-style="italic">pas d'intersection</text>
+    </svg>
+    <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Les trois cas possibles pour \(f(x) = 0\) (\(a > 0\))</figcaption>
+  </figure>
+  <p>Le nombre de solutions de \(f(x) = 0\) correspond au nombre de points d'intersection de la parabole avec l'axe des abscisses : <strong>0, 1 ou 2</strong>.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 1</h3>
+  <p>Pour chaque parabole ci-dessous, indiquer le nombre de solutions de \(f(x) = 0\) et les lire si possible.</p>
+  <figure class="schema" style="text-align:center;margin:16px 0">
+    <svg width="500" height="200" viewBox="0 0 500 200" aria-label="Trois paraboles à analyser">
+      <rect width="500" height="200" fill="#f8fafc" rx="6"/>
+      <!-- Parabole a) : coupe l'axe en x=-2 et x=3 -->
+      <text x="80" y="15" font-size="11" fill="#333" font-weight="bold" text-anchor="middle">a)</text>
+      <line x1="10" y1="140" x2="150" y2="140" stroke="#333" stroke-width="1"/>
+      <line x1="80" y1="30" x2="80" y2="180" stroke="#333" stroke-width="0.5"/>
+      <text x="32" y="155" font-size="10" fill="#333">−2</text><text x="120" y="155" font-size="10" fill="#333">3</text>
+      <path d="M 15,100 Q 80,190 145,100" stroke="#b45309" stroke-width="2" fill="none"/>
+      <circle cx="38" cy="140" r="3" fill="#16a34a"/><circle cx="122" cy="140" r="3" fill="#16a34a"/>
+
+      <!-- Parabole b) : ne coupe pas l'axe -->
+      <text x="250" y="15" font-size="11" fill="#333" font-weight="bold" text-anchor="middle">b)</text>
+      <line x1="180" y1="140" x2="320" y2="140" stroke="#333" stroke-width="1"/>
+      <line x1="250" y1="30" x2="250" y2="180" stroke="#333" stroke-width="0.5"/>
+      <path d="M 200,120 Q 250,60 300,120" stroke="#b45309" stroke-width="2" fill="none"/>
+
+      <!-- Parabole c) : tangente en x=1 -->
+      <text x="420" y="15" font-size="11" fill="#333" font-weight="bold" text-anchor="middle">c)</text>
+      <line x1="350" y1="140" x2="490" y2="140" stroke="#333" stroke-width="1"/>
+      <line x1="420" y1="30" x2="420" y2="180" stroke="#333" stroke-width="0.5"/>
+      <path d="M 365,50 Q 420,145 475,50" stroke="#b45309" stroke-width="2" fill="none"/>
+      <circle cx="420" cy="140" r="3" fill="#16a34a"/>
+      <text x="412" y="158" font-size="10" fill="#333">1</text>
+    </svg>
+  </figure>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>La parabole (ouverte vers le bas) coupe l'axe des abscisses en <strong>deux points</strong> : \(x_1 = -2\) et \(x_2 = 3\). L'équation \(f(x) = 0\) a <strong>2 solutions</strong>.</li>
+      <li>La parabole (ouverte vers le haut) ne coupe <strong>pas</strong> l'axe des abscisses. L'équation \(f(x) = 0\) n'a <strong>aucune solution</strong>.</li>
+      <li>La parabole (ouverte vers le bas) est <strong>tangente</strong> à l'axe des abscisses en \(x = 1\). L'équation \(f(x) = 0\) a <strong>une solution (double)</strong> : \(x = 1\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 2</h3>
+  <p>À l'aide de la calculatrice ou d'un logiciel, tracer la courbe de \(f(x) = x^2 - 4x + 3\) et déterminer graphiquement le nombre de solutions de \(f(x) = 0\). Lire les solutions éventuelles.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    La parabole coupe l'axe des abscisses en <strong>deux points</strong> : \(x = 1\) et \(x = 3\).<br>
+    Vérification : \(f(1) = 1 - 4 + 3 = 0\) et \(f(3) = 9 - 12 + 3 = 0\). Correct.<br>
+    L'équation \(f(x) = 0\) a <strong>deux solutions : \(x = 1\) et \(x = 3\)</strong>.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 3</h3>
+  <p>Un menuisier modélise la section d'une arche parabolique par \(f(x) = -x^2 + 6x - 5\), où \(x\) est en mètres. Combien de fois l'arche touche-t-elle le sol (\(f(x) = 0\)) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    On cherche les valeurs de \(x\) telles que \(-x^2 + 6x - 5 = 0\).<br>
+    On teste : \(f(1) = -1 + 6 - 5 = 0\) et \(f(5) = -25 + 30 - 5 = 0\).<br>
+    L'arche touche le sol en <strong>deux points</strong> : \(x = 1\) m et \(x = 5\) m.<br>
+    L'arche a donc une portée de \(5 - 1 = 4\) mètres.
+  </div>
+</div>
+</div>
+
+<!-- ===== C2 ===== -->
+<div class="cap-section" data-cap="C2">
+<h2>C2 — Allure de la parabole sous forme factorisée</h2>
+
+<div class="meth">
+  <strong>Rappel de cours — Forme factorisée</strong>
+  <p>Si \(f(x) = a(x - x_1)(x - x_2)\) avec \(x_1 \neq x_2\) :</p>
+  <ul>
+    <li>Les <strong>racines</strong> (zéros) sont \(x_1\) et \(x_2\)</li>
+    <li>L'<strong>axe de symétrie</strong> passe par \(x_S = \dfrac{x_1 + x_2}{2}\)</li>
+    <li>Le <strong>sommet</strong> a pour abscisse \(x_S\) et pour ordonnée \(f(x_S)\)</li>
+    <li>L'<strong>ordonnée à l'origine</strong> est \(f(0) = a \cdot x_1 \cdot x_2\)</li>
+    <li>Si \(a > 0\) : parabole ouverte vers le <strong>haut</strong> (sommet = minimum)</li>
+    <li>Si \(a < 0\) : parabole ouverte vers le <strong>bas</strong> (sommet = maximum)</li>
+  </ul>
+</div>
+
+<div class="exo">
+  <h3>Exercice 4</h3>
+  <p>Soit \(f(x) = 2(x - 1)(x - 5)\). Déterminer :</p>
+  <ol type="a">
+    <li>Les racines de \(f\).</li>
+    <li>Le signe de \(a\) et le sens d'ouverture de la parabole.</li>
+    <li>L'abscisse du sommet et les coordonnées du sommet.</li>
+    <li>L'ordonnée à l'origine.</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Les racines sont \(x_1 = 1\) et \(x_2 = 5\).</li>
+      <li>\(a = 2 > 0\) : la parabole est ouverte vers le <strong>haut</strong>.</li>
+      <li>\(x_S = \dfrac{1 + 5}{2} = 3\).<br>
+      \(f(3) = 2(3 - 1)(3 - 5) = 2 \times 2 \times (-2) = -8\).<br>
+      Le sommet est \(S(3\,;\,-8)\).</li>
+      <li>\(f(0) = 2(0 - 1)(0 - 5) = 2 \times (-1) \times (-5) = 10\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 5</h3>
+  <p>Soit \(f(x) = -(x + 2)(x - 4)\). Tracer l'allure de la parabole en précisant les éléments caractéristiques.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Racines : \(x_1 = -2\) et \(x_2 = 4\).</li>
+      <li>\(a = -1 < 0\) : parabole ouverte vers le <strong>bas</strong>.</li>
+      <li>Axe de symétrie : \(x_S = \dfrac{-2 + 4}{2} = 1\).</li>
+      <li>Sommet : \(f(1) = -(1 + 2)(1 - 4) = -3 \times (-3) = 9\). Donc \(S(1\,;\,9)\).</li>
+      <li>Ordonnée à l'origine : \(f(0) = -(0 + 2)(0 - 4) = -2 \times (-4) = 8\).</li>
+    </ul>
+    La parabole passe par \((-2\,;\,0)\), monte jusqu'au sommet \((1\,;\,9)\), puis redescend vers \((4\,;\,0)\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 6</h3>
+  <p>Un agenceur conçoit un arc de porte parabolique. La forme est modélisée par \(f(x) = -0{,}5(x - 0)(x - 4) = -0{,}5x(x - 4)\), où \(x\) est en mètres. Donner l'allure de l'arc, sa hauteur maximale et sa largeur.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Racines : \(x_1 = 0\) et \(x_2 = 4\). L'arc repose sur le sol entre 0 m et 4 m.<br>
+      <strong>Largeur de l'arc : 4 m</strong>.</li>
+      <li>\(a = -0{,}5 < 0\) : parabole ouverte vers le bas (forme d'arc).</li>
+      <li>Sommet : \(x_S = \dfrac{0 + 4}{2} = 2\). \(f(2) = -0{,}5 \times 2 \times (2 - 4) = -0{,}5 \times 2 \times (-2) = 2\).<br>
+      <strong>Hauteur maximale : 2 m</strong> (au milieu de l'arc).</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ===== C3 ===== -->
+<div class="cap-section" data-cap="C3">
+<h2>C3 — Tester si un réel est racine ; factoriser</h2>
+
+<div class="retenir">
+  <strong>Rappel de cours</strong>
+  <p><strong>Tester une racine :</strong> un réel \(r\) est <strong>racine</strong> de \(f(x) = ax^2 + bx + c\) si et seulement si \(f(r) = 0\).</p>
+  <p><strong>Factoriser :</strong> si \(x_1\) et \(x_2\) sont les racines, alors \(f(x) = a(x - x_1)(x - x_2)\).</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 7</h3>
+  <p>Soit \(f(x) = x^2 - 5x + 6\). Tester si \(x = 2\) et \(x = 3\) sont des racines de \(f\). En déduire la forme factorisée.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(f(2) = 4 - 10 + 6 = 0\) : oui, \(x = 2\) est racine.<br>
+    \(f(3) = 9 - 15 + 6 = 0\) : oui, \(x = 3\) est racine.<br><br>
+    Forme factorisée (avec \(a = 1\)) :<br>
+    \(\boxed{f(x) = (x - 2)(x - 3)}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 8</h3>
+  <p>Soit \(g(x) = 2x^2 + 6x - 8\). Vérifier que \(x = 1\) est racine. En déduire la factorisation.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(g(1) = 2 + 6 - 8 = 0\) : oui, \(x = 1\) est racine.<br><br>
+    On cherche la deuxième racine \(x_2\). On sait que \(g(x) = 2(x - 1)(x - x_2)\).<br>
+    En développant : \(2(x - 1)(x - x_2) = 2x^2 - 2(1 + x_2)x + 2x_2\).<br>
+    Par identification avec \(2x^2 + 6x - 8\) : \(2x_2 = -8\), donc \(x_2 = -4\).<br><br>
+    \(\boxed{g(x) = 2(x - 1)(x + 4)}\)<br>
+    Vérification : \(g(-4) = 2 \times 16 - 24 - 8 = 32 - 32 = 0\). Correct.
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 9</h3>
+  <p>La hauteur d'une planche coupée en arc est modélisée par \(f(x) = -3x^2 + 12x - 9\) (en cm). Un apprenti affirme que la planche touche le bord à \(x = 1\) cm et \(x = 3\) cm. A-t-il raison ? Factoriser \(f\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    \(f(1) = -3 + 12 - 9 = 0\) et \(f(3) = -27 + 36 - 9 = 0\).<br>
+    Oui, l'apprenti a raison : les bords sont bien à \(x = 1\) et \(x = 3\).<br><br>
+    Forme factorisée (avec \(a = -3\)) :<br>
+    \(\boxed{f(x) = -3(x - 1)(x - 3)}\)<br>
+    Vérification : \(-3(x - 1)(x - 3) = -3(x^2 - 4x + 3) = -3x^2 + 12x - 9\). Correct.
+  </div>
+</div>
+</div>
+
+<!-- ===== C4 ===== -->
+<div class="cap-section" data-cap="C4">
+<h2>C4 — Racines et signe d'un polynôme sous forme factorisée</h2>
+
+<div class="meth">
+  <strong>Rappel de cours — Signe d'un polynôme factorisé</strong>
+  <p>Si \(f(x) = a(x - x_1)(x - x_2)\) avec \(x_1 < x_2\), le signe de \(f(x)\) suit la règle :</p>
+  <table style="margin:8px auto;border-collapse:collapse;text-align:center">
+    <tr style="border-bottom:2px solid #333"><th style="padding:4px 12px">\(x\)</th><td style="padding:4px 12px">\(-\infty\)</td><td></td><td style="padding:4px 12px">\(x_1\)</td><td></td><td style="padding:4px 12px">\(x_2\)</td><td></td><td style="padding:4px 12px">\(+\infty\)</td></tr>
+    <tr><th style="padding:4px 12px">Si \(a > 0\)</th><td></td><td style="padding:4px 12px;color:#16a34a">+</td><td style="padding:4px 12px">0</td><td style="padding:4px 12px;color:#dc2626">−</td><td style="padding:4px 12px">0</td><td style="padding:4px 12px;color:#16a34a">+</td><td></td></tr>
+    <tr><th style="padding:4px 12px">Si \(a < 0\)</th><td></td><td style="padding:4px 12px;color:#dc2626">−</td><td style="padding:4px 12px">0</td><td style="padding:4px 12px;color:#16a34a">+</td><td style="padding:4px 12px">0</td><td style="padding:4px 12px;color:#dc2626">−</td><td></td></tr>
+  </table>
+  <p><strong>Astuce :</strong> le signe de \(f\) est celui de \(a\) « à l'extérieur » des racines, et l'opposé « entre » les racines.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 10</h3>
+  <p>Déterminer les racines et dresser le tableau de signes de :</p>
+  <ol type="a">
+    <li>\(f(x) = (x - 1)(x - 4)\)</li>
+    <li>\(g(x) = -2(x + 3)(x - 2)\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Racines : \(x_1 = 1\), \(x_2 = 4\). Ici \(a = 1 > 0\).<br>
+      \(f(x) > 0\) pour \(x < 1\) ou \(x > 4\) ; \(f(x) < 0\) pour \(1 < x < 4\).<br>
+      \(f(x) = 0\) pour \(x = 1\) ou \(x = 4\).</li>
+      <li>Racines : \(x_1 = -3\), \(x_2 = 2\). Ici \(a = -2 < 0\).<br>
+      \(g(x) < 0\) pour \(x < -3\) ou \(x > 2\) ; \(g(x) > 0\) pour \(-3 < x < 2\).<br>
+      \(g(x) = 0\) pour \(x = -3\) ou \(x = 2\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 11</h3>
+  <p>Résoudre les inéquations suivantes :</p>
+  <ol type="a">
+    <li>\((x - 2)(x - 6) \leqslant 0\)</li>
+    <li>\(-3(x + 1)(x - 5) > 0\)</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Racines : 2 et 6. \(a = 1 > 0\) : négatif entre les racines.<br>
+      \((x-2)(x-6) \leqslant 0\) pour \(\boxed{2 \leqslant x \leqslant 6}\).</li>
+      <li>Racines : \(-1\) et 5. \(a = -3 < 0\) : positif entre les racines (strictement).<br>
+      \(-3(x+1)(x-5) > 0\) pour \(\boxed{-1 < x < 5}\).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 12</h3>
+  <p>Le bénéfice (en euros) d'un atelier de menuiserie en fonction du nombre \(x\) de pièces produites est modélisé par \(B(x) = -2(x - 5)(x - 25)\).</p>
+  <ol type="a">
+    <li>Pour quelles valeurs de \(x\) le bénéfice est-il positif ?</li>
+    <li>Quel est le nombre de pièces qui maximise le bénéfice ?</li>
+  </ol>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li>Racines : 5 et 25. \(a = -2 < 0\) : positif entre les racines.<br>
+      Le bénéfice est positif pour \(\boxed{5 < x < 25}\), soit entre 5 et 25 pièces (exclues).<br>
+      L'atelier est rentable en produisant <strong>entre 6 et 24 pièces</strong>.</li>
+      <li>Le maximum est atteint au sommet : \(x_S = \dfrac{5 + 25}{2} = 15\).<br>
+      \(B(15) = -2(15 - 5)(15 - 25) = -2 \times 10 \times (-10) = 200\) €.<br>
+      Le bénéfice maximal est de <strong>200 € pour 15 pièces</strong>.</li>
+    </ol>
+  </div>
+</div>
+</div>
+
+<!-- ===== C5 ===== -->
+<div class="cap-section" data-cap="C5">
+<h2>C5 — Déterminer la 2<sup>e</sup> solution lorsqu'une solution est connue</h2>
+
+<div class="retenir">
+  <strong>Rappel de cours — Trouver la deuxième racine</strong>
+  <p>Si \(x_1\) est une racine connue de \(f(x) = ax^2 + bx + c\), on peut trouver \(x_2\) en utilisant la propriété :</p>
+  <p style="text-align:center;font-size:1.1em">\(x_1 + x_2 = -\dfrac{b}{a}\) &emsp; et &emsp; \(x_1 \times x_2 = \dfrac{c}{a}\)</p>
+  <p>On peut aussi factoriser par \((x - x_1)\) et résoudre le facteur restant.</p>
+</div>
+
+<div class="exo">
+  <h3>Exercice 13</h3>
+  <p>Soit \(f(x) = x^2 - 7x + 10\). On sait que \(x_1 = 2\) est solution de \(f(x) = 0\). Trouver \(x_2\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>Méthode 1 (somme des racines) :</strong><br>
+    \(x_1 + x_2 = -\dfrac{b}{a} = -\dfrac{-7}{1} = 7\)<br>
+    Donc \(x_2 = 7 - x_1 = 7 - 2 = 5\).<br><br>
+    <strong>Méthode 2 (produit des racines) :</strong><br>
+    \(x_1 \times x_2 = \dfrac{c}{a} = \dfrac{10}{1} = 10\)<br>
+    Donc \(x_2 = \dfrac{10}{2} = 5\).<br><br>
+    Vérification : \(f(5) = 25 - 35 + 10 = 0\). Correct.<br>
+    \(\boxed{x_2 = 5}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 14</h3>
+  <p>Soit \(g(x) = 3x^2 + 3x - 18\). Vérifier que \(x_1 = -3\) est racine et trouver \(x_2\).</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Vérification : \(g(-3) = 3 \times 9 + 3 \times (-3) - 18 = 27 - 9 - 18 = 0\). Oui, \(x_1 = -3\) est racine.<br><br>
+    Produit des racines : \(x_1 \times x_2 = \dfrac{c}{a} = \dfrac{-18}{3} = -6\)<br>
+    Donc \(x_2 = \dfrac{-6}{-3} = 2\).<br><br>
+    Vérification : \(g(2) = 12 + 6 - 18 = 0\). Correct.<br>
+    \(\boxed{x_2 = 2}\)
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 15</h3>
+  <p>La surface au sol d'un meuble d'angle est modélisée par \(f(x) = 2x^2 - 10x + 12\), où \(x\) est une dimension en décimètres. On sait que \(f(x) = 0\) pour \(x = 2\). Pour quelle autre valeur de \(x\) la surface est-elle nulle ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Vérification : \(f(2) = 8 - 20 + 12 = 0\). Correct.<br><br>
+    Somme des racines : \(x_1 + x_2 = -\dfrac{b}{a} = -\dfrac{-10}{2} = 5\)<br>
+    Donc \(x_2 = 5 - 2 = 3\).<br><br>
+    Vérification : \(f(3) = 18 - 30 + 12 = 0\). Correct.<br>
+    La surface est nulle pour \(x = 2\) dm et \(\boxed{x = 3}\) dm.<br><br>
+    Forme factorisée : \(f(x) = 2(x - 2)(x - 3)\).
+  </div>
+</div>
+
+<div class="exo">
+  <h3>Exercice 16</h3>
+  <p>Un charpentier calcule que la charge admissible d'une poutre vérifie \(f(x) = -x^2 + 8x - 12 = 0\) pour \(x = 6\) m. Trouver l'autre valeur de \(x\) et donner la forme factorisée.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    Vérification : \(f(6) = -36 + 48 - 12 = 0\). Correct.<br><br>
+    Somme des racines : \(x_1 + x_2 = -\dfrac{8}{-1} = 8\)<br>
+    Donc \(x_2 = 8 - 6 = 2\).<br><br>
+    Vérification : \(f(2) = -4 + 16 - 12 = 0\). Correct.<br>
+    \(\boxed{x_2 = 2}\) m.<br><br>
+    Forme factorisée : \(f(x) = -(x - 2)(x - 6)\).
+  </div>
+</div>
+</div>
+
+</div><!-- fin .c -->
+
+<script src="../../../nav.js"></script>
+<script src="../../../comp.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>
