@@ -224,8 +224,11 @@ Sur la calculatrice NumWorks (ou GeoGebra), on saisit $f(x) = 4x^3 - 120x^2 + 90
   \node[left] at (-0.3,12) {\small 3000};
   \node[below left] at (0,0) {\small 0};
   % Courbe V(x) = 4x³ - 120x² + 900x (échelle y : /250)
-  \draw[thick, bleupro, smooth] plot[domain=0:15, samples=50]
-    (\x, {(4*\x*\x*\x - 120*\x*\x + 900*\x)/250});
+  \begin{scope}
+    \clip (0,0) rectangle (15,14);
+    \draw[thick, bleupro, smooth] plot[domain=0:15, samples=50]
+      (\x, {(4*\x*\x*\x - 120*\x*\x + 900*\x)/250});
+  \end{scope}
   % Maximum en x=5, V(5)=2000
   \filldraw[rouge] (5,8) circle (3pt);
   \node[above right, rouge, font=\small\bfseries] at (5.2,8) {max $(5\,;\,2\,000)$};
