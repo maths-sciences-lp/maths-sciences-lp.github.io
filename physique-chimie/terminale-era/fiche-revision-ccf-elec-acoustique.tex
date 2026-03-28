@@ -1,0 +1,242 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{left=1.5cm,right=1.5cm,top=1.2cm,bottom=1.2cm}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{multicol}
+
+\definecolor{vertpro}{HTML}{2da44e}
+\definecolor{orange}{HTML}{d97706}
+\definecolor{bleupro}{HTML}{0056b3}
+\definecolor{rouge}{HTML}{c53030}
+\definecolor{gris}{HTML}{718096}
+
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{defbox}[1]{
+  colback=green!3,
+  colframe=vertpro,
+  title={\small\textbf{#1}},
+  fonttitle=\bfseries,
+  boxsep=3pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt
+}
+
+\newtcolorbox{methbox}[1]{
+  colback=blue!3,
+  colframe=bleupro,
+  title={\small\textbf{#1}},
+  fonttitle=\bfseries,
+  boxsep=3pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt
+}
+
+\newtcolorbox{attbox}{
+  colback=red!3,
+  colframe=rouge,
+  title={\small\textbf{Attention !}},
+  fonttitle=\bfseries,
+  boxsep=3pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt
+}
+
+\newtcolorbox{exbox}{
+  colback=yellow!5,
+  colframe=orange,
+  boxsep=3pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries\color{vertpro} Fiche de révision — CCF Physique-Chimie}\\[4pt]
+{\normalsize Terminale Bac Pro ERA-MA — Groupement 3 \quad | \quad Électricité \& Acoustique}
+\end{center}
+
+\vspace{6pt}
+\begin{multicols}{2}
+
+% ========================================
+{\large\bfseries\color{vertpro} ÉLECTRICITÉ — TRANSPORT}
+\vspace{4pt}
+
+\begin{defbox}{Le réseau électrique}
+\begin{center}
+\begin{tikzpicture}[scale=0.5, every node/.style={font=\tiny}]
+  \draw[fill=green!10, rounded corners] (0,0) rectangle (2,1);
+  \node[align=center] at (1,0.5) {\textbf{Centrale}\\20 kV};
+  \draw[->] (2,0.5) -- (3,0.5);
+  \draw[fill=yellow!15, rounded corners] (3,0) rectangle (5.5,1);
+  \node[align=center] at (4.25,0.5) {\textbf{Transfo}\\élévateur};
+  \draw[->, rouge] (5.5,0.5) -- (7,0.5) node[midway,above]{\color{rouge}400 kV};
+  \draw[fill=yellow!15, rounded corners] (7,0) rectangle (9.5,1);
+  \node[align=center] at (8.25,0.5) {\textbf{Transfo}\\abaisseur};
+  \draw[->] (9.5,0.5) -- (11,0.5);
+  \draw[fill=blue!5, rounded corners] (11,0) rectangle (13.5,1);
+  \node[align=center] at (12.25,0.5) {\textbf{Atelier}\\230/400 V};
+\end{tikzpicture}
+\end{center}
+\end{defbox}
+
+\begin{defbox}{Formules essentielles}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\bfseries\small}l l}
+Puissance & $P = U \times I$ \\
+Loi d'Ohm & $U = R \times I$ \\
+Pertes Joule & $\boxed{P_J = R \times I^2}$ \\
+Énergie & $E = P \times t$ \\
+Résistance câble & $R = \rho \times \dfrac{L}{S}$ \\[6pt]
+Transformateur & $\dfrac{U_2}{U_1} = \dfrac{N_2}{N_1}$ \\
+\end{tabular}
+\end{defbox}
+
+\begin{defbox}{Le transformateur}
+\begin{itemize}[nosep,leftmargin=12pt]
+  \item \textbf{Élévateur} : $U_2 > U_1$ (monte la tension)
+  \item \textbf{Abaisseur} : $U_2 < U_1$ (baisse la tension)
+  \item Le rapport $N_2/N_1$ détermine le type
+  \item Rôle : adapter la tension sans changer la fréquence
+\end{itemize}
+\end{defbox}
+
+\begin{defbox}{Pertes par effet Joule}
+Quand le courant traverse un câble de résistance $R$ :
+$$P_J = R \times I^2$$
+Les pertes chauffent les câbles $\to$ énergie perdue.
+
+\textbf{Comment les réduire ?}
+\begin{itemize}[nosep,leftmargin=12pt]
+  \item Réduire $R$ (câbles plus gros, cuivre)
+  \item \textbf{Réduire $I$} en augmentant $U$ (haute tension)
+\end{itemize}
+\end{defbox}
+
+\begin{methbox}{Pourquoi transporter en haute tension ?}
+À puissance constante : $I = \dfrac{P}{U}$
+
+Si $U$ est multiplié par 10 $\to$ $I$ est divisé par 10 $\to$ $P_J = RI^2$ est divisé par \textbf{100} !
+
+C'est pour ça que le réseau transporte en 400\,000 V.
+\end{methbox}
+
+\begin{exbox}
+\textbf{Exemple :} $P = 15$ kW, $R = 0{,}1\;\Omega$\\[4pt]
+En 400 V : $I = 37{,}5$ A $\to$ $P_J = 0{,}1 \times 37{,}5^2 = 140{,}6$ W\\
+En 20\,000 V : $I = 0{,}75$ A $\to$ $P_J = 0{,}1 \times 0{,}75^2 = 0{,}056$ W\\[4pt]
+$\to$ \textbf{2\,500 fois} moins de pertes en haute tension !
+\end{exbox}
+
+\begin{attbox}
+\begin{itemize}[nosep,leftmargin=12pt]
+  \item Convertir kW en W avant de calculer ($15$ kW $= 15\,000$ W)
+  \item $I^2$ : ne pas oublier de mettre au carré !
+  \item Unités : $P$ en W, $U$ en V, $I$ en A, $R$ en $\Omega$
+\end{itemize}
+\end{attbox}
+
+\columnbreak
+
+% ========================================
+{\large\bfseries\color{vertpro} ACOUSTIQUE — ATTÉNUATION}
+\vspace{4pt}
+
+\begin{defbox}{Niveau sonore en décibels}
+$$L = 10 \log\!\left(\frac{I}{I_0}\right) \quad \text{en dB}$$
+$I_0 = 10^{-12}$ W/m² (seuil d'audibilité)
+
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \draw[fill=green!15] (0,0) rectangle (8,1.2);
+  \draw[fill=yellow!20] (8,0) rectangle (11.5,1.2);
+  \draw[fill=red!15] (11.5,0) rectangle (15,1.2);
+  \draw[thick, orange] (8,0) -- (8,1.2);
+  \draw[thick, rouge] (11.5,0) -- (11.5,1.2);
+  \node[font=\tiny] at (4,0.6) {Confort};
+  \node[font=\tiny] at (9.75,0.6) {Danger};
+  \node[font=\tiny] at (13.25,0.6) {Douleur};
+  \node[below, font=\tiny] at (0,-0.1) {0};
+  \node[below, font=\tiny] at (4,-0.1) {40};
+  \node[below, font=\tiny\bfseries, orange] at (8,-0.1) {85};
+  \node[below, font=\tiny\bfseries, rouge] at (11.5,-0.1) {120};
+  \node[below, font=\tiny] at (15,-0.1) {140 dB};
+\end{tikzpicture}
+\end{center}
+\end{defbox}
+
+\begin{defbox}{Seuils réglementaires}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{85 dB} & Port de protections \textbf{obligatoire} \\
+\hline
+\textbf{120 dB} & Seuil de \textbf{douleur} \\
+\hline
+\textbf{50 dB} & Max recommandé (bureau) \\
+\hline
+\end{tabular}
+\end{defbox}
+
+\begin{defbox}{Affaiblissement acoustique $R$}
+Quand le son traverse une paroi :
+$$\boxed{L_{\text{transmis}} = L_{\text{incident}} - R}$$
+$R$ en dB = indice d'affaiblissement de la paroi.
+
+Plus $R$ est grand, meilleure est l'isolation.
+\end{defbox}
+
+\begin{defbox}{Isolation $\neq$ Absorption}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|>{\small}p{3.2cm}|>{\small}p{3.2cm}|}
+\hline
+\textbf{ISOLATION} & \textbf{ABSORPTION} \\
+\hline
+Empêche le son de \textbf{traverser} une paroi & Réduit l'\textbf{écho} à l'intérieur d'une pièce \\
+\hline
+Masse, double paroi, désolidarisation & Matériaux poreux (laine, mousse, tissu) \\
+\hline
+Entre deux pièces & Dans une même pièce \\
+\hline
+\end{tabular}
+\end{defbox}
+
+\begin{methbox}{Méthode — Exercice type acoustique}
+\begin{enumerate}[nosep,leftmargin=12pt]
+  \item Lire $L_{\text{incident}}$ et $R$ de la cloison
+  \item Calculer $L_{\text{transmis}} = L_{\text{incident}} - R$
+  \item Comparer à la réglementation (50 dB bureau)
+  \item Si insuffisant : augmenter $R$ (ajouter isolant)
+  \item Isolation $\neq$ Absorption (ne pas confondre !)
+\end{enumerate}
+\end{methbox}
+
+\begin{exbox}
+\textbf{Exemple :} Atelier 95 dB, cloison $R = 40$ dB\\
+$L_{\text{bureau}} = 95 - 40 = 55$ dB $> 50$ dB $\to$ \textbf{non conforme}\\[4pt]
+Ajout isolant $+10$ dB : $L' = 95 - 50 = 45$ dB $\to$ \textbf{OK}
+\end{exbox}
+
+\begin{attbox}
+\begin{itemize}[nosep,leftmargin=12pt]
+  \item Laine de roche sur les murs $=$ absorption (pas isolation)
+  \item L'isolation agit sur la cloison séparative
+  \item Doubler l'épaisseur $\to$ $R$ augmente de seulement 5-6 dB
+\end{itemize}
+\end{attbox}
+
+\end{multicols}
+
+\end{document}

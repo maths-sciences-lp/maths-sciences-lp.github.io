@@ -1,0 +1,226 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{left=1.5cm,right=1.5cm,top=1.2cm,bottom=1.2cm}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{multicol}
+
+\definecolor{bleupro}{HTML}{0969da}
+\definecolor{orange}{HTML}{d97706}
+\definecolor{vertpro}{HTML}{2f855a}
+\definecolor{rouge}{HTML}{c53030}
+\definecolor{gris}{HTML}{718096}
+
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{defbox}[1]{
+  colback=blue!3,
+  colframe=bleupro,
+  title={\small\textbf{#1}},
+  fonttitle=\bfseries,
+  boxsep=3pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt
+}
+
+\newtcolorbox{methbox}[1]{
+  colback=green!3,
+  colframe=vertpro,
+  title={\small\textbf{#1}},
+  fonttitle=\bfseries,
+  boxsep=3pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt
+}
+
+\newtcolorbox{attbox}{
+  colback=red!3,
+  colframe=rouge,
+  title={\small\textbf{Attention !}},
+  fonttitle=\bfseries,
+  boxsep=3pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt
+}
+
+\newtcolorbox{exbox}{
+  colback=yellow!5,
+  colframe=orange,
+  boxsep=3pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries\color{bleupro} Fiche de révision — CCF Mathématiques}\\[4pt]
+{\normalsize Terminale Bac Pro ERA-TMA / ICCER \quad | \quad Probabilités \& Polynômes degré 3}
+\end{center}
+
+\vspace{6pt}
+\begin{multicols}{2}
+
+% ========================================
+{\large\bfseries\color{bleupro} PROBABILITÉS}
+\vspace{4pt}
+
+\begin{defbox}{Arbre de probabilités pondéré}
+\begin{itemize}[nosep,leftmargin=12pt]
+  \item Chaque branche porte une probabilité
+  \item La somme des branches d'un même nœud $= 1$
+  \item Probabilité d'un chemin $=$ produit des branches
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.7, every node/.style={font=\scriptsize}]
+  \node[circle,fill=black,inner sep=1pt] (R) at (0,0) {};
+  \node (A) at (2,0.8) {$A$};
+  \node (Ab) at (2,-0.8) {$\overline{A}$};
+  \draw (R)--(A) node[midway,above,sloped]{$P(A)$};
+  \draw (R)--(Ab) node[midway,below,sloped]{$P(\overline{A})$};
+  \node (B1) at (4.5,1.3) {$B$};
+  \node (B1b) at (4.5,0.3) {$\overline{B}$};
+  \draw (A)--(B1) node[midway,above,sloped]{$P_A(B)$};
+  \draw (A)--(B1b) node[midway,below,sloped]{$P_A(\overline{B})$};
+  \node (B2) at (4.5,-0.3) {$B$};
+  \node (B2b) at (4.5,-1.3) {$\overline{B}$};
+  \draw (Ab)--(B2) node[midway,above,sloped]{$P_{\overline{A}}(B)$};
+  \draw (Ab)--(B2b) node[midway,below,sloped]{$P_{\overline{A}}(\overline{B})$};
+\end{tikzpicture}
+\end{center}
+\end{defbox}
+
+\begin{defbox}{Probabilité conditionnelle}
+$$P_A(B) = \frac{P(A \cap B)}{P(A)} \quad \text{avec } P(A) \neq 0$$
+$P_A(B)$ = probabilité de $B$ \textbf{sachant que} $A$ s'est réalisé.
+\end{defbox}
+
+\begin{defbox}{Formule des probabilités totales}
+$$\boxed{P(B) = P(A) \times P_A(B) + P(\overline{A}) \times P_{\overline{A}}(B)}$$
+On \textbf{additionne} les probabilités de tous les chemins menant à $B$.
+\end{defbox}
+
+\begin{defbox}{Indépendance}
+$A$ et $B$ sont indépendants si et seulement si :
+$$P(A \cap B) = P(A) \times P(B)$$
+La réalisation de $A$ ne change pas la probabilité de $B$.
+\end{defbox}
+
+\begin{methbox}{Méthode — Exercice type probas}
+\begin{enumerate}[nosep,leftmargin=12pt]
+  \item Identifier les événements ($D$, $S$, $\overline{D}$...)
+  \item Traduire l'énoncé en probabilités
+  \item Construire l'arbre (vérifier : somme $= 1$)
+  \item Calculer $P(\text{chemin})$ $=$ produit des branches
+  \item Probabilités totales $=$ somme des chemins
+\end{enumerate}
+\end{methbox}
+
+\begin{exbox}
+\textbf{Exemple rapide :} $P(A) = 0{,}3$, $P_A(B) = 0{,}5$, $P_{\overline{A}}(B) = 0{,}1$.\\
+$P(A \cap B) = 0{,}3 \times 0{,}5 = 0{,}15$\\
+$P(\overline{A} \cap B) = 0{,}7 \times 0{,}1 = 0{,}07$\\
+$P(B) = 0{,}15 + 0{,}07 = 0{,}22$
+\end{exbox}
+
+\begin{attbox}
+\begin{itemize}[nosep,leftmargin=12pt]
+  \item $P(\overline{A}) = 1 - P(A)$ (toujours !)
+  \item Ne pas confondre $P(A \cap B)$ et $P(A \cup B)$
+  \item Multiplier le long d'un chemin, additionner entre chemins
+\end{itemize}
+\end{attbox}
+
+\columnbreak
+
+% ========================================
+{\large\bfseries\color{bleupro} POLYNÔMES DE DEGRÉ 3}
+\vspace{4pt}
+
+\begin{defbox}{Fonction polynôme de degré 3}
+$$f(x) = ax^3 + bx^2 + cx + d \quad (a \neq 0)$$
+\textbf{Dérivée :} $f'(x) = 3ax^2 + 2bx + c$
+\end{defbox}
+
+\begin{defbox}{Lien dérivée — variations}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|}
+\hline
+$f'(x) > 0$ & $f$ \textbf{croissante} $\nearrow$ \\
+\hline
+$f'(x) < 0$ & $f$ \textbf{décroissante} $\searrow$ \\
+\hline
+$f'(x) = 0$ et change de signe & \textbf{extremum} \\
+\hline
+\end{tabular}
+\end{center}
+\end{defbox}
+
+\begin{methbox}{Méthode — Étude de fonction}
+\begin{enumerate}[nosep,leftmargin=12pt]
+  \item Calculer $f'(x)$
+  \item Résoudre $f'(x) = 0$ (factoriser si possible)
+  \item Tableau de signes : signe de chaque facteur
+  \item Règle des signes $\to$ signe de $f'(x)$
+  \item Tableau de variations ($\nearrow$ ou $\searrow$)
+  \item Calculer $f$ aux extremums
+\end{enumerate}
+\end{methbox}
+
+\begin{methbox}{Tableau de signes (règle des signes)}
+$(x - a)$ est négatif si $x < a$, nul si $x = a$, positif si $x > a$.\\[4pt]
+\textbf{Produit de deux facteurs :}\\
+$(+) \times (+) = +$ \quad $(-) \times (-) = +$\\
+$(+) \times (-) = -$ \quad $(-) \times (+) = -$
+\end{methbox}
+
+\begin{exbox}
+\textbf{Exemple :} $V(x) = 4x^3 - 120x^2 + 900x$\\
+$V'(x) = 12x^2 - 240x + 900 = 12(x-5)(x-15)$\\[4pt]
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$ & $0$ & & $5$ & & $15$ \\
+\hline
+$(x-5)$ & & $-$ & $0$ & $+$ & \\
+\hline
+$(x-15)$ & & $-$ & & $-$ & $0$ \\
+\hline
+$V'(x)$ & & $+$ & $0$ & $-$ & \\
+\hline
+$V$ & $0$ & $\nearrow$ & $2000$ & $\searrow$ & $0$ \\
+\hline
+\end{tabular}
+\end{exbox}
+
+\begin{defbox}{Nombre de solutions de $f(x) = c$}
+On trace la droite horizontale $y = c$ sur le tableau de variations :
+\begin{itemize}[nosep,leftmargin=12pt]
+  \item $c >$ max $\to$ 1 solution (ou 0 selon les cas)
+  \item $c =$ max $\to$ 2 solutions
+  \item min $< c <$ max $\to$ 3 solutions
+  \item $c =$ min $\to$ 2 solutions
+  \item $c <$ min $\to$ 1 solution
+\end{itemize}
+\end{defbox}
+
+\begin{attbox}
+\begin{itemize}[nosep,leftmargin=12pt]
+  \item $f'(a) = 0$ ne suffit PAS pour un extremum ! (ex : $x^3$ en $0$)
+  \item Il faut que $f'$ \textbf{change de signe}
+  \item Utiliser la calculatrice pour tracer, puis vérifier par le calcul
+\end{itemize}
+\end{attbox}
+
+\end{multicols}
+
+\end{document}
