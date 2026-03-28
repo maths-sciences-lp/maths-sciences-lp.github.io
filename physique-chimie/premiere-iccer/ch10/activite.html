@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 – Activité – Ondes électromagnétiques – 1re ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.camera-data{background:#1e293b;color:#f1f5f9;border-radius:10px;padding:18px 22px;margin:18px 0;font-family:'Courier New',monospace;font-size:.9em}
+.camera-data h3{color:#38bdf8;margin:0 0 12px 0;text-align:center;font-size:1.05em;border-bottom:1px solid #475569;padding-bottom:8px}
+.camera-data table{width:100%;border-collapse:collapse}
+.camera-data td,.camera-data th{padding:5px 10px;text-align:center;border:1px solid #475569}
+.camera-data th{color:#38bdf8;font-weight:600}
+.zone-rouge{color:#ef4444;font-weight:700}
+.zone-orange{color:#f97316;font-weight:700}
+.zone-jaune{color:#eab308;font-weight:700}
+.zone-verte{color:#22c55e;font-weight:700}
+.zone-bleue{color:#3b82f6;font-weight:700}
+.spectre-resume{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:12px 0}
+.spectre-resume div{text-align:center;padding:8px;border-radius:6px;font-size:.85em;font-weight:600}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-iccer.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Activit&eacute; &ndash; Thermographie et ondes &eacute;lectromagn&eacute;tiques</h1>
+  <p class="sous-titre">Chapitre 10 &ndash; Ondes &eacute;lectromagn&eacute;tiques | 1<sup>re</sup> Bac Pro (Grpt 1) | Physique-Chimie | &#9201; 30 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>D&eacute;couvrir le spectre des ondes &eacute;lectromagn&eacute;tiques</li>
+    <li>Utiliser la relation \(c = \lambda \times f\)</li>
+    <li>Comprendre les applications professionnelles de l'infrarouge et de l'ultraviolet</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Sami est technicien de maintenance &eacute;nerg&eacute;tique chez <strong>DiagTherm SARL</strong>, &agrave; Lyon. Il r&eacute;alise un diagnostic thermique d'un pavillon pour rep&eacute;rer les d&eacute;perditions de chaleur &agrave; l'aide d'une <strong>cam&eacute;ra infrarouge</strong>. Par ailleurs, il utilise aussi une <strong>lampe UV</strong> pour d&eacute;tecter les fuites de fluide frigorig&egrave;ne dans un circuit de climatisation (le traceur fluorescent r&eacute;agit aux UV).</em></p>
+
+  <p><strong>Donn&eacute;es &ndash; Spectre &eacute;lectromagn&eacute;tique :</strong></p>
+  <table>
+    <thead>
+      <tr><th>Domaine</th><th>Longueur d'onde \(\lambda\)</th><th>Fr&eacute;quence \(f\)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Rayons gamma</td><td>&lt; 0,01 nm</td><td>&gt; 3 &times; 10<sup>19</sup> Hz</td></tr>
+      <tr><td>Rayons X</td><td>0,01 nm &ndash; 10 nm</td><td>3 &times; 10<sup>16</sup> &ndash; 3 &times; 10<sup>19</sup> Hz</td></tr>
+      <tr><td>Ultraviolets (UV)</td><td>10 nm &ndash; 400 nm</td><td>7,5 &times; 10<sup>14</sup> &ndash; 3 &times; 10<sup>16</sup> Hz</td></tr>
+      <tr><td>Visible</td><td>400 nm &ndash; 800 nm</td><td>3,75 &times; 10<sup>14</sup> &ndash; 7,5 &times; 10<sup>14</sup> Hz</td></tr>
+      <tr><td>Infrarouge (IR)</td><td>800 nm &ndash; 1 mm</td><td>3 &times; 10<sup>11</sup> &ndash; 3,75 &times; 10<sup>14</sup> Hz</td></tr>
+      <tr><td>Micro-ondes</td><td>1 mm &ndash; 30 cm</td><td>10<sup>9</sup> &ndash; 3 &times; 10<sup>11</sup> Hz</td></tr>
+      <tr><td>Ondes radio</td><td>&gt; 30 cm</td><td>&lt; 10<sup>9</sup> Hz</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:14px"><strong>Donn&eacute;es &ndash; Relev&eacute;s de la cam&eacute;ra thermique :</strong></p>
+  <div class="camera-data">
+    <h3>FLIR E60 &ndash; Rapport thermographique</h3>
+    <table>
+      <thead>
+        <tr><th>Zone du b&acirc;timent</th><th>Temp&eacute;rature (&deg;C)</th><th>Couleur &agrave; l'&eacute;cran</th><th>Interpr&eacute;tation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mur isol&eacute; (fa&ccedil;ade sud)</td><td>8,2</td><td class="zone-bleue">Bleu</td><td>Bonne isolation</td></tr>
+        <tr><td>Fen&ecirc;tre simple vitrage</td><td>18,5</td><td class="zone-rouge">Rouge</td><td>Forte d&eacute;perdition</td></tr>
+        <tr><td>Coffre de volet roulant</td><td>15,3</td><td class="zone-orange">Orange</td><td>Pont thermique</td></tr>
+        <tr><td>Mur non isol&eacute; (pignon)</td><td>14,1</td><td class="zone-jaune">Jaune</td><td>D&eacute;perdition mod&eacute;r&eacute;e</td></tr>
+        <tr><td>Toiture isol&eacute;e</td><td>6,5</td><td class="zone-bleue">Bleu</td><td>Bonne isolation</td></tr>
+        <tr><td>Jonction mur/toiture</td><td>16,8</td><td class="zone-orange">Orange</td><td>Pont thermique</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:8px;font-size:.85em;color:#94a3b8">Cam&eacute;ra IR &ndash; Plage de d&eacute;tection : \(\lambda\) = 7,5 &agrave; 13 &mu;m | Temp&eacute;rature ext&eacute;rieure : 5 &deg;C</p>
+  </div>
+
+  <p><strong>Donn&eacute;e :</strong> Vitesse de la lumi&egrave;re dans le vide : \(c = 3 \times 10^{8} \text{ m/s}\)</p>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<!-- Q1 -->
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p>&Agrave; l'aide du tableau du spectre &eacute;lectromagn&eacute;tique :</p>
+<p>a) Classer les domaines du spectre par ordre de <strong>longueur d'onde croissante</strong> (du plus petit au plus grand).</p>
+<p>b) Dans quel domaine se situe la cam&eacute;ra de Sami, qui d&eacute;tecte des rayonnements de longueur d'onde comprise entre 7,5 &mu;m et 13 &mu;m ?</p>
+<p><em>Rappel : 1 &mu;m = 10<sup>&minus;6</sup> m = 1 000 nm.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>a) Par ordre de \(\lambda\) croissante : <strong>Rayons gamma &rarr; Rayons X &rarr; UV &rarr; Visible &rarr; Infrarouge &rarr; Micro-ondes &rarr; Ondes radio</strong></p>
+  <p>b) La plage 7,5 &mu;m &agrave; 13 &mu;m correspond &agrave; 7 500 nm &agrave; 13 000 nm. D'apr&egrave;s le tableau, l'infrarouge va de 800 nm &agrave; 1 mm (= 1 000 000 nm). La cam&eacute;ra d&eacute;tecte donc des rayonnements dans le domaine <strong>infrarouge (IR)</strong>.</p>
+</div>
+</div>
+
+<!-- Q2 -->
+<div class="exo">
+<h2>Question 2 <span class="badge-green">APP</span></h2>
+<p>La lampe UV utilis&eacute;e par Sami pour d&eacute;tecter les fuites &eacute;met un rayonnement de longueur d'onde \(\lambda = 365 \text{ nm}\).</p>
+<p>a) Dans quel domaine du spectre se situe ce rayonnement ?</p>
+<p>b) Ce rayonnement est-il <strong>visible</strong> par l'oeil humain ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>a) \(\lambda = 365 \text{ nm}\). D'apr&egrave;s le tableau, le domaine UV va de 10 nm &agrave; 400 nm. Ce rayonnement se situe donc dans le domaine <strong>ultraviolet (UV)</strong>.</p>
+  <p>b) Non, ce rayonnement n'est <strong>pas visible</strong> par l'oeil humain. Le domaine visible commence &agrave; 400 nm (violet). &Agrave; 365 nm, on est en dessous de cette limite.</p>
+</div>
+</div>
+
+<!-- Q3 -->
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">REA</span></h2>
+<p>Calculer la <strong>fr&eacute;quence</strong> \(f\) du rayonnement UV de la lampe (\(\lambda = 365 \text{ nm}\)).</p>
+<p><em>Rappel : \(c = \lambda \times f\), donc \(f = \dfrac{c}{\lambda}\). Attention : convertir \(\lambda\) en m&egrave;tres !</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>Conversion : \(\lambda = 365 \text{ nm} = 365 \times 10^{-9} \text{ m} = 3{,}65 \times 10^{-7} \text{ m}\)</p>
+  \[f = \frac{c}{\lambda} = \frac{3 \times 10^{8}}{3{,}65 \times 10^{-7}} = 8{,}22 \times 10^{14} \text{ Hz}\]
+  <p>La fr&eacute;quence du rayonnement UV est d'environ \(8{,}22 \times 10^{14} \text{ Hz}\), soit environ <strong>822 THz</strong>.</p>
+</div>
+</div>
+
+<!-- Q4 -->
+<div class="exo">
+<h2>Question 4 <span class="badge-blue">REA</span></h2>
+<p>La cam&eacute;ra infrarouge de Sami d&eacute;tecte des rayonnements de longueur d'onde moyenne \(\lambda = 10 \text{ } \mu\text{m}\).</p>
+<p>Calculer la <strong>fr&eacute;quence</strong> correspondante.</p>
+<p><em>Rappel : 1 &mu;m = 10<sup>&minus;6</sup> m.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>Conversion : \(\lambda = 10 \text{ } \mu\text{m} = 10 \times 10^{-6} \text{ m} = 10^{-5} \text{ m}\)</p>
+  \[f = \frac{c}{\lambda} = \frac{3 \times 10^{8}}{10^{-5}} = 3 \times 10^{13} \text{ Hz}\]
+  <p>La fr&eacute;quence est de \(3 \times 10^{13} \text{ Hz}\), soit <strong>30 THz</strong>.</p>
+</div>
+</div>
+
+<!-- Q5 -->
+<div class="exo">
+<h2>Question 5 <span class="badge-blue">ANA</span></h2>
+<p>Expliquer pourquoi une <strong>cam&eacute;ra infrarouge</strong> permet de d&eacute;tecter les zones de d&eacute;perdition thermique d'un b&acirc;timent.</p>
+<p><em>Indice : tout corps dont la temp&eacute;rature est sup&eacute;rieure &agrave; &minus;273 &deg;C &eacute;met des rayonnements infrarouges. Plus il est chaud, plus il en &eacute;met.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>Tout objet &eacute;met des <strong>rayonnements infrarouges</strong> dont l'intensit&eacute; d&eacute;pend de sa temp&eacute;rature : plus un objet est chaud, plus il &eacute;met d'infrarouges.</p>
+  <p>Les zones o&ugrave; la chaleur s'&eacute;chappe du b&acirc;timent (mauvaise isolation, ponts thermiques, fen&ecirc;tres) pr&eacute;sentent une <strong>temp&eacute;rature de surface plus &eacute;lev&eacute;e</strong> c&ocirc;t&eacute; ext&eacute;rieur. Elles &eacute;mettent donc davantage d'infrarouges.</p>
+  <p>La cam&eacute;ra capte ces diff&eacute;rences et les traduit en <strong>couleurs</strong> (rouge/orange = chaud = d&eacute;perdition ; bleu = froid = bonne isolation), ce qui permet de visualiser les zones de perte de chaleur.</p>
+</div>
+</div>
+
+<!-- Q6 -->
+<div class="exo">
+<h2>Question 6 <span class="badge-blue">ANA</span></h2>
+<p>&Agrave; l'aide du tableau du spectre et des r&eacute;sultats des questions 3 et 4, comparer les propri&eacute;t&eacute;s de l'infrarouge, de l'ultraviolet et du visible en compl&eacute;tant le tableau suivant :</p>
+<table>
+  <thead>
+    <tr><th>Propri&eacute;t&eacute;</th><th>Ultraviolet (UV)</th><th>Visible</th><th>Infrarouge (IR)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Plage de \(\lambda\)</td><td>...</td><td>...</td><td>...</td></tr>
+    <tr><td>Visible par l'oeil ?</td><td>...</td><td>...</td><td>...</td></tr>
+    <tr><td>Fr&eacute;quence</td><td>... (haute/moyenne/basse)</td><td>...</td><td>...</td></tr>
+    <tr><td>&Eacute;nergie</td><td>... (haute/moyenne/basse)</td><td>...</td><td>...</td></tr>
+    <tr><td>Application pro</td><td>...</td><td>...</td><td>...</td></tr>
+  </tbody>
+</table>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <table>
+    <thead>
+      <tr><th>Propri&eacute;t&eacute;</th><th>Ultraviolet (UV)</th><th>Visible</th><th>Infrarouge (IR)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Plage de \(\lambda\)</td><td>10 nm &ndash; 400 nm</td><td>400 nm &ndash; 800 nm</td><td>800 nm &ndash; 1 mm</td></tr>
+      <tr><td>Visible par l'oeil ?</td><td>Non</td><td>Oui</td><td>Non</td></tr>
+      <tr><td>Fr&eacute;quence</td><td>Haute</td><td>Moyenne</td><td>Basse (par rapport aux UV/visible)</td></tr>
+      <tr><td>&Eacute;nergie</td><td>Haute</td><td>Moyenne</td><td>Basse</td></tr>
+      <tr><td>Application pro</td><td>D&eacute;tection de fuites (fluorescence)</td><td>&Eacute;clairage, vision</td><td>Thermographie, d&eacute;tection de chaleur</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Remarque :</strong> plus la longueur d'onde est courte (fr&eacute;quence &eacute;lev&eacute;e), plus l'onde transporte d'&eacute;nergie.</p>
+</div>
+</div>
+
+<!-- Q7 -->
+<div class="exo">
+<h2>Question 7 <span class="badge-blue">REA</span></h2>
+<p>D'apr&egrave;s le relev&eacute; de la cam&eacute;ra thermique :</p>
+<p>a) Quelle zone du b&acirc;timent pr&eacute;sente la <strong>plus forte d&eacute;perdition</strong> thermique ? Justifier avec la temp&eacute;rature relev&eacute;e.</p>
+<p>b) Quelles zones ont une <strong>bonne isolation</strong> ? Comment le voit-on sur l'image thermique ?</p>
+<p>c) Proposer un <strong>ordre de priorit&eacute;</strong> des travaux de r&eacute;novation &eacute;nerg&eacute;tique (de la zone la plus urgente &agrave; la moins urgente).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>a) La <strong>fen&ecirc;tre simple vitrage</strong> pr&eacute;sente la plus forte d&eacute;perdition : sa temp&eacute;rature de surface ext&eacute;rieure est de <strong>18,5 &deg;C</strong> (couleur rouge), alors que la temp&eacute;rature ext&eacute;rieure est de 5 &deg;C. La chaleur traverse massivement la fen&ecirc;tre.</p>
+  <p>b) Le <strong>mur isol&eacute;</strong> (8,2 &deg;C, bleu) et la <strong>toiture isol&eacute;e</strong> (6,5 &deg;C, bleu) ont une bonne isolation. Leur temp&eacute;rature de surface est proche de la temp&eacute;rature ext&eacute;rieure (5 &deg;C), ce qui signifie que peu de chaleur traverse. Sur l'image, ces zones apparaissent en bleu.</p>
+  <p>c) Ordre de priorit&eacute; des travaux (temp&eacute;rature d&eacute;croissante, donc d&eacute;perdition d&eacute;croissante) :</p>
+  <ol>
+    <li>Fen&ecirc;tre simple vitrage (18,5 &deg;C) &rarr; remplacement par double vitrage</li>
+    <li>Jonction mur/toiture (16,8 &deg;C) &rarr; traitement du pont thermique</li>
+    <li>Coffre de volet roulant (15,3 &deg;C) &rarr; isolation du coffre</li>
+    <li>Mur non isol&eacute; (14,1 &deg;C) &rarr; isolation par l'ext&eacute;rieur ou l'int&eacute;rieur</li>
+  </ol>
+</div>
+</div>
+
+<!-- Q8 -->
+<div class="exo">
+<h2>Question 8 <span class="badge-green">VAL</span></h2>
+<p>Le technicien de maintenance &eacute;nerg&eacute;tique de Sami utilise aussi un <strong>thermostat connect&eacute;</strong> qui communique en wifi &agrave; la fr&eacute;quence \(f = 2{,}4 \text{ GHz}\).</p>
+<p>a) Calculer la longueur d'onde de ce signal wifi.</p>
+<p>b) V&eacute;rifier que cette valeur est coh&eacute;rente avec le domaine des micro-ondes du spectre.</p>
+<p><em>Rappel : 1 GHz = 10<sup>9</sup> Hz.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>a) Conversion : \(f = 2{,}4 \text{ GHz} = 2{,}4 \times 10^{9} \text{ Hz}\)</p>
+  \[\lambda = \frac{c}{f} = \frac{3 \times 10^{8}}{2{,}4 \times 10^{9}} = 0{,}125 \text{ m} = 12{,}5 \text{ cm}\]
+  <p>b) Le domaine des micro-ondes va de 1 mm &agrave; 30 cm. La valeur \(\lambda = 12{,}5 \text{ cm}\) est bien comprise dans cet intervalle : le r&eacute;sultat est <strong>coh&eacute;rent</strong>. Le wifi utilise bien des micro-ondes.</p>
+</div>
+</div>
+
+<!-- Q9 -->
+<div class="exo">
+<h2>Question 9 <span class="badge-yellow">COM</span></h2>
+<p>R&eacute;diger un court paragraphe (5 &agrave; 8 lignes) expliquant &agrave; un client les <strong>applications professionnelles</strong> des ondes &eacute;lectromagn&eacute;tiques utilis&eacute;es lors d'un diagnostic thermique. Mentionner au moins :</p>
+<ul>
+  <li>L'infrarouge et la cam&eacute;ra thermique</li>
+  <li>L'ultraviolet et la d&eacute;tection de fuites</li>
+  <li>Les micro-ondes et la communication sans fil</li>
+</ul>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><em>Exemple de r&eacute;ponse :</em></p>
+  <p>Lors d'un diagnostic thermique, le technicien utilise plusieurs types d'ondes &eacute;lectromagn&eacute;tiques. La <strong>cam&eacute;ra infrarouge</strong> d&eacute;tecte les rayonnements infrarouges &eacute;mis par les surfaces du b&acirc;timent : les zones chaudes (mauvaise isolation, ponts thermiques) apparaissent en rouge/orange, tandis que les zones bien isol&eacute;es restent en bleu. Cela permet de localiser pr&eacute;cis&eacute;ment les d&eacute;perditions de chaleur. Pour les installations de climatisation, une <strong>lampe UV</strong> est utilis&eacute;e pour d&eacute;tecter les fuites de fluide frigorig&egrave;ne : un traceur fluorescent ajout&eacute; au circuit devient visible sous la lumi&egrave;re ultraviolette. Enfin, les donn&eacute;es de diagnostic peuvent &ecirc;tre transmises par <strong>wifi</strong> (micro-ondes &agrave; 2,4 GHz) vers un ordinateur ou un smartphone, permettant un suivi &agrave; distance et la r&eacute;daction rapide du rapport.</p>
+</div>
+</div>
+
+<!-- ===== À RETENIR ===== -->
+<div class="retenir">
+  <strong>&Agrave; retenir</strong>
+  <ul>
+    <li><strong>Relation fondamentale :</strong> \(c = \lambda \times f\) &ensp; avec \(c = 3 \times 10^{8} \text{ m/s}\)</li>
+    <li><strong>Formules d&eacute;riv&eacute;es :</strong> \(\lambda = \dfrac{c}{f}\) &ensp; et &ensp; \(f = \dfrac{c}{\lambda}\)</li>
+    <li><strong>Spectre &eacute;lectromagn&eacute;tique</strong> (par \(\lambda\) croissante) : Gamma &rarr; Rayons X &rarr; UV &rarr; <strong>Visible</strong> &rarr; IR &rarr; Micro-ondes &rarr; Ondes radio</li>
+    <li><strong>Infrarouge (IR) :</strong> &eacute;mis par tout corps chaud &rarr; utilis&eacute; en <strong>thermographie</strong> pour d&eacute;tecter les d&eacute;perditions thermiques</li>
+    <li><strong>Ultraviolet (UV) :</strong> provoque la <strong>fluorescence</strong> &rarr; utilis&eacute; pour d&eacute;tecter les fuites</li>
+    <li><strong>Unit&eacute;s :</strong> \(\lambda\) en m &ensp;|&ensp; \(f\) en Hz &ensp;|&ensp; \(c\) en m/s &ensp;|&ensp; 1 nm = \(10^{-9}\) m &ensp;|&ensp; 1 &mu;m = \(10^{-6}\) m</li>
+  </ul>
+</div>
+
+<footer>
+  <p>Premi&egrave;re Bac Pro ICCER &ndash; Groupement 1 | Physique-Chimie &ndash; Chapitre 10 | maths-sciences-lp.github.io</p>
+</footer>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

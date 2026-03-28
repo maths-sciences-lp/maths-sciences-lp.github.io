@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité – Pertes en ligne dans les câbles – Première ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-iccer.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité – Pertes de puissance dans les câbles électriques</h1>
+  <p class="sous-titre">Chapitre 2 | Première Bac Pro (Grpt 1) | Physique – Électricité | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer la résistance d'un câble avec \(R = \rho \times \dfrac{L}{S}\)</li>
+    <li>Calculer les pertes de puissance par effet Joule : \(P_J = R \times I^2\)</li>
+    <li>Comprendre l'influence de la longueur et de la section d'un câble sur les pertes</li>
+    <li>Choisir un câble adapté pour limiter les pertes</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p>
+    <em>Sofia est technicienne CVC chez <strong>ClimaConfort</strong>, une entreprise d'installation de chauffage et climatisation à Lyon.</em>
+  </p>
+  <p>
+    Un artisan menuisier la contacte : dans son atelier, la pompe à chaleur de 4 600 W (sous 230 V) fonctionne mal depuis qu'il a déplacé l'unité extérieure plus loin du tableau électrique. Il constate que l'appareil se met en sécurité et que les câbles sont chauds au toucher.
+  </p>
+  <p>
+    Sofia soupçonne que les câbles d'alimentation sont trop longs ou de section insuffisante, ce qui provoque des <strong>pertes par effet Joule</strong> et une <strong>chute de tension</strong> excessive.
+  </p>
+  <p>Elle relève les caractéristiques de quatre câbles en cuivre disponibles pour remplacer la liaison :</p>
+
+  <h3>Données des câbles (cuivre, aller-retour)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Câble</th>
+        <th>Longueur totale \(L\) (m)</th>
+        <th>Section \(S\) (mm²)</th>
+        <th>Résistance mesurée \(R\) (\(\Omega\))</th>
+        <th>Courant \(I\) (A)</th>
+        <th>Chute de tension mesurée \(\Delta U\) (V)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>A</strong> (actuel)</td>
+        <td>40</td>
+        <td>1,5</td>
+        <td>0,45</td>
+        <td>20</td>
+        <td>9,0</td>
+      </tr>
+      <tr>
+        <td><strong>B</strong></td>
+        <td>40</td>
+        <td>2,5</td>
+        <td>0,27</td>
+        <td>20</td>
+        <td>5,4</td>
+      </tr>
+      <tr>
+        <td><strong>C</strong></td>
+        <td>40</td>
+        <td>4,0</td>
+        <td>0,17</td>
+        <td>20</td>
+        <td>3,4</td>
+      </tr>
+      <tr>
+        <td><strong>D</strong></td>
+        <td>20</td>
+        <td>2,5</td>
+        <td>0,14</td>
+        <td>20</td>
+        <td>2,8</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Résistivité du cuivre :</strong> \(\rho = 1{,}7 \times 10^{-8}\;\Omega \cdot \text{m}\)</p>
+  <p><strong>Norme :</strong> la chute de tension ne doit pas dépasser <strong>3 %</strong> de la tension nominale (soit 3 % de 230 V = 6,9 V).</p>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<!-- Question 1 -->
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p><strong>a)</strong> Quel problème l'artisan constate-t-il sur son installation ?</p>
+<p><strong>b)</strong> Identifier les deux phénomènes physiques que Sofia soupçonne.</p>
+<p><strong>c)</strong> Calculer le courant \(I\) circulant dans le câble, sachant que la PAC a une puissance de 4 600 W sous 230 V.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> L'artisan constate que la pompe à chaleur se met en sécurité (elle s'arrête) et que les câbles chauffent anormalement.</p>
+  <p><strong>b)</strong> Sofia soupçonne :</p>
+  <ul>
+    <li>Des <strong>pertes par effet Joule</strong> (échauffement des câbles, gaspillage d'énergie)</li>
+    <li>Une <strong>chute de tension</strong> excessive (la PAC ne reçoit pas sa tension nominale de 230 V)</li>
+  </ul>
+  <p><strong>c)</strong> \(I = \dfrac{P}{U} = \dfrac{4\,600}{230} = 20 \text{ A}\)</p>
+  <p>On retrouve bien la valeur indiquée dans le tableau.</p>
+</div>
+</div>
+
+<!-- Question 2 -->
+<div class="exo">
+<h2>Question 2 <span class="badge-blue">REA</span></h2>
+<p>Vérifier par le calcul la résistance du <strong>câble A</strong> en utilisant la formule :</p>
+<div class="formule-box">
+  \[ R = \rho \times \frac{L}{S} \]
+</div>
+<p><em>Attention aux unités : \(L\) doit être en mètres (m) et \(S\) en mètres carrés (m²).</em></p>
+<p><em>Rappel : 1 mm² = \(10^{-6}\) m².</em></p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p>Données du câble A : \(L = 40\) m, \(S = 1{,}5\) mm² = \(1{,}5 \times 10^{-6}\) m².</p>
+  <p>\[R = \rho \times \frac{L}{S} = 1{,}7 \times 10^{-8} \times \frac{40}{1{,}5 \times 10^{-6}}\]</p>
+  <p>\[R = 1{,}7 \times 10^{-8} \times 2{,}67 \times 10^{7} = 0{,}45\;\Omega\]</p>
+  <p>On retrouve bien la valeur mesurée dans le tableau.</p>
+</div>
+</div>
+
+<!-- Question 3 -->
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">REA</span></h2>
+<p>Calculer la <strong>puissance dissipée par effet Joule</strong> \(P_J\) dans chaque câble à l'aide de la formule :</p>
+<div class="formule-box">
+  \[ P_J = R \times I^2 \]
+</div>
+<p>Compléter le tableau suivant :</p>
+<table>
+  <thead>
+    <tr><th>Câble</th><th>\(R\) (\(\Omega\))</th><th>\(I\) (A)</th><th>\(P_J = R \times I^2\) (W)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A</td><td>0,45</td><td>20</td><td>...</td></tr>
+    <tr><td>B</td><td>0,27</td><td>20</td><td>...</td></tr>
+    <tr><td>C</td><td>0,17</td><td>20</td><td>...</td></tr>
+    <tr><td>D</td><td>0,14</td><td>20</td><td>...</td></tr>
+  </tbody>
+</table>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <table>
+    <thead>
+      <tr><th>Câble</th><th>\(R\) (\(\Omega\))</th><th>\(I\) (A)</th><th>\(P_J = R \times I^2\) (W)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>0,45</td><td>20</td><td>\(0{,}45 \times 20^2 = 0{,}45 \times 400 = \mathbf{180}\) W</td></tr>
+      <tr><td>B</td><td>0,27</td><td>20</td><td>\(0{,}27 \times 400 = \mathbf{108}\) W</td></tr>
+      <tr><td>C</td><td>0,17</td><td>20</td><td>\(0{,}17 \times 400 = \mathbf{68}\) W</td></tr>
+      <tr><td>D</td><td>0,14</td><td>20</td><td>\(0{,}14 \times 400 = \mathbf{56}\) W</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- Question 4 -->
+<div class="exo">
+<h2>Question 4 <span class="badge-blue">ANA</span></h2>
+<p>Comparer les câbles <strong>A, B et C</strong> qui ont la même longueur (40 m) mais des sections différentes.</p>
+<p><strong>a)</strong> Que se passe-t-il quand on augmente la section du câble ?</p>
+<p><strong>b)</strong> Expliquer pourquoi en utilisant la formule \(R = \rho \times \dfrac{L}{S}\).</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Quand on augmente la section du câble (de 1,5 mm² à 4,0 mm²), on observe que :</p>
+  <ul>
+    <li>La résistance \(R\) diminue (de 0,45 à 0,17 \(\Omega\))</li>
+    <li>La puissance dissipée \(P_J\) diminue (de 180 W à 68 W)</li>
+    <li>La chute de tension diminue (de 9,0 V à 3,4 V)</li>
+  </ul>
+  <p><strong>b)</strong> D'après \(R = \rho \times \dfrac{L}{S}\), la résistance est inversement proportionnelle à la section \(S\). Quand \(S\) augmente, \(R\) diminue. Et comme \(P_J = R \times I^2\), si \(R\) diminue, les pertes diminuent aussi.</p>
+  <p><em>Un câble de grosse section offre plus de « place » au passage du courant, comme un tuyau de gros diamètre offre moins de résistance à l'écoulement de l'eau.</em></p>
+</div>
+</div>
+
+<!-- Question 5 -->
+<div class="exo">
+<h2>Question 5 <span class="badge-blue">ANA</span></h2>
+<p>Comparer les câbles <strong>B et D</strong> qui ont la même section (2,5 mm²) mais des longueurs différentes.</p>
+<p><strong>a)</strong> Que se passe-t-il quand on réduit la longueur du câble ?</p>
+<p><strong>b)</strong> Calculer le rapport des résistances \(\dfrac{R_B}{R_D}\) et le rapport des longueurs \(\dfrac{L_B}{L_D}\). Que constatez-vous ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Quand on réduit la longueur (de 40 m à 20 m), la résistance diminue (de 0,27 à 0,14 \(\Omega\)), les pertes diminuent (de 108 W à 56 W) et la chute de tension diminue (de 5,4 V à 2,8 V).</p>
+  <p><strong>b)</strong></p>
+  <p>\[\frac{R_B}{R_D} = \frac{0{,}27}{0{,}14} \approx 1{,}93 \approx 2\]</p>
+  <p>\[\frac{L_B}{L_D} = \frac{40}{20} = 2\]</p>
+  <p>Les deux rapports sont égaux : la résistance est <strong>proportionnelle à la longueur</strong>. Quand la longueur double, la résistance double aussi. C'est cohérent avec la formule \(R = \rho \times \dfrac{L}{S}\) où \(L\) est au numérateur.</p>
+</div>
+</div>
+
+<!-- Question 6 -->
+<div class="exo">
+<h2>Question 6 <span class="badge-green">VAL</span></h2>
+<p>La norme impose que la chute de tension ne dépasse pas <strong>3 % de 230 V</strong>, soit <strong>6,9 V</strong>.</p>
+<p><strong>a)</strong> Vérifier la chute de tension du câble A par le calcul : \(\Delta U = R \times I\).</p>
+<p><strong>b)</strong> Quels câbles respectent la norme ? Quels câbles ne la respectent pas ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Pour le câble A :</p>
+  <p>\[\Delta U = R \times I = 0{,}45 \times 20 = 9{,}0 \text{ V}\]</p>
+  <p>On retrouve bien la valeur mesurée dans le tableau.</p>
+  <p><strong>b)</strong> Comparaison avec le seuil de 6,9 V :</p>
+  <table>
+    <thead>
+      <tr><th>Câble</th><th>\(\Delta U\) (V)</th><th>Seuil 6,9 V</th><th>Conforme ?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>9,0</td><td>6,9</td><td><strong>Non</strong> (9,0 > 6,9)</td></tr>
+      <tr><td>B</td><td>5,4</td><td>6,9</td><td><strong>Oui</strong> (5,4 < 6,9)</td></tr>
+      <tr><td>C</td><td>3,4</td><td>6,9</td><td><strong>Oui</strong> (3,4 < 6,9)</td></tr>
+      <tr><td>D</td><td>2,8</td><td>6,9</td><td><strong>Oui</strong> (2,8 < 6,9)</td></tr>
+    </tbody>
+  </table>
+  <p>Le câble A (actuel) ne respecte pas la norme. C'est la raison pour laquelle la PAC se met en sécurité : elle ne reçoit que \(230 - 9{,}0 = 221\) V au lieu de 230 V.</p>
+</div>
+</div>
+
+<!-- Question 7 -->
+<div class="exo">
+<h2>Question 7 <span class="badge-blue">REA</span></h2>
+<p>La PAC fonctionne 8 heures par jour. Calculer l'<strong>énergie perdue par jour</strong> (en kWh) dans le câble A, puis dans le câble C.</p>
+<p>En déduire l'<strong>économie annuelle</strong> (en €) réalisée en remplaçant le câble A par le câble C, au tarif de 0,22 €/kWh et pour 180 jours de chauffage par an.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>Énergie perdue par jour :</strong></p>
+  <ul>
+    <li>Câble A : \(E_J = P_J \times t = 0{,}180 \times 8 = 1{,}44\) kWh/jour</li>
+    <li>Câble C : \(E_J = 0{,}068 \times 8 = 0{,}544\) kWh/jour</li>
+  </ul>
+  <p><strong>Économie par jour :</strong></p>
+  <p>\(\Delta E = 1{,}44 - 0{,}544 = 0{,}896\) kWh/jour</p>
+  <p><strong>Économie annuelle :</strong></p>
+  <p>\(0{,}896 \times 180 \times 0{,}22 = 35{,}48\) €/an</p>
+  <p>En remplaçant le câble A par le câble C, Sofia fait économiser environ <strong>35 € par an</strong> au client, en plus de résoudre le problème de mise en sécurité de la PAC.</p>
+</div>
+</div>
+
+<!-- Question 8 -->
+<div class="exo">
+<h2>Question 8 <span class="badge-green">VAL</span></h2>
+<p>Vérifier que la chute de tension du câble B est bien égale à \(\Delta U = R \times I\).</p>
+<p>Le câble B est-il suffisant pour cette installation ? Justifier en comparant avec le seuil de la norme.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p>Vérification : \(\Delta U = R \times I = 0{,}27 \times 20 = 5{,}4\) V. On retrouve bien la valeur mesurée.</p>
+  <p>Le seuil est de 6,9 V et \(5{,}4 < 6{,}9\), donc le câble B <strong>respecte la norme</strong>.</p>
+  <p>Le câble B (2,5 mm², 40 m) est suffisant pour cette installation. Cependant, le câble C (4,0 mm²) offre une marge de sécurité plus confortable et des pertes encore plus faibles.</p>
+</div>
+</div>
+
+<!-- Question 9 -->
+<div class="exo">
+<h2>Question 9 <span class="badge-yellow">COM</span></h2>
+<p>Rédiger la recommandation de Sofia au client en 3 à 5 phrases. Préciser :</p>
+<ul>
+  <li>La cause du problème</li>
+  <li>Le câble recommandé (section et justification)</li>
+  <li>Les conséquences positives du remplacement</li>
+</ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><em>Exemple de rédaction :</em></p>
+  <p>« Le problème vient du câble d'alimentation actuel : sa section de 1,5 mm² est trop faible pour la longueur de 40 m et le courant de 20 A. Cela provoque une chute de tension de 9 V, supérieure à la norme de 6,9 V, ce qui explique la mise en sécurité de votre pompe à chaleur. Je recommande de remplacer ce câble par un <strong>câble de section 4 mm²</strong> (câble C), qui ramène la chute de tension à 3,4 V et réduit les pertes de chaleur dans le câble de 180 W à 68 W. Cela vous permettra d'économiser environ 35 € par an sur votre facture et d'assurer un fonctionnement fiable de votre installation. »</p>
+</div>
+</div>
+
+<!-- ===== À RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>La <strong>résistance d'un câble</strong> dépend de sa longueur et de sa section : \(R = \rho \times \dfrac{L}{S}\)</li>
+    <li>Plus le câble est long, plus \(R\) est grande. Plus la section est grande, plus \(R\) est petite.</li>
+    <li>Les <strong>pertes par effet Joule</strong> dans un câble se calculent avec : \(P_J = R \times I^2\)</li>
+    <li>Les pertes dépendent du <strong>carré du courant</strong> : si \(I\) double, les pertes quadruplent.</li>
+    <li>La <strong>chute de tension</strong> dans un câble vaut \(\Delta U = R \times I\). Elle ne doit pas dépasser 3 % de la tension nominale.</li>
+    <li>Choisir une <strong>section de câble adaptée</strong> permet de limiter les pertes d'énergie, l'échauffement et la chute de tension.</li>
+  </ul>
+</div>
+
+<footer>
+  <p>Première Bac Pro (Grpt 1) | Physique-Chimie – Chapitre 2 | maths-sciences-lp.github.io</p>
+</footer>
+
+</div>
+<script src="../../../nav.js"></script>
+<script>
+function toggle(btn){
+  const c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>
