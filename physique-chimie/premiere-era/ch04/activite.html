@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Activité – Transferts thermiques dans une pièce – Première ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-erama.html" class="nb">← RETOUR SOMMAIRE ERA-MA (Grpt 3)</a>
+
+<header>
+  <h1>Activité – Identifier les transferts thermiques dans une pièce</h1>
+  <p class="sous-titre">Chapitre 4 | Première Bac Pro ERA-MA (Grpt 3) | Physique-Chimie | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier les trois modes de transfert thermique : conduction, convection, rayonnement</li>
+    <li>Associer chaque mode à des situations concrètes observées dans un bâtiment</li>
+    <li>Utiliser la relation \(Q = m \times c \times \Delta\theta\) pour calculer une énergie thermique</li>
+    <li>Comparer la conductivité thermique de différents matériaux</li>
+    <li>Proposer des solutions pour réduire les pertes de chaleur</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p>
+    <em>Julien, poseur de cuisines et de mobilier sur mesure chez <strong>Agencement Bois &amp; Co</strong> à Grenoble, intervient chez un client pour installer des étagères murales dans un bureau. En arrivant, il constate que la pièce est inconfortable : le mur extérieur est froid au toucher, l'air semble circuler du radiateur vers la fenêtre, et le soleil qui entre par la baie vitrée chauffe fortement le parquet. Le client se plaint de factures de chauffage élevées. Julien décide d'analyser la situation pour comprendre <strong>par où et comment la chaleur s'échappe</strong>.</em>
+  </p>
+
+  <h3>Document 1 — Relevés de température dans la pièce</h3>
+  <p>Julien utilise un thermomètre infrarouge pour mesurer les températures de surface en différents points de la pièce. Température extérieure : 4 °C. Chauffage réglé à 20 °C.</p>
+  <table>
+    <thead><tr><th>Zone mesurée</th><th>Température de surface (°C)</th><th>Observation de Julien</th></tr></thead>
+    <tbody>
+      <tr><td>Mur extérieur (béton, sans isolation)</td><td>12,5</td><td>Froid au toucher</td></tr>
+      <tr><td>Mur intérieur (cloison placo)</td><td>19,2</td><td>Température normale</td></tr>
+      <tr><td>Fenêtre simple vitrage</td><td>8,3</td><td>Très froid, buée visible</td></tr>
+      <tr><td>Radiateur en fonctionnement</td><td>55,0</td><td>Air chaud monte au plafond</td></tr>
+      <tr><td>Parquet au soleil (devant la baie vitrée)</td><td>32,0</td><td>Chaud sans contact avec le radiateur</td></tr>
+      <tr><td>Plafond au-dessus du radiateur</td><td>24,8</td><td>Plus chaud que le reste du plafond</td></tr>
+      <tr><td>Sol côté mur extérieur</td><td>14,0</td><td>Frais</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 — Conductivité thermique des matériaux présents</h3>
+  <table>
+    <thead><tr><th>Matériau</th><th>Conductivité \(\lambda\) (W/m·K)</th><th>Qualité isolante</th></tr></thead>
+    <tbody>
+      <tr><td>Béton (mur extérieur)</td><td>1,7</td><td>Conducteur moyen</td></tr>
+      <tr><td>Verre (fenêtre)</td><td>1,0</td><td>Conducteur moyen</td></tr>
+      <tr><td>Bois de chêne (parquet)</td><td>0,16</td><td>Bon isolant</td></tr>
+      <tr><td>Placo (cloison intérieure)</td><td>0,25</td><td>Isolant moyen</td></tr>
+      <tr><td>Laine de verre</td><td>0,032</td><td>Excellent isolant</td></tr>
+      <tr><td>Polystyrène expansé</td><td>0,035</td><td>Excellent isolant</td></tr>
+      <tr><td>Air immobile</td><td>0,025</td><td>Excellent isolant</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 3 — Données pour le calcul thermique</h3>
+  <table>
+    <thead><tr><th>Grandeur</th><th>Valeur</th></tr></thead>
+    <tbody>
+      <tr><td>Capacité thermique massique de l'air</td><td>\(c_{\text{air}} = 1\,005\) J/(kg·°C)</td></tr>
+      <tr><td>Volume de la pièce</td><td>45 m³ (5 m × 3 m × 3 m)</td></tr>
+      <tr><td>Masse d'air dans la pièce</td><td>\(m = 54\) kg</td></tr>
+      <tr><td>Capacité thermique massique du béton</td><td>\(c_{\text{béton}} = 880\) J/(kg·°C)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>À partir du document 1, <strong>relever</strong> :</p>
+  <p>a) La zone qui présente la température de surface la plus élevée (hors radiateur). Quelle est cette température ?</p>
+  <p>b) La zone qui présente la température de surface la plus basse. Quelle est cette température ?</p>
+  <p>c) Quelle est la différence de température entre l'intérieur (20 °C) et l'extérieur (4 °C) ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) La zone la plus chaude (hors radiateur) est le <strong>parquet au soleil</strong> devant la baie vitrée, à <strong>32,0 °C</strong>.</p>
+    <p>b) La zone la plus froide est la <strong>fenêtre simple vitrage</strong>, à <strong>8,3 °C</strong>.</p>
+    <p>c) Différence de température : \(\Delta\theta = 20 - 4 = 16\) °C.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>Les trois modes de transfert thermique sont : la <strong>conduction</strong>, la <strong>convection</strong> et le <strong>rayonnement</strong>.</p>
+  <p>Pour chacune des observations de Julien, <strong>identifier</strong> le mode de transfert thermique principal et <strong>justifier</strong> :</p>
+  <p>a) Le mur extérieur en béton est froid au toucher alors que la pièce est chauffée à 20 °C.</p>
+  <p>b) L'air chaud du radiateur monte au plafond : le plafond au-dessus du radiateur est à 24,8 °C, plus chaud que le reste.</p>
+  <p>c) Le parquet devant la baie vitrée est à 32 °C alors qu'il n'est pas en contact avec le radiateur : c'est le soleil qui le chauffe à travers la vitre.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) <strong>Conduction</strong> : la chaleur intérieure traverse le mur en béton de proche en proche, sans déplacement de matière. Le béton est un solide relativement conducteur (\(\lambda = 1{,}7\) W/m·K), la chaleur passe facilement vers l'extérieur.</p>
+    <p>b) <strong>Convection (naturelle)</strong> : l'air chauffé par le radiateur devient moins dense et monte vers le plafond. L'air froid, plus lourd, descend vers le sol. Ce mouvement de matière (air) crée un courant de convection dans la pièce.</p>
+    <p>c) <strong>Rayonnement</strong> : le soleil émet des ondes électromagnétiques (lumière visible et infrarouge) qui traversent la vitre et chauffent le parquet sans contact direct. Le rayonnement ne nécessite aucun support matériel.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-green">APP</span></h2>
+  <p>En observant la pièce, Julien repère d'autres exemples de transferts thermiques liés à son métier. Pour chaque situation, <strong>indiquer</strong> le mode de transfert :</p>
+  <p>a) Les étagères en bois qu'il installe semblent « chaudes » au toucher, alors que les équerres métalliques de fixation semblent « froides ». Pourtant, les deux sont à la même température ambiante.</p>
+  <p>b) L'air frais entre par les joints mal fermés de la fenêtre.</p>
+  <p>c) Julien ressent la fraîcheur de la fenêtre simple vitrage à distance, sans la toucher.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) <strong>Conduction</strong> : le métal (bon conducteur, \(\lambda\) élevé) conduit rapidement la chaleur de la main, ce qui donne une sensation de froid. Le bois (mauvais conducteur, \(\lambda = 0{,}16\)) conduit lentement la chaleur de la main, ce qui donne une sensation de « chaud ». La sensation ne dépend pas de la température réelle mais de la conductivité du matériau.</p>
+    <p>b) <strong>Convection (forcée par le vent)</strong> : l'air froid extérieur pénètre par les joints et remplace l'air chaud intérieur. C'est un déplacement de matière (fluide).</p>
+    <p>c) <strong>Rayonnement</strong> : le corps de Julien (chaud) émet un rayonnement infrarouge vers la vitre froide. Il perd de l'énergie par rayonnement, ce qui crée une sensation de froid à distance, sans contact.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-green">REA</span></h2>
+  <p>Pendant la nuit, le chauffage s'est arrêté et l'air de la pièce s'est refroidi de 20 °C à 14 °C.</p>
+  <p>On utilise la relation : \(Q = m \times c \times \Delta\theta\)</p>
+  <p>avec \(Q\) l'énergie thermique (en J), \(m\) la masse (en kg), \(c\) la capacité thermique massique (en J/(kg·°C)) et \(\Delta\theta = \theta_{\text{finale}} - \theta_{\text{initiale}}\) la variation de température (en °C).</p>
+  <p>a) <strong>Identifier</strong> les valeurs de \(m\), \(c\) et \(\Delta\theta\) à partir du document 3.</p>
+  <p>b) <strong>Calculer</strong> l'énergie \(Q\) perdue par l'air de la pièce. Exprimer le résultat en joules puis en kilojoules.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) D'après le document 3 :</p>
+    <ul>
+      <li>\(m = 54\) kg (masse d'air dans la pièce)</li>
+      <li>\(c = 1\,005\) J/(kg·°C) (capacité thermique massique de l'air)</li>
+      <li>\(\Delta\theta = 14 - 20 = -6\) °C (refroidissement de 6 °C)</li>
+    </ul>
+    <p>b) Calcul :</p>
+    <p>\[Q = m \times c \times \Delta\theta = 54 \times 1\,005 \times (-6) = -325\,620 \text{ J}\]</p>
+    <p>Le signe négatif indique que l'air de la pièce a <strong>perdu</strong> de l'énergie.</p>
+    <p>\[|Q| = 325\,620 \text{ J} \approx \mathbf{325{,}6 \text{ kJ}}\]</p>
+    <p>L'air de la pièce a perdu environ <strong>326 kJ</strong> d'énergie thermique en se refroidissant de 6 °C.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>À l'aide du document 2, <strong>comparer</strong> les matériaux présents dans la pièce.</p>
+  <p>a) Classer les matériaux suivants du <strong>meilleur conducteur au meilleur isolant</strong> : béton, verre, bois de chêne, laine de verre. Justifier à l'aide de \(\lambda\).</p>
+  <p>b) Calculer le rapport \(\dfrac{\lambda_{\text{béton}}}{\lambda_{\text{laine de verre}}}\). Interpréter ce résultat.</p>
+  <p>c) Pourquoi le bois donne-t-il une sensation plus chaude que le béton au toucher, même si les deux sont à la même température ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Classement du meilleur conducteur au meilleur isolant (du plus grand \(\lambda\) au plus petit) :</p>
+    <ol>
+      <li>Béton : \(\lambda = 1{,}7\) W/(m·K) (meilleur conducteur)</li>
+      <li>Verre : \(\lambda = 1{,}0\) W/(m·K)</li>
+      <li>Bois de chêne : \(\lambda = 0{,}16\) W/(m·K)</li>
+      <li><strong>Laine de verre : \(\lambda = 0{,}032\) W/(m·K) (meilleur isolant)</strong></li>
+    </ol>
+    <p>b) \(\dfrac{\lambda_{\text{béton}}}{\lambda_{\text{laine de verre}}} = \dfrac{1{,}7}{0{,}032} \approx \mathbf{53}\)</p>
+    <p>Le béton conduit la chaleur environ <strong>53 fois mieux</strong> que la laine de verre. Sans isolation, un mur en béton laisse passer énormément de chaleur.</p>
+    <p>c) Le bois a une conductivité thermique beaucoup plus faible (\(0{,}16\)) que le béton (\(1{,}7\)). Au toucher, le béton évacue rapidement la chaleur de la main (bonne conduction), ce qui donne une sensation de froid. Le bois évacue lentement la chaleur de la main (mauvaise conduction), ce qui donne une sensation de « chaud ». La sensation dépend de la <strong>conductivité</strong>, pas de la température réelle du matériau.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-green">REA</span></h2>
+  <p>Julien souhaite calculer l'énergie nécessaire pour réchauffer le mur extérieur en béton de 12,5 °C à 18 °C (après isolation). Le mur a une surface de 8 m², une épaisseur de 20 cm, et le béton a une masse volumique de 2 300 kg/m³.</p>
+  <p>a) <strong>Calculer</strong> le volume du mur en m³, puis sa masse en kg.</p>
+  <p>b) En utilisant \(Q = m \times c \times \Delta\theta\) avec \(c_{\text{béton}} = 880\) J/(kg·°C), <strong>calculer</strong> l'énergie nécessaire. Exprimer en kJ.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Volume : \(V = S \times e = 8 \times 0{,}20 = 1{,}6 \text{ m}^3\)</p>
+    <p>Masse : \(m = \rho \times V = 2\,300 \times 1{,}6 = 3\,680 \text{ kg}\)</p>
+    <p>b) \(\Delta\theta = 18 - 12{,}5 = 5{,}5\) °C</p>
+    <p>\[Q = m \times c \times \Delta\theta = 3\,680 \times 880 \times 5{,}5 = 17\,811\,200 \text{ J}\]</p>
+    <p>\[Q \approx \mathbf{17\,811 \text{ kJ} \approx 17{,}8 \text{ MJ}}\]</p>
+    <p>Il faut environ <strong>17,8 MJ</strong> pour réchauffer ce mur de 5,5 °C. Cette énergie considérable montre l'inertie thermique du béton : il stocke beaucoup de chaleur mais met longtemps à se réchauffer.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>En comparant les résultats des questions 4 et 6 :</p>
+  <p>a) L'énergie perdue par l'air (question 4) est-elle du même ordre de grandeur que l'énergie stockée dans le mur (question 6) ? Quel élément stocke le plus d'énergie ?</p>
+  <p>b) <strong>Vérifier</strong> que les ordres de grandeur sont cohérents : est-il logique que le mur stocke beaucoup plus d'énergie que l'air ? Expliquer.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) L'air a perdu environ 326 kJ, tandis que le mur nécessite environ 17 811 kJ pour se réchauffer de 5,5 °C. Le mur stocke environ <strong>55 fois plus d'énergie</strong> que l'air de la pièce.</p>
+    <p>b) Oui, c'est cohérent. Le mur est beaucoup plus <strong>massif</strong> (3 680 kg contre 54 kg pour l'air) et le béton a une capacité thermique massique élevée (880 J/(kg·°C)). Les matériaux lourds comme le béton ont une forte <strong>inertie thermique</strong> : ils mettent longtemps à se réchauffer mais restituent la chaleur lentement. C'est pourquoi un bâtiment en béton garde la fraîcheur en été et met du temps à chauffer en hiver.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>En s'appuyant sur ses observations et analyses, Julien souhaite conseiller son client pour améliorer le confort thermique de la pièce.</p>
+  <p><strong>Rédiger</strong> 3 recommandations que Julien pourrait proposer au client. Pour chaque recommandation, préciser :</p>
+  <ul>
+    <li>la zone concernée</li>
+    <li>le mode de transfert thermique à combattre</li>
+    <li>la solution proposée et le matériau recommandé</li>
+  </ul>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>Exemple de recommandations :</p>
+    <ol>
+      <li><strong>Isoler le mur extérieur</strong> (béton, 12,5 °C en surface) : ajouter un doublage en laine de verre (\(\lambda = 0{,}032\)) ou en polystyrène pour réduire les pertes par <strong>conduction</strong> à travers le béton. C'est la priorité car ce mur est la principale source de déperdition.</li>
+      <li><strong>Remplacer la fenêtre simple vitrage</strong> (8,3 °C en surface) : installer du double vitrage avec lame d'air ou de gaz argon. La lame d'air immobile (\(\lambda = 0{,}025\)) réduit la <strong>conduction</strong>, et l'espace mince empêche la <strong>convection</strong>. Un vitrage à faible émissivité (Low-E) limite aussi le <strong>rayonnement</strong> infrarouge vers l'extérieur.</li>
+      <li><strong>Étanchéifier les joints de fenêtre</strong> : remplacer les joints usés pour limiter les infiltrations d'air froid, ce qui réduit les pertes par <strong>convection forcée</strong> (courants d'air).</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ===== À RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Il existe <strong>trois modes de transfert thermique</strong> :
+      <ul>
+        <li><strong>Conduction</strong> : transfert à travers un matériau solide, de proche en proche, sans déplacement de matière.</li>
+        <li><strong>Convection</strong> : transfert par déplacement d'un fluide (air, eau) — l'air chaud monte, l'air froid descend.</li>
+        <li><strong>Rayonnement</strong> : transfert par ondes électromagnétiques (infrarouge), sans support matériel.</li>
+      </ul>
+    </li>
+    <li>La relation \(Q = m \times c \times \Delta\theta\) permet de calculer l'énergie thermique échangée (en joules).</li>
+    <li>La <strong>conductivité thermique</strong> \(\lambda\) (en W/(m·K)) caractérise un matériau : plus \(\lambda\) est faible, meilleur est l'isolant.</li>
+  </ul>
+</div>
+
+<div style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;text-align:center;color:#718096;font-size:.82em">
+  Première Bac Pro ERA-MA – Groupement 3 | Physique-Chimie – Chapitre 4 | maths-sciences-lp.github.io
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

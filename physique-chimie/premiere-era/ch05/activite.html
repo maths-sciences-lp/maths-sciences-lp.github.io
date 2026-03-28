@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Activité – Choisir un isolant pour une cloison – Première ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-erama.html" class="nb">← RETOUR SOMMAIRE ERA-MA (Grpt 3)</a>
+
+<header>
+  <h1>Activité – Choisir un isolant pour une cloison à ossature bois</h1>
+  <p class="sous-titre">Chapitre 5 | Première Bac Pro ERA-MA (Grpt 3) | Physique-Chimie | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer la résistance thermique d'une paroi : \(R = \dfrac{e}{\lambda}\)</li>
+    <li>Comparer les performances isolantes de différents matériaux</li>
+    <li>Calculer le flux thermique traversant une paroi : \(\Phi = \dfrac{\Delta T}{R_{\text{total}}}\) (par m²)</li>
+    <li>Additionner les résistances thermiques de couches superposées</li>
+    <li>Choisir un isolant adapté à un cahier des charges</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p>
+    <em>Lucas, ébéniste dans l'entreprise <strong>Menuiserie Durable</strong> à Chambéry, participe à la construction d'un bâtiment basse consommation (BBC). Il doit réaliser une cloison séparative à ossature bois entre un salon chauffé et un local technique non chauffé. Le bureau d'études lui demande de comparer plusieurs isolants et de choisir celui qui offre les meilleures performances thermiques tout en respectant le budget et l'épaisseur disponible.</em>
+  </p>
+
+  <h3>Document 1 — Caractéristiques des isolants disponibles</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Isolant</th>
+        <th>Conductivité \(\lambda\) (W/m·K)</th>
+        <th>Épaisseur disponible \(e\) (cm)</th>
+        <th>Prix (€/m²)</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Laine de verre</td><td>0,032</td><td>10</td><td>8</td><td>Synthétique</td></tr>
+      <tr><td>Laine de bois</td><td>0,038</td><td>10</td><td>18</td><td>Biosourcé</td></tr>
+      <tr><td>Polystyrène expansé</td><td>0,035</td><td>10</td><td>12</td><td>Synthétique</td></tr>
+      <tr><td>Mousse polyuréthane</td><td>0,022</td><td>8</td><td>25</td><td>Synthétique</td></tr>
+      <tr><td>Ouate de cellulose</td><td>0,040</td><td>12</td><td>15</td><td>Biosourcé (recyclé)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 — Composition de la cloison (couches superposées)</h3>
+  <p>La cloison est composée de trois couches :</p>
+  <table>
+    <thead><tr><th>Couche</th><th>Matériau</th><th>Épaisseur \(e\)</th><th>\(\lambda\) (W/m·K)</th></tr></thead>
+    <tbody>
+      <tr><td>1 — Parement intérieur</td><td>Plaque de plâtre (BA13)</td><td>1,3 cm</td><td>0,25</td></tr>
+      <tr><td>2 — Isolant</td><td><em>À choisir</em></td><td><em>Voir document 1</em></td><td><em>Voir document 1</em></td></tr>
+      <tr><td>3 — Parement extérieur</td><td>Panneau OSB</td><td>1,5 cm</td><td>0,13</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 3 — Données thermiques</h3>
+  <table>
+    <thead><tr><th>Grandeur</th><th>Valeur</th></tr></thead>
+    <tbody>
+      <tr><td>Température du salon (côté chaud)</td><td>\(T_1 = 20\) °C</td></tr>
+      <tr><td>Température du local technique (côté froid)</td><td>\(T_2 = 8\) °C</td></tr>
+      <tr><td>Surface de la cloison</td><td>\(S = 9\) m² (3 m × 3 m)</td></tr>
+      <tr><td>Exigence BBC : résistance thermique minimale</td><td>\(R_{\text{total}} \geq 2{,}5\) m²·K/W</td></tr>
+      <tr><td>Prix du kWh (chauffage électrique)</td><td>0,18 €/kWh</td></tr>
+      <tr><td>Durée de chauffage annuelle estimée</td><td>5 000 heures/an</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 4 — Rappel des formules</h3>
+  <div class="formule-box">
+    <p><strong>Résistance thermique d'une couche</strong> (par m² de surface) :</p>
+    \[R = \frac{e}{\lambda} \quad \text{(en m²·K/W)}\]
+    <p><strong>Résistance totale</strong> de couches superposées :</p>
+    \[R_{\text{total}} = R_1 + R_2 + R_3 + \ldots\]
+    <p><strong>Flux thermique par m²</strong> :</p>
+    \[\varphi = \frac{\Delta T}{R_{\text{total}}} \quad \text{(en W/m²)}\]
+    <p><strong>Flux total</strong> à travers la cloison :</p>
+    \[\Phi = \varphi \times S = \frac{\Delta T}{R_{\text{total}}} \times S \quad \text{(en W)}\]
+  </div>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>À partir du document 1 :</p>
+  <p>a) <strong>Relever</strong> l'isolant qui a la conductivité thermique \(\lambda\) la plus faible. Que signifie une faible conductivité ?</p>
+  <p>b) <strong>Relever</strong> l'isolant le moins cher et l'isolant le plus cher (par m²).</p>
+  <p>c) À partir du document 3, <strong>calculer</strong> la différence de température \(\Delta T\) entre les deux faces de la cloison.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) L'isolant avec la plus faible conductivité est la <strong>mousse polyuréthane</strong> avec \(\lambda = 0{,}022\) W/m·K. Une faible conductivité signifie que le matériau conduit <strong>mal la chaleur</strong> : c'est un excellent isolant thermique.</p>
+    <p>b) Le moins cher : <strong>laine de verre</strong> à 8 €/m². Le plus cher : <strong>mousse polyuréthane</strong> à 25 €/m².</p>
+    <p>c) \(\Delta T = T_1 - T_2 = 20 - 8 = 12\) °C (ou 12 K).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-green">REA</span></h2>
+  <p>On commence par calculer la résistance thermique de chaque isolant seul (sans les parements).</p>
+  <p><strong>Calculer</strong> la résistance thermique \(R = \dfrac{e}{\lambda}\) pour chacun des cinq isolants du document 1. Compléter le tableau ci-dessous.</p>
+  <table>
+    <thead><tr><th>Isolant</th><th>\(\lambda\) (W/m·K)</th><th>\(e\) (m)</th><th>\(R = e / \lambda\) (m²·K/W)</th></tr></thead>
+    <tbody>
+      <tr><td>Laine de verre</td><td>0,032</td><td>0,10</td><td>...</td></tr>
+      <tr><td>Laine de bois</td><td>0,038</td><td>0,10</td><td>...</td></tr>
+      <tr><td>Polystyrène expansé</td><td>0,035</td><td>0,10</td><td>...</td></tr>
+      <tr><td>Mousse polyuréthane</td><td>0,022</td><td>0,08</td><td>...</td></tr>
+      <tr><td>Ouate de cellulose</td><td>0,040</td><td>0,12</td><td>...</td></tr>
+    </tbody>
+  </table>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Isolant</th><th>\(\lambda\) (W/m·K)</th><th>\(e\) (m)</th><th>\(R\) (m²·K/W)</th></tr></thead>
+      <tbody>
+        <tr><td>Laine de verre</td><td>0,032</td><td>0,10</td><td>\(\frac{0{,}10}{0{,}032} = \mathbf{3{,}13}\)</td></tr>
+        <tr><td>Laine de bois</td><td>0,038</td><td>0,10</td><td>\(\frac{0{,}10}{0{,}038} = \mathbf{2{,}63}\)</td></tr>
+        <tr><td>Polystyrène expansé</td><td>0,035</td><td>0,10</td><td>\(\frac{0{,}10}{0{,}035} = \mathbf{2{,}86}\)</td></tr>
+        <tr><td>Mousse polyuréthane</td><td>0,022</td><td>0,08</td><td>\(\frac{0{,}08}{0{,}022} = \mathbf{3{,}64}\)</td></tr>
+        <tr><td>Ouate de cellulose</td><td>0,040</td><td>0,12</td><td>\(\frac{0{,}12}{0{,}040} = \mathbf{3{,}00}\)</td></tr>
+      </tbody>
+    </table>
+    <p>Attention : l'épaisseur doit toujours être convertie en <strong>mètres</strong> avant le calcul.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>a) <strong>Classer</strong> les cinq isolants du meilleur au moins performant (résistance thermique la plus grande = meilleure isolation).</p>
+  <p>b) La mousse polyuréthane a la meilleure résistance thermique alors qu'elle est la moins épaisse (8 cm). <strong>Expliquer</strong> comment cela est possible.</p>
+  <p>c) L'ouate de cellulose est la plus épaisse (12 cm) mais n'est pas la plus performante. <strong>Expliquer</strong> pourquoi.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Classement du plus performant au moins performant :</p>
+    <ol>
+      <li>Mousse polyuréthane : \(R = 3{,}64\) m²·K/W</li>
+      <li>Laine de verre : \(R = 3{,}13\) m²·K/W</li>
+      <li>Ouate de cellulose : \(R = 3{,}00\) m²·K/W</li>
+      <li>Polystyrène expansé : \(R = 2{,}86\) m²·K/W</li>
+      <li>Laine de bois : \(R = 2{,}63\) m²·K/W</li>
+    </ol>
+    <p>b) La mousse polyuréthane a la conductivité thermique la plus faible (\(\lambda = 0{,}022\)). Même avec une épaisseur réduite, elle offre une résistance élevée car \(R = e / \lambda\) : une très faible conductivité compense la moindre épaisseur.</p>
+    <p>c) L'ouate de cellulose a la conductivité la plus élevée parmi les isolants (\(\lambda = 0{,}040\)). Malgré son épaisseur supérieure (12 cm), le rapport \(e / \lambda\) reste inférieur à celui de la mousse polyuréthane. La performance dépend du <strong>rapport épaisseur / conductivité</strong>, pas de l'épaisseur seule.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-green">REA</span></h2>
+  <p>On choisit la <strong>laine de verre</strong> (10 cm) comme isolant. On calcule maintenant la résistance thermique totale de la cloison complète (3 couches).</p>
+  <p>a) <strong>Calculer</strong> la résistance thermique de la plaque de plâtre BA13 (\(e = 0{,}013\) m, \(\lambda = 0{,}25\)).</p>
+  <p>b) <strong>Calculer</strong> la résistance thermique du panneau OSB (\(e = 0{,}015\) m, \(\lambda = 0{,}13\)).</p>
+  <p>c) <strong>Calculer</strong> la résistance thermique totale \(R_{\text{total}} = R_{\text{BA13}} + R_{\text{isolant}} + R_{\text{OSB}}\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(R_{\text{BA13}} = \dfrac{0{,}013}{0{,}25} = \mathbf{0{,}052 \text{ m}^2 \text{·K/W}}\)</p>
+    <p>b) \(R_{\text{OSB}} = \dfrac{0{,}015}{0{,}13} = \mathbf{0{,}115 \text{ m}^2 \text{·K/W}}\)</p>
+    <p>c) \(R_{\text{total}} = 0{,}052 + 3{,}13 + 0{,}115 = \mathbf{3{,}30 \text{ m}^2 \text{·K/W}}\)</p>
+    <p>On constate que l'isolant (laine de verre) représente \(\frac{3{,}13}{3{,}30} \times 100 \approx 95\,\%\) de la résistance totale. Les parements contribuent très peu à l'isolation.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-green">REA</span></h2>
+  <p>On calcule les pertes thermiques à travers la cloison avec la laine de verre.</p>
+  <p>a) <strong>Calculer</strong> le flux thermique par m² : \(\varphi = \dfrac{\Delta T}{R_{\text{total}}}\).</p>
+  <p>b) <strong>Calculer</strong> le flux thermique total traversant la cloison de 9 m² : \(\Phi = \varphi \times S\).</p>
+  <p>c) Cette puissance perdue correspond-elle à un appareil du quotidien ? (Comparer avec une ampoule LED de 10 W, un radiateur de 1 000 W, etc.)</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(\varphi = \dfrac{\Delta T}{R_{\text{total}}} = \dfrac{12}{3{,}30} = \mathbf{3{,}64 \text{ W/m}^2}\)</p>
+    <p>b) \(\Phi = \varphi \times S = 3{,}64 \times 9 = \mathbf{32{,}7 \text{ W}}\)</p>
+    <p>c) Cette perte de 32,7 W correspond environ à 3 ampoules LED de 10 W. C'est une perte faible grâce à la bonne isolation. Sans isolant, les pertes seraient bien plus importantes.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Le bureau d'études exige une résistance thermique totale \(R_{\text{total}} \geq 2{,}5\) m²·K/W pour la norme BBC.</p>
+  <p>a) En reprenant les résistances des parements (question 4), <strong>déterminer</strong> quels isolants du document 1 permettent d'atteindre cette exigence. Pour chacun, calculer \(R_{\text{total}}\).</p>
+  <p>b) La <strong>laine de bois</strong> atteint-elle l'exigence BBC ? Si non, quelle épaisseur minimale faudrait-il pour que \(R_{\text{total}} \geq 2{,}5\) ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Résistance des parements : \(R_{\text{parements}} = 0{,}052 + 0{,}115 = 0{,}167\) m²·K/W.</p>
+    <p>Pour chaque isolant, \(R_{\text{total}} = R_{\text{parements}} + R_{\text{isolant}}\) :</p>
+    <table>
+      <thead><tr><th>Isolant</th><th>\(R_{\text{isolant}}\)</th><th>\(R_{\text{total}}\)</th><th>BBC atteint ?</th></tr></thead>
+      <tbody>
+        <tr><td>Laine de verre</td><td>3,13</td><td>3,30</td><td>Oui</td></tr>
+        <tr><td>Laine de bois</td><td>2,63</td><td>2,80</td><td>Oui</td></tr>
+        <tr><td>Polystyrène expansé</td><td>2,86</td><td>3,03</td><td>Oui</td></tr>
+        <tr><td>Mousse polyuréthane</td><td>3,64</td><td>3,80</td><td>Oui</td></tr>
+        <tr><td>Ouate de cellulose</td><td>3,00</td><td>3,17</td><td>Oui</td></tr>
+      </tbody>
+    </table>
+    <p>Tous les isolants atteignent l'exigence BBC (\(R_{\text{total}} \geq 2{,}5\)).</p>
+    <p>b) La laine de bois atteint \(R_{\text{total}} = 2{,}80\), ce qui dépasse l'exigence de 2,5. Elle est donc <strong>conforme</strong>.</p>
+    <p>Si elle ne l'était pas, on chercherait l'épaisseur minimale : \(R_{\text{isolant}} \geq 2{,}5 - 0{,}167 = 2{,}333\), soit \(e \geq 2{,}333 \times 0{,}038 = 0{,}089\) m = 8,9 cm. L'épaisseur de 10 cm proposée suffit largement.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>On compare les coûts énergétiques annuels pour deux solutions : <strong>laine de verre</strong> (10 cm) et <strong>mousse polyuréthane</strong> (8 cm).</p>
+  <p>a) <strong>Calculer</strong> le flux total \(\Phi\) avec la mousse polyuréthane (\(R_{\text{total}} = 3{,}80\) m²·K/W).</p>
+  <p>b) <strong>Calculer</strong> l'énergie perdue en un an (5 000 h de chauffage) pour chaque solution : \(E = \Phi \times t\). Exprimer en kWh.</p>
+  <p>c) <strong>Calculer</strong> le coût annuel des pertes pour chaque solution (à 0,18 €/kWh). Quelle est l'économie réalisée avec la mousse polyuréthane ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Avec la mousse polyuréthane : \(\Phi = \dfrac{12}{3{,}80} \times 9 = 3{,}16 \times 9 = \mathbf{28{,}4 \text{ W}}\)</p>
+    <p>b) Énergie perdue en un an :</p>
+    <ul>
+      <li>Laine de verre : \(E = 32{,}7 \times 5\,000 = 163\,500\) Wh = <strong>163,5 kWh/an</strong></li>
+      <li>Mousse polyuréthane : \(E = 28{,}4 \times 5\,000 = 142\,000\) Wh = <strong>142,0 kWh/an</strong></li>
+    </ul>
+    <p>c) Coût annuel :</p>
+    <ul>
+      <li>Laine de verre : \(163{,}5 \times 0{,}18 = \mathbf{29{,}43 \text{ €/an}}\)</li>
+      <li>Mousse polyuréthane : \(142{,}0 \times 0{,}18 = \mathbf{25{,}56 \text{ €/an}}\)</li>
+    </ul>
+    <p>Économie : \(29{,}43 - 25{,}56 = \mathbf{3{,}87 \text{ €/an}}\) pour cette seule cloison.</p>
+    <p>L'économie est modeste car la cloison est déjà bien isolée dans les deux cas. La différence de coût d'installation (25 - 8 = 17 €/m², soit 153 € pour 9 m²) ne serait rentabilisée qu'après environ 40 ans. Le choix se fait alors sur d'autres critères (épaisseur, impact environnemental).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Lucas doit rédiger une <strong>note technique</strong> pour le bureau d'études, recommandant le meilleur isolant pour la cloison.</p>
+  <p><strong>Rédiger</strong> un court paragraphe (5-8 lignes) qui :</p>
+  <ul>
+    <li>rappelle l'exigence BBC (\(R \geq 2{,}5\) m²·K/W)</li>
+    <li>indique quel isolant est recommandé et pourquoi</li>
+    <li>précise la résistance thermique totale obtenue</li>
+    <li>mentionne le flux thermique et le coût énergétique annuel</li>
+  </ul>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>Exemple de note technique :</p>
+    <p><em>« Pour la cloison séparative salon/local technique (9 m²), nous recommandons la <strong>laine de verre en 10 cm d'épaisseur</strong>. Ce choix offre une résistance thermique totale de 3,30 m²·K/W, largement supérieure à l'exigence BBC de 2,5 m²·K/W. Le flux thermique traversant la cloison est de 32,7 W, ce qui représente une perte annuelle d'environ 164 kWh, soit un coût de 29 euros par an. La laine de verre est le choix le plus économique à l'achat (8 €/m²) tout en offrant d'excellentes performances. Si l'épaisseur disponible est limitée, la mousse polyuréthane (8 cm) constitue une alternative plus performante mais plus coûteuse. »</em></p>
+  </div>
+</div>
+
+<!-- ===== À RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Résistance thermique</strong> d'une couche : \(R = \dfrac{e}{\lambda}\) (en m²·K/W). Plus \(R\) est grand, meilleure est l'isolation.</li>
+    <li><strong>Couches superposées</strong> : les résistances thermiques s'additionnent : \(R_{\text{total}} = R_1 + R_2 + R_3 + \ldots\)</li>
+    <li><strong>Flux thermique</strong> par m² : \(\varphi = \dfrac{\Delta T}{R_{\text{total}}}\) (en W/m²). Le flux total est \(\Phi = \varphi \times S\) (en W).</li>
+    <li>Pour <strong>bien isoler</strong> : choisir un matériau de \(\lambda\) faible et une épaisseur \(e\) grande.</li>
+  </ul>
+</div>
+
+<div style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;text-align:center;color:#718096;font-size:.82em">
+  Première Bac Pro ERA-MA – Groupement 3 | Physique-Chimie – Chapitre 5 | maths-sciences-lp.github.io
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

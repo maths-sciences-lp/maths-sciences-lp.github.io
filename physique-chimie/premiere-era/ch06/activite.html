@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Activité – Table à abattant et moments de forces – Première ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-erama.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité – Concevoir une table à abattant : moments et équilibre</h1>
+  <p class="sous-titre">Chapitre 6 | Première Bac Pro ERA-MA (Grpt 3) | Physique-Chimie | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier les forces qui s'exercent sur un solide en rotation</li>
+    <li>Définir et calculer le moment d'une force : \(M = F \times d\)</li>
+    <li>Appliquer la condition d'équilibre en rotation : \(\sum M = 0\)</li>
+    <li>Déterminer la force nécessaire dans un support pour maintenir l'équilibre</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p>
+    <em>Nadia, menuisier agenceur dans l'entreprise <strong>Atelier du Meuble</strong> à Annecy, conçoit une <strong>table à abattant</strong> pour un petit appartement. Le plateau rabattable mesure 80 cm de long et pivote autour d'une charnière fixée au mur. Lorsque le plateau est déplié (position horizontale), un support articulé le maintient en place. Nadia doit dimensionner ce support pour qu'il supporte le poids du plateau et d'objets posés dessus sans céder.</em>
+  </p>
+
+  <h3>Document 1 — Schéma de la table à abattant (vue de profil)</h3>
+
+  <div class="svg-wrap">
+  <svg width="560" height="340" viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto">
+    <!-- Mur -->
+    <rect x="30" y="20" width="20" height="280" fill="#d4d4d4" stroke="#737373" stroke-width="2"/>
+    <text x="12" y="160" font-size="12" fill="#525252" transform="rotate(-90,12,160)" text-anchor="middle" font-weight="bold">MUR</text>
+
+    <!-- Charnière (pivot) -->
+    <circle cx="50" cy="160" r="10" fill="#2da44e" stroke="#166534" stroke-width="2.5"/>
+    <text x="50" y="145" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">Pivot O</text>
+
+    <!-- Plateau horizontal -->
+    <rect x="50" y="155" width="400" height="10" rx="2" fill="#f0fff4" stroke="#2da44e" stroke-width="2"/>
+    <text x="250" y="150" text-anchor="middle" font-size="12" fill="#2da44e" font-weight="bold">Plateau (L = 80 cm)</text>
+
+    <!-- Centre de gravité du plateau -->
+    <circle cx="250" cy="160" r="5" fill="#dc2626"/>
+    <text x="265" y="175" font-size="10" fill="#dc2626" font-weight="bold">G (plateau)</text>
+
+    <!-- Poids du plateau P1 -->
+    <line x1="250" y1="165" x2="250" y2="230" stroke="#dc2626" stroke-width="2.5"/>
+    <polygon points="246,225 250,240 254,225" fill="#dc2626"/>
+    <text x="268" y="215" font-size="12" fill="#dc2626" font-weight="bold">P₁ = 60 N</text>
+
+    <!-- Bras de levier d1 -->
+    <line x1="50" y1="250" x2="250" y2="250" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="50" y1="245" x2="50" y2="255" stroke="#0ea5e9" stroke-width="1.5"/>
+    <line x1="250" y1="245" x2="250" y2="255" stroke="#0ea5e9" stroke-width="1.5"/>
+    <text x="150" y="268" text-anchor="middle" font-size="11" fill="#0ea5e9" font-weight="bold">d₁ = 40 cm</text>
+
+    <!-- Charge posée sur la table -->
+    <rect x="370" y="130" width="40" height="25" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    <text x="390" y="148" text-anchor="middle" font-size="9" fill="#92400e" font-weight="bold">Charge</text>
+
+    <!-- Poids de la charge P2 -->
+    <line x1="390" y1="155" x2="390" y2="220" stroke="#d97706" stroke-width="2.5"/>
+    <polygon points="386,215 390,230 394,215" fill="#d97706"/>
+    <text x="418" y="205" font-size="12" fill="#d97706" font-weight="bold">P₂ = 30 N</text>
+
+    <!-- Bras de levier d2 -->
+    <line x1="50" y1="280" x2="390" y2="280" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="50" y1="275" x2="50" y2="285" stroke="#d97706" stroke-width="1.5"/>
+    <line x1="390" y1="275" x2="390" y2="285" stroke="#d97706" stroke-width="1.5"/>
+    <text x="220" y="298" text-anchor="middle" font-size="11" fill="#d97706" font-weight="bold">d₂ = 68 cm</text>
+
+    <!-- Support articulé -->
+    <line x1="350" y1="165" x2="350" y2="300" stroke="#166534" stroke-width="3"/>
+    <circle cx="350" cy="165" r="4" fill="#166534"/>
+    <circle cx="350" cy="300" r="4" fill="#166534"/>
+    <text x="330" y="318" text-anchor="middle" font-size="10" fill="#166534" font-weight="bold">Support</text>
+
+    <!-- Force du support F -->
+    <line x1="350" y1="165" x2="350" y2="100" stroke="#166534" stroke-width="2.5"/>
+    <polygon points="346,105 350,88 354,105" fill="#166534"/>
+    <text x="375" y="95" font-size="12" fill="#166534" font-weight="bold">F = ?</text>
+
+    <!-- Bras de levier d3 -->
+    <line x1="50" y1="310" x2="350" y2="310" stroke="#166534" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="50" y1="305" x2="50" y2="315" stroke="#166534" stroke-width="1.5"/>
+    <line x1="350" y1="305" x2="350" y2="315" stroke="#166534" stroke-width="1.5"/>
+    <text x="200" y="328" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">d₃ = 60 cm</text>
+
+    <!-- Angle droit au support -->
+    <rect x="342" y="157" width="8" height="8" fill="none" stroke="#166534" stroke-width="1.5"/>
+  </svg>
+  </div>
+
+  <h3>Document 2 — Données techniques</h3>
+  <table>
+    <thead><tr><th>Grandeur</th><th>Valeur</th></tr></thead>
+    <tbody>
+      <tr><td>Masse du plateau</td><td>\(m_1 = 6{,}1\) kg</td></tr>
+      <tr><td>Poids du plateau</td><td>\(P_1 = m_1 \times g = 6{,}1 \times 9{,}8 \approx 60\) N</td></tr>
+      <tr><td>Point d'application de \(P_1\)</td><td>Centre de gravité G, à 40 cm du pivot O</td></tr>
+      <tr><td>Masse de la charge posée (livres, vaisselle...)</td><td>\(m_2 = 3{,}1\) kg</td></tr>
+      <tr><td>Poids de la charge</td><td>\(P_2 = m_2 \times g = 3{,}1 \times 9{,}8 \approx 30\) N</td></tr>
+      <tr><td>Position de la charge</td><td>À 68 cm du pivot O</td></tr>
+      <tr><td>Position du support</td><td>À 60 cm du pivot O</td></tr>
+      <tr><td>Force du support</td><td>\(F = ?\) (verticale, vers le haut)</td></tr>
+      <tr><td>Longueur du plateau</td><td>\(L = 80\) cm</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 3 — Rappel des formules</h3>
+  <div class="formule-box">
+    <p><strong>Moment d'une force</strong> par rapport à un axe de rotation :</p>
+    \[M = F \times d \quad \text{(en N·m)}\]
+    <p>avec \(F\) la force (en N) et \(d\) le bras de levier perpendiculaire (en m).</p>
+    <p><strong>Condition d'équilibre en rotation</strong> :</p>
+    \[\sum M = 0 \quad \Leftrightarrow \quad \text{Moments horaires} = \text{Moments antihoraires}\]
+  </div>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>À partir du schéma (document 1) et des données (document 2) :</p>
+  <p>a) <strong>Identifier</strong> le point autour duquel le plateau peut tourner. Comment s'appelle ce point ?</p>
+  <p>b) <strong>Lister</strong> les trois forces qui s'exercent sur le plateau. Pour chacune, préciser sa direction, son sens et son intensité.</p>
+  <p>c) Si le support cédait, dans quel sens le plateau tournerait-il autour du pivot ? Pourquoi ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Le plateau peut tourner autour du point <strong>O</strong>, qui est la <strong>charnière</strong> fixée au mur. C'est le <strong>pivot</strong> (axe de rotation).</p>
+    <p>b) Les trois forces sont :</p>
+    <ul>
+      <li><strong>\(P_1 = 60\) N</strong> : poids du plateau, direction verticale, sens vers le bas, appliqué au centre de gravité G (à 40 cm de O).</li>
+      <li><strong>\(P_2 = 30\) N</strong> : poids de la charge, direction verticale, sens vers le bas, appliqué à 68 cm de O.</li>
+      <li><strong>\(F = ?\)</strong> : force exercée par le support, direction verticale, sens vers le haut, appliquée à 60 cm de O.</li>
+    </ul>
+    <p>c) Si le support cédait, le plateau tournerait dans le <strong>sens horaire</strong> (il s'abaisserait) car les poids \(P_1\) et \(P_2\) tirent le plateau vers le bas. Sans force vers le haut pour compenser, le plateau tombe.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-green">REA</span></h2>
+  <p>On calcule le moment de chaque force par rapport au pivot O. Rappel : \(M = F \times d\) (avec \(d\) en mètres).</p>
+  <p>a) <strong>Calculer</strong> le moment du poids du plateau \(P_1\) par rapport à O.</p>
+  <p>b) <strong>Calculer</strong> le moment du poids de la charge \(P_2\) par rapport à O.</p>
+  <p>c) Ces deux moments tendent-ils à faire tourner le plateau dans le même sens ? Lequel ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(M_{P_1} = P_1 \times d_1 = 60 \times 0{,}40 = \mathbf{24 \text{ N·m}}\)</p>
+    <p>b) \(M_{P_2} = P_2 \times d_2 = 30 \times 0{,}68 = \mathbf{20{,}4 \text{ N·m}}\)</p>
+    <p>c) Oui, les deux moments tendent à faire tourner le plateau dans le <strong>même sens</strong> : le <strong>sens horaire</strong> (vers le bas). Ils s'ajoutent pour tirer le plateau vers le sol.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>a) <strong>Calculer</strong> la somme des moments qui font tourner le plateau vers le bas (sens horaire) :</p>
+  <p>\[M_{\text{horaire}} = M_{P_1} + M_{P_2}\]</p>
+  <p>b) Le support exerce une force \(F\) vers le haut, à une distance \(d_3 = 60\) cm du pivot. Quel est le sens de rotation du moment créé par cette force ?</p>
+  <p>c) <strong>Écrire</strong> la condition d'équilibre sous la forme : « moment antihoraire = moment horaire ».</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(M_{\text{horaire}} = 24 + 20{,}4 = \mathbf{44{,}4 \text{ N·m}}\)</p>
+    <p>b) La force \(F\) du support est dirigée vers le haut. Elle tend à faire tourner le plateau dans le <strong>sens antihoraire</strong> (elle empêche le plateau de tomber).</p>
+    <p>c) La condition d'équilibre s'écrit :</p>
+    <p>\[F \times d_3 = P_1 \times d_1 + P_2 \times d_2\]</p>
+    <p>Soit : \(F \times 0{,}60 = 44{,}4\) N·m</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-green">REA</span></h2>
+  <p>À partir de la condition d'équilibre établie à la question 3 :</p>
+  <p>a) <strong>Calculer</strong> la force \(F\) que le support doit exercer pour maintenir le plateau en équilibre.</p>
+  <p>b) <strong>Convertir</strong> cette force en « masse équivalente » : quelle masse faudrait-il suspendre au support pour exercer cette force ? (Utiliser \(m = F / g\) avec \(g = 9{,}8\) N/kg.)</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) D'après la condition d'équilibre :</p>
+    <p>\[F \times 0{,}60 = 44{,}4\]</p>
+    <p>\[F = \frac{44{,}4}{0{,}60} = \mathbf{74 \text{ N}}\]</p>
+    <p>Le support doit exercer une force de <strong>74 N</strong> vers le haut.</p>
+    <p>b) Masse équivalente : \(m = \dfrac{F}{g} = \dfrac{74}{9{,}8} \approx \mathbf{7{,}6 \text{ kg}}\)</p>
+    <p>Le support doit résister à l'équivalent d'une charge de 7,6 kg. En pratique, on dimensionne le support avec une <strong>marge de sécurité</strong> (coefficient de sécurité de 2 ou 3), soit un support capable de supporter 15 à 23 kg.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Nadia envisage de déplacer le support plus près du bord du plateau, à 75 cm du pivot (au lieu de 60 cm).</p>
+  <p>a) <strong>Calculer</strong> la nouvelle force \(F'\) que le support devrait exercer avec \(d_3 = 75\) cm.</p>
+  <p>b) <strong>Comparer</strong> \(F'\) à \(F\). Que constate-t-on ?</p>
+  <p>c) <strong>Expliquer</strong> pourquoi il est plus facile de maintenir le plateau en augmentant le bras de levier du support.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) \(F' \times 0{,}75 = 44{,}4\)</p>
+    <p>\(F' = \dfrac{44{,}4}{0{,}75} = \mathbf{59{,}2 \text{ N}}\)</p>
+    <p>b) \(F' = 59{,}2\) N contre \(F = 74\) N. La force nécessaire est <strong>plus faible</strong> lorsque le support est plus éloigné du pivot (diminution de 20 %).</p>
+    <p>c) C'est le principe du <strong>bras de levier</strong> : plus le point d'application de la force est éloigné de l'axe de rotation, plus le moment créé est grand pour une même force. Autrement dit, à moment égal, il faut une <strong>force plus faible</strong> si le bras de levier est plus grand. C'est la même raison pour laquelle on pousse une porte au niveau de la poignée (loin des charnières) et non près des charnières.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-green">VAL</span></h2>
+  <p>Nadia vérifie son calcul en considérant un cas limite : que se passe-t-il si la charge est placée tout au bout du plateau (à 80 cm du pivot), avec le support à 60 cm ?</p>
+  <p>a) <strong>Calculer</strong> le nouveau moment total horaire avec \(d_2 = 80\) cm.</p>
+  <p>b) <strong>Calculer</strong> la force \(F\) nécessaire dans le support.</p>
+  <p>c) <strong>Vérifier</strong> que la somme des moments est bien nulle : le plateau est-il en équilibre ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Nouveau moment horaire :</p>
+    <p>\(M_{P_1} = 60 \times 0{,}40 = 24\) N·m</p>
+    <p>\(M_{P_2} = 30 \times 0{,}80 = 24\) N·m</p>
+    <p>\(M_{\text{horaire}} = 24 + 24 = \mathbf{48 \text{ N·m}}\)</p>
+    <p>b) \(F = \dfrac{48}{0{,}60} = \mathbf{80 \text{ N}}\)</p>
+    <p>c) Vérification : \(F \times d_3 = 80 \times 0{,}60 = 48\) N·m = \(M_{\text{horaire}}\). La somme des moments est nulle : \(48 - 48 = 0\). Le plateau est bien en <strong>équilibre</strong>.</p>
+    <p>Remarque : dans ce cas limite, la force passe de 74 N à 80 N (+8 %). Le support doit donc être dimensionné pour cette situation la plus défavorable.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Nadia réfléchit à la charge maximale que la table peut supporter. Le support articulé qu'elle a choisi résiste jusqu'à une force de <strong>120 N</strong>.</p>
+  <p>a) <strong>Écrire</strong> la condition d'équilibre avec une charge inconnue \(P_2\) placée à 68 cm du pivot et le support à 60 cm.</p>
+  <p>b) <strong>Calculer</strong> la charge maximale \(P_{2,\text{max}}\) que le support peut maintenir en équilibre.</p>
+  <p>c) En déduire la masse maximale que l'on peut poser sur la table à 68 cm du pivot.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>a) Condition d'équilibre : \(F \times d_3 = P_1 \times d_1 + P_2 \times d_2\)</p>
+    <p>\(120 \times 0{,}60 = 60 \times 0{,}40 + P_2 \times 0{,}68\)</p>
+    <p>b) \(72 = 24 + 0{,}68 \times P_2\)</p>
+    <p>\(0{,}68 \times P_2 = 72 - 24 = 48\)</p>
+    <p>\(P_{2,\text{max}} = \dfrac{48}{0{,}68} = \mathbf{70{,}6 \text{ N}}\)</p>
+    <p>c) \(m_{\text{max}} = \dfrac{P_{2,\text{max}}}{g} = \dfrac{70{,}6}{9{,}8} \approx \mathbf{7{,}2 \text{ kg}}\)</p>
+    <p>On peut poser jusqu'à environ <strong>7 kg</strong> à 68 cm du pivot. C'est suffisant pour des livres ou de la vaisselle légère, mais insuffisant pour un équipement lourd.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Nadia prépare la <strong>fiche technique</strong> de la table à abattant pour le client.</p>
+  <p><strong>Rédiger</strong> un court paragraphe (5-8 lignes) expliquant :</p>
+  <ul>
+    <li>le principe de fonctionnement de la table (pivot, support, équilibre)</li>
+    <li>la charge maximale recommandée</li>
+    <li>pourquoi il ne faut pas concentrer les objets lourds au bout du plateau</li>
+    <li>un conseil de sécurité pour l'utilisateur</li>
+  </ul>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>Exemple de fiche technique :</p>
+    <p><em>« La table à abattant est fixée au mur par une charnière et maintenue en position horizontale par un support articulé. L'ensemble est en équilibre lorsque le moment de la force du support compense les moments des poids (plateau et charge). La charge maximale recommandée est de <strong>7 kg</strong> en bout de table. Il est conseillé de placer les objets lourds le plus près possible du mur (charnière), car plus un objet est éloigné du pivot, plus il tend à faire basculer la table (bras de levier plus grand). Ne jamais s'appuyer sur le plateau et vérifier régulièrement le serrage du support. »</em></p>
+  </div>
+</div>
+
+<!-- ===== À RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Moment d'une force</strong> : \(M = F \times d\) (en N·m), avec \(F\) en newtons et \(d\) le bras de levier en mètres.</li>
+    <li><strong>Condition d'équilibre en rotation</strong> : \(\sum M = 0\), c'est-à-dire que la somme des moments horaires est égale à la somme des moments antihoraires : \(F_1 \times d_1 = F_2 \times d_2\).</li>
+    <li>Plus le bras de levier est grand, plus le moment est grand (pour une même force). C'est le <strong>principe du levier</strong>.</li>
+    <li>Le poids s'applique au <strong>centre de gravité</strong> : \(P = m \times g\) (avec \(g \approx 9{,}8\) N/kg).</li>
+  </ul>
+</div>
+
+<div style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;text-align:center;color:#718096;font-size:.82em">
+  Première Bac Pro ERA-MA – Groupement 3 | Physique-Chimie – Chapitre 6 | maths-sciences-lp.github.io
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
