@@ -198,41 +198,47 @@ $V(x) = 4x^3 - 140x^2 + 1\,200x$ pour $x \in \;]0\,;\,15[$
 \vspace{6pt}
 
 % --- Q1 ---
-\textbf{Q1} \comp{REA} — Tracer la courbe à la calculatrice. \pts{1 pt}
+\textbf{Q1} \comp{REA} — Tracer la courbe à la calculatrice et la reproduire sur le quadrillage. \pts{1 pt}
 
 \begin{corrbox}
 Sur la calculatrice NumWorks (ou GeoGebra), on saisit $f(x) = 4x^3 - 140x^2 + 1200x$ et on trace sur $[0\,;\,15]$.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.55]
+\begin{tikzpicture}[scale=0.48]
+  % Quadrillage
+  \draw[gray!25, very thin] (0,0) grid[step=1] (16,14);
+  \draw[gray!50, thin] (0,0) grid[step=5] (16,14);
   % Axes
-  \draw[->] (0,0) -- (16,0) node[right] {$x$};
-  \draw[->] (0,0) -- (0,12) node[above] {$V$};
+  \draw[->, thick] (0,0) -- (16.5,0) node[right] {$x$ (cm)};
+  \draw[->, thick] (0,0) -- (0,14.5) node[above] {$V$ (cm$^3$)};
   % Graduations x
   \foreach \x in {5,10,15} {
-    \draw (\x,0) -- (\x,-0.2) node[below] {\small\x};
+    \node[below] at (\x,-0.3) {\small\x};
   }
-  % Graduations y (×100)
-  \foreach \y/\label in {2/1000, 4/2000, 6/3000, 8/4000} {
-    \draw (0,\y) -- (-0.2,\y) node[left] {\small\label};
-  }
-  % Courbe V(x) = 4x³ - 140x² + 1200x (échelle y : /500)
-  % Points : V(0)=0, V(3.33)≈3252, V(5)=2500, V(10)=200, V(15)=0
+  % Graduations y (1 unité = 500 cm³)
+  \node[left] at (-0.3,2) {\small 1000};
+  \node[left] at (-0.3,4) {\small 2000};
+  \node[left] at (-0.3,6) {\small 3000};
+  \node[left] at (-0.3,8) {\small 4000};
+  \node[left] at (-0.3,10) {\small 5000};
+  \node[left] at (-0.3,12) {\small 6000};
+  \node[below left] at (0,0) {\small 0};
+  % Courbe V(x) tracée sur le quadrillage
   \draw[thick, bleupro, smooth] plot[domain=0:15, samples=50]
     (\x, {(4*\x*\x*\x - 140*\x*\x + 1200*\x)/500});
   % Maximum
-  \filldraw[rouge] (3.33,6.5) circle (3pt);
-  \node[above right, rouge, font=\small\bfseries] at (3.33,6.5) {max $\approx (3{,}3\,;\,3\,252)$};
-  % Zéros
-  \filldraw (0,0) circle (2pt);
-  \filldraw (15,0) circle (2pt);
+  \filldraw[rouge] (3.33,5.19) circle (3pt);
+  \node[above right, rouge, font=\small\bfseries] at (3.5,5.19) {max $\approx (3{,}3\,;\,2\,593)$};
+  % Pointillés de lecture
+  \draw[dashed, rouge, thin] (3.33,0) -- (3.33,5.19);
+  \draw[dashed, rouge, thin] (0,5.19) -- (3.33,5.19);
 \end{tikzpicture}
 \end{center}
 
-L'élève doit reproduire cette allure avec les axes gradués et le maximum visible.
+L'élève doit reproduire cette allure sur le quadrillage fourni, avec le maximum repéré.
 
 \smallskip
-\textit{Barème : 0,5 pt pour la forme générale correcte + 0,5 pt pour les axes et le maximum repéré.}
+\textit{Barème : 0,5 pt pour la forme générale correcte + 0,5 pt pour le maximum placé.}
 \end{corrbox}
 
 % --- Q2 ---
@@ -275,42 +281,41 @@ Seule solution dans $]0\,;\,15[$ : $\boxed{x = \dfrac{10}{3} \approx 3{,}33 \tex
 \end{corrbox}
 
 % --- Q4 ---
-\textbf{Q4} \comp{ANA} — Tableau de variations et maximum exact. \pts{1 pt}
+\textbf{Q4} \comp{ANA} — Compléter le tableau de variations. Calculer le maximum exact. \pts{1 pt}
 
 \begin{corrbox}
-\textbf{Signe de $V'(x) = 4(3x-10)(x-30)$ sur $]0\,;\,15[$ :}
+\textbf{Tableau de variations complété :}
 
 \begin{center}
-\begin{tabular}{c|ccccc}
-$x$ & $0$ & & $\frac{10}{3}$ & & $15$ \\
+\renewcommand{\arraystretch}{2.2}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$3x - 10$ & $-$ & $-$ & $0$ & $+$ & $+$ \\
-$x - 30$ & $-$ & $-$ & $-$ & $-$ & $-$ \\
+$x$ & $0$ & & $\dfrac{10}{3} \approx 3{,}33$ & & $15$ \\
 \hline
-$V'(x) = 4(\ldots)(\ldots)$ & & $+$ & $0$ & $-$ & \\
+Signe de $V'(x)$ & & $\boldsymbol{+}$ & $0$ & $\boldsymbol{-}$ & \\
 \hline
-$V$ & $0$ & $\nearrow$ & \textbf{max} & $\searrow$ & $0$ \\
+Variations de $V$ & $0$ & $\nearrow$ & $\boldsymbol{\dfrac{70\,000}{27} \approx 2\,593}$ & $\searrow$ & $0$ \\
+\hline
 \end{tabular}
+\renewcommand{\arraystretch}{1}
 \end{center}
 
-\textbf{Calcul du maximum :}
+\textbf{Explication du signe de $V'(x) = 4(3x-10)(x-30)$ :}
+\begin{itemize}[nosep]
+  \item Sur $]0\,;\,15[$ : le facteur $(x-30)$ est toujours négatif (car $x < 15 < 30$)
+  \item Le facteur $(3x-10)$ est négatif pour $x < 10/3$ et positif pour $x > 10/3$
+  \item Donc $V'(x) = 4 \times (\text{nég}) \times (\text{nég}) = +$ pour $x < 10/3$ et $V'(x) = 4 \times (\text{pos}) \times (\text{nég}) = -$ pour $x > 10/3$
+\end{itemize}
+
+\textbf{Calcul du maximum} (à la calculatrice) :
 \[
-V\!\left(\frac{10}{3}\right) = 4 \times \left(\frac{10}{3}\right)^3 - 140 \times \left(\frac{10}{3}\right)^2 + 1\,200 \times \frac{10}{3}
+V\!\left(\frac{10}{3}\right) = 4 \times \left(\frac{10}{3}\right)^3 - 140 \times \left(\frac{10}{3}\right)^2 + 1\,200 \times \frac{10}{3} = \frac{70\,000}{27} \approx \boxed{2\,593 \text{ cm}^3}
 \]
-\[
-= 4 \times \frac{1\,000}{27} - 140 \times \frac{100}{9} + 4\,000 = \frac{4\,000}{27} - \frac{14\,000}{9} + 4\,000
-\]
-\[
-= \frac{4\,000 - 42\,000 + 108\,000}{27} = \frac{70\,000}{27} \approx \boxed{2\,593 \text{ cm}^3}
-\]
+
+\textbf{Confirmation :} la lecture graphique de Q2 donnait $V \approx 2\,500$ à $3\,000$ cm$^3$ pour $x \approx 3{,}3$. Le calcul confirme : $V_{\max} \approx 2\,593$ cm$^3$ en $x = 10/3 \approx 3{,}33$ \checkmark
 
 \smallskip
-\textit{Note : la valeur exacte est $\frac{70\,000}{27} \approx 2\,593$ cm$^3$. La lecture graphique donnait environ 3\,250 — l'écart vient de la difficulté de lecture précise. Les deux ordres de grandeur sont cohérents.}
-
-\textit{Remarque : si l'élève utilise la calculatrice pour évaluer $V(10/3)$, il obtient directement $\approx 2\,593$.}
-
-\smallskip
-\textit{Barème : 0,5 pt pour le tableau de variations + 0,5 pt pour le calcul du maximum.}
+\textit{Barème : 0,5 pt pour le tableau de variations complété + 0,5 pt pour le calcul du maximum.}
 \end{corrbox}
 
 % --- Q5 ---
