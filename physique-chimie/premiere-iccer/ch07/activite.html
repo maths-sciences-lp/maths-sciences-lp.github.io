@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Activité – Pression et force pressante – 1re ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-1ere-iccer.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité – Pression dans un immeuble</h1>
+  <p class="sous-titre">Chapitre 7 | Première Bac Pro (Grpt 1) | Physique-Chimie | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre la relation entre pression et force pressante : \(P = \dfrac{F}{S}\)</li>
+    <li>Convertir des unités de pression (bar, Pa)</li>
+    <li>Découvrir la pression hydrostatique : \(P = \rho \times g \times h\)</li>
+    <li>Calculer la force exercée par un fluide sur une surface : \(F = P \times S\)</li>
+  </ul>
+</div>
+
+<!-- DOCUMENT D'ACCROCHE -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Mehdi, plombier chauffagiste chez AquaConfort à Lyon, intervient dans un immeuble de 5 étages pour vérifier la distribution d'eau. Il mesure la pression au rez-de-chaussée avec un manomètre : le cadran indique <strong>3,0 bar</strong>. Des locataires des étages supérieurs se plaignent d'un faible débit d'eau.</em></p>
+  <p>Mehdi doit prévoir la pression à chaque étage pour déterminer si un surpresseur est nécessaire.</p>
+
+  <table>
+    <thead>
+      <tr><th>Étage</th><th>Hauteur par rapport au RDC</th><th>Pression relevée (bar)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>RDC (rez-de-chaussée)</td><td>0 m</td><td>3,00</td></tr>
+      <tr><td>1er étage</td><td>3 m</td><td>2,71</td></tr>
+      <tr><td>2e étage</td><td>6 m</td><td>2,41</td></tr>
+      <tr><td>3e étage</td><td>9 m</td><td>2,12</td></tr>
+      <tr><td>4e étage</td><td>12 m</td><td>1,82</td></tr>
+      <tr><td>5e étage</td><td>15 m</td><td>?</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Données :</strong></p>
+  <ul>
+    <li>Masse volumique de l'eau : \(\rho = 1\,000 \text{ kg/m}^3\)</li>
+    <li>Intensité de la pesanteur : \(g = 9{,}81 \text{ N/kg}\)</li>
+    <li>Section intérieure d'un tuyau de cuivre : diamètre \(d = 20 \text{ mm}\)</li>
+    <li>Pression minimale recommandée pour un bon fonctionnement : <strong>1,0 bar</strong></li>
+  </ul>
+</div>
+
+<!-- QUESTION 1 -->
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p><strong>a)</strong> Relever la pression mesurée par Mehdi au rez-de-chaussée.</p>
+<p><strong>b)</strong> Relever la pression au 3e étage. À quel étage la pression est-elle la plus élevée ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p><strong>a)</strong> Au rez-de-chaussée, le manomètre indique \(P_{\text{RDC}} = 3{,}00 \text{ bar}\).</p>
+<p><strong>b)</strong> Au 3e étage : \(P_3 = 2{,}12 \text{ bar}\). La pression est la plus élevée au rez-de-chaussée (3,00 bar). Elle diminue quand on monte.</p>
+</div>
+</div>
+
+<!-- QUESTION 2 -->
+<div class="exo">
+<h2>Question 2 <span class="badge-yellow">REA</span></h2>
+<p>Convertir la pression au rez-de-chaussée (3,0 bar) en pascal (Pa).</p>
+<p><em>Rappel : \(1 \text{ bar} = 10^5 \text{ Pa}\)</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p>\(P_{\text{RDC}} = 3{,}0 \text{ bar} = 3{,}0 \times 10^5 = 300\,000 \text{ Pa}\)</p>
+<p>La pression au rez-de-chaussée vaut 300 000 Pa.</p>
+</div>
+</div>
+
+<!-- QUESTION 3 -->
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">ANA</span></h2>
+<p>Observer les valeurs de pression du tableau. De combien la pression diminue-t-elle entre chaque étage (tous les 3 m) ? Que peut-on en déduire ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p>Calcul de la diminution entre chaque étage :</p>
+<ul>
+  <li>RDC → 1er : \(3{,}00 - 2{,}71 = 0{,}29 \text{ bar}\)</li>
+  <li>1er → 2e : \(2{,}71 - 2{,}41 = 0{,}30 \text{ bar}\)</li>
+  <li>2e → 3e : \(2{,}41 - 2{,}12 = 0{,}29 \text{ bar}\)</li>
+  <li>3e → 4e : \(2{,}12 - 1{,}82 = 0{,}30 \text{ bar}\)</li>
+</ul>
+<p>La pression diminue d'environ <strong>0,3 bar par étage</strong> (soit par tranche de 3 m). La diminution est régulière : la pression diminue proportionnellement à la hauteur.</p>
+</div>
+</div>
+
+<!-- QUESTION 4 -->
+<div class="exo">
+<h2>Question 4 <span class="badge-yellow">REA</span></h2>
+<p>La pression hydrostatique exercée par une colonne d'eau de hauteur \(h\) vaut :</p>
+\[P_{\text{hydro}} = \rho \times g \times h\]
+<p>Calculer la perte de pression due à une colonne d'eau de 3 m de hauteur (un étage). Exprimer le résultat en Pa, puis en bar.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p>\(P_{\text{hydro}} = \rho \times g \times h = 1\,000 \times 9{,}81 \times 3 = 29\,430 \text{ Pa}\)</p>
+<p>Conversion en bar : \(\dfrac{29\,430}{100\,000} \approx 0{,}294 \text{ bar} \approx 0{,}29 \text{ bar}\)</p>
+<p>Cela correspond bien aux valeurs observées dans le tableau (environ 0,3 bar par étage).</p>
+</div>
+</div>
+
+<!-- QUESTION 5 -->
+<div class="exo">
+<h2>Question 5 <span class="badge-yellow">REA</span></h2>
+<p>Calculer la pression attendue au 5e étage (hauteur : 15 m au-dessus du RDC).</p>
+<p><em>Méthode : \(P_{5} = P_{\text{RDC}} - \rho \times g \times h\)</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p>Perte de pression sur 15 m :</p>
+\[P_{\text{hydro}} = 1\,000 \times 9{,}81 \times 15 = 147\,150 \text{ Pa} = 1{,}47 \text{ bar}\]
+<p>Pression au 5e étage :</p>
+\[P_5 = 3{,}00 - 1{,}47 = 1{,}53 \text{ bar}\]
+<p>Au 5e étage, la pression serait d'environ <strong>1,53 bar</strong>.</p>
+</div>
+</div>
+
+<!-- QUESTION 6 -->
+<div class="exo">
+<h2>Question 6 <span class="badge-blue">ANA</span></h2>
+<p>Expliquer en une ou deux phrases pourquoi les locataires des étages supérieurs se plaignent d'un débit d'eau plus faible que ceux du rez-de-chaussée.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p>Plus on monte dans l'immeuble, plus l'eau doit vaincre la pesanteur. La pression diminue avec la hauteur car le poids de la colonne d'eau au-dessus du point de mesure diminue. Avec une pression plus faible, le débit aux robinets est réduit : l'eau coule moins fort aux étages élevés qu'au rez-de-chaussée.</p>
+</div>
+</div>
+
+<!-- QUESTION 7 -->
+<div class="exo">
+<h2>Question 7 <span class="badge-yellow">REA</span></h2>
+<p>Mehdi souhaite connaître la force exercée par l'eau sur la section intérieure d'un tuyau de cuivre au rez-de-chaussée.</p>
+<p><strong>a)</strong> Calculer la surface intérieure du tuyau (section circulaire de diamètre \(d = 20 \text{ mm}\)). Exprimer le résultat en m².</p>
+<p><strong>b)</strong> En utilisant la relation \(F = P \times S\), calculer la force pressante exercée par l'eau sur cette section.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p><strong>a)</strong> Le rayon vaut : \(r = \dfrac{d}{2} = \dfrac{20}{2} = 10 \text{ mm} = 0{,}010 \text{ m}\)</p>
+\[S = \pi \times r^2 = \pi \times (0{,}010)^2 = 3{,}14 \times 10^{-4} \text{ m}^2\]
+
+<p><strong>b)</strong> La pression au RDC est \(P = 3{,}0 \text{ bar} = 3{,}0 \times 10^5 \text{ Pa}\).</p>
+\[F = P \times S = 3{,}0 \times 10^5 \times 3{,}14 \times 10^{-4} = 94{,}2 \text{ N}\]
+<p>L'eau exerce une force d'environ <strong>94 N</strong> sur la section du tuyau (soit l'équivalent du poids d'un objet de 9,6 kg).</p>
+</div>
+</div>
+
+<!-- QUESTION 8 -->
+<div class="exo">
+<h2>Question 8 <span class="badge-green">VAL</span></h2>
+<p>Vérifier que les valeurs de pression calculées avec la formule \(P = P_{\text{RDC}} - \rho g h\) sont cohérentes avec les relevés du manomètre au 1er et au 4e étage.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p><strong>1er étage</strong> (\(h = 3 \text{ m}\)) :</p>
+\[P_1 = 3{,}00 - \frac{1\,000 \times 9{,}81 \times 3}{10^5} = 3{,}00 - 0{,}294 = 2{,}71 \text{ bar}\]
+<p>Le relevé indique 2,71 bar. C'est cohérent.</p>
+
+<p><strong>4e étage</strong> (\(h = 12 \text{ m}\)) :</p>
+\[P_4 = 3{,}00 - \frac{1\,000 \times 9{,}81 \times 12}{10^5} = 3{,}00 - 1{,}177 = 1{,}82 \text{ bar}\]
+<p>Le relevé indique 1,82 bar. C'est cohérent. La formule \(P = \rho g h\) permet de prédire correctement la pression à chaque étage.</p>
+</div>
+</div>
+
+<!-- QUESTION 9 -->
+<div class="exo">
+<h2>Question 9 <span class="badge-red">COM</span></h2>
+<p>La pression minimale recommandée pour un bon fonctionnement des robinets est de <strong>1,0 bar</strong>. Mehdi doit rédiger un avis technique pour le syndic de l'immeuble.</p>
+<p><strong>a)</strong> Calculer la hauteur maximale à laquelle la pression reste supérieure ou égale à 1,0 bar.</p>
+<p><strong>b)</strong> Recommander l'installation d'un surpresseur si nécessaire. Justifier.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+<p><strong>a)</strong> On cherche \(h_{\max}\) tel que \(P_{\text{RDC}} - \rho g h_{\max} = 1{,}0 \text{ bar}\).</p>
+\[\rho g h_{\max} = P_{\text{RDC}} - 1{,}0 = 3{,}0 - 1{,}0 = 2{,}0 \text{ bar} = 2{,}0 \times 10^5 \text{ Pa}\]
+\[h_{\max} = \frac{2{,}0 \times 10^5}{1\,000 \times 9{,}81} = \frac{200\,000}{9\,810} \approx 20{,}4 \text{ m}\]
+<p>La pression reste supérieure à 1,0 bar jusqu'à environ 20 m de hauteur.</p>
+
+<p><strong>b)</strong> L'immeuble fait 15 m de haut (5e étage). La pression au 5e étage est de 1,53 bar, ce qui reste au-dessus du seuil de 1,0 bar. Un surpresseur n'est <strong>pas nécessaire</strong> pour cet immeuble de 5 étages. Cependant, si l'immeuble comportait 7 étages ou plus (hauteur supérieure à 20 m), un surpresseur serait recommandé.</p>
+</div>
+</div>
+
+<!-- SYNTHÈSE -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>La <strong>pression</strong> est le quotient de la force pressante par la surface : \(P = \dfrac{F}{S}\)</li>
+    <li>On peut aussi calculer la force pressante : \(F = P \times S\)</li>
+    <li>La <strong>pression hydrostatique</strong> dans un fluide au repos augmente avec la profondeur : \(P = \rho \times g \times h\)</li>
+    <li>Unités : la pression s'exprime en <strong>pascal</strong> (Pa) dans le SI, ou en <strong>bar</strong> dans le métier (\(1 \text{ bar} = 10^5 \text{ Pa}\))</li>
+    <li>Plus on monte en altitude, plus la pression de l'eau diminue dans une installation.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
