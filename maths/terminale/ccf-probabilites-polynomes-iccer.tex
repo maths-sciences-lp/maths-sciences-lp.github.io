@@ -1,0 +1,365 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=2cm}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{lastpage}
+
+% Couleurs
+\definecolor{bleupro}{HTML}{0969da}
+\definecolor{orange}{HTML}{d97706}
+\definecolor{vertpro}{HTML}{2f855a}
+\definecolor{rouge}{HTML}{c53030}
+\definecolor{gris}{HTML}{718096}
+
+% En-tête
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small CCF Mathématiques — Terminale Bac Pro}
+\rhead{\small Probabilités \& Polynômes degré 3}
+\cfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% Boîtes
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{formulairebox}{
+  colback=yellow!5,
+  colframe=orange,
+  title={\textbf{FORMULAIRE — Rappels de cours}},
+  fonttitle=\large\bfseries,
+  breakable
+}
+
+\newtcolorbox{contextebox}{
+  colback=blue!3,
+  colframe=bleupro,
+  leftrule=4pt,
+  rightrule=0pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  boxsep=4pt,
+  left=8pt
+}
+
+\newtcolorbox{reponsebox}[1][4cm]{
+  colback=white,
+  colframe=gris!40,
+  boxrule=0.5pt,
+  arc=3pt,
+  height=#1,
+  valign=top,
+  before skip=4pt,
+  after skip=8pt
+}
+
+\newcommand{\pts}[1]{\hfill\textcolor{gris}{\small\textbf{#1}}}
+\newcommand{\comp}[1]{\colorbox{blue!10}{\scriptsize\textbf{#1}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+% ===== PAGE DE GARDE =====
+\begin{center}
+{\LARGE\bfseries\color{bleupro} Contrôle en Cours de Formation}\\[8pt]
+{\large Mathématiques — Terminale Bac Pro — ICCER}\\[12pt]
+{\Large\bfseries Probabilités \& Fonctions polynômes de degré 3}\\[20pt]
+
+\begin{tabular}{|p{6cm}|p{6cm}|}
+\hline
+\textbf{Durée :} 45 minutes & \textbf{Barème :} /10 points \\
+\hline
+\textbf{Documents :} Calculatrice NumWorks autorisée & \textbf{Formulaire :} ci-dessous \\
+\hline
+\textbf{Nom :} \dotfill & \textbf{Prénom :} \dotfill \\
+\hline
+\textbf{Classe :} \dotfill & \textbf{Date :} \dotfill \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{10pt}
+
+% ===== FORMULAIRE =====
+\begin{formulairebox}
+
+\subsection*{Probabilités}
+
+\begin{tabular}{>{\bfseries}p{5cm} p{8.5cm}}
+\toprule
+\textbf{Notion} & \textbf{Formule / Règle} \\
+\midrule
+Probabilité d'un chemin & Multiplier les probabilités le long des branches \\[4pt]
+Probabilités totales & $P(B) = P(A) \times P_A(B) + P(\overline{A}) \times P_{\overline{A}}(B)$ \\[4pt]
+Probabilité conditionnelle & $P_A(B) = \dfrac{P(A \cap B)}{P(A)}$ \quad avec $P(A) \neq 0$ \\[6pt]
+Événement contraire & $P(\overline{A}) = 1 - P(A)$ \\[4pt]
+Indépendance & $A$ et $B$ indépendants $\Leftrightarrow$ $P(A \cap B) = P(A) \times P(B)$ \\[4pt]
+\bottomrule
+\end{tabular}
+
+\smallskip
+\textbf{Arbre pondéré :} la somme des probabilités des branches issues d'un même nœud vaut toujours 1.
+
+\subsection*{Fonctions polynômes de degré 3}
+
+\begin{tabular}{>{\bfseries}p{5cm} p{8.5cm}}
+\toprule
+\textbf{Notion} & \textbf{Formule / Règle} \\
+\midrule
+Forme générale & $f(x) = ax^3 + bx^2 + cx + d$ \quad ($a \neq 0$) \\[4pt]
+Dérivée & $f'(x) = 3ax^2 + 2bx + c$ \\[4pt]
+Sens de variation & $f'(x) > 0 \Rightarrow f$ croissante \quad $f'(x) < 0 \Rightarrow f$ décroissante \\[4pt]
+Extremum local & Si $f'$ change de signe en $x_0$ : extremum en $(x_0\,;\,f(x_0))$ \\[4pt]
+Nombre de solutions & Exploiter le tableau de variations pour $f(x) = c$ \\[4pt]
+\bottomrule
+\end{tabular}
+
+\smallskip
+\textbf{Attention :} $f'(x_0) = 0$ ne suffit pas pour conclure à un extremum (ex : fonction cube en $x = 0$).
+
+\end{formulairebox}
+
+\newpage
+
+% ================================================================
+\section*{Exercice 1 — Contrôle qualité en génie climatique \pts{5 points}}
+% ================================================================
+
+\begin{contextebox}
+Une entreprise de génie climatique fabrique des raccords en cuivre pour circuits de chauffage. Chaque raccord passe deux contrôles successifs.
+
+\textbf{Contrôle 1 — Étanchéité :} 10\% des raccords présentent un défaut d'étanchéité.
+
+\textbf{Contrôle 2 — Filetage :}
+\begin{itemize}[nosep]
+  \item Si le raccord a un défaut d'étanchéité, la probabilité d'avoir aussi un défaut de filetage est 0,25.
+  \item Si le raccord n'a pas de défaut d'étanchéité, la probabilité d'avoir un défaut de filetage est 0,04.
+\end{itemize}
+
+On note : $E$ = ``le raccord a un défaut d'étanchéité'' et $F$ = ``le raccord a un défaut de filetage''.
+\end{contextebox}
+
+\vspace{6pt}
+
+\textbf{Q1} \comp{APP} — Traduire les données de l'énoncé en probabilités : donner les valeurs de $P(E)$, $P(\overline{E})$, $P_E(F)$ et $P_{\overline{E}}(F)$. \pts{1 pt}
+
+\begin{reponsebox}[3cm]
+\dotfill
+
+\dotfill
+
+\dotfill
+\end{reponsebox}
+
+\textbf{Q2} \comp{REA} — Compléter l'arbre de probabilités ci-dessous. \pts{1 pt}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+  % Racine
+  \node[circle, fill=black, inner sep=1.5pt] (R) at (0,0) {};
+  % Niveau 1
+  \node (D) at (3,1.5) {$E$};
+  \node (Db) at (3,-1.5) {$\overline{E}$};
+  \draw[-] (R) -- (D) node[midway, above, sloped] {\dotfill};
+  \draw[-] (R) -- (Db) node[midway, below, sloped] {\dotfill};
+  % Niveau 2 depuis D
+  \node (DS) at (6.5,2.3) {$F$};
+  \node (DSb) at (6.5,0.7) {$\overline{F}$};
+  \draw[-] (D) -- (DS) node[midway, above, sloped] {\dotfill};
+  \draw[-] (D) -- (DSb) node[midway, below, sloped] {\dotfill};
+  % Niveau 2 depuis Db
+  \node (DbS) at (6.5,-0.7) {$F$};
+  \node (DbSb) at (6.5,-2.3) {$\overline{F}$};
+  \draw[-] (Db) -- (DbS) node[midway, above, sloped] {\dotfill};
+  \draw[-] (Db) -- (DbSb) node[midway, below, sloped] {\dotfill};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Q3} \comp{REA} — Calculer $P(E \cap F)$ et $P(\overline{E} \cap F)$. \pts{1 pt}
+
+\begin{reponsebox}[3cm]
+\dotfill
+
+\dotfill
+
+\dotfill
+\end{reponsebox}
+
+\textbf{Q4} \comp{ANA} — En utilisant la formule des probabilités totales, calculer la probabilité qu'un raccord pris au hasard ait un défaut de filetage. \pts{1 pt}
+
+\begin{reponsebox}[3cm]
+\dotfill
+
+\dotfill
+
+\dotfill
+\end{reponsebox}
+
+\textbf{Q5} \comp{ANA} — Sur une production de 500 raccords, combien peut-on s'attendre à avoir avec un défaut de filetage ? Le responsable qualité considère que le taux est acceptable si moins de 5\% des raccords sont défectueux en filetage. Est-ce le cas ? \pts{1 pt}
+
+\begin{reponsebox}[3cm]
+\dotfill
+
+\dotfill
+
+\dotfill
+\end{reponsebox}
+
+\newpage
+
+% ================================================================
+\section*{Exercice 2 — Optimisation du volume d'un bac de rangement \pts{5 points}}
+% ================================================================
+
+\begin{contextebox}
+Un installateur thermique fabrique un bac de récupération des condensats à partir d'une plaque carrée de zinc de 30 cm de côté. Il découpe un carré de côté $x$ (en cm) à chaque coin, puis plie les bords vers le haut.
+
+Le volume du bac obtenu est :
+\[V(x) = x(30 - 2x)^2 = 4x^3 - 120x^2 + 900x \quad \text{pour } x \in \;]0\,;\,15[\]
+\end{contextebox}
+
+% Schéma plaque
+\begin{center}
+\begin{tikzpicture}[scale=0.12]
+  % Plaque
+  \draw[fill=blue!5, thick] (0,0) rectangle (30,30);
+  % Carrés découpés
+  \draw[fill=red!10, thick, dashed] (0,0) rectangle (5,5);
+  \draw[fill=red!10, thick, dashed] (25,0) rectangle (30,5);
+  \draw[fill=red!10, thick, dashed] (0,25) rectangle (5,30);
+  \draw[fill=red!10, thick, dashed] (25,25) rectangle (30,30);
+  % Lignes de pliage
+  \draw[dashed, blue!60] (5,0) -- (5,30);
+  \draw[dashed, blue!60] (25,0) -- (25,30);
+  \draw[dashed, blue!60] (0,5) -- (30,5);
+  \draw[dashed, blue!60] (0,25) -- (30,25);
+  % Cotes
+  \node[below] at (15,0) {\small 30 cm};
+  \node[left] at (0,15) {\small 30 cm};
+  \node at (2.5,2.5) {\small $x$};
+  \node at (15,15) {\small $30-2x$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Q1} \comp{REA} — \textbf{À la calculatrice (NumWorks) ou sur GeoGebra}, tracer la courbe de $V$ sur l'intervalle $[0\,;\,15]$. Reproduire ci-dessous l'allure de la courbe obtenue. Placer le maximum. \pts{1 pt}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.48]
+  % Quadrillage
+  \draw[gray!25, very thin] (0,0) grid[step=1] (16,14);
+  \draw[gray!50, thin] (0,0) grid[step=5] (16,14);
+  % Axes
+  \draw[->, thick] (0,0) -- (16.5,0) node[right] {$x$ (cm)};
+  \draw[->, thick] (0,0) -- (0,14.5) node[above] {$V$ (cm$^3$)};
+  % Graduations x
+  \foreach \x in {1,2,...,15} {
+    \draw (\x,0) -- (\x,-0.15);
+  }
+  \foreach \x in {5,10,15} {
+    \node[below] at (\x,-0.3) {\small\x};
+  }
+  % Graduations y (1 unité = 500 cm³)
+  \foreach \y in {1,2,...,13} {
+    \draw (0,\y) -- (-0.15,\y);
+  }
+  \node[left] at (-0.3,2) {\small 500};
+  \node[left] at (-0.3,4) {\small 1000};
+  \node[left] at (-0.3,6) {\small 1500};
+  \node[left] at (-0.3,8) {\small 2000};
+  \node[left] at (-0.3,10) {\small 2500};
+  \node[left] at (-0.3,12) {\small 3000};
+  % Origine
+  \node[below left] at (0,0) {\small 0};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Q2} \comp{APP} — \textbf{Par lecture graphique}, donner une valeur approchée de $x$ pour laquelle le volume semble maximal. Lire la valeur approchée de ce maximum. \pts{1 pt}
+
+\begin{reponsebox}[2.5cm]
+\dotfill
+
+\dotfill
+\end{reponsebox}
+
+\textbf{Q3} \comp{REA} — Calculer la dérivée $V'(x)$. Vérifier que $V'(x) = 12(x - 5)(x - 15)$. En déduire les solutions de $V'(x) = 0$ sur $]0\,;\,15[$. \pts{1 pt}
+
+\begin{reponsebox}[3.5cm]
+\dotfill
+
+\dotfill
+
+\dotfill
+
+\dotfill
+\end{reponsebox}
+
+\textbf{Q4} \comp{ANA} — Compléter le tableau de variations de $V$ sur $]0\,;\,15[$. Calculer la valeur exacte du maximum. Ce résultat confirme-t-il la lecture graphique de Q2 ? \pts{1 pt}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{1.2cm}|>{\centering\arraybackslash}m{1.8cm}|>{\centering\arraybackslash}m{1.2cm}|>{\centering\arraybackslash}m{1.8cm}|>{\centering\arraybackslash}m{1.2cm}|}
+\hline
+$x$ & $0$ & & \ldots\ldots & & $15$ \\
+\hline
+Signe de $(x - 5)$ & & & $0$ & & \\
+\hline
+Signe de $(x - 15)$ & & & & & $0$ \\
+\hline
+Signe de $V'(x)$ & & \ldots\ldots & $0$ & \ldots\ldots & \\
+\hline
+& & & & & \\[6pt]
+Variations de $V$ & \ldots & & \ldots & & \ldots \\[6pt]
+& & & & & \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+\vspace{4pt}
+Valeur exacte du maximum : $V(\ldots\ldots) = $ \dotfill
+
+\vspace{4pt}
+Confirmation lecture graphique : \dotfill
+
+\textbf{Q5} \comp{COM} — Conclure : donner la valeur de $x$ qui maximise le volume, le volume maximal, et les dimensions du bac (longueur, largeur, hauteur). L'installateur a besoin d'un bac d'au moins 1\,500 cm$^3$ pour récupérer les condensats. La contrainte est-elle respectée ? \pts{1 pt}
+
+\begin{reponsebox}[4cm]
+\dotfill
+
+\dotfill
+
+\dotfill
+
+\dotfill
+
+\dotfill
+\end{reponsebox}
+
+\vfill
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Exercice} & \textbf{Thème} & \textbf{Questions} & \textbf{Points} \\
+\hline
+1 & Probabilités (arbre, probas totales) & Q1 à Q5 & /5 \\
+\hline
+2 & Polynôme degré 3 (dérivée, variations, optimisation) & Q1 à Q5 & /5 \\
+\hline
+\multicolumn{3}{|r|}{\textbf{Total}} & \textbf{/10} \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
