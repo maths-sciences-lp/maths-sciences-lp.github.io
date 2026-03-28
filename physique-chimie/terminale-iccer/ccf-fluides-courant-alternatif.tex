@@ -133,101 +133,84 @@ Facteur de puissance & $\cos\varphi = \dfrac{P}{S}$ & (sans unité) \\[6pt]
 \newpage
 
 % ================================================================
-\section*{Exercice 1 — Dimensionnement d'un réseau de chauffage \pts{5 points}}
+\section*{Exercice 1 — TP numérique : dimensionner un réseau de chauffage \pts{5 points}}
 % ================================================================
 
 \begin{contextebox}
-Un installateur thermique dimensionne le réseau d'eau chaude d'un bâtiment. Le circulateur de la chaudière fournit un débit volumique $Q_v = 1{,}8$ m³/h. La canalisation principale a un diamètre $d_1 = 40$ mm. Elle se divise ensuite en deux branches identiques de diamètre $d_2 = 25$ mm chacune (le débit se répartit à parts égales).
-
-La vitesse dans les canalisations doit rester entre 0,5 et 1,5 m/s pour limiter le bruit et l'usure.
+Un installateur thermique doit dimensionner le réseau d'eau chaude d'un bâtiment. Il dispose d'une \textbf{simulation numérique} pour tester différentes configurations avant de commander les canalisations.
 
 \medskip
-\textbf{Simulation numérique disponible sur ordinateur ou tablette :}\\
-\texttt{https://maths-sciences-lp.github.io/simulations/debit-fluide.html}\\
-\textit{Utilisez la simulation pour vérifier vos calculs et répondre à la question Q5.}
+\textbf{Accès à la simulation :} \texttt{https://maths-sciences-lp.github.io/simulations/debit-fluide.html}
+
+\medskip
+\textbf{Rappel professionnel :} la vitesse de l'eau doit rester entre \textbf{0,5 m/s} (sinon dépôts) et \textbf{1,5 m/s} (sinon bruit et érosion).
 \end{contextebox}
 
-% Schéma
+\vspace{6pt}
+\textbf{Q1} \comp{APP} — \textbf{Manipulation :} ouvrir la simulation. Régler le débit à $Q_v = 1{,}8$ m³/h et le diamètre principal à $d_1 = 40$ mm. Relever les valeurs affichées et compléter le tableau. \pts{1 pt}
+
 \begin{center}
-\begin{tikzpicture}[scale=0.8, every node/.style={font=\small}]
-  % Chaudière
-  \draw[fill=red!10, rounded corners] (0,0.5) rectangle (2,2.5);
-  \node[align=center] at (1,1.5) {\textbf{Chaudière}\\$Q_v = 1{,}8$ m³/h};
-  % Canalisation principale
-  \draw[very thick, bleupro] (2,1.5) -- (5,1.5);
-  \node[above, bleupro] at (3.5,1.5) {$d_1 = 40$ mm};
-  % Division
-  \filldraw[bleupro] (5,1.5) circle (3pt);
-  % Branche haute
-  \draw[thick, vertpro] (5,1.5) -- (5,2.5) -- (8,2.5);
-  \node[above, vertpro] at (6.5,2.5) {$d_2 = 25$ mm};
-  \node[right] at (8,2.5) {Branche 1};
-  % Branche basse
-  \draw[thick, vertpro] (5,1.5) -- (5,0.5) -- (8,0.5);
-  \node[below, vertpro] at (6.5,0.5) {$d_2 = 25$ mm};
-  \node[right] at (8,0.5) {Branche 2};
-  % Flèches débit
-  \draw[->, thick] (2.5,1.8) -- (3.5,1.8);
-  \draw[->, thick] (5.5,2.8) -- (6.5,2.8);
-  \draw[->, thick] (5.5,0.2) -- (6.5,0.2);
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{4cm}|}
+\hline
+\textbf{Grandeur} & \textbf{Valeur lue} \\
+\hline
+Section $S_1$ & \dotfill \\
+\hline
+Vitesse $v_1$ & \dotfill \\
+\hline
+Norme respectée ? & \dotfill \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
 \end{center}
 
-\textbf{Q1} \comp{APP} — Convertir le débit volumique $Q_v = 1{,}8$ m³/h en m³/s. \pts{1 pt}
+\textbf{Q2} \comp{REA} — \textbf{Vérification par le calcul :} retrouver la valeur de $v_1$ à partir de la formule $Q_v = S \times v$. Détailler les étapes. \pts{1 pt}
+
+\begin{reponsebox}[3.5cm]
+\dotfill
+
+\dotfill
+
+\dotfill
+
+\dotfill
+\end{reponsebox}
+
+\textbf{Q3} \comp{ANA} — \textbf{Manipulation :} régler le diamètre des branches à $d_2 = 25$ mm. Relever la vitesse $v_2$ dans chaque branche. La norme est-elle respectée dans les branches ? \pts{1 pt}
 
 \begin{reponsebox}[2.5cm]
-\dotfill
+$v_2$ lue dans la simulation = \dotfill m/s
 
-\dotfill
+Norme respectée ? \dotfill
 \end{reponsebox}
 
-\textbf{Q2} \comp{REA} — Calculer la section $S_1$ de la canalisation principale ($d_1 = 40$ mm). \pts{1 pt}
+\textbf{Q4} \comp{ANA} — \textbf{Manipulation :} la vitesse $v_1$ dans la canalisation principale est trop faible. En utilisant la simulation, faire \textbf{varier le diamètre $d_1$} jusqu'à obtenir une vitesse $v_1$ comprise entre 0,5 et 1,5 m/s. Compléter le tableau ci-dessous avec 3 essais. \pts{1 pt}
 
-\begin{reponsebox}[3cm]
-\dotfill
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.5cm}|}
+\hline
+\textbf{Essai} & \textbf{Diamètre $d_1$} & \textbf{Vitesse $v_1$} & \textbf{Conforme ?} \\
+\hline
+1 & 40 mm & \ldots\ldots m/s & \ldots\ldots \\
+\hline
+2 & \ldots\ldots mm & \ldots\ldots m/s & \ldots\ldots \\
+\hline
+3 & \ldots\ldots mm & \ldots\ldots m/s & \ldots\ldots \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
 
-\dotfill
+\textbf{Q5} \comp{COM} — Quel diamètre $d_1$ choisissez-vous pour la canalisation principale ? Justifier votre choix en tenant compte de la norme de vitesse et du coût (un tuyau plus petit coûte moins cher). \pts{1 pt}
 
-\dotfill
-\end{reponsebox}
+\begin{reponsebox}[3.5cm]
+Diamètre choisi : $d_1$ = \dotfill mm
 
-\textbf{Q3} \comp{REA} — Calculer la vitesse $v_1$ de l'eau dans la canalisation principale. \pts{1 pt}
-
-\begin{reponsebox}[3cm]
-\dotfill
-
-\dotfill
-
-\dotfill
-\end{reponsebox}
-
-\textbf{Q4} \comp{ANA} — Le débit se partage en deux branches identiques. Calculer le débit dans chaque branche, puis la vitesse $v_2$ dans une branche ($d_2 = 25$ mm). \pts{1 pt}
-
-\begin{reponsebox}[4cm]
-\dotfill
-
-\dotfill
+Justification : \dotfill
 
 \dotfill
-
-\dotfill
-
-\dotfill
-\end{reponsebox}
-
-\textbf{Q5} \comp{VAL} — \textbf{À l'aide de la simulation numérique :}
-\begin{enumerate}[nosep, label=\alph*)]
-  \item Vérifier vos résultats de Q3 et Q4 en réglant les curseurs sur $Q_v = 1{,}8$ m³/h, $d_1 = 40$ mm et $d_2 = 25$ mm. Les vitesses affichées confirment-elles vos calculs ?
-  \item La vitesse $v_1$ respecte-t-elle la norme (0,5 à 1,5 m/s) ? Si non, utilisez la simulation pour trouver un diamètre $d_1$ qui donne une vitesse conforme. Noter la valeur trouvée.
-\end{enumerate}
-\pts{1 pt}
-
-\begin{reponsebox}[4cm]
-a) Vérification : $v_1$ simulation = \dotfill \quad $v_2$ simulation = \dotfill
-
-\dotfill
-
-b) Diamètre $d_1$ corrigé = \dotfill mm \quad $\to$ vitesse $v_1$ = \dotfill m/s
 
 \dotfill
 \end{reponsebox}
