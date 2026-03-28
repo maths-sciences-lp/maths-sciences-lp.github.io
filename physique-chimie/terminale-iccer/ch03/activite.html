@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Activite – Moteur electrique – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Activite &ndash; Choisir un moteur pour un compresseur de pompe a chaleur</h1>
+  <p class="sous-titre">Chapitre 3 | Terminale Bac Pro (Grpt 1) | Physique &ndash; Electricite | &#9201; 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Lire et exploiter la plaque signaletique d'un moteur electrique</li>
+    <li>Calculer la puissance absorbee, la puissance utile et le rendement</li>
+    <li>Comprendre la relation entre puissance electrique et puissance mecanique</li>
+    <li>Comparer des moteurs pour choisir le plus adapte a une installation</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p>
+    <em>Romain est installateur de pompes a chaleur chez <strong>ThermAvenir</strong>, une entreprise specialisee dans les systemes de chauffage a Toulouse.</em>
+  </p>
+  <p>
+    Il doit remplacer le moteur du compresseur d'une pompe a chaleur air/eau de 12 kW thermiques. Le compresseur necessite une puissance mecanique sur l'arbre d'au moins <strong>3 800 W</strong>. Romain dispose de trois moteurs asynchrones triphases et doit choisir le plus adapte.
+  </p>
+
+  <h3>Fiches techniques des moteurs</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Caracteristique</th>
+        <th>Moteur A</th>
+        <th>Moteur B</th>
+        <th>Moteur C</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Marque / modele</strong></td>
+        <td>ThermoMotor TM-4</td>
+        <td>EcoElec EE-5</td>
+        <td>VarPump VP-4.5</td>
+      </tr>
+      <tr>
+        <td><strong>Type</strong></td>
+        <td>Asynchrone triphase</td>
+        <td>Asynchrone triphase</td>
+        <td>Asynchrone triphase</td>
+      </tr>
+      <tr>
+        <td><strong>Tension nominale U (V)</strong></td>
+        <td>400</td>
+        <td>400</td>
+        <td>400</td>
+      </tr>
+      <tr>
+        <td><strong>Courant nominal I (A)</strong></td>
+        <td>8,5</td>
+        <td>9,2</td>
+        <td>8,0</td>
+      </tr>
+      <tr>
+        <td><strong>Facteur de puissance cos&thinsp;&phi;</strong></td>
+        <td>0,82</td>
+        <td>0,85</td>
+        <td>0,83</td>
+      </tr>
+      <tr>
+        <td><strong>Rendement &eta;</strong></td>
+        <td>0,87 (87 %)</td>
+        <td>0,91 (91 %)</td>
+        <td>0,85 (85 %)</td>
+      </tr>
+      <tr>
+        <td><strong>Vitesse nominale n (tr/min)</strong></td>
+        <td>2 870</td>
+        <td>2 890</td>
+        <td>2 850</td>
+      </tr>
+      <tr>
+        <td><strong>Nombre de paires de poles p</strong></td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td><strong>Classe energetique</strong></td>
+        <td>IE2</td>
+        <td>IE3</td>
+        <td>IE2</td>
+      </tr>
+      <tr>
+        <td><strong>Prix</strong></td>
+        <td>420 &euro;</td>
+        <td>580 &euro;</td>
+        <td>390 &euro;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Rappel :</strong> pour un moteur asynchrone triphase, la puissance absorbee se calcule par \(P_a = \sqrt{3} \times U \times I \times \cos\varphi\).</p>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p>a) Quelle est la fonction d'un moteur electrique dans une installation de pompe a chaleur ?</p>
+<p>b) Quelles grandeurs peut-on lire sur la plaque signaletique d'un moteur ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Le moteur electrique entraine le <strong>compresseur</strong> de la pompe a chaleur. Il transforme l'energie electrique recue du reseau en energie mecanique (rotation de l'arbre) pour comprimer le fluide frigorigene.</p>
+  <p><strong>b)</strong> Sur la plaque signaletique, on lit : la tension nominale (U), le courant nominal (I), la frequence (f), le facteur de puissance (cos&thinsp;&phi;), la vitesse de rotation (n), le rendement (&eta;), la puissance nominale, le nombre de poles.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 2 <span class="badge-green">REA</span></h2>
+<p>Calculer la <strong>puissance absorbee</strong> P<sub>a</sub> de chaque moteur a l'aide de la formule :</p>
+<p>\[ P_a = \sqrt{3} \times U \times I \times \cos\varphi \]</p>
+<p>Completer le tableau (arrondir au watt).</p>
+<table>
+  <thead>
+    <tr><th>Moteur</th><th>Calcul</th><th>P<sub>a</sub> (W)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A</td><td>...</td><td>...</td></tr>
+    <tr><td>B</td><td>...</td><td>...</td></tr>
+    <tr><td>C</td><td>...</td><td>...</td></tr>
+  </tbody>
+</table>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>\(\sqrt{3} \approx 1{,}732\)</p>
+  <table>
+    <thead>
+      <tr><th>Moteur</th><th>Calcul</th><th>P<sub>a</sub> (W)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>\(1{,}732 \times 400 \times 8{,}5 \times 0{,}82\)</td><td><strong>4 829 W</strong></td></tr>
+      <tr><td>B</td><td>\(1{,}732 \times 400 \times 9{,}2 \times 0{,}85\)</td><td><strong>5 417 W</strong></td></tr>
+      <tr><td>C</td><td>\(1{,}732 \times 400 \times 8{,}0 \times 0{,}83\)</td><td><strong>4 601 W</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 3 <span class="badge-green">REA</span></h2>
+<p>Le rendement relie la puissance utile (mecanique) a la puissance absorbee (electrique) : \(\eta = \dfrac{P_u}{P_a}\)</p>
+<p>En deduire la <strong>puissance utile</strong> P<sub>u</sub> de chaque moteur : \(P_u = \eta \times P_a\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <table>
+    <thead>
+      <tr><th>Moteur</th><th>Calcul</th><th>P<sub>u</sub> (W)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>\(0{,}87 \times 4\,829\)</td><td><strong>4 201 W</strong></td></tr>
+      <tr><td>B</td><td>\(0{,}91 \times 5\,417\)</td><td><strong>4 929 W</strong></td></tr>
+      <tr><td>C</td><td>\(0{,}85 \times 4\,601\)</td><td><strong>3 911 W</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 4 <span class="badge-green">VAL</span></h2>
+<p>Le compresseur necessite une puissance mecanique minimale de <strong>3 800 W</strong> sur l'arbre.</p>
+<p>a) Quels moteurs satisfont ce critere ?</p>
+<p>b) Lequel ne le satisfait pas tout a fait ? Expliquer le risque.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Les trois moteurs fournissent une puissance utile superieure a 3 800 W :</p>
+  <ul>
+    <li>Moteur A : 4 201 W &gt; 3 800 W &#10003;</li>
+    <li>Moteur B : 4 929 W &gt; 3 800 W &#10003;</li>
+    <li>Moteur C : 3 911 W &gt; 3 800 W &#10003;</li>
+  </ul>
+  <p><strong>b)</strong> Le moteur C est le plus juste (3 911 W, seulement 111 W de marge). En conditions reelles (temperature elevee, vieillissement), son rendement pourrait baisser et la puissance mecanique devenir insuffisante. On ne dispose pas de marge de securite suffisante.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 5 <span class="badge-green">REA</span></h2>
+<p>Calculer les <strong>pertes</strong> de chaque moteur : \(P_{\text{pertes}} = P_a - P_u\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <table>
+    <thead>
+      <tr><th>Moteur</th><th>P<sub>pertes</sub> = P<sub>a</sub> - P<sub>u</sub></th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A</td><td>4 829 - 4 201 = <strong>628 W</strong></td></tr>
+      <tr><td>B</td><td>5 417 - 4 929 = <strong>488 W</strong></td></tr>
+      <tr><td>C</td><td>4 601 - 3 911 = <strong>690 W</strong></td></tr>
+    </tbody>
+  </table>
+  <p>Le moteur B a les pertes les plus faibles grace a son rendement superieur (91 %).</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 6 <span class="badge-blue">ANA</span></h2>
+<p>La <strong>vitesse de synchronisme</strong> d'un moteur asynchrone se calcule par : \(n_s = \dfrac{60 \times f}{p}\)</p>
+<p>ou f = 50 Hz (frequence du reseau) et p = nombre de paires de poles.</p>
+<p>a) Calculer la vitesse de synchronisme n<sub>s</sub> pour ces moteurs (p = 1).</p>
+<p>b) Verifier que la vitesse nominale de chaque moteur est inferieure a n<sub>s</sub>. Expliquer pourquoi on parle de moteur &laquo; asynchrone &raquo;.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(n_s = \dfrac{60 \times 50}{1} = \mathbf{3\,000 \text{ tr/min}}\)</p>
+  <p><strong>b)</strong></p>
+  <ul>
+    <li>Moteur A : 2 870 &lt; 3 000 tr/min &#10003;</li>
+    <li>Moteur B : 2 890 &lt; 3 000 tr/min &#10003;</li>
+    <li>Moteur C : 2 850 &lt; 3 000 tr/min &#10003;</li>
+  </ul>
+  <p>Le rotor tourne toujours un peu moins vite que le champ magnetique tournant (vitesse de synchronisme). Ce decalage est appele <strong>glissement</strong>. C'est ce glissement qui cree le couple moteur. Le moteur est dit &laquo; asynchrone &raquo; car il n'est pas synchrone avec le champ tournant.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 7 <span class="badge-green">REA</span></h2>
+<p>Le couple electromagnetique d'un moteur se calcule a partir de la puissance utile et de la vitesse angulaire :</p>
+<p>\[ P_u = T_{em} \times \omega \qquad \text{avec} \qquad \omega = \frac{2\pi \times n}{60} \]</p>
+<p>Calculer la vitesse angulaire &omega; et le couple T<sub>em</sub> pour le moteur B (P<sub>u</sub> = 4 929 W, n = 2 890 tr/min).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>Vitesse angulaire :</strong></p>
+  <p>\(\omega = \dfrac{2\pi \times 2\,890}{60} = \dfrac{18\,158}{60} \approx \mathbf{302{,}6 \text{ rad/s}}\)</p>
+  <p><strong>Couple :</strong></p>
+  <p>\(T_{em} = \dfrac{P_u}{\omega} = \dfrac{4\,929}{302{,}6} \approx \mathbf{16{,}3 \text{ N&sdot;m}}\)</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 8 <span class="badge-blue">ANA</span></h2>
+<p>Romain doit aussi estimer le cout de fonctionnement annuel. La pompe a chaleur fonctionne en moyenne 1 800 heures par an. Le tarif d'electricite est de 0,22 &euro;/kWh.</p>
+<p>a) Calculer la consommation annuelle en kWh pour les moteurs A et B.</p>
+<p>b) Calculer l'economie annuelle realisee en choisissant le moteur B plutot que le moteur A.</p>
+<p>c) Le moteur B coute 160 &euro; de plus que le moteur A. En combien d'annees le surcout est-il amorti ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong></p>
+  <ul>
+    <li>Moteur A : \(E_A = 4{,}829 \times 1\,800 = \mathbf{8\,692 \text{ kWh/an}}\)</li>
+    <li>Moteur B : \(E_B = 5{,}417 \times 1\,800 = \mathbf{9\,751 \text{ kWh/an}}\)</li>
+  </ul>
+  <p><em>Attention :</em> le moteur B consomme plus de puissance absorbee mais fournit plus de puissance utile. Pour comparer a puissance utile egale (3 800 W necessaires), il faut raisonner sur la puissance absorbee necessaire pour fournir 3 800 W :</p>
+  <ul>
+    <li>Moteur A : \(P_a = \frac{3\,800}{0{,}87} = 4\,368 \text{ W}\) &rarr; \(E_A = 4{,}368 \times 1\,800 = \mathbf{7\,862 \text{ kWh}}\)</li>
+    <li>Moteur B : \(P_a = \frac{3\,800}{0{,}91} = 4\,176 \text{ W}\) &rarr; \(E_B = 4{,}176 \times 1\,800 = \mathbf{7\,517 \text{ kWh}}\)</li>
+  </ul>
+  <p><strong>b)</strong> Economie : \((7\,862 - 7\,517) \times 0{,}22 = 345 \times 0{,}22 \approx \mathbf{76 \text{ euros/an}}\)</p>
+  <p><strong>c)</strong> Amortissement : \(\frac{160}{76} \approx \mathbf{2{,}1 \text{ ans}}\). Le surcout est amorti en un peu plus de 2 ans.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 9 <span class="badge-green">VAL</span></h2>
+<p>Completer le bilan comparatif et entourer le moteur recommande.</p>
+<table>
+  <thead>
+    <tr><th>Critere</th><th>Moteur A</th><th>Moteur B</th><th>Moteur C</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Puissance utile P<sub>u</sub></td><td>4 201 W</td><td>4 929 W</td><td>3 911 W</td></tr>
+    <tr><td>Marge / besoin (3 800 W)</td><td>...</td><td>...</td><td>...</td></tr>
+    <tr><td>Rendement &eta;</td><td>87 %</td><td>91 %</td><td>85 %</td></tr>
+    <tr><td>Pertes</td><td>628 W</td><td>488 W</td><td>690 W</td></tr>
+    <tr><td>Classe energetique</td><td>IE2</td><td>IE3</td><td>IE2</td></tr>
+    <tr><td>Cout annuel (a Pu egale)</td><td>...</td><td>...</td><td>...</td></tr>
+    <tr><td><strong>Recommandation</strong></td><td>...</td><td>...</td><td>...</td></tr>
+  </tbody>
+</table>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <table>
+    <thead>
+      <tr><th>Critere</th><th>Moteur A</th><th>Moteur B</th><th>Moteur C</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Puissance utile P<sub>u</sub></td><td>4 201 W</td><td>4 929 W</td><td>3 911 W</td></tr>
+      <tr><td>Marge / besoin</td><td>+401 W (10,6 %)</td><td>+1 129 W (29,7 %)</td><td>+111 W (2,9 %)</td></tr>
+      <tr><td>Rendement &eta;</td><td>87 %</td><td><strong>91 %</strong></td><td>85 %</td></tr>
+      <tr><td>Pertes</td><td>628 W</td><td><strong>488 W</strong></td><td>690 W</td></tr>
+      <tr><td>Classe energetique</td><td>IE2</td><td><strong>IE3</strong></td><td>IE2</td></tr>
+      <tr><td>Cout annuel (a Pu egale)</td><td>1 730 &euro;</td><td><strong>1 654 &euro;</strong></td><td>1 777 &euro;</td></tr>
+      <tr><td><strong>Recommandation</strong></td><td></td><td><strong>RECOMMANDE</strong></td><td>Marge insuffisante</td></tr>
+    </tbody>
+  </table>
+  <p>Le <strong>moteur B</strong> est recommande : meilleur rendement, marge confortable, pertes les plus faibles, classe IE3 et surcout amorti en 2 ans.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 10 <span class="badge-yellow">COM</span></h2>
+<p>Rediger un court paragraphe (4-5 lignes) expliquant a un client pourquoi il est preferable de choisir un moteur avec un meilleur rendement, meme s'il est plus cher a l'achat.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><em>Exemple de reponse :</em></p>
+  <p>Un moteur a haut rendement transforme une plus grande part de l'electricite absorbee en travail mecanique utile. Les pertes (chaleur dissipee) sont reduites, ce qui diminue la consommation electrique annuelle. Meme si le moteur coute plus cher a l'achat, l'economie sur la facture d'electricite permet d'amortir le surcout en quelques annees. Sur la duree de vie du moteur (10 a 20 ans), le gain total peut representer plusieurs milliers d'euros. C'est pourquoi les normes europeennes encouragent les classes energetiques IE3 et IE4.</p>
+</div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>A retenir</strong>
+  <p>Un <strong>moteur electrique</strong> est un convertisseur d'energie : il transforme l'<strong>energie electrique</strong> en <strong>energie mecanique</strong>.</p>
+  <p><strong>Bilan de puissance :</strong> \(P_a = P_u + P_{\text{pertes}}\)</p>
+  <p><strong>Rendement :</strong> \(\eta = \dfrac{P_u}{P_a}\) &mdash; toujours compris entre 0 et 1 (soit 0 % a 100 %). Plus &eta; est proche de 1, plus le moteur est efficace.</p>
+  <p><strong>Puissance mecanique :</strong> \(P_u = T_{em} \times \omega\) &nbsp; avec &nbsp; \(\omega = \dfrac{2\pi n}{60}\)</p>
+  <p><strong>Puissance absorbee (triphase) :</strong> \(P_a = \sqrt{3} \times U \times I \times \cos\varphi\)</p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

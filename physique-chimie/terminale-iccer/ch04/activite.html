@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Activite – Rayonnement thermique – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Activite &ndash; Diagnostic thermique et effet de serre</h1>
+  <p class="sous-titre">Chapitre 4 | Terminale Bac Pro (Grpt 1) | Physique &ndash; Thermique | &#9201; 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre que tout corps chaud emet un rayonnement thermique</li>
+    <li>Utiliser la loi de Wien pour determiner le pic d'emission</li>
+    <li>Exploiter la loi de Stefan-Boltzmann pour calculer la puissance rayonnee</li>
+    <li>Expliquer le principe de l'effet de serre et son lien avec les installations thermiques</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p>
+    <em>Sofia est technicienne de maintenance energetique chez <strong>DiagTherm</strong>, un bureau d'etudes thermiques a Marseille.</em>
+  </p>
+  <p>
+    Elle realise un diagnostic thermique dans un immeuble residentiel. A l'aide d'une <strong>camera infrarouge</strong>, elle detecte des pertes de chaleur importantes au niveau d'un ballon d'eau chaude sanitaire (ECS) de 300 litres, situe dans un local technique non isole. Elle doit quantifier ces pertes et proposer des solutions.
+  </p>
+  <p>
+    Par ailleurs, l'immeuble est equipe de <strong>panneaux solaires thermiques</strong> sur le toit. Sofia doit aussi expliquer aux copropietaires comment le rayonnement solaire chauffe les capteurs et quel est le lien avec l'effet de serre.
+  </p>
+
+  <h3>Donnees du diagnostic</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Temperature de surface (&deg;C)</th>
+        <th>Temperature (K)</th>
+        <th>Surface (m&sup2;)</th>
+        <th>Emissivite &epsilon;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Ballon ECS (non isole)</strong></td>
+        <td>55</td>
+        <td>...</td>
+        <td>2,4</td>
+        <td>0,90</td>
+      </tr>
+      <tr>
+        <td><strong>Ballon ECS (avec calorifuge)</strong></td>
+        <td>28</td>
+        <td>...</td>
+        <td>2,6</td>
+        <td>0,25</td>
+      </tr>
+      <tr>
+        <td><strong>Tuyauterie cuivre (non isolee)</strong></td>
+        <td>48</td>
+        <td>...</td>
+        <td>0,5</td>
+        <td>0,65</td>
+      </tr>
+      <tr>
+        <td><strong>Mur du local technique</strong></td>
+        <td>18</td>
+        <td>...</td>
+        <td>&mdash;</td>
+        <td>&mdash;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Constante de Stefan-Boltzmann :</strong> &sigma; = 5,67 &times; 10<sup>-8</sup> W&sdot;m<sup>-2</sup>&sdot;K<sup>-4</sup></p>
+  <p><strong>Constante de Wien :</strong> &lambda;<sub>max</sub> &times; T = 2,898 &times; 10<sup>-3</sup> m&sdot;K</p>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p>a) Convertir les temperatures de surface en kelvins : T(K) = T(&deg;C) + 273. Completer la colonne &laquo; Temperature (K) &raquo; du tableau.</p>
+<p>b) Rappeler ce qu'est le rayonnement thermique. Tout corps emet-il un rayonnement ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong></p>
+  <ul>
+    <li>Ballon non isole : 55 + 273 = <strong>328 K</strong></li>
+    <li>Ballon avec calorifuge : 28 + 273 = <strong>301 K</strong></li>
+    <li>Tuyauterie cuivre : 48 + 273 = <strong>321 K</strong></li>
+    <li>Mur du local : 18 + 273 = <strong>291 K</strong></li>
+  </ul>
+  <p><strong>b)</strong> Le rayonnement thermique est l'emission d'ondes electromagnetiques (principalement dans l'infrarouge) par tout corps dont la temperature est superieure au zero absolu (0 K). <strong>Oui</strong>, tout corps emet un rayonnement thermique, meme a temperature ambiante.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 2 <span class="badge-green">REA</span></h2>
+<p>Utiliser la <strong>loi de Wien</strong> pour calculer la longueur d'onde du pic d'emission &lambda;<sub>max</sub> pour :</p>
+<p>a) Le ballon ECS non isole (T = 328 K).</p>
+<p>b) La surface du Soleil (T = 5 780 K).</p>
+<p>\[ \lambda_{\max} = \frac{2{,}898 \times 10^{-3}}{T} \]</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(\lambda_{\max} = \dfrac{2{,}898 \times 10^{-3}}{328} = 8{,}84 \times 10^{-6} \text{ m} \approx \mathbf{8{,}8 \; \mu m}\)</p>
+  <p>Ce rayonnement est dans l'<strong>infrarouge moyen</strong> (3 a 15 &mu;m), invisible a l'oeil nu mais detectable par la camera thermique.</p>
+  <p><strong>b)</strong> \(\lambda_{\max} = \dfrac{2{,}898 \times 10^{-3}}{5\,780} = 5{,}01 \times 10^{-7} \text{ m} \approx \mathbf{0{,}50 \; \mu m} = 500 \text{ nm}\)</p>
+  <p>Ce rayonnement est dans le <strong>visible</strong> (vert-jaune), ce qui explique la couleur blanche du Soleil.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">ANA</span></h2>
+<p>La camera infrarouge de Sofia detecte les rayonnements dans la bande 8&ndash;14 &mu;m.</p>
+<p>a) Le pic d'emission du ballon ECS (8,8 &mu;m) est-il dans la bande de detection de la camera ?</p>
+<p>b) Pourquoi la camera ne detecte-t-elle pas directement le rayonnement solaire ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Oui : 8,8 &mu;m est dans la bande 8&ndash;14 &mu;m. La camera detecte parfaitement le rayonnement du ballon.</p>
+  <p><strong>b)</strong> Le pic d'emission du Soleil est a 0,50 &mu;m (visible), tres loin de la bande 8&ndash;14 &mu;m de la camera. Le rayonnement solaire est principalement visible et proche infrarouge, pas dans l'infrarouge moyen.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 4 <span class="badge-green">REA</span></h2>
+<p>Calculer la <strong>puissance rayonnee</strong> par le ballon ECS <strong>non isole</strong> a l'aide de la loi de Stefan-Boltzmann :</p>
+<p>\[ P = \varepsilon \times \sigma \times A \times T^4 \]</p>
+<p>Donnees : &epsilon; = 0,90 ; A = 2,4 m&sup2; ; T = 328 K ; &sigma; = 5,67 &times; 10<sup>-8</sup> W&sdot;m<sup>-2</sup>&sdot;K<sup>-4</sup>.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>\(T^4 = 328^4\)</p>
+  <p>Calcul intermediaire : \(328^2 = 107\,584\), puis \(328^4 = 107\,584^2 = 1{,}158 \times 10^{10}\)</p>
+  <p>\(P = 0{,}90 \times 5{,}67 \times 10^{-8} \times 2{,}4 \times 1{,}158 \times 10^{10}\)</p>
+  <p>\(P = 0{,}90 \times 5{,}67 \times 2{,}4 \times 1{,}158 \times 10^{2}\)</p>
+  <p>\(P = 0{,}90 \times 5{,}67 \times 2{,}4 \times 115{,}8\)</p>
+  <p>\(P \approx 0{,}90 \times 1\,575 \approx \mathbf{1\,418 \text{ W}}\)</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 5 <span class="badge-green">REA</span></h2>
+<p>Calculer de meme la puissance rayonnee par le ballon <strong>avec calorifuge</strong> (&epsilon; = 0,25 ; A = 2,6 m&sup2; ; T = 301 K).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>\(T^4 = 301^4\)</p>
+  <p>\(301^2 = 90\,601\), puis \(301^4 = 90\,601^2 = 8{,}209 \times 10^{9}\)</p>
+  <p>\(P = 0{,}25 \times 5{,}67 \times 10^{-8} \times 2{,}6 \times 8{,}209 \times 10^{9}\)</p>
+  <p>\(P = 0{,}25 \times 5{,}67 \times 2{,}6 \times 820{,}9\)</p>
+  <p>\(P \approx 0{,}25 \times 12\,103 \times 10^{-1} \approx 0{,}25 \times 1\,210 \approx \mathbf{303 \text{ W}}\)</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 6 <span class="badge-green">VAL</span></h2>
+<p>a) Calculer la reduction de puissance rayonnee grace au calorifuge (en watts et en pourcentage).</p>
+<p>b) Si l'electricite coute 0,22 &euro;/kWh et que le ballon fonctionne 8 000 heures par an, estimer l'economie annuelle en euros realisee grace au calorifuge.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Reduction : \(1\,418 - 303 = \mathbf{1\,115 \text{ W}}\)</p>
+  <p>En pourcentage : \(\dfrac{1\,115}{1\,418} \times 100 \approx \mathbf{78{,}6\,\%}\)</p>
+  <p>Le calorifuge reduit les pertes par rayonnement de pres de 79 %.</p>
+  <p><strong>b)</strong> Energie economisee : \(1{,}115 \times 8\,000 = 8\,920 \text{ kWh}\)</p>
+  <p>Economie : \(8\,920 \times 0{,}22 \approx \mathbf{1\,962 \text{ euros/an}}\)</p>
+  <p><em>Note :</em> ce calcul surestime l'economie reelle car il ne prend en compte que les pertes par rayonnement (il y a aussi la convection et la conduction). Neanmoins, le rayonnement est le mode de transfert dominant pour un ballon non isole dans un local.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 7 <span class="badge-blue">ANA</span></h2>
+<p>Le tableau ci-dessous montre l'emissivite de differents materiaux. L'emissivite &epsilon; indique la capacite d'un corps a emettre du rayonnement (0 = emetteur nul, 1 = corps noir parfait).</p>
+<table>
+  <thead>
+    <tr><th>Materiau</th><th>Emissivite &epsilon;</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Acier peint en noir mat</td><td>0,95</td></tr>
+    <tr><td>Acier inoxydable poli</td><td>0,15</td></tr>
+    <tr><td>Aluminium poli</td><td>0,05</td></tr>
+    <tr><td>Brique rouge</td><td>0,93</td></tr>
+    <tr><td>Calorifuge aluminium</td><td>0,25</td></tr>
+    <tr><td>Peau humaine</td><td>0,98</td></tr>
+  </tbody>
+</table>
+<p>a) Pourquoi le calorifuge du ballon est-il recouvert d'aluminium ?</p>
+<p>b) Si le ballon non isole etait en acier inoxydable poli au lieu d'etre peint, sa puissance rayonnee serait-elle plus faible ou plus elevee ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> L'aluminium a une tres faible emissivite (&epsilon; = 0,05 a 0,25). En recouvrant le calorifuge d'aluminium, on reduit fortement l'emission de rayonnement thermique vers l'exterieur. C'est le meme principe que les couvertures de survie.</p>
+  <p><strong>b)</strong> Si le ballon etait en inox poli (&epsilon; = 0,15 au lieu de 0,90), la puissance rayonnee serait <strong>beaucoup plus faible</strong> : environ 6 fois moins (rapport 0,90/0,15 = 6). Cependant, les ballons sont souvent peints pour des raisons de protection anticorrosion, ce qui augmente leur emissivite.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 8 <span class="badge-blue">ANA</span></h2>
+<p>Sofia explique maintenant le principe de l'<strong>effet de serre</strong> aux copropietaires. Voici un schema simplifie :</p>
+
+<div class="svg-wrap">
+  <svg viewBox="0 0 600 320" width="100%" style="max-width:600px;height:auto" font-family="Segoe UI,sans-serif" font-size="12">
+    <!-- Soleil -->
+    <circle cx="100" cy="40" r="30" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+    <text x="100" y="44" text-anchor="middle" fill="#92400e" font-weight="bold" font-size="11">Soleil</text>
+    <!-- Rayonnement visible descendant -->
+    <line x1="120" y1="65" x2="250" y2="170" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#as)"/>
+    <text x="160" y="110" fill="#d97706" font-weight="bold" font-size="11" transform="rotate(30 160 110)">Visible + UV</text>
+    <text x="160" y="124" fill="#d97706" font-size="10" transform="rotate(30 160 124)">&lambda; &asymp; 0,5 &mu;m</text>
+    <!-- Atmosphere -->
+    <rect x="0" y="170" width="600" height="50" rx="0" fill="rgba(147,197,253,0.25)" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <text x="300" y="200" text-anchor="middle" fill="#1e40af" font-weight="bold" font-size="12">ATMOSPHERE (CO&sub2;, H&sub2;O, CH&sub4;...)</text>
+    <!-- Terre -->
+    <rect x="0" y="260" width="600" height="60" rx="0" fill="#d1fae5"/>
+    <text x="300" y="290" text-anchor="middle" fill="#065f46" font-weight="bold" font-size="13">SURFACE TERRESTRE (~15 &deg;C = 288 K)</text>
+    <!-- Rayonnement visible traverse l'atmosphere -->
+    <line x1="250" y1="170" x2="300" y2="260" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#as)"/>
+    <text x="290" y="225" fill="#d97706" font-size="10">traverse</text>
+    <!-- Rayonnement IR montant -->
+    <line x1="350" y1="260" x2="350" y2="225" stroke="#ef4444" stroke-width="2.5" marker-end="url(#ar)"/>
+    <text x="390" y="248" fill="#c53030" font-weight="bold" font-size="11">IR</text>
+    <text x="390" y="262" fill="#c53030" font-size="10">&lambda; &asymp; 10 &mu;m</text>
+    <!-- IR absorbe par atmosphere -->
+    <text x="400" y="190" fill="#c53030" font-size="10" font-weight="bold">absorbe</text>
+    <!-- Reemission vers le bas -->
+    <line x1="450" y1="220" x2="450" y2="258" stroke="#f97316" stroke-width="2" marker-end="url(#ao)" stroke-dasharray="5,3"/>
+    <text x="490" y="240" fill="#ea580c" font-size="10" font-weight="bold">reemis</text>
+    <text x="490" y="254" fill="#ea580c" font-size="10">vers le sol</text>
+    <!-- Reemission vers le haut (partielle) -->
+    <line x1="500" y1="170" x2="530" y2="80" stroke="#f97316" stroke-width="1.5" marker-end="url(#ao)" stroke-dasharray="4,3"/>
+    <text x="540" y="120" fill="#ea580c" font-size="10">vers l'espace</text>
+    <text x="540" y="134" fill="#ea580c" font-size="10">(partiel)</text>
+    <defs>
+      <marker id="as" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#fbbf24"/></marker>
+      <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/></marker>
+      <marker id="ao" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#f97316"/></marker>
+    </defs>
+  </svg>
+</div>
+
+<p>a) Pourquoi le rayonnement solaire (visible) traverse-t-il l'atmosphere alors que le rayonnement infrarouge emis par la Terre est en partie absorbe ?</p>
+<p>b) Quel est l'effet de cette absorption sur la temperature terrestre ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> L'atmosphere est <strong>transparente au rayonnement visible</strong> (courtes longueurs d'onde, &lambda; &asymp; 0,5 &mu;m) mais <strong>opaque au rayonnement infrarouge</strong> (grandes longueurs d'onde, &lambda; &asymp; 10 &mu;m). Les gaz a effet de serre (CO<sub>2</sub>, H<sub>2</sub>O, CH<sub>4</sub>) absorbent le rayonnement IR emis par la surface terrestre.</p>
+  <p><strong>b)</strong> L'energie IR absorbee par l'atmosphere est en partie reemise vers le sol, ce qui le rechauffe davantage. C'est l'<strong>effet de serre</strong>. Sans lui, la temperature moyenne de la Terre serait d'environ &minus;18 &deg;C au lieu de +15 &deg;C.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 9 <span class="badge-green">VAL</span></h2>
+<p>Les panneaux solaires thermiques de l'immeuble utilisent l'effet de serre de maniere volontaire : une vitre transparente laisse entrer le rayonnement visible du Soleil, qui chauffe un absorbeur noir. L'absorbeur reemet de l'infrarouge, que la vitre bloque (comme l'atmosphere).</p>
+<p>a) Pourquoi l'absorbeur est-il peint en noir mat ?</p>
+<p>b) Citer deux gaz a effet de serre et une activite humaine qui contribue a l'augmentation de leur concentration.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Un corps noir mat a une <strong>emissivite proche de 1</strong> (&epsilon; &asymp; 0,95). Par reciprocite, il <strong>absorbe</strong> aussi tres efficacement le rayonnement incident. L'absorbeur noir capte le maximum d'energie solaire et s'echauffe fortement.</p>
+  <p><strong>b)</strong></p>
+  <ul>
+    <li><strong>CO<sub>2</sub></strong> (dioxyde de carbone) : combustion des energies fossiles (gaz, fioul, charbon) pour le chauffage et les transports.</li>
+    <li><strong>CH<sub>4</sub></strong> (methane) : elevage animal, fuites de gaz naturel.</li>
+    <li>On peut aussi citer les <strong>HFC</strong> (fluides frigorigenes) utilises dans les climatiseurs et les pompes a chaleur, qui ont un PRG (potentiel de rechauffement global) tres eleve.</li>
+  </ul>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 10 <span class="badge-yellow">COM</span></h2>
+<p>Rediger un court texte (5-6 lignes) que Sofia pourrait envoyer par courriel aux copropietaires pour expliquer :</p>
+<ul>
+  <li>les pertes thermiques par rayonnement du ballon ECS non isole,</li>
+  <li>l'interet du calorifuge,</li>
+  <li>le lien entre les installations thermiques et l'effet de serre.</li>
+</ul>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><em>Exemple de reponse :</em></p>
+  <p>Le diagnostic thermique a revele que votre ballon d'eau chaude, non isole, perd environ 1 400 watts par rayonnement infrarouge, c'est-a-dire qu'il chauffe le local technique au lieu de conserver la chaleur de l'eau. L'installation d'un calorifuge (isolant recouvert d'aluminium) reduirait ces pertes de pres de 80 %, soit une economie estimee a environ 2 000 euros par an sur votre facture d'electricite. Par ailleurs, reduire les pertes thermiques diminue la consommation d'energie et donc les emissions de CO<sub>2</sub>, principal gaz a effet de serre responsable du rechauffement climatique. Vos panneaux solaires thermiques exploitent d'ailleurs ce meme phenomene de rayonnement pour capter l'energie du Soleil de maniere renouvelable.</p>
+</div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>A retenir</strong>
+  <p><strong>Rayonnement thermique :</strong> tout corps dont la temperature est superieure a 0 K emet un rayonnement electromagnetique. Les corps a temperature ambiante emettent dans l'<strong>infrarouge</strong> (invisible).</p>
+  <p><strong>Loi de Wien :</strong> \(\lambda_{\max} \times T = 2{,}898 \times 10^{-3} \text{ m&sdot;K}\) &mdash; plus un corps est chaud, plus son pic d'emission se deplace vers les courtes longueurs d'onde.</p>
+  <p><strong>Loi de Stefan-Boltzmann :</strong> \(P = \varepsilon \, \sigma \, A \, T^4\) &mdash; la puissance rayonnee augmente tres rapidement avec la temperature.</p>
+  <p><strong>Emissivite &epsilon; :</strong> capacite d'un corps a emettre du rayonnement (0 = reflecteur parfait, 1 = corps noir). Les surfaces metalliques polies ont une faible emissivite, les surfaces sombres une forte emissivite.</p>
+  <p><strong>Effet de serre :</strong> l'atmosphere est transparente au rayonnement visible (Soleil) mais absorbe le rayonnement infrarouge (Terre). Les gaz a effet de serre (CO<sub>2</sub>, H<sub>2</sub>O, CH<sub>4</sub>) piegeent cette energie et rechauffent la surface terrestre.</p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

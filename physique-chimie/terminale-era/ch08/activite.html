@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Activite – Attenuer une onde sonore – Terminale ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-erama.html" class="nb">&larr; RETOUR SOMMAIRE ERA-MA (Grpt 3)</a>
+
+<header>
+  <h1>Activite &ndash; Isolation acoustique entre l'atelier et le bureau</h1>
+  <p class="sous-titre">Chapitre 8 &ndash; Attenuer une onde sonore | Terminale Bac Pro ERA-MA (Grpt 3) | Physique &ndash; Signaux | &#9201; 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre l'attenuation du son lors de la traversee d'une paroi</li>
+    <li>Calculer l'indice d'affaiblissement acoustique R</li>
+    <li>Utiliser le coefficient de transmission &tau;</li>
+    <li>Comparer des materiaux d'isolation acoustique</li>
+    <li>Decouvrir la loi de masse et le principe de la double paroi</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Antoine est responsable securite dans l'entreprise AtelierBois, une menuiserie industrielle a Grenoble. L'atelier de debit (scies, raboteuses, toupies) jouxte le bureau administratif. Les employes de bureau se plaignent du bruit excessif. Antoine doit choisir une solution d'isolation acoustique pour la cloison separant les deux espaces. Il dispose des mesures sonores et des fiches techniques de plusieurs materiaux.</em></p>
+
+  <h3>Document 1 &ndash; Mesures sonores realisees</h3>
+  <table>
+    <thead>
+      <tr><th>Point de mesure</th><th>Niveau sonore (dB)</th><th>Situation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Atelier (cote source)</td><td>95 dB</td><td>Scie a ruban en fonctionnement</td></tr>
+      <tr><td>Bureau (cote reception) &ndash; cloison actuelle</td><td>62 dB</td><td>Cloison simple placo 72 mm</td></tr>
+      <tr><td>Seuil de confort en bureau</td><td>&le; 45 dB</td><td>Norme NF S 31-080</td></tr>
+      <tr><td>Seuil de danger auditif</td><td>85 dB</td><td>8 h d'exposition</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 &ndash; Fiches techniques des solutions d'isolation</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Solution</th>
+        <th>Composition</th>
+        <th>Masse surfacique (kg/m&sup2;)</th>
+        <th>R a 500 Hz (dB)</th>
+        <th>R a 1 000 Hz (dB)</th>
+        <th>R a 2 000 Hz (dB)</th>
+        <th>R moyen (dB)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>A &ndash; Cloison placo simple</td><td>BA13 + ossature + BA13</td><td>25</td><td>32</td><td>38</td><td>42</td><td>33</td></tr>
+      <tr><td>B &ndash; Cloison placo + laine minerale</td><td>BA13 + laine 45 mm + BA13</td><td>30</td><td>38</td><td>44</td><td>48</td><td>42</td></tr>
+      <tr><td>C &ndash; Double cloison desolidarisee</td><td>BA13 + laine + vide + laine + BA13</td><td>40</td><td>48</td><td>55</td><td>60</td><td>53</td></tr>
+      <tr><td>D &ndash; Mur beton 15 cm</td><td>Beton arme</td><td>360</td><td>49</td><td>53</td><td>58</td><td>52</td></tr>
+      <tr><td>E &ndash; Mur beton + doublage acoustique</td><td>Beton 15 cm + placo + laine</td><td>390</td><td>55</td><td>60</td><td>65</td><td>58</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 3 &ndash; Rappels</h3>
+  <ul>
+    <li>L'indice d'affaiblissement R mesure la reduction du niveau sonore a travers une paroi : \(R = L_i - L_t\) (en dB).</li>
+    <li>Le coefficient de transmission \(\tau\) est le rapport de la pression transmise sur la pression incidente : \(\tau = \dfrac{p_{\text{transmise}}}{p_{\text{incidente}}}\).</li>
+    <li>Relation entre R et \(\tau\) : \(R = -20 \times \log(\tau)\).</li>
+    <li>Quelques reperes : \(\tau = 0{,}1 \Rightarrow R = 20\) dB &nbsp;|&nbsp; \(\tau = 0{,}01 \Rightarrow R = 40\) dB &nbsp;|&nbsp; \(\tau = 0{,}001 \Rightarrow R = 60\) dB.</li>
+  </ul>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>a) D'apres le document 1, quel est le niveau sonore dans l'atelier lorsque la scie fonctionne ?</p>
+  <p>b) Quel est le niveau sonore mesure dans le bureau avec la cloison actuelle ?</p>
+  <p>c) Ce niveau est-il acceptable pour un bureau ? Justifier a l'aide de la norme.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> Le niveau sonore dans l'atelier est de <strong>95 dB</strong>.</p>
+    <p><strong>b)</strong> Le niveau sonore dans le bureau est de <strong>62 dB</strong> avec la cloison actuelle.</p>
+    <p><strong>c)</strong> Non, ce niveau n'est <strong>pas acceptable</strong>. La norme NF S 31-080 impose un seuil de confort en bureau de 45 dB maximum. Avec 62 dB, le bureau depasse la norme de 17 dB.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'indice d'affaiblissement R de la cloison actuelle (solution A).</p>
+  <p>Donnees : \(L_i = 95\) dB (atelier) et \(L_t = 62\) dB (bureau).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>\[R = L_i - L_t = 95 - 62 = \mathbf{33 \text{ dB}}\]</p>
+    <p>La cloison actuelle attenue le son de 33 dB. Ce resultat correspond bien au R moyen de la solution A dans le document 2.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Pour atteindre le seuil de confort de 45 dB dans le bureau, calculer l'indice d'affaiblissement R <strong>minimal</strong> necessaire.</p>
+  <p>Donnees : \(L_i = 95\) dB, \(L_t \le 45\) dB.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>\[R_{\min} = L_i - L_{t,\max} = 95 - 45 = \mathbf{50 \text{ dB}}\]</p>
+    <p>Il faut une paroi ayant un indice d'affaiblissement R d'au moins <strong>50 dB</strong> pour respecter la norme de confort.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>D'apres le document 2, identifier les solutions dont le R moyen est superieur ou egal a 50 dB.</p>
+  <p>a) Quelles solutions respectent l'objectif ?</p>
+  <p>b) La solution B (placo + laine minerale, R = 42 dB) est-elle suffisante ? Calculer le niveau sonore qui passerait dans le bureau.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> Les solutions dont R &ge; 50 dB sont :<br>
+    &bull; <strong>Solution C</strong> : double cloison desolidarisee (R = 53 dB)<br>
+    &bull; <strong>Solution D</strong> : mur beton 15 cm (R = 52 dB)<br>
+    &bull; <strong>Solution E</strong> : mur beton + doublage acoustique (R = 58 dB)</p>
+    <p><strong>b)</strong> Solution B : \(L_t = L_i - R = 95 - 42 = 53\) dB. Le bureau serait a <strong>53 dB</strong>, soit 8 dB au-dessus de la norme. La solution B est <strong>insuffisante</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Pour la solution C (double cloison, R = 53 dB), calculer le coefficient de transmission \(\tau\).</p>
+  <p>Utiliser la formule : \(R = -20 \times \log(\tau)\), donc \(\log(\tau) = \dfrac{-R}{20}\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>\[\log(\tau) = \frac{-53}{20} = -2{,}65\]</p>
+    <p>\[\tau = 10^{-2{,}65} \approx \mathbf{0{,}0022}\]</p>
+    <p>Seulement <strong>0,22 %</strong> de la pression acoustique traverse la double cloison. C'est une excellente isolation.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Observer les masses surfaciques et les R moyens des solutions A a E dans le document 2.</p>
+  <p>a) Comment evolue R lorsque la masse surfacique augmente ? Formuler une regle generale.</p>
+  <p>b) La solution D (beton 360 kg/m&sup2;, R = 52 dB) est 9 fois plus lourde que la solution C (40 kg/m&sup2;, R = 53 dB), pourtant C isole mieux. Pourquoi ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> En general, R augmente avec la masse surfacique. C'est la <strong>loi de masse</strong> : plus une paroi est lourde, mieux elle isole du bruit.</p>
+    <p><strong>b)</strong> La solution C utilise le principe de la <strong>double paroi desolidarisee</strong> : deux plaques de placo separees par un vide d'air et de la laine minerale. La desolidarisation empeche la transmission des vibrations d'une plaque a l'autre. Ce principe &laquo; masse-ressort-masse &raquo; est plus efficace qu'une paroi simple, meme tres lourde. On peut donc obtenir une bonne isolation avec une paroi legere, a condition qu'elle soit <strong>double et desolidarisee</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>D'apres le document 2, on remarque que R varie selon la frequence. Pour la solution B (placo + laine), R = 38 dB a 500 Hz mais R = 48 dB a 2 000 Hz.</p>
+  <p>a) Cette paroi isole-t-elle mieux les sons graves (basses frequences) ou les sons aigus (hautes frequences) ?</p>
+  <p>b) La scie a ruban produit surtout des sons a 1 000 Hz. Quel est le R de la solution C a cette frequence ? Le bureau sera-t-il conforme a la norme ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> La paroi isole <strong>mieux les sons aigus</strong> (hautes frequences) : R = 48 dB a 2 000 Hz contre R = 38 dB a 500 Hz. Les sons graves sont plus difficiles a bloquer.</p>
+    <p><strong>b)</strong> Solution C a 1 000 Hz : R = 55 dB. Niveau dans le bureau : \(L_t = 95 - 55 = 40\) dB. Oui, <strong>40 dB &lt; 45 dB</strong>, le bureau sera conforme a la norme a cette frequence.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">REA</span></h2>
+  <p>Antoine hesite entre la solution C (double cloison, R moyen = 53 dB, masse = 40 kg/m&sup2;) et la solution E (beton + doublage, R moyen = 58 dB, masse = 390 kg/m&sup2;).</p>
+  <p>Completer le tableau comparatif :</p>
+  <table>
+    <thead>
+      <tr><th>Critere</th><th>Solution C</th><th>Solution E</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>R moyen (dB)</td><td>53</td><td>58</td></tr>
+      <tr><td>Niveau transmis (dB)</td><td>......</td><td>......</td></tr>
+      <tr><td>Conforme &le; 45 dB ?</td><td>......</td><td>......</td></tr>
+      <tr><td>Masse surfacique</td><td>40 kg/m&sup2;</td><td>390 kg/m&sup2;</td></tr>
+      <tr><td>Facilite d'installation</td><td>......</td><td>......</td></tr>
+    </tbody>
+  </table>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead>
+        <tr><th>Critere</th><th>Solution C</th><th>Solution E</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>R moyen (dB)</td><td>53</td><td>58</td></tr>
+        <tr><td>Niveau transmis (dB)</td><td><strong>95 &minus; 53 = 42 dB</strong></td><td><strong>95 &minus; 58 = 37 dB</strong></td></tr>
+        <tr><td>Conforme &le; 45 dB ?</td><td><strong>Oui (42 &lt; 45)</strong></td><td><strong>Oui (37 &lt; 45)</strong></td></tr>
+        <tr><td>Masse surfacique</td><td>40 kg/m&sup2;</td><td>390 kg/m&sup2;</td></tr>
+        <tr><td>Facilite d'installation</td><td><strong>Facile (cloison seche, legere)</strong></td><td><strong>Difficile (mur beton = gros oeuvre, tres lourd)</strong></td></tr>
+      </tbody>
+    </table>
+    <p>Les deux solutions sont conformes. La solution C est beaucoup plus legere et plus facile a installer dans un batiment existant.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-green">VAL</span></h2>
+  <p>Antoine choisit la solution C (double cloison desolidarisee). Verifier sa pertinence en calculant le coefficient \(\tau\) et en le comparant a celui de la cloison actuelle (solution A, R = 33 dB).</p>
+  <p>a) Calculer \(\tau\) pour la solution A (R = 33 dB).</p>
+  <p>b) Rappeler \(\tau\) pour la solution C (calcule a la question 5).</p>
+  <p>c) Combien de fois la solution C laisse-t-elle passer moins de pression sonore que la solution A ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> Solution A : \(\log(\tau) = \dfrac{-33}{20} = -1{,}65\), donc \(\tau_A = 10^{-1{,}65} \approx \mathbf{0{,}022}\) (2,2 % de pression transmise).</p>
+    <p><strong>b)</strong> Solution C : \(\tau_C \approx 0{,}0022\) (0,22 % de pression transmise).</p>
+    <p><strong>c)</strong> \(\dfrac{\tau_A}{\tau_C} = \dfrac{0{,}022}{0{,}0022} = \mathbf{10}\). La solution C laisse passer <strong>10 fois moins</strong> de pression sonore que la cloison actuelle. Le gain de 20 dB (de 33 a 53 dB) correspond bien a un facteur 10 sur la pression.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 10 <span class="badge-red">COM</span></h2>
+  <p>Rediger un court compte-rendu (5 a 6 lignes) a destination du directeur de l'entreprise, expliquant :</p>
+  <ul>
+    <li>Le probleme acoustique actuel (niveau dans le bureau, norme non respectee)</li>
+    <li>La solution retenue et pourquoi</li>
+    <li>Le niveau sonore attendu apres travaux</li>
+  </ul>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>Le niveau sonore dans le bureau atteint actuellement 62 dB lorsque la scie fonctionne, alors que la norme impose un maximum de 45 dB pour le confort au travail. La cloison actuelle en placo simple n'offre qu'un affaiblissement de 33 dB, ce qui est insuffisant. La solution recommandee est la mise en place d'une <strong>double cloison desolidarisee</strong> (deux plaques de placo-platre separees par un vide d'air et de la laine minerale), qui offre un affaiblissement de 53 dB. Avec cette solution, le niveau dans le bureau serait ramene a environ <strong>42 dB</strong>, conforme a la norme. Cette solution est preferee au mur beton car elle est legere (40 kg/m&sup2;), facile a installer sans reprise de structure, et presente un excellent rapport performance/poids grace au principe masse-ressort-masse.</p>
+  </div>
+</div>
+
+<!-- ===== SYNTHESE ===== -->
+<div class="retenir">
+  <strong>A retenir</strong>
+  <ul>
+    <li>L'<strong>indice d'affaiblissement acoustique R</strong> (en dB) mesure la capacite d'une paroi a reduire le son : \(R = L_i - L_t\). Plus R est grand, meilleure est l'isolation.</li>
+    <li>Le <strong>coefficient de transmission</strong> \(\tau\) est le rapport de la pression transmise sur la pression incidente. Relation : \(R = -20 \times \log(\tau)\).</li>
+    <li><strong>Loi de masse :</strong> plus une paroi est lourde (masse surfacique elevee), mieux elle isole du bruit. En doublant la masse, on gagne environ +6 dB.</li>
+    <li><strong>Principe de la double paroi :</strong> deux parois separees par un vide d'air (masse-ressort-masse) isolent mieux qu'une seule paroi de meme masse totale.</li>
+    <li>R depend de la <strong>frequence</strong> : les sons graves (basses frequences) sont plus difficiles a bloquer que les sons aigus.</li>
+    <li>Reglementation : D<sub>nT,A</sub> &ge; 53 dB entre logements, confort bureau &le; 45 dB (NF S 31-080).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Activité – Vitesse et accélération – Terminale ERA-MA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-erama.html" class="nb">&larr; Retour au sommaire</a>
+
+<header>
+  <h1>Activité &ndash; Mouvement d'une tête de découpe sur machine CNC</h1>
+  <p class="sous-titre">Chapitre 4 | Terminale Bac Pro ERA-MA (Grpt 3) | Physique &ndash; Mécanique | &#9201; 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer une vitesse moyenne à partir de mesures de position et de durée</li>
+    <li>Déterminer une accélération à partir de la variation de vitesse</li>
+    <li>Identifier la nature d'un mouvement (uniforme, accéléré, décéléré) à partir d'un tableau de données</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p>
+    <em>Hugo est technicien d'agencement chez <strong>Ateliers Numériques du Jura</strong>, une entreprise de fabrication de mobilier sur mesure à Lons-le-Saunier. L'atelier est équipé d'une <strong>machine CNC</strong> (commande numérique par calculateur) qui découpe des panneaux de bois de manière automatisée. Hugo doit analyser le mouvement de la <strong>tête de découpe</strong> pour optimiser les réglages et améliorer la productivité.</em>
+  </p>
+  <p>La tête de découpe se déplace en ligne droite le long de l'axe X de la machine. Hugo a enregistré la position de la tête toutes les 0,5 secondes pendant une phase de travail complète (démarrage, usinage, arrêt).</p>
+
+  <h3>Document 1 &ndash; Relevé de position de la tête de découpe</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Temps t (s)</th>
+        <th>0</th><th>0,5</th><th>1,0</th><th>1,5</th><th>2,0</th><th>2,5</th><th>3,0</th><th>3,5</th><th>4,0</th><th>4,5</th><th>5,0</th><th>5,5</th><th>6,0</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Position x (mm)</strong></td>
+        <td>0</td><td>5</td><td>20</td><td>45</td><td>80</td><td>120</td><td>160</td><td>200</td><td>240</td><td>280</td><td>310</td><td>330</td><td>340</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 &ndash; Phases du mouvement</h3>
+  <p>Le mouvement de la tête de découpe se décompose en trois phases :</p>
+  <ul>
+    <li><strong>Phase 1 (0 à 2,5 s) :</strong> la tête démarre et accélère pour atteindre la vitesse d'usinage</li>
+    <li><strong>Phase 2 (2,5 à 4,5 s) :</strong> la tête se déplace à vitesse constante (usinage du panneau)</li>
+    <li><strong>Phase 3 (4,5 à 6,0 s) :</strong> la tête décélère et s'arrête en fin de course</li>
+  </ul>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p><strong>a)</strong> Quelle est la position initiale de la tête de découpe (à t = 0 s) ? Et sa position finale (à t = 6,0 s) ?</p>
+<p><strong>b)</strong> Calculer la distance totale parcourue par la tête de découpe.</p>
+<p><strong>c)</strong> Calculer la vitesse moyenne sur l'ensemble du trajet : \(v_{moy} = \dfrac{d}{t}\). Exprimer le résultat en mm/s.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Position initiale : x = 0 mm. Position finale : x = 340 mm.</p>
+  <p><strong>b)</strong> Distance totale : \(d = 340 - 0 = 340\ \text{mm}\).</p>
+  <p><strong>c)</strong> \(v_{moy} = \dfrac{340}{6{,}0} \approx 56{,}7\ \text{mm/s}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 2 <span class="badge-yellow">REA</span></h2>
+<p>Calculer la vitesse moyenne de la tête entre chaque intervalle de temps successif. Compléter le tableau suivant.</p>
+<p><em>Rappel : \(v = \dfrac{\Delta x}{\Delta t} = \dfrac{x_{i+1} - x_i}{t_{i+1} - t_i}\) avec \(\Delta t = 0{,}5\ \text{s}\).</em></p>
+<table>
+  <thead>
+    <tr>
+      <th>Intervalle</th>
+      <th>0&ndash;0,5 s</th><th>0,5&ndash;1,0 s</th><th>1,0&ndash;1,5 s</th><th>1,5&ndash;2,0 s</th><th>2,0&ndash;2,5 s</th><th>2,5&ndash;3,0 s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>v (mm/s)</strong></td>
+      <td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>Intervalle</th>
+      <th>3,0&ndash;3,5 s</th><th>3,5&ndash;4,0 s</th><th>4,0&ndash;4,5 s</th><th>4,5&ndash;5,0 s</th><th>5,0&ndash;5,5 s</th><th>5,5&ndash;6,0 s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>v (mm/s)</strong></td>
+      <td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td>
+    </tr>
+  </tbody>
+</table>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>On calcule \(v = \dfrac{x_{i+1} - x_i}{0{,}5}\) pour chaque intervalle :</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Intervalle</th>
+        <th>0&ndash;0,5</th><th>0,5&ndash;1,0</th><th>1,0&ndash;1,5</th><th>1,5&ndash;2,0</th><th>2,0&ndash;2,5</th><th>2,5&ndash;3,0</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>&Delta;x (mm)</strong></td>
+        <td>5</td><td>15</td><td>25</td><td>35</td><td>40</td><td>40</td>
+      </tr>
+      <tr>
+        <td><strong>v (mm/s)</strong></td>
+        <td>10</td><td>30</td><td>50</td><td>70</td><td>80</td><td>80</td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th>Intervalle</th>
+        <th>3,0&ndash;3,5</th><th>3,5&ndash;4,0</th><th>4,0&ndash;4,5</th><th>4,5&ndash;5,0</th><th>5,0&ndash;5,5</th><th>5,5&ndash;6,0</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>&Delta;x (mm)</strong></td>
+        <td>40</td><td>40</td><td>40</td><td>30</td><td>20</td><td>10</td>
+      </tr>
+      <tr>
+        <td><strong>v (mm/s)</strong></td>
+        <td>80</td><td>80</td><td>80</td><td>60</td><td>40</td><td>20</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">ANA</span></h2>
+<p>En observant les vitesses calculées à la question 2 :</p>
+<p><strong>a)</strong> Pendant quelle phase la vitesse augmente-t-elle ? Comment appelle-t-on ce type de mouvement ?</p>
+<p><strong>b)</strong> Pendant quelle phase la vitesse reste-t-elle constante ? Quelle est la valeur de cette vitesse ? Comment appelle-t-on ce type de mouvement ?</p>
+<p><strong>c)</strong> Pendant quelle phase la vitesse diminue-t-elle ? Comment appelle-t-on ce phénomène ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Pendant la <strong>phase 1</strong> (0 à 2,5 s), la vitesse augmente de 10 à 80 mm/s. C'est un mouvement <strong>accéléré</strong> (la tête prend de la vitesse).</p>
+  <p><strong>b)</strong> Pendant la <strong>phase 2</strong> (2,5 à 4,5 s), la vitesse reste constante à <strong>80 mm/s</strong>. C'est un <strong>mouvement rectiligne uniforme (MRU)</strong>.</p>
+  <p><strong>c)</strong> Pendant la <strong>phase 3</strong> (4,5 à 6,0 s), la vitesse diminue de 80 à 20 mm/s. C'est une <strong>décélération</strong> (mouvement décéléré, ou mouvement rectiligne uniformément décéléré).</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 4 <span class="badge-yellow">REA</span></h2>
+<p>Calculer l'accélération de la tête de découpe pendant la <strong>phase 1</strong> (démarrage).</p>
+<p>On utilise : \(a = \dfrac{\Delta v}{\Delta t} = \dfrac{v_f - v_i}{t_f - t_i}\)</p>
+<p><em>Prendre v<sub>i</sub> = 10 mm/s (début de phase 1, à t = 0,25 s) et v<sub>f</sub> = 80 mm/s (fin de phase 1, à t = 2,25 s).</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>\(a = \dfrac{v_f - v_i}{t_f - t_i} = \dfrac{80 - 10}{2{,}25 - 0{,}25} = \dfrac{70}{2{,}0} = 35\ \text{mm/s}^2\)</p>
+  <p>L'accélération est <strong>positive</strong> (\(a = 35\ \text{mm/s}^2\)) : la tête de découpe accélère, elle gagne 35 mm/s chaque seconde.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 5 <span class="badge-yellow">REA</span></h2>
+<p>Calculer l'accélération pendant la <strong>phase 2</strong> (usinage à vitesse constante).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>\(a = \dfrac{v_f - v_i}{\Delta t} = \dfrac{80 - 80}{2{,}0} = \dfrac{0}{2{,}0} = 0\ \text{mm/s}^2\)</p>
+  <p>L'accélération est <strong>nulle</strong> : la vitesse ne change pas, c'est un mouvement rectiligne uniforme (MRU).</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 6 <span class="badge-yellow">REA</span></h2>
+<p>Calculer l'accélération pendant la <strong>phase 3</strong> (freinage).</p>
+<p><em>Prendre v<sub>i</sub> = 80 mm/s (à t = 4,25 s) et v<sub>f</sub> = 20 mm/s (à t = 5,75 s).</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>\(a = \dfrac{v_f - v_i}{t_f - t_i} = \dfrac{20 - 80}{5{,}75 - 4{,}25} = \dfrac{-60}{1{,}5} = -40\ \text{mm/s}^2\)</p>
+  <p>L'accélération est <strong>négative</strong> (\(a = -40\ \text{mm/s}^2\)) : la tête décélère, elle perd 40 mm/s chaque seconde. C'est un freinage.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 7 <span class="badge-green">VAL</span></h2>
+<p>Compléter le tableau récapitulatif des trois phases du mouvement :</p>
+<table>
+  <thead>
+    <tr><th>Phase</th><th>Durée</th><th>Vitesse</th><th>Accélération</th><th>Type de mouvement</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Phase 1 (démarrage)</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+    <tr><td>Phase 2 (usinage)</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+    <tr><td>Phase 3 (freinage)</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+  </tbody>
+</table>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <table>
+    <thead>
+      <tr><th>Phase</th><th>Durée</th><th>Vitesse</th><th>Accélération</th><th>Type de mouvement</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Phase 1 (démarrage)</td><td>2,5 s</td><td>Augmente de 0 à 80 mm/s</td><td>a &asymp; +35 mm/s²</td><td>Mouvement accéléré</td></tr>
+      <tr><td>Phase 2 (usinage)</td><td>2,0 s</td><td>Constante à 80 mm/s</td><td>a = 0</td><td>MRU (uniforme)</td></tr>
+      <tr><td>Phase 3 (freinage)</td><td>1,5 s</td><td>Diminue de 80 à 0 mm/s</td><td>a &asymp; &minus;40 mm/s²</td><td>Mouvement décéléré</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 8 <span class="badge-blue">ANA</span></h2>
+<p>Décrire l'allure du graphe v(t) (vitesse en fonction du temps) pour les trois phases du mouvement. Pour chaque phase, indiquer si le graphe est :</p>
+<ul>
+  <li>une droite montante</li>
+  <li>une droite horizontale</li>
+  <li>une droite descendante</li>
+</ul>
+<p>Que représente la pente de la droite v(t) ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <ul>
+    <li><strong>Phase 1 :</strong> droite montante (la vitesse augmente régulièrement)</li>
+    <li><strong>Phase 2 :</strong> droite horizontale (la vitesse est constante)</li>
+    <li><strong>Phase 3 :</strong> droite descendante (la vitesse diminue régulièrement)</li>
+  </ul>
+  <p>La <strong>pente de la droite v(t)</strong> représente l'<strong>accélération</strong>. Si la pente est positive, l'objet accélère. Si elle est nulle, la vitesse est constante. Si elle est négative, l'objet décélère.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 9 <span class="badge-green">VAL</span></h2>
+<p>Hugo souhaite vérifier la distance parcourue pendant la phase 2 (usinage).</p>
+<p><strong>a)</strong> Calculer cette distance en utilisant \(d = v \times t\) avec v = 80 mm/s et t = 2,0 s.</p>
+<p><strong>b)</strong> Vérifier ce résultat en lisant les positions dans le tableau : quelle est la position à t = 2,5 s et à t = 4,5 s ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(d = v \times t = 80 \times 2{,}0 = 160\ \text{mm}\).</p>
+  <p><strong>b)</strong> À t = 2,5 s : x = 120 mm. À t = 4,5 s : x = 280 mm. Distance : \(280 - 120 = 160\ \text{mm}\). Le résultat est cohérent avec le calcul.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 10 <span class="badge-red">COM</span></h2>
+<p>Rédiger un court paragraphe (3 à 5 lignes) décrivant le mouvement complet de la tête de découpe. Utiliser les mots : <em>accélération, vitesse constante, décélération, mouvement rectiligne uniforme</em>.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>La tête de découpe de la machine CNC effectue un mouvement en trois phases. Elle démarre à l'arrêt et subit une accélération d'environ 35 mm/s² pendant 2,5 secondes, atteignant progressivement la vitesse d'usinage de 80 mm/s. Pendant la phase d'usinage (2 secondes), elle se déplace en mouvement rectiligne uniforme à vitesse constante de 80 mm/s. Enfin, elle subit une décélération d'environ 40 mm/s² pendant 1,5 seconde pour s'arrêter en fin de course. La distance totale parcourue est de 340 mm.</p>
+</div>
+</div>
+
+<!-- ===== À RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Vitesse moyenne :</strong> \(v = \dfrac{d}{t}\) &mdash; en m/s (ou mm/s)</li>
+    <li><strong>Accélération :</strong> \(a = \dfrac{\Delta v}{\Delta t} = \dfrac{v_f - v_i}{t_f - t_i}\) &mdash; en m/s² (ou mm/s²)</li>
+    <li><strong>Mouvement rectiligne uniforme (MRU) :</strong> vitesse constante, accélération nulle &rarr; graphe v(t) horizontal</li>
+    <li><strong>Mouvement accéléré :</strong> vitesse augmente, \(a > 0\) &rarr; graphe v(t) montant</li>
+    <li><strong>Mouvement décéléré :</strong> vitesse diminue, \(a < 0\) &rarr; graphe v(t) descendant</li>
+    <li><strong>Distance pendant un MRU :</strong> \(d = v \times t\)</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

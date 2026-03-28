@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Activite – Transport par un fluide – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">&larr; RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activite &ndash; Dimensionner les canalisations d'un circuit de chauffage</h1>
+  <p class="sous-titre">Chapitre 6 &ndash; Transport de masse et de volume par un fluide | Terminale Bac Pro (Grpt 1) | Physique &ndash; Mecanique des fluides | &#9201; 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Decouvrir les notions de debit volumique et debit massique</li>
+    <li>Exploiter la relation \(Q_v = S \times v\) pour calculer la vitesse d'ecoulement dans une canalisation</li>
+    <li>Comprendre la conservation du debit et l'equation de continuite</li>
+  </ul>
+</div>
+
+<!-- ===== DOCUMENT D'ACCROCHE ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Sarah est technicienne CVC dans le bureau d'etudes Energis+, a Toulouse. Elle dimensionne le reseau de distribution d'eau chaude d'un petit immeuble de bureaux. La chaudiere alimente deux branches de radiateurs en parallele. Sarah doit verifier que la vitesse de l'eau dans chaque canalisation reste dans les normes (entre 0,5 et 1,5 m/s) pour limiter le bruit et l'erosion des tuyaux.</em></p>
+
+  <h3>Schema du circuit</h3>
+  <div class="meth" style="font-size:.92em">
+    <pre style="font-family:inherit;white-space:pre-wrap;margin:0">
+  Chaudiere
+     |
+     | Canalisation principale (DN40)
+     | Diametre interieur : d₁ = 40 mm
+     |
+     +----------+-----------+
+     |                      |
+  Branche A (DN25)     Branche B (DN20)
+  d₂ = 25 mm           d₃ = 20 mm
+  8 radiateurs          5 radiateurs
+     |                      |
+     +----------+-----------+
+     |
+  Retour chaudiere
+    </pre>
+  </div>
+
+  <h3>Donnees techniques</h3>
+  <table>
+    <thead>
+      <tr><th>Troncon</th><th>Diametre interieur (mm)</th><th>Section (m&sup2;)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Principal (DN40)</td><td>40</td><td>a calculer</td></tr>
+      <tr><td>Branche A (DN25)</td><td>25</td><td>a calculer</td></tr>
+      <tr><td>Branche B (DN20)</td><td>20</td><td>a calculer</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Donnees complementaires :</strong></p>
+  <ul>
+    <li>Debit volumique total fourni par la chaudiere : \(Q_v = 1{,}2\) m&sup3;/h</li>
+    <li>Masse volumique de l'eau a 60 &deg;C : \(\rho = 983\) kg/m&sup3;</li>
+    <li>Section d'une canalisation circulaire : \(S = \pi \times \left(\dfrac{d}{2}\right)^2\)</li>
+    <li>Vitesse recommandee dans les canalisations de chauffage : entre 0,5 et 1,5 m/s</li>
+    <li>Le debit se repartit proportionnellement au nombre de radiateurs entre les deux branches.</li>
+  </ul>
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>a) Identifier les trois grandeurs physiques utilisees dans cette activite : le <strong>debit volumique</strong>, la <strong>section</strong> de la canalisation et la <strong>vitesse</strong> d'ecoulement. Pour chacune, donner son symbole et son unite SI.</p>
+  <p>b) Convertir le debit volumique total de la chaudiere de m&sup3;/h en m&sup3;/s.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong></p>
+    <ul>
+      <li>Debit volumique : \(Q_v\) en m&sup3;/s</li>
+      <li>Section : \(S\) en m&sup2;</li>
+      <li>Vitesse : \(v\) en m/s</li>
+    </ul>
+    <p><strong>b)</strong> \(Q_v = 1{,}2 \text{ m}^3\text{/h} = \dfrac{1{,}2}{3\,600} = 3{,}33 \times 10^{-4} \text{ m}^3\text{/s}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la section \(S\) de chaque canalisation en m&sup2;. On rappelle que \(S = \pi \times \left(\dfrac{d}{2}\right)^2\).</p>
+  <p><em>Attention : convertir les diametres en metres avant le calcul.</em></p>
+  <table>
+    <thead>
+      <tr><th>Troncon</th><th>Diametre (m)</th><th>Section \(S\) (m&sup2;)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Principal (DN40)</td><td>0,040</td><td>...</td></tr>
+      <tr><td>Branche A (DN25)</td><td>0,025</td><td>...</td></tr>
+      <tr><td>Branche B (DN20)</td><td>0,020</td><td>...</td></tr>
+    </tbody>
+  </table>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Principal :</strong> \(S_1 = \pi \times (0{,}020)^2 = \pi \times 4{,}0 \times 10^{-4} = 1{,}257 \times 10^{-3}\) m&sup2; &asymp; \(1{,}26 \times 10^{-3}\) m&sup2;</p>
+    <p><strong>Branche A :</strong> \(S_2 = \pi \times (0{,}0125)^2 = \pi \times 1{,}5625 \times 10^{-4} = 4{,}909 \times 10^{-4}\) m&sup2; &asymp; \(4{,}91 \times 10^{-4}\) m&sup2;</p>
+    <p><strong>Branche B :</strong> \(S_3 = \pi \times (0{,}010)^2 = \pi \times 1{,}0 \times 10^{-4} = 3{,}142 \times 10^{-4}\) m&sup2; &asymp; \(3{,}14 \times 10^{-4}\) m&sup2;</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>La relation entre le debit volumique, la section et la vitesse est : \(Q_v = S \times v\).</p>
+  <p>Calculer la <strong>vitesse d'ecoulement</strong> \(v_1\) dans la canalisation principale (DN40) lorsque le debit total est \(Q_v = 3{,}33 \times 10^{-4}\) m&sup3;/s.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>On isole la vitesse : \(v_1 = \dfrac{Q_v}{S_1} = \dfrac{3{,}33 \times 10^{-4}}{1{,}26 \times 10^{-3}}\)</p>
+    <p>\(v_1 \approx 0{,}26\) m/s</p>
+    <p>Cette vitesse est <strong>inferieure a 0,5 m/s</strong> : la vitesse dans la canalisation principale est faible.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Le circuit comporte 13 radiateurs au total : 8 sur la branche A et 5 sur la branche B. Le debit se repartit proportionnellement au nombre de radiateurs.</p>
+  <p>a) Calculer le debit volumique dans la branche A (\(Q_{vA}\)) et dans la branche B (\(Q_{vB}\)).</p>
+  <p>b) Verifier que \(Q_{vA} + Q_{vB} = Q_v\) (conservation du debit).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong></p>
+    <p>\(Q_{vA} = Q_v \times \dfrac{8}{13} = 3{,}33 \times 10^{-4} \times \dfrac{8}{13} = 2{,}05 \times 10^{-4}\) m&sup3;/s</p>
+    <p>\(Q_{vB} = Q_v \times \dfrac{5}{13} = 3{,}33 \times 10^{-4} \times \dfrac{5}{13} = 1{,}28 \times 10^{-4}\) m&sup3;/s</p>
+    <p><strong>b)</strong> \(Q_{vA} + Q_{vB} = 2{,}05 \times 10^{-4} + 1{,}28 \times 10^{-4} = 3{,}33 \times 10^{-4}\) m&sup3;/s = \(Q_v\). Le debit est bien conserve.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la vitesse d'ecoulement dans chaque branche :</p>
+  <p>a) Vitesse \(v_2\) dans la branche A (DN25).</p>
+  <p>b) Vitesse \(v_3\) dans la branche B (DN20).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> \(v_2 = \dfrac{Q_{vA}}{S_2} = \dfrac{2{,}05 \times 10^{-4}}{4{,}91 \times 10^{-4}} \approx 0{,}42\) m/s</p>
+    <p><strong>b)</strong> \(v_3 = \dfrac{Q_{vB}}{S_3} = \dfrac{1{,}28 \times 10^{-4}}{3{,}14 \times 10^{-4}} \approx 0{,}41\) m/s</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Completer le tableau recapitulatif et verifier si les vitesses respectent la norme (entre 0,5 et 1,5 m/s).</p>
+  <table>
+    <thead>
+      <tr><th>Troncon</th><th>Debit \(Q_v\) (m&sup3;/s)</th><th>Section \(S\) (m&sup2;)</th><th>Vitesse \(v\) (m/s)</th><th>Conforme ?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Principal</td><td>\(3{,}33 \times 10^{-4}\)</td><td>\(1{,}26 \times 10^{-3}\)</td><td>...</td><td>...</td></tr>
+      <tr><td>Branche A</td><td>\(2{,}05 \times 10^{-4}\)</td><td>\(4{,}91 \times 10^{-4}\)</td><td>...</td><td>...</td></tr>
+      <tr><td>Branche B</td><td>\(1{,}28 \times 10^{-4}\)</td><td>\(3{,}14 \times 10^{-4}\)</td><td>...</td><td>...</td></tr>
+    </tbody>
+  </table>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead>
+        <tr><th>Troncon</th><th>Vitesse (m/s)</th><th>Conforme ?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Principal (DN40)</td><td>0,26</td><td><strong>Non</strong> (trop faible, &lt; 0,5 m/s)</td></tr>
+        <tr><td>Branche A (DN25)</td><td>0,42</td><td><strong>Non</strong> (trop faible, &lt; 0,5 m/s)</td></tr>
+        <tr><td>Branche B (DN20)</td><td>0,41</td><td><strong>Non</strong> (trop faible, &lt; 0,5 m/s)</td></tr>
+      </tbody>
+    </table>
+    <p>Aucune vitesse ne respecte la norme minimale de 0,5 m/s. Les canalisations sont surdimensionnees pour ce debit.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Pour augmenter la vitesse dans les canalisations, Sarah envisage de reduire le diametre de la canalisation principale a DN32 (diametre interieur : 32 mm).</p>
+  <p>a) Calculer la nouvelle section \(S_1'\) et la nouvelle vitesse \(v_1'\) dans la canalisation principale.</p>
+  <p>b) Expliquer pourquoi une canalisation plus etroite entraine une vitesse plus elevee pour le meme debit.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> \(S_1' = \pi \times (0{,}016)^2 = 8{,}04 \times 10^{-4}\) m&sup2;</p>
+    <p>\(v_1' = \dfrac{3{,}33 \times 10^{-4}}{8{,}04 \times 10^{-4}} \approx 0{,}41\) m/s</p>
+    <p>C'est mieux, mais toujours inferieur a 0,5 m/s.</p>
+    <p><strong>b)</strong> D'apres \(Q_v = S \times v\), si le debit \(Q_v\) est constant et que la section \(S\) diminue, alors la vitesse \(v\) doit augmenter pour compenser. C'est l'<strong>equation de continuite</strong> : le fluide accelere quand la canalisation se retrecit.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le <strong>debit massique</strong> \(Q_m\) du circuit, sachant que la masse volumique de l'eau a 60 &deg;C est \(\rho = 983\) kg/m&sup3;.</p>
+  <p>On rappelle : \(Q_m = \rho \times Q_v\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>\(Q_m = \rho \times Q_v = 983 \times 3{,}33 \times 10^{-4}\)</p>
+    <p>\(Q_m = 0{,}327\) kg/s &asymp; <strong>0,33 kg/s</strong></p>
+    <p>En une heure, la masse d'eau transportee est : \(m = 0{,}327 \times 3\,600 = 1\,177\) kg &asymp; <strong>1,2 tonne</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-yellow">COM</span></h2>
+  <p>Rediger un court paragraphe (3 a 5 phrases) destinee a Sarah pour lui presenter vos conclusions. Indiquer :</p>
+  <ul>
+    <li>Si les diametres de canalisations actuels sont adaptes au debit de la chaudiere.</li>
+    <li>Quelle solution vous preconisez (reduire les diametres ou augmenter le debit).</li>
+    <li>Le principe physique qui justifie votre preconisation.</li>
+  </ul>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <p>Avec le debit de 1,2 m&sup3;/h fourni par la chaudiere, les vitesses d'ecoulement dans les canalisations DN40, DN25 et DN20 sont toutes inferieures a 0,5 m/s. Ces vitesses trop faibles favorisent les depots de boues et ne permettent pas un bon brassage de l'eau. Nous preconisons de reduire le diametre de la canalisation principale a DN25 ou DN20, ce qui augmentera la vitesse tout en conservant le meme debit. En effet, d'apres l'equation de continuite \(Q_v = S \times v\), a debit constant, la vitesse augmente quand la section diminue. Une alternative serait d'augmenter le debit de la chaudiere si les radiateurs le necessitent.</p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>A retenir</strong>
+  <ul>
+    <li><strong>Debit volumique :</strong> \(Q_v = S \times v\) — relie le debit, la section de passage et la vitesse d'ecoulement.</li>
+    <li><strong>Debit massique :</strong> \(Q_m = \rho \times Q_v\) — relie le debit massique a la masse volumique et au debit volumique.</li>
+    <li><strong>Equation de continuite :</strong> dans un circuit ferme, le debit est conserve. Quand la section diminue, la vitesse augmente : \(S_1 \times v_1 = S_2 \times v_2\).</li>
+    <li><strong>Conservation du debit :</strong> a un embranchement, le debit entrant est egal a la somme des debits sortants.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
