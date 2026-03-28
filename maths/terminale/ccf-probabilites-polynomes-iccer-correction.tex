@@ -1,0 +1,375 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=2cm}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{lastpage}
+
+% Couleurs
+\definecolor{bleupro}{HTML}{0969da}
+\definecolor{orange}{HTML}{d97706}
+\definecolor{vertpro}{HTML}{2f855a}
+\definecolor{rouge}{HTML}{c53030}
+\definecolor{gris}{HTML}{718096}
+
+% En-tête
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small CCF Mathématiques — \textbf{CORRECTION}}
+\rhead{\small Terminale Bac Pro ICCER}
+\cfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% Boîtes
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{corrbox}{
+  colback=green!3,
+  colframe=vertpro,
+  title={\textbf{Correction}},
+  fonttitle=\bfseries,
+  breakable
+}
+
+\newtcolorbox{contextebox}{
+  colback=blue!3,
+  colframe=bleupro,
+  leftrule=4pt,
+  rightrule=0pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  boxsep=4pt,
+  left=8pt
+}
+
+\newcommand{\pts}[1]{\hfill\textcolor{gris}{\small\textbf{#1}}}
+\newcommand{\comp}[1]{\colorbox{blue!10}{\scriptsize\textbf{#1}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries\color{rouge} CORRECTION — CCF Mathématiques}\\[8pt]
+{\large Terminale Bac Pro — ICCER}\\[8pt]
+{\Large\bfseries Probabilités \& Fonctions polynômes de degré 3}\\[12pt]
+\textcolor{rouge}{\rule{12cm}{1pt}}
+\end{center}
+
+\vspace{10pt}
+
+% ================================================================
+\section*{Exercice 1 — Contrôle qualité en génie climatique \pts{5 points}}
+% ================================================================
+
+\begin{contextebox}
+\textbf{Données :} $P(E) = 0{,}10$ \quad $P(\overline{E}) = 0{,}90$ \quad $P_E(F) = 0{,}25$ \quad $P_{\overline{E}}(F) = 0{,}04$
+
+\smallskip
+$E$ = ``défaut d'étanchéité'' \quad $F$ = ``défaut de filetage''
+\end{contextebox}
+
+\vspace{6pt}
+
+% --- Q1 ---
+\textbf{Q1} \comp{APP} — Traduire les données en probabilités. \pts{1 pt}
+
+\begin{corrbox}
+D'après l'énoncé :
+\begin{itemize}[nosep]
+  \item $P(E) = 0{,}10$ \quad (10\% des raccords ont un défaut d'étanchéité)
+  \item $P(\overline{E}) = 1 - P(E) = 1 - 0{,}10 = \boxed{0{,}90}$
+  \item $P_E(F) = 0{,}25$ \quad (probabilité de défaut de filetage sachant défaut d'étanchéité)
+  \item $P_{\overline{E}}(F) = 0{,}04$ \quad (probabilité de défaut de filetage sachant pas de défaut d'étanchéité)
+\end{itemize}
+
+\textit{Barème : 0,25 pt par valeur correcte.}
+\end{corrbox}
+
+% --- Q2 ---
+\textbf{Q2} \comp{REA} — Compléter l'arbre de probabilités. \pts{1 pt}
+
+\begin{corrbox}
+\begin{center}
+\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+  \node[circle, fill=black, inner sep=1.5pt] (R) at (0,0) {};
+  % Niveau 1
+  \node (E) at (3,1.5) {$E$};
+  \node (Eb) at (3,-1.5) {$\overline{E}$};
+  \draw[-] (R) -- (E) node[midway, above, sloped] {$0{,}10$};
+  \draw[-] (R) -- (Eb) node[midway, below, sloped] {$0{,}90$};
+  % Niveau 2 depuis E
+  \node (EF) at (6.5,2.3) {$F$};
+  \node (EFb) at (6.5,0.7) {$\overline{F}$};
+  \draw[-] (E) -- (EF) node[midway, above, sloped] {$0{,}25$};
+  \draw[-] (E) -- (EFb) node[midway, below, sloped] {$0{,}75$};
+  % Niveau 2 depuis Eb
+  \node (EbF) at (6.5,-0.7) {$F$};
+  \node (EbFb) at (6.5,-2.3) {$\overline{F}$};
+  \draw[-] (Eb) -- (EbF) node[midway, above, sloped] {$0{,}04$};
+  \draw[-] (Eb) -- (EbFb) node[midway, below, sloped] {$0{,}96$};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Vérifications :}
+\begin{itemize}[nosep]
+  \item Nœud racine : $0{,}10 + 0{,}90 = 1$ \checkmark
+  \item Nœud $E$ : $0{,}25 + 0{,}75 = 1$ \checkmark \quad ($P_E(\overline{F}) = 1 - 0{,}25 = 0{,}75$)
+  \item Nœud $\overline{E}$ : $0{,}04 + 0{,}96 = 1$ \checkmark \quad ($P_{\overline{E}}(\overline{F}) = 1 - 0{,}04 = 0{,}96$)
+\end{itemize}
+
+\textit{Barème : 0,5 pt pour les branches niveau 1 + 0,5 pt pour les branches niveau 2.}
+\end{corrbox}
+
+% --- Q3 ---
+\textbf{Q3} \comp{REA} — Calculer $P(E \cap F)$ et $P(\overline{E} \cap F)$. \pts{1 pt}
+
+\begin{corrbox}
+On multiplie les probabilités le long de chaque chemin :
+
+\textbf{Chemin $E$ puis $F$ :}
+\[
+P(E \cap F) = P(E) \times P_E(F) = 0{,}10 \times 0{,}25 = \boxed{0{,}025}
+\]
+
+\textbf{Chemin $\overline{E}$ puis $F$ :}
+\[
+P(\overline{E} \cap F) = P(\overline{E}) \times P_{\overline{E}}(F) = 0{,}90 \times 0{,}04 = \boxed{0{,}036}
+\]
+
+\textit{Barème : 0,5 pt par calcul correct.}
+\end{corrbox}
+
+% --- Q4 ---
+\textbf{Q4} \comp{ANA} — Calculer $P(F)$ par la formule des probabilités totales. \pts{1 pt}
+
+\begin{corrbox}
+La formule des probabilités totales donne :
+\[
+P(F) = P(E \cap F) + P(\overline{E} \cap F) = 0{,}025 + 0{,}036 = \boxed{0{,}061}
+\]
+
+Soit \textbf{6,1\%} des raccords ont un défaut de filetage.
+
+\smallskip
+\textit{Explication :} l'événement $F$ peut se produire par deux chemins dans l'arbre (via $E$ ou via $\overline{E}$). La probabilité totale est la somme des probabilités de ces deux chemins.
+
+\smallskip
+\textit{Barème : 0,5 pt pour la formule posée + 0,5 pt pour le résultat.}
+\end{corrbox}
+
+% --- Q5 ---
+\textbf{Q5} \comp{ANA} — Application et conclusion. \pts{1 pt}
+
+\begin{corrbox}
+Sur 500 raccords :
+\[
+\text{Nombre attendu de raccords avec défaut de filetage} = 500 \times 0{,}061 = \boxed{30{,}5 \approx 31 \text{ raccords}}
+\]
+
+Taux de défaut de filetage : $\frac{30{,}5}{500} = 6{,}1\%$.
+
+Le responsable qualité considère le taux acceptable si $< 5\%$. Or $6{,}1\% > 5\%$.
+
+$\Rightarrow$ \textbf{Non}, le taux n'est pas acceptable. Il faudra améliorer le processus de fabrication pour réduire les défauts, en particulier les défauts de filetage sur les raccords ayant déjà un défaut d'étanchéité ($P_E(F) = 25\%$ est très élevé).
+
+\smallskip
+\textit{Barème : 0,5 pt pour le calcul + 0,5 pt pour la conclusion argumentée.}
+\end{corrbox}
+
+\newpage
+
+% ================================================================
+\section*{Exercice 2 — Optimisation du volume d'un bac de rangement \pts{5 points}}
+% ================================================================
+
+\begin{contextebox}
+\textbf{Données :} Plaque carrée 30 cm $\times$ 30 cm. Découpe de côté $x$ aux coins.\\
+$V(x) = x(30-2x)^2 = 4x^3 - 120x^2 + 900x$ pour $x \in \;]0\,;\,15[$
+\end{contextebox}
+
+\vspace{6pt}
+
+% --- Q1 ---
+\textbf{Q1} \comp{REA} — Tracer la courbe à la calculatrice et la reproduire sur le quadrillage. \pts{1 pt}
+
+\begin{corrbox}
+Sur la calculatrice NumWorks (ou GeoGebra), on saisit $f(x) = 4x^3 - 120x^2 + 900x$ et on trace sur $[0\,;\,15]$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.48]
+  % Quadrillage
+  \draw[gray!25, very thin] (0,0) grid[step=1] (16,14);
+  \draw[gray!50, thin] (0,0) grid[step=5] (16,14);
+  % Axes
+  \draw[->, thick] (0,0) -- (16.5,0) node[right] {$x$ (cm)};
+  \draw[->, thick] (0,0) -- (0,14.5) node[above] {$V$ (cm$^3$)};
+  % Graduations x
+  \foreach \x in {5,10,15} {
+    \node[below] at (\x,-0.3) {\small\x};
+  }
+  % Graduations y (1 unité graphique = 250 cm³)
+  \node[left] at (-0.3,2) {\small 500};
+  \node[left] at (-0.3,4) {\small 1000};
+  \node[left] at (-0.3,6) {\small 1500};
+  \node[left] at (-0.3,8) {\small 2000};
+  \node[left] at (-0.3,10) {\small 2500};
+  \node[left] at (-0.3,12) {\small 3000};
+  \node[below left] at (0,0) {\small 0};
+  % Courbe V(x) = 4x³ - 120x² + 900x (échelle y : /250)
+  \begin{scope}
+    \clip (0,0) rectangle (15,14);
+    \draw[thick, bleupro, smooth] plot[domain=0:15, samples=50]
+      (\x, {(4*\x*\x*\x - 120*\x*\x + 900*\x)/250});
+  \end{scope}
+  % Maximum en x=5, V(5)=2000
+  \filldraw[rouge] (5,8) circle (3pt);
+  \node[above right, rouge, font=\small\bfseries] at (5.2,8) {max $(5\,;\,2\,000)$};
+  % Pointillés de lecture
+  \draw[dashed, rouge, thin] (5,0) -- (5,8);
+  \draw[dashed, rouge, thin] (0,8) -- (5,8);
+\end{tikzpicture}
+\end{center}
+
+L'élève doit reproduire cette allure sur le quadrillage fourni, avec le maximum repéré.
+
+\smallskip
+\textit{Barème : 0,5 pt pour la forme générale correcte + 0,5 pt pour le maximum placé.}
+\end{corrbox}
+
+% --- Q2 ---
+\textbf{Q2} \comp{APP} — Lecture graphique du maximum. \pts{1 pt}
+
+\begin{corrbox}
+Par lecture graphique sur la calculatrice :
+
+Le volume semble maximal pour $x \approx \boxed{5 \text{ cm}}$.
+
+La valeur approchée du maximum est $V \approx \boxed{2\,000 \text{ cm}^3}$.
+
+\smallskip
+\textit{Barème : 0,5 pt pour la valeur de $x$ (tolérance $\pm 0{,}5$) + 0,5 pt pour la valeur de $V$ (tolérance $\pm 200$).}
+\end{corrbox}
+
+% --- Q3 ---
+\textbf{Q3} \comp{REA} — Dérivée et résolution. \pts{1 pt}
+
+\begin{corrbox}
+\textbf{Dérivée :}
+\[
+V'(x) = 3 \times 4x^2 - 2 \times 120x + 900 = 12x^2 - 240x + 900
+\]
+
+\textbf{Vérification de la factorisation :}
+\[
+12(x-5)(x-15) = 12(x^2 - 20x + 75) = 12x^2 - 240x + 900 \quad \checkmark
+\]
+
+\textbf{Résolution} $V'(x) = 0$ :
+\[
+x - 5 = 0 \quad \Rightarrow \quad \boxed{x = 5}
+\]
+\[
+x - 15 = 0 \quad \Rightarrow \quad x = 15 \quad \text{(borne de l'intervalle, exclue)}
+\]
+
+Seule solution dans $]0\,;\,15[$ : $\boxed{x = 5 \text{ cm}}$
+
+\smallskip
+\textit{Barème : 0,5 pt pour la dérivée + 0,5 pt pour la résolution.}
+\end{corrbox}
+
+% --- Q4 ---
+\textbf{Q4} \comp{ANA} — Compléter le tableau de variations. Calculer le maximum exact. \pts{1 pt}
+
+\begin{corrbox}
+\textbf{Tableau de variations complété :}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{1.2cm}|>{\centering\arraybackslash}m{1.8cm}|>{\centering\arraybackslash}m{1.2cm}|>{\centering\arraybackslash}m{1.8cm}|>{\centering\arraybackslash}m{1.2cm}|}
+\hline
+$x$ & $0$ & & $5$ & & $15$ \\
+\hline
+Signe de $(x - 5)$ & $-$ & $\boldsymbol{-}$ & $0$ & $\boldsymbol{+}$ & $+$ \\
+\hline
+Signe de $(x - 15)$ & $-$ & $\boldsymbol{-}$ & $-$ & $\boldsymbol{-}$ & $0$ \\
+\hline
+Signe de $V'(x)$ & & $\boldsymbol{+}$ & $0$ & $\boldsymbol{-}$ & \\
+\hline
+& $0$ & & $\boldsymbol{2\,000}$ & & $0$ \\[-2pt]
+Variations de $V$ & & $\nearrow$ & & $\searrow$ & \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+\textbf{Règle des signes :} $V'(x) = 12 \times (x-5) \times (x-15)$. Le facteur 12 est positif, donc le signe de $V'$ est celui du produit $(x-5)(x-15)$ :
+\begin{itemize}[nosep]
+  \item $(-) \times (-) = +$ sur $]0\,;\,5[$ → $V$ croissante
+  \item $(+) \times (-) = -$ sur $]5\,;\,15[$ → $V$ décroissante
+\end{itemize}
+
+\textbf{Calcul du maximum :}
+\[
+V(5) = 4 \times 125 - 120 \times 25 + 900 \times 5 = 500 - 3\,000 + 4\,500 = \boxed{2\,000 \text{ cm}^3}
+\]
+
+\textbf{Confirmation :} la lecture graphique de Q2 donnait $V \approx 2\,000$ cm$^3$ pour $x \approx 5$. Le calcul confirme exactement \checkmark
+
+\smallskip
+\textit{Barème : 0,5 pt pour le tableau de variations complété + 0,5 pt pour le calcul du maximum.}
+\end{corrbox}
+
+% --- Q5 ---
+\textbf{Q5} \comp{COM} — Conclusion et dimensions. \pts{1 pt}
+
+\begin{corrbox}
+Le volume est maximal pour $\boxed{x = 5 \text{ cm}}$.
+
+\textbf{Dimensions du bac :}
+\begin{itemize}[nosep]
+  \item Hauteur : $x = 5$ cm
+  \item Longueur = Largeur : $30 - 2 \times 5 = 20$ cm
+\end{itemize}
+
+Le bac est un parallélépipède rectangle de \textbf{20 cm $\times$ 20 cm $\times$ 5 cm}.
+
+\textbf{Volume maximal :} $V_{\max} = 20 \times 20 \times 5 = \boxed{2\,000 \text{ cm}^3}$
+
+\textbf{Contrainte :} L'installateur a besoin d'un bac d'au moins 1\,500 cm$^3$. Or $2\,000 > 1\,500$.
+
+$\Rightarrow$ \textbf{Oui, la contrainte est respectée.} Le bac optimal de 2\,000 cm$^3$ dépasse largement le minimum requis.
+
+\smallskip
+\textit{Barème : 0,25 pt dimensions + 0,25 pt volume max + 0,5 pt conclusion sur la contrainte.}
+\end{corrbox}
+
+\vfill
+
+\begin{center}
+\textcolor{rouge}{\rule{12cm}{1pt}}\\[8pt]
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Exercice} & \textbf{Thème} & \textbf{Questions} & \textbf{Points} \\
+\hline
+1 & Probabilités (raccords cuivre, arbre, probas totales) & Q1 à Q5 & \textbf{/5} \\
+\hline
+2 & Polynôme degré 3 (dérivée, variations, optimisation) & Q1 à Q5 & \textbf{/5} \\
+\hline
+\multicolumn{3}{|r|}{\textbf{Total}} & \textbf{/10} \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}

@@ -1,0 +1,337 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=2cm}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{lastpage}
+
+% Couleurs
+\definecolor{bleupro}{HTML}{0969da}
+\definecolor{orange}{HTML}{d97706}
+\definecolor{vertpro}{HTML}{2f855a}
+\definecolor{rouge}{HTML}{c53030}
+\definecolor{gris}{HTML}{718096}
+
+% En-tête
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small \textcolor{rouge}{CORRECTION} — CCF Physique-Chimie — Terminale ICCER}
+\rhead{\small Fluides \& Courant alternatif}
+\cfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% Boîtes
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{corrbox}{
+  colback=green!3,
+  colframe=vertpro,
+  title={\textbf{Correction}},
+  fonttitle=\bfseries,
+  breakable
+}
+
+\newtcolorbox{contextebox}{
+  colback=blue!3,
+  colframe=bleupro,
+  leftrule=4pt,
+  rightrule=0pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  boxsep=4pt,
+  left=8pt
+}
+
+\newcommand{\pts}[1]{\hfill\textcolor{gris}{\small\textbf{#1}}}
+\newcommand{\comp}[1]{\colorbox{blue!10}{\scriptsize\textbf{#1}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries\color{rouge} CORRECTION — CCF Physique-Chimie}\\[8pt]
+{\large Terminale Bac Pro ICCER — Groupement 1}\\[8pt]
+{\Large\bfseries Débit de fluide \& Puissance en régime sinusoïdal}\\[12pt]
+\textcolor{rouge}{\rule{12cm}{1pt}}
+\end{center}
+
+\vspace{10pt}
+
+% ================================================================
+\section*{Exercice 1 — TP numérique : dimensionner un réseau de chauffage \pts{5 points}}
+% ================================================================
+
+\begin{contextebox}
+\textbf{Données :} $Q_v = 1{,}8$ m³/h \quad $d_1 = 40$ mm \quad $d_2 = 25$ mm\\
+Vitesse recommandée : entre 0,5 et 1,5 m/s
+\end{contextebox}
+
+\vspace{6pt}
+
+% --- Q1 ---
+\textbf{Q1} \comp{APP} — Relevé des valeurs de la simulation. \pts{1 pt}
+
+\begin{corrbox}
+Avec $Q_v = 1{,}8$ m³/h et $d_1 = 40$ mm, la simulation affiche :
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\centering\arraybackslash}m{4cm}|>{\centering\arraybackslash}m{4cm}|}
+\hline
+\textbf{Grandeur} & \textbf{Valeur} \\
+\hline
+Section $S_1$ & \textcolor{rouge}{\textbf{12,57 cm²}} \\
+\hline
+Vitesse $v_1$ & \textcolor{rouge}{\textbf{0,40 m/s}} \\
+\hline
+Norme respectée ? & \textcolor{rouge}{\textbf{Non (0,40 < 0,5 m/s)}} \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+\textit{Barème : 0,25 pt par ligne correcte + 0,25 pt pour la conclusion sur la norme.}
+\end{corrbox}
+
+% --- Q2 ---
+\textbf{Q2} \comp{REA} — Vérification par le calcul. \pts{1 pt}
+
+\begin{corrbox}
+\textbf{Étape 1 — Conversion du débit :}
+\[
+Q_v = 1{,}8 \text{ m}^3\text{/h} = \frac{1{,}8}{3\,600} = 5{,}00 \times 10^{-4} \text{ m}^3\text{/s}
+\]
+
+\textbf{Étape 2 — Calcul de la section :}
+\[
+d_1 = 40 \text{ mm} = 0{,}040 \text{ m}
+\]
+\[
+S_1 = \pi \times \left(\frac{d_1}{2}\right)^2 = \pi \times (0{,}020)^2 = \pi \times 4 \times 10^{-4} = 1{,}257 \times 10^{-3} \text{ m}^2
+\]
+
+\textbf{Étape 3 — Calcul de la vitesse :}
+\[
+v_1 = \frac{Q_v}{S_1} = \frac{5{,}00 \times 10^{-4}}{1{,}257 \times 10^{-3}} = \boxed{0{,}40 \text{ m/s}}
+\]
+
+La valeur calculée confirme celle de la simulation \checkmark
+
+\smallskip
+\textit{Barème : 0,25 pt conversion + 0,25 pt section + 0,5 pt vitesse.}
+\end{corrbox}
+
+% --- Q3 ---
+\textbf{Q3} \comp{ANA} — Relevé des branches ($d_2 = 25$ mm). \pts{1 pt}
+
+\begin{corrbox}
+Avec $d_2 = 25$ mm, la simulation affiche :
+
+$v_2 = \boxed{0{,}51 \text{ m/s}}$
+
+\textbf{Vérification :}
+\begin{itemize}[nosep]
+  \item $Q_{v2} = Q_v / 2 = 5{,}00 \times 10^{-4} / 2 = 2{,}50 \times 10^{-4}$ m³/s
+  \item $S_2 = \pi \times (0{,}0125)^2 = 4{,}91 \times 10^{-4}$ m²
+  \item $v_2 = 2{,}50 \times 10^{-4} / 4{,}91 \times 10^{-4} = 0{,}51$ m/s
+\end{itemize}
+
+Norme : $0{,}5 \leq 0{,}51 \leq 1{,}5$ m/s $\Rightarrow$ \textbf{Oui, la norme est respectée dans les branches} (tout juste).
+
+\smallskip
+\textit{Barème : 0,5 pt pour la lecture + 0,5 pt pour la conclusion argumentée.}
+\end{corrbox}
+
+% --- Q4 ---
+\textbf{Q4} \comp{ANA} — Recherche du diamètre conforme par essais. \pts{1 pt}
+
+\begin{corrbox}
+On fait varier $d_1$ pour obtenir $0{,}5 \leq v_1 \leq 1{,}5$ m/s (avec $Q_v = 1{,}8$ m³/h) :
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.5cm}|>{\centering\arraybackslash}m{2.5cm}|}
+\hline
+\textbf{Essai} & \textbf{Diamètre $d_1$} & \textbf{Vitesse $v_1$} & \textbf{Conforme ?} \\
+\hline
+1 & 40 mm & \textcolor{rouge}{0,40 m/s} & \textcolor{rouge}{Non (< 0,5)} \\
+\hline
+2 & \textcolor{rouge}{35 mm} & \textcolor{rouge}{0,52 m/s} & \textcolor{vertpro}{\textbf{Oui}} \\
+\hline
+3 & \textcolor{rouge}{25 mm} & \textcolor{rouge}{1,02 m/s} & \textcolor{vertpro}{\textbf{Oui}} \\
+\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+
+\textbf{Vérifications :}
+\begin{itemize}[nosep]
+  \item $d_1 = 35$ mm : $S = \pi \times (0{,}0175)^2 = 9{,}62 \times 10^{-4}$ m² $\Rightarrow v = 5{,}00 \times 10^{-4} / 9{,}62 \times 10^{-4} = 0{,}52$ m/s \checkmark
+  \item $d_1 = 25$ mm : $S = \pi \times (0{,}0125)^2 = 4{,}91 \times 10^{-4}$ m² $\Rightarrow v = 5{,}00 \times 10^{-4} / 4{,}91 \times 10^{-4} = 1{,}02$ m/s \checkmark
+\end{itemize}
+
+\textbf{Remarque :} à $d_1 = 20$ mm, $v = 1{,}59$ m/s $> 1{,}5$ m/s (trop rapide). La plage conforme est donc entre 22 et 36 mm environ.
+
+\smallskip
+\textit{Barème : 0,25 pt par essai correct (valeurs + conclusion).}
+\end{corrbox}
+
+% --- Q5 ---
+\textbf{Q5} \comp{COM} — Choix et justification du diamètre. \pts{1 pt}
+
+\begin{corrbox}
+\textbf{Diamètre choisi :} $d_1 = \boxed{30 \text{ mm}}$
+
+\textbf{Justification :}
+\begin{itemize}[nosep]
+  \item Avec $d_1 = 30$ mm : $v_1 = 0{,}71$ m/s, bien dans la norme (0,5 – 1,5 m/s)
+  \item Un diamètre de 30 mm est plus petit que 35 mm, donc \textbf{moins coûteux} (moins de matière, moins cher à l'achat)
+  \item La vitesse de 0,71 m/s offre une bonne marge par rapport aux deux limites (loin de 0,5 et loin de 1,5)
+  \item Un diamètre de 25 mm fonctionnerait aussi mais la vitesse (1,02 m/s) est plus élevée, ce qui peut générer davantage de bruit dans les tuyaux
+\end{itemize}
+
+Le choix de $d_1 = 30$ mm est un bon \textbf{compromis entre coût et confort acoustique}.
+
+\smallskip
+\textit{Barème : 0,5 pt pour le choix d'un diamètre conforme + 0,5 pt pour une justification argumentée (coût + norme).}
+\end{corrbox}
+
+\newpage
+
+% ================================================================
+\section*{Exercice 2 — Dimensionnement électrique d'une PAC \pts{5 points}}
+% ================================================================
+
+\begin{contextebox}
+\textbf{Données :} $P = 3\,200$ W \quad $\cos\varphi = 0{,}85$ \quad $U = 230$ V (monophasé, 50 Hz)\\
+Fonctionnement : 10 h/jour $\times$ 180 jours. Prix kWh : 0,20 €
+\end{contextebox}
+
+\vspace{6pt}
+
+% --- Q1 ---
+\textbf{Q1} \comp{REA} — Calculer la puissance apparente $S$. \pts{1 pt}
+
+\begin{corrbox}
+On sait que $\cos\varphi = \dfrac{P}{S}$, donc :
+\[
+S = \frac{P}{\cos\varphi} = \frac{3\,200}{0{,}85} = \boxed{3\,765 \text{ VA}}
+\]
+
+\textit{Barème : 0,5 pt pour la formule posée + 0,5 pt pour le résultat avec unité.}
+\end{corrbox}
+
+% --- Q2 ---
+\textbf{Q2} \comp{REA} — Calculer l'intensité du courant $I$. \pts{1 pt}
+
+\begin{corrbox}
+On utilise $S = U \times I$, donc :
+\[
+I = \frac{S}{U} = \frac{3\,765}{230} = \boxed{16{,}4 \text{ A}}
+\]
+
+\textit{Autre méthode directe :}
+\[
+I = \frac{P}{U \times \cos\varphi} = \frac{3\,200}{230 \times 0{,}85} = \frac{3\,200}{195{,}5} = 16{,}4 \text{ A}
+\]
+
+\textit{Barème : 0,5 pt pour la formule + 0,5 pt pour le résultat avec unité.}
+\end{corrbox}
+
+% --- Q3 ---
+\textbf{Q3} \comp{ANA} — Le disjoncteur de 20 A est-il correctement dimensionné ? \pts{1 pt}
+
+\begin{corrbox}
+L'intensité absorbée par la PAC est $I = 16{,}4$ A.
+
+Le disjoncteur est calibré à 20 A.
+
+Or $16{,}4 < 20$ A $\Rightarrow$ \textbf{Oui}, le disjoncteur est correctement dimensionné.
+
+Il reste une marge de $20 - 16{,}4 = 3{,}6$ A, ce qui est suffisant pour les appels de courant au démarrage.
+
+\smallskip
+\textit{Barème : 0,5 pt pour la comparaison + 0,5 pt pour la conclusion justifiée.}
+\end{corrbox}
+
+% --- Q4 ---
+\textbf{Q4} \comp{REA} — Énergie consommée et coût annuel. \pts{1 pt}
+
+\begin{corrbox}
+\textbf{Durée de fonctionnement sur la saison :}
+\[
+t = 10 \times 180 = 1\,800 \text{ h}
+\]
+
+\textbf{Énergie consommée :}
+\[
+E = P \times t = 3\,200 \times 1\,800 = 5\,760\,000 \text{ Wh} = \boxed{5\,760 \text{ kWh}}
+\]
+
+\textbf{Coût annuel :}
+\[
+\text{Coût} = 5\,760 \times 0{,}20 = \boxed{1\,152 \text{ €}}
+\]
+
+\textit{Barème : 0,25 pt durée + 0,25 pt énergie en kWh + 0,5 pt coût.}
+\end{corrbox}
+
+% --- Q5 ---
+\textbf{Q5} \comp{COM} — Expliquer l'impact d'un mauvais facteur de puissance. \pts{1 pt}
+
+\begin{corrbox}
+\textbf{Le problème :} la formule $P = U \times I \times \cos\varphi$ montre que, à puissance active $P$ constante :
+\[
+I = \frac{P}{U \times \cos\varphi}
+\]
+
+Si $\cos\varphi$ diminue, l'intensité $I$ \textbf{augmente} pour fournir la même puissance utile.
+
+\textbf{Comparaison chiffrée :}
+\begin{itemize}[nosep]
+  \item Avec $\cos\varphi = 0{,}85$ : $I = \frac{3\,200}{230 \times 0{,}85} = 16{,}4$ A
+  \item Avec $\cos\varphi = 0{,}95$ : $I = \frac{3\,200}{230 \times 0{,}95} = 14{,}6$ A
+\end{itemize}
+
+Un mauvais $\cos\varphi$ entraîne un courant plus élevé ($+1{,}8$ A ici), ce qui provoque :
+\begin{enumerate}[nosep]
+  \item Des \textbf{pertes par effet Joule plus importantes} dans les câbles ($P_J = RI^2$)
+  \item Un \textbf{dimensionnement plus coûteux} (câbles, disjoncteurs de calibre supérieur)
+  \item Des \textbf{pénalités facturées par le fournisseur} d'électricité pour les professionnels dont le $\cos\varphi$ est trop faible
+\end{enumerate}
+
+\textbf{Solution :} installer un condensateur de compensation pour améliorer le $\cos\varphi$ vers 0,95.
+
+\smallskip
+\textit{Barème : 0,5 pt pour l'explication (I augmente si $\cos\varphi$ baisse) + 0,5 pt pour les conséquences.}
+\end{corrbox}
+
+\vfill
+
+\begin{center}
+\textcolor{rouge}{\rule{12cm}{1pt}}\\[8pt]
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Exercice} & \textbf{Thème} & \textbf{Questions} & \textbf{Points} \\
+\hline
+1 & Débit de fluide — TP numérique (simulation) & Q1 à Q5 & \textbf{/5} \\
+\hline
+2 & Puissance en régime sinusoïdal (PAC) & Q1 à Q5 & \textbf{/5} \\
+\hline
+\multicolumn{3}{|r|}{\textbf{Total}} & \textbf{/10} \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
