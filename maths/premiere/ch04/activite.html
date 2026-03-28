@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Activité – Résolution graphique d'équations et d'inéquations – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité — Comparaison de deux tarifs</h1>
+  <p class="sous-titre">Chapitre 4 &nbsp;|&nbsp; 1ère Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Modéliser une situation par deux fonctions affines</li>
+    <li>Résoudre graphiquement une équation de la forme \(f(x) = g(x)\)</li>
+    <li>Résoudre graphiquement une inéquation de la forme \(f(x) \leq g(x)\)</li>
+    <li>Interpréter le point d'intersection de deux droites</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SITUATION PROFESSIONNELLE                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Contexte : un installateur thermique de l'entreprise « Thermo-Confort » à Strasbourg doit conseiller un client sur le choix d'un contrat de maintenance pour sa chaudière.</em></p>
+
+  <p>Deux prestataires proposent des contrats annuels de maintenance avec des tarifications différentes, facturées en fonction du nombre d'heures d'intervention \(x\) sur l'année :</p>
+
+  <table class="styled">
+    <thead>
+      <tr><th>Contrat</th><th>Forfait annuel fixe</th><th>Coût par heure d'intervention</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Plan A</strong> (CaloriPlus)</td><td>120 €</td><td>35 € / h</td></tr>
+      <tr><td><strong>Plan B</strong> (ThermoService)</td><td>260 €</td><td>15 € / h</td></tr>
+    </tbody>
+  </table>
+
+  <p>Le technicien doit déterminer <strong>à partir de combien d'heures d'intervention</strong> le Plan B devient plus avantageux que le Plan A.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- QUESTIONS                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<!-- Q1 -->
+<div class="exo">
+<h2>Question 1 — Exprimer les coûts <span class="badge-green">APP</span> <span class="badge-green">REA</span></h2>
+<p>On note \(x\) le nombre d'heures d'intervention sur l'année.</p>
+<p><strong>a)</strong> Exprimer le coût total \(f(x)\) du <strong>Plan A</strong> en fonction de \(x\).</p>
+<p><strong>b)</strong> Exprimer le coût total \(g(x)\) du <strong>Plan B</strong> en fonction de \(x\).</p>
+<p><strong>c)</strong> Quelle est la nature de ces deux fonctions ? Justifier.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Le Plan A facture 120 € de forfait + 35 € par heure :</p>
+  <p>\[f(x) = 35x + 120\]</p>
+  <p><strong>b)</strong> Le Plan B facture 260 € de forfait + 15 € par heure :</p>
+  <p>\[g(x) = 15x + 260\]</p>
+  <p><strong>c)</strong> Ce sont deux <strong>fonctions affines</strong> de la forme \(mx + p\). Leurs représentations graphiques sont des droites.</p>
+</div>
+</div>
+
+<!-- Q2 -->
+<div class="exo">
+<h2>Question 2 — Compléter le tableau de valeurs <span class="badge-green">REA</span></h2>
+<p>Compléter le tableau suivant en calculant \(f(x)\) et \(g(x)\) pour chaque valeur de \(x\) :</p>
+<table class="styled">
+  <thead>
+    <tr><th>\(x\) (heures)</th><th>0</th><th>2</th><th>4</th><th>6</th><th>7</th><th>8</th><th>10</th><th>12</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>\(f(x)\) (€)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>\(g(x)\) (€)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <table class="styled">
+    <thead>
+      <tr><th>\(x\)</th><th>0</th><th>2</th><th>4</th><th>6</th><th>7</th><th>8</th><th>10</th><th>12</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>\(f(x)\)</td><td>120</td><td>190</td><td>260</td><td>330</td><td>365</td><td>400</td><td>470</td><td>540</td></tr>
+      <tr><td>\(g(x)\)</td><td>260</td><td>290</td><td>320</td><td>350</td><td>365</td><td>380</td><td>410</td><td>440</td></tr>
+    </tbody>
+  </table>
+  <p><em>Exemple de calcul :</em> pour \(x = 4\) : \(f(4) = 35 \times 4 + 120 = 140 + 120 = 260\) et \(g(4) = 15 \times 4 + 260 = 60 + 260 = 320\).</p>
+</div>
+</div>
+
+<!-- Q3 -->
+<div class="exo">
+<h2>Question 3 — Tracer les deux droites <span class="badge-green">REA</span></h2>
+<p>Sur le repère ci-dessous, placer les points du tableau de valeurs et tracer les droites représentant \(f\) (en <strong style="color:#2563eb">bleu</strong>) et \(g\) (en <strong style="color:#dc2626">rouge</strong>).</p>
+
+<svg viewBox="-40 -20 560 440" width="100%" style="max-width:600px;display:block;margin:1em auto;border:1px solid #ccc;background:#fafafa;font-family:sans-serif;font-size:11px">
+  <!-- Grille -->
+  <defs>
+    <pattern id="grid" width="40" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 30" fill="none" stroke="#e5e7eb" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="520" height="400" fill="url(#grid)"/>
+
+  <!-- Axes -->
+  <line x1="0" y1="400" x2="520" y2="400" stroke="#111" stroke-width="1.5"/>
+  <line x1="0" y1="0" x2="0" y2="400" stroke="#111" stroke-width="1.5"/>
+
+  <!-- Graduations axe x -->
+  <text x="0" y="418" text-anchor="middle">0</text>
+  <text x="40" y="418" text-anchor="middle">1</text>
+  <text x="80" y="418" text-anchor="middle">2</text>
+  <text x="120" y="418" text-anchor="middle">3</text>
+  <text x="160" y="418" text-anchor="middle">4</text>
+  <text x="200" y="418" text-anchor="middle">5</text>
+  <text x="240" y="418" text-anchor="middle">6</text>
+  <text x="280" y="418" text-anchor="middle">7</text>
+  <text x="320" y="418" text-anchor="middle">8</text>
+  <text x="360" y="418" text-anchor="middle">9</text>
+  <text x="400" y="418" text-anchor="middle">10</text>
+  <text x="440" y="418" text-anchor="middle">11</text>
+  <text x="480" y="418" text-anchor="middle">12</text>
+
+  <!-- Graduations axe y (1 unité = 30px, 0 → 400px en bas, chaque 50€ = 1.5 carreau)
+       On utilise : y_pixel = 400 - (valeur / 50) * 30 × (50/50) = 400 - valeur * 0.6
+       Mais simplifions : 1 carreau = 30px correspond à 50 €  -->
+  <text x="-8" y="404" text-anchor="end">0</text>
+  <text x="-8" y="374" text-anchor="end">50</text>
+  <text x="-8" y="344" text-anchor="end">100</text>
+  <text x="-8" y="314" text-anchor="end">150</text>
+  <text x="-8" y="284" text-anchor="end">200</text>
+  <text x="-8" y="254" text-anchor="end">250</text>
+  <text x="-8" y="224" text-anchor="end">300</text>
+  <text x="-8" y="194" text-anchor="end">350</text>
+  <text x="-8" y="164" text-anchor="end">400</text>
+  <text x="-8" y="134" text-anchor="end">450</text>
+  <text x="-8" y="104" text-anchor="end">500</text>
+  <text x="-8" y="74" text-anchor="end">550</text>
+
+  <!-- Lignes de grille horizontales principales -->
+  <line x1="0" y1="344" x2="520" y2="344" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="4,3"/>
+  <line x1="0" y1="284" x2="520" y2="284" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="4,3"/>
+  <line x1="0" y1="224" x2="520" y2="224" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="4,3"/>
+  <line x1="0" y1="164" x2="520" y2="164" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="4,3"/>
+  <line x1="0" y1="104" x2="520" y2="104" stroke="#d1d5db" stroke-width="0.5" stroke-dasharray="4,3"/>
+
+  <!-- Légende axes -->
+  <text x="500" y="395" text-anchor="end" font-size="12" fill="#555">heures</text>
+  <text x="8" y="15" font-size="12" fill="#555">coût (€)</text>
+</svg>
+
+<p><em>Échelle : axe horizontal : 1 carreau = 1 heure &nbsp;|&nbsp; axe vertical : 1 carreau = 50 €</em></p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p>La droite \(f\) (bleue) part de \((0\;;\;120)\) et monte rapidement (pente 35).</p>
+  <p>La droite \(g\) (rouge) part de \((0\;;\;260)\) et monte plus lentement (pente 15).</p>
+  <p>Les deux droites se croisent au point \((7\;;\;365)\).</p>
+  <p><em>Vérification :</em> \(f(7) = 35 \times 7 + 120 = 365\) et \(g(7) = 15 \times 7 + 260 = 365\) ✓</p>
+</div>
+</div>
+
+<!-- Q4 -->
+<div class="exo">
+<h2>Question 4 — Lire le point d'intersection <span class="badge-blue">ANA</span></h2>
+<p><strong>a)</strong> Lire graphiquement les coordonnées du <strong>point d'intersection</strong> des deux droites.</p>
+<p><strong>b)</strong> Que représente l'abscisse de ce point dans le contexte du problème ?</p>
+<p><strong>c)</strong> Que représente l'ordonnée de ce point ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Le point d'intersection a pour coordonnées \((7\;;\;365)\).</p>
+  <p><strong>b)</strong> L'abscisse \(x = 7\) représente le <strong>nombre d'heures d'intervention</strong> pour lequel les deux contrats coûtent exactement le même prix.</p>
+  <p><strong>c)</strong> L'ordonnée \(365\) représente le <strong>coût commun</strong> des deux contrats pour 7 heures d'intervention : <strong>365 €</strong>.</p>
+</div>
+</div>
+
+<!-- Q5 -->
+<div class="exo">
+<h2>Question 5 — Résoudre l'équation graphiquement <span class="badge-blue">ANA</span></h2>
+<p>On cherche à résoudre l'équation \(f(x) = g(x)\), c'est-à-dire \(35x + 120 = 15x + 260\).</p>
+<p><strong>a)</strong> Que signifie graphiquement « \(f(x) = g(x)\) » ?</p>
+<p><strong>b)</strong> Quelle est la solution de cette équation, lue sur le graphique ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Graphiquement, \(f(x) = g(x)\) signifie que les deux courbes ont la <strong>même ordonnée</strong> pour la même abscisse : c'est le <strong>point d'intersection</strong> des deux droites.</p>
+  <p><strong>b)</strong> La solution est \(\boxed{x = 7}\). Pour 7 heures d'intervention, les deux plans coûtent le même prix.</p>
+</div>
+</div>
+
+<!-- Q6 -->
+<div class="exo">
+<h2>Question 6 — Résoudre l'inéquation graphiquement <span class="badge-blue">ANA</span></h2>
+<p>On veut savoir quand le Plan A est <strong>moins cher</strong> que le Plan B, c'est-à-dire résoudre l'inéquation \(f(x) \leq g(x)\).</p>
+<p><strong>a)</strong> Sur le graphique, quand la courbe de \(f\) est-elle <strong>en dessous</strong> de la courbe de \(g\) ?</p>
+<p><strong>b)</strong> En déduire l'ensemble des solutions de l'inéquation \(f(x) \leq g(x)\).</p>
+<p><strong>c)</strong> Quand le Plan B devient-il plus avantageux que le Plan A ? Écrire l'inéquation correspondante et donner la solution graphique.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> La droite de \(f\) (bleue) est en dessous de la droite de \(g\) (rouge) <strong>à gauche du point d'intersection</strong>, c'est-à-dire pour \(x \leq 7\).</p>
+  <p><strong>b)</strong> L'ensemble des solutions est \(\boxed{x \in [0\;;\;7]}\). Pour 7 heures ou moins, le Plan A coûte moins cher (ou autant).</p>
+  <p><strong>c)</strong> Le Plan B est plus avantageux quand \(g(x) \leq f(x)\), soit quand la courbe rouge est en dessous de la bleue. Graphiquement : \(\boxed{x \geq 7}\). Au-delà de 7 heures, le Plan B est plus économique.</p>
+</div>
+</div>
+
+<!-- Q7 -->
+<div class="exo">
+<h2>Question 7 — Vérification algébrique <span class="badge-green">VAL</span></h2>
+<p>Vérifions le résultat graphique par le calcul.</p>
+<p><strong>a)</strong> Résoudre l'équation \(35x + 120 = 15x + 260\) algébriquement.</p>
+<p><strong>b)</strong> Le résultat est-il cohérent avec la lecture graphique ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> On résout :</p>
+  <p>\[35x + 120 = 15x + 260\]</p>
+  <p>\[35x - 15x = 260 - 120\]</p>
+  <p>\[20x = 140\]</p>
+  <p>\[x = \frac{140}{20} = 7\]</p>
+  <p><strong>b)</strong> Oui, on retrouve bien \(x = 7\), ce qui confirme la lecture graphique. Le coût commun est \(f(7) = 35 \times 7 + 120 = 365\) €. ✓</p>
+</div>
+</div>
+
+<!-- Q8 -->
+<div class="exo">
+<h2>Question 8 — Cas particulier : \(f(x) = k\) <span class="badge-blue">ANA</span></h2>
+<p>Le client dispose d'un budget annuel maximal de <strong>400 €</strong> pour la maintenance.</p>
+<p><strong>a)</strong> Sur le graphique, tracer la droite horizontale \(y = 400\).</p>
+<p><strong>b)</strong> Résoudre graphiquement \(f(x) = 400\). Combien d'heures le Plan A permet-il avec ce budget ?</p>
+<p><strong>c)</strong> Résoudre graphiquement \(g(x) = 400\). Combien d'heures le Plan B permet-il ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> On trace la droite horizontale passant par 400 sur l'axe des ordonnées.</p>
+  <p><strong>b)</strong> L'intersection de \(f\) avec \(y = 400\) donne \(x = 8\). Avec le Plan A, le client peut bénéficier de <strong>8 heures</strong> d'intervention maximum.</p>
+  <p><em>Vérification :</em> \(f(8) = 35 \times 8 + 120 = 280 + 120 = 400\) ✓</p>
+  <p><strong>c)</strong> L'intersection de \(g\) avec \(y = 400\) donne \(x \approx 9{,}3\). Avec le Plan B, le client peut bénéficier d'environ <strong>9 heures</strong> d'intervention (en arrondissant à l'entier inférieur).</p>
+  <p><em>Vérification :</em> \(g(9) = 15 \times 9 + 260 = 135 + 260 = 395\) € (il reste 5 €).</p>
+</div>
+</div>
+
+<!-- Q9 -->
+<div class="exo">
+<h2>Question 9 — Conseil au client <span class="badge-yellow">COM</span></h2>
+<p>Le client estime avoir besoin d'environ <strong>10 heures</strong> d'intervention par an.</p>
+<p>Rédiger un court texte (3-4 lignes) pour conseiller le client sur le choix du contrat, en justifiant par les résultats obtenus.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><em>Exemple de réponse rédigée :</em></p>
+  <p>« Monsieur, pour 10 heures d'intervention annuelles, je vous recommande le <strong>Plan B (ThermoService)</strong>. En effet, au-delà de 7 heures, ce contrat est plus économique. Pour 10 heures, le Plan A vous coûterait \(35 \times 10 + 120 = 470\) € contre \(15 \times 10 + 260 = 410\) € pour le Plan B, soit une <strong>économie de 60 €</strong> par an. »</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- À RETENIR                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="retenir">
+  <strong>À retenir — Ce que tu as découvert dans cette activité</strong>
+  <h3 style="margin-top:14px;color:#1e3a8a">Résolution graphique d'une équation \(f(x) = g(x)\)</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>Résoudre graphiquement \(f(x) = g(x)\) revient à chercher les <strong>abscisses des points d'intersection</strong> des courbes \(\mathcal{C}_f\) et \(\mathcal{C}_g\).</li>
+    <li>Les solutions sont les valeurs de \(x\) où les deux courbes se croisent.</li>
+  </ul>
+  <h3 style="color:#1e3a8a">Résolution graphique d'une inéquation \(f(x) \leq g(x)\)</h3>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>\(f(x) \leq g(x)\) : on cherche les valeurs de \(x\) où la courbe de \(f\) est <strong>en dessous</strong> (ou confondue) avec la courbe de \(g\).</li>
+    <li>\(f(x) \geq g(x)\) : on cherche les valeurs de \(x\) où la courbe de \(f\) est <strong>au-dessus</strong> (ou confondue) avec la courbe de \(g\).</li>
+  </ul>
+  <h3 style="color:#1e3a8a">Cas particulier : \(f(x) = k\)</h3>
+  <p>Résoudre \(f(x) = k\) revient à lire les abscisses des points d'intersection de la courbe de \(f\) avec la <strong>droite horizontale</strong> \(y = k\).</p>
+</div>
+
+<div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch04 →</a></div>
+</div>
+<script src="../../../nav.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

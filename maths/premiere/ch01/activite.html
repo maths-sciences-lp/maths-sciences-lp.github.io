@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Activité – Statistique à deux variables – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité – Température et consommation de chauffage</h1>
+  <p class="sous-titre">Chapitre 1 — Statistique à deux variables | 1ère Bac Pro | Mathématiques | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Découvrir la notion de série statistique à deux variables</li>
+    <li>Représenter un nuage de points dans un repère</li>
+    <li>Calculer le point moyen d'un nuage</li>
+    <li>Tracer une droite de tendance et l'utiliser pour faire des prévisions</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- DOCUMENT D'ACCROCHE -->
+<div class="situation">
+  <h2>Situation professionnelle — Technicien chauffagiste</h2>
+  <p>
+    Monsieur Duval est installateur thermique dans une entreprise de maintenance de chaufferies collectives à Lyon.
+    Au cours des 12 derniers mois, il a relevé chaque mois la <strong>température extérieure moyenne</strong> (en °C)
+    et la <strong>consommation énergétique de chauffage</strong> (en kWh) d'un immeuble résidentiel de 20 logements
+    équipé d'une chaudière à condensation.
+  </p>
+  <p>Il souhaite comprendre le lien entre ces deux grandeurs afin d'<strong>anticiper les commandes de gaz</strong> pour l'hiver prochain.</p>
+
+  <table class="full">
+    <tr>
+      <th>Mois</th>
+      <th>Janv.</th><th>Fév.</th><th>Mars</th><th>Avril</th><th>Mai</th><th>Juin</th>
+      <th>Juil.</th><th>Août</th><th>Sept.</th><th>Oct.</th><th>Nov.</th><th>Déc.</th>
+    </tr>
+    <tr>
+      <th>Température \(x\) (°C)</th>
+      <td>3</td><td>4</td><td>8</td><td>12</td><td>16</td><td>20</td>
+      <td>23</td><td>22</td><td>18</td><td>13</td><td>7</td><td>4</td>
+    </tr>
+    <tr>
+      <th>Consommation \(y\) (kWh)</th>
+      <td>4 800</td><td>4 500</td><td>3 400</td><td>2 200</td><td>1 100</td><td>300</td>
+      <td>0</td><td>0</td><td>600</td><td>1 900</td><td>3 700</td><td>4 600</td>
+    </tr>
+  </table>
+
+  <p><em>Remarque : en juillet et août, le chauffage est éteint (consommation nulle).</em></p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- QUESTIONS -->
+
+<!-- Q1 -->
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p><strong>a)</strong> Quelle est la variable \(x\) étudiée ? Quelle est la variable \(y\) ? Préciser leurs unités.</p>
+<p><strong>b)</strong> Pour quel mois la température est-elle la plus basse ? Quelle est alors la consommation ?</p>
+<p><strong>c)</strong> Pour quel mois la consommation est-elle la plus élevée ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> La variable \(x\) est la <strong>température extérieure moyenne</strong>, en °C.<br>
+  La variable \(y\) est la <strong>consommation énergétique de chauffage</strong>, en kWh.</p>
+  <p><strong>b)</strong> La température la plus basse est en <strong>janvier</strong> : \(x = 3\)°C. La consommation est alors de <strong>4 800 kWh</strong>.</p>
+  <p><strong>c)</strong> La consommation la plus élevée est en <strong>janvier</strong> : \(y = 4\,800\) kWh.</p>
+</div>
+</div>
+
+<!-- Q2 -->
+<div class="exo">
+<h2>Question 2 <span class="badge-green">APP</span></h2>
+<p>
+  On ne retient que les mois où le chauffage fonctionne (consommation strictement positive). Recopier et compléter le tableau ci-dessous
+  en classant les données par <strong>température croissante</strong>.
+</p>
+<table class="full">
+  <tr>
+    <th>Température \(x\) (°C)</th>
+    <td>3</td><td>4</td><td>4</td><td>7</td><td>8</td><td>12</td><td>13</td><td>16</td><td>18</td><td>20</td>
+  </tr>
+  <tr>
+    <th>Consommation \(y\) (kWh)</th>
+    <td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td>
+  </tr>
+</table>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <table class="full">
+    <tr>
+      <th>Température \(x\) (°C)</th>
+      <td>3</td><td>4</td><td>4</td><td>7</td><td>8</td><td>12</td><td>13</td><td>16</td><td>18</td><td>20</td>
+    </tr>
+    <tr>
+      <th>Consommation \(y\) (kWh)</th>
+      <td>4 800</td><td>4 500</td><td>4 600</td><td>3 700</td><td>3 400</td><td>2 200</td><td>1 900</td><td>1 100</td><td>600</td><td>300</td>
+    </tr>
+  </table>
+  <p>On a retiré juillet et août (consommation nulle) et classé les 10 mois restants par température croissante. Février et décembre ont la même température (4°C) mais des consommations légèrement différentes.</p>
+</div>
+</div>
+
+<!-- Q3 -->
+<div class="exo">
+<h2>Question 3 — Nuage de points <span class="badge-blue">REA</span></h2>
+<p>
+  Sur le repère ci-dessous, <strong>placer les 10 points</strong> du tableau de la question 2.
+  Chaque point a pour abscisse la température \(x\) et pour ordonnée la consommation \(y\).
+</p>
+
+<div class="svg-wrap">
+<svg width="560" height="420" viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;border:1px solid #e2e8f0;border-radius:10px;background:#fafbfc">
+  <!-- Grille -->
+  <!-- Lignes horizontales -->
+  <line x1="70" y1="370" x2="530" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="70" y1="330" x2="530" y2="330" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="70" y1="290" x2="530" y2="290" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="70" y1="250" x2="530" y2="250" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="70" y1="210" x2="530" y2="210" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="70" y1="170" x2="530" y2="170" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="70" y1="130" x2="530" y2="130" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="70" y1="90" x2="530" y2="90" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="70" y1="50" x2="530" y2="50" stroke="#e2e8f0" stroke-width="0.5"/>
+  <!-- Lignes verticales -->
+  <line x1="70" y1="50" x2="70" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="116" y1="50" x2="116" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="162" y1="50" x2="162" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="208" y1="50" x2="208" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="254" y1="50" x2="254" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="300" y1="50" x2="300" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="346" y1="50" x2="346" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="392" y1="50" x2="392" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="438" y1="50" x2="438" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="484" y1="50" x2="484" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <line x1="530" y1="50" x2="530" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+  <!-- Axes -->
+  <line x1="70" y1="370" x2="540" y2="370" stroke="#333" stroke-width="1.5"/>
+  <line x1="70" y1="370" x2="70" y2="40" stroke="#333" stroke-width="1.5"/>
+  <!-- Flèches -->
+  <polygon points="540,370 534,366 534,374" fill="#333"/>
+  <polygon points="70,40 66,46 74,46" fill="#333"/>
+  <!-- Graduations axe x : 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 -->
+  <text x="70" y="390" text-anchor="middle" font-size="11" fill="#333">0</text>
+  <text x="116" y="390" text-anchor="middle" font-size="11" fill="#333">2</text>
+  <text x="162" y="390" text-anchor="middle" font-size="11" fill="#333">4</text>
+  <text x="208" y="390" text-anchor="middle" font-size="11" fill="#333">6</text>
+  <text x="254" y="390" text-anchor="middle" font-size="11" fill="#333">8</text>
+  <text x="300" y="390" text-anchor="middle" font-size="11" fill="#333">10</text>
+  <text x="346" y="390" text-anchor="middle" font-size="11" fill="#333">12</text>
+  <text x="392" y="390" text-anchor="middle" font-size="11" fill="#333">14</text>
+  <text x="438" y="390" text-anchor="middle" font-size="11" fill="#333">16</text>
+  <text x="484" y="390" text-anchor="middle" font-size="11" fill="#333">18</text>
+  <text x="530" y="390" text-anchor="middle" font-size="11" fill="#333">20</text>
+  <text x="300" y="410" text-anchor="middle" font-size="12" fill="#333" font-style="italic">Température x (°C)</text>
+  <!-- Graduations axe y : 0, 500, 1000, ..., 5000 — échelle : 1000 kWh = 32px => 500 = 16px => grille tous les 500 -->
+  <!-- y=370 correspond à 0 kWh, y=50 correspond à 5000 kWh => 320px pour 5000 => 1 kWh = 0.064px -->
+  <!-- Plus simple : 5000/8 = 625 par intervalle, non. Recalculons : 370-50=320px, 10 intervalles = 32px chaque = 500 kWh -->
+  <text x="60" y="374" text-anchor="end" font-size="11" fill="#333">0</text>
+  <text x="60" y="338" text-anchor="end" font-size="11" fill="#333">500</text>
+  <text x="60" y="306" text-anchor="end" font-size="10" fill="#333">1 000</text>
+  <text x="60" y="274" text-anchor="end" font-size="10" fill="#333">1 500</text>
+  <text x="60" y="242" text-anchor="end" font-size="10" fill="#333">2 000</text>
+  <text x="60" y="210" text-anchor="end" font-size="10" fill="#333">2 500</text>
+  <text x="60" y="178" text-anchor="end" font-size="10" fill="#333">3 000</text>
+  <text x="60" y="146" text-anchor="end" font-size="10" fill="#333">3 500</text>
+  <text x="60" y="114" text-anchor="end" font-size="10" fill="#333">4 000</text>
+  <text x="60" y="82" text-anchor="end" font-size="10" fill="#333">4 500</text>
+  <text x="60" y="50" text-anchor="end" font-size="10" fill="#333">5 000</text>
+  <text x="20" y="210" text-anchor="middle" font-size="12" fill="#333" font-style="italic" transform="rotate(-90,20,210)">Consommation y (kWh)</text>
+  <!-- Titre -->
+  <text x="300" y="28" text-anchor="middle" font-size="13" font-family="Segoe UI,sans-serif" fill="#0969da" font-weight="600">Nuage de points — Consommation en fonction de la température</text>
+</svg>
+</div>
+<p><em>Échelle : axe horizontal — 1 cm pour 2°C ; axe vertical — 1 cm pour 500 kWh.</em></p>
+
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>On place les 10 points dans le repère. Voici les coordonnées :</p>
+  <div class="svg-wrap">
+  <svg width="560" height="420" viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;border:1px solid #e2e8f0;border-radius:10px;background:#fafbfc">
+    <!-- Grille -->
+    <line x1="70" y1="370" x2="530" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="330" x2="530" y2="330" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="290" x2="530" y2="290" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="250" x2="530" y2="250" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="210" x2="530" y2="210" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="170" x2="530" y2="170" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="130" x2="530" y2="130" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="90" x2="530" y2="90" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="50" x2="530" y2="50" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="70" y1="50" x2="70" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="116" y1="50" x2="116" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="162" y1="50" x2="162" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="208" y1="50" x2="208" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="254" y1="50" x2="254" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="300" y1="50" x2="300" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="346" y1="50" x2="346" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="392" y1="50" x2="392" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="438" y1="50" x2="438" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="484" y1="50" x2="484" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <line x1="530" y1="50" x2="530" y2="370" stroke="#e2e8f0" stroke-width="0.5"/>
+    <!-- Axes -->
+    <line x1="70" y1="370" x2="540" y2="370" stroke="#333" stroke-width="1.5"/>
+    <line x1="70" y1="370" x2="70" y2="40" stroke="#333" stroke-width="1.5"/>
+    <polygon points="540,370 534,366 534,374" fill="#333"/>
+    <polygon points="70,40 66,46 74,46" fill="#333"/>
+    <!-- Graduations axe x -->
+    <text x="70" y="390" text-anchor="middle" font-size="11" fill="#333">0</text>
+    <text x="116" y="390" text-anchor="middle" font-size="11" fill="#333">2</text>
+    <text x="162" y="390" text-anchor="middle" font-size="11" fill="#333">4</text>
+    <text x="208" y="390" text-anchor="middle" font-size="11" fill="#333">6</text>
+    <text x="254" y="390" text-anchor="middle" font-size="11" fill="#333">8</text>
+    <text x="300" y="390" text-anchor="middle" font-size="11" fill="#333">10</text>
+    <text x="346" y="390" text-anchor="middle" font-size="11" fill="#333">12</text>
+    <text x="392" y="390" text-anchor="middle" font-size="11" fill="#333">14</text>
+    <text x="438" y="390" text-anchor="middle" font-size="11" fill="#333">16</text>
+    <text x="484" y="390" text-anchor="middle" font-size="11" fill="#333">18</text>
+    <text x="530" y="390" text-anchor="middle" font-size="11" fill="#333">20</text>
+    <text x="300" y="410" text-anchor="middle" font-size="12" fill="#333" font-style="italic">Température x (°C)</text>
+    <!-- Graduations axe y -->
+    <text x="60" y="374" text-anchor="end" font-size="11" fill="#333">0</text>
+    <text x="60" y="338" text-anchor="end" font-size="11" fill="#333">500</text>
+    <text x="60" y="306" text-anchor="end" font-size="10" fill="#333">1 000</text>
+    <text x="60" y="274" text-anchor="end" font-size="10" fill="#333">1 500</text>
+    <text x="60" y="242" text-anchor="end" font-size="10" fill="#333">2 000</text>
+    <text x="60" y="210" text-anchor="end" font-size="10" fill="#333">2 500</text>
+    <text x="60" y="178" text-anchor="end" font-size="10" fill="#333">3 000</text>
+    <text x="60" y="146" text-anchor="end" font-size="10" fill="#333">3 500</text>
+    <text x="60" y="114" text-anchor="end" font-size="10" fill="#333">4 000</text>
+    <text x="60" y="82" text-anchor="end" font-size="10" fill="#333">4 500</text>
+    <text x="60" y="50" text-anchor="end" font-size="10" fill="#333">5 000</text>
+    <text x="20" y="210" text-anchor="middle" font-size="12" fill="#333" font-style="italic" transform="rotate(-90,20,210)">Consommation y (kWh)</text>
+    <!-- Points du nuage -->
+    <!-- x=3 => 70 + 3*23 = 139, y=4800 => 370 - 4800*0.064 = 370 - 307.2 = 62.8 -->
+    <!-- Échelle x : 1°C = (530-70)/20 = 23px ; Échelle y : 1 kWh = 320/5000 = 0.064px -->
+    <circle cx="139" cy="63" r="5" fill="#0969da"/>
+    <text x="139" y="55" text-anchor="middle" font-size="9" fill="#0969da">(3 ; 4800)</text>
+    <!-- x=4, y=4500 => 70+4*23=162, 370-4500*0.064=370-288=82 -->
+    <circle cx="162" cy="82" r="5" fill="#0969da"/>
+    <text x="175" y="75" text-anchor="start" font-size="9" fill="#0969da">(4 ; 4500)</text>
+    <!-- x=4, y=4600 => 162, 370-4600*0.064=370-294.4=75.6 -->
+    <circle cx="162" cy="76" r="5" fill="#0969da"/>
+    <text x="145" y="68" text-anchor="end" font-size="9" fill="#0969da">(4 ; 4600)</text>
+    <!-- x=7, y=3700 => 70+7*23=231, 370-3700*0.064=370-236.8=133.2 -->
+    <circle cx="231" cy="133" r="5" fill="#0969da"/>
+    <text x="231" y="125" text-anchor="middle" font-size="9" fill="#0969da">(7 ; 3700)</text>
+    <!-- x=8, y=3400 => 70+8*23=254, 370-3400*0.064=370-217.6=152.4 -->
+    <circle cx="254" cy="152" r="5" fill="#0969da"/>
+    <text x="254" y="144" text-anchor="middle" font-size="9" fill="#0969da">(8 ; 3400)</text>
+    <!-- x=12, y=2200 => 70+12*23=346, 370-2200*0.064=370-140.8=229.2 -->
+    <circle cx="346" cy="229" r="5" fill="#0969da"/>
+    <text x="346" y="221" text-anchor="middle" font-size="9" fill="#0969da">(12 ; 2200)</text>
+    <!-- x=13, y=1900 => 70+13*23=369, 370-1900*0.064=370-121.6=248.4 -->
+    <circle cx="369" cy="248" r="5" fill="#0969da"/>
+    <text x="369" y="240" text-anchor="middle" font-size="9" fill="#0969da">(13 ; 1900)</text>
+    <!-- x=16, y=1100 => 70+16*23=438, 370-1100*0.064=370-70.4=299.6 -->
+    <circle cx="438" cy="300" r="5" fill="#0969da"/>
+    <text x="438" y="292" text-anchor="middle" font-size="9" fill="#0969da">(16 ; 1100)</text>
+    <!-- x=18, y=600 => 70+18*23=484, 370-600*0.064=370-38.4=331.6 -->
+    <circle cx="484" cy="332" r="5" fill="#0969da"/>
+    <text x="484" y="324" text-anchor="middle" font-size="9" fill="#0969da">(18 ; 600)</text>
+    <!-- x=20, y=300 => 70+20*23=530, 370-300*0.064=370-19.2=350.8 -->
+    <circle cx="530" cy="351" r="5" fill="#0969da"/>
+    <text x="518" y="343" text-anchor="end" font-size="9" fill="#0969da">(20 ; 300)</text>
+    <!-- Titre -->
+    <text x="300" y="28" text-anchor="middle" font-size="13" font-family="Segoe UI,sans-serif" fill="#0969da" font-weight="600">Nuage de points — Correction</text>
+  </svg>
+  </div>
+  <p>Le nuage de points montre clairement que les points descendent de gauche à droite : plus la température augmente, plus la consommation diminue.</p>
+</div>
+</div>
+
+<!-- Q4 -->
+<div class="exo">
+<h2>Question 4 — Observation de la tendance <span class="badge-blue">ANA</span></h2>
+<p><strong>a)</strong> Observer le nuage de points. Comment évolue la consommation lorsque la température augmente ?</p>
+<p><strong>b)</strong> Peut-on dire que les points sont <em>approximativement alignés</em> ? Justifier.</p>
+<p><strong>c)</strong> On dit que deux variables sont <strong>corrélées négativement</strong> lorsque l'une diminue quand l'autre augmente. Est-ce le cas ici ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Lorsque la température augmente, la consommation de chauffage <strong>diminue</strong>. C'est logique : plus il fait chaud dehors, moins on a besoin de chauffer.</p>
+  <p><strong>b)</strong> Oui, les points semblent <strong>approximativement alignés</strong> le long d'une droite descendante. Ils ne sont pas parfaitement alignés, mais la tendance linéaire est nette.</p>
+  <p><strong>c)</strong> Oui, il s'agit bien d'une <strong>corrélation négative</strong> : quand la température \(x\) augmente, la consommation \(y\) diminue.</p>
+</div>
+</div>
+
+<!-- Q5 -->
+<div class="exo">
+<h2>Question 5 — Point moyen <span class="badge-blue">REA</span></h2>
+<p>Le <strong>point moyen</strong> \(G\) du nuage a pour coordonnées \(G(\bar{x}\,;\,\bar{y})\) où \(\bar{x}\) est la moyenne des températures et \(\bar{y}\) la moyenne des consommations.</p>
+<p><strong>a)</strong> Calculer la moyenne des températures \(\bar{x}\) des 10 mois retenus :</p>
+\[\bar{x} = \frac{3 + 4 + 4 + 7 + 8 + 12 + 13 + 16 + 18 + 20}{10}\]
+<p><strong>b)</strong> Calculer la moyenne des consommations \(\bar{y}\) :</p>
+\[\bar{y} = \frac{4\,800 + 4\,500 + 4\,600 + 3\,700 + 3\,400 + 2\,200 + 1\,900 + 1\,100 + 600 + 300}{10}\]
+<p><strong>c)</strong> En déduire les coordonnées du point moyen \(G\) et le placer sur le graphique de la question 3.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(\bar{x} = \dfrac{3 + 4 + 4 + 7 + 8 + 12 + 13 + 16 + 18 + 20}{10} = \dfrac{105}{10} = 10{,}5\) °C</p>
+  <p><strong>b)</strong> \(\bar{y} = \dfrac{4\,800 + 4\,500 + 4\,600 + 3\,700 + 3\,400 + 2\,200 + 1\,900 + 1\,100 + 600 + 300}{10} = \dfrac{27\,100}{10} = 2\,710\) kWh</p>
+  <p><strong>c)</strong> Le point moyen est \(G(10{,}5\,;\,2\,710)\). On le place sur le graphique : il se situe au « centre » du nuage de points.</p>
+</div>
+</div>
+
+<!-- Q6 -->
+<div class="exo">
+<h2>Question 6 — Droite de tendance <span class="badge-blue">REA</span></h2>
+<p>On admet que la <strong>droite de tendance</strong> (ou droite de régression) passe par le point moyen \(G\) et a pour équation :</p>
+\[y = -265x + 5\,493\]
+<p><strong>a)</strong> Vérifier que cette droite passe bien par le point moyen \(G(10{,}5\,;\,2\,710)\) en remplaçant \(x\) par 10,5 dans l'équation.</p>
+<p><strong>b)</strong> Calculer \(y\) pour \(x = 0\) et pour \(x = 20\). En déduire deux points de la droite.</p>
+<p><strong>c)</strong> Tracer la droite de tendance sur le graphique de la question 3.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Pour \(x = 10{,}5\) :</p>
+  \[y = -265 \times 10{,}5 + 5\,493 = -2\,782{,}5 + 5\,493 = 2\,710{,}5 \approx 2\,710 \quad \checkmark\]
+  <p>La droite passe bien (à l'arrondi près) par le point moyen.</p>
+  <p><strong>b)</strong> Pour \(x = 0\) : \(y = -265 \times 0 + 5\,493 = 5\,493\) kWh. Point : \((0\,;\,5\,493)\).</p>
+  <p>Pour \(x = 20\) : \(y = -265 \times 20 + 5\,493 = -5\,300 + 5\,493 = 193\) kWh. Point : \((20\,;\,193)\).</p>
+  <p><strong>c)</strong> On trace la droite passant par les points \((0\,;\,5\,493)\) et \((20\,;\,193)\). Elle descend de gauche à droite, confirmant la corrélation négative.</p>
+</div>
+</div>
+
+<!-- Q7 -->
+<div class="exo">
+<h2>Question 7 — Prévision par interpolation <span class="badge-blue">ANA</span></h2>
+<p>
+  Monsieur Duval souhaite estimer la consommation de chauffage pour un mois où la température moyenne serait de <strong>10°C</strong>.
+</p>
+<p><strong>a)</strong> La valeur 10°C est-elle comprise dans la plage des températures observées (entre 3°C et 20°C) ?</p>
+<p><strong>b)</strong> Utiliser l'équation de la droite \(y = -265x + 5\,493\) pour calculer la consommation estimée.</p>
+<p><strong>c)</strong> Lire graphiquement cette valeur sur la droite de tendance. Le résultat est-il cohérent avec le calcul ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Oui, 10°C est compris entre 3°C et 20°C. Il s'agit donc d'une <strong>interpolation</strong> (estimation à l'intérieur de la plage de données).</p>
+  <p><strong>b)</strong> \(y = -265 \times 10 + 5\,493 = -2\,650 + 5\,493 = 2\,843\) kWh.</p>
+  <p>La consommation estimée est d'environ <strong>2 843 kWh</strong>.</p>
+  <p><strong>c)</strong> Graphiquement, pour \(x = 10\), on lit environ 2 800 à 2 900 kWh sur la droite, ce qui est cohérent avec le calcul. L'interpolation est fiable car la valeur est dans la plage des données et le nuage est bien aligné.</p>
+</div>
+</div>
+
+<!-- Q8 -->
+<div class="exo">
+<h2>Question 8 — Prévision par extrapolation <span class="badge-green">VAL</span></h2>
+<p>
+  Monsieur Duval veut anticiper la consommation pour un hiver particulièrement rigoureux avec une température moyenne de <strong>-5°C</strong>.
+</p>
+<p><strong>a)</strong> Calculer la consommation prévue par le modèle : \(y = -265 \times (-5) + 5\,493\).</p>
+<p><strong>b)</strong> La valeur -5°C est-elle dans la plage des températures observées ?</p>
+<p><strong>c)</strong> Le résultat obtenu vous semble-t-il réaliste ? Expliquer pourquoi il faut être <strong>prudent</strong> avec ce type de prévision.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(y = -265 \times (-5) + 5\,493 = 1\,325 + 5\,493 = 6\,818\) kWh.</p>
+  <p><strong>b)</strong> Non, -5°C est <strong>en dehors</strong> de la plage des températures observées (3°C à 20°C). Il s'agit donc d'une <strong>extrapolation</strong>.</p>
+  <p><strong>c)</strong> Le résultat de 6 818 kWh est possible mais <strong>incertain</strong>. L'extrapolation est risquée car :</p>
+  <ul class="styled">
+    <li>Rien ne garantit que la relation linéaire reste valable pour des températures aussi basses.</li>
+    <li>La chaudière a une puissance maximale : elle ne peut peut-être pas fournir 6 818 kWh par mois.</li>
+    <li>Des phénomènes physiques (gel, surconsommation au redémarrage) peuvent modifier le comportement.</li>
+  </ul>
+  <p><strong>Conclusion :</strong> il faut toujours vérifier qu'une prévision est <strong>raisonnable</strong> et préciser si c'est une interpolation (fiable) ou une extrapolation (risquée).</p>
+</div>
+</div>
+
+<!-- Q9 -->
+<div class="exo">
+<h2>Question 9 — Interprétation du coefficient directeur <span class="badge-blue">ANA</span></h2>
+<p>La droite de tendance a pour équation \(y = -265x + 5\,493\). Le coefficient directeur est \(a = -265\).</p>
+<p><strong>a)</strong> Le coefficient directeur est négatif. Qu'est-ce que cela signifie pour la relation entre température et consommation ?</p>
+<p><strong>b)</strong> Interpréter concrètement la valeur \(-265\) : que se passe-t-il lorsque la température augmente de 1°C ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Un coefficient directeur négatif signifie que la droite est <strong>décroissante</strong> : quand la température \(x\) augmente, la consommation \(y\) diminue. Cela confirme la corrélation négative observée.</p>
+  <p><strong>b)</strong> Lorsque la température augmente de <strong>1°C</strong>, la consommation diminue d'environ <strong>265 kWh</strong>.</p>
+  <p>Autrement dit, chaque degré de température supplémentaire permet d'économiser environ 265 kWh de chauffage par mois.</p>
+</div>
+</div>
+
+<!-- Q10 -->
+<div class="exo">
+<h2>Question 10 — Synthèse <span class="badge-yellow">COM</span></h2>
+<p>Rédiger un court paragraphe (4 à 5 lignes) à destination de Monsieur Duval pour lui expliquer :</p>
+<ul>
+  <li>le lien entre la température et la consommation de chauffage observé sur les données ;</li>
+  <li>comment utiliser la droite de tendance pour estimer une consommation future ;</li>
+  <li>les limites de cette estimation.</li>
+</ul>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><em>Exemple de rédaction :</em></p>
+  <p>
+    Monsieur Duval, l'analyse des relevés montre que la consommation de chauffage de l'immeuble est <strong>fortement liée</strong> à la température extérieure :
+    plus il fait froid, plus la consommation augmente, de manière régulière et prévisible. Le modèle linéaire
+    \(y = -265x + 5\,493\) permet d'estimer que chaque degré supplémentaire de température fait économiser environ 265 kWh de chauffage par mois.
+    Vous pouvez utiliser cette formule pour anticiper vos commandes de gaz en fonction des prévisions météorologiques.
+    Cependant, cette estimation est fiable uniquement pour des températures comprises entre 3°C et 20°C (interpolation).
+    Pour des conditions extrêmes (grand froid), la prévision devient incertaine (extrapolation) et doit être utilisée avec prudence.
+  </p>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SYNTHÈSE -->
+<div class="retenir">
+  <h3>À retenir</h3>
+  <ul class="styled">
+    <li>Un <strong>nuage de points</strong> représente graphiquement une série statistique à deux variables : chaque couple \((x_i\,;\,y_i)\) est un point du plan.</li>
+    <li>La <strong>corrélation</strong> mesure le lien entre deux variables :
+      <ul>
+        <li><strong>Corrélation positive :</strong> quand \(x\) augmente, \(y\) augmente aussi (nuage montant).</li>
+        <li><strong>Corrélation négative :</strong> quand \(x\) augmente, \(y\) diminue (nuage descendant).</li>
+      </ul>
+    </li>
+    <li>Le <strong>point moyen</strong> \(G(\bar{x}\,;\,\bar{y})\) est le « centre de gravité » du nuage. La droite de tendance passe toujours par ce point.</li>
+    <li>La <strong>droite de tendance</strong> (droite de régression) \(y = ax + b\) permet de modéliser la relation entre les deux variables.</li>
+    <li>L'<strong>interpolation</strong> (estimation dans la plage des données) est généralement <strong>fiable</strong>.</li>
+    <li>L'<strong>extrapolation</strong> (estimation hors de la plage des données) est <strong>risquée</strong> et doit être interprétée avec prudence.</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="nav-footer">
+  <a href="lecon.html" class="nav-btn">Cours du chapitre →</a>
+  <a href="exercices.html" class="nav-btn">Exercices →</a>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script>
+document.querySelectorAll('.bc').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var c=this.nextElementSibling;
+    c.style.display=c.style.display==='block'?'none':'block';
+  });
+});
+</script>
+</body>
+</html>

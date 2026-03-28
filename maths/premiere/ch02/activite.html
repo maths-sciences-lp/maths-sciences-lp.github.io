@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité – Probabilités – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Activité – Probabilités et contrôle qualité</h1>
+  <p class="sous-titre">Chapitre 2 | 1ère Bac Pro | Mathématiques | ⏱ 30 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Découvrir la notion de probabilité à partir de fréquences observées</li>
+    <li>Comprendre la probabilité de l'événement contraire</li>
+    <li>Construire et exploiter un arbre de probabilités</li>
+    <li>Vérifier que la somme des probabilités vaut 1</li>
+  </ul>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- DOCUMENT D'ACCROCHE -->
+<!-- ════════════════════════════════════════ -->
+
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Contexte : vous êtes assistant qualité dans l'entreprise <strong>Bois &amp; Design</strong>, un fabricant de meubles installé à Annecy. L'atelier produit des panneaux de bois utilisés pour la fabrication d'étagères, de placards et de plans de travail.</em></p>
+  <p>Le responsable de production vous demande d'analyser les résultats du contrôle qualité du dernier lot. Sur <strong>200 panneaux</strong> inspectés, les défauts suivants ont été relevés :</p>
+
+  <table>
+    <thead>
+      <tr><th>Type de défaut</th><th>Nombre de panneaux</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Noeud apparent (N)</td><td>18</td></tr>
+      <tr><td>Voilage / gauchissement (V)</td><td>12</td></tr>
+      <tr><td>Cote hors tolérance (C)</td><td>10</td></tr>
+      <tr><td>Aucun défaut (conforme)</td><td>160</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>200</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p><em>Remarque : chaque panneau ne présente qu'un seul type de défaut au maximum (les défauts sont incompatibles).</em></p>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- QUESTIONS -->
+<!-- ════════════════════════════════════════ -->
+
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p>a) Combien de panneaux au total présentent un défaut ?</p>
+<p>b) Calculer la fréquence de chaque type de défaut dans ce lot. Donner les résultats sous forme de fractions, puis de nombres décimaux.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Nombre de panneaux avec un défaut : \(18 + 12 + 10 = 40\) panneaux.</p>
+  <p><strong>b)</strong> Fréquences de chaque type de défaut :</p>
+  <ul>
+    <li>Noeud apparent : \(f(N) = \dfrac{18}{200} = 0{,}09\)</li>
+    <li>Voilage : \(f(V) = \dfrac{12}{200} = 0{,}06\)</li>
+    <li>Cote hors tolérance : \(f(C) = \dfrac{10}{200} = 0{,}05\)</li>
+    <li>Aucun défaut : \(f(\text{conforme}) = \dfrac{160}{200} = 0{,}80\)</li>
+  </ul>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 2 <span class="badge-green">REA</span></h2>
+<p>On prélève un panneau au hasard dans le lot. En utilisant les fréquences calculées à la question 1, déterminer la probabilité de chaque événement :</p>
+<ul>
+  <li>\(N\) : « le panneau présente un noeud apparent »</li>
+  <li>\(V\) : « le panneau présente un voilage »</li>
+  <li>\(C\) : « le panneau a une cote hors tolérance »</li>
+</ul>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p>Lorsqu'on dispose d'un grand nombre d'observations, la fréquence observée donne une bonne estimation de la probabilité. On a donc :</p>
+  \[P(N) = \frac{18}{200} = 0{,}09 \qquad P(V) = \frac{12}{200} = 0{,}06 \qquad P(C) = \frac{10}{200} = 0{,}05\]
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">ANA</span></h2>
+<p>a) Pourquoi peut-on utiliser la fréquence observée comme estimation de la probabilité dans cette situation ?</p>
+<p>b) Cette estimation serait-elle aussi fiable si on n'avait contrôlé que 10 panneaux ? Justifier.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Le lot est suffisamment grand (200 panneaux). Lorsque le nombre d'observations est élevé, la fréquence observée se stabilise et donne une bonne estimation de la probabilité. C'est la <strong>loi des grands nombres</strong>.</p>
+  <p><strong>b)</strong> Non, avec seulement 10 panneaux, l'estimation serait beaucoup moins fiable. Le nombre d'observations serait trop faible pour que la fréquence soit représentative de la probabilité réelle. Par exemple, on pourrait avoir 0 défaut sur 10 panneaux alors que le taux réel est de 20 %.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 4 <span class="badge-green">REA</span></h2>
+<p>Calculer la probabilité de l'événement \(D\) : « le panneau présente un défaut (quel qu'il soit) ».</p>
+<p><em>Indication : les trois types de défauts sont incompatibles (un panneau ne peut avoir qu'un seul type de défaut).</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p>Les événements \(N\), \(V\) et \(C\) sont incompatibles, donc :</p>
+  \[P(D) = P(N) + P(V) + P(C) = 0{,}09 + 0{,}06 + 0{,}05 = 0{,}20\]
+  <p>La probabilité qu'un panneau présente un défaut est de \(0{,}20\), soit 20 %.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 5 <span class="badge-green">REA</span></h2>
+<p>En déduire la probabilité de l'événement contraire \(\bar{D}\) : « le panneau est conforme (aucun défaut) ».</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p>L'événement \(\bar{D}\) est le contraire de \(D\), donc :</p>
+  \[P(\bar{D}) = 1 - P(D) = 1 - 0{,}20 = 0{,}80\]
+  <p>La probabilité qu'un panneau soit conforme est de \(0{,}80\), soit 80 %. On retrouve bien \(\dfrac{160}{200} = 0{,}80\).</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 6 <span class="badge-blue">ANA</span> <span class="badge-green">REA</span></h2>
+<p>Le responsable qualité effectue un second contrôle : chaque panneau passe dans une machine de calibrage. La machine détecte 95 % des panneaux défectueux et valide 98 % des panneaux conformes.</p>
+<p>On note :</p>
+<ul>
+  <li>\(D\) : « le panneau est défectueux » — \(P(D) = 0{,}20\)</li>
+  <li>\(\bar{D}\) : « le panneau est conforme » — \(P(\bar{D}) = 0{,}80\)</li>
+  <li>\(R\) : « la machine rejette le panneau »</li>
+  <li>\(\bar{R}\) : « la machine valide le panneau »</li>
+</ul>
+<p>a) Compléter l'arbre de probabilités ci-dessous avec les valeurs manquantes :</p>
+<div class="svg-wrap">
+<svg viewBox="0 0 700 300" width="100%" style="max-width:700px;display:block;margin:12px auto" font-family="'Segoe UI',sans-serif" font-size="13" aria-label="Arbre pondéré à compléter : Défectueux/Conforme puis Rejeté/Validé">
+  <circle cx="50" cy="150" r="9" fill="#0969da"/>
+  <text x="50" y="172" text-anchor="middle" fill="#2d3748" font-size="11" font-weight="bold">Panneau</text>
+  <!-- D -->
+  <line x1="59" y1="144" x2="200" y2="70" stroke="#c53030" stroke-width="2"/>
+  <text x="122" y="90" fill="#c53030" font-weight="bold" text-anchor="middle">D</text>
+  <text x="122" y="106" fill="#c53030" text-anchor="middle">0,20</text>
+  <circle cx="208" cy="68" r="9" fill="#c53030"/>
+  <!-- D̄ -->
+  <line x1="59" y1="156" x2="200" y2="230" stroke="#2f855a" stroke-width="2"/>
+  <text x="122" y="218" fill="#2f855a" font-weight="bold" text-anchor="middle">D̄</text>
+  <text x="122" y="234" fill="#2f855a" text-anchor="middle">0,80</text>
+  <circle cx="208" cy="232" r="9" fill="#2f855a"/>
+  <!-- D → R -->
+  <line x1="217" y1="62" x2="370" y2="30" stroke="#c53030" stroke-width="2"/>
+  <text x="290" y="34" fill="#c53030" text-anchor="middle">R   0,95</text>
+  <circle cx="378" cy="28" r="7" fill="#c53030"/>
+  <text x="393" y="22" fill="#2d3748" font-size="12">D ∩ R</text>
+  <text x="393" y="38" fill="#718096" font-size="11">… × … = ?</text>
+  <!-- D → R̄ -->
+  <line x1="217" y1="74" x2="370" y2="108" stroke="#718096" stroke-width="2"/>
+  <text x="290" y="104" fill="#718096" text-anchor="middle">R̄   0,05</text>
+  <circle cx="378" cy="110" r="7" fill="#718096"/>
+  <text x="393" y="104" fill="#2d3748" font-size="12">D ∩ R̄</text>
+  <text x="393" y="119" fill="#718096" font-size="11">… × … = ?</text>
+  <!-- D̄ → R -->
+  <line x1="217" y1="226" x2="370" y2="192" stroke="#718096" stroke-width="2"/>
+  <text x="290" y="200" fill="#718096" text-anchor="middle">R   0,02</text>
+  <circle cx="378" cy="190" r="7" fill="#718096"/>
+  <text x="393" y="184" fill="#2d3748" font-size="12">D̄ ∩ R</text>
+  <text x="393" y="199" fill="#718096" font-size="11">… × … = ?</text>
+  <!-- D̄ → R̄ -->
+  <line x1="217" y1="238" x2="370" y2="272" stroke="#2f855a" stroke-width="2"/>
+  <text x="290" y="268" fill="#2f855a" text-anchor="middle">R̄   0,98</text>
+  <circle cx="378" cy="274" r="7" fill="#2f855a"/>
+  <text x="393" y="268" fill="#2d3748" font-size="12">D̄ ∩ R̄</text>
+  <text x="393" y="283" fill="#718096" font-size="11">… × … = ?</text>
+</svg>
+</div>
+<p>b) Calculer la probabilité de chacun des quatre chemins de l'arbre.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a) et b)</strong> On applique la <strong>règle du chemin</strong> : on multiplie les probabilités le long de chaque branche.</p>
+  <ul>
+    <li>\(P(D \cap R) = 0{,}20 \times 0{,}95 = 0{,}190\) — panneau défectueux rejeté par la machine</li>
+    <li>\(P(D \cap \bar{R}) = 0{,}20 \times 0{,}05 = 0{,}010\) — panneau défectueux validé par erreur</li>
+    <li>\(P(\bar{D} \cap R) = 0{,}80 \times 0{,}02 = 0{,}016\) — panneau conforme rejeté par erreur</li>
+    <li>\(P(\bar{D} \cap \bar{R}) = 0{,}80 \times 0{,}98 = 0{,}784\) — panneau conforme validé</li>
+  </ul>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 7 <span class="badge-green">REA</span></h2>
+<p>Calculer la probabilité que la machine rejette un panneau (événement \(R\)).</p>
+<p><em>Indication : un panneau peut être rejeté soit parce qu'il est défectueux, soit parce qu'il est conforme mais mal détecté. Utiliser la règle de la somme des chemins.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p>L'événement \(R\) correspond à deux chemins de l'arbre : \(D \cap R\) et \(\bar{D} \cap R\).</p>
+  \[P(R) = P(D \cap R) + P(\bar{D} \cap R) = 0{,}190 + 0{,}016 = 0{,}206\]
+  <p>La probabilité qu'un panneau soit rejeté par la machine est de \(0{,}206\), soit environ 20,6 %.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 8 <span class="badge-green">VAL</span></h2>
+<p>Vérifier que la somme des probabilités des quatre chemins de l'arbre est bien égale à 1.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  \[P(D \cap R) + P(D \cap \bar{R}) + P(\bar{D} \cap R) + P(\bar{D} \cap \bar{R})\]
+  \[= 0{,}190 + 0{,}010 + 0{,}016 + 0{,}784 = 1{,}000\]
+  <p>La somme vaut bien 1. C'est normal : les quatre chemins de l'arbre représentent toutes les issues possibles de l'expérience. La somme de toutes les probabilités doit toujours valoir 1.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 9 <span class="badge-blue">ANA</span></h2>
+<p>Le responsable qualité constate que certains panneaux conformes sont rejetés par la machine, et que certains panneaux défectueux passent le contrôle.</p>
+<p>a) Quelle est la probabilité qu'un panneau défectueux passe le contrôle sans être détecté ?</p>
+<p>b) Sur un lot de 1 000 panneaux, combien de panneaux défectueux échapperaient en moyenne au contrôle ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Il s'agit du chemin \(D \cap \bar{R}\) :</p>
+  \[P(D \cap \bar{R}) = 0{,}010\]
+  <p>La probabilité qu'un panneau défectueux passe le contrôle est de \(0{,}010\), soit 1 %.</p>
+  <p><strong>b)</strong> Sur 1 000 panneaux : \(1\,000 \times 0{,}010 = 10\) panneaux défectueux passeraient en moyenne le contrôle sans être détectés.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 10 <span class="badge-yellow">COM</span></h2>
+<p>Rédigez un court avis (3-4 lignes) à destination du responsable de production de l'entreprise Bois &amp; Design. Votre avis doit contenir :</p>
+<ul>
+  <li>le taux de défaut observé dans le lot ;</li>
+  <li>l'efficacité de la machine de contrôle ;</li>
+  <li>une recommandation pour améliorer la qualité.</li>
+</ul>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+  <p><em>Exemple de rédaction :</em></p>
+  <p>Le contrôle du lot révèle un taux de défaut de 20 %, ce qui est élevé pour une production de panneaux destinés à l'ameublement. Le défaut le plus fréquent est le noeud apparent (9 % des panneaux). La machine de calibrage est efficace : elle détecte 95 % des panneaux défectueux. Toutefois, 1 % des panneaux livrés seraient défectueux malgré le contrôle. Il serait recommandé d'améliorer le tri des bois en amont pour réduire le taux de noeuds apparents, qui représente à lui seul près de la moitié des défauts.</p>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- SYNTHÈSE -->
+<!-- ════════════════════════════════════════ -->
+
+<div class="retenir">
+  <h4>À retenir</h4>
+  <ul>
+    <li><strong>Probabilité et fréquence :</strong> lorsqu'on dispose d'un grand nombre d'observations, la fréquence observée donne une bonne estimation de la probabilité d'un événement.</li>
+    <li><strong>Événement contraire :</strong> \(P(\bar{A}) = 1 - P(A)\). Pour trouver la probabilité d'un événement, on peut calculer celle de son contraire.</li>
+    <li><strong>Arbre de probabilités :</strong>
+      <ul>
+        <li><em>Règle des branches :</em> la somme des probabilités issues d'un même noeud vaut 1.</li>
+        <li><em>Règle du chemin :</em> la probabilité d'un chemin = produit des probabilités des branches.</li>
+        <li><em>Règle de la somme :</em> la probabilité d'un événement = somme des probabilités des chemins qui y mènent.</li>
+      </ul>
+    </li>
+    <li><strong>Somme totale :</strong> la somme des probabilités de toutes les issues possibles vaut toujours 1.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

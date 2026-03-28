@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Activité – Trigonométrie – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../sommaire.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité – Mesurer sans monter : la trigonométrie au service du charpentier</h1>
+  <p class="sous-titre">Chapitre 9 | Première Bac Pro | Mathématiques | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Découvrir les rapports trigonométriques (cosinus, sinus, tangente) dans un triangle rectangle</li>
+    <li>Calculer un côté inconnu d'un triangle rectangle à partir d'un angle et d'un côté connu</li>
+    <li>Vérifier un résultat avec le théorème de Pythagore</li>
+    <li>Choisir le bon rapport trigonométrique selon la situation</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SITUATION PROFESSIONNELLE -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Contexte : Marc est charpentier dans l'entreprise <strong>Bois & Toitures</strong> à Clermont-Ferrand. Il doit remplacer les chevrons d'une toiture. Avant de commander le bois, il a besoin de connaître deux mesures : la <strong>hauteur du faîtage</strong> (point le plus haut du toit) et la <strong>longueur d'un chevron</strong> (la pente du toit).</em></p>
+
+  <p>Depuis le sol, Marc mesure la <strong>demi-portée</strong> (distance horizontale entre le mur et le point d'aplomb du faîtage) : elle vaut <strong>6 m</strong>. À l'aide d'un inclinomètre, il mesure l'<strong>angle d'inclinaison du toit</strong> : il obtient <strong>35°</strong>.</p>
+
+  <p>Le schéma ci-dessous modélise la charpente par un <strong>triangle rectangle</strong>.</p>
+
+  <!-- DIAGRAMME SVG -->
+  <div class="svg-wrap">
+  <svg width="480" height="340" viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;border:1px solid #e2e8f0;border-radius:10px;background:#fafbfc">
+    <text x="240" y="22" text-anchor="middle" font-size="13" font-weight="600" font-family="Segoe UI,sans-serif" fill="#0969da">Coupe de la charpente (triangle rectangle)</text>
+
+    <!-- Triangle -->
+    <polygon points="60,280 420,280 60,80" fill="#dbeafe" fill-opacity="0.4" stroke="#0969da" stroke-width="2.5"/>
+
+    <!-- Angle droit en A -->
+    <rect x="60" y="250" width="30" height="30" fill="none" stroke="#333" stroke-width="1.5"/>
+
+    <!-- Angle 35° en B -->
+    <path d="M 385,280 A 35,35 0 0,0 398,255" fill="none" stroke="#e53e3e" stroke-width="2"/>
+    <text x="370" y="265" font-size="15" font-weight="700" fill="#e53e3e" font-family="serif">35°</text>
+
+    <!-- Labels des sommets -->
+    <text x="42" y="72" font-size="15" font-weight="700" fill="#333" font-family="Segoe UI,sans-serif">S</text>
+    <text x="42" y="300" font-size="15" font-weight="700" fill="#333" font-family="Segoe UI,sans-serif">A</text>
+    <text x="425" y="300" font-size="15" font-weight="700" fill="#333" font-family="Segoe UI,sans-serif">B</text>
+
+    <!-- Côté SA (hauteur h) -->
+    <line x1="45" y1="85" x2="45" y2="275" stroke="#2da44e" stroke-width="2" stroke-dasharray="6,3"/>
+    <text x="18" y="185" font-size="14" font-weight="700" fill="#2da44e" font-family="Segoe UI,sans-serif" transform="rotate(-90,25,185)" text-anchor="middle">h = ?</text>
+
+    <!-- Côté AB (base 6 m) -->
+    <text x="240" y="310" font-size="14" font-weight="700" fill="#0969da" font-family="Segoe UI,sans-serif" text-anchor="middle">6 m</text>
+
+    <!-- Côté SB (chevron L) -->
+    <text x="260" y="165" font-size="14" font-weight="700" fill="#e53e3e" font-family="Segoe UI,sans-serif" transform="rotate(-29,260,165)" text-anchor="middle">L = ?</text>
+
+    <!-- Annotations -->
+    <text x="240" y="296" font-size="11" fill="#666" font-family="Segoe UI,sans-serif" text-anchor="middle">(demi-portée)</text>
+    <text x="15" y="145" font-size="11" fill="#666" font-family="Segoe UI,sans-serif" transform="rotate(-90,15,145)" text-anchor="middle">(hauteur)</text>
+    <text x="290" y="148" font-size="11" fill="#666" font-family="Segoe UI,sans-serif" transform="rotate(-29,290,148)" text-anchor="middle">(chevron)</text>
+  </svg>
+  </div>
+
+  <p><strong>Données :</strong></p>
+  <ul>
+    <li>Le triangle SAB est <strong>rectangle en A</strong></li>
+    <li>L'angle en B vaut <strong>35°</strong></li>
+    <li>La demi-portée AB = <strong>6 m</strong></li>
+    <li>On cherche : la hauteur <strong>h = SA</strong> et la longueur du chevron <strong>L = SB</strong></li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- QUESTIONS -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<!-- Q1 -->
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p><strong>a)</strong> Sur le schéma, quel est l'angle droit ? En quel sommet se trouve-t-il ?</p>
+<p><strong>b)</strong> Quel est le côté le plus long du triangle ? Comment s'appelle-t-il ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> L'angle droit est en <strong>A</strong>. Le triangle SAB est rectangle en A.</p>
+  <p><strong>b)</strong> Le côté le plus long est <strong>SB</strong> (le chevron). C'est le côté opposé à l'angle droit : il s'appelle l'<strong>hypoténuse</strong>.</p>
+</div>
+</div>
+
+<!-- Q2 -->
+<div class="exo">
+<h2>Question 2 <span class="badge-green">APP</span></h2>
+<p>Par rapport à l'angle de 35° (situé en B), nommer chaque côté du triangle :</p>
+<p><strong>a)</strong> Le côté <strong>SA</strong> (la hauteur h) est-il le côté <strong>opposé</strong>, <strong>adjacent</strong> ou l'<strong>hypoténuse</strong> par rapport à l'angle en B ?</p>
+<p><strong>b)</strong> Le côté <strong>AB</strong> (la demi-portée, 6 m) est-il le côté <strong>opposé</strong>, <strong>adjacent</strong> ou l'<strong>hypoténuse</strong> par rapport à l'angle en B ?</p>
+<p><strong>c)</strong> Le côté <strong>SB</strong> (le chevron L) est-il le côté <strong>opposé</strong>, <strong>adjacent</strong> ou l'<strong>hypoténuse</strong> par rapport à l'angle en B ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> SA est le côté <strong>opposé</strong> à l'angle en B (il ne touche pas le sommet B).</p>
+  <p><strong>b)</strong> AB est le côté <strong>adjacent</strong> à l'angle en B (il touche le sommet B sans être l'hypoténuse).</p>
+  <p><strong>c)</strong> SB est l'<strong>hypoténuse</strong> (c'est le côté en face de l'angle droit en A, et le plus long côté).</p>
+</div>
+</div>
+
+<!-- Q3 -->
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">ANA</span></h2>
+<p>Dans un triangle rectangle, on définit trois rapports trigonométriques pour un angle aigu \(\alpha\) :</p>
+\[\sin \alpha = \frac{\text{côté opposé}}{\text{hypoténuse}} \qquad \cos \alpha = \frac{\text{côté adjacent}}{\text{hypoténuse}} \qquad \tan \alpha = \frac{\text{côté opposé}}{\text{côté adjacent}}\]
+<p>En utilisant les noms des côtés identifiés à la question 2, écrire les trois rapports pour l'angle de 35° en B :</p>
+<p><strong>a)</strong> \(\sin 35° = \dfrac{\ldots}{\ldots}\)</p>
+<p><strong>b)</strong> \(\cos 35° = \dfrac{\ldots}{\ldots}\)</p>
+<p><strong>c)</strong> \(\tan 35° = \dfrac{\ldots}{\ldots}\)</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(\sin 35° = \dfrac{SA}{SB} = \dfrac{h}{L}\)</p>
+  <p><strong>b)</strong> \(\cos 35° = \dfrac{AB}{SB} = \dfrac{6}{L}\)</p>
+  <p><strong>c)</strong> \(\tan 35° = \dfrac{SA}{AB} = \dfrac{h}{6}\)</p>
+</div>
+</div>
+
+<!-- Q4 -->
+<div class="exo">
+<h2>Question 4 <span class="badge-yellow">REA</span></h2>
+<p>Marc veut calculer la <strong>hauteur h</strong> du faîtage. Il connaît l'angle (35°) et le côté adjacent (AB = 6 m).</p>
+<p><strong>a)</strong> Quel rapport trigonométrique fait intervenir le côté opposé (h) et le côté adjacent (6 m) ? Justifier.</p>
+<p><strong>b)</strong> À l'aide de la calculatrice, déterminer la valeur de \(\tan 35°\) (arrondir au dix-millième).</p>
+<p><strong>c)</strong> En utilisant l'égalité \(\tan 35° = \dfrac{h}{6}\), isoler h et calculer sa valeur. Arrondir au centième de mètre.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> On connaît le côté <strong>adjacent</strong> (6 m) et on cherche le côté <strong>opposé</strong> (h). Le rapport qui relie opposé et adjacent est la <strong>tangente</strong> :</p>
+  \[\tan 35° = \frac{\text{opposé}}{\text{adjacent}} = \frac{h}{6}\]
+
+  <p><strong>b)</strong> À la calculatrice (mode degrés) : \(\tan 35° \approx 0{,}7002\).</p>
+
+  <p><strong>c)</strong> On isole h :</p>
+  \[h = 6 \times \tan 35° = 6 \times 0{,}7002 \approx 4{,}20 \text{ m}\]
+  <p>La hauteur du faîtage est d'environ <strong>4,20 m</strong>.</p>
+</div>
+</div>
+
+<!-- Q5 -->
+<div class="exo">
+<h2>Question 5 <span class="badge-yellow">REA</span></h2>
+<p>Marc veut maintenant calculer la <strong>longueur L du chevron</strong> (le côté SB).</p>
+<p><strong>a)</strong> Quel rapport trigonométrique fait intervenir le côté adjacent (6 m) et l'hypoténuse (L) ? Justifier.</p>
+<p><strong>b)</strong> À l'aide de la calculatrice, déterminer la valeur de \(\cos 35°\) (arrondir au dix-millième).</p>
+<p><strong>c)</strong> En utilisant l'égalité \(\cos 35° = \dfrac{6}{L}\), isoler L et calculer sa valeur. Arrondir au centième de mètre.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> On connaît le côté <strong>adjacent</strong> (6 m) et on cherche l'<strong>hypoténuse</strong> (L). Le rapport qui relie adjacent et hypoténuse est le <strong>cosinus</strong> :</p>
+  \[\cos 35° = \frac{\text{adjacent}}{\text{hypoténuse}} = \frac{6}{L}\]
+
+  <p><strong>b)</strong> À la calculatrice (mode degrés) : \(\cos 35° \approx 0{,}8192\).</p>
+
+  <p><strong>c)</strong> On isole L :</p>
+  \[\cos 35° = \frac{6}{L} \implies L = \frac{6}{\cos 35°} = \frac{6}{0{,}8192} \approx 7{,}32 \text{ m}\]
+  <p>La longueur du chevron est d'environ <strong>7,32 m</strong>.</p>
+</div>
+</div>
+
+<!-- Q6 -->
+<div class="exo">
+<h2>Question 6 <span class="badge-blue">VAL</span></h2>
+<p>Marc souhaite <strong>vérifier ses résultats</strong> à l'aide du théorème de Pythagore.</p>
+<p><strong>a)</strong> Rappeler le théorème de Pythagore dans le triangle SAB, rectangle en A.</p>
+<p><strong>b)</strong> Calculer \(SA^2 + AB^2\) avec les valeurs trouvées (h ≈ 4,20 m et AB = 6 m).</p>
+<p><strong>c)</strong> Calculer \(SB^2\) avec L ≈ 7,32 m.</p>
+<p><strong>d)</strong> Comparer les deux résultats. Les valeurs sont-elles cohérentes ? Expliquer le léger écart éventuel.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Dans le triangle SAB, rectangle en A, le théorème de Pythagore donne :</p>
+  \[SB^2 = SA^2 + AB^2\]
+
+  <p><strong>b)</strong> \(SA^2 + AB^2 = 4{,}20^2 + 6^2 = 17{,}64 + 36 = 53{,}64\)</p>
+
+  <p><strong>c)</strong> \(SB^2 = 7{,}32^2 = 53{,}58\)</p>
+
+  <p><strong>d)</strong> On obtient \(SA^2 + AB^2 = 53{,}64\) et \(SB^2 = 53{,}58\). Les deux valeurs sont <strong>très proches</strong>. Le léger écart (0,06) est dû aux <strong>arrondis</strong> effectués lors des calculs. Les résultats sont donc <strong>cohérents</strong>.</p>
+</div>
+</div>
+
+<!-- Q7 -->
+<div class="exo">
+<h2>Question 7 <span class="badge-yellow">REA</span></h2>
+<p>Un autre chantier se présente : un menuisier doit poser une charpente dont l'angle d'inclinaison est de <strong>42°</strong> et la demi-portée vaut <strong>5 m</strong>.</p>
+<p><strong>a)</strong> Calculer la hauteur \(h'\) du faîtage de cette nouvelle charpente. Arrondir au centième.</p>
+<p><strong>b)</strong> Calculer la longueur \(L'\) du chevron. Arrondir au centième.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> On utilise la tangente (opposé / adjacent) :</p>
+  \[h' = 5 \times \tan 42° = 5 \times 0{,}9004 \approx 4{,}50 \text{ m}\]
+
+  <p><strong>b)</strong> On utilise le cosinus (adjacent / hypoténuse) :</p>
+  \[L' = \frac{5}{\cos 42°} = \frac{5}{0{,}7431} \approx 6{,}73 \text{ m}\]
+</div>
+</div>
+
+<!-- Q8 -->
+<div class="exo">
+<h2>Question 8 <span class="badge-blue">ANA</span></h2>
+<p>En observant les deux problèmes résolus (questions 4-5 et question 7), compléter le tableau suivant en indiquant quel rapport trigonométrique utiliser selon les côtés en jeu :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>On connaît</th>
+      <th>On cherche</th>
+      <th>Rapport à utiliser</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>angle + côté adjacent</td><td>côté opposé</td><td>...</td></tr>
+    <tr><td>angle + côté adjacent</td><td>hypoténuse</td><td>...</td></tr>
+    <tr><td>angle + hypoténuse</td><td>côté opposé</td><td>...</td></tr>
+    <tr><td>angle + hypoténuse</td><td>côté adjacent</td><td>...</td></tr>
+    <tr><td>angle + côté opposé</td><td>côté adjacent</td><td>...</td></tr>
+    <tr><td>angle + côté opposé</td><td>hypoténuse</td><td>...</td></tr>
+  </tbody>
+</table>
+
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<table>
+  <thead>
+    <tr>
+      <th>On connaît</th>
+      <th>On cherche</th>
+      <th>Rapport à utiliser</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>angle + côté adjacent</td><td>côté opposé</td><td><strong>tangente</strong></td></tr>
+    <tr><td>angle + côté adjacent</td><td>hypoténuse</td><td><strong>cosinus</strong></td></tr>
+    <tr><td>angle + hypoténuse</td><td>côté opposé</td><td><strong>sinus</strong></td></tr>
+    <tr><td>angle + hypoténuse</td><td>côté adjacent</td><td><strong>cosinus</strong></td></tr>
+    <tr><td>angle + côté opposé</td><td>côté adjacent</td><td><strong>tangente</strong></td></tr>
+    <tr><td>angle + côté opposé</td><td>hypoténuse</td><td><strong>sinus</strong></td></tr>
+  </tbody>
+</table>
+<p><strong>Astuce :</strong> on choisit toujours le rapport trigonométrique qui fait intervenir les <strong>deux côtés concernés</strong> (celui qu'on connaît et celui qu'on cherche).</p>
+</div>
+</div>
+
+<!-- Q9 -->
+<div class="exo">
+<h2>Question 9 <span class="badge-yellow">COM</span></h2>
+<p>Marc doit rédiger un <strong>compte rendu de mesure</strong> destiné au bureau d'études. Rédiger un court rapport (5 à 8 lignes) en précisant :</p>
+<ul>
+  <li>les mesures effectuées sur le terrain (angle et demi-portée) ;</li>
+  <li>la méthode de calcul utilisée (quel rapport trigonométrique et pourquoi) ;</li>
+  <li>les résultats obtenus (hauteur du faîtage et longueur du chevron) ;</li>
+  <li>la vérification par le théorème de Pythagore.</li>
+</ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><em>Exemple de compte rendu :</em></p>
+  <div class="meth">
+    <p><strong>Rapport de mesure — Charpente, chantier Clermont-Ferrand</strong></p>
+    <p>La demi-portée mesurée au sol est de 6 m et l'angle d'inclinaison du toit relevé à l'inclinomètre est de 35°. La charpente forme un triangle rectangle.</p>
+    <p>Pour calculer la hauteur du faîtage, j'ai utilisé la tangente car je connaissais le côté adjacent (6 m) et je cherchais le côté opposé. J'obtiens : h = 6 × tan 35° ≈ 4,20 m.</p>
+    <p>Pour la longueur du chevron, j'ai utilisé le cosinus car je connaissais le côté adjacent (6 m) et je cherchais l'hypoténuse. J'obtiens : L = 6 / cos 35° ≈ 7,32 m.</p>
+    <p>Vérification par Pythagore : 4,20² + 6² = 53,64 et 7,32² = 53,58. L'écart est négligeable (arrondis). Les résultats sont cohérents.</p>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- À RETENIR -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<div class="retenir">
+  <strong>À retenir — Trigonométrie dans le triangle rectangle</strong>
+  <p>Dans un triangle rectangle, pour un angle aigu \(\alpha\) :</p>
+  \[\boxed{\sin \alpha = \frac{\text{côté opposé}}{\text{hypoténuse}}} \qquad \boxed{\cos \alpha = \frac{\text{côté adjacent}}{\text{hypoténuse}}} \qquad \boxed{\tan \alpha = \frac{\text{côté opposé}}{\text{côté adjacent}}}\]
+
+  <p><strong>Moyen mnémotechnique : SOH — CAH — TOA</strong></p>
+  <ul>
+    <li><strong>S</strong>inus = <strong>O</strong>pposé / <strong>H</strong>ypoténuse</li>
+    <li><strong>C</strong>osinus = <strong>A</strong>djacent / <strong>H</strong>ypoténuse</li>
+    <li><strong>T</strong>angente = <strong>O</strong>pposé / <strong>A</strong>djacent</li>
+  </ul>
+
+  <p><strong>Lien avec le théorème de Pythagore :</strong> dans un triangle rectangle, le théorème de Pythagore (\(\text{hypoténuse}^2 = \text{opposé}^2 + \text{adjacent}^2\)) permet de <strong>vérifier les résultats</strong> obtenus par trigonométrie. Il en découle la relation fondamentale : \(\cos^2 \alpha + \sin^2 \alpha = 1\).</p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

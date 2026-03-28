@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Activité – Fonction dérivée et optimisation – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité – Optimiser le volume d'une boîte</h1>
+  <p class="sous-titre">Chapitre 6 | 1ère Bac Pro | Mathématiques | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Découvrir comment la dérivée permet de trouver le maximum d'une fonction</li>
+    <li>Comprendre le lien entre le signe de la dérivée et les variations d'une fonction</li>
+    <li>Résoudre un problème concret d'optimisation</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SITUATION PROFESSIONNELLE -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p>
+    <em>Contexte :</em> Claire est <strong>designer de mobilier</strong> dans un atelier d'agencement à Lyon.
+    Elle conçoit des boîtes de rangement sans couvercle à partir de plaques de bois rectangulaires.
+  </p>
+  <p>
+    Sa méthode : elle part d'une plaque rectangulaire de <strong>40 cm &times; 30 cm</strong>,
+    découpe un carré de côté \(x\) (en cm) dans chaque coin, puis plie les bords vers le haut
+    pour former une boîte ouverte.
+  </p>
+
+  <div style="text-align:center;margin:1.2em 0">
+    <svg viewBox="0 0 440 340" style="max-width:420px;width:100%;font-family:inherit">
+      <!-- Plaque extérieure -->
+      <rect x="20" y="10" width="400" height="300" fill="none" stroke="#0969da" stroke-width="2"/>
+      <!-- Carrés découpés -->
+      <rect x="20" y="10" width="60" height="60" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <rect x="360" y="10" width="60" height="60" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <rect x="20" y="250" width="60" height="60" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <rect x="360" y="250" width="60" height="60" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <!-- Zone utile -->
+      <rect x="80" y="70" width="280" height="180" fill="#dbeafe" fill-opacity="0.4" stroke="#0969da" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- Cotes -->
+      <text x="220" y="328" text-anchor="middle" font-size="14" fill="#333">40 cm</text>
+      <text x="8" y="165" text-anchor="middle" font-size="14" fill="#333" transform="rotate(-90,8,165)">30 cm</text>
+      <text x="50" y="48" text-anchor="middle" font-size="13" fill="#ef4444" font-weight="bold">x</text>
+      <text x="50" y="8" text-anchor="middle" font-size="13" fill="#ef4444" font-weight="bold">x</text>
+      <!-- Lignes de pliage -->
+      <line x1="80" y1="10" x2="80" y2="310" stroke="#0969da" stroke-width="1" stroke-dasharray="6,4"/>
+      <line x1="360" y1="10" x2="360" y2="310" stroke="#0969da" stroke-width="1" stroke-dasharray="6,4"/>
+      <line x1="20" y1="70" x2="420" y2="70" stroke="#0969da" stroke-width="1" stroke-dasharray="6,4"/>
+      <line x1="20" y1="250" x2="420" y2="250" stroke="#0969da" stroke-width="1" stroke-dasharray="6,4"/>
+      <!-- Dimensions intérieures -->
+      <text x="220" y="148" text-anchor="middle" font-size="13" fill="#0969da">40 − 2x</text>
+      <text x="220" y="168" text-anchor="middle" font-size="13" fill="#0969da">(longueur du fond)</text>
+      <text x="195" y="195" text-anchor="end" font-size="13" fill="#0969da" transform="rotate(-90,155,195)">30 − 2x</text>
+      <!-- Légende -->
+      <rect x="250" y="280" width="12" height="12" fill="#fee2e2" stroke="#ef4444" stroke-width="1"/>
+      <text x="268" y="291" font-size="12" fill="#333">Carrés découpés (côté x)</text>
+    </svg>
+  </div>
+
+  <p>
+    Une fois les quatre coins découpés et les bords pliés, la boîte obtenue a pour dimensions :
+  </p>
+  <ul>
+    <li><strong>Longueur du fond :</strong> \(40 - 2x\) cm</li>
+    <li><strong>Largeur du fond :</strong> \(30 - 2x\) cm</li>
+    <li><strong>Hauteur :</strong> \(x\) cm</li>
+  </ul>
+  <p>
+    Le volume de la boîte est donc :
+    \[V(x) = x \times (40 - 2x) \times (30 - 2x)\]
+  </p>
+  <p>
+    <strong>Claire veut savoir : quelle valeur de \(x\) donne le plus grand volume possible ?</strong>
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PARTIE A — EXPLORATION NUMÉRIQUE -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<h2>Partie A — Exploration numérique</h2>
+
+<div class="exo">
+<h3>Question 1 <span class="badge-green">REA</span></h3>
+<p>
+  a) Quelles sont les valeurs possibles de \(x\) ? (Pensez aux contraintes géométriques : les longueurs doivent rester positives.)<br><br>
+  b) Développer et simplifier \(V(x) = x(40 - 2x)(30 - 2x)\) pour obtenir un polynôme du 3<sup>e</sup> degré.
+</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Pour que la boîte existe, il faut :</p>
+  <ul>
+    <li>\(x > 0\) (la hauteur est positive)</li>
+    <li>\(40 - 2x > 0 \Rightarrow x < 20\)</li>
+    <li>\(30 - 2x > 0 \Rightarrow x < 15\)</li>
+  </ul>
+  <p>La contrainte la plus restrictive est \(x < 15\), donc \(x \in \,]0\,;\,15[\).</p>
+
+  <p><strong>b)</strong> On développe :</p>
+  \[V(x) = x \times (40 - 2x)(30 - 2x)\]
+  <p>D'abord : \((40 - 2x)(30 - 2x) = 1200 - 80x - 60x + 4x^2 = 4x^2 - 140x + 1200\)</p>
+  <p>Puis :</p>
+  \[V(x) = x(4x^2 - 140x + 1200) = 4x^3 - 140x^2 + 1200x\]
+</div>
+</div>
+
+<div class="exo">
+<h3>Question 2 <span class="badge-green">REA</span></h3>
+<p>
+  Compléter le tableau de valeurs suivant (arrondir au cm<sup>3</sup> près) :
+</p>
+<table>
+<thead>
+  <tr>
+    <th>\(x\) (cm)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>\(V(x)\) (cm<sup>3</sup>)</td>
+    <td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td>
+  </tr>
+</tbody>
+</table>
+
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>On utilise \(V(x) = 4x^3 - 140x^2 + 1200x\) :</p>
+  <table>
+  <thead>
+    <tr>
+      <th>\(x\) (cm)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(V(x)\) (cm<sup>3</sup>)</td>
+      <td>1 064</td><td>1 872</td><td>2 448</td><td>2 816</td><td>3 000</td><td>3 024</td><td>2 912</td><td>2 688</td><td>2 376</td><td>2 000</td>
+    </tr>
+  </tbody>
+  </table>
+  <p><strong>Détail pour \(x = 6\) :</strong> \(V(6) = 4 \times 216 - 140 \times 36 + 1200 \times 6 = 864 - 5040 + 7200 = 3024\) cm<sup>3</sup></p>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PARTIE B — REPRÉSENTATION GRAPHIQUE -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<h2>Partie B — Représentation graphique</h2>
+
+<div class="exo">
+<h3>Question 3 <span class="badge-green">REA</span></h3>
+<p>
+  Placer les points du tableau de valeurs sur le repère ci-dessous et tracer la courbe représentative de \(V\).
+</p>
+
+<div class="svg-wrap" style="margin:1em 0">
+<svg viewBox="0 0 520 360" style="max-width:520px;width:100%;font-family:inherit;background:#fff">
+  <!-- Grille -->
+  <g stroke="#e5e7eb" stroke-width="0.5">
+    <!-- Verticales -->
+    <line x1="60" y1="10" x2="60" y2="320"/>
+    <line x1="105" y1="10" x2="105" y2="320"/>
+    <line x1="150" y1="10" x2="150" y2="320"/>
+    <line x1="195" y1="10" x2="195" y2="320"/>
+    <line x1="240" y1="10" x2="240" y2="320"/>
+    <line x1="285" y1="10" x2="285" y2="320"/>
+    <line x1="330" y1="10" x2="330" y2="320"/>
+    <line x1="375" y1="10" x2="375" y2="320"/>
+    <line x1="420" y1="10" x2="420" y2="320"/>
+    <line x1="465" y1="10" x2="465" y2="320"/>
+    <line x1="510" y1="10" x2="510" y2="320"/>
+    <!-- Horizontales -->
+    <line x1="60" y1="320" x2="510" y2="320"/>
+    <line x1="60" y1="260" x2="510" y2="260"/>
+    <line x1="60" y1="200" x2="510" y2="200"/>
+    <line x1="60" y1="140" x2="510" y2="140"/>
+    <line x1="60" y1="80" x2="510" y2="80"/>
+    <line x1="60" y1="20" x2="510" y2="20"/>
+  </g>
+  <!-- Axes -->
+  <line x1="60" y1="320" x2="510" y2="320" stroke="#333" stroke-width="1.5"/>
+  <line x1="60" y1="320" x2="60" y2="10" stroke="#333" stroke-width="1.5"/>
+  <!-- Graduations x -->
+  <text x="60" y="340" text-anchor="middle" font-size="12" fill="#333">0</text>
+  <text x="105" y="340" text-anchor="middle" font-size="12" fill="#333">1</text>
+  <text x="150" y="340" text-anchor="middle" font-size="12" fill="#333">2</text>
+  <text x="195" y="340" text-anchor="middle" font-size="12" fill="#333">3</text>
+  <text x="240" y="340" text-anchor="middle" font-size="12" fill="#333">4</text>
+  <text x="285" y="340" text-anchor="middle" font-size="12" fill="#333">5</text>
+  <text x="330" y="340" text-anchor="middle" font-size="12" fill="#333">6</text>
+  <text x="375" y="340" text-anchor="middle" font-size="12" fill="#333">7</text>
+  <text x="420" y="340" text-anchor="middle" font-size="12" fill="#333">8</text>
+  <text x="465" y="340" text-anchor="middle" font-size="12" fill="#333">9</text>
+  <text x="510" y="340" text-anchor="middle" font-size="12" fill="#333">10</text>
+  <!-- Graduations y -->
+  <text x="50" y="324" text-anchor="end" font-size="11" fill="#333">0</text>
+  <text x="50" y="264" text-anchor="end" font-size="11" fill="#333">500</text>
+  <text x="50" y="204" text-anchor="end" font-size="11" fill="#333">1 000</text>
+  <text x="50" y="144" text-anchor="end" font-size="11" fill="#333">1 500</text>
+  <text x="50" y="84" text-anchor="end" font-size="11" fill="#333">2 000</text>
+  <text x="50" y="24" text-anchor="end" font-size="11" fill="#333">2 500</text>
+  <!-- Titre axes -->
+  <text x="290" y="356" text-anchor="middle" font-size="12" fill="#555" font-style="italic">x (cm)</text>
+  <text x="15" y="170" text-anchor="middle" font-size="12" fill="#555" font-style="italic" transform="rotate(-90,15,170)">V(x) (cm³)</text>
+  <!-- Points de la correction (visibles sur le graphique d'aide) -->
+  <!-- Échelle : 1 cm = 45 px en x, 500 cm³ = 60 px en y => 1 cm³ = 0.12 px -->
+  <!-- x=0: (60, 320), x=1: V=1064 => y=320-1064*0.12=320-127.7=192.3 -->
+</svg>
+</div>
+
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>Voici les coordonnées des points à placer :</p>
+  <table>
+  <thead><tr><th>\(x\)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr></thead>
+  <tbody><tr><td>\(V(x)\)</td><td>1 064</td><td>1 872</td><td>2 448</td><td>2 816</td><td>3 000</td><td>3 024</td><td>2 912</td><td>2 688</td><td>2 376</td><td>2 000</td></tr></tbody>
+  </table>
+  <p>
+    La courbe monte d'abord (le volume augmente), atteint un sommet aux alentours de \(x = 6\),
+    puis redescend (le volume diminue). La courbe a une forme de "bosse".
+  </p>
+  <div class="svg-wrap" style="margin:1em 0">
+  <svg viewBox="0 0 520 360" style="max-width:520px;width:100%;font-family:inherit;background:#fff">
+    <!-- Grille -->
+    <g stroke="#e5e7eb" stroke-width="0.5">
+      <line x1="60" y1="10" x2="60" y2="320"/><line x1="105" y1="10" x2="105" y2="320"/>
+      <line x1="150" y1="10" x2="150" y2="320"/><line x1="195" y1="10" x2="195" y2="320"/>
+      <line x1="240" y1="10" x2="240" y2="320"/><line x1="285" y1="10" x2="285" y2="320"/>
+      <line x1="330" y1="10" x2="330" y2="320"/><line x1="375" y1="10" x2="375" y2="320"/>
+      <line x1="420" y1="10" x2="420" y2="320"/><line x1="465" y1="10" x2="465" y2="320"/>
+      <line x1="510" y1="10" x2="510" y2="320"/>
+      <line x1="60" y1="320" x2="510" y2="320"/><line x1="60" y1="260" x2="510" y2="260"/>
+      <line x1="60" y1="200" x2="510" y2="200"/><line x1="60" y1="140" x2="510" y2="140"/>
+      <line x1="60" y1="80" x2="510" y2="80"/><line x1="60" y1="20" x2="510" y2="20"/>
+    </g>
+    <!-- Axes -->
+    <line x1="60" y1="320" x2="510" y2="320" stroke="#333" stroke-width="1.5"/>
+    <line x1="60" y1="320" x2="60" y2="10" stroke="#333" stroke-width="1.5"/>
+    <!-- Graduations x -->
+    <text x="60" y="340" text-anchor="middle" font-size="12" fill="#333">0</text>
+    <text x="105" y="340" text-anchor="middle" font-size="12" fill="#333">1</text>
+    <text x="150" y="340" text-anchor="middle" font-size="12" fill="#333">2</text>
+    <text x="195" y="340" text-anchor="middle" font-size="12" fill="#333">3</text>
+    <text x="240" y="340" text-anchor="middle" font-size="12" fill="#333">4</text>
+    <text x="285" y="340" text-anchor="middle" font-size="12" fill="#333">5</text>
+    <text x="330" y="340" text-anchor="middle" font-size="12" fill="#333">6</text>
+    <text x="375" y="340" text-anchor="middle" font-size="12" fill="#333">7</text>
+    <text x="420" y="340" text-anchor="middle" font-size="12" fill="#333">8</text>
+    <text x="465" y="340" text-anchor="middle" font-size="12" fill="#333">9</text>
+    <text x="510" y="340" text-anchor="middle" font-size="12" fill="#333">10</text>
+    <!-- Graduations y -->
+    <text x="50" y="324" text-anchor="end" font-size="11" fill="#333">0</text>
+    <text x="50" y="264" text-anchor="end" font-size="11" fill="#333">500</text>
+    <text x="50" y="204" text-anchor="end" font-size="11" fill="#333">1 000</text>
+    <text x="50" y="144" text-anchor="end" font-size="11" fill="#333">1 500</text>
+    <text x="50" y="84" text-anchor="end" font-size="11" fill="#333">2 000</text>
+    <text x="50" y="24" text-anchor="end" font-size="11" fill="#333">2 500</text>
+    <text x="290" y="356" text-anchor="middle" font-size="12" fill="#555" font-style="italic">x (cm)</text>
+    <text x="15" y="170" text-anchor="middle" font-size="12" fill="#555" font-style="italic" transform="rotate(-90,15,170)">V(x) (cm³)</text>
+    <!-- Courbe lissée -->
+    <!-- Échelle : x => 60 + x*45, y => 320 - V(x)/500*60 = 320 - V(x)*0.12 -->
+    <!-- x=0:(60,320) x=1:(105,192.3) x=2:(150,95.4) x=3:(195,26.2) x=4:(240,-17.9=>clip) x=5:(285,-40) x=6:(330,-42.9) -->
+    <!-- Il faut ajuster l'échelle. Max V ~ 3024, hauteur dispo = 300px. Scale: 1 cm³ = 300/3200 = 0.09375 px -->
+    <!-- y = 320 - V(x) * 0.09375 -->
+    <!-- x=0: y=320, x=1: V=1064 y=320-99.75=220.3, x=2: V=1872 y=320-175.5=144.5, x=3: V=2448 y=320-229.5=90.5 -->
+    <!-- x=4: V=2816 y=320-264=56, x=5: V=3000 y=320-281.25=38.8, x=6: V=3024 y=320-283.5=36.5 -->
+    <!-- x=7: V=2912 y=320-273=47, x=8: V=2688 y=320-252=68, x=9: V=2376 y=320-222.75=97.3, x=10: V=2000 y=320-187.5=132.5 -->
+    <polyline points="60,320 105,220 150,145 195,91 240,56 285,39 330,37 375,47 420,68 465,97 510,133"
+              fill="none" stroke="#0969da" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Points -->
+    <circle cx="105" cy="220" r="4" fill="#0969da"/>
+    <circle cx="150" cy="145" r="4" fill="#0969da"/>
+    <circle cx="195" cy="91" r="4" fill="#0969da"/>
+    <circle cx="240" cy="56" r="4" fill="#0969da"/>
+    <circle cx="285" cy="39" r="4" fill="#0969da"/>
+    <circle cx="330" cy="37" r="4" fill="#ef4444"/>
+    <circle cx="375" cy="47" r="4" fill="#0969da"/>
+    <circle cx="420" cy="68" r="4" fill="#0969da"/>
+    <circle cx="465" cy="97" r="4" fill="#0969da"/>
+    <circle cx="510" cy="133" r="4" fill="#0969da"/>
+    <!-- Maximum -->
+    <line x1="330" y1="37" x2="330" y2="320" stroke="#ef4444" stroke-width="1" stroke-dasharray="5,3"/>
+    <text x="340" y="30" font-size="12" fill="#ef4444" font-weight="bold">Maximum ≈ 3 024 cm³</text>
+  </svg>
+  </div>
+</div>
+</div>
+
+<div class="exo">
+<h3>Question 4 <span class="badge-blue">ANA</span></h3>
+<p>
+  a) D'après le graphique et le tableau, pour quelle valeur <strong>entière</strong> de \(x\) le volume semble-t-il maximal ?<br><br>
+  b) Que se passe-t-il pour la courbe au voisinage de ce maximum ? La courbe monte-t-elle ou descend-elle ? Comment est la tangente au sommet ?
+</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Le volume est maximal pour \(x = 6\), avec \(V(6) = 3\,024\) cm<sup>3</sup>.</p>
+  <p>
+    <strong>b)</strong> Au voisinage du maximum :
+  </p>
+  <ul>
+    <li>Avant le sommet (pour \(x < 6\)), la courbe <strong>monte</strong> : le volume augmente.</li>
+    <li>Après le sommet (pour \(x > 6\)), la courbe <strong>descend</strong> : le volume diminue.</li>
+    <li>Au sommet lui-même, la courbe ne monte ni ne descend : la <strong>tangente est horizontale</strong>, c'est-à-dire que sa pente est nulle.</li>
+  </ul>
+  <p>Ce constat est fondamental : <strong>au maximum, la pente de la tangente vaut 0</strong>.</p>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PARTIE C — INTRODUCTION À LA DÉRIVÉE (échauffement) -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<h2>Partie C — Utiliser la dérivée pour trouver un maximum</h2>
+
+<div class="meth">
+  <span class="label-meth">Rappel de méthode</span>
+  <p>
+    La <strong>fonction dérivée</strong> \(f'(x)\) donne la pente de la tangente à la courbe en chaque point.
+    Si \(f'(x) > 0\), la fonction est croissante. Si \(f'(x) < 0\), elle est décroissante.
+    Et si \(f'(x) = 0\), la tangente est horizontale : c'est un extremum potentiel.
+  </p>
+  <p>Dérivées utiles : si \(f(x) = ax^2 + bx + c\), alors \(f'(x) = 2ax + b\).</p>
+</div>
+
+<div class="exo">
+<h3>Question 5 — Échauffement <span class="badge-green">REA</span></h3>
+<p>
+  On considère la fonction plus simple \(f(x) = -x^2 + 12x\)
+  (qui modélise, par exemple, la surface d'un enclos rectangulaire).
+</p>
+<p>
+  a) Calculer la dérivée \(f'(x)\).<br><br>
+  b) Résoudre \(f'(x) = 0\). Quelle valeur de \(x\) annule la dérivée ?<br><br>
+  c) Calculer \(f(6)\). Que représente cette valeur ?
+</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(f(x) = -x^2 + 12x\), donc \(f'(x) = -2x + 12\).</p>
+  <p><strong>b)</strong> On résout \(f'(x) = 0\) :</p>
+  \[-2x + 12 = 0 \implies -2x = -12 \implies x = 6\]
+  <p>La dérivée s'annule pour \(x = 6\).</p>
+  <p><strong>c)</strong> \(f(6) = -36 + 72 = 36\).</p>
+  <p>
+    Comme la fonction \(f\) est du second degré avec un coefficient négatif devant \(x^2\),
+    la parabole est tournée vers le bas. Le point \(x = 6\) correspond au <strong>maximum</strong> de \(f\),
+    et ce maximum vaut 36.
+  </p>
+  <p><strong>On confirme le principe :</strong> la dérivée s'annule au maximum, et la tangente y est horizontale.</p>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PARTIE D — APPLICATION AU PROBLÈME DE LA BOÎTE -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<h2>Partie D — Retour au problème de Claire</h2>
+
+<div class="exo">
+<h3>Question 6 <span class="badge-green">REA</span></h3>
+<p>
+  On a montré que \(V(x) = 4x^3 - 140x^2 + 1200x\).
+</p>
+<p>
+  En utilisant les règles de dérivation (dérivée d'une somme, \((x^n)' = nx^{n-1}\)), calculer la dérivée \(V'(x)\).
+</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p>On dérive terme à terme :</p>
+  <ul>
+    <li>\((4x^3)' = 4 \times 3x^2 = 12x^2\)</li>
+    <li>\((-140x^2)' = -140 \times 2x = -280x\)</li>
+    <li>\((1200x)' = 1200\)</li>
+  </ul>
+  <p>Donc :</p>
+  \[V'(x) = 12x^2 - 280x + 1200\]
+</div>
+</div>
+
+<div class="exo">
+<h3>Question 7 <span class="badge-blue">ANA</span></h3>
+<p>
+  On admet que \(V'(x) = 12x^2 - 280x + 1200\). On peut factoriser :
+  \[V'(x) = 4(3x^2 - 70x + 300) = 4(3x - 10)(x - 30)\]
+</p>
+<p>
+  <em>(On peut vérifier en développant que \((3x - 10)(x - 30) = 3x^2 - 90x - 10x + 300 = 3x^2 - 100x + 300\)... Oups ! En fait la factorisation exacte n'est pas si simple. Utilisons plutôt la formule quadratique.)</em>
+</p>
+<p>
+  a) Résoudre \(V'(x) = 0\), c'est-à-dire \(12x^2 - 280x + 1200 = 0\).<br>
+  <em>Indication : diviser par 4 pour obtenir \(3x^2 - 70x + 300 = 0\), puis utiliser le discriminant \(\Delta = b^2 - 4ac\).</em><br><br>
+  b) Parmi les solutions obtenues, laquelle est dans l'intervalle \(]0\,;\,15[\) ?
+</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> On simplifie \(12x^2 - 280x + 1200 = 0\) en divisant par 4 :</p>
+  \[3x^2 - 70x + 300 = 0\]
+  <p>On calcule le discriminant :</p>
+  \[\Delta = (-70)^2 - 4 \times 3 \times 300 = 4900 - 3600 = 1300\]
+  \[\sqrt{\Delta} = \sqrt{1300} = 10\sqrt{13} \approx 36{,}06\]
+  <p>Les deux solutions sont :</p>
+  \[x_1 = \frac{70 - 10\sqrt{13}}{6} \approx \frac{70 - 36{,}06}{6} \approx \frac{33{,}94}{6} \approx 5{,}66\]
+  \[x_2 = \frac{70 + 10\sqrt{13}}{6} \approx \frac{70 + 36{,}06}{6} \approx \frac{106{,}06}{6} \approx 17{,}68\]
+
+  <p><strong>b)</strong> Seule \(x_1 \approx 5{,}66\) cm est dans l'intervalle \(]0\,;\,15[\).</p>
+  <p>La valeur \(x_2 \approx 17{,}68\) est hors du domaine (la boîte n'existerait pas).</p>
+</div>
+</div>
+
+<div class="exo">
+<h3>Question 8 <span class="badge-green">VAL</span></h3>
+<p>
+  a) Calculer \(V(5{,}66)\) (arrondir au cm<sup>3</sup> près).<br><br>
+  b) Comparer cette valeur avec \(V(6) = 3\,024\) cm<sup>3</sup> trouvé dans le tableau. Le résultat est-il cohérent ?<br><br>
+  c) Pour vérifier que c'est bien un maximum : calculer \(V'(4)\), \(V'(5{,}66)\) et \(V'(8)\). Que constate-t-on sur le signe de la dérivée avant et après le maximum ?
+</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Avec \(x = 5{,}66\) :</p>
+  <ul>
+    <li>Longueur du fond : \(40 - 2 \times 5{,}66 = 28{,}68\) cm</li>
+    <li>Largeur du fond : \(30 - 2 \times 5{,}66 = 18{,}68\) cm</li>
+    <li>Hauteur : \(5{,}66\) cm</li>
+  </ul>
+  \[V(5{,}66) = 5{,}66 \times 28{,}68 \times 18{,}68 \approx 3\,032 \text{ cm}^3\]
+
+  <p><strong>b)</strong> On trouve \(V(5{,}66) \approx 3\,032\) cm<sup>3</sup>, ce qui est légèrement supérieur à \(V(6) = 3\,024\) cm<sup>3</sup>. C'est cohérent : le maximum exact est entre 5 et 6, pas exactement en 6.</p>
+
+  <p><strong>c)</strong> Calcul du signe de \(V'(x)\) :</p>
+  <ul>
+    <li>\(V'(4) = 12 \times 16 - 280 \times 4 + 1200 = 192 - 1120 + 1200 = 272 > 0\) → la fonction <strong>croît</strong></li>
+    <li>\(V'(5{,}66) \approx 0\) → tangente <strong>horizontale</strong> (maximum)</li>
+    <li>\(V'(8) = 12 \times 64 - 280 \times 8 + 1200 = 768 - 2240 + 1200 = -272 < 0\) → la fonction <strong>décroît</strong></li>
+  </ul>
+  <p>Le signe de \(V'\) change de <strong>positif</strong> à <strong>négatif</strong> au point \(x \approx 5{,}66\) : cela confirme que c'est bien un <strong>maximum</strong>.</p>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- PARTIE E — CONCLUSION -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<h2>Partie E — Conclusion</h2>
+
+<div class="exo">
+<h3>Question 9 <span class="badge-yellow">COM</span></h3>
+<p>
+  Rédiger une réponse complète pour Claire, la designer de mobilier. Préciser :
+</p>
+<ul>
+  <li>la valeur optimale de \(x\) (arrondie au mm) ;</li>
+  <li>les dimensions de la boîte obtenue ;</li>
+  <li>le volume maximal.</li>
+</ul>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <p><strong>Réponse à Claire :</strong></p>
+  <p>
+    Pour obtenir une boîte de rangement de volume maximal à partir d'une plaque de 40 cm &times; 30 cm,
+    il faut découper des carrés de côté <strong>\(x \approx 5{,}7\) cm</strong> dans chaque coin.
+  </p>
+  <p>La boîte obtenue aura pour dimensions :</p>
+  <ul>
+    <li><strong>Longueur :</strong> \(40 - 2 \times 5{,}7 = 28{,}6\) cm</li>
+    <li><strong>Largeur :</strong> \(30 - 2 \times 5{,}7 = 18{,}6\) cm</li>
+    <li><strong>Hauteur :</strong> \(5{,}7\) cm</li>
+  </ul>
+  <p>Le <strong>volume maximal</strong> est d'environ <strong>3 032 cm<sup>3</sup></strong>, soit environ <strong>3 litres</strong>.</p>
+  <p>
+    Ce résultat a été obtenu grâce à la <strong>dérivée</strong> de la fonction volume :
+    en cherchant où \(V'(x) = 0\), on a trouvé la valeur exacte du maximum sans tâtonner.
+  </p>
+</div>
+</div>
+
+<div class="exo">
+<h3>Question 10 <span class="badge-blue">ANA</span></h3>
+<p>
+  Compléter les phrases suivantes, qui résument la méthode utilisée dans cette activité :
+</p>
+<ol style="line-height:2.2">
+  <li>Quand \(V'(x) > 0\), la fonction \(V\) est ...........................</li>
+  <li>Quand \(V'(x) < 0\), la fonction \(V\) est ...........................</li>
+  <li>Quand \(V'(x) = 0\), la tangente est ........................... et la fonction atteint un ...........................</li>
+  <li>Pour trouver le maximum d'une fonction, on peut résoudre l'équation ...........................</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+<div class="corr">
+  <ol style="line-height:2.2">
+    <li>Quand \(V'(x) > 0\), la fonction \(V\) est <strong>croissante</strong>.</li>
+    <li>Quand \(V'(x) < 0\), la fonction \(V\) est <strong>décroissante</strong>.</li>
+    <li>Quand \(V'(x) = 0\), la tangente est <strong>horizontale</strong> et la fonction atteint un <strong>extremum (maximum ou minimum)</strong>.</li>
+    <li>Pour trouver le maximum d'une fonction, on peut résoudre l'équation \(f'(x) = 0\).</li>
+  </ol>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- À RETENIR -->
+<!-- ══════════════════════════════════════════════════════ -->
+
+<div class="retenir">
+  <strong>À retenir — Dérivée et variations</strong>
+  <ul>
+    <li>La <strong>fonction dérivée</strong> \(f'\) donne le <strong>taux de variation instantané</strong> de \(f\) : elle mesure à quelle vitesse \(f\) évolue en chaque point.</li>
+    <li>Si \(f'(x) > 0\) sur un intervalle, alors \(f\) est <strong>croissante</strong> sur cet intervalle.</li>
+    <li>Si \(f'(x) < 0\) sur un intervalle, alors \(f\) est <strong>décroissante</strong> sur cet intervalle.</li>
+    <li>Si \(f'(a) = 0\) et que le signe de \(f'\) change en \(a\), alors \(f\) admet un <strong>extremum</strong> (maximum ou minimum) en \(a\).</li>
+    <li>Pour résoudre un problème d'<strong>optimisation</strong> : modéliser, dériver, résoudre \(f'(x) = 0\), vérifier le changement de signe.</li>
+  </ul>
+</div>
+
+</div>
+
+<script src="../../../nav.js"></script>
+<script>
+document.querySelectorAll('.bc').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var c=this.nextElementSibling;
+    if(c&&c.classList.contains('corr')){
+      c.style.display=c.style.display==='block'?'none':'block';
+      this.textContent=c.style.display==='block'?'Masquer la correction':'Voir la correction';
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Activité – Géométrie dans l'espace – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Activité – Solides et calculs dans l'espace</h1>
+  <p class="sous-titre">Chapitre 7 | 1ère Bac Pro | Mathématiques | ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Reconnaître et nommer des solides usuels à partir d'objets réels</li>
+    <li>Calculer le volume et l'aire totale d'un parallélépipède rectangle</li>
+    <li>Calculer le volume et l'aire latérale d'un cône</li>
+    <li>Exploiter ces calculs pour estimer des quantités de matériaux</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- DOCUMENT D'ACCROCHE -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Contexte : un ébéniste de l'atelier « Bois &amp; Lumière » à Annecy réalise deux pièces sur mesure pour un client.</em></p>
+
+  <p><strong>Pièce n°1 — Coffre de rangement en bois :</strong> le coffre a la forme d'un <strong>parallélépipède rectangle</strong> (pavé droit). Ses dimensions intérieures sont :</p>
+  <ul>
+    <li>Longueur : \(L = 60\) cm</li>
+    <li>Largeur : \(\ell = 40\) cm</li>
+    <li>Hauteur : \(h = 30\) cm</li>
+  </ul>
+
+  <p><strong>Pièce n°2 — Abat-jour décoratif en forme de cône :</strong> l'ébéniste fabrique un abat-jour en placage de bois ayant la forme d'un <strong>cône</strong>. Ses dimensions sont :</p>
+  <ul>
+    <li>Hauteur du cône : \(h = 25\) cm</li>
+    <li>Rayon de la base : \(r = 12\) cm</li>
+  </ul>
+
+  <p>L'artisan doit estimer les <strong>volumes</strong> (capacité de rangement, encombrement) et les <strong>surfaces</strong> (quantité de bois ou de placage nécessaire) pour chiffrer sa commande de matériaux.</p>
+
+  <!-- SVG Parallélépipède -->
+  <div class="grid2" style="margin-top:1.5rem">
+    <div class="svg-wrap">
+      <p style="text-align:center;font-weight:bold;margin-bottom:0.5rem">Coffre de rangement (pavé droit)</p>
+      <svg viewBox="0 0 320 260" width="100%" style="max-width:320px;height:auto">
+        <!-- Face arrière (pointillés) -->
+        <polygon points="110,30 260,30 260,150 110,150" fill="none" stroke="#0969da" stroke-width="1.2" stroke-dasharray="6,4"/>
+        <!-- Face avant -->
+        <polygon points="40,80 190,80 190,200 40,200" fill="#dbeafe" fill-opacity="0.4" stroke="#0969da" stroke-width="2"/>
+        <!-- Arêtes de liaison -->
+        <line x1="40" y1="80" x2="110" y2="30" stroke="#0969da" stroke-width="1.5"/>
+        <line x1="190" y1="80" x2="260" y2="30" stroke="#0969da" stroke-width="1.5"/>
+        <line x1="190" y1="200" x2="260" y2="150" stroke="#0969da" stroke-width="1.5"/>
+        <line x1="40" y1="200" x2="110" y2="150" stroke="#0969da" stroke-width="1.2" stroke-dasharray="6,4"/>
+        <!-- Face du dessus -->
+        <polygon points="40,80 110,30 260,30 190,80" fill="#93c5fd" fill-opacity="0.3" stroke="#0969da" stroke-width="2"/>
+        <!-- Face droite -->
+        <polygon points="190,80 260,30 260,150 190,200" fill="#93c5fd" fill-opacity="0.2" stroke="#0969da" stroke-width="2"/>
+        <!-- Cotation L (bas) -->
+        <line x1="40" y1="215" x2="190" y2="215" stroke="#333" stroke-width="1" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="95" y="232" font-size="14" fill="#333" font-weight="bold">L = 60 cm</text>
+        <!-- Cotation ℓ (profondeur) -->
+        <text x="205" y="188" font-size="13" fill="#333" font-weight="bold" transform="rotate(-40,225,185)">ℓ = 40 cm</text>
+        <!-- Cotation h (hauteur) -->
+        <line x1="25" y1="80" x2="25" y2="200" stroke="#333" stroke-width="1"/>
+        <text x="2" y="145" font-size="13" fill="#333" font-weight="bold">h = 30</text>
+      </svg>
+    </div>
+
+    <div class="svg-wrap">
+      <p style="text-align:center;font-weight:bold;margin-bottom:0.5rem">Abat-jour (cône)</p>
+      <svg viewBox="0 0 260 280" width="100%" style="max-width:260px;height:auto">
+        <!-- Cône -->
+        <line x1="130" y1="30" x2="50" y2="230" stroke="#0969da" stroke-width="2"/>
+        <line x1="130" y1="30" x2="210" y2="230" stroke="#0969da" stroke-width="2"/>
+        <!-- Base (ellipse) -->
+        <ellipse cx="130" cy="230" rx="80" ry="20" fill="#dbeafe" fill-opacity="0.3" stroke="#0969da" stroke-width="2"/>
+        <!-- Hauteur -->
+        <line x1="130" y1="30" x2="130" y2="230" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="135" y="135" font-size="14" fill="#e53e3e" font-weight="bold">h = 25 cm</text>
+        <!-- Rayon -->
+        <line x1="130" y1="230" x2="210" y2="230" stroke="#2da44e" stroke-width="1.5"/>
+        <text x="150" y="255" font-size="14" fill="#2da44e" font-weight="bold">r = 12 cm</text>
+        <!-- Sommet -->
+        <circle cx="130" cy="30" r="3" fill="#0969da"/>
+        <text x="135" y="22" font-size="12" fill="#333">S</text>
+        <!-- Centre base -->
+        <circle cx="130" cy="230" r="3" fill="#0969da"/>
+        <text x="115" y="248" font-size="12" fill="#333">O</text>
+        <!-- Génératrice -->
+        <text x="45" y="125" font-size="13" fill="#0969da" font-style="italic">g</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- QUESTIONS -->
+
+<div class="exo">
+<h2>Question 1 <span class="badge-green">APP</span></h2>
+<p><strong>a)</strong> Identifier la forme géométrique du coffre de rangement. Quel est le nom du solide correspondant ?</p>
+<p><strong>b)</strong> Identifier la forme géométrique de l'abat-jour. Quel est le nom du solide correspondant ?</p>
+<p><strong>c)</strong> Pour chaque solide, indiquer le nombre de faces, d'arêtes et de sommets.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Le coffre de rangement a la forme d'un <strong>parallélépipède rectangle</strong> (ou pavé droit). C'est un polyèdre dont les 6 faces sont des rectangles.</p>
+  <p><strong>b)</strong> L'abat-jour a la forme d'un <strong>cône de révolution</strong>. C'est un solide de révolution obtenu par rotation d'un triangle rectangle autour d'un de ses côtés de l'angle droit.</p>
+  <p><strong>c)</strong></p>
+  <ul>
+    <li>Parallélépipède rectangle : <strong>6 faces</strong>, <strong>12 arêtes</strong>, <strong>8 sommets</strong></li>
+    <li>Cône : <strong>1 face plane</strong> (la base circulaire) + <strong>1 surface latérale courbe</strong>, <strong>1 sommet</strong> (l'apex)</li>
+  </ul>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 2 <span class="badge-blue">REA</span></h2>
+<p>Calculer le <strong>volume</strong> du coffre de rangement.</p>
+<p><em>Rappel :</em> le volume d'un pavé droit de longueur \(L\), largeur \(\ell\) et hauteur \(h\) est \(V = L \times \ell \times h\).</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p>On applique la formule du volume du parallélépipède rectangle :</p>
+  \[V_{\text{coffre}} = L \times \ell \times h = 60 \times 40 \times 30 = 72\,000 \text{ cm}^3\]
+  <p>Conversion en litres : \(1 \text{ L} = 1\,000 \text{ cm}^3\), donc :</p>
+  \[V_{\text{coffre}} = \frac{72\,000}{1\,000} = \boxed{72 \text{ L}}\]
+  <p>Le coffre a un volume de <strong>72 000 cm³</strong>, soit <strong>72 litres</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">REA</span></h2>
+<p>Calculer l'<strong>aire totale</strong> du coffre (les 6 faces). Cette aire représente la surface totale de bois nécessaire pour fabriquer le coffre.</p>
+<p><em>Rappel :</em> l'aire totale d'un pavé droit est \(A_{\text{totale}} = 2(L\ell + Lh + \ell h)\).</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p>On calcule d'abord l'aire de chaque paire de faces :</p>
+  <ul>
+    <li>Deux faces de dimensions \(L \times \ell = 60 \times 40 = 2\,400\) cm²</li>
+    <li>Deux faces de dimensions \(L \times h = 60 \times 30 = 1\,800\) cm²</li>
+    <li>Deux faces de dimensions \(\ell \times h = 40 \times 30 = 1\,200\) cm²</li>
+  </ul>
+  <p>Aire totale :</p>
+  \[A_{\text{totale}} = 2(2\,400 + 1\,800 + 1\,200) = 2 \times 5\,400 = \boxed{10\,800 \text{ cm}^2}\]
+  <p>Conversion : \(10\,800 \text{ cm}^2 = 1{,}08 \text{ m}^2\).</p>
+  <p>L'ébéniste a besoin de <strong>1,08 m²</strong> de bois pour fabriquer les 6 faces du coffre.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 4 <span class="badge-blue">REA</span></h2>
+<p>Calculer le <strong>volume</strong> de l'abat-jour conique.</p>
+<p><em>Rappel :</em> le volume d'un cône de rayon \(r\) et de hauteur \(h\) est \(V = \dfrac{1}{3}\pi r^2 h\).</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p>On applique la formule du volume du cône :</p>
+  \[V_{\text{cône}} = \frac{1}{3}\pi r^2 h = \frac{1}{3} \times \pi \times 12^2 \times 25\]
+  \[V_{\text{cône}} = \frac{1}{3} \times \pi \times 144 \times 25 = \frac{3\,600\pi}{3} = 1\,200\pi\]
+  \[\boxed{V_{\text{cône}} \approx 3\,770 \text{ cm}^3}\]
+  <p>Le volume de l'abat-jour est d'environ <strong>3 770 cm³</strong>, soit environ <strong>3,77 litres</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 5 <span class="badge-blue">REA</span></h2>
+<p><strong>a)</strong> Calculer la longueur de la <strong>génératrice</strong> \(g\) du cône à l'aide du théorème de Pythagore.</p>
+<p><strong>b)</strong> En déduire l'<strong>aire latérale</strong> du cône (la surface de placage nécessaire pour l'abat-jour).</p>
+<p><em>Rappel :</em> \(g = \sqrt{r^2 + h^2}\) et \(A_{\text{latérale}} = \pi r g\).</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a) Calcul de la génératrice :</strong></p>
+  <p>Le triangle rectangle formé par la hauteur \(h\), le rayon \(r\) et la génératrice \(g\) permet d'appliquer le théorème de Pythagore :</p>
+  \[g = \sqrt{r^2 + h^2} = \sqrt{12^2 + 25^2} = \sqrt{144 + 625} = \sqrt{769}\]
+  \[\boxed{g \approx 27{,}73 \text{ cm}}\]
+
+  <p><strong>b) Calcul de l'aire latérale :</strong></p>
+  \[A_{\text{latérale}} = \pi r g = \pi \times 12 \times 27{,}73\]
+  \[\boxed{A_{\text{latérale}} \approx 1\,045 \text{ cm}^2}\]
+  <p>L'ébéniste a besoin d'environ <strong>1 045 cm²</strong> (soit environ <strong>0,10 m²</strong>) de placage de bois pour recouvrir la surface latérale de l'abat-jour.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 6 <span class="badge-blue">ANA</span></h2>
+<p>Comparer le volume du coffre et le volume de l'abat-jour. Combien de fois le coffre est-il plus volumineux que l'abat-jour ? Arrondir au dixième.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p>On calcule le rapport des volumes :</p>
+  \[\frac{V_{\text{coffre}}}{V_{\text{cône}}} = \frac{72\,000}{1\,200\pi} = \frac{72\,000}{3\,769{,}9...} \approx \boxed{19{,}1}\]
+  <p>Le coffre est environ <strong>19,1 fois</strong> plus volumineux que l'abat-jour conique.</p>
+  <p>Ce résultat est cohérent : le coffre est un objet de rangement de grande taille, tandis que l'abat-jour est un petit objet décoratif.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 7 <span class="badge-blue">ANA</span></h2>
+<p>L'ébéniste utilise des panneaux de contreplaqué de dimensions 120 cm × 60 cm. Combien de panneaux lui faut-il <strong>au minimum</strong> pour fabriquer le coffre ? Justifier.</p>
+<p><em>Indication :</em> on rappelle que le coffre comporte 6 faces rectangulaires. Lister les dimensions de chaque face et vérifier lesquelles peuvent être découpées dans un même panneau.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p>Les 6 faces du coffre sont :</p>
+  <ul>
+    <li>2 faces de 60 × 40 cm (dessus et dessous)</li>
+    <li>2 faces de 60 × 30 cm (faces avant et arrière)</li>
+    <li>2 faces de 40 × 30 cm (faces latérales)</li>
+  </ul>
+  <p>Chaque panneau mesure 120 × 60 cm, soit une aire de 7 200 cm².</p>
+  <p>Vérifions ce qu'on peut découper dans un panneau :</p>
+  <ul>
+    <li><strong>Panneau 1 :</strong> on peut y découper les 2 faces de 60 × 40 cm (placées côte à côte : 60 + 60 = 120 cm en longueur, 40 cm en largeur). Il reste une bande de 120 × 20 cm (insuffisante pour une autre face).</li>
+    <li><strong>Panneau 2 :</strong> on peut y découper les 2 faces de 60 × 30 cm (côte à côte : 120 × 30 cm) et les 2 faces de 40 × 30 cm (côte à côte : 80 cm, dans la bande restante de 120 × 30 cm).</li>
+  </ul>
+  <p>L'ébéniste a besoin d'au minimum <strong>\(\boxed{2}\) panneaux</strong> de contreplaqué.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 8 <span class="badge-green">VAL</span></h2>
+<p>Vérifier la cohérence du volume du coffre à l'aide d'une <strong>analyse dimensionnelle</strong>.</p>
+<p><strong>a)</strong> Quelles sont les unités de \(L\), \(\ell\) et \(h\) dans le calcul ?</p>
+<p><strong>b)</strong> En multipliant les unités, quelle unité obtient-on pour le volume ? Est-ce cohérent ?</p>
+<p><strong>c)</strong> Le résultat 72 litres est-il un ordre de grandeur réaliste pour un coffre de rangement ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Les trois dimensions sont exprimées en <strong>centimètres</strong> (cm).</p>
+  <p><strong>b)</strong> En multipliant les unités :</p>
+  \[\text{cm} \times \text{cm} \times \text{cm} = \text{cm}^3\]
+  <p>On obtient bien des <strong>centimètres cubes</strong> (cm³), qui est une unité de volume. Le résultat est cohérent.</p>
+  <p><strong>c)</strong> 72 litres, c'est l'équivalent d'environ 72 bouteilles d'un litre, ou d'un grand bac de rangement. Pour un coffre de 60 × 40 × 30 cm (de la taille d'une grosse caisse), cet ordre de grandeur est tout à fait <strong>réaliste</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<h2>Question 9 <span class="badge-yellow">COM</span></h2>
+<p>Rédiger un court <strong>devis matériaux</strong> pour le client, récapitulant les résultats obtenus. Le devis doit indiquer :</p>
+<ul>
+  <li>La désignation de chaque pièce (coffre et abat-jour)</li>
+  <li>Les dimensions</li>
+  <li>La surface de matériau nécessaire pour chaque pièce (en m²)</li>
+  <li>Le nombre de panneaux de contreplaqué pour le coffre</li>
+</ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>Devis matériaux — Atelier Bois &amp; Lumière</strong></p>
+  <table class="full">
+    <tr>
+      <th>Pièce</th>
+      <th>Dimensions</th>
+      <th>Surface de matériau</th>
+      <th>Matériau</th>
+    </tr>
+    <tr>
+      <td>Coffre de rangement (pavé droit)</td>
+      <td>60 × 40 × 30 cm</td>
+      <td>1,08 m²</td>
+      <td>2 panneaux de contreplaqué (120 × 60 cm)</td>
+    </tr>
+    <tr>
+      <td>Abat-jour décoratif (cône)</td>
+      <td>h = 25 cm, r = 12 cm</td>
+      <td>≈ 0,10 m²</td>
+      <td>Placage bois</td>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>Total surface de matériau</strong></td>
+      <td><strong>≈ 1,18 m²</strong></td>
+      <td></td>
+    </tr>
+  </table>
+  <p><em>Note :</em> prévoir une marge de 10 à 15 % pour les chutes de découpe, soit environ <strong>1,35 m²</strong> au total.</p>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SYNTHÈSE -->
+<div class="retenir">
+  <h3>À retenir — Formules de volumes et d'aires</h3>
+  <table class="full">
+    <tr>
+      <th>Solide</th>
+      <th>Volume</th>
+      <th>Aire latérale</th>
+      <th>Aire totale</th>
+    </tr>
+    <tr>
+      <td class="hi">Parallélépipède rectangle (\(L, \ell, h\))</td>
+      <td>\(L \times \ell \times h\)</td>
+      <td>\(2h(L+\ell)\)</td>
+      <td>\(2(L\ell + Lh + \ell h)\)</td>
+    </tr>
+    <tr>
+      <td class="hi">Cylindre (\(r, h\))</td>
+      <td>\(\pi r^2 h\)</td>
+      <td>\(2\pi r h\)</td>
+      <td>\(2\pi r(r+h)\)</td>
+    </tr>
+    <tr>
+      <td class="hi">Cône (\(r, h, g\))</td>
+      <td>\(\dfrac{1}{3}\pi r^2 h\)</td>
+      <td>\(\pi r g\)</td>
+      <td>\(\pi r(r+g)\)</td>
+    </tr>
+    <tr>
+      <td class="hi">Boule (\(R\))</td>
+      <td>\(\dfrac{4}{3}\pi R^3\)</td>
+      <td colspan="2">\(4\pi R^2\)</td>
+    </tr>
+  </table>
+  <p style="margin-top:0.8rem"><strong>Génératrice du cône :</strong> \(g = \sqrt{r^2 + h^2}\) (théorème de Pythagore)</p>
+  <p><strong>Conversion :</strong> \(1 \text{ m}^3 = 1\,000 \text{ L}\) et \(1 \text{ L} = 1\,000 \text{ cm}^3\)</p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+<script>
+function toggle(btn){
+  const c=btn.nextElementSibling;
+  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
+  else{c.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>

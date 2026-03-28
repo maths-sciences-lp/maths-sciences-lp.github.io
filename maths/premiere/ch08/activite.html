@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Activité – Vecteurs du plan – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité — Déplacer des meubles dans un showroom</h1>
+  <p class="sous-titre">Chapitre 8 &nbsp;|&nbsp; 1ère Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 35 min</p>
+</header>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Découvrir la notion de vecteur à partir de déplacements concrets</li>
+    <li>Représenter un déplacement par une flèche (vecteur)</li>
+    <li>Identifier des vecteurs égaux</li>
+    <li>Lire les coordonnées d'un vecteur sur un quadrillage</li>
+    <li>Additionner deux vecteurs (déplacements successifs)</li>
+    <li>Reconnaître des vecteurs colinéaires</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SITUATION PROFESSIONNELLE                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Contexte : un installateur d'agencement de l'entreprise « Espace &amp; Design » à Grenoble doit réaménager le showroom d'un magasin de cuisines. Il dispose du plan quadrillé ci-dessous (1 carreau = 0,5 m). Chaque meuble doit être déplacé de sa position actuelle vers sa position finale selon les indications du plan d'architecte.</em></p>
+
+  <p>Voici les positions actuelles des meubles (repérées par leur coin inférieur gauche) et les déplacements à effectuer :</p>
+
+  <table class="styled">
+    <thead>
+      <tr><th>Meuble</th><th>Position actuelle</th><th>Position finale</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ilot central (I)</td><td>\(A(2\;;\;1)\)</td><td>\(A'(6\;;\;4)\)</td></tr>
+      <tr><td>Buffet (B)</td><td>\(C(1\;;\;6)\)</td><td>\(C'(5\;;\;9)\)</td></tr>
+      <tr><td>Table (T)</td><td>\(E(8\;;\;2)\)</td><td>\(E'(10\;;\;6)\)</td></tr>
+      <tr><td>Vitrine (V)</td><td>\(G(9\;;\;7)\)</td><td>\(G'(13\;;\;10)\)</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:1em">Le poseur effectue aussi un déplacement intermédiaire pour la table : il la pousse d'abord de \(E(8\;;\;2)\) au point \(F(10\;;\;3)\), puis de \(F(10\;;\;3)\) au point \(E'(10\;;\;6)\).</p>
+
+  <!-- SVG — Plan du showroom -->
+  <svg viewBox="-1 -1 16.5 13" style="width:100%;max-width:700px;display:block;margin:1.5em auto;font-family:Arial,sans-serif;background:#fff;border:1px solid #ccc;border-radius:8px">
+    <!-- Quadrillage -->
+    <defs>
+      <pattern id="grid" width="1" height="1" patternUnits="userSpaceOnUse">
+        <path d="M 1 0 L 0 0 0 1" fill="none" stroke="#e0e7ef" stroke-width="0.04"/>
+      </pattern>
+    </defs>
+    <rect x="0" y="0" width="15" height="12" fill="url(#grid)"/>
+    <!-- Axes -->
+    <line x1="0" y1="12" x2="15" y2="12" stroke="#666" stroke-width="0.06"/>
+    <line x1="0" y1="0" x2="0" y2="12" stroke="#666" stroke-width="0.06"/>
+    <!-- Graduations x -->
+    <text x="0" y="12.7" font-size="0.55" fill="#666" text-anchor="middle">0</text>
+    <text x="2" y="12.7" font-size="0.55" fill="#666" text-anchor="middle">2</text>
+    <text x="4" y="12.7" font-size="0.55" fill="#666" text-anchor="middle">4</text>
+    <text x="6" y="12.7" font-size="0.55" fill="#666" text-anchor="middle">6</text>
+    <text x="8" y="12.7" font-size="0.55" fill="#666" text-anchor="middle">8</text>
+    <text x="10" y="12.7" font-size="0.55" fill="#666" text-anchor="middle">10</text>
+    <text x="12" y="12.7" font-size="0.55" fill="#666" text-anchor="middle">12</text>
+    <text x="14" y="12.7" font-size="0.55" fill="#666" text-anchor="middle">14</text>
+    <!-- Graduations y -->
+    <text x="-0.4" y="12.2" font-size="0.55" fill="#666" text-anchor="middle">0</text>
+    <text x="-0.4" y="10.2" font-size="0.55" fill="#666" text-anchor="middle">2</text>
+    <text x="-0.4" y="8.2" font-size="0.55" fill="#666" text-anchor="middle">4</text>
+    <text x="-0.4" y="6.2" font-size="0.55" fill="#666" text-anchor="middle">6</text>
+    <text x="-0.4" y="4.2" font-size="0.55" fill="#666" text-anchor="middle">8</text>
+    <text x="-0.4" y="2.2" font-size="0.55" fill="#666" text-anchor="middle">10</text>
+    <text x="-0.4" y="0.2" font-size="0.55" fill="#666" text-anchor="middle">12</text>
+
+    <!-- Murs du showroom -->
+    <rect x="0.3" y="0.3" width="14.4" height="11.4" fill="none" stroke="#94a3b8" stroke-width="0.12" stroke-dasharray="0.3,0.15" rx="0.2"/>
+    <text x="7.5" y="-0.3" font-size="0.6" fill="#94a3b8" text-anchor="middle" font-style="italic">Showroom — plan quadrillé (1 carreau = 0,5 m)</text>
+
+    <!-- === Ilot central : A(2,1) → A'(6,4) === -->
+    <!-- Position actuelle -->
+    <rect x="2" y="10" width="2" height="1.5" fill="#dbeafe" stroke="#0969da" stroke-width="0.08" rx="0.15"/>
+    <text x="3" y="11" font-size="0.45" fill="#0969da" text-anchor="middle" font-weight="bold">Ilot</text>
+    <circle cx="2" cy="11" r="0.15" fill="#0969da"/>
+    <text x="1.5" y="11.5" font-size="0.42" fill="#0969da" font-weight="bold">A</text>
+    <!-- Position finale (fantôme) -->
+    <rect x="6" y="7" width="2" height="1.5" fill="none" stroke="#0969da" stroke-width="0.06" stroke-dasharray="0.2,0.1" rx="0.15"/>
+    <text x="7" y="8" font-size="0.4" fill="#0969da" text-anchor="middle" font-style="italic">Ilot</text>
+    <circle cx="6" cy="8" r="0.12" fill="none" stroke="#0969da" stroke-width="0.06"/>
+    <text x="5.5" y="8.5" font-size="0.42" fill="#0969da" font-weight="bold">A'</text>
+    <!-- Flèche déplacement -->
+    <defs><marker id="ah1" markerWidth="3" markerHeight="3" refX="2.5" refY="1.5" orient="auto"><polygon points="0,0 3,1.5 0,3" fill="#0969da"/></marker></defs>
+    <line x1="2" y1="11" x2="5.7" y2="8.3" stroke="#0969da" stroke-width="0.1" marker-end="url(#ah1)"/>
+
+    <!-- === Buffet : C(1,6) → C'(5,9) === -->
+    <rect x="1" y="5" width="1.8" height="1" fill="#f0fff4" stroke="#2da44e" stroke-width="0.08" rx="0.15"/>
+    <text x="1.9" y="5.7" font-size="0.4" fill="#2da44e" text-anchor="middle" font-weight="bold">Buffet</text>
+    <circle cx="1" cy="6" r="0.15" fill="#2da44e"/>
+    <text x="0.4" y="6.4" font-size="0.42" fill="#2da44e" font-weight="bold">C</text>
+    <!-- Position finale -->
+    <rect x="5" y="2" width="1.8" height="1" fill="none" stroke="#2da44e" stroke-width="0.06" stroke-dasharray="0.2,0.1" rx="0.15"/>
+    <text x="5.9" y="2.7" font-size="0.35" fill="#2da44e" text-anchor="middle" font-style="italic">Buffet</text>
+    <circle cx="5" cy="3" r="0.12" fill="none" stroke="#2da44e" stroke-width="0.06"/>
+    <text x="4.4" y="3.4" font-size="0.42" fill="#2da44e" font-weight="bold">C'</text>
+    <!-- Flèche -->
+    <defs><marker id="ah2" markerWidth="3" markerHeight="3" refX="2.5" refY="1.5" orient="auto"><polygon points="0,0 3,1.5 0,3" fill="#2da44e"/></marker></defs>
+    <line x1="1" y1="6" x2="4.7" y2="3.3" stroke="#2da44e" stroke-width="0.1" marker-end="url(#ah2)"/>
+
+    <!-- === Table : E(8,2) → F(10,3) → E'(10,6) === -->
+    <rect x="8" y="9" width="2" height="1" fill="#fff7ed" stroke="#ea580c" stroke-width="0.08" rx="0.15"/>
+    <text x="9" y="9.7" font-size="0.4" fill="#ea580c" text-anchor="middle" font-weight="bold">Table</text>
+    <circle cx="8" cy="10" r="0.15" fill="#ea580c"/>
+    <text x="7.4" y="10.4" font-size="0.42" fill="#ea580c" font-weight="bold">E</text>
+    <!-- Point intermédiaire F(10,3) -->
+    <circle cx="10" cy="9" r="0.15" fill="#ea580c"/>
+    <text x="10.5" y="9.4" font-size="0.42" fill="#ea580c" font-weight="bold">F</text>
+    <!-- Position finale E'(10,6) -->
+    <rect x="10" y="5" width="2" height="1" fill="none" stroke="#ea580c" stroke-width="0.06" stroke-dasharray="0.2,0.1" rx="0.15"/>
+    <text x="11" y="5.7" font-size="0.35" fill="#ea580c" text-anchor="middle" font-style="italic">Table</text>
+    <circle cx="10" cy="6" r="0.12" fill="none" stroke="#ea580c" stroke-width="0.06"/>
+    <text x="9.4" y="6.4" font-size="0.42" fill="#ea580c" font-weight="bold">E'</text>
+    <!-- Flèches déplacement en 2 étapes -->
+    <defs><marker id="ah3" markerWidth="3" markerHeight="3" refX="2.5" refY="1.5" orient="auto"><polygon points="0,0 3,1.5 0,3" fill="#ea580c"/></marker></defs>
+    <line x1="8" y1="10" x2="9.7" y2="9.3" stroke="#ea580c" stroke-width="0.08" marker-end="url(#ah3)" stroke-dasharray="0.15,0.1"/>
+    <line x1="10" y1="9" x2="10" y2="6.3" stroke="#ea580c" stroke-width="0.08" marker-end="url(#ah3)" stroke-dasharray="0.15,0.1"/>
+
+    <!-- === Vitrine : G(9,7) → G'(13,10) === -->
+    <rect x="9" y="4" width="1.5" height="1" fill="#fdf2f8" stroke="#a855f7" stroke-width="0.08" rx="0.15"/>
+    <text x="9.75" y="4.7" font-size="0.38" fill="#a855f7" text-anchor="middle" font-weight="bold">Vitrine</text>
+    <circle cx="9" cy="5" r="0.15" fill="#a855f7"/>
+    <text x="8.4" y="5.4" font-size="0.42" fill="#a855f7" font-weight="bold">G</text>
+    <!-- Position finale -->
+    <rect x="13" y="1" width="1.5" height="1" fill="none" stroke="#a855f7" stroke-width="0.06" stroke-dasharray="0.2,0.1" rx="0.15"/>
+    <text x="13.75" y="1.7" font-size="0.33" fill="#a855f7" text-anchor="middle" font-style="italic">Vitrine</text>
+    <circle cx="13" cy="2" r="0.12" fill="none" stroke="#a855f7" stroke-width="0.06"/>
+    <text x="13.5" y="2.5" font-size="0.42" fill="#a855f7" font-weight="bold">G'</text>
+    <!-- Flèche -->
+    <defs><marker id="ah4" markerWidth="3" markerHeight="3" refX="2.5" refY="1.5" orient="auto"><polygon points="0,0 3,1.5 0,3" fill="#a855f7"/></marker></defs>
+    <line x1="9" y1="5" x2="12.7" y2="2.3" stroke="#a855f7" stroke-width="0.1" marker-end="url(#ah4)"/>
+  </svg>
+
+  <p><strong>Rappel :</strong> sur ce plan, l'axe horizontal est l'axe des \(x\) (largeur du showroom) et l'axe vertical est l'axe des \(y\) (profondeur). Les coordonnées sont lues en nombre de carreaux depuis l'origine (coin inférieur gauche).</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- QUESTIONS                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<!-- Q1 -->
+<div class="exo">
+<h2>Question 1 — Décrire un déplacement <span class="badge-green">APP</span></h2>
+<p>L'installateur doit déplacer l'<strong>ilot central</strong> du point \(A(2\;;\;1)\) au point \(A'(6\;;\;4)\).</p>
+<p><strong>a)</strong> Décrire ce déplacement en mots : dans quelle direction et quel sens l'ilot est-il poussé ? De combien de carreaux horizontalement ? De combien de carreaux verticalement ?</p>
+<p><strong>b)</strong> La distance parcourue est-elle la même qu'un déplacement uniquement horizontal puis uniquement vertical ? Justifier.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> L'ilot est déplacé en diagonale vers la droite et vers le haut. Il avance de <strong>4 carreaux vers la droite</strong> (de \(x=2\) à \(x=6\)) et de <strong>3 carreaux vers le haut</strong> (de \(y=1\) à \(y=4\)).</p>
+  <p><strong>b)</strong> Non. Un déplacement horizontal de 4 carreaux puis vertical de 3 carreaux donnerait une distance totale de \(4 + 3 = 7\) carreaux en marchant le long des murs. Le déplacement en ligne droite est plus court : \(\sqrt{4^2+3^2} = \sqrt{25} = 5\) carreaux. Le trajet direct est toujours inférieur ou égal à la somme des trajets par axe.</p>
+</div>
+</div>
+
+<!-- Q2 -->
+<div class="exo">
+<h2>Question 2 — Représenter un déplacement par une flèche <span class="badge-green">REA</span></h2>
+<p>Le déplacement de l'ilot de \(A\) vers \(A'\) peut être représenté par une <strong>flèche</strong> allant de \(A\) à \(A'\).</p>
+<p><strong>a)</strong> Quelles sont les trois caractéristiques de cette flèche ? (Préciser pour chacune la valeur lue sur le plan.)</p>
+<p><strong>b)</strong> En mathématiques, un tel objet ayant une direction, un sens et une longueur s'appelle un <strong>vecteur</strong>. On le note \(\vec{AA'}\). Recopier et compléter :</p>
+<p style="margin-left:2em">Le vecteur \(\vec{AA'}\) a pour direction ........., pour sens ........., et pour longueur (norme) .........</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Les trois caractéristiques sont :</p>
+  <ul>
+    <li><strong>Direction</strong> : la droite oblique passant par \(A\) et \(A'\)</li>
+    <li><strong>Sens</strong> : de \(A\) vers \(A'\) (vers la droite et le haut)</li>
+    <li><strong>Longueur</strong> : \(\sqrt{4^2+3^2} = 5\) carreaux, soit \(5 \times 0{,}5 = 2{,}5\) m</li>
+  </ul>
+  <p><strong>b)</strong> Le vecteur \(\vec{AA'}\) a pour direction la droite \((AA')\), pour sens de \(A\) vers \(A'\), et pour norme \(\|\vec{AA'}\| = 5\) carreaux (2,5 m).</p>
+</div>
+</div>
+
+<!-- Q3 -->
+<div class="exo">
+<h2>Question 3 — Identifier des vecteurs égaux <span class="badge-blue">ANA</span></h2>
+<p>Le poseur remarque que le <strong>buffet</strong> subit le même type de déplacement que l'ilot : il passe de \(C(1\;;\;6)\) à \(C'(5\;;\;9)\).</p>
+<p><strong>a)</strong> Calculer le déplacement horizontal et le déplacement vertical du buffet.</p>
+<p><strong>b)</strong> Comparer ces déplacements avec ceux de l'ilot (question 1). Que constatez-vous ?</p>
+<p><strong>c)</strong> Deux vecteurs qui ont la <strong>même direction</strong>, le <strong>même sens</strong> et la <strong>même longueur</strong> sont dits <strong>égaux</strong>. Les vecteurs \(\vec{AA'}\) et \(\vec{CC'}\) sont-ils égaux ? Justifier.</p>
+<p><strong>d)</strong> Quel est l'intérêt pour l'installateur de repérer des déplacements égaux ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Déplacement horizontal : \(5 - 1 = 4\) carreaux vers la droite. Déplacement vertical : \(9 - 6 = 3\) carreaux vers le haut.</p>
+  <p><strong>b)</strong> Le déplacement de l'ilot est aussi de 4 carreaux vers la droite et 3 carreaux vers le haut. Les deux déplacements sont <strong>identiques</strong> en direction, sens et longueur.</p>
+  <p><strong>c)</strong> Oui, \(\vec{AA'} = \vec{CC'}\) car ils ont la même direction (parallèles et même sens), le même sens (vers la droite et le haut) et la même norme (\(\sqrt{4^2+3^2}=5\)).</p>
+  <p><strong>d)</strong> Si deux déplacements sont égaux, l'installateur peut utiliser le <strong>même guide de marquage</strong> (même décalage horizontal et vertical) pour positionner les deux meubles, ce qui accélère le travail.</p>
+</div>
+</div>
+
+<!-- Q4 -->
+<div class="exo">
+<h2>Question 4 — Lire les coordonnées d'un vecteur <span class="badge-green">REA</span></h2>
+<p>On peut décrire un vecteur par ses <strong>coordonnées</strong> : le déplacement horizontal (\(x\)) et le déplacement vertical (\(y\)). On note :</p>
+<p>\[\vec{AA'} \begin{pmatrix} x_{A'} - x_A \\ y_{A'} - y_A \end{pmatrix}\]</p>
+<p><strong>a)</strong> Calculer les coordonnées du vecteur \(\vec{AA'}\) (déplacement de l'ilot).</p>
+<p><strong>b)</strong> Calculer les coordonnées du vecteur \(\vec{CC'}\) (déplacement du buffet).</p>
+<p><strong>c)</strong> Calculer les coordonnées du vecteur \(\vec{GG'}\) (déplacement de la vitrine).</p>
+<p><strong>d)</strong> Vérifier que \(\vec{AA'}\) et \(\vec{CC'}\) ont les mêmes coordonnées. Cela confirme-t-il la réponse de la question 3 ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(\vec{AA'} \begin{pmatrix} 6-2 \\ 4-1 \end{pmatrix} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}\)</p>
+  <p><strong>b)</strong> \(\vec{CC'} \begin{pmatrix} 5-1 \\ 9-6 \end{pmatrix} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}\)</p>
+  <p><strong>c)</strong> \(\vec{GG'} \begin{pmatrix} 13-9 \\ 10-7 \end{pmatrix} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}\)</p>
+  <p><strong>d)</strong> Oui, \(\vec{AA'}\) et \(\vec{CC'}\) ont les mêmes coordonnées \(\begin{pmatrix}4\\3\end{pmatrix}\), ce qui confirme qu'ils sont <strong>égaux</strong>. On constate même que \(\vec{GG'}\) est aussi égal : les trois meubles subissent le même déplacement.</p>
+</div>
+</div>
+
+<!-- Q5 -->
+<div class="exo">
+<h2>Question 5 — Additionner deux déplacements successifs <span class="badge-green">REA</span></h2>
+<p>La <strong>table</strong> est déplacée en deux étapes :</p>
+<ul>
+  <li>Étape 1 : de \(E(8\;;\;2)\) à \(F(10\;;\;3)\)</li>
+  <li>Étape 2 : de \(F(10\;;\;3)\) à \(E'(10\;;\;6)\)</li>
+</ul>
+<p><strong>a)</strong> Calculer les coordonnées du vecteur \(\vec{EF}\) (première étape).</p>
+<p><strong>b)</strong> Calculer les coordonnées du vecteur \(\vec{FE'}\) (seconde étape).</p>
+<p><strong>c)</strong> En additionnant les coordonnées de \(\vec{EF}\) et \(\vec{FE'}\), calculer les coordonnées du vecteur somme \(\vec{EF} + \vec{FE'}\).</p>
+<p><strong>d)</strong> Calculer directement les coordonnées du vecteur \(\vec{EE'}\) (déplacement global de \(E\) à \(E'\)).</p>
+<p><strong>e)</strong> Comparer les résultats des questions c) et d). Que constatez-vous ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(\vec{EF} \begin{pmatrix} 10-8 \\ 3-2 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}\)</p>
+  <p><strong>b)</strong> \(\vec{FE'} \begin{pmatrix} 10-10 \\ 6-3 \end{pmatrix} = \begin{pmatrix} 0 \\ 3 \end{pmatrix}\)</p>
+  <p><strong>c)</strong> \(\vec{EF} + \vec{FE'} = \begin{pmatrix} 2+0 \\ 1+3 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \end{pmatrix}\)</p>
+  <p><strong>d)</strong> \(\vec{EE'} \begin{pmatrix} 10-8 \\ 6-2 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \end{pmatrix}\)</p>
+  <p><strong>e)</strong> On trouve le même résultat : \(\vec{EF} + \vec{FE'} = \vec{EE'}\). Cela signifie que la <strong>somme de deux déplacements successifs</strong> donne le <strong>déplacement global</strong>. Cette propriété s'appelle la <strong>relation de Chasles</strong> : \(\vec{EF} + \vec{FE'} = \vec{EE'}\).</p>
+</div>
+</div>
+
+<!-- Q6 -->
+<div class="exo">
+<h2>Question 6 — Vérifier le résultat <span class="badge-green">VAL</span></h2>
+<p>Pour vérifier son travail, l'installateur mesure la distance directe entre la position initiale \(E(8\;;\;2)\) et la position finale \(E'(10\;;\;6)\) de la table.</p>
+<p><strong>a)</strong> Calculer la norme du vecteur \(\vec{EE'}\), c'est-à-dire \(\|\vec{EE'}\| = \sqrt{x^2+y^2}\) où \(\begin{pmatrix}x\\y\end{pmatrix}\) sont les coordonnées de \(\vec{EE'}\).</p>
+<p><strong>b)</strong> Calculer la norme de \(\vec{EF}\) puis celle de \(\vec{FE'}\). La somme de ces deux normes est-elle égale à \(\|\vec{EE'}\|\) ? Pourquoi ?</p>
+<p><strong>c)</strong> Convertir la norme de \(\vec{EE'}\) en mètres (rappel : 1 carreau = 0,5 m). Arrondir au centimètre.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> \(\|\vec{EE'}\| = \sqrt{2^2+4^2} = \sqrt{4+16} = \sqrt{20} = 2\sqrt{5} \approx 4{,}47\) carreaux.</p>
+  <p><strong>b)</strong> \(\|\vec{EF}\| = \sqrt{2^2+1^2} = \sqrt{5} \approx 2{,}24\) carreaux.<br>
+  \(\|\vec{FE'}\| = \sqrt{0^2+3^2} = 3\) carreaux.<br>
+  Somme : \(\sqrt{5} + 3 \approx 5{,}24\) carreaux.<br>
+  Non, \(5{,}24 \neq 4{,}47\). La somme des normes est <strong>supérieure</strong> à la norme de la somme. C'est normal : le trajet en deux étapes est plus long que le trajet direct (inégalité triangulaire).</p>
+  <p><strong>c)</strong> \(2\sqrt{5} \times 0{,}5 = \sqrt{5} \approx 2{,}24\) m. La distance directe est d'environ <strong>2,24 m</strong>.</p>
+</div>
+</div>
+
+<!-- Q7 -->
+<div class="exo">
+<h2>Question 7 — Reconnaître des vecteurs colinéaires <span class="badge-blue">ANA</span></h2>
+<p>Le responsable du showroom demande de vérifier si certains déplacements suivent la <strong>même direction</strong> (sont parallèles).</p>
+<p>On considère les vecteurs :</p>
+<ul>
+  <li>\(\vec{u} = \vec{EF} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}\) (première étape de la table)</li>
+  <li>\(\vec{v} = \vec{AA'} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}\) (déplacement de l'ilot)</li>
+  <li>\(\vec{w} = \begin{pmatrix} 6 \\ 3 \end{pmatrix}\) (déplacement d'une armoire prévue pour plus tard)</li>
+</ul>
+<p><strong>a)</strong> Deux vecteurs sont <strong>colinéaires</strong> (même direction) si le produit en croix de leurs coordonnées vaut zéro : pour \(\vec{u}\begin{pmatrix}x\\y\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}x'\\y'\end{pmatrix}\), on calcule \(xy' - x'y\). Calculer le produit en croix de \(\vec{u}\) et \(\vec{v}\). Sont-ils colinéaires ?</p>
+<p><strong>b)</strong> Calculer le produit en croix de \(\vec{u}\) et \(\vec{w}\). Sont-ils colinéaires ?</p>
+<p><strong>c)</strong> Que signifie concrètement le fait que \(\vec{u}\) et \(\vec{w}\) soient colinéaires pour le travail du poseur ?</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Produit en croix : \(2 \times 3 - 1 \times 4 = 6 - 4 = 2 \neq 0\).<br>
+  Les vecteurs \(\vec{u}\) et \(\vec{v}\) ne sont <strong>pas colinéaires</strong> : ils n'ont pas la même direction.</p>
+  <p><strong>b)</strong> Produit en croix : \(2 \times 3 - 1 \times 6 = 6 - 6 = 0\).<br>
+  Les vecteurs \(\vec{u}\) et \(\vec{w}\) sont <strong>colinéaires</strong>. On remarque que \(\vec{w} = 3\vec{u}\) : mêmes coordonnées multipliées par 3.</p>
+  <p><strong>c)</strong> Cela signifie que le déplacement de l'armoire se fait <strong>dans la même direction</strong> que la première étape du déplacement de la table (parallèle), mais sur une distance trois fois plus grande. L'installateur peut tracer un même alignement au sol pour guider les deux déplacements.</p>
+</div>
+</div>
+
+<!-- Q8 -->
+<div class="exo">
+<h2>Question 8 — Appliquer à un nouveau meuble <span class="badge-yellow">COM</span></h2>
+<p>Un nouveau meuble, un <strong>présentoir</strong>, doit être installé au point \(H(3\;;\;8)\). Le responsable demande qu'il subisse <strong>le même déplacement</strong> que l'ilot central.</p>
+<p><strong>a)</strong> Quelles sont les coordonnées du vecteur de déplacement à appliquer ?</p>
+<p><strong>b)</strong> Calculer les coordonnées du point d'arrivée \(H'\) du présentoir.</p>
+<p><strong>c)</strong> Vérifier que \(\vec{HH'} = \vec{AA'}\).</p>
+<p><strong>d)</strong> Rédiger une phrase pour expliquer au responsable comment positionner le présentoir, en utilisant le vocabulaire : <em>vecteur, direction, sens, norme, coordonnées</em>.</p>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <p><strong>a)</strong> Le déplacement à appliquer est le même que celui de l'ilot : \(\vec{AA'} = \begin{pmatrix}4\\3\end{pmatrix}\), soit 4 carreaux vers la droite et 3 carreaux vers le haut.</p>
+  <p><strong>b)</strong> \(H'(3+4\;;\;8+3) = H'(7\;;\;11)\).</p>
+  <p><strong>c)</strong> \(\vec{HH'} \begin{pmatrix} 7-3 \\ 11-8 \end{pmatrix} = \begin{pmatrix} 4 \\ 3 \end{pmatrix} = \vec{AA'}\) ✓</p>
+  <p><strong>d)</strong> Le présentoir doit être déplacé selon le <strong>vecteur</strong> de coordonnées \(\begin{pmatrix}4\\3\end{pmatrix}\), c'est-à-dire dans la <strong>direction</strong> oblique (vers la droite et le haut), dans le <strong>sens</strong> de \(H\) vers \(H'\), sur une distance (<strong>norme</strong>) de \(\sqrt{4^2+3^2}=5\) carreaux, soit 2,5 m. Ce vecteur est <strong>égal</strong> au vecteur de déplacement de l'ilot, ce qui signifie que les deux meubles sont décalés exactement de la même manière.</p>
+</div>
+</div>
+
+<!-- Q9 -->
+<div class="exo">
+<h2>Question 9 — Synthèse <span class="badge-yellow">COM</span></h2>
+<p>Compléter les phrases suivantes à l'aide de ce que vous avez découvert dans cette activité :</p>
+<ol type="a">
+  <li>Un vecteur est caractérisé par trois éléments : sa .........., son .........., et sa .......... (aussi appelée norme).</li>
+  <li>Pour calculer les coordonnées du vecteur \(\vec{AB}\), on fait : \(x_B - \ldots\) et \(y_B - \ldots\)</li>
+  <li>Deux vecteurs sont égaux s'ils ont les mêmes ..........</li>
+  <li>La somme \(\vec{AB} + \vec{BC}\) est égale au vecteur .......... (relation de ..........)</li>
+  <li>Deux vecteurs sont colinéaires si le produit en croix de leurs coordonnées vaut ..........</li>
+</ol>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+  <ol type="a">
+    <li>Un vecteur est caractérisé par trois éléments : sa <strong>direction</strong>, son <strong>sens</strong>, et sa <strong>longueur</strong> (aussi appelée norme).</li>
+    <li>Pour calculer les coordonnées du vecteur \(\vec{AB}\), on fait : \(x_B - x_A\) et \(y_B - y_A\).</li>
+    <li>Deux vecteurs sont égaux s'ils ont les mêmes <strong>coordonnées</strong> (même direction, même sens, même norme).</li>
+    <li>La somme \(\vec{AB} + \vec{BC}\) est égale au vecteur \(\vec{AC}\) (relation de <strong>Chasles</strong>).</li>
+    <li>Deux vecteurs sont colinéaires si le produit en croix de leurs coordonnées vaut <strong>zéro</strong>.</li>
+  </ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- À RETENIR                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="retenir">
+  <h3>A retenir</h3>
+  <ul class="styled">
+    <li>Un <strong>vecteur</strong> est un objet mathématique caractérisé par une <strong>direction</strong>, un <strong>sens</strong> et une <strong>norme</strong> (longueur). On le note \(\vec{u}\), \(\vec{AB}\), etc.</li>
+    <li><strong>Coordonnées</strong> : si \(A(x_A\;;\;y_A)\) et \(B(x_B\;;\;y_B)\), alors \(\vec{AB}\begin{pmatrix}x_B - x_A \\ y_B - y_A\end{pmatrix}\).</li>
+    <li><strong>Vecteurs égaux</strong> : \(\vec{AB} = \vec{CD}\) si et seulement si ils ont les mêmes coordonnées.</li>
+    <li><strong>Somme</strong> : \(\begin{pmatrix}x\\y\end{pmatrix}+\begin{pmatrix}x'\\y'\end{pmatrix}=\begin{pmatrix}x+x'\\y+y'\end{pmatrix}\). Relation de Chasles : \(\vec{AB}+\vec{BC}=\vec{AC}\).</li>
+    <li><strong>Norme</strong> : \(\|\vec{u}\| = \sqrt{x^2+y^2}\).</li>
+    <li><strong>Vecteurs colinéaires</strong> : \(\vec{u}\begin{pmatrix}x\\y\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}x'\\y'\end{pmatrix}\) sont colinéaires si \(xy'-x'y=0\) (même direction).</li>
+  </ul>
+</div>
+
+<div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch08 →</a></div>
+</div>
+<script src="../../../nav.js"></script>
+<script>
+function toggle(btn){
+  var corr=btn.nextElementSibling;
+  if(corr.style.display==='block'){corr.style.display='none';btn.textContent='Voir la correction';}
+  else{corr.style.display='block';btn.textContent='Masquer la correction';}
+}
+</script>
+</body>
+</html>
