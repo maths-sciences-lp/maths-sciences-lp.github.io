@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Produire une image en couleur – Cours | Terminale Grpt 4</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#7c3aed;--p-bg:#f5f3ff;--p-border:#c4b5fd}
+.pixel-demo{display:inline-grid;grid-template-columns:repeat(3,32px);gap:2px;margin:10px auto;justify-content:center}
+.pixel-demo span{width:32px;height:32px;display:block;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../index.html" class="nb">&larr; Retour</a>
+
+<header>
+  <h1>Chapitre 1 &ndash; Produire une image en couleur</h1>
+  <p class="sous-titre">Terminale Bac Pro (Grpt 4) &nbsp;|&nbsp; Physique &ndash; Signaux &nbsp;|&nbsp; Image num&eacute;rique et couleur</p>
+</header>
+
+<!-- ===== OBJECTIFS ===== -->
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Comprendre le fonctionnement d'un capteur d'images (matrice de pixels photosensibles)</li>
+    <li>Expliquer le principe d'un &eacute;cran num&eacute;rique couleur (synth&egrave;se additive RVB)</li>
+    <li>D&eacute;finir la pixellisation, la r&eacute;solution et la taille d'une image</li>
+    <li>Coder une couleur en niveaux de gris et en RVB</li>
+    <li>Calculer la taille en octets d'une image num&eacute;rique</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PROFESSIONNELLE ===== -->
+<div class="situation">
+  <strong>Situation professionnelle</strong>
+  <p>
+    Hugo, technicien en imprimerie num&eacute;rique, doit pr&eacute;parer des images pour l'impression grand format d'une affiche publicitaire de 2 m &times; 3 m. Le client a envoy&eacute; un fichier num&eacute;rique. Hugo doit v&eacute;rifier que la r&eacute;solution de l'image est suffisante pour une impression de qualit&eacute;.
+  </p>
+  <p>Ses questions :</p>
+  <ol>
+    <li>Combien de pixels doit contenir l'image pour une impression nette &agrave; 150 dpi ?</li>
+    <li>Comment la couleur est-elle cod&eacute;e dans le fichier ?</li>
+    <li>Quelle est la taille du fichier en m&eacute;gaoctets ?</li>
+  </ol>
+  <p><em>Ces questions trouveront une r&eacute;ponse compl&egrave;te au fil de ce chapitre.</em></p>
+</div>
+
+<!-- ===== 1. CAPTEURS D'IMAGES ===== -->
+<h2>1. Les capteurs d'images</h2>
+
+<h3>1.1 Principe g&eacute;n&eacute;ral</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  Un <strong>capteur d'images</strong> est un composant &eacute;lectronique qui transforme la lumi&egrave;re re&ccedil;ue en signaux &eacute;lectriques. Il est constitu&eacute; d'une <strong>matrice de pixels photosensibles</strong> : chaque pixel mesure l'intensit&eacute; lumineuse qu'il re&ccedil;oit.
+</div>
+
+<p>On trouve des capteurs d'images dans :</p>
+<ul>
+  <li>les appareils photo num&eacute;riques et les smartphones</li>
+  <li>les cam&eacute;ras de surveillance et les webcams</li>
+  <li>les scanners et les syst&egrave;mes d'inspection industrielle</li>
+</ul>
+
+<h3>1.2 Du capteur &agrave; l'image num&eacute;rique</h3>
+
+<p>Chaque pixel du capteur produit un signal &eacute;lectrique proportionnel &agrave; la quantit&eacute; de lumi&egrave;re re&ccedil;ue. Ce signal est ensuite <strong>num&eacute;ris&eacute;</strong> (converti en nombre) et stock&eacute; dans un fichier.</p>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute;</span>
+  Pour capter la couleur, chaque pixel du capteur est recouvert d'un <strong>filtre color&eacute;</strong> (rouge, vert ou bleu). Un algorithme reconstitue ensuite la couleur compl&egrave;te de chaque pixel &agrave; partir des informations voisines (d&eacute;matri&ccedil;age).
+</div>
+
+<!-- ===== 2. ÉCRAN NUMÉRIQUE COULEUR ===== -->
+<h2>2. L'&eacute;cran num&eacute;rique couleur</h2>
+
+<h3>2.1 Synth&egrave;se additive des couleurs (RVB)</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  La <strong>synth&egrave;se additive</strong> consiste &agrave; superposer des lumi&egrave;res de trois couleurs primaires &mdash; <strong style="color:#e00">Rouge</strong>, <strong style="color:#0a0">Vert</strong> et <strong style="color:#00c">Bleu</strong> (RVB) &mdash; pour cr&eacute;er toutes les autres couleurs.
+</div>
+
+<div class="retenir">
+  <strong>Combinaisons fondamentales (synth&egrave;se additive)</strong>
+  <ul>
+    <li><strong style="color:#e00">Rouge</strong> + <strong style="color:#0a0">Vert</strong> = <strong style="color:#cc0">Jaune</strong></li>
+    <li><strong style="color:#e00">Rouge</strong> + <strong style="color:#00c">Bleu</strong> = <strong style="color:#c0c">Magenta</strong></li>
+    <li><strong style="color:#0a0">Vert</strong> + <strong style="color:#00c">Bleu</strong> = <strong style="color:#0cc">Cyan</strong></li>
+    <li><strong style="color:#e00">Rouge</strong> + <strong style="color:#0a0">Vert</strong> + <strong style="color:#00c">Bleu</strong> = <strong>Blanc</strong></li>
+    <li>Aucune lumi&egrave;re = <strong>Noir</strong></li>
+  </ul>
+</div>
+
+<h3>2.2 Fonctionnement d'un &eacute;cran</h3>
+
+<p>Chaque pixel d'un &eacute;cran est compos&eacute; de <strong>trois sous-pixels</strong> : un rouge, un vert et un bleu. En ajustant l'intensit&eacute; lumineuse de chaque sous-pixel, on peut afficher n'importe quelle couleur.</p>
+
+<div class="att">
+  <span class="label label-att">Attention</span>
+  Ne pas confondre la <strong>synth&egrave;se additive</strong> (lumi&egrave;res, &eacute;crans) et la <strong>synth&egrave;se soustractive</strong> (pigments, imprimerie : Cyan, Magenta, Jaune). En imprimerie, on utilise le mod&egrave;le CMJN, pas RVB.
+</div>
+
+<!-- ===== 3. PIXELLISATION ET RÉSOLUTION ===== -->
+<h2>3. Pixellisation et r&eacute;solution</h2>
+
+<h3>3.1 Le pixel</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  Le <strong>pixel</strong> (contraction de <em>picture element</em>) est le plus petit &eacute;l&eacute;ment d'une image num&eacute;rique. Une image est une grille rectangulaire de pixels, chacun portant une information de couleur.
+</div>
+
+<p>Quand on agrandit trop une image num&eacute;rique, on voit appara&icirc;tre les pixels individuels : c'est la <strong>pixellisation</strong>. L'image perd en nettet&eacute;.</p>
+
+<h3>3.2 La r&eacute;solution</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  La <strong>r&eacute;solution</strong> d'une image est le nombre de pixels par unit&eacute; de longueur. Elle s'exprime g&eacute;n&eacute;ralement en <strong>ppp</strong> (pixels par pouce) ou <strong>dpi</strong> (<em>dots per inch</em>). 1 pouce = 2,54 cm.
+</div>
+
+<div class="formule-box">
+  <strong>Nombre de pixels d'une image</strong>
+  \[N_{\text{pixels}} = \text{Largeur (en pouces)} \times \text{Hauteur (en pouces)} \times \text{R&eacute;solution (dpi)}^2\]
+  Ou plus simplement : \(N = N_x \times N_y\) o&ugrave; \(N_x\) et \(N_y\) sont le nombre de pixels en largeur et en hauteur.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  Une photo prise avec un appareil r&eacute;gl&eacute; sur 4000 &times; 3000 pixels contient :
+  \[N = 4000 \times 3000 = 12\,000\,000 \text{ pixels} = 12 \text{ m&eacute;gapixels (Mpx)}\]
+</div>
+
+<h3>3.3 Taille d'impression</h3>
+
+<div class="meth">
+  <span class="label label-meth">M&eacute;thode</span>
+  <strong>Calculer la taille maximale d'impression</strong><br>
+  Pour une impression de qualit&eacute;, on utilise g&eacute;n&eacute;ralement 300 dpi (photo) ou 150 dpi (affiche vue de loin).<br>
+  \[\text{Taille (cm)} = \frac{\text{Nombre de pixels}}{\text{R&eacute;solution (dpi)}} \times 2{,}54\]
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &ndash; Retour &agrave; la situation professionnelle</span>
+  Hugo a besoin d'imprimer une affiche de 2 m &times; 3 m &agrave; 150 dpi.<br>
+  Largeur en pouces : \(\frac{200}{2{,}54} \approx 78{,}7\) pouces<br>
+  Hauteur en pouces : \(\frac{300}{2{,}54} \approx 118{,}1\) pouces<br>
+  Pixels n&eacute;cessaires : \(78{,}7 \times 150 = 11\,811\) px en largeur, \(118{,}1 \times 150 = 17\,717\) px en hauteur.<br>
+  Total : \(11\,811 \times 17\,717 \approx 209\) millions de pixels.
+</div>
+
+<!-- ===== 4. CODAGE DES COULEURS ===== -->
+<h2>4. Codage des couleurs</h2>
+
+<h3>4.1 Niveaux de gris</h3>
+
+<p>En <strong>niveaux de gris</strong>, chaque pixel est cod&eacute; par un seul nombre indiquant son intensit&eacute; lumineuse :</p>
+<ul>
+  <li>Sur <strong>8 bits</strong> : valeurs de 0 (noir) &agrave; 255 (blanc), soit \(2^8 = 256\) niveaux de gris.</li>
+</ul>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  Un <strong>bit</strong> (binary digit) est la plus petite unit&eacute; d'information : il vaut 0 ou 1. Un <strong>octet</strong> est un groupe de 8 bits. Avec 1 octet, on peut coder \(2^8 = 256\) valeurs diff&eacute;rentes (de 0 &agrave; 255).
+</div>
+
+<h3>4.2 Couleur RVB</h3>
+
+<p>En <strong>couleur RVB</strong>, chaque pixel est d&eacute;crit par trois valeurs (une par composante) :</p>
+
+<div class="formule-box">
+  <strong>Codage RVB sur 24 bits</strong><br>
+  Chaque pixel est cod&eacute; par un triplet <strong>(R, V, B)</strong> o&ugrave; chaque composante va de 0 &agrave; 255.<br>
+  Nombre de couleurs possibles : \(256 \times 256 \times 256 = 2^{24} = 16\,777\,216\) couleurs (environ 16,7 millions).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemples de codes RVB</span>
+  <ul>
+    <li>(255, 0, 0) &rarr; Rouge pur</li>
+    <li>(0, 255, 0) &rarr; Vert pur</li>
+    <li>(0, 0, 255) &rarr; Bleu pur</li>
+    <li>(255, 255, 0) &rarr; Jaune</li>
+    <li>(255, 255, 255) &rarr; Blanc</li>
+    <li>(0, 0, 0) &rarr; Noir</li>
+    <li>(128, 128, 128) &rarr; Gris moyen</li>
+  </ul>
+</div>
+
+<!-- ===== 5. TAILLE D'UNE IMAGE EN OCTETS ===== -->
+<h2>5. Calculer la taille d'une image en octets</h2>
+
+<div class="formule-box">
+  <strong>Taille d'un fichier image (non compress&eacute;)</strong>
+  \[\text{Taille (octets)} = N_x \times N_y \times n\]
+  <ul>
+    <li>\(N_x \times N_y\) : nombre total de pixels</li>
+    <li>\(n\) : nombre d'octets par pixel
+      <ul>
+        <li>Image en niveaux de gris (8 bits) : \(n = 1\) octet/pixel</li>
+        <li>Image en couleur RVB (24 bits) : \(n = 3\) octets/pixel</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="retenir">
+  <strong>Unit&eacute;s de taille de fichier</strong>
+  <ul>
+    <li>1 kilooctet (ko) = 1 000 octets</li>
+    <li>1 m&eacute;gaoctet (Mo) = 1 000 000 octets = 1 000 ko</li>
+    <li>1 gigaoctet (Go) = 1 000 000 000 octets = 1 000 Mo</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  Une image de 4000 &times; 3000 pixels en couleur RVB :<br>
+  \[\text{Taille} = 4000 \times 3000 \times 3 = 36\,000\,000 \text{ octets} = 36 \text{ Mo}\]
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Retour &agrave; la situation professionnelle</span>
+  L'affiche de Hugo (11 811 &times; 17 717 px, couleur RVB) :<br>
+  \[\text{Taille} = 11\,811 \times 17\,717 \times 3 \approx 627\,600\,000 \text{ octets} \approx 628 \text{ Mo}\]
+  C'est un fichier tr&egrave;s volumineux. En pratique, on utilise la <strong>compression</strong> (JPEG, PNG) pour r&eacute;duire la taille.
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span>
+  Les formats compress&eacute;s (JPEG, PNG) r&eacute;duisent la taille du fichier mais peuvent d&eacute;grader la qualit&eacute; (JPEG = compression avec perte). Pour l'impression professionnelle, on pr&eacute;f&egrave;re le format TIFF (sans perte) ou le PNG.
+</div>
+
+<!-- ===== 6. APPLICATIONS ===== -->
+<h2>6. Applications concr&egrave;tes</h2>
+
+<div class="ex">
+  <span class="label label-ex">Application &ndash; Imprimerie grand format</span>
+  En imprimerie num&eacute;rique, le technicien doit v&eacute;rifier que la r&eacute;solution du fichier client est adapt&eacute;e &agrave; la taille d'impression. Une r&eacute;solution insuffisante produit une image pixellis&eacute;e et floue.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Application &ndash; Photographie industrielle</span>
+  En contr&ocirc;le qualit&eacute;, les cam&eacute;ras industrielles utilisent des capteurs haute r&eacute;solution pour d&eacute;tecter les d&eacute;fauts de surface sur des pi&egrave;ces fabriqu&eacute;es. Plus le capteur a de pixels, plus les d&eacute;tails fins sont visibles.
+</div>
+
+<!-- ===== 7. RETENIR ===== -->
+<div class="retenir">
+  <strong>&Agrave; retenir &ndash; L'essentiel du chapitre</strong>
+  <ul>
+    <li>Un <strong>capteur d'images</strong> est une matrice de pixels photosensibles qui convertissent la lumi&egrave;re en signal &eacute;lectrique.</li>
+    <li>Un &eacute;cran affiche les couleurs par <strong>synth&egrave;se additive RVB</strong> : chaque pixel &eacute;met du rouge, du vert et du bleu.</li>
+    <li>La <strong>r&eacute;solution</strong> (en dpi) d&eacute;termine la nettet&eacute; de l'image imprim&eacute;e.</li>
+    <li>En RVB, chaque pixel est cod&eacute; par 3 octets (24 bits) &rarr; 16,7 millions de couleurs.</li>
+    <li>Taille d'un fichier (non compress&eacute;) : \(\text{Taille} = N_x \times N_y \times n\) octets.</li>
+  </ul>
+</div>
+
+<!-- ===== 8. MINI EXERCICES ===== -->
+<h2>7. V&eacute;rifie ta compr&eacute;hension</h2>
+
+<div class="exo">
+  <strong>Question 1</strong> &ndash; Quelles couleurs primaires faut-il superposer pour obtenir du cyan en synth&egrave;se additive ?
+  <div class="corr">
+    Vert + Bleu = <strong>Cyan</strong>.
+  </div>
+  <button class="bc">Voir la correction</button>
+</div>
+
+<div class="exo">
+  <strong>Question 2</strong> &ndash; Une image de 1920 &times; 1080 pixels est cod&eacute;e en RVB (24 bits). Calcule sa taille en octets, puis en Mo.
+  <div class="corr">
+    \[\text{Taille} = 1920 \times 1080 \times 3 = 6\,220\,800 \text{ octets} \approx 6{,}2 \text{ Mo}\]
+  </div>
+  <button class="bc">Voir la correction</button>
+</div>
+
+<div class="exo">
+  <strong>Question 3</strong> &ndash; Combien de niveaux de gris diff&eacute;rents peut-on coder sur 8 bits ? Sur 16 bits ?
+  <div class="corr">
+    Sur 8 bits : \(2^8 = 256\) niveaux de gris.<br>
+    Sur 16 bits : \(2^{16} = 65\,536\) niveaux de gris.
+  </div>
+  <button class="bc">Voir la correction</button>
+</div>
+
+<div class="exo">
+  <strong>Question 4</strong> &ndash; Un appareil photo a un capteur de 24 m&eacute;gapixels (6000 &times; 4000). On veut imprimer la photo &agrave; 300 dpi. Quelle sera la taille maximale (en cm) de l'impression ?
+  <div class="corr">
+    Largeur : \(\frac{6000}{300} \times 2{,}54 = 50{,}8\) cm.<br>
+    Hauteur : \(\frac{4000}{300} \times 2{,}54 = 33{,}9\) cm.<br>
+    La photo pourra &ecirc;tre imprim&eacute;e au maximum en <strong>50,8 cm &times; 33,9 cm</strong> &agrave; 300 dpi.
+  </div>
+  <button class="bc">Voir la correction</button>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

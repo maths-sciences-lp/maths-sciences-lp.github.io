@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Réseau triphasé – Cours | Terminale Gpt 2</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-gpt2.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 2 – Le réseau triphasé</h1>
+  <p class="sous-titre">Terminale Bac Pro – Groupement 2 &nbsp;|&nbsp; Physique – Électricité &nbsp;|&nbsp; Tensions triphasées, couplages étoile et triangle</p>
+</header>
+
+<!-- ===== OBJECTIFS ===== -->
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Distinguer un réseau monophasé d'un réseau triphasé</li>
+    <li>Identifier les conducteurs d'un réseau triphasé et leur code couleur</li>
+    <li>Savoir que les trois tensions sont déphasées de 120°</li>
+    <li>Distinguer couplage étoile et couplage triangle</li>
+    <li>Appliquer la relation entre tension simple et tension composée : \(U = \sqrt{3} \times V\)</li>
+    <li>Distinguer courant de ligne et courant de branche</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PROFESSIONNELLE ===== -->
+<div class="situation">
+  <strong>Situation professionnelle</strong>
+  <p>
+    Karim, apprenti électrotechnicien, intervient sur l'armoire électrique d'un atelier de menuiserie industrielle. L'atelier est alimenté en <strong>triphasé 400 V</strong> pour faire fonctionner des machines-outils (scie à panneaux, toupie, dégauchisseuse). Son tuteur lui demande de vérifier les tensions et de raccorder un moteur qui peut fonctionner en <strong>étoile</strong> ou en <strong>triangle</strong>.
+  </p>
+  <p>Karim se pose les questions suivantes :</p>
+  <ol>
+    <li>Quelle est la différence entre les 230 V des prises domestiques et les 400 V de l'atelier ?</li>
+    <li>Pourquoi y a-t-il 5 fils dans le câble d'alimentation triphasée ?</li>
+    <li>Comment choisir entre couplage étoile et couplage triangle ?</li>
+  </ol>
+  <p><em>Ce chapitre apportera toutes les réponses.</em></p>
+</div>
+
+<!-- ===== 1. MONOPHASÉ vs TRIPHASÉ ===== -->
+<h2>1. Réseau monophasé et réseau triphasé</h2>
+
+<h3>1.1 Le réseau monophasé</h3>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  Un réseau <strong>monophasé</strong> est constitué de <strong>deux conducteurs</strong> :
+  <ul>
+    <li>un conducteur de <strong>phase</strong> (L) — fil de couleur <strong>marron, noir ou gris</strong></li>
+    <li>un conducteur de <strong>neutre</strong> (N) — fil de couleur <strong>bleu</strong></li>
+  </ul>
+  La tension entre la phase et le neutre est de <strong>230 V</strong> en France (valeur efficace, fréquence 50 Hz).
+</div>
+
+<p>C'est le réseau utilisé dans les prises domestiques classiques. On y ajoute toujours un fil de <strong>terre</strong> (vert-jaune) pour la sécurité.</p>
+
+<h3>1.2 Le réseau triphasé</h3>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  Un réseau <strong>triphasé</strong> est constitué de <strong>trois conducteurs de phase</strong> (L1, L2, L3) et éventuellement d'un conducteur de <strong>neutre</strong> (N). Il transporte trois tensions alternatives sinusoïdales de même fréquence et de même amplitude, mais <strong>déphasées de 120°</strong> les unes par rapport aux autres.
+</div>
+
+<h3>1.3 Code couleur des conducteurs</h3>
+
+<table>
+  <thead>
+    <tr><th>Conducteur</th><th>Symbole</th><th>Couleur (norme NF C 15-100)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Phase 1</td><td>L1</td><td><span style="color:#8B4513;font-weight:bold">Marron</span></td></tr>
+    <tr><td>Phase 2</td><td>L2</td><td><span style="color:#333;font-weight:bold">Noir</span></td></tr>
+    <tr><td>Phase 3</td><td>L3</td><td><span style="color:#666;font-weight:bold">Gris</span></td></tr>
+    <tr><td>Neutre</td><td>N</td><td><span style="color:#3182ce;font-weight:bold">Bleu</span></td></tr>
+    <tr><td>Terre</td><td>PE</td><td><span style="color:#2da44e;font-weight:bold">Vert-Jaune</span></td></tr>
+  </tbody>
+</table>
+
+<div class="att">
+  <span class="label label-att">Attention</span>
+  Un câble triphasé avec neutre et terre contient <strong>5 fils</strong> (3 phases + neutre + terre). Sans neutre, il contient 4 fils (3 phases + terre). Il est <strong>interdit</strong> d'utiliser le fil vert-jaune comme phase ou neutre.
+</div>
+
+<p>Avantages du triphasé par rapport au monophasé :</p>
+<ul>
+  <li><strong>Transport de puissance plus efficace</strong> : pour la même puissance, les câbles sont de section plus faible</li>
+  <li><strong>Alimentation de moteurs puissants</strong> : les machines-outils, compresseurs et pompes industrielles fonctionnent en triphasé</li>
+  <li><strong>Puissance constante</strong> : en triphasé équilibré, la puissance instantanée est constante (pas de pulsation)</li>
+</ul>
+
+<!-- ===== 2. TENSIONS TRIPHASÉES ===== -->
+<h2>2. Les tensions dans un réseau triphasé</h2>
+
+<h3>2.1 Tensions simples et tensions composées</h3>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  <ul>
+    <li>La <strong>tension simple</strong> \(V\) est la tension mesurée entre <strong>une phase et le neutre</strong> : \(V_{1N}\), \(V_{2N}\), \(V_{3N}\).</li>
+    <li>La <strong>tension composée</strong> \(U\) est la tension mesurée entre <strong>deux phases</strong> : \(U_{12}\), \(U_{23}\), \(U_{31}\).</li>
+  </ul>
+</div>
+
+<p>En France :</p>
+<ul>
+  <li>Tension simple : \(V = 230\;\text{V}\) (entre phase et neutre)</li>
+  <li>Tension composée : \(U = 400\;\text{V}\) (entre deux phases)</li>
+</ul>
+
+<h3>2.2 Relation entre tension simple et tension composée</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span>
+  Dans un réseau triphasé <strong>équilibré</strong>, la relation entre la tension composée \(U\) et la tension simple \(V\) est :
+  \[U = \sqrt{3} \times V\]
+  avec \(\sqrt{3} \approx 1{,}732\).
+</div>
+
+<div class="formule-box">
+  <p><strong>Formule fondamentale :</strong></p>
+  \[U = \sqrt{3} \times V \qquad \Leftrightarrow \qquad V = \frac{U}{\sqrt{3}}\]
+  <p>\(U\) : tension composée (V) &nbsp;|&nbsp; \(V\) : tension simple (V)</p>
+</div>
+
+<div class="ex">
+  <strong>Exemple 1 — Vérification :</strong> En France, \(V = 230\;\text{V}\).
+  <p>
+    \(U = \sqrt{3} \times V = 1{,}732 \times 230 \approx 400\;\text{V}\) ✓
+  </p>
+</div>
+
+<div class="ex">
+  <strong>Exemple 2 :</strong> Une installation industrielle est alimentée sous une tension composée de 690 V. Quelle est la tension simple ?
+  <p>
+    \(V = \dfrac{U}{\sqrt{3}} = \dfrac{690}{1{,}732} \approx 400\;\text{V}\)
+  </p>
+</div>
+
+<h3>2.3 Déphasage de 120°</h3>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span>
+  Les trois tensions simples sont des fonctions sinusoïdales de même amplitude et de même fréquence, mais <strong>décalées de 120°</strong> (soit un tiers de période) :
+  \[v_1(t) = V_{\max} \sin(\omega t)\]
+  \[v_2(t) = V_{\max} \sin\!\left(\omega t - \frac{2\pi}{3}\right)\]
+  \[v_3(t) = V_{\max} \sin\!\left(\omega t - \frac{4\pi}{3}\right)\]
+</div>
+
+<!-- Graphique Chart.js : 3 tensions déphasées -->
+<div class="chart-wrap">
+  <canvas id="chartTriphasé" width="500" height="300"></canvas>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>À chaque instant, la somme des trois tensions simples est nulle : \(v_1 + v_2 + v_3 = 0\). C'est pourquoi le courant dans le neutre est nul lorsque le réseau est <strong>équilibré</strong>.</p>
+</div>
+
+<!-- ===== 3. COUPLAGES ===== -->
+<h2>3. Couplages étoile et triangle</h2>
+
+<h3>3.1 Couplage étoile (Y)</h3>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  En couplage <strong>étoile</strong> (noté Y), chaque récepteur (ou enroulement de moteur) est branché entre <strong>une phase et le neutre</strong>. Chaque récepteur est donc soumis à la <strong>tension simple</strong> \(V\).
+</div>
+
+<!-- Schéma SVG couplage étoile -->
+<div class="svg-wrap">
+  <svg viewBox="0 0 360 260" width="360" height="260" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+    <!-- Point neutre central -->
+    <circle cx="180" cy="160" r="5" fill="#0969da"/>
+    <text x="195" y="165" fill="#0969da" font-size="12" font-weight="bold">N</text>
+    <!-- Branches -->
+    <line x1="180" y1="160" x2="80" y2="60" stroke="#8B4513" stroke-width="2.5"/>
+    <line x1="180" y1="160" x2="280" y2="60" stroke="#333" stroke-width="2.5"/>
+    <line x1="180" y1="160" x2="180" y2="240" stroke="#666" stroke-width="2.5"/>
+    <!-- Récepteurs (rectangles) -->
+    <rect x="110" y="90" width="40" height="20" rx="3" fill="#dbeafe" stroke="#0969da" stroke-width="1.5" transform="rotate(-45,130,100)"/>
+    <rect x="210" y="90" width="40" height="20" rx="3" fill="#dbeafe" stroke="#0969da" stroke-width="1.5" transform="rotate(45,230,100)"/>
+    <rect x="160" y="195" width="40" height="20" rx="3" fill="#dbeafe" stroke="#0969da" stroke-width="1.5"/>
+    <!-- Labels phases -->
+    <text x="55" y="50" fill="#8B4513" font-weight="bold" font-size="14">L1</text>
+    <text x="290" y="50" fill="#333" font-weight="bold" font-size="14">L2</text>
+    <text x="170" y="258" fill="#666" font-weight="bold" font-size="14">L3</text>
+    <!-- Tension V -->
+    <text x="105" y="145" fill="#0969da" font-size="12">V</text>
+    <text x="240" y="145" fill="#0969da" font-size="12">V</text>
+    <text x="192" y="215" fill="#0969da" font-size="12">V</text>
+    <text x="180" y="14" text-anchor="middle" fill="#555" font-size="12" font-style="italic">Couplage étoile (Y)</text>
+  </svg>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span>
+  En couplage étoile :
+  <ul>
+    <li>La tension aux bornes de chaque récepteur est la <strong>tension simple</strong> : \(V\)</li>
+    <li>Le <strong>courant de ligne</strong> \(I_L\) est égal au <strong>courant de branche</strong> \(I_B\) : \(I_L = I_B\)</li>
+  </ul>
+</div>
+
+<h3>3.2 Couplage triangle (Δ)</h3>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  En couplage <strong>triangle</strong> (noté Δ), chaque récepteur est branché entre <strong>deux phases</strong>. Chaque récepteur est donc soumis à la <strong>tension composée</strong> \(U\).
+</div>
+
+<!-- Schéma SVG couplage triangle -->
+<div class="svg-wrap">
+  <svg viewBox="0 0 360 260" width="360" height="260" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+    <!-- Triangle -->
+    <line x1="80" y1="60" x2="280" y2="60" stroke="#0969da" stroke-width="2.5"/>
+    <line x1="280" y1="60" x2="180" y2="230" stroke="#0969da" stroke-width="2.5"/>
+    <line x1="180" y1="230" x2="80" y2="60" stroke="#0969da" stroke-width="2.5"/>
+    <!-- Récepteurs (au milieu de chaque côté) -->
+    <rect x="160" y="45" width="40" height="18" rx="3" fill="#dbeafe" stroke="#0969da" stroke-width="1.5"/>
+    <rect x="222" y="138" width="40" height="18" rx="3" fill="#dbeafe" stroke="#0969da" stroke-width="1.5" transform="rotate(60,242,147)"/>
+    <rect x="98" y="138" width="40" height="18" rx="3" fill="#dbeafe" stroke="#0969da" stroke-width="1.5" transform="rotate(-60,118,147)"/>
+    <!-- Labels phases -->
+    <text x="55" y="50" fill="#8B4513" font-weight="bold" font-size="14">L1</text>
+    <text x="290" y="50" fill="#333" font-weight="bold" font-size="14">L2</text>
+    <text x="170" y="252" fill="#666" font-weight="bold" font-size="14">L3</text>
+    <!-- Tension U -->
+    <text x="180" y="38" text-anchor="middle" fill="#e53e3e" font-size="12" font-weight="bold">U</text>
+    <text x="248" y="162" fill="#e53e3e" font-size="12" font-weight="bold">U</text>
+    <text x="96" y="162" fill="#e53e3e" font-size="12" font-weight="bold">U</text>
+    <text x="180" y="14" text-anchor="middle" fill="#555" font-size="12" font-style="italic">Couplage triangle (Δ)</text>
+  </svg>
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span>
+  En couplage triangle :
+  <ul>
+    <li>La tension aux bornes de chaque récepteur est la <strong>tension composée</strong> : \(U\)</li>
+    <li>Le <strong>courant de ligne</strong> \(I_L\) et le <strong>courant de branche</strong> \(I_B\) sont liés par : \(I_L = \sqrt{3} \times I_B\)</li>
+  </ul>
+</div>
+
+<h3>3.3 Tableau récapitulatif</h3>
+
+<table>
+  <thead>
+    <tr><th>Grandeur</th><th>Couplage étoile (Y)</th><th>Couplage triangle (Δ)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Tension aux bornes du récepteur</td><td>\(V\) (tension simple)</td><td>\(U\) (tension composée)</td></tr>
+    <tr><td>Relation \(U / V\)</td><td colspan="2" style="text-align:center">\(U = \sqrt{3} \times V\)</td></tr>
+    <tr><td>Courant de ligne / courant de branche</td><td>\(I_L = I_B\)</td><td>\(I_L = \sqrt{3} \times I_B\)</td></tr>
+  </tbody>
+</table>
+
+<div class="att">
+  <span class="label label-att">Attention</span>
+  Le choix du couplage dépend de la <strong>tension nominale</strong> du récepteur et de la tension du réseau. Un moteur prévu pour 230 V par enroulement doit être couplé en <strong>triangle</strong> sur un réseau 230/400 V (chaque enroulement reçoit \(U = 400\;\text{V}\)... Non ! Il reçoit \(V = 230\;\text{V}\) en étoile). Attention à bien vérifier la plaque signalétique.
+</div>
+
+<div class="meth">
+  <span class="label label-meth">Méthode</span>
+  <strong>Choisir le couplage d'un moteur :</strong>
+  <ol>
+    <li>Lire la <strong>plaque signalétique</strong> du moteur : elle indique deux tensions, par exemple 230 V / 400 V.</li>
+    <li>La <strong>plus petite tension</strong> est la tension nominale d'un enroulement.</li>
+    <li>Comparer avec le réseau :
+      <ul>
+        <li>Si la tension simple du réseau = tension nominale de l'enroulement → couplage <strong>étoile</strong> (Y)</li>
+        <li>Si la tension composée du réseau = tension nominale de l'enroulement → couplage <strong>triangle</strong> (Δ)</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+<div class="ex">
+  <strong>Exemple 3 :</strong> Un moteur porte l'indication Δ 230 V / Y 400 V. Le réseau de l'atelier est en 230/400 V.
+  <ul>
+    <li>Tension nominale d'un enroulement = 230 V (la plus petite).</li>
+    <li>En <strong>étoile</strong> : chaque enroulement reçoit la tension simple \(V = 230\;\text{V}\) ✓</li>
+    <li>En <strong>triangle</strong> : chaque enroulement recevrait la tension composée \(U = 400\;\text{V}\) ✗ (surtension !)</li>
+  </ul>
+  <p><strong>Couplage correct : étoile (Y)</strong></p>
+</div>
+
+<div class="ex">
+  <strong>Exemple 4 :</strong> Un autre moteur porte l'indication Δ 400 V / Y 690 V. Sur le réseau 230/400 V :
+  <ul>
+    <li>Tension nominale d'un enroulement = 400 V.</li>
+    <li>En <strong>triangle</strong> : chaque enroulement reçoit \(U = 400\;\text{V}\) ✓</li>
+    <li>En <strong>étoile</strong> : chaque enroulement recevrait \(V = 230\;\text{V}\) (sous-tension).</li>
+  </ul>
+  <p><strong>Couplage correct : triangle (Δ)</strong></p>
+</div>
+
+<!-- ===== 4. COURANTS ===== -->
+<h2>4. Courants de ligne et courants de branche</h2>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  <ul>
+    <li>Le <strong>courant de ligne</strong> \(I_L\) est le courant qui circule dans chaque fil de phase (conducteur d'alimentation).</li>
+    <li>Le <strong>courant de branche</strong> \(I_B\) est le courant qui circule dans chaque récepteur (enroulement du moteur ou charge).</li>
+  </ul>
+</div>
+
+<div class="formule-box">
+  <p><strong>Relations :</strong></p>
+  <p>Couplage étoile : \(\quad I_L = I_B\)</p>
+  <p>Couplage triangle : \(\quad I_L = \sqrt{3} \times I_B \quad \Leftrightarrow \quad I_B = \dfrac{I_L}{\sqrt{3}}\)</p>
+</div>
+
+<div class="ex">
+  <strong>Exemple 5 :</strong> Un moteur couplé en étoile absorbe un courant de ligne de 12 A. Quel est le courant dans chaque enroulement ?
+  <p>
+    En étoile : \(I_B = I_L = 12\;\text{A}\)
+  </p>
+</div>
+
+<div class="ex">
+  <strong>Exemple 6 :</strong> Un moteur couplé en triangle absorbe un courant de ligne de 20 A. Quel est le courant dans chaque enroulement ?
+  <p>
+    \(I_B = \dfrac{I_L}{\sqrt{3}} = \dfrac{20}{1{,}732} \approx 11{,}5\;\text{A}\)
+  </p>
+</div>
+
+<!-- ===== 5. APPLICATIONS ===== -->
+<h2>5. Applications professionnelles</h2>
+
+<h3>5.1 Retour à la situation professionnelle</h3>
+
+<div class="ex">
+  <strong>Réponses aux questions de Karim :</strong>
+  <ol>
+    <li><strong>Différence entre 230 V et 400 V :</strong><br>
+      230 V est la tension simple (entre une phase et le neutre), utilisée pour les prises domestiques. 400 V est la tension composée (entre deux phases), utilisée pour les machines industrielles. La relation est \(U = \sqrt{3} \times V\).</li>
+    <li><strong>Pourquoi 5 fils ?</strong><br>
+      Le câble contient 3 phases (L1, L2, L3) + le neutre (N) + la terre (PE). Le neutre permet d'obtenir du 230 V pour les prises classiques à partir du réseau triphasé.</li>
+    <li><strong>Choix du couplage :</strong><br>
+      Il faut lire la plaque signalétique du moteur et comparer la tension nominale d'un enroulement avec les tensions du réseau. Si l'enroulement est prévu pour 230 V → étoile ; si pour 400 V → triangle.</li>
+  </ol>
+</div>
+
+<h3>5.2 Le triphasé dans les installations électriques</h3>
+
+<p>Le réseau triphasé est utilisé partout en électrotechnique :</p>
+<ul>
+  <li><strong>Ateliers et usines :</strong> alimentation des machines-outils, compresseurs, fours industriels</li>
+  <li><strong>Bâtiments tertiaires :</strong> alimentation des climatiseurs, ascenseurs, groupes de ventilation</li>
+  <li><strong>Distribution électrique :</strong> le réseau EDF transporte l'électricité en triphasé haute tension puis la transforme en 230/400 V pour la distribution</li>
+  <li><strong>Production d'énergie :</strong> les alternateurs des centrales produisent directement du triphasé</li>
+</ul>
+
+<!-- ===== 6. ESSENTIEL ===== -->
+<h2>6. L'essentiel du chapitre</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Un réseau <strong>triphasé</strong> comporte 3 phases (L1, L2, L3), un neutre (N) et une terre (PE).</li>
+    <li>Les 3 tensions sont <strong>déphasées de 120°</strong>.</li>
+    <li><strong>Tension simple</strong> \(V\) = entre phase et neutre &nbsp;|&nbsp; <strong>Tension composée</strong> \(U\) = entre deux phases.</li>
+    <li>Relation : \(U = \sqrt{3} \times V\) &nbsp; (en France : 230 V / 400 V).</li>
+    <li><strong>Couplage étoile (Y) :</strong> chaque récepteur reçoit \(V\), et \(I_L = I_B\).</li>
+    <li><strong>Couplage triangle (Δ) :</strong> chaque récepteur reçoit \(U\), et \(I_L = \sqrt{3} \times I_B\).</li>
+    <li>Le choix du couplage dépend de la <strong>plaque signalétique</strong> du moteur et des tensions du réseau.</li>
+  </ul>
+</div>
+
+<footer>
+  <p>Terminale Bac Pro – Groupement 2 | Physique-Chimie – Chapitre 2 | maths-sciences-lp.github.io</p>
+</footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('chartTriphasé').getContext('2d');
+const Vmax = 230 * Math.sqrt(2);
+const labels = [];
+const d1 = [], d2 = [], d3 = [];
+for (let t = 0; t <= 40; t += 0.25) {
+  const ms = t;
+  labels.push(ms.toFixed(1));
+  const omega = 2 * Math.PI * 50;
+  const ts = t / 1000;
+  d1.push(+(Vmax * Math.sin(omega * ts)).toFixed(1));
+  d2.push(+(Vmax * Math.sin(omega * ts - 2 * Math.PI / 3)).toFixed(1));
+  d3.push(+(Vmax * Math.sin(omega * ts - 4 * Math.PI / 3)).toFixed(1));
+}
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: labels,
+    datasets: [
+      { label: 'v₁(t)', data: d1, borderColor: '#8B4513', borderWidth: 2, pointRadius: 0, tension: 0.4 },
+      { label: 'v₂(t)', data: d2, borderColor: '#333', borderWidth: 2, pointRadius: 0, tension: 0.4 },
+      { label: 'v₃(t)', data: d3, borderColor: '#888', borderWidth: 2, pointRadius: 0, tension: 0.4 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      title: { display: true, text: 'Trois tensions simples déphasées de 120°', font: { size: 14 } },
+      legend: { position: 'bottom' }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Temps (ms)' }, ticks: { maxTicksLimit: 10 } },
+      y: { title: { display: true, text: 'Tension (V)' } }
+    }
+  }
+});
+</script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

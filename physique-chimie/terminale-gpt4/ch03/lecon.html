@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Chaîne de transmission d'informations – Cours | Terminale Grpt 4</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#7c3aed;--p-bg:#f5f3ff;--p-border:#c4b5fd}
+.chaine-svg{max-width:600px;margin:18px auto;display:block}
+.chaine-svg svg{width:100%;height:auto}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../index.html" class="nb">&larr; Retour</a>
+
+<header>
+  <h1>Chapitre 3 &ndash; Cha&icirc;ne de transmission d'informations</h1>
+  <p class="sous-titre">Terminale Bac Pro (Grpt 4) &nbsp;|&nbsp; Physique &ndash; Signaux &nbsp;|&nbsp; Transmission de l'information</p>
+</header>
+
+<!-- ===== OBJECTIFS ===== -->
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Identifier les &eacute;l&eacute;ments d'une cha&icirc;ne de transmission : modulateur, canal de transmission, d&eacute;modulateur</li>
+    <li>Distinguer les diff&eacute;rents types d'ondes utilis&eacute;es : sonores, lumineuses, &eacute;lectromagn&eacute;tiques</li>
+    <li>Comprendre le principe de la fibre optique et de la r&eacute;flexion totale</li>
+    <li>Donner des exemples concrets de cha&icirc;nes de transmission</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PROFESSIONNELLE ===== -->
+<div class="situation">
+  <strong>Situation professionnelle</strong>
+  <p>
+    Clara, technicienne en imprimerie num&eacute;rique, doit envoyer un fichier volumineux (une image haute r&eacute;solution de 500 Mo) depuis son poste de travail vers l'imprimante grand format situ&eacute;e dans un autre b&acirc;timent de l'entreprise. Deux solutions s'offrent &agrave; elle : le <strong>Wi-Fi</strong> (ondes radio) ou le <strong>r&eacute;seau fibre optique</strong> de l'entreprise.
+  </p>
+  <p>Ses questions :</p>
+  <ol>
+    <li>Comment l'information num&eacute;rique (les bits du fichier) est-elle transport&eacute;e par une onde ?</li>
+    <li>Quelles sont les &eacute;tapes entre l'envoi et la r&eacute;ception du fichier ?</li>
+    <li>Pourquoi la fibre optique est-elle plus rapide que le Wi-Fi pour ce transfert ?</li>
+  </ol>
+  <p><em>Ces questions trouveront une r&eacute;ponse compl&egrave;te au fil de ce chapitre.</em></p>
+</div>
+
+<!-- ===== 1. SCHÉMA GÉNÉRAL ===== -->
+<h2>1. Sch&eacute;ma g&eacute;n&eacute;ral d'une cha&icirc;ne de transmission</h2>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  Une <strong>cha&icirc;ne de transmission d'informations</strong> est l'ensemble des &eacute;l&eacute;ments qui permettent de transporter une information d'un point &agrave; un autre &agrave; l'aide d'une onde.
+</div>
+
+<div class="chaine-svg">
+<svg viewBox="0 0 580 140" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <!-- Boîtes -->
+  <rect x="10" y="40" width="100" height="50" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="60" y="62" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="bold">Information</text>
+  <text x="60" y="77" text-anchor="middle" font-size="10" fill="#555">&agrave; transmettre</text>
+
+  <rect x="140" y="40" width="100" height="50" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="190" y="62" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="bold">Modulateur</text>
+  <text x="190" y="77" text-anchor="middle" font-size="10" fill="#555">(&eacute;metteur)</text>
+
+  <rect x="270" y="20" width="100" height="90" rx="8" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="320" y="48" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="bold">Canal de</text>
+  <text x="320" y="63" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="bold">transmission</text>
+  <text x="320" y="82" text-anchor="middle" font-size="9" fill="#555">&eacute;metteur &rarr; milieu</text>
+  <text x="320" y="96" text-anchor="middle" font-size="9" fill="#555">&rarr; r&eacute;cepteur</text>
+
+  <rect x="400" y="40" width="100" height="50" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="450" y="62" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="bold">D&eacute;modulateur</text>
+  <text x="450" y="77" text-anchor="middle" font-size="10" fill="#555">(r&eacute;cepteur)</text>
+
+  <rect x="530" y="40" width="40" height="50" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="550" y="70" text-anchor="middle" font-size="20" fill="#7c3aed">&#x2709;</text>
+
+  <!-- Flèches -->
+  <line x1="110" y1="65" x2="138" y2="65" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="240" y1="65" x2="268" y2="65" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="370" y1="65" x2="398" y2="65" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="500" y1="65" x2="528" y2="65" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Label sous le schéma -->
+  <text x="290" y="132" text-anchor="middle" font-size="10" fill="#888" font-style="italic">Sch&eacute;ma simplifi&eacute; d'une cha&icirc;ne de transmission</text>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+</svg>
+</div>
+
+<h3>1.1 Les &eacute;l&eacute;ments de la cha&icirc;ne</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  <ul>
+    <li><strong>Le modulateur</strong> transforme l'information &agrave; transmettre en un signal adapt&eacute; au canal de transmission. Il <em>module</em> une onde porteuse (modifie son amplitude, sa fr&eacute;quence ou sa phase) pour y &laquo; inscrire &raquo; l'information.</li>
+    <li><strong>Le canal de transmission</strong> est le chemin physique emprunt&eacute; par le signal. Il comprend un <strong>&eacute;metteur</strong> (antenne, diode laser...), un <strong>milieu de propagation</strong> (air, c&acirc;ble, fibre optique...) et un <strong>r&eacute;cepteur</strong> (antenne, photodiode...).</li>
+    <li><strong>Le d&eacute;modulateur</strong> extrait l'information du signal re&ccedil;u pour la restituer sous sa forme d'origine.</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple &ndash; Radio FM</span>
+  <ul>
+    <li><strong>Information</strong> : la voix de l'animateur (signal sonore)</li>
+    <li><strong>Modulateur</strong> : circuit &eacute;lectronique qui inscrit le signal audio sur une onde porteuse (ex : 98,5 MHz)</li>
+    <li><strong>Canal</strong> : antenne &eacute;mettrice &rarr; air (ondes radio) &rarr; antenne du r&eacute;cepteur</li>
+    <li><strong>D&eacute;modulateur</strong> : circuit du poste radio qui extrait le signal audio de l'onde porteuse</li>
+  </ul>
+</div>
+
+<!-- ===== 2. TYPES D'ONDES ===== -->
+<h2>2. Les diff&eacute;rents types d'ondes pour transmettre</h2>
+
+<h3>2.1 Ondes sonores</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  Les <strong>ondes sonores</strong> sont des ondes m&eacute;caniques qui se propagent par vibration du milieu mat&eacute;riel (air, eau, solide). Elles ne se propagent pas dans le vide.
+</div>
+
+<p>Vitesse dans l'air : environ <strong>340 m/s</strong>. Les ondes sonores sont utilis&eacute;es en communication vocale directe et dans certains syst&egrave;mes (sonar, &eacute;chographie).</p>
+
+<h3>2.2 Ondes lumineuses</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  Les <strong>ondes lumineuses</strong> sont des ondes &eacute;lectromagn&eacute;tiques visibles (longueurs d'onde entre 400 nm et 700 nm environ). Elles se propagent dans le vide et les milieux transparents &agrave; la vitesse de la lumi&egrave;re : \(c \approx 3 \times 10^8\) m/s.
+</div>
+
+<p>En t&eacute;l&eacute;communications, on utilise des ondes lumineuses (souvent infrarouges) guid&eacute;es dans des <strong>fibres optiques</strong>.</p>
+
+<h3>2.3 Ondes &eacute;lectromagn&eacute;tiques (radio, micro-ondes, infrarouges...)</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  Les <strong>ondes &eacute;lectromagn&eacute;tiques</strong> (EM) regroupent un large spectre d'ondes : ondes radio, micro-ondes, infrarouges, lumi&egrave;re visible, UV, rayons X, rayons gamma. Toutes se propagent dans le vide &agrave; la vitesse \(c\).
+</div>
+
+<div class="formule-box">
+  <strong>Relation fondamentale</strong>
+  \[\lambda = \frac{c}{f}\]
+  <ul>
+    <li>\(\lambda\) : longueur d'onde (en m)</li>
+    <li>\(c = 3 \times 10^8\) m/s : vitesse de la lumi&egrave;re</li>
+    <li>\(f\) : fr&eacute;quence (en Hz)</li>
+  </ul>
+</div>
+
+<div class="retenir">
+  <strong>Types d'ondes et exemples de transmission</strong>
+  <ul>
+    <li><strong>Ondes radio</strong> (kHz &agrave; GHz) : radio FM, t&eacute;l&eacute;vision, Wi-Fi, Bluetooth, 4G/5G</li>
+    <li><strong>Micro-ondes</strong> : liaisons satellite, faisceaux hertziens</li>
+    <li><strong>Infrarouge</strong> : t&eacute;l&eacute;commandes, fibres optiques</li>
+    <li><strong>Lumi&egrave;re visible</strong> : transmission Li-Fi, signaux lumineux</li>
+  </ul>
+</div>
+
+<!-- ===== 3. FIBRE OPTIQUE ET RÉFLEXION TOTALE ===== -->
+<h2>3. La fibre optique et la r&eacute;flexion totale</h2>
+
+<h3>3.1 Qu'est-ce qu'une fibre optique ?</h3>
+
+<div class="def">
+  <span class="label label-def">D&eacute;finition</span>
+  Une <strong>fibre optique</strong> est un fil tr&egrave;s fin (de l'ordre de 125 &mu;m de diam&egrave;tre) en verre ou en plastique, capable de guider la lumi&egrave;re sur de grandes distances. Elle est compos&eacute;e de :
+  <ul>
+    <li>un <strong>c&oelig;ur</strong> (indice de r&eacute;fraction \(n_1\), &eacute;lev&eacute;) o&ugrave; la lumi&egrave;re se propage</li>
+    <li>une <strong>gaine optique</strong> (indice \(n_2 < n_1\)) qui entoure le c&oelig;ur</li>
+    <li>un <strong>rev&ecirc;tement protecteur</strong></li>
+  </ul>
+</div>
+
+<h3>3.2 Principe de la r&eacute;flexion totale</h3>
+
+<p>Quand la lumi&egrave;re passe d'un milieu plus r&eacute;fringent (indice &eacute;lev&eacute;) vers un milieu moins r&eacute;fringent (indice plus faible), elle est en partie r&eacute;fract&eacute;e et en partie r&eacute;fl&eacute;chie.</p>
+
+<div class="prop">
+  <span class="label label-prop">Propri&eacute;t&eacute;</span>
+  Si l'angle d'incidence d&eacute;passe un angle critique appel&eacute; <strong>angle limite de r&eacute;flexion totale</strong>, toute la lumi&egrave;re est r&eacute;fl&eacute;chie &agrave; l'int&eacute;rieur du milieu : c'est la <strong>r&eacute;flexion totale</strong>. La lumi&egrave;re reste pi&eacute;g&eacute;e dans le c&oelig;ur de la fibre.
+</div>
+
+<div class="formule-box">
+  <strong>Angle limite de r&eacute;flexion totale</strong>
+  \[\sin(\theta_L) = \frac{n_2}{n_1}\]
+  <ul>
+    <li>\(\theta_L\) : angle limite (en degr&eacute;s ou radians)</li>
+    <li>\(n_1\) : indice du c&oelig;ur (milieu le plus r&eacute;fringent)</li>
+    <li>\(n_2\) : indice de la gaine (\(n_2 < n_1\))</li>
+  </ul>
+  La r&eacute;flexion totale se produit pour tout angle d'incidence \(\theta > \theta_L\).
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple</span>
+  Une fibre optique a un c&oelig;ur d'indice \(n_1 = 1{,}48\) et une gaine d'indice \(n_2 = 1{,}46\).<br>
+  \[\sin(\theta_L) = \frac{1{,}46}{1{,}48} = 0{,}9865 \implies \theta_L \approx 80{,}6&deg;\]
+  Pour tout angle d'incidence sup&eacute;rieur &agrave; 80,6&deg; (par rapport &agrave; la normale), la lumi&egrave;re est totalement r&eacute;fl&eacute;chie et reste dans le c&oelig;ur.
+</div>
+
+<h3>3.3 Avantages de la fibre optique</h3>
+
+<div class="retenir">
+  <strong>Pourquoi utiliser la fibre optique ?</strong>
+  <ul>
+    <li><strong>D&eacute;bit tr&egrave;s &eacute;lev&eacute;</strong> : des dizaines de Gbit/s (bien plus que le Wi-Fi ou le c&acirc;ble cuivre)</li>
+    <li><strong>Faible att&eacute;nuation</strong> : le signal se d&eacute;grade peu m&ecirc;me sur de longues distances</li>
+    <li><strong>Immunit&eacute; aux perturbations &eacute;lectromagn&eacute;tiques</strong> : la lumi&egrave;re n'est pas affect&eacute;e par les champs &eacute;lectriques ou magn&eacute;tiques</li>
+    <li><strong>L&eacute;g&egrave;ret&eacute; et finesse</strong> : un c&acirc;ble &agrave; fibres optiques est bien plus fin et l&eacute;ger qu'un c&acirc;ble en cuivre</li>
+  </ul>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span>
+  La fibre optique est fragile : elle ne doit pas &ecirc;tre pli&eacute;e en dessous d'un certain rayon de courbure minimal, sinon la r&eacute;flexion totale n'est plus assur&eacute;e et le signal est perdu.
+</div>
+
+<!-- ===== 4. EXEMPLES DE CHAÎNES COMPLÈTES ===== -->
+<h2>4. Exemples concrets de cha&icirc;nes de transmission</h2>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 1 &ndash; Internet par fibre optique</span>
+  <ul>
+    <li><strong>Information</strong> : donn&eacute;es num&eacute;riques (pages web, vid&eacute;os, fichiers)</li>
+    <li><strong>Modulateur</strong> : convertisseur &eacute;lectrique/optique (diode laser)</li>
+    <li><strong>Canal</strong> : diode laser (&eacute;metteur) &rarr; fibre optique (milieu) &rarr; photodiode (r&eacute;cepteur)</li>
+    <li><strong>D&eacute;modulateur</strong> : convertisseur optique/&eacute;lectrique qui reconstitue les donn&eacute;es num&eacute;riques</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 2 &ndash; Communication Wi-Fi</span>
+  <ul>
+    <li><strong>Information</strong> : donn&eacute;es num&eacute;riques</li>
+    <li><strong>Modulateur</strong> : circuit &eacute;lectronique qui module une onde radio (2,4 GHz ou 5 GHz)</li>
+    <li><strong>Canal</strong> : antenne Wi-Fi (&eacute;metteur) &rarr; air (milieu) &rarr; antenne Wi-Fi (r&eacute;cepteur)</li>
+    <li><strong>D&eacute;modulateur</strong> : circuit &eacute;lectronique qui extrait les donn&eacute;es de l'onde porteuse</li>
+  </ul>
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Exemple 3 &ndash; T&eacute;l&eacute;phone portable (4G/5G)</span>
+  <ul>
+    <li><strong>Information</strong> : voix num&eacute;ris&eacute;e + donn&eacute;es</li>
+    <li><strong>Modulateur</strong> : circuit du t&eacute;l&eacute;phone qui module une onde radio (700 MHz &agrave; 3,5 GHz)</li>
+    <li><strong>Canal</strong> : antenne du t&eacute;l&eacute;phone &rarr; air &rarr; antenne relais</li>
+    <li><strong>D&eacute;modulateur</strong> : &eacute;quipement de la station de base</li>
+  </ul>
+</div>
+
+<!-- ===== 5. APPLICATIONS ===== -->
+<h2>5. Applications professionnelles</h2>
+
+<div class="ex">
+  <span class="label label-ex">Application &ndash; Imprimerie en r&eacute;seau</span>
+  Dans une imprimerie num&eacute;rique, les fichiers sont envoy&eacute;s des postes de travail aux imprimantes via un r&eacute;seau fibre optique interne. Le d&eacute;bit &eacute;lev&eacute; permet de transf&eacute;rer des fichiers de plusieurs centaines de Mo en quelques secondes, sans perte de qualit&eacute;.
+</div>
+
+<div class="ex">
+  <span class="label label-ex">Application &ndash; Contr&ocirc;le &agrave; distance</span>
+  En industrie, des capteurs connect&eacute;s envoient des mesures (temp&eacute;rature, pression, images) par ondes radio ou fibre optique vers un poste de supervision central. La cha&icirc;ne de transmission permet un contr&ocirc;le en temps r&eacute;el sans d&eacute;placement.
+</div>
+
+<!-- ===== 6. RETENIR ===== -->
+<div class="retenir">
+  <strong>&Agrave; retenir &ndash; L'essentiel du chapitre</strong>
+  <ul>
+    <li>Une <strong>cha&icirc;ne de transmission</strong> comprend : modulateur &rarr; canal de transmission (&eacute;metteur + milieu + r&eacute;cepteur) &rarr; d&eacute;modulateur.</li>
+    <li>Les ondes utilis&eacute;es : <strong>sonores</strong> (milieu mat&eacute;riel), <strong>lumineuses</strong> (fibre optique), <strong>&eacute;lectromagn&eacute;tiques</strong> (radio, Wi-Fi, 4G/5G).</li>
+    <li>La <strong>fibre optique</strong> guide la lumi&egrave;re gr&acirc;ce &agrave; la <strong>r&eacute;flexion totale</strong> (\(\sin\theta_L = n_2/n_1\)).</li>
+    <li>La fibre optique offre un d&eacute;bit &eacute;lev&eacute;, une faible att&eacute;nuation et une immunit&eacute; aux perturbations EM.</li>
+  </ul>
+</div>
+
+<!-- ===== 7. MINI EXERCICES ===== -->
+<h2>6. V&eacute;rifie ta compr&eacute;hension</h2>
+
+<div class="exo">
+  <strong>Question 1</strong> &ndash; Cite les trois &eacute;l&eacute;ments principaux d'une cha&icirc;ne de transmission d'informations.
+  <div class="corr">
+    <ol>
+      <li>Le <strong>modulateur</strong> (inscrit l'information sur une onde porteuse)</li>
+      <li>Le <strong>canal de transmission</strong> (&eacute;metteur + milieu de propagation + r&eacute;cepteur)</li>
+      <li>Le <strong>d&eacute;modulateur</strong> (extrait l'information du signal re&ccedil;u)</li>
+    </ol>
+  </div>
+  <button class="bc">Voir la correction</button>
+</div>
+
+<div class="exo">
+  <strong>Question 2</strong> &ndash; Une fibre optique a un c&oelig;ur d'indice \(n_1 = 1{,}50\) et une gaine d'indice \(n_2 = 1{,}47\). Calcule l'angle limite de r&eacute;flexion totale.
+  <div class="corr">
+    \[\sin(\theta_L) = \frac{n_2}{n_1} = \frac{1{,}47}{1{,}50} = 0{,}98\]
+    \[\theta_L = \arcsin(0{,}98) \approx 78{,}5&deg;\]
+  </div>
+  <button class="bc">Voir la correction</button>
+</div>
+
+<div class="exo">
+  <strong>Question 3</strong> &ndash; Cite deux avantages de la fibre optique par rapport au c&acirc;ble en cuivre pour la transmission de donn&eacute;es.
+  <div class="corr">
+    <ol>
+      <li><strong>D&eacute;bit beaucoup plus &eacute;lev&eacute;</strong> (dizaines de Gbit/s contre quelques Gbit/s pour le cuivre).</li>
+      <li><strong>Immunit&eacute; aux perturbations &eacute;lectromagn&eacute;tiques</strong> (la lumi&egrave;re n'est pas affect&eacute;e par les champs EM, contrairement au signal &eacute;lectrique dans un c&acirc;ble cuivre).</li>
+    </ol>
+  </div>
+  <button class="bc">Voir la correction</button>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

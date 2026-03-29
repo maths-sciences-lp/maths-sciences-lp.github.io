@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Induction électromagnétique – Cours | Terminale Gpt 2</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-gpt2.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Chapitre 1 – L'induction électromagnétique</h1>
+  <p class="sous-titre">Terminale Bac Pro – Groupement 2 &nbsp;|&nbsp; Physique – Électricité &nbsp;|&nbsp; Induction, loi de Lenz, alternateur</p>
+</header>
+
+<!-- ===== OBJECTIFS ===== -->
+<div class="objectifs">
+  <strong>Objectifs du chapitre</strong>
+  <ul>
+    <li>Comprendre qu'une variation de champ magnétique dans un circuit crée une tension induite</li>
+    <li>Distinguer les deux situations d'induction : circuit fixe dans un champ variable, circuit mobile dans un champ constant</li>
+    <li>Énoncer et appliquer la loi de Lenz</li>
+    <li>Décrire le fonctionnement d'un alternateur (conversion énergie mécanique → énergie électrique)</li>
+    <li>Savoir que le rendement d'un alternateur est inférieur à 1</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PROFESSIONNELLE ===== -->
+<div class="situation">
+  <strong>Situation professionnelle</strong>
+  <p>
+    Sofia, technicienne en systèmes numériques, effectue un stage dans une entreprise de maintenance d'éoliennes. Son tuteur lui explique que chaque éolienne contient un <strong>alternateur</strong> qui convertit la rotation des pales en électricité.
+  </p>
+  <p>Elle se demande :</p>
+  <ol>
+    <li>Comment un mouvement de rotation peut-il créer du courant électrique ?</li>
+    <li>Pourquoi l'éolienne ne restitue-t-elle pas toute l'énergie mécanique du vent sous forme d'énergie électrique ?</li>
+    <li>Comment prévoir le sens du courant produit ?</li>
+  </ol>
+  <p><em>Ce chapitre permettra de répondre à ces questions.</em></p>
+</div>
+
+<!-- ===== 1. LE PHÉNOMÈNE D'INDUCTION ===== -->
+<h2>1. Le phénomène d'induction électromagnétique</h2>
+
+<h3>1.1 Mise en évidence expérimentale</h3>
+
+<p>En 1831, le physicien Michael Faraday découvre qu'un <strong>aimant en mouvement</strong> à proximité d'une bobine crée une tension électrique aux bornes de cette bobine, même sans générateur dans le circuit.</p>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  L'<strong>induction électromagnétique</strong> est le phénomène par lequel une <strong>variation du champ magnétique</strong> à travers un circuit conducteur fermé provoque l'apparition d'une <strong>tension induite</strong> (ou force électromotrice induite) et, si le circuit est fermé, d'un <strong>courant induit</strong>.
+</div>
+
+<p>L'expérience de base : on approche un aimant d'une bobine connectée à un voltmètre. On observe :</p>
+<ul>
+  <li>Quand l'aimant <strong>avance</strong> vers la bobine → le voltmètre dévie dans un sens.</li>
+  <li>Quand l'aimant <strong>recule</strong> → le voltmètre dévie dans l'<strong>autre sens</strong>.</li>
+  <li>Quand l'aimant est <strong>immobile</strong> → la tension est <strong>nulle</strong>.</li>
+</ul>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <p>Il n'y a induction que s'il y a <strong>variation</strong> du champ magnétique traversant le circuit. Pas de variation = pas de tension induite.</p>
+</div>
+
+<h3>1.2 Deux situations d'induction</h3>
+
+<p>L'induction électromagnétique se produit dans deux cas :</p>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span>
+  <strong>Cas 1 — Circuit fixe, champ variable :</strong><br>
+  La bobine est immobile, mais le champ magnétique qui la traverse <strong>varie au cours du temps</strong> (aimant en mouvement, électroaimant dont le courant varie, etc.).
+</div>
+
+<div class="ex">
+  <strong>Exemple 1 :</strong> On approche rapidement un aimant d'une bobine reliée à un galvanomètre. Le champ magnétique traversant la bobine augmente → une tension induite apparaît → un courant circule dans le circuit.
+</div>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span>
+  <strong>Cas 2 — Circuit mobile, champ constant :</strong><br>
+  Le champ magnétique est fixe et uniforme, mais le <strong>circuit se déplace ou tourne</strong> dans ce champ, de sorte que le champ traversant le circuit varie.
+</div>
+
+<div class="ex">
+  <strong>Exemple 2 :</strong> Un cadre conducteur rectangulaire tourne dans un champ magnétique uniforme (entre les pôles d'un aimant). Comme l'orientation du cadre par rapport au champ change en permanence, le champ « traversant » le cadre varie → une tension induite apparaît. C'est le principe de l'<strong>alternateur</strong>.
+</div>
+
+<!-- ===== 2. LOI DE LENZ ===== -->
+<h2>2. La loi de Lenz</h2>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  <strong>Loi de Lenz :</strong> Le courant induit circule dans un sens tel que ses effets <strong>s'opposent à la cause</strong> qui lui a donné naissance.
+</div>
+
+<p>Autrement dit :</p>
+<ul>
+  <li>Si le champ magnétique à travers le circuit <strong>augmente</strong>, le courant induit crée un champ qui s'<strong>oppose</strong> à cette augmentation (champ induit en sens contraire).</li>
+  <li>Si le champ magnétique à travers le circuit <strong>diminue</strong>, le courant induit crée un champ qui <strong>tend à maintenir</strong> le champ (champ induit dans le même sens).</li>
+</ul>
+
+<div class="meth">
+  <span class="label label-meth">Méthode</span>
+  <strong>Déterminer le sens du courant induit :</strong>
+  <ol>
+    <li>Identifier la <strong>cause</strong> : le champ magnétique augmente-t-il ou diminue-t-il à travers le circuit ?</li>
+    <li>Le courant induit crée un champ magnétique qui <strong>s'oppose à la variation</strong> :
+      <ul>
+        <li>Si \(B\) augmente → le champ induit est en <strong>sens inverse</strong> de \(B\).</li>
+        <li>Si \(B\) diminue → le champ induit est dans le <strong>même sens</strong> que \(B\).</li>
+      </ul>
+    </li>
+    <li>Utiliser la <strong>règle de la main droite</strong> pour déduire le sens du courant dans la bobine.</li>
+  </ol>
+</div>
+
+<div class="ex">
+  <strong>Exemple 3 :</strong> On approche le pôle Nord d'un aimant vers une bobine.
+  <ul>
+    <li>Le champ magnétique dirigé vers la bobine <strong>augmente</strong>.</li>
+    <li>Par la loi de Lenz, le courant induit crée un champ magnétique qui <strong>repousse</strong> l'aimant (pôle Nord face au pôle Nord de l'aimant).</li>
+    <li>Tout se passe comme si la bobine « résistait » au mouvement de l'aimant.</li>
+  </ul>
+</div>
+
+<!-- Schéma SVG induction : aimant → bobine -->
+<div class="svg-wrap">
+  <svg viewBox="0 0 420 180" width="420" height="180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+    <!-- Bobine -->
+    <ellipse cx="260" cy="90" rx="18" ry="50" fill="none" stroke="#888" stroke-width="2"/>
+    <ellipse cx="280" cy="90" rx="18" ry="50" fill="none" stroke="#888" stroke-width="2"/>
+    <ellipse cx="300" cy="90" rx="18" ry="50" fill="none" stroke="#888" stroke-width="2"/>
+    <ellipse cx="320" cy="90" rx="18" ry="50" fill="none" stroke="#888" stroke-width="2"/>
+    <!-- Aimant -->
+    <rect x="60" y="70" width="50" height="40" rx="3" fill="#3182ce" stroke="#333" stroke-width="1.5"/>
+    <rect x="110" y="70" width="50" height="40" rx="3" fill="#e53e3e" stroke="#333" stroke-width="1.5"/>
+    <text x="85" y="95" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">N</text>
+    <text x="135" y="95" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">S</text>
+    <!-- Flèche mouvement -->
+    <line x1="170" y1="90" x2="230" y2="90" stroke="#e53e3e" stroke-width="2.5" marker-end="url(#arrowRed)"/>
+    <defs><marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#e53e3e"/></marker></defs>
+    <text x="200" y="78" text-anchor="middle" fill="#e53e3e" font-size="12" font-weight="bold">v</text>
+    <!-- Champ induit (opposition) -->
+    <line x1="290" y1="90" x2="240" y2="90" stroke="#0969da" stroke-width="2" stroke-dasharray="5,3"/>
+    <polygon points="244,84 234,90 244,96" fill="#0969da"/>
+    <text x="260" y="155" text-anchor="middle" fill="#0969da" font-size="11">B induit (opposition)</text>
+    <text x="210" y="170" text-anchor="middle" fill="#555" font-size="11" font-style="italic">Loi de Lenz : le champ induit s'oppose au rapprochement</text>
+  </svg>
+</div>
+
+<div class="att">
+  <span class="label label-att">Attention</span>
+  La loi de Lenz est une conséquence de la <strong>conservation de l'énergie</strong>. Si le courant induit renforçait le mouvement au lieu de s'y opposer, on créerait de l'énergie à partir de rien, ce qui est impossible.
+</div>
+
+<!-- ===== 3. L'ALTERNATEUR ===== -->
+<h2>3. L'alternateur</h2>
+
+<h3>3.1 Principe de fonctionnement</h3>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  Un <strong>alternateur</strong> est une machine qui convertit de l'<strong>énergie mécanique</strong> (rotation) en <strong>énergie électrique</strong> (courant alternatif) grâce au phénomène d'induction électromagnétique.
+</div>
+
+<p>Un alternateur est constité de deux parties principales :</p>
+<ul>
+  <li><strong>Le rotor</strong> : partie tournante, qui porte un aimant (ou un électroaimant) créant le champ magnétique.</li>
+  <li><strong>Le stator</strong> : partie fixe, qui porte les bobines dans lesquelles la tension est induite.</li>
+</ul>
+
+<p>Lorsque le rotor tourne, le champ magnétique à travers les bobines du stator <strong>varie périodiquement</strong>. Une tension alternative est ainsi induite.</p>
+
+<div class="prop">
+  <span class="label label-prop">Propriété</span>
+  La tension produite par un alternateur est <strong>alternative sinusoïdale</strong>. Sa fréquence dépend de la <strong>vitesse de rotation</strong> du rotor et du <strong>nombre de paires de pôles</strong> :
+  \[f = \frac{n \times p}{60}\]
+  où \(f\) est la fréquence (Hz), \(n\) la vitesse de rotation (tr/min) et \(p\) le nombre de paires de pôles.
+</div>
+
+<div class="ex">
+  <strong>Exemple 4 :</strong> Un alternateur possède 2 paires de pôles et tourne à 1 500 tr/min. Quelle est la fréquence de la tension produite ?
+  <p>
+    \(f = \dfrac{n \times p}{60} = \dfrac{1\,500 \times 2}{60} = 50\;\text{Hz}\)
+  </p>
+  <p>On retrouve la fréquence du réseau électrique français.</p>
+</div>
+
+<h3>3.2 Exemples d'alternateurs</h3>
+
+<p>On trouve des alternateurs dans de nombreux dispositifs :</p>
+<ul>
+  <li><strong>Centrales électriques</strong> (nucléaire, thermique, hydraulique) : des turbines entraînent des alternateurs de grande puissance</li>
+  <li><strong>Éoliennes</strong> : la rotation des pales entraîne un alternateur</li>
+  <li><strong>Alternateur automobile</strong> : recharge la batterie du véhicule</li>
+  <li><strong>Dynamo de vélo</strong> : petit alternateur entraîné par la roue</li>
+  <li><strong>Groupes électrogènes</strong> : un moteur thermique entraîne un alternateur pour produire de l'électricité en secours</li>
+</ul>
+
+<h3>3.3 Bilan de puissance et rendement</h3>
+
+<div class="def">
+  <span class="label label-def">Définition</span>
+  Le <strong>rendement</strong> d'un alternateur est le rapport entre la puissance électrique utile produite et la puissance mécanique fournie en entrée :
+  \[\eta = \frac{P_{\text{électrique}}}{P_{\text{mécanique}}}\]
+  Le rendement est <strong>toujours inférieur à 1</strong> (ou inférieur à 100 %).
+</div>
+
+<div class="formule-box">
+  <p><strong>Formule du rendement :</strong></p>
+  \[\eta = \frac{P_{\text{utile}}}{P_{\text{absorbée}}} \quad \text{avec} \quad \eta < 1\]
+</div>
+
+<p>Les <strong>pertes d'énergie</strong> dans un alternateur sont dues à :</p>
+<ul>
+  <li><strong>Pertes par effet Joule</strong> : échauffement des bobinages dû à la résistance des fils</li>
+  <li><strong>Pertes mécaniques</strong> : frottements dans les roulements et résistance de l'air</li>
+  <li><strong>Pertes magnétiques</strong> (pertes fer) : courants de Foucault et hystérésis dans le noyau magnétique</li>
+</ul>
+
+<!-- Schéma bilan de puissance -->
+<div class="svg-wrap">
+  <svg viewBox="0 0 460 140" width="460" height="140" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+    <!-- Bloc alternateur -->
+    <rect x="150" y="30" width="160" height="80" rx="8" fill="#dbeafe" stroke="#0969da" stroke-width="2"/>
+    <text x="230" y="65" text-anchor="middle" fill="#0969da" font-weight="bold" font-size="15">ALTERNATEUR</text>
+    <text x="230" y="85" text-anchor="middle" fill="#555" font-size="12">η &lt; 1</text>
+    <!-- Puissance mécanique entrée -->
+    <line x1="30" y1="70" x2="148" y2="70" stroke="#2da44e" stroke-width="2.5"/>
+    <polygon points="146,64 156,70 146,76" fill="#2da44e"/>
+    <text x="90" y="55" text-anchor="middle" fill="#2da44e" font-weight="bold" font-size="13">P méca</text>
+    <!-- Puissance électrique sortie -->
+    <line x1="312" y1="70" x2="430" y2="70" stroke="#0969da" stroke-width="2.5"/>
+    <polygon points="428,64 438,70 428,76" fill="#0969da"/>
+    <text x="375" y="55" text-anchor="middle" fill="#0969da" font-weight="bold" font-size="13">P élec</text>
+    <!-- Pertes -->
+    <line x1="230" y1="112" x2="230" y2="135" stroke="#e53e3e" stroke-width="2"/>
+    <polygon points="224,133 230,143 236,133" fill="#e53e3e"/>
+    <text x="230" y="155" text-anchor="middle" fill="#e53e3e" font-size="12">Pertes (Joule, méca, fer)</text>
+  </svg>
+</div>
+
+<div class="ex">
+  <strong>Exemple 5 :</strong> Un alternateur d'éolienne reçoit une puissance mécanique de 15 kW et fournit une puissance électrique de 12,75 kW. Calculer son rendement.
+  <p>
+    \(\eta = \dfrac{P_{\text{élec}}}{P_{\text{méca}}} = \dfrac{12{,}75}{15} = 0{,}85 = 85\;\%\)
+  </p>
+  <p>Les pertes représentent \(15 - 12{,}75 = 2{,}25\;\text{kW}\), soit 15 % de la puissance mécanique.</p>
+</div>
+
+<div class="ex">
+  <strong>Exemple 6 :</strong> Un groupe électrogène a un rendement de 92 %. Quelle puissance mécanique doit fournir le moteur thermique pour obtenir 5 kW de puissance électrique ?
+  <p>
+    \(P_{\text{méca}} = \dfrac{P_{\text{élec}}}{\eta} = \dfrac{5}{0{,}92} \approx 5{,}43\;\text{kW}\)
+  </p>
+</div>
+
+<!-- ===== 4. APPLICATIONS ===== -->
+<h2>4. Applications professionnelles</h2>
+
+<h3>4.1 L'induction au quotidien</h3>
+
+<p>Le phénomène d'induction est à la base de nombreuses technologies :</p>
+<ul>
+  <li><strong>Plaques de cuisson à induction</strong> : un champ magnétique variable crée des courants induits dans le fond métallique de la casserole, qui s'échauffe par effet Joule</li>
+  <li><strong>Chargeurs sans fil</strong> : une bobine émettrice crée un champ magnétique variable qui induit un courant dans la bobine du téléphone</li>
+  <li><strong>Capteurs de proximité inductifs</strong> : détectent la présence de pièces métalliques sur les lignes de production</li>
+  <li><strong>Transformateurs</strong> : le courant alternatif dans le primaire crée un champ variable qui induit une tension dans le secondaire</li>
+</ul>
+
+<h3>4.2 Retour à la situation professionnelle</h3>
+
+<div class="ex">
+  <strong>Réponses aux questions de Sofia :</strong>
+  <ol>
+    <li><strong>Comment un mouvement de rotation crée-t-il du courant ?</strong><br>
+      La rotation des pales entraîne un aimant (rotor) à proximité de bobines fixes (stator). Le champ magnétique traversant les bobines varie → une tension induite apparaît → un courant alternatif circule.</li>
+    <li><strong>Pourquoi l'éolienne ne restitue-t-elle pas toute l'énergie ?</strong><br>
+      Le rendement de l'alternateur est inférieur à 1. Une partie de l'énergie mécanique est perdue sous forme de chaleur (effet Joule, frottements, pertes fer).</li>
+    <li><strong>Comment prévoir le sens du courant ?</strong><br>
+      La <strong>loi de Lenz</strong> indique que le courant induit s'oppose à la variation du champ magnétique qui l'a créé.</li>
+  </ol>
+</div>
+
+<!-- ===== 5. ESSENTIEL ===== -->
+<h2>5. L'essentiel du chapitre</h2>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Une <strong>variation de champ magnétique</strong> à travers un circuit crée une <strong>tension induite</strong>.</li>
+    <li>Deux situations d'induction : circuit fixe / champ variable, ou circuit mobile / champ constant.</li>
+    <li><strong>Loi de Lenz :</strong> le courant induit s'oppose à la cause qui l'a créé.</li>
+    <li>L'<strong>alternateur</strong> convertit l'énergie mécanique en énergie électrique par induction.</li>
+    <li>Le rendement d'un alternateur est toujours <strong>inférieur à 1</strong> : \(\eta = \dfrac{P_{\text{élec}}}{P_{\text{méca}}} < 1\).</li>
+    <li>Les pertes sont dues à l'effet Joule, aux frottements et aux pertes magnétiques.</li>
+  </ul>
+</div>
+
+<footer>
+  <p>Terminale Bac Pro – Groupement 2 | Physique-Chimie – Chapitre 1 | maths-sciences-lp.github.io</p>
+</footer>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
