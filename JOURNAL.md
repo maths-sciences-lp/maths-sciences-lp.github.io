@@ -74,17 +74,24 @@
 - Fix capacité C5 manquante (ch12 Pythagore + ch13 Thalès) + 6 exercices + SVG
 - SVG ajoutés dans exercices-capacités (ch01, ch03, ch05, ch06 — 8 figures)
 
-### En cours (31 mars 2026)
-- SVG pour exercices-capacités ch04, ch07, ch08, ch09, ch10
-- Audit exercices classiques maths Seconde terminé → ch02, ch03, ch09 à améliorer
+### Session 31 mars 2026
+- 15 SVG ajoutés dans exercices-capacités ch04/07/08/09/10 (arbres probas, courbes fonctions, paraboles)
+- Audit exercices classiques maths Seconde : 517 exercices analysés
+- Fix ch02 exercices.html : rééquilibrage appro (4→7) + 3 SVG
+- Fix ch03 exercices.html : rééquilibrage appro (3→8) + 3 SVG, socle allégé (17→12)
+- Fix ch09 exercices.html : +12 SVG intégrés (0→12, graphiques fonctions affines)
+- **features.js** : barre de recherche (Ctrl+K), mode sombre (🌙), progression élève (✅ checkbox localStorage)
+- JOURNAL.md créé (journal de bord du projet)
+- 3 programmes extraits en markdown : PC 1ère 6 gpt, PC Term 6 gpt, BTS maths
+- Ajout séries CAP dans nav.js (fil d'Ariane fonctionnel sur pages CAP)
 
 ---
 
 ## Prochaines priorités
 
 ### Priorité 1 — Classes de cette année (2nde MAMA, Term ICCER, Term ERA-MA)
-- [ ] Améliorer ch02, ch03 exercices.html (appro faible)
-- [ ] Ajouter SVG ch09 exercices.html (0 SVG pour 48 exo sur fonctions affines)
+- [x] ~~Améliorer ch02, ch03 exercices.html (appro faible)~~ ✅ fait
+- [x] ~~Ajouter SVG ch09 exercices.html~~ ✅ fait (12 SVG)
 - [ ] Figures SVG PC Term ERA (ch02-08, comme fait pour ICCER)
 
 ### Priorité 2 — CAP
