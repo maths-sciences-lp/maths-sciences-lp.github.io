@@ -503,6 +503,17 @@
   /* ── Chargement de nav.css ─────────────────────────────────────────── */
   injectCss();
 
+  /* ── Chargement de features.js (recherche, mode sombre, progression) ── */
+  (function () {
+    var depth = (window.location.pathname.match(/\//g) || []).length - 1;
+    var prefix = '';
+    for (var i = 0; i < depth; i++) prefix += '../';
+    var s = document.createElement('script');
+    s.src = prefix + 'features.js';
+    s.async = true;
+    document.body.appendChild(s);
+  })();
+
   /* ── Fonction toggle globale pour boutons « Voir la correction » ──── */
   if (typeof window.toggle !== 'function') {
     window.toggle = function (btn) {
