@@ -118,6 +118,40 @@
       ]
     },
 
+    /* Mathématiques — CAP */
+    'maths/cap': {
+      summary:      'maths-cap.html',
+      summaryLabel: 'CAP',
+      subject:      'Mathématiques',
+      types: { lecon: 'Cours', exercices: 'Exercices', qcm: 'QCM', fiche: 'Fiche résumé' },
+      chapters: [
+        { id: '01', title: 'Statistiques à une variable' },
+        { id: '02', title: 'Probabilités' },
+        { id: '03', title: 'Proportionnalité et pourcentages' },
+        { id: '04', title: 'Équations du premier degré' },
+        { id: '05', title: 'Fonctions' },
+        { id: '06', title: 'Géométrie' },
+        { id: '07', title: 'Calculs numériques' }
+      ]
+    },
+
+    /* Physique-Chimie — CAP */
+    'physique-chimie/cap': {
+      summary:      'pc-cap.html',
+      summaryLabel: 'CAP',
+      subject:      'Physique-Chimie',
+      types: { lecon: 'Cours', exercices: 'Exercices', qcm: 'QCM', fiche: 'Fiche résumé' },
+      chapters: [
+        { id: '01', title: 'Sécurité' },
+        { id: '02', title: 'Électricité' },
+        { id: '03', title: 'Mécanique' },
+        { id: '04', title: 'Chimie' },
+        { id: '05', title: 'Acoustique' },
+        { id: '06', title: 'Thermique' },
+        { id: '07', title: 'Optique' }
+      ]
+    },
+
     /* Physique-Chimie — 2nde Pro MAMA */
     'physique-chimie/seconde': {
       summary:      'pc-2nde-pro.html',
@@ -231,7 +265,9 @@
     'pc-term-iccer.html':    { label: 'Physique-Chimie — Terminale ICCER' },
     'pc-term-erama.html':    { label: 'Physique-Chimie — Terminale ERA-MA' },
     'simulations.html':      { label: 'Simulations interactives' },
-    'maths-bts.html':        { label: 'Mathématiques — BTS' }
+    'maths-bts.html':        { label: 'Mathématiques — BTS' },
+    'maths-cap.html':        { label: 'Mathématiques — CAP' },
+    'pc-cap.html':           { label: 'Physique-Chimie — CAP' }
   };
 
   /* ── Détection du chemin courant ───────────────────────────────────── */
