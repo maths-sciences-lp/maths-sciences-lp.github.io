@@ -79,8 +79,8 @@ canvas{display:block;border-radius:8px;border:1px solid #e2e8f0}
       <canvas id="plaque" width="320" height="320" style="width:100%;max-width:320px"></canvas>
 
       <div class="slider-wrap" style="margin-top:14px">
-        <label>Côté du carré découpé x (cm) <span id="xVal">5</span></label>
-        <input type="range" id="slider" min="0.5" max="14.5" step="0.5" value="5">
+        <label>Côté du carré découpé x (cm) <span id="xVal">2</span></label>
+        <input type="range" id="slider" min="0.5" max="14.5" step="0.5" value="2">
       </div>
 
       <div class="dims" id="dims"></div>
@@ -101,17 +101,13 @@ canvas{display:block;border-radius:8px;border:1px solid #e2e8f0}
 
       <div class="toggle-row">
         <label><input type="checkbox" id="showDeriv" onchange="update()"> Afficher V'(x)</label>
-        <label><input type="checkbox" id="showMax" checked onchange="update()"> Marquer le maximum</label>
+        <label><input type="checkbox" id="showMax" onchange="update()"> Marquer le maximum</label>
       </div>
 
       <div class="vol-display">
-        <div class="vol-card">
+        <div class="vol-card" style="grid-column:1/-1">
           <div class="label">Volume actuel V(x)</div>
           <div class="value" id="volVal">—</div>
-        </div>
-        <div class="vol-card max-zone">
-          <div class="label">Volume maximum</div>
-          <div class="value">2 000 cm³</div>
         </div>
       </div>
 
@@ -130,22 +126,14 @@ canvas{display:block;border-radius:8px;border:1px solid #e2e8f0}
         pour x ∈ ]0 ; 15[
       </div>
       <div style="background:#f0fdf4;border-radius:8px;padding:12px">
-        <strong style="color:#16a34a">Dérivée</strong><br>
+        <strong style="color:#16a34a">Dérivée (Q3)</strong><br>
         V'(x) = 12x² − 240x + 900<br>
-        V'(x) = 12(x − 5)(x − 15)<br>
-        V'(x) = 0 pour x = 5 ou x = 15
+        On admet : V'(x) = 12(x − 5)(x − 15)
       </div>
       <div style="background:#fffbeb;border-radius:8px;padding:12px">
-        <strong style="color:#b45309">Maximum</strong><br>
-        V'(x) &gt; 0 sur ]0 ; 5[ → croissant<br>
-        V'(x) &lt; 0 sur ]5 ; 15[ → décroissant<br>
-        Maximum en x = 5 : V(5) = 2 000 cm³
-      </div>
-      <div style="background:#fdf2f8;border-radius:8px;padding:12px">
-        <strong style="color:#9333ea">Dimensions du bac</strong><br>
-        Hauteur : x = 5 cm<br>
-        Longueur = Largeur : 30 − 2×5 = 20 cm<br>
-        Volume : 5 × 20 × 20 = 2 000 cm³
+        <strong style="color:#b45309">Contrainte</strong><br>
+        Le bac doit contenir au minimum<br>
+        <strong>1 500 cm³</strong> pour être utilisable.
       </div>
     </div>
   </div>
@@ -338,10 +326,7 @@ function update(){
 
   // Alert norme
   const pct = Math.round(vol/2000*100);
-  if(x === 5){
-    alertBox.className='alert ok';
-    alertBox.textContent = `✓ Volume maximal atteint (${vol.toLocaleString('fr')} cm³) — x = 5 cm est optimal !`;
-  } else if(vol >= 1500){
+  if(vol >= 1500){
     alertBox.className='alert ok';
     alertBox.textContent = `✓ Volume suffisant (${pct}% du maximum). La contrainte ≥ 1 500 cm³ est respectée.`;
   } else {
@@ -358,10 +343,10 @@ function update(){
   `;
 
   // Info grid
-  infoGridEl.innerHTML = `
-    <div class="info-item"><div class="k">V'(x) en x=${x}</div><div class="v">${vp} ${vp>0?'→ V croissante':vp<0?'→ V décroissante':'→ extremum'}</div></div>
-    <div class="info-item"><div class="k">Distance au maximum</div><div class="v">${Math.abs(x-5).toFixed(1)} cm de x = 5</div></div>
-  `;
+  const showDeriv = document.getElementById('showDeriv').checked;
+  infoGridEl.innerHTML = showDeriv ? `
+    <div class="info-item" style="grid-column:1/-1"><div class="k">V'(x) en x=${x}</div><div class="v">${vp} ${vp>0?'→ V croissante':vp<0?'→ V décroissante':'→ extremum local'}</div></div>
+  ` : '';
 
   drawPlaque(x);
   drawGraph(x);
