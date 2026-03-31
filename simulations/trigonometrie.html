@@ -48,6 +48,7 @@ canvas#circleCanvas{display:block;margin:0 auto;background:#fff;border:1px solid
   header h1{font-size:1.2em}
 }
 </style>
+</head>
 <body>
 <header>
   <a href="../simulations.html" class="btn-back">&larr; Retour</a>
@@ -59,12 +60,12 @@ canvas#circleCanvas{display:block;margin:0 auto;background:#fff;border:1px solid
   <div class="card">
     <h2>Angle &alpha;</h2>
     <div class="slider-row">
-      <label>&alpha; =</label>
+      <label for="angleSlider">&alpha; =</label>
       <input type="range" id="angleSlider" min="0" max="360" value="45" step="1">
       <span class="val" id="angleVal">45&deg;</span>
     </div>
     <div class="toggle-row">
-      <label><input type="checkbox" id="useRad" onchange="updateAngle()"> Afficher en radians</label>
+      <label for="useRad"><input type="checkbox" id="useRad" onchange="updateAngle()"> Afficher en radians</label>
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
       <button onclick="setAngle(0)" class="nb-btn">0</button>
@@ -82,12 +83,12 @@ canvas#circleCanvas{display:block;margin:0 auto;background:#fff;border:1px solid
   <div class="main-grid">
     <div class="card">
       <h2>Cercle trigonom&eacute;trique</h2>
-      <canvas id="circleCanvas" width="380" height="380"></canvas>
+      <canvas id="circleCanvas" width="380" height="380" aria-label="Cercle trigonométrique interactif avec projections sin, cos et tan">Le cercle trigonométrique avec les projections de l'angle courant.</canvas>
     </div>
     <div class="card">
       <h2>Courbes sin(&alpha;) et cos(&alpha;)</h2>
       <div class="chart-container">
-        <canvas id="sinCosChart"></canvas>
+        <canvas id="sinCosChart" aria-label="Graphique des courbes sinus et cosinus de 0° à 360°">Courbes sin(α) et cos(α).</canvas>
       </div>
     </div>
   </div>
@@ -152,7 +153,8 @@ function initChart() {
       datasets: [
         { label: 'sin(\u03b1)', data: sinData, borderColor: '#e53e3e', borderWidth: 2, pointRadius: 0, fill: false, tension: 0.4 },
         { label: 'cos(\u03b1)', data: cosData, borderColor: '#1976d2', borderWidth: 2, pointRadius: 0, fill: false, tension: 0.4 },
-        { label: 'Position actuelle', data: [], pointRadius: 8, pointBackgroundColor: '#e69500', showLine: false }
+        { label: 'sin(α) courant', data: new Array(labels.length).fill(null), pointRadius: 6, pointBackgroundColor: '#e53e3e', showLine: false },
+        { label: 'cos(α) courant', data: new Array(labels.length).fill(null), pointRadius: 6, pointBackgroundColor: '#1976d2', showLine: false }
       ]
     },
     options: {
@@ -179,13 +181,9 @@ function updateAngle() {
   // Display angle
   const av = document.getElementById('angleVal');
   if (useRad) {
-    const frac = deg / 180;
-    if (deg === 0) av.textContent = '0 rad';
-    else if (deg === 180) av.textContent = '\u03c0 rad';
-    else if (deg === 360) av.textContent = '2\u03c0 rad';
-    else if (deg === 90) av.textContent = '\u03c0/2 rad';
-    else if (deg === 270) av.textContent = '3\u03c0/2 rad';
-    else av.textContent = (rad).toFixed(3) + ' rad';
+    const radSymbols = {0:'0',30:'\u03c0/6',45:'\u03c0/4',60:'\u03c0/3',90:'\u03c0/2',120:'2\u03c0/3',135:'3\u03c0/4',150:'5\u03c0/6',180:'\u03c0',210:'7\u03c0/6',225:'5\u03c0/4',240:'4\u03c0/3',270:'3\u03c0/2',300:'5\u03c0/3',315:'7\u03c0/4',330:'11\u03c0/6',360:'2\u03c0'};
+    if (radSymbols[deg] !== undefined) av.textContent = radSymbols[deg] + ' rad';
+    else av.textContent = rad.toFixed(3) + ' rad';
   } else {
     av.textContent = deg + '\u00b0';
   }
@@ -204,13 +202,31 @@ function updateAngle() {
   document.getElementById('identityBox').innerHTML =
     `sin\u00b2(\u03b1) + cos\u00b2(\u03b1) = ${sinA.toFixed(4)}\u00b2 + ${cosA.toFixed(4)}\u00b2 = <span class="check" style="color:#276749">${sum.toFixed(6)} = 1 \u2713</span>`;
 
+  // Highlight notable angle in table
+  const notableAngles = [0, 30, 45, 60, 90, 180];
+  const colIdx = notableAngles.indexOf(deg);
+  const table = document.getElementById('notableTable');
+  table.querySelectorAll('td.active-angle').forEach(td => td.classList.remove('active-angle'));
+  if (colIdx !== -1) {
+    table.querySelectorAll('tbody tr').forEach(tr => {
+      const td = tr.children[colIdx + 1];
+      if (td) td.classList.add('active-angle');
+    });
+  }
+
   // Draw circle
   drawCircle(deg, rad, sinA, cosA, tanA);
 
-  // Update chart marker
-  sinCosChart.data.datasets[2].data = [{ x: deg, y: sinA }, { x: deg, y: cosA }];
-  sinCosChart.data.datasets[2].pointBackgroundColor = ['#e53e3e', '#1976d2'];
-  sinCosChart.data.datasets[2].pointRadius = [8, 8];
+  // Update chart markers
+  const idx = Math.round(deg / 5);
+  const sinMarker = new Array(sinCosChart.data.labels.length).fill(null);
+  const cosMarker = new Array(sinCosChart.data.labels.length).fill(null);
+  if (idx >= 0 && idx < sinMarker.length) {
+    sinMarker[idx] = sinA;
+    cosMarker[idx] = cosA;
+  }
+  sinCosChart.data.datasets[2].data = sinMarker;
+  sinCosChart.data.datasets[3].data = cosMarker;
   sinCosChart.update('none');
 }
 
@@ -265,7 +281,7 @@ function drawCircle(deg, rad, sinA, cosA, tanA) {
   cctx.strokeStyle = '#e69500';
   cctx.lineWidth = 2;
   cctx.beginPath();
-  cctx.arc(cx, cy, 30, 0, -rad, rad > 0);
+  cctx.arc(cx, cy, 30, 0, -rad, true);
   cctx.stroke();
 
   // Angle label
@@ -323,12 +339,14 @@ function drawCircle(deg, rad, sinA, cosA, tanA) {
   cctx.fillStyle = '#e69500'; cctx.fill();
   cctx.strokeStyle = '#fff'; cctx.lineWidth = 2; cctx.stroke();
 
-  // Labels on projections
+  // Labels on projections (adapté au quadrant)
   cctx.font = 'bold 12px Segoe UI';
   cctx.fillStyle = '#1976d2';
-  cctx.fillText('cos', cx + (px - cx) / 2 - 10, cy + 16);
+  const cosLabelY = sinA >= 0 ? cy + 16 : cy - 8;
+  cctx.fillText('cos', cx + (px - cx) / 2 - 10, cosLabelY);
   cctx.fillStyle = '#e53e3e';
-  cctx.fillText('sin', px + 8, cy - (cy - py) / 2 + 4);
+  const sinLabelX = cosA >= 0 ? px + 8 : px - 28;
+  cctx.fillText('sin', sinLabelX, cy - (cy - py) / 2 + 4);
   if (tanA !== null && Math.abs(tanA) < 10) {
     cctx.fillStyle = '#38a169';
     cctx.fillText('tan', cx + R + 8, cy - R * tanA / 2 + 4);

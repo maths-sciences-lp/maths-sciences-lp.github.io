@@ -1,7 +1,7 @@
 # Audit Simulations Interactives
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-19 (bilan Seconde)
+**Dernière mise à jour** : 2026-03-31 (audit trigonometrie.html)
 **Périmètre** : dossier `simulations/` — 64 fichiers HTML
 **Méthode** : Lecture et analyse de l'ensemble des 64 simulations, vérification du référencement depuis les pages de cours, analyse de la couverture par chapitre, audit technique approfondi (autonomie, responsive, accessibilité, qualité JS).
 
@@ -282,6 +282,7 @@ Simulations mentionnant un chapitre sans niveau ou un niveau sans chapitre :
 - **2026-03-17** : Créé `liaisons-chimiques.html` — simulation interactive sur les types de liaisons chimiques (covalente vs ionique), 6 molécules (H₂O, CO₂, CH₄, O₂, N₂, NaCl), ancrage Ch07 PC Seconde. Ajouté à `simulations.html`.
 - **2026-03-17** : Audit technique approfondi des simulations PC Seconde et page simulations — corrections de l'inventaire : 17 simulations rattachées à PC Seconde (pas 11), 13/14 chapitres couverts, toutes référencées depuis les cours. Reclassement des 6 simulations "sans niveau". Identification d'un nouveau problème d'accessibilité (aria-label manquants). Confirmation que toutes les simulations PC Seconde utilisent le template moderne et sont responsives (sauf modeles-atome.html).
 - **2026-03-19** : Bilan Seconde — 32 simulations couvrent la Seconde (15 maths + 17 PC), couvrant 27/28 chapitres (seul PC ch01 Sécurité sans simulation). En plus, maths/seconde/ch05 et ch06 disposent de simulation.html intégrées dans le chapitre.
+- **2026-03-31** : Audit approfondi de `trigonometrie.html` (Maths Terminale Ch07) — 7 corrections : ajout `</head>` manquant (HTML invalide), correction arc d'angle pour α > 180°, correction bug marqueurs Chart.js (points invisibles car format `{x,y}` incompatible avec axe catégoriel), ajout aria-label sur canvas et `for` sur labels, extension affichage symbolique radians (17 angles remarquables au lieu de 5), surbrillance dynamique du tableau des angles remarquables, repositionnement labels sin/cos selon le quadrant.
 
 ---
 
@@ -321,7 +322,7 @@ Simulations mentionnant un chapitre sans niveau ou un niveau sans chapitre :
 | ~~Incluant `nav.js` (non-conforme)~~ | **0** (corrigé 2026-03-16) |
 | Sans media query | **8** (13 %) — dont 1 seule en PC Seconde |
 | Template ancien (à revérifier) | **~19** (estimation révisée, PC Seconde = 0) |
-| Sans `aria-label` (accessibilité) | **64** (100 %) — problème transversal |
+| Sans `aria-label` (accessibilité) | **63** (98 %) — problème transversal (trigonometrie.html corrigée) |
 
 ### Répartition par section
 
