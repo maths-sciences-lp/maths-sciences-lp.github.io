@@ -1,7 +1,7 @@
 # Plan d'amelioration — Chapitres de Seconde
 
 **Date** : 2026-03-17
-**Derniere mise a jour** : 2026-03-17
+**Derniere mise a jour** : 2026-03-31
 **Perimetre** : maths/seconde (14 ch.) + physique-chimie/seconde (14 ch.)
 
 ---
@@ -43,9 +43,9 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 
 ### PRIORITE 2 — Ameliorations pedagogiques
 
-- [ ] **PC ch01-ch14 lecon** — Ajouter la classe `.situation` aux contextes professionnels existants (0 occurrences actuellement)
+- [x] **PC ch01-ch14 lecon** — Ajouter la classe `.situation` aux contextes professionnels existants ✅ 2026-03-31
+- [x] **PC Seconde** — Diversifier les contextes pro : ajout sante, sport, energie, telecoms, quotidien ✅ 2026-03-31
 - [ ] **Maths ch02 lecon** — Completer ou reorganiser le chapitre Statistiques (indicateurs de position/dispersion renvoyes vers ch03, cours anormalement court a 349 lignes)
-- [ ] **PC Seconde** — Diversifier les contextes pro : ajouter sport, sante, environnement (actuellement quasi exclusivement menuiserie)
 - [ ] **Maths Seconde** — Ajouter des sections "Erreurs frequentes" (blocs `.att`) dans les chapitres qui en manquent
 
 ### PRIORITE 3 — Enrichissements
@@ -75,10 +75,16 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 
 ---
 
+## Corrections realisees
+
+- **2026-03-31** : Ajout de blocs `.situation` sur 13 lecons PC Seconde (ch01-ch14, ch07 deja traite). Diversification des contextes professionnels : sante (audiologie, serums, oxymetre), sport (tapis de course, cycliste, salle de sport), energie (pompe a chaleur, thermostat, panneaux solaires), telecoms (fibre optique internet), quotidien (boisson, sudation, thermos). Maths ch01 : SVG ajoutés dans exercices et exercices-capacites.
+
+---
+
 ## Suivi
 
 | Phase | Statut | Date debut | Date fin |
 |---|---|---|---|
 | Phase 1 — Corrections techniques | A faire | — | — |
-| Phase 2 — Ameliorations pedagogiques | A faire | — | — |
+| Phase 2 — Ameliorations pedagogiques | En cours | 2026-03-31 | — |
 | Phase 3 — Enrichissements | A faire | — | — |
