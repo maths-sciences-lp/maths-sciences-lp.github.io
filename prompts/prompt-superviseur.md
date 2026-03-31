@@ -24,15 +24,20 @@ Ces fichiers contiennent les programmes de mathématiques et de physique-chimie 
 `/prompts`
 
 Ils contiennent :
-- prompt-cours
-- prompt-exercices
-- prompt-filiere-ticcer
-- prompt-filiere-era-ma
-- prompt-filiere-2mama
+- `prompt-cours.md` — structure d'une page de cours (avec consignes figures SVG)
+- `prompt-exercices.md` — structure d'une page d'exercices (avec figures obligatoires)
+- `prompt-exercices-capacites.md` — exercices par capacités du programme (conventions SVG détaillées)
+- `prompt-qcm-interro.md` — QCM et interrogations (avec figures dans les questions)
+- `prompt-activite.md` — activités de découverte (avec figures dans le document d'accroche)
+- `prompt-fiche.md` — fiches de révision (avec figures de synthèse)
+- `prompt-bts.md` — contenu BTS (avec figures techniques)
+- `prompt-simulation.md` — simulations interactives (Canvas/SVG animé)
+- Prompts de filière : contextes professionnels par formation
 
 Ces prompts définissent :
-- la structure pédagogique des cours
-- la structure des exercices
+- la structure pédagogique de chaque type de page
+- les **figures et schémas SVG obligatoires** par domaine
+- les conventions visuelles du site
 - les contextes professionnels des filières
 
 Toujours utiliser ces prompts comme référence.
@@ -55,23 +60,20 @@ Ne jamais casser la structure existante.
 
 ## STRUCTURE DES PAGES
 
-Chaque chapitre possède trois pages :
+Chaque chapitre possède un dossier `subject/level/chNN/` avec les fichiers suivants :
 
 ```
-chapitre_lecon.html
-chapitre_exos.html
-chapitre_ds.html
+lecon.html              ← cours (obligatoire)
+exercices.html          ← exercices différenciés (obligatoire)
+ds.html                 ← devoir surveillé (obligatoire)
+fiche.html              ← fiche de révision (standard)
+qcm.html               ← QCM interactif (optionnel)
+interro.html            ← interrogation courte (optionnel)
+exercices-capacites.html ← exercices par capacités (standard)
+activite.html           ← activité de découverte (optionnel)
 ```
 
-Exemple :
-
-```
-ch01_lecon.html
-ch01_exos.html
-ch01_ds.html
-```
-
-Respecter cette organisation.
+Respecter cette organisation. Voir CLAUDE.md pour les détails.
 
 ---
 
@@ -85,8 +87,8 @@ Pour créer un cours :
 Le cours doit contenir :
 - explications progressives
 - exemples détaillés
-- illustrations
-- graphiques si nécessaires
+- **figures SVG obligatoires** pour les notions visuelles (voir ci-dessous)
+- graphiques (Chart.js ou SVG) pour les données quantitatives
 - animations pédagogiques si pertinentes
 - encadrés "À retenir"
 
@@ -103,8 +105,9 @@ Pour créer des exercices :
 
 Les exercices doivent :
 - être accessibles
-- comporter plusieurs niveaux de difficulté
+- comporter plusieurs niveaux de difficulté (socle / standard / appro)
 - proposer des contextes variés
+- **contenir des figures SVG pour tous les exercices de lecture graphique, géométrie, circuits, statistiques** (voir prompt-exercices.md)
 
 Les contextes peuvent être :
 - professionnels
@@ -134,6 +137,56 @@ Ces prompts décrivent :
 - les règles de rédaction
 
 Toujours utiliser les noms de métiers plutôt que les sigles des filières.
+
+---
+
+## FIGURES ET SCHÉMAS — RÈGLE TRANSVERSALE
+
+**Règle absolue :** toute page qui porte sur une notion visuelle DOIT contenir des figures SVG inline. Un cours de géométrie sans figure, un exercice de lecture graphique sans courbe, un QCM sur un oscillogramme sans oscillogramme sont des pages **incomplètes**.
+
+### Situations où une figure est OBLIGATOIRE
+
+**Mathématiques :**
+- Fonctions : courbe représentative, tableau de variations illustré, lecture graphique
+- Géométrie : figure cotée (triangles, parallélogrammes, solides), vecteurs
+- Statistiques : diagramme en bâtons, circulaire, boîte à moustaches, histogramme
+- Probabilités : arbre de probabilités, tableau à double entrée
+- Suites : nuage de points \((n ; u_n)\)
+
+**Physique-Chimie :**
+- Électricité : schéma de circuit, caractéristique I(U)
+- Mécanique : bilan des forces, diagramme v(t)
+- Optique : schéma rayon/normale, réflexion/réfraction
+- Thermique : courbe T(t), schéma de transfert thermique
+- Acoustique : oscillogramme, échelle dB
+- Chimie : schéma de verrerie, spectres
+
+### Ne JAMAIS décrire textuellement un graphique que l'élève doit lire
+
+Si l'énoncé dit "le graphique ci-dessous", "l'oscillogramme ci-dessous", "le schéma ci-dessous", alors la figure SVG **DOIT** être présente dans le HTML.
+
+### Conventions SVG
+
+Toutes les figures SVG du site suivent les mêmes conventions (détaillées dans `prompt-exercices-capacites.md`) :
+- Remplissage : `fill="#ebf5ff"`, contour : `stroke="#0056b3"`
+- Labels : `fill="#555"`, axes : `stroke="#333"`
+- Inconnues : `stroke="#c53030"` en pointillés
+- Deuxième courbe : `stroke="#c53030"` (rouge)
+
+### Application par type de page
+
+| Page | Figures |
+|---|---|
+| `lecon.html` | Figures d'illustration des notions (obligatoires si visuel) |
+| `exercices.html` | Figures d'énoncé pour lecture graphique, géométrie, circuits (obligatoires) |
+| `exercices-capacites.html` | Idem exercices, une figure par capacité visuelle (obligatoires) |
+| `ds.html` | Figures d'énoncé si exercice visuel (obligatoires) |
+| `qcm.html` | Figures dans les questions visuelles (obligatoires) |
+| `interro.html` | Figures pour schémas à légender, graphiques à lire (obligatoires) |
+| `activite.html` | Figures dans le document d'accroche si visuel (obligatoires) |
+| `fiche.html` | Figures de synthèse compactes (obligatoires pour chapitres visuels) |
+
+Consulter le prompt spécifique de chaque type de page pour les détails.
 
 ---
 
