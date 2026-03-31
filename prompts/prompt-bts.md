@@ -138,6 +138,67 @@ Les filières BTS sont diverses (CRSA, SIO, ERE, SE, MS…). Ne pas mentionner u
 
 ---
 
+## Figures et schémas — BTS
+
+### Principe
+
+Le niveau BTS exige des représentations graphiques rigoureuses : courbes précises, schémas techniques, diagrammes annotés. Les figures sont un outil de communication professionnelle, pas seulement pédagogique.
+
+### Quand une figure est OBLIGATOIRE
+
+**Cours (`lecon.html`) :**
+- Fonctions : courbe représentative annotée (tangente, asymptotes, points d'inflexion)
+- Suites : représentation graphique (nuage, escalier, toile d'araignée)
+- Statistiques : diagramme en boîte, histogramme, nuage de points avec droite de régression
+- Probabilités : loi normale (courbe de Gauss avec zones de probabilité), arbre
+- Nombres complexes : plan complexe, module, argument
+- Équations différentielles : famille de courbes intégrales
+- Géométrie dans l'espace : solides, plans, droites (si au programme)
+
+**Exercices (`exercices.html`) :**
+- Tout exercice de lecture graphique → fournir la courbe SVG
+- Tout exercice de statistiques → fournir le diagramme SVG
+- Tout exercice demandant "représenter graphiquement" → fournir le repère SVG (axes, grille, graduations)
+- Contextes techniques : schéma de la situation (circuit RC, échangeur, pièce mécanique)
+
+**DS (`ds.html`) :**
+- Si l'exercice porte sur des données graphiques → fournir le graphique SVG
+- Si l'exercice porte sur un contexte technique → fournir le schéma de la situation
+
+**Fiche (`fiche.html`) :**
+- Allure type des courbes étudiées (exponentielle, logarithme, sinusoïde)
+- Courbe de Gauss annotée pour les chapitres de probabilités
+- Figure de référence pour les chapitres de géométrie
+
+### Style SVG à respecter
+
+```html
+<figure class="schema" style="text-align:center;margin:12px 0">
+  <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Contenu -->
+  </svg>
+  <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Légende</figcaption>
+</figure>
+```
+
+**Conventions graphiques :**
+- Remplissage : `fill="#ebf5ff"` (bleu très clair)
+- Contour principal : `stroke="#0056b3"`, `stroke-width="2"`
+- Labels : `font-size="12"`, `fill="#555"`
+- Grilles : `stroke="#e2e8f0"`, `stroke-width="0.5"`
+- Axes : `stroke="#333"`, `stroke-width="1.5"`, flèches aux extrémités
+- Deuxième courbe/droite : `stroke="#c53030"` (rouge)
+- Zones hachurées (probabilités, intégrales) : `fill="#0056b3"`, `opacity="0.15"`
+- Tangentes : `stroke="#2da44e"` (vert), `stroke-dasharray="6,3"`
+
+### Spécificités BTS
+
+- Les figures BTS doivent être **plus précises** que celles du Bac Pro : graduations complètes, unités sur les axes, légendes détaillées
+- Les graphiques de fonctions doivent montrer les **éléments caractéristiques** : points d'inflexion, asymptotes, tangentes
+- Les diagrammes statistiques doivent respecter les **conventions professionnelles** (titres, échelles, sources)
+
+---
+
 ## Spécifications techniques
 
 ### Template `lecon.html` BTS
@@ -189,6 +250,8 @@ Si un QCM est créé pour une page BTS :
 - [ ] Notation mathématique rigoureuse
 - [ ] Exemples appliqués à des contextes techniques
 - [ ] Encadrés `.def`, `.prop`, `.meth`, `.retenir` utilisés
+- [ ] **Figures SVG pour les chapitres visuels** (fonctions, suites, statistiques, probabilités, complexes)
+- [ ] **Conventions SVG respectées** (fill #ebf5ff, stroke #0056b3, graduations complètes)
 - [ ] Lien retour vers `maths-bts.html`
 - [ ] print.css inclus
 
@@ -197,4 +260,5 @@ Si un QCM est créé pour une page BTS :
 - [ ] Corrections complètes (bouton toggle)
 - [ ] Barème explicite pour le DS
 - [ ] Contextes techniques variés
+- [ ] **Figures SVG pour les exercices de lecture graphique, statistiques et contextes techniques**
 - [ ] Rédaction soignée attendue dans les corrections

@@ -155,20 +155,65 @@ La fiche ne contient **pas de corrections cachées** (pas de bouton `.bc` / `.co
 
 ---
 
+## Figures et schémas dans les fiches
+
+### Principe
+
+La fiche est un **mémo visuel**. Un schéma synthétique vaut souvent mieux qu'un paragraphe de texte. Les figures de la fiche sont des **résumés visuels** des notions du cours, pas des copies intégrales des figures du cours.
+
+### Quand une figure est OBLIGATOIRE
+
+| Domaine | Figure attendue |
+|---|---|
+| Géométrie | Figure de référence cotée (triangle rectangle, Thalès, solide) |
+| Fonctions | Allure type de la courbe (droite, parabole, exponentielle) avec vocabulaire annoté (sommet, asymptote, extremum) |
+| Statistiques | Boîte à moustaches annotée (min, Q1, médiane, Q3, max) |
+| Probabilités | Arbre de probabilités type (avec formules P(A∩B)) |
+| Électricité | Schéma de circuit de référence avec grandeurs (U, I, R) |
+| Mécanique | Bilan des forces type (poids, réaction, frottement) |
+| Optique | Schéma de base (réflexion ou réfraction avec angles) |
+| Thermique | Courbe de changement d'état type T(t) annotée (paliers, pentes) |
+
+### Style SVG pour les fiches
+
+Mêmes conventions que les exercices, mais les figures doivent être **compactes** (max 250px de large) pour tenir dans le format 1-2 pages A4 :
+
+```html
+<figure class="schema" style="text-align:center;margin:8px 0">
+  <svg width="220" height="150" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+    <!-- Contenu compact -->
+  </svg>
+  <figcaption style="font-size:0.85em;color:#555;margin-top:3px">Légende courte</figcaption>
+</figure>
+```
+
+Conventions : fill `#ebf5ff`, stroke `#0056b3`, labels `#555`.
+
+---
+
 ## Adaptation par matière
 
 ### Mathématiques
 
 - Mettre en avant les formules de calcul, les propriétés des fonctions, les tableaux de signes/variations types
 - Inclure un tableau de synthèse si le chapitre compare plusieurs objets (ex: suites arithmétiques vs géométriques)
-- Pour les chapitres de géométrie : schéma SVG ou figure légendée
+- **Chapitres de géométrie** : figure SVG de référence cotée (OBLIGATOIRE)
+- **Chapitres de fonctions** : allure type de la courbe annotée (OBLIGATOIRE)
+- **Chapitres de statistiques** : boîte à moustaches annotée ou diagramme type (OBLIGATOIRE)
+- **Chapitres de probabilités** : arbre de probabilités type (OBLIGATOIRE)
+- **Chapitres de suites** : nuage de points type ou représentation en escalier (RECOMMANDÉ)
 
 ### Physique-Chimie
 
 - Mettre en avant les formules physiques avec unités SI
 - Tableau des grandeurs : symbole, nom, unité
 - Inclure les ordres de grandeur importants
-- Schéma de circuit ou de montage si pertinent
+- **Chapitres d'électricité** : schéma de circuit de référence (OBLIGATOIRE)
+- **Chapitres de mécanique** : bilan des forces type (OBLIGATOIRE)
+- **Chapitres d'optique** : schéma rayon/normale (OBLIGATOIRE)
+- **Chapitres de thermique** : courbe T(t) annotée ou schéma de transfert (OBLIGATOIRE)
+- **Chapitres d'acoustique** : oscillogramme type ou échelle dB (RECOMMANDÉ)
+- **Chapitres de chimie** : schéma de verrerie si protocole (RECOMMANDÉ)
 
 ---
 
@@ -181,6 +226,8 @@ La fiche ne contient **pas de corrections cachées** (pas de bouton `.bc` / `.co
 - [ ] Méthodes en étapes numérotées courtes
 - [ ] Au moins un encadré `.att` (erreurs fréquentes)
 - [ ] Encadré `.retenir` en haut
+- [ ] **Figure SVG de synthèse pour les chapitres visuels** (géométrie, fonctions, statistiques, circuits, forces, optique, thermique)
+- [ ] **Conventions SVG respectées** (fill #ebf5ff, stroke #0056b3, compact max 250px)
 - [ ] MathJax inclus si formules
 - [ ] print.css inclus
 - [ ] Couleurs CSS conformes au thème matière/niveau

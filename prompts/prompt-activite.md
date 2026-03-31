@@ -107,6 +107,8 @@ Le document peut être :
 - Suffisamment riche pour générer 4 à 12 questions
 - Lisible : pas surchargé de données inutiles
 
+**Figures dans le document d'accroche :** si le document est un graphique, un schéma ou un plan, il DOIT être fourni en SVG inline — ne jamais le décrire uniquement par du texte.
+
 ### 3. Questions progressives
 
 Les questions sont numérotées (1, 2, 3...) avec des sous-questions si besoin (a, b, c).
@@ -258,18 +260,63 @@ Utiliser les classes `.diff-socle`, `.diff-standard`, `.diff-appro` et `diff.js`
 
 ---
 
+## Figures et schémas dans les activités
+
+### Règle absolue
+
+**Si une question demande à l'élève de lire, analyser ou exploiter un élément visuel, cet élément DOIT être présent en SVG inline.** Ne jamais écrire "observe le graphique ci-dessous" sans fournir le graphique.
+
+### Quand une figure est OBLIGATOIRE
+
+**Mathématiques :**
+- Activité sur les fonctions : courbe SVG à analyser (lecture d'extremums, de variations, d'images)
+- Activité sur la géométrie : figure cotée SVG (triangles, parallélogrammes, solides avec dimensions)
+- Activité sur les statistiques : diagramme SVG à lire (bâtons, circulaire, boîte à moustaches)
+- Activité sur les probabilités : arbre de probabilités SVG ou tableau à double entrée
+- Activité sur les suites : nuage de points SVG \((n ; u_n)\)
+
+**Physique-Chimie :**
+- Activité sur l'électricité : schéma de circuit SVG (symboles normalisés)
+- Activité sur la mécanique : schéma de la situation avec forces SVG
+- Activité sur l'optique : schéma rayon/miroir/dioptre SVG
+- Activité sur la thermique : courbe de changement d'état T(t) SVG ou schéma de transfert
+- Activité sur l'acoustique : oscillogramme SVG
+- Activité sur la chimie : schéma de verrerie SVG si protocole de dilution/dosage
+
+### Quand une figure est RECOMMANDÉE
+
+- Plan coté d'une pièce ou d'un local (contexte professionnel)
+- Croquis d'une installation (chauffage, agencement, menuiserie)
+- Graphique illustrant les données du tableau d'accroche
+- Tout document d'accroche qui serait plus clair avec un visuel
+
+### Style SVG
+
+Mêmes conventions que pour les exercices :
+```html
+<figure class="schema" style="text-align:center;margin:12px 0">
+  <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Contenu -->
+  </svg>
+  <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Légende</figcaption>
+</figure>
+```
+Conventions : fill `#ebf5ff`, stroke `#0056b3`, labels `#555`, axes `#333`, inconnues `#c53030` en pointillés.
+
+---
+
 ## Adaptation par matière
 
 ### Mathématiques
 
 **Types de documents d'accroche privilégiés :**
 - Tableau de valeurs (suites, fonctions, statistiques)
-- Graphique à analyser (courbe, nuage de points)
+- **Graphique SVG à analyser** (courbe, nuage de points, diagramme statistique)
 - Situation de proportionnalité (devis, tarifs, vitesse)
-- Données géométriques (plan, croquis coté)
+- **Données géométriques avec figure SVG** (plan coté, croquis d'une pièce, figure géométrique)
 
 **Progression type :**
-1. Lire et extraire des données (APP)
+1. Lire et extraire des données — **depuis un tableau ou un graphique SVG** (APP)
 2. Calculer des valeurs manquantes (REA)
 3. Observer un pattern ou une régularité (ANA)
 4. Formuler une conjecture (ANA/VAL)
@@ -282,10 +329,11 @@ Utiliser les classes `.diff-socle`, `.diff-standard`, `.diff-appro` et `diff.js`
 - Relevé de mesures (températures, puissances, débits)
 - Fiche technique d'un appareil (pompe à chaleur, radiateur, luminaire)
 - Extrait de notice ou de norme
-- Schéma de circuit ou d'installation
+- **Schéma SVG de circuit ou d'installation** (obligatoire si le chapitre porte sur l'électricité)
+- **Oscillogramme SVG** (obligatoire si le chapitre porte sur les signaux)
 
 **Progression type :**
-1. Identifier les grandeurs et unités (APP)
+1. Identifier les grandeurs et unités — **en lisant le schéma ou le graphique** (APP)
 2. Lire ou extraire des valeurs (APP)
 3. Appliquer une relation entre grandeurs (REA)
 4. Interpréter un résultat physiquement (ANA/VAL)
@@ -310,4 +358,7 @@ Utiliser les classes `.diff-socle`, `.diff-standard`, `.diff-appro` et `diff.js`
 - [ ] print.css inclus
 - [ ] nav.js inclus
 - [ ] Couleurs CSS conformes au thème matière/niveau
+- [ ] **Figures SVG présentes pour toutes les notions visuelles** (graphiques, schémas, figures géométriques, oscillogrammes, circuits)
+- [ ] **Conventions SVG respectées** (fill #ebf5ff, stroke #0056b3, labels #555)
+- [ ] Aucun élément visuel décrit uniquement par du texte quand un schéma est nécessaire
 - [ ] Contenu dans le programme officiel

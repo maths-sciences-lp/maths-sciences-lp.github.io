@@ -260,6 +260,66 @@ function resetQCM(niveau) { /* ... */ }
 
 ---
 
+## Figures et schémas dans les QCM et interrogations
+
+### Règle absolue
+
+**Si une question porte sur un élément visuel (graphique, schéma, oscillogramme, figure géométrique), la figure SVG DOIT être présente dans la question.** Ne jamais écrire "le graphique ci-dessous montre..." sans fournir le graphique.
+
+### Quand une figure est OBLIGATOIRE
+
+**QCM maths — questions nécessitant une figure :**
+- Lecture graphique : "Quel est le maximum de f sur [a;b] ?" → fournir la courbe SVG
+- Identification de courbes : "Quelle courbe représente f(x) = x² ?" → fournir les 4 courbes en options
+- Statistiques : "Quelle est la médiane ?" → fournir le diagramme en boîte ou l'histogramme SVG
+- Géométrie : "Quelle est la mesure de l'angle ?" → fournir la figure cotée SVG
+- Suites : "Cette suite est-elle croissante ?" → fournir le nuage de points SVG
+- Probabilités : "Calculer P(A∩B)" → fournir l'arbre ou le tableau à double entrée
+
+**QCM physique-chimie — questions nécessitant une figure :**
+- Oscillogrammes : "La fréquence du signal est :" → fournir l'oscillogramme SVG
+- Circuits : "Quel est le schéma correct ?" → fournir les schémas de circuits SVG
+- Forces : "Quel vecteur représente le poids ?" → fournir le bilan des forces SVG
+- Optique : "L'angle de réfraction est :" → fournir le schéma rayon/normale SVG
+- Changements d'état : "La température de fusion est :" → fournir la courbe T(t) SVG
+- Spectres : "Cette lampe émet dans le :" → fournir le spectre SVG
+- Niveaux sonores : "Ce niveau est dangereux car :" → fournir l'échelle en dB SVG
+
+**Interro maths — questions nécessitant une figure :**
+- "À partir du graphique, déterminer..." → fournir le graphique SVG
+- "Compléter le tableau de variations à l'aide de la courbe" → fournir la courbe SVG
+- "Lire les coordonnées des points sur la figure" → fournir la figure SVG
+- Tout exercice de géométrie (triangles, Thalès, Pythagore) → fournir la figure cotée SVG
+
+**Interro physique-chimie — questions nécessitant une figure :**
+- "Légender le schéma" → fournir le schéma SVG à compléter
+- "Lire la valeur sur l'oscillogramme" → fournir l'oscillogramme SVG
+- "Compléter le schéma du circuit" → fournir le circuit SVG partiellement rempli
+- "Tracer le vecteur force" → fournir le schéma de la situation SVG
+
+### Style SVG à respecter
+
+```html
+<figure class="schema" style="text-align:center;margin:12px 0">
+  <svg width="250" height="170" viewBox="0 0 250 170" xmlns="http://www.w3.org/2000/svg">
+    <!-- Contenu -->
+  </svg>
+  <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Légende</figcaption>
+</figure>
+```
+
+**Conventions :** fill `#ebf5ff`, stroke `#0056b3`, labels `#555`, axes `#333`, deuxième courbe `#c53030`.
+
+### Bonnes pratiques
+
+- Dans un QCM, la figure est placée **dans le bloc de la question**, avant les choix
+- Dans une interro, la figure est placée **dans l'énoncé**, avant les sous-questions
+- Pour les QCM avec identification visuelle : proposer 4 figures SVG (une par option A/B/C/D) plutôt que 4 descriptions textuelles
+- Pour le socle : figures plus grandes et plus lisibles, avec labels explicites
+- Pour l'approfondissement : figures pouvant contenir plus d'informations à extraire
+
+---
+
 ## Adaptation par matiere
 
 ### Mathematiques
@@ -335,6 +395,8 @@ function resetQCM(niveau) { /* ... */ }
 - [ ] Feedback correct ET incorrect pour chaque question
 - [ ] Score calcule et affiche
 - [ ] Bouton "Recommencer" fonctionnel
+- [ ] **Figures SVG présentes pour toute question portant sur un élément visuel** (graphique, oscillogramme, circuit, figure géométrique)
+- [ ] **Conventions SVG respectées** (fill #ebf5ff, stroke #0056b3, labels #555)
 - [ ] diff.js inclus et fonctionnel
 - [ ] MathJax si formules
 - [ ] print.css inclus
@@ -345,6 +407,8 @@ function resetQCM(niveau) { /* ... */ }
 - [ ] 5-8 questions par niveau (socle, standard, appro)
 - [ ] Bareme explicite (points par question)
 - [ ] Corrections completes (bouton "Voir la correction")
+- [ ] **Figures SVG présentes pour toute question nécessitant un support visuel** (schéma à légender, graphique à lire, figure géométrique)
+- [ ] **Conventions SVG respectées** (fill #ebf5ff, stroke #0056b3, labels #555)
 - [ ] diff.js inclus et fonctionnel
 - [ ] Rappels methodologiques pour le niveau socle
 - [ ] MathJax si formules

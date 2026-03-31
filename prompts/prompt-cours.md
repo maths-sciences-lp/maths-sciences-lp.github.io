@@ -26,31 +26,63 @@ Le cours doit être clair, progressif et accessible, avec beaucoup d'explication
 - raisonnement étape par étape
 - explications pédagogiques
 
-### 5. Illustrations visuelles
-- proposer des schémas explicatifs
-- proposer des images pédagogiques
-- décrire précisément les images à générer
+### 5. Figures et schémas — OBLIGATOIRES selon le domaine
 
-Pour chaque image, ajouter :
+**Règle absolue :** un cours qui porte sur une notion visuelle DOIT contenir des figures SVG inline. Un cours de géométrie sans figure, un cours de fonctions sans courbe, ou un cours d'électricité sans schéma de circuit est **incomplet**.
 
-> **Prompt image :** description détaillée de l'image à générer
+#### Quand une figure est OBLIGATOIRE dans le cours
 
-### 6. Graphiques
-- produire des graphiques scientifiques clairs
-- si possible générer le code pour :
-  - Chart.js
-  - SVG
-  - ou Canvas
+**Mathématiques :**
+- Fonctions : courbe représentative, tableau de variations illustré, lecture graphique (extremums, antécédents, signe)
+- Géométrie : figure cotée (triangles, parallélogrammes, solides), repérage dans le plan, vecteurs
+- Statistiques : diagramme en bâtons, diagramme circulaire, boîte à moustaches, histogramme
+- Probabilités : arbre de probabilités, tableau à double entrée
+- Suites : nuage de points \((n ; u_n)\), représentation en escalier/toile d'araignée
+
+**Physique-Chimie :**
+- Électricité : schéma de circuit (symboles normalisés), caractéristique I(U)
+- Mécanique : bilan des forces (vecteurs), diagramme v(t), trajectoire
+- Optique : schéma rayon/normale/miroir, réflexion/réfraction
+- Thermique : diagramme de changement d'état T(t), schéma de transfert thermique
+- Acoustique : oscillogramme, échelle de niveaux sonores (dB)
+- Chimie : schéma de verrerie (dilution, dosage), spectres d'émission
+
+#### Style SVG à respecter
+
+```html
+<figure class="schema" style="text-align:center;margin:12px 0">
+  <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Contenu -->
+  </svg>
+  <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Légende</figcaption>
+</figure>
+```
+
+**Conventions graphiques :**
+- Remplissage : `fill="#ebf5ff"` (bleu très clair)
+- Contour principal : `stroke="#0056b3"`, `stroke-width="2"`
+- Labels : `font-size="12"`, `fill="#555"`
+- Grilles : `stroke="#e2e8f0"`, `stroke-width="0.5"`
+- Axes : `stroke="#333"`, `stroke-width="1.5"`, flèches aux extrémités
+- Deuxième courbe/droite : `stroke="#c53030"` (rouge)
+- Solides 3D : arêtes cachées en `stroke-dasharray="4,2"`
+
+#### Quand une figure est RECOMMANDÉE (pas obligatoire)
+
+- Illustration d'une situation professionnelle (croquis coté d'une pièce, plan d'une pièce)
+- Schéma récapitulatif d'une méthode (organigramme de résolution)
+- Toute situation où le texte seul est ambigu ou difficile à comprendre
+
+### 6. Graphiques dynamiques
+
+Pour les données quantitatives qui évoluent (courbes de fonctions, régressions, séries statistiques) :
+- Privilégier **Chart.js** pour les graphiques interactifs
+- Utiliser **SVG** pour les graphiques statiques (lecture graphique, schémas cotés)
+- Réserver **Canvas** pour les animations
 
 ### 7. Animations pédagogiques
-Si c'est pertinent, créer une petite animation ou simulation pour illustrer la notion.
 
-Utiliser par exemple :
-- JavaScript
-- Canvas
-- SVG animé
-
-L'animation doit illustrer un phénomène scientifique.
+Si c'est pertinent, créer une petite animation ou simulation pour illustrer la notion (JavaScript, Canvas, SVG animé). L'animation doit illustrer un phénomène scientifique du programme.
 
 ### 8. Encadrés importants
 Ajouter des encadrés pédagogiques :
@@ -83,6 +115,23 @@ Ajouter quelques questions simples pour vérifier la compréhension.
 - utiliser des sections bien structurées
 - utiliser des classes CSS simples
 - intégrer les graphiques et animations directement dans la page
+
+---
+
+---
+
+## CHECKLIST AVANT PUBLICATION
+
+- [ ] Figures SVG présentes pour toutes les notions visuelles (géométrie, fonctions, circuits, forces…)
+- [ ] Conventions SVG respectées (fill #ebf5ff, stroke #0056b3, labels #555)
+- [ ] Graphiques Chart.js ou SVG pour les données quantitatives
+- [ ] Aucune figure décrite uniquement par du texte quand un schéma est nécessaire
+- [ ] Légendes (`<figcaption>`) sur chaque figure
+- [ ] Figures lisibles à l'impression (tester avec print.css)
+- [ ] MathJax inclus si formules
+- [ ] print.css inclus
+- [ ] nav.js inclus
+- [ ] Couleurs CSS conformes au thème matière/niveau
 
 ---
 
