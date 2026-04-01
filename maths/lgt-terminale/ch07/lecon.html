@@ -449,6 +449,78 @@
 </div>
 </div>
 
+<div class="anim-wrap" style="margin:2em 0">
+<h3 style="text-align:center;color:#4f46e5">Simulation — Tangente mobile et convexité</h3>
+<p style="text-align:center;font-size:.85rem;color:#666;margin-bottom:1em">Déplacer le point de tangence pour observer la position de la tangente par rapport à la courbe.</p>
+<div style="text-align:center;margin-bottom:10px">
+  <label>Fonction : <select id="simConvFunc" style="padding:4px 8px;border-radius:4px;border:1px solid #ccc">
+    <option value="x3">x³ − 3x</option>
+    <option value="x2">x²</option>
+    <option value="xex">xe⁻ˣ</option>
+  </select></label>
+  <label style="margin-left:12px">Point x₀ : <input type="range" id="simConvX" min="-3" max="3" step="0.05" value="0" style="vertical-align:middle;width:200px"><span id="simConvXVal" style="font-weight:700;margin-left:4px">0.00</span></label>
+</div>
+<canvas id="canvasConv" width="560" height="360" style="display:block;margin:0 auto;max-width:100%;border:1px solid #e2e8f0;border-radius:8px;background:#fafbfc"></canvas>
+<p id="simConvInfo" style="text-align:center;font-size:.9rem;font-weight:600;margin-top:8px"></p>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('canvasConv'),ctx=cv.getContext('2d');
+  var funcs={
+    x3:{f:function(x){return x*x*x-3*x},fp:function(x){return 3*x*x-3},fpp:function(x){return 6*x},label:"x³−3x",xR:3,yR:6},
+    x2:{f:function(x){return x*x},fp:function(x){return 2*x},fpp:function(x){return 2},label:"x²",xR:3,yR:5},
+    xex:{f:function(x){return x*Math.exp(-x)},fp:function(x){return(1-x)*Math.exp(-x)},fpp:function(x){return(x-2)*Math.exp(-x)},label:"xe⁻ˣ",xR:5,yR:1.5}
+  };
+  var sl=document.getElementById('simConvX'),lb=document.getElementById('simConvXVal');
+  var sel=document.getElementById('simConvFunc');
+  function draw(){
+    var key=sel.value,obj=funcs[key],f=obj.f,fp=obj.fp,fpp=obj.fpp;
+    var x0=parseFloat(sl.value);lb.textContent=x0.toFixed(2);
+    sl.min=-obj.xR;sl.max=obj.xR;
+    var W=cv.width,H=cv.height,cx=W/2,cy=H/2;
+    var xR=obj.xR,yR=obj.yR;
+    function toX(x){return cx+x/xR*(W/2-40)}
+    function toY(y){return cy-y/yR*(H/2-30)}
+    ctx.clearRect(0,0,W,H);
+    // convexity background
+    for(var px=40;px<W-10;px++){
+      var x=-xR+(px-40)/(W-50)*2*xR;
+      var d2=fpp(x);
+      if(d2>0)ctx.fillStyle='rgba(34,197,94,0.06)';
+      else if(d2<0)ctx.fillStyle='rgba(239,68,68,0.06)';
+      else ctx.fillStyle='transparent';
+      ctx.fillRect(px,30,1,H-50);
+    }
+    // axes
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(40,cy);ctx.lineTo(W-10,cy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,30);ctx.lineTo(cx,H-20);ctx.stroke();
+    // curve
+    ctx.strokeStyle='#4f46e5';ctx.lineWidth=2.5;ctx.beginPath();
+    for(var px=40;px<W-10;px++){
+      var x=-xR+(px-40)/(W-50)*2*xR;
+      var y=f(x);var py=toY(y);
+      if(px===40)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+    // tangent
+    var y0=f(x0),m=fp(x0),d2=fpp(x0);
+    ctx.strokeStyle='#ef4444';ctx.lineWidth=2;ctx.setLineDash([8,5]);ctx.beginPath();
+    ctx.moveTo(toX(-xR),toY(y0+m*(-xR-x0)));ctx.lineTo(toX(xR),toY(y0+m*(xR-x0)));ctx.stroke();ctx.setLineDash([]);
+    // point
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(toX(x0),toY(y0),7,0,2*Math.PI);ctx.fill();
+    // labels
+    ctx.fillStyle='#4f46e5';ctx.font='bold 13px sans-serif';ctx.textAlign='left';ctx.fillText('y = '+obj.label,50,45);
+    ctx.fillStyle='#ef4444';ctx.fillText('Tangente en x₀='+x0.toFixed(2),50,62);
+    // info
+    var state=d2>0.01?'Convexe (f\'\'>0) — tangente en dessous':d2<-0.01?'Concave (f\'\'<0) — tangente au-dessus':'Point d\'inflexion (f\'\'=0)';
+    var color=d2>0.01?'#16a34a':d2<-0.01?'#dc2626':'#f59e0b';
+    document.getElementById('simConvInfo').innerHTML='<span style="color:'+color+'">'+state+'</span> &nbsp;|&nbsp; f\'('+x0.toFixed(2)+') = '+m.toFixed(3)+' &nbsp;|&nbsp; f\'\'('+x0.toFixed(2)+') = '+d2.toFixed(3);
+  }
+  sl.oninput=draw;sel.onchange=function(){sl.value=0;draw()};draw();
+})();
+</script>
+
 </div>
 <script src="../../../nav.js"></script>
 </body>

@@ -239,6 +239,80 @@
 </div>
 </div>
 
+<div class="anim-wrap" style="margin:2em 0">
+<h3 style="text-align:center;color:#4f46e5">Simulation — Méthode de dichotomie</h3>
+<p style="text-align:center;font-size:.85rem;color:#666;margin-bottom:1em">Visualiser la convergence de la dichotomie vers la solution de \(f(x)=0\).</p>
+<div style="text-align:center;margin-bottom:10px">
+  <label>Fonction : <select id="simDichF" style="padding:4px 8px;border-radius:4px;border:1px solid #ccc">
+    <option value="poly">x³+x−1</option>
+    <option value="exp">eˣ+x−2</option>
+    <option value="cos">cos(x)−x</option>
+  </select></label>
+  <button id="btnDichStep" onclick="dichStep()" style="margin-left:12px;padding:6px 16px;background:#4f46e5;color:#fff;border:none;border-radius:6px;cursor:pointer">Étape suivante</button>
+  <button onclick="dichReset()" style="margin-left:6px;padding:6px 12px;background:#94a3b8;color:#fff;border:none;border-radius:6px;cursor:pointer">Reset</button>
+</div>
+<canvas id="canvasDich" width="560" height="340" style="display:block;margin:0 auto;max-width:100%;border:1px solid #e2e8f0;border-radius:8px;background:#fafbfc"></canvas>
+<p id="simDichInfo" style="text-align:center;font-size:.85rem;font-weight:600;color:#4f46e5;margin-top:8px"></p>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('canvasDich'),ctx=cv.getContext('2d');
+  var fns={
+    poly:{f:function(x){return x*x*x+x-1},a:0,b:1,label:'x³+x−1'},
+    exp:{f:function(x){return Math.exp(x)+x-2},a:0,b:1,label:'eˣ+x−2'},
+    cos:{f:function(x){return Math.cos(x)-x},a:0,b:1.5,label:'cos(x)−x'}
+  };
+  var state={a:0,b:1,step:0,key:'poly'};
+  function draw(){
+    var obj=fns[state.key],f=obj.f;
+    var W=cv.width,H=cv.height,pad=50,padR=20,padT=30;
+    var xMin=obj.a-0.3,xMax=obj.b+0.3;
+    var yMin=-1.5,yMax=1.5;
+    function toX(x){return pad+(x-xMin)/(xMax-xMin)*(W-pad-padR)}
+    function toY(y){return H-pad-(y-yMin)/(yMax-yMin)*(H-pad-padT)}
+    ctx.clearRect(0,0,W,H);
+    // axes
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad,toY(0));ctx.lineTo(W-padR,toY(0));ctx.stroke();
+    ctx.beginPath();ctx.moveTo(pad,padT);ctx.lineTo(pad,H-pad);ctx.stroke();
+    // interval shading
+    ctx.fillStyle='rgba(79,70,229,0.1)';
+    ctx.fillRect(toX(state.a),padT,toX(state.b)-toX(state.a),H-pad-padT);
+    // a and b lines
+    ctx.strokeStyle='#16a34a';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(toX(state.a),padT);ctx.lineTo(toX(state.a),H-pad);ctx.stroke();
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(toX(state.b),padT);ctx.lineTo(toX(state.b),H-pad);ctx.stroke();
+    // curve
+    ctx.strokeStyle='#4f46e5';ctx.lineWidth=2.5;ctx.beginPath();
+    for(var px=pad;px<=W-padR;px++){var x=xMin+(px-pad)/(W-pad-padR)*(xMax-xMin);var y=f(x);var py=toY(y);if(px===pad)ctx.moveTo(px,py);else ctx.lineTo(px,py)}
+    ctx.stroke();
+    // midpoint
+    var c=(state.a+state.b)/2;
+    ctx.setLineDash([4,4]);ctx.strokeStyle='#f59e0b';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(toX(c),padT);ctx.lineTo(toX(c),H-pad);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#f59e0b';ctx.beginPath();ctx.arc(toX(c),toY(f(c)),5,0,2*Math.PI);ctx.fill();
+    // labels
+    ctx.fillStyle='#16a34a';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.fillText('a='+state.a.toFixed(4),toX(state.a),H-pad+16);
+    ctx.fillStyle='#dc2626';ctx.fillText('b='+state.b.toFixed(4),toX(state.b),H-pad+16);
+    ctx.fillStyle='#f59e0b';ctx.fillText('c='+c.toFixed(4),toX(c),H-pad+30);
+    ctx.fillStyle='#4f46e5';ctx.font='bold 13px sans-serif';ctx.textAlign='left';ctx.fillText('f(x) = '+obj.label,pad+10,padT+18);
+    document.getElementById('simDichInfo').textContent='Étape '+state.step+' : ['+state.a.toFixed(6)+' ; '+state.b.toFixed(6)+']  |  largeur = '+(state.b-state.a).toFixed(6)+'  |  c = '+c.toFixed(6)+'  |  f(c) = '+f(c).toFixed(6);
+  }
+  window.dichStep=function(){
+    var f=fns[state.key].f,c=(state.a+state.b)/2;
+    if(f(state.a)*f(c)<0)state.b=c;else state.a=c;
+    state.step++;draw();
+  };
+  window.dichReset=function(){
+    state.key=document.getElementById('simDichF').value;
+    state.a=fns[state.key].a;state.b=fns[state.key].b;state.step=0;draw();
+  };
+  document.getElementById('simDichF').onchange=function(){window.dichReset()};
+  dichReset();
+})();
+</script>
+
 <!-- ═══════════════════════════════════════════ -->
 <h2>VI. Suites définies par \(u_{n+1} = f(u_n)\)</h2>
 <!-- ═══════════════════════════════════════════ -->

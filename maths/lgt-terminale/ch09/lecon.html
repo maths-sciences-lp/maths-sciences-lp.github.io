@@ -365,6 +365,73 @@
 </div>
 </div>
 
+<div class="anim-wrap" style="margin:2em 0">
+<h3 style="text-align:center;color:#4f46e5">Simulation — Fonctions réciproques exp et ln</h3>
+<p style="text-align:center;font-size:.85rem;color:#666;margin-bottom:1em">Déplacer le point sur la courbe de \(\ln\) pour voir le point symétrique sur \(e^x\) par rapport à \(y=x\).</p>
+<canvas id="canvasLn" width="500" height="500" style="display:block;margin:0 auto;max-width:100%;border:1px solid #e2e8f0;border-radius:8px;background:#fafbfc;cursor:crosshair"></canvas>
+<p id="lnInfo" style="text-align:center;font-size:.9rem;font-weight:600;color:#4f46e5;margin-top:8px"></p>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('canvasLn'),ctx=cv.getContext('2d');
+  var W=cv.width,H=cv.height,xR=6,yR=6;
+  var cx=W*0.35,cy=H*0.65;
+  var ptX=2;
+  function toX(x){return cx+x/xR*(W-cx-20)}
+  function toY(y){return cy-y/yR*(cy-20)}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // axes
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(20,cy);ctx.lineTo(W-10,cy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,10);ctx.lineTo(cx,H-10);ctx.stroke();
+    ctx.fillStyle='#64748b';ctx.font='11px sans-serif';ctx.textAlign='center';
+    for(var i=1;i<=5;i++){ctx.fillText(i,toX(i),cy+14);ctx.fillText(i,cx-14,toY(i)+4)}
+    // y=x
+    ctx.strokeStyle='#cbd5e1';ctx.lineWidth=1;ctx.setLineDash([6,4]);
+    ctx.beginPath();ctx.moveTo(toX(-1),toY(-1));ctx.lineTo(toX(5),toY(5));ctx.stroke();ctx.setLineDash([]);
+    // exp
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;ctx.beginPath();
+    for(var px=20;px<W-10;px++){var x=-2+(px-cx)/(W-cx-20)*xR;var y=Math.exp(x);if(y>yR*1.2)continue;var py=toY(y);if(x<-1.9)ctx.moveTo(px,py);else ctx.lineTo(px,py)}
+    ctx.stroke();
+    // ln
+    ctx.strokeStyle='#4f46e5';ctx.lineWidth=2.5;ctx.beginPath();var started=false;
+    for(var px=cx+2;px<W-10;px++){var x=(px-cx)/(W-cx-20)*xR;if(x<=0)continue;var y=Math.log(x);var py=toY(y);if(!started){ctx.moveTo(px,py);started=true}else ctx.lineTo(px,py)}
+    ctx.stroke();
+    // symmetric points
+    var lnVal=Math.log(ptX);
+    // point on ln
+    ctx.fillStyle='#4f46e5';ctx.beginPath();ctx.arc(toX(ptX),toY(lnVal),7,0,2*Math.PI);ctx.fill();
+    // symmetric on exp: (lnVal, ptX) = (y, e^y)
+    ctx.fillStyle='#dc2626';ctx.beginPath();ctx.arc(toX(lnVal),toY(ptX),7,0,2*Math.PI);ctx.fill();
+    // symmetry line
+    ctx.strokeStyle='#f59e0b';ctx.lineWidth=1;ctx.setLineDash([4,4]);
+    ctx.beginPath();ctx.moveTo(toX(ptX),toY(lnVal));ctx.lineTo(toX(lnVal),toY(ptX));ctx.stroke();ctx.setLineDash([]);
+    // labels
+    ctx.fillStyle='#4f46e5';ctx.font='bold 13px sans-serif';ctx.textAlign='left';
+    ctx.fillText('y = ln(x)',W-90,toY(Math.log(xR*0.8))+20);
+    ctx.fillStyle='#dc2626';ctx.fillText('y = eˣ',toX(-1.5),toY(Math.exp(-1.5))-10);
+    ctx.fillStyle='#94a3b8';ctx.fillText('y = x',toX(4.5),toY(4.5)-10);
+    document.getElementById('lnInfo').textContent='Point sur ln : ('+ptX.toFixed(2)+' ; '+lnVal.toFixed(3)+')  |  Symétrique sur exp : ('+lnVal.toFixed(3)+' ; '+ptX.toFixed(2)+')';
+  }
+  var dragging=false;
+  cv.addEventListener('mousedown',function(e){dragging=true;update(e)});
+  cv.addEventListener('mousemove',function(e){if(dragging)update(e)});
+  cv.addEventListener('mouseup',function(){dragging=false});
+  cv.addEventListener('touchstart',function(e){e.preventDefault();dragging=true;update(e.touches[0])},{passive:false});
+  cv.addEventListener('touchmove',function(e){e.preventDefault();if(dragging)update(e.touches[0])},{passive:false});
+  cv.addEventListener('touchend',function(){dragging=false});
+  function update(e){
+    var rect=cv.getBoundingClientRect();
+    var px=e.clientX-rect.left;var scaleX=W/rect.width;
+    ptX=(px*scaleX-cx)/(W-cx-20)*xR;
+    if(ptX<0.05)ptX=0.05;if(ptX>5.5)ptX=5.5;
+    draw();
+  }
+  draw();
+})();
+</script>
+
 </div>
 <script src="../../../nav.js"></script>
 </body>

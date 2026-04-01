@@ -526,6 +526,73 @@
 </div>
 </div>
 
+<div class="anim-wrap" style="margin:2em 0">
+<h3 style="text-align:center;color:#4f46e5">Simulation — Produit scalaire et angle</h3>
+<p style="text-align:center;font-size:.85rem;color:#666;margin-bottom:1em">Ajuster l'angle entre les vecteurs pour observer le produit scalaire.</p>
+<div style="text-align:center;margin-bottom:10px">
+  <label>||u⃗|| = <input type="range" id="simPSu" min="0.5" max="3" step="0.1" value="2" style="vertical-align:middle"><span id="simPSuVal" style="font-weight:700;margin-left:4px">2.0</span></label>
+  <label style="margin-left:12px">||v⃗|| = <input type="range" id="simPSv" min="0.5" max="3" step="0.1" value="1.5" style="vertical-align:middle"><span id="simPSvVal" style="font-weight:700;margin-left:4px">1.5</span></label>
+  <label style="margin-left:12px">θ = <input type="range" id="simPSa" min="0" max="360" value="45" style="vertical-align:middle;width:160px"><span id="simPSaVal" style="font-weight:700;margin-left:4px">45°</span></label>
+</div>
+<canvas id="canvasPS" width="460" height="360" style="display:block;margin:0 auto;max-width:100%;border:1px solid #e2e8f0;border-radius:8px;background:#fafbfc"></canvas>
+<p id="simPSInfo" style="text-align:center;font-size:.95rem;font-weight:600;color:#4f46e5;margin-top:8px"></p>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('canvasPS'),ctx=cv.getContext('2d');
+  var sU=document.getElementById('simPSu'),sV=document.getElementById('simPSv'),sA=document.getElementById('simPSa');
+  var lU=document.getElementById('simPSuVal'),lV=document.getElementById('simPSvVal'),lA=document.getElementById('simPSaVal');
+  var scale=80;
+  function draw(){
+    var nu=parseFloat(sU.value),nv=parseFloat(sV.value),deg=parseInt(sA.value);
+    lU.textContent=nu.toFixed(1);lV.textContent=nv.toFixed(1);lA.textContent=deg+'°';
+    var theta=deg*Math.PI/180;
+    var W=cv.width,H=cv.height,ox=W/2-40,oy=H/2+20;
+    ctx.clearRect(0,0,W,H);
+    // u along x
+    var ux=nu*scale,uy=0;
+    // v at angle theta
+    var vx=nv*scale*Math.cos(theta),vy=-nv*scale*Math.sin(theta);
+    // projection of v onto u
+    var dot=nu*nv*Math.cos(theta);
+    var projLen=dot/nu;var projPx=projLen*scale;
+    // draw projection dashed
+    ctx.strokeStyle='#16a34a';ctx.lineWidth=1.5;ctx.setLineDash([5,4]);
+    ctx.beginPath();ctx.moveTo(ox+vx,oy+vy);ctx.lineTo(ox+projPx,oy);ctx.stroke();
+    ctx.setLineDash([]);
+    // projection segment
+    ctx.strokeStyle='#16a34a';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+projPx,oy);ctx.stroke();
+    // angle arc
+    ctx.strokeStyle='#f59e0b';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.arc(ox,oy,30,0,-theta,theta>0);ctx.stroke();
+    ctx.fillStyle='#f59e0b';ctx.font='bold 12px sans-serif';
+    ctx.fillText('θ',ox+35*Math.cos(-theta/2),oy+35*Math.sin(-theta/2)+4);
+    // vector u
+    ctx.strokeStyle='#4f46e5';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+ux,oy);ctx.stroke();
+    // arrowhead u
+    ctx.fillStyle='#4f46e5';ctx.beginPath();ctx.moveTo(ox+ux,oy);ctx.lineTo(ox+ux-12,oy-6);ctx.lineTo(ox+ux-12,oy+6);ctx.fill();
+    // vector v
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+vx,oy+vy);ctx.stroke();
+    ctx.fillStyle='#dc2626';ctx.beginPath();
+    var a2=Math.atan2(vy,vx);ctx.moveTo(ox+vx,oy+vy);ctx.lineTo(ox+vx-12*Math.cos(a2-0.3),oy+vy-12*Math.sin(a2-0.3));ctx.lineTo(ox+vx-12*Math.cos(a2+0.3),oy+vy-12*Math.sin(a2+0.3));ctx.fill();
+    // labels
+    ctx.fillStyle='#4f46e5';ctx.font='bold 14px sans-serif';ctx.textAlign='center';
+    ctx.fillText('u⃗',ox+ux/2,oy+25);
+    ctx.fillStyle='#dc2626';ctx.fillText('v⃗',ox+vx/2-10,oy+vy/2-10);
+    ctx.fillStyle='#16a34a';ctx.font='12px sans-serif';
+    if(Math.abs(projPx)>10)ctx.fillText('proj',ox+projPx/2,oy+18);
+    // info
+    var state=dot>0.01?'positif (angle aigu)':dot<-0.01?'négatif (angle obtus)':'nul (orthogonaux)';
+    var color=dot>0.01?'#16a34a':dot<-0.01?'#dc2626':'#f59e0b';
+    document.getElementById('simPSInfo').innerHTML='u⃗ · v⃗ = ||u⃗|| × ||v⃗|| × cos θ = '+nu.toFixed(1)+' × '+nv.toFixed(1)+' × cos('+deg+'°) = <span style="color:'+color+'"><strong>'+dot.toFixed(2)+'</strong> ('+state+')</span>';
+  }
+  sU.oninput=draw;sV.oninput=draw;sA.oninput=draw;draw();
+})();
+</script>
+
 </div>
 <script src="../../../nav.js"></script>
 </body>

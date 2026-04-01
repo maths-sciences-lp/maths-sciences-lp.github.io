@@ -440,6 +440,82 @@
 </div>
 </div>
 
+<div class="anim-wrap" style="margin:2em 0">
+<h3 style="text-align:center;color:#4f46e5">Simulation — Explorer les limites et asymptotes</h3>
+<p style="text-align:center;font-size:.85rem;color:#666;margin-bottom:1em">Choisir une fonction et ajuster la fenêtre pour observer les asymptotes.</p>
+<div style="text-align:center;margin-bottom:10px">
+  <label>Fonction : <select id="simLimFunc" style="padding:4px 8px;border-radius:4px;border:1px solid #ccc">
+    <option value="inv">1/x</option>
+    <option value="rat">( x²+1)/(x-1)</option>
+    <option value="exp">2 − e⁻ˣ</option>
+    <option value="frac">(2x+1)/(x-3)</option>
+    <option value="lnx">ln(x)</option>
+  </select></label>
+  <label style="margin-left:12px">Zoom x : <input type="range" id="simLimZoom" min="1" max="50" value="10" style="vertical-align:middle"><span id="simLimZoomVal" style="font-weight:700;margin-left:4px">10</span></label>
+</div>
+<canvas id="canvasLim" width="560" height="360" style="display:block;margin:0 auto;max-width:100%;border:1px solid #e2e8f0;border-radius:8px;background:#fafbfc"></canvas>
+<p id="simLimInfo" style="text-align:center;font-size:.85rem;color:#4f46e5;margin-top:8px"></p>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('canvasLim'),ctx=cv.getContext('2d');
+  var funcs={
+    inv:{f:function(x){return 1/x},av:[0],ah:[0],ao:null,label:'f(x) = 1/x'},
+    rat:{f:function(x){return(x*x+1)/(x-1)},av:[1],ah:null,ao:{m:1,p:1},label:'f(x) = (x²+1)/(x−1)'},
+    exp:{f:function(x){return 2-Math.exp(-x)},av:null,ah:[2],ao:null,label:'f(x) = 2 − e⁻ˣ'},
+    frac:{f:function(x){return(2*x+1)/(x-3)},av:[3],ah:[2],ao:null,label:'f(x) = (2x+1)/(x−3)'},
+    lnx:{f:function(x){return x>0?Math.log(x):NaN},av:[0],ah:null,ao:null,label:'f(x) = ln(x)'}
+  };
+  var sl=document.getElementById('simLimZoom'),lb=document.getElementById('simLimZoomVal');
+  var sel=document.getElementById('simLimFunc');
+  function draw(){
+    var key=sel.value,obj=funcs[key],f=obj.f;
+    var zoom=parseFloat(sl.value);lb.textContent=zoom;
+    var W=cv.width,H=cv.height,cx=W/2,cy=H/2;
+    var xR=zoom,yR=zoom*H/W;
+    function toX(x){return cx+x/xR*(W/2-30)}
+    function toY(y){return cy-y/yR*(H/2-30)}
+    ctx.clearRect(0,0,W,H);
+    // grid
+    ctx.strokeStyle='#f1f5f9';ctx.lineWidth=0.5;
+    var step=Math.pow(10,Math.floor(Math.log10(xR/4)));
+    if(xR/step>20)step*=5;else if(xR/step>10)step*=2;
+    for(var gx=-Math.ceil(xR/step)*step;gx<=xR;gx+=step){var px=toX(gx);if(px>30&&px<W-10){ctx.beginPath();ctx.moveTo(px,20);ctx.lineTo(px,H-20);ctx.stroke()}}
+    for(var gy=-Math.ceil(yR/step)*step;gy<=yR;gy+=step){var py=toY(gy);if(py>20&&py<H-10){ctx.beginPath();ctx.moveTo(30,py);ctx.lineTo(W-10,py);ctx.stroke()}}
+    // axes
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(30,cy);ctx.lineTo(W-10,cy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,20);ctx.lineTo(cx,H-10);ctx.stroke();
+    // ticks
+    ctx.fillStyle='#64748b';ctx.font='10px sans-serif';ctx.textAlign='center';
+    for(var gx=step;gx<=xR;gx+=step){ctx.fillText(gx.toFixed(step<1?1:0),toX(gx),cy+14);ctx.fillText((-gx).toFixed(step<1?1:0),toX(-gx),cy+14)}
+    // asymptotes
+    ctx.setLineDash([8,5]);ctx.lineWidth=1.5;
+    if(obj.av)obj.av.forEach(function(a){ctx.strokeStyle='#dc2626';ctx.beginPath();ctx.moveTo(toX(a),20);ctx.lineTo(toX(a),H-10);ctx.stroke();ctx.fillStyle='#dc2626';ctx.font='bold 11px sans-serif';ctx.fillText('x='+a,toX(a)+14,35)});
+    if(obj.ah)obj.ah.forEach(function(a){ctx.strokeStyle='#16a34a';ctx.beginPath();ctx.moveTo(30,toY(a));ctx.lineTo(W-10,toY(a));ctx.stroke();ctx.fillStyle='#16a34a';ctx.textAlign='left';ctx.font='bold 11px sans-serif';ctx.fillText('y='+a,W-50,toY(a)-8);ctx.textAlign='center'});
+    if(obj.ao){ctx.strokeStyle='#f59e0b';ctx.beginPath();var xa=-xR,xb=xR;ctx.moveTo(toX(xa),toY(obj.ao.m*xa+obj.ao.p));ctx.lineTo(toX(xb),toY(obj.ao.m*xb+obj.ao.p));ctx.stroke();ctx.fillStyle='#f59e0b';ctx.font='bold 11px sans-serif';ctx.fillText('y='+obj.ao.m+'x+'+obj.ao.p,toX(xR*0.6),toY(obj.ao.m*xR*0.6+obj.ao.p)-10)}
+    ctx.setLineDash([]);
+    // curve
+    ctx.strokeStyle='#4f46e5';ctx.lineWidth=2.5;
+    var prevY=null;
+    for(var px=31;px<W-10;px++){
+      var x=-xR+(px-30)/(W-40)*2*xR;
+      var y=f(x);if(isNaN(y)||!isFinite(y)||Math.abs(y)>yR*3){prevY=null;continue}
+      var py=toY(y);
+      if(prevY!==null&&Math.abs(py-prevY)<H){ctx.beginPath();ctx.moveTo(px-1,prevY);ctx.lineTo(px,py);ctx.stroke()}
+      prevY=py;
+    }
+    ctx.fillStyle='#4f46e5';ctx.font='bold 13px sans-serif';ctx.textAlign='left';ctx.fillText(obj.label,40,30);
+    var info='';
+    if(obj.ah)info+='AH : y='+obj.ah.join(', ')+'  ';
+    if(obj.av)info+='AV : x='+obj.av.join(', ')+'  ';
+    if(obj.ao)info+='AO : y='+obj.ao.m+'x+'+obj.ao.p;
+    document.getElementById('simLimInfo').textContent=info;
+  }
+  sl.oninput=draw;sel.onchange=draw;draw();
+})();
+</script>
+
 </div>
 <script src="../../../nav.js"></script>
 </body>

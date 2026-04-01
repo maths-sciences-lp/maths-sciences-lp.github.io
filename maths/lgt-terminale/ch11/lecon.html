@@ -326,6 +326,75 @@
 <p style="text-align:center;font-size:.85rem;color:#666">Solutions de y' = −y + 3 : convergence vers l'équilibre y = 3 pour différentes conditions initiales.</p>
 </div>
 
+<div class="anim-wrap" style="margin:2em 0">
+<h3 style="text-align:center;color:#4f46e5">Simulation — Équation différentielle \(y'=ay+b\)</h3>
+<p style="text-align:center;font-size:.85rem;color:#666;margin-bottom:1em">Ajuster \(a\) et \(b\), puis cliquer sur le graphique pour tracer des courbes solutions.</p>
+<div style="text-align:center;margin-bottom:10px">
+  <label>a = <input type="range" id="simEDa" min="-3" max="3" step="0.1" value="-1" style="vertical-align:middle"><span id="simEDaVal" style="font-weight:700;margin-left:4px">-1.0</span></label>
+  <label style="margin-left:12px">b = <input type="range" id="simEDb" min="-5" max="5" step="0.5" value="3" style="vertical-align:middle"><span id="simEDbVal" style="font-weight:700;margin-left:4px">3.0</span></label>
+  <button onclick="edClear()" style="margin-left:12px;padding:6px 12px;background:#94a3b8;color:#fff;border:none;border-radius:6px;cursor:pointer">Effacer courbes</button>
+</div>
+<canvas id="canvasED" width="560" height="380" style="display:block;margin:0 auto;max-width:100%;border:1px solid #e2e8f0;border-radius:8px;background:#fafbfc;cursor:crosshair"></canvas>
+<p id="simEDInfo" style="text-align:center;font-size:.85rem;font-weight:600;color:#4f46e5;margin-top:8px"></p>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('canvasED'),ctx=cv.getContext('2d');
+  var sA=document.getElementById('simEDa'),sB=document.getElementById('simEDb');
+  var lA=document.getElementById('simEDaVal'),lB=document.getElementById('simEDbVal');
+  var W=cv.width,H=cv.height,pad=40;
+  var xR=6,yR=8,curves=[];
+  var colors=['#4f46e5','#dc2626','#16a34a','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#84cc16'];
+  function toX(x){return pad+((x+1)/xR)*(W-2*pad)}
+  function toY(y){return H/2-y/yR*(H-2*pad)}
+  function fromX(px){return(px-pad)/(W-2*pad)*xR-1}
+  function fromY(py){return-(py-H/2)/(H-2*pad)*yR}
+  function draw(){
+    var a=parseFloat(sA.value),b=parseFloat(sB.value);
+    lA.textContent=a.toFixed(1);lB.textContent=b.toFixed(1);
+    var eq=a===0?-b/0.001:-b/a;
+    ctx.clearRect(0,0,W,H);
+    // slope field
+    ctx.strokeStyle='#cbd5e1';ctx.lineWidth=1;
+    for(var xi=-0.5;xi<xR-0.5;xi+=0.4){for(var yi=-yR/2;yi<=yR/2;yi+=0.6){
+      var sl=a*yi+b;var len=12;var ang=Math.atan(sl);
+      var px=toX(xi),py=toY(yi);
+      ctx.beginPath();ctx.moveTo(px-len*Math.cos(ang),py+len*Math.sin(ang));ctx.lineTo(px+len*Math.cos(ang),py-len*Math.sin(ang));ctx.stroke();
+    }}
+    // axes
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(pad,H/2);ctx.lineTo(W-pad,H/2);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(toX(0),pad);ctx.lineTo(toX(0),H-pad);ctx.stroke();
+    // equilibrium
+    if(a!==0){ctx.strokeStyle='#ef4444';ctx.lineWidth=1.5;ctx.setLineDash([6,4]);
+    ctx.beginPath();ctx.moveTo(pad,toY(eq));ctx.lineTo(W-pad,toY(eq));ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#ef4444';ctx.font='bold 11px sans-serif';ctx.textAlign='left';ctx.fillText('y = '+eq.toFixed(1)+' (équilibre)',W-pad-120,toY(eq)-8)}
+    // solution curves
+    curves.forEach(function(c,i){
+      ctx.strokeStyle=colors[i%colors.length];ctx.lineWidth=2;ctx.beginPath();
+      var dt=0.02,y0=c.y,x0=c.x;
+      // forward
+      var y=y0;ctx.moveTo(toX(x0),toY(y));
+      for(var t=x0;t<xR-1;t+=dt){y+=(a*y+b)*dt;if(Math.abs(y)>yR)break;ctx.lineTo(toX(t+dt),toY(y))}
+      ctx.stroke();ctx.beginPath();
+      // backward
+      y=y0;ctx.moveTo(toX(x0),toY(y));
+      for(var t=x0;t>-1;t-=dt){y-=(a*y+b)*dt;if(Math.abs(y)>yR)break;ctx.lineTo(toX(t-dt),toY(y))}
+      ctx.stroke();
+      ctx.fillStyle=colors[i%colors.length];ctx.beginPath();ctx.arc(toX(c.x),toY(c.y),4,0,2*Math.PI);ctx.fill();
+    });
+    document.getElementById('simEDInfo').textContent="y' = "+a.toFixed(1)+"y + "+b.toFixed(1)+(a!==0?"  |  Solution : y = Ce^("+a.toFixed(1)+"x) + ("+eq.toFixed(1)+")":"  |  Solution : y = "+b.toFixed(1)+"x + C");
+  }
+  cv.addEventListener('click',function(e){
+    var rect=cv.getBoundingClientRect();var px=(e.clientX-rect.left)*W/rect.width;var py=(e.clientY-rect.top)*H/rect.height;
+    curves.push({x:fromX(px),y:fromY(py)});draw();
+  });
+  window.edClear=function(){curves=[];draw()};
+  sA.oninput=function(){curves=[];draw()};sB.oninput=function(){curves=[];draw()};
+  draw();
+})();
+</script>
+
 </div>
 <script src="../../../nav.js"></script>
 </body>
