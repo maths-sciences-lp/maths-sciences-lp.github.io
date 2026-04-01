@@ -118,6 +118,67 @@ print(f"alpha in [{a:.4f}, {b:.4f}]")</code></pre>
 </div>
 </div>
 
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Montrer que l'équation \(x\,e^x = 2\) admet une unique solution sur \(]0;+\infty[\) et l'encadrer entre deux entiers consécutifs.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On pose \(g(x)=x\,e^x - 2\) sur \(]0;+\infty[\).</p>
+<p>\(g'(x)=e^x + x\,e^x = e^x(1+x)\). Pour \(x>0\), \(e^x>0\) et \(1+x>0\), donc \(g'(x)>0\) : \(g\) est strictement croissante sur \(]0;+\infty[\).</p>
+<p>\(\lim_{0^+}g = 0\times 1-2 = -2 < 0\). \(\lim_{+\infty}g = +\infty\).</p>
+<p>Par le TVI (bijection), l'équation \(g(x)=0\) admet une <strong>unique solution</strong> \(\alpha\) sur \(]0;+\infty[\).</p>
+<p>Encadrement : \(g(0)=-2<0\). \(g(1)=e-2\approx 0{,}72>0\). Donc \(\alpha\in]0;1[\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Montrer que l'équation \(\cos(x) = x^2\) admet exactement 2 solutions dans \(\mathbb{R}\).</p>
+<p><em>Indication : utiliser la parité et le TVI.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On pose \(h(x)=\cos x - x^2\).</p>
+<p><strong>Argument de symétrie :</strong> \(h(-x)=\cos(-x)-(-x)^2=\cos x - x^2 = h(x)\). La fonction \(h\) est paire, donc il suffit d'étudier \(h\) sur \([0;+\infty[\) et les solutions seront symétriques.</p>
+<p><strong>Étude sur \([0;+\infty[\) :</strong> \(h'(x)=-\sin x - 2x\). Pour \(x>0\), \(-\sin x \leqslant 0\) et \(-2x<0\), donc \(h'(x)<0\) : \(h\) est strictement décroissante sur \(]0;+\infty[\).</p>
+<p>\(h(0)=1-0=1>0\). Pour \(x\geqslant\frac{\pi}{2}\), \(\cos x\leqslant 1\) et \(x^2\geqslant\frac{\pi^2}{4}\approx 2{,}47\), donc \(h(x)<0\). En particulier \(h(2)=\cos 2 - 4\approx -4{,}42 <0\).</p>
+<p>Par le TVI, il existe une <strong>unique solution</strong> \(\alpha>0\) avec \(\alpha\in]0;2[\).</p>
+<p>Par parité, \(-\alpha\) est aussi solution. Comme \(h\) est paire et strictement décroissante sur \(]0;+\infty[\), il n'y a pas d'autre solution.</p>
+<p>Conclusion : l'équation admet exactement <strong>2 solutions</strong> : \(\alpha\) et \(-\alpha\), avec \(\alpha\approx 0{,}82\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p class="exo-titre">Dichotomie avec Python</p>
+<p>L'équation \(x^3 - 2x - 5 = 0\) admet une unique solution \(\alpha\) dans \([2;3]\).</p>
+<ol>
+  <li>Vérifier que \(f(2)<0\) et \(f(3)>0\).</li>
+  <li>Écrire un programme Python utilisant la méthode de dichotomie pour encadrer \(\alpha\) à \(10^{-2}\) près.</li>
+  <li>Donner l'encadrement obtenu.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f(x)=x^3-2x-5\). \(f(2)=8-4-5=-1<0\). \(f(3)=27-6-5=16>0\). ✓
+  <br>\(f'(x)=3x^2-2>0\) pour \(x\geqslant 1\) : \(f\) est strictement croissante sur \([2;3]\). Le TVI garantit l'unicité.</li>
+  <li>
+<pre><code>def f(x):
+    return x**3 - 2*x - 5
+
+a, b = 2, 3
+while b - a > 0.01:
+    c = (a + b) / 2
+    if f(a) * f(c) < 0:
+        b = c
+    else:
+        a = c
+print(f"alpha in [{a:.4f}, {b:.4f}]")</code></pre>
+  </li>
+  <li>Résultat : \(\alpha \in [2{,}0937;\ 2{,}1016]\), soit \(\alpha \approx 2{,}09\).</li>
+</ol>
+</div>
+</div>
+
 </section>
 
 <!-- ═══════════════════════════════════════════ -->
@@ -125,7 +186,7 @@ print(f"alpha in [{a:.4f}, {b:.4f}]")</code></pre>
 <h2>C2 — Étudier une suite définie par \(u_{n+1}=f(u_n)\)</h2>
 
 <div class="exo">
-<span class="exo-num">Exercice 7</span>
+<span class="exo-num">Exercice 10</span>
 <p>Soit \(f(x) = \frac{x+4}{2}\) et \((u_n)\) définie par \(u_0 = 0\) et \(u_{n+1} = f(u_n)\).</p>
 <ol>
   <li>Résoudre \(f(x)=x\).</li>
@@ -144,7 +205,7 @@ print(f"alpha in [{a:.4f}, {b:.4f}]")</code></pre>
 </div>
 
 <div class="exo">
-<span class="exo-num">Exercice 8</span>
+<span class="exo-num">Exercice 11</span>
 <p>Soit \(f(x) = \frac{1}{2-x}\) et \((u_n)\) définie par \(u_0 = 0\) et \(u_{n+1} = f(u_n)\).</p>
 <ol>
   <li>Calculer \(u_1, u_2, u_3, u_4\).</li>
@@ -166,7 +227,7 @@ print(f"alpha in [{a:.4f}, {b:.4f}]")</code></pre>
 </div>
 
 <div class="exo">
-<span class="exo-num">Exercice 9</span>
+<span class="exo-num">Exercice 12</span>
 <p>Soit \(f(x) = x^2\) et \((u_n)\) définie par \(u_0 = 0{,}5\) et \(u_{n+1} = f(u_n)\).</p>
 <ol>
   <li>Calculer \(u_1, u_2, u_3, u_4\).</li>
@@ -187,7 +248,46 @@ print(f"alpha in [{a:.4f}, {b:.4f}]")</code></pre>
 </div>
 
 <div class="exo">
-<span class="exo-num">Exercice 10</span>
+<span class="exo-num">Exercice 13</span>
+<p>Soit \(f(x) = \cos x\) et \((u_n)\) définie par \(u_0 = 0\) et \(u_{n+1} = \cos(u_n)\).</p>
+<ol>
+  <li>Calculer \(u_1, u_2, u_3, u_4, u_5\) (arrondir à \(10^{-4}\)).</li>
+  <li>Conjecturer le comportement de la suite.</li>
+  <li>On admet que \((u_n)\) converge vers \(\ell\). Déterminer \(\ell\) (point fixe de \(\cos\)).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_1=\cos(0)=1\). \(u_2=\cos(1)\approx 0{,}5403\). \(u_3=\cos(0{,}5403)\approx 0{,}8576\). \(u_4\approx 0{,}6543\). \(u_5\approx 0{,}7935\).</li>
+  <li>La suite semble osciller en convergeant vers une valeur proche de \(0{,}74\).</li>
+  <li>Si \((u_n)\) converge vers \(\ell\), par continuité de \(\cos\) : \(\ell = \cos(\ell)\). C'est l'unique solution de l'équation \(\cos x = x\) (cf. exercice 6 de la section C1 avec \(f(x)=x-\cos x\)). On trouve \(\ell\approx 0{,}7391\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 14</span>
+<p>Soit \((u_n)\) définie par \(u_0 = 2\) et \(u_{n+1} = \frac{1}{2}\left(u_n + \frac{3}{u_n}\right)\).</p>
+<ol>
+  <li>Calculer \(u_1, u_2, u_3\) et comparer à \(\sqrt{3}\).</li>
+  <li>Montrer que pour tout \(n\geqslant 1\), \(u_n \geqslant \sqrt{3}\).
+  <br><em>Indication : utiliser l'inégalité AM-GM \(\frac{a+b}{2}\geqslant\sqrt{ab}\).</em></li>
+  <li>Montrer que \((u_n)\) est décroissante pour \(n\geqslant 1\).</li>
+  <li>En déduire que \((u_n)\) converge et déterminer sa limite.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_1=\frac{1}{2}(2+\frac{3}{2})=\frac{7}{4}=1{,}75\). \(u_2=\frac{1}{2}(\frac{7}{4}+\frac{12}{7})=\frac{97}{56}\approx 1{,}7321\). \(u_3\approx 1{,}732051\). On a \(\sqrt{3}\approx 1{,}732051\) : convergence extrêmement rapide !</li>
+  <li>Par l'inégalité AM-GM : \(u_{n+1}=\frac{1}{2}\left(u_n+\frac{3}{u_n}\right)\geqslant\sqrt{u_n\cdot\frac{3}{u_n}}=\sqrt{3}\). Donc \(u_{n+1}\geqslant\sqrt{3}\) pour tout \(n\geqslant 0\), et en particulier \(u_n\geqslant\sqrt{3}\) pour \(n\geqslant 1\). ✓</li>
+  <li>\(u_{n+1}-u_n=\frac{1}{2}\left(\frac{3}{u_n}-u_n\right)=\frac{3-u_n^2}{2u_n}\). Pour \(n\geqslant 1\), \(u_n\geqslant\sqrt{3}\) donc \(u_n^2\geqslant 3\), d'où \(u_{n+1}-u_n\leqslant 0\). ✓</li>
+  <li>Pour \(n\geqslant 1\), \((u_n)\) est décroissante et minorée par \(\sqrt{3}\) : elle converge. Soit \(\ell\) sa limite : \(\ell=\frac{1}{2}(\ell+\frac{3}{\ell})\), \(2\ell^2=\ell^2+3\), \(\ell^2=3\), \(\ell=\sqrt{3}\) (car \(\ell>0\)).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 15</span>
 <p class="exo-titre">Méthode de Newton</p>
 <p>Pour résoudre \(f(x)=0\) avec \(f(x)=x^2-2\) (racine de 2), on utilise la suite définie par :</p>
 \[u_{n+1} = u_n - \frac{f(u_n)}{f'(u_n)} = u_n - \frac{u_n^2-2}{2u_n} = \frac{u_n^2+2}{2u_n} = \frac{1}{2}\left(u_n+\frac{2}{u_n}\right)\]

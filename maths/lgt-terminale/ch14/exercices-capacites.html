@@ -56,6 +56,50 @@
 </div>
 </div>
 
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>On lance 4 dés équilibrés. Pour chaque dé \(i\), on pose \(X_i = 1\) si le résultat est 6, et \(X_i = 0\) sinon.</p>
+<ol>
+  <li>Quelle est la loi de chaque \(X_i\) ? Donner \(E(X_i)\) et \(V(X_i)\).</li>
+  <li>On note \(F\) le nombre de « 6 » obtenus sur les 4 dés. Écrire \(F\) comme somme des \(X_i\).</li>
+  <li>En déduire \(E(F)\) et \(V(F)\).</li>
+  <li>Reconnaître la loi de \(F\). Vérifier les résultats.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(X_i \sim \mathcal{B}\!\left(\frac{1}{6}\right)\). \(E(X_i) = \frac{1}{6}\). \(V(X_i) = \frac{1}{6} \times \frac{5}{6} = \frac{5}{36}\).</li>
+  <li>\(F = X_1 + X_2 + X_3 + X_4\).</li>
+  <li>\(E(F) = 4 \times \frac{1}{6} = \frac{2}{3} \approx 0{,}667\). \(V(F) = 4 \times \frac{5}{36} = \frac{5}{9} \approx 0{,}556\).</li>
+  <li>\(F \sim \mathcal{B}\!\left(4,\frac{1}{6}\right)\). On retrouve \(E(F) = np = \frac{4}{6} = \frac{2}{3}\) et \(V(F) = np(1-p) = 4 \times \frac{1}{6} \times \frac{5}{6} = \frac{5}{9}\). ✓</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Un client achète \(n = 8\) articles. Pour chaque article \(i\), une remise aléatoire \(R_i\) est appliquée :</p>
+<ul>
+  <li>\(R_i = 0\) € (pas de remise) avec probabilité \(0{,}6\)</li>
+  <li>\(R_i = 5\) € avec probabilité \(0{,}3\)</li>
+  <li>\(R_i = 10\) € avec probabilité \(0{,}1\)</li>
+</ul>
+<p>Les remises sont indépendantes d'un article à l'autre. Le prix de base de chaque article est \(40\) €.</p>
+<ol>
+  <li>Exprimer le coût total \(T\) en fonction des \(R_i\).</li>
+  <li>Calculer \(E(R_i)\) pour un article.</li>
+  <li>En déduire \(E(T)\), le coût total moyen.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Le coût d'un article est \(40 - R_i\). Le coût total est \(T = \displaystyle\sum_{i=1}^{8}(40 - R_i) = 320 - \sum_{i=1}^{8} R_i\).</li>
+  <li>\(E(R_i) = 0 \times 0{,}6 + 5 \times 0{,}3 + 10 \times 0{,}1 = 2{,}5\) €.</li>
+  <li>Par linéarité : \(E(T) = 320 - 8 \times 2{,}5 = 320 - 20 = 300\) €.</li>
+</ol>
+</div>
+</div>
+
 </section>
 
 <section class="cap-section" data-cap="C2">
@@ -90,13 +134,49 @@
 </div>
 </div>
 
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Soient \(X\) et \(Y\) deux variables aléatoires avec \(E(X) = 4\) et \(E(Y) = 7\). On pose \(Z = 3X - 2Y + 5\).</p>
+<ol>
+  <li>Calculer \(E(Z)\) par linéarité de l'espérance.</li>
+  <li>Si de plus \(V(X) = 9\), \(V(Y) = 16\) et \(X\), \(Y\) sont indépendantes, calculer \(V(Z)\) et \(\sigma(Z)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(Z) = 3E(X) - 2E(Y) + 5 = 3 \times 4 - 2 \times 7 + 5 = 12 - 14 + 5 = 3\).</li>
+  <li>\(V(Z) = V(3X - 2Y) = 3^2 V(X) + (-2)^2 V(Y) = 9 \times 9 + 4 \times 16 = 81 + 64 = 145\).
+  <br>\(\sigma(Z) = \sqrt{145} \approx 12{,}04\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Un magasin de bricolage observe que le nombre de clients par jour suit une variable aléatoire \(N\) avec \(E(N) = 120\) et \(\sigma(N) = 15\). Chaque client dépense en moyenne \(35\) €.</p>
+<p>On modélise le chiffre d'affaires journalier par \(C = 35N\).</p>
+<ol>
+  <li>Calculer \(E(C)\), le chiffre d'affaires journalier moyen.</li>
+  <li>Calculer \(\sigma(C)\).</li>
+  <li>Sur une semaine de 6 jours ouvrés (en supposant les jours indépendants et de même loi), on note \(S = C_1 + C_2 + \cdots + C_6\). Calculer \(E(S)\) et \(\sigma(S)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(C) = 35 \times E(N) = 35 \times 120 = 4\,200\) €.</li>
+  <li>\(\sigma(C) = 35 \times \sigma(N) = 35 \times 15 = 525\) €.</li>
+  <li>\(E(S) = 6 \times 4\,200 = 25\,200\) €. \(V(S) = 6 \times V(C) = 6 \times 525^2 = 1\,653\,750\). \(\sigma(S) = \sqrt{1\,653\,750} \approx 1\,286\) €.</li>
+</ol>
+</div>
+</div>
+
 </section>
 
 <section class="cap-section" data-cap="C3">
 <h2>C3 — Calculer la variance d'une somme de variables indépendantes</h2>
 
 <div class="exo">
-<span class="exo-num">Exercice 6</span>
+<span class="exo-num">Exercice 8</span>
 <p>\(X\) et \(Y\) sont indépendantes avec \(E(X)=2\), \(V(X)=3\), \(E(Y)=4\), \(V(Y)=5\). Calculer \(E(X+Y)\), \(V(X+Y)\) et \(\sigma(X+Y)\).</p>
 <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
 <div class="corr">
@@ -105,7 +185,7 @@
 </div>
 
 <div class="exo">
-<span class="exo-num">Exercice 7</span>
+<span class="exo-num">Exercice 9</span>
 <p>On prélève un échantillon de 50 pièces. Chaque pièce a une masse \(X_i\) d'espérance \(\mu=100\) g et d'écart type \(\sigma=2\) g.</p>
 <ol>
   <li>Calculer \(E(M_{50})\) et \(\sigma(M_{50})\).</li>
@@ -121,7 +201,7 @@
 </div>
 
 <div class="exo">
-<span class="exo-num">Exercice 8</span>
+<span class="exo-num">Exercice 10</span>
 <p class="exo-titre">Problème de synthèse</p>
 <p>Un casino propose un jeu : on lance 2 dés, le gain est la différence \(|X_1-X_2|\). Le jeu coûte 2 €.</p>
 <ol>
@@ -135,6 +215,84 @@
   <br>\(P(D=0)=\frac{6}{36}\), \(P(D=1)=\frac{10}{36}\), \(P(D=2)=\frac{8}{36}\), \(P(D=3)=\frac{6}{36}\), \(P(D=4)=\frac{4}{36}\), \(P(D=5)=\frac{2}{36}\).</li>
   <li>\(E(D)=\frac{0\times 6+1\times 10+2\times 8+3\times 6+4\times 4+5\times 2}{36}=\frac{70}{36}=\frac{35}{18}\approx 1{,}94\) €.
   <br>Gain net moyen : \(1{,}94-2=-0{,}06\) €. Le jeu est légèrement <strong>défavorable</strong> au joueur.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>Soient \(X\) et \(Y\) deux variables aléatoires indépendantes avec \(E(X) = 10\), \(V(X) = 4\), \(E(Y) = 6\) et \(V(Y) = 9\). On pose \(W = 2X - Y\).</p>
+<ol>
+  <li>Calculer \(E(W)\).</li>
+  <li>Justifier que \(V(W) = 4V(X) + V(Y)\). Calculer \(V(W)\) et \(\sigma(W)\).</li>
+  <li>On pose \(U = 2X + Y\). A-t-on \(V(U) = V(W)\) ? Expliquer.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(W) = 2E(X) - E(Y) = 20 - 6 = 14\).</li>
+  <li>\(W = 2X + (-1)Y\). Comme \(X\) et \(Y\) sont indépendantes : \(V(W) = 2^2 V(X) + (-1)^2 V(Y) = 4 \times 4 + 1 \times 9 = 25\). \(\sigma(W) = 5\).</li>
+  <li>Oui : \(V(U) = 4V(X) + V(Y) = 25 = V(W)\). Le signe devant \(Y\) n'intervient pas car la variance absorbe le carré du coefficient : \((-1)^2 = 1^2 = 1\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p class="exo-titre">Précision de mesure</p>
+<p>Un laboratoire mesure la concentration d'un produit chimique. Chaque mesure \(X_i\) a un écart type \(\sigma = 3\) mg/L. On effectue \(n\) mesures indépendantes et on calcule la moyenne \(M_n\).</p>
+<ol>
+  <li>Exprimer \(\sigma(M_n)\) en fonction de \(n\).</li>
+  <li>Compléter le tableau :</li>
+</ol>
+<table class="styled-table" style="margin:1em auto">
+<tr><th>\(n\)</th><th>4</th><th>16</th><th>25</th><th>100</th><th>?</th></tr>
+<tr><th>\(\sigma(M_n)\)</th><td>?</td><td>?</td><td>?</td><td>?</td><td>\(0{,}5\)</td></tr>
+</table>
+<ol start="3">
+  <li>Le cahier des charges exige \(\sigma(M_n) \leqslant 0{,}5\) mg/L. Quel est le nombre minimal de mesures ?</li>
+  <li>Pour diviser \(\sigma(M_n)\) par 2 par rapport à \(n = 36\), combien de mesures sont nécessaires ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\sigma(M_n) = \frac{3}{\sqrt{n}}\).</li>
+  <li>
+<table class="styled-table" style="margin:1em auto">
+<tr><th>\(n\)</th><th>4</th><th>16</th><th>25</th><th>100</th><th>36</th></tr>
+<tr><th>\(\sigma(M_n)\)</th><td>\(1{,}5\)</td><td>\(0{,}75\)</td><td>\(0{,}6\)</td><td>\(0{,}3\)</td><td>\(0{,}5\)</td></tr>
+</table>
+  </li>
+  <li>\(\frac{3}{\sqrt{n}} \leqslant 0{,}5\), soit \(\sqrt{n} \geqslant 6\), donc \(n \geqslant 36\). Il faut au minimum <strong>36 mesures</strong>.</li>
+  <li>Avec \(n = 36\) : \(\sigma(M_{36}) = 0{,}5\). Pour avoir \(\sigma = 0{,}25\), il faut \(\frac{3}{\sqrt{n}} = 0{,}25\), soit \(\sqrt{n} = 12\), donc \(n = 144\). Il faut <strong>quadrupler</strong> le nombre de mesures pour diviser l'écart type par 2.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p class="exo-titre">Variance d'un portefeuille</p>
+<p>Un investisseur place son capital dans 3 actions indépendantes. Le rendement annuel de chaque action (en %) est modélisé par une variable aléatoire :</p>
+<ul>
+  <li>Action A : \(R_A\), \(E(R_A) = 8\), \(\sigma(R_A) = 12\)</li>
+  <li>Action B : \(R_B\), \(E(R_B) = 5\), \(\sigma(R_B) = 6\)</li>
+  <li>Action C : \(R_C\), \(E(R_C) = 3\), \(\sigma(R_C) = 2\)</li>
+</ul>
+<p>L'investisseur répartit son capital en parts égales : le rendement du portefeuille est \(R = \frac{1}{3}(R_A + R_B + R_C)\).</p>
+<ol>
+  <li>Calculer \(E(R)\).</li>
+  <li>Calculer \(V(R)\) et \(\sigma(R)\).</li>
+  <li>Comparer \(\sigma(R)\) aux écarts types individuels. Quel est l'effet de la diversification ?</li>
+  <li>Si l'investisseur avait tout placé dans l'action A, quel serait l'écart type ? Conclure.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(R) = \frac{1}{3}(8 + 5 + 3) = \frac{16}{3} \approx 5{,}33\) %.</li>
+  <li>\(V(R) = \frac{1}{9}\left(V(R_A) + V(R_B) + V(R_C)\right) = \frac{1}{9}(144 + 36 + 4) = \frac{184}{9} \approx 20{,}44\).
+  <br>\(\sigma(R) = \sqrt{\frac{184}{9}} = \frac{\sqrt{184}}{3} \approx 4{,}52\) %.</li>
+  <li>\(\sigma(R) \approx 4{,}52\) % est inférieur aux écarts types de A (\(12\) %) et B (\(6\) %), et légèrement supérieur à celui de C (\(2\) %). La <strong>diversification réduit le risque global</strong> du portefeuille.</li>
+  <li>Tout dans A : \(\sigma = 12\) %, soit presque 3 fois plus que le portefeuille diversifié (\(4{,}52\) %). La diversification divise le risque par environ \(2{,}7\) pour un rendement moyen de \(5{,}33\) % au lieu de \(8\) % : c'est le compromis rendement/risque.</li>
 </ol>
 </div>
 </div>

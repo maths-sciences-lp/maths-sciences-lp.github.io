@@ -104,6 +104,42 @@
 </div>
 
 <!-- ═══════════════════════════════════════════ -->
+<h2>III.bis. Exemples d'application de la linéarité</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode — Variables indicatrices</span>
+<p>Pour calculer l'espérance d'une quantité compliquée, on la décompose en <strong>somme de variables indicatrices</strong> (variables de Bernoulli valant 0 ou 1), puis on applique la linéarité de l'espérance.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple 1 — Points fixes d'une permutation aléatoire</span>
+<p>On mélange au hasard les entiers \(1, 2, \ldots, n\) (permutation aléatoire uniforme). Un <strong>point fixe</strong> est un entier \(i\) qui reste à sa place après le mélange.</p>
+<p><strong>Question :</strong> quel est le nombre moyen de points fixes ?</p>
+<p><strong>Résolution.</strong> Pour chaque \(i \in \{1, \ldots, n\}\), on pose la variable indicatrice :</p>
+\[X_i = \begin{cases} 1 & \text{si } i \text{ est un point fixe} \\ 0 & \text{sinon}\end{cases}\]
+<p>Le nombre total de points fixes est \(F = X_1 + X_2 + \cdots + X_n\).</p>
+<p>Par symétrie, chaque élément a une probabilité \(\frac{1}{n}\) de rester à sa place, donc \(E(X_i) = \frac{1}{n}\).</p>
+<p>Par linéarité de l'espérance (même si les \(X_i\) ne sont <em>pas</em> indépendantes) :</p>
+\[E(F) = \sum_{i=1}^{n} E(X_i) = n \times \frac{1}{n} = 1\]
+<p><strong>Résultat remarquable :</strong> en moyenne, il y a exactement <strong>1 point fixe</strong>, quelle que soit la taille \(n\) de la permutation.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple 2 — Paires dans une main de cartes</span>
+<p>On tire 5 cartes au hasard dans un jeu de 52 cartes (13 valeurs, 4 couleurs). Une <strong>paire</strong> est un couple de deux cartes de même valeur dans la main.</p>
+<p><strong>Question :</strong> quel est le nombre moyen de paires dans la main ?</p>
+<p><strong>Résolution.</strong> Pour chaque couple possible \(\{i,j\}\) de cartes dans la main (avec \(1 \leqslant i < j \leqslant 5\)), on pose :</p>
+\[Y_{\{i,j\}} = \begin{cases} 1 & \text{si les cartes en positions } i \text{ et } j \text{ ont la même valeur} \\ 0 & \text{sinon}\end{cases}\]
+<p>Le nombre total de paires est \(P = \displaystyle\sum_{1 \leqslant i < j \leqslant 5} Y_{\{i,j\}}\). Il y a \(\binom{5}{2} = 10\) tels couples.</p>
+<p>Calculons \(E(Y_{\{i,j\}})\). La carte \(j\) a la même valeur que la carte \(i\) si elle fait partie des 3 cartes restantes de même valeur parmi les 51 cartes restantes :</p>
+\[E(Y_{\{i,j\}}) = P(\text{même valeur}) = \frac{3}{51} = \frac{1}{17}\]
+<p>Par linéarité :</p>
+\[E(P) = 10 \times \frac{1}{17} = \frac{10}{17} \approx 0{,}588\]
+<p>En moyenne, une main de 5 cartes contient environ \(0{,}59\) paire.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
 <h2>IV. Échantillon et moyenne</h2>
 <!-- ═══════════════════════════════════════════ -->
 
@@ -130,6 +166,36 @@
 </ul>
 </div>
 
+<div class="svg-wrap">
+<svg viewBox="0 0 500 280" style="max-width:500px;width:100%;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+  <!-- Axes -->
+  <line x1="50" y1="240" x2="470" y2="240" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="250" y1="240" x2="250" y2="20" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <!-- Label mu -->
+  <text x="250" y="258" font-size="12" fill="#64748b" text-anchor="middle">μ</text>
+  <!-- Wide curve: single observation X (sigma) -->
+  <path d="M 70,238 Q 100,235 130,220 Q 160,190 190,140 Q 220,60 250,40 Q 280,60 310,140 Q 340,190 370,220 Q 400,235 430,238" fill="#e67e22" fill-opacity="0.12" stroke="#e67e22" stroke-width="2.5"/>
+  <!-- Narrow curve: sample mean M_n (sigma/sqrt(n)) -->
+  <path d="M 150,238 Q 175,236 195,228 Q 215,205 230,150 Q 240,70 250,30 Q 260,70 270,150 Q 285,205 305,228 Q 325,236 350,238" fill="#4f46e5" fill-opacity="0.15" stroke="#4f46e5" stroke-width="2.5"/>
+  <!-- Sigma arrows for X -->
+  <line x1="190" y1="140" x2="190" y2="148" stroke="#e67e22" stroke-width="1.5"/>
+  <line x1="310" y1="140" x2="310" y2="148" stroke="#e67e22" stroke-width="1.5"/>
+  <line x1="190" y1="145" x2="310" y2="145" stroke="#e67e22" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="250" y="158" font-size="11" fill="#e67e22" font-weight="bold" text-anchor="middle">σ</text>
+  <!-- Sigma arrows for M_n -->
+  <line x1="230" y1="150" x2="230" y2="170" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="270" y1="150" x2="270" y2="170" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="230" y1="165" x2="270" y2="165" stroke="#4f46e5" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="250" y="180" font-size="11" fill="#4f46e5" font-weight="bold" text-anchor="middle">σ/√n</text>
+  <!-- Legends -->
+  <line x1="330" y1="32" x2="360" y2="32" stroke="#e67e22" stroke-width="2.5"/>
+  <text x="365" y="37" font-size="11" fill="#e67e22" font-weight="bold">X (observation)</text>
+  <line x1="330" y1="52" x2="360" y2="52" stroke="#4f46e5" stroke-width="2.5"/>
+  <text x="365" y="57" font-size="11" fill="#4f46e5" font-weight="bold">Mₙ (moyenne)</text>
+</svg>
+<p style="text-align:center;font-size:.85rem;color:#666">Effet de concentration : la distribution de la moyenne Mₙ est plus resserrée autour de μ que celle d'une observation individuelle X.</p>
+</div>
+
 <div class="meth">
 <span class="label label-meth">Interprétation</span>
 <p>La moyenne \(M_n\) a la même espérance que chaque \(X_i\), mais sa variance est \(n\) fois plus petite. Plus l'échantillon est grand, plus la moyenne est concentrée autour de \(\mu\). C'est la base de la <strong>loi des grands nombres</strong> (chapitre suivant).</p>
@@ -153,6 +219,27 @@
 
 <div class="exo">
 <span class="exo-num">Exercice 4</span>
+<p class="exo-titre">Contrôle qualité en usine</p>
+<p>Une usine fabrique des pièces cylindriques. La masse \(X_i\) de chaque pièce (en grammes) est une variable aléatoire d'espérance \(\mu = 250\) g et d'écart type \(\sigma = 6\) g. Un contrôleur prélève un échantillon de \(n\) pièces et calcule la masse moyenne \(M_n\).</p>
+<ol>
+  <li>Exprimer \(E(M_n)\) et \(\sigma(M_n)\) en fonction de \(n\).</li>
+  <li>Calculer \(\sigma(M_n)\) pour \(n = 9\), \(n = 36\) et \(n = 144\). Commenter.</li>
+  <li>Le cahier des charges impose que l'écart type de la moyenne soit inférieur à \(0{,}5\) g. Quel est le nombre minimal de pièces à prélever ?</li>
+  <li>Avec cet échantillon minimal, donner un intervalle centré sur \(\mu\) de demi-largeur \(2\sigma(M_n)\) dans lequel \(M_n\) a de grandes chances de se trouver.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(M_n) = \mu = 250\) g et \(\sigma(M_n) = \frac{\sigma}{\sqrt{n}} = \frac{6}{\sqrt{n}}\) g.</li>
+  <li>\(\sigma(M_9) = \frac{6}{3} = 2\) g, \(\sigma(M_{36}) = \frac{6}{6} = 1\) g, \(\sigma(M_{144}) = \frac{6}{12} = 0{,}5\) g. En multipliant la taille de l'échantillon par 4, on divise l'écart type de la moyenne par 2.</li>
+  <li>\(\frac{6}{\sqrt{n}} \leqslant 0{,}5\), soit \(\sqrt{n} \geqslant 12\), donc \(n \geqslant 144\). Il faut prélever au minimum <strong>144 pièces</strong>.</li>
+  <li>Avec \(n = 144\) : \(2\sigma(M_{144}) = 1\) g. L'intervalle est \([249 ; 251]\). La moyenne de l'échantillon a de grandes chances d'être comprise entre 249 g et 251 g.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
 <p class="exo-titre">Problème de synthèse</p>
 <p>Un dé équilibré est lancé \(n\) fois. Soit \(S_n\) la somme des résultats et \(M_n=\frac{S_n}{n}\) la moyenne.</p>
 <ol>
@@ -166,6 +253,32 @@
   <li>\(E(X_i)=\frac{1+2+3+4+5+6}{6}=3{,}5\). \(V(X_i)=E(X_i^2)-[E(X_i)]^2=\frac{91}{6}-12{,}25=\frac{35}{12}\approx 2{,}917\).</li>
   <li>\(E(S_n)=3{,}5n\), \(V(S_n)=\frac{35n}{12}\). \(E(M_n)=3{,}5\), \(V(M_n)=\frac{35}{12n}\).</li>
   <li>\(E(M_{360})=3{,}5\). \(\sigma(M_{360})=\sqrt{\frac{35}{12\times 360}}=\sqrt{\frac{35}{4320}}\approx 0{,}090\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p class="exo-titre">Problème de synthèse — Assurance</p>
+<p>Un assureur couvre \(N = 1\,000\) clients contre un risque. Chaque client \(i\) a une probabilité \(p = 0{,}04\) de déclarer un sinistre au cours de l'année. En cas de sinistre, l'assureur verse un montant fixe \(C = 5\,000\) €. On suppose les sinistres indépendants d'un client à l'autre.</p>
+<ol>
+  <li>Pour chaque client \(i\), on pose \(X_i = C\) si le client déclare un sinistre, \(X_i = 0\) sinon. Quelle est la loi de \(X_i\) ? Calculer \(E(X_i)\) et \(V(X_i)\).</li>
+  <li>On note \(T = X_1 + X_2 + \cdots + X_N\) le montant total des indemnités versées. Exprimer \(E(T)\) et \(V(T)\).</li>
+  <li>Calculer \(E(T)\) et \(\sigma(T)\) numériquement.</li>
+  <li>L'assureur fixe la prime annuelle par client à \(k = 250\) €. Calculer la recette totale et le bénéfice moyen. L'activité est-elle rentable en moyenne ?</li>
+  <li>Donner l'intervalle \([E(T) - 2\sigma(T) \;;\; E(T) + 2\sigma(T)]\). Commenter le risque pour l'assureur.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(X_i\) prend les valeurs \(0\) et \(5\,000\) avec \(P(X_i = 5\,000) = 0{,}04\) et \(P(X_i = 0) = 0{,}96\).
+  <br>\(E(X_i) = 5\,000 \times 0{,}04 = 200\) €.
+  <br>\(V(X_i) = 5\,000^2 \times 0{,}04 \times 0{,}96 = 25\,000\,000 \times 0{,}0384 = 960\,000\).</li>
+  <li>Par linéarité : \(E(T) = N \cdot E(X_i) = 1\,000 \times 200 = 200\,000\) €.
+  <br>Par indépendance : \(V(T) = N \cdot V(X_i) = 1\,000 \times 960\,000 = 960\,000\,000\).</li>
+  <li>\(E(T) = 200\,000\) €. \(\sigma(T) = \sqrt{960\,000\,000} \approx 30\,984\) €.</li>
+  <li>Recette totale : \(R = 1\,000 \times 250 = 250\,000\) €. Bénéfice moyen : \(R - E(T) = 250\,000 - 200\,000 = 50\,000\) €. L'activité est <strong>rentable en moyenne</strong>.</li>
+  <li>\([200\,000 - 61\,968 \;;\; 200\,000 + 61\,968] = [138\,032 \;;\; 261\,968]\). L'intervalle dépasse la recette de 250 000 €, ce qui signifie qu'il existe un risque non négligeable de perte certaines années. L'assureur doit constituer des réserves.</li>
 </ol>
 </div>
 </div>

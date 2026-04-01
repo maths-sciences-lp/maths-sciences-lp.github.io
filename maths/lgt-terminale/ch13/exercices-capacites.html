@@ -81,6 +81,54 @@
 </div>
 </div>
 
+<div class="exo">
+<span class="exo-num">Exercice 3 bis</span>
+<p class="exo-titre">Pile ou face — jeu équitable ou truqué ?</p>
+<p>Un joueur lance une pièce de monnaie 20 fois de suite et compte le nombre de « Pile » obtenus. Soit \(X\) ce nombre.</p>
+<ol>
+  <li>Si la pièce est équilibrée, quelle est la loi de \(X\) ? Préciser les paramètres.</li>
+  <li>On suspecte la pièce d'être truquée avec \(P(\text{Pile})=0{,}7\). Soit \(Y\) le nombre de « Pile » dans ce cas. Quelle est la loi de \(Y\) ?</li>
+  <li>Calculer \(E(X)\) et \(E(Y)\). Qu'observe-t-on ?</li>
+  <li>Calculer \(P(X\geqslant 15)\) et \(P(Y\geqslant 15)\). Commenter.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>20 lancers indépendants, chaque lancer a deux issues, \(P(\text{Pile})=0{,}5\). Donc \(X\sim\mathcal{B}(20;\ 0{,}5)\).</li>
+  <li>Même raisonnement avec \(P(\text{Pile})=0{,}7\). Donc \(Y\sim\mathcal{B}(20;\ 0{,}7)\).</li>
+  <li>\(E(X)=20\times 0{,}5=10\). \(E(Y)=20\times 0{,}7=14\). Avec la pièce truquée, on attend en moyenne 4 « Pile » de plus.</li>
+  <li>\(P(X\geqslant 15)=1-P(X\leqslant 14)\approx 1-0{,}9941=0{,}0059\) (très rare avec une pièce équilibrée).
+  <br>\(P(Y\geqslant 15)=1-P(Y\leqslant 14)\approx 1-0{,}5836=0{,}4164\) (courant avec la pièce truquée).
+  <br>Observer 15 « Pile » ou plus est un indice fort que la pièce est truquée.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3 ter</span>
+<p class="exo-titre">Contrôle qualité — ampoules</p>
+<p>Une usine produit des ampoules LED dont 1 % présentent un défaut. On prélève un échantillon de 100 ampoules.</p>
+<ol>
+  <li>Soit \(X\) le nombre d'ampoules défectueuses dans l'échantillon. Justifier que \(X\) suit une loi binomiale et préciser ses paramètres.</li>
+  <li>Calculer \(E(X)\) et \(\sigma(X)\).</li>
+  <li>Calculer \(P(X=0)\), c'est-à-dire la probabilité qu'aucune ampoule ne soit défectueuse.</li>
+  <li>Calculer \(P(X\geqslant 3)\). L'usine rejette le lot si au moins 3 ampoules sont défectueuses. Ce rejet est-il fréquent ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>100 épreuves indépendantes (chaque ampoule est testée individuellement), deux issues (défectueuse ou non), \(p=0{,}01\) constant. Donc \(X\sim\mathcal{B}(100;\ 0{,}01)\).</li>
+  <li>\(E(X)=100\times 0{,}01=1\). \(\sigma(X)=\sqrt{100\times 0{,}01\times 0{,}99}=\sqrt{0{,}99}\approx 0{,}995\).</li>
+  <li>\(P(X=0)=0{,}99^{100}\approx 0{,}366\).</li>
+  <li>\(P(X\geqslant 3)=1-P(X\leqslant 2)=1-[P(X=0)+P(X=1)+P(X=2)]\).
+  <br>\(P(X=1)=\binom{100}{1}\times 0{,}01\times 0{,}99^{99}\approx 0{,}370\).
+  <br>\(P(X=2)=\binom{100}{2}\times 0{,}01^2\times 0{,}99^{98}\approx 0{,}185\).
+  <br>\(P(X\leqslant 2)\approx 0{,}366+0{,}370+0{,}185=0{,}921\).
+  <br>\(P(X\geqslant 3)\approx 0{,}079\). Le rejet survient dans environ 8 % des cas : c'est peu fréquent mais non négligeable.</li>
+</ol>
+</div>
+</div>
+
 </section>
 
 <section class="cap-section" data-cap="C2">
@@ -162,6 +210,97 @@ for _ in range(N):
 
 print(f"Estimation de P(X>=8) : {compteur/N}")
 # Valeur théorique : environ 0.228</code></pre>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p class="exo-titre">Calculs avec \(X\sim\mathcal{B}(15;\ 0{,}6)\)</p>
+<p>Soit \(X\sim\mathcal{B}(15;\ 0{,}6)\).</p>
+<ol>
+  <li>Calculer \(P(X=9)\).</li>
+  <li>Calculer \(P(X\geqslant 10)\).</li>
+  <li>Calculer \(P(8\leqslant X\leqslant 12)\).</li>
+  <li>Calculer \(E(X)\) et vérifier que la valeur \(k=9\) est la plus probable.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(P(X=9)=\binom{15}{9}0{,}6^9\times 0{,}4^6=5005\times 0{,}6^9\times 0{,}4^6\approx 0{,}2066\).</li>
+  <li>\(P(X\geqslant 10)=1-P(X\leqslant 9)\approx 1-0{,}5968=0{,}4032\).</li>
+  <li>\(P(8\leqslant X\leqslant 12)=P(X\leqslant 12)-P(X\leqslant 7)\approx 0{,}9729-0{,}2131=0{,}7598\).</li>
+  <li>\(E(X)=15\times 0{,}6=9\). La valeur la plus probable est effectivement \(k=9\) avec \(P(X=9)\approx 0{,}207\), le maximum de la distribution.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p class="exo-titre">Déterminer \(n\) pour un seuil donné</p>
+<p>Un composant électronique a une probabilité \(p=0{,}01\) de tomber en panne chaque jour. On note \(X\) le nombre de pannes sur \(n\) jours.</p>
+<ol>
+  <li>Quelle est la loi de \(X\) ?</li>
+  <li>Exprimer \(P(X\geqslant 1)\) en fonction de \(n\).</li>
+  <li>Déterminer le plus petit \(n\) tel que \(P(X\geqslant 1)>0{,}999\).</li>
+  <li>Interpréter ce résultat.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(X\sim\mathcal{B}(n;\ 0{,}01)\).</li>
+  <li>\(P(X\geqslant 1)=1-P(X=0)=1-0{,}99^n\).</li>
+  <li>\(1-0{,}99^n > 0{,}999\), soit \(0{,}99^n < 0{,}001\).
+  <br>\(n > \dfrac{\ln 0{,}001}{\ln 0{,}99}=\dfrac{-6{,}908}{-0{,}01005}\approx 687{,}3\).
+  <br>Il faut au moins \(n=688\) jours.</li>
+  <li>Il faut presque 2 ans d'utilisation continue pour être quasiment certain (à 99,9 %) qu'au moins une panne survienne.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p class="exo-titre">Comparaison de deux lois binomiales</p>
+<p>On considère deux variables aléatoires : \(X\sim\mathcal{B}(20;\ 0{,}3)\) et \(Y\sim\mathcal{B}(10;\ 0{,}6)\).</p>
+<ol>
+  <li>Calculer \(E(X)\) et \(E(Y)\). Que constate-t-on ?</li>
+  <li>Calculer \(P(X\geqslant 8)\) et \(P(Y\geqslant 8)\).</li>
+  <li>Calculer \(\sigma(X)\) et \(\sigma(Y)\). Laquelle des deux distributions est la plus « dispersée » ?</li>
+  <li>Malgré la même espérance, les deux lois donnent-elles les mêmes probabilités ? Commenter.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(X)=20\times 0{,}3=6\). \(E(Y)=10\times 0{,}6=6\). Les deux espérances sont égales.</li>
+  <li>\(P(X\geqslant 8)=1-P(X\leqslant 7)\approx 1-0{,}7723=0{,}2277\).
+  <br>\(P(Y\geqslant 8)=1-P(Y\leqslant 7)\approx 1-0{,}9453=0{,}0547\).</li>
+  <li>\(\sigma(X)=\sqrt{20\times 0{,}3\times 0{,}7}=\sqrt{4{,}2}\approx 2{,}049\).
+  <br>\(\sigma(Y)=\sqrt{10\times 0{,}6\times 0{,}4}=\sqrt{2{,}4}\approx 1{,}549\).
+  <br>\(X\) est plus dispersée que \(Y\).</li>
+  <li>Non. Bien que \(E(X)=E(Y)=6\), les probabilités diffèrent : \(P(X\geqslant 8)\approx 22{,}8\,\%\) contre \(P(Y\geqslant 8)\approx 5{,}5\,\%\). La forme de la distribution dépend à la fois de \(n\) et de \(p\), pas seulement de leur produit.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p class="exo-titre">Fiabilité — système redondant</p>
+<p>Un système de sécurité est composé de 5 capteurs identiques et indépendants. Chaque capteur fonctionne avec une probabilité \(p=0{,}9\). Le système détecte l'alarme si <strong>au moins un capteur</strong> fonctionne. Soit \(X\) le nombre de capteurs en fonctionnement.</p>
+<ol>
+  <li>Quelle est la loi de \(X\) ? Calculer \(E(X)\).</li>
+  <li>Calculer la probabilité que le système détecte l'alarme.</li>
+  <li>Calculer la probabilité que tous les capteurs fonctionnent.</li>
+  <li>On souhaite une fiabilité de 99,999 % (probabilité de détection). Combien de capteurs faut-il installer ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(X\sim\mathcal{B}(5;\ 0{,}9)\). \(E(X)=5\times 0{,}9=4{,}5\).</li>
+  <li>\(P(X\geqslant 1)=1-P(X=0)=1-0{,}1^5=1-0{,}00001=0{,}99999\). Le système est extrêmement fiable.</li>
+  <li>\(P(X=5)=0{,}9^5=0{,}59049\approx 0{,}590\).</li>
+  <li>On veut \(P(X\geqslant 1)=1-0{,}1^n\geqslant 0{,}99999\), soit \(0{,}1^n\leqslant 0{,}00001=10^{-5}\).
+  <br>\(0{,}1^n=10^{-n}\leqslant 10^{-5}\), donc \(n\geqslant 5\).
+  <br>Il faut au moins <strong>5 capteurs</strong>. Avec \(p=0{,}9\), le système atteint déjà cette fiabilité avec 5 capteurs.</li>
+</ol>
 </div>
 </div>
 

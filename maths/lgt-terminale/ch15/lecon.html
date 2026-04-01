@@ -53,6 +53,46 @@
 </ul>
 </div>
 
+<div class="svg-wrap">
+<svg viewBox="0 0 500 300" style="max-width:500px;width:100%;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+  <!-- Axes -->
+  <line x1="30" y1="240" x2="470" y2="240" stroke="#94a3b8" stroke-width="1"/>
+  <!-- Vertical line at mu -->
+  <line x1="250" y1="240" x2="250" y2="30" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <!-- Distribution curve -->
+  <path d="M 50,238 Q 80,236 110,230 Q 140,215 170,185 Q 200,130 220,80 Q 235,45 250,30 Q 265,45 280,80 Q 300,130 330,185 Q 360,215 390,230 Q 420,236 450,238" fill="none" stroke="#4f46e5" stroke-width="2.5"/>
+  <!-- Shaded central region [mu-delta, mu+delta] -->
+  <path d="M 170,238 Q 200,130 220,80 Q 235,45 250,30 Q 265,45 280,80 Q 300,130 330,238 Z" fill="#4f46e5" opacity="0.15"/>
+  <!-- Vertical lines at mu-delta and mu+delta -->
+  <line x1="170" y1="240" x2="170" y2="185" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="330" y1="240" x2="330" y2="185" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <!-- Labels on x-axis -->
+  <text x="250" y="258" font-size="12" fill="#64748b" font-weight="bold" text-anchor="middle">μ</text>
+  <text x="170" y="258" font-size="11" fill="#4f46e5" font-weight="bold" text-anchor="middle">μ−δ</text>
+  <text x="330" y="258" font-size="11" fill="#4f46e5" font-weight="bold" text-anchor="middle">μ+δ</text>
+  <!-- Delta arrows -->
+  <line x1="170" y1="270" x2="250" y2="270" stroke="#4f46e5" stroke-width="1"/>
+  <polygon points="170,267 170,273 176,270" fill="#4f46e5"/>
+  <polygon points="250,267 250,273 244,270" fill="#4f46e5"/>
+  <text x="210" y="282" font-size="11" fill="#4f46e5" font-weight="bold" text-anchor="middle">δ</text>
+  <line x1="250" y1="270" x2="330" y2="270" stroke="#4f46e5" stroke-width="1"/>
+  <polygon points="330,267 330,273 324,270" fill="#4f46e5"/>
+  <text x="290" y="282" font-size="11" fill="#4f46e5" font-weight="bold" text-anchor="middle">δ</text>
+  <!-- Outer regions annotations -->
+  <!-- Left tail -->
+  <path d="M 50,238 Q 80,236 110,230 Q 140,215 170,238 Z" fill="#ef4444" opacity="0.15"/>
+  <!-- Right tail -->
+  <path d="M 330,238 Q 360,215 390,230 Q 420,236 450,238 Z" fill="#ef4444" opacity="0.15"/>
+  <!-- Probability labels -->
+  <text x="250" y="150" font-size="12" fill="#4f46e5" font-weight="bold" text-anchor="middle">P(|X−μ| &lt; δ)</text>
+  <text x="100" y="220" font-size="10" fill="#ef4444" font-weight="bold" text-anchor="middle">≤ V/δ²</text>
+  <text x="400" y="220" font-size="10" fill="#ef4444" font-weight="bold" text-anchor="middle">≤ V/δ²</text>
+  <!-- Brace annotation -->
+  <text x="250" y="296" font-size="11" fill="#ef4444" font-weight="bold" text-anchor="middle">P(|X−μ| ≥ δ) ≤ V/δ²</text>
+</svg>
+<p style="text-align:center;font-size:.85rem;color:#666">Inégalité de Bienaymé-Tchebychev : la probabilité que X s'écarte de μ de plus de δ (zones rouges) est majorée par V/δ².</p>
+</div>
+
 <div class="exo">
 <span class="exo-num">Exercice 1</span>
 <p>Soit \(X\) une v.a. avec \(E(X)=50\) et \(V(X)=9\). Majorer \(P(|X-50|\geqslant 6)\).</p>
@@ -134,6 +174,26 @@
 </div>
 </div>
 
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p class="exo-titre">Application — Sondage d'opinion</p>
+<p>Un institut de sondage interroge \(n = 2500\) personnes sur leur intention de vote. La proportion observée de personnes favorables à un projet est \(\hat{p} = 0{,}42\).</p>
+<ol>
+  <li>Rappeler l'inégalité de concentration appliquée à la fréquence \(F_n\) d'un échantillon de taille \(n\) pour une proportion \(p\) inconnue.</li>
+  <li>En utilisant le fait que \(p(1-p)\leqslant\frac{1}{4}\), donner un intervalle de confiance pour la vraie proportion \(p\) au risque \(\alpha = 0{,}05\).</li>
+  <li>Le projet est-il soutenu par une majorité de la population ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(P(|F_n - p|\geqslant\delta)\leqslant\frac{p(1-p)}{n\delta^2}\leqslant\frac{1}{4n\delta^2}\).</li>
+  <li>On veut \(\frac{1}{4n\delta^2}\leqslant 0{,}05\), soit \(\delta^2\geqslant\frac{1}{4\times 2500\times 0{,}05}=\frac{1}{500}=0{,}002\), donc \(\delta\geqslant\sqrt{0{,}002}\approx 0{,}0447\).
+  <br>L'intervalle de confiance au risque 5 % est \([\hat{p}-\delta\,;\ \hat{p}+\delta] = [0{,}42-0{,}045\,;\ 0{,}42+0{,}045] \approx [0{,}375\,;\ 0{,}465]\).</li>
+  <li>L'intervalle \([0{,}375\,;\ 0{,}465]\) ne contient pas 0,5. Au risque 5 %, on ne peut <strong>pas</strong> affirmer que le projet est soutenu par une majorité : la proportion pourrait être inférieure à 50 %.</li>
+</ol>
+</div>
+</div>
+
 <!-- ═══════════════════════════════════════════ -->
 <h2>IV. Application à la taille d'échantillon</h2>
 <!-- ═══════════════════════════════════════════ -->
@@ -146,7 +206,7 @@
 </div>
 
 <div class="exo">
-<span class="exo-num">Exercice 5</span>
+<span class="exo-num">Exercice 6</span>
 <p>On veut estimer la proportion d'électeurs favorables à un candidat avec une précision de 2 % et un risque de 5 %. Quelle taille d'échantillon faut-il ?</p>
 <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
 <div class="corr">
@@ -156,7 +216,7 @@
 </div>
 
 <div class="exo">
-<span class="exo-num">Exercice 6</span>
+<span class="exo-num">Exercice 7</span>
 <p class="exo-titre">Problème de synthèse — Simulation</p>
 <p>On estime \(\pi\) par la méthode de Monte-Carlo : on tire \(n\) points au hasard dans le carré \([0;1]^2\) et on compte ceux dans le quart de disque (\(x^2+y^2\leqslant 1\)). La fréquence \(F_n\) estime \(\frac{\pi}{4}\).</p>
 <ol>
@@ -169,6 +229,31 @@
   <li>Chaque point est dans le quart de disque avec probabilité \(p=\frac{\pi}{4}\). Les tirages sont indépendants. Par la loi des grands nombres, \(F_n\to p=\frac{\pi}{4}\).</li>
   <li>\(V(F_n)=\frac{p(1-p)}{n}\leqslant\frac{1}{4n}\). \(\frac{1}{4n\times 10^{-6}}\leqslant 0{,}01\), \(\frac{10^6}{4n}\leqslant 0{,}01\), \(n\geqslant\frac{10^6}{0{,}04}=25\,000\,000\).
   <br>Il faut au moins <strong>25 millions</strong> de points. (L'inégalité de Bienaymé-Tchebychev est pessimiste ; en pratique, quelques millions suffisent.)</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p class="exo-titre">Problème de synthèse — Démonstration et application</p>
+<p>Soit \(X\sim\mathcal{B}(n,p)\) et \(F_n=\frac{X}{n}\) la fréquence associée.</p>
+<ol>
+  <li>Rappeler \(E(F_n)\) et \(V(F_n)\).</li>
+  <li>En utilisant le fait que pour tout \(p\in[0;1]\), \(p(1-p)\leqslant\frac{1}{4}\), montrer que pour tout \(\varepsilon > 0\) :
+  \[P\left(|F_n - p|\geqslant\varepsilon\right)\leqslant\frac{1}{4n\varepsilon^2}\]</li>
+  <li>On souhaite que \(P(|F_n-p|\geqslant 0{,}02)\leqslant 0{,}05\). Déterminer la taille minimale de l'échantillon.</li>
+  <li>On souhaite maintenant que \(P(|F_n-p|\geqslant 0{,}01)\leqslant 0{,}01\). Déterminer \(n\). Commenter.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(F_n) = p\) et \(V(F_n)=\frac{p(1-p)}{n}\).</li>
+  <li>Par l'inégalité de Bienaymé-Tchebychev appliquée à \(F_n\) :
+  \[P(|F_n-p|\geqslant\varepsilon)\leqslant\frac{V(F_n)}{\varepsilon^2}=\frac{p(1-p)}{n\varepsilon^2}\leqslant\frac{1}{4n\varepsilon^2}\]
+  car \(p(1-p)\leqslant\frac{1}{4}\). ∎</li>
+  <li>\(\frac{1}{4n\times 0{,}0004}\leqslant 0{,}05\), soit \(\frac{625}{n}\leqslant 0{,}05\), d'où \(n\geqslant\frac{625}{0{,}05}=12\,500\).</li>
+  <li>\(\frac{1}{4n\times 0{,}0001}\leqslant 0{,}01\), soit \(\frac{2500}{n}\leqslant 0{,}01\), d'où \(n\geqslant 250\,000\).
+  <br>Diviser la précision par 2 (de 0,02 à 0,01) et le risque par 5 (de 0,05 à 0,01) multiplie la taille de l'échantillon par 20. La précision a un coût quadratique.</li>
 </ol>
 </div>
 </div>

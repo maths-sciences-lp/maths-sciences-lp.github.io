@@ -21,16 +21,21 @@
 <div class="objectifs">
 <h3>Capacités travaillées</h3>
 <ul>
-  <li><strong>C1</strong> — Appliquer l'inégalité de Bienaymé-Tchebychev pour définir une taille d'échantillon</li>
+  <li><strong>C1</strong> — Appliquer l'inégalité de Bienaymé-Tchebychev</li>
+  <li><strong>C2</strong> — Utiliser l'inégalité de concentration pour un échantillon</li>
+  <li><strong>C3</strong> — Appliquer la loi des grands nombres</li>
 </ul>
 </div>
 
 <div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
   <button class="btn-cap active" data-filtre="toutes">Toutes</button>
-  <button class="btn-cap" data-filtre="C1">C1 — Bienaymé-Tchebychev / échantillons</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Bienaymé-Tchebychev</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Concentration / échantillon</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Loi des grands nombres</button>
 </div>
 <p id="cap-active-label" style="font-style:italic;color:#666"></p>
 
+<!-- ═══════════════════════════════════════════ -->
 <section class="cap-section" data-cap="C1">
 <h2>C1 — Appliquer l'inégalité de Bienaymé-Tchebychev</h2>
 
@@ -82,6 +87,12 @@
 </div>
 </div>
 
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Utiliser l'inégalité de concentration pour un échantillon</h2>
+
 <div class="exo">
 <span class="exo-num">Exercice 5</span>
 <p>On contrôle des pièces produites par une machine. La proportion de pièces défectueuses est \(p\) (inconnue). On prélève \(n\) pièces. Soit \(F_n\) la fréquence de pièces défectueuses.</p>
@@ -102,6 +113,57 @@
 
 <div class="exo">
 <span class="exo-num">Exercice 6</span>
+<p class="exo-titre">Contrôle qualité — Taux de défauts</p>
+<p>Une usine fabrique des composants électroniques. Le taux de défaut \(p\) est inconnu. On prélève un échantillon de \(n\) composants et on note \(F_n\) la fréquence de composants défectueux.</p>
+<ol>
+  <li>On souhaite estimer \(p\) avec une précision \(\delta = 0{,}03\) et un risque \(\alpha = 0{,}02\). Montrer que la taille d'échantillon nécessaire est \(n\geqslant\frac{1}{4\alpha\delta^2}\) et calculer \(n\).</li>
+  <li>On effectue le contrôle avec \(n = 15\,000\) composants et on observe \(F_n = 0{,}047\). Donner un intervalle de confiance pour \(p\) au risque 2 %.</li>
+  <li>Le cahier des charges impose \(p < 0{,}06\). Le lot est-il conforme au risque 2 % ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(P(|F_n-p|\geqslant 0{,}03)\leqslant\frac{1}{4n\times 0{,}0009}\leqslant\alpha = 0{,}02\).
+  <br>Soit \(n\geqslant\frac{1}{4\times 0{,}02\times 0{,}0009}=\frac{1}{0{,}000072}\approx 13\,889\).
+  <br>Il faut au moins <strong>13 889 composants</strong>.</li>
+  <li>Avec \(n=15\,000\) : \(\frac{1}{4\times 15\,000\times 0{,}0009}=\frac{1}{54}\approx 0{,}0185 < 0{,}02\). Le risque est satisfait.
+  <br>Intervalle de confiance : \([0{,}047-0{,}03\,;\ 0{,}047+0{,}03] = [0{,}017\,;\ 0{,}077]\).</li>
+  <li>La borne supérieure de l'intervalle est 0,077 > 0,06. Au risque 2 %, on <strong>ne peut pas garantir</strong> que \(p < 0{,}06\). Le lot ne peut pas être déclaré conforme avec cette précision.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p class="exo-titre">Essai clinique — Taille d'échantillon</p>
+<p>Un laboratoire teste un nouveau traitement. Le taux de réponse positive \(p\) est inconnu. On souhaite estimer \(p\) par la fréquence observée \(F_n\) sur un échantillon de \(n\) patients, avec un intervalle de confiance de largeur totale au plus \(0{,}04\) (soit une précision \(\delta = 0{,}02\)).</p>
+<ol>
+  <li>Écrire l'inégalité de concentration avec \(\delta = 0{,}02\) et majorer \(V(F_n)\).</li>
+  <li>Déterminer \(n\) pour un risque \(\alpha = 0{,}05\).</li>
+  <li>Déterminer \(n\) pour un risque \(\alpha = 0{,}01\). Commenter l'effet de la réduction du risque sur la taille de l'échantillon.</li>
+  <li>On réalise l'essai avec \(n = 50\,000\) patients et on observe \(F_n = 0{,}68\). Donner un intervalle de confiance au risque 1 % pour \(p\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(P(|F_n-p|\geqslant 0{,}02)\leqslant\frac{p(1-p)}{n\times 0{,}0004}\leqslant\frac{1}{4n\times 0{,}0004}=\frac{625}{n}\).</li>
+  <li>\(\frac{625}{n}\leqslant 0{,}05\), soit \(n\geqslant\frac{625}{0{,}05}=12\,500\).</li>
+  <li>\(\frac{625}{n}\leqslant 0{,}01\), soit \(n\geqslant\frac{625}{0{,}01}=62\,500\).
+  <br>Diviser le risque par 5 (de 5 % à 1 %) multiplie la taille de l'échantillon par 5. Plus on veut être certain du résultat, plus l'échantillon doit être grand.</li>
+  <li>Avec \(n=50\,000\) : \(\frac{625}{50\,000}=0{,}0125\). Le risque est 1,25 %, légèrement supérieur à 1 %. Pour un risque de 1 % strict, on utilise \(\delta\) tel que \(\frac{1}{4\times 50\,000\times\delta^2}\leqslant 0{,}01\), soit \(\delta^2\geqslant\frac{1}{2000}=0{,}0005\), \(\delta\geqslant 0{,}0224\).
+  <br>Intervalle de confiance au risque 1 % : \([0{,}68-0{,}023\,;\ 0{,}68+0{,}023] \approx [0{,}657\,;\ 0{,}703]\).</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Appliquer la loi des grands nombres</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
 <p class="exo-titre">Simulation — Loi des grands nombres</p>
 <p>Écrire un programme Python qui lance un dé \(n\) fois et trace la courbe de la fréquence de 6 en fonction de \(n\).</p>
 <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
@@ -126,6 +188,56 @@ plt.title('Loi des grands nombres')
 plt.legend()
 plt.show()</code></pre>
 <p>La courbe oscille d'abord largement puis se stabilise autour de \(\frac{1}{6}\approx 0{,}167\) : illustration de la loi des grands nombres.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p class="exo-titre">Convergence de la moyenne d'un dé</p>
+<p>On lance \(n\) fois un dé équilibré à 6 faces. On note \(X_i\) le résultat du \(i\)-ème lancer et \(M_n = \frac{X_1+X_2+\cdots+X_n}{n}\) la moyenne des résultats.</p>
+<ol>
+  <li>Calculer \(E(X_i)\) et \(V(X_i)\) pour un lancer de dé.</li>
+  <li>En déduire \(E(M_n)\) et \(V(M_n)\).</li>
+  <li>En utilisant l'inégalité de Bienaymé-Tchebychev, montrer que pour tout \(\varepsilon > 0\) :
+  \[P(|M_n - 3{,}5|\geqslant\varepsilon)\leqslant\frac{35}{12n\varepsilon^2}\]</li>
+  <li>En déduire que \(M_n\) converge en probabilité vers \(3{,}5\). Quel théorème vient-on d'illustrer ?</li>
+  <li>Combien de lancers faut-il pour que \(P(|M_n-3{,}5|\geqslant 0{,}1)\leqslant 0{,}01\) ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(X_i)=\frac{1+2+3+4+5+6}{6}=\frac{21}{6}=3{,}5\).
+  <br>\(E(X_i^2)=\frac{1+4+9+16+25+36}{6}=\frac{91}{6}\).
+  <br>\(V(X_i)=\frac{91}{6}-3{,}5^2=\frac{91}{6}-\frac{49}{4}=\frac{182-147}{12}=\frac{35}{12}\approx 2{,}917\).</li>
+  <li>\(E(M_n)=E(X_i)=3{,}5\). \(V(M_n)=\frac{V(X_i)}{n}=\frac{35}{12n}\).</li>
+  <li>Par Bienaymé-Tchebychev : \(P(|M_n-3{,}5|\geqslant\varepsilon)\leqslant\frac{V(M_n)}{\varepsilon^2}=\frac{35}{12n\varepsilon^2}\). ∎</li>
+  <li>Pour tout \(\varepsilon > 0\), \(\frac{35}{12n\varepsilon^2}\to 0\) quand \(n\to+\infty\), donc \(P(|M_n-3{,}5|\geqslant\varepsilon)\to 0\). C'est la <strong>loi (faible) des grands nombres</strong>.</li>
+  <li>\(\frac{35}{12n\times 0{,}01}\leqslant 0{,}01\), soit \(\frac{35}{0{,}12n}\leqslant 0{,}01\), \(n\geqslant\frac{35}{0{,}0012}\approx 29\,167\).
+  <br>Il faut au moins <strong>29 167 lancers</strong>.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p class="exo-titre">Application — Assurance et loi des grands nombres</p>
+<p>Une compagnie d'assurance possède \(n = 10\,000\) contrats. Pour chaque contrat \(i\), le montant des sinistres annuels est une variable aléatoire \(X_i\) d'espérance \(\mu = 800\) € et d'écart-type \(\sigma = 2000\) €. On suppose les sinistres indépendants. Soit \(M_n=\frac{X_1+\cdots+X_n}{n}\) le coût moyen par contrat.</p>
+<ol>
+  <li>Calculer \(E(M_n)\) et \(V(M_n)\).</li>
+  <li>En utilisant l'inégalité de concentration, majorer \(P(|M_n - 800|\geqslant 50)\).</li>
+  <li>Majorer \(P(|M_n - 800|\geqslant 100)\). La compagnie peut-elle fixer sa prime à 900 € avec une bonne confiance ?</li>
+  <li>Si la compagnie souhaite que \(P(|M_n - 800|\geqslant 50)\leqslant 0{,}01\), combien de contrats lui faut-il au minimum ?</li>
+  <li>Expliquer en quoi ce résultat illustre la loi des grands nombres et le principe de la mutualisation des risques.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(M_n) = 800\) €. \(V(M_n)=\frac{\sigma^2}{n}=\frac{4\,000\,000}{10\,000}=400\).</li>
+  <li>\(P(|M_n-800|\geqslant 50)\leqslant\frac{400}{2500}=0{,}16\). Au plus 16 % de risque que le coût moyen s'écarte de plus de 50 € de l'espérance.</li>
+  <li>\(P(|M_n-800|\geqslant 100)\leqslant\frac{400}{10\,000}=0{,}04\). Il y a au plus 4 % de risque que \(M_n > 900\). Avec une prime de 900 €, la compagnie couvre ses frais avec une probabilité d'au moins 96 %.</li>
+  <li>\(\frac{\sigma^2}{n\times 2500}\leqslant 0{,}01\), soit \(\frac{4\,000\,000}{2500n}\leqslant 0{,}01\), \(\frac{1600}{n}\leqslant 0{,}01\), \(n\geqslant 160\,000\) contrats.</li>
+  <li>Par la loi des grands nombres, \(M_n\to\mu = 800\) quand \(n\to+\infty\). Plus le portefeuille de contrats est grand, plus le coût moyen se stabilise autour de l'espérance. C'est le <strong>principe de mutualisation des risques</strong> : individuellement, un sinistre est imprévisible, mais sur un grand nombre de contrats, le coût moyen devient prévisible. C'est ce qui permet aux assureurs de fixer des primes et de garantir leur solvabilité.</li>
+</ol>
 </div>
 </div>
 
