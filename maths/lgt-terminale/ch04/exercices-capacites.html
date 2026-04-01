@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Exercices par capacités – Représentations paramétriques et équations cartésiennes – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 4 – Représentations paramétriques et équations cartésiennes</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Déterminer une représentation paramétrique d'une droite</li>
+  <li><strong>C2</strong> — Déterminer l'équation cartésienne d'un plan</li>
+  <li><strong>C3</strong> — Déterminer les coordonnées du projeté orthogonal</li>
+  <li><strong>C4</strong> — Résoudre un système d'équations linéaires pour étudier des configurations</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Droites</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Plans</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Projetés</button>
+  <button class="btn-cap" data-filtre="C4">C4 — Systèmes / configurations</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C1 — Droites                               -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Déterminer une représentation paramétrique d'une droite</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Déterminer une représentation paramétrique de la droite passant par \(A(2;-3;1)\) de vecteur directeur \(\vec{u}(1;4;-2)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+\[\begin{cases} x = 2+t \\ y = -3+4t \\ z = 1-2t \end{cases} \quad t \in \mathbb{R}\]
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Déterminer une représentation paramétrique de la droite \((AB)\) avec \(A(1;0;-2)\) et \(B(3;2;4)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB}(2;2;6)\). On simplifie : \(\vec{u}(1;1;3)\).</p>
+\[\begin{cases} x = 1+t \\ y = t \\ z = -2+3t \end{cases} \quad t \in \mathbb{R}\]
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Soit \(d\) : \(\begin{cases} x = -1+2t \\ y = 3-t \\ z = 5+3t \end{cases}\). Déterminer deux points de \(d\) et vérifier que \(P(3;1;11)\) appartient à \(d\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Pour \(t=0\) : \((-1;3;5)\). Pour \(t=1\) : \((1;2;8)\).</p>
+<p>Point \(P\) : \(3=-1+2t \Rightarrow t=2\). \(y=3-2=1\) ✓. \(z=5+6=11\) ✓. \(P \in d\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Les droites \(d_1\) : \(\begin{cases} x=1+t \\ y=2t \\ z=-1+3t \end{cases}\) et \(d_2\) : \(\begin{cases} x=3-2s \\ y=-4s \\ z=5-6s \end{cases}\) sont-elles confondues ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Vecteurs directeurs : \(\vec{u_1}(1;2;3)\), \(\vec{u_2}(-2;-4;-6) = -2\vec{u_1}\). Colinéaires : droites parallèles.</p>
+<p>Le point \(A_1(1;0;-1)\) (pour \(t=0\)) est-il sur \(d_2\) ? \(1=3-2s \Rightarrow s=1\). \(y=-4\neq 0\). Non.</p>
+<p>Les droites sont <strong>strictement parallèles</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Écrire une représentation paramétrique de la droite passant par \(M(2;1;-1)\) et perpendiculaire au plan \(3x-y+2z-5=0\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Le vecteur normal \(\vec{n}(3;-1;2)\) est le vecteur directeur de la droite perpendiculaire.</p>
+\[\begin{cases} x = 2+3t \\ y = 1-t \\ z = -1+2t \end{cases} \quad t \in \mathbb{R}\]
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C2 — Plans                                 -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Déterminer l'équation cartésienne d'un plan</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Déterminer une équation cartésienne du plan passant par \(A(1;-2;3)\) de vecteur normal \(\vec{n}(4;1;-3)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(4(x-1)+1(y+2)+(-3)(z-3) = 0\), soit \(4x+y-3z+7=0\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Déterminer une équation cartésienne du plan passant par \(A(1;0;0)\), \(B(0;2;0)\), \(C(0;0;-1)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB}(-1;2;0)\), \(\vec{AC}(-1;0;-1)\).</p>
+<p>\(\vec{n}(a;b;c)\) : \(-a+2b=0\) et \(-a-c=0\). Donc \(a=2b\) et \(c=-a=-2b\). Posons \(b=1\) : \(\vec{n}(2;1;-2)\).</p>
+<p>Équation : \(2(x-1)+y-2z=0\), soit \(2x+y-2z-2=0\).</p>
+<p>Vérification : \(B\) : \(0+2-0-2=0\) ✓. \(C\) : \(0+0+2-2=0\) ✓.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Déterminer l'équation du plan médiateur du segment \([AB]\) avec \(A(3;1;-1)\) et \(B(1;5;3)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Milieu : \(I(2;3;1)\). Vecteur normal : \(\vec{AB}(-2;4;4)\), soit \(\vec{n}(-1;2;2)\).</p>
+<p>Équation : \(-(x-2)+2(y-3)+2(z-1)=0\), soit \(-x+2y+2z-6=0\), ou \(x-2y-2z+6=0\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>On donne le plan \(\mathcal{P}\) : \(x-3y+2z+5=0\). Déterminer l'équation du plan \(\mathcal{P'}\) parallèle à \(\mathcal{P}\) passant par le point \(M(1;0;-2)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\mathcal{P'}\) a le même vecteur normal \(\vec{n}(1;-3;2)\).</p>
+<p>Équation : \((x-1)-3y+2(z+2)=0\), soit \(x-3y+2z+3=0\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Déterminer l'équation du plan passant par \(A(2;1;0)\), contenant la droite \(d\) : \(\begin{cases} x=1+t \\ y=-1+2t \\ z=3-t \end{cases}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Un point de \(d\) : \(B(1;-1;3)\) (pour \(t=0\)). Vecteur directeur de \(d\) : \(\vec{u}(1;2;-1)\). \(\vec{AB}(-1;-2;3)\).</p>
+<p>On cherche \(\vec{n}(a;b;c)\) orthogonal à \(\vec{u}\) et \(\vec{AB}\) :</p>
+<p>\(a+2b-c=0\) et \(-a-2b+3c=0\). En additionnant : \(2c=0\), \(c=0\). Alors \(a=-2b\). Posons \(b=1\) : \(\vec{n}(-2;1;0)\).</p>
+<p>Équation : \(-2(x-2)+(y-1)=0\), soit \(-2x+y+3=0\), ou \(2x-y-3=0\).</p>
+<p>Vérification : \(B\) : \(2-(-1)-3=0\) ✓.</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C3 — Projetés                              -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Déterminer les coordonnées du projeté orthogonal</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>Déterminer le projeté orthogonal de \(M(4;3;-1)\) sur le plan \(\mathcal{P}\) : \(x+y-z-2=0\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{n}(1;1;-1)\). Droite perpendiculaire : \((4+t;3+t;-1-t)\).</p>
+<p>\((4+t)+(3+t)-(-1-t)-2=0\), soit \(4+t+3+t+1+t-2=0\), \(3t+6=0\), \(t=-2\).</p>
+<p>\(H(2;1;1)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p>Déterminer le projeté orthogonal de \(M(5;-1;3)\) sur la droite \(d\) passant par \(A(1;1;1)\) de direction \(\vec{u}(1;-1;1)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(H = (1+t;1-t;1+t)\). \(\vec{MH} = (t-4;-t+2;t-2)\).</p>
+<p>\(\vec{MH}\cdot\vec{u} = (t-4)+(-1)(-t+2)+(t-2) = t-4+t-2+t-2 = 3t-8 = 0\), \(t=\frac{8}{3}\).</p>
+<p>\(H\left(\frac{11}{3};-\frac{5}{3};\frac{11}{3}\right)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p>Soit \(\mathcal{P}\) : \(2x+y-2z+3=0\) et \(M(1;-1;2)\).</p>
+<ol>
+  <li>Calculer la distance de \(M\) à \(\mathcal{P}\).</li>
+  <li>Déterminer le projeté \(H\) et le symétrique \(M'\) de \(M\) par rapport à \(\mathcal{P}\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(d = \frac{|2-1-4+3|}{\sqrt{4+1+4}} = \frac{0}{3} = 0\). Le point \(M\) est <strong>dans le plan</strong>.</li>
+  <li>\(H = M = (1;-1;2)\) et \(M' = M\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 14</span>
+<p>Déterminer le projeté orthogonal de \(M(0;0;0)\) sur le plan \(\mathcal{P}\) : \(x+2y+2z-9=0\), puis la distance \(MH\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Droite perpendiculaire : \((t;2t;2t)\). Dans \(\mathcal{P}\) : \(t+4t+4t-9=0\), \(9t=9\), \(t=1\). \(H(1;2;2)\).</p>
+<p>\(MH = \sqrt{1+4+4} = 3\). On vérifie : \(d = \frac{9}{3} = 3\) ✓.</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C4 — Systèmes / configurations             -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C4">
+<h2>C4 — Résoudre un système d'équations linéaires pour étudier des configurations</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 15</span>
+<p>Déterminer l'intersection des plans \(\mathcal{P}_1\) : \(x+y-z=2\) et \(\mathcal{P}_2\) : \(2x-y+z=1\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Vecteurs normaux : \(\vec{n_1}(1;1;-1)\), \(\vec{n_2}(2;-1;1)\). Non colinéaires : plans sécants.</p>
+<p>Système : \(\begin{cases} x+y-z=2 \\ 2x-y+z=1 \end{cases}\). Addition : \(3x=3\), \(x=1\). \(y-z=1\). On pose \(z=t\) : \(y=1+t\).</p>
+\[\begin{cases} x = 1 \\ y = 1+t \\ z = t \end{cases} \quad t \in \mathbb{R}\]
+<p>Point : \((1;1;0)\). Direction : \(\vec{u}(0;1;1)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 16</span>
+<p>Les droites \(d_1\) : \(\begin{cases} x=2+t \\ y=1-t \\ z=3+2t \end{cases}\) et \(d_2\) : \(\begin{cases} x=s \\ y=3+s \\ z=-1+3s \end{cases}\) sont-elles sécantes ? Si oui, déterminer leur point d'intersection.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On résout \(\begin{cases} 2+t=s \\ 1-t=3+s \\ 3+2t=-1+3s \end{cases}\).</p>
+<p>De (1) : \(s=2+t\). Dans (2) : \(1-t=3+2+t\), \(-2t=4\), \(t=-2\), \(s=0\).</p>
+<p>Vérification dans (3) : \(3+2(-2)=-1\) et \(-1+3(0)=-1\). ✓</p>
+<p>Les droites sont <strong>sécantes</strong> au point \((0;3;-1)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 17</span>
+<p>Déterminer l'intersection des trois plans : \(x+y+z=6\), \(x-y+2z=5\) et \(2x+y=7\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>De \(2x+y=7\) : \(y=7-2x\). Dans la 1<sup>re</sup> : \(x+7-2x+z=6\), \(-x+z=-1\), \(z=x-1\).</p>
+<p>Dans la 2<sup>e</sup> : \(x-(7-2x)+2(x-1)=5\), \(x-7+2x+2x-2=5\), \(5x=14\), \(x=\frac{14}{5}\).</p>
+<p>\(y=7-\frac{28}{5}=\frac{7}{5}\), \(z=\frac{14}{5}-1=\frac{9}{5}\).</p>
+<p>Intersection : le point \(\left(\frac{14}{5};\frac{7}{5};\frac{9}{5}\right)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 18</span>
+<p>Montrer que les droites \(d_1\) et \(d_2\) suivantes ne sont pas coplanaires :</p>
+<p>\(d_1\) : \(\begin{cases} x=1+t \\ y=t \\ z=2t \end{cases}\), \(d_2\) : \(\begin{cases} x=s \\ y=1+2s \\ z=1+s \end{cases}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Vecteurs directeurs : \(\vec{u_1}(1;1;2)\), \(\vec{u_2}(1;2;1)\). Non colinéaires (\(\frac{1}{1}\neq\frac{1}{2}\)).</p>
+<p>Points : \(A_1(1;0;0)\) (pour \(t=0\)) et \(A_2(0;1;1)\) (pour \(s=0\)). \(\vec{A_1A_2}(-1;1;1)\).</p>
+<p>On vérifie si \(\vec{A_1A_2}\) est combinaison linéaire de \(\vec{u_1}\) et \(\vec{u_2}\) :</p>
+\[\begin{cases} \alpha + \beta = -1 \\ \alpha + 2\beta = 1 \\ 2\alpha + \beta = 1 \end{cases}\]
+<p>De (1) et (2) : \(\beta=2\), \(\alpha=-3\). Dans (3) : \(-6+2=-4\neq 1\). Système incompatible.</p>
+<p>Les droites sont <strong>non coplanaires</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 19</span>
+<p class="exo-titre">Problème de synthèse</p>
+<p>Dans un repère orthonormé, on considère le plan \(\mathcal{P}\) : \(x+y+z-4=0\) et les points \(A(1;0;0)\) et \(B(0;1;0)\).</p>
+<ol>
+  <li>Montrer que \(A\) et \(B\) sont du même côté du plan \(\mathcal{P}\).</li>
+  <li>Déterminer les projetés orthogonaux \(A'\) et \(B'\) de \(A\) et \(B\) sur \(\mathcal{P}\).</li>
+  <li>Calculer les distances \(AA'\) et \(BB'\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f(A) = 1+0+0-4 = -3 < 0\). \(f(B) = 0+1+0-4 = -3 < 0\). Même signe : \(A\) et \(B\) sont du <strong>même côté</strong>.</li>
+  <li>\(A' = (1+t;t;t)\) avec \((1+t)+t+t-4=0\), \(3t=3\), \(t=1\). \(A'(2;1;1)\).
+  <br>\(B' = (t;1+t;t)\) avec \(t+(1+t)+t-4=0\), \(3t=3\), \(t=1\). \(B'(1;2;1)\).</li>
+  <li>\(AA' = \sqrt{1+1+1} = \sqrt{3}\). \(BB' = \sqrt{1+1+1} = \sqrt{3}\). Distances égales, ce qui est cohérent car \(A\) et \(B\) sont à la même distance du plan.</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

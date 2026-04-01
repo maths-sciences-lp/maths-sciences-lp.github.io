@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Exercices par capacités – Vecteurs, droites et plans – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 2 – Vecteurs, droites et plans de l'espace</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Représenter des combinaisons linéaires de vecteurs donnés</li>
+  <li><strong>C2</strong> — Exploiter une figure pour exprimer un vecteur comme combinaison linéaire</li>
+  <li><strong>C3</strong> — Décrire la position relative de droites et de plans</li>
+  <li><strong>C4</strong> — Lire sur une figure si des vecteurs forment une base</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Combinaisons linéaires</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Décomposition</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Positions relatives</button>
+  <button class="btn-cap" data-filtre="C4">C4 — Bases</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C1 — Combinaisons linéaires                -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Représenter des combinaisons linéaires de vecteurs donnés</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Dans un parallélépipède rectangle \(ABCDEFGH\), on pose \(\vec{u} = \vec{AB}\), \(\vec{v} = \vec{AD}\), \(\vec{w} = \vec{AE}\). Exprimer les vecteurs suivants comme combinaisons linéaires de \(\vec{u}\), \(\vec{v}\), \(\vec{w}\) :</p>
+<ol>
+  <li>\(\vec{AC}\)</li>
+  <li>\(\vec{AG}\)</li>
+  <li>\(\vec{FD}\)</li>
+  <li>\(\vec{HB}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{AC} = \vec{AB} + \vec{BC} = \vec{AB} + \vec{AD} = \vec{u} + \vec{v}\).</li>
+  <li>\(\vec{AG} = \vec{AB} + \vec{AD} + \vec{AE} = \vec{u} + \vec{v} + \vec{w}\).</li>
+  <li>\(\vec{FD} = \vec{FA} + \vec{AD} = -\vec{AF} + \vec{AD} = -(\vec{u} + \vec{w}) + \vec{v} = -\vec{u} + \vec{v} - \vec{w}\).</li>
+  <li>\(\vec{HB} = \vec{HA} + \vec{AB} = -\vec{AH} + \vec{AB} = -(\vec{v} + \vec{w}) + \vec{u} = \vec{u} - \vec{v} - \vec{w}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Soient \(\vec{u}(2;-1;3)\) et \(\vec{v}(1;4;-2)\). Calculer les vecteurs :</p>
+<ol>
+  <li>\(3\vec{u} - 2\vec{v}\)</li>
+  <li>\(\frac{1}{2}\vec{u} + \vec{v}\)</li>
+  <li>\(-\vec{u} + 4\vec{v}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(3\vec{u} - 2\vec{v} = (6;-3;9) - (2;8;-4) = (4;-11;13)\).</li>
+  <li>\(\frac{1}{2}\vec{u} + \vec{v} = (1;-\frac{1}{2};\frac{3}{2}) + (1;4;-2) = (2;\frac{7}{2};-\frac{1}{2})\).</li>
+  <li>\(-\vec{u} + 4\vec{v} = (-2;1;-3) + (4;16;-8) = (2;17;-11)\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>On considère un tétraèdre \(OABC\). Soit \(M\) le point défini par \(\vec{OM} = \frac{1}{2}\vec{OA} + \frac{1}{3}\vec{OB}\).</p>
+<ol>
+  <li>Placer \(M\) sur la figure en utilisant la construction par étapes.</li>
+  <li>Le point \(M\) appartient-il au plan \((OAB)\) ? Justifier.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>On place d'abord \(I\) milieu de \([OA]\) (\(\vec{OI} = \frac{1}{2}\vec{OA}\)), puis \(J\) tel que \(\vec{OJ} = \frac{1}{3}\vec{OB}\) (tiers de \([OB]\)). Enfin \(M\) est tel que \(\vec{IM} = \vec{OJ}\) (parallélogramme).</li>
+  <li>Oui. \(\vec{OM} = \frac{1}{2}\vec{OA} + \frac{1}{3}\vec{OB}\) est une combinaison linéaire de \(\vec{OA}\) et \(\vec{OB}\), donc \(M\) appartient au plan \((OAB)\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Soient \(A(1;0;0)\), \(B(0;2;0)\) et \(C(0;0;3)\). Calculer les coordonnées du point \(G\) tel que \(\vec{OG} = \frac{1}{3}(\vec{OA} + \vec{OB} + \vec{OC})\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{OA} + \vec{OB} + \vec{OC} = (1;0;0) + (0;2;0) + (0;0;3) = (1;2;3)\).</p>
+<p>\(\vec{OG} = \frac{1}{3}(1;2;3) = \left(\frac{1}{3};\frac{2}{3};1\right)\).</p>
+<p>\(G\) est le centre de gravité du triangle \(ABC\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C2 — Décomposition dans une figure         -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Exploiter une figure pour exprimer un vecteur comme combinaison linéaire</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Dans un cube \(ABCDEFGH\) de côté 1, on pose \(\vec{u} = \vec{AB}\), \(\vec{v} = \vec{AD}\), \(\vec{w} = \vec{AE}\). Soit \(I\) le milieu de \([EG]\).</p>
+<ol>
+  <li>Déterminer les coordonnées de \(I\) dans le repère \((A;\vec{u},\vec{v},\vec{w})\).</li>
+  <li>Exprimer \(\vec{AI}\) comme combinaison linéaire de \(\vec{u}\), \(\vec{v}\), \(\vec{w}\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(0;0;1)\) et \(G(1;1;1)\). \(I = \text{milieu de } [EG] = \left(\frac{1}{2};\frac{1}{2};1\right)\).</li>
+  <li>\(\vec{AI} = \frac{1}{2}\vec{u} + \frac{1}{2}\vec{v} + \vec{w}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Dans un tétraèdre \(ABCD\), on note \(I\) le milieu de \([BC]\) et \(J\) le milieu de \([AD]\).</p>
+<p>Exprimer \(\vec{IJ}\) en fonction de \(\vec{AB}\), \(\vec{AC}\) et \(\vec{AD}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{IJ} = \vec{IA} + \vec{AJ}\).</p>
+<p>\(\vec{IA} = -\vec{AI} = -\frac{1}{2}(\vec{AB}+\vec{AC})\) (car \(I\) milieu de \([BC]\) implique \(\vec{AI} = \frac{1}{2}(\vec{AB}+\vec{AC})\)).</p>
+<p>\(\vec{AJ} = \frac{1}{2}\vec{AD}\).</p>
+<p>Donc \(\vec{IJ} = -\frac{1}{2}\vec{AB} - \frac{1}{2}\vec{AC} + \frac{1}{2}\vec{AD}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Dans un pavé droit \(ABCDEFGH\), on pose \(\vec{u}=\vec{AB}\), \(\vec{v}=\vec{AD}\), \(\vec{w}=\vec{AE}\). Soit \(P\) le point défini par \(\vec{BP} = \frac{2}{3}\vec{BC} + \frac{1}{2}\vec{BF}\).</p>
+<p>Exprimer \(\vec{AP}\) en fonction de \(\vec{u}\), \(\vec{v}\), \(\vec{w}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AP} = \vec{AB} + \vec{BP} = \vec{u} + \frac{2}{3}\vec{BC} + \frac{1}{2}\vec{BF}\).</p>
+<p>Or \(\vec{BC} = \vec{AD} = \vec{v}\) et \(\vec{BF} = \vec{AE} = \vec{w}\).</p>
+<p>Donc \(\vec{AP} = \vec{u} + \frac{2}{3}\vec{v} + \frac{1}{2}\vec{w}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Dans un tétraèdre régulier \(ABCD\), soit \(G\) le centre de gravité de la face \(BCD\).</p>
+<ol>
+  <li>Exprimer \(\vec{AG}\) en fonction de \(\vec{AB}\), \(\vec{AC}\), \(\vec{AD}\).</li>
+  <li>Soit \(M\) le milieu de \([AG]\). Exprimer \(\vec{AM}\) en fonction de \(\vec{AB}\), \(\vec{AC}\), \(\vec{AD}\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Le centre de gravité de \(BCD\) vérifie \(\vec{AG} = \frac{1}{3}(\vec{AB}+\vec{AC}+\vec{AD})\).</li>
+  <li>\(\vec{AM} = \frac{1}{2}\vec{AG} = \frac{1}{6}(\vec{AB}+\vec{AC}+\vec{AD})\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Dans un cube \(ABCDEFGH\), soit \(P\) le centre de la face \(BCGF\). Exprimer \(\vec{AP}\) en fonction de \(\vec{AB}\), \(\vec{AD}\), \(\vec{AE}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Le centre de \(BCGF\) est le milieu de la diagonale \([BG]\) (ou \([CF]\)).</p>
+<p>\(B(1;0;0)\) et \(G(1;1;1)\), donc \(P\left(1;\frac{1}{2};\frac{1}{2}\right)\).</p>
+<p>\(\vec{AP} = \vec{AB} + \frac{1}{2}\vec{AD} + \frac{1}{2}\vec{AE}\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C3 — Positions relatives                   -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Décrire la position relative de droites et de plans</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Dans un cube \(ABCDEFGH\), déterminer la position relative des droites et plans suivants. Justifier à chaque fois.</p>
+<ol>
+  <li>Droites \((AC)\) et \((EG)\)</li>
+  <li>Droites \((AF)\) et \((CE)\)</li>
+  <li>Droites \((AB)\) et \((GH)\)</li>
+  <li>Droite \((AF)\) et plan \((DCGH)\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{AC}(1;1;0)\) et \(\vec{EG}(1;1;0)\). Les vecteurs sont égaux donc colinéaires. Les droites sont <strong>parallèles</strong>. Comme \(A \notin (EFGH)\), elles sont <strong>strictement parallèles</strong>.</li>
+  <li>\(\vec{AF}(1;0;1)\) et \(\vec{CE}(-1;-1;1)\). On vérifie : pas de \(\lambda\) tel que \(\vec{CE} = \lambda\vec{AF}\). Directions différentes. On vérifie si elles se coupent : en résolvant le système, on trouve qu'elles se coupent au centre du cube. Elles sont <strong>sécantes</strong>.</li>
+  <li>\(\vec{AB}(1;0;0)\) et \(\vec{GH}(-1;0;0) = -\vec{AB}\). Colinéaires. \(A \notin (GH)\). Elles sont <strong>strictement parallèles</strong>.</li>
+  <li>\(F(1;0;1)\). Le plan \((DCGH)\) est défini par \(D(0;1;0)\), \(\vec{DC}(1;0;0)\), \(\vec{DH}(0;0;1)\). \(\vec{AF}(1;0;1) = \vec{DC} + \vec{DH}\), donc \(\vec{AF}\) est combinaison linéaire des vecteurs du plan. Mais \(A(0;0;0) \notin (DCGH)\). Donc \((AF)\) est <strong>parallèle</strong> au plan \((DCGH)\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>On considère les droites \(d_1\) passant par \(A(1;2;3)\) de vecteur directeur \(\vec{u}(1;-1;2)\) et \(d_2\) passant par \(B(3;0;7)\) de vecteur directeur \(\vec{v}(2;-2;4)\).</p>
+<ol>
+  <li>Les droites sont-elles parallèles ?</li>
+  <li>Sont-elles confondues ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{v} = 2\vec{u}\) : les vecteurs directeurs sont colinéaires, donc les droites sont <strong>parallèles</strong>.</li>
+  <li>On vérifie si \(B \in d_1\) : \(\vec{AB} = (2;-2;4) = 2\vec{u}\). Donc \(B \in d_1\). Les droites sont <strong>confondues</strong>.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p>Soit \(d_1\) passant par \(A(0;1;2)\) de direction \(\vec{u}(1;1;0)\) et \(d_2\) passant par \(B(1;0;1)\) de direction \(\vec{v}(0;1;1)\).</p>
+<ol>
+  <li>Montrer que les droites ne sont pas parallèles.</li>
+  <li>Les droites sont-elles sécantes ou non coplanaires ? (Vérifier si \(\vec{AB}\) est combinaison linéaire de \(\vec{u}\) et \(\vec{v}\).)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{u}(1;1;0)\) et \(\vec{v}(0;1;1)\) ne sont pas colinéaires (pas de \(\lambda\) convenant). Les droites ne sont pas parallèles.</li>
+  <li>\(\vec{AB} = (1;-1;-1)\). On cherche \(\alpha, \beta\) tels que \(\vec{AB} = \alpha\vec{u} + \beta\vec{v}\) :
+  \[\begin{cases} \alpha = 1 \\ \alpha + \beta = -1 \\ \beta = -1 \end{cases}\]
+  De (1) : \(\alpha = 1\). De (3) : \(\beta = -1\). Vérification dans (2) : \(1 + (-1) = 0 \neq -1\).
+  <br>Système incompatible : \(\vec{AB}\) n'est pas combinaison linéaire de \(\vec{u}\) et \(\vec{v}\).
+  <br>Les droites sont <strong>non coplanaires</strong>.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p>Le plan \(\mathcal{P}\) passe par \(A(2;0;1)\) et est dirigé par \(\vec{u}(1;1;0)\) et \(\vec{v}(0;1;2)\). La droite \(d\) passe par \(B(1;-1;3)\) de direction \(\vec{w}(1;2;2)\).</p>
+<p>Déterminer la position relative de \(d\) et \(\mathcal{P}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On cherche si \(\vec{w}\) est combinaison linéaire de \(\vec{u}\) et \(\vec{v}\) : \(\vec{w} = \alpha\vec{u} + \beta\vec{v}\).</p>
+\[\begin{cases} \alpha = 1 \\ \alpha + \beta = 2 \\ 2\beta = 2 \end{cases}\]
+<p>\(\alpha = 1\), \(\beta = 1\). Vérification : \(\alpha + \beta = 2\) ✓ et \(2\beta = 2\) ✓.</p>
+<p>Donc \(\vec{w} = \vec{u} + \vec{v}\) : la droite est parallèle au plan (ou incluse).</p>
+<p>On vérifie si \(B \in \mathcal{P}\) : \(\vec{AB} = (-1;-1;2)\). On cherche \(\alpha, \beta\) tels que \(\vec{AB} = \alpha\vec{u} + \beta\vec{v}\) :</p>
+\[\begin{cases} \alpha = -1 \\ \alpha + \beta = -1 \\ 2\beta = 2 \end{cases}\]
+<p>\(\beta = 1\), mais \(\alpha + \beta = -1 + 1 = 0 \neq -1\). Système incompatible : \(B \notin \mathcal{P}\).</p>
+<p>La droite est <strong>strictement parallèle</strong> au plan.</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C4 — Bases                                 -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C4">
+<h2>C4 — Lire sur une figure si des vecteurs forment une base</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 14</span>
+<p>Les vecteurs suivants forment-ils une base de l'espace ? Justifier.</p>
+<ol>
+  <li>\(\vec{u}(1;0;0)\), \(\vec{v}(0;1;0)\), \(\vec{w}(0;0;1)\)</li>
+  <li>\(\vec{u}(1;2;3)\), \(\vec{v}(0;1;1)\), \(\vec{w}(1;3;4)\)</li>
+  <li>\(\vec{u}(1;1;0)\), \(\vec{v}(0;1;1)\), \(\vec{w}(1;0;-1)\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>C'est la base canonique. Aucun des trois n'est combinaison linéaire des deux autres. <strong>C'est une base.</strong></li>
+  <li>On vérifie si \(\vec{w} = \alpha\vec{u} + \beta\vec{v}\) : \((1;3;4) = \alpha(1;2;3) + \beta(0;1;1)\).
+  <br>\(\alpha = 1\), \(2\alpha + \beta = 3 \Rightarrow \beta = 1\), \(3\alpha + \beta = 3 + 1 = 4\) ✓.
+  <br>\(\vec{w} = \vec{u} + \vec{v}\) : les vecteurs sont coplanaires. <strong>Ce n'est pas une base.</strong></li>
+  <li>On résout \(\alpha\vec{u} + \beta\vec{v} + \gamma\vec{w} = \vec{0}\) :
+  \[\begin{cases} \alpha + \gamma = 0 \\ \alpha + \beta = 0 \\ \beta - \gamma = 0 \end{cases}\]
+  De (1) : \(\gamma = -\alpha\). De (2) : \(\beta = -\alpha\). Dans (3) : \(-\alpha - (-\alpha) = 0\) ✓ pour tout \(\alpha\).
+  <br>Il existe des solutions non triviales (par ex. \(\alpha=1, \beta=-1, \gamma=-1\)). <strong>Ce n'est pas une base.</strong></li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 15</span>
+<p>Dans un cube \(ABCDEFGH\), indiquer si les triplets de vecteurs suivants forment une base de l'espace. Justifier géométriquement.</p>
+<ol>
+  <li>\((\vec{AB}, \vec{AD}, \vec{AE})\)</li>
+  <li>\((\vec{AB}, \vec{AC}, \vec{AD})\)</li>
+  <li>\((\vec{AB}, \vec{AD}, \vec{AG})\)</li>
+  <li>\((\vec{AB}, \vec{AE}, \vec{BF})\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li><strong>Oui.</strong> Les trois arêtes du cube issues de \(A\) sont selon trois directions perpendiculaires. Les vecteurs ne sont pas coplanaires.</li>
+  <li><strong>Non.</strong> \(\vec{AC} = \vec{AB} + \vec{AD}\), donc \(\vec{AC}\) est combinaison linéaire de \(\vec{AB}\) et \(\vec{AD}\). Les trois vecteurs sont coplanaires (tous dans le plan \((ABCD)\)).</li>
+  <li><strong>Non.</strong> \(\vec{AG} = \vec{AB} + \vec{AD} + \vec{AE}\). On a \(\vec{AG} = \vec{AB} + \vec{AD} + \vec{AE}\), mais cela ne signifie pas que \(\vec{AG}\) est combinaison linéaire de \(\vec{AB}\) et \(\vec{AD}\) seuls. Vérifions : \(\vec{AG}(1;1;1)\), \(\vec{AB}(1;0;0)\), \(\vec{AD}(0;1;0)\). On cherche \(\alpha,\beta\) tels que \((1;1;1) = \alpha(1;0;0) + \beta(0;1;0)\) : impossible car la 3e composante donne \(0 = 1\). Les trois vecteurs ne sont pas coplanaires. <strong>Oui, c'est une base.</strong></li>
+  <li><strong>Non.</strong> \(\vec{BF} = \vec{AE}\) (translation). Donc \(\vec{AE}\) et \(\vec{BF}\) sont colinéaires, et les trois vecteurs \(\vec{AB}\), \(\vec{AE}\), \(\vec{BF}\) sont coplanaires (dans un plan contenant la direction de \(\vec{AB}\) et celle de \(\vec{AE}\)).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 16</span>
+<p>Montrer que les vecteurs \(\vec{u}(2;1;-1)\), \(\vec{v}(1;-1;2)\), \(\vec{w}(3;0;1)\) forment une base, puis décomposer \(\vec{t}(7;1;2)\) dans cette base.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Base :</strong> On résout \(\alpha\vec{u} + \beta\vec{v} + \gamma\vec{w} = \vec{0}\) :</p>
+\[\begin{cases} 2\alpha + \beta + 3\gamma = 0 \\ \alpha - \beta = 0 \\ -\alpha + 2\beta + \gamma = 0 \end{cases}\]
+<p>De (2) : \(\alpha = \beta\). Dans (3) : \(-\alpha + 2\alpha + \gamma = 0\), soit \(\gamma = -\alpha\). Dans (1) : \(2\alpha + \alpha - 3\alpha = 0\) ✓ pour tout \(\alpha\).</p>
+<p>Attention : le système admet des solutions non triviales (\(\alpha = \beta = 1, \gamma = -1\)). Vérifions : \(\vec{u} + \vec{v} - \vec{w} = (2+1-3; 1-1-0; -1+2-1) = (0;0;0)\). ✓</p>
+<p>Donc \(\vec{w} = \vec{u} + \vec{v}\) : <strong>ces vecteurs ne forment pas une base</strong> (ils sont coplanaires).</p>
+<p>Par conséquent, on ne peut pas décomposer tout vecteur de l'espace dans cette famille.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 17</span>
+<p>Montrer que \(\vec{u}(1;1;0)\), \(\vec{v}(1;0;1)\), \(\vec{w}(0;1;1)\) forment une base de l'espace, puis exprimer \(\vec{e_1}(1;0;0)\), \(\vec{e_2}(0;1;0)\) et \(\vec{e_3}(0;0;1)\) dans cette base.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Base :</strong> \(\alpha\vec{u} + \beta\vec{v} + \gamma\vec{w} = \vec{0}\) donne :</p>
+\[\begin{cases} \alpha + \beta = 0 \\ \alpha + \gamma = 0 \\ \beta + \gamma = 0 \end{cases}\]
+<p>\(\beta = -\alpha\), \(\gamma = -\alpha\), puis \(-\alpha - \alpha = 0\) donne \(\alpha = 0\). Unique solution triviale : <strong>c'est une base</strong>.</p>
+<p><strong>Décomposition de \(\vec{e_1}\) :</strong> \(\alpha + \beta = 1\), \(\alpha + \gamma = 0\), \(\beta + \gamma = 0\).</p>
+<p>\(\gamma = -\beta\), \(\alpha = \beta\), \(2\beta = 1\), \(\beta = \frac{1}{2}\). Donc \(\vec{e_1} = \frac{1}{2}\vec{u} + \frac{1}{2}\vec{v} - \frac{1}{2}\vec{w}\).</p>
+<p><strong>Décomposition de \(\vec{e_2}\) :</strong> \(\alpha + \beta = 0\), \(\alpha + \gamma = 1\), \(\beta + \gamma = 0\).</p>
+<p>\(\beta = -\alpha\), \(\gamma = \alpha\), \(-\alpha + \alpha = 0 \neq 0\)... Reprenons : \(\beta + \gamma = 0\) donne \(\gamma = -\beta = \alpha\). Dans (2) : \(\alpha + \alpha = 1\), \(\alpha = \frac{1}{2}\). Donc \(\vec{e_2} = \frac{1}{2}\vec{u} - \frac{1}{2}\vec{v} + \frac{1}{2}\vec{w}\).</p>
+<p><strong>Décomposition de \(\vec{e_3}\) :</strong> Par symétrie : \(\vec{e_3} = -\frac{1}{2}\vec{u} + \frac{1}{2}\vec{v} + \frac{1}{2}\vec{w}\).</p>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

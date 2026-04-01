@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Vecteurs, droites et plans de l'espace – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 2 – Vecteurs, droites et plans de l'espace</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Algèbre et géométrie</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Manipuler les vecteurs de l'espace et les combinaisons linéaires</li>
+  <li>Caractériser droites et plans par des vecteurs directeurs ou de direction</li>
+  <li>Étudier la position relative de droites et de plans</li>
+  <li>Décomposer un vecteur dans une base de l'espace</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Vecteurs de l'espace</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Rappels et extension à l'espace</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Vecteur de l'espace</span>
+<p>Un <strong>vecteur de l'espace</strong> est défini, comme dans le plan, par une direction, un sens et une norme. Deux vecteurs \(\vec{AB}\) et \(\vec{CD}\) sont <strong>égaux</strong> si et seulement si \(ABDC\) est un parallélogramme (éventuellement aplati).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Relation de Chasles</span>
+<p>Pour tous points \(A\), \(B\), \(C\) de l'espace :</p>
+\[\vec{AB} + \vec{BC} = \vec{AC}\]
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Opérations sur les vecteurs</span>
+<p>Les règles de calcul sur les vecteurs du plan s'étendent à l'espace :</p>
+<ul>
+  <li><strong>Addition :</strong> \(\vec{u} + \vec{v} = \vec{v} + \vec{u}\) (commutativité)</li>
+  <li><strong>Multiplication par un scalaire :</strong> \(\lambda(\vec{u} + \vec{v}) = \lambda\vec{u} + \lambda\vec{v}\)</li>
+  <li><strong>Vecteur nul :</strong> \(\vec{0}\) vérifie \(\vec{u} + \vec{0} = \vec{u}\)</li>
+  <li><strong>Opposé :</strong> \(\vec{u} + (-\vec{u}) = \vec{0}\)</li>
+</ul>
+</div>
+
+<h3>2. Translations</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Translation</span>
+<p>La <strong>translation de vecteur \(\vec{u}\)</strong> est la transformation qui, à tout point \(M\) de l'espace, associe l'unique point \(M'\) tel que \(\vec{MM'} = \vec{u}\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Dans un cube \(ABCDEFGH\), la translation de vecteur \(\vec{AE}\) envoie \(A\) sur \(E\), \(B\) sur \(F\), \(C\) sur \(G\) et \(D\) sur \(H\). Elle envoie la face \(ABCD\) sur la face \(EFGH\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Dans un parallélépipède rectangle \(ABCDEFGH\) (avec \(ABCD\) la face inférieure et \(EFGH\) la face supérieure, \(A\) sous \(E\), \(B\) sous \(F\), etc.), simplifier les sommes vectorielles suivantes :</p>
+<ol>
+  <li>\(\vec{AB} + \vec{BC} + \vec{CG}\)</li>
+  <li>\(\vec{AE} + \vec{EH} + \vec{HD}\)</li>
+  <li>\(\vec{AB} + \vec{AE} + \vec{AD}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Par Chasles : \(\vec{AB} + \vec{BC} + \vec{CG} = \vec{AC} + \vec{CG} = \vec{AG}\).</li>
+  <li>Par Chasles : \(\vec{AE} + \vec{EH} + \vec{HD} = \vec{AH} + \vec{HD} = \vec{AD}\).</li>
+  <li>\(\vec{AB} + \vec{AD} = \vec{AC}\) (diagonale de la face inférieure), puis \(\vec{AC} + \vec{AE} = \vec{AG}\) (car \(\vec{CG} = \vec{AE}\)).<br>
+  Donc \(\vec{AB} + \vec{AE} + \vec{AD} = \vec{AG}\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Combinaisons linéaires de vecteurs</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Définition</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Combinaison linéaire</span>
+<p>Soient \(\vec{u}\) et \(\vec{v}\) deux vecteurs de l'espace et \(\alpha, \beta\) deux nombres réels. Le vecteur \(\alpha\vec{u} + \beta\vec{v}\) est une <strong>combinaison linéaire</strong> de \(\vec{u}\) et \(\vec{v}\).</p>
+<p>Plus généralement, \(\alpha\vec{u} + \beta\vec{v} + \gamma\vec{w}\) est une combinaison linéaire de \(\vec{u}\), \(\vec{v}\) et \(\vec{w}\).</p>
+</div>
+
+<h3>2. Colinéarité</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Vecteurs colinéaires</span>
+<p>Deux vecteurs \(\vec{u}\) et \(\vec{v}\) sont <strong>colinéaires</strong> si et seulement s'il existe un réel \(\lambda\) tel que \(\vec{v} = \lambda\vec{u}\) (ou \(\vec{u} = \vec{0}\)).</p>
+<p>Géométriquement, deux vecteurs colinéaires ont la même direction.</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Trois points \(A\), \(B\), \(C\) sont <strong>alignés</strong> si et seulement si les vecteurs \(\vec{AB}\) et \(\vec{AC}\) sont colinéaires.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Soient \(A(1;2;3)\), \(B(3;6;7)\) et \(C(4;8;9)\). Les points \(A\), \(B\), \(C\) sont-ils alignés ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB}(2;4;4)\) et \(\vec{AC}(3;6;6)\).</p>
+<p>On vérifie : \(\vec{AC} = \frac{3}{2}\vec{AB}\) car \(3 = \frac{3}{2} \times 2\), \(6 = \frac{3}{2} \times 4\), \(6 = \frac{3}{2} \times 4\).</p>
+<p>Les vecteurs sont colinéaires, donc \(A\), \(B\), \(C\) sont <strong>alignés</strong>.</p>
+</div>
+</div>
+
+<h3>3. Coplanarité</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Vecteurs coplanaires</span>
+<p>Trois vecteurs \(\vec{u}\), \(\vec{v}\), \(\vec{w}\) sont <strong>coplanaires</strong> s'il existe des réels \(\alpha\), \(\beta\) tels que \(\vec{w} = \alpha\vec{u} + \beta\vec{v}\), c'est-à-dire si \(\vec{w}\) est une combinaison linéaire de \(\vec{u}\) et \(\vec{v}\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Quatre points \(A\), \(B\), \(C\), \(D\) sont <strong>coplanaires</strong> si et seulement si les vecteurs \(\vec{AB}\), \(\vec{AC}\), \(\vec{AD}\) sont coplanaires, c'est-à-dire s'il existe \(\alpha, \beta \in \mathbb{R}\) tels que :</p>
+\[\vec{AD} = \alpha\vec{AB} + \beta\vec{AC}\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Dans un cube \(ABCDEFGH\), les vecteurs \(\vec{AB}\), \(\vec{AD}\) et \(\vec{AE}\) ne sont <strong>pas coplanaires</strong> : aucun des trois ne peut s'écrire comme combinaison linéaire des deux autres. On dit qu'ils sont <strong>non coplanaires</strong>.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Soient \(\vec{u}(1;0;2)\), \(\vec{v}(0;1;-1)\) et \(\vec{w}(2;3;1)\). Le vecteur \(\vec{w}\) est-il une combinaison linéaire de \(\vec{u}\) et \(\vec{v}\) ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On cherche \(\alpha, \beta\) tels que \(\vec{w} = \alpha\vec{u} + \beta\vec{v}\), soit :</p>
+\[\begin{cases} \alpha = 2 \\ \beta = 3 \\ 2\alpha - \beta = 1 \end{cases}\]
+<p>De la 1<sup>re</sup> équation : \(\alpha = 2\). De la 2<sup>e</sup> : \(\beta = 3\).</p>
+<p>Vérification dans la 3<sup>e</sup> : \(2(2) - 3 = 4 - 3 = 1\). ✓</p>
+<p>\(\vec{w} = 2\vec{u} + 3\vec{v}\) : les trois vecteurs sont <strong>coplanaires</strong>.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Droites de l'espace</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Vecteur directeur d'une droite</h3>
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Un vecteur non nul \(\vec{u}\) est un <strong>vecteur directeur</strong> de la droite \(d\) s'il existe deux points \(A\) et \(B\) de \(d\) tels que \(\vec{AB} = \lambda\vec{u}\) pour un certain \(\lambda \neq 0\).</p>
+<p>Autrement dit, \(\vec{u}\) a la même direction que la droite.</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Caractérisation d'une droite</span>
+<p>Une droite de l'espace est entièrement déterminée par :</p>
+<ul>
+  <li>un <strong>point</strong> \(A\) de la droite, et</li>
+  <li>un <strong>vecteur directeur</strong> \(\vec{u}\) non nul.</li>
+</ul>
+<p>Un point \(M\) appartient à la droite \(d\) si et seulement si \(\vec{AM}\) est colinéaire à \(\vec{u}\), c'est-à-dire s'il existe \(t \in \mathbb{R}\) tel que :</p>
+\[\vec{AM} = t\vec{u}\]
+</div>
+
+<h3>2. Vecteurs colinéaires et droites parallèles</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Deux droites \(d\) et \(d'\) de vecteurs directeurs respectifs \(\vec{u}\) et \(\vec{u'}\) sont <strong>parallèles</strong> si et seulement si \(\vec{u}\) et \(\vec{u'}\) sont colinéaires.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>La droite \(d_1\) passe par \(A(1;0;2)\) avec le vecteur directeur \(\vec{u}(2;-1;3)\). La droite \(d_2\) passe par \(B(0;1;-1)\) avec le vecteur directeur \(\vec{v}(-4;2;-6)\).</p>
+<p>Les droites \(d_1\) et \(d_2\) sont-elles parallèles ? Sont-elles confondues ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{v} = -2\vec{u}\), donc \(\vec{u}\) et \(\vec{v}\) sont colinéaires : les droites sont <strong>parallèles</strong>.</p>
+<p>Pour savoir si elles sont confondues, on vérifie si \(B \in d_1\) : \(\vec{AB}(-1;1;-3)\). On cherche \(t\) tel que \(\vec{AB} = t\vec{u}\) :</p>
+<p>\(-1 = 2t \Rightarrow t = -\frac{1}{2}\), \(1 = -t \Rightarrow t = -1\). Les valeurs diffèrent, donc \(B \notin d_1\).</p>
+<p>Les droites sont <strong>strictement parallèles</strong> (parallèles mais non confondues).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Plans de l'espace</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Direction d'un plan</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Vecteurs directeurs d'un plan</span>
+<p>Deux vecteurs non colinéaires \(\vec{u}\) et \(\vec{v}\) <strong>dirigent</strong> un plan \(\mathcal{P}\) si toute droite de direction \(\vec{u}\) ou \(\vec{v}\) est parallèle à \(\mathcal{P}\) (ou contenue dans \(\mathcal{P}\)).</p>
+<p>On dit que \((\vec{u}, \vec{v})\) est un <strong>couple de vecteurs directeurs</strong> du plan \(\mathcal{P}\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Caractérisation d'un plan</span>
+<p>Un plan de l'espace est entièrement déterminé par :</p>
+<ul>
+  <li>un <strong>point</strong> \(A\) du plan, et</li>
+  <li>deux vecteurs <strong>non colinéaires</strong> \(\vec{u}\) et \(\vec{v}\) dirigeant le plan.</li>
+</ul>
+<p>Un point \(M\) appartient au plan \(\mathcal{P}\) si et seulement s'il existe \(\alpha, \beta \in \mathbb{R}\) tels que :</p>
+\[\vec{AM} = \alpha\vec{u} + \beta\vec{v}\]
+</div>
+
+<div class="att">
+<span class="label label-att">Attention</span>
+<p>Il ne suffit pas de deux vecteurs quelconques pour définir un plan : les vecteurs doivent être <strong>non colinéaires</strong>. Deux vecteurs colinéaires définissent une direction de droite, pas un plan.</p>
+</div>
+
+<h3>2. Autres caractérisations d'un plan</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Définir un plan</span>
+<p>Un plan est aussi déterminé par :</p>
+<ul>
+  <li><strong>trois points non alignés</strong> \(A\), \(B\), \(C\) (le plan est dirigé par \(\vec{AB}\) et \(\vec{AC}\))</li>
+  <li><strong>une droite et un point</strong> extérieur à cette droite</li>
+  <li><strong>deux droites sécantes</strong></li>
+  <li><strong>deux droites strictement parallèles</strong></li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Le plan \(\mathcal{P}\) passe par \(A(1;2;0)\) et est dirigé par \(\vec{u}(1;0;1)\) et \(\vec{v}(0;1;-1)\).</p>
+<ol>
+  <li>Le point \(M(3;5;-1)\) appartient-il au plan \(\mathcal{P}\) ?</li>
+  <li>Le point \(N(2;1;2)\) appartient-il au plan \(\mathcal{P}\) ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{AM}(2;3;-1)\). On cherche \(\alpha, \beta\) tels que \(\vec{AM} = \alpha\vec{u} + \beta\vec{v}\) :
+  \[\begin{cases} \alpha = 2 \\ \beta = 3 \\ \alpha - \beta = -1 \end{cases}\]
+  Vérification : \(2 - 3 = -1\). ✓ Donc \(M \in \mathcal{P}\).</li>
+  <li>\(\vec{AN}(1;-1;2)\). On cherche \(\alpha, \beta\) :
+  \[\begin{cases} \alpha = 1 \\ \beta = -1 \\ \alpha - \beta = 2 \end{cases}\]
+  Vérification : \(1 - (-1) = 2\). ✓ Donc \(N \in \mathcal{P}\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Positions relatives</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Position relative de deux droites</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Deux droites \(d\) et \(d'\) de l'espace sont dans l'une des situations suivantes :</p>
+<table>
+<thead><tr><th>Situation</th><th>Condition</th></tr></thead>
+<tbody>
+<tr><td><strong>Confondues</strong></td><td>Même direction et un point commun</td></tr>
+<tr><td><strong>Strictement parallèles</strong></td><td>Même direction et aucun point commun</td></tr>
+<tr><td><strong>Sécantes</strong></td><td>Directions différentes et un point d'intersection</td></tr>
+<tr><td><strong>Non coplanaires</strong></td><td>Directions différentes et aucun point commun</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="att">
+<span class="label label-att">Nouveauté par rapport au plan</span>
+<p>Dans le plan, deux droites non parallèles sont toujours sécantes. <strong>Dans l'espace</strong>, deux droites non parallèles peuvent ne pas se couper : elles sont alors <strong>non coplanaires</strong> (elles ne sont contenues dans aucun plan commun).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Dans un cube \(ABCDEFGH\), les droites \((AB)\) et \((EH)\) sont strictement parallèles. Les droites \((AG)\) et \((BH)\) sont sécantes (elles se coupent au centre du cube). Les droites \((AB)\) et \((CG)\) sont non coplanaires.</p>
+</div>
+
+<h3>2. Position relative d'une droite et d'un plan</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Une droite \(d\) et un plan \(\mathcal{P}\) sont dans l'une des situations suivantes :</p>
+<ul>
+  <li>\(d\) est <strong>incluse</strong> dans \(\mathcal{P}\) : tous les points de \(d\) sont dans \(\mathcal{P}\)</li>
+  <li>\(d\) est <strong>parallèle</strong> à \(\mathcal{P}\) (sans être incluse) : \(d\) et \(\mathcal{P}\) n'ont aucun point commun</li>
+  <li>\(d\) est <strong>sécante</strong> à \(\mathcal{P}\) : \(d\) et \(\mathcal{P}\) ont exactement un point commun</li>
+</ul>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Critère de parallélisme droite/plan</span>
+<p>Une droite \(d\) de vecteur directeur \(\vec{w}\) est parallèle au plan \(\mathcal{P}\) dirigé par \((\vec{u}, \vec{v})\) si et seulement si \(\vec{w}\) est une combinaison linéaire de \(\vec{u}\) et \(\vec{v}\) (c'est-à-dire \(\vec{w}\), \(\vec{u}\), \(\vec{v}\) sont coplanaires).</p>
+</div>
+
+<h3>3. Position relative de deux plans</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Deux plans \(\mathcal{P}\) et \(\mathcal{P'}\) de l'espace sont dans l'une des situations suivantes :</p>
+<ul>
+  <li><strong>Confondus</strong> : \(\mathcal{P} = \mathcal{P'}\)</li>
+  <li><strong>Strictement parallèles</strong> : \(\mathcal{P} \cap \mathcal{P'} = \emptyset\)</li>
+  <li><strong>Sécants</strong> : \(\mathcal{P} \cap \mathcal{P'}\) est une droite</li>
+</ul>
+</div>
+
+<div class="att">
+<span class="label label-att">À retenir</span>
+<p>L'intersection de deux plans sécants est toujours une <strong>droite</strong> (jamais un point).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Dans un cube \(ABCDEFGH\), déterminer la position relative :</p>
+<ol>
+  <li>des plans \((ABCD)\) et \((EFGH)\)</li>
+  <li>des plans \((ABFE)\) et \((DCGH)\)</li>
+  <li>des plans \((ABFE)\) et \((ABCD)\)</li>
+  <li>de la droite \((AG)\) et du plan \((EFGH)\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Les plans \((ABCD)\) et \((EFGH)\) sont <strong>strictement parallèles</strong> (faces opposées du cube).</li>
+  <li>Les plans \((ABFE)\) et \((DCGH)\) sont <strong>strictement parallèles</strong> (faces opposées).</li>
+  <li>Les plans \((ABFE)\) et \((ABCD)\) sont <strong>sécants</strong> suivant la droite \((AB)\).</li>
+  <li>La droite \((AG)\) passe par \(G \in (EFGH)\) mais n'est pas contenue dans \((EFGH)\) (car \(A \notin (EFGH)\)). Elle est donc <strong>sécante</strong> au plan \((EFGH)\) en \(G\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VI. Bases et repères de l'espace</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Base de l'espace</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Base de l'espace</span>
+<p>Trois vecteurs \(\vec{u}\), \(\vec{v}\), \(\vec{w}\) de l'espace forment une <strong>base</strong> s'ils sont <strong>non coplanaires</strong>, c'est-à-dire si aucun des trois ne peut s'écrire comme combinaison linéaire des deux autres.</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété fondamentale</span>
+<p>Si \((\vec{u}, \vec{v}, \vec{w})\) est une base de l'espace, alors <strong>tout vecteur</strong> \(\vec{t}\) de l'espace s'écrit de manière <strong>unique</strong> comme combinaison linéaire :</p>
+\[\vec{t} = \alpha\vec{u} + \beta\vec{v} + \gamma\vec{w}\]
+<p>Les réels \(\alpha, \beta, \gamma\) sont les <strong>composantes</strong> (ou coordonnées) de \(\vec{t}\) dans la base \((\vec{u}, \vec{v}, \vec{w})\).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Vérifier qu'on a une base</span>
+<p>Pour vérifier que trois vecteurs \(\vec{u}\), \(\vec{v}\), \(\vec{w}\) forment une base, on montre que la seule solution de \(\alpha\vec{u} + \beta\vec{v} + \gamma\vec{w} = \vec{0}\) est \(\alpha = \beta = \gamma = 0\). Cela revient à résoudre un système de 3 équations à 3 inconnues et vérifier qu'il admet une solution unique.</p>
+</div>
+
+<h3>2. Repère de l'espace</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Repère</span>
+<p>Un <strong>repère de l'espace</strong> est la donnée d'un point \(O\) (l'origine) et d'une base \((\vec{i}, \vec{j}, \vec{k})\). On le note \((O; \vec{i}, \vec{j}, \vec{k})\).</p>
+<p>Tout point \(M\) de l'espace a des <strong>coordonnées</strong> uniques \((x, y, z)\) telles que :</p>
+\[\vec{OM} = x\vec{i} + y\vec{j} + z\vec{k}\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple — Repère naturel du cube</span>
+<p>Dans un cube \(ABCDEFGH\) de côté 1, le repère \((A; \vec{AB}, \vec{AD}, \vec{AE})\) donne les coordonnées :</p>
+<p>\(A(0;0;0)\), \(B(1;0;0)\), \(D(0;1;0)\), \(E(0;0;1)\), \(C(1;1;0)\), \(F(1;0;1)\), \(H(0;1;1)\), \(G(1;1;1)\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Milieu et coordonnées</span>
+<p>Le milieu \(I\) du segment \([AB]\) a pour coordonnées :</p>
+\[I\left(\frac{x_A+x_B}{2};\frac{y_A+y_B}{2};\frac{z_A+z_B}{2}\right)\]
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Dans le repère \((A; \vec{AB}, \vec{AD}, \vec{AE})\) du cube de côté 1 :</p>
+<ol>
+  <li>Déterminer les coordonnées du centre \(\Omega\) du cube (milieu de \([AG]\)).</li>
+  <li>Déterminer les coordonnées du milieu \(I\) de \([BH]\).</li>
+  <li>Que peut-on conclure ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\Omega = \text{milieu de } [AG] = \left(\frac{0+1}{2};\frac{0+1}{2};\frac{0+1}{2}\right) = \left(\frac{1}{2};\frac{1}{2};\frac{1}{2}\right)\).</li>
+  <li>\(B(1;0;0)\) et \(H(0;1;1)\). \(I = \left(\frac{1}{2};\frac{1}{2};\frac{1}{2}\right)\).</li>
+  <li>\(\Omega = I\) : les diagonales \([AG]\) et \([BH]\) se coupent en leur milieu. C'est le centre du cube.</li>
+</ol>
+</div>
+</div>
+
+<h3>3. Décomposition d'un vecteur dans une base</h3>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Décomposer un vecteur</span>
+<p>Pour décomposer un vecteur \(\vec{t}\) dans une base \((\vec{u}, \vec{v}, \vec{w})\), on résout le système :</p>
+\[\vec{t} = \alpha\vec{u} + \beta\vec{v} + \gamma\vec{w}\]
+<p>En coordonnées, cela donne un système de 3 équations à 3 inconnues.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>On considère les vecteurs \(\vec{u}(1;1;0)\), \(\vec{v}(1;0;1)\), \(\vec{w}(0;1;1)\).</p>
+<ol>
+  <li>Montrer que \((\vec{u}, \vec{v}, \vec{w})\) est une base de l'espace.</li>
+  <li>Décomposer le vecteur \(\vec{t}(3;2;1)\) dans cette base.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>On résout \(\alpha\vec{u} + \beta\vec{v} + \gamma\vec{w} = \vec{0}\) :
+  \[\begin{cases} \alpha + \beta = 0 \\ \alpha + \gamma = 0 \\ \beta + \gamma = 0 \end{cases}\]
+  De (1) : \(\beta = -\alpha\). De (2) : \(\gamma = -\alpha\). Dans (3) : \(-\alpha - \alpha = 0\), soit \(\alpha = 0\), d'où \(\beta = \gamma = 0\).
+  <br>Le système n'admet que la solution triviale : \((\vec{u}, \vec{v}, \vec{w})\) est une <strong>base</strong>.</li>
+  <li>On résout \(\vec{t} = \alpha\vec{u} + \beta\vec{v} + \gamma\vec{w}\) :
+  \[\begin{cases} \alpha + \beta = 3 \\ \alpha + \gamma = 2 \\ \beta + \gamma = 1 \end{cases}\]
+  En soustrayant (2) de (1) : \(\beta - \gamma = 1\). Avec (3) : \(\beta + \gamma = 1\), d'où \(2\beta = 2\), \(\beta = 1\), \(\gamma = 0\), \(\alpha = 2\).
+  <br>\(\vec{t} = 2\vec{u} + \vec{v} + 0\vec{w} = 2\vec{u} + \vec{v}\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VII. Théorèmes fondamentaux</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Théorème du toit</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Théorème du toit</span>
+<p>Si deux plans \(\mathcal{P}_1\) et \(\mathcal{P}_2\) sont sécants suivant une droite \(d\), et si une droite \(\Delta\) de \(\mathcal{P}_1\) est parallèle à une droite \(\Delta'\) de \(\mathcal{P}_2\), avec \(\Delta\) et \(\Delta'\) parallèles à \(d\), alors \(\Delta\) est parallèle à \(\Delta'\).</p>
+</div>
+
+<h3>2. Parallélisme dans l'espace</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriétés de parallélisme</span>
+<ul>
+  <li>Si deux plans sont parallèles, toute droite de l'un est parallèle à l'autre plan.</li>
+  <li>Si deux plans sont parallèles et si un troisième plan coupe l'un, il coupe l'autre et les droites d'intersection sont parallèles.</li>
+  <li>Si une droite est parallèle à un plan, tout plan contenant cette droite et sécant au plan initial la coupe suivant une droite parallèle à la première.</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Dans un tétraèdre \(ABCD\), on note \(I\) le milieu de \([AB]\) et \(J\) le milieu de \([CD]\).</p>
+<ol>
+  <li>Exprimer \(\vec{IJ}\) en fonction de \(\vec{IA}\), \(\vec{AC}\) et \(\vec{CD}\).</li>
+  <li>Soit \(K\) le milieu de \([AC]\) et \(L\) le milieu de \([BD]\). Exprimer \(\vec{KL}\) en fonction de \(\vec{KA}\), \(\vec{AB}\) et \(\vec{BD}\).</li>
+  <li>Montrer que les milieux de \([IJ]\) et \([KL]\) coïncident.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{IJ} = \vec{IA} + \vec{AC} + \vec{CJ}\). Or \(\vec{IA} = \frac{1}{2}\vec{BA}\) et \(\vec{CJ} = \frac{1}{2}\vec{CD}\).
+  <br>Donc \(\vec{IJ} = \frac{1}{2}\vec{BA} + \vec{AC} + \frac{1}{2}\vec{CD}\).</li>
+  <li>\(\vec{KL} = \vec{KA} + \vec{AB} + \vec{BL}\). Or \(\vec{KA} = \frac{1}{2}\vec{CA}\) et \(\vec{BL} = \frac{1}{2}\vec{BD}\).
+  <br>Donc \(\vec{KL} = \frac{1}{2}\vec{CA} + \vec{AB} + \frac{1}{2}\vec{BD}\).</li>
+  <li>Le milieu \(M_1\) de \([IJ]\) vérifie \(\vec{OM_1} = \frac{1}{2}(\vec{OI} + \vec{OJ})\). Or \(\vec{OI} = \frac{1}{2}(\vec{OA}+\vec{OB})\) et \(\vec{OJ} = \frac{1}{2}(\vec{OC}+\vec{OD})\).
+  <br>Donc \(\vec{OM_1} = \frac{1}{4}(\vec{OA}+\vec{OB}+\vec{OC}+\vec{OD})\).
+  <br>De même, \(\vec{OM_2} = \frac{1}{2}(\vec{OK}+\vec{OL}) = \frac{1}{4}(\vec{OA}+\vec{OC}+\vec{OB}+\vec{OD})\).
+  <br>\(M_1 = M_2\) : les milieux coïncident. Ce point est le <strong>centre de gravité</strong> du tétraèdre.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p class="exo-titre">Problème de synthèse — Pavé droit</p>
+<p>On considère le pavé droit \(ABCDEFGH\) avec \(AB = 4\), \(AD = 3\) et \(AE = 2\). On se place dans le repère \((A; \vec{AB}, \vec{AD}, \vec{AE})\).</p>
+<p>Soit \(P\) le milieu de \([EF]\) et \(Q\) le point tel que \(\vec{AQ} = \frac{1}{3}\vec{AC}\).</p>
+<ol>
+  <li>Déterminer les coordonnées de \(P\) et \(Q\).</li>
+  <li>Calculer les composantes de \(\vec{PQ}\).</li>
+  <li>Les points \(A\), \(P\) et \(Q\) sont-ils alignés ?</li>
+  <li>Le vecteur \(\vec{PQ}\) est-il colinéaire à \(\vec{DG}\) ? Interpréter géométriquement.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Coordonnées : \(E(0;0;1)\), \(F(1;0;1)\), \(C(1;1;0)\).</p>
+<ol>
+  <li>\(P = \text{milieu de } [EF] = \left(\frac{1}{2};0;1\right)\).
+  <br>\(\vec{AC} = (1;1;0)\), donc \(\vec{AQ} = \frac{1}{3}(1;1;0) = \left(\frac{1}{3};\frac{1}{3};0\right)\), d'où \(Q\left(\frac{1}{3};\frac{1}{3};0\right)\).</li>
+  <li>\(\vec{PQ} = Q - P = \left(\frac{1}{3}-\frac{1}{2};\ \frac{1}{3}-0;\ 0-1\right) = \left(-\frac{1}{6};\ \frac{1}{3};\ -1\right)\).</li>
+  <li>\(\vec{AP} = \left(\frac{1}{2};0;1\right)\) et \(\vec{AQ} = \left(\frac{1}{3};\frac{1}{3};0\right)\). Pour la colinéarité : \(\frac{1/3}{1/2} = \frac{2}{3}\) mais \(\frac{1/3}{0}\) n'est pas défini. Les vecteurs ne sont <strong>pas colinéaires</strong> : les points ne sont pas alignés.</li>
+  <li>\(\vec{DG} = G - D = (1;0;1) - (0;1;0) = (1;-1;1)\). On cherche \(\lambda\) tel que \(\vec{PQ} = \lambda\vec{DG}\) :
+  \(-\frac{1}{6} = \lambda\), \(\frac{1}{3} = -\lambda = \frac{1}{6}\) ? Non, \(\frac{1}{3} \neq \frac{1}{6}\).
+  <br>Les vecteurs ne sont <strong>pas colinéaires</strong> : \((PQ)\) n'est pas parallèle à \((DG)\).</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

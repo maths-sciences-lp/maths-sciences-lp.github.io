@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Représentations paramétriques et équations cartésiennes – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 4 – Représentations paramétriques et équations cartésiennes</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Algèbre et géométrie</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Déterminer une représentation paramétrique d'une droite de l'espace</li>
+  <li>Déterminer une équation cartésienne d'un plan</li>
+  <li>Utiliser ces outils pour étudier des positions relatives et résoudre des problèmes géométriques</li>
+  <li>Traduire un problème géométrique en un système d'équations linéaires</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Représentation paramétrique d'une droite</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Définition</h3>
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Soit \(d\) la droite passant par le point \(A(x_A;y_A;z_A)\) et de vecteur directeur \(\vec{u}(a;b;c)\). Un point \(M(x;y;z)\) appartient à \(d\) si et seulement s'il existe un réel \(t\) tel que \(\vec{AM} = t\vec{u}\), ce qui donne la <strong>représentation paramétrique</strong> :</p>
+\[\begin{cases} x = x_A + ta \\ y = y_A + tb \\ z = z_A + tc \end{cases} \quad t \in \mathbb{R}\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>La droite \(d\) passant par \(A(1;2;-3)\) de vecteur directeur \(\vec{u}(2;-1;4)\) a pour représentation paramétrique :</p>
+\[\begin{cases} x = 1 + 2t \\ y = 2 - t \\ z = -3 + 4t \end{cases} \quad t \in \mathbb{R}\]
+<p>Pour \(t=0\) on retrouve \(A\). Pour \(t=1\) on obtient le point \(B(3;1;1)\).</p>
+</div>
+
+<div class="att">
+<span class="label label-att">Attention — Non-unicité</span>
+<p>La représentation paramétrique d'une droite <strong>n'est pas unique</strong>. On peut changer le point de départ ou le vecteur directeur (en le multipliant par un scalaire non nul). Ainsi une même droite admet une infinité de représentations paramétriques.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Déterminer une représentation paramétrique de la droite \(d\) passant par \(A(3;-1;2)\) et \(B(1;3;0)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB} = (-2;4;-2)\). On peut simplifier : \(\vec{u} = (-1;2;-1)\).</p>
+\[\begin{cases} x = 3 - t \\ y = -1 + 2t \\ z = 2 - t \end{cases} \quad t \in \mathbb{R}\]
+</div>
+</div>
+
+<h3>2. Reconnaître une droite donnée par représentation paramétrique</h3>
+
+<div class="meth">
+<span class="label label-meth">Méthode</span>
+<p>Soit la représentation paramétrique \(\begin{cases} x = x_0 + ta \\ y = y_0 + tb \\ z = z_0 + tc \end{cases}\). On lit directement :</p>
+<ul>
+  <li>Un <strong>point</strong> de la droite : \((x_0; y_0; z_0)\) (obtenu pour \(t=0\))</li>
+  <li>Un <strong>vecteur directeur</strong> : \((a; b; c)\) (les coefficients de \(t\))</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Pour chacune des représentations paramétriques suivantes, donner un point et un vecteur directeur de la droite :</p>
+<ol>
+  <li>\(\begin{cases} x = 2 + 3t \\ y = -t \\ z = 1 + 2t \end{cases}\)</li>
+  <li>\(\begin{cases} x = -1 \\ y = 3 + t \\ z = 2 - 4t \end{cases}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Point : \((2;0;1)\). Vecteur directeur : \(\vec{u}(3;-1;2)\).</li>
+  <li>Point : \((-1;3;2)\). Vecteur directeur : \(\vec{u}(0;1;-4)\). La droite est parallèle au plan \((yOz)\).</li>
+</ol>
+</div>
+</div>
+
+<h3>3. Vérifier qu'un point appartient à une droite</h3>
+
+<div class="meth">
+<span class="label label-meth">Méthode</span>
+<p>Pour vérifier si un point \(M(x_M;y_M;z_M)\) appartient à la droite de représentation paramétrique donnée, on résout le système en \(t\). Le point appartient à la droite si et seulement si le système admet une solution (une même valeur de \(t\) vérifie les trois équations).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Soit \(d\) : \(\begin{cases} x = 1 + 2t \\ y = -1 + t \\ z = 3 - t \end{cases}\). Les points \(M(5;1;1)\) et \(N(3;1;2)\) appartiennent-ils à \(d\) ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Point \(M\) :</strong> \(5 = 1+2t \Rightarrow t=2\). \(y = -1+2 = 1\) ✓. \(z = 3-2 = 1\) ✓. \(M \in d\).</p>
+<p><strong>Point \(N\) :</strong> \(3 = 1+2t \Rightarrow t=1\). \(y = -1+1 = 0 \neq 1\). \(N \notin d\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Équation cartésienne d'un plan</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Définition</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Équation cartésienne d'un plan</span>
+<p>Tout plan \(\mathcal{P}\) de l'espace admet une <strong>équation cartésienne</strong> de la forme :</p>
+\[ax + by + cz + d = 0\]
+<p>où \((a;b;c) \neq (0;0;0)\). Le vecteur \(\vec{n}(a;b;c)\) est un <strong>vecteur normal</strong> au plan \(\mathcal{P}\).</p>
+<p>Réciproquement, l'ensemble des points \(M(x;y;z)\) vérifiant \(ax+by+cz+d = 0\) avec \((a;b;c) \neq (0;0;0)\) est un plan de vecteur normal \(\vec{n}(a;b;c)\).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Déterminer l'équation d'un plan</span>
+<p>Deux situations courantes :</p>
+<ol>
+  <li><strong>Vecteur normal et point connus :</strong> Le plan passant par \(A(x_A;y_A;z_A)\) de vecteur normal \(\vec{n}(a;b;c)\) a pour équation \(a(x-x_A)+b(y-y_A)+c(z-z_A) = 0\).</li>
+  <li><strong>Trois points connus :</strong> On détermine deux vecteurs du plan (\(\vec{AB}\) et \(\vec{AC}\)), puis on cherche un vecteur normal \(\vec{n}\) orthogonal aux deux.</li>
+</ol>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple 1 — Vecteur normal donné</span>
+<p>Plan passant par \(A(2;-1;3)\) de vecteur normal \(\vec{n}(1;2;-1)\) :</p>
+<p>\(1(x-2)+2(y+1)+(-1)(z-3) = 0\), soit \(x + 2y - z + 3 = 0\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple 2 — Trois points</span>
+<p>Plan passant par \(A(1;0;0)\), \(B(0;1;0)\), \(C(0;0;1)\).</p>
+<p>\(\vec{AB}(-1;1;0)\), \(\vec{AC}(-1;0;1)\). On cherche \(\vec{n}(a;b;c)\) tel que \(\vec{n}\cdot\vec{AB}=0\) et \(\vec{n}\cdot\vec{AC}=0\) :</p>
+<p>\(-a+b=0\) et \(-a+c=0\), donc \(a=b=c\). On prend \(\vec{n}(1;1;1)\).</p>
+<p>Équation : \(x+y+z+d=0\). \(A \in \mathcal{P}\) : \(1+d=0\), \(d=-1\). Plan : \(x+y+z-1=0\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Déterminer une équation cartésienne du plan \(\mathcal{P}\) passant par \(A(3;1;-2)\) de vecteur normal \(\vec{n}(2;-3;1)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(2(x-3)+(-3)(y-1)+1(z+2) = 0\), soit \(2x-3y+z-1=0\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Déterminer une équation cartésienne du plan passant par \(A(2;1;0)\), \(B(0;-1;1)\) et \(C(1;0;3)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB}(-2;-2;1)\), \(\vec{AC}(-1;-1;3)\).</p>
+<p>On cherche \(\vec{n}(a;b;c)\) : \(-2a-2b+c=0\) et \(-a-b+3c=0\).</p>
+<p>De la 2<sup>e</sup> : \(a = -b+3c\). Dans la 1<sup>re</sup> : \(-2(-b+3c)-2b+c = 2b-6c-2b+c = -5c = 0\), donc \(c = 0\).</p>
+<p>Alors \(a = -b\). On prend \(b = -1\), \(a = 1\), \(c = 0\) : \(\vec{n}(1;-1;0)\).</p>
+<p>Équation : \(x - y + d = 0\). \(A(2;1;0)\) : \(2-1+d=0\), \(d=-1\). Plan : \(x-y-1=0\).</p>
+<p>Vérification : \(B\) : \(0+1-1=0\) ✓. \(C\) : \(1-0-1=0\) ✓.</p>
+</div>
+</div>
+
+<h3>2. Reconnaître un plan donné par une équation</h3>
+
+<div class="meth">
+<span class="label label-meth">Méthode</span>
+<p>De l'équation \(ax+by+cz+d=0\), on lit directement un vecteur normal \(\vec{n}(a;b;c)\). Pour obtenir un point du plan, on fixe deux coordonnées et on calcule la troisième.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Le plan \(3x-y+2z-6=0\) a pour vecteur normal \(\vec{n}(3;-1;2)\). Un point du plan : en posant \(y=z=0\), on obtient \(x=2\), soit \(A(2;0;0)\).</p>
+</div>
+
+<h3>3. Plans particuliers</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Plans de coordonnées</span>
+<ul>
+  <li>Le plan \((xOy)\) a pour équation \(z = 0\)</li>
+  <li>Le plan \((xOz)\) a pour équation \(y = 0\)</li>
+  <li>Le plan \((yOz)\) a pour équation \(x = 0\)</li>
+  <li>Un plan parallèle à \((xOy)\) a pour équation \(z = k\)</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Positions relatives — Méthode analytique</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Position relative de deux plans</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Soient \(\mathcal{P}_1 : a_1x+b_1y+c_1z+d_1 = 0\) et \(\mathcal{P}_2 : a_2x+b_2y+c_2z+d_2 = 0\) de vecteurs normaux \(\vec{n_1}\) et \(\vec{n_2}\).</p>
+<ul>
+  <li>Si \(\vec{n_1}\) et \(\vec{n_2}\) ne sont <strong>pas colinéaires</strong> : les plans sont <strong>sécants</strong> (leur intersection est une droite)</li>
+  <li>Si \(\vec{n_1}\) et \(\vec{n_2}\) sont <strong>colinéaires</strong> :
+    <ul>
+      <li>Si les équations sont proportionnelles (même plan) : plans <strong>confondus</strong></li>
+      <li>Sinon : plans <strong>strictement parallèles</strong></li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Déterminer la position relative des plans :</p>
+<ol>
+  <li>\(\mathcal{P}_1 : x+2y-z+3=0\) et \(\mathcal{P}_2 : 2x+4y-2z-1=0\)</li>
+  <li>\(\mathcal{P}_1 : x-y+z-1=0\) et \(\mathcal{P}_2 : 2x+y-z+3=0\)</li>
+  <li>\(\mathcal{P}_1 : 3x-6y+9z-12=0\) et \(\mathcal{P}_2 : x-2y+3z-4=0\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{n_1}(1;2;-1)\), \(\vec{n_2}(2;4;-2) = 2\vec{n_1}\) : colinéaires. On vérifie : \(\mathcal{P}_2\) est \(2x+4y-2z-1=0\), tandis que \(2\mathcal{P}_1\) donne \(2x+4y-2z+6=0\). \(-1 \neq 6\) : plans <strong>strictement parallèles</strong>.</li>
+  <li>\(\vec{n_1}(1;-1;1)\), \(\vec{n_2}(2;1;-1)\) : non colinéaires. Plans <strong>sécants</strong>.</li>
+  <li>\(\mathcal{P}_1 : 3(x-2y+3z-4)=0\), donc \(\mathcal{P}_1\) est le même plan que \(\mathcal{P}_2\). Plans <strong>confondus</strong>.</li>
+</ol>
+</div>
+</div>
+
+<h3>2. Intersection d'une droite et d'un plan</h3>
+
+<div class="meth">
+<span class="label label-meth">Méthode</span>
+<p>Pour trouver l'intersection d'une droite \(d\) (donnée par représentation paramétrique) et d'un plan \(\mathcal{P}\) (donné par une équation cartésienne), on <strong>substitue</strong> les expressions paramétriques de \(x, y, z\) dans l'équation du plan et on résout en \(t\).</p>
+<ul>
+  <li>Si on obtient <strong>une seule valeur</strong> de \(t\) : la droite est <strong>sécante</strong> au plan</li>
+  <li>Si l'équation est <strong>toujours vraie</strong> (\(0=0\)) : la droite est <strong>incluse</strong> dans le plan</li>
+  <li>Si l'équation est <strong>impossible</strong> (\(0 = k\) avec \(k \neq 0\)) : la droite est <strong>strictement parallèle</strong> au plan</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Soit \(d\) : \(\begin{cases} x = 1+t \\ y = 2-t \\ z = 3+2t \end{cases}\) et \(\mathcal{P}\) : \(x+y+z-6=0\).</p>
+<ol>
+  <li>Déterminer l'intersection de \(d\) et \(\mathcal{P}\).</li>
+  <li>Même question avec \(\mathcal{P'}\) : \(x-y-2z+7=0\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\((1+t)+(2-t)+(3+2t)-6 = 0\), soit \(2t = 0\), \(t=0\). Point d'intersection : \((1;2;3)\). La droite est <strong>sécante</strong>.</li>
+  <li>\((1+t)-(2-t)-2(3+2t)+7 = 0\), soit \(1+t-2+t-6-4t+7 = 0\), \(-2t+0 = 0\), \(t=0\). Point : \((1;2;3)\). La droite est <strong>sécante</strong>.</li>
+</ol>
+</div>
+</div>
+
+<h3>3. Intersection de deux plans — Droite d'intersection</h3>
+
+<div class="meth">
+<span class="label label-meth">Méthode</span>
+<p>L'intersection de deux plans sécants est une droite. Pour la déterminer, on résout le <strong>système</strong> de deux équations à trois inconnues. On paramètre l'une des variables (par exemple \(z = t\)) et on exprime les deux autres en fonction de \(t\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Déterminer une représentation paramétrique de la droite d'intersection des plans :</p>
+<p>\(\mathcal{P}_1 : x+y+z-1=0\) et \(\mathcal{P}_2 : x-y+z-3=0\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Système : \(\begin{cases} x+y+z=1 \\ x-y+z=3 \end{cases}\)</p>
+<p>En additionnant : \(2x+2z=4\), soit \(x = 2-z\). En soustrayant : \(2y=-2\), soit \(y=-1\).</p>
+<p>On pose \(z=t\) : \(\begin{cases} x = 2-t \\ y = -1 \\ z = t \end{cases}\), \(t \in \mathbb{R}\).</p>
+<p>Point : \((2;-1;0)\). Vecteur directeur : \((-1;0;1)\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Systèmes d'équations linéaires et géométrie</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Intersection de trois plans</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>L'intersection de trois plans de l'espace peut être :</p>
+<ul>
+  <li>Un <strong>point</strong> (système de 3 équations à solution unique)</li>
+  <li>Une <strong>droite</strong> (deux plans sont sécants, le troisième contient leur droite d'intersection)</li>
+  <li>Un <strong>plan</strong> (les trois plans sont confondus)</li>
+  <li>L'<strong>ensemble vide</strong> (aucun point commun)</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Déterminer l'intersection des trois plans :</p>
+<p>\(\mathcal{P}_1 : x+y+z=3\), \(\mathcal{P}_2 : 2x-y+z=1\), \(\mathcal{P}_3 : x+2y-z=2\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\mathcal{P}_1 + \mathcal{P}_2\) : \(3x+2z=4\). \(\mathcal{P}_1 + \mathcal{P}_3\) : \(2x+3y=5\). \(\mathcal{P}_2 + \mathcal{P}_3\) : \(3x+y=3\).</p>
+<p>De \(3x+y=3\) : \(y=3-3x\). Dans \(2x+3y=5\) : \(2x+9-9x=5\), \(-7x=-4\), \(x=\frac{4}{7}\).</p>
+<p>\(y = 3-\frac{12}{7} = \frac{9}{7}\). \(z = 3-x-y = 3-\frac{4}{7}-\frac{9}{7} = 3-\frac{13}{7} = \frac{8}{7}\).</p>
+<p>L'intersection est le point \(\left(\frac{4}{7};\frac{9}{7};\frac{8}{7}\right)\).</p>
+</div>
+</div>
+
+<h3>2. Déterminer si trois vecteurs forment une base</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Trois vecteurs \(\vec{u}(a_1;b_1;c_1)\), \(\vec{v}(a_2;b_2;c_2)\), \(\vec{w}(a_3;b_3;c_3)\) forment une base de l'espace si et seulement si le système \(\alpha\vec{u}+\beta\vec{v}+\gamma\vec{w}=\vec{0}\) n'admet que la solution triviale \(\alpha=\beta=\gamma=0\), c'est-à-dire si le système :</p>
+\[\begin{cases} a_1\alpha + a_2\beta + a_3\gamma = 0 \\ b_1\alpha + b_2\beta + b_3\gamma = 0 \\ c_1\alpha + c_2\beta + c_3\gamma = 0 \end{cases}\]
+<p>admet une <strong>solution unique</strong>.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Les vecteurs \(\vec{u}(1;2;-1)\), \(\vec{v}(2;1;3)\), \(\vec{w}(1;-1;4)\) forment-ils une base ? Si oui, déterminer les coordonnées de \(\vec{t}(5;3;6)\) dans cette base.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On résout \(\alpha\vec{u}+\beta\vec{v}+\gamma\vec{w}=\vec{0}\) :</p>
+\[\begin{cases} \alpha + 2\beta + \gamma = 0 \\ 2\alpha + \beta - \gamma = 0 \\ -\alpha + 3\beta + 4\gamma = 0 \end{cases}\]
+<p>\((1)+(2)\) : \(3\alpha+3\beta=0\), \(\beta=-\alpha\). Dans \((1)\) : \(\alpha-2\alpha+\gamma=0\), \(\gamma=\alpha\). Dans \((3)\) : \(-\alpha-3\alpha+4\alpha=0\) ✓ pour tout \(\alpha\).</p>
+<p>Le système admet des solutions non triviales (\(\alpha=1,\beta=-1,\gamma=1\)) : \(\vec{u}-\vec{v}+\vec{w}=\vec{0}\). Les vecteurs <strong>ne forment pas une base</strong>.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Applications</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p class="exo-titre">Projeté orthogonal par les équations</p>
+<p>Soit \(\mathcal{P}\) : \(2x-y+2z-1=0\) et \(M(3;1;-2)\).</p>
+<ol>
+  <li>Écrire la représentation paramétrique de la droite \(\Delta\) passant par \(M\) et perpendiculaire à \(\mathcal{P}\).</li>
+  <li>Déterminer le projeté orthogonal \(H\) de \(M\) sur \(\mathcal{P}\).</li>
+  <li>Calculer \(MH\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{n}(2;-1;2)\) est le vecteur directeur de \(\Delta\). \(\Delta\) : \(\begin{cases} x=3+2t \\ y=1-t \\ z=-2+2t \end{cases}\).</li>
+  <li>\(H \in \mathcal{P}\) : \(2(3+2t)-(1-t)+2(-2+2t)-1=0\), soit \(6+4t-1+t-4+4t-1=0\), \(9t=0\), \(t=0\).
+  <br>\(H = (3;1;-2) = M\). Donc \(M\) est déjà <strong>dans le plan</strong>.
+  <br>Vérification : \(2(3)-1+2(-2)-1 = 6-1-4-1 = 0\) ✓.</li>
+  <li>\(MH = 0\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p class="exo-titre">Intersection droite/plan</p>
+<p>Soit \(d\) : \(\begin{cases} x = 2+t \\ y = -1+3t \\ z = 1-t \end{cases}\) et \(\mathcal{P}\) : \(x+2y-z+4=0\).</p>
+<ol>
+  <li>Déterminer l'intersection de \(d\) et \(\mathcal{P}\).</li>
+  <li>Déterminer l'angle entre la droite \(d\) et le plan \(\mathcal{P}\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\((2+t)+2(-1+3t)-(1-t)+4=0\), soit \(2+t-2+6t-1+t+4=0\), \(8t+3=0\), \(t=-\frac{3}{8}\).
+  <br>Point d'intersection : \(\left(\frac{13}{8};-\frac{17}{8};\frac{11}{8}\right)\).</li>
+  <li>L'angle \(\theta\) entre la droite de direction \(\vec{u}(1;3;-1)\) et le plan de normale \(\vec{n}(1;2;-1)\) vérifie :
+  \[\sin\theta = \frac{|\vec{u}\cdot\vec{n}|}{\|\vec{u}\|\times\|\vec{n}\|} = \frac{|1+6+1|}{\sqrt{11}\times\sqrt{6}} = \frac{8}{\sqrt{66}}\]
+  \(\theta = \arcsin\left(\frac{8}{\sqrt{66}}\right) \approx 80{,}1°\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p class="exo-titre">Problème de synthèse — Cube</p>
+<p>Dans un cube \(ABCDEFGH\) de côté 1, muni du repère orthonormé \((A;\vec{AB},\vec{AD},\vec{AE})\). Soit \(I\) le milieu de \([EF]\) et \(J\) le milieu de \([CG]\).</p>
+<ol>
+  <li>Déterminer une équation cartésienne du plan \((BIJ)\).</li>
+  <li>Déterminer une représentation paramétrique de la droite \((AG)\).</li>
+  <li>Déterminer le point d'intersection de \((AG)\) et du plan \((BIJ)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Coordonnées : \(B(1;0;0)\), \(I\left(\frac{1}{2};0;1\right)\), \(J\left(1;1;\frac{1}{2}\right)\).</p>
+<ol>
+  <li>\(\vec{BI} = \left(-\frac{1}{2};0;1\right)\), \(\vec{BJ} = (0;1;\frac{1}{2})\). On cherche \(\vec{n}(a;b;c)\) :
+  <br>\(-\frac{1}{2}a+c=0\) donne \(c=\frac{a}{2}\). \(b+\frac{c}{2}=0\) donne \(b=-\frac{a}{4}\).
+  <br>On prend \(a=4\) : \(\vec{n}(4;-1;2)\).
+  <br>Équation : \(4(x-1)-(y-0)+2(z-0)=0\), soit \(4x-y+2z-4=0\).</li>
+  <li>\(A(0;0;0)\), \(\vec{AG}(1;1;1)\). \(\begin{cases} x=t \\ y=t \\ z=t \end{cases}\), \(t \in \mathbb{R}\).</li>
+  <li>\(4t-t+2t-4=0\), \(5t=4\), \(t=\frac{4}{5}\). Point : \(\left(\frac{4}{5};\frac{4}{5};\frac{4}{5}\right)\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 14</span>
+<p class="exo-titre">Symétrique par rapport à un plan</p>
+<p>Soit \(\mathcal{P}\) : \(x+y+z-6=0\) et \(M(1;2;1)\).</p>
+<ol>
+  <li>Déterminer le projeté orthogonal \(H\) de \(M\) sur \(\mathcal{P}\).</li>
+  <li>En déduire le symétrique \(M'\) de \(M\) par rapport au plan \(\mathcal{P}\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Droite perpendiculaire : \(\begin{cases} x=1+t \\ y=2+t \\ z=1+t \end{cases}\). Dans \(\mathcal{P}\) : \(1+t+2+t+1+t-6=0\), \(3t-2=0\), \(t=\frac{2}{3}\).
+  <br>\(H\left(\frac{5}{3};\frac{8}{3};\frac{5}{3}\right)\).</li>
+  <li>\(M' = 2H-M = \left(\frac{10}{3}-1;\frac{16}{3}-2;\frac{10}{3}-1\right) = \left(\frac{7}{3};\frac{10}{3};\frac{7}{3}\right)\).
+  <br>Vérification : \(M' \notin \mathcal{P}\) : \(\frac{7}{3}+\frac{10}{3}+\frac{7}{3}-6 = \frac{24}{3}-6 = 2 \neq 0\) ✓. Et \(d(M,\mathcal{P}) = d(M',\mathcal{P}) = \frac{2}{\sqrt{3}} \times 2 = \frac{2\sqrt{3}}{3} \times ...\)
+  <br>En fait : \(\vec{HM'} = \vec{HM'} = H - M' = ...\) Le plus simple : \(H\) est bien le milieu de \([MM']\) : \(\frac{M+M'}{2} = \left(\frac{1+7/3}{2};\frac{2+10/3}{2};\frac{1+7/3}{2}\right) = \left(\frac{5}{3};\frac{8}{3};\frac{5}{3}\right) = H\) ✓.</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Exercices par capacités – Suites : limites et convergence – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 5 – Suites : limites et convergence</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Établir la convergence ou la divergence d'une suite</li>
+  <li><strong>C2</strong> — Raisonner par récurrence pour établir une propriété</li>
+  <li><strong>C3</strong> — Étudier des phénomènes d'évolution modélisables par une suite</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Convergence / divergence</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Récurrence</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Modélisation</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C1 — Convergence / divergence              -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Établir la convergence ou la divergence d'une suite</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Déterminer la limite des suites suivantes :</p>
+<ol>
+  <li>\(u_n = \frac{5n^2-3n+1}{2n^2+7}\)</li>
+  <li>\(v_n = \frac{n+1}{n^3}\)</li>
+  <li>\(w_n = n^2 - 5n + 3\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>On factorise par \(n^2\) : \(\frac{5-\frac{3}{n}+\frac{1}{n^2}}{2+\frac{7}{n^2}} \to \frac{5}{2}\).</li>
+  <li>\(v_n = \frac{1}{n^2}+\frac{1}{n^3} \to 0\).</li>
+  <li>\(w_n = n^2(1-\frac{5}{n}+\frac{3}{n^2}) \to +\infty\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Déterminer la limite de \(u_n = \frac{2^n + 3^n}{4^n}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(u_n = \left(\frac{2}{4}\right)^n + \left(\frac{3}{4}\right)^n = \left(\frac{1}{2}\right)^n + \left(\frac{3}{4}\right)^n\).</p>
+<p>Les deux termes tendent vers 0 (\(|q|<1\)), donc \(u_n \to 0\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Soit \(u_n = \frac{\cos(n\pi)}{n+1}\). Montrer que \((u_n)\) converge vers 0.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(|\cos(n\pi)| \leqslant 1\), donc \(|u_n| \leqslant \frac{1}{n+1}\). Or \(\frac{1}{n+1} \to 0\). Par le théorème des gendarmes appliqué à \(|u_n|\), \(u_n \to 0\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Déterminer la limite de \(u_n = \sqrt{n^2+n} - n\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>FI \(+\infty - \infty\). On multiplie par l'expression conjuguée :</p>
+<p>\(u_n = \frac{(\sqrt{n^2+n}-n)(\sqrt{n^2+n}+n)}{\sqrt{n^2+n}+n} = \frac{n^2+n-n^2}{\sqrt{n^2+n}+n} = \frac{n}{\sqrt{n^2+n}+n}\).</p>
+<p>On divise par \(n\) : \(u_n = \frac{1}{\sqrt{1+\frac{1}{n}}+1} \to \frac{1}{1+1} = \frac{1}{2}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Déterminer la limite de \(u_n = n \times \left(\frac{3}{4}\right)^n\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(u_n = \frac{n}{(4/3)^n}\). Par croissances comparées (\(\frac{4}{3}>1\)), \(\frac{n}{(4/3)^n} \to 0\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Soit \(u_n = \frac{n!}{2^n}\). Montrer que \(u_n \to +\infty\).</p>
+<p><em>Indication : pour \(n \geqslant 3\), comparer \(u_n\) à une suite divergente.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Pour \(n \geqslant 4\) : \(\frac{u_{n+1}}{u_n} = \frac{(n+1)!}{2^{n+1}} \times \frac{2^n}{n!} = \frac{n+1}{2}\).</p>
+<p>Pour \(n \geqslant 3\), \(\frac{n+1}{2} \geqslant 2 > 1\), donc \(u_{n+1} \geqslant 2u_n\). Ainsi \(u_n \geqslant u_3 \times 2^{n-3} = \frac{6}{8} \times 2^{n-3} = \frac{3}{4}\times 2^{n-3}\).</p>
+<p>Comme \(2^{n-3} \to +\infty\), on a \(u_n \to +\infty\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Soit \((u_n)\) définie par \(u_0 = 0\) et \(u_{n+1} = \frac{u_n+3}{2}\).</p>
+<ol>
+  <li>Montrer que \(u_n \leqslant 3\) pour tout \(n\) et que \((u_n)\) est croissante.</li>
+  <li>En déduire la convergence et calculer la limite.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li><strong>Majorée :</strong> \(u_0=0\leqslant 3\). Si \(u_n\leqslant 3\), \(u_{n+1}=\frac{u_n+3}{2}\leqslant\frac{6}{2}=3\). ✓
+  <br><strong>Croissante :</strong> \(u_{n+1}-u_n=\frac{u_n+3}{2}-u_n=\frac{3-u_n}{2}\geqslant 0\) car \(u_n\leqslant 3\). ✓</li>
+  <li>Croissante et majorée : converge. \(\ell=\frac{\ell+3}{2}\), \(2\ell=\ell+3\), \(\ell=3\).</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C2 — Récurrence                            -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Raisonner par récurrence pour établir une propriété</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Montrer par récurrence que pour tout \(n \geqslant 0\) : \(3^n \geqslant 1 + 2n\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Init (\(n=0\)) :</strong> \(3^0 = 1\) et \(1+0=1\). \(1\geqslant 1\). ✓</p>
+<p><strong>Héré :</strong> Supposons \(3^n \geqslant 1+2n\). Alors \(3^{n+1} = 3\times 3^n \geqslant 3(1+2n) = 3+6n\).</p>
+<p>Or \(3+6n = (1+2(n+1)) + 4n \geqslant 1+2(n+1)\) car \(4n\geqslant 0\). ✓</p>
+<p>Par récurrence, \(3^n \geqslant 1+2n\) pour tout \(n \geqslant 0\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Montrer par récurrence que pour tout \(n \geqslant 1\) : \(\displaystyle\sum_{k=1}^{n} \frac{1}{k(k+1)} = \frac{n}{n+1}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Init (\(n=1\)) :</strong> \(\frac{1}{1\times 2}=\frac{1}{2}\) et \(\frac{1}{2}\). ✓</p>
+<p><strong>Héré :</strong> Supposons la formule vraie au rang \(n\). Alors :</p>
+<p>\(\displaystyle\sum_{k=1}^{n+1}\frac{1}{k(k+1)} = \frac{n}{n+1}+\frac{1}{(n+1)(n+2)} = \frac{n(n+2)+1}{(n+1)(n+2)} = \frac{n^2+2n+1}{(n+1)(n+2)} = \frac{(n+1)^2}{(n+1)(n+2)} = \frac{n+1}{n+2}\). ✓</p>
+<p>C'est la formule au rang \(n+1\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Soit \((u_n)\) définie par \(u_0 = 2\) et \(u_{n+1} = 3u_n - 4\). Montrer par récurrence que \(u_n = 3^n + 1\) pour tout \(n \geqslant 0\), puis déterminer la limite.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Init :</strong> \(u_0 = 2\) et \(3^0+1=2\). ✓</p>
+<p><strong>Héré :</strong> Si \(u_n = 3^n+1\), alors \(u_{n+1} = 3(3^n+1)-4 = 3^{n+1}+3-4 = 3^{n+1}-1\).</p>
+<p>Or on attendait \(3^{n+1}+1\). Vérifions le calcul : \(u_1 = 3\times 2-4=2\). \(3^1+1=4\neq 2\). La formule proposée est <strong>fausse</strong>.</p>
+<p>Cherchons la bonne. \(v_n = u_n-2\) : \(v_{n+1}=u_{n+1}-2=3u_n-6=3(u_n-2)=3v_n\). Suite géométrique de raison 3. \(v_n=v_0\times 3^n=0\). Donc \(u_n=2\) pour tout \(n\).</p>
+<p>\(\lim u_n = 2\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>Soit \((u_n)\) définie par \(u_0 = 4\) et \(u_{n+1} = \frac{1}{2}u_n + 1\).</p>
+<ol>
+  <li>Montrer par récurrence que \(u_n = 2 + 2\left(\frac{1}{2}\right)^n\) pour tout \(n\).</li>
+  <li>En déduire la limite de \((u_n)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li><strong>Init :</strong> \(2+2\times 1=4=u_0\). ✓
+  <br><strong>Héré :</strong> Si \(u_n=2+2\left(\frac{1}{2}\right)^n\), alors \(u_{n+1}=\frac{1}{2}\left(2+2\left(\frac{1}{2}\right)^n\right)+1=1+\left(\frac{1}{2}\right)^n+1=2+2\left(\frac{1}{2}\right)^{n+1}\). ✓
+  <br>Vérifions : \(\left(\frac{1}{2}\right)^n = 2\left(\frac{1}{2}\right)^{n+1}\). Oui : \(\frac{1}{2}\times 2\left(\frac{1}{2}\right)^n = \left(\frac{1}{2}\right)^n\). Mais au calcul : \(\frac{1}{2}\times 2\left(\frac{1}{2}\right)^n = \left(\frac{1}{2}\right)^n\). Donc \(u_{n+1}=1+\left(\frac{1}{2}\right)^n+1=2+\left(\frac{1}{2}\right)^n\). Il faut \(2+2\left(\frac{1}{2}\right)^{n+1}\). Or \(\left(\frac{1}{2}\right)^n = 2\left(\frac{1}{2}\right)^{n+1}\). Donc \(u_{n+1}=2+2\left(\frac{1}{2}\right)^{n+1}\). ✓</li>
+  <li>\(\left(\frac{1}{2}\right)^n \to 0\), donc \(u_n \to 2\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p>Montrer par récurrence que pour tout \(n \geqslant 1\) : \(2^n > n\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Init (\(n=1\)) :</strong> \(2^1=2>1\). ✓</p>
+<p><strong>Héré :</strong> Supposons \(2^n>n\). Alors \(2^{n+1}=2\times 2^n > 2n = n+n \geqslant n+1\) (car \(n\geqslant 1\)). ✓</p>
+<p>Par récurrence, \(2^n>n\) pour tout \(n\geqslant 1\). □</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C3 — Modélisation                          -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Étudier des phénomènes d'évolution modélisables par une suite</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p>Un capital de 10 000 € est placé à un taux annuel de 3 %. On note \(C_n\) le capital au bout de \(n\) années (intérêts composés).</p>
+<ol>
+  <li>Exprimer \(C_n\) en fonction de \(n\).</li>
+  <li>Déterminer le nombre d'années nécessaires pour doubler le capital.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(C_n = 10\,000 \times 1{,}03^n\).</li>
+  <li>\(C_n \geqslant 20\,000 \Leftrightarrow 1{,}03^n \geqslant 2 \Leftrightarrow n\ln(1{,}03)\geqslant\ln 2 \Leftrightarrow n \geqslant \frac{\ln 2}{\ln 1{,}03}\approx\frac{0{,}693}{0{,}0296}\approx 23{,}4\). Il faut <strong>24 ans</strong>.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 14</span>
+<p>Un médicament a une demi-vie de 6 heures. On prend 200 mg à \(t=0\). On note \(u_n\) la quantité de médicament (en mg) après \(n\) demi-vies.</p>
+<ol>
+  <li>Exprimer \(u_n\) en fonction de \(n\).</li>
+  <li>Au bout de combien de demi-vies reste-t-il moins de 1 mg ?</li>
+  <li>Cela correspond à combien d'heures ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_n = 200 \times \left(\frac{1}{2}\right)^n\).</li>
+  <li>\(u_n < 1 \Leftrightarrow 200\times 2^{-n}<1 \Leftrightarrow 2^{-n}<\frac{1}{200} \Leftrightarrow n > \frac{\ln 200}{\ln 2}\approx 7{,}64\). Donc \(n \geqslant 8\) demi-vies.</li>
+  <li>\(8 \times 6 = 48\) heures, soit <strong>2 jours</strong>.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 15</span>
+<p>On modélise une population de poissons par \(u_0 = 500\) et \(u_{n+1} = 0{,}8\,u_n + 100\).</p>
+<ol>
+  <li>Calculer \(u_1, u_2, u_3\).</li>
+  <li>On pose \(v_n = u_n - 500\). Montrer que \((v_n)\) est géométrique.</li>
+  <li>Exprimer \(u_n\) en fonction de \(n\) et déterminer sa limite.</li>
+  <li>Interpréter le résultat.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_1=500\), \(u_2=500\), \(u_3=500\). La suite semble constante.</li>
+  <li>\(v_{n+1}=u_{n+1}-500=0{,}8u_n+100-500=0{,}8u_n-400=0{,}8(u_n-500)=0{,}8v_n\).
+  <br>\((v_n)\) est géométrique de raison \(0{,}8\).</li>
+  <li>\(v_n = v_0 \times 0{,}8^n = 0 \times 0{,}8^n = 0\). Donc \(u_n = 500\) pour tout \(n\). \(\lim u_n = 500\).</li>
+  <li>La population se stabilise à 500 poissons (point d'équilibre).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 16</span>
+<p class="exo-titre">Algorithme de recherche de seuil</p>
+<p>Soit \(u_n = \frac{n^2}{2^n}\). Écrire un algorithme (en Python) qui détermine le plus petit \(n\) tel que \(u_n < 0{,}001\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<pre><code>n = 0
+u = 1  # u_0 = 0^2 / 2^0 = 0, mais prenons n=1
+n = 1
+u = 1/2
+while u >= 0.001:
+    n = n + 1
+    u = n**2 / 2**n
+print(n)</code></pre>
+<p>Le programme affiche \(n = 20\) (car \(\frac{400}{1\,048\,576} \approx 0{,}000\,38 < 0{,}001\)).</p>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

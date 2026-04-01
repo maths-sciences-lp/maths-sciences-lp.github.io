@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Exercices par capacités – Combinatoire et dénombrement – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 1 – Combinatoire et dénombrement</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Utiliser une représentation adaptée et reconnaître les objets à dénombrer</li>
+  <li><strong>C2</strong> — Effectuer des dénombrements dans des situations variées</li>
+  <li><strong>C3</strong> — Calculer des coefficients binomiaux</li>
+  <li><strong>C4</strong> — Utiliser le triangle et la relation de Pascal</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Représenter</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Dénombrer</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Coefficients binomiaux</button>
+  <button class="btn-cap" data-filtre="C4">C4 — Triangle de Pascal</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C1 — Utiliser une représentation adaptée   -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Utiliser une représentation adaptée et reconnaître les objets à dénombrer</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Un restaurant propose 3 entrées (E1, E2, E3) et 2 plats (P1, P2). Construire un arbre des possibilités et déterminer le nombre de menus différents.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>L'arbre comporte 3 branches au premier niveau (entrées) puis 2 sous-branches chacune (plats).</p>
+<p>On obtient les menus : (E1,P1), (E1,P2), (E2,P1), (E2,P2), (E3,P1), (E3,P2).</p>
+<p>Nombre de menus : \(3 \times 2 = 6\) (principe multiplicatif).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>On lance une pièce de monnaie 3 fois. En utilisant un arbre, dénombrer le nombre total de résultats possibles et le nombre de résultats contenant exactement 2 Pile.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Chaque lancer a 2 issues (P ou F). L'arbre a \(2^3 = 8\) feuilles :</p>
+<p>PPP, PPF, PFP, PFF, FPP, FPF, FFP, FFF.</p>
+<p>Nombre total : <strong>8</strong>.</p>
+<p>Résultats avec exactement 2 Pile : PPF, PFP, FPP → <strong>3</strong> résultats.</p>
+<p>On retrouve \(\displaystyle\binom{3}{2} = 3\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Parmi les situations suivantes, identifier s'il s'agit d'un \(k\)-uplet avec répétition, d'un arrangement, d'une permutation ou d'une combinaison :</p>
+<ol>
+  <li>Former un code de 4 chiffres (chiffres pouvant se répéter).</li>
+  <li>Classer 8 coureurs aux 3 premières places d'une course.</li>
+  <li>Ranger 5 livres sur une étagère.</li>
+  <li>Choisir 3 délégués parmi 30 élèves.</li>
+  <li>Tirer 5 boules d'une urne de 40 boules sans remise (l'ordre ne compte pas).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li><strong>\(k\)-uplet avec répétition</strong> : \(10^4\) codes (ordre compte, répétitions autorisées).</li>
+  <li><strong>Arrangement</strong> (3-uplet d'éléments distincts) : \(8 \times 7 \times 6 = 336\) (ordre compte, pas de répétition).</li>
+  <li><strong>Permutation</strong> : \(5! = 120\) (on range tous les éléments).</li>
+  <li><strong>Combinaison</strong> : \(\displaystyle\binom{30}{3} = 4060\) (l'ordre ne compte pas).</li>
+  <li><strong>Combinaison</strong> : \(\displaystyle\binom{40}{5} = 658\,008\) (l'ordre ne compte pas).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Représenter à l'aide d'un tableau (produit cartésien) les résultats du lancer de deux dés à 6 faces. En déduire le nombre de résultats donnant une somme égale à 7.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Le tableau est un tableau \(6 \times 6\) donnant 36 résultats (couples).</p>
+<p>Les couples donnant une somme de 7 sont : (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) → <strong>6 résultats</strong>.</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C2 — Effectuer des dénombrements           -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Effectuer des dénombrements dans des situations variées</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Un mot de passe doit comporter 8 caractères : les 3 premiers sont des lettres majuscules (26 possibles), les 5 suivants sont des chiffres (0 à 9). Les répétitions sont autorisées. Combien de mots de passe peut-on former ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Par le principe multiplicatif :</p>
+<p>\(26^3 \times 10^5 = 17\,576 \times 100\,000 = 1\,757\,600\,000\)</p>
+<p>On peut former environ <strong>1,76 milliard</strong> de mots de passe.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Combien de nombres entiers compris entre 100 et 999 sont composés de chiffres tous différents ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Un nombre entre 100 et 999 a 3 chiffres. Le chiffre des centaines ne peut pas être 0.</p>
+<ul>
+  <li>Chiffre des centaines : 9 choix (1 à 9)</li>
+  <li>Chiffre des dizaines : 9 choix (0 à 9 sauf le chiffre des centaines)</li>
+  <li>Chiffre des unités : 8 choix (0 à 9 sauf les deux déjà utilisés)</li>
+</ul>
+<p>Total : \(9 \times 9 \times 8 = 648\) nombres.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Un club de 15 membres doit élire un bureau composé d'un président, un vice-président, un trésorier et un secrétaire (tous différents). Combien de bureaux différents peut-on former ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Les postes sont distincts, donc l'ordre compte. C'est un arrangement de 4 parmi 15 :</p>
+<p>\(15 \times 14 \times 13 \times 12 = 32\,760\) bureaux.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Dans un jeu de 32 cartes, on tire simultanément 5 cartes.</p>
+<ol>
+  <li>Combien de mains de 5 cartes peut-on obtenir ?</li>
+  <li>Combien de mains contiennent les 4 as ?</li>
+  <li>Combien de mains ne contiennent aucun as ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\displaystyle\binom{32}{5} = \frac{32 \times 31 \times 30 \times 29 \times 28}{120} = 201\,376\) mains.</li>
+  <li>Les 4 as sont dans la main, il reste 1 carte à choisir parmi les 28 non-as : \(\displaystyle\binom{28}{1} = 28\) mains.</li>
+  <li>On choisit 5 cartes parmi les 28 non-as : \(\displaystyle\binom{28}{5} = \frac{28 \times 27 \times 26 \times 25 \times 24}{120} = 98\,280\) mains.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Un ADN est constitué d'une séquence de nucléotides parmi 4 (A, T, C, G). Combien de séquences différentes de longueur 6 existe-t-il ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>C'est un 6-uplet de l'ensemble \(\{A, T, C, G\}\) (avec répétition) :</p>
+<p>\(4^6 = 4096\) séquences.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Combien de parties de \(\{1, 2, 3, \ldots, 10\}\) contiennent exactement 3 nombres pairs ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Les nombres pairs de l'ensemble sont \(\{2, 4, 6, 8, 10\}\) (5 éléments). Les impairs sont \(\{1, 3, 5, 7, 9\}\) (5 éléments).</p>
+<p>On choisit 3 pairs parmi 5 : \(\displaystyle\binom{5}{3} = 10\).</p>
+<p>Chaque impair est soit dans la partie, soit non : \(2^5 = 32\) choix.</p>
+<p>Total : \(10 \times 32 = 320\) parties.</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C3 — Calculer des coefficients binomiaux   -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Calculer des coefficients binomiaux</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>Calculer les coefficients binomiaux suivants :</p>
+<ol>
+  <li>\(\displaystyle\binom{8}{2}\)</li>
+  <li>\(\displaystyle\binom{10}{3}\)</li>
+  <li>\(\displaystyle\binom{15}{1}\)</li>
+  <li>\(\displaystyle\binom{20}{18}\)</li>
+  <li>\(\displaystyle\binom{100}{99}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\displaystyle\binom{8}{2} = \frac{8 \times 7}{2} = 28\)</li>
+  <li>\(\displaystyle\binom{10}{3} = \frac{10 \times 9 \times 8}{6} = 120\)</li>
+  <li>\(\displaystyle\binom{15}{1} = 15\)</li>
+  <li>\(\displaystyle\binom{20}{18} = \binom{20}{2} = \frac{20 \times 19}{2} = 190\) (symétrie)</li>
+  <li>\(\displaystyle\binom{100}{99} = \binom{100}{1} = 100\) (symétrie)</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p>Simplifier les expressions suivantes :</p>
+<ol>
+  <li>\(\displaystyle\frac{\binom{n}{2}}{\binom{n}{1}}\) pour \(n \geqslant 2\)</li>
+  <li>\(\displaystyle\frac{\binom{n+1}{k+1}}{\binom{n}{k}}\) pour \(0 \leqslant k \leqslant n\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\displaystyle\frac{\binom{n}{2}}{\binom{n}{1}} = \frac{n(n-1)/2}{n} = \frac{n-1}{2}\)</li>
+  <li>\(\displaystyle\frac{\binom{n+1}{k+1}}{\binom{n}{k}} = \frac{(n+1)!}{(k+1)!(n-k)!} \times \frac{k!(n-k)!}{n!} = \frac{n+1}{k+1}\)</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p>Résoudre l'équation \(\displaystyle\binom{n}{2} = 45\) pour \(n\) entier naturel.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\displaystyle\binom{n}{2} = \frac{n(n-1)}{2} = 45\), donc \(n(n-1) = 90\).</p>
+<p>On cherche \(n\) entier tel que \(n^2 - n - 90 = 0\).</p>
+<p>\(\Delta = 1 + 360 = 361 = 19^2\), donc \(n = \frac{1+19}{2} = 10\) ou \(n = \frac{1-19}{2} = -9\) (rejeté).</p>
+<p>Réponse : \(n = 10\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 14</span>
+<p>Montrer que pour tout \(n \geqslant 2\) : \(\displaystyle\binom{n}{2} + \binom{n}{1} = \binom{n+1}{2}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>C'est un cas particulier de la relation de Pascal avec \(k=2\) :</p>
+<p>\(\displaystyle\binom{n+1}{2} = \binom{n}{1} + \binom{n}{2}\).</p>
+<p>Vérifions par le calcul :</p>
+<p>\(\displaystyle\binom{n}{2} + \binom{n}{1} = \frac{n(n-1)}{2} + n = \frac{n(n-1) + 2n}{2} = \frac{n^2 - n + 2n}{2} = \frac{n^2 + n}{2} = \frac{n(n+1)}{2} = \binom{n+1}{2}\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 15</span>
+<p>Un sac contient 6 boules rouges et 4 boules bleues. On tire 3 boules simultanément.</p>
+<ol>
+  <li>Combien de tirages possibles au total ?</li>
+  <li>Combien de tirages contiennent exactement 2 boules rouges et 1 bleue ?</li>
+  <li>En déduire la probabilité d'obtenir exactement 2 boules rouges et 1 bleue.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\displaystyle\binom{10}{3} = 120\) tirages.</li>
+  <li>Choix de 2 rouges parmi 6 : \(\displaystyle\binom{6}{2} = 15\). Choix de 1 bleue parmi 4 : \(\displaystyle\binom{4}{1} = 4\).
+  <br>Total : \(15 \times 4 = 60\) tirages favorables.</li>
+  <li>\(P = \dfrac{60}{120} = \dfrac{1}{2} = 0{,}5\). La probabilité est de <strong>50 %</strong>.</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C4 — Triangle et relation de Pascal        -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C4">
+<h2>C4 — Utiliser le triangle et la relation de Pascal</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 16</span>
+<p>Compléter les lignes \(n=7\) et \(n=8\) du triangle de Pascal.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Ligne \(n=6\) : 1, 6, 15, 20, 15, 6, 1</p>
+<p>Ligne \(n=7\) : <strong>1, 7, 21, 35, 35, 21, 7, 1</strong></p>
+<p>Ligne \(n=8\) : <strong>1, 8, 28, 56, 70, 56, 28, 8, 1</strong></p>
+<p>Vérification : somme ligne 7 = \(128 = 2^7\) ✓, somme ligne 8 = \(256 = 2^8\) ✓.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 17</span>
+<p>En utilisant la relation de Pascal, calculer \(\displaystyle\binom{7}{3}\) sachant que \(\displaystyle\binom{6}{2} = 15\) et \(\displaystyle\binom{6}{3} = 20\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\displaystyle\binom{7}{3} = \binom{6}{2} + \binom{6}{3} = 15 + 20 = 35\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 18</span>
+<p>Démontrer la relation de Pascal : pour \(1 \leqslant k \leqslant n\),</p>
+\[\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}\]
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\displaystyle\binom{n-1}{k-1} + \binom{n-1}{k} = \frac{(n-1)!}{(k-1)!(n-k)!} + \frac{(n-1)!}{k!(n-1-k)!}\)</p>
+<p>\(= \frac{(n-1)!\, k}{k!(n-k)!} + \frac{(n-1)!\,(n-k)}{k!(n-k)!}\)</p>
+<p>\(= \frac{(n-1)![k + (n-k)]}{k!(n-k)!} = \frac{(n-1)!\, n}{k!(n-k)!} = \frac{n!}{k!(n-k)!} = \binom{n}{k}\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 19</span>
+<p>Montrer que pour tout \(n \geqslant 0\) :</p>
+\[\binom{n}{0} - \binom{n}{1} + \binom{n}{2} - \cdots + (-1)^n\binom{n}{n} = 0\]
+<p><em>Indication : considérer \((1-1)^n\).</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>D'après la formule du binôme de Newton :</p>
+\[(a+b)^n = \sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^k\]
+<p>En posant \(a = 1\) et \(b = -1\) :</p>
+\[(1+(-1))^n = \sum_{k=0}^{n}\binom{n}{k}1^{n-k}(-1)^k = \sum_{k=0}^{n}(-1)^k\binom{n}{k}\]
+<p>Or \((1-1)^n = 0^n = 0\) (pour \(n \geqslant 1\)).</p>
+<p>Donc \(\displaystyle\sum_{k=0}^{n}(-1)^k\binom{n}{k} = 0\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 20</span>
+<p>On considère un polygone régulier à 10 sommets. Combien de diagonales peut-on tracer ?</p>
+<p><em>Indication : compter d'abord le nombre total de segments reliant deux sommets, puis retrancher les côtés.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Nombre total de segments reliant 2 sommets parmi 10 : \(\displaystyle\binom{10}{2} = 45\).</p>
+<p>Parmi ces segments, 10 sont des côtés du polygone.</p>
+<p>Nombre de diagonales : \(45 - 10 = 35\).</p>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

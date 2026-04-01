@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Continuité des fonctions – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 8 – Continuité des fonctions</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Analyse</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Définir la continuité d'une fonction en un point et sur un intervalle</li>
+  <li>Appliquer le théorème des valeurs intermédiaires (TVI)</li>
+  <li>Résoudre des équations du type \(f(x) = k\) par le TVI</li>
+  <li>Étudier une suite définie par \(u_{n+1} = f(u_n)\)</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Continuité en un point</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>La fonction \(f\) est <strong>continue en \(a\)</strong> si :</p>
+\[\lim_{x \to a} f(x) = f(a)\]
+<p>Autrement dit, la limite de \(f\) en \(a\) existe, est finie, et est égale à la valeur de \(f\) en \(a\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Toute fonction <strong>dérivable</strong> en \(a\) est <strong>continue</strong> en \(a\). La réciproque est fausse : une fonction peut être continue sans être dérivable (exemple : \(|x|\) en 0).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Fonctions continues usuelles</span>
+<p>Les fonctions suivantes sont continues sur leur domaine de définition :</p>
+<ul>
+  <li>Fonctions polynômes (sur \(\mathbb{R}\))</li>
+  <li>Fonctions rationnelles (sur leur domaine)</li>
+  <li>\(\sqrt{x}\) sur \([0;+\infty[\)</li>
+  <li>\(e^x\) sur \(\mathbb{R}\)</li>
+  <li>\(\sin x\), \(\cos x\) sur \(\mathbb{R}\)</li>
+</ul>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Opérations et continuité</span>
+<p>La somme, le produit, le quotient (quand le dénominateur ne s'annule pas) et la composée de fonctions continues sont des fonctions continues.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>La fonction \(f\) définie par \(f(x) = \frac{x^2-4}{x-2}\) pour \(x\neq 2\) et \(f(2) = 3\) est-elle continue en 2 ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Pour \(x\neq 2\) : \(f(x)=\frac{(x-2)(x+2)}{x-2}=x+2\). Donc \(\lim_{x\to 2}f(x)=4\).</p>
+<p>Or \(f(2)=3\neq 4\). La fonction n'est <strong>pas continue</strong> en 2.</p>
+<p>Pour qu'elle le soit, il faudrait poser \(f(2)=4\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Continuité sur un intervalle</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>\(f\) est <strong>continue sur un intervalle \(I\)</strong> si elle est continue en tout point de \(I\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Image d'un intervalle</span>
+<p>L'image d'un intervalle par une fonction continue est un intervalle.</p>
+<p>En particulier, l'image d'un segment \([a;b]\) par une fonction continue est un segment \([m;M]\) où \(m\) et \(M\) sont le minimum et le maximum de \(f\) sur \([a;b]\).</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Théorème des valeurs intermédiaires</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Théorème des valeurs intermédiaires (TVI)</span>
+<p>Si \(f\) est <strong>continue</strong> sur \([a;b]\), alors pour tout réel \(k\) compris entre \(f(a)\) et \(f(b)\), il existe au moins un réel \(c \in [a;b]\) tel que \(f(c) = k\).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Interprétation graphique</span>
+<p>La courbe d'une fonction continue ne peut pas « sauter » d'une valeur à une autre sans passer par toutes les valeurs intermédiaires. Toute droite horizontale \(y=k\) située entre \(f(a)\) et \(f(b)\) coupe la courbe au moins une fois.</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Corollaire — Cas particulier \(k=0\)</span>
+<p>Si \(f\) est continue sur \([a;b]\) et si \(f(a)\) et \(f(b)\) sont de <strong>signes contraires</strong>, alors il existe au moins un \(c \in ]a;b[\) tel que \(f(c) = 0\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Soit \(f(x) = x^3 + x - 1\). \(f(0) = -1 < 0\) et \(f(1) = 1 > 0\). La fonction \(f\) est continue (polynôme) et change de signe sur \([0;1]\). Par le TVI, l'équation \(f(x) = 0\) admet au moins une solution dans \(]0;1[\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Montrer que l'équation \(e^x = 3-x\) admet au moins une solution dans \([0;2]\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On pose \(g(x) = e^x - 3 + x\). \(g\) est continue sur \([0;2]\) (somme de fonctions continues).</p>
+<p>\(g(0) = 1-3+0 = -2 < 0\). \(g(2) = e^2-3+2 = e^2-1 \approx 6{,}39 > 0\).</p>
+<p>\(g\) change de signe sur \([0;2]\) : par le TVI, il existe \(c \in ]0;2[\) tel que \(g(c)=0\), soit \(e^c = 3-c\). □</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. TVI pour une fonction strictement monotone</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Théorème — Bijection</span>
+<p>Si \(f\) est <strong>continue et strictement monotone</strong> sur \([a;b]\), alors pour tout réel \(k\) compris entre \(f(a)\) et \(f(b)\), l'équation \(f(x) = k\) admet une <strong>unique</strong> solution dans \([a;b]\).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Montrer l'existence et l'unicité d'une solution</span>
+<ol>
+  <li>Vérifier que \(f\) est <strong>continue</strong> sur l'intervalle</li>
+  <li>Vérifier que \(f\) est <strong>strictement monotone</strong> sur l'intervalle</li>
+  <li>Vérifier que \(k\) est entre \(f(a)\) et \(f(b)\)</li>
+  <li>Conclure par le TVI : existence et unicité de la solution</li>
+</ol>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Soit \(f(x) = x^3 + x - 1\). Montrer que l'équation \(f(x) = 0\) admet une unique solution \(\alpha\) dans \(\mathbb{R}\), et encadrer \(\alpha\) à \(0{,}1\) près.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f'(x) = 3x^2+1 > 0\) pour tout \(x\). Donc \(f\) est <strong>strictement croissante</strong> sur \(\mathbb{R}\).</p>
+<p>\(\lim_{-\infty}f = -\infty\), \(\lim_{+\infty}f = +\infty\). Par le TVI (version bijection), l'équation \(f(x)=0\) admet une <strong>unique solution</strong> \(\alpha \in \mathbb{R}\).</p>
+<p>Encadrement : \(f(0)=-1<0\), \(f(1)=1>0\), donc \(\alpha \in ]0;1[\).</p>
+<p>\(f(0{,}6) = 0{,}216+0{,}6-1=-0{,}184<0\). \(f(0{,}7) = 0{,}343+0{,}7-1=0{,}043>0\).</p>
+<p>Donc \(\alpha \in ]0{,}6;\ 0{,}7[\), soit \(\alpha \approx 0{,}68\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Montrer que l'équation \(\ln x = 2-x\) admet exactement une solution sur \(]0;+\infty[\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On pose \(g(x) = \ln x - 2 + x\). \(g\) est continue sur \(]0;+\infty[\).</p>
+<p>\(g'(x) = \frac{1}{x}+1 > 0\) pour tout \(x>0\). \(g\) est <strong>strictement croissante</strong>.</p>
+<p>\(\lim_{0^+}g = -\infty\), \(\lim_{+\infty}g = +\infty\). Par le TVI, \(g(x)=0\) admet une <strong>unique solution</strong>.</p>
+<p>Vérification : \(g(1) = 0-2+1=-1<0\), \(g(2)=\ln 2 \approx 0{,}69>0\). La solution est dans \(]1;2[\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Méthode de dichotomie</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode de dichotomie</span>
+<p>Pour approcher la solution \(\alpha\) de \(f(x)=0\) sur \([a;b]\) (avec \(f\) continue et \(f(a)\cdot f(b)<0\)) :</p>
+<ol>
+  <li>Calculer \(c = \frac{a+b}{2}\) (milieu de l'intervalle)</li>
+  <li>Si \(f(c) = 0\) : \(\alpha = c\), terminé</li>
+  <li>Si \(f(a) \cdot f(c) < 0\) : \(\alpha \in [a;c]\), on recommence avec \([a;c]\)</li>
+  <li>Sinon : \(\alpha \in [c;b]\), on recommence avec \([c;b]\)</li>
+</ol>
+<p>À chaque étape, l'intervalle est divisé par 2. Après \(n\) étapes, la précision est \(\frac{b-a}{2^n}\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Appliquer 4 étapes de dichotomie pour approcher la solution de \(x^3+x-1=0\) dans \([0;1]\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Étape 1 : \(c=0{,}5\), \(f(0{,}5)=0{,}125+0{,}5-1=-0{,}375<0\). \(\alpha \in [0{,}5;1]\).</p>
+<p>Étape 2 : \(c=0{,}75\), \(f(0{,}75)=0{,}422+0{,}75-1=0{,}172>0\). \(\alpha \in [0{,}5;0{,}75]\).</p>
+<p>Étape 3 : \(c=0{,}625\), \(f(0{,}625)=0{,}244+0{,}625-1=-0{,}131<0\). \(\alpha \in [0{,}625;0{,}75]\).</p>
+<p>Étape 4 : \(c=0{,}6875\), \(f(0{,}6875)\approx 0{,}013>0\). \(\alpha \in [0{,}625;0{,}6875]\).</p>
+<p>Après 4 étapes : \(\alpha \approx 0{,}68\) à \(0{,}0625\) près.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VI. Suites définies par \(u_{n+1} = f(u_n)\)</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Si la suite \((u_n)\) définie par \(u_{n+1} = f(u_n)\) converge vers \(\ell\) et si \(f\) est continue en \(\ell\), alors \(\ell\) est solution de l'équation \(f(\ell) = \ell\) (point fixe).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Étude d'une suite récurrente \(u_{n+1} = f(u_n)\)</span>
+<ol>
+  <li>Tracer la courbe de \(f\) et la droite \(y=x\)</li>
+  <li>Déterminer les points fixes : résoudre \(f(x) = x\)</li>
+  <li>Conjecturer graphiquement la convergence</li>
+  <li>Démontrer la convergence (monotonie + bornes par récurrence)</li>
+  <li>Conclure : la limite est le point fixe</li>
+</ol>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Soit \(f(x) = \sqrt{x+2}\) et la suite \((u_n)\) définie par \(u_0 = 0\) et \(u_{n+1} = f(u_n)\).</p>
+<ol>
+  <li>Calculer \(u_1, u_2, u_3\).</li>
+  <li>Résoudre \(f(x) = x\). Quelle est la limite candidate ?</li>
+  <li>Montrer par récurrence que \(0 \leqslant u_n \leqslant 2\) pour tout \(n\).</li>
+  <li>Montrer que \((u_n)\) est croissante.</li>
+  <li>Conclure.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_1 = \sqrt{2}\approx 1{,}41\), \(u_2 = \sqrt{2+\sqrt{2}}\approx 1{,}85\), \(u_3\approx 1{,}96\).</li>
+  <li>\(\sqrt{x+2}=x \Rightarrow x+2=x^2 \Rightarrow x^2-x-2=0 \Rightarrow (x-2)(x+1)=0\). Comme \(x\geqslant 0\) : \(x=2\).</li>
+  <li><strong>Init :</strong> \(0\leqslant 0 \leqslant 2\). ✓. <strong>Héré :</strong> Si \(0\leqslant u_n\leqslant 2\), alors \(2\leqslant u_n+2\leqslant 4\), \(\sqrt{2}\leqslant u_{n+1}\leqslant 2\). Donc \(0\leqslant u_{n+1}\leqslant 2\). ✓.</li>
+  <li>\(u_{n+1}-u_n = \sqrt{u_n+2}-u_n\). On pose \(g(x)=\sqrt{x+2}-x\). \(g'(x)=\frac{1}{2\sqrt{x+2}}-1<0\) pour \(x\geqslant 0\). \(g(2)=0\). Comme \(u_n\leqslant 2\) et \(g\) décroissante : \(g(u_n)\geqslant g(2)=0\), d'où \(u_{n+1}\geqslant u_n\). ✓.</li>
+  <li>Croissante et majorée par 2 : converge. La limite vérifie \(\ell = f(\ell)\), d'où \(\ell = 2\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p class="exo-titre">Problème de synthèse</p>
+<p>Soit \(f(x) = x - \frac{x^3}{6}\).</p>
+<ol>
+  <li>Montrer que l'équation \(f(x) = 0{,}4\) admet exactement deux solutions dans \([0;2]\).</li>
+  <li>Encadrer chaque solution à \(0{,}5\) près.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(g(x) = f(x)-0{,}4 = x-\frac{x^3}{6}-0{,}4\). \(g'(x)=1-\frac{x^2}{2}\). \(g'=0\) pour \(x=\sqrt{2}\approx 1{,}41\).
+  <br>\(g\) croissante sur \([0;\sqrt{2}]\), décroissante sur \([\sqrt{2};2]\).
+  <br>\(g(0)=-0{,}4<0\), \(g(\sqrt{2})=\sqrt{2}-\frac{2\sqrt{2}}{6}-0{,}4\approx 1{,}41-0{,}47-0{,}4=0{,}54>0\), \(g(2)=2-\frac{8}{6}-0{,}4\approx 0{,}27>0\).
+  <br>Hmm, \(g(2)>0\). \(g(0)<0\) et \(g(\sqrt{2})>0\) : une solution sur \(]0;\sqrt{2}[\) par TVI (strict. croissante).
+  <br>Sur \([\sqrt{2};2]\), \(g\) est décroissante. \(g(\sqrt{2})>0\) et \(g(2)>0\) : pas de changement de signe, donc pas de solution sur \([\sqrt{2};2]\).
+  <br>L'équation admet une <strong>unique solution</strong> sur \([0;2]\).</li>
+  <li>\(g(0)=-0{,}4<0\), \(g(0{,}5)=0{,}5-0{,}021-0{,}4=0{,}079>0\). Solution dans \(]0;0{,}5[\).
+  <br>Plus précisément : \(\alpha \in ]0;0{,}5[\).</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

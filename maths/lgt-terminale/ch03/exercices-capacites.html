@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Exercices par capacités – Orthogonalité et distances – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 3 – Orthogonalité et distances dans l'espace</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Utiliser le produit scalaire pour démontrer une orthogonalité, calculer un angle ou une longueur</li>
+  <li><strong>C2</strong> — Utiliser la projection orthogonale pour déterminer une distance</li>
+  <li><strong>C3</strong> — Résoudre des problèmes de grandeurs et mesures (longueur, angle, aire, volume)</li>
+  <li><strong>C4</strong> — Étudier des configurations dans l'espace (orthogonalité de droites et plans)</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Produit scalaire</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Projection / distance</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Grandeurs et mesures</button>
+  <button class="btn-cap" data-filtre="C4">C4 — Configurations</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C1 — Produit scalaire                      -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Utiliser le produit scalaire pour démontrer une orthogonalité, calculer un angle ou une longueur</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Soient \(\vec{u}(3;-1;2)\) et \(\vec{v}(1;5;1)\). Calculer \(\vec{u}\cdot\vec{v}\) et déterminer si les vecteurs sont orthogonaux.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{u}\cdot\vec{v} = 3 \times 1 + (-1)\times 5 + 2 \times 1 = 3 - 5 + 2 = 0\).</p>
+<p>Les vecteurs sont <strong>orthogonaux</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Soient \(A(1;2;-1)\), \(B(3;0;1)\) et \(C(2;4;2)\). Calculer l'angle \(\widehat{BAC}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB}(2;-2;2)\), \(\vec{AC}(1;2;3)\).</p>
+<p>\(\vec{AB}\cdot\vec{AC} = 2-4+6 = 4\).</p>
+<p>\(\|\vec{AB}\| = \sqrt{4+4+4} = 2\sqrt{3}\), \(\|\vec{AC}\| = \sqrt{1+4+9} = \sqrt{14}\).</p>
+<p>\(\cos(\widehat{BAC}) = \frac{4}{2\sqrt{3}\times\sqrt{14}} = \frac{4}{2\sqrt{42}} = \frac{2}{\sqrt{42}}\).</p>
+<p>\(\widehat{BAC} = \arccos\left(\frac{2}{\sqrt{42}}\right) \approx 72{,}0°\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Montrer que le triangle \(ABC\) avec \(A(1;0;1)\), \(B(3;1;0)\) et \(C(1;2;3)\) est rectangle. En quel sommet ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB}(2;1;-1)\), \(\vec{AC}(0;2;2)\), \(\vec{BC}(-2;1;3)\).</p>
+<p>\(\vec{AB}\cdot\vec{AC} = 0+2-2 = 0\).</p>
+<p>Donc \(\vec{AB} \perp \vec{AC}\) : le triangle est <strong>rectangle en \(A\)</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Soient \(\vec{u}(2;a;1)\) et \(\vec{v}(1;3;-1)\). Déterminer la valeur de \(a\) pour que \(\vec{u}\) et \(\vec{v}\) soient orthogonaux.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{u}\cdot\vec{v} = 2 + 3a - 1 = 1 + 3a = 0\), d'où \(a = -\frac{1}{3}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Calculer \(\|\vec{u}+\vec{v}\|\) sachant que \(\|\vec{u}\| = 3\), \(\|\vec{v}\| = 4\) et \(\vec{u}\cdot\vec{v} = -6\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\|\vec{u}+\vec{v}\|^2 = \|\vec{u}\|^2 + 2\vec{u}\cdot\vec{v} + \|\vec{v}\|^2 = 9 + 2(-6) + 16 = 13\).</p>
+<p>\(\|\vec{u}+\vec{v}\| = \sqrt{13}\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C2 — Projection / distance                -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Utiliser la projection orthogonale pour déterminer une distance</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Calculer la distance du point \(M(3;1;-1)\) au plan \(\mathcal{P}\) d'équation \(x - 2y + 2z + 4 = 0\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(d = \frac{|3 - 2 - 2 + 4|}{\sqrt{1+4+4}} = \frac{3}{3} = 1\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Déterminer le projeté orthogonal \(H\) du point \(M(4;1;3)\) sur le plan \(\mathcal{P}\) d'équation \(2x + y - 2z + 1 = 0\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Vecteur normal : \(\vec{n}(2;1;-2)\). Droite perpendiculaire : \(H = (4+2t;\ 1+t;\ 3-2t)\).</p>
+<p>\(H \in \mathcal{P}\) : \(2(4+2t)+(1+t)-2(3-2t)+1 = 0\).</p>
+<p>\(8+4t+1+t-6+4t+1 = 0\), soit \(9t+4 = 0\), \(t = -\frac{4}{9}\).</p>
+<p>\(H\left(4-\frac{8}{9};\ 1-\frac{4}{9};\ 3+\frac{8}{9}\right) = \left(\frac{28}{9};\ \frac{5}{9};\ \frac{35}{9}\right)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Déterminer le projeté orthogonal \(H\) du point \(M(5;2;-1)\) sur la droite \(d\) passant par \(A(1;1;1)\) de vecteur directeur \(\vec{u}(2;-1;2)\), puis calculer la distance \(MH\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(H = A + t\vec{u} = (1+2t;\ 1-t;\ 1+2t)\).</p>
+<p>\(\vec{MH} = (2t-4;\ -t-1;\ 2t+2)\).</p>
+<p>\(\vec{MH}\cdot\vec{u} = 2(2t-4)+(-1)(-t-1)+2(2t+2) = 4t-8+t+1+4t+4 = 9t-3 = 0\).</p>
+<p>\(t = \frac{1}{3}\). \(H\left(\frac{5}{3};\ \frac{2}{3};\ \frac{5}{3}\right)\).</p>
+<p>\(\vec{MH} = \left(-\frac{10}{3};\ -\frac{4}{3};\ \frac{8}{3}\right)\). \(MH = \frac{1}{3}\sqrt{100+16+64} = \frac{1}{3}\sqrt{180} = \frac{6\sqrt{5}}{3} = 2\sqrt{5}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Le plan \(\mathcal{P}\) passe par \(A(2;0;0)\), \(B(0;3;0)\) et \(C(0;0;6)\).</p>
+<ol>
+  <li>Déterminer une équation cartésienne de \(\mathcal{P}\).</li>
+  <li>Calculer la distance de l'origine \(O(0;0;0)\) au plan \(\mathcal{P}\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\vec{AB}(-2;3;0)\), \(\vec{AC}(-2;0;6)\). On cherche \(\vec{n}(a;b;c)\) :
+  <br>\(-2a+3b = 0\) et \(-2a+6c = 0\), d'où \(a = \frac{3b}{2}\) et \(a = 3c\). Posons \(c=1\) : \(a=3\), \(b=2\).
+  <br>\(\vec{n}(3;2;1)\). Équation : \(3x+2y+z+d=0\). \(A\in\mathcal{P}\) : \(6+d=0\), \(d=-6\).
+  <br>\(\mathcal{P}\) : \(3x+2y+z-6 = 0\).</li>
+  <li>\(d(O,\mathcal{P}) = \frac{|0+0+0-6|}{\sqrt{9+4+1}} = \frac{6}{\sqrt{14}} = \frac{6\sqrt{14}}{14} = \frac{3\sqrt{14}}{7}\).</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C3 — Grandeurs et mesures                  -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Résoudre des problèmes de grandeurs et mesures</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Dans un cube \(ABCDEFGH\) de côté 3, calculer la longueur de la grande diagonale \(AG\) et l'angle que fait cette diagonale avec la face \(ABCD\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AG}(3;3;3)\). \(AG = \sqrt{9+9+9} = 3\sqrt{3}\).</p>
+<p>Le projeté de \(G\) sur le plan \((ABCD)\) est \(C(3;3;0)\). L'angle cherché est \(\widehat{GAC}\) avec \(\vec{AC}(3;3;0)\).</p>
+<p>\(\cos\theta = \frac{\vec{AG}\cdot\vec{AC}}{\|\vec{AG}\|\times\|\vec{AC}\|} = \frac{9+9+0}{3\sqrt{3}\times 3\sqrt{2}} = \frac{18}{9\sqrt{6}} = \frac{2}{\sqrt{6}}\).</p>
+<p>\(\theta = \arccos\left(\frac{2}{\sqrt{6}}\right) \approx 35{,}3°\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>Calculer l'aire du triangle \(ABC\) avec \(A(1;0;0)\), \(B(0;2;0)\), \(C(0;0;3)\).</p>
+<p><em>Indication : utiliser \(\mathcal{A} = \frac{1}{2}\sqrt{\|\vec{AB}\|^2\|\vec{AC}\|^2 - (\vec{AB}\cdot\vec{AC})^2}\).</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB}(-1;2;0)\), \(\vec{AC}(-1;0;3)\).</p>
+<p>\(\|\vec{AB}\|^2 = 1+4+0 = 5\), \(\|\vec{AC}\|^2 = 1+0+9 = 10\), \(\vec{AB}\cdot\vec{AC} = 1+0+0 = 1\).</p>
+<p>\(\mathcal{A} = \frac{1}{2}\sqrt{5 \times 10 - 1} = \frac{1}{2}\sqrt{49} = \frac{7}{2}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p>Un tétraèdre \(OABC\) a pour sommets \(O(0;0;0)\), \(A(4;0;0)\), \(B(0;4;0)\), \(C(0;0;4)\).</p>
+<ol>
+  <li>Calculer le volume du tétraèdre.</li>
+  <li>Déterminer l'aire de la face \(ABC\).</li>
+  <li>En déduire la hauteur issue de \(O\) relative à la face \(ABC\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Le tétraèdre est trirectangle en \(O\). \(V = \frac{1}{6}\times 4 \times 4 \times 4 = \frac{32}{3}\).</li>
+  <li>\(\vec{AB}(-4;4;0)\), \(\vec{AC}(-4;0;4)\). \(\|\vec{AB}\|^2 = 32\), \(\|\vec{AC}\|^2 = 32\), \(\vec{AB}\cdot\vec{AC} = 16\).
+  <br>\(\mathcal{A} = \frac{1}{2}\sqrt{32\times 32 - 256} = \frac{1}{2}\sqrt{768} = \frac{1}{2}\times 16\sqrt{3} = 8\sqrt{3}\).</li>
+  <li>\(V = \frac{1}{3}\mathcal{A}\times h\), donc \(h = \frac{3V}{\mathcal{A}} = \frac{3\times\frac{32}{3}}{8\sqrt{3}} = \frac{32}{8\sqrt{3}} = \frac{4}{\sqrt{3}} = \frac{4\sqrt{3}}{3}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p>Dans un repère orthonormé, on donne \(A(2;1;0)\), \(B(0;3;0)\), \(C(1;0;2)\). Calculer la mesure de l'angle \(\widehat{ABC}\) au degré près.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{BA}(2;-2;0)\), \(\vec{BC}(1;-3;2)\).</p>
+<p>\(\vec{BA}\cdot\vec{BC} = 2+6+0 = 8\).</p>
+<p>\(\|\vec{BA}\| = \sqrt{4+4} = 2\sqrt{2}\), \(\|\vec{BC}\| = \sqrt{1+9+4} = \sqrt{14}\).</p>
+<p>\(\cos(\widehat{ABC}) = \frac{8}{2\sqrt{2}\times\sqrt{14}} = \frac{8}{2\sqrt{28}} = \frac{8}{4\sqrt{7}} = \frac{2}{\sqrt{7}}\).</p>
+<p>\(\widehat{ABC} = \arccos\left(\frac{2}{\sqrt{7}}\right) \approx 41°\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C4 — Configurations                        -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C4">
+<h2>C4 — Étudier des configurations dans l'espace</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 14</span>
+<p>Déterminer un vecteur normal au plan passant par \(A(1;1;1)\), \(B(2;0;3)\) et \(C(0;1;2)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\vec{AB}(1;-1;2)\), \(\vec{AC}(-1;0;1)\).</p>
+<p>On cherche \(\vec{n}(a;b;c)\) tel que \(\vec{n}\cdot\vec{AB} = 0\) et \(\vec{n}\cdot\vec{AC} = 0\) :</p>
+<p>\(a - b + 2c = 0\) et \(-a + c = 0\), d'où \(a = c\). Dans la première : \(c - b + 2c = 0\), \(b = 3c\).</p>
+<p>En prenant \(c=1\) : \(\vec{n}(1;3;1)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 15</span>
+<p>Le plan \(\mathcal{P}_1\) a pour équation \(x+2y-z+1 = 0\) et le plan \(\mathcal{P}_2\) a pour équation \(2x-y+3z-5 = 0\). Les plans sont-ils perpendiculaires ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Vecteurs normaux : \(\vec{n_1}(1;2;-1)\) et \(\vec{n_2}(2;-1;3)\).</p>
+<p>\(\vec{n_1}\cdot\vec{n_2} = 2-2-3 = -3 \neq 0\).</p>
+<p>Les plans ne sont <strong>pas perpendiculaires</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 16</span>
+<p>Soit le plan \(\mathcal{P}\) d'équation \(x-y+2z-4 = 0\) et la droite \(d\) passant par \(A(0;0;2)\) de direction \(\vec{u}(1;-1;2)\).</p>
+<ol>
+  <li>Montrer que la droite \(d\) est perpendiculaire au plan \(\mathcal{P}\).</li>
+  <li>Déterminer le point d'intersection de \(d\) et \(\mathcal{P}\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Le vecteur normal de \(\mathcal{P}\) est \(\vec{n}(1;-1;2)\). Or \(\vec{u} = \vec{n}\), donc la direction de \(d\) est celle du vecteur normal. La droite est <strong>perpendiculaire</strong> au plan.</li>
+  <li>Points de \(d\) : \((t;-t;2+2t)\). On injecte dans l'équation du plan :
+  <br>\(t-(-t)+2(2+2t)-4 = 0\), soit \(t+t+4+4t-4 = 0\), \(6t = 0\), \(t = 0\).
+  <br>Point d'intersection : \(A(0;0;2)\). La droite coupe le plan en \(A\), qui est donc le pied de la perpendiculaire.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 17</span>
+<p>Dans un cube \(ABCDEFGH\) de côté 1 :</p>
+<ol>
+  <li>Montrer que \((AG)\) est perpendiculaire au plan \((BDE)\).</li>
+  <li>Déterminer l'intersection de \((AG)\) et du plan \((BDE)\).</li>
+  <li>Ce point est-il le centre de gravité du triangle \(BDE\) ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>On a vu que \(\vec{n}(1;1;1)\) est normal au plan \((BDE)\) (ch02 exercice). Or \(\vec{AG}(1;1;1) = \vec{n}\). Donc \((AG)\) est perpendiculaire au plan \((BDE)\).</li>
+  <li>Points de \((AG)\) : \((t;t;t)\). Équation de \((BDE)\) : \(\vec{n}(1;1;1)\), passant par \(B(1;0;0)\), donc \(x+y+z-1=0\).
+  <br>\(t+t+t-1=0\), \(t=\frac{1}{3}\). Point d'intersection : \(H\left(\frac{1}{3};\frac{1}{3};\frac{1}{3}\right)\).</li>
+  <li>Centre de gravité de \(BDE\) : \(G_{BDE} = \frac{1}{3}(B+D+E) = \frac{1}{3}(1+0+0;\,0+1+0;\,0+0+1) = \left(\frac{1}{3};\frac{1}{3};\frac{1}{3}\right)\).
+  <br>Oui, \(H = G_{BDE}\). Le pied de la perpendiculaire issue de \(A\) au plan \((BDE)\) est le centre de gravité du triangle \(BDE\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 18</span>
+<p>Déterminer le plan médiateur du segment \([AB]\) avec \(A(1;2;3)\) et \(B(3;0;-1)\).</p>
+<p><em>Rappel : le plan médiateur de \([AB]\) est l'ensemble des points équidistants de \(A\) et \(B\).</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Le plan médiateur passe par le milieu \(I(2;1;1)\) et a pour vecteur normal \(\vec{AB}(2;-2;-4)\), soit, après simplification, \(\vec{n}(1;-1;-2)\).</p>
+<p>Équation : \(1(x-2)+(-1)(y-1)+(-2)(z-1) = 0\), soit \(x-y-2z+1 = 0\).</p>
+<p>Vérification : \(A\) : \(1-2-6+1 = -6 \neq 0\) ✓ (\(A\) n'est pas dans le plan).</p>
+<p>\(d(A,\mathcal{P}) = \frac{|-6|}{\sqrt{6}} = \frac{6}{\sqrt{6}} = \sqrt{6}\). \(d(B,\mathcal{P}) = \frac{|3-0+2+1|}{\sqrt{6}} = \frac{6}{\sqrt{6}} = \sqrt{6}\). ✓ Distances égales.</p>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

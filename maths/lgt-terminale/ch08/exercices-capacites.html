@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Exercices par capacités – Continuité des fonctions – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 8 – Continuité des fonctions</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Étudier les solutions d'une équation \(f(x)=k\) : existence, unicité, encadrement</li>
+  <li><strong>C2</strong> — Étudier une suite définie par \(u_{n+1}=f(u_n)\)</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Équations</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Suites récurrentes</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Étudier les solutions d'une équation \(f(x)=k\)</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Montrer que l'équation \(x^5 + x - 3 = 0\) admet une unique solution dans \(\mathbb{R}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f(x)=x^5+x-3\). \(f'(x)=5x^4+1>0\) : \(f\) strictement croissante sur \(\mathbb{R}\).</p>
+<p>\(\lim_{-\infty}f=-\infty\), \(\lim_{+\infty}f=+\infty\). Par TVI (bijection), une <strong>unique solution</strong>.</p>
+<p>\(f(1)=-1<0\), \(f(2)=31>0\) : \(\alpha \in ]1;2[\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Montrer que l'équation \(e^x+x=2\) admet une unique solution et l'encadrer à \(0{,}1\) près.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(g(x)=e^x+x-2\). \(g'(x)=e^x+1>0\) : strictement croissante.</p>
+<p>\(\lim_{-\infty}g=-\infty\), \(\lim_{+\infty}g=+\infty\). Unique solution par TVI.</p>
+<p>\(g(0)=-1<0\), \(g(1)=e-1\approx 1{,}72>0\) : \(\alpha\in]0;1[\).</p>
+<p>\(g(0{,}4)\approx 1{,}49+0{,}4-2=-0{,}11<0\). \(g(0{,}5)\approx 1{,}65+0{,}5-2=0{,}15>0\).</p>
+<p>\(\alpha \in ]0{,}4;\ 0{,}5[\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Combien l'équation \(x^3-3x+1=0\) admet-elle de solutions dans \(\mathbb{R}\) ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f(x)=x^3-3x+1\). \(f'(x)=3x^2-3=3(x-1)(x+1)\). \(f'=0\) pour \(x=-1\) et \(x=1\).</p>
+<p>\(f\) croissante sur \(]-\infty;-1[\), décroissante sur \(]-1;1[\), croissante sur \(]1;+\infty[\).</p>
+<p>\(f(-1)=-1+3+1=3>0\). \(f(1)=1-3+1=-1<0\).</p>
+<p>Max local = 3 > 0, min local = -1 < 0. \(\lim_{-\infty}f=-\infty\), \(\lim_{+\infty}f=+\infty\).</p>
+<p>Par le TVI sur chaque branche monotone : <strong>3 solutions</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Soit \(f(x) = \ln x - \frac{1}{x}\). Montrer que l'équation \(f(x)=0\) admet une unique solution sur \(]0;+\infty[\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f'(x) = \frac{1}{x}+\frac{1}{x^2} = \frac{x+1}{x^2}>0\) pour \(x>0\). \(f\) strictement croissante.</p>
+<p>\(\lim_{0^+}f = -\infty-\infty = -\infty\). \(\lim_{+\infty}f = +\infty-0 = +\infty\).</p>
+<p>Par TVI, une <strong>unique solution</strong>. \(f(1)=0-1=-1<0\), \(f(e)=1-\frac{1}{e}\approx 0{,}63>0\). Solution dans \(]1;e[\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Appliquer la méthode de dichotomie pour encadrer à \(10^{-2}\) près la solution de \(e^x=3-x\) dans \([0;1]\).</p>
+<p><em>Indication : utiliser un programme Python.</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<pre><code>import math
+def g(x):
+    return math.exp(x) - 3 + x
+
+a, b = 0, 1
+while b - a > 0.01:
+    c = (a + b) / 2
+    if g(a) * g(c) < 0:
+        b = c
+    else:
+        a = c
+print(f"alpha in [{a:.4f}, {b:.4f}]")</code></pre>
+<p>Résultat : \(\alpha \in [0{,}7910;\ 0{,}7969]\), soit \(\alpha \approx 0{,}79\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Soit \(f(x) = x - \cos x\). Montrer que l'équation \(f(x)=0\) admet une unique solution sur \(\mathbb{R}\) et l'encadrer entre deux entiers consécutifs.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f'(x) = 1+\sin x \geqslant 0\) pour tout \(x\) (car \(\sin x \geqslant -1\)). \(f'=0\) seulement pour \(x=-\frac{\pi}{2}+2k\pi\) : \(f\) est strictement croissante.</p>
+<p>\(\lim_{-\infty}f=-\infty\), \(\lim_{+\infty}f=+\infty\). Unique solution par TVI.</p>
+<p>\(f(0) = -1<0\), \(f(1) = 1-\cos 1\approx 0{,}46>0\). Solution dans \(]0;1[\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Étudier une suite définie par \(u_{n+1}=f(u_n)\)</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Soit \(f(x) = \frac{x+4}{2}\) et \((u_n)\) définie par \(u_0 = 0\) et \(u_{n+1} = f(u_n)\).</p>
+<ol>
+  <li>Résoudre \(f(x)=x\).</li>
+  <li>Montrer que \(u_n \leqslant 4\) pour tout \(n\) et que \((u_n)\) est croissante.</li>
+  <li>Conclure.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\frac{x+4}{2}=x \Leftrightarrow x+4=2x \Leftrightarrow x=4\). Point fixe : \(x=4\).</li>
+  <li><strong>Majorée :</strong> \(u_0=0\leqslant 4\). Si \(u_n\leqslant 4\), \(u_{n+1}=\frac{u_n+4}{2}\leqslant\frac{8}{2}=4\). ✓.
+  <br><strong>Croissante :</strong> \(u_{n+1}-u_n=\frac{u_n+4}{2}-u_n=\frac{4-u_n}{2}\geqslant 0\) car \(u_n\leqslant 4\). ✓.</li>
+  <li>Croissante majorée : converge. \(\ell=\frac{\ell+4}{2}\), \(\ell=4\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Soit \(f(x) = \frac{1}{2-x}\) et \((u_n)\) définie par \(u_0 = 0\) et \(u_{n+1} = f(u_n)\).</p>
+<ol>
+  <li>Calculer \(u_1, u_2, u_3, u_4\).</li>
+  <li>Résoudre \(f(x)=x\).</li>
+  <li>Conjecturer le comportement de la suite.</li>
+  <li>Montrer que \(u_n \leqslant 1\) pour tout \(n\) et que \((u_n)\) est croissante.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_1=\frac{1}{2}=0{,}5\), \(u_2=\frac{1}{1{,}5}=\frac{2}{3}\approx 0{,}67\), \(u_3=\frac{1}{4/3}=\frac{3}{4}=0{,}75\), \(u_4=\frac{1}{5/4}=\frac{4}{5}=0{,}8\).</li>
+  <li>\(\frac{1}{2-x}=x \Leftrightarrow 1=x(2-x)=2x-x^2 \Leftrightarrow x^2-2x+1=0 \Leftrightarrow (x-1)^2=0\). Point fixe : \(x=1\).</li>
+  <li>La suite semble croître vers 1.</li>
+  <li><strong>Majorée :</strong> \(u_0=0\leqslant 1\). Si \(u_n\leqslant 1\), \(2-u_n\geqslant 1>0\), \(u_{n+1}=\frac{1}{2-u_n}\leqslant\frac{1}{1}=1\). ✓.
+  <br><strong>Croissante :</strong> \(u_{n+1}-u_n=\frac{1}{2-u_n}-u_n=\frac{1-u_n(2-u_n)}{2-u_n}=\frac{(1-u_n)^2}{2-u_n}\geqslant 0\). ✓.
+  <br>Croissante majorée : converge vers \(\ell=1\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Soit \(f(x) = x^2\) et \((u_n)\) définie par \(u_0 = 0{,}5\) et \(u_{n+1} = f(u_n)\).</p>
+<ol>
+  <li>Calculer \(u_1, u_2, u_3, u_4\).</li>
+  <li>Conjecturer la limite.</li>
+  <li>Montrer par récurrence que \(0 < u_n < 1\) et que \((u_n)\) est décroissante.</li>
+  <li>Déterminer la limite.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_1=0{,}25\), \(u_2=0{,}0625\), \(u_3\approx 0{,}0039\), \(u_4\approx 0{,}000015\).</li>
+  <li>La suite semble converger rapidement vers 0.</li>
+  <li><strong>Bornée :</strong> \(0<u_0<1\). Si \(0<u_n<1\), \(u_{n+1}=u_n^2\), \(0<u_n^2<1\). ✓.
+  <br><strong>Décroissante :</strong> \(u_{n+1}-u_n=u_n^2-u_n=u_n(u_n-1)<0\) car \(0<u_n<1\). ✓.</li>
+  <li>Décroissante minorée par 0 : converge. \(\ell=\ell^2\), \(\ell(\ell-1)=0\), \(\ell=0\) ou \(\ell=1\). Comme \(u_n<u_0=0{,}5<1\), \(\ell=0\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p class="exo-titre">Méthode de Newton</p>
+<p>Pour résoudre \(f(x)=0\) avec \(f(x)=x^2-2\) (racine de 2), on utilise la suite définie par :</p>
+\[u_{n+1} = u_n - \frac{f(u_n)}{f'(u_n)} = u_n - \frac{u_n^2-2}{2u_n} = \frac{u_n^2+2}{2u_n} = \frac{1}{2}\left(u_n+\frac{2}{u_n}\right)\]
+<p>avec \(u_0 = 2\).</p>
+<ol>
+  <li>Calculer \(u_1, u_2, u_3\) et comparer à \(\sqrt{2}\).</li>
+  <li>Montrer que pour tout \(n\geqslant 1\), \(u_n \geqslant \sqrt{2}\).</li>
+  <li>Montrer que \((u_n)\) est décroissante pour \(n\geqslant 1\).</li>
+  <li>Conclure.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_1=\frac{1}{2}(2+1)=1{,}5\). \(u_2=\frac{1}{2}(1{,}5+\frac{4}{3})=\frac{17}{12}\approx 1{,}4167\). \(u_3\approx 1{,}41422\). \(\sqrt{2}\approx 1{,}41421\). Convergence très rapide !</li>
+  <li>Par AM-GM : \(\frac{u_n+\frac{2}{u_n}}{2}\geqslant\sqrt{u_n\cdot\frac{2}{u_n}}=\sqrt{2}\). Donc \(u_{n+1}\geqslant\sqrt{2}\). ✓.</li>
+  <li>\(u_{n+1}-u_n=\frac{1}{2}\left(\frac{2}{u_n}-u_n\right)=\frac{2-u_n^2}{2u_n}\). Pour \(n\geqslant 1\), \(u_n\geqslant\sqrt{2}\), donc \(u_n^2\geqslant 2\), d'où \(u_{n+1}-u_n\leqslant 0\). ✓.</li>
+  <li>Décroissante (pour \(n\geqslant 1\)) et minorée par \(\sqrt{2}\) : converge. \(\ell=\frac{1}{2}(\ell+\frac{2}{\ell})\), \(2\ell^2=\ell^2+2\), \(\ell^2=2\), \(\ell=\sqrt{2}\).</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

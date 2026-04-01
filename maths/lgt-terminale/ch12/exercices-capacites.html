@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch12 – Exercices par capacités – Calcul intégral – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 12 – Calcul intégral</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Calculer une intégrale à l'aide d'une primitive ou par IPP</li>
+  <li><strong>C2</strong> — Estimer ou encadrer une intégrale, calculer une valeur moyenne</li>
+  <li><strong>C3</strong> — Calculer l'aire entre deux courbes</li>
+  <li><strong>C4</strong> — Interpréter une intégrale ou une valeur moyenne dans un contexte</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Calculer</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Estimer / encadrer</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Aires</button>
+  <button class="btn-cap" data-filtre="C4">C4 — Interpréter</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Calculer une intégrale</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Calculer :</p>
+<ol>
+  <li>\(\displaystyle\int_1^3 (2x^3-x+4)\,\mathrm{d}x\)</li>
+  <li>\(\displaystyle\int_0^{\pi/2} \cos x\,\mathrm{d}x\)</li>
+  <li>\(\displaystyle\int_0^2 e^{-x}\,\mathrm{d}x\)</li>
+  <li>\(\displaystyle\int_1^e \frac{3}{x}\,\mathrm{d}x\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\left[\frac{x^4}{2}-\frac{x^2}{2}+4x\right]_1^3=(\frac{81}{2}-\frac{9}{2}+12)-(\frac{1}{2}-\frac{1}{2}+4)=36+12-4=44\).</li>
+  <li>\([\sin x]_0^{\pi/2}=1-0=1\).</li>
+  <li>\([-e^{-x}]_0^2=-e^{-2}+1=1-e^{-2}\).</li>
+  <li>\([3\ln x]_1^e=3-0=3\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Calculer (fonctions composées) :</p>
+<ol>
+  <li>\(\displaystyle\int_0^1 (2x+1)^3\,\mathrm{d}x\)</li>
+  <li>\(\displaystyle\int_0^1 \frac{x}{x^2+1}\,\mathrm{d}x\)</li>
+  <li>\(\displaystyle\int_0^{\ln 2} e^{2x}\,\mathrm{d}x\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\left[\frac{(2x+1)^4}{8}\right]_0^1=\frac{81}{8}-\frac{1}{8}=10\).</li>
+  <li>\(\left[\frac{1}{2}\ln(x^2+1)\right]_0^1=\frac{1}{2}\ln 2-0=\frac{\ln 2}{2}\).</li>
+  <li>\(\left[\frac{1}{2}e^{2x}\right]_0^{\ln 2}=\frac{1}{2}(e^{2\ln 2}-1)=\frac{1}{2}(4-1)=\frac{3}{2}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Calculer par IPP :</p>
+<ol>
+  <li>\(\displaystyle\int_0^1 (x+1)e^x\,\mathrm{d}x\)</li>
+  <li>\(\displaystyle\int_1^e \frac{\ln x}{x^2}\,\mathrm{d}x\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(v=x+1\), \(v'=1\), \(u'=e^x\), \(u=e^x\).
+  <br>\([(x+1)e^x]_0^1-\int_0^1 e^x\,\mathrm{d}x=2e-1-(e-1)=e\).</li>
+  <li>\(v=\ln x\), \(v'=\frac{1}{x}\), \(u'=\frac{1}{x^2}=x^{-2}\), \(u=-\frac{1}{x}\).
+  <br>\(\left[-\frac{\ln x}{x}\right]_1^e+\int_1^e\frac{1}{x^2}\,\mathrm{d}x=-\frac{1}{e}+0+\left[-\frac{1}{x}\right]_1^e=-\frac{1}{e}-\frac{1}{e}+1=1-\frac{2}{e}\).</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Estimer ou encadrer une intégrale, calculer une valeur moyenne</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Encadrer \(\displaystyle\int_0^1 e^{-x^2}\,\mathrm{d}x\) sachant que pour \(x\in[0;1]\) : \(e^{-1}\leqslant e^{-x^2}\leqslant 1\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Par intégration : \(\int_0^1 e^{-1}\,\mathrm{d}x \leqslant \int_0^1 e^{-x^2}\,\mathrm{d}x \leqslant \int_0^1 1\,\mathrm{d}x\).</p>
+<p>\(e^{-1}\leqslant I\leqslant 1\), soit \(0{,}368\leqslant I\leqslant 1\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Montrer que \(\displaystyle\int_0^1\frac{x}{x+1}\,\mathrm{d}x\leqslant\frac{1}{2}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Sur \([0;1]\), \(x+1\geqslant 1\), donc \(\frac{x}{x+1}\leqslant x\).</p>
+<p>\(\int_0^1\frac{x}{x+1}\,\mathrm{d}x\leqslant\int_0^1 x\,\mathrm{d}x=\frac{1}{2}\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Calculer la valeur moyenne de \(f(x)=x^2\) sur \([0;3]\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\mu=\frac{1}{3}\int_0^3 x^2\,\mathrm{d}x=\frac{1}{3}\left[\frac{x^3}{3}\right]_0^3=\frac{1}{3}\times 9=3\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Calculer la valeur moyenne de \(f(x)=e^{-x}\) sur \([0;1]\) et interpréter.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\mu=\frac{1}{1}\int_0^1 e^{-x}\,\mathrm{d}x=[-e^{-x}]_0^1=1-e^{-1}\approx 0{,}632\).</p>
+<p>La valeur moyenne de la fonction exponentielle décroissante sur \([0;1]\) est environ \(0{,}63\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Calculer l'aire entre deux courbes</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Calculer l'aire entre \(f(x)=x^2\) et \(g(x)=\sqrt{x}\) sur \([0;1]\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Sur \([0;1]\), \(\sqrt{x}\geqslant x^2\) (car \(\sqrt{x}-x^2=\sqrt{x}(1-x^{3/2})\geqslant 0\)).</p>
+<p>\(\mathcal{A}=\int_0^1(\sqrt{x}-x^2)\,\mathrm{d}x=\left[\frac{2}{3}x^{3/2}-\frac{x^3}{3}\right]_0^1=\frac{2}{3}-\frac{1}{3}=\frac{1}{3}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Calculer l'aire entre \(f(x)=x^2-2x\) et l'axe des abscisses sur \([0;3]\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f(x)=x(x-2)\). \(f\leqslant 0\) sur \([0;2]\) et \(f\geqslant 0\) sur \([2;3]\).</p>
+<p>\(\mathcal{A}=-\int_0^2(x^2-2x)\,\mathrm{d}x+\int_2^3(x^2-2x)\,\mathrm{d}x\).</p>
+<p>\(\int_0^2(x^2-2x)\,\mathrm{d}x=\left[\frac{x^3}{3}-x^2\right]_0^2=\frac{8}{3}-4=-\frac{4}{3}\). Donc \(-(-\frac{4}{3})=\frac{4}{3}\).</p>
+<p>\(\int_2^3(x^2-2x)\,\mathrm{d}x=\left[\frac{x^3}{3}-x^2\right]_2^3=(9-9)-(\frac{8}{3}-4)=0+\frac{4}{3}=\frac{4}{3}\).</p>
+<p>\(\mathcal{A}=\frac{4}{3}+\frac{4}{3}=\frac{8}{3}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Calculer l'aire entre les courbes de \(f(x)=e^x\) et \(g(x)=e^{2-x}\) sur \([0;2]\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f(x)=g(x)\Leftrightarrow e^x=e^{2-x}\Leftrightarrow x=2-x\Leftrightarrow x=1\).</p>
+<p>Sur \([0;1]\), \(e^x\leqslant e^{2-x}\) ; sur \([1;2]\), \(e^x\geqslant e^{2-x}\).</p>
+<p>\(\mathcal{A}=\int_0^1(e^{2-x}-e^x)\,\mathrm{d}x+\int_1^2(e^x-e^{2-x})\,\mathrm{d}x\).</p>
+<p>\(\int_0^1(e^{2-x}-e^x)\,\mathrm{d}x=[-e^{2-x}-e^x]_0^1=(-e-e)-(-e^2-1)=e^2-2e+1=(e-1)^2\).</p>
+<p>Par symétrie (le problème est symétrique par rapport à \(x=1\)) : la seconde intégrale vaut aussi \((e-1)^2\).</p>
+<p>\(\mathcal{A}=2(e-1)^2\approx 5{,}87\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C4">
+<h2>C4 — Interpréter une intégrale ou une valeur moyenne dans un contexte</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>La vitesse d'un mobile est \(v(t)=3t^2+2\) (en m/s). Calculer la distance parcourue entre \(t=0\) et \(t=4\) s.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(d=\int_0^4(3t^2+2)\,\mathrm{d}t=[t^3+2t]_0^4=64+8=72\) m.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p>La température extérieure sur une journée (0 ≤ t ≤ 24, en heures) est modélisée par \(T(t)=15+8\sin\left(\frac{\pi}{12}(t-9)\right)\).</p>
+<ol>
+  <li>Calculer la température moyenne sur la journée.</li>
+  <li>Interpréter le résultat.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\mu=\frac{1}{24}\int_0^{24}\left(15+8\sin\left(\frac{\pi}{12}(t-9)\right)\right)\mathrm{d}t\).
+  <br>\(\int_0^{24}15\,\mathrm{d}t=360\).
+  <br>\(\int_0^{24}8\sin\left(\frac{\pi}{12}(t-9)\right)\mathrm{d}t=8\left[-\frac{12}{\pi}\cos\left(\frac{\pi}{12}(t-9)\right)\right]_0^{24}\).
+  <br>\(=-\frac{96}{\pi}\left[\cos\left(\frac{15\pi}{12}\right)-\cos\left(\frac{-9\pi}{12}\right)\right]=-\frac{96}{\pi}\left[\cos\frac{5\pi}{4}-\cos\frac{-3\pi}{4}\right]\).
+  <br>\(\cos\frac{5\pi}{4}=-\frac{\sqrt{2}}{2}\), \(\cos\frac{-3\pi}{4}=-\frac{\sqrt{2}}{2}\). Différence = 0.
+  <br>\(\mu=\frac{360}{24}=15°\text{C}\).</li>
+  <li>La température moyenne est 15°C. La sinusoïde oscille symétriquement autour de 15°C sur une période complète (24h), donc la moyenne est la valeur centrale.</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

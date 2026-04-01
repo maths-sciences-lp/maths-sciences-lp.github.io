@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch11 – Exercices par capacités – Primitives et équations différentielles – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 11 – Primitives et équations différentielles</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Calculer une primitive en utilisant les primitives de référence et les composées</li>
+  <li><strong>C2</strong> — Résoudre \(y'=ay+b\) et déterminer une solution particulière</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Primitives</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Éq. différentielles</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Calculer une primitive</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Déterminer une primitive de chaque fonction :</p>
+<ol>
+  <li>\(f(x) = 5x^4 - 3x^2 + 7\)</li>
+  <li>\(g(x) = \frac{3}{x^2} + \frac{1}{x}\) sur \(]0;+\infty[\)</li>
+  <li>\(h(x) = 2\cos x - 3\sin x + e^x\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(F(x) = x^5 - x^3 + 7x\).</li>
+  <li>\(G(x) = -\frac{3}{x} + \ln x\).</li>
+  <li>\(H(x) = 2\sin x + 3\cos x + e^x\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Déterminer une primitive (reconnaître la forme \(u'/u\), \(u'e^u\), etc.) :</p>
+<ol>
+  <li>\(f(x) = \frac{6x}{3x^2+1}\)</li>
+  <li>\(g(x) = (4x+2)e^{2x^2+2x}\)</li>
+  <li>\(h(x) = \frac{\cos x}{\sin x}\) sur \(]0;\pi[\)</li>
+  <li>\(k(x) = \frac{x}{\sqrt{x^2+4}}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u=3x^2+1\), \(u'=6x\). Forme \(\frac{u'}{u}\). \(F(x)=\ln(3x^2+1)\).</li>
+  <li>\(u=2x^2+2x\), \(u'=4x+2\). Forme \(u'e^u\). \(G(x)=e^{2x^2+2x}\).</li>
+  <li>\(u=\sin x\), \(u'=\cos x\). Forme \(\frac{u'}{u}\). \(H(x)=\ln(\sin x)\).</li>
+  <li>\(u=x^2+4\), \(u'=2x\). \(k(x)=\frac{1}{2}\frac{u'}{2\sqrt{u}}\)... Plus simple : \(k(x)=\frac{1}{2}\frac{2x}{\sqrt{x^2+4}}=\frac{1}{2}\frac{u'}{\sqrt{u}}\). Forme \(\frac{u'}{2\sqrt{u}}\). \(K(x)=\sqrt{x^2+4}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Déterminer une primitive de \(f(x) = \frac{1}{2x+3}\) sur \(]-\frac{3}{2};+\infty[\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(u=2x+3\), \(u'=2\). \(f(x)=\frac{1}{2}\frac{u'}{u}\). \(F(x)=\frac{1}{2}\ln(2x+3)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Déterminer la primitive \(F\) de \(f(x) = \sin(2x) + 3\cos x\) telle que \(F(0) = 1\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(F(x) = -\frac{1}{2}\cos(2x)+3\sin x+C\).</p>
+<p>\(F(0) = -\frac{1}{2}+0+C=1\), \(C=\frac{3}{2}\). \(F(x) = -\frac{1}{2}\cos(2x)+3\sin x+\frac{3}{2}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Déterminer une primitive de \(f(x)=xe^{x^2}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(u=x^2\), \(u'=2x\). \(f(x)=\frac{1}{2}u'e^u\). \(F(x)=\frac{1}{2}e^{x^2}\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Résoudre \(y'=ay+b\) et déterminer une solution particulière</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Résoudre les équations différentielles :</p>
+<ol>
+  <li>\(y' = 4y\)</li>
+  <li>\(y' = -\frac{1}{2}y\) avec \(y(0) = 10\)</li>
+  <li>\(2y' + y = 0\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(y=Ce^{4x}\).</li>
+  <li>\(y=Ce^{-x/2}\). \(C=10\). \(y=10e^{-x/2}\).</li>
+  <li>\(y'=-\frac{1}{2}y\). \(y=Ce^{-x/2}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Résoudre les équations différentielles :</p>
+<ol>
+  <li>\(y' = 3y - 9\)</li>
+  <li>\(y' = -2y + 8\) avec \(y(0) = 1\)</li>
+  <li>\(y' + 5y = 15\) avec \(y(0) = 0\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(k=-\frac{-9}{3}=3\). \(y=Ce^{3x}+3\).</li>
+  <li>\(k=-\frac{8}{-2}=4\). \(y=Ce^{-2x}+4\). \(y(0)=C+4=1\), \(C=-3\). \(y=-3e^{-2x}+4\).</li>
+  <li>\(y'=-5y+15\). \(k=3\). \(y=Ce^{-5x}+3\). \(y(0)=C+3=0\), \(C=-3\). \(y=3(1-e^{-5x})\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Un condensateur se charge selon la loi \(q'(t) = -\frac{1}{RC}q(t)+\frac{E}{R}\) avec \(R=100\,\Omega\), \(C=10^{-3}\,\text{F}\), \(E=12\,\text{V}\) et \(q(0)=0\).</p>
+<ol>
+  <li>Résoudre l'équation différentielle.</li>
+  <li>Déterminer la charge limite.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(RC=0{,}1\). \(q'=-10q+120\). \(k=12\times 10^{-3}=0{,}012\). Non : \(k=-\frac{120}{-10}=12\times 10^{-3}\). Recalculons : \(\frac{E}{R}=\frac{12}{100}=0{,}12\). Donc \(q'=-10q+0{,}12\). \(k=\frac{0{,}12}{10}=0{,}012\). \(q=Ce^{-10t}+0{,}012\). \(q(0)=C+0{,}012=0\), \(C=-0{,}012\). \(q(t)=0{,}012(1-e^{-10t})\).</li>
+  <li>\(\lim_{+\infty}q = 0{,}012 = CE = 12\times 10^{-3}\,\text{C}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>La population \(P(t)\) (en milliers) d'une espèce vérifie \(P'(t)=0{,}02P(t)-1\) avec \(P(0)=80\).</p>
+<ol>
+  <li>Résoudre l'équation différentielle.</li>
+  <li>Déterminer la population limite.</li>
+  <li>La population croît-elle ou décroît-elle ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(a=0{,}02\), \(b=-1\). \(k=-\frac{-1}{0{,}02}=50\). \(P=Ce^{0{,}02t}+50\). \(P(0)=C+50=80\), \(C=30\). \(P(t)=30e^{0{,}02t}+50\).</li>
+  <li>\(\lim_{+\infty}P=+\infty\). La population ne se stabilise pas, elle croît indéfiniment (modèle valable sur un temps limité).</li>
+  <li>\(P'(t)=0{,}02\times 30e^{0{,}02t}=0{,}6e^{0{,}02t}>0\). La population est <strong>croissante</strong>.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p class="exo-titre">Problème de synthèse</p>
+<p>Soit \(f\) définie sur \(\mathbb{R}\) telle que \(f(0)=1\) et \(f'(x)+f(x)=e^{-2x}\) pour tout \(x\).</p>
+<ol>
+  <li>On pose \(g(x)=e^x f(x)\). Calculer \(g'(x)\) et en déduire une expression de \(g(x)\).</li>
+  <li>En déduire \(f(x)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(g'(x) = e^x f(x)+e^x f'(x) = e^x(f(x)+f'(x)) = e^x\cdot e^{-2x}=e^{-x}\).
+  <br>Donc \(g(x)=-e^{-x}+C\). \(g(0)=e^0 f(0)=1\), et \(-1+C=1\), \(C=2\). \(g(x)=-e^{-x}+2\).</li>
+  <li>\(f(x)=e^{-x}g(x)=e^{-x}(-e^{-x}+2)=-e^{-2x}+2e^{-x}\).</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

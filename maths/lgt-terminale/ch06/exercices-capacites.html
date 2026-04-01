@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Exercices par capacités – Limites des fonctions – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 6 – Limites des fonctions</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Déterminer la limite d'une suite ou d'une fonction en un point ou en \(\pm\infty\)</li>
+  <li><strong>C2</strong> — Faire le lien entre asymptote et limite correspondante</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Calcul de limites</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Asymptotes</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C1 — Calcul de limites                     -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Déterminer la limite d'une suite ou d'une fonction</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Déterminer les limites suivantes :</p>
+<ol>
+  <li>\(\displaystyle\lim_{x \to +\infty} \frac{4x^3-x}{2x^3+3x^2}\)</li>
+  <li>\(\displaystyle\lim_{x \to +\infty} \frac{x+1}{x^2-1}\)</li>
+  <li>\(\displaystyle\lim_{x \to -\infty} \frac{x^4+2}{3x^2-x}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Factorisation par \(x^3\) : \(\frac{4-1/x^2}{2+3/x} \to 2\).</li>
+  <li>Factorisation par \(x^2\) : \(\frac{1/x+1/x^2}{1-1/x^2} \to \frac{0}{1} = 0\).</li>
+  <li>Degré du numérateur (4) > degré du dénominateur (2). \(\frac{x^4}{3x^2}=\frac{x^2}{3}\to+\infty\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Déterminer les limites en les points indiqués :</p>
+<ol>
+  <li>\(\displaystyle\lim_{x \to 3^+} \frac{2x}{x-3}\)</li>
+  <li>\(\displaystyle\lim_{x \to 0} \frac{x^2+x}{x}\)</li>
+  <li>\(\displaystyle\lim_{x \to 1} \frac{x^3-1}{x-1}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(x\to 3^+\) : numérateur \(\to 6>0\), dénominateur \(\to 0^+\). Donc \(\to +\infty\).</li>
+  <li>\(\frac{x^2+x}{x}=x+1\) pour \(x\neq 0\). \(\lim_{x\to 0}(x+1)=1\).</li>
+  <li>FI \(\frac{0}{0}\). \(x^3-1=(x-1)(x^2+x+1)\). Donc \(\frac{x^3-1}{x-1}=x^2+x+1 \to 3\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Déterminer les limites suivantes (croissances comparées) :</p>
+<ol>
+  <li>\(\displaystyle\lim_{x \to +\infty} \frac{e^x}{x^3}\)</li>
+  <li>\(\displaystyle\lim_{x \to +\infty} x^5\,e^{-2x}\)</li>
+  <li>\(\displaystyle\lim_{x \to -\infty} x^2\,e^x\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Par croissances comparées : \(\frac{e^x}{x^3}\to +\infty\).</li>
+  <li>\(x^5 e^{-2x} = \frac{x^5}{e^{2x}}\). On pose \(X=2x\) : \(\frac{(X/2)^5}{e^X}=\frac{X^5}{32e^X}\to 0\).</li>
+  <li>On pose \(X=-x\to+\infty\) : \(x^2e^x=X^2e^{-X}=\frac{X^2}{e^X}\to 0\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Déterminer \(\displaystyle\lim_{x \to +\infty} \left(\sqrt{x^2+3x}-x\right)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>FI \(+\infty-\infty\). Expression conjuguée :</p>
+<p>\(\frac{x^2+3x-x^2}{\sqrt{x^2+3x}+x}=\frac{3x}{\sqrt{x^2+3x}+x}=\frac{3}{\sqrt{1+3/x}+1}\to\frac{3}{2}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Montrer que \(\displaystyle\lim_{x \to +\infty} \frac{x+\cos x}{x} = 1\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\frac{x+\cos x}{x} = 1+\frac{\cos x}{x}\). Or \(-\frac{1}{x}\leqslant\frac{\cos x}{x}\leqslant\frac{1}{x}\) et \(\frac{1}{x}\to 0\).</p>
+<p>Par les gendarmes : \(\frac{\cos x}{x}\to 0\), donc \(\frac{x+\cos x}{x}\to 1\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Déterminer les limites suivantes (composition) :</p>
+<ol>
+  <li>\(\displaystyle\lim_{x \to +\infty} e^{-x^2}\)</li>
+  <li>\(\displaystyle\lim_{x \to 0^+} \sqrt{e^x - 1}\)</li>
+  <li>\(\displaystyle\lim_{x \to +\infty} \frac{1}{1+e^{-x}}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(-x^2\to -\infty\), \(e^{-x^2}\to 0\).</li>
+  <li>\(e^x-1 \to e^0-1=0^+\), \(\sqrt{e^x-1}\to 0\).</li>
+  <li>\(e^{-x}\to 0\), \(1+e^{-x}\to 1\), \(\frac{1}{1+e^{-x}}\to 1\).</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- C2 — Asymptotes                            -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Faire le lien entre asymptote et limite correspondante</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Déterminer toutes les asymptotes de \(f(x) = \frac{2x+1}{x-3}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Asymptote verticale :</strong> \(\lim_{x\to 3^+}\frac{2x+1}{x-3}=\frac{7}{0^+}=+\infty\). La droite \(x=3\) est AV.</p>
+<p><strong>Asymptote horizontale :</strong> \(\lim_{x\to\pm\infty}\frac{2x+1}{x-3}=\lim\frac{2+1/x}{1-3/x}=2\). La droite \(y=2\) est AH.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Déterminer toutes les asymptotes de \(g(x) = \frac{x^2-4}{x+1}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>AV :</strong> \(\lim_{x\to(-1)^+}=\frac{-3}{0^+}=-\infty\), \(\lim_{x\to(-1)^-}=\frac{-3}{0^-}=+\infty\). \(x=-1\) est AV.</p>
+<p><strong>Asymptote oblique :</strong> Division : \(x^2-4=(x+1)(x-1)-3\). Donc \(g(x)=x-1-\frac{3}{x+1}\).</p>
+<p>\(g(x)-(x-1)=-\frac{3}{x+1}\to 0\). La droite \(y=x-1\) est <strong>asymptote oblique</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Soit \(h(x)=\frac{3x^2+2x}{x^2+1}\). Montrer que la droite \(y=3\) est asymptote horizontale en \(\pm\infty\) et étudier la position de la courbe par rapport à cette asymptote.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\lim_{\pm\infty}h(x) = \frac{3x^2}{x^2}=3\). AH : \(y=3\).</p>
+<p>Position : \(h(x)-3=\frac{3x^2+2x-3(x^2+1)}{x^2+1}=\frac{2x-3}{x^2+1}\).</p>
+<p>\(h(x)-3>0 \Leftrightarrow 2x-3>0 \Leftrightarrow x>\frac{3}{2}\). La courbe est au-dessus de l'asymptote pour \(x>\frac{3}{2}\) et en dessous pour \(x<\frac{3}{2}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Soit \(f(x) = x + 2 + \frac{1}{x-1}\).</p>
+<ol>
+  <li>Donner le domaine de définition de \(f\).</li>
+  <li>Déterminer les asymptotes de la courbe de \(f\).</li>
+  <li>Étudier la position de la courbe par rapport à l'asymptote oblique.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(D_f = \mathbb{R}\setminus\{1\}\).</li>
+  <li><strong>AV :</strong> \(\lim_{x\to 1^+}f(x)=3+\frac{1}{0^+}=+\infty\). \(x=1\) est AV.
+  <br><strong>Asymptote oblique :</strong> \(f(x)-(x+2)=\frac{1}{x-1}\to 0\). La droite \(y=x+2\) est AO.</li>
+  <li>\(f(x)-(x+2)=\frac{1}{x-1}\). Ce terme est positif pour \(x>1\) et négatif pour \(x<1\). La courbe est au-dessus de l'AO pour \(x>1\) et en dessous pour \(x<1\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>Soit \(f(x) = 2 - e^{-x}\).</p>
+<ol>
+  <li>Déterminer les limites de \(f\) en \(+\infty\) et en \(-\infty\).</li>
+  <li>En déduire les asymptotes.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\lim_{+\infty}f = 2-0=2\). \(\lim_{-\infty}f = 2-e^{+\infty}=-\infty\).</li>
+  <li>La droite \(y=2\) est <strong>asymptote horizontale en \(+\infty\)</strong>. Pas d'asymptote en \(-\infty\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p class="exo-titre">Problème de synthèse</p>
+<p>Soit \(f(x) = \frac{x^2+x+1}{x+1}\).</p>
+<ol>
+  <li>Domaine de définition.</li>
+  <li>Déterminer toutes les asymptotes.</li>
+  <li>Dresser le tableau de variations de \(f\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(D_f = \mathbb{R}\setminus\{-1\}\).</li>
+  <li><strong>AV :</strong> \(\lim_{x\to(-1)^+}=\frac{1}{0^+}=+\infty\), \(\lim_{x\to(-1)^-}=\frac{1}{0^-}=-\infty\). \(x=-1\) est AV.
+  <br><strong>AO :</strong> Division : \(x^2+x+1=(x+1)(x)+1\). \(f(x)=x+\frac{1}{x+1}\). La droite \(y=x\) est AO.</li>
+  <li>\(f'(x) = 1-\frac{1}{(x+1)^2}=\frac{(x+1)^2-1}{(x+1)^2}=\frac{x^2+2x}{(x+1)^2}=\frac{x(x+2)}{(x+1)^2}\).
+  <br>\(f'(x)=0\) pour \(x=0\) ou \(x=-2\).
+  <br>Sur \(]-\infty;-2[\) : \(f'>0\), croissante. Sur \(]-2;-1[\) : \(f'<0\), décroissante. Sur \(]-1;0[\) : \(f'<0\), décroissante. Sur \(]0;+\infty[\) : \(f'>0\), croissante.
+  <br>Max local en \(x=-2\) : \(f(-2)=-2-1=-3\). Min local en \(x=0\) : \(f(0)=0+1=1\).</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

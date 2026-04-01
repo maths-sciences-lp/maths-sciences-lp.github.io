@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch14 – Exercices par capacités – Sommes de variables aléatoires – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 14 – Sommes de variables aléatoires</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Représenter une variable comme somme de variables plus simples</li>
+  <li><strong>C2</strong> — Calculer l'espérance et la variance d'une variable, notamment par linéarité</li>
+  <li><strong>C3</strong> — Calculer la variance d'une somme de variables indépendantes</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Décomposer</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Espérance</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Variance</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Représenter une variable comme somme de variables plus simples</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>On lance 3 dés. Soit \(S\) la somme. Écrire \(S\) comme somme de 3 variables indépendantes et calculer \(E(S)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(S=X_1+X_2+X_3\), \(X_i\sim\) loi uniforme sur \(\{1,...,6\}\). \(E(S)=3\times 3{,}5=10{,}5\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>On répète 10 fois une épreuve de Bernoulli de paramètre \(p=0{,}7\). Soit \(X\) le nombre de succès. Écrire \(X\) comme somme de Bernoulli et en déduire \(E(X)\) et \(V(X)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(X=X_1+\cdots+X_{10}\), \(X_i\sim\mathcal{B}(0{,}7)\). \(E(X)=10\times 0{,}7=7\). \(V(X)=10\times 0{,}7\times 0{,}3=2{,}1\).</p>
+</div>
+</div>
+
+</section>
+
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Calculer l'espérance d'une variable par linéarité</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Soit \(X\) une v.a. avec \(E(X)=5\) et \(V(X)=4\). Calculer \(E(Y)\) et \(V(Y)\) pour \(Y=3X-2\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(E(Y)=3E(X)-2=15-2=13\). \(V(Y)=9V(X)=36\). \(\sigma(Y)=6\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Un commerçant vend des articles A et B. Le bénéfice sur un article A est une v.a. \(X_A\) avec \(E(X_A)=15\) €. Le bénéfice sur un article B est \(X_B\) avec \(E(X_B)=8\) €. Un jour, il vend 20 articles A et 35 articles B. Quel est le bénéfice moyen total ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(B=20X_A+35X_B\) (en supposant les ventes indépendantes et identiques par type).</p>
+<p>En fait, \(B=X_{A,1}+\cdots+X_{A,20}+X_{B,1}+\cdots+X_{B,35}\).</p>
+<p>\(E(B)=20\times 15+35\times 8=300+280=580\) €.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>On lance un dé. On note \(X\) le résultat. Calculer \(E(X^2)\) sachant que \(E(X)=3{,}5\) et \(V(X)=\frac{35}{12}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(V(X)=E(X^2)-[E(X)]^2\), donc \(E(X^2)=V(X)+[E(X)]^2=\frac{35}{12}+\frac{49}{4}=\frac{35+147}{12}=\frac{182}{12}=\frac{91}{6}\approx 15{,}17\).</p>
+</div>
+</div>
+
+</section>
+
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Calculer la variance d'une somme de variables indépendantes</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>\(X\) et \(Y\) sont indépendantes avec \(E(X)=2\), \(V(X)=3\), \(E(Y)=4\), \(V(Y)=5\). Calculer \(E(X+Y)\), \(V(X+Y)\) et \(\sigma(X+Y)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(E(X+Y)=6\). \(V(X+Y)=3+5=8\). \(\sigma(X+Y)=2\sqrt{2}\approx 2{,}83\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>On prélève un échantillon de 50 pièces. Chaque pièce a une masse \(X_i\) d'espérance \(\mu=100\) g et d'écart type \(\sigma=2\) g.</p>
+<ol>
+  <li>Calculer \(E(M_{50})\) et \(\sigma(M_{50})\).</li>
+  <li>Combien de pièces faut-il pour que \(\sigma(M_n)\leqslant 0{,}1\) g ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(E(M_{50})=100\). \(\sigma(M_{50})=\frac{2}{\sqrt{50}}\approx 0{,}283\) g.</li>
+  <li>\(\frac{2}{\sqrt{n}}\leqslant 0{,}1\), \(\sqrt{n}\geqslant 20\), \(n\geqslant 400\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p class="exo-titre">Problème de synthèse</p>
+<p>Un casino propose un jeu : on lance 2 dés, le gain est la différence \(|X_1-X_2|\). Le jeu coûte 2 €.</p>
+<ol>
+  <li>Déterminer la loi de \(D=|X_1-X_2|\).</li>
+  <li>Calculer \(E(D)\). Le jeu est-il favorable au joueur ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Il y a 36 issues équiprobables. \(D=0\) pour 6 cas (les doubles), \(D=1\) pour 10 cas, \(D=2\) pour 8, \(D=3\) pour 6, \(D=4\) pour 4, \(D=5\) pour 2.
+  <br>\(P(D=0)=\frac{6}{36}\), \(P(D=1)=\frac{10}{36}\), \(P(D=2)=\frac{8}{36}\), \(P(D=3)=\frac{6}{36}\), \(P(D=4)=\frac{4}{36}\), \(P(D=5)=\frac{2}{36}\).</li>
+  <li>\(E(D)=\frac{0\times 6+1\times 10+2\times 8+3\times 6+4\times 4+5\times 2}{36}=\frac{70}{36}=\frac{35}{18}\approx 1{,}94\) €.
+  <br>Gain net moyen : \(1{,}94-2=-0{,}06\) €. Le jeu est légèrement <strong>défavorable</strong> au joueur.</li>
+</ol>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

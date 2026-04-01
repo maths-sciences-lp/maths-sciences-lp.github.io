@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch15 – Concentration et loi des grands nombres – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 15 – Concentration et loi des grands nombres</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Probabilités</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Connaître et appliquer l'inégalité de Bienaymé-Tchebychev</li>
+  <li>Énoncer et appliquer l'inégalité de concentration</li>
+  <li>Comprendre et énoncer la loi des grands nombres</li>
+  <li>Déterminer une taille d'échantillon en fonction de la précision souhaitée</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Inégalité de Bienaymé-Tchebychev</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Théorème — Inégalité de Bienaymé-Tchebychev</span>
+<p>Soit \(X\) une variable aléatoire d'espérance \(\mu\) et de variance \(V\). Pour tout réel \(\delta > 0\) :</p>
+\[P(|X-\mu| \geqslant \delta) \leqslant \frac{V}{\delta^2}\]
+</div>
+
+<div class="meth">
+<span class="label label-meth">Interprétation</span>
+<p>La probabilité que \(X\) s'écarte de plus de \(\delta\) de son espérance est majorée par \(\frac{V}{\delta^2}\). Plus la variance est petite ou plus \(\delta\) est grand, plus cette probabilité est faible.</p>
+<p>Avec \(\delta = k\sigma\) : \(P(|X-\mu|\geqslant k\sigma)\leqslant\frac{1}{k^2}\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Soit \(X\) avec \(\mu = 100\), \(\sigma = 5\). Alors :</p>
+<ul>
+  <li>\(P(|X-100|\geqslant 10)\leqslant\frac{25}{100}=0{,}25\) (au plus 25 % des valeurs à plus de 10 de la moyenne)</li>
+  <li>\(P(|X-100|\geqslant 15)\leqslant\frac{25}{225}\approx 0{,}111\)</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Soit \(X\) une v.a. avec \(E(X)=50\) et \(V(X)=9\). Majorer \(P(|X-50|\geqslant 6)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(P(|X-50|\geqslant 6)\leqslant\frac{9}{36}=\frac{1}{4}=0{,}25\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Soit \(X\sim\mathcal{B}(100;0{,}5)\). En utilisant Bienaymé-Tchebychev, majorer \(P(|X-50|\geqslant 10)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\mu=50\), \(V=100\times 0{,}5\times 0{,}5=25\).</p>
+<p>\(P(|X-50|\geqslant 10)\leqslant\frac{25}{100}=0{,}25\).</p>
+<p>(La valeur exacte est environ 0,046, bien inférieure : l'inégalité est peu précise mais universelle.)</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Inégalité de concentration</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Théorème — Inégalité de concentration</span>
+<p>Soit \(M_n = \frac{X_1+\cdots+X_n}{n}\) la moyenne d'un échantillon de taille \(n\) d'une v.a. d'espérance \(\mu\) et de variance \(V\). Pour tout \(\delta > 0\) :</p>
+\[P(|M_n-\mu|\geqslant\delta)\leqslant\frac{V}{n\delta^2}\]
+</div>
+
+<div class="meth">
+<span class="label label-meth">Interprétation</span>
+<p>C'est l'inégalité de Bienaymé-Tchebychev appliquée à \(M_n\) (qui a pour variance \(\frac{V}{n}\)). La majoration tend vers 0 quand \(n\to+\infty\) : la moyenne de l'échantillon se concentre autour de \(\mu\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>On mesure la masse de pièces (\(\mu=10\) g, \(\sigma=0{,}5\) g). Quelle taille d'échantillon garantit que \(P(|M_n-10|\geqslant 0{,}1)\leqslant 0{,}05\) ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\frac{V}{n\delta^2}\leqslant 0{,}05\), soit \(\frac{0{,}25}{n\times 0{,}01}\leqslant 0{,}05\), \(\frac{25}{n}\leqslant 0{,}05\), \(n\geqslant 500\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Loi des grands nombres</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Théorème — Loi (faible) des grands nombres</span>
+<p>Soit \((X_n)\) une suite de variables aléatoires indépendantes de même loi, d'espérance \(\mu\) et de variance \(V\). Pour tout \(\delta > 0\) :</p>
+\[\lim_{n\to+\infty} P(|M_n-\mu|\geqslant\delta) = 0\]
+<p>La moyenne \(M_n\) converge (en probabilité) vers l'espérance \(\mu\).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Signification concrète</span>
+<p>Quand on répète un grand nombre de fois une expérience, la moyenne observée se rapproche de l'espérance théorique. C'est le fondement des sondages, des estimations statistiques et des simulations de Monte-Carlo.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple — Fréquence et probabilité</span>
+<p>On lance un dé \(n\) fois. La fréquence de « 6 » est \(F_n = \frac{X}{n}\) où \(X\sim\mathcal{B}(n,\frac{1}{6})\). Par la loi des grands nombres, \(F_n\) converge vers \(p=\frac{1}{6}\) quand \(n\to+\infty\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>On lance une pièce équilibrée \(n\) fois. Soit \(F_n\) la fréquence de Pile.</p>
+<ol>
+  <li>Exprimer \(E(F_n)\) et \(V(F_n)\).</li>
+  <li>En utilisant l'inégalité de concentration, déterminer \(n\) pour que \(P(|F_n-0{,}5|\geqslant 0{,}01)\leqslant 0{,}01\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(F_n=\frac{X}{n}\) avec \(X\sim\mathcal{B}(n,0{,}5)\). \(E(F_n)=0{,}5\). \(V(F_n)=\frac{0{,}25}{n}\).</li>
+  <li>\(\frac{0{,}25}{n\times 0{,}0001}\leqslant 0{,}01\), \(\frac{2500}{n}\leqslant 0{,}01\), \(n\geqslant 250\,000\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Application à la taille d'échantillon</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété — Taille d'échantillon pour une fréquence</span>
+<p>Pour estimer une proportion \(p\) inconnue avec une précision \(\delta\) et un risque \(\alpha\), il faut :</p>
+\[n \geqslant \frac{1}{4\alpha\delta^2}\]
+<p>(en utilisant le fait que \(p(1-p)\leqslant\frac{1}{4}\)).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>On veut estimer la proportion d'électeurs favorables à un candidat avec une précision de 2 % et un risque de 5 %. Quelle taille d'échantillon faut-il ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(n\geqslant\frac{1}{4\times 0{,}05\times 0{,}02^2}=\frac{1}{4\times 0{,}05\times 0{,}0004}=\frac{1}{0{,}00008}=12\,500\).</p>
+<p>Il faut interroger au moins <strong>12 500 personnes</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p class="exo-titre">Problème de synthèse — Simulation</p>
+<p>On estime \(\pi\) par la méthode de Monte-Carlo : on tire \(n\) points au hasard dans le carré \([0;1]^2\) et on compte ceux dans le quart de disque (\(x^2+y^2\leqslant 1\)). La fréquence \(F_n\) estime \(\frac{\pi}{4}\).</p>
+<ol>
+  <li>Justifier que \(F_n\) converge vers \(\frac{\pi}{4}\) par la loi des grands nombres.</li>
+  <li>En utilisant l'inégalité de concentration, combien de points faut-il pour que \(P\left(\left|F_n-\frac{\pi}{4}\right|\geqslant 0{,}001\right)\leqslant 0{,}01\) ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Chaque point est dans le quart de disque avec probabilité \(p=\frac{\pi}{4}\). Les tirages sont indépendants. Par la loi des grands nombres, \(F_n\to p=\frac{\pi}{4}\).</li>
+  <li>\(V(F_n)=\frac{p(1-p)}{n}\leqslant\frac{1}{4n}\). \(\frac{1}{4n\times 10^{-6}}\leqslant 0{,}01\), \(\frac{10^6}{4n}\leqslant 0{,}01\), \(n\geqslant\frac{10^6}{0{,}04}=25\,000\,000\).
+  <br>Il faut au moins <strong>25 millions</strong> de points. (L'inégalité de Bienaymé-Tchebychev est pessimiste ; en pratique, quelques millions suffisent.)</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

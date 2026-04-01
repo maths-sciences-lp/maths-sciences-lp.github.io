@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Exercices par capacités – Dérivation : composée et convexité – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 7 – Dérivation : composée et convexité</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Calculer la dérivée d'une fonction composée</li>
+  <li><strong>C2</strong> — Calculer \(f'\), déterminer les limites et étudier les variations d'une fonction construite à partir de fonctions de référence</li>
+  <li><strong>C3</strong> — Démontrer des inégalités en utilisant la convexité</li>
+  <li><strong>C4</strong> — Lire sur une représentation graphique les intervalles de convexité/concavité et les points d'inflexion</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Composée</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Variations</button>
+  <button class="btn-cap" data-filtre="C3">C3 — Inégalités</button>
+  <button class="btn-cap" data-filtre="C4">C4 — Lecture graphique</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Calculer la dérivée d'une fonction composée</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Dériver les fonctions suivantes :</p>
+<ol>
+  <li>\(f(x) = (5x-2)^3\)</li>
+  <li>\(g(x) = e^{2x+1}\)</li>
+  <li>\(h(x) = \sqrt{3x-1}\)</li>
+  <li>\(k(x) = \frac{1}{x^2+1}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f'(x) = 5\times 3(5x-2)^2 = 15(5x-2)^2\).</li>
+  <li>\(g'(x) = 2e^{2x+1}\).</li>
+  <li>\(h'(x) = \frac{3}{2\sqrt{3x-1}}\).</li>
+  <li>\(k'(x) = \frac{-2x}{(x^2+1)^2}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Dériver les fonctions suivantes :</p>
+<ol>
+  <li>\(f(x) = e^{-x^2/2}\)</li>
+  <li>\(g(x) = (1+e^x)^4\)</li>
+  <li>\(h(x) = \sqrt{e^x+1}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u=-x^2/2\), \(u'=-x\). \(f'(x) = -xe^{-x^2/2}\).</li>
+  <li>\(u=1+e^x\), \(u'=e^x\). \(g'(x) = 4e^x(1+e^x)^3\).</li>
+  <li>\(u=e^x+1\), \(u'=e^x\). \(h'(x) = \frac{e^x}{2\sqrt{e^x+1}}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Dériver \(f(x) = x^2 e^{-x}\) et \(g(x) = \frac{e^x}{x}\) (\(x\neq 0\)).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f'(x) = 2xe^{-x}+x^2(-e^{-x}) = x(2-x)e^{-x}\).</p>
+<p>\(g'(x) = \frac{xe^x-e^x}{x^2} = \frac{(x-1)e^x}{x^2}\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Calculer \(f'\), déterminer les limites et étudier les variations</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Étudier les variations de \(f(x) = x^2 e^{-x}\) sur \(\mathbb{R}\) (limites, dérivée, tableau).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Limites : \(\lim_{-\infty}f = +\infty\) (car \(x^2\to+\infty\) et \(e^{-x}\to+\infty\)). \(\lim_{+\infty}f = 0\) (croissances comparées).</p>
+<p>\(f'(x) = x(2-x)e^{-x}\). \(f'=0\) pour \(x=0\) ou \(x=2\). \(e^{-x}>0\), donc signe de \(f'\) = signe de \(x(2-x)\).</p>
+<p>\(f'>0\) sur \(]0;2[\), \(f'<0\) sur \(]-\infty;0[\) et \(]2;+\infty[\).</p>
+<p>Min local en \(x=0\) : \(f(0)=0\). Max local en \(x=2\) : \(f(2)=4e^{-2}\approx 0{,}54\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Soit \(f(x) = \frac{x^2}{x-1}\) définie sur \(\mathbb{R}\setminus\{1\}\).</p>
+<ol>
+  <li>Déterminer les limites de \(f\) aux bornes du domaine.</li>
+  <li>Calculer \(f'\) et dresser le tableau de variations.</li>
+  <li>Calculer \(f''\) et déterminer la convexité.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\lim_{\pm\infty}f\) : division \(x^2=(x-1)(x+1)+1\), \(f(x)=x+1+\frac{1}{x-1}\). AO \(y=x+1\).
+  <br>\(\lim_{1^+}f=+\infty\), \(\lim_{1^-}f=-\infty\). AV \(x=1\).</li>
+  <li>\(f'(x) = \frac{2x(x-1)-x^2}{(x-1)^2}=\frac{x^2-2x}{(x-1)^2}=\frac{x(x-2)}{(x-1)^2}\). \(f'=0\) pour \(x=0\) ou \(x=2\).
+  <br>\(f'>0\) sur \(]-\infty;0[\) et \(]2;+\infty[\). \(f'<0\) sur \(]0;1[\) et \(]1;2[\).
+  <br>Max local : \(f(0)=0\). Min local : \(f(2)=4\).</li>
+  <li>\(f'(x)=1-\frac{1}{(x-1)^2}\). \(f''(x) = \frac{2}{(x-1)^3}\). \(f''>0\) pour \(x>1\) (convexe), \(f''<0\) pour \(x<1\) (concave). Pas de point d'inflexion (changement en \(x=1\) qui n'est pas dans le domaine).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Soit \(f(x) = e^{2x}-4e^x+3\). Résoudre \(f(x)=0\) et étudier le signe de \(f\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On pose \(X = e^x > 0\). \(f(x) = X^2-4X+3 = (X-1)(X-3)\).</p>
+<p>\(f(x)=0 \Leftrightarrow X=1\) ou \(X=3\), soit \(x=0\) ou \(x=\ln 3\).</p>
+<p>Signe : \(f(x)\geqslant 0\) pour \(x\leqslant 0\) ou \(x\geqslant\ln 3\), et \(f(x)\leqslant 0\) pour \(0\leqslant x\leqslant\ln 3\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C3">
+<h2>C3 — Démontrer des inégalités en utilisant la convexité</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Montrer que pour tout \(x \geqslant 0\) : \(e^x \geqslant 1+x\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f(x)=e^x\) est convexe sur \(\mathbb{R}\) (\(f''>0\)). La tangente en \(a=0\) est \(y=1+x\).</p>
+<p>Par convexité, la courbe est au-dessus de ses tangentes : \(e^x \geqslant 1+x\) pour tout \(x\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Montrer que pour tout \(x > 0\) : \(\ln x \leqslant x - 1\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f(x) = \ln x\) est concave sur \(]0;+\infty[\) (\(f''(x) = -\frac{1}{x^2}<0\)).</p>
+<p>Tangente en \(a=1\) : \(y = \ln 1 + \frac{1}{1}(x-1) = x-1\).</p>
+<p>Par concavité, la courbe est en dessous de ses tangentes : \(\ln x \leqslant x-1\) pour tout \(x>0\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>En utilisant la convexité de \(x \mapsto x^2\), montrer que pour tous réels \(a, b\) : \(\left(\frac{a+b}{2}\right)^2 \leqslant \frac{a^2+b^2}{2}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f(x)=x^2\) est convexe (\(f''=2>0\)). Par définition de la convexité :</p>
+<p>\(f\left(\frac{a+b}{2}\right) \leqslant \frac{f(a)+f(b)}{2}\), soit \(\left(\frac{a+b}{2}\right)^2 \leqslant \frac{a^2+b^2}{2}\). □</p>
+<p>En développant : \(\frac{a^2+2ab+b^2}{4} \leqslant \frac{a^2+b^2}{2}\), soit \(2ab \leqslant a^2+b^2\), c'est-à-dire \((a-b)^2 \geqslant 0\). ✓</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Montrer que pour tout \(x > 0\) : \(\frac{2x}{x+1} \leqslant \ln(1+x) \leqslant x\).</p>
+<p><em>Indication : utiliser la concavité de \(\ln\) et l'inégalité \(\ln x \leqslant x-1\).</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Inégalité de droite :</strong> On applique \(\ln u \leqslant u-1\) avec \(u=1+x\) : \(\ln(1+x)\leqslant x\). ✓</p>
+<p><strong>Inégalité de gauche :</strong> On pose \(g(x) = \ln(1+x)-\frac{2x}{x+1}\). \(g(0)=0\). \(g'(x) = \frac{1}{1+x}-\frac{2}{(x+1)^2}=\frac{x+1-2}{(x+1)^2}=\frac{x-1}{(x+1)^2}\).</p>
+<p>\(g'(x)<0\) pour \(0<x<1\), \(g'(x)>0\) pour \(x>1\). Min en \(x=1\) : \(g(1)=\ln 2-1\approx -0{,}31<0\).</p>
+<p>Hmm, \(g(1)<0\). Vérifions l'inégalité : \(\frac{2}{2}=1\) et \(\ln 2\approx 0{,}69\). \(0{,}69 < 1\) : l'inégalité de gauche est vérifiée (la borne gauche est plus petite). Mais \(g(1)=\ln 2-1<0\) signifie \(\ln(1+1)<\frac{2\times 1}{2}=1\). En fait \(\ln 2\approx 0{,}69\) et \(\frac{2}{2}=1\), donc \(\frac{2x}{x+1}\leqslant \ln(1+x)\) donne \(1\leqslant 0{,}69\) : <strong>faux</strong>.</p>
+<p>L'inégalité \(\frac{2x}{x+1}\leqslant \ln(1+x)\) n'est pas valable pour tout \(x>0\). Elle est en fait correcte pour \(0\leqslant x \leqslant 1\), mais pas au-delà. L'encadrement complet ne tient donc que sur \([0;1]\).</p>
+</div>
+</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<section class="cap-section" data-cap="C4">
+<h2>C4 — Lire sur une représentation graphique la convexité et les points d'inflexion</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>Soit \(f(x) = x^4 - 4x^3\). Calculer \(f''\) et déterminer les intervalles de convexité/concavité et les points d'inflexion.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f'(x) = 4x^3-12x^2 = 4x^2(x-3)\). \(f''(x) = 12x^2-24x = 12x(x-2)\).</p>
+<p>\(f''=0\) pour \(x=0\) et \(x=2\). \(f''>0\) sur \(]-\infty;0[\cup]2;+\infty[\) (convexe), \(f''<0\) sur \(]0;2[\) (concave).</p>
+<p>Points d'inflexion : \((0; 0)\) et \((2; -16)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p>On donne \(f(x) = \frac{1}{1+e^{-x}}\) (fonction logistique).</p>
+<ol>
+  <li>Calculer \(f'\) et montrer que \(f\) est strictement croissante.</li>
+  <li>Calculer \(f''\) et montrer que le point d'inflexion est en \(x=0\).</li>
+  <li>Interpréter : que vaut \(f(0)\) ? Quel lien avec la symétrie de la courbe ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f(x)=\frac{e^x}{e^x+1}\). \(f'(x)=\frac{e^x(e^x+1)-e^x\cdot e^x}{(e^x+1)^2}=\frac{e^x}{(e^x+1)^2}>0\). \(f\) est strictement croissante.</li>
+  <li>\(f'(x) = e^x(e^x+1)^{-2}\). \(f''(x) = e^x(e^x+1)^{-2}+e^x\cdot(-2)e^x(e^x+1)^{-3} = \frac{e^x(e^x+1-2e^x)}{(e^x+1)^3}=\frac{e^x(1-e^x)}{(e^x+1)^3}\).
+  <br>\(f''=0 \Leftrightarrow e^x=1 \Leftrightarrow x=0\). \(f''>0\) pour \(x<0\), \(f''<0\) pour \(x>0\). Point d'inflexion en \(x=0\).</li>
+  <li>\(f(0)=\frac{1}{2}\). La courbe admet un centre de symétrie en \(\left(0;\frac{1}{2}\right)\) : c'est le point d'inflexion de la sigmoïde.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p>On donne le tableau de variations de \(f'\) :</p>
+<table style="text-align:center">
+<tr><td>\(x\)</td><td>\(-\infty\)</td><td></td><td>\(-1\)</td><td></td><td>\(2\)</td><td></td><td>\(+\infty\)</td></tr>
+<tr><td>\(f'(x)\)</td><td></td><td>\(\nearrow\)</td><td>\(0\)</td><td>\(\searrow\)</td><td>\(-3\)</td><td>\(\nearrow\)</td><td></td></tr>
+</table>
+<p>En déduire : les intervalles de convexité/concavité de \(f\), les points d'inflexion éventuels, et les extremums de \(f\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Convexité :</strong> \(f'\) croissante ↔ \(f\) convexe. \(f'\) décroissante ↔ \(f\) concave.</p>
+<ul>
+  <li>\(f\) convexe sur \(]-\infty;-1[\) et \(]2;+\infty[\)</li>
+  <li>\(f\) concave sur \(]-1;2[\)</li>
+</ul>
+<p><strong>Points d'inflexion :</strong> changement de convexité en \(x=-1\) et \(x=2\).</p>
+<p><strong>Extremums :</strong> \(f'(-1)=0\) et \(f'\) change de signe (positif puis négatif… non, \(f'\) passe par 0 en étant d'abord croissante puis décroissante). Il faut connaître le signe de \(f'\). \(f'(-1)=0\), \(f'(2)=-3<0\). Comme \(f'\) croît jusqu'à \(-1\) et vaut 0, elle était négative avant \(-1\). Puis elle décroît et vaut \(-3\) en \(2\), donc \(f'<0\) sur \(]-1;+\infty[\) (au moins jusqu'en 2). Après 2, \(f'\) croît depuis \(-3\).</p>
+<p>Si \(f'\) tend vers \(+\infty\) en \(+\infty\), elle s'annule en un point \(x_0>2\) : c'est là qu'il y a un minimum de \(f\). Le maximum de \(f'\) en \(-1\) ne correspond pas à un extremum de \(f\) (car \(f'\) ne change pas de signe si elle était négative avant et après).</p>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

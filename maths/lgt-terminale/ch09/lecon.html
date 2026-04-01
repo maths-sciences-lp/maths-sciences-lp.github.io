@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Fonction logarithme – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 9 – Fonction logarithme népérien</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Analyse</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Définir la fonction logarithme comme réciproque de l'exponentielle</li>
+  <li>Connaître et utiliser les propriétés algébriques du logarithme</li>
+  <li>Étudier les variations et les limites de la fonction logarithme</li>
+  <li>Utiliser les croissances comparées du logarithme et des puissances</li>
+  <li>Résoudre des équations et inéquations faisant intervenir \(\ln\) et \(e^x\)</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Définition</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition — Logarithme népérien</span>
+<p>La <strong>fonction logarithme népérien</strong>, notée \(\ln\), est la fonction réciproque de la fonction exponentielle. Elle est définie sur \(]0;+\infty[\) par :</p>
+\[y = \ln x \iff x = e^y\]
+<p>Autrement dit, pour tout \(x > 0\), \(\ln x\) est l'unique réel \(y\) tel que \(e^y = x\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriétés immédiates</span>
+<ul>
+  <li>\(\ln(e^x) = x\) pour tout \(x \in \mathbb{R}\)</li>
+  <li>\(e^{\ln x} = x\) pour tout \(x > 0\)</li>
+  <li>\(\ln 1 = 0\) (car \(e^0 = 1\))</li>
+  <li>\(\ln e = 1\) (car \(e^1 = e\))</li>
+  <li>\(\ln x = 0 \iff x = 1\)</li>
+  <li>\(\ln x > 0 \iff x > 1\)</li>
+  <li>\(\ln x < 0 \iff 0 < x < 1\)</li>
+</ul>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>\(\ln(e^3) = 3\), \(e^{\ln 5} = 5\), \(\ln 1 = 0\), \(\ln\left(\frac{1}{e}\right) = \ln(e^{-1}) = -1\).</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Propriétés algébriques</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriétés fondamentales</span>
+<p>Pour tous réels \(a > 0\) et \(b > 0\) :</p>
+<ul>
+  <li>\(\ln(ab) = \ln a + \ln b\) (le logarithme transforme un produit en somme)</li>
+  <li>\(\ln\left(\frac{a}{b}\right) = \ln a - \ln b\)</li>
+  <li>\(\ln\left(\frac{1}{b}\right) = -\ln b\)</li>
+  <li>\(\ln(a^n) = n\ln a\) pour tout \(n \in \mathbb{Z}\)</li>
+  <li>\(\ln(\sqrt{a}) = \frac{1}{2}\ln a\)</li>
+</ul>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Simplifier avec le logarithme</span>
+<p>Ces propriétés servent à transformer des expressions complexes. Retenir le principe : le logarithme « descend » les exposants, transforme les produits en sommes et les quotients en différences.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemples de simplification</span>
+<ul>
+  <li>\(\ln(8) = \ln(2^3) = 3\ln 2\)</li>
+  <li>\(\ln\left(\frac{3}{5}\right) = \ln 3 - \ln 5\)</li>
+  <li>\(\ln(12) = \ln(4\times 3) = \ln 4 + \ln 3 = 2\ln 2 + \ln 3\)</li>
+  <li>\(\ln\left(\frac{\sqrt{e}}{e^3}\right) = \frac{1}{2}\ln e - 3\ln e = \frac{1}{2} - 3 = -\frac{5}{2}\)</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Simplifier les expressions suivantes :</p>
+<ol>
+  <li>\(\ln(e^5) + \ln\left(\frac{1}{e^2}\right)\)</li>
+  <li>\(\ln(50) - \ln(2)\)</li>
+  <li>\(2\ln 3 + \ln 4 - \ln 36\)</li>
+  <li>\(\ln\left(\frac{e^3\sqrt{e}}{e^{-1}}\right)\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(5 + (-2) = 3\).</li>
+  <li>\(\ln\left(\frac{50}{2}\right) = \ln 25 = \ln(5^2) = 2\ln 5\).</li>
+  <li>\(\ln(9) + \ln(4) - \ln(36) = \ln\left(\frac{36}{36}\right) = \ln 1 = 0\).</li>
+  <li>\(\ln\left(e^{3+1/2+1}\right) = \ln(e^{9/2}) = \frac{9}{2}\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Étude de la fonction logarithme</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Dérivée</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>La fonction \(\ln\) est dérivable sur \(]0;+\infty[\) et :</p>
+\[(\ln x)' = \frac{1}{x}\]
+<p>Plus généralement, si \(u\) est une fonction strictement positive et dérivable :</p>
+\[(\ln u)' = \frac{u'}{u}\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemples</span>
+<ul>
+  <li>\(f(x) = \ln(2x+1)\). \(f'(x) = \frac{2}{2x+1}\).</li>
+  <li>\(f(x) = \ln(x^2+1)\). \(f'(x) = \frac{2x}{x^2+1}\).</li>
+  <li>\(f(x) = x\ln x\). \(f'(x) = \ln x + x\cdot\frac{1}{x} = \ln x + 1\).</li>
+</ul>
+</div>
+
+<h3>2. Variations</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>La fonction \(\ln\) est <strong>strictement croissante</strong> sur \(]0;+\infty[\) (car \(\frac{1}{x}>0\)).</p>
+<p>Conséquence : pour \(a, b > 0\) :</p>
+\[\ln a = \ln b \iff a = b \qquad \text{et} \qquad \ln a < \ln b \iff a < b\]
+</div>
+
+<h3>3. Limites</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Limites de \(\ln\)</span>
+<ul>
+  <li>\(\displaystyle\lim_{x \to +\infty} \ln x = +\infty\)</li>
+  <li>\(\displaystyle\lim_{x \to 0^+} \ln x = -\infty\)</li>
+</ul>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Courbes réciproques</span>
+<p>La courbe de \(\ln\) est le <strong>symétrique</strong> de la courbe de \(e^x\) par rapport à la droite \(y=x\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Dériver les fonctions suivantes :</p>
+<ol>
+  <li>\(f(x) = \ln(3x-2)\)</li>
+  <li>\(g(x) = [\ln x]^2\)</li>
+  <li>\(h(x) = \ln\left(\frac{x+1}{x-1}\right)\) pour \(x > 1\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f'(x) = \frac{3}{3x-2}\).</li>
+  <li>\(g'(x) = 2\ln x \times \frac{1}{x} = \frac{2\ln x}{x}\).</li>
+  <li>\(h(x) = \ln(x+1)-\ln(x-1)\). \(h'(x) = \frac{1}{x+1}-\frac{1}{x-1} = \frac{(x-1)-(x+1)}{(x+1)(x-1)} = \frac{-2}{x^2-1}\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Croissances comparées</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété — Croissances comparées en \(+\infty\)</span>
+<p>Pour tout entier \(n \geqslant 1\) :</p>
+\[\lim_{x \to +\infty} \frac{\ln x}{x^n} = 0\]
+<p><strong>Toute puissance de \(x\) l'emporte sur le logarithme en \(+\infty\).</strong></p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Croissance comparée en 0</span>
+\[\lim_{x \to 0^+} x\ln x = 0\]
+<p>Plus généralement : \(\displaystyle\lim_{x \to 0^+} x^n\ln x = 0\) pour tout \(n \geqslant 1\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Démonstration de \(\lim_{x\to+\infty}\frac{\ln x}{x}=0\)</span>
+<p>On pose \(x = e^t\) avec \(t \to +\infty\). Alors \(\frac{\ln x}{x} = \frac{t}{e^t} \to 0\) par croissances comparées exponentielles. □</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemples</span>
+<ul>
+  <li>\(\displaystyle\lim_{x \to +\infty} \frac{\ln x}{\sqrt{x}} = \lim \frac{\ln x}{x^{1/2}} = 0\)</li>
+  <li>\(\displaystyle\lim_{x \to +\infty} (x - \ln x) = +\infty\) (car \(x\) l'emporte sur \(\ln x\))</li>
+  <li>\(\displaystyle\lim_{x \to 0^+} x^2\ln x = 0\)</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Déterminer les limites suivantes :</p>
+<ol>
+  <li>\(\displaystyle\lim_{x \to +\infty} \frac{(\ln x)^3}{x}\)</li>
+  <li>\(\displaystyle\lim_{x \to +\infty} \frac{\ln x}{x-1}\)</li>
+  <li>\(\displaystyle\lim_{x \to 0^+} x\ln(x^2)\)</li>
+  <li>\(\displaystyle\lim_{x \to +\infty} \left(\ln x - \frac{x}{2}\right)\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>On pose \(X = \ln x\) : \(\frac{X^3}{e^X}\to 0\) par croissances comparées. Donc 0.</li>
+  <li>\(\frac{\ln x}{x-1} = \frac{\ln x}{x}\times\frac{x}{x-1} \to 0\times 1 = 0\).</li>
+  <li>\(x\ln(x^2) = 2x\ln x \to 0\) par croissance comparée.</li>
+  <li>\(\ln x-\frac{x}{2} = x\left(\frac{\ln x}{x}-\frac{1}{2}\right)\to x\times(-\frac{1}{2}) = -\infty\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Équations et inéquations</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode — Résoudre des équations avec \(\ln\)</span>
+<p>On utilise les propriétés :</p>
+<ul>
+  <li>\(\ln a = \ln b \iff a = b\) (avec \(a,b>0\))</li>
+  <li>\(\ln a = c \iff a = e^c\)</li>
+  <li>\(\ln a < \ln b \iff a < b\) (avec \(a,b>0\))</li>
+  <li>\(\ln a < c \iff a < e^c\) (avec \(a > 0\))</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Résoudre dans \(\mathbb{R}\) :</p>
+<ol>
+  <li>\(\ln(2x-1) = 3\)</li>
+  <li>\(\ln(x^2) = 4\)</li>
+  <li>\(\ln x + \ln(x+2) = \ln 3\)</li>
+  <li>\(e^{2x} = 5\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Condition : \(2x-1>0\), soit \(x>\frac{1}{2}\). \(2x-1=e^3\), \(x=\frac{e^3+1}{2}\approx 10{,}54\).</li>
+  <li>Condition : \(x\neq 0\). \(x^2=e^4\), \(x=\pm e^2\). Les deux sont solutions.</li>
+  <li>Conditions : \(x>0\) et \(x+2>0\), soit \(x>0\). \(\ln[x(x+2)]=\ln 3\), \(x^2+2x=3\), \(x^2+2x-3=0\), \((x+3)(x-1)=0\). \(x=-3\) (rejeté) ou \(x=1\). Solution : \(x=1\).</li>
+  <li>\(2x=\ln 5\), \(x=\frac{\ln 5}{2}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Résoudre les inéquations :</p>
+<ol>
+  <li>\(\ln(x-1) \leqslant 2\)</li>
+  <li>\(\ln x \geqslant \ln(3-x)\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Condition : \(x>1\). \(x-1\leqslant e^2\), \(x\leqslant e^2+1\). Solution : \(x\in]1;e^2+1]\).</li>
+  <li>Conditions : \(x>0\) et \(3-x>0\), soit \(x\in]0;3[\). \(x\geqslant 3-x\), \(2x\geqslant 3\), \(x\geqslant\frac{3}{2}\). Solution : \(x\in\left[\frac{3}{2};3\right[\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VI. Étude de fonctions avec le logarithme</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p class="exo-titre">Étude complète</p>
+<p>Soit \(f(x) = x - \ln x\) définie sur \(]0;+\infty[\).</p>
+<ol>
+  <li>Déterminer les limites de \(f\) en \(0^+\) et en \(+\infty\).</li>
+  <li>Étudier les variations de \(f\).</li>
+  <li>En déduire que pour tout \(x>0\) : \(\ln x \leqslant x-1\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\lim_{0^+}f = 0-(-\infty)=+\infty\). \(\lim_{+\infty}f = +\infty\) (car \(x\) l'emporte sur \(\ln x\)).</li>
+  <li>\(f'(x) = 1-\frac{1}{x}=\frac{x-1}{x}\). \(f'=0\) pour \(x=1\). \(f'<0\) sur \(]0;1[\), \(f'>0\) sur \(]1;+\infty[\).
+  <br>Min en \(x=1\) : \(f(1)=1-0=1\).</li>
+  <li>\(f(x)\geqslant f(1)=1\) pour tout \(x>0\), soit \(x-\ln x\geqslant 1\), d'où \(\ln x\leqslant x-1\). □</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p class="exo-titre">Problème de synthèse</p>
+<p>Soit \(f(x) = \frac{\ln x}{x}\) définie sur \(]0;+\infty[\).</p>
+<ol>
+  <li>Déterminer les limites de \(f\) en \(0^+\) et en \(+\infty\).</li>
+  <li>Calculer \(f'(x)\) et dresser le tableau de variations.</li>
+  <li>En déduire que l'équation \(f(x) = \frac{1}{e}\) admet exactement une solution, et que c'est \(x = e\).</li>
+  <li>Montrer que pour tout \(x > 0\) : \(\ln x \leqslant \frac{x}{e}\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\lim_{0^+}\frac{\ln x}{x}\) : \(\ln x\to-\infty\) et \(x\to 0^+\). On pose \(x=e^{-t}\), \(t\to+\infty\) : \(\frac{-t}{e^{-t}}=-te^t\to-\infty\). Donc \(\lim_{0^+}f=-\infty\).
+  <br>\(\lim_{+\infty}\frac{\ln x}{x}=0\) par croissances comparées.</li>
+  <li>\(f'(x)=\frac{\frac{1}{x}\cdot x-\ln x}{x^2}=\frac{1-\ln x}{x^2}\). \(f'=0\) pour \(\ln x=1\), soit \(x=e\).
+  <br>\(f'>0\) sur \(]0;e[\), \(f'<0\) sur \(]e;+\infty[\). Max en \(x=e\) : \(f(e)=\frac{1}{e}\).</li>
+  <li>Le maximum de \(f\) est \(\frac{1}{e}\), atteint uniquement en \(x=e\). Donc \(f(x)=\frac{1}{e}\) a pour unique solution \(x=e\).</li>
+  <li>\(f(x)\leqslant f(e)=\frac{1}{e}\) pour tout \(x>0\), soit \(\frac{\ln x}{x}\leqslant\frac{1}{e}\), d'où \(\ln x\leqslant\frac{x}{e}\). □</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

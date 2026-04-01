@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Dérivation : composée et convexité – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 7 – Dérivation : composée et convexité</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Analyse</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Dériver une fonction composée</li>
+  <li>Calculer la dérivée seconde d'une fonction</li>
+  <li>Définir et caractériser la convexité d'une fonction</li>
+  <li>Déterminer les points d'inflexion</li>
+  <li>Exploiter la convexité pour démontrer des inégalités</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Dérivée d'une fonction composée</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Composition de fonctions — Rappel</h3>
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Soient \(u\) et \(v\) deux fonctions. La <strong>composée</strong> \(v \circ u\) est la fonction définie par \((v \circ u)(x) = v(u(x))\).</p>
+<p>On applique d'abord \(u\), puis \(v\) au résultat.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Si \(u(x) = 2x+1\) et \(v(x) = x^3\), alors \((v \circ u)(x) = (2x+1)^3\).</p>
+</div>
+
+<h3>2. Formule de dérivation</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Dérivée de \(v \circ u\)</span>
+<p>Si \(u\) est dérivable sur un intervalle \(I\) et \(v\) est dérivable sur \(u(I)\), alors \(v \circ u\) est dérivable sur \(I\) et :</p>
+\[(v \circ u)' = u' \times (v' \circ u)\]
+<p>Autrement dit, si \(f(x) = v(u(x))\), alors \(f'(x) = u'(x) \times v'(u(x))\).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Dériver une composée en pratique</span>
+<ol>
+  <li>Identifier la fonction « extérieure » \(v\) et la fonction « intérieure » \(u\)</li>
+  <li>Dériver l'extérieure (en gardant l'intérieure telle quelle)</li>
+  <li>Multiplier par la dérivée de l'intérieure</li>
+</ol>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Formules courantes de dérivation de composées</span>
+<table>
+<thead><tr><th>Fonction \(f(x)\)</th><th>Dérivée \(f'(x)\)</th></tr></thead>
+<tbody>
+<tr><td>\([u(x)]^n\)</td><td>\(n\,u'(x)\,[u(x)]^{n-1}\)</td></tr>
+<tr><td>\(\frac{1}{u(x)}\)</td><td>\(-\frac{u'(x)}{[u(x)]^2}\)</td></tr>
+<tr><td>\(\sqrt{u(x)}\)</td><td>\(\frac{u'(x)}{2\sqrt{u(x)}}\)</td></tr>
+<tr><td>\(e^{u(x)}\)</td><td>\(u'(x)\,e^{u(x)}\)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemples</span>
+<ul>
+  <li>\(f(x) = (3x+1)^5\). \(u(x)=3x+1\), \(u'=3\). \(f'(x) = 3 \times 5(3x+1)^4 = 15(3x+1)^4\).</li>
+  <li>\(f(x) = e^{x^2}\). \(u(x)=x^2\), \(u'=2x\). \(f'(x) = 2x\,e^{x^2}\).</li>
+  <li>\(f(x) = \sqrt{2x+3}\). \(u(x)=2x+3\), \(u'=2\). \(f'(x) = \frac{2}{2\sqrt{2x+3}} = \frac{1}{\sqrt{2x+3}}\).</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Dériver les fonctions suivantes :</p>
+<ol>
+  <li>\(f(x) = (2x-3)^4\)</li>
+  <li>\(g(x) = e^{-3x+1}\)</li>
+  <li>\(h(x) = \sqrt{x^2+1}\)</li>
+  <li>\(k(x) = \frac{1}{(x+2)^3}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f'(x) = 2 \times 4(2x-3)^3 = 8(2x-3)^3\).</li>
+  <li>\(g'(x) = -3\,e^{-3x+1}\).</li>
+  <li>\(h'(x) = \frac{2x}{2\sqrt{x^2+1}} = \frac{x}{\sqrt{x^2+1}}\).</li>
+  <li>\(k(x) = (x+2)^{-3}\). \(k'(x) = -3(x+2)^{-4} = \frac{-3}{(x+2)^4}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Dériver les fonctions suivantes :</p>
+<ol>
+  <li>\(f(x) = e^{x^2-2x}\)</li>
+  <li>\(g(x) = (x^2+3x-1)^3\)</li>
+  <li>\(h(x) = \frac{1}{\sqrt{x^2+4}}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u = x^2-2x\), \(u'=2x-2\). \(f'(x)=(2x-2)e^{x^2-2x}\).</li>
+  <li>\(u = x^2+3x-1\), \(u'=2x+3\). \(g'(x)=3(2x+3)(x^2+3x-1)^2\).</li>
+  <li>\(h(x) = (x^2+4)^{-1/2}\). \(h'(x)=-\frac{1}{2}\times 2x\times(x^2+4)^{-3/2}=\frac{-x}{(x^2+4)^{3/2}}\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Dérivée seconde</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Si \(f'\) est elle-même dérivable, on appelle <strong>dérivée seconde</strong> de \(f\) la dérivée de \(f'\), notée \(f''\).</p>
+\[f'' = (f')'\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Soit \(f(x) = x^3 - 6x^2 + 9x + 1\).</p>
+<p>\(f'(x) = 3x^2 - 12x + 9\), \(f''(x) = 6x - 12\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Calculer \(f'\) et \(f''\) pour les fonctions suivantes :</p>
+<ol>
+  <li>\(f(x) = x^4 - 2x^3 + x\)</li>
+  <li>\(f(x) = xe^x\)</li>
+  <li>\(f(x) = \frac{x}{x+1}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f'(x) = 4x^3 - 6x^2 + 1\). \(f''(x) = 12x^2 - 12x\).</li>
+  <li>\(f'(x) = e^x + xe^x = (1+x)e^x\). \(f''(x) = e^x + (1+x)e^x = (2+x)e^x\).</li>
+  <li>\(f'(x) = \frac{1}{(x+1)^2}\). \(f''(x) = \frac{-2}{(x+1)^3}\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Convexité</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Définition géométrique</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Fonction convexe</span>
+<p>Une fonction \(f\) est <strong>convexe</strong> sur un intervalle \(I\) si sa courbe représentative est située <strong>en dessous</strong> de chacune de ses sécantes sur \(I\).</p>
+<p>Géométriquement : le segment joignant deux points de la courbe est au-dessus de la courbe.</p>
+</div>
+
+<div class="def">
+<span class="label label-def">Définition — Fonction concave</span>
+<p>Une fonction \(f\) est <strong>concave</strong> sur un intervalle \(I\) si sa courbe est <strong>au-dessus</strong> de chacune de ses sécantes.</p>
+<p>\(f\) est concave si et seulement si \(-f\) est convexe.</p>
+</div>
+
+<h3>2. Caractérisation par la dérivée seconde</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété fondamentale</span>
+<p>Soit \(f\) une fonction deux fois dérivable sur un intervalle \(I\) :</p>
+<ul>
+  <li>\(f\) est <strong>convexe</strong> sur \(I\) \(\iff\) \(f'' \geqslant 0\) sur \(I\) \(\iff\) \(f'\) est <strong>croissante</strong> sur \(I\)</li>
+  <li>\(f\) est <strong>concave</strong> sur \(I\) \(\iff\) \(f'' \leqslant 0\) sur \(I\) \(\iff\) \(f'\) est <strong>décroissante</strong> sur \(I\)</li>
+</ul>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Convexité et tangentes</span>
+<p>Si \(f\) est <strong>convexe</strong> sur \(I\), alors la courbe de \(f\) est <strong>au-dessus</strong> de chacune de ses tangentes.</p>
+<p>Si \(f\) est <strong>concave</strong> sur \(I\), alors la courbe est <strong>en dessous</strong> de ses tangentes.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemples</span>
+<ul>
+  <li>\(f(x) = x^2\) : \(f''(x)=2>0\) sur \(\mathbb{R}\), donc \(f\) est <strong>convexe</strong> sur \(\mathbb{R}\).</li>
+  <li>\(f(x) = \sqrt{x}\) : \(f''(x)=-\frac{1}{4x^{3/2}}<0\) sur \(]0;+\infty[\), donc \(f\) est <strong>concave</strong>.</li>
+  <li>\(f(x) = e^x\) : \(f''(x)=e^x>0\), donc \(f\) est <strong>convexe</strong> sur \(\mathbb{R}\).</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Étudier la convexité de \(f(x) = x^3 - 3x\) sur \(\mathbb{R}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f'(x) = 3x^2-3\), \(f''(x) = 6x\).</p>
+<p>\(f''(x) = 0 \Leftrightarrow x = 0\). \(f''(x)<0\) pour \(x<0\) et \(f''(x)>0\) pour \(x>0\).</p>
+<p>\(f\) est <strong>concave</strong> sur \(]-\infty;0]\) et <strong>convexe</strong> sur \([0;+\infty[\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Point d'inflexion</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Un point \(A\) de la courbe de \(f\) est un <strong>point d'inflexion</strong> si la courbe traverse sa tangente en ce point, c'est-à-dire si la convexité de \(f\) change en \(A\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Si \(f''\) s'annule en \(a\) et <strong>change de signe</strong> en \(a\), alors le point \((a; f(a))\) est un <strong>point d'inflexion</strong> de la courbe de \(f\).</p>
+</div>
+
+<div class="att">
+<span class="label label-att">Attention</span>
+<p>\(f''(a) = 0\) ne suffit pas : il faut que \(f''\) <strong>change de signe</strong>. Par exemple, \(f(x)=x^4\) : \(f''(0)=0\) mais \(f''\) ne change pas de signe (reste positive), donc pas de point d'inflexion.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>\(f(x) = x^3-3x\). On a vu que \(f''(x)=6x\). \(f''(0)=0\) et \(f''\) change de signe en 0 (négatif puis positif). Le point \((0; 0)\) est un <strong>point d'inflexion</strong>.</p>
+<p>La tangente en ce point est \(y = f'(0)x + f(0) = -3x\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Soit \(f(x) = xe^{-x}\). Déterminer les intervalles de convexité/concavité et les points d'inflexion.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f'(x) = e^{-x} - xe^{-x} = (1-x)e^{-x}\).</p>
+<p>\(f''(x) = -e^{-x}-(1-x)e^{-x} = (-1-1+x)e^{-x} = (x-2)e^{-x}\).</p>
+<p>\(f''(x) = 0 \Leftrightarrow x = 2\). \(f''(x)<0\) pour \(x<2\), \(f''(x)>0\) pour \(x>2\).</p>
+<p>\(f\) est <strong>concave</strong> sur \(]-\infty;2]\) et <strong>convexe</strong> sur \([2;+\infty[\).</p>
+<p>Point d'inflexion en \(\left(2; 2e^{-2}\right)\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Soit \(f(x) = x^4 - 6x^2 + 1\). Déterminer les points d'inflexion de la courbe.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f'(x) = 4x^3 - 12x\). \(f''(x) = 12x^2 - 12 = 12(x^2-1) = 12(x-1)(x+1)\).</p>
+<p>\(f''(x) = 0\) pour \(x = -1\) ou \(x = 1\). \(f''\) change de signe aux deux valeurs.</p>
+<p>Points d'inflexion : \((-1; f(-1)) = (-1; -4)\) et \((1; f(1)) = (1; -4)\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Convexité et inégalités</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété — Inégalité de convexité</span>
+<p>Si \(f\) est convexe sur \(I\) et si \(a \in I\), alors pour tout \(x \in I\) :</p>
+\[f(x) \geqslant f(a) + f'(a)(x-a)\]
+<p>(la courbe est au-dessus de ses tangentes).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple — Inégalité \(e^x \geqslant 1+x\)</span>
+<p>La fonction \(f(x) = e^x\) est convexe sur \(\mathbb{R}\) (\(f''>0\)). La tangente en \(a=0\) est \(y = e^0 + e^0(x-0) = 1+x\).</p>
+<p>Par convexité : \(e^x \geqslant 1+x\) pour tout \(x \in \mathbb{R}\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>En utilisant la convexité, démontrer que pour tout \(x > 0\) : \(\sqrt{x} \leqslant \frac{x+1}{2}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(f(x) = \sqrt{x}\) est concave sur \(]0;+\infty[\) (\(f'' < 0\)). Donc la courbe est en dessous de ses tangentes.</p>
+<p>Tangente en \(a = 1\) : \(y = f(1)+f'(1)(x-1) = 1+\frac{1}{2}(x-1) = \frac{x+1}{2}\).</p>
+<p>Par concavité : \(\sqrt{x} \leqslant \frac{x+1}{2}\) pour tout \(x > 0\). □</p>
+<p>On retrouve l'<strong>inégalité arithmético-géométrique</strong> : \(\sqrt{x} \leqslant \frac{1+x}{2}\), soit \(\sqrt{ab} \leqslant \frac{a+b}{2}\) en posant \(x = \frac{b}{a}\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Montrer que pour tout \(x \in \mathbb{R}\) : \(e^x \geqslant 1+x+\frac{x^2}{2}\).</p>
+<p><em>Indication : étudier la fonction \(g(x) = e^x - 1 - x - \frac{x^2}{2}\).</em></p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(g(x) = e^x - 1 - x - \frac{x^2}{2}\). \(g'(x) = e^x - 1 - x\). \(g''(x) = e^x - 1\).</p>
+<p>\(g''(x) = 0 \Leftrightarrow x = 0\). \(g''(x) < 0\) pour \(x < 0\) et \(g''(x) > 0\) pour \(x > 0\). Donc \(g'\) admet un minimum en \(x = 0\) : \(g'(0) = 0\).</p>
+<p>Donc \(g'(x) \geqslant 0\) pour tout \(x\). Ainsi \(g\) est croissante sur \(\mathbb{R}\)... Non : \(g'(x)\geqslant g'(0)=0\) seulement pour \(x\geqslant 0\). Pour \(x < 0\), on sait que \(e^x \geqslant 1+x\) (inégalité précédente), donc \(g'(x) = e^x-1-x \geqslant x-x = 0\)... Non.</p>
+<p>Reprenons : \(g'(x) = e^x-1-x\). On a montré que \(e^x \geqslant 1+x\), donc \(g'(x) \geqslant 0\) pour tout \(x\).</p>
+<p>Ainsi \(g\) est croissante sur \(\mathbb{R}\)... Pour \(x\geqslant 0\), \(g(x)\geqslant g(0)=0\). Pour \(x<0\), \(g\) est aussi croissante (car \(g'\geqslant 0\)), donc \(g(x)\leqslant g(0)=0\).</p>
+<p>Hmm. Puisque \(g\) est croissante, pour \(x<0\) : \(g(x)<g(0)=0\). L'inégalité n'est alors pas vraie pour \(x<0\) dans ce sens.</p>
+<p>En fait, \(g'\geqslant 0\) ne signifie pas que \(g\) est toujours \(\geqslant 0\). Il faut regarder le minimum de \(g\). \(g'(x)=0 \Leftrightarrow e^x=1+x\), ce qui n'arrive qu'en \(x=0\). Comme \(g'\geqslant 0\), \(g\) est croissante, \(g(0)=0\) est la valeur en 0, mais \(g(x)<0\) pour \(x<0\).</p>
+<p>L'inégalité \(e^x\geqslant 1+x+\frac{x^2}{2}\) n'est <strong>pas vraie</strong> pour tout \(x<0\). En réalité, elle est valable pour \(x\geqslant 0\). Pour tout \(x\geqslant 0\), \(g(x)\geqslant g(0)=0\). □</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VI. Étude complète avec convexité</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode — Étude complète d'une fonction</span>
+<ol>
+  <li>Domaine de définition</li>
+  <li>Limites aux bornes du domaine (asymptotes)</li>
+  <li>Dérivée \(f'\) : signe, tableau de variations</li>
+  <li>Dérivée seconde \(f''\) : signe, convexité, points d'inflexion</li>
+  <li>Tableau de variations enrichi et courbe représentative</li>
+</ol>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p class="exo-titre">Étude complète</p>
+<p>Soit \(f(x) = x^3 - 3x^2 + 4\).</p>
+<ol>
+  <li>Calculer \(f'\) et \(f''\).</li>
+  <li>Dresser le tableau de variations de \(f\).</li>
+  <li>Déterminer les intervalles de convexité/concavité et les points d'inflexion.</li>
+  <li>Écrire l'équation de la tangente au point d'inflexion.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f'(x) = 3x^2-6x = 3x(x-2)\). \(f''(x) = 6x-6 = 6(x-1)\).</li>
+  <li>\(f'(x)=0\) pour \(x=0\) ou \(x=2\). \(f'>0\) sur \(]-\infty;0[\), \(f'<0\) sur \(]0;2[\), \(f'>0\) sur \(]2;+\infty[\).
+  <br>Max local : \(f(0)=4\). Min local : \(f(2)=0\).</li>
+  <li>\(f''(x)=0\) pour \(x=1\). \(f''<0\) pour \(x<1\) (concave), \(f''>0\) pour \(x>1\) (convexe).
+  <br>Point d'inflexion : \((1; f(1)) = (1; 2)\).</li>
+  <li>Tangente en \((1;2)\) : \(y = f(1)+f'(1)(x-1) = 2+(-3)(x-1) = -3x+5\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p class="exo-titre">Étude complète avec exponentielle</p>
+<p>Soit \(f(x) = (x-1)e^x\).</p>
+<ol>
+  <li>Domaine de définition, limites en \(\pm\infty\).</li>
+  <li>Calculer \(f'\) et dresser le tableau de variations.</li>
+  <li>Calculer \(f''\), déterminer la convexité et les points d'inflexion.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(D_f = \mathbb{R}\). \(\lim_{+\infty}f = +\infty\). \(\lim_{-\infty}f\) : \((x-1)e^x = xe^x-e^x \to 0-0 = 0\) (croissances comparées). AH \(y=0\) en \(-\infty\).</li>
+  <li>\(f'(x) = e^x+(x-1)e^x = xe^x\). \(f'(x)=0 \Leftrightarrow x=0\). \(f'<0\) pour \(x<0\), \(f'>0\) pour \(x>0\).
+  <br>Min en \(x=0\) : \(f(0)=-1\).</li>
+  <li>\(f''(x) = e^x+xe^x = (1+x)e^x\). \(f''(x)=0 \Leftrightarrow x=-1\). \(f''<0\) pour \(x<-1\) (concave), \(f''>0\) pour \(x>-1\) (convexe).
+  <br>Point d'inflexion : \((-1; f(-1)) = (-1; -2e^{-1}) \approx (-1;-0{,}74)\).</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

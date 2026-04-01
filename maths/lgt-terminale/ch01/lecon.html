@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Combinatoire et dénombrement – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 1 – Combinatoire et dénombrement</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Algèbre et géométrie</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Utiliser les principes additif et multiplicatif pour dénombrer</li>
+  <li>Connaître et manipuler les notions de \(k\)-uplet, arrangement et permutation</li>
+  <li>Calculer des coefficients binomiaux et utiliser le triangle de Pascal</li>
+  <li>Reconnaître et dénombrer des combinaisons dans des situations variées</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Principes de dénombrement</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Ensembles finis et cardinal</h3>
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Un ensemble \(E\) est <strong>fini</strong> s'il contient un nombre fini d'éléments. Ce nombre est appelé le <strong>cardinal</strong> de \(E\), noté \(\text{card}(E)\) ou \(|E|\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>L'ensemble \(E = \{a, b, c, d\}\) a pour cardinal \(\text{card}(E) = 4\).</p>
+<p>L'ensemble des chiffres \(\{0, 1, 2, \ldots, 9\}\) a pour cardinal 10.</p>
+</div>
+
+<h3>2. Principe additif</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Principe additif</span>
+<p>Si \(A\) et \(B\) sont deux ensembles finis <strong>disjoints</strong> (c'est-à-dire \(A \cap B = \emptyset\)), alors :</p>
+\[\text{card}(A \cup B) = \text{card}(A) + \text{card}(B)\]
+<p>Plus généralement, si \(A_1, A_2, \ldots, A_n\) sont des ensembles finis deux à deux disjoints :</p>
+\[\text{card}(A_1 \cup A_2 \cup \cdots \cup A_n) = \text{card}(A_1) + \text{card}(A_2) + \cdots + \text{card}(A_n)\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Un club sportif propose 4 sports collectifs et 3 sports individuels. Un élève choisit un sport parmi ceux proposés.</p>
+<p>Nombre de choix possibles : \(4 + 3 = 7\).</p>
+</div>
+
+<div class="att">
+<span class="label label-att">Attention</span>
+<p>Le principe additif ne s'applique que si les ensembles sont <strong>disjoints</strong>. Si \(A \cap B \neq \emptyset\), on utilise la formule :</p>
+\[\text{card}(A \cup B) = \text{card}(A) + \text{card}(B) - \text{card}(A \cap B)\]
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Dans une classe de 35 élèves, 20 font de l'anglais, 18 font de l'espagnol et 8 font les deux langues. Combien d'élèves font de l'anglais ou de l'espagnol ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On note \(A\) l'ensemble des élèves faisant de l'anglais et \(B\) celui de l'espagnol.</p>
+<p>\(\text{card}(A \cup B) = \text{card}(A) + \text{card}(B) - \text{card}(A \cap B) = 20 + 18 - 8 = 30\)</p>
+<p>Il y a <strong>30 élèves</strong> qui font de l'anglais ou de l'espagnol.</p>
+</div>
+</div>
+
+<h3>3. Principe multiplicatif — Produit cartésien</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Produit cartésien</span>
+<p>Le <strong>produit cartésien</strong> de deux ensembles \(A\) et \(B\), noté \(A \times B\), est l'ensemble de tous les <strong>couples</strong> \((a, b)\) avec \(a \in A\) et \(b \in B\) :</p>
+\[A \times B = \{(a, b) \mid a \in A \text{ et } b \in B\}\]
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Principe multiplicatif</span>
+<p>Si \(A\) et \(B\) sont deux ensembles finis, alors :</p>
+\[\text{card}(A \times B) = \text{card}(A) \times \text{card}(B)\]
+<p>Plus généralement, pour \(n\) ensembles finis \(A_1, A_2, \ldots, A_n\) :</p>
+\[\text{card}(A_1 \times A_2 \times \cdots \times A_n) = \text{card}(A_1) \times \text{card}(A_2) \times \cdots \times \text{card}(A_n)\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Un menu se compose d'une entrée parmi 3, d'un plat parmi 5 et d'un dessert parmi 4. Le nombre de menus possibles est :</p>
+\[3 \times 5 \times 4 = 60\]
+</div>
+
+<div class="def">
+<span class="label label-def">Définition — \(k\)-uplet</span>
+<p>Soient \(A_1, A_2, \ldots, A_k\) des ensembles. Un <strong>\(k\)-uplet</strong> (ou <strong>\(k\)-liste</strong>) est un élément \((a_1, a_2, \ldots, a_k)\) du produit cartésien \(A_1 \times A_2 \times \cdots \times A_k\).</p>
+<p>L'<strong>ordre compte</strong> : le couple \((a, b)\) est différent du couple \((b, a)\) si \(a \neq b\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — \(k\)-uplets d'un même ensemble</span>
+<p>Le nombre de \(k\)-uplets d'éléments d'un ensemble \(A\) à \(n\) éléments (avec répétitions possibles) est :</p>
+\[\text{card}(A^k) = n^k\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Un code PIN est composé de 4 chiffres (de 0 à 9). Chaque chiffre peut être répété.</p>
+<p>Nombre de codes possibles : \(10^4 = 10\,000\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>On lance un dé à 6 faces trois fois de suite. Combien de résultats différents peut-on obtenir ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Un résultat est un triplet \((d_1, d_2, d_3)\) avec \(d_i \in \{1, 2, 3, 4, 5, 6\}\). C'est un 3-uplet d'un ensemble à 6 éléments.</p>
+<p>Nombre de résultats : \(6^3 = 216\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>On considère un alphabet de 26 lettres. Combien de mots de 3 lettres peut-on former (les lettres peuvent être répétées) ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Chaque mot est un 3-uplet de l'alphabet à 26 lettres.</p>
+<p>Nombre de mots : \(26^3 = 17\,576\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Nombre de parties d'un ensemble</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Un ensemble à \(n\) éléments possède \(2^n\) parties (sous-ensembles).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Comprendre pourquoi \(2^n\)</span>
+<p>Pour construire une partie de \(E = \{e_1, e_2, \ldots, e_n\}\), on décide pour chaque élément s'il est <strong>dedans</strong> ou <strong>dehors</strong>. Cela fait 2 choix par élément, donc \(2^n\) parties au total.</p>
+<p>On retrouve les \(n\)-uplets de \(\{0, 1\}\) : chaque \(n\)-uplet code une partie (1 = l'élément est pris, 0 = il ne l'est pas).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>L'ensemble \(E = \{a, b, c\}\) possède \(2^3 = 8\) parties :</p>
+<p>\(\emptyset,\ \{a\},\ \{b\},\ \{c\},\ \{a,b\},\ \{a,c\},\ \{b,c\},\ \{a,b,c\}\)</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Un restaurant propose 5 garnitures optionnelles pour un plat. Un client peut choisir n'importe quelle combinaison de garnitures (y compris aucune). Combien de choix possibles a-t-il ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Chaque choix correspond à une partie de l'ensemble des 5 garnitures.</p>
+<p>Nombre de choix : \(2^5 = 32\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. \(k\)-uplets d'éléments distincts et permutations</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. \(k\)-uplets d'éléments distincts</h3>
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Un <strong>\(k\)-uplet d'éléments distincts</strong> d'un ensemble \(E\) à \(n\) éléments est un \(k\)-uplet \((a_1, a_2, \ldots, a_k)\) où tous les \(a_i\) sont différents. On parle aussi d'<strong>arrangement</strong> de \(k\) éléments parmi \(n\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Le nombre de \(k\)-uplets d'éléments distincts d'un ensemble à \(n\) éléments (\(k \leqslant n\)) est :</p>
+\[n \times (n-1) \times (n-2) \times \cdots \times (n-k+1) = \frac{n!}{(n-k)!}\]
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Raisonner étape par étape</span>
+<p>Pour le 1<sup>er</sup> élément : \(n\) choix. Pour le 2<sup>e</sup> : \(n-1\) choix (un élément déjà utilisé). Pour le 3<sup>e</sup> : \(n-2\) choix. Et ainsi de suite jusqu'au \(k\)<sup>e</sup> : \(n-k+1\) choix.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Combien de mots de 3 lettres <strong>toutes différentes</strong> peut-on former avec l'alphabet ?</p>
+<p>\(26 \times 25 \times 24 = 15\,600\).</p>
+</div>
+
+<h3>2. Factorielle</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Factorielle</span>
+<p>Pour tout entier naturel \(n \geqslant 1\), on définit <strong>\(n\) factorielle</strong> par :</p>
+\[n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1\]
+<p>Par convention, \(0! = 1\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<ul>
+  <li>\(1! = 1\)</li>
+  <li>\(3! = 3 \times 2 \times 1 = 6\)</li>
+  <li>\(5! = 5 \times 4 \times 3 \times 2 \times 1 = 120\)</li>
+  <li>\(10! = 3\,628\,800\)</li>
+</ul>
+</div>
+
+<h3>3. Permutations</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Permutation</span>
+<p>Une <strong>permutation</strong> d'un ensemble \(E\) à \(n\) éléments est un \(n\)-uplet de tous les éléments de \(E\) (chaque élément apparaît exactement une fois). C'est un <strong>rangement complet</strong> des éléments.</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Le nombre de permutations d'un ensemble à \(n\) éléments est \(n!\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>De combien de façons peut-on ranger 6 livres sur une étagère ?</p>
+<p>\(6! = 720\) façons.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Un podium sportif comprend une médaille d'or, une d'argent et une de bronze. Il y a 10 concurrents.</p>
+<ol>
+  <li>Combien de podiums différents sont possibles ?</li>
+  <li>Combien de résultats complets (classement de tous les concurrents) sont possibles ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Un podium est un 3-uplet d'éléments distincts parmi 10 : \(10 \times 9 \times 8 = 720\) podiums.</li>
+  <li>Un classement complet est une permutation de 10 concurrents : \(10! = 3\,628\,800\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Combien d'anagrammes (mots formés en réarrangeant les lettres) peut-on former avec le mot MATHS ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Le mot MATHS contient 5 lettres toutes distinctes. Le nombre d'anagrammes est le nombre de permutations de 5 lettres :</p>
+<p>\(5! = 120\) anagrammes.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Combinaisons — Coefficients binomiaux</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Définition</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Combinaison</span>
+<p>Soit \(E\) un ensemble à \(n\) éléments et \(k\) un entier tel que \(0 \leqslant k \leqslant n\). Une <strong>combinaison</strong> de \(k\) éléments de \(E\) est une <strong>partie</strong> (sous-ensemble) de \(E\) ayant exactement \(k\) éléments.</p>
+<p>Contrairement aux \(k\)-uplets, <strong>l'ordre ne compte pas</strong> : \(\{a, b, c\} = \{c, a, b\}\).</p>
+</div>
+
+<div class="def">
+<span class="label label-def">Définition — Coefficient binomial</span>
+<p>Le nombre de combinaisons de \(k\) éléments parmi \(n\) est le <strong>coefficient binomial</strong>, noté \(\displaystyle\binom{n}{k}\) (lire « \(k\) parmi \(n\) »).</p>
+</div>
+
+<div class="att">
+<span class="label label-att">Attention — Ordre ou pas ?</span>
+<p>La question clé pour choisir entre arrangement et combinaison est : <strong>l'ordre compte-t-il ?</strong></p>
+<ul>
+  <li><strong>L'ordre compte</strong> → \(k\)-uplet d'éléments distincts (arrangement) : \(\dfrac{n!}{(n-k)!}\)</li>
+  <li><strong>L'ordre ne compte pas</strong> → combinaison : \(\displaystyle\binom{n}{k}\)</li>
+</ul>
+</div>
+
+<h3>2. Formule</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Formule des coefficients binomiaux</span>
+<p>Pour \(0 \leqslant k \leqslant n\) :</p>
+\[\binom{n}{k} = \frac{n!}{k!\,(n-k)!} = \frac{n(n-1)\cdots(n-k+1)}{k!}\]
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Comprendre la formule</span>
+<p>Le nombre de façons de choisir \(k\) éléments <strong>ordonnés</strong> parmi \(n\) est \(\frac{n!}{(n-k)!}\). Mais dans une combinaison, l'ordre ne compte pas. Chaque combinaison de \(k\) éléments donne \(k!\) arrangements (permutations de ces \(k\) éléments). On divise donc par \(k!\) :</p>
+\[\binom{n}{k} = \frac{n!/(n-k)!}{k!} = \frac{n!}{k!\,(n-k)!}\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple — Calculs de coefficients binomiaux</span>
+<ul>
+  <li>\(\displaystyle\binom{5}{2} = \frac{5!}{2!\times 3!} = \frac{120}{2 \times 6} = 10\)</li>
+  <li>\(\displaystyle\binom{8}{3} = \frac{8 \times 7 \times 6}{3!} = \frac{336}{6} = 56\)</li>
+  <li>\(\displaystyle\binom{10}{4} = \frac{10 \times 9 \times 8 \times 7}{4!} = \frac{5040}{24} = 210\)</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Calculer les coefficients binomiaux suivants :</p>
+<ol>
+  <li>\(\displaystyle\binom{6}{2}\)</li>
+  <li>\(\displaystyle\binom{7}{3}\)</li>
+  <li>\(\displaystyle\binom{9}{1}\)</li>
+  <li>\(\displaystyle\binom{12}{5}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\displaystyle\binom{6}{2} = \frac{6 \times 5}{2!} = \frac{30}{2} = 15\)</li>
+  <li>\(\displaystyle\binom{7}{3} = \frac{7 \times 6 \times 5}{3!} = \frac{210}{6} = 35\)</li>
+  <li>\(\displaystyle\binom{9}{1} = 9\)</li>
+  <li>\(\displaystyle\binom{12}{5} = \frac{12 \times 11 \times 10 \times 9 \times 8}{5!} = \frac{95\,040}{120} = 792\)</li>
+</ol>
+</div>
+</div>
+
+<h3>3. Valeurs particulières</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Cas particuliers</span>
+<p>Pour tout entier \(n \geqslant 0\) :</p>
+<ul>
+  <li>\(\displaystyle\binom{n}{0} = 1\) (il n'y a qu'une seule partie vide : \(\emptyset\))</li>
+  <li>\(\displaystyle\binom{n}{1} = n\) (il y a \(n\) singletons)</li>
+  <li>\(\displaystyle\binom{n}{n} = 1\) (il n'y a qu'une seule partie contenant tous les éléments)</li>
+  <li>\(\displaystyle\binom{n}{2} = \frac{n(n-1)}{2}\) (nombre de paires)</li>
+</ul>
+</div>
+
+<h3>4. Symétrie</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Symétrie des coefficients binomiaux</span>
+<p>Pour \(0 \leqslant k \leqslant n\) :</p>
+\[\binom{n}{k} = \binom{n}{n-k}\]
+</div>
+
+<div class="meth">
+<span class="label label-meth">Interprétation</span>
+<p>Choisir \(k\) éléments <strong>à prendre</strong> dans un ensemble de \(n\) revient à choisir \(n-k\) éléments <strong>à laisser</strong>.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>\(\displaystyle\binom{10}{8} = \binom{10}{2} = \frac{10 \times 9}{2} = 45\). C'est bien plus rapide que de calculer \(\frac{10!}{8! \times 2!}\) directement.</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Un comité de 4 personnes doit être formé à partir d'un groupe de 9 candidats.</p>
+<ol>
+  <li>Combien de comités différents peut-on former ?</li>
+  <li>Si un candidat particulier (le président) doit obligatoirement faire partie du comité, combien de comités sont possibles ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\displaystyle\binom{9}{4} = \frac{9 \times 8 \times 7 \times 6}{4!} = \frac{3024}{24} = 126\) comités.</li>
+  <li>Le président est déjà choisi. Il reste à choisir 3 personnes parmi les 8 restantes : \(\displaystyle\binom{8}{3} = \frac{8 \times 7 \times 6}{6} = 56\) comités.</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Relation de Pascal et triangle de Pascal</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Relation de Pascal</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Relation de Pascal</span>
+<p>Pour tout \(n \geqslant 1\) et \(1 \leqslant k \leqslant n\) :</p>
+\[\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}\]
+</div>
+
+<div class="meth">
+<span class="label label-meth">Interprétation</span>
+<p>Pour former une partie de \(k\) éléments de \(\{1, 2, \ldots, n\}\), on distingue deux cas selon que l'élément \(n\) est dans la partie ou non :</p>
+<ul>
+  <li>Si \(n\) est dans la partie : il reste à choisir \(k-1\) éléments parmi \(\{1, \ldots, n-1\}\) → \(\displaystyle\binom{n-1}{k-1}\) choix</li>
+  <li>Si \(n\) n'est pas dans la partie : il faut choisir \(k\) éléments parmi \(\{1, \ldots, n-1\}\) → \(\displaystyle\binom{n-1}{k}\) choix</li>
+</ul>
+</div>
+
+<h3>2. Triangle de Pascal</h3>
+
+<p>On construit le <strong>triangle de Pascal</strong> en plaçant les coefficients binomiaux ligne par ligne. Chaque nombre est la somme des deux nombres situés au-dessus de lui (relation de Pascal).</p>
+
+<div style="overflow-x:auto">
+<table style="text-align:center;margin:1em auto;border-collapse:collapse">
+<tr><td>\(n=0\)</td><td></td><td></td><td></td><td></td><td>1</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>\(n=1\)</td><td></td><td></td><td></td><td>1</td><td></td><td>1</td><td></td><td></td><td></td></tr>
+<tr><td>\(n=2\)</td><td></td><td></td><td>1</td><td></td><td>2</td><td></td><td>1</td><td></td><td></td></tr>
+<tr><td>\(n=3\)</td><td></td><td>1</td><td></td><td>3</td><td></td><td>3</td><td></td><td>1</td><td></td></tr>
+<tr><td>\(n=4\)</td><td>1</td><td></td><td>4</td><td></td><td>6</td><td></td><td>4</td><td></td><td>1</td></tr>
+<tr><td>\(n=5\)</td><td style="padding:0 8px">1</td><td style="padding:0 8px">5</td><td style="padding:0 8px">10</td><td style="padding:0 8px">10</td><td style="padding:0 8px">5</td><td style="padding:0 8px">1</td><td></td><td></td><td></td></tr>
+</table>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Lecture du triangle</span>
+<p>La ligne \(n=4\) donne : \(\displaystyle\binom{4}{0}=1,\ \binom{4}{1}=4,\ \binom{4}{2}=6,\ \binom{4}{3}=4,\ \binom{4}{4}=1\).</p>
+<p>On vérifie la relation de Pascal : \(\binom{4}{2} = \binom{3}{1} + \binom{3}{2} = 3 + 3 = 6\). ✓</p>
+</div>
+
+<h3>3. Somme d'une ligne</h3>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Pour tout entier \(n \geqslant 0\) :</p>
+\[\sum_{k=0}^{n} \binom{n}{k} = 2^n\]
+</div>
+
+<div class="meth">
+<span class="label label-meth">Interprétation</span>
+<p>La somme de tous les coefficients binomiaux d'une ligne donne le nombre total de parties d'un ensemble à \(n\) éléments, qui est bien \(2^n\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p>Compléter la ligne \(n = 6\) du triangle de Pascal.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>En utilisant la relation de Pascal avec la ligne \(n=5\) : \(1,\ 5,\ 10,\ 10,\ 5,\ 1\) :</p>
+<p>\(\binom{6}{0}=1,\quad \binom{6}{1}=1+5=6,\quad \binom{6}{2}=5+10=15,\quad \binom{6}{3}=10+10=20\)</p>
+<p>Par symétrie : \(\binom{6}{4}=15,\quad \binom{6}{5}=6,\quad \binom{6}{6}=1\).</p>
+<p>Ligne \(n=6\) : \(1,\ 6,\ 15,\ 20,\ 15,\ 6,\ 1\).</p>
+<p>Vérification : \(1+6+15+20+15+6+1 = 64 = 2^6\). ✓</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p>Démontrer par dénombrement que \(\displaystyle\sum_{k=0}^{n} \binom{n}{k} = 2^n\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Soit \(E\) un ensemble à \(n\) éléments. On compte l'ensemble \(\mathcal{P}(E)\) de toutes les parties de \(E\) de deux façons :</p>
+<ul>
+  <li>D'une part, on a montré que \(|\mathcal{P}(E)| = 2^n\) (chaque élément est pris ou non).</li>
+  <li>D'autre part, on peut classer les parties par taille : il y a \(\displaystyle\binom{n}{k}\) parties de taille \(k\), pour \(k\) allant de 0 à \(n\). Le nombre total de parties est donc \(\displaystyle\sum_{k=0}^{n}\binom{n}{k}\).</li>
+</ul>
+<p>En identifiant : \(\displaystyle\sum_{k=0}^{n}\binom{n}{k} = 2^n\). □</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VI. Applications — Problèmes de dénombrement</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode — Choisir le bon outil</span>
+<p>Face à un problème de dénombrement, se poser les questions suivantes :</p>
+<ol>
+  <li><strong>Y a-t-il répétition possible ?</strong>
+    <ul>
+      <li>Oui → \(k\)-uplets avec répétition : \(n^k\)</li>
+      <li>Non → éléments distincts (questions suivantes)</li>
+    </ul>
+  </li>
+  <li><strong>L'ordre compte-t-il ?</strong>
+    <ul>
+      <li>Oui → arrangement : \(\dfrac{n!}{(n-k)!}\)</li>
+      <li>Non → combinaison : \(\displaystyle\binom{n}{k}\)</li>
+    </ul>
+  </li>
+  <li><strong>Prend-on tous les éléments ?</strong>
+    <ul>
+      <li>Oui → permutation : \(n!\)</li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 11</span>
+<p>On dispose de 12 joueurs pour former une équipe de handball (7 joueurs sur le terrain, postes non différenciés).</p>
+<ol>
+  <li>Combien d'équipes différentes peut-on former ?</li>
+  <li>Si le gardien est imposé (il y a un seul gardien dans l'effectif), combien d'équipes peut-on former ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>On choisit 7 joueurs parmi 12, l'ordre ne compte pas : \(\displaystyle\binom{12}{7} = \binom{12}{5} = \frac{12 \times 11 \times 10 \times 9 \times 8}{120} = 792\).</li>
+  <li>Le gardien est imposé. Il reste à choisir 6 joueurs parmi les 11 autres : \(\displaystyle\binom{11}{6} = \binom{11}{5} = \frac{11 \times 10 \times 9 \times 8 \times 7}{120} = 462\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 12</span>
+<p>Une urne contient 10 boules numérotées de 1 à 10. On tire successivement 3 boules <strong>sans remise</strong>.</p>
+<ol>
+  <li>Combien de tirages ordonnés (le 1<sup>er</sup>, le 2<sup>e</sup>, le 3<sup>e</sup> tirage sont distingués) sont possibles ?</li>
+  <li>Combien de tirages non ordonnés (on s'intéresse uniquement aux boules obtenues) sont possibles ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Tirages ordonnés = arrangements de 3 parmi 10 : \(10 \times 9 \times 8 = 720\).</li>
+  <li>Tirages non ordonnés = combinaisons de 3 parmi 10 : \(\displaystyle\binom{10}{3} = \frac{10 \times 9 \times 8}{6} = 120\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 13</span>
+<p>Au Loto, on tire 5 numéros parmi 49 (sans remise, l'ordre ne compte pas).</p>
+<ol>
+  <li>Combien de grilles différentes existe-t-il ?</li>
+  <li>Quelle est la probabilité de trouver les 5 bons numéros ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\displaystyle\binom{49}{5} = \frac{49 \times 48 \times 47 \times 46 \times 45}{120} = 1\,906\,884\) grilles.</li>
+  <li>La probabilité de gagner est \(\dfrac{1}{1\,906\,884} \approx 5{,}24 \times 10^{-7}\), soit environ 1 chance sur 1,9 million.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 14</span>
+<p>Une plaque d'immatriculation est composée de 2 lettres, 3 chiffres puis 2 lettres (format AA-123-BB). L'alphabet utilisé compte 26 lettres et les chiffres vont de 0 à 9. Les répétitions sont autorisées.</p>
+<p>Combien de plaques d'immatriculation différentes ce système permet-il ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Par le principe multiplicatif :</p>
+<p>\(26^2 \times 10^3 \times 26^2 = 676 \times 1000 \times 676 = 456\,976\,000\)</p>
+<p>Ce système permet environ <strong>457 millions</strong> de plaques différentes.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 15</span>
+<p class="exo-titre">Problème de synthèse — Main de poker</p>
+<p>Un jeu de 52 cartes est composé de 4 couleurs (pique, cœur, carreau, trèfle) de 13 valeurs chacune. On distribue une main de 5 cartes.</p>
+<ol>
+  <li>Combien de mains de 5 cartes peut-on distribuer ?</li>
+  <li>Combien de mains contiennent exactement 2 as ?</li>
+  <li>Combien de mains sont composées de 5 cartes de la même couleur (« couleur ») ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\displaystyle\binom{52}{5} = \frac{52 \times 51 \times 50 \times 49 \times 48}{120} = 2\,598\,960\) mains.</li>
+  <li>On choisit 2 as parmi 4 : \(\displaystyle\binom{4}{2} = 6\). Puis 3 cartes parmi les 48 non-as : \(\displaystyle\binom{48}{3} = 17\,296\).
+  <br>Total : \(6 \times 17\,296 = 103\,776\) mains avec exactement 2 as.</li>
+  <li>On choisit 1 couleur parmi 4 : 4 choix. Puis 5 cartes parmi les 13 de cette couleur : \(\displaystyle\binom{13}{5} = 1287\).
+  <br>Total : \(4 \times 1287 = 5148\) couleurs.</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

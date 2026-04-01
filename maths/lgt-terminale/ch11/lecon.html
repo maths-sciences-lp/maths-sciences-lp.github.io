@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch11 – Primitives et équations différentielles – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 11 – Primitives et équations différentielles</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Analyse</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Déterminer les primitives des fonctions de référence</li>
+  <li>Calculer une primitive en utilisant les fonctions composées</li>
+  <li>Résoudre l'équation différentielle \(y' = ay\)</li>
+  <li>Résoudre l'équation différentielle \(y' = ay + b\)</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Notion de primitive</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Soit \(f\) une fonction définie sur un intervalle \(I\). Une fonction \(F\) est une <strong>primitive</strong> de \(f\) sur \(I\) si \(F\) est dérivable sur \(I\) et \(F' = f\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété fondamentale</span>
+<p>Si \(F\) est une primitive de \(f\) sur \(I\), alors <strong>toutes les primitives</strong> de \(f\) sur \(I\) sont les fonctions de la forme \(F + C\) où \(C\) est une constante réelle.</p>
+<p>Deux primitives d'une même fonction diffèrent d'une constante.</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Existence</span>
+<p>Toute fonction continue sur un intervalle \(I\) admet des primitives sur \(I\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Primitive vérifiant une condition initiale</span>
+<p>Soit \(f\) continue sur \(I\) et \(x_0 \in I\), \(y_0 \in \mathbb{R}\). Il existe une <strong>unique</strong> primitive \(F\) de \(f\) sur \(I\) telle que \(F(x_0) = y_0\).</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Tableau des primitives</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Primitives des fonctions de référence</span>
+<table>
+<thead><tr><th>Fonction \(f(x)\)</th><th>Primitive \(F(x)\)</th><th>Intervalle</th></tr></thead>
+<tbody>
+<tr><td>\(k\) (constante)</td><td>\(kx\)</td><td>\(\mathbb{R}\)</td></tr>
+<tr><td>\(x^n\) (\(n \in \mathbb{N}\))</td><td>\(\frac{x^{n+1}}{n+1}\)</td><td>\(\mathbb{R}\)</td></tr>
+<tr><td>\(\frac{1}{x^2}\)</td><td>\(-\frac{1}{x}\)</td><td>\(]0;+\infty[\) ou \(]-\infty;0[\)</td></tr>
+<tr><td>\(\frac{1}{\sqrt{x}}\)</td><td>\(2\sqrt{x}\)</td><td>\(]0;+\infty[\)</td></tr>
+<tr><td>\(\frac{1}{x}\)</td><td>\(\ln|x|\)</td><td>\(]0;+\infty[\) ou \(]-\infty;0[\)</td></tr>
+<tr><td>\(e^x\)</td><td>\(e^x\)</td><td>\(\mathbb{R}\)</td></tr>
+<tr><td>\(\cos x\)</td><td>\(\sin x\)</td><td>\(\mathbb{R}\)</td></tr>
+<tr><td>\(\sin x\)</td><td>\(-\cos x\)</td><td>\(\mathbb{R}\)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Primitives de fonctions composées</span>
+<table>
+<thead><tr><th>Fonction \(f(x)\)</th><th>Primitive \(F(x)\)</th></tr></thead>
+<tbody>
+<tr><td>\(u' \times u^n\) (\(n \neq -1\))</td><td>\(\frac{u^{n+1}}{n+1}\)</td></tr>
+<tr><td>\(\frac{u'}{u}\)</td><td>\(\ln|u|\)</td></tr>
+<tr><td>\(u'\,e^u\)</td><td>\(e^u\)</td></tr>
+<tr><td>\(u'\cos u\)</td><td>\(\sin u\)</td></tr>
+<tr><td>\(u'\sin u\)</td><td>\(-\cos u\)</td></tr>
+<tr><td>\(\frac{u'}{2\sqrt{u}}\)</td><td>\(\sqrt{u}\)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Déterminer une primitive de chaque fonction :</p>
+<ol>
+  <li>\(f(x) = 3x^2 + 2x - 5\)</li>
+  <li>\(g(x) = \frac{1}{x^3}\) sur \(]0;+\infty[\)</li>
+  <li>\(h(x) = 4e^x - 3\sin x\)</li>
+  <li>\(k(x) = \frac{2}{\sqrt{x}}\) sur \(]0;+\infty[\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(F(x) = x^3 + x^2 - 5x\).</li>
+  <li>\(g(x) = x^{-3}\). \(G(x) = \frac{x^{-2}}{-2} = -\frac{1}{2x^2}\).</li>
+  <li>\(H(x) = 4e^x + 3\cos x\).</li>
+  <li>\(k(x) = 2x^{-1/2}\). \(K(x) = 2\times 2\sqrt{x} = 4\sqrt{x}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Déterminer une primitive (fonctions composées) :</p>
+<ol>
+  <li>\(f(x) = (2x+1)^4\)</li>
+  <li>\(g(x) = 3e^{-2x}\)</li>
+  <li>\(h(x) = \frac{2x}{x^2+1}\)</li>
+  <li>\(k(x) = \cos(3x+1)\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u = 2x+1\), \(u'=2\). \(f(x)=\frac{1}{2}\times 2(2x+1)^4\). \(F(x)=\frac{1}{2}\times\frac{(2x+1)^5}{5}=\frac{(2x+1)^5}{10}\).</li>
+  <li>\(u = -2x\), \(u'=-2\). \(g(x)=3\times(-\frac{1}{2})\times(-2)e^{-2x}\). \(G(x)=-\frac{3}{2}e^{-2x}\).</li>
+  <li>\(h(x) = \frac{u'}{u}\) avec \(u=x^2+1\). \(H(x)=\ln(x^2+1)\).</li>
+  <li>\(u=3x+1\), \(u'=3\). \(k(x)=\frac{1}{3}\times 3\cos(3x+1)\). \(K(x)=\frac{1}{3}\sin(3x+1)\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Déterminer la primitive \(F\) de \(f(x) = e^{2x}+1\) vérifiant \(F(0) = 3\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Primitives générales : \(F(x)=\frac{1}{2}e^{2x}+x+C\).</p>
+<p>\(F(0)=\frac{1}{2}+0+C=3\), \(C=\frac{5}{2}\). Donc \(F(x)=\frac{1}{2}e^{2x}+x+\frac{5}{2}\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Équation différentielle \(y' = ay\)</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Une <strong>équation différentielle</strong> est une équation dont l'inconnue est une fonction \(y\) et qui fait intervenir \(y\) et ses dérivées.</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Solutions de \(y' = ay\)</span>
+<p>Soit \(a \in \mathbb{R}^*\). Les solutions de l'équation différentielle \(y' = ay\) sont les fonctions :</p>
+\[y(x) = Ce^{ax}\]
+<p>où \(C\) est une constante réelle quelconque.</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Avec condition initiale</span>
+<p>Si on impose \(y(x_0) = y_0\), on détermine \(C\) : \(y_0 = Ce^{ax_0}\), d'où \(C = y_0 e^{-ax_0}\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Résoudre \(y' = 3y\) avec \(y(0) = 5\).</p>
+<p>Solution générale : \(y = Ce^{3x}\). \(y(0) = C = 5\). Donc \(y(x) = 5e^{3x}\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Résoudre les équations différentielles suivantes :</p>
+<ol>
+  <li>\(y' = -2y\)</li>
+  <li>\(y' = 5y\) avec \(y(0) = 3\)</li>
+  <li>\(y' + y = 0\) avec \(y(1) = e\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(y(x) = Ce^{-2x}\), \(C \in \mathbb{R}\).</li>
+  <li>\(y(x) = Ce^{5x}\). \(y(0)=C=3\). \(y(x)=3e^{5x}\).</li>
+  <li>\(y'+y=0 \Leftrightarrow y'=-y\). \(y(x)=Ce^{-x}\). \(y(1)=Ce^{-1}=e\), \(C=e^2\). \(y(x)=e^{2-x}\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Équation différentielle \(y' = ay + b\)</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété — Solutions de \(y' = ay + b\)</span>
+<p>Soit \(a \neq 0\) et \(b \in \mathbb{R}\). Les solutions de \(y' = ay + b\) sont :</p>
+\[y(x) = Ce^{ax} - \frac{b}{a}\]
+<p>où \(C\) est une constante réelle.</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Trouver la solution</span>
+<ol>
+  <li><strong>Solution particulière constante :</strong> si \(y = k\) est constante, \(y' = 0\), donc \(0 = ak+b\), \(k = -\frac{b}{a}\).</li>
+  <li><strong>Solution générale :</strong> on pose \(z = y - k = y + \frac{b}{a}\). Alors \(z' = y' = ay+b = a(z-\frac{b}{a})+b = az\). Donc \(z = Ce^{ax}\).</li>
+  <li>Ainsi \(y = Ce^{ax} - \frac{b}{a}\).</li>
+</ol>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Résoudre \(y' = 2y - 6\) avec \(y(0) = 4\).</p>
+<p>Solution particulière : \(k = -\frac{-6}{2} = 3\). Solution générale : \(y = Ce^{2x}+3\).</p>
+<p>\(y(0) = C+3 = 4\), \(C = 1\). Donc \(y(x) = e^{2x}+3\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Résoudre les équations différentielles suivantes :</p>
+<ol>
+  <li>\(y' = -3y + 6\)</li>
+  <li>\(y' = y - 4\) avec \(y(0) = 7\)</li>
+  <li>\(y' + 2y = 10\) avec \(y(0) = 0\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(a=-3\), \(b=6\). \(k=-\frac{6}{-3}=2\). \(y=Ce^{-3x}+2\).</li>
+  <li>\(a=1\), \(b=-4\). \(k=4\). \(y=Ce^x+4\). \(y(0)=C+4=7\), \(C=3\). \(y=3e^x+4\).</li>
+  <li>\(y'=-2y+10\). \(a=-2\), \(b=10\). \(k=5\). \(y=Ce^{-2x}+5\). \(y(0)=C+5=0\), \(C=-5\). \(y=5(1-e^{-2x})\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Applications</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p class="exo-titre">Décroissance radioactive</p>
+<p>La masse \(m(t)\) d'un échantillon radioactif vérifie \(m'(t) = -\lambda m(t)\) avec \(\lambda > 0\). La masse initiale est \(m_0\).</p>
+<ol>
+  <li>Résoudre l'équation différentielle.</li>
+  <li>Exprimer le temps de demi-vie \(T\) (temps pour que la masse soit divisée par 2).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(m(t) = m_0 e^{-\lambda t}\).</li>
+  <li>\(m(T) = \frac{m_0}{2}\), soit \(e^{-\lambda T}=\frac{1}{2}\), \(-\lambda T=\ln\frac{1}{2}=-\ln 2\), \(T=\frac{\ln 2}{\lambda}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p class="exo-titre">Refroidissement de Newton</p>
+<p>La température \(T(t)\) d'un objet plongé dans un milieu à température constante \(T_m = 20°\text{C}\) vérifie :</p>
+\[T'(t) = -0{,}1\,(T(t)-20)\]
+<p>La température initiale est \(T(0) = 80°\text{C}\).</p>
+<ol>
+  <li>Poser \(\theta(t) = T(t)-20\) et écrire l'équation différentielle vérifiée par \(\theta\).</li>
+  <li>Résoudre et exprimer \(T(t)\).</li>
+  <li>Au bout de combien de temps la température atteint-elle 30°C ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\theta'(t)=T'(t)=-0{,}1\,\theta(t)\). C'est \(\theta'=-0{,}1\,\theta\).</li>
+  <li>\(\theta(t)=\theta(0)e^{-0{,}1t}=60e^{-0{,}1t}\). Donc \(T(t)=20+60e^{-0{,}1t}\).</li>
+  <li>\(T(t)=30\Leftrightarrow 60e^{-0{,}1t}=10\Leftrightarrow e^{-0{,}1t}=\frac{1}{6}\Leftrightarrow -0{,}1t=\ln\frac{1}{6}=-\ln 6\Leftrightarrow t=10\ln 6\approx 17{,}9\) minutes.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p class="exo-titre">Allure des courbes</p>
+<p>Soit \(y' = -y + 3\) avec différentes conditions initiales : \(y(0)=0\), \(y(0)=3\), \(y(0)=6\).</p>
+<ol>
+  <li>Résoudre dans chaque cas.</li>
+  <li>Quelle est la valeur limite commune ? Interpréter.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Solution générale : \(y=Ce^{-x}+3\).
+  <ul>
+    <li>\(y(0)=0\) : \(C=-3\), \(y=-3e^{-x}+3\) (croissante vers 3).</li>
+    <li>\(y(0)=3\) : \(C=0\), \(y=3\) (constante).</li>
+    <li>\(y(0)=6\) : \(C=3\), \(y=3e^{-x}+3\) (décroissante vers 3).</li>
+  </ul></li>
+  <li>\(\lim_{+\infty}y=3\) dans tous les cas. La valeur \(y=3\) est la <strong>solution d'équilibre</strong> : quelle que soit la condition initiale, les solutions convergent vers 3.</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

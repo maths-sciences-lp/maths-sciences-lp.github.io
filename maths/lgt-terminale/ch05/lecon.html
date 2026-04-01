@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Suites : limites et convergence – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 5 – Suites : limites et convergence</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Analyse</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Définir la convergence et la divergence d'une suite</li>
+  <li>Déterminer la limite d'une suite par les opérations et la comparaison</li>
+  <li>Connaître le comportement des suites géométriques \((q^n)\)</li>
+  <li>Utiliser le théorème de la suite croissante majorée</li>
+  <li>Raisonner par récurrence pour établir des propriétés de suites</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Limite d'une suite</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<h3>1. Suite tendant vers \(+\infty\)</h3>
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>La suite \((u_n)\) <strong>tend vers \(+\infty\)</strong> si, pour tout réel \(A\), il existe un rang \(n_0\) à partir duquel tous les termes \(u_n\) sont supérieurs à \(A\).</p>
+\[\forall A \in \mathbb{R},\ \exists n_0 \in \mathbb{N},\ \forall n \geqslant n_0,\ u_n \geqslant A\]
+<p>On note \(\displaystyle\lim_{n \to +\infty} u_n = +\infty\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>La suite \(u_n = n^2\) tend vers \(+\infty\). En effet, pour tout \(A > 0\), il suffit de prendre \(n_0 = \lceil\sqrt{A}\rceil\) pour avoir \(n^2 \geqslant A\) dès que \(n \geqslant n_0\).</p>
+</div>
+
+<div class="def">
+<span class="label label-def">Définition — Suite tendant vers \(-\infty\)</span>
+<p>La suite \((u_n)\) <strong>tend vers \(-\infty\)</strong> si, pour tout réel \(A\), il existe un rang à partir duquel \(u_n \leqslant A\).</p>
+</div>
+
+<h3>2. Suite convergente</h3>
+
+<div class="def">
+<span class="label label-def">Définition — Convergence</span>
+<p>La suite \((u_n)\) <strong>converge</strong> vers le réel \(\ell\) si, pour tout intervalle ouvert contenant \(\ell\), tous les termes de la suite sont dans cet intervalle à partir d'un certain rang.</p>
+\[\forall \varepsilon > 0,\ \exists n_0 \in \mathbb{N},\ \forall n \geqslant n_0,\ |u_n - \ell| \leqslant \varepsilon\]
+<p>On note \(\displaystyle\lim_{n \to +\infty} u_n = \ell\) et on dit que \(\ell\) est la <strong>limite</strong> de la suite.</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Unicité de la limite</span>
+<p>Si une suite converge, sa limite est <strong>unique</strong>.</p>
+</div>
+
+<div class="def">
+<span class="label label-def">Définition — Suite divergente</span>
+<p>Une suite est <strong>divergente</strong> si elle ne converge pas. Elle peut diverger vers \(+\infty\), vers \(-\infty\), ou ne pas avoir de limite du tout (oscillation).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemples</span>
+<ul>
+  <li>\(u_n = \frac{1}{n}\) converge vers 0</li>
+  <li>\(u_n = n^2\) diverge vers \(+\infty\)</li>
+  <li>\(u_n = (-1)^n\) diverge (oscille entre -1 et 1, pas de limite)</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Conjecturer la limite des suites suivantes, puis justifier :</p>
+<ol>
+  <li>\(u_n = \frac{3n+1}{n}\)</li>
+  <li>\(v_n = \frac{n^2-1}{n}\)</li>
+  <li>\(w_n = \frac{(-1)^n}{n}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_n = 3 + \frac{1}{n} \to 3\). La suite converge vers <strong>3</strong>.</li>
+  <li>\(v_n = n - \frac{1}{n} \to +\infty\). La suite <strong>diverge vers \(+\infty\)</strong>.</li>
+  <li>\(-\frac{1}{n} \leqslant w_n \leqslant \frac{1}{n}\) et \(\frac{1}{n} \to 0\). Par le théorème des gendarmes, \(w_n \to 0\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Limites et comparaison</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Théorème des gendarmes</span>
+<p>Si pour tout \(n\) assez grand, \(a_n \leqslant u_n \leqslant b_n\) et si \(\displaystyle\lim a_n = \lim b_n = \ell\), alors \(\displaystyle\lim u_n = \ell\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Théorème de comparaison (divergence)</span>
+<ul>
+  <li>Si \(u_n \geqslant v_n\) à partir d'un certain rang et \(\lim v_n = +\infty\), alors \(\lim u_n = +\infty\).</li>
+  <li>Si \(u_n \leqslant v_n\) à partir d'un certain rang et \(\lim v_n = -\infty\), alors \(\lim u_n = -\infty\).</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Déterminer la limite de \(u_n = \frac{\sin(n)}{n}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>Pour tout \(n \geqslant 1\) : \(-1 \leqslant \sin(n) \leqslant 1\), donc \(-\frac{1}{n} \leqslant \frac{\sin(n)}{n} \leqslant \frac{1}{n}\).</p>
+<p>Or \(\lim \frac{1}{n} = \lim \left(-\frac{1}{n}\right) = 0\). Par le théorème des gendarmes, \(\lim u_n = 0\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Opérations sur les limites</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété — Opérations sur les limites</span>
+<p>Si \(\lim u_n = \ell\) et \(\lim v_n = \ell'\) (avec \(\ell, \ell' \in \mathbb{R}\)) :</p>
+<ul>
+  <li>\(\lim (u_n + v_n) = \ell + \ell'\)</li>
+  <li>\(\lim (\lambda u_n) = \lambda\ell\) pour tout \(\lambda \in \mathbb{R}\)</li>
+  <li>\(\lim (u_n \times v_n) = \ell \times \ell'\)</li>
+  <li>\(\lim \frac{u_n}{v_n} = \frac{\ell}{\ell'}\) si \(\ell' \neq 0\)</li>
+</ul>
+</div>
+
+<div class="att">
+<span class="label label-att">Formes indéterminées</span>
+<p>Certaines combinaisons ne permettent pas de conclure directement. Ce sont les <strong>formes indéterminées</strong> :</p>
+<p>\(+\infty - \infty\), \(0 \times \infty\), \(\frac{\infty}{\infty}\), \(\frac{0}{0}\)</p>
+<p>Dans ces cas, il faut transformer l'expression (factoriser, diviser, encadrer…).</p>
+</div>
+
+<div class="meth">
+<span class="label label-meth">Méthode — Lever une forme indéterminée</span>
+<p>Pour une fraction polynomiale \(\frac{P(n)}{Q(n)}\), on <strong>factorise par le terme de plus haut degré</strong> au numérateur et au dénominateur.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>\(\displaystyle\lim \frac{3n^2 - n + 1}{2n^2 + 5} = \lim \frac{n^2(3 - \frac{1}{n} + \frac{1}{n^2})}{n^2(2 + \frac{5}{n^2})} = \frac{3}{2}\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Déterminer les limites suivantes :</p>
+<ol>
+  <li>\(\displaystyle\lim \frac{2n^3 + n}{n^3 - 1}\)</li>
+  <li>\(\displaystyle\lim \frac{n^2 + 3n}{5n + 1}\)</li>
+  <li>\(\displaystyle\lim (n^2 - 3n)\)</li>
+  <li>\(\displaystyle\lim \frac{1}{n^2 + 1}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>FI \(\frac{\infty}{\infty}\). On factorise par \(n^3\) : \(\frac{2+\frac{1}{n^2}}{1-\frac{1}{n^3}} \to \frac{2}{1} = 2\).</li>
+  <li>FI \(\frac{\infty}{\infty}\). Degré du numérateur > degré du dénominateur : \(\frac{n^2}{5n} = \frac{n}{5} \to +\infty\).</li>
+  <li>FI \(+\infty - \infty\). On factorise : \(n^2 - 3n = n(n-3) \to +\infty\) (produit de deux quantités tendant vers \(+\infty\)).</li>
+  <li>\(n^2 + 1 \to +\infty\), donc \(\frac{1}{n^2+1} \to 0\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Suites géométriques \((q^n)\)</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété — Comportement de \((q^n)\)</span>
+<p>Soit \(q\) un nombre réel :</p>
+<table>
+<thead><tr><th>Valeur de \(q\)</th><th>Limite de \(q^n\)</th></tr></thead>
+<tbody>
+<tr><td>\(q > 1\)</td><td>\(\lim q^n = +\infty\)</td></tr>
+<tr><td>\(q = 1\)</td><td>\(q^n = 1\) pour tout \(n\) (limite = 1)</td></tr>
+<tr><td>\(-1 < q < 1\)</td><td>\(\lim q^n = 0\)</td></tr>
+<tr><td>\(q = -1\)</td><td>\(q^n\) oscille entre -1 et 1 (pas de limite)</td></tr>
+<tr><td>\(q < -1\)</td><td>\(q^n\) diverge (pas de limite)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemples</span>
+<ul>
+  <li>\(\left(\frac{1}{2}\right)^n \to 0\) car \(|q| < 1\)</li>
+  <li>\(2^n \to +\infty\) car \(q > 1\)</li>
+  <li>\(\left(-\frac{3}{4}\right)^n \to 0\) car \(|q| < 1\)</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Déterminer la limite des suites suivantes :</p>
+<ol>
+  <li>\(u_n = 3 \times 0{,}9^n\)</li>
+  <li>\(v_n = 5 - 2 \times 1{,}1^n\)</li>
+  <li>\(w_n = \frac{3^n - 1}{3^n + 1}\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(0{,}9^n \to 0\), donc \(u_n \to 0\).</li>
+  <li>\(1{,}1^n \to +\infty\), donc \(2 \times 1{,}1^n \to +\infty\), et \(v_n \to -\infty\).</li>
+  <li>On divise par \(3^n\) : \(w_n = \frac{1 - 3^{-n}}{1 + 3^{-n}} \to \frac{1-0}{1+0} = 1\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Limites et croissance exponentielle</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété — Croissances comparées</span>
+<p>Pour tout entier \(p \geqslant 1\) et tout réel \(q > 1\) :</p>
+\[\lim_{n \to +\infty} \frac{n^p}{q^n} = 0\]
+<p>Autrement dit, <strong>la suite exponentielle \(q^n\) l'emporte sur toute puissance de \(n\)</strong>.</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>\(\displaystyle\lim \frac{n^{100}}{2^n} = 0\). Même \(n^{100}\) est négligeable devant \(2^n\) quand \(n \to +\infty\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Limite de la fonction exponentielle</span>
+<ul>
+  <li>\(\displaystyle\lim_{n \to +\infty} e^n = +\infty\)</li>
+  <li>\(\displaystyle\lim_{n \to -\infty} e^n = 0\) (soit \(\lim_{n \to +\infty} e^{-n} = 0\))</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Déterminer la limite de \(u_n = n^3 \times \left(\frac{2}{3}\right)^n\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>On écrit \(u_n = \frac{n^3}{(3/2)^n}\). Comme \(\frac{3}{2} > 1\), par croissances comparées : \(\frac{n^3}{(3/2)^n} \to 0\).</p>
+<p>Donc \(u_n \to 0\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VI. Théorème de convergence monotone</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Théorème admis — Suite croissante majorée</span>
+<p>Toute suite <strong>croissante</strong> et <strong>majorée</strong> converge.</p>
+<p>Toute suite <strong>décroissante</strong> et <strong>minorée</strong> converge.</p>
+</div>
+
+<div class="att">
+<span class="label label-att">Attention</span>
+<p>Ce théorème garantit l'<strong>existence</strong> de la limite mais ne donne <strong>pas sa valeur</strong>. Pour trouver la limite, on utilise d'autres techniques (par exemple, si \(u_{n+1} = f(u_n)\), la limite \(\ell\) vérifie \(\ell = f(\ell)\)).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Toute suite croissante non majorée tend vers \(+\infty\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Soit la suite \((u_n)\) définie par \(u_0 = 1\) et \(u_{n+1} = \frac{1}{2}u_n + 1\).</p>
+<ol>
+  <li>Montrer par récurrence que \(u_n \leqslant 2\) pour tout \(n\).</li>
+  <li>Montrer que \((u_n)\) est croissante.</li>
+  <li>En déduire que \((u_n)\) converge et déterminer sa limite.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li><strong>Initialisation :</strong> \(u_0 = 1 \leqslant 2\). ✓
+  <br><strong>Hérédité :</strong> Supposons \(u_n \leqslant 2\). Alors \(u_{n+1} = \frac{1}{2}u_n + 1 \leqslant \frac{1}{2}\times 2 + 1 = 2\). ✓
+  <br>Par récurrence, \(u_n \leqslant 2\) pour tout \(n\).</li>
+  <li>\(u_{n+1} - u_n = \frac{1}{2}u_n + 1 - u_n = 1 - \frac{1}{2}u_n = \frac{2-u_n}{2}\). Comme \(u_n \leqslant 2\), on a \(u_{n+1}-u_n \geqslant 0\). La suite est <strong>croissante</strong>.</li>
+  <li>La suite est croissante et majorée par 2 : elle <strong>converge</strong> vers une limite \(\ell\).
+  <br>En passant à la limite dans \(u_{n+1} = \frac{1}{2}u_n + 1\) : \(\ell = \frac{1}{2}\ell + 1\), \(\frac{1}{2}\ell = 1\), \(\ell = 2\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VII. Raisonnement par récurrence</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode — Raisonnement par récurrence</span>
+<p>Pour démontrer qu'une propriété \(P(n)\) est vraie pour tout \(n \geqslant n_0\) :</p>
+<ol>
+  <li><strong>Initialisation :</strong> vérifier que \(P(n_0)\) est vraie</li>
+  <li><strong>Hérédité :</strong> supposer \(P(n)\) vraie pour un \(n \geqslant n_0\) fixé (<em>hypothèse de récurrence</em>) et montrer que \(P(n+1)\) est alors vraie</li>
+  <li><strong>Conclusion :</strong> par le principe de récurrence, \(P(n)\) est vraie pour tout \(n \geqslant n_0\)</li>
+</ol>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Montrer par récurrence que pour tout \(n \geqslant 1\) : \(\displaystyle\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p><strong>Initialisation (\(n=1\)) :</strong> \(\sum_{k=1}^{1} k^2 = 1\) et \(\frac{1\times 2\times 3}{6} = 1\). ✓</p>
+<p><strong>Hérédité :</strong> Supposons la propriété vraie au rang \(n\). Alors :</p>
+<p>\(\displaystyle\sum_{k=1}^{n+1} k^2 = \sum_{k=1}^{n} k^2 + (n+1)^2 = \frac{n(n+1)(2n+1)}{6} + (n+1)^2\)</p>
+<p>\(= \frac{n(n+1)(2n+1) + 6(n+1)^2}{6} = \frac{(n+1)[n(2n+1) + 6(n+1)]}{6}\)</p>
+<p>\(= \frac{(n+1)(2n^2+7n+6)}{6} = \frac{(n+1)(n+2)(2n+3)}{6}\).</p>
+<p>C'est bien la formule au rang \(n+1\). ✓</p>
+<p><strong>Conclusion :</strong> par récurrence, la formule est vraie pour tout \(n \geqslant 1\). □</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p>Soit \((u_n)\) définie par \(u_0 = 3\) et \(u_{n+1} = \sqrt{2u_n + 3}\).</p>
+<ol>
+  <li>Montrer par récurrence que \(u_n \geqslant 3\) pour tout \(n\).</li>
+  <li>Montrer que \((u_n)\) est décroissante.</li>
+  <li>En déduire que \((u_n)\) converge et déterminer sa limite.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li><strong>Init :</strong> \(u_0 = 3 \geqslant 3\). ✓
+  <br><strong>Héré :</strong> Si \(u_n \geqslant 3\), alors \(2u_n + 3 \geqslant 9\), \(u_{n+1} = \sqrt{2u_n+3} \geqslant 3\). ✓</li>
+  <li>\(u_{n+1}^2 - u_n^2 = 2u_n+3-u_n^2 = -(u_n^2-2u_n-3) = -(u_n-3)(u_n+1)\).
+  <br>Comme \(u_n \geqslant 3\) et \(u_n+1 > 0\), on a \(u_{n+1}^2-u_n^2 \leqslant 0\). Les termes étant positifs, \(u_{n+1} \leqslant u_n\). La suite est <strong>décroissante</strong>.</li>
+  <li>Décroissante et minorée par 3 : elle converge. \(\ell = \sqrt{2\ell+3}\), \(\ell^2 = 2\ell+3\), \(\ell^2-2\ell-3=0\), \((\ell-3)(\ell+1)=0\). Comme \(\ell \geqslant 3\) : \(\ell = 3\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>VIII. Suites et modélisation</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="exo">
+<span class="exo-num">Exercice 9</span>
+<p class="exo-titre">Évolution d'une population</p>
+<p>Une population de bactéries est modélisée par la suite \((u_n)\) définie par \(u_0 = 100\) et \(u_{n+1} = 1{,}5\,u_n - 50\).</p>
+<ol>
+  <li>Calculer \(u_1, u_2, u_3\).</li>
+  <li>On pose \(v_n = u_n - 100\). Montrer que \((v_n)\) est géométrique et préciser sa raison.</li>
+  <li>Exprimer \(v_n\) puis \(u_n\) en fonction de \(n\).</li>
+  <li>Déterminer la limite de \((u_n)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(u_1 = 150-50=100\), \(u_2 = 150-50=100\), \(u_3 = 100\). La suite semble constante.</li>
+  <li>\(v_{n+1} = u_{n+1}-100 = 1{,}5\,u_n - 50 - 100 = 1{,}5\,u_n - 150 = 1{,}5(u_n-100) = 1{,}5\,v_n\).
+  <br>\((v_n)\) est géométrique de raison \(q = 1{,}5\).</li>
+  <li>\(v_n = v_0 \times 1{,}5^n = (100-100) \times 1{,}5^n = 0\). Donc \(u_n = v_n + 100 = 100\).</li>
+  <li>La suite est constante : \(\lim u_n = 100\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 10</span>
+<p class="exo-titre">Problème de synthèse — Recherche de seuil</p>
+<p>Soit la suite géométrique \((u_n)\) définie par \(u_n = 5000 \times 0{,}95^n\).</p>
+<ol>
+  <li>Montrer que \((u_n)\) est décroissante.</li>
+  <li>Déterminer sa limite.</li>
+  <li>Déterminer le plus petit entier \(n\) tel que \(u_n < 1\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\frac{u_{n+1}}{u_n} = 0{,}95 < 1\) et \(u_n > 0\), donc \(u_{n+1} < u_n\). La suite est <strong>décroissante</strong>.</li>
+  <li>\(0{,}95^n \to 0\) car \(|0{,}95|<1\), donc \(u_n \to 0\).</li>
+  <li>\(u_n < 1 \Leftrightarrow 5000 \times 0{,}95^n < 1 \Leftrightarrow 0{,}95^n < \frac{1}{5000}\).
+  <br>\(n\ln(0{,}95) < -\ln(5000)\). Comme \(\ln(0{,}95) < 0\) : \(n > \frac{\ln(5000)}{-\ln(0{,}95)} = \frac{\ln 5000}{\ln(20/19)}\).
+  <br>\(n > \frac{8{,}517}{0{,}05129} \approx 166{,}1\). Le plus petit entier est \(n = 167\).</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

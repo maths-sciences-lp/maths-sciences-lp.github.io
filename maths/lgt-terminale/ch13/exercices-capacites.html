@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch13 – Exercices par capacités – Épreuves indépendantes et loi binomiale – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 13 – Épreuves indépendantes et loi binomiale</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Modéliser une situation par un schéma de Bernoulli et une loi binomiale</li>
+  <li><strong>C2</strong> — Calculer des probabilités avec la loi binomiale, résoudre des problèmes de seuil</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Modéliser</button>
+  <button class="btn-cap" data-filtre="C2">C2 — Calculer</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Modéliser une situation par un schéma de Bernoulli</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Un QCM comporte 10 questions à 4 choix. Un élève répond au hasard. Soit \(X\) le nombre de bonnes réponses.</p>
+<ol>
+  <li>Justifier que \(X\) suit une loi binomiale. Préciser les paramètres.</li>
+  <li>Calculer \(E(X)\). Interpréter.</li>
+  <li>Calculer \(P(X\geqslant 5)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>10 questions indépendantes, chaque réponse correcte avec \(p=\frac{1}{4}\). \(X\sim\mathcal{B}(10;\frac{1}{4})\).</li>
+  <li>\(E(X)=10\times\frac{1}{4}=2{,}5\). En moyenne, l'élève obtient 2,5 bonnes réponses.</li>
+  <li>\(P(X\geqslant 5)=1-P(X\leqslant 4)\approx 1-0{,}9219=0{,}0781\). Environ 7,8 %.</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Dans chacune des situations suivantes, indiquer si on peut modéliser par une loi binomiale. Si oui, préciser \(n\) et \(p\).</p>
+<ol>
+  <li>On tire 5 cartes successivement avec remise dans un jeu de 32 cartes. \(X\) = nombre de cœurs.</li>
+  <li>On tire 5 cartes simultanément dans un jeu de 32 cartes. \(X\) = nombre de cœurs.</li>
+  <li>Un médicament a 80 % de chances de guérir. On traite 15 patients indépendants. \(X\) = nombre de guérisons.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li><strong>Oui</strong>. Avec remise = épreuves indépendantes identiques. \(n=5\), \(p=\frac{8}{32}=\frac{1}{4}\).</li>
+  <li><strong>Non</strong>. Tirage sans remise : les épreuves ne sont pas indépendantes (loi hypergéométrique).</li>
+  <li><strong>Oui</strong>. \(n=15\), \(p=0{,}8\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Une machine produit des pièces dont 3 % sont défectueuses. On prélève un échantillon de 50 pièces. Modéliser et calculer la probabilité qu'il n'y ait aucune pièce défectueuse.</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(X\sim\mathcal{B}(50;0{,}03)\). \(P(X=0)=0{,}97^{50}\approx 0{,}218\).</p>
+</div>
+</div>
+
+</section>
+
+<section class="cap-section" data-cap="C2">
+<h2>C2 — Calculer des probabilités, résoudre des problèmes de seuil</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>\(X\sim\mathcal{B}(8;0{,}4)\). Calculer :</p>
+<ol>
+  <li>\(P(X=3)\)</li>
+  <li>\(P(X\leqslant 2)\)</li>
+  <li>\(P(3\leqslant X\leqslant 5)\)</li>
+  <li>\(E(X)\) et \(\sigma(X)\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(P(X=3)=\binom{8}{3}0{,}4^3\times 0{,}6^5=56\times 0{,}064\times 0{,}07776\approx 0{,}2787\).</li>
+  <li>\(P(X\leqslant 2)=P(X=0)+P(X=1)+P(X=2)\approx 0{,}0168+0{,}0896+0{,}2090=0{,}3154\).</li>
+  <li>\(P(3\leqslant X\leqslant 5)=P(X\leqslant 5)-P(X\leqslant 2)\approx 0{,}9502-0{,}3154=0{,}6348\).</li>
+  <li>\(E(X)=3{,}2\). \(\sigma(X)=\sqrt{8\times 0{,}4\times 0{,}6}=\sqrt{1{,}92}\approx 1{,}386\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>Un joueur lance un dé 12 fois. Quelle est la probabilité d'obtenir au moins un 6 ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(X\sim\mathcal{B}(12;\frac{1}{6})\). \(P(X\geqslant 1)=1-P(X=0)=1-\left(\frac{5}{6}\right)^{12}\approx 1-0{,}112=0{,}888\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p>Combien de fois faut-il lancer un dé pour que la probabilité d'obtenir au moins un 6 dépasse 95 % ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(1-\left(\frac{5}{6}\right)^n\geqslant 0{,}95\), soit \(\left(\frac{5}{6}\right)^n\leqslant 0{,}05\).</p>
+<p>\(n\geqslant\frac{\ln 0{,}05}{\ln(5/6)}=\frac{-2{,}996}{-0{,}1823}\approx 16{,}4\). Il faut au moins <strong>17 lancers</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 7</span>
+<p>Un test de dépistage a une sensibilité de 95 % (probabilité de détecter un malade). On teste 200 personnes malades (indépendamment). Soit \(X\) le nombre de tests positifs.</p>
+<ol>
+  <li>Quelle est la loi de \(X\) ?</li>
+  <li>Calculer \(E(X)\) et \(\sigma(X)\).</li>
+  <li>Déterminer \(P(X\geqslant 185)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(X\sim\mathcal{B}(200;0{,}95)\).</li>
+  <li>\(E(X)=190\). \(\sigma(X)=\sqrt{200\times 0{,}95\times 0{,}05}=\sqrt{9{,}5}\approx 3{,}08\).</li>
+  <li>Par la calculatrice : \(P(X\geqslant 185)=1-P(X\leqslant 184)\approx 0{,}957\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 8</span>
+<p class="exo-titre">Algorithme</p>
+<p>Écrire un programme Python qui simule \(N=10\,000\) schémas de Bernoulli de paramètres \(n=20\), \(p=0{,}3\) et estime \(P(X\geqslant 8)\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<pre><code>import random
+
+N = 10000
+n, p = 20, 0.3
+compteur = 0
+
+for _ in range(N):
+    x = sum(1 for _ in range(n) if random.random() < p)
+    if x >= 8:
+        compteur += 1
+
+print(f"Estimation de P(X>=8) : {compteur/N}")
+# Valeur théorique : environ 0.228</code></pre>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>

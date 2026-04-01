@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch13 – Épreuves indépendantes et loi binomiale – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 13 – Épreuves indépendantes et loi binomiale</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Probabilités</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Modéliser une succession d'épreuves indépendantes</li>
+  <li>Reconnaître un schéma de Bernoulli et utiliser la loi binomiale</li>
+  <li>Calculer des probabilités avec la loi binomiale</li>
+  <li>Résoudre des problèmes de seuil</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Épreuves indépendantes</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition — Indépendance</span>
+<p>Deux événements \(A\) et \(B\) sont <strong>indépendants</strong> si :</p>
+\[P(A \cap B) = P(A) \times P(B)\]
+<p>L'occurrence de l'un n'influence pas la probabilité de l'autre.</p>
+</div>
+
+<div class="def">
+<span class="label label-def">Succession d'épreuves indépendantes</span>
+<p>On considère une succession de \(n\) épreuves aléatoires. Les épreuves sont <strong>indépendantes</strong> si le résultat de chaque épreuve n'influence pas les résultats des autres. La probabilité d'une issue \((x_1, x_2, \ldots, x_n)\) est alors :</p>
+\[P((x_1, \ldots, x_n)) = P(x_1) \times P(x_2) \times \cdots \times P(x_n)\]
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>On lance un dé équilibré 3 fois. La probabilité d'obtenir (6, 1, 3) est \(\frac{1}{6}\times\frac{1}{6}\times\frac{1}{6}=\frac{1}{216}\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>On lance une pièce truquée (\(P(\text{Pile})=0{,}6\)) trois fois de suite.</p>
+<ol>
+  <li>Calculer la probabilité d'obtenir (Pile, Face, Pile).</li>
+  <li>Calculer la probabilité d'obtenir exactement 2 Pile.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(P(\text{P,F,P}) = 0{,}6\times 0{,}4\times 0{,}6 = 0{,}144\).</li>
+  <li>Les issues avec 2 Pile : (P,P,F), (P,F,P), (F,P,P). Chacune a la probabilité \(0{,}6^2\times 0{,}4=0{,}144\). Total : \(3\times 0{,}144=0{,}432\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Épreuve de Bernoulli et loi de Bernoulli</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition</span>
+<p>Une <strong>épreuve de Bernoulli</strong> est une expérience aléatoire à deux issues : <strong>succès</strong> (avec probabilité \(p\)) et <strong>échec</strong> (avec probabilité \(q = 1-p\)).</p>
+<p>La variable aléatoire \(X\) qui vaut 1 en cas de succès et 0 en cas d'échec suit la <strong>loi de Bernoulli</strong> de paramètre \(p\), notée \(\mathcal{B}(p)\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<p>Si \(X \sim \mathcal{B}(p)\) : \(E(X) = p\) et \(V(X) = p(1-p)\).</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Schéma de Bernoulli et loi binomiale</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="def">
+<span class="label label-def">Définition — Schéma de Bernoulli</span>
+<p>Un <strong>schéma de Bernoulli</strong> de paramètres \(n\) et \(p\) est la répétition de \(n\) épreuves de Bernoulli <strong>indépendantes</strong> et <strong>identiques</strong>, chacune de probabilité de succès \(p\).</p>
+</div>
+
+<div class="def">
+<span class="label label-def">Définition — Loi binomiale</span>
+<p>La variable aléatoire \(X\) comptant le <strong>nombre de succès</strong> dans un schéma de Bernoulli de paramètres \(n\) et \(p\) suit la <strong>loi binomiale</strong> \(\mathcal{B}(n,p)\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Formule</span>
+<p>Si \(X \sim \mathcal{B}(n,p)\), alors pour \(k \in \{0, 1, \ldots, n\}\) :</p>
+\[P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\]
+</div>
+
+<div class="meth">
+<span class="label label-meth">Interprétation de la formule</span>
+<ul>
+  <li>\(\binom{n}{k}\) : nombre de façons de placer les \(k\) succès parmi les \(n\) épreuves</li>
+  <li>\(p^k\) : probabilité de \(k\) succès</li>
+  <li>\((1-p)^{n-k}\) : probabilité de \(n-k\) échecs</li>
+</ul>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Espérance, variance et écart type</span>
+<p>Si \(X \sim \mathcal{B}(n,p)\) :</p>
+<ul>
+  <li>\(E(X) = np\)</li>
+  <li>\(V(X) = np(1-p)\)</li>
+  <li>\(\sigma(X) = \sqrt{np(1-p)}\)</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Un contrôle qualité porte sur des pièces dont 5 % sont défectueuses. On prélève 20 pièces (avec remise).</p>
+<ol>
+  <li>Justifier que le nombre \(X\) de pièces défectueuses suit une loi binomiale. Préciser ses paramètres.</li>
+  <li>Calculer \(P(X=0)\), \(P(X=1)\), \(P(X=2)\).</li>
+  <li>Calculer \(P(X \geqslant 1)\).</li>
+  <li>Calculer \(E(X)\) et \(\sigma(X)\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>20 épreuves indépendantes, chacune avec \(p=0{,}05\). \(X\sim\mathcal{B}(20;\ 0{,}05)\).</li>
+  <li>\(P(X=0)=0{,}95^{20}\approx 0{,}3585\). \(P(X=1)=\binom{20}{1}\times 0{,}05\times 0{,}95^{19}\approx 0{,}3774\). \(P(X=2)=\binom{20}{2}\times 0{,}05^2\times 0{,}95^{18}\approx 0{,}1887\).</li>
+  <li>\(P(X\geqslant 1)=1-P(X=0)\approx 1-0{,}3585=0{,}6415\).</li>
+  <li>\(E(X)=20\times 0{,}05=1\). \(\sigma(X)=\sqrt{20\times 0{,}05\times 0{,}95}\approx 0{,}974\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Calculs avec la loi binomiale</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode — Probabilités cumulées</span>
+<ul>
+  <li>\(P(X \leqslant k) = \displaystyle\sum_{i=0}^{k}P(X=i)\)</li>
+  <li>\(P(X \geqslant k) = 1 - P(X \leqslant k-1)\)</li>
+  <li>\(P(k_1 \leqslant X \leqslant k_2) = P(X \leqslant k_2) - P(X \leqslant k_1-1)\)</li>
+</ul>
+<p>Ces calculs se font efficacement à la calculatrice (fonction binomCdf ou binomFrépc).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>On lance un dé équilibré 10 fois. Soit \(X\) le nombre de 6 obtenus.</p>
+<ol>
+  <li>Quelle est la loi de \(X\) ?</li>
+  <li>Calculer \(P(X=3)\).</li>
+  <li>Calculer \(P(X\leqslant 2)\).</li>
+  <li>Déterminer le plus petit \(k\) tel que \(P(X\leqslant k)\geqslant 0{,}95\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(X\sim\mathcal{B}(10;\ \frac{1}{6})\).</li>
+  <li>\(P(X=3)=\binom{10}{3}\left(\frac{1}{6}\right)^3\left(\frac{5}{6}\right)^7=120\times\frac{1}{216}\times\frac{78125}{279936}\approx 0{,}155\).</li>
+  <li>\(P(X\leqslant 2)=P(X=0)+P(X=1)+P(X=2)\approx 0{,}162+0{,}323+0{,}291=0{,}776\).</li>
+  <li>Par calcul : \(P(X\leqslant 3)\approx 0{,}930\), \(P(X\leqslant 4)\approx 0{,}985\). Donc \(k=4\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Problèmes de seuil</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode — Problème de seuil avec la loi binomiale</span>
+<p>On cherche souvent le plus petit \(n\) tel qu'une probabilité dépasse un seuil donné. Typiquement :</p>
+<p>« Quel est le nombre minimal d'épreuves pour que la probabilité d'avoir au moins un succès dépasse 0,95 ? »</p>
+<p>\(P(X\geqslant 1)=1-(1-p)^n\geqslant 0{,}95\), soit \((1-p)^n\leqslant 0{,}05\), d'où \(n\geqslant\frac{\ln 0{,}05}{\ln(1-p)}\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Un produit a une probabilité \(p=0{,}02\) d'être défectueux. Combien de produits faut-il contrôler pour que la probabilité de trouver au moins un défectueux soit supérieure à 99 % ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(P(X\geqslant 1)=1-0{,}98^n\geqslant 0{,}99\), soit \(0{,}98^n\leqslant 0{,}01\).</p>
+<p>\(n\geqslant\frac{\ln 0{,}01}{\ln 0{,}98}=\frac{-4{,}605}{-0{,}0202}\approx 228\). Il faut contrôler au moins <strong>228 produits</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p class="exo-titre">Problème de synthèse</p>
+<p>Un tireur atteint sa cible avec une probabilité \(p=0{,}8\) à chaque tir. Il tire 5 fois (tirs indépendants). Soit \(X\) le nombre de cibles atteintes.</p>
+<ol>
+  <li>Quelle est la loi de \(X\) ? Calculer \(E(X)\).</li>
+  <li>Calculer \(P(X=5)\) (score parfait).</li>
+  <li>Calculer \(P(X\geqslant 3)\) (au moins 3 réussites).</li>
+  <li>Calculer \(P(X=0)\) (échec total).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(X\sim\mathcal{B}(5;0{,}8)\). \(E(X)=5\times 0{,}8=4\).</li>
+  <li>\(P(X=5)=0{,}8^5=0{,}32768\approx 0{,}328\).</li>
+  <li>\(P(X\geqslant 3)=P(X=3)+P(X=4)+P(X=5)\).
+  <br>\(P(X=3)=\binom{5}{3}0{,}8^3\times 0{,}2^2=10\times 0{,}512\times 0{,}04=0{,}2048\).
+  <br>\(P(X=4)=\binom{5}{4}0{,}8^4\times 0{,}2=5\times 0{,}4096\times 0{,}2=0{,}4096\).
+  <br>\(P(X\geqslant 3)=0{,}2048+0{,}4096+0{,}3277=0{,}9421\).</li>
+  <li>\(P(X=0)=0{,}2^5=0{,}00032\).</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

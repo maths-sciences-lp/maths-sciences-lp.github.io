@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 – Fonctions trigonométriques – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 10 – Fonctions trigonométriques</h1>
+  <p class="sous-titre">Terminale générale · Mathématiques · Analyse</p>
+</header>
+
+<div class="objectifs">
+<h3>Objectifs du chapitre</h3>
+<ul>
+  <li>Connaître les dérivées des fonctions sinus et cosinus</li>
+  <li>Étudier les variations des fonctions trigonométriques</li>
+  <li>Résoudre des équations trigonométriques</li>
+  <li>Étudier des fonctions construites à partir de sin et cos</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>I. Rappels — Cercle trigonométrique</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Valeurs remarquables</span>
+<table>
+<thead><tr><th>\(x\)</th><th>\(0\)</th><th>\(\frac{\pi}{6}\)</th><th>\(\frac{\pi}{4}\)</th><th>\(\frac{\pi}{3}\)</th><th>\(\frac{\pi}{2}\)</th></tr></thead>
+<tbody>
+<tr><td>\(\cos x\)</td><td>\(1\)</td><td>\(\frac{\sqrt{3}}{2}\)</td><td>\(\frac{\sqrt{2}}{2}\)</td><td>\(\frac{1}{2}\)</td><td>\(0\)</td></tr>
+<tr><td>\(\sin x\)</td><td>\(0\)</td><td>\(\frac{1}{2}\)</td><td>\(\frac{\sqrt{2}}{2}\)</td><td>\(\frac{\sqrt{3}}{2}\)</td><td>\(1\)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriétés fondamentales</span>
+<ul>
+  <li>\(\cos^2 x + \sin^2 x = 1\) pour tout \(x \in \mathbb{R}\)</li>
+  <li>\(-1 \leqslant \cos x \leqslant 1\) et \(-1 \leqslant \sin x \leqslant 1\)</li>
+  <li>\(\cos\) est <strong>paire</strong> : \(\cos(-x) = \cos x\)</li>
+  <li>\(\sin\) est <strong>impaire</strong> : \(\sin(-x) = -\sin x\)</li>
+  <li>Les deux fonctions sont <strong>\(2\pi\)-périodiques</strong></li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>II. Dérivées des fonctions sinus et cosinus</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété</span>
+<ul>
+  <li>\((\sin x)' = \cos x\)</li>
+  <li>\((\cos x)' = -\sin x\)</li>
+</ul>
+<p>Plus généralement, avec une fonction composée \(u\) :</p>
+<ul>
+  <li>\((\sin u)' = u'\cos u\)</li>
+  <li>\((\cos u)' = -u'\sin u\)</li>
+</ul>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemples</span>
+<ul>
+  <li>\(f(x) = \sin(3x)\). \(f'(x) = 3\cos(3x)\).</li>
+  <li>\(f(x) = \cos(x^2)\). \(f'(x) = -2x\sin(x^2)\).</li>
+  <li>\(f(x) = \sin^2 x = (\sin x)^2\). \(f'(x) = 2\sin x \cos x = \sin(2x)\).</li>
+</ul>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Dériver les fonctions suivantes :</p>
+<ol>
+  <li>\(f(x) = 2\sin x + 3\cos x\)</li>
+  <li>\(g(x) = \sin(2x+1)\)</li>
+  <li>\(h(x) = x\cos x\)</li>
+  <li>\(k(x) = \cos^3 x\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f'(x) = 2\cos x - 3\sin x\).</li>
+  <li>\(g'(x) = 2\cos(2x+1)\).</li>
+  <li>\(h'(x) = \cos x + x(-\sin x) = \cos x - x\sin x\).</li>
+  <li>\(k'(x) = 3\cos^2 x\times(-\sin x) = -3\cos^2 x\sin x\).</li>
+</ol>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>III. Variations des fonctions sinus et cosinus</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Variations de \(\cos\) sur \([0;2\pi]\)</span>
+<table style="text-align:center">
+<tr><td>\(x\)</td><td>\(0\)</td><td></td><td>\(\pi\)</td><td></td><td>\(2\pi\)</td></tr>
+<tr><td>\(\cos'x=-\sin x\)</td><td></td><td>\(-\)</td><td>\(0\)</td><td>\(+\)</td><td></td></tr>
+<tr><td>\(\cos x\)</td><td>\(1\)</td><td>\(\searrow\)</td><td>\(-1\)</td><td>\(\nearrow\)</td><td>\(1\)</td></tr>
+</table>
+<p>\(\cos\) est <strong>décroissante</strong> sur \([0;\pi]\) et <strong>croissante</strong> sur \([\pi;2\pi]\).</p>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Variations de \(\sin\) sur \([0;2\pi]\)</span>
+<table style="text-align:center">
+<tr><td>\(x\)</td><td>\(0\)</td><td></td><td>\(\frac{\pi}{2}\)</td><td></td><td>\(\frac{3\pi}{2}\)</td><td></td><td>\(2\pi\)</td></tr>
+<tr><td>\(\sin'x=\cos x\)</td><td></td><td>\(+\)</td><td>\(0\)</td><td>\(-\)</td><td>\(0\)</td><td>\(+\)</td><td></td></tr>
+<tr><td>\(\sin x\)</td><td>\(0\)</td><td>\(\nearrow\)</td><td>\(1\)</td><td>\(\searrow\)</td><td>\(-1\)</td><td>\(\nearrow\)</td><td>\(0\)</td></tr>
+</table>
+</div>
+
+<div class="prop">
+<span class="label label-prop">Courbes représentatives</span>
+<p>Les courbes de \(\sin\) et \(\cos\) sont des <strong>sinusoïdes</strong> de période \(2\pi\), d'amplitude 1. La courbe de \(\cos\) est obtenue par translation de celle de \(\sin\) de \(\frac{\pi}{2}\) vers la gauche.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>IV. Résolution d'équations trigonométriques</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="prop">
+<span class="label label-prop">Propriété — Équations avec cosinus</span>
+<p>Pour \(a \in [-1;1]\) et \(x_0 \in [0;\pi]\) tel que \(\cos x_0 = a\) :</p>
+\[\cos x = a \iff x = x_0 + 2k\pi \quad \text{ou} \quad x = -x_0 + 2k\pi \quad (k \in \mathbb{Z})\]
+</div>
+
+<div class="prop">
+<span class="label label-prop">Propriété — Inéquation \(\cos x \leqslant a\)</span>
+<p>Pour \(a \in [-1;1]\) et \(x_0 = \arccos a \in [0;\pi]\) :</p>
+\[\cos x \leqslant a \iff x \in [x_0 + 2k\pi;\ 2\pi - x_0 + 2k\pi] \quad (k \in \mathbb{Z})\]
+<p>Sur \([-\pi;\pi]\) : \(\cos x \leqslant a \iff x \in [x_0;\ 2\pi-x_0]\) ou de façon équivalente \(|x| \geqslant x_0\).</p>
+</div>
+
+<div class="ex">
+<span class="label label-ex">Exemple</span>
+<p>Résoudre \(\cos x = \frac{1}{2}\) sur \([-\pi;\pi]\).</p>
+<p>\(\cos x_0 = \frac{1}{2}\) avec \(x_0 = \frac{\pi}{3}\). Solutions : \(x = \frac{\pi}{3}\) ou \(x = -\frac{\pi}{3}\).</p>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Résoudre sur \([-\pi;\pi]\) :</p>
+<ol>
+  <li>\(\cos x = -\frac{\sqrt{2}}{2}\)</li>
+  <li>\(\sin x = \frac{\sqrt{3}}{2}\)</li>
+  <li>\(\cos(2x) = 0\)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\cos x_0 = \frac{\sqrt{2}}{2}\) donne \(x_0 = \frac{\pi}{4}\). Mais \(\cos x = -\frac{\sqrt{2}}{2}\) donne \(x_0 = \frac{3\pi}{4}\). Solutions : \(x = \frac{3\pi}{4}\) ou \(x = -\frac{3\pi}{4}\).</li>
+  <li>\(\sin x = \frac{\sqrt{3}}{2}\) donne \(x = \frac{\pi}{3}\) ou \(x = \pi-\frac{\pi}{3}=\frac{2\pi}{3}\).</li>
+  <li>\(\cos(2x)=0 \Leftrightarrow 2x = \frac{\pi}{2}+k\pi\), soit \(x = \frac{\pi}{4}+\frac{k\pi}{2}\). Sur \([-\pi;\pi]\) : \(x \in \{-\frac{3\pi}{4}, -\frac{\pi}{4}, \frac{\pi}{4}, \frac{3\pi}{4}\}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>Résoudre sur \([-\pi;\pi]\) l'inéquation \(\cos x \leqslant \frac{1}{2}\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(\cos x_0 = \frac{1}{2}\) avec \(x_0 = \frac{\pi}{3}\). Sur \([-\pi;\pi]\) :</p>
+<p>\(\cos x \leqslant \frac{1}{2} \iff x \in \left[-\pi;-\frac{\pi}{3}\right] \cup \left[\frac{\pi}{3};\pi\right]\).</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<h2>V. Études de fonctions trigonométriques</h2>
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="meth">
+<span class="label label-meth">Méthode — Étudier une fonction trigonométrique</span>
+<ol>
+  <li>Déterminer la <strong>période</strong> (utiliser la périodicité pour se ramener à un intervalle)</li>
+  <li>Exploiter la <strong>parité</strong> éventuelle</li>
+  <li>Dériver et étudier les variations sur une période</li>
+  <li>Tracer la courbe sur une période puis compléter par périodicité</li>
+</ol>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Soit \(f(x) = 2\cos x + \cos(2x)\).</p>
+<ol>
+  <li>Quelle est la période de \(f\) ?</li>
+  <li>\(f\) est-elle paire, impaire ?</li>
+  <li>Calculer \(f'(x)\) et étudier le signe de \(f'\) sur \([0;\pi]\).</li>
+  <li>Dresser le tableau de variations sur \([0;\pi]\).</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(\cos x\) a pour période \(2\pi\), \(\cos(2x)\) a pour période \(\pi\). La période de \(f\) est \(2\pi\).</li>
+  <li>\(f(-x) = 2\cos(-x)+\cos(-2x) = 2\cos x+\cos(2x) = f(x)\). \(f\) est <strong>paire</strong>.</li>
+  <li>\(f'(x) = -2\sin x - 2\sin(2x) = -2\sin x - 4\sin x\cos x = -2\sin x(1+2\cos x)\).
+  <br>Sur \([0;\pi]\), \(\sin x \geqslant 0\). \(1+2\cos x = 0 \Leftrightarrow \cos x = -\frac{1}{2} \Leftrightarrow x = \frac{2\pi}{3}\).
+  <br>Pour \(x \in ]0;\frac{2\pi}{3}[\), \(\cos x > -\frac{1}{2}\), donc \(1+2\cos x > 0\), et \(f'(x) < 0\).
+  <br>Pour \(x \in ]\frac{2\pi}{3};\pi[\), \(1+2\cos x < 0\), et \(f'(x) > 0\).</li>
+  <li>\(f(0)=2+1=3\), \(f(\frac{2\pi}{3})=2\times(-\frac{1}{2})+\cos\frac{4\pi}{3}=-1+(-\frac{1}{2})=-\frac{3}{2}\), \(f(\pi)=-2+1=-1\).
+  <br>\(f\) décroissante sur \([0;\frac{2\pi}{3}]\), croissante sur \([\frac{2\pi}{3};\pi]\). Min en \(\frac{2\pi}{3}\) : \(-\frac{3}{2}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p class="exo-titre">Étude complète</p>
+<p>Soit \(f(x) = \sin x + \frac{1}{2}\sin(2x)\) sur \([0;2\pi]\).</p>
+<ol>
+  <li>Calculer \(f'(x)\) et la factoriser.</li>
+  <li>Résoudre \(f'(x)=0\) sur \([0;2\pi]\).</li>
+  <li>Dresser le tableau de variations.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(f'(x) = \cos x + \cos(2x) = \cos x + 2\cos^2 x - 1 = 2\cos^2 x + \cos x - 1\).
+  <br>On pose \(X = \cos x\) : \(2X^2+X-1 = (2X-1)(X+1)\).
+  <br>\(f'(x) = (2\cos x-1)(\cos x+1)\).</li>
+  <li>\(f'(x)=0\) : \(\cos x = \frac{1}{2}\) (soit \(x=\frac{\pi}{3}\) ou \(x=\frac{5\pi}{3}\)) ou \(\cos x=-1\) (soit \(x=\pi\)).</li>
+  <li>\(f(0)=0\), \(f(\frac{\pi}{3})=\frac{\sqrt{3}}{2}+\frac{\sqrt{3}}{4}=\frac{3\sqrt{3}}{4}\approx 1{,}30\), \(f(\pi)=0\), \(f(\frac{5\pi}{3})=-\frac{3\sqrt{3}}{4}\), \(f(2\pi)=0\).
+  <br>Croissante sur \([0;\frac{\pi}{3}]\), décroissante sur \([\frac{\pi}{3};\pi]\), décroissante sur \([\pi;\frac{5\pi}{3}]\), croissante sur \([\frac{5\pi}{3};2\pi]\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p class="exo-titre">Optimisation</p>
+<p>On cherche à maximiser l'aire d'un rectangle inscrit dans un demi-cercle de rayon 1. Un sommet du rectangle est en \((\cos\theta;\sin\theta)\) avec \(\theta\in]0;\frac{\pi}{2}[\).</p>
+<ol>
+  <li>Exprimer l'aire \(A(\theta)\) du rectangle en fonction de \(\theta\).</li>
+  <li>Déterminer \(\theta\) qui maximise l'aire.</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>Le rectangle a pour largeur \(2\cos\theta\) et pour hauteur \(\sin\theta\). \(A(\theta)=2\cos\theta\sin\theta=\sin(2\theta)\).</li>
+  <li>\(A'(\theta) = 2\cos(2\theta)\). \(A'=0\) pour \(2\theta=\frac{\pi}{2}\), soit \(\theta=\frac{\pi}{4}\).
+  <br>\(A'>0\) sur \(]0;\frac{\pi}{4}[\), \(A'<0\) sur \(]\frac{\pi}{4};\frac{\pi}{2}[\). Max en \(\theta=\frac{\pi}{4}\) : \(A=\sin\frac{\pi}{2}=1\).
+  <br>Le rectangle optimal est celui pour \(\theta=\frac{\pi}{4}\), soit un rectangle de dimensions \(\sqrt{2}\times\frac{\sqrt{2}}{2}\).</li>
+</ol>
+</div>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

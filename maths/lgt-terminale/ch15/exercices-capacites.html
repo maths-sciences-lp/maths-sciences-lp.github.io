@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch15 – Exercices par capacités – Concentration et loi des grands nombres – Terminale générale</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css">
+<link rel="stylesheet" href="../../../nav.css">
+<style>:root{--p:#4f46e5;--p-bg:#eef2ff;--p-border:#a5b4fc}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-lgt-terminale.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Chapitre 15 – Concentration et loi des grands nombres</h1>
+  <p class="sous-titre">Exercices par capacités · Terminale générale</p>
+</header>
+
+<div class="objectifs">
+<h3>Capacités travaillées</h3>
+<ul>
+  <li><strong>C1</strong> — Appliquer l'inégalité de Bienaymé-Tchebychev pour définir une taille d'échantillon</li>
+</ul>
+</div>
+
+<div style="margin:1.5em 0;display:flex;flex-wrap:wrap;gap:.5em">
+  <button class="btn-cap active" data-filtre="toutes">Toutes</button>
+  <button class="btn-cap" data-filtre="C1">C1 — Bienaymé-Tchebychev / échantillons</button>
+</div>
+<p id="cap-active-label" style="font-style:italic;color:#666"></p>
+
+<section class="cap-section" data-cap="C1">
+<h2>C1 — Appliquer l'inégalité de Bienaymé-Tchebychev</h2>
+
+<div class="exo">
+<span class="exo-num">Exercice 1</span>
+<p>Soit \(X\) avec \(E(X)=20\) et \(\sigma(X)=3\). Majorer :</p>
+<ol>
+  <li>\(P(|X-20|\geqslant 6)\)</li>
+  <li>\(P(|X-20|\geqslant 9)\)</li>
+  <li>\(P(14\leqslant X\leqslant 26)\) (minorer)</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(P(|X-20|\geqslant 6)\leqslant\frac{9}{36}=\frac{1}{4}\).</li>
+  <li>\(P(|X-20|\geqslant 9)\leqslant\frac{9}{81}=\frac{1}{9}\).</li>
+  <li>\(P(14\leqslant X\leqslant 26)=P(|X-20|\leqslant 6)=1-P(|X-20|>6)\geqslant 1-\frac{1}{4}=\frac{3}{4}\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 2</span>
+<p>Soit \(X\sim\mathcal{B}(n,0{,}3)\). Déterminer \(n\) pour que \(P\left(\left|\frac{X}{n}-0{,}3\right|\geqslant 0{,}05\right)\leqslant 0{,}02\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(F_n=\frac{X}{n}\), \(V(F_n)=\frac{0{,}3\times 0{,}7}{n}=\frac{0{,}21}{n}\).</p>
+<p>\(\frac{0{,}21}{n\times 0{,}0025}\leqslant 0{,}02\), \(\frac{84}{n}\leqslant 0{,}02\), \(n\geqslant 4200\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 3</span>
+<p>On sonde \(n\) personnes sur leur intention de vote. On veut que la fréquence observée soit à moins de 3 % de la proportion réelle avec un risque d'erreur inférieur à 5 %. Quelle est la taille minimale du sondage ?</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(n\geqslant\frac{1}{4\times 0{,}05\times 0{,}03^2}=\frac{1}{4\times 0{,}05\times 0{,}0009}=\frac{1}{0{,}00018}\approx 5556\).</p>
+<p>Il faut au moins <strong>5 556 personnes</strong>.</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 4</span>
+<p>Soit \(S_n\) le nombre de 6 en \(n\) lancers d'un dé équilibré. En utilisant l'inégalité de Bienaymé-Tchebychev, majorer \(P(|S_n - \frac{n}{6}| \geqslant \sqrt{n})\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<p>\(S_n\sim\mathcal{B}(n,\frac{1}{6})\). \(\mu=\frac{n}{6}\), \(V=\frac{5n}{36}\).</p>
+<p>\(P\left(|S_n-\frac{n}{6}|\geqslant\sqrt{n}\right)\leqslant\frac{5n/36}{n}=\frac{5}{36}\approx 0{,}139\).</p>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 5</span>
+<p>On contrôle des pièces produites par une machine. La proportion de pièces défectueuses est \(p\) (inconnue). On prélève \(n\) pièces. Soit \(F_n\) la fréquence de pièces défectueuses.</p>
+<ol>
+  <li>Montrer que \(P(|F_n-p|\geqslant 0{,}02)\leqslant\frac{1}{4n\times 0{,}0004}\).</li>
+  <li>Déterminer \(n\) pour que cette probabilité soit \(\leqslant 0{,}01\).</li>
+  <li>Si \(n=10\,000\) et \(F_n=0{,}034\), que peut-on dire de \(p\) ?</li>
+</ol>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<ol>
+  <li>\(V(F_n)=\frac{p(1-p)}{n}\leqslant\frac{1}{4n}\). Par BT : \(P(|F_n-p|\geqslant 0{,}02)\leqslant\frac{1}{4n\times 0{,}0004}=\frac{625}{n}\).</li>
+  <li>\(\frac{625}{n}\leqslant 0{,}01\), \(n\geqslant 62\,500\).</li>
+  <li>Avec \(n=10\,000\) : \(\frac{625}{10\,000}=0{,}0625\). On peut affirmer avec un risque de 6,25 % que \(|p-0{,}034|<0{,}02\), soit \(p\in[0{,}014;\ 0{,}054]\).</li>
+</ol>
+</div>
+</div>
+
+<div class="exo">
+<span class="exo-num">Exercice 6</span>
+<p class="exo-titre">Simulation — Loi des grands nombres</p>
+<p>Écrire un programme Python qui lance un dé \(n\) fois et trace la courbe de la fréquence de 6 en fonction de \(n\).</p>
+<button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+<div class="corr">
+<pre><code>import random
+import matplotlib.pyplot as plt
+
+n = 10000
+compteur = 0
+frequences = []
+
+for i in range(1, n + 1):
+    if random.randint(1, 6) == 6:
+        compteur += 1
+    frequences.append(compteur / i)
+
+plt.plot(range(1, n + 1), frequences)
+plt.axhline(y=1/6, color='r', linestyle='--', label='p = 1/6')
+plt.xlabel('Nombre de lancers')
+plt.ylabel('Fréquence de 6')
+plt.title('Loi des grands nombres')
+plt.legend()
+plt.show()</code></pre>
+<p>La courbe oscille d'abord largement puis se stabilise autour de \(\frac{1}{6}\approx 0{,}167\) : illustration de la loi des grands nombres.</p>
+</div>
+</div>
+
+</section>
+
+</div>
+<script src="../../../comp.js"></script>
+<script src="../../../nav.js"></script>
+</body>
+</html>
