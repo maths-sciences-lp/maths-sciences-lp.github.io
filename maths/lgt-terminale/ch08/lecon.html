@@ -101,6 +101,50 @@
 <p>La courbe d'une fonction continue ne peut pas « sauter » d'une valeur à une autre sans passer par toutes les valeurs intermédiaires. Toute droite horizontale \(y=k\) située entre \(f(a)\) et \(f(b)\) coupe la courbe au moins une fois.</p>
 </div>
 
+<div class="svg-wrap">
+<svg viewBox="0 0 500 320" style="max-width:500px;width:100%">
+  <!-- axes -->
+  <line x1="60" y1="280" x2="460" y2="280" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="60" y1="280" x2="60" y2="20" stroke="#94a3b8" stroke-width="1"/>
+  <text x="465" y="285" font-size="13" fill="#64748b">x</text>
+  <text x="45" y="15" font-size="13" fill="#64748b">y</text>
+
+  <!-- vertical dashed lines at a, b, c -->
+  <line x1="110" y1="280" x2="110" y2="230" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="400" y1="280" x2="400" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="265" y1="280" x2="265" y2="140" stroke="#e11d48" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- horizontal dashed line y=k -->
+  <line x1="60" y1="140" x2="400" y2="140" stroke="#e11d48" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- horizontal dashed lines at f(a) and f(b) -->
+  <line x1="60" y1="230" x2="110" y2="230" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="60" y1="70" x2="400" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+
+  <!-- continuous curve from (a, f(a)) to (b, f(b)) -->
+  <path d="M 110,230 C 150,250 200,180 265,140 C 310,110 360,60 400,70" stroke="#4f46e5" stroke-width="2.5" fill="none"/>
+
+  <!-- points -->
+  <circle cx="110" cy="230" r="4" fill="#4f46e5"/>
+  <circle cx="400" cy="70" r="4" fill="#4f46e5"/>
+  <circle cx="265" cy="140" r="4" fill="#e11d48"/>
+
+  <!-- x-axis labels -->
+  <text x="110" y="296" font-size="13" fill="#4f46e5" text-anchor="middle" font-style="italic">a</text>
+  <text x="265" y="296" font-size="13" fill="#e11d48" text-anchor="middle" font-style="italic">c</text>
+  <text x="400" y="296" font-size="13" fill="#4f46e5" text-anchor="middle" font-style="italic">b</text>
+
+  <!-- y-axis labels -->
+  <text x="45" y="234" font-size="12" fill="#4f46e5" text-anchor="end" font-style="italic">f(a)</text>
+  <text x="45" y="144" font-size="12" fill="#e11d48" text-anchor="end" font-style="italic">k</text>
+  <text x="45" y="74" font-size="12" fill="#4f46e5" text-anchor="end" font-style="italic">f(b)</text>
+
+  <!-- annotation -->
+  <text x="275" y="125" font-size="12" fill="#e11d48" font-style="italic">f(c) = k</text>
+</svg>
+<p style="text-align:center;font-size:.85rem;color:#666">Théorème des valeurs intermédiaires : la droite \(y = k\) coupe la courbe continue en au moins un point \(c \in [a\,;b]\).</p>
+</div>
+
 <div class="prop">
 <span class="label label-prop">Corollaire — Cas particulier \(k=0\)</span>
 <p>Si \(f\) est continue sur \([a;b]\) et si \(f(a)\) et \(f(b)\) sont de <strong>signes contraires</strong>, alors il existe au moins un \(c \in ]a;b[\) tel que \(f(c) = 0\).</p>
@@ -213,6 +257,68 @@
   <li>Démontrer la convergence (monotonie + bornes par récurrence)</li>
   <li>Conclure : la limite est le point fixe</li>
 </ol>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 500 500" style="max-width:500px;width:100%">
+  <!-- axes -->
+  <line x1="50" y1="450" x2="470" y2="450" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="50" y1="450" x2="50" y2="30" stroke="#94a3b8" stroke-width="1"/>
+  <text x="475" y="455" font-size="13" fill="#64748b">x</text>
+  <text x="35" y="25" font-size="13" fill="#64748b">y</text>
+
+  <!-- line y = x -->
+  <line x1="50" y1="450" x2="450" y2="50" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="455" y="55" font-size="13" fill="#94a3b8" font-style="italic">y = x</text>
+
+  <!-- curve y = f(x): concave function above y=x near origin, crossing at fixed point -->
+  <!-- f maps [50,450] in x to [450,50] in y. Fixed point around x=320 (mapped). -->
+  <!-- Using a curve like f(x) = sqrt(x+2) scaled: starts high, crosses y=x -->
+  <!-- Scale: x in [50,450] maps to domain [0,4], y in [450,50] maps to range [0,4] -->
+  <!-- f(x) = sqrt(x+2): f(0)=1.41, f(1)=1.73, f(2)=2, f(3)=2.24, f(4)=2.45 -->
+  <!-- In pixel coords: x_px = 50 + t*100, y_px = 450 - f(t)*100 -->
+  <!-- t=0: (50, 309), t=0.5: (100, 292), t=1: (150, 277), t=1.5: (200, 263), t=2: (250, 250), t=2.5: (300, 238), t=3: (350, 226), t=3.5: (400, 216), t=4: (450, 205) -->
+  <!-- Fixed point at t=2: f(2)=2, pixel (250, 250) -->
+  <path d="M 50,309 C 100,295 150,277 200,263 S 300,238 350,226 S 420,210 450,205" stroke="#4f46e5" stroke-width="2.5" fill="none"/>
+  <text x="455" y="200" font-size="13" fill="#4f46e5" font-style="italic">y = f(x)</text>
+
+  <!-- fixed point -->
+  <circle cx="250" cy="250" r="4" fill="#e11d48"/>
+  <text x="260" y="242" font-size="12" fill="#e11d48" font-style="italic">point fixe ℓ</text>
+
+  <!-- staircase construction starting from u_0 = 0 (x_px=50) -->
+  <!-- u_0 = 0 → f(0) = 1.41 -->
+  <!-- Step 1: vertical from (50,450) to (50,309), horizontal to (191,309) [x for 1.41] -->
+  <!-- u_1 = 1.41 → f(1.41) = 1.85 -->
+  <!-- Step 2: vertical from (191,309) to (191,265), horizontal to (235,265) -->
+  <!-- u_2 = 1.85 → f(1.85) = 1.96 -->
+  <!-- Step 3: vertical from (235,265) to (235,254), horizontal to (246,254) -->
+  <!-- u_3 = 1.96 → f(1.96) = 1.99 -->
+  <!-- Step 4: vertical from (246,254) to (246,251), horizontal to (249,251) -->
+
+  <!-- staircase path -->
+  <polyline points="50,450 50,309 191,309 191,265 235,265 235,254 246,254 246,251 249,251" stroke="#16a34a" stroke-width="2" fill="none"/>
+
+  <!-- dashed drop lines to x-axis for u_0, u_1, u_2 -->
+  <line x1="50" y1="450" x2="50" y2="455" stroke="#16a34a" stroke-width="1"/>
+  <line x1="191" y1="309" x2="191" y2="455" stroke="#16a34a" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="235" y1="265" x2="235" y2="455" stroke="#16a34a" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- x-axis labels -->
+  <text x="50" y="468" font-size="11" fill="#16a34a" text-anchor="middle">u₀</text>
+  <text x="191" y="468" font-size="11" fill="#16a34a" text-anchor="middle">u₁</text>
+  <text x="235" y="468" font-size="11" fill="#16a34a" text-anchor="middle">u₂</text>
+  <text x="250" y="468" font-size="11" fill="#e11d48" text-anchor="middle">ℓ</text>
+
+  <!-- small dots on staircase corners -->
+  <circle cx="50" cy="309" r="3" fill="#16a34a"/>
+  <circle cx="191" cy="309" r="3" fill="#16a34a"/>
+  <circle cx="191" cy="265" r="3" fill="#16a34a"/>
+  <circle cx="235" cy="265" r="3" fill="#16a34a"/>
+  <circle cx="235" cy="254" r="3" fill="#16a34a"/>
+  <circle cx="246" cy="254" r="3" fill="#16a34a"/>
+</svg>
+<p style="text-align:center;font-size:.85rem;color:#666">Construction en escalier : à partir de \(u_0\), on alterne entre la courbe \(y = f(x)\) et la droite \(y = x\) pour visualiser la convergence vers le point fixe \(\ell\).</p>
 </div>
 
 <div class="exo">

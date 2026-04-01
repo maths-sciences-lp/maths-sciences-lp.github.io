@@ -176,6 +176,44 @@
 <p>\(f\) est concave si et seulement si \(-f\) est convexe.</p>
 </div>
 
+<div class="svg-wrap">
+<svg viewBox="0 0 500 220" width="500" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;display:block;margin:0 auto">
+  <!-- Partie gauche : fonction convexe -->
+  <!-- Axes -->
+  <line x1="20" y1="190" x2="220" y2="190" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="20" y1="190" x2="20" y2="20" stroke="#94a3b8" stroke-width="1"/>
+  <!-- Courbe convexe (parabole x²) -->
+  <path d="M 30,180 Q 70,30 210,20" stroke="#4f46e5" stroke-width="2.2" fill="none"/>
+  <!-- Sécante au-dessus -->
+  <line x1="45,155" x2="190,30" x1="45" y1="155" x2="190" y2="30" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <!-- Points sur la courbe -->
+  <circle cx="50" cy="160" r="3.5" fill="#4f46e5"/>
+  <circle cx="185" cy="35" r="3.5" fill="#4f46e5"/>
+  <!-- Flèche/annotation : sécante au-dessus -->
+  <text x="85" y="68" font-size="10" fill="#94a3b8" font-style="italic">sécante</text>
+  <!-- Label -->
+  <text x="65" y="212" font-size="14" fill="#4f46e5" font-weight="bold">Convexe</text>
+  <text x="40" y="15" font-size="10" fill="#666">courbe sous la sécante</text>
+  <!-- Partie droite : fonction concave -->
+  <!-- Axes -->
+  <line x1="280" y1="190" x2="480" y2="190" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="280" y1="190" x2="280" y2="20" stroke="#94a3b8" stroke-width="1"/>
+  <!-- Courbe concave (racine) -->
+  <path d="M 290,185 Q 330,25 470,20" stroke="#4f46e5" stroke-width="2.2" fill="none"/>
+  <!-- Sécante en dessous -->
+  <line x1="305" y1="140" x2="450" y2="25" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <!-- Points sur la courbe -->
+  <circle cx="310" cy="130" r="3.5" fill="#4f46e5"/>
+  <circle cx="445" cy="27" r="3.5" fill="#4f46e5"/>
+  <!-- Flèche/annotation : sécante en dessous -->
+  <text x="345" y="105" font-size="10" fill="#94a3b8" font-style="italic">sécante</text>
+  <!-- Label -->
+  <text x="335" y="212" font-size="14" fill="#4f46e5" font-weight="bold">Concave</text>
+  <text x="300" y="15" font-size="10" fill="#666">courbe au-dessus de la sécante</text>
+</svg>
+<p style="text-align:center;font-size:.85rem;color:#666">Convexe : la courbe est sous ses sécantes -- Concave : la courbe est au-dessus de ses sécantes</p>
+</div>
+
 <h3>2. Caractérisation par la dérivée seconde</h3>
 
 <div class="prop">
@@ -236,6 +274,50 @@
 <span class="label label-ex">Exemple</span>
 <p>\(f(x) = x^3-3x\). On a vu que \(f''(x)=6x\). \(f''(0)=0\) et \(f''\) change de signe en 0 (négatif puis positif). Le point \((0; 0)\) est un <strong>point d'inflexion</strong>.</p>
 <p>La tangente en ce point est \(y = f'(0)x + f(0) = -3x\).</p>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="-140 -130 280 260" width="500" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;display:block;margin:0 auto">
+  <defs><clipPath id="clip-inflx"><rect x="-135" y="-125" width="270" height="250"/></clipPath></defs>
+  <!-- Axes -->
+  <line x1="-130" y1="0" x2="130" y2="0" stroke="#94a3b8" stroke-width="1.2"/>
+  <line x1="0" y1="-120" x2="0" y2="120" stroke="#94a3b8" stroke-width="1.2"/>
+  <polygon points="130,0 124,-3 124,3" fill="#94a3b8"/>
+  <polygon points="0,-120 -3,-114 3,-114" fill="#94a3b8"/>
+  <text x="118" y="16" font-size="12" fill="#94a3b8">x</text>
+  <text x="8" y="-108" font-size="12" fill="#94a3b8">y</text>
+  <!-- Graduations -->
+  <line x1="40" y1="-3" x2="40" y2="3" stroke="#94a3b8" stroke-width="0.8"/>
+  <line x1="-40" y1="-3" x2="-40" y2="3" stroke="#94a3b8" stroke-width="0.8"/>
+  <line x1="-3" y1="-40" x2="3" y2="-40" stroke="#94a3b8" stroke-width="0.8"/>
+  <line x1="-3" y1="40" x2="3" y2="40" stroke="#94a3b8" stroke-width="0.8"/>
+  <!-- Courbe cubique y = x³ (échelle : 40px = 1 unité, mais aplatie pour visibilité) -->
+  <!-- f(x) = 0.4*x³ en coord SVG: y_svg = -0.4*(x_svg/40)³ * 40 = -0.4*x³/1600 -->
+  <!-- Dessinons plutôt de manière schématique la forme S d'une cubique -->
+  <path d="M -110,105 C -90,95 -70,75 -50,55 C -30,30 -15,8 0,0 C 15,-8 30,-30 50,-55 C 70,-75 90,-95 110,-105" stroke="#4f46e5" stroke-width="2.2" fill="none" clip-path="url(#clip-inflx)"/>
+  <!-- Tangente au point d'inflexion (0,0) : y = -3x dans l'exemple, mais pour x³ c'est y=0 -->
+  <!-- Pour x³, f'(0)=0, donc tangente est y=0 (l'axe des x) -->
+  <!-- Montrons plutôt la tangente comme une droite passant par l'origine avec pente adaptée -->
+  <!-- La courbe est schématique, montrons une tangente qui traverse la courbe -->
+  <line x1="-120" y1="30" x2="120" y2="-30" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <!-- Point d'inflexion -->
+  <circle cx="0" cy="0" r="5" fill="#e11d48" stroke="#e11d48" stroke-width="1.5"/>
+  <!-- Label point d'inflexion -->
+  <text x="10" y="-12" font-size="12" fill="#e11d48" font-weight="bold">Point d'inflexion</text>
+  <!-- Annotations concave/convexe -->
+  <text x="-125" y="-50" font-size="11" fill="#666" font-style="italic">concave</text>
+  <text x="-125" y="-38" font-size="10" fill="#666">(f'' &lt; 0)</text>
+  <text x="60" y="55" font-size="11" fill="#666" font-style="italic">convexe</text>
+  <text x="60" y="67" font-size="10" fill="#666">(f'' &gt; 0)</text>
+  <!-- Label tangente -->
+  <text x="-115" y="48" font-size="10" fill="#94a3b8" font-style="italic">tangente</text>
+  <!-- Label courbe -->
+  <text x="80" y="-85" font-size="12" fill="#4f46e5" font-weight="bold" font-style="italic">Cf</text>
+  <!-- Flèche montrant la traversée -->
+  <text x="18" y="22" font-size="10" fill="#e11d48">la courbe traverse</text>
+  <text x="18" y="33" font-size="10" fill="#e11d48">sa tangente</text>
+</svg>
+<p style="text-align:center;font-size:.85rem;color:#666">Point d'inflexion : la courbe traverse sa tangente et la convexité change</p>
 </div>
 
 <div class="exo">
