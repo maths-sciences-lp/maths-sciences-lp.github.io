@@ -86,7 +86,11 @@
   - Résultat : 2 à 7 mini-exo distribués par leçon, 0 section groupée résiduelle
 
 ### Session 3 avril 2026 (fin)
-- **Diversification contextes PC Seconde** : +3 exercices sport/santé/énergie/environnement dans ch03 (Loi d'Ohm), ch06 (Forces), ch08 (Solutions), ch10 (Température), ch11 (Transferts thermiques), ch12 (Changements d'état) — ratio menuiserie réduit dans les 6 chapitres à 73–83%
+- **Diversification contextes PC Seconde** : +3 exercices sport/santé/énergie/environnement dans ch03, ch06, ch08, ch10, ch11, ch12 — ratio menuiserie réduit dans les 6 chapitres à 73–83%
+- **`.situation` dans les 14 leçons PC Seconde** : 1 bloc par leçon ajouté (ch01–ch14), scénarios pro réels (menuisier, technicien, installateur)
+- **Maths ch02 statistiques** : chapitre restructuré (372→561 lignes) — fréquences cumulées, tableau double entrée, histogramme ajoutés ; médiane/quartiles proprement renvoyés vers ch03
+- **Erreurs fréquentes maths Seconde** : sections `.erreur-item` ajoutées dans ch02, ch03, ch09, ch10, ch11, ch12, ch13, ch14 (4–5 erreurs par chapitre)
+- **Phase 2 plan-amelioration-seconde.md** : toutes les améliorations pédagogiques 2nde complètes
 
 ### Session 3 avril 2026 (suite)
 - **Corrections techniques groupées 2nde MAMA** :

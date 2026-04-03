@@ -3,7 +3,7 @@
 Espace pédagogique pour les classes de Bac Professionnel (Seconde, Première, Terminale) et BTS.
 Ce fichier est lu automatiquement par Claude Code à chaque session.
 
-**État du site (mars 2026) :** ~673 pages HTML, 99+ chapitres, 64 simulations, 22 automatismes.
+**État du site (avril 2026) :** cours, exercices corrigés, devoirs surveillés, QCM, fiches de révision, activités de découverte, simulations interactives et automatismes.
 
 ---
 

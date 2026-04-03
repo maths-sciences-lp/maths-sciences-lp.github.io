@@ -59,10 +59,10 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 
 ### PRIORITE 2 — Ameliorations pedagogiques
 
-- [ ] **PC ch01-ch14 lecon** — Ajouter la classe `.situation` aux contextes professionnels existants (0 occurrences actuellement)
-- [ ] **Maths ch02 lecon** — Completer ou reorganiser le chapitre Statistiques (indicateurs de position/dispersion renvoyes vers ch03, cours anormalement court a 349 lignes)
+- [x] ~~**PC ch01-ch14 lecon** — Ajouter la classe `.situation` aux contextes professionnels existants (0 occurrences actuellement)~~ → **2026-04-03** 1 bloc `.situation` ajouté dans chacune des 14 leçons PC Seconde
+- [x] ~~**Maths ch02 lecon** — Completer ou reorganiser le chapitre Statistiques~~ → **2026-04-03** Chapitre restructuré (372→561 lignes) : section fréquences cumulées, tableau double entrée, histogramme ajoutés ; médiane/quartiles/boîte renvoyés proprement vers ch03
 - [x] ~~**PC Seconde** — Diversifier les contextes pro : ajouter sport, sante, environnement (actuellement quasi exclusivement menuiserie)~~ → **2026-04-03** 3 exercices variés ajoutés dans ch03, ch06, ch08, ch10, ch11, ch12 (sport, santé, énergie, environnement)
-- [ ] **Maths Seconde** — Ajouter des sections "Erreurs frequentes" (blocs `.att`) dans les chapitres qui en manquent
+- [x] ~~**Maths Seconde** — Ajouter des sections "Erreurs frequentes" (blocs `.att`) dans les chapitres qui en manquent~~ → **2026-04-03** Sections `.erreur-item` ajoutées dans ch02, ch03, ch09, ch10, ch11, ch12, ch13, ch14 (4-5 erreurs/chapitre)
 
 ### PRIORITE 3 — Enrichissements
 
@@ -103,5 +103,5 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 | Phase | Statut | Date debut | Date fin |
 |---|---|---|---|
 | Phase 1 — Corrections techniques | Quasi complete (1 item CSS inline restant) | 2026-04-03 | 2026-04-03 |
-| Phase 2 — Ameliorations pedagogiques | Partielle (diversification faite, .situation reste) | 2026-04-03 | — |
+| Phase 2 — Ameliorations pedagogiques | Complete | 2026-04-03 | 2026-04-03 |
 | Phase 3 — Enrichissements | A faire | — | — |

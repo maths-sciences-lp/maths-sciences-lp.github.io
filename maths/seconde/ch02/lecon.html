@@ -21,7 +21,7 @@ td.tl{text-align:left}
 <header>
   <h1>Chapitre 2 – Statistiques à une variable</h1>
   <p class="sous-titre">Seconde Bac Pro MAMA &nbsp;|&nbsp; Agencement · Menuiserie · Ameublement &nbsp;|&nbsp; Mathématiques</p>
-  <p class="maj">9 mars 2026</p>
+  <p class="maj">3 avril 2026</p>
 </header>
 
 <!-- Objectifs -->
@@ -30,7 +30,9 @@ td.tl{text-align:left}
   <ul>
     <li>Recueillir et organiser des données statistiques</li>
     <li>Construire un tableau d'effectifs et de fréquences</li>
-    <li>Choisir et construire une représentation graphique adaptée (bâtons, barres, secteurs, ligne)</li>
+    <li>Calculer des fréquences cumulées croissantes</li>
+    <li>Lire et construire un tableau à double entrée</li>
+    <li>Choisir et construire une représentation graphique adaptée (bâtons, barres, secteurs, histogramme, ligne)</li>
     <li>Lire et interpréter un diagramme statistique</li>
   </ul>
   <p style="margin:8px 0 0;font-size:.9em;color:#555"><em>Les indicateurs statistiques (moyenne, médiane, quartiles, boîte à moustaches) sont traités dans le <a href="../ch03/lecon.html" style="color:var(--p)">Chapitre 3</a>.</em></p>
@@ -107,7 +109,7 @@ td.tl{text-align:left}
 </div>
 
 <h3>2.2 Tableau des effectifs et fréquences</h3>
-<p>On organise les données dans un <strong>tableau statistique</strong>. Voici le tableau pour les liteaux :</p>
+<p>On organise les données dans un <strong>tableau statistique</strong>. Voici le tableau pour les liteaux de la situation professionnelle :</p>
 
 <table>
   <tr>
@@ -141,11 +143,143 @@ td.tl{text-align:left}
 </div>
 
 <!-- ============================================================ -->
-<!--  SECTION 3 – REPRÉSENTATIONS GRAPHIQUES                      -->
+<!--  SECTION 3 – FRÉQUENCES CUMULÉES                             -->
 <!-- ============================================================ -->
-<h2>3. Représentations graphiques</h2>
+<h2>3. Fréquences cumulées croissantes</h2>
 
-<h3>3.1 Diagramme en bâtons</h3>
+<div class="def">
+  <strong>Fréquence cumulée croissante (\(F_i\)) :</strong> somme de toutes les fréquences jusqu'à la valeur \(x_i\) (incluse).
+  \[F_i = f_1 + f_2 + \cdots + f_i\]
+  Elle représente la proportion d'individus ayant une valeur <em>inférieure ou égale</em> à \(x_i\).
+</div>
+
+<p>On complète le tableau des liteaux avec une colonne "Fréquence cumulée croissante" :</p>
+
+<table>
+  <tr>
+    <th>Longueur \(x_i\) (cm)</th>
+    <th>Effectif \(n_i\)</th>
+    <th>Fréquence \(f_i\) (%)</th>
+    <th>Fréquence cumulée \(F_i\) (%)</th>
+  </tr>
+  <tr><td>48</td><td>4</td><td>20 %</td><td>20 %</td></tr>
+  <tr><td>49</td><td>3</td><td>15 %</td><td>35 %</td></tr>
+  <tr><td>50</td><td>7</td><td>35 %</td><td>70 %</td></tr>
+  <tr><td>51</td><td>4</td><td>20 %</td><td>90 %</td></tr>
+  <tr><td>52</td><td>2</td><td>10 %</td><td>100 %</td></tr>
+  <tr><td>53</td><td>1</td><td>5 %</td><td>100 %</td></tr>
+</table>
+
+<div class="ex">
+  <strong>Lecture du tableau :</strong><br>
+  — \(F_{50} = 70\,\%\) : 70 % des liteaux mesurent <em>50 cm ou moins</em>.<br>
+  — \(F_{51} = 90\,\%\) : 90 % des liteaux mesurent <em>51 cm ou moins</em>.<br>
+  — La fréquence cumulée de la dernière valeur est toujours égale à 100 %.
+</div>
+
+<div class="prop">
+  <strong>Propriétés des fréquences cumulées :</strong>
+  <ul>
+    <li>Elles sont croissantes : \(F_1 \leq F_2 \leq \cdots \leq F_k\)</li>
+    <li>La première vaut \(f_1\) et la dernière vaut toujours 1 (ou 100 %)</li>
+    <li>On passe d'une ligne à la suivante en <em>ajoutant</em> la fréquence de la ligne</li>
+  </ul>
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un fabricant d'aggloméré contrôle l'épaisseur (en mm) de 30 panneaux. Il obtient le tableau suivant :</p>
+  <table>
+    <tr><th>Épaisseur \(x_i\) (mm)</th><th>Effectif \(n_i\)</th><th>Fréquence \(f_i\) (%)</th><th>Fréquence cumulée \(F_i\) (%)</th></tr>
+    <tr><td>16</td><td>6</td><td>20 %</td><td>?</td></tr>
+    <tr><td>17</td><td>9</td><td>30 %</td><td>?</td></tr>
+    <tr><td>18</td><td>10</td><td>?</td><td>?</td></tr>
+    <tr><td>19</td><td>5</td><td>?</td><td>?</td></tr>
+  </table>
+  <ol>
+    <li>Complète les colonnes fréquence et fréquence cumulée.</li>
+    <li>Quel pourcentage de panneaux mesurent 17 mm ou moins ?</li>
+  </ol>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tr><th>Épaisseur</th><th>Effectif</th><th>Fréquence</th><th>Fréquence cumulée</th></tr>
+      <tr><td>16 mm</td><td>6</td><td>20 %</td><td>20 %</td></tr>
+      <tr><td>17 mm</td><td>9</td><td>30 %</td><td>50 %</td></tr>
+      <tr><td>18 mm</td><td>10</td><td>33,3 %</td><td>83,3 %</td></tr>
+      <tr><td>19 mm</td><td>5</td><td>16,7 %</td><td>100 %</td></tr>
+    </table>
+    2. \(F_{17} = 50\,\%\) : <strong>50 %</strong> des panneaux mesurent 17 mm ou moins.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  SECTION 4 – TABLEAU À DOUBLE ENTRÉE                         -->
+<!-- ============================================================ -->
+<h2>4. Tableau à double entrée</h2>
+
+<div class="def">
+  <strong>Tableau à double entrée :</strong> tableau qui croise deux caractères simultanément. Les lignes représentent les modalités d'un caractère, les colonnes celles d'un autre.
+</div>
+
+<p>Ce type de tableau permet de lire rapidement les effectifs correspondant à deux critères combinés.</p>
+
+<div class="ex">
+  <strong>Exemple :</strong> Dans un atelier de menuiserie, on recense 60 pièces produites, en fonction du type de bois utilisé et de leur état (conforme ou non conforme) :<br><br>
+  <table>
+    <tr><th></th><th>Conforme</th><th>Non conforme</th><th>Total</th></tr>
+    <tr><td class="tl"><strong>Chêne</strong></td><td>18</td><td>2</td><td>20</td></tr>
+    <tr><td class="tl"><strong>Pin</strong></td><td>21</td><td>9</td><td>30</td></tr>
+    <tr><td class="tl"><strong>MDF</strong></td><td>8</td><td>2</td><td>10</td></tr>
+    <tr><td class="tl"><strong>Total</strong></td><td>47</td><td>13</td><td>60</td></tr>
+  </table>
+</div>
+
+<div class="meth">
+  <strong>Comment lire un tableau à double entrée :</strong>
+  <ul>
+    <li><strong>Par ligne :</strong> on lit les données pour un type de bois. Ex : parmi les 30 pièces en pin, 21 sont conformes.</li>
+    <li><strong>Par colonne :</strong> on lit les données pour un état. Ex : parmi les 47 pièces conformes, 18 sont en chêne.</li>
+    <li><strong>La case "Total" en bas à droite</strong> est toujours l'effectif total de la série (\(N = 60\)).</li>
+    <li>La somme de chaque ligne = le total de cette ligne. La somme de chaque colonne = le total de cette colonne.</li>
+  </ul>
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>D'après le tableau ci-dessus :</p>
+  <ol>
+    <li>Combien y a-t-il de pièces en MDF non conformes ?</li>
+    <li>Quelle est la fréquence des pièces conformes parmi toutes les pièces en chêne ?</li>
+    <li>Quelle est la fréquence globale des pièces non conformes dans l'atelier ?</li>
+  </ol>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    1. Il y a <strong>2</strong> pièces en MDF non conformes (lecture directe dans le tableau).<br>
+    2. Parmi les 20 pièces en chêne, 18 sont conformes : \(f = \dfrac{18}{20} = 0{,}90\) soit <strong>90 %</strong>.<br>
+    3. Sur 60 pièces au total, 13 sont non conformes : \(f = \dfrac{13}{60} \approx 0{,}217\) soit <strong>environ 21,7 %</strong>.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  SECTION 5 – REPRÉSENTATIONS GRAPHIQUES                      -->
+<!-- ============================================================ -->
+<h2>5. Représentations graphiques</h2>
+
+<p>Le choix du graphique dépend du type de données et de ce qu'on veut montrer.</p>
+
+<div class="prop">
+  <strong>Règle de choix du graphique :</strong>
+  <table>
+    <tr><th>Type de données</th><th>Graphique adapté</th></tr>
+    <tr><td>Données discrètes (valeurs séparées)</td><td>Diagramme en bâtons ou en colonnes</td></tr>
+    <tr><td>Répartition en proportions (parts d'un tout)</td><td>Diagramme en secteurs (camembert)</td></tr>
+    <tr><td>Données continues groupées en classes</td><td>Histogramme</td></tr>
+    <tr><td>Évolution dans le temps (données chronologiques)</td><td>Diagramme en ligne (courbe)</td></tr>
+  </table>
+</div>
+
+<h3>5.1 Diagramme en bâtons</h3>
 <div class="def">
   <strong>Quand l'utiliser :</strong> pour des données <em>discrètes</em> (valeurs séparées, sans continuité). Chaque valeur est représentée par un trait vertical dont la hauteur est proportionnelle à l'effectif.
 </div>
@@ -153,9 +287,9 @@ td.tl{text-align:left}
   <strong>Exemple :</strong> nombre de liteaux par longueur (48, 49, 50, 51, 52, 53 cm). Les valeurs sont distinctes et entières → diagramme en bâtons adapté.
 </div>
 
-<h3>3.2 Diagramme en colonnes (barres)</h3>
+<h3>5.2 Diagramme en colonnes (barres)</h3>
 <div class="def">
-  <strong>Quand l'utiliser :</strong> pour comparer des catégories ou des valeurs discrètes. Les barres ont une largeur et sont espacées.
+  <strong>Quand l'utiliser :</strong> pour comparer des catégories ou des valeurs discrètes. Les barres ont une largeur et sont espacées (contrairement à l'histogramme).
 </div>
 
 <div class="schema">
@@ -172,7 +306,7 @@ td.tl{text-align:left}
     <line x1="55" y1="50" x2="490" y2="50" stroke="#e2e8f0" stroke-width="1"/>
     <line x1="55" y1="25" x2="490" y2="25" stroke="#e2e8f0" stroke-width="1"/>
 
-    <!-- Etiquettes axe Y (effectifs) : 25px par unite, 175=0, 150=1, 125=2, 100=3, 75=4, 50=5, 25=7 -->
+    <!-- Etiquettes axe Y -->
     <text x="48" y="178" text-anchor="end" font-size="11" fill="#718096">0</text>
     <text x="48" y="153" text-anchor="end" font-size="11" fill="#718096">1</text>
     <text x="48" y="128" text-anchor="end" font-size="11" fill="#718096">2</text>
@@ -181,32 +315,32 @@ td.tl{text-align:left}
     <text x="48" y="53" text-anchor="end" font-size="11" fill="#718096">5</text>
     <text x="48" y="28" text-anchor="end" font-size="11" fill="#718096">7</text>
 
-    <!-- Colonne 48, n=4 : hauteur=100, y=175-100=75 -->
+    <!-- Colonne 48, n=4 -->
     <rect x="70" y="75" width="55" height="100" fill="#4299e1" opacity=".85" rx="3"/>
     <text x="97" y="70" text-anchor="middle" font-size="12" fill="#2b6cb0" font-weight="700">4</text>
     <text x="97" y="192" text-anchor="middle" font-size="12" fill="#4a5568">48</text>
 
-    <!-- Colonne 49, n=3 : hauteur=75, y=100 -->
+    <!-- Colonne 49, n=3 -->
     <rect x="145" y="100" width="55" height="75" fill="#4299e1" opacity=".85" rx="3"/>
     <text x="172" y="95" text-anchor="middle" font-size="12" fill="#2b6cb0" font-weight="700">3</text>
     <text x="172" y="192" text-anchor="middle" font-size="12" fill="#4a5568">49</text>
 
-    <!-- Colonne 50, n=7 : hauteur=175, y=0 (max=175px) -->
+    <!-- Colonne 50, n=7 -->
     <rect x="220" y="25" width="55" height="150" fill="#48bb78" opacity=".85" rx="3"/>
     <text x="247" y="20" text-anchor="middle" font-size="12" fill="#276749" font-weight="700">7</text>
     <text x="247" y="192" text-anchor="middle" font-size="12" fill="#4a5568">50</text>
 
-    <!-- Colonne 51, n=4 : hauteur=100, y=75 -->
+    <!-- Colonne 51, n=4 -->
     <rect x="295" y="75" width="55" height="100" fill="#4299e1" opacity=".85" rx="3"/>
     <text x="322" y="70" text-anchor="middle" font-size="12" fill="#2b6cb0" font-weight="700">4</text>
     <text x="322" y="192" text-anchor="middle" font-size="12" fill="#4a5568">51</text>
 
-    <!-- Colonne 52, n=2 : hauteur=50, y=125 -->
+    <!-- Colonne 52, n=2 -->
     <rect x="370" y="125" width="55" height="50" fill="#fc8181" opacity=".85" rx="3"/>
     <text x="397" y="120" text-anchor="middle" font-size="12" fill="#c53030" font-weight="700">2</text>
     <text x="397" y="192" text-anchor="middle" font-size="12" fill="#4a5568">52</text>
 
-    <!-- Colonne 53, n=1 : hauteur=25, y=150 -->
+    <!-- Colonne 53, n=1 -->
     <rect x="445" y="150" width="40" height="25" fill="#fc8181" opacity=".85" rx="3"/>
     <text x="465" y="145" text-anchor="middle" font-size="12" fill="#c53030" font-weight="700">1</text>
     <text x="465" y="192" text-anchor="middle" font-size="12" fill="#4a5568">53</text>
@@ -220,15 +354,21 @@ td.tl{text-align:left}
 
 <div class="mini-exo">
   <strong>Application</strong>
-  <p>D'après le diagramme en colonnes des liteaux ci-dessus, quelle est la longueur la plus fréquente ? Quel est son effectif ? Quelle est la longueur la moins fréquente ?</p>
+  <p>D'après le diagramme en colonnes des liteaux ci-dessus :</p>
+  <ol>
+    <li>Quelle est la longueur la plus fréquente ? Quel est son effectif ?</li>
+    <li>Quelle est la longueur la moins fréquente ?</li>
+    <li>Combien de liteaux mesurent strictement plus de 50 cm ?</li>
+  </ol>
   <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
   <div class="corr">
-    La longueur la plus fréquente est <strong>50 cm</strong> : c'est la colonne la plus haute, avec un effectif de <strong>7</strong>.<br>
-    La longueur la moins fréquente est <strong>53 cm</strong>, avec un effectif de <strong>1</strong>.
+    1. La longueur la plus fréquente est <strong>50 cm</strong> : c'est la colonne la plus haute, avec un effectif de <strong>7</strong>.<br>
+    2. La longueur la moins fréquente est <strong>53 cm</strong>, avec un effectif de <strong>1</strong>.<br>
+    3. Les liteaux de longueur strictement supérieure à 50 cm sont ceux de 51, 52 et 53 cm : \(4 + 2 + 1 = \mathbf{7}\) liteaux.
   </div>
 </div>
 
-<h3>3.3 Diagramme en secteurs (camembert)</h3>
+<h3>5.3 Diagramme en secteurs (camembert)</h3>
 <div class="def">
   <strong>Quand l'utiliser :</strong> pour montrer la répartition en proportions (parts d'un tout). Adapté quand le nombre de catégories est limité (6 ou moins).
 </div>
@@ -236,19 +376,95 @@ td.tl{text-align:left}
   <strong>Exemple :</strong> répartition des types de matériaux (contreplaqué, OSB, MDF...) dans une commande. Chaque secteur représente un type de panneau.
 </div>
 
+<div class="meth">
+  <strong>Calculer l'angle d'un secteur :</strong> l'angle du secteur est proportionnel à la fréquence.
+  \[\text{angle} = f_i \times 360°\]
+  <em>Exemple : si le contreplaqué représente 40 % de la commande → angle = \(0{,}40 \times 360 = 144°\)</em>
+</div>
+
 <div class="mini-exo">
   <strong>Application</strong>
-  <p>Un atelier fabrique quatre types de panneaux : contreplaqué (40 %), OSB (25 %), MDF (20 %), aggloméré (15 %). Quel type de diagramme est le plus adapté pour représenter cette répartition ? Justifie ta réponse.</p>
+  <p>Un atelier fabrique quatre types de panneaux : contreplaqué (40 %), OSB (25 %), MDF (20 %), aggloméré (15 %).</p>
+  <ol>
+    <li>Quel type de diagramme est le plus adapté pour représenter cette répartition ? Justifie.</li>
+    <li>Calcule l'angle correspondant à chaque type de panneau.</li>
+  </ol>
   <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
   <div class="corr">
-    Le <strong>diagramme en secteurs (camembert)</strong> est le plus adapté.<br>
-    En effet, on cherche à représenter la <strong>répartition en proportions d'un tout</strong> (les 100 % de la production).
-    Le nombre de catégories est limité (4), ce qui correspond exactement aux conditions d'utilisation du diagramme en secteurs.<br>
-    Un diagramme en colonnes serait aussi acceptable, mais le diagramme en secteurs est préféré quand on veut visualiser des parts d'un tout.
+    1. Le <strong>diagramme en secteurs (camembert)</strong> est le plus adapté : on cherche à représenter des <strong>parts d'un tout</strong> (les 100 % de la production), avec un nombre limité de catégories (4).<br><br>
+    2. Calcul des angles :<br>
+    — Contreplaqué : \(0{,}40 \times 360 = 144°\)<br>
+    — OSB : \(0{,}25 \times 360 = 90°\)<br>
+    — MDF : \(0{,}20 \times 360 = 72°\)<br>
+    — Aggloméré : \(0{,}15 \times 360 = 54°\)<br>
+    Vérification : \(144 + 90 + 72 + 54 = 360°\). Correct.
   </div>
 </div>
 
-<h3>3.4 Diagramme en ligne (évolution)</h3>
+<h3>5.4 Histogramme</h3>
+<div class="def">
+  <strong>Quand l'utiliser :</strong> pour des données <em>continues</em> groupées en <strong>classes</strong> (intervalles). Contrairement au diagramme en colonnes, les barres sont <em>accolées</em> (sans espace) car les valeurs sont continues.
+</div>
+
+<div class="ex">
+  <strong>Exemple :</strong> un artisan menuisier mesure les épaisseurs de coupe (en mm) de 30 planches. Les données sont regroupées en classes : [14 ; 16[, [16 ; 18[, [18 ; 20[, [20 ; 22[.<br>
+  Les valeurs sont continues (l'épaisseur peut prendre n'importe quelle valeur dans l'intervalle) → histogramme adapté.
+</div>
+
+<div class="schema">
+  <svg width="100%" viewBox="0 0 460 200" aria-label="Histogramme des épaisseurs de coupe" style="max-width:460px;height:auto">
+    <!-- Axes -->
+    <line x1="50" y1="10" x2="50" y2="165" stroke="#4a5568" stroke-width="1.5"/>
+    <line x1="50" y1="165" x2="445" y2="165" stroke="#4a5568" stroke-width="1.5"/>
+
+    <!-- Grille -->
+    <line x1="50" y1="140" x2="445" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+    <line x1="50" y1="115" x2="445" y2="115" stroke="#e2e8f0" stroke-width="1"/>
+    <line x1="50" y1="90" x2="445" y2="90" stroke="#e2e8f0" stroke-width="1"/>
+    <line x1="50" y1="65" x2="445" y2="65" stroke="#e2e8f0" stroke-width="1"/>
+    <line x1="50" y1="40" x2="445" y2="40" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- Etiquettes Y (effectifs, 25px par unite) -->
+    <text x="43" y="168" text-anchor="end" font-size="11" fill="#718096">0</text>
+    <text x="43" y="143" text-anchor="end" font-size="11" fill="#718096">2</text>
+    <text x="43" y="118" text-anchor="end" font-size="11" fill="#718096">4</text>
+    <text x="43" y="93" text-anchor="end" font-size="11" fill="#718096">6</text>
+    <text x="43" y="68" text-anchor="end" font-size="11" fill="#718096">8</text>
+    <text x="43" y="43" text-anchor="end" font-size="11" fill="#718096">10</text>
+
+    <!-- Barres accolées, 4 classes, largeur 98px chacune -->
+    <!-- [14;16[ n=4 : h=50, y=115 -->
+    <rect x="50" y="115" width="98" height="50" fill="#4299e1" opacity=".85"/>
+    <text x="99" y="110" text-anchor="middle" font-size="11" fill="#2b6cb0" font-weight="700">4</text>
+    <text x="99" y="182" text-anchor="middle" font-size="11" fill="#4a5568">[14 ; 16[</text>
+
+    <!-- [16;18[ n=10 : h=125, y=40 -->
+    <rect x="148" y="40" width="98" height="125" fill="#48bb78" opacity=".85"/>
+    <text x="197" y="35" text-anchor="middle" font-size="11" fill="#276749" font-weight="700">10</text>
+    <text x="197" y="182" text-anchor="middle" font-size="11" fill="#4a5568">[16 ; 18[</text>
+
+    <!-- [18;20[ n=9 : h=112, y=53 -->
+    <rect x="246" y="53" width="98" height="112" fill="#4299e1" opacity=".85"/>
+    <text x="295" y="48" text-anchor="middle" font-size="11" fill="#2b6cb0" font-weight="700">9</text>
+    <text x="295" y="182" text-anchor="middle" font-size="11" fill="#4a5568">[18 ; 20[</text>
+
+    <!-- [20;22[ n=7 : h=87, y=78 -->
+    <rect x="344" y="78" width="98" height="87" fill="#fc8181" opacity=".85"/>
+    <text x="393" y="73" text-anchor="middle" font-size="11" fill="#c53030" font-weight="700">7</text>
+    <text x="393" y="182" text-anchor="middle" font-size="11" fill="#4a5568">[20 ; 22[</text>
+
+    <!-- Titres axes -->
+    <text x="247" y="197" text-anchor="middle" font-size="11" fill="#718096">Épaisseur de coupe (mm)</text>
+    <text x="12" y="90" text-anchor="middle" font-size="11" fill="#718096" transform="rotate(-90 12 90)">Effectif</text>
+  </svg>
+  <figcaption>Histogramme – Épaisseurs de coupe de 30 planches</figcaption>
+</div>
+
+<div class="att">
+  <strong>Histogramme ≠ diagramme en colonnes :</strong> dans un histogramme, les barres sont <em>accolées</em> (sans espace) car les intervalles sont contigus. Un espace entre les barres signifierait une rupture dans des données continues, ce qui n'a pas de sens physiquement.
+</div>
+
+<h3>5.5 Diagramme en ligne (évolution)</h3>
 <div class="def">
   <strong>Quand l'utiliser :</strong> pour représenter l'évolution d'une grandeur dans le temps (données chronologiques).
 </div>
@@ -256,98 +472,80 @@ td.tl{text-align:left}
   <strong>Exemple :</strong> évolution du coût mensuel des matériaux sur 12 mois, ou évolution de la production d'un atelier semaine par semaine.
 </div>
 
+<!-- ============================================================ -->
+<!--  SECTION 6 – GRAPHIQUE INTERACTIF                            -->
+<!-- ============================================================ -->
+<h2>6. Visualisation – Effectifs et fréquences cumulées des liteaux</h2>
 
-<div style="background:#eff6ff;border-left:5px solid #0056b3;border-radius:0 10px 10px 0;padding:16px 20px;margin:24px 0">
-  <strong style="color:#0056b3">📑 Suite dans le Chapitre 3</strong><br>
-  Les <strong>indicateurs de position</strong> (mode, classe modale, moyenne, médiane, quartiles) et les <strong>indicateurs de dispersion</strong> (étendue, écart-type, IQR, boîte à moustaches) sont entièrement traités dans le
-  <a href="../ch03/lecon.html" style="color:#0056b3;font-weight:700">Chapitre 3 → Indicateurs statistiques</a>.
-</div>
+<p>Le graphique ci-dessous reprend les données de la situation professionnelle : longueurs des 20 liteaux. Les barres montrent les effectifs ; la courbe montre les fréquences cumulées croissantes (axe de droite).</p>
 
-<!-- GRAPHIQUES ET ANIMATIONS -->
-<h2>Graphique — Diagramme en barres des fréquences</h2>
-
-<p>
-  Voici les notes obtenues par 20 élèves d'une classe de 2nde Pro à un DS de maths. Le diagramme ci-dessous représente la distribution des fréquences.
-</p>
-
-<div class="chart-wrapper">
+<div class="chart-wrap">
   <canvas id="chartStat"></canvas>
 </div>
 
 <script>
 (function(){
-  const notes=['0-4','5-7','8-10','11-13','14-16','17-20'];
-  const effectifs=[1,2,5,7,4,1];
-  const total=effectifs.reduce((a,b)=>a+b,0);
-  const freqs=effectifs.map(e=>Math.round(e/total*100));
-  new Chart(document.getElementById('chartStat'),{
-    type:'bar',
-    data:{
-      labels:notes,
-      datasets:[
-        {label:'Effectif',data:effectifs,backgroundColor:'rgba(0,86,179,0.65)',borderColor:'#0056b3',borderWidth:1.5,yAxisID:'y'},
-        {type:'line',label:'Fréquence (%)',data:freqs,borderColor:'#2f855a',backgroundColor:'transparent',borderWidth:2,pointRadius:5,tension:.3,yAxisID:'y2'}
+  const longueurs = ['48 cm','49 cm','50 cm','51 cm','52 cm','53 cm'];
+  const effectifs = [4, 3, 7, 4, 2, 1];
+  const freqsCumulees = [20, 35, 70, 90, 100, 100];
+  new Chart(document.getElementById('chartStat'), {
+    type: 'bar',
+    data: {
+      labels: longueurs,
+      datasets: [
+        {
+          label: 'Effectif',
+          data: effectifs,
+          backgroundColor: 'rgba(0,86,179,0.65)',
+          borderColor: '#0056b3',
+          borderWidth: 1.5,
+          yAxisID: 'y'
+        },
+        {
+          type: 'line',
+          label: 'Fréquence cumulée (%)',
+          data: freqsCumulees,
+          borderColor: '#2f855a',
+          backgroundColor: 'transparent',
+          borderWidth: 2,
+          pointRadius: 5,
+          tension: 0.2,
+          yAxisID: 'y2'
+        }
       ]
     },
-    options:{
-      responsive:true,
-      plugins:{
-        legend:{position:'bottom',labels:{font:{size:12}}},
-        title:{display:true,text:'Répartition des notes — DS de mathématiques (n=20)',font:{size:12}}
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 12 } } },
+        title: { display: true, text: 'Liteaux : effectifs et fréquences cumulées (n = 20)', font: { size: 12 } }
       },
-      scales:{
-        x:{title:{display:true,text:'Notes (intervalles)'}},
-        y:{title:{display:true,text:'Effectif'},position:'left',beginAtZero:true,grid:{color:'#f0f0f0'}},
-        y2:{title:{display:true,text:'Fréquence (%)'},position:'right',beginAtZero:true,max:60,grid:{display:false}}
+      scales: {
+        x: { title: { display: true, text: 'Longueur (cm)' } },
+        y: { title: { display: true, text: 'Effectif' }, position: 'left', beginAtZero: true, max: 8, grid: { color: '#f0f0f0' } },
+        y2: { title: { display: true, text: 'Fréquence cumulée (%)' }, position: 'right', beginAtZero: true, max: 110, grid: { display: false } }
       }
     }
   });
 })();
 </script>
 
-<p style="font-size:.9em;color:#718096;text-align:center">Les barres montrent les effectifs (axe gauche), la courbe verte montre les fréquences en % (axe droit).</p>
+<p style="font-size:.9em;color:#718096;text-align:center">Les barres montrent les effectifs (axe gauche) ; la courbe verte montre les fréquences cumulées croissantes (axe droit).</p>
 
-<h2>Animation — Calculatrice de moyenne et médiane</h2>
-
-<p style="font-size:.9em;color:#718096">Saisis des valeurs séparées par des virgules pour calculer automatiquement moyenne, médiane, étendue et quartiles.</p>
-
-<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin:16px 0">
-  <div class="ctrl-vis">
-    <label style="flex:1;max-width:400px">Valeurs : <input type="text" id="inpValeurs" value="12, 15, 8, 19, 11, 14, 9, 16, 13, 10" style="width:100%;padding:6px 10px;border:1px solid #e2e8f0;border-radius:6px;font-family:inherit;margin-top:4px"></label>
-    <button onclick="calcStats()" style="padding:8px 18px;background:var(--p);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700">Calculer</button>
-  </div>
-  <div id="statsResult" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:12px"></div>
+<!-- Renvoi vers ch03 -->
+<div style="background:#eff6ff;border-left:5px solid #0056b3;border-radius:0 10px 10px 0;padding:16px 20px;margin:24px 0">
+  <strong style="color:#0056b3">Suite dans le Chapitre 3</strong><br>
+  Les <strong>indicateurs de position</strong> (mode, moyenne, médiane, quartiles) et les <strong>indicateurs de dispersion</strong> (étendue, écart interquartile, boîte à moustaches) sont entièrement traités dans le
+  <a href="../ch03/lecon.html" style="color:#0056b3;font-weight:700">Chapitre 3 → Indicateurs statistiques</a>.
 </div>
 
-<script>
-function calcStats(){
-  const raw=document.getElementById('inpValeurs').value;
-  const vals=raw.split(/[,;\s]+/).map(Number).filter(v=>!isNaN(v)&&v!==undefined);
-  if(vals.length<2){document.getElementById('statsResult').innerHTML='<p style="color:#c53030">Entrez au moins 2 valeurs.</p>';return;}
-  const n=vals.length;
-  const sorted=[...vals].sort((a,b)=>a-b);
-  const moy=vals.reduce((a,b)=>a+b,0)/n;
-  const med=n%2===0?(sorted[n/2-1]+sorted[n/2])/2:sorted[Math.floor(n/2)];
-  const q1=sorted[Math.floor(n/4)];
-  const q3=sorted[Math.ceil(3*n/4)-1]??sorted[n-1];
-  const etendue=sorted[n-1]-sorted[0];
-  const items=[
-    {label:'Moyenne',val:Math.round(moy*100)/100,color:'#0056b3'},
-    {label:'Médiane',val:med,color:'#2f855a'},
-    {label:'Q₁',val:q1,color:'#d97706'},
-    {label:'Q₃',val:q3,color:'#d97706'},
-    {label:'Étendue',val:etendue,color:'#c53030'},
-    {label:'n (effectif)',val:n,color:'#6b7280'}
-  ];
-  document.getElementById('statsResult').innerHTML=items.map(it=>
-    `<div style="background:#fff;border:2px solid ${it.color};border-radius:8px;padding:10px;text-align:center">
-      <div style="font-size:.78em;font-weight:700;color:${it.color};text-transform:uppercase">${it.label}</div>
-      <div style="font-size:1.4em;font-weight:700;color:${it.color};margin-top:4px">${it.val}</div>
-    </div>`
-  ).join('');
-}
-calcStats();
-</script>
+<!-- Simulation -->
+<div class="retenir" style="border-color:var(--p);background:var(--p-bg)">
+  <h3>Simulation interactive</h3>
+  <ul style="list-style:none;padding:0;margin:0">
+    <li style="margin:.4em 0"><a href="../../../simulations/statistiques.html" target="_blank" style="color:var(--p);font-weight:600;text-decoration:underline">Statistiques — Diagrammes et indicateurs</a></li>
+  </ul>
+</div>
 
 <!-- Navigation bas de page -->
 <div class="nav-footer">
@@ -358,14 +556,6 @@ calcStats();
 
 </div><!-- fin .c -->
 <script src="../../../nav.js"></script>
-
-<!-- Simulations interactives -->
-<div class="retenir" style="border-color:var(--p);background:var(--p-bg)">
-  <h3>Simulation interactive</h3>
-  <ul style="list-style:none;padding:0;margin:0">
-    <li style="margin:.4em 0"><a href="../../../simulations/statistiques.html" target="_blank" style="color:var(--p);font-weight:600;text-decoration:underline">Statistiques — Diagrammes et indicateurs</a></li>
-  </ul>
-</div>
 
 </body>
 </html>
