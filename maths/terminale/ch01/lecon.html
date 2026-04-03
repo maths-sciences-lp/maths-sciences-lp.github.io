@@ -78,6 +78,17 @@
   Tout ajustement affine passe obligatoirement par le point moyen \(G\).
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un artisan menuisier relève 4 chantiers : surfaces \(x\) = 10, 20, 30, 40 m² et coûts \(y\) = 1 500, 2 800, 4 200, 5 600 €. Calcule les coordonnées du point moyen \(G(\bar{x}\,;\,\bar{y})\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(\bar{x} = \dfrac{10+20+30+40}{4} = \dfrac{100}{4} = 25\,\text{m}^2\)</p>
+    <p>\(\bar{y} = \dfrac{1500+2800+4200+5600}{4} = \dfrac{14100}{4} = 3\,525\,€\)</p>
+    <p>Point moyen : \(G(25\,;\,3525)\).</p>
+  </div>
+</div>
+
 <div class="anim-wrap">
   <p><strong>Nuage de points — Données de l'exemple chauffage</strong></p>
   <canvas id="canvasNuage" width="580" height="300"></canvas>
@@ -128,6 +139,16 @@
   <p><em>Interprétation : quand la température augmente de 1°C, la consommation diminue d'environ 42 kWh.</em></p>
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>La droite de régression d'un artisan menuisier est \(y = 85x + 500\) (coût en € en fonction du nombre de mètres linéaires de corniche \(x\)). Que représentent 85 et 500 dans ce contexte ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p><strong>85</strong> : le coût augmente de 85 € par mètre linéaire supplémentaire de corniche.</p>
+    <p><strong>500</strong> : coût fixe (déplacement, outillage) indépendant de la quantité posée.</p>
+  </div>
+</div>
+
 <!-- ==================== COEFFICIENT DE CORRÉLATION ==================== -->
 <h2>4. Coefficient de corrélation \(r\)</h2>
 
@@ -140,6 +161,16 @@
     <li>\(|r|\) proche de 1 → liaison forte, ajustement fiable</li>
     <li>\(|r|\) proche de 0 → liaison faible, ajustement à rejeter</li>
   </ul>
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un métreur obtient un coefficient de corrélation \(r = -0{,}92\) entre le nombre de fenêtres posées et la durée de la pose. Que peut-on dire de cette liaison ? L'ajustement affine est-il acceptable ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(|r| = 0{,}92\) est compris entre 0,85 et 0,95 → <strong>liaison forte et négative</strong> (plus il y a de fenêtres, moins la durée unitaire est longue — effet d'expérience).</p>
+    <p>L'ajustement affine est <strong>acceptable</strong> mais pas excellent.</p>
+  </div>
 </div>
 
 <div class="prop">
@@ -253,6 +284,16 @@
   <p>• <strong>Extrapolation</strong> : pour \(x = 25\,°C\) (hors intervalle) → \(y = -42{,}4 \times 25 + 1063 = 3\,\text{kWh}\)</p>
   <div class="att" style="margin-top:10px">
     <span class="label label-att">Attention</span> À 25°C on ne chauffe plus normalement. L'extrapolation donne un résultat peu réaliste : <strong>le modèle a des limites</strong>. Il faut toujours interpréter le résultat dans le contexte professionnel.
+  </div>
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un fabricant de mobilier modélise ses coûts : \(y = 120x + 300\) (€ en fonction du nombre de plateaux \(x\)). Estimez le coût pour 8 plateaux (interpolation) et pour 50 plateaux (extrapolation). Laquelle des deux estimations est plus fiable ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>Interpolation (\(x = 8\) dans l'intervalle des données) : \(y = 120 \times 8 + 300 = 1\,260\,€\). — Estimation fiable.</p>
+    <p>Extrapolation (\(x = 50\) hors intervalle) : \(y = 120 \times 50 + 300 = 6\,300\,€\). — À utiliser avec prudence, le modèle peut ne plus être valable.</p>
   </div>
 </div>
 
@@ -416,6 +457,48 @@
     <p>La loi d'Ohm donne \(U = R \times I\). Le coefficient directeur \(a = 0{,}0495\,\text{V/mA} = 0{,}0495 \times 1000\,\text{V/A} = \mathbf{49{,}5\,\Omega}\).</p>
     <p>(\(r \approx 1\) confirme que la relation est bien linéaire, ce qui est cohérent avec la loi d'Ohm.)</p>
   </details>
+</div>
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Utiliser l'ajustement sans vérifier \(r\)</strong><br>
+    Certains élèves tracent la droite de régression sans regarder si \(|r|\) est proche de 1.<br>
+    <em>Conseil : toujours lire \(r\) à la calculatrice avant d'utiliser l'ajustement.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre le signe de \(r\) avec la qualité</strong><br>
+    \(r = -0{,}98\) indique une liaison très forte (négative), pas une mauvaise liaison.<br>
+    <em>Conseil : c'est \(|r|\) (valeur absolue) qui mesure la qualité, pas \(r\) seul.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Extrapoler sans le signaler</strong><br>
+    Calculer \(y\) pour un \(x\) très loin des données sans préciser que c'est une extrapolation risquée.<br>
+    <em>Conseil : indiquer toujours si la valeur estimée est dans ou hors de l'intervalle des données.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier d'interpréter le coefficient directeur</strong><br>
+    Dans \(y = ax + b\), donner seulement la valeur de \(a\) sans expliquer ce qu'il représente dans le contexte.<br>
+    <em>Conseil : toujours relier \(a\) à une unité concrète (€/m², kWh/°C…).</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Inverser \(x\) et \(y\)</strong><br>
+    Confondre la variable explicative (\(x\)) et la variable expliquée (\(y\)) lors de l'ajustement.<br>
+    <em>Conseil : la variable que l'on contrôle (cause) est \(x\) ; celle que l'on prédit (effet) est \(y\).</em>
+  </div>
 </div>
 
 <!-- Nav footer -->

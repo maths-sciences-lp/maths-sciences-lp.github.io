@@ -47,6 +47,12 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
     </ul>
   </div>
 
+
+<div class="situation">
+  <h3>Situation professionnelle — Impédances en courant alternatif</h3>
+  <p>Un technicien CVC dimensionne un circuit électrique comportant résistances et bobines. L'impédance du circuit est un nombre complexe \(Z = R + jX\). Calculer sa valeur absolue (le module) permet de déterminer la résistance effective du circuit au courant alternatif.</p>
+</div>
+
   <!-- ═══════════════════════════════════════════════════════════ -->
   <h2>1. L'unité imaginaire et les nombres complexes</h2>
 
@@ -81,6 +87,19 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Calcule \(i^2\), \(i^3\), \(i^4\). Que remarques-tu ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(i^2 = -1\) (par définition)</p>
+    <p>\(i^3 = i^2 \times i = -1 \times i = -i\)</p>
+    <p>\(i^4 = (i^2)^2 = (-1)^2 = 1\)</p>
+    <p>Les puissances de \(i\) sont cycliques : \(i, -1, -i, 1, i, -1, \ldots\)</p>
+  </div>
+</div>
+
   <h2>2. Opérations en forme algébrique</h2>
 
   <div class="prop">
@@ -112,6 +131,17 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Calcule \((2+3i)(1-i)\) et donne le résultat sous forme \(a + bi\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\((2+3i)(1-i) = 2 \times 1 + 2 \times (-i) + 3i \times 1 + 3i \times (-i)\)</p>
+    <p>\(= 2 - 2i + 3i - 3i^2 = 2 + i - 3(-1) = 2 + i + 3 = \mathbf{5 + i}\)</p>
+  </div>
+</div>
+
   <h2>3. Conjugué et module</h2>
 
   <div class="def">
@@ -145,6 +175,17 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un circuit électrique a une impédance \(Z = 5 + 12j\) (en \(\Omega\)). Calcule le module \(|Z|\). Que représente cette valeur physiquement ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(|Z| = \sqrt{5^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = \mathbf{13\,\Omega}\)</p>
+    <p>Le module représente l'impédance effective du circuit au courant alternatif.</p>
+  </div>
+</div>
+
   <h2>4. Plan complexe — Représentation géométrique</h2>
 
   <div class="def">
@@ -677,6 +718,41 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
   drawGrid();
 })();
 </script>
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier que \(i^2 = -1\) lors d'une multiplication</strong><br>
+    \((2+i)(3+i) = 6 + 2i + 3i + i^2 = 6 + 5i + (-1) = 5 + 5i\), pas \(6 + 5i\).<br>
+    <em>Conseil : toujours remplacer \(i^2\) par \(-1\) lors du développement.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre module et partie réelle</strong><br>
+    Le module \(|z| = \sqrt{a^2 + b^2}\), pas seulement \(a\).<br>
+    <em>Conseil : le module est toujours positif et se calcule comme une distance (Pythagore).</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre conjugué et opposé</strong><br>
+    Le conjugué de \(a+bi\) est \(a-bi\) (signe de la partie imaginaire changé), pas \(-a-bi\).<br>
+    <em>Conseil : conjugué = même partie réelle, partie imaginaire opposée.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Inverser argument et module dans la forme trigonométrique</strong><br>
+    \(z = r(\cos\theta + i\sin\theta)\) : \(r\) est le module, \(\theta\) est l'argument.<br>
+    <em>Conseil : \(r = |z|\) (toujours positif), et \(\theta = \text{arg}(z)\).</em>
+  </div>
+</div>
+
 <script src="../../../nav.js"></script>
 
 <!-- Simulations interactives -->

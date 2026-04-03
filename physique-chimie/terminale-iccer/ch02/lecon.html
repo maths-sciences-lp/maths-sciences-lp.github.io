@@ -38,6 +38,11 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:8px 0}</style>
   </ul>
 </div>
 
+<div class="situation">
+  <h3>Situation professionnelle — Alimentation d'un automate de régulation</h3>
+  <p>Une technicienne en énergies renouvelables installe un système photovoltaïque avec onduleur. Elle doit comprendre la chaîne de conversion AC→DC→AC pour alimenter les cartes électroniques de régulation et choisir les composants adaptés à l'installation.</p>
+</div>
+
 <!-- ====================================================
      INTRODUCTION
      ==================================================== -->
@@ -133,6 +138,13 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:8px 0}</style>
   Toujours vérifier la polarité avant de brancher une diode.
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Dans un circuit, une diode est reliée à une source de 12 V. Dans le sens A→K, le courant peut-il circuler ? Et dans le sens K→A ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>Dans le sens A→K : la diode est <strong>passante</strong> → le courant circule (clapet ouvert).<br>Dans le sens K→A : la diode est <strong>bloquée</strong> → aucun courant (clapet fermé). C'est la propriété fondamentale d'unidirectionnalité de la diode.</p></div>
+</div>
+
 <!-- ====================================================
      2. REDRESSEMENT SIMPLE ALTERNANCE
      ==================================================== -->
@@ -191,6 +203,13 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:8px 0}</style>
     \[ \overline{U} = \frac{U_{max}}{\pi} \approx 0{,}318 \times U_{max} \]
     <small>\(U_{max}\) : valeur de crête (amplitude) de la tension alternative</small>
   </div>
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Le réseau 230 V a une amplitude \(U_{max} = 230\sqrt{2} \approx 325 \text{ V}\). Calculer la valeur moyenne obtenue après redressement simple alternance.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>\(\overline{U} = \dfrac{U_{max}}{\pi} = \dfrac{325}{3{,}14} \approx \mathbf{103 \text{ V}}\). Cette valeur est faible par rapport à 325 V : le redressement simple alternance est peu efficace car il n'exploite qu'une alternance sur deux.</p></div>
 </div>
 
 <div class="att">
@@ -290,6 +309,13 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:8px 0}</style>
   </div>
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Avec le même réseau 230 V (\(U_{max} \approx 325\) V), calculer la valeur moyenne après redressement double alternance (pont de Graetz) et comparer avec le simple alternance.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>\(\overline{U}_{DA} = \dfrac{2 \times 325}{\pi} = \dfrac{650}{3{,}14} \approx \mathbf{207 \text{ V}}\). C'est le double de la valeur simple alternance (103 V). Le pont de Graetz exploite les deux alternances → tension moyenne bien plus élevée, plus facile à filtrer.</p></div>
+</div>
+
 <!-- ====================================================
      4. COMPARAISON INTERACTIVE – Chart.js
      ==================================================== -->
@@ -367,6 +393,13 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:8px 0}</style>
 <div class="formule-box">
   \[ \tau = R \times C \]
   <small>τ en secondes (s) &nbsp;|&nbsp; R en ohms (Ω) &nbsp;|&nbsp; C en farads (F)</small>
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Une alimentation utilise un condensateur de filtrage C = 2 200 μF et une résistance de charge R = 68 Ω. Calculer la constante de temps τ et vérifier si le filtrage est satisfaisant (réseau 50 Hz → T/2 = 10 ms).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>\(\tau = R \times C = 68 \times 2200 \times 10^{-6} = 68 \times 0{,}0022 = \mathbf{0{,}1496 \text{ s}} \approx 150 \text{ ms}\)</p><p>Condition : τ = 150 ms ≫ T/2 = 10 ms → <strong>oui, le filtrage est efficace</strong>. Le condensateur se décharge peu entre deux impulsions.</p></div>
 </div>
 
 <div class="prop">
@@ -718,6 +751,25 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:8px 0}</style>
 
 <div style="margin-top:20px;padding:14px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:.85em;color:#718096;">
   <strong>Référence BO :</strong> Terminale Bac Pro — Groupement 1 — Physique-Chimie : « Obtenir un courant continu à partir d'un courant alternatif et inversement ». Connaissances exigibles : rôle d'une diode et d'un pont de diodes ; redressement (AC → DC) ; rôle du condensateur (filtrage) ; rôle de l'onduleur (DC → AC).
+</div>
+
+<!-- ===== ERREURS FRÉQUENTES ===== -->
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Inverser anode et cathode</strong><br>Brancher une diode dans le mauvais sens la rend bloquée et aucun courant ne circule — ou pire, si la tension inverse dépasse le seuil de claquage, la diode est détruite définitivement.<br><em>Conseil : repérer le marquage de la cathode (trait blanc sur le composant) avant toute connexion.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Confondre valeur efficace et valeur maximale</strong><br>U = 230 V est la valeur efficace. La valeur maximale (amplitude) est \(U_{max} = 230\sqrt{2} \approx 325\) V. Les formules de valeur moyenne utilisent U_max, pas la valeur efficace.<br><em>Conseil : toujours calculer U_max = U × √2 avant d'appliquer les formules.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Oublier l'unité de C lors du calcul de τ</strong><br>La capacité C doit être convertie en farads (F) dans τ = R × C. 1 μF = 10⁻⁶ F. Oublier ce facteur donne un résultat mille fois trop grand.<br><em>Conseil : vérifier systématiquement la conversion μF → F avant de calculer τ.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Croire que le condensateur suffit à stabiliser la tension</strong><br>Le condensateur réduit l'ondulation mais ne la supprime pas. Pour une tension parfaitement stable, il faut ajouter un régulateur de tension en sortie du pont de Graetz.<br><em>Conseil : le schéma complet d'une alimentation est : transformateur → pont → condensateur → régulateur.</em></div>
 </div>
 
 <div class="nav-footer">

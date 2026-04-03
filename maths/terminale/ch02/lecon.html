@@ -70,6 +70,16 @@ td.total{background:#e8f4fd;font-weight:700;color:var(--p)}
   </ul>
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Dans un lot de 200 lames de parquet, 12 sont défectueuses. Un métreur en prend une au hasard. Quelle est la probabilité qu'elle soit défectueuse ? Qu'elle soit conforme ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(P(\text{défectueuse}) = \dfrac{12}{200} = 0{,}06\)</p>
+    <p>\(P(\text{conforme}) = 1 - 0{,}06 = 0{,}94\)</p>
+  </div>
+</div>
+
 <div class="prop">
   <span class="label label-prop">Événement contraire</span><br>
   L'événement contraire de \(A\), noté \(\bar{A}\), se réalise lorsque \(A\) ne se réalise pas.
@@ -277,6 +287,16 @@ td.total{background:#e8f4fd;font-weight:700;color:var(--p)}
   <em>La probabilité d'un chemin = produit des probabilités des branches.</em>
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un artisan menuisier sait que 70 % de ses commandes viennent de particuliers (\(P\)) et 30 % d'entreprises (\(E\)). Parmi les commandes de particuliers, 20 % portent sur des armoires. Calcule \(P(P \cap \text{armoire})\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(P(P \cap \text{armoire}) = P(P) \times P_P(\text{armoire}) = 0{,}70 \times 0{,}20 = 0{,}14\)</p>
+    <p>14 % des commandes sont des armoires pour des particuliers.</p>
+  </div>
+</div>
+
 <div class="att">
   <span class="label label-att">Attention</span><br>
   \(P_B(A)\) est différent de \(P_A(B)\). La probabilité de A sachant B n'est pas la même que la probabilité de B sachant A.
@@ -447,6 +467,17 @@ td.total{background:#e8f4fd;font-weight:700;color:var(--p)}
   Deux événements \(A\) et \(B\) sont <strong>indépendants</strong> si et seulement si :
   \[\boxed{P(A \cap B) = P(A) \times P(B)}\]
   Conséquence : si \(A\) et \(B\) sont indépendants, alors \(P_B(A) = P(A)\) — la connaissance de B ne change rien pour A.
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un fabricant de mobilier produit des tables et des chaises de manière indépendante. La probabilité qu'une table soit non conforme est 0,04 et qu'une chaise soit non conforme est 0,06. Quelle est la probabilité que les deux pièces d'un lot soient non conformes ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>Les événements sont indépendants, donc :</p>
+    <p>\(P(\text{table NC} \cap \text{chaise NC}) = 0{,}04 \times 0{,}06 = 0{,}0024\)</p>
+    <p>Il y a 0,24 % de chances que les deux pièces soient non conformes.</p>
+  </div>
 </div>
 
 <div class="ex">
@@ -747,6 +778,40 @@ td.total{background:#e8f4fd;font-weight:700;color:var(--p)}
   });
 })();
 </script>
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre \(P_B(A)\) et \(P_A(B)\)</strong><br>
+    Ces deux probabilités sont en général différentes.<br>
+    <em>Conseil : bien identifier qui est la condition (après « sachant que ») et qui est l'événement cherché.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Additionner au lieu de multiplier sur l'arbre</strong><br>
+    Sur un chemin de l'arbre, on multiplie les probabilités des branches.<br>
+    <em>Conseil : on additionne seulement quand on réunit plusieurs chemins qui aboutissent au même événement.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier que la somme vaut 1 sur chaque nœud</strong><br>
+    À chaque nœud de l'arbre, la somme des probabilités des branches doit être 1.<br>
+    <em>Conseil : vérifier systématiquement la somme à chaque étape de l'arbre.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre événements incompatibles et indépendants</strong><br>
+    Deux événements incompatibles ne peuvent pas se réaliser ensemble. Deux événements indépendants n'ont aucune influence l'un sur l'autre — ils peuvent se réaliser ensemble.<br>
+    <em>Conseil : incompatibles → \(P(A \cap B) = 0\) ; indépendants → \(P(A \cap B) = P(A) \times P(B)\).</em>
+  </div>
+</div>
 
 <!-- ==================== Nav footer ==================== -->
 <div class="nav-footer">

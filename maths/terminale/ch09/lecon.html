@@ -45,6 +45,12 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
     </ul>
   </div>
 
+
+<div class="situation">
+  <h3>Situation professionnelle — Séchage du bois et refroidissement</h3>
+  <p>Un menuisier surveille le séchage de planches de chêne dont l'humidité décroît selon un modèle exponentiel. Un ébéniste suit le refroidissement d'une pièce en bois traitée thermiquement. Ces deux phénomènes font appel aux fonctions \(e^x\) et \(\ln(x)\).</p>
+</div>
+
   <!-- ============================================================ -->
   <h2>1. Le nombre e</h2>
 
@@ -93,6 +99,18 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
     e<sup>a+b</sup> ≠ e<sup>a</sup> + e<sup>b</sup>    et    e<sup>a × b</sup> ≠ e<sup>a</sup> × e<sup>b</sup><br>
     La fonction exponentielle est toujours <strong>strictement positive</strong> : e<sup>x</sup> &gt; 0 pour tout x ∈ ℜ.
   </div>
+
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Simplifie : \(e^3 \times e^{-1}\), puis \(\dfrac{e^5}{e^2}\), puis \((e^2)^4\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(e^3 \times e^{-1} = e^{3+(-1)} = e^2\)</p>
+    <p>\(\dfrac{e^5}{e^2} = e^{5-2} = e^3\)</p>
+    <p>\((e^2)^4 = e^{2 \times 4} = e^8\)</p>
+  </div>
+</div>
 
   <h3>2.2 Dérivée de la fonction exponentielle</h3>
 
@@ -185,6 +203,18 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
       <tr><td>Valeurs clés</td><td><strong>ln(1) = 0  ;  ln(e) = 1</strong></td><td>ln(e<sup>k</sup>) = k pour tout réel k</td></tr>
     </table>
   </div>
+
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Simplifie : \(\ln(3) + \ln(4)\), puis \(\ln(20) - \ln(4)\), puis \(\ln(5^2)\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(\ln(3) + \ln(4) = \ln(3 \times 4) = \ln(12)\)</p>
+    <p>\(\ln(20) - \ln(4) = \ln(20 / 4) = \ln(5)\)</p>
+    <p>\(\ln(5^2) = 2\ln(5)\)</p>
+  </div>
+</div>
 
   <h3>3.3 Dérivée du logarithme népérien</h3>
 
@@ -292,6 +322,19 @@ details p,details div{margin:6px 0 0 0;color:#4a5568}
   </div>
 
   <!-- ============================================================ -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un artisan menuisier sèche du bois selon \(H(t) = 35 \times e^{-0{,}08t}\). Au bout de combien de jours l'humidité est-elle inférieure à 10 % ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>On résout \(35 e^{-0{,}08t} < 10\), soit \(e^{-0{,}08t} < \dfrac{10}{35}\).</p>
+    <p>En appliquant \(\ln\) : \(-0{,}08t < \ln\!\left(\dfrac{2}{7}\right) = \ln(2) - \ln(7) \approx -1{,}253\)</p>
+    <p>\(t > \dfrac{-1{,}253}{-0{,}08} \approx \mathbf{15{,}7}\) jours</p>
+    <p>À partir du <strong>16e jour</strong>, l'humidité est inférieure à 10 %.</p>
+  </div>
+</div>
+
   <h2>6. Calculatrice interactive</h2>
 
   <div class="calc-box">
@@ -797,6 +840,41 @@ document.getElementById('valX').addEventListener('keydown', function (e) {
   if (e.key === 'Enter') calculerExpLn();
 });
 </script>
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Appliquer \(\ln\) à un nombre négatif ou nul</strong><br>
+    \(\ln(x)\) n'est défini que pour \(x > 0\).<br>
+    <em>Conseil : avant d'appliquer \(\ln\), vérifier que l'expression est strictement positive.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre \(\ln(a+b)\) et \(\ln(a) + \ln(b)\)</strong><br>
+    \(\ln(a+b) \neq \ln(a) + \ln(b)\). La propriété s'applique au produit.<br>
+    <em>Conseil : \(\ln(a \times b) = \ln(a) + \ln(b)\) — mémoriser avec la multiplication.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier d'inverser l'inégalité</strong><br>
+    Si on divise par un nombre négatif dans une inéquation, le sens change.<br>
+    <em>Conseil : vérifier le signe du coefficient lors de chaque division dans une inéquation.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre \(e^x\) et \(xe\)</strong><br>
+    \(e^2 \neq 2e\). \(e^2\) est la base \(e\) élevée à la puissance 2 ≈ 7,389.<br>
+    <em>Conseil : utiliser les règles de puissance — \(e^x\) se comporte comme \(a^x\) avec \(a = e \approx 2{,}718\).</em>
+  </div>
+</div>
+
 <script src="../../../nav.js"></script>
 
 <!-- Simulations interactives -->

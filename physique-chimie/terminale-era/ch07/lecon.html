@@ -195,6 +195,17 @@ details.solution p{background:#f0fff4;border-radius:6px;padding:10px;margin-top:
   </ol>
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un interphone vidéo envoie un signal WiFi depuis la porte d'entrée d'un showroom jusqu'à un écran en réception, à 15 m de distance. Calculer le temps de propagation du signal.<br><em>Données : c = 3 × 10⁸ m/s</em></p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>Le signal WiFi est une onde électromagnétique se propageant à c = 3 × 10⁸ m/s dans l'air.</p>
+    <p>\( t = \dfrac{d}{c} = \dfrac{15}{3 \times 10^8} = 5 \times 10^{-8}\ \text{s} = 50\ \text{ns} \)</p>
+    <p>Ce temps est imperceptible à l'œil humain — la transmission est pratiquement instantanée.</p>
+  </div>
+</div>
+
 <!-- Animation onde -->
 <h2>4. Animation – Propagation d'une onde</h2>
 
@@ -332,6 +343,17 @@ drawWave();
     <li><strong>Calculer l'angle critique :</strong> θ<sub>c</sub> = arcsin(n₂ / n₁). Par exemple, si n₁ = 1,48 et n₂ = 1,46 : θ<sub>c</sub> = arcsin(1,46 / 1,48) ≈ 80,6°.</li>
     <li><strong>Conclure :</strong> tout rayon lumineux arrivant sur l'interface cœur/gaine avec un angle d'incidence supérieur à θ<sub>c</sub> sera totalement réfléchi et restera piégé dans le cœur.</li>
   </ol>
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Une fibre optique a un cœur d'indice n₁ = 1,50 et une gaine d'indice n₂ = 1,45. Vérifier que la réflexion totale interne est possible (n₁ &gt; n₂), puis calculer l'angle critique θc.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>n₁ = 1,50 &gt; n₂ = 1,45 → la réflexion totale interne est <strong>possible</strong>.</p>
+    <p>θc = arcsin(n₂/n₁) = arcsin(1,45/1,50) = arcsin(0,967) ≈ <strong>75,1°</strong></p>
+    <p>Tout rayon arrivant avec un angle supérieur à 75,1° reste piégé dans le cœur : la lumière est guidée.</p>
+  </div>
 </div>
 
 <!-- SVG Fibre optique -->
@@ -493,6 +515,21 @@ new Chart(ctxChart, {
   </ol>
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un atelier de fabrication de meubles veut relier son logiciel de commande numérique (CNC) à son serveur situé à 80 m dans un autre bâtiment. Quel type de transmission recommandez-vous, et pourquoi ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p><strong>Fibre optique recommandée</strong> pour cette application :</p>
+    <ul>
+      <li>Distance de 80 m → câble RJ45 possible jusqu'à 100 m, mais fibre plus fiable sur cette longueur en milieu industriel</li>
+      <li>La fibre est insensible aux parasites électromagnétiques (machines-outils, moteurs) qui perturbent les câbles cuivre</li>
+      <li>Haut débit garanti pour les fichiers de programmes CNC (fichiers G-code souvent volumineux)</li>
+    </ul>
+    <p>Alternative acceptable : câble blindé FTP Cat. 6 si budget limité.</p>
+  </div>
+</div>
+
 <!-- ===== MINI EXERCICES ===== -->
 <h2>8. Mini exercices</h2>
 
@@ -542,6 +579,24 @@ new Chart(ctxChart, {
     <li>Fibre optique = guidage de la lumière par <strong>réflexion totale interne</strong> (n_cœur &gt; n_gaine)</li>
     <li>Fibre optique : <strong>meilleur débit</strong>, insensible aux parasites, longues distances</li>
   </ul>
+</div>
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Croire qu'une onde sonore peut se propager dans le vide</strong><br>Une onde sonore est une vibration mécanique qui nécessite un milieu matériel (air, eau, solide). Dans le vide, il n'y a pas de son.<br><em>Conseil : retenir que les ondes électromagnétiques (lumière, WiFi) se propagent dans le vide, pas le son.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Inverser les conditions de la fibre optique (n₁ et n₂)</strong><br>La réflexion totale interne nécessite n_cœur &gt; n_gaine. Si n_gaine &gt; n_cœur, la lumière s'échappe — la fibre ne guide pas.<br><em>Conseil : penser que le cœur plus "dense" optiquement (indice plus élevé) piège la lumière.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Confondre transmission guidée et libre</strong><br>La transmission guidée utilise un support physique (câble, fibre). La transmission libre (WiFi, radio) ne nécessite pas de support mais est plus sensible aux interférences.<br><em>Conseil : "guidée" = câble ou fibre ; "libre" = onde dans l'air (WiFi, Bluetooth, radio).</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Confondre signal analogique et numérique</strong><br>Un signal analogique varie de façon continue (valeur quelconque). Un signal numérique ne prend que des valeurs discrètes (0 ou 1 en binaire). Le numérique est plus résistant au bruit.<br><em>Conseil : le WiFi, la fibre optique et le Bluetooth transmettent des signaux numériques.</em></div>
 </div>
 
 <p style="text-align:center;margin-top:30px;font-size:.82em;color:#a0aec0">Chapitre 7 – Physique | Bac Pro ERA-MA Terminale | Groupement 3</p>

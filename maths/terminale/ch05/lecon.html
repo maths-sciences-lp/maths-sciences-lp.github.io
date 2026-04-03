@@ -58,6 +58,11 @@ details[open] summary{margin-bottom:6px}
     </ul>
   </div>
 
+<div class="situation">
+  <h3>Situation professionnelle — Dépréciation d'un outil de menuiserie</h3>
+  <p>Un artisan menuisier achète une machine de découpe à 18 000 €. Sa valeur diminue chaque année selon un modèle exponentiel. En même temps, le niveau sonore de son atelier est mesuré en décibels, une grandeur elle aussi logarithmique. Comment prévoir la valeur de la machine ou résoudre des équations de niveau sonore ?</p>
+</div>
+
   <!-- ============================================================ -->
   <h2>Introduction — Pourquoi des fonctions exponentielles ?</h2>
 
@@ -115,6 +120,17 @@ details[open] summary{margin-bottom:6px}
       <li>\(a^0 = 1\)  —  \(a^1 = a\)  —  \(a^{-x} = \dfrac{1}{a^x}\)</li>
     </ul>
   </div>
+
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un métreur investit dans une perceuse à colonne. Sa valeur suit la formule \(V(t) = 6\,000 \times 0{,}85^t\). Calcule \(V(3)\) et \(V(5)\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(V(3) = 6\,000 \times 0{,}85^3 = 6\,000 \times 0{,}6141 \approx \mathbf{3\,685\,€}\)</p>
+    <p>\(V(5) = 6\,000 \times 0{,}85^5 = 6\,000 \times 0{,}4437 \approx \mathbf{2\,662\,€}\)</p>
+  </div>
+</div>
 
   <div class="prop">
     <span class="label label-prop">Variations</span><br>
@@ -247,6 +263,17 @@ details[open] summary{margin-bottom:6px}
     \[\log\!\left(\frac{1}{a}\right) = -\log(a)\]
   </div>
 
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Simplifie : \(\log(5) + \log(20)\). Puis résous \(10^x = 500\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(\log(5) + \log(20) = \log(5 \times 20) = \log(100) = 2\)</p>
+    <p>\(10^x = 500 \Rightarrow x = \log(500) \approx 2{,}70\)</p>
+  </div>
+</div>
+
   <div class="prop">
     <span class="label label-prop">Variations de \(\log\)</span><br>
     La fonction \(\log\) est <strong>strictement croissante</strong> sur \(]0\,;\,+\infty[\) :
@@ -291,6 +318,19 @@ details[open] summary{margin-bottom:6px}
   <!-- ============================================================ -->
   <hr class="sep">
   <h2>3. Résolution d’équations exponentielles et logarithmiques</h2>
+
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un artisan menuisier achète du matériel qui perd 10 % par an. Sa valeur vaut \(V(t) = 15\,000 \times 0{,}9^t\). Au bout de combien d'années sa valeur est-elle inférieure à 7 500 € (moitié du prix) ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>On résout \(15\,000 \times 0{,}9^t < 7\,500\), soit \(0{,}9^t < 0{,}5\).</p>
+    <p>En appliquant le logarithme : \(t \times \log(0{,}9) < \log(0{,}5)\)</p>
+    <p>\(t > \dfrac{\log(0{,}5)}{\log(0{,}9)} = \dfrac{-0{,}301}{-0{,}046} \approx 6{,}5\)</p>
+    <p>Au bout de <strong>7 ans</strong>, la valeur est inférieure à 7 500 €.</p>
+  </div>
+</div>
 
   <div class="meth">
     <span class="label label-meth">Méthode — résoudre \(a^x = b\)</span><br>
@@ -835,273 +875,42 @@ details[open] summary{margin-bottom:6px}
     <p>La fonction \(e^x\) (exponentielle de base \(e\)) a la propriété remarquable d’être égale à sa propre dérivée, ce qui en fait l’outil central du calcul différentiel et intégral.</p>
   </div>
 
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Appliquer le logarithme d'un nombre négatif ou nul</strong><br>
+    \(\log(x)\) n'existe que pour \(x > 0\). Écrire \(\log(-3)\) n'a pas de sens.<br>
+    <em>Conseil : avant d'appliquer le logarithme, vérifier que le nombre est strictement positif.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre \(\log(a+b)\) et \(\log(a) + \log(b)\)</strong><br>
+    \(\log(a+b) \neq \log(a) + \log(b)\). La propriété s'applique au produit, pas à la somme.<br>
+    <em>Conseil : \(\log(a \times b) = \log(a) + \log(b)\) — mémoriser avec la multiplication.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Inverser le sens de l'inégalité sans raison</strong><br>
+    Quand on divise par \(\log(a)\) et que \(a < 1\), \(\log(a) < 0\) donc l'inégalité s'inverse.<br>
+    <em>Conseil : vérifier le signe du coefficient lors d'une division dans une inéquation.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre base \(a\) et base \(e\)</strong><br>
+    \(2^x\) et \(e^x\) sont des fonctions différentes. La formule de résolution varie selon la base.<br>
+    <em>Conseil : identifier clairement la base de l'exponentielle avant de commencer la résolution.</em>
+  </div>
+</div>
+
 </div><!-- fin .c -->
-
-<!-- ============================================================
-     SCRIPTS
-     ============================================================ -->
-<script>
-/* ----- utilitaire range ----- */
-function range(start, end, step) {
-  const arr = [];
-  for (let x = start; x <= end + 1e-9; x += step)
-    arr.push(parseFloat(x.toFixed(6)));
-  return arr;
-}
-
-/* ----- 1. Graphique exponentielles comparatif ----- */
-(function () {
-  const xs = range(-3, 4, 0.2);
-  const ctx = document.getElementById('chartExpo').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: xs,
-      datasets: [
-        {
-          label: 'f(x) = 2^x',
-          data: xs.map(x => Math.pow(2, x)),
-          borderColor: '#0969da', backgroundColor: 'rgba(9,105,218,0.07)',
-          tension: 0.35, pointRadius: 2, borderWidth: 2
-        },
-        {
-          label: 'g(x) = 0,5^x',
-          data: xs.map(x => Math.pow(0.5, x)),
-          borderColor: '#d97706', backgroundColor: 'rgba(217,119,6,0.07)',
-          tension: 0.35, pointRadius: 2, borderWidth: 2
-        },
-        {
-          label: 'h(x) = 10^x (axe droit)',
-          data: xs.map(x => Math.pow(10, x)),
-          borderColor: '#2f855a', backgroundColor: 'rgba(47,133,90,0.07)',
-          tension: 0.35, pointRadius: 2, borderWidth: 2,
-          yAxisID: 'y2'
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { position: 'top' },
-        title: { display: true, text: 'Comparaison de fonctions exponentielles', font: { size: 13 } }
-      },
-      scales: {
-        x: { title: { display: true, text: 'x' } },
-        y: { min: 0, max: 12, title: { display: true, text: '2^x et 0,5^x' }, position: 'left' },
-        y2: { min: 0, max: 1200, title: { display: true, text: '10^x' }, position: 'right', grid: { drawOnChartArea: false } }
-      }
-    }
-  });
-})();
-
-/* ----- 2. Graphique logarithme decimal ----- */
-(function () {
-  const xs = [];
-  for (let x = 0.05; x <= 12; x += 0.1) xs.push(parseFloat(x.toFixed(3)));
-  const ctx = document.getElementById('chartLog').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: xs,
-      datasets: [
-        {
-          label: 'y = log(x)',
-          data: xs.map(x => Math.log10(x)),
-          borderColor: '#0969da', backgroundColor: 'rgba(9,105,218,0.06)',
-          tension: 0.3, pointRadius: 0, borderWidth: 2.5, fill: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { position: 'top' },
-        title: { display: true, text: 'Courbe de y = log(x)', font: { size: 13 } }
-      },
-      scales: {
-        x: {
-          title: { display: true, text: 'x' },
-          ticks: {
-            maxTicksLimit: 8,
-            callback: function (val) {
-              const v = parseFloat(this.getLabelForValue(val));
-              return Number.isInteger(v) ? v : '';
-            }
-          }
-        },
-        y: {
-          min: -2, max: 2,
-          title: { display: true, text: 'log(x)' },
-          grid: {
-            color: ctx => ctx.tick && ctx.tick.value === 0 ? '#94a3b8' : '#e2e8f0'
-          }
-        }
-      }
-    }
-  });
-})();
-
-/* ----- 3. Graphique depreciation ----- */
-(function () {
-  const ns = Array.from({ length: 21 }, (_, i) => i);
-  const ctx = document.getElementById('chartDeprec').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ns,
-      datasets: [
-        {
-          label: 'V(n) = 12 000 x 0,85n',
-          data: ns.map(n => Math.round(12000 * Math.pow(0.85, n))),
-          borderColor: '#0969da', backgroundColor: 'rgba(9,105,218,0.08)',
-          fill: true, tension: 0.25, pointRadius: 3, borderWidth: 2
-        },
-        {
-          label: 'Seuil 2 000 EUR',
-          data: ns.map(() => 2000),
-          borderColor: '#c53030', borderDash: [6, 4],
-          pointRadius: 0, borderWidth: 1.5, fill: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { position: 'top' },
-        title: { display: true, text: 'Depreciation : V(n) = 12 000 x 0,85n', font: { size: 13 } }
-      },
-      scales: {
-        x: { title: { display: true, text: 'Annees (n)' } },
-        y: {
-          min: 0, max: 13000,
-          title: { display: true, text: 'Valeur (EUR)' },
-          ticks: { callback: v => v.toLocaleString('fr') + ' EUR' }
-        }
-      }
-    }
-  });
-})();
-
-/* ----- 4. Graphique interactif a^x avec slider ----- */
-let chartInteractif = null;
-
-function buildInteractifChart(a) {
-  const xs = range(-4, 4, 0.2);
-  const datasets = [{
-    label: 'f(x) = ' + a.toFixed(2) + '^x',
-    data: xs.map(x => Math.pow(a, x)),
-    borderColor: '#0969da', backgroundColor: 'rgba(9,105,218,0.07)',
-    fill: true, tension: 0.3, pointRadius: 2, borderWidth: 2
-  }];
-
-  if (chartInteractif) {
-    chartInteractif.data.labels = xs;
-    chartInteractif.data.datasets = datasets;
-    chartInteractif.update('none');
-    return;
-  }
-  const ctx = document.getElementById('chartInteractif').getContext('2d');
-  chartInteractif = new Chart(ctx, {
-    type: 'line',
-    data: { labels: xs, datasets },
-    options: {
-      responsive: true,
-      animation: false,
-      plugins: {
-        legend: { position: 'top' },
-        title: { display: true, text: 'f(x) = ax (modifiez le curseur)', font: { size: 13 } }
-      },
-      scales: {
-        x: { title: { display: true, text: 'x' } },
-        y: { min: 0, max: 12, title: { display: true, text: 'a^x' } }
-      }
-    }
-  });
-}
-
-function updateCourbeA() {
-  const a = parseFloat(document.getElementById('sliderA').value);
-  document.getElementById('valeurA').textContent = a.toFixed(2);
-  buildInteractifChart(a);
-}
-
-buildInteractifChart(2);
-
-/* ----- 5. Simulateur depreciation ----- */
-function calcDeprec() {
-  const v0 = parseFloat(document.getElementById('v0Input').value);
-  const taux = parseFloat(document.getElementById('tauxInput').value);
-  const seuil = parseFloat(document.getElementById('seuilInput').value);
-  const el = document.getElementById('resultatDeprec');
-
-  if (isNaN(v0) || isNaN(taux) || isNaN(seuil) || taux <= 0 || taux >= 100 || v0 <= 0) {
-    el.textContent = 'Valeurs invalides. Veuillez corriger les saisies.';
-    return;
-  }
-  if (seuil >= v0) {
-    el.textContent = 'Le seuil doit etre strictement inferieur a la valeur initiale.';
-    return;
-  }
-
-  const q = 1 - taux / 100;
-  const rapport = seuil / v0;
-  const n = Math.log(rapport) / Math.log(q);
-  const nEntier = Math.ceil(n);
-  const vApresN = v0 * Math.pow(q, nEntier);
-
-  el.innerHTML =
-    'Formule : <em>V(n) = ' + v0.toLocaleString('fr') + ' × ' + q.toFixed(2) + '<sup>n</sup></em><br>' +
-    'Resolution : <em>n &gt; log(' + rapport.toFixed(4) + ') / log(' + q.toFixed(2) + ') = ' + n.toFixed(3) + '</em><br>' +
-    '→ A partir de <strong>n = ' + nEntier + ' an(s)</strong>, V passe sous ' + seuil.toLocaleString('fr') + '\u00a0\u20ac' +
-    ' (V(' + nEntier + ') ≈ ' + Math.round(vApresN).toLocaleString('fr') + '\u00a0\u20ac)';
-}
-
-/* ----- 6. Calculateurs decibels ----- */
-const I0 = 1e-12;
-
-function calcDecibels() {
-  const I = parseFloat(document.getElementById('intensiteInput').value);
-  const el = document.getElementById('resultatDB');
-  if (isNaN(I) || I <= 0) { el.textContent = 'Valeur invalide (I doit etre > 0).'; return; }
-  const rapport = I / I0;
-  const L = 10 * Math.log10(rapport);
-  el.innerHTML =
-    'L = 10 × log(' + I.toExponential(3) + ' / 10<sup>−12</sup>) = 10 × log(' + rapport.toExponential(3) + ') ' +
-    '≈ <strong>' + L.toFixed(1) + ' dB</strong>';
-}
-
-function calcIntensite() {
-  const L = parseFloat(document.getElementById('niveauInput').value);
-  const el = document.getElementById('resultatI');
-  if (isNaN(L)) { el.textContent = 'Valeur invalide.'; return; }
-  const I = I0 * Math.pow(10, L / 10);
-  el.innerHTML =
-    'I = 10<sup>−12</sup> × 10<sup>' + (L / 10).toFixed(2) + '</sup> ≈ <strong>' + I.toExponential(3) + ' W/m&sup2;</strong>';
-}
-
-/* ----- 7. Calculateur exp/log general ----- */
-function calcExpLog() {
-  const a = parseFloat(document.getElementById('baseInput').value);
-  const x = parseFloat(document.getElementById('expInput').value);
-  const v = parseFloat(document.getElementById('logInput').value);
-  const el = document.getElementById('resultatExpLog');
-  let html = '';
-
-  if (!isNaN(a) && a > 0 && Math.abs(a - 1) > 1e-9 && !isNaN(x)) {
-    const res = Math.pow(a, x);
-    html += '<strong>' + a.toFixed(2) + '<sup>' + x + '</sup> = ' + res.toFixed(6) + '</strong><br>';
-    html += 'log(' + a.toFixed(2) + ') = ' + Math.log10(a).toFixed(6) + '<br>';
-    const xCheck = Math.log10(res) / Math.log10(a);
-    html += 'Verification : log(' + res.toFixed(4) + ') / log(' + a.toFixed(2) + ') = ' + xCheck.toFixed(6) + '<br>';
-  }
-  if (!isNaN(v) && v > 0) {
-    html += '<br><strong>log(' + v + ') = ' + Math.log10(v).toFixed(6) + '</strong><br>';
-    html += '10<sup>log(' + v + ')</sup> = ' + Math.pow(10, Math.log10(v)).toFixed(4) + ' ✓';
-  }
-  el.innerHTML = html || 'Renseignez les champs ci-dessus.';
-}
-</script>
 
 <script src="../../../nav.js"></script>
 
