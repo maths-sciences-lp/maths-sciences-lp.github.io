@@ -71,6 +71,11 @@ details p,details li{margin:5px 0;color:#4a5568}
   </ul>
 </div>
 
+<div class="situation">
+  <h3>Situation professionnelle — Optimisation d’une boîte de rangement</h3>
+  <p>Un menuisier découpe une plaque de bois rectangulaire et relève les côtés pour fabriquer une boîte ouverte. La hauteur des côtés est variable : en faisant varier cette hauteur, le volume change. Comment trouver la découpe qui maximise le volume de rangement ?</p>
+</div>
+
 <!-- ============================================================ -->
 <h2><span class="section-num">★</span> Introduction — D’où viennent les polynômes de degré 3 ?</h2>
 
@@ -252,6 +257,15 @@ details p,details li{margin:5px 0;color:#4a5568}
     La dérivée d'un polynôme de degré 3 est un <strong>polynôme de degré 2</strong>.
   </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un artisan menuisier modélise le volume d'un tiroir par \(f(x) = 2x^3 - 3x^2 + x\). Calcule \(f'(x)\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(f'(x) = 3 \times 2 x^2 - 2 \times 3 x + 1 = 6x^2 - 6x + 1\)</p>
+  </div>
+</div>
+
   <div class="meth">
     <span class="label label-meth">Méthode pas à pas</span><br>
     On dérive terme par terme :
@@ -323,6 +337,17 @@ details p,details li{margin:5px 0;color:#4a5568}
       <li>Calculer les valeurs de \(f\) aux extrema si demandé.</li>
     </ol>
   </div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Pour \(f(x) = x^3 - 6x^2 + 9x + 1\), on a \(f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3)\). Dresse le tableau de signe de \(f'(x)\) et indique les intervalles de croissance et de décroissance.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(f'(x) = 0\) pour \(x = 1\) et \(x = 3\).</p>
+    <p>Signe de \(f'\) : \(+\) sur \(]-\infty\,;\,1[\), \(-\) sur \(]1\,;\,3[\), \(+\) sur \(]3\,;\,+\infty[\).</p>
+    <p>\(f\) est croissante sur \(]-\infty\,;\,1]\), décroissante sur \([1\,;\,3]\), croissante sur \([3\,;\,+\infty[\).</p>
+  </div>
+</div>
 
   <h3>Exemple complet — \(f(x) = x^3 - 3x^2 - 9x + 2\)</h3>
 
@@ -460,6 +485,16 @@ details p,details li{margin:5px 0;color:#4a5568}
     <li>\(f'(x_0) = 0\) et \(f'\) passe de \(+\) à \(-\) → <strong>maximum local</strong></li>
     <li>\(f'(x_0) = 0\) et \(f'\) passe de \(-\) à \(+\) → <strong>minimum local</strong></li>
   </ul>
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Pour \(f(x) = x^3 - 6x^2 + 9x + 1\) (\(f'(x) = 3(x-1)(x-3)\)), calcule les valeurs aux extrema \(f(1)\) et \(f(3)\). Indique lequel est un maximum local et lequel est un minimum local.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(f(1) = 1 - 6 + 9 + 1 = 5\) — maximum local (signe de \(f'\) passe de \(+\) à \(-\))</p>
+    <p>\(f(3) = 27 - 54 + 27 + 1 = 1\) — minimum local (signe de \(f'\) passe de \(-\) à \(+\))</p>
+  </div>
 </div>
 
 <div class="att">
@@ -1007,6 +1042,40 @@ details p,details li{margin:5px 0;color:#4a5568}
     <li><strong>Intégration</strong> : le calcul d’aire sous la courbe (intégrale) d’un polynôme de degré 3 est étudié en Terminale générale et en BTS.</li>
     <li><strong>Méthode de Newton</strong> : algorithme itératif permettant de trouver très précisément les zéros d’une fonction (BTS, informatique).</li>
   </ul>
+</div>
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier de multiplier par le coefficient lors du calcul de la dérivée</strong><br>
+    \((ax^3)' = 3ax^2\) et non pas \(ax^2\).<br>
+    <em>Conseil : dériver terme par terme en multipliant l'exposant et en le diminuant de 1.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Conclure à un extremum sans vérifier le changement de signe de \(f'\)</strong><br>
+    Si \(f'(x_0) = 0\) mais que \(f'\) ne change pas de signe, il n'y a pas d'extremum.<br>
+    <em>Conseil : toujours dresser le tableau de signe complet de \(f'\) avant de conclure.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre maximum local et maximum global</strong><br>
+    Un maximum local est le plus grand dans un voisinage — pas nécessairement sur tout le domaine.<br>
+    <em>Conseil : dans un problème d'optimisation, préciser l'intervalle sur lequel on cherche le maximum ou minimum.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Erreur de signe dans la résolution de \(f'(x) = 0\)</strong><br>
+    Un signe mal calculé dans le discriminant ou dans les racines fausse tout le tableau.<br>
+    <em>Conseil : vérifier les racines en remplaçant dans \(f'(x)\) — le résultat doit donner 0.</em>
+  </div>
 </div>
 
 <!-- NAV FOOTER -->

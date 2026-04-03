@@ -42,6 +42,11 @@ canvas{border-radius:8px;display:block;margin:0 auto}</style>
   </ul>
 </div>
 
+<div class="situation">
+  <h3>Situation professionnelle — Plan d'un atelier de menuiserie</h3>
+  <p>Un technicien d'agencement place les éléments d'un atelier sur un plan quadrillé. Il doit calculer des distances, vérifier si des rails de guidage sont parallèles, et déterminer l'équation d'une cloison. Ces outils relèvent des vecteurs dans le plan.</p>
+</div>
+
 <!-- ==================================================
      1. RAPPELS
      ================================================== -->
@@ -190,6 +195,17 @@ canvas{border-radius:8px;display:block;margin:0 auto}</style>
   Pour \(\vec{u} = \begin{pmatrix}a\\b\end{pmatrix}\) : \(\|\vec{u}\| = \sqrt{a^2 + b^2}\)
 </div>
 
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un plan d'agencement place \(A(2\,;\,3)\) et \(B(8\,;\,7)\). Calcule les coordonnées de \(\overrightarrow{AB}\) et la distance \(AB\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(\overrightarrow{AB} = \begin{pmatrix}8-2\\7-3\end{pmatrix} = \begin{pmatrix}6\\4\end{pmatrix}\)</p>
+    <p>\(AB = \sqrt{6^2+4^2} = \sqrt{36+16} = \sqrt{52} \approx 7{,}2\) (unités du plan)</p>
+  </div>
+</div>
+
 <div class="att">
   <span class="label label-att">Attention</span><br>
   La norme est toujours <strong>positive ou nulle</strong>. Les coordonnées d'un vecteur peuvent être négatives, mais sa norme non.
@@ -246,6 +262,17 @@ canvas{border-radius:8px;display:block;margin:0 auto}</style>
   <em>Remarque :</em> Trois points \(A\), \(B\), \(C\) sont alignés \(\iff\) \(\overrightarrow{AB}\) et \(\overrightarrow{AC}\) sont colinéaires.
 </div>
 
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un menuisier place trois clous \(A(0\,;\,0)\), \(B(3\,;\,2)\), \(C(6\,;\,4)\). Vérifie si \(A\), \(B\), \(C\) sont alignés.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(\overrightarrow{AB} = \begin{pmatrix}3\\2\end{pmatrix}\) et \(\overrightarrow{AC} = \begin{pmatrix}6\\4\end{pmatrix}\)</p>
+    <p>\(\det = 3 \times 4 - 2 \times 6 = 12 - 12 = 0\) → les vecteurs sont colinéaires → \(A\), \(B\), \(C\) sont <strong>alignés</strong>.</p>
+  </div>
+</div>
+
 <div class="ex">
   <span class="label label-ex">Exemple</span><br>
   \(\vec{u} = \begin{pmatrix}2\\3\end{pmatrix}\), \(\vec{v} = \begin{pmatrix}4\\6\end{pmatrix}\) : \(\det = 2{\times}6 - 3{\times}4 = 0\) → colinéaires.<br><br>
@@ -287,6 +314,16 @@ canvas{border-radius:8px;display:block;margin:0 auto}</style>
 <!-- ==================================================
      6. DISTANCE POINT DROITE
      ================================================== -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>La cloison d'un atelier suit la droite \(3x + 2y - 12 = 0\). Le coin de l'atelier est en \(M(4\,;\,1)\). Calcule la distance du coin à la cloison.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(d = \dfrac{|3 \times 4 + 2 \times 1 - 12|}{\sqrt{3^2+2^2}} = \dfrac{|12+2-12|}{\sqrt{13}} = \dfrac{2}{\sqrt{13}} \approx \mathbf{0{,}55}\) (unités)</p>
+  </div>
+</div>
+
 <h2>6. Distance d'un point à une droite</h2>
 
 <div class="prop">
@@ -850,6 +887,41 @@ function drawArrow(ctx, x1, y1, x2, y2, color, lw) {
   draw();
 })();
 </script>
+
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Inverser l'ordre des coordonnées dans \(\overrightarrow{AB}\)</strong><br>
+    On fait \(x_B - x_A\) (et non \(x_A - x_B\)).<br>
+    <em>Conseil : \(\overrightarrow{AB}\) part de \(A\) et arrive en \(B\) → \(B - A\).</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier la valeur absolue dans la formule de distance</strong><br>
+    \(d = \dfrac{|ax_M + by_M + c|}{\sqrt{a^2+b^2}}\) — les barres de valeur absolue sont indispensables.<br>
+    <em>Conseil : la distance est toujours positive, donc on prend la valeur absolue au numérateur.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre vecteur directeur et vecteur normal</strong><br>
+    Pour \(ax+by+c=0\) : le vecteur normal est \((a\,;\,b)\) et le vecteur directeur est \((-b\,;\,a)\).<br>
+    <em>Conseil : vecteur normal = coefficients de \(x\) et \(y\) dans l'équation.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre déterminant nul et vecteur nul</strong><br>
+    \(\det(\vec{u},\vec{v}) = 0\) signifie que les vecteurs sont colinéaires — pas qu'ils sont nuls.<br>
+    <em>Conseil : colinéaires = même direction (parallèles ou confondus), pas nécessairement égaux.</em>
+  </div>
+</div>
 
 <script src="../../../nav.js"></script>
 

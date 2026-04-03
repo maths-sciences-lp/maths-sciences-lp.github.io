@@ -49,6 +49,11 @@ input[type=range]{width:220px;accent-color:var(--p)}
   </ul>
 </div>
 
+<div class="situation">
+  <h3>Situation professionnelle — Maintenance d'une centrale de traitement d'air</h3>
+  <p>Un installateur de pompes à chaleur doit vérifier les moteurs électriques d'une CTA (ventilateurs de soufflage et de reprise). Il lit les plaques signalétiques pour contrôler la puissance absorbée, le rendement et adapter le réglage du variateur de fréquence.</p>
+</div>
+
 <!-- ====================================================
      INTRODUCTION
      ==================================================== -->
@@ -148,6 +153,13 @@ input[type=range]{width:220px;accent-color:var(--p)}
   <small>η (êta) : rendement du moteur – sans unité, compris entre 0 et 1 (ou en %). Plus η est proche de 1, plus le moteur est efficace.</small>
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un ventilateur de CTA absorbe Pₐ = 1 500 W. Sa puissance utile sur l'arbre est Pᵤ = 1 275 W. Calculer les pertes et le rendement η.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>Pertes : \(P_{\text{pertes}} = 1500 - 1275 = \mathbf{225 \text{ W}}\)</p><p>Rendement : \(\eta = \dfrac{P_u}{P_a} = \dfrac{1275}{1500} = \mathbf{0{,}85 = 85\,\%}\). Ce moteur est correct pour un ventilateur industriel.</p></div>
+</div>
+
 <h3>Formules de la puissance absorbée</h3>
 
 <div class="formule-box">
@@ -189,6 +201,13 @@ input[type=range]{width:220px;accent-color:var(--p)}
   La fréquence de rotation <strong>n</strong> est <strong>directement proportionnelle à la tension U</strong> (à couple résistant constant) :
   \[ n \propto U \]
   Le graphe n = f(U) est une <strong>droite passant par l'origine</strong>.
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un moteur CC tourne à n = 1 200 tr/min sous U = 24 V. Si on augmente la tension à 36 V (à couple constant), quelle sera la nouvelle vitesse de rotation approximative ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>Comme n ∝ U : \(\dfrac{n_2}{n_1} = \dfrac{U_2}{U_1}\) → \(n_2 = n_1 \times \dfrac{U_2}{U_1} = 1200 \times \dfrac{36}{24} = \mathbf{1800 \text{ tr/min}}\). La vitesse augmente de 50 % quand la tension augmente de 50 %.</p></div>
 </div>
 
 <h3>Plaque signalétique d'un moteur CC</h3>
@@ -248,6 +267,13 @@ input[type=range]{width:220px;accent-color:var(--p)}
     <small>nₛ en tr/min &nbsp;|&nbsp; f : fréquence réseau (Hz) — 50 Hz en France &nbsp;|&nbsp; p : nombre de paires de pôles</small>
   </div>
   La vitesse réelle du rotor est <strong>légèrement inférieure</strong> à nₛ (glissement : 2 % à 5 %).
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un moteur asynchrone de pompe à chaleur a p = 3 paires de pôles. Le réseau est à 50 Hz. Calculer la vitesse de synchronisme nₛ.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>\(n_s = \dfrac{60 \times f}{p} = \dfrac{60 \times 50}{3} = \mathbf{1000 \text{ tr/min}}\). La vitesse réelle sera légèrement inférieure, autour de 960 tr/min (glissement ≈ 4 %).</p></div>
 </div>
 
 <table>
@@ -726,6 +752,25 @@ input[type=range]{width:220px;accent-color:var(--p)}
       <tr><td>Classe H</td><td>180 °C</td><td>Applications sévères, environnements chauds</td></tr>
     </tbody>
   </table>
+</div>
+
+<!-- ===== ERREURS FRÉQUENTES ===== -->
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Confondre puissance absorbée et puissance utile</strong><br>Pₐ est la puissance électrique consommée par le moteur. Pᵤ est la puissance mécanique disponible sur l'arbre. Pᵤ &lt; Pₐ toujours, car il y a des pertes.<br><em>Conseil : le rendement η = Pᵤ/Pₐ est toujours inférieur à 1. Si η &gt; 1, il y a une erreur dans les données ou le calcul.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Utiliser la mauvaise formule pour Pₐ (CC ou asynchrone)</strong><br>Pour un moteur CC monophasé : Pₐ = U × I. Pour un moteur asynchrone triphasé : Pₐ = √3 × U × I × cos φ. Ne pas oublier le facteur √3 ≈ 1,732 pour le triphasé.<br><em>Conseil : lire attentivement la plaque signalétique pour identifier le type d'alimentation.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Confondre vitesse de synchronisme et vitesse réelle</strong><br>La vitesse de synchronisme nₛ = 60f/p est théorique. La vitesse réelle est légèrement inférieure (glissement de 2 à 5 %). Les plaques signalétiques donnent la vitesse réelle nominale.<br><em>Conseil : utiliser nₛ seulement pour les calculs liés au champ tournant, pas pour la vitesse de l'arbre.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Ignorer l'unité du rendement</strong><br>Le rendement η est un nombre sans unité, entre 0 et 1. On peut aussi l'exprimer en pourcentage (× 100). Éviter de mélanger les deux dans les calculs.<br><em>Conseil : si le résultat de Pᵤ = η × Pₐ semble aberrant, vérifier que η est bien sous forme décimale (ex. 0,85 et non 85).</em></div>
 </div>
 
 <div class="nav-footer">

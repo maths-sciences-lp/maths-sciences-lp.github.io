@@ -46,6 +46,12 @@ details[open] summary{margin-bottom:6px}
     </ul>
   </div>
 
+
+<div class="situation">
+  <h3>Situation professionnelle — Section et énergie en menuiserie</h3>
+  <p>Un ébéniste veut calculer l'aire de la section d'un profil de bois cintré — une courbe décrite par une fonction mathématique. Une calcul d'intégrale lui permet de trouver exactement cette aire, ou encore de calculer l'énergie consommée par une chaudière sur une période donnée.</p>
+</div>
+
   <!-- ===== 1. NOTION D'INTÉGRALE ===== -->
   <h2>1. Notion d'intégrale — Aire sous une courbe</h2>
 
@@ -80,6 +86,17 @@ details[open] summary{margin-bottom:6px}
   </div>
 
   <!-- ===== 2. PRIMITIVES ===== -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Calcule \(\displaystyle\int_0^2 3\,\mathrm{d}x\). Interpréte géométriquement ce résultat (l'intégrale d'une fonction constante).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(f(x) = 3\) est une droite horizontale. L'intégrale représente l'aire du rectangle de base 2 et de hauteur 3.</p>
+    <p>\(\int_0^2 3\,\mathrm{d}x = 3 \times 2 = 6\)</p>
+  </div>
+</div>
+
   <h2>2. Primitives d'une fonction</h2>
 
   <div class="def">
@@ -161,6 +178,18 @@ details[open] summary{margin-bottom:6px}
   </div>
 
   <!-- ===== 3. CALCUL D'UNE INTÉGRALE ===== -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Donne une primitive de chacune des fonctions suivantes : \(f(x) = 5x^2\), \(g(x) = 4x - 3\), \(h(x) = 7\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(F(x) = \dfrac{5x^3}{3}\) (primitive de \(5x^2\))</p>
+    <p>\(G(x) = 2x^2 - 3x\) (primitive de \(4x - 3\))</p>
+    <p>\(H(x) = 7x\) (primitive de \(7\))</p>
+  </div>
+</div>
+
   <h2>3. Calcul d'une intégrale définie</h2>
 
   <div class="prop">
@@ -220,6 +249,17 @@ details[open] summary{margin-bottom:6px}
   </p>
 
   <!-- ===== 4. PROPRIÉTÉS ===== -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un fabricant de mobilier modélise la largeur d'une pièce cintrée par \(f(x) = x + 2\) sur \([0\,;\,3]\). Calcule \(\displaystyle\int_0^3 (x+2)\,\mathrm{d}x\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>Primitive : \(F(x) = \dfrac{x^2}{2} + 2x\)</p>
+    <p>\(\int_0^3 (x+2)\,\mathrm{d}x = F(3) - F(0) = \left(\dfrac{9}{2}+6\right) - 0 = 4{,}5 + 6 = \mathbf{10{,}5}\)</p>
+  </div>
+</div>
+
   <h2>4. Propriétés de l'intégrale</h2>
 
   <div class="prop">
@@ -775,6 +815,41 @@ window.addEventListener('load', function () {
   });
 });
 </script>
+
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier d'évaluer aux deux bornes</strong><br>
+    \(\int_a^b f = F(b) - F(a)\), pas seulement \(F(b)\).<br>
+    <em>Conseil : toujours écrire les crochets \([F(x)]_a^b\) et calculer \(F(b) - F(a)\) explicitement.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre primitive et dérivée</strong><br>
+    La primitive de \(x^n\) est \(\dfrac{x^{n+1}}{n+1}\), pas \(nx^{n-1}\) (qui est la dérivée).<br>
+    <em>Conseil : pour une primitive, l'exposant augmente de 1 et on divise par ce nouvel exposant.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Prendre l'intégrale directement quand la fonction est négative</strong><br>
+    Si \(f(x) < 0\) sur \([a,b]\), l'intégrale est négative mais l'aire est positive.<br>
+    <em>Conseil : pour une aire, prendre la valeur absolue de l'intégrale quand la fonction est négative.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Inverser les bornes</strong><br>
+    \(\int_a^b f = -\int_b^a f\) — inverser les bornes change le signe.<br>
+    <em>Conseil : poser \(a < b\) en début d'exercice pour éviter toute confusion.</em>
+  </div>
+</div>
 
 <script src="../../../nav.js"></script>
 

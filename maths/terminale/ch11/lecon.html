@@ -43,6 +43,12 @@ canvas{display:block;margin:0 auto;border-radius:6px}
     </ul>
   </div>
 
+
+<div class="situation">
+  <h3>Situation professionnelle — Vérification d'équerrage et angles de construction</h3>
+  <p>Une technicienne d'agencement vérifie si les rebords d'un plan de travail en L sont bien perpendiculaires, et calcule les angles de coupe des lames d'un plancher en biais. Le produit scalaire est l'outil mathématique qui permet de répondre à ces questions.</p>
+</div>
+
   <!-- =========================================================
        SECTION 0 : CANVAS INTERACTIF
        ========================================================= -->
@@ -118,6 +124,16 @@ canvas{display:block;margin:0 auto;border-radius:6px}
     \(\vec{u}\begin{pmatrix}3\\2\end{pmatrix}\) et \(\vec{v}\begin{pmatrix}1\\4\end{pmatrix}\)  : 
     \(\vec{u} \cdot \vec{v} = 3 \times 1 + 2 \times 4 = 3 + 8 = \mathbf{11}\)
   </div>
+
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Calcule le produit scalaire \(\vec{u} \cdot \vec{v}\) pour \(\vec{u} = \begin{pmatrix}3\\-1\end{pmatrix}\) et \(\vec{v} = \begin{pmatrix}2\\4\end{pmatrix}\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(\vec{u} \cdot \vec{v} = 3 \times 2 + (-1) \times 4 = 6 - 4 = \mathbf{2}\)</p>
+  </div>
+</div>
 
   <h3>1.3 Définition par développement (identité de polarisation)</h3>
   <div class="def">
@@ -228,6 +244,17 @@ canvas{display:block;margin:0 auto;border-radius:6px}
   <!-- =========================================================
        SECTION 4 : CALCUL D'ANGLE
        ========================================================= -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Les deux rebords d'un plan de travail ont pour vecteurs directeurs \(\vec{u} = \begin{pmatrix}4\\2\end{pmatrix}\) et \(\vec{v} = \begin{pmatrix}-1\\2\end{pmatrix}\). Sont-ils perpendiculaires ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(\vec{u} \cdot \vec{v} = 4 \times (-1) + 2 \times 2 = -4 + 4 = 0\)</p>
+    <p>Le produit scalaire est nul donc les rebords sont <strong>perpendiculaires</strong>.</p>
+  </div>
+</div>
+
   <h2>4. Calcul d’un angle entre deux vecteurs</h2>
 
   <div class="def">
@@ -296,6 +323,18 @@ canvas{display:block;margin:0 auto;border-radius:6px}
   <!-- =========================================================
        SECTION 5 : ÉQUATION D'UNE DROITE
        ========================================================= -->
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un menuisier coupe une lame selon deux directions : \(\vec{u} = \begin{pmatrix}5\\0\end{pmatrix}\) et \(\vec{v} = \begin{pmatrix}3\\4\end{pmatrix}\). Calcule l'angle entre les deux directions (arrondi au degré).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(\vec{u} \cdot \vec{v} = 5 \times 3 + 0 \times 4 = 15\)</p>
+    <p>\(|\vec{u}| = 5\), \(|\vec{v}| = \sqrt{9+16} = 5\)</p>
+    <p>\(\cos\theta = \dfrac{15}{25} = 0{,}6 \Rightarrow \theta \approx \mathbf{53°}\)</p>
+  </div>
+</div>
+
   <h2>5. Équation d’une droite via le vecteur normal</h2>
 
   <div class="def">
@@ -814,6 +853,41 @@ canvas{display:block;margin:0 auto;border-radius:6px}
   draw();
 }());
 </script>
+
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre produit scalaire et produit vectoriel</strong><br>
+    Le produit scalaire \(\vec{u} \cdot \vec{v}\) donne un <em>nombre</em>, pas un vecteur.<br>
+    <em>Conseil : \(\vec{u} \cdot \vec{v} = ac + bd\) — résultat numérique, utilisé pour tester l'orthogonalité.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier la valeur absolue dans la formule de distance</strong><br>
+    La distance d'un point à une droite est toujours positive.<br>
+    <em>Conseil : utiliser \(\dfrac{|ax_0 + by_0 + c|}{\sqrt{a^2+b^2}}\) — les barres sont indispensables.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Mal appliquer la formule de l'angle</strong><br>
+    \(\cos\theta = \dfrac{\vec{u} \cdot \vec{v}}{|\vec{u}| \times |\vec{v}|}\) — on divise par le produit des normes, pas par leur somme.<br>
+    <em>Conseil : calculer les normes séparément avant d'appliquer la formule.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Conclure à la perpendicularité sans calculer le produit scalaire</strong><br>
+    Un angle visuellement droit ne suffit pas — il faut vérifier que \(\vec{u} \cdot \vec{v} = 0\).<br>
+    <em>Conseil : toujours calculer le produit scalaire pour une démonstration rigoureuse.</em>
+  </div>
+</div>
 
 <script src="../../../nav.js"></script>
 

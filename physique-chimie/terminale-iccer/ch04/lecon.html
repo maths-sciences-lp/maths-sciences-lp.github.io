@@ -39,6 +39,11 @@ input[type=range]{width:240px;accent-color:var(--p)}
   </ul>
 </div>
 
+<div class="situation">
+  <h3>Situation professionnelle — Diagnostic thermique d'un bâtiment</h3>
+  <p>Une technicienne de maintenance énergétique utilise une caméra thermique pour détecter les ponts thermiques d'une façade. Elle doit interpréter les thermogrammes et identifier les zones de déperdition pour conseiller les travaux d'isolation appropriés.</p>
+</div>
+
 <!-- INTRODUCTION -->
 <h2>Introduction – Pourquoi étudier le rayonnement thermique ?</h2>
 
@@ -67,6 +72,13 @@ input[type=range]{width:240px;accent-color:var(--p)}
     <small>λ<sub>max</sub> : longueur d'onde du pic d'émission (m) &nbsp;|&nbsp; T : température absolue (K) &nbsp;|&nbsp; T(K) = T(°C) + 273</small>
   </div>
   Quand T augmente → λ<sub>max</sub> diminue (le pic se déplace vers les courtes longueurs d'onde).
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un technicien de maintenance énergétique utilise une caméra thermique sur une façade à 20 °C. Calculer la longueur d'onde du pic d'émission de cette façade en micromètres.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>T = 20 + 273 = 293 K</p><p>\(\lambda_{\max} = \dfrac{2{,}898 \times 10^{-3}}{293} \approx 9{,}89 \times 10^{-6} \text{ m} \approx \mathbf{9{,}9 \; \mu\text{m}}\). Ce rayonnement est dans l'infrarouge moyen : la caméra thermique peut le détecter.</p></div>
 </div>
 
 <div class="prop">
@@ -218,6 +230,13 @@ input[type=range]{width:240px;accent-color:var(--p)}
 <div class="att">
   <span class="label label-att">Attention – émissivité</span><br>
   La caméra thermique mesure la <strong>température de surface</strong>, pas la température intérieure. La valeur lue dépend de l'<strong>émissivité ε</strong> du matériau (rapport entre rayonnement réel et corps noir idéal). Un métal poli (ε faible) peut paraître froid même s'il est chaud.
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Une technicienne de maintenance énergétique pointe sa caméra thermique sur une paroi en béton (ε = 0,95) à 15 °C. La caméra est réglée pour ε = 0,95. Quelle température affiche-t-elle ? Que se passerait-il si elle l'avait réglée pour ε = 0,50 par erreur ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>Avec ε = 0,95 correct : la caméra affiche <strong>15 °C</strong> (valeur correcte).<br>Avec ε = 0,50 incorrect : la caméra interpréterait moins de rayonnement comme venant de la surface → elle afficherait une température <strong>inférieure à 15 °C</strong>, donnant un diagnostic erroné. Il est crucial de régler correctement l'émissivité selon le matériau observé.</p></div>
 </div>
 
 <!-- ====================================================
@@ -411,6 +430,13 @@ input[type=range]{width:240px;accent-color:var(--p)}
 <div class="att">
   <span class="label label-att">Gaz fluorés en installation thermique</span><br>
   Les HFC (hydrofluorocarbures) utilisés comme fluides frigorigènes dans les climatiseurs et pompes à chaleur ont des PRG très élevés (jusqu'à 23 500 fois le CO₂). La réglementation F-Gas impose leur remplacement progressif par des fluides à faible PRG (HFO, CO₂ R-744, ammoniac R-717).
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un installateur thermique remplace 2 kg de R-410A (PRG = 2 088) par du R-32 (PRG = 675). Calculer la réduction de l'empreinte carbone équivalente (en kg CO₂ équivalent).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none"><p>Avec R-410A : 2 × 2088 = 4 176 kg CO₂ éq.<br>Avec R-32 : 2 × 675 = 1 350 kg CO₂ éq.<br>Réduction : 4 176 − 1 350 = <strong>2 826 kg CO₂ éq.</strong> — soit une réduction de 68 % de l'empreinte carbone du fluide frigorigène.</p></div>
 </div>
 
 <!-- ====================================================
@@ -745,6 +771,25 @@ input[type=range]{width:240px;accent-color:var(--p)}
     <li><strong>Confondre l'effet de serre naturel (indispensable) et l'amplification anthropique</strong> : sans effet de serre naturel, T = −18 °C ; le problème est l'amplification due aux émissions humaines.</li>
     <li><strong>Croire que la thermographie "voit" à travers les matériaux</strong> : la caméra IR ne mesure que la surface d'un objet opaque à l'IR.</li>
   </ul>
+</div>
+
+<!-- ===== ERREURS FRÉQUENTES ===== -->
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Utiliser la température en °C dans la loi de Wien</strong><br>Les formules de Wien et Stefan-Boltzmann utilisent la température en <strong>kelvins (K)</strong>, pas en °C. Toujours convertir : T(K) = T(°C) + 273.<br><em>Conseil : écrire la conversion en première ligne avant tout calcul.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Confondre λ en mètres et en micromètres</strong><br>La constante de Wien vaut 2,898 × 10⁻³ m·K. Le résultat est en mètres. Pour l'exprimer en micromètres, multiplier par 10⁶ (1 m = 10⁶ μm).<br><em>Conseil : vérifier que λ_max est entre 1 et 15 μm pour les corps courants (−20°C à 1000°C).</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Croire que la caméra thermique mesure la température intérieure</strong><br>La caméra thermique mesure la <strong>température de surface</strong> et dépend de l'émissivité ε. Un matériau à faible ε (métal poli) semblera froid même s'il est chaud à l'intérieur.<br><em>Conseil : toujours régler l'émissivité sur la caméra selon le matériau observé.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Confondre effet de serre naturel et réchauffement climatique</strong><br>L'effet de serre naturel (+33°C) est indispensable à la vie. C'est l'<strong>amplification anthropique</strong> due aux GES supplémentaires qui pose problème. Ne pas présenter l'effet de serre comme intrinsèquement négatif.<br><em>Conseil : toujours distinguer « effet de serre » (naturel) et « réchauffement climatique » (amplification).</em></div>
 </div>
 
 <div class="nav-footer">

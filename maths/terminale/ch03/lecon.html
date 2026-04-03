@@ -122,6 +122,16 @@ details p,details li{margin:5px 0;color:#4a5568}
   La raison \(q\) est non nulle. Le premier terme \(u_0\) est aussi non nul.
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un artisan menuisier achète un tour à bois pour <strong>8 000 €</strong>. Chaque année, il perd 12 % de sa valeur. Écris la relation de récurrence de la suite des valeurs. Identifie \(u_0\) et \(q\).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>Perte de 12 % chaque année → il reste 88 % → \(q = 0{,}88\).</p>
+    <p>\(u_{n+1} = u_n \times 0{,}88\), avec \(u_0 = 8\,000\,€\).</p>
+  </div>
+</div>
+
 <div class="meth">
   <span class="label label-meth">Méthode — Identifier une suite géométrique</span><br>
   Pour vérifier qu'une suite est géométrique, calculer le <strong>quotient de deux termes consécutifs</strong> :
@@ -166,6 +176,16 @@ details p,details li{margin:5px 0;color:#4a5568}
   <span class="label label-prop">Propriété — Terme général</span><br>
   Si \((u_n)\) est une suite géométrique de premier terme \(u_0\) et de raison \(q\), alors :
   \[\boxed{u_n = u_0 \times q^n}\]
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un fabricant de mobilier investit <strong>20 000 €</strong> dans une machine de découpe. Sa valeur diminue de 8 % par an. Calcule la valeur de la machine après 6 ans.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(u_0 = 20\,000\), \(q = 1 - 0{,}08 = 0{,}92\)</p>
+    <p>\(u_6 = 20\,000 \times 0{,}92^6 \approx 20\,000 \times 0{,}6064 \approx \mathbf{12\,128\,€}\)</p>
+  </div>
 </div>
 
 <div class="formule-box">
@@ -281,6 +301,18 @@ details p,details li{margin:5px 0;color:#4a5568}
   \[\boxed{S_n = u_0 \times \frac{1 - q^{n+1}}{1 - q}}\]
   On additionne \((n+1)\) termes : \(u_0 + u_1 + u_2 + \cdots + u_n\).<br>
   Si \(q = 1\) : tous les termes sont égaux à \(u_0\), donc \(S_n = (n+1) \times u_0\).
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un métreur place <strong>5 000 €</strong> sur un livret qui rapporte 3 % par an. Calcule la somme totale capitalisée sur 5 ans (du rang 0 au rang 4, soit 5 termes).</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\(u_0 = 5\,000\), \(q = 1{,}03\), on somme \(u_0 + u_1 + u_2 + u_3 + u_4\) soit \(n = 4\).</p>
+    <p>\(S_4 = 5\,000 \times \dfrac{1 - 1{,}03^5}{1 - 1{,}03}\)</p>
+    <p>\(1{,}03^5 \approx 1{,}1593\)</p>
+    <p>\(S_4 = 5\,000 \times \dfrac{1 - 1{,}1593}{-0{,}03} = 5\,000 \times \dfrac{-0{,}1593}{-0{,}03} = 5\,000 \times 5{,}31 \approx \mathbf{26\,550\,€}\)</p>
+  </div>
 </div>
 
 <div class="formule-box">
@@ -587,6 +619,40 @@ details p,details li{margin:5px 0;color:#4a5568}
     <li><strong>Modèles financiers</strong> : les suites géométriques sont à la base du calcul de la valeur actuelle d'un flux financier (actualisation), du calcul de mensualités d'un prêt immobilier. Très utilisées en BTS CGO, MCO, et en banque.</li>
   </ul>
   <p style="color:#7c3aed;font-size:.9em"><em>Si vous vous orientez vers un BTS à composante financière ou vers des études de gestion, vous approfondirez ces notions rapidement.</em></p>
+</div>
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Confondre suite géométrique et suite arithmétique</strong><br>
+    Dans une suite géométrique, on multiplie par \(q\) à chaque étape. Dans une suite arithmétique, on additionne une raison \(r\).<br>
+    <em>Conseil : repérer le verbe dans l'énoncé — « perd X % » ou « augmente de X % » → géométrique ; « augmente de X € » → arithmétique.</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Mal calculer la raison quand il y a un pourcentage</strong><br>
+    Une diminution de 15 % donne \(q = 0{,}85\), pas \(q = 0{,}15\).<br>
+    <em>Conseil : raison = ce qui reste, pas ce qui est perdu. Diminution de \(t\%\) → \(q = 1 - \frac{t}{100}\).</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Mal compter le nombre de termes dans la somme</strong><br>
+    De \(u_0\) à \(u_n\) il y a \(n+1\) termes, pas \(n\).<br>
+    <em>Conseil : compter explicitement les rangs — de 0 à 5 donne bien 6 termes (\(n=5\)).</em>
+  </div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt">
+    <strong>Oublier d'interpréter le résultat</strong><br>
+    Donner \(u_7 = 4\,252\) sans préciser ce que cela signifie dans le contexte.<br>
+    <em>Conseil : toujours conclure avec une phrase : « La machine vaut environ 4 252 € après 7 ans. »</em>
+  </div>
 </div>
 
 <!-- ==================== NAV FOOTER ==================== -->

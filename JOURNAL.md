@@ -85,6 +85,12 @@
   - `<details class="corr-wrap">` → `.bc` + `.corr` (maths seconde)
   - Résultat : 2 à 7 mini-exo distribués par leçon, 0 section groupée résiduelle
 
+### Session 3 avril 2026 (Terminale Bac Pro)
+- **Mini-exercices** dans les 27 leçons Terminale (11 maths + 8 PC ICCER + 8 PC ERA) — 3 à 5 par leçon
+- **Erreurs fréquentes** (`.erreur-item`) dans les 27 leçons — 4 à 5 erreurs par chapitre
+- **`.situation`** dans les leçons qui en manquaient
+- **Problématiques** ajoutées dans les 27 activités Terminale
+
 ### Session 3 avril 2026 (Première Bac Pro)
 - **Mini-exercices** dans les 28 leçons Première (9 maths + 10 PC ICCER + 9 PC ERA) — 3 à 5 par leçon, distribués après chaque notion
 - **Erreurs fréquentes** (`.erreur-item`) dans les 28 leçons — 4 à 5 erreurs par chapitre

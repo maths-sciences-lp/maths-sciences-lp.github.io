@@ -202,6 +202,16 @@ input[type=range]{accent-color:var(--p);width:200px}
   </ol>
 </div>
 
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un plaquiste pose une cloison entre l'atelier et le bureau d'un fabricant de meubles. Le niveau sonore côté atelier est 85 dB, et 47 dB côté bureau. Calculer l'indice d'affaiblissement R de la cloison.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\( R = L_i - L_t = 85 - 47 = \mathbf{38\ \text{dB}} \)</p>
+    <p>Cette cloison a un affaiblissement de 38 dB, correspondant à une cloison placo-plâtre standard. La norme entre logements exige D<sub>nT,A</sub> ≥ 53 dB — ce n'est pas suffisant si c'est un logement.</p>
+  </div>
+</div>
+
 <div class="meth">
   <span class="label-meth">Méthode</span>
   <strong>Calculer R à partir du coefficient d'atténuation τ</strong>
@@ -234,6 +244,16 @@ input[type=range]{accent-color:var(--p);width:200px}
   <strong>Une vitre a τ = 0,05. Calculer R.</strong>
   \[ R = -20 \times \log(0{,}05) = -20 \times (-1{,}301) = 26 \text{ dB} \]
   Ce résultat correspond bien à un simple vitrage 4 mm (R ≈ 25-26 dB).
+</div>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un châssis de fenêtre a un coefficient d'atténuation τ = 0,02. Calculer l'indice d'affaiblissement R.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>\( R = -20 \times \log(0{,}02) = -20 \times (-1{,}699) \approx \mathbf{34\ \text{dB}} \)</p>
+    <p>Ce résultat correspond à un double vitrage standard (R ≈ 32–36 dB).</p>
+  </div>
 </div>
 
 <!-- ===== LOI DE MASSE ===== -->
@@ -302,6 +322,17 @@ input[type=range]{accent-color:var(--p);width:200px}
     </tr>
   </tbody>
 </table>
+
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Un menuisier agenceur choisit entre deux cloisons pour séparer deux bureaux. La cloison A a une masse surfacique de 30 kg/m² (R = 38 dB). La cloison B a une masse surfacique de 60 kg/m². Estimer l'indice R de la cloison B.</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Voir la correction</button>
+  <div class="corr" style="display:none">
+    <p>On double la masse surfacique (30 → 60 kg/m²). D'après la loi de masse, doubler la masse ajoute environ +6 dB.</p>
+    <p>R_B ≈ 38 + 6 = <strong>44 dB</strong></p>
+    <p>La cloison B est nettement plus isolante, mais reste en-dessous de la norme de 53 dB pour les logements.</p>
+  </div>
+</div>
 
 <div class="att">
   <span class="label label-att">Attention aux erreurs fréquentes</span><br>
@@ -655,6 +686,24 @@ new Chart(document.getElementById('chartR').getContext('2d'), {
     <li>R dépend aussi de la <strong>fréquence</strong> : les basses fréquences sont plus difficiles à bloquer</li>
     <li>Réglementation : D<sub>nT,A</sub> ≥ 53 dB entre logements (NF EN ISO 717)</li>
   </ul>
+</div>
+
+<h2>Erreurs fréquentes</h2>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Croire que 80 dB = 2 × 40 dB</strong><br>L'échelle en décibels est logarithmique, pas linéaire. 80 dB correspond à une intensité 10 000 fois plus élevée que 40 dB. Doubler le niveau en dB ne double pas le son — il le multiplie par 100.<br><em>Conseil : retenir que +10 dB → intensité × 10, +20 dB → × 100, +30 dB → × 1 000.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Inverser L_i et L_t dans le calcul de R</strong><br>R = L_i − L_t (incident minus transmis). Si on inverse, on obtient un R négatif, ce qui n'a pas de sens physique (le son ne peut pas s'amplifier en traversant une paroi passive).<br><em>Conseil : L_i est toujours le plus grand (côté source) ; L_t est toujours le plus petit (côté réception).</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Confondre isolation acoustique et absorption acoustique</strong><br>L'isolation (indice R) empêche le son de passer à travers une paroi. L'absorption réduit la réverbération à l'intérieur d'une pièce (mousse, moquette). Ce sont deux phénomènes distincts.<br><em>Conseil : la mousse acoustique absorbe l'écho dans une pièce, mais n'empêche pas le son de traverser les murs.</em></div>
+</div>
+<div class="erreur-item">
+  <div class="ico">❌</div>
+  <div class="txt"><strong>Croire qu'une paroi plus épaisse isole toujours mieux</strong><br>L'épaisseur seule ne suffit pas : c'est la masse surfacique (densité × épaisseur) qui compte. Un panneau en béton léger peut isoler moins bien qu'un mur plus mince mais plus dense.<br><em>Conseil : comparer les masses surfaciques en kg/m², pas les épaisseurs en cm.</em></div>
 </div>
 
 <p style="text-align:center;margin-top:30px;font-size:.82em;color:#a0aec0">Chapitre 8 – Physique | Bac Pro ERA-MA Terminale | Groupement 3</p>
