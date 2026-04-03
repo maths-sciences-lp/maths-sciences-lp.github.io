@@ -94,8 +94,36 @@ Relier la notion à :
 - la vie quotidienne
 - les métiers professionnels
 
-### 10. Mini exercices
-Ajouter quelques questions simples pour vérifier la compréhension.
+### 10. Exercices d'application intégrés (OBLIGATOIRE)
+
+Les exercices d'application doivent être **distribués dans le déroulé de la leçon**, pas regroupés en fin de chapitre.
+
+**Position :** après une définition importante, une propriété, une méthode ou un exemple.
+
+**Format HTML :**
+```html
+<div class="mini-exo">
+  <strong>Application</strong>
+  <p>Consigne...</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">Correction détaillée avec démarche et résultat mis en évidence...</div>
+</div>
+```
+
+**Types attendus :** application directe d'une définition, utilisation d'une formule, calcul simple, lecture de graphique ou de tableau, vérification d'un résultat.
+
+**Règles :**
+- 1 exercice minimum par notion importante
+- 3 à 6 par chapitre en moyenne
+- Réalisable en 1 à 3 minutes
+- Une seule compétence ciblée
+- Consigne claire et courte
+- Correction avec démarche + résultat mis en évidence
+
+**Interdictions :**
+- Exercices longs ou nécessitant plusieurs notions non encore vues
+- Regroupement en bloc unique en fin de leçon
+- Exercices sans lien avec le contenu immédiat
 
 ---
 
@@ -122,12 +150,21 @@ Ajouter quelques questions simples pour vérifier la compréhension.
 
 ## CHECKLIST AVANT PUBLICATION
 
+### Exercices d'application (OBLIGATOIRE)
+- [ ] **3 à 6 `.mini-exo` répartis dans la leçon** (pas seulement en fin)
+- [ ] Chaque `.mini-exo` placé après une définition, propriété, méthode ou exemple
+- [ ] Chaque `.mini-exo` a un bouton "Voir la correction" avec démarche expliquée
+- [ ] Consignes courtes, réalisables en 1–3 min, une seule compétence ciblée
+
+### Figures et schémas
 - [ ] Figures SVG présentes pour toutes les notions visuelles (géométrie, fonctions, circuits, forces…)
 - [ ] Conventions SVG respectées (fill #ebf5ff, stroke #0056b3, labels #555)
 - [ ] Graphiques Chart.js ou SVG pour les données quantitatives
 - [ ] Aucune figure décrite uniquement par du texte quand un schéma est nécessaire
 - [ ] Légendes (`<figcaption>`) sur chaque figure
 - [ ] Figures lisibles à l'impression (tester avec print.css)
+
+### Technique
 - [ ] MathJax inclus si formules
 - [ ] print.css inclus
 - [ ] nav.js inclus

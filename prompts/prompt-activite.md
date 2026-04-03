@@ -27,23 +27,77 @@ Ce n'est pas un cours — c'est l'antichambre du cours. L'activité précède `l
 
 ### Principe de construction
 
-L'activité suit une progression narrative :
+**Toute activité est construite autour d'une problématique centrale.** Cette problématique donne du sens à l'ensemble des questions : chaque étape rapproche l'élève de la réponse, et la synthèse finale y répond explicitement.
+
+La problématique peut être issue :
+- d'une **situation professionnelle** (contexte métier)
+- d'une **situation du quotidien**
+- d'un **contexte scientifique ou technique**
+
+Elle n'est pas systématiquement professionnelle, mais elle doit toujours être **concrète, contextualisée et porteuse de sens** pour l'élève.
+
+L'activité suit la progression narrative suivante :
 
 ```
-Situation professionnelle (document d'accroche)
+Contexte (situation d'accroche)
         ↓
-Questions de compréhension (S'approprier)
+Problématique (question centrale posée à l'élève)
         ↓
-Questions d'analyse (Analyser)
+Questions de compréhension — APP (S'approprier)
         ↓
-Questions de calcul / manipulation (Réaliser)
+Questions d'analyse — ANA (Analyser)
         ↓
-Questions d'interprétation (Valider)
+Questions de calcul / manipulation — REA (Réaliser)
         ↓
-Synthèse collective ou individuelle (Communiquer)
+Questions d'interprétation — VAL (Valider)
         ↓
-À retenir (la notion formalisée)
+Synthèse — COM (Communiquer)
+        ↓
+Réponse explicite à la problématique + notion formalisée (À retenir)
 ```
+
+---
+
+## Cohérence activité ↔ problématique (OBLIGATOIRE)
+
+### Exigence principale
+
+Une activité est **valide uniquement si** :
+1. La problématique est clairement posée dès le début
+2. Chaque question contribue à y répondre
+3. La synthèse finale répond **explicitement** à la problématique
+
+**Interdictions :**
+- Problématique décorative, posée mais jamais exploitée
+- Suite de questions sans lien entre elles
+- Questions hors sujet ou décoratives
+- Synthèse qui n'apporte pas de réponse claire
+- Calculs isolés sans interprétation
+
+### Règles de cohérence
+
+- Chaque question a un **rôle dans la progression** vers la réponse
+- Les calculs servent une interprétation — pas l'inverse
+- Si on supprime la problématique, l'activité doit perdre son sens (sinon elle n'en avait pas)
+
+### Exigence sur la synthèse "À retenir"
+
+L'encadré `.retenir` doit :
+- Répondre explicitement à la problématique
+- Reformuler la réponse de manière claire et accessible
+- Faire apparaître la notion du chapitre comme **conséquence naturelle** du travail de l'élève
+
+### Test de validation (obligatoire avant publication)
+
+Avant de finaliser une activité, vérifier :
+
+| Question | Réponse attendue |
+|---|---|
+| Peut-on répondre à la problématique uniquement avec les résultats obtenus ? | OUI |
+| Si on supprime la problématique, l'activité perd-elle son sens ? | OUI |
+| Toutes les questions sont-elles utiles pour répondre à la problématique ? | OUI |
+
+Si la réponse est **NON** à l'une de ces questions, l'activité doit être corrigée.
 
 ---
 
@@ -175,9 +229,15 @@ Utiliser les classes `.diff-socle`, `.diff-standard`, `.diff-appro` et `diff.js`
 
 <!-- DOCUMENT D'ACCROCHE -->
 <div class="situation">
-  <h2>Situation professionnelle</h2>
-  <p><em>Contexte : [métier réel], [entreprise fictive], [ville].</em></p>
-  <!-- Tableau, texte, données, schéma... -->
+  <h2>Situation</h2>
+  <p><em>Contexte : [métier réel ou quotidien ou scientifique], [entreprise/lieu fictif].</em></p>
+  <!-- Tableau, texte, données, schéma SVG... -->
+</div>
+
+<!-- PROBLÉMATIQUE -->
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:12px 16px;margin:16px 0">
+  <strong>Problématique :</strong>
+  <p style="margin:6px 0 0;font-style:italic">[Question centrale à laquelle l'activité va répondre — concrète, contextualisée]</p>
 </div>
 
 <!-- QUESTIONS -->
@@ -197,9 +257,10 @@ Utiliser les classes `.diff-socle`, `.diff-standard`, `.diff-appro` et `diff.js`
 
 <!-- ... autant de questions que nécessaire -->
 
-<!-- SYNTHÈSE -->
+<!-- SYNTHÈSE — doit répondre explicitement à la problématique -->
 <div class="retenir">
   <strong>À retenir</strong>
+  <p><strong>Réponse à la problématique :</strong> [Réponse directe à la question posée en ouverture]</p>
   <p>[Définition / Propriété construite à partir de l'activité]</p>
 </div>
 
@@ -344,7 +405,14 @@ Conventions : fill `#ebf5ff`, stroke `#0056b3`, labels `#555`, axes `#333`, inco
 
 ## Checklist avant publication
 
-- [ ] Situation professionnelle ancrant la notion dans un contexte réel et un métier nommé
+### Cohérence problématique (OBLIGATOIRE)
+- [ ] **Problématique clairement posée** après le document d'accroche
+- [ ] **Toutes les questions contribuent** à répondre à la problématique
+- [ ] **La synthèse répond explicitement** à la problématique
+- [ ] Test de validation passé (3 OUI)
+
+### Contenu pédagogique
+- [ ] Contexte réel et concret (professionnel, quotidien ou scientifique) avec un lieu/métier nommé
 - [ ] Toutes les données utiles présentes dans le document d'accroche
 - [ ] Durée estimée indiquée dans le sous-titre
 - [ ] Objectifs formulés
@@ -354,6 +422,9 @@ Conventions : fill `#ebf5ff`, stroke `#0056b3`, labels `#555`, axes `#333`, inco
 - [ ] Encadré "À retenir" aligné avec `lecon.html`
 - [ ] Aucun sigle de filière dans le contenu (voir CLAUDE.md)
 - [ ] Données numériques réalistes et cohérentes
+- [ ] Contenu dans le programme officiel
+
+### Technique
 - [ ] MathJax inclus si formules
 - [ ] print.css inclus
 - [ ] nav.js inclus
@@ -361,4 +432,3 @@ Conventions : fill `#ebf5ff`, stroke `#0056b3`, labels `#555`, axes `#333`, inco
 - [ ] **Figures SVG présentes pour toutes les notions visuelles** (graphiques, schémas, figures géométriques, oscillogrammes, circuits)
 - [ ] **Conventions SVG respectées** (fill #ebf5ff, stroke #0056b3, labels #555)
 - [ ] Aucun élément visuel décrit uniquement par du texte quand un schéma est nécessaire
-- [ ] Contenu dans le programme officiel

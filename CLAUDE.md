@@ -126,6 +126,7 @@ Chaque page de cours utilise :
 | `.situation` | Situation professionnelle (fond violet pointillé) |
 | `.objectifs` | Objectifs du chapitre |
 | `.formule-box` / `.formula-box` | Encadré formule |
+| `.mini-exo` | Exercice d'application intégré dans la leçon (bordure gauche couleur primaire) |
 | `.niveau-header .niv1/2/3/4` | En-tête de niveau de difficulté |
 | `.chart-wrap` | Conteneur graphique Chart.js |
 | `.svg-wrap` | Conteneur SVG centré |
@@ -276,6 +277,13 @@ Avant de générer du contenu, consulter les fichiers dans `/prompts/` :
 | `prompts/prompt-filiere-premiere-iccer.md` | Contextes pro Première ICCER (chauffage/énergie) |
 | `prompts/prompt-filiere-era-ma.md` | Contextes pro Terminale ERA/MA (agencement/bois) |
 | `prompts/prompt-filiere-ticcer.md` | Contextes pro Terminale ICCER (chauffage/énergie) |
+| `prompts/prompt-filiere-cap-mit.md` | Contextes pro CAP MIT (installations thermiques) |
+| `prompts/prompt-filiere-cap-ebeniste.md` | Contextes pro CAP Ébéniste (bois, mobilier) |
+| `prompts/prompt-filiere-cap-sdg.md` | Contextes pro CAP SDG (signalétique, décors graphiques) |
+| `prompts/prompt-filiere-bma-ebeniste.md` | Contextes pro BMA Ébéniste (ébénisterie d'art) |
+| `prompts/prompt-filiere-bma-arts-graphiques.md` | Contextes pro BMA Arts Graphiques option A (signalétique) |
+| `prompts/prompt-filiere-eeb-tgt.md` | Contextes pro EEB / TGT (bâtiment, géomètre) |
+| `prompts/prompt-filiere-mee.md` | Contextes pro MEE (maintenance énergétique) |
 | `prompts/prompt-bts.md` | Structure et règles pour les pages BTS maths |
 
 ### Règles contextes professionnels
@@ -354,6 +362,7 @@ Une simulation doit toujours servir à :
 6. **QCM** : inclure `<script src="../../../qcm.js"></script>` dans les pages `qcm.html` — définir un objet global `explications` avec les clés correspondant aux `name` des radios
 7. **Chart.js** : `<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>` si graphiques
 8. **MathJax** : inclure le script si la page contient des formules mathématiques
+9. **Exercices d'application dans les leçons** : utiliser la classe `.mini-exo` pour les exercices courts intégrés dans le déroulé du cours — 3 à 6 par chapitre, répartis après les définitions/propriétés/méthodes, avec correction `.bc` obligatoire. Ne pas regrouper en fin de leçon.
 
 ### Scripts de maintenance
 

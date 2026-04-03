@@ -1,7 +1,7 @@
 # Journal de bord du projet
 
 **Site :** https://maths-sciences-lp.github.io/
-**Dernière mise à jour :** 2026-03-31
+**Dernière mise à jour :** 2026-04-03
 
 ---
 
@@ -9,16 +9,16 @@
 
 | Indicateur | Valeur |
 |---|---|
-| Pages HTML totales | ~950 |
+| Pages HTML totales | ~992 |
 | Chapitres Bac Pro | 84 (8 fichiers/ch) |
 | Chapitres CAP | 14 (4 fichiers/ch : leçon, exercices, QCM, fiche) |
 | Chapitres BTS | 25 (leçons + exercices partiels) |
 | Chapitres nouveaux groupements (gpt 2/4/5/6) | 14 (leçons seules) |
-| Simulations interactives | 69 |
+| Simulations interactives | 70 + 12 inline LGT |
 | Automatismes | 22 pages (24 exo/page) |
 | CCF LaTeX | 5 sujets + 5 corrections + 2 fiches |
-| Programmes en markdown | 9/9 complets |
-| Prompts de filière | 10 |
+| Programmes en markdown | 11/11 complets |
+| Prompts de filière | 14 |
 
 ### Couverture par section
 
@@ -36,6 +36,7 @@
 | PC Term ERA | 8 | 8/8 | 100% |
 | PC CAP | 7 | 4/8 | 50% |
 | PC gpt 2/4/5/6 | 14 | 1/8 (leçon) | 12% |
+| Maths LGT Term spé | 15 | 2/8 (leçon + exo-cap) | 25% |
 
 ---
 
@@ -74,6 +75,49 @@
 - Fix capacité C5 manquante (ch12 Pythagore + ch13 Thalès) + 6 exercices + SVG
 - SVG ajoutés dans exercices-capacités (ch01, ch03, ch05, ch06 — 8 figures)
 
+### Session 3 avril 2026 (fin de journée)
+- **Classe CSS `.mini-exo`** ajoutée dans `styles.css` — fond `var(--p-bg)`, bordure gauche `var(--p)`, label "Application" en petites capitales
+- **`prompt-cours.md`** : section "Mini exercices" remplacée par la règle complète (format, position, fréquence, interdictions, checklist)
+- **`CLAUDE.md`** : règle n°9 + entrée dans le tableau des classes CSS
+- **Redistribution `.mini-exo` dans 28 leçons Seconde** (14 maths + 14 PC) :
+  - Exercices groupés en fin de leçon → redistribués après les définitions/méthodes correspondantes
+  - Format `.exo` + `exo-num` + `toggle()` → `.mini-exo` + `.bc` + `this.nextElementSibling`
+  - `<details class="corr-wrap">` → `.bc` + `.corr` (maths seconde)
+  - Résultat : 2 à 7 mini-exo distribués par leçon, 0 section groupée résiduelle
+
+### Session 3 avril 2026 (fin)
+- **Diversification contextes PC Seconde** : +3 exercices sport/santé/énergie/environnement dans ch03 (Loi d'Ohm), ch06 (Forces), ch08 (Solutions), ch10 (Température), ch11 (Transferts thermiques), ch12 (Changements d'état) — ratio menuiserie réduit dans les 6 chapitres à 73–83%
+
+### Session 3 avril 2026 (suite)
+- **Corrections techniques groupées 2nde MAMA** :
+  - 13 titres `<title>` PC Seconde convertis en UTF-8
+  - 80 fichiers PC Seconde (tous types, ch01–ch14) : 26 678 entités HTML → UTF-8
+  - Labels ch04/ch05, lien ch12, badges niveaux maths → vérifiés conformes (rien à faire)
+- **Audit + mise à jour problématiques** : bloc `Problématique` ajouté dans les 28 activités (14 maths + 14 PC Seconde) — critère rendu obligatoire par la mise à jour du prompt-activite.md
+- **prompt-activite.md** : nouvelle section "Cohérence activité ↔ problématique (OBLIGATOIRE)" avec règles, interdictions, test de validation à 3 questions
+
+### Session 2-3 avril 2026
+- **Nouvelle section Maths Terminale générale spécialité (LGT)** : 15 chapitres complets (`maths/lgt-terminale/ch01..ch15`) — lecon.html + exercices-capacites.html pour chaque chapitre, 30 fichiers HTML créés
+- Page sommaire `maths-lgt-terminale.html` + section "Lycée Général" sur `index.html`
+- 16 figures SVG dans les cours LGT (géométrie, analyse, probabilités)
+- 12 simulations interactives Canvas/JS intégrées dans les leçons (12/15 chapitres couverts) — +10 SVG supplémentaires ajoutés lors du renforcement de contenu (PRs #248, #250)
+- Fix : liens Terminale PC manquants sur la page d'accueil
+- Ajout bouton "Me contacter" (Google Form) dans la section À propos de `index.html`
+
+### Session 1-2 avril 2026
+- Sections "Erreurs fréquentes" (blocs `.erreur-item`) ajoutées dans 8 leçons maths Seconde : ch02 (statistiques), ch03 (médiane/IQR), ch09 (fonction affine), ch10 (fonction carré), ch11 (figures planes), ch12 (Pythagore), ch13 (Thalès), ch14 (solides)
+- Phase 1 complète — conversion UTF-8 : ~17 000 entités HTML supprimées dans 42 fichiers PC Seconde (leçons, DS, exercices). Titres `<title>` uniformisés sur 13 leçons PC
+- CLAUDE.md : règle n°9 ajoutée — UTF-8 obligatoire, entités HTML interdites sauf `&lt;` `&gt;` `&amp;` `&nbsp;`
+- plan-amelioration-seconde.md : Phase 1 et Phase 2 clôturées (2026-04-02)
+- Mise à jour mémoire filières (source ONISEP) : CAPs indépendants des Bac Pro 2nde, 3 Secondes pro, BTS en apprentissage, UPE2A, voie générale STI2D
+- Source ajoutée dans `prompt-filiere-cap-sdg.md` (Arrêté du 16 octobre 2007)
+- Copie `referentiel-cap-enseigne-signaletique-2007.pdf` dans `pdf/`
+- Analyse des 3 PDFs BMA (BO n°28 du 15-7-2021 : maths, PC, épreuve)
+- Copie des 3 PDFs BMA dans `pdf/` : `programme-bma-maths-2021.pdf`, `programme-bma-physique-chimie-2021.pdf`, `epreuve-bma-maths-pc-2021.pdf`
+- Création 2 prompts de filière BMA : `prompt-filiere-bma-ebeniste.md`, `prompt-filiere-bma-arts-graphiques.md`
+- CLAUDE.md : tableau des prompts complété (CAP MIT, CAP Ébéniste, CAP SDG, BMA Ébéniste, BMA Arts Graphiques, EEB/TGT, MEE)
+- Création 2 extractions programme BMA en markdown : `programme_bma_maths.md` (9 modules, automatismes 1ère + 2ème année), `programme_bma_physique_chimie.md` (15 modules + transversaux)
+
 ### Session 31 mars 2026
 - 15 SVG ajoutés dans exercices-capacités ch04/07/08/09/10 (arbres probas, courbes fonctions, paraboles)
 - Audit exercices classiques maths Seconde : 517 exercices analysés
@@ -108,7 +152,14 @@
 - [ ] Compléter ch19-25 (exercices, DS)
 - [ ] Remplir les DS vides (ch01-18)
 
-### Priorité 5 — Améliorations continues
+### Priorité 5 — Section CAPLP (nouveau)
+- [ ] Créer `prompts/prompt-caplp.md` (format des leçons CAPLP)
+- [ ] Créer section `caplp/maths/` + `caplp/pc/`
+- [ ] A.1 maths commun (~14 chapitres) — Sonnet suffisant
+- [ ] A.2 maths majeure (~8 chapitres) — Opus préférable
+- [ ] B.1 + B.2 PC (~30 chapitres) — après
+
+### Priorité 6 — Améliorations continues
 - [ ] Enrichir exercices Première (maths ~13/ch, PC ~9/ch)
 - [ ] Automatismes PC (pas encore créés)
 - [ ] Co-intervention pour toutes les filières

@@ -51,17 +51,17 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 
 ### PRIORITE 1 — Problemes techniques (corrections rapides)
 
-- [ ] **PC ch04, ch05 lecon** — Labels `.label-def` places hors des blocs `.def` (deplacer a l'interieur)
-- [ ] **PC ch01-ch14 lecon** — Uniformiser le format des `<title>` (adopter : `Ch0X — Titre — 2nde Bac Pro`)
-- [ ] **PC ch01-ch07 DS** — Entites HTML (`&eacute;`, `&ndash;`, etc.) a convertir en UTF-8 (ch08-ch14 deja propres)
-- [ ] **PC ch01-ch07 DS** — CSS inline redondant (classes `.partie`, `.pts`, `.comp-*` etc. a centraliser dans styles.css)
-- [ ] **Maths Seconde** — Harmoniser les badges de niveaux (`badge-niv badge-1` → format standard)
+- [x] ~~**PC ch04, ch05 lecon** — Labels `.label-def` places hors des blocs `.def`~~ → deja corrects (labels bien a l'interieur)
+- [x] ~~**PC ch01-ch14 lecon** — Uniformiser le format des `<title>`~~ → **2026-04-03** 13 titres convertis en UTF-8
+- [x] ~~**PC ch01-ch07 DS** — Entites HTML a convertir en UTF-8~~ → **2026-04-03** 80 fichiers PC Seconde convertis (26 678 entites), tous types (lecon, exercices, ds, fiche, qcm, interro, activite)
+- [x] ~~**PC DS ch01-ch14** — CSS inline redondant~~ → **2026-04-03** : `.answer-box`, `.aide-box`, `.formule-donnee`, `.ds-title`, `.ds-title--card` centralisés dans `styles.css` ; `@media print` redondants supprimés de 14 DS ; ch10/ch11 migrés vers `.ds-title--card`
+- [x] ~~**Maths Seconde** — Harmoniser les badges de niveaux~~ → `badge-niv/1/2/3` deja dans styles.css, conformes
 
 ### PRIORITE 2 — Ameliorations pedagogiques
 
 - [ ] **PC ch01-ch14 lecon** — Ajouter la classe `.situation` aux contextes professionnels existants (0 occurrences actuellement)
 - [ ] **Maths ch02 lecon** — Completer ou reorganiser le chapitre Statistiques (indicateurs de position/dispersion renvoyes vers ch03, cours anormalement court a 349 lignes)
-- [ ] **PC Seconde** — Diversifier les contextes pro : ajouter sport, sante, environnement (actuellement quasi exclusivement menuiserie)
+- [x] ~~**PC Seconde** — Diversifier les contextes pro : ajouter sport, sante, environnement (actuellement quasi exclusivement menuiserie)~~ → **2026-04-03** 3 exercices variés ajoutés dans ch03, ch06, ch08, ch10, ch11, ch12 (sport, santé, énergie, environnement)
 - [ ] **Maths Seconde** — Ajouter des sections "Erreurs frequentes" (blocs `.att`) dans les chapitres qui en manquent
 
 ### PRIORITE 3 — Enrichissements
@@ -93,6 +93,7 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 
 ## Corrections realisees
 
+- **2026-04-03** : Conversion UTF-8 complete PC Seconde — 80 fichiers modifies, 26 678 entites HTML converties (lecon, exercices, ds, fiche, qcm, interro, activite, ch01-ch14). Titres `<title>` uniformises (UTF-8 propre, format `Ch0X – Titre – 2nde Bac Pro`). Labels ch04/ch05 et badges niveaux maths verifies conformes.
 - **2026-03-31** : Audit complet des 28 chapitres Seconde Pro (14 maths + 14 PC). Structure 8 fichiers complete sur 100% des chapitres. Aucun probleme technique detecte (nav.js, print.css, styles.css, MathJax, themes couleur, diff.js, sigles interdits, liens sommaire).
 
 ---
@@ -101,6 +102,6 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 
 | Phase | Statut | Date debut | Date fin |
 |---|---|---|---|
-| Phase 1 — Corrections techniques | A faire | — | — |
-| Phase 2 — Ameliorations pedagogiques | A faire | — | — |
+| Phase 1 — Corrections techniques | Quasi complete (1 item CSS inline restant) | 2026-04-03 | 2026-04-03 |
+| Phase 2 — Ameliorations pedagogiques | Partielle (diversification faite, .situation reste) | 2026-04-03 | — |
 | Phase 3 — Enrichissements | A faire | — | — |
