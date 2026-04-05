@@ -11,7 +11,13 @@
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}
 ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
 .step{counter-increment:step;padding:8px 10px 8px 2.4em;position:relative;margin:5px 0;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0}
-.step::before{content:counter(step);position:absolute;left:.6em;font-weight:700;color:#fff;background:var(--p);width:1.3em;height:1.3em;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.88em;top:50%;transform:translateY(-50%)}</style>
+.step::before{content:counter(step);position:absolute;left:.6em;font-weight:700;color:#fff;background:var(--p);width:1.3em;height:1.3em;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.88em;top:50%;transform:translateY(-50%)}
+.trad-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92em}
+.trad-table th{background:var(--p-bg);color:var(--p);padding:8px 12px;border:1px solid var(--p-border);text-align:left;font-weight:700}
+.trad-table td{padding:7px 12px;border:1px solid var(--p-border);vertical-align:top}
+.trad-table tr:nth-child(even) td{background:#f8fbff}
+.trad-table .eq-cell{font-weight:600;color:#0056b3;white-space:nowrap}
+</style>
 </head>
 <body>
 <div class="c">
@@ -20,7 +26,7 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
 <header>
   <h1>Chapitre 5 – Équations du premier degré</h1>
   <p class="sous-titre">Seconde Bac Pro MAMA &nbsp;|&nbsp; Agencement · Menuiserie · Ameublement &nbsp;|&nbsp; Mathématiques</p>
-  <p class="maj">Dernière mise à jour : 9 mars 2026</p>
+  <p class="maj">Dernière mise à jour : 5 avril 2026</p>
 </header>
 
 <!-- OBJECTIFS -->
@@ -36,19 +42,66 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
 
 <!-- SITUATION PRO -->
 <div class="situation-pro">
+  <h3 style="margin:0 0 12px;font-size:1em;color:#92400e;text-transform:uppercase;letter-spacing:.04em">Situation d'accroche</h3>
   <div class="sp-grid">
-    <span class="sp-label">Menuisier :</span><span>Tom, apprenti menuisier</span>
-    <span class="sp-label">Chantier :</span><span>Pose d'une bibliothèque sur mesure dans un salon</span>
-    <span class="sp-label">Mission :</span><span>Tom doit découper des planches de longueur identique dans une planche de 2,4 m. Il a besoin de 5 planches, mais il doit garder un chutage de 15 cm en fin de planche.</span>
-    <span class="sp-label">Question :</span><span>Quelle doit être la longueur exacte de chaque planche découpée ?</span>
+    <span class="sp-label">Métier :</span>
+    <span>Tom, apprenti menuisier en atelier</span>
+
+    <span class="sp-label">Chantier :</span>
+    <span>Fabrication d'étagères sur mesure pour une bibliothèque de salon</span>
+
+    <span class="sp-label">Mission :</span>
+    <span>Tom doit découper <strong>5 planches de longueur identique</strong> dans une planche brute de <strong>240 cm</strong>. Il sait qu'une chute de <strong>15 cm</strong> est inévitable en bout de planche.</span>
+
+    <span class="sp-label">Question :</span>
+    <span><strong>Quelle longueur doit avoir chaque planche découpée ?</strong></span>
   </div>
-  <strong>Tom a besoin de :</strong>
-  <ol style="margin:8px 0 0;padding-left:20px;font-size:.92em">
-    <li>Poser le problème sous forme mathématique</li>
-    <li>Résoudre l'équation obtenue</li>
-    <li>Vérifier que sa réponse est cohérente avec les contraintes de son chantier</li>
-  </ol>
-  <p style="font-size:.82em;color:#92400e;margin:10px 0 0"><em>Ce problème sera résolu étape par étape au cours de ce chapitre.</em></p>
+
+  <figure class="schema" style="text-align:center;margin:16px 0 8px">
+    <svg viewBox="0 0 520 90" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:520px">
+      <!-- Planche : 5 segments x + chute 15 cm -->
+      <!-- Echelle : 240 cm → 480 px, 1 cm ≈ 2 px -->
+      <!-- Chaque x = 45 cm → 90 px (affiché proportionnellement) -->
+      <!-- Chute = 15 cm → 30 px (légèrement grossi pour lisibilité) -->
+      <!-- Total : 5×90 + 30 = 480 px, de x=20 à x=500 -->
+
+      <!-- Corps de la planche -->
+      <rect x="20" y="22" width="450" height="38" fill="#ebf5ff" stroke="#0056b3" stroke-width="2" rx="2"/>
+      <!-- Chute (couleur distincte) -->
+      <rect x="470" y="22" width="30" height="38" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="2"/>
+
+      <!-- Séparateurs des 5 planches -->
+      <line x1="110" y1="22" x2="110" y2="60" stroke="#0056b3" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <line x1="200" y1="22" x2="200" y2="60" stroke="#0056b3" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <line x1="290" y1="22" x2="290" y2="60" stroke="#0056b3" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <line x1="380" y1="22" x2="380" y2="60" stroke="#0056b3" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <!-- Séparateur planche / chute -->
+      <line x1="470" y1="22" x2="470" y2="60" stroke="#d97706" stroke-width="1.5"/>
+
+      <!-- Labels planches -->
+      <text x="65"  y="45" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="700">x cm</text>
+      <text x="155" y="45" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="700">x cm</text>
+      <text x="245" y="45" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="700">x cm</text>
+      <text x="335" y="45" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="700">x cm</text>
+      <text x="425" y="45" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="700">x cm</text>
+
+      <!-- Label chute -->
+      <text x="485" y="44" text-anchor="middle" font-size="10" fill="#92400e" font-weight="700">15 cm</text>
+      <text x="485" y="55" text-anchor="middle" font-size="9"  fill="#92400e">(chute)</text>
+
+      <!-- Accolade / dimension totale -->
+      <line x1="20" y1="72" x2="500" y2="72" stroke="#555" stroke-width="1"/>
+      <line x1="20" y1="68" x2="20"  y2="76" stroke="#555" stroke-width="1.2"/>
+      <line x1="500" y1="68" x2="500" y2="76" stroke="#555" stroke-width="1.2"/>
+      <text x="260" y="85" text-anchor="middle" font-size="12" fill="#333" font-weight="600">240 cm</text>
+
+      <!-- Équation implicite -->
+      <text x="260" y="14" text-anchor="middle" font-size="11" fill="#6b7280">5 × x + 15 = 240  →  à résoudre !</text>
+    </svg>
+    <figcaption style="font-size:.85em;color:#555;margin-top:4px">Schéma de découpe : 5 planches de longueur inconnue <em>x</em> + une chute de 15 cm = 240 cm au total</figcaption>
+  </figure>
+
+  <p style="font-size:.85em;color:#92400e;margin:6px 0 0"><em>Ce problème sera résolu étape par étape au cours de ce chapitre.</em></p>
 </div>
 
 
@@ -67,7 +120,7 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   <span class="label label-ex">Exemple de la vie courante</span><br>
   Un rabot coûte 12 € de plus qu'un ciseau à bois. Les deux ensemble coûtent 56 €. Combien coûte le ciseau ?
   <br>
-  Si on note \(x\) le prix du ciseau, alors le rabot coûte \(x + 12\). La condition donne :
+  Si on note \(x\) le prix du ciseau (en €), alors le rabot coûte \(x + 12\). La condition donne :
   \[ x + (x + 12) = 56 \]
   C'est une <strong>équation du premier degré</strong> à résoudre !
 </div>
@@ -86,7 +139,27 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
     <li>\(ax + b = c\)</li>
     <li>\(ax + b = cx + d\)</li>
   </ul>
-  où \(a, b, c, d\) sont des nombres connus et \(x\) est l'inconnue.
+  où \(a, b, c, d\) sont des nombres connus et \(x\) est l'inconnue à trouver.
+</div>
+
+<div class="mini-exo">
+  <strong>Application — Reconnaître une équation du premier degré</strong>
+  <p>Parmi les expressions suivantes, lesquelles sont des équations du premier degré en \(x\) ?</p>
+  <ol>
+    <li>\(3x + 5 = 17\)</li>
+    <li>\(x^2 = 9\)</li>
+    <li>\(2x - 1 = x + 4\)</li>
+    <li>\(\dfrac{1}{x} = 3\)</li>
+    <li>\(7x = 0\)</li>
+  </ol>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    <strong>1. ✔ Oui</strong> — \(x\) apparaît au degré 1.<br>
+    <strong>2. ✘ Non</strong> — \(x^2\) : c'est une équation du <em>second</em> degré.<br>
+    <strong>3. ✔ Oui</strong> — les deux membres contiennent \(x\) au degré 1.<br>
+    <strong>4. ✘ Non</strong> — \(\frac{1}{x}\) n'est pas un terme de degré 1.<br>
+    <strong>5. ✔ Oui</strong> — \(7x = 0\) est de la forme \(ax = b\) avec \(b = 0\).
+  </div>
 </div>
 
 <h3>Vocabulaire essentiel</h3>
@@ -122,7 +195,20 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   On pose \(x\) = prix d'une vis (en €). L'équation est : \(8x = 4{,}80\)
   \[ x = \frac{4{,}80}{8} = 0{,}60 \text{ €} \]
   <strong>Vérification :</strong> \(8 \times 0{,}60 = 4{,}80\) ✔<br>
-  <strong>Réponse :</strong> une vis coûte 0,60 €.
+  <strong>Réponse :</strong> une vis coûte <strong>0,60 €</strong>.
+</div>
+
+<div class="mini-exo">
+  <strong>Application — Équation simple \(ax = b\)</strong>
+  <p>Un artisan commande un rouleau de papier adhésif. Il en achète 6 rouleaux identiques pour un total de 22,20 €. Quel est le prix d'un rouleau ?</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">
+    Inconnue : \(x\) = prix d'un rouleau (en €).<br>
+    Équation : \(6x = 22{,}20\)<br>
+    \[ x = \frac{22{,}20}{6} = 3{,}70 \text{ €} \]
+    <strong>Vérification :</strong> \(6 \times 3{,}70 = 22{,}20\) ✔<br>
+    <strong>Réponse :</strong> un rouleau coûte <strong>3,70 €</strong>.
+  </div>
 </div>
 
 
@@ -133,10 +219,10 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   <span class="label label-meth">Méthode – 5 étapes</span>
   <ol class="steps" style="margin-top:10px">
     <li class="step"><strong>Choisir l'inconnue :</strong> nommer la quantité cherchée (souvent \(x\)) et préciser son unité.</li>
-    <li class="step"><strong>Traduire l'énoncé :</strong> écrire l'équation qui correspond à la situation (mise en équation).</li>
-    <li class="step"><strong>Résoudre l'équation :</strong> isoler \(x\) en effectuant les mêmes opérations des deux côtés.</li>
+    <li class="step"><strong>Écrire l'équation :</strong> traduire la situation en une égalité mathématique (mise en équation).</li>
+    <li class="step"><strong>Résoudre l'équation :</strong> isoler \(x\) en effectuant les mêmes opérations des deux côtés de l'égalité.</li>
     <li class="step"><strong>Vérifier la solution :</strong> remplacer \(x\) par la valeur trouvée dans l'équation de départ.</li>
-    <li class="step"><strong>Conclure en phrase :</strong> répondre à la question dans le contexte du problème, avec l'unité.</li>
+    <li class="step"><strong>Conclure en phrase :</strong> répondre à la question posée, en précisant l'unité et en vérifiant que la réponse est cohérente avec le contexte.</li>
   </ol>
 </div>
 
@@ -147,18 +233,15 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   Un artisan achète plusieurs planches identiques à 8,50 € pièce. Les frais de livraison sont de 15 €.
   Il a payé en tout 66 €. Combien a-t-il acheté de planches ?
   <br><br>
-  <strong>Étape 1 – Inconnue :</strong> on pose \(x\) = nombre de planches achetées.
+  <strong>Étape 1 – Inconnue :</strong> \(x\) = nombre de planches achetées (entier).
   <br><br>
   <strong>Étape 2 – Équation :</strong>
   \[ 8{,}50x + 15 = 66 \]
-  <br>
   <strong>Étape 3 – Résolution :</strong>
   \[ 8{,}50x = 66 - 15 = 51 \]
   \[ x = \frac{51}{8{,}50} = 6 \]
-  <br>
   <strong>Étape 4 – Vérification :</strong>
   \[ 8{,}50 \times 6 + 15 = 51 + 15 = 66 \text{ ✔} \]
-  <br>
   <strong>Étape 5 – Conclusion :</strong> L'artisan a acheté <strong>6 planches</strong>.
 </div>
 
@@ -173,16 +256,16 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
 
 <div class="mini-exo">
   <strong>Application — Résolution d'équations</strong>
-  <p>Résoudre les équations suivantes :</p>
+  <p>Résoudre les équations suivantes (penser à vérifier) :</p>
   <ol>
     <li>\(6x - 9 = 21\)</li>
     <li>\(4x - 7 = x + 8\)</li>
   </ol>
   <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
   <div class="corr">
-    <strong>1.</strong> \(6x = 21 + 9 = 30\) → \(x = \dfrac{30}{6} = 5\)<br>
+    <strong>1.</strong> \(6x = 21 + 9 = 30\) &nbsp;→&nbsp; \(x = \dfrac{30}{6} = 5\)<br>
     Vérification : \(6 \times 5 - 9 = 30 - 9 = 21\) ✔<br><br>
-    <strong>2.</strong> \(4x - x = 8 + 7\) → \(3x = 15\) → \(x = 5\)<br>
+    <strong>2.</strong> \(4x - x = 8 + 7\) &nbsp;→&nbsp; \(3x = 15\) &nbsp;→&nbsp; \(x = 5\)<br>
     Vérification : \(4 \times 5 - 7 = 13\) et \(5 + 8 = 13\) ✔
   </div>
 </div>
@@ -193,16 +276,43 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
 
 <p>
   La partie la plus difficile est souvent de <strong>passer de la situation concrète à l'équation</strong>.
-  Voici une méthode simple :
+  Voici quelques situations-types que l'on rencontre souvent en atelier ou sur chantier.
 </p>
 
 <div class="meth">
-  <span class="label label-meth">Comment mettre en équation</span>
+  <span class="label label-meth">Comment mettre en équation — 3 réflexes</span>
   <ol style="padding-left:18px;margin:8px 0">
-    <li>Repérer la <strong>quantité inconnue</strong> (ce qu'on cherche) → lui donner un nom (\(x\))</li>
-    <li>Repérer la <strong>condition</strong> (ce qui est égal à quoi dans l'énoncé)</li>
-    <li>Écrire cette condition sous forme d'équation</li>
+    <li>Repérer la <strong>quantité inconnue</strong> (ce qu'on cherche) → lui donner un nom (\(x\)) et préciser l'unité.</li>
+    <li>Repérer la <strong>condition</strong> de l'énoncé (ce qui est égal à quoi).</li>
+    <li>Écrire cette condition sous forme d'équation.</li>
   </ol>
+</div>
+
+<div class="def" style="padding:14px 18px">
+  <span class="label label-def">Tableau de traduction — Du français aux maths</span>
+  <table class="trad-table" style="margin-top:10px">
+    <tr>
+      <th>Situation professionnelle</th>
+      <th>Équation type</th>
+    </tr>
+    <tr>
+      <td>Prix total = prix unitaire × quantité + frais fixes</td>
+      <td class="eq-cell">\(p \cdot x + f = T\)</td>
+    </tr>
+    <tr>
+      <td>Longueur totale = nombre d'éléments × longueur + chute</td>
+      <td class="eq-cell">\(n \cdot x + c = L\)</td>
+    </tr>
+    <tr>
+      <td>Durée totale = nombre de tâches × durée unitaire + temps fixe</td>
+      <td class="eq-cell">\(n \cdot t + f = D\)</td>
+    </tr>
+    <tr>
+      <td>Bénéfice = prix de vente × quantité − coût total de fabrication</td>
+      <td class="eq-cell">\(p \cdot x - C = B\)</td>
+    </tr>
+  </table>
+  <small style="color:#555">Dans chaque situation, l'inconnue \(x\) (ou \(t\)) représente la quantité à trouver.</small>
 </div>
 
 <h3>Exemples en contexte professionnel</h3>
@@ -216,7 +326,8 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   <br>
   Condition : \(x + \dfrac{x}{2} = 54\)
   \[ \frac{3x}{2} = 54 \implies x = \frac{54 \times 2}{3} = 36 \text{ €} \]
-  Le contreplaqué coûte <strong>36 €</strong>, l'OSB coûte <strong>18 €</strong>.
+  Le contreplaqué coûte <strong>36 €</strong>, l'OSB coûte <strong>18 €</strong>.<br>
+  Vérification : \(36 + 18 = 54\) ✔
 </div>
 
 <div class="ex">
@@ -226,6 +337,7 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   <br><br>
   Condition (en cm) : \(45x + 15 = 240\)
   \[ 45x = 225 \implies x = 5 \]
+  Vérification : \(45 \times 5 + 15 = 225 + 15 = 240\) ✔<br>
   On peut découper <strong>5 tasseaux</strong>.
 </div>
 
@@ -236,7 +348,8 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   <br><br>
   Équation : \(7x + 25 = 240\)
   \[ 7x = 215 \implies x \approx 30{,}7 \text{ min} \]
-  Chaque cadre prend environ <strong>31 minutes</strong>.
+  Chaque cadre prend environ <strong>31 minutes</strong>.<br>
+  <small style="color:#718096">Ici la durée n'est pas forcément un entier — une réponse approchée est acceptable.</small>
 </div>
 
 <div class="ex">
@@ -248,6 +361,7 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   \[ 12x - 12 \times 35 = 420 \]
   \[ 12x - 420 = 420 \]
   \[ 12x = 840 \implies x = 70 \text{ €} \]
+  Vérification : \(12 \times 70 - 420 = 840 - 420 = 420\) ✔<br>
   Il doit vendre chaque étagère <strong>70 €</strong>.
 </div>
 
@@ -256,25 +370,39 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   <span class="label label-ex">Solution complète</span><br>
   Planche de 240 cm, 5 planches découpées, chute de 15 cm.
   <br><br>
-  On pose \(x\) = longueur d'une planche (en cm).
-  <br>
+  Inconnue : \(x\) = longueur d'une planche découpée (en cm).<br>
   Équation : \(5x + 15 = 240\)
   \[ 5x = 225 \implies x = 45 \text{ cm} \]
+  Vérification : \(5 \times 45 + 15 = 225 + 15 = 240\) ✔<br>
   <strong>Conclusion :</strong> Tom doit découper des planches de <strong>45 cm</strong>.
-  <br>
-  Vérification : \(5 \times 45 + 15 = 225 + 15 = 240\) ✔
+</div>
+
+<!-- ENCADRÉ COHÉRENCE CONTEXTUELLE -->
+<div class="att">
+  <span class="label label-att">À retenir — Cohérence de la solution avec le contexte</span>
+  <p style="margin:8px 0 4px">La solution mathématique doit toujours être <strong>interprétée selon la situation réelle</strong> :</p>
+  <ul style="padding-left:18px;margin:4px 0">
+    <li>Si on cherche un <strong>nombre d'objets</strong> (planches, vis, poignées…), la réponse doit être un <strong>entier positif</strong>.</li>
+    <li>Si la solution trouvée n'est pas entière, il faut <strong>vérifier les données</strong> de l'énoncé — une erreur est peut-être présente.</li>
+    <li>Si la solution est négative ou irréaliste, il faut en <strong>signaler l'incohérence</strong>.</li>
+  </ul>
+  <div class="ex" style="margin-top:10px;padding:8px 12px">
+    <strong>Exemple :</strong> Si on trouve \(x = 4{,}7\) planches, on ne peut pas conclure « 4 planches » sans expliquer pourquoi. Il faut d'abord vérifier si les données de l'énoncé sont cohérentes.
+  </div>
 </div>
 
 <div class="mini-exo">
-  <strong>Application — Problème professionnel</strong>
-  <p>Un menuisier achète des poignées de meuble à 3,50 € pièce. Il paye en plus 8 € de port. Sa commande s'élève à 57,50 €. Combien a-t-il commandé de poignées ?</p>
+  <strong>Application — Commande de poignées</strong>
+  <p>Un menuisier commande des poignées de meuble à <strong>3,50 € pièce</strong>. Les frais de port s'élèvent à <strong>8 €</strong>. Sa commande totale est de <strong>57 €</strong>. Combien a-t-il commandé de poignées ?</p>
   <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
   <div class="corr">
-    Inconnue : \(x\) = nombre de poignées.<br>
-    Équation : \(3{,}50x + 8 = 57{,}50\)<br>
-    \(3{,}50x = 49{,}50\)<br>
-    \(x = \dfrac{49{,}50}{3{,}50} = 14{,}14\ldots\)<br>
-    Comme le nombre de poignées est entier : <strong>14 poignées</strong>.
+    <strong>Inconnue :</strong> \(x\) = nombre de poignées commandées (entier).<br>
+    <strong>Équation :</strong> \(3{,}50x + 8 = 57\)<br>
+    <strong>Résolution :</strong>
+    \[ 3{,}50x = 57 - 8 = 49 \]
+    \[ x = \frac{49}{3{,}50} = 14 \]
+    <strong>Vérification :</strong> \(3{,}50 \times 14 + 8 = 49 + 8 = 57\) ✔<br>
+    <strong>Conclusion :</strong> Le menuisier a commandé <strong>14 poignées</strong>.
   </div>
 </div>
 
@@ -289,16 +417,16 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
   <ul style="padding-left:18px;margin:4px 0">
     <li>Forme : \(ax + b = c\) &nbsp;→&nbsp; résoudre en isolant \(x\)</li>
     <li>Solution unique : \(x = \dfrac{c-b}{a}\) &nbsp;(si \(a \neq 0\))</li>
-    <li>Toujours vérifier et conclure en phrase avec unité</li>
+    <li>Toujours vérifier et conclure en phrase avec l'unité</li>
   </ul>
 
   <h3 style="margin-top:14px;color:#1e3a8a">Les 5 étapes pour résoudre un problème</h3>
   <ol style="padding-left:18px;margin:4px 0">
-    <li>Choisir et nommer l'inconnue</li>
+    <li>Choisir et nommer l'inconnue (avec unité)</li>
     <li>Écrire l'équation</li>
     <li>Résoudre</li>
     <li>Vérifier</li>
-    <li>Conclure en phrase avec l'unité</li>
+    <li>Conclure en phrase avec l'unité — et vérifier la cohérence</li>
   </ol>
 </div>
 
@@ -306,46 +434,58 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
 <!-- ======================= PARTIE 6 ======================= -->
 <h2>6. Erreurs fréquentes à éviter</h2>
 
-<div class="erreur-item">
-  <div class="ico">❌</div>
-  <div class="txt">
-    <strong>Mauvaise traduction du problème</strong><br>
-    Lire l'énoncé trop vite et poser une équation qui ne correspond pas à la situation.
-    <br><em>Conseil : relire l'énoncé phrase par phrase et vérifier que chaque terme de l'équation a bien un sens concret.</em>
+<div class="att" style="padding:4px 16px 10px">
+  <span class="label label-att">Erreurs fréquentes</span>
+
+  <div class="erreur-item">
+    <div class="ico">❌</div>
+    <div class="txt">
+      <strong>Mauvaise traduction du problème</strong><br>
+      Lire l'énoncé trop vite et poser une équation qui ne correspond pas à la situation.
+      <br><em>Conseil : relire l'énoncé phrase par phrase et vérifier que chaque terme de l'équation a bien un sens concret.</em>
+    </div>
+  </div>
+
+  <div class="erreur-item">
+    <div class="ico">❌</div>
+    <div class="txt">
+      <strong>Oublier de vérifier la solution</strong><br>
+      On résout, on trouve \(x = \ldots\), et on ne vérifie pas en remplaçant dans l'équation de départ.
+      <br><em>Conseil : toujours faire la vérification avant de conclure — c'est rapide et évite les erreurs de calcul.</em>
+    </div>
+  </div>
+
+  <div class="erreur-item">
+    <div class="ico">❌</div>
+    <div class="txt">
+      <strong>Ne pas interpréter la solution dans le contexte</strong><br>
+      Donner \(x = 4{,}7\) comme réponse quand on cherche un nombre de planches (forcément entier), sans signaler le problème.
+      <br><em>Conseil : la réponse doit toujours être cohérente avec la réalité du problème.</em>
+    </div>
+  </div>
+
+  <div class="erreur-item">
+    <div class="ico">❌</div>
+    <div class="txt">
+      <strong>Signe moins perdu lors de la résolution</strong><br>
+      Exemple : \(5x + 3 = -12\) → on oublie le signe négatif et on écrit \(5x = 3 + 12\) au lieu de \(5x = -12 - 3\).
+      <br><em>Conseil : réécrire chaque étape clairement et conserver les signes négatifs.</em>
+    </div>
   </div>
 </div>
 
-<div class="erreur-item">
-  <div class="ico">❌</div>
-  <div class="txt">
-    <strong>Oublier de vérifier la solution</strong><br>
-    On résout, on trouve \(x = \ldots\), et on ne vérifie pas en remplaçant dans l'équation de départ.
-    <br><em>Conseil : toujours faire la vérification avant de conclure.</em>
-  </div>
-</div>
 
-<div class="erreur-item">
-  <div class="ico">❌</div>
-  <div class="txt">
-    <strong>Ne pas conclure dans le contexte</strong><br>
-    Donner \(x = 4{,}7\) comme réponse quand on cherche un nombre de planches (forcément entier).
-    <br><em>Conseil : toujours interpréter la solution selon la situation (arrondir à l'entier, vérifier la cohérence).</em>
-  </div>
-</div>
+<!-- ======================= RÉSOLUTION GRAPHIQUE ======================= -->
+<h2>7. Résolution graphique</h2>
 
-<div class="erreur-item">
-  <div class="ico">❌</div>
-  <div class="txt">
-    <strong>Signe moins perdu lors de la résolution</strong><br>
-    Exemple : \(5x + 3 = -12\) → on oublie le signe négatif → \(5x = 3 + 12\) au lieu de \(5x = -12 - 3\).
-    <br><em>Conseil : réécrire chaque étape clairement et conserver les signes négatifs.</em>
-  </div>
-</div>
+<p>
+  Une équation peut se résoudre <strong>par le calcul algébrique</strong>, comme on vient de le voir — mais elle peut aussi être
+  <strong>visualisée et vérifiée graphiquement</strong>. C'est une approche complémentaire, utile pour contrôler un résultat ou
+  pour comprendre ce que signifie « résoudre une équation » géométriquement.
+</p>
 
-
-<!-- POUR ALLER PLUS LOIN -->
 <div class="hors-prog">
-  <h3 style="margin:0 0 10px;color:#6d28d9">Résolution graphique</h3>
+  <h3 style="margin:0 0 10px;color:#6d28d9">Principe de la résolution graphique</h3>
   <p>
     On peut résoudre une équation \(ax + b = c\) en représentant les deux fonctions \(y = ax + b\) et \(y = c\) sur un grapheur.
     La solution est l'abscisse du point d'intersection des deux droites.
@@ -354,9 +494,6 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
     <strong>Outils :</strong> GeoGebra (gratuit en ligne), Desmos, ou la calculatrice (mode grapheur).
   </p>
 </div>
-
-<!-- GRAPHIQUES ET ANIMATIONS -->
-<h2>Visualiser la résolution graphique</h2>
 
 <p>
   Résoudre \(2x - 5 = 0\) revient à trouver l'abscisse du point où la droite \(f(x) = 2x - 5\) coupe l'axe des abscisses (\(y = 0\)).
@@ -393,7 +530,7 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
 })();
 </script>
 
-<p style="font-size:.9em;color:#718096;text-align:center">La droite bleue coupe l'axe rouge (\(y=0\)) en \(x = 2{,}5\), confirmant la solution algébrique.</p>
+<p style="font-size:.9em;color:#718096;text-align:center">La droite bleue coupe l'axe rouge (\(y=0\)) en \(x = 2{,}5\), confirmant la solution algébrique \(\left(\dfrac{5}{2} = 2{,}5\right)\).</p>
 
 <h2>Animation — Résoudre une équation étape par étape</h2>
 
@@ -421,14 +558,13 @@ ol.steps{list-style:none;counter-reset:step;padding:0;margin:10px 0}
     ctx.clearRect(0,0,cv.width,cv.height);
     const W=cv.width,H=cv.height;
     ctx.fillStyle='#f8fafc'; ctx.fillRect(0,0,W,H);
-    // Boîtes étapes
     const steps=[
       {txt:`Équation : ${a}x ${fmtN(b)} = ${c}`, bg:'#ebf5ff',bd:'#0056b3'},
       {txt:`On isole les x : ${a}x = ${c} − (${b}) = ${c-b}`, bg:'#fffbeb',bd:'#d97706'},
       {txt:`On divise par ${a} : x = ${c-b} ÷ ${a} = ${solStr}`, bg:'#f0fff4',bd:'#2f855a'},
       {txt:`✔ Vérification : ${a}×(${solStr}) ${fmtN(b)} = ${Math.round(a*sol+b*10)/10}`, bg:'#dbeafe',bd:'#1e40af'}
     ];
-    const boxH=38, pad=8, startY=12;
+    const boxH=38,pad=8,startY=12;
     steps.forEach((s,i)=>{
       const y=startY+i*(boxH+6);
       ctx.fillStyle=s.bg; ctx.strokeStyle=s.bd; ctx.lineWidth=2;
