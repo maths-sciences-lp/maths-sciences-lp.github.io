@@ -264,10 +264,9 @@ var explications = {
 .sujet-body .corr{background:#f0fff4;border-left:3px solid #10b981;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:8px;display:none}
 .sujet-body .corr p,.sujet-body .corr li{font-size:.87rem;margin:3px 0}
 
-/* Impression */
+/* Impression — corrections CACHÉES (sujet élève, pas corrigé) */
 @media print{
   .nb,.bc{display:none}
-  .sujet-body .corr{display:block!important}
   .sujet-wrap{break-inside:avoid}
   .level-banner{break-before:page}
 }
@@ -549,6 +548,7 @@ Pour les interros PC, utiliser `var(--p)` et `#7c3aed` (violet foncé) pour les 
 - [ ] sujet.js inclus
 - [ ] MathJax si formules
 - [ ] print.css inclus
+- [ ] `@media print` : corrections **NON affichées** (pas de `.corr{display:block!important}`) — l'élève imprime son sujet sans corrections
 - [ ] Lien retour → `../../../[sommaire].html` (pas `../../sommaire.html`)
 - [ ] Couleurs CSS conformes au thème matière/niveau
 - [ ] Questions ancrées au programme officiel
