@@ -161,6 +161,47 @@ Ces compétences sont trop larges. Utiliser uniquement des capacités disciplina
 
 Les exercices de géométrie, de fonctions et de statistiques doivent inclure des **figures SVG inline** pour aider l'élève à visualiser la situation.
 
+#### Règle fondamentale — données uniquement
+
+**Un visuel dans un exercice-capacité montre uniquement les données brutes fournies à l'élève.**
+
+Il ne doit **jamais** contenir :
+- L'équation à construire
+- La valeur inconnue ou la solution
+- Un point d'intersection tracé que l'élève doit déterminer
+- Une droite que l'élève doit tracer lui-même
+
+> *"Ce que l'élève a le droit de voir sur son énoncé, et rien de plus."*
+
+#### Règle des tableaux de données (proactive)
+
+Dès qu'un exercice présente des valeurs numériques (prix, mesures, quantités, résultats de mesures), les regrouper dans un tableau **avant les questions** — même si le texte les cite déjà.
+
+```html
+<table class="full" style="margin:8px 0 14px;font-size:.92em;max-width:360px">
+  <thead><tr><th>Donnée</th><th>Valeur</th></tr></thead>
+  <tbody>
+    <tr><td>Résistance R</td><td>47 Ω</td></tr>
+    <tr><td>Tension U</td><td>12 V</td></tr>
+  </tbody>
+</table>
+```
+
+Ne jamais ajouter de ligne "Résultat :", "I = ?" ou "Équation :".
+
+#### Pas d'interactivité — SVG statique uniquement
+
+Les pages `exercices-capacites.html` sont **imprimées et distribuées**. Ne jamais ajouter :
+- Canvas avec animation
+- Chart.js dynamique
+- Boutons interactifs (calculette, vérification automatique)
+
+Tout visuel est un **SVG statique** ou un **tableau HTML**. L'interactivité est réservée aux leçons et simulations.
+
+#### Vérification automatique
+
+Utiliser `python3 scripts/check_visuals.py` pour détecter les références orphelines ("le graphique ci-dessous" sans SVG présent) avant publication.
+
 **IMPORTANT — Figures liées aux capacités du programme**
 
 Certaines capacités du programme **exigent** une figure pour être travaillées. Sans figure, l'exercice ne couvre PAS la capacité. Ne JAMAIS décrire textuellement un graphique que l'élève doit lire. Si l'énoncé dit "le graphique ci-dessous", le graphique DOIT être présent en SVG.
@@ -292,3 +333,7 @@ Vérifier systématiquement dans chaque correction :
 - [ ] Page `exercices.html` originale non modifiée
 - [ ] Figures SVG inline pour les exercices géométriques, graphiques et statistiques
 - [ ] Style SVG conforme aux conventions (fill #ebf5ff, stroke #0056b3, labels #555)
+- [ ] Tableaux de données `<table class="full">` pour tout exercice avec valeurs numériques
+- [ ] Les visuels montrent UNIQUEMENT les données — jamais l'équation, la solution, l'inconnue
+- [ ] Aucun Canvas, Chart.js ou interactivité (page imprimable — SVG statique uniquement)
+- [ ] Aucune référence orpheline (`check_visuals.py` validé)

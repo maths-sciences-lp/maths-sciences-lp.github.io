@@ -167,6 +167,74 @@ Conventions : fill `#ebf5ff`, stroke `#0056b3`, labels `#555`, inconnues `#c5303
 
 ---
 
+## RÈGLES DES VISUELS DANS LES EXERCICES
+
+### Règle fondamentale — données uniquement
+
+**Un visuel dans un exercice montre uniquement les données brutes fournies à l'élève.**
+
+Il ne doit **jamais** contenir :
+- L'équation à construire (ex : une ligne "Équation : 18,50x + 22 = 207")
+- La valeur inconnue ou la solution (ex : "x = 10 panneaux")
+- Un point d'intersection tracé que l'élève doit déterminer
+- Une droite que l'élève doit tracer lui-même
+
+Il doit servir de **support de compréhension**, jamais de **support de correction**.
+
+> **Règle mnémotechnique :** *"Ce que l'élève a le droit de voir sur son énoncé, et rien de plus."*
+
+### Règle des tableaux de données (proactive)
+
+**Dès qu'un exercice présente des valeurs numériques (prix, mesures, quantités, paramètres), les regrouper dans un tableau avant les questions** — même si le texte les cite déjà. Ne pas attendre que l'énoncé dise "le tableau ci-dessous".
+
+```html
+<!-- À placer dans la situation, avant les questions -->
+<table class="full" style="margin:8px 0 14px;font-size:.92em;max-width:360px">
+  <thead><tr><th>Donnée</th><th>Valeur</th></tr></thead>
+  <tbody>
+    <tr><td>Prix unitaire</td><td>18,50 €</td></tr>
+    <tr><td>Frais de livraison</td><td>22 €</td></tr>
+    <tr><td>Total facturé</td><td>207 €</td></tr>
+  </tbody>
+</table>
+```
+
+**Ne jamais ajouter** de ligne "Équation :", "Inconnue :", "Résultat :" — ces lignes sont les questions.
+
+### Règle des repères vierges
+
+Pour tout exercice de tracé ou de résolution graphique : fournir un repère avec axes et grille **sans aucune droite tracée** ni point d'intersection marqué.
+
+```html
+<figure class="schema" style="text-align:center;margin:10px 0 14px">
+  <svg width="280" height="200" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Grille + axes uniquement — AUCUNE droite, AUCUN point solution -->
+    <g stroke="#e5e7eb" stroke-width="0.5"><!-- lignes de grille --></g>
+    <line x1="40" y1="10" x2="40" y2="170" stroke="#374151" stroke-width="1.5"/>
+    <line x1="30" y1="160" x2="270" y2="160" stroke="#374151" stroke-width="1.5"/>
+  </svg>
+  <figcaption style="font-size:.88em;color:#555;margin-top:4px">Repère vierge — utiliser pour répondre</figcaption>
+</figure>
+```
+
+### Visuels dans les exercices — statiques uniquement
+
+Toutes les pages du site sont dual-use (écran + impression). Dans les exercices :
+- **SVG statique** ✓ — format prioritaire pour les exercices
+- **Chart.js** ✓ — acceptable si le graphique est rendu une seule fois (pas d'interaction)
+- **Canvas animé** ✗ — réservé aux leçons (petite quantité) et simulations
+- **Interactivité de réponse** ✗ — réservée au QCM via `qcm.js`
+
+Concrètement : pas de `requestAnimationFrame`, `setInterval`, ni boutons qui modifient la figure. L'élève observe, lit, calcule — il n'interagit pas avec le visuel.
+
+### Règle absolue — jamais de référence sans figure
+
+Si l'énoncé dit "le graphique ci-dessous", "l'oscillogramme suivant", "le schéma ci-contre" ou "à partir de la courbe" — la figure **DOIT** être présente dans la page. Ne jamais décrire textuellement un graphique que l'élève doit lire.
+
+`check_visuals.py` détecte automatiquement ces références orphelines.
+
+---
+
 ## VÉRIFICATION SCIENTIFIQUE
 
 Vérifier systématiquement :

@@ -301,6 +301,7 @@ Avant de générer du contenu, consulter les fichiers dans `/prompts/` :
 | `prompts/prompt-cours.md` | Structure d'une page de cours |
 | `prompts/prompt-exercices.md` | Structure d'une page d'exercices |
 | `prompts/prompt-exercices-capacites.md` | Structure d'une page d'exercices par capacités du programme (`exercices-capacites.html`) |
+| `prompts/prompt-ds.md` | Structure d'un devoir surveillé (`ds.html`) — différenciation, compétences, visuels, corrections |
 | `prompts/prompt-qcm-interro.md` | Structure d'un QCM ou d'une interrogation |
 | `prompts/prompt-activite.md` | Structure d'une activité de découverte (`activite.html`) |
 | `prompts/prompt-fiche.md` | Structure d'une fiche de révision (`fiche.html`) |
@@ -422,7 +423,8 @@ Les fichiers dans `.claude/commands/` définissent des skills invocables via `/n
 | `/generate-qcm` | Générer un QCM (`qcm.html`) |
 | `/generate-interro` | Générer une interrogation (`interro.html`) |
 | `/generate-fiche` | Générer une fiche résumé (`fiche.html`) |
-| `/audit-chapter` | Auditer un chapitre |
+| `/audit-chapter` | Auditer un chapitre (complétude, technique, pédagogie) |
+| `/check-quality` | Vérification qualité complète selon les règles des prompts (visuels, données, différenciation) |
 | `/update-audit` | Mettre à jour un fichier d'audit |
 | `/css-cleanup` | Nettoyer les styles CSS inline |
 | `/check-sigles` | Vérifier les sigles de filière interdits |

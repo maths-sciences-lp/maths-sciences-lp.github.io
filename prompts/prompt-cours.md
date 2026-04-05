@@ -30,6 +30,31 @@ Le cours doit être clair, progressif et accessible, avec beaucoup d'explication
 
 **Règle absolue :** un cours qui porte sur une notion visuelle DOIT contenir des figures SVG inline. Un cours de géométrie sans figure, un cours de fonctions sans courbe, ou un cours d'électricité sans schéma de circuit est **incomplet**.
 
+#### Lien avec les capacités du programme
+
+Avant de générer le cours, lire le fichier programme (`.md` dans `/pdf/`) pour identifier les capacités du chapitre. **Toute capacité contenant un verbe visuel impose une figure dans la leçon :**
+
+| Verbe dans la capacité | Figure obligatoire |
+|---|---|
+| "lire (un graphique / oscillogramme / schéma)" | SVG ou Chart.js du graphique en question |
+| "représenter (une force / un vecteur / un schéma)" | SVG de la situation |
+| "tracer (une droite / courbe / diagramme)" | SVG avec repère vierge annoté + exemple tracé |
+| "exploiter (une courbe / un enregistrement)" | SVG ou Chart.js de la courbe exploitée |
+| "construire (un graphique / diagramme / schéma)" | SVG de l'exemple construit |
+| "réaliser un schéma / montage" | SVG du schéma normalisé |
+| "identifier (à partir d'un enregistrement / schéma)" | SVG de l'enregistrement ou du schéma |
+
+Utiliser `python3 scripts/check_visuals.py` pour vérifier la couverture graphique après génération.
+
+#### Interactivité dans les leçons
+
+Les leçons sont **consultées sur écran**. L'interactivité est **autorisée et encouragée** :
+- **Chart.js** : graphiques de données quantitatives (fonctions, statistiques, courbes d'étalonnage)
+- **Canvas + JavaScript** : animations pédagogiques (convergence, oscillation, tracé dynamique)
+- **SVG animé** : transitions simples (flèches, zones)
+
+L'interactivité sert à **illustrer** une notion, jamais à évaluer l'élève.
+
 #### Quand une figure est OBLIGATOIRE dans le cours
 
 **Mathématiques :**
@@ -157,12 +182,15 @@ Les exercices d'application doivent être **distribués dans le déroulé de la 
 - [ ] Consignes courtes, réalisables en 1–3 min, une seule compétence ciblée
 
 ### Figures et schémas
+- [ ] Programme lu — capacités visuelles identifiées avant génération
+- [ ] Toute capacité avec verbe visuel ("lire", "représenter", "tracer", "exploiter") a sa figure dans le cours
 - [ ] Figures SVG présentes pour toutes les notions visuelles (géométrie, fonctions, circuits, forces…)
 - [ ] Conventions SVG respectées (fill #ebf5ff, stroke #0056b3, labels #555)
-- [ ] Graphiques Chart.js ou SVG pour les données quantitatives
+- [ ] Graphiques Chart.js pour les données quantitatives interactives (leçon = écran)
+- [ ] Canvas pour les animations pédagogiques pertinentes
 - [ ] Aucune figure décrite uniquement par du texte quand un schéma est nécessaire
 - [ ] Légendes (`<figcaption>`) sur chaque figure
-- [ ] Figures lisibles à l'impression (tester avec print.css)
+- [ ] `check_visuals.py` lancé pour vérifier les références orphelines
 
 ### Technique
 - [ ] MathJax inclus si formules

@@ -363,6 +363,57 @@ var explications = {
 
 ## Figures et schémas dans les QCM et interrogations
 
+### Distinction fondamentale : QCM (écran) vs interro (papier)
+
+| | QCM (`qcm.html`) | Interro (`interro.html`) |
+|---|---|---|
+| **Support** | Écran — numérique | Papier — imprimé |
+| **Visuels autorisés** | SVG statique uniquement | SVG statique uniquement |
+| **Interactivité** | Boutons de réponse (géré par `qcm.js`) | Aucune |
+| **Chart.js statique** | ✓ Acceptable (rendu une fois) | ✓ Acceptable |
+| **Canvas animé** | ❌ Non — réservé aux leçons/simulations | ❌ Non |
+| **Données en tableau** | `<table class="full">` | `<table class="full">` |
+
+**Remarque :** même le QCM n'utilise pas Chart.js pour les figures de questions — les courbes/graphiques sont des SVG statiques. Chart.js et Canvas restent réservés aux **leçons** et **simulations**.
+
+### Règle fondamentale — données uniquement
+
+**Un visuel dans un QCM ou une interro montre uniquement les données fournies à l'élève.** Il ne révèle jamais la réponse.
+
+Pour un QCM :
+- Le visuel fait partie de **l'énoncé** de la question, pas des options A/B/C/D
+- Si 4 figures sont proposées comme options (ex : "Quel graphique représente f ?"), chaque option est un SVG minimaliste sans annotation qui révèle la réponse
+- Ne jamais tracer le point d'intersection ou la valeur cherchée sur la figure
+
+Pour une interro :
+- Le visuel est le **support de travail** — il montre la situation, pas la solution
+- Pour un graphique à lire : fournir la courbe, sans marquer le point de lecture
+- Pour un schéma à compléter : fournir le schéma partiel avec les éléments manquants représentés en pointillés ou laissés vides
+
+> *"L'élève doit lire ou compléter le visuel — pas le recopier."*
+
+### Règle des tableaux de données (proactive)
+
+Dès qu'une question présente des valeurs numériques (mesures, prix, résultats), les regrouper dans un tableau **avant** la question — y compris dans les QCM.
+
+```html
+<!-- Dans le bloc de la question QCM, avant les options -->
+<table class="full" style="margin:6px 0 10px;font-size:.91em;max-width:340px">
+  <thead><tr><th>Machine</th><th>Niveau sonore</th></tr></thead>
+  <tbody>
+    <tr><td>Ponceuse orbitale</td><td>92 dB</td></tr>
+    <tr><td>Scie à format</td><td>100 dB</td></tr>
+    <tr><td>Défonceuse</td><td>108 dB</td></tr>
+  </tbody>
+</table>
+```
+
+Ne jamais ajouter une ligne "Protection requise ?" — c'est la question.
+
+### Vérification automatique
+
+Utiliser `python3 scripts/check_visuals.py` pour détecter les références orphelines avant publication.
+
 ### Règle absolue
 
 **Si une question porte sur un élément visuel (graphique, schéma, oscillogramme, figure géométrique), la figure SVG DOIT être présente dans la question.** Ne jamais écrire "le graphique ci-dessous montre..." sans fournir le graphique.
@@ -526,6 +577,10 @@ Pour les interros PC, utiliser `var(--p)` et `#7c3aed` (violet foncé) pour les 
 - [ ] Score affiché dans `<div class="score-box" id="score-socle/standard/appro">`
 - [ ] **Figures SVG présentes pour toute question portant sur un élément visuel**
 - [ ] **Conventions SVG conformes à la matière** (PC Seconde : `#6f42c1`, Maths : `#0056b3`)
+- [ ] **Tableaux de données** pour toute question avec valeurs numériques (avant les options)
+- [ ] **Les visuels montrent uniquement les données** — jamais la réponse ni le point de lecture
+- [ ] **Aucun Canvas animé** — Chart.js statique acceptable, animations Canvas interdites
+- [ ] `check_visuals.py` validé (aucune référence orpheline)
 - [ ] diff.js inclus et fonctionnel
 - [ ] MathJax si formules
 - [ ] print.css inclus
@@ -543,6 +598,10 @@ Pour les interros PC, utiliser `var(--p)` et `#7c3aed` (violet foncé) pour les 
 - [ ] `.corr` **non redéfinie** globalement — utiliser `.sujet-body .corr { display:none }` pour scoper
 - [ ] **Figures SVG présentes pour toute question nécessitant un support visuel** — utiliser la classe `.svg-it`
 - [ ] **Conventions SVG conformes à la matière** (PC Seconde : `#6f42c1` / `#7c3aed`, Maths : `#0056b3`)
+- [ ] **Tableaux de données** pour toute question avec valeurs numériques (avant les sous-questions)
+- [ ] **Les visuels montrent uniquement les données** — jamais la réponse, le point de lecture, ou la valeur à trouver
+- [ ] **Aucun Chart.js / Canvas** — interro = papier imprimé, SVG statique uniquement
+- [ ] `check_visuals.py` validé (aucune référence orpheline)
 - [ ] Rappels méthodologiques (`.meth`) pour le niveau socle uniquement
 - [ ] diff.js inclus
 - [ ] sujet.js inclus

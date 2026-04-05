@@ -1,7 +1,7 @@
 # Audit Global du Site Pédagogique
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-03-21 (audit complet automatisé)
+**Dernière mise à jour** : 2026-04-06
 **Périmètre** : ensemble du site maths-sciences-lp.github.io
 
 ---
@@ -129,6 +129,7 @@ La majorité des occurrences sont dans des **commentaires HTML** et des **footer
 ## Corrections realisees
 
 - **2026-03-21** : Audit global automatisé — inventaire 504 fichiers, vérifications techniques, recherche sigles interdits. Mise à jour complète du tableau de bord.
+- **2026-04-06** : Création `prompts/prompt-ds.md` (prompt complet pour les devoirs surveillés). Mise à jour de 4 prompts existants (`prompt-exercices.md`, `prompt-cours.md`, `prompt-qcm-interro.md`, `prompt-exercices-capacites.md`) : ajout règle "données uniquement", tableaux de données proactifs, références orphelines, règle animations Canvas. Skill `/check-quality` réécrit en revue IA pure (suppression des scripts `check_visuals.py`, `check_chapter_quality.py`, `count_svg.py`). Fix lien retour sommaire `physique-chimie/seconde/ch11/interro.html`.
 - **2026-03-21** : Vérification exhaustive des 28 chapitres exercices Seconde (maths + PC) — 0 erreur, 100 % corrections présentes.
 - **2026-03-21** : Remplacement de 8 QCM par des exercices dans maths/seconde (ch01, ch03, ch09-ch14).
 - **2026-03-21** : Correction titres "Terminale" → "Seconde" dans ch01 et ch03 exercices.
