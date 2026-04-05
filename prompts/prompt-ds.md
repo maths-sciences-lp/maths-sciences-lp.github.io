@@ -39,9 +39,9 @@ Chaque DS est proposé en **3 versions complètes** (pas 3 exercices d'un même 
 
 | Niveau | Profil | Caractéristiques |
 |---|---|---|
-| **Socle** | Élèves en difficulté | Consignes décomposées, calculs amorcés, tableaux pré-remplis, rappels de méthode intégrés, contextes du quotidien, questions fermées |
-| **Standard** | Majorité de la classe | Consignes complètes, contextes professionnels variés, rédaction attendue, toutes les capacités du programme |
-| **Approfondissement** | Poursuite BTS/MC | Mise en équation autonome, problèmes multi-étapes, raisonnement justifié, questions type BTS, contextes complexes |
+| **Socle** | Élèves en difficulté | Rappels `.meth`, calculs amorcés (`U = R × I = … × … =`), tableaux pré-remplis, questions fermées (cases à cocher, trous), étapes numérotées, contextes du quotidien |
+| **Standard** | Majorité de la classe | Consignes complètes, calculs intégraux, contextes professionnels variés (menuisier, installateur…), rédaction attendue pour COM |
+| **Approfondissement** | Poursuite BTS/MC | Aucune formule fournie, mise en équation autonome, problèmes multi-étapes, questions ouvertes ("Choisir et justifier"), vocabulaire BTS |
 
 ### Volume et barème
 
@@ -442,35 +442,6 @@ Placer un bouton `.bc` + `.corr` **à la fin de chaque partie**, pas après chaq
 
 ---
 
-## Structure des parties selon le niveau
-
-### Socle — principes de rédaction
-
-- **Rappels intégrés** : encadré `.meth` ou phrase "Rappel : formule =" avant les questions
-- **Calculs amorcés** : `\(U = R \times I = \ldots \times \ldots =\)` ………
-- **Tableaux pré-remplis partiellement** : certaines cellules complétées
-- **Questions fermées** : cases à cocher, compléter une phrase à trous, relier
-- **Étapes numérotées** : "Étape 1 : Étape 2 : Étape 3 :"
-- **Contextes simples** : quotidien, situations concrètes et familières
-
-### Standard — principes de rédaction
-
-- **Consignes complètes** : pas de guidage pas-à-pas
-- **Formule à rappeler** : "Rappel : P = U × I" seulement si c'est une formule secondaire
-- **Calculs intégraux** : l'élève écrit toutes les étapes
-- **Contextes professionnels** : menuisier, installateur, technicien...
-- **Rédaction attendue** : justifier, expliquer, argumenter pour COM
-
-### Approfondissement — principes de rédaction
-
-- **Mise en équation autonome** : aucune formule fournie
-- **Problèmes à plusieurs étapes** : l'élève doit planifier sa démarche
-- **Questions ouvertes** : "Choisir et justifier", "Rédiger un conseil", "Comparer"
-- **Vocabulaire technique** : termes du programme BTS si pertinents
-- **Contextes complexes** : deux grandeurs qui varient, optimisation, comparaison de solutions
-
----
-
 ## Mise en page et impression
 
 ### Espacement des réponses
@@ -520,19 +491,6 @@ Avant de valider un DS :
 
 ---
 
-## Règles de contexte professionnel
-
-Identiques à toutes les autres pages du site :
-
-**Interdit dans le contenu pédagogique :**
-- ~~"Un technicien ICCER..."~~ → "Un installateur thermique..."
-- ~~"Un technicien ERA-MA..."~~ → "Un menuisier agenceur..."
-- ~~"Contexte ERA-MA"~~ → "Contexte professionnel"
-
-**Varier les contextes :** professionnel + vie quotidienne + sport + science + énergie.
-
----
-
 ## Checklist avant publication
 
 ### Structure
@@ -572,14 +530,9 @@ Identiques à toutes les autres pages du site :
 - [ ] `<figure class="schema">` + `<figcaption>` autour de chaque SVG
 - [ ] Conventions couleur respectées selon la matière
 
----
-
-## Points de contrôle finaux
-
-Avant de soumettre le DS généré, vérifier :
-
-1. **Un seul contexte par partie** — ne pas mélanger deux situations dans la même partie
-2. **Les 3 sujets couvrent le même programme** — un élève socle et un élève appro ont accès au même savoir
-3. **Le sujet appro ne fait pas l'impasse sur les notions de base** — il les aborde différemment (plus de mise en équation)
-4. **Chaque ligne `.answer-line`** correspond à un espace de rédaction réaliste
-5. **Les données numériques sont cohérentes entre elles** — ex : si la production est de 15 pièces/h et qu'on demande la production sur 8h, le résultat de la correction doit être 120, pas 118
+### Cohérence
+- [ ] Un seul contexte par partie (ne pas mélanger deux situations)
+- [ ] Les 3 sujets couvrent le même programme (socle et appro accèdent au même savoir)
+- [ ] Le sujet appro n'occulte pas les notions de base — il les aborde différemment
+- [ ] Chaque `.answer-line` correspond à un espace réaliste
+- [ ] Les données numériques sont cohérentes entre elles (vérifier les calculs croisés)
