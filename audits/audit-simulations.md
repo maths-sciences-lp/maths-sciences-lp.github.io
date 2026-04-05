@@ -308,7 +308,7 @@ Simulations corrigées :
 - [x] Lier chaque simulation orpheline à la page de cours correspondante (79 pages modifiées, 2026-03-16)
 - [x] Compléter les métadonnées des 12 simulations incomplètes (2026-04-05)
 - [x] Rattacher les 7 simulations sans niveau/chapitre à leur chapitre (atome→ch07, ohm→ch03, melangeur→ch14, traceur→ch05/ch10, 2026-03-16)
-- [ ] Mettre à jour `simulations.html` pour lister les 6 simulations récentes manquantes (boyle-mariotte, debit-fluide, ccf-bac-rangement, balance, attenuation-sonore, chaleur)
+- [x] Vérifier `simulations.html` — les 70 simulations y sont déjà toutes listées (2026-04-05)
 
 ### Priorité moyenne
 - [x] Retirer `nav.js` des 26 simulations non conformes (2026-03-16)
@@ -333,7 +333,7 @@ Simulations corrigées :
 | Nombre total de simulations | **70** |
 | Référencées depuis un cours | **70** (100 %) |
 | Orphelines | **0** (0 %) |
-| Listées dans `simulations.html` | **64** (index à mettre à jour — 6 simulations récentes manquantes) |
+| Listées dans `simulations.html` | **70** (100 %) |
 | Sans niveau/chapitre | **0** (0 %) |
 | Avec métadonnées incomplètes | **0** (0 %) — corrigé 2026-04-05 |
 | ~~Incluant `nav.js` (non-conforme)~~ | **0** (corrigé 2026-03-16) |
