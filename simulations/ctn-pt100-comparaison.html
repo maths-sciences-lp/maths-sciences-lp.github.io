@@ -142,7 +142,8 @@ header p{font-size:.82em;opacity:.85}
     <div class="legend-row">
       <div class="leg"><div class="leg-dot" style="background:#6f42c1"></div> CTN (kΩ, axe gauche — décroissante)</div>
       <div class="leg"><div class="leg-dot" style="background:#e83e8c"></div> Pt100 ÷ 10 (mise à l'échelle visuelle, axe gauche — croissante)</div>
-      <div class="leg"><div class="leg-dot" style="background:#f59e0b;height:3px;border-top:2px dashed #f59e0b"></div> Position actuelle</div>
+      <div class="leg"><div class="leg-dot" style="background:#6f42c1;width:10px;height:10px;border-radius:50%"></div> Point CTN (position actuelle)</div>
+      <div class="leg"><div class="leg-dot" style="background:#e83e8c;width:10px;height:10px;border-radius:50%"></div> Point Pt100 (position actuelle)</div>
     </div>
     <div class="chart-wrap">
       <canvas id="chart"></canvas>
@@ -164,7 +165,7 @@ header p{font-size:.82em;opacity:.85}
       </div>
       <div class="compare-box compare-pt100">
         <strong>Pt100 — Sonde platine de référence</strong>
-        La résistance <em>augmente</em> régulièrement quand T augmente. La variation est quasi constante : environ <strong>+0,39 Ω par °C</strong>. On dit que la relation R(T) est <strong>quasi linéaire</strong>.<br><br>
+        La résistance <em>augmente</em> régulièrement quand T augmente. La variation est quasi constante : environ <strong>+0,385 Ω par °C</strong>. On dit que la relation R(T) est <strong>quasi linéaire</strong>.<br><br>
         Valeur de référence : <strong>100 Ω à 0 °C</strong>. C'est la référence industrielle pour les mesures précises.<br><br>
         <strong>Usage :</strong> régulateurs industriels, fours de laboratoire, équipements de précision.
       </div>
@@ -183,7 +184,7 @@ header p{font-size:.82em;opacity:.85}
         <li>Consulter la <strong>table de correspondance</strong> du fabricant (ou reporter sur la courbe R(T)).</li>
         <li>Lire la température en face : R = 4,9 kΩ → T = 40 °C.</li>
       </ol>
-      <p style="margin-top:10px">Avec une <strong>Pt100</strong>, la relation étant linéaire, on peut aussi calculer directement : <em>T = (R − 100) ÷ 0,39</em> (approximation).</p>
+      <p style="margin-top:10px">Avec une <strong>Pt100</strong>, la relation étant linéaire, on peut aussi calculer directement : <em>T = (R − 100) ÷ 0,385</em>.</p>
     </div>
   </div>
 
@@ -195,7 +196,7 @@ header p{font-size:.82em;opacity:.85}
         <li>Régler T = <strong>20 °C</strong>. Quelle est la résistance de la CTN ? Et de la Pt100 ?</li>
         <li>Régler T = <strong>80 °C</strong>. La résistance CTN a-t-elle été divisée par 2 par rapport à 20 °C ? Que cela dit-il sur la linéarité ?</li>
         <li>Un technicien mesure <strong>2,2 kΩ</strong> sur une CTN. Déplacer le curseur pour trouver la température correspondante.</li>
-        <li>Régler T = <strong>100 °C</strong>. Quelle résistance affiche la Pt100 ? Calculer : (R − 100) ÷ 0,39. Retrouvez-vous 100 °C ?</li>
+        <li>Régler T = <strong>100 °C</strong>. Quelle résistance affiche la Pt100 ? Calculer : (R − 100) ÷ 0,385. Retrouvez-vous 100 °C ?</li>
         <li>Pourquoi la Pt100 est-elle plus facile à intégrer dans un régulateur de précision que la CTN ?</li>
       </ol>
     </div>
@@ -213,18 +214,16 @@ function R_pt100(T_C) {
 }
 
 // Données courbe
-var temps = [], dataCtn = [], dataPt100Scaled = [];
+var dataCtn = [], dataPt100Scaled = [];
 for (var t = 0; t <= 150; t += 2) {
-  temps.push(t);
-  dataCtn.push(+R_ctn(t).toFixed(3));
-  dataPt100Scaled.push(+(R_pt100(t) / 10).toFixed(2));
+  dataCtn.push({ x: t, y: +R_ctn(t).toFixed(3) });
+  dataPt100Scaled.push({ x: t, y: +(R_pt100(t) / 10).toFixed(2) });
 }
 
 var ctx = document.getElementById('chart').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: temps,
     datasets: [
       { label: 'CTN (kΩ)', data: dataCtn, borderColor: '#6f42c1', backgroundColor: 'rgba(111,66,193,0.07)', borderWidth: 2.5, pointRadius: 0, tension: 0.3, fill: true },
       { label: 'Pt100 ÷10', data: dataPt100Scaled, borderColor: '#e83e8c', backgroundColor: 'rgba(232,62,140,0.07)', borderWidth: 2.5, pointRadius: 0, tension: 0.05, fill: false },
@@ -239,15 +238,15 @@ var myChart = new Chart(ctx, {
       tooltip: {
         callbacks: {
           label: function(c) {
-            if (c.datasetIndex === 0) return 'CTN : ' + dataCtn[c.dataIndex] + ' kΩ';
-            if (c.datasetIndex === 1) return 'Pt100 : ' + (dataPt100Scaled[c.dataIndex]*10).toFixed(1) + ' Ω';
+            if (c.datasetIndex === 0) return 'CTN : ' + c.parsed.y.toFixed(2) + ' kΩ';
+            if (c.datasetIndex === 1) return 'Pt100 : ' + (c.parsed.y * 10).toFixed(1) + ' Ω';
             return '';
           }
         }
       }
     },
     scales: {
-      x: { title: { display: true, text: 'Température (°C)', font: { size: 11 } }, ticks: { maxTicksLimit: 10 } },
+      x: { type: 'linear', min: 0, max: 150, title: { display: true, text: 'Température (°C)', font: { size: 11 } }, ticks: { maxTicksLimit: 10 } },
       y: { title: { display: true, text: 'CTN (kΩ) — Pt100 ÷10 (Ω)', font: { size: 10 } }, min: 0 }
     }
   }
@@ -265,7 +264,7 @@ function update() {
   var hctn = '', hpt = '';
   if (T <= 20) { hctn = 'Valeur élevée : T basse → R grande'; }
   else if (T <= 60) { hctn = 'La résistance chute rapidement'; }
-  else if (T <= 100) { hctn = 'Courbe qui s'aplatit progressivement'; }
+  else if (T <= 100) { hctn = 'Courbe qui s\'aplatit progressivement'; }
   else { hctn = 'Faible résistance même à haute T'; }
   document.getElementById('hint-ctn').textContent = hctn;
 
@@ -289,7 +288,7 @@ function update() {
     titre.textContent = '🟩 Température modérée (' + T + ' °C) — Zone de forte sensibilité CTN';
     texte.innerHTML = 'La CTN est <strong>très sensible</strong> dans cette zone : un petit changement de température provoque une grande variation de R ('
       + rctn.toFixed(2) + ' kΩ). C\'est pourquoi on l\'utilise dans les thermostats d\'atelier et les étuves.<br><br>'
-      + 'La Pt100 vaut <strong>' + rpt.toFixed(1) + ' Ω</strong>. Chaque degré supplémentaire ajoute environ 0,39 Ω — c\'est régulier et facile à calculer.';
+      + 'La Pt100 vaut <strong>' + rpt.toFixed(1) + ' Ω</strong>. Chaque degré supplémentaire ajoute environ 0,385 Ω — c\'est régulier et facile à calculer.';
   } else if (T < 100) {
     obs.className = 'obs obs-moyen';
     titre.textContent = '🟧 Température élevée (' + T + ' °C) — Zone d\'étuve de séchage';
@@ -304,11 +303,9 @@ function update() {
       + '<em>👉 Conclusion :</em> pour des températures élevées avec précision requise, la Pt100 est préférable à la CTN.';
   }
 
-  // Points sur graphique
-  var idxApprox = Math.round(T / 2);
-  idxApprox = Math.min(idxApprox, temps.length - 1);
-  myChart.data.datasets[2].data = [{ x: T, y: dataCtn[idxApprox] }];
-  myChart.data.datasets[3].data = [{ x: T, y: dataPt100Scaled[idxApprox] }];
+  // Points sur graphique — calculés exactement pour T
+  myChart.data.datasets[2].data = [{ x: T, y: +R_ctn(T).toFixed(3) }];
+  myChart.data.datasets[3].data = [{ x: T, y: +(R_pt100(T) / 10).toFixed(2) }];
   myChart.update('none');
 }
 
