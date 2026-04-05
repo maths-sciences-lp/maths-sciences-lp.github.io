@@ -128,6 +128,8 @@ L'interro utilise `diff.js` pour proposer 3 sujets differencies :
 
 ### Template `qcm.html`
 
+**Important :** les fonctions `corriger()` et `reinitialiser()` sont définies dans `qcm.js` (lib partagée). Ne pas les réécrire dans la page. Seul `var explications = {...}` reste dans le `<script>` de la page.
+
 ```html
 <!DOCTYPE html>
 <html lang="fr">
@@ -138,11 +140,13 @@ L'interro utilise `diff.js` pour proposer 3 sujets differencies :
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
-<style>:root{--p:COULEUR;--p-bg:COULEUR-BG;--p-border:COULEUR-BORDER}</style>
+<style>:root{--p:COULEUR;--p-bg:COULEUR-BG;--p-border:COULEUR-BORDER}
+/* styles spécifiques QCM (q-block, options, score-box, etc.) */
+</style>
 </head>
 <body>
 <div class="c">
-<a href="../../sommaire.html" class="nb">← Retour au sommaire</a>
+<a href="../../../[sommaire].html" class="nb">← Retour au sommaire</a>
 <header>
   <h1>QCM – Titre du chapitre</h1>
   <p class="sous-titre">Chapitre X | Niveau | Matière</p>
@@ -156,50 +160,70 @@ L'interro utilise `diff.js` pour proposer 3 sujets differencies :
 <!-- === SOCLE === -->
 <div class="diff-socle">
 <span class="tag-socle">Socle</span>
+<form id="qcm-socle">
 
-<div class="q-block" data-correct="A">
+<div class="q-block" data-correct="a">
   <h3>Question 1</h3>
+  <p class="theme">Thème — notion testée</p>
+  <p>Énoncé de la question ?</p>
   <div class="options">
-    <label><input type="radio" name="s1" value="A"> Réponse A</label>
-    <label><input type="radio" name="s1" value="B"> Réponse B</label>
-    <label><input type="radio" name="s1" value="C"> Réponse C</label>
-    <label><input type="radio" name="s1" value="D"> Réponse D</label>
+    <label><input type="radio" name="s1" value="a"> Réponse A</label>
+    <label><input type="radio" name="s1" value="b"> Réponse B</label>
+    <label><input type="radio" name="s1" value="c"> Réponse C</label>
+    <label><input type="radio" name="s1" value="d"> Réponse D</label>
   </div>
-  <div class="q-feedback ok">Explication si correct</div>
-  <div class="q-feedback ko">Explication si incorrect</div>
+  <div class="q-feedback"></div>
 </div>
 <!-- Q2 à Q15 ... -->
 
-<button class="btn-valider" onclick="evaluerQCM('socle')">Valider mes réponses</button>
-<button class="btn-reset" onclick="resetQCM('socle')">Recommencer</button>
+<button type="button" class="btn-valider" onclick="corriger('qcm-socle','score-socle')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-socle','score-socle')">Recommencer</button>
 <div class="score-box" id="score-socle"></div>
+</form>
 </div>
 
 <!-- === STANDARD === -->
 <div class="diff-standard">
 <span class="tag-standard">Standard</span>
+<form id="qcm-standard">
 <!-- 15 questions standard ... -->
+<button type="button" class="btn-valider" onclick="corriger('qcm-standard','score-standard')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-standard','score-standard')">Recommencer</button>
+<div class="score-box" id="score-standard"></div>
+</form>
 </div>
 
 <!-- === APPROFONDISSEMENT === -->
 <div class="diff-appro">
 <span class="tag-appro">Approfondissement</span>
+<form id="qcm-appro">
 <!-- 15 questions approfondissement ... -->
+<button type="button" class="btn-valider" onclick="corriger('qcm-appro','score-appro')">Valider le QCM</button>
+<button type="button" class="btn-reset" onclick="reinitialiser('qcm-appro','score-appro')">Recommencer</button>
+<div class="score-box" id="score-appro"></div>
+</form>
 </div>
 
-</div>
+</div><!-- fin .c -->
+<script>
+/* Explications par question — clés = attribut name des radios */
+var explications = {
+  "s1": "Explication socle Q1...",
+  /* ... toutes les clés s1–s15, t1–t15, a1–a15 */
+};
+</script>
+<script src="../../../qcm.js"></script>
 <script src="../../../nav.js"></script>
 <script src="../../../diff.js"></script>
-<script>
-/* Script auto-correction QCM */
-function evaluerQCM(niveau) { /* ... */ }
-function resetQCM(niveau) { /* ... */ }
-</script>
 </body>
 </html>
 ```
 
 ### Template `interro.html`
+
+**Structure :** chaque niveau (socle/standard/appro) contient **2 sujets** (A et B) gérés par `sujet.js`. Chaque sujet est un `sujet-wrap` autonome, imprimable, barème /20.
+
+**Règles CSS :** ne pas redéfinir `.corr` dans le `<style>` de la page — elle est déjà dans `styles.css`. Pour le comportement `display:none` par défaut, scoper la règle : `.sujet-body .corr { display:none }`.
 
 ```html
 <!DOCTYPE html>
@@ -207,53 +231,131 @@ function resetQCM(niveau) { /* ... */ }
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ChXX – Interrogation – Titre – Classe</title>
+<title>ChXX – Interrogation écrite – Titre – Classe</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
-<style>:root{--p:COULEUR;--p-bg:COULEUR-BG;--p-border:COULEUR-BORDER}</style>
+<style>
+:root{--p:COULEUR;--p-bg:COULEUR-BG;--p-border:COULEUR-BORDER}
+
+/* Bandeaux de niveau */
+.level-banner{display:flex;align-items:flex-start;gap:14px;padding:14px 20px;border-radius:10px;margin:32px 0 16px;border-width:2px;border-style:solid}
+.level-banner .lb-icon{font-size:1.5rem;flex-shrink:0}
+.level-banner .lb-body h2{margin:0 0 3px;font-size:1.05rem;font-weight:700}
+.level-banner .lb-body p{margin:0;font-size:.82rem;opacity:.9}
+.lb-socle{background:#f0fdf4;border-color:#10b981;color:#064e3b}
+.lb-standard{background:#eff6ff;border-color:#3b82f6;color:#1e3a8a}
+.lb-appro{background:#f5f0ff;border-color:var(--p);color:#4c1d95}
+
+/* Bloc sujet A / B */
+.sujet-wrap{border:1px solid var(--p-border);border-radius:10px;margin-bottom:20px;overflow:hidden}
+.sujet-header{display:flex;align-items:center;justify-content:space-between;background:var(--p);color:#fff;padding:10px 16px}
+.sujet-header .sh-title{font-weight:700;font-size:.97rem}
+.sujet-header .sh-meta{font-size:.82rem;opacity:.9}
+.sujet-body{padding:14px 18px}
+
+/* Questions */
+.exo{margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--p-border)}
+.exo:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.exo h2{display:flex;align-items:center;gap:8px;font-size:.92rem;color:var(--p);margin:0 0 6px;font-weight:700}
+.pts{display:inline-block;background:var(--p);color:#fff;border-radius:10px;padding:1px 9px;font-size:.75rem;font-weight:600}
+
+/* Corrections — scoper pour éviter conflit avec styles.css global */
+.sujet-body .corr{background:#f0fff4;border-left:3px solid #10b981;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:8px;display:none}
+.sujet-body .corr p,.sujet-body .corr li{font-size:.87rem;margin:3px 0}
+
+/* Impression */
+@media print{
+  .nb,.bc{display:none}
+  .sujet-body .corr{display:block!important}
+  .sujet-wrap{break-inside:avoid}
+  .level-banner{break-before:page}
+}
+</style>
 </head>
 <body>
 <div class="c">
-<a href="../../sommaire.html" class="nb">← Retour au sommaire</a>
+<a href="../../../[sommaire].html" class="nb">← Retour au sommaire</a>
+
 <header>
   <h1>Chapitre X – Interrogation écrite</h1>
-  <p class="sous-titre">Titre du chapitre — Niveau</p>
+  <p class="sous-titre">Titre du chapitre — Matière — Niveau</p>
 </header>
 
-<div class="dh">
-  <p><strong>Durée :</strong> 10-15 min | <strong>Barème :</strong> X points</p>
+<div class="interro-meta">
+  <div class="interro-meta-item"><strong>Durée :</strong> 10–15 minutes</div>
+  <div class="interro-meta-item"><strong>Barème :</strong> /20 points par sujet</div>
+  <div class="interro-meta-item"><strong>Niveaux :</strong> Socle · Standard · Approfondissement</div>
 </div>
 
-<!-- === SOCLE === -->
+<!-- ========================= SOCLE ========================= -->
 <div class="diff-socle">
-<span class="tag-socle">Socle</span>
+
+<div class="level-banner lb-socle">
+  <div class="lb-icon">🟢</div>
+  <div class="lb-body">
+    <h2>Niveau Socle</h2>
+    <p>Questions guidées — rappels fournis — réponses courtes</p>
+  </div>
+</div>
+
+<!-- SOCLE SUJET A -->
+<div class="sujet-a">
+<div class="sujet-wrap">
+<div class="sujet-header">
+  <span class="sh-title">Sujet A</span>
+  <span class="sh-meta">Barème : /20 pts — Durée 10–15 min</span>
+</div>
+<div class="sujet-body">
 
 <div class="exo">
-<h2>Question 1 <span class="pts">(X points)</span></h2>
-<div class="meth"><strong>Rappel :</strong> aide methodologique</div>
-<p>Consigne guidée, étape par étape...</p>
-<button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
-<div class="corr">Correction détaillée</div>
+  <h2>Question 1 <span class="pts">4 pts</span></h2>
+  <div class="meth"><strong>Rappel :</strong> aide méthodologique (socle uniquement)</div>
+  <p>Consigne guidée, étape par étape...</p>
+  <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
+  <div class="corr">Correction détaillée.</div>
 </div>
-<!-- Q2 à Q5-8 ... -->
-</div>
+<!-- Q2 à Q5 ... total = 20 pts -->
 
-<!-- === STANDARD === -->
+</div></div>
+</div><!-- fin sujet-a -->
+
+<!-- SOCLE SUJET B -->
+<div class="sujet-b">
+<div class="sujet-wrap">
+<div class="sujet-header">
+  <span class="sh-title">Sujet B</span>
+  <span class="sh-meta">Barème : /20 pts — Durée 10–15 min</span>
+</div>
+<div class="sujet-body">
+<!-- questions sujet B ... -->
+</div></div>
+</div><!-- fin sujet-b -->
+
+</div><!-- fin diff-socle -->
+
+<!-- ========================= STANDARD ========================= -->
 <div class="diff-standard">
-<span class="tag-standard">Standard</span>
-<!-- 5-8 questions standard ... -->
+<div class="level-banner lb-standard">
+  <div class="lb-icon">🔵</div>
+  <div class="lb-body"><h2>Niveau Standard</h2><p>...</p></div>
 </div>
+<!-- sujet-a + sujet-b ... -->
+</div><!-- fin diff-standard -->
 
-<!-- === APPROFONDISSEMENT === -->
+<!-- ========================= APPROFONDISSEMENT ========================= -->
 <div class="diff-appro">
-<span class="tag-appro">Approfondissement</span>
-<!-- 5-8 questions approfondissement ... -->
+<div class="level-banner lb-appro">
+  <div class="lb-icon">🟣</div>
+  <div class="lb-body"><h2>Niveau Approfondissement</h2><p>...</p></div>
 </div>
+<!-- sujet-a + sujet-b ... -->
+</div><!-- fin diff-appro -->
 
-</div>
+</div><!-- fin .c -->
 <script src="../../../nav.js"></script>
 <script src="../../../diff.js"></script>
+<script src="../../../sujet.js"></script>
 </body>
 </html>
 ```
@@ -299,16 +401,40 @@ function resetQCM(niveau) { /* ... */ }
 
 ### Style SVG à respecter
 
+Les SVG dans les interros utilisent la classe `.svg-it` qui charge les styles partagés définis dans le `<style>` de la page. Ne pas mettre de styles inline sur les éléments SVG si la classe CSS couvre le cas.
+
+**Classes SVG disponibles dans interro.html :**
+
+| Classe | Usage |
+|---|---|
+| `.svg-it` | Sur le `<svg>` — active tous les styles enfants |
+| `.curve-ctn` | Courbe R(T) d'une CTN (stroke violet, no fill) |
+| `.curve-t` | Courbe T(t) d'un thermocouple (même style) |
+| `.pt-ctn` / `.pt-t` | Points sur la courbe (fill violet) |
+| `.seuil-line` | Ligne de seuil (tirets rouges) |
+| `.readoff-h` / `.readoff-v` | Lignes de lecture graphique (tirets bleus) |
+
 ```html
-<figure class="schema" style="text-align:center;margin:12px 0">
-  <svg width="250" height="170" viewBox="0 0 250 170" xmlns="http://www.w3.org/2000/svg">
-    <!-- Contenu -->
-  </svg>
-  <figcaption style="font-size:0.88em;color:#555;margin-top:4px">Légende</figcaption>
-</figure>
+<!-- SVG inline dans une question d'interro -->
+<svg class="svg-it" viewBox="0 0 300 160" style="width:100%;max-width:300px;display:block;margin:.5em auto 0" aria-label="Description">
+  <!-- axes, ticks, labels ... -->
+  <polyline class="curve-ctn" points="50,24 104,91 157,114 211,123 265,126"/>
+  <circle class="pt-ctn" cx="50" cy="24" r="3.5"/>
+  <line class="seuil-line" x1="50" y1="91" x2="265" y2="91"/>
+  <line class="readoff-h" x1="50" y1="114" x2="157" y2="114"/>
+  <line class="readoff-v" x1="157" y1="114" x2="157" y2="135"/>
+</svg>
 ```
 
-**Conventions :** fill `#ebf5ff`, stroke `#0056b3`, labels `#555`, axes `#333`, deuxième courbe `#c53030`.
+**Conventions de couleur selon la matière :**
+
+| Matière | Couleur principale | Usage |
+|---|---|---|
+| Maths Seconde | `#0056b3` | fill axes, stroke courbe |
+| PC Seconde | `#6f42c1` | fill axes, stroke courbe |
+| Maths Première/Terminale | `#0969da` | fill axes, stroke courbe |
+
+Pour les interros PC, utiliser `var(--p)` et `#7c3aed` (violet foncé) pour les courbes — pas `#0056b3` (qui est pour les maths).
 
 ### Bonnes pratiques
 
@@ -351,7 +477,7 @@ function resetQCM(niveau) { /* ... */ }
 - Applications numeriques (formules, conversions)
 - Schemas a completer ou legender
 - Questions de cours (definir, expliquer, citer)
-- Petits problemes professionnels (1-2 etapes, contexte ICCER ou ERA)
+- Petits problemes professionnels (1-2 etapes, contexte professionnel — ne jamais utiliser les sigles ICCER, ERA, MAMA dans le contenu)
 - Analyse de documents simples (graphiques, tableaux de mesures)
 
 ---
@@ -391,28 +517,38 @@ function resetQCM(niveau) { /* ... */ }
 
 ### QCM
 - [ ] 15 questions par niveau (socle, standard, appro)
-- [ ] 4 choix par question, 1 seul correct
-- [ ] Feedback correct ET incorrect pour chaque question
-- [ ] Score calcule et affiche
-- [ ] Bouton "Recommencer" fonctionnel
-- [ ] **Figures SVG présentes pour toute question portant sur un élément visuel** (graphique, oscillogramme, circuit, figure géométrique)
-- [ ] **Conventions SVG respectées** (fill #ebf5ff, stroke #0056b3, labels #555)
+- [ ] 4 choix par question (valeurs `a/b/c/d` en minuscules), 1 seul correct
+- [ ] `data-correct="a"` sur chaque `.q-block`
+- [ ] `<div class="q-feedback"></div>` présent sur chaque `.q-block` (vide — rempli par `qcm.js`)
+- [ ] `var explications = {...}` défini dans un `<script>` avant `qcm.js`
+- [ ] `<script src="../../../qcm.js"></script>` inclus (avant nav.js)
+- [ ] Boutons `corriger('qcm-socle','score-socle')` et `reinitialiser(...)` — **pas** `evaluerQCM()` ni `resetQCM()`
+- [ ] Chaque niveau dans un `<form id="qcm-socle/standard/appro">`
+- [ ] Score affiché dans `<div class="score-box" id="score-socle/standard/appro">`
+- [ ] **Figures SVG présentes pour toute question portant sur un élément visuel**
+- [ ] **Conventions SVG conformes à la matière** (PC Seconde : `#6f42c1`, Maths : `#0056b3`)
 - [ ] diff.js inclus et fonctionnel
 - [ ] MathJax si formules
 - [ ] print.css inclus
-- [ ] Couleurs CSS conformes au theme matiere/niveau
-- [ ] Questions ancrees au programme officiel
+- [ ] Lien retour → `../../../[sommaire].html` (pas `../../sommaire.html`)
+- [ ] Couleurs CSS conformes au thème matière/niveau
+- [ ] Questions ancrées au programme officiel
 
 ### Interro
-- [ ] 5-8 questions par niveau (socle, standard, appro)
-- [ ] Bareme explicite (points par question)
-- [ ] Corrections completes (bouton "Voir la correction")
-- [ ] **Figures SVG présentes pour toute question nécessitant un support visuel** (schéma à légender, graphique à lire, figure géométrique)
-- [ ] **Conventions SVG respectées** (fill #ebf5ff, stroke #0056b3, labels #555)
-- [ ] diff.js inclus et fonctionnel
-- [ ] Rappels methodologiques pour le niveau socle
+- [ ] 5 questions par niveau (barème /20 pts par sujet)
+- [ ] 2 sujets (A et B) par niveau — `sujet.js` inclus en fin de `<body>`
+- [ ] Structure `diff-socle / diff-standard / diff-appro` avec `level-banner` pour chaque niveau
+- [ ] Chaque sujet dans `sujet-a` / `sujet-b` → `sujet-wrap` → `sujet-header` + `sujet-body`
+- [ ] Barème explicite par question (`<span class="pts">X pts</span>`) — total = 20 pts par sujet
+- [ ] Corrections complètes (bouton `.bc` + `<div class="corr">`)
+- [ ] `.corr` **non redéfinie** globalement — utiliser `.sujet-body .corr { display:none }` pour scoper
+- [ ] **Figures SVG présentes pour toute question nécessitant un support visuel** — utiliser la classe `.svg-it`
+- [ ] **Conventions SVG conformes à la matière** (PC Seconde : `#6f42c1` / `#7c3aed`, Maths : `#0056b3`)
+- [ ] Rappels méthodologiques (`.meth`) pour le niveau socle uniquement
+- [ ] diff.js inclus
+- [ ] sujet.js inclus
 - [ ] MathJax si formules
 - [ ] print.css inclus
-- [ ] Impression testee (mise en page correcte)
-- [ ] Couleurs CSS conformes au theme matiere/niveau
-- [ ] Questions ancrees au programme officiel
+- [ ] Lien retour → `../../../[sommaire].html` (pas `../../sommaire.html`)
+- [ ] Couleurs CSS conformes au thème matière/niveau
+- [ ] Questions ancrées au programme officiel
