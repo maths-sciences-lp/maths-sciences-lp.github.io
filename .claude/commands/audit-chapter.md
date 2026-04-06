@@ -8,79 +8,81 @@
 
 Exemple : `/audit-chapter maths/premiere/ch05`
 
-## Instructions
+## Ce que fait ce skill
 
-Tu dois vérifier la complétude et la qualité d'un chapitre donné.
+Vérifie la **complétude** d'un chapitre : fichiers présents, sigles interdits, contenu non vide.
+Pour les vérifications techniques et qualité du contenu, utiliser `/check-quality`.
+
+---
+
+## Instructions
 
 ### Étape 1 — Inventaire des fichiers
 
 Lister les fichiers présents dans le dossier du chapitre et vérifier :
 
-| Fichier | Obligatoire | Présent ? |
-|---|---|---|
-| `lecon.html` | Oui | ? |
-| `exercices.html` | Oui | ? |
-| `ds.html` | Oui | ? |
-| `fiche.html` | Recommandé | ? |
-| `qcm.html` | Recommandé | ? |
-| `interro.html` | Recommandé | ? |
+| Fichier | Statut attendu |
+|---|---|
+| `lecon.html` | **Obligatoire** |
+| `exercices.html` | **Obligatoire** |
+| `ds.html` | **Obligatoire** |
+| `fiche.html` | Recommandé |
+| `qcm.html` | Recommandé |
+| `interro.html` | Recommandé |
+| `activite.html` | Optionnel |
+| `simulation.html` | Optionnel |
 
-### Étape 2 — Vérifications techniques (pour chaque fichier présent)
+### Étape 2 — Contenu non vide
 
-1. **CSS** : le `<style>:root{...}` utilise les bonnes couleurs pour la matière/niveau
-2. **Scripts** : `nav.js` est inclus en fin de `<body>`
-3. **Scripts** : `diff.js` est inclus SI la page contient des blocs `.diff-*` (et uniquement dans ce cas)
-4. **Styles** : aucune classe de `styles.css` n'est redéfinie inline (`.def`, `.prop`, `.att`, `.meth`, `.retenir`, `.ex`, `.exo`, `.corr`, `.bc`, etc.)
-5. **Chemins** : `../../../styles.css`, `../../../nav.js`, `../../../diff.js` sont corrects
-6. **MathJax** : inclus si la page contient des formules `\(...\)` ou `\[...\]`
-7. **print.css** : `<link rel="stylesheet" href="../../../print.css" media="print">` est présent
-8. **Lien retour** : le lien `← Retour au sommaire` pointe vers le bon sommaire
+Pour chaque fichier présent, vérifier qu'il n'est pas un squelette :
+- pas de mention "en cours de rédaction" ou "à compléter"
+- contenu réel (au moins une section avec du texte)
 
-### Étape 3 — Vérifications pédagogiques
+### Étape 3 — Sigles interdits
 
-1. **Sigles interdits** : scanner le contenu (pas les titres/badges) pour les mots ICCER, ERA-MA, ERA, MAMA utilisés comme noms de métiers
-2. **Différenciation** : si `exercices.html` et `ds.html` existent, vérifier qu'ils contiennent des blocs `diff-socle`, `diff-standard`, `diff-appro`
-3. **Corrections** : les exercices ont-ils des corrections (`.corr`) ?
-4. **Contenu non vide** : les fichiers ne sont-ils pas des squelettes vides ("en cours de rédaction") ?
+Scanner le **contenu pédagogique** (hors titres `<h1>`, sous-titres `.sous-titre`, liens de navigation, badges) de tous les fichiers présents.
+
+Signaler toute occurrence des sigles utilisés comme noms de métiers :
+- ICCER, ERA-MA, ERA, MAMA utilisés dans des phrases du type "un technicien ICCER…", "vous êtes ERA-MA…"
+
+Rappel des formulations correctes : installateur thermique, menuisier agenceur, menuisier, métreur, etc.
 
 ### Étape 4 — Rapport
-
-Afficher un rapport structuré :
 
 ```
 ## Audit : maths/premiere/ch05
 
 ### Fichiers
-- lecon.html .......... OK
-- exercices.html ...... OK (stub — contenu vide)
-- ds.html ............. OK
-- fiche.html .......... MANQUANT
-- qcm.html ........... MANQUANT
-- interro.html ........ MANQUANT
+- lecon.html .......... ✅ présent
+- exercices.html ...... ✅ présent
+- ds.html ............. ✅ présent
+- fiche.html .......... ⚠ MANQUANT
+- qcm.html ............ ⚠ MANQUANT
+- interro.html ........ ⚠ MANQUANT
+- activite.html ....... — (optionnel, absent)
 
-### Technique
-- Thème couleur : OK (#0969da)
-- nav.js : OK (6/6 fichiers)
-- diff.js : OK (présent sur exercices + ds)
-- print.css : MANQUANT sur lecon.html
-- Classes redéfinies : aucune
+### Contenu
+- lecon.html : ✅ contenu réel
+- exercices.html : ⚠ squelette ("en cours de rédaction")
 
-### Pédagogie
-- Sigles interdits : 2 occurrences ("technicien ERA-MA" dans exercices.html L.45, L.112)
-- Différenciation : OK (3 niveaux dans exercices et ds)
-- Corrections : 8/10 exercices corrigés
+### Sigles
+- ✅ Aucun sigle interdit détecté
+- OU : ✗ "technicien ERA-MA" dans exercices.html L.45, L.112
 
 ### Actions recommandées
-1. Ajouter print.css à lecon.html
-2. Remplacer "technicien ERA-MA" par "menuisier agenceur" (2 occurrences)
-3. Générer fiche.html (/generate-fiche)
-4. Générer qcm.html (/generate-qcm)
-5. Générer interro.html (/generate-interro)
-6. Compléter exercices.html (contenu vide)
+1. Générer fiche.html → /generate-fiche maths/premiere/ch05
+2. Générer qcm.html → /generate-qcm maths/premiere/ch05
+3. Générer interro.html → /generate-interro maths/premiere/ch05
+4. Compléter exercices.html (contenu vide)
+5. Remplacer "technicien ERA-MA" par "menuisier agenceur" (2 occurrences)
+
+→ Pour les vérifications techniques et qualité : /check-quality maths/premiere/ch05
 ```
 
-### Règles
+---
+
+## Règles
 
 - Ne PAS modifier les fichiers — seulement analyser et rapporter
-- Signaler les problèmes par ordre de gravité (critique > haute > moyenne > basse)
-- Suggérer les skills à utiliser pour corriger les manques
+- Signaler les problèmes par ordre de gravité : critique > haute > moyenne > basse
+- Toujours terminer en suggérant `/check-quality` pour la suite
