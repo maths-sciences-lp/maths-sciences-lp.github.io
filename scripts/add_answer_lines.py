@@ -2,20 +2,27 @@
 add_answer_lines.py — Ajoute des zones de réponse (.answer-line) aux exercices.html
                       et exercices-capacites.html.
 
+Structure produite :
+  <div class="zone-rep">
+    <label>Mes calculs :</label>
+    <span class="answer-line"></span>  (× N selon niveau)
+    <div class="corr">...</div>        ← correction déplacée à l'intérieur
+  </div>
+  <button class="bc" ...>Voir la correction</button>
+
+toggle() mis à jour en conséquence :
+  var c = btn.previousElementSibling.querySelector('.corr');
+
 Usage :
   python3 scripts/add_answer_lines.py maths/seconde/ch05
-  python3 scripts/add_answer_lines.py maths/seconde          # tous les chapitres du niveau
-  python3 scripts/add_answer_lines.py --all                  # tout le site
+  python3 scripts/add_answer_lines.py maths/seconde
+  python3 scripts/add_answer_lines.py --all
 
 Règles :
-  - diff-socle   → 3 lignes
+  - diff-socle    → 3 lignes
   - diff-standard → 5 lignes
-  - diff-appro   → 6 lignes
-  - sans diff    → 4 lignes
-
-Pour chaque exo :
-  - Si <div class="zone-rep"> existe : remplace son contenu par label + answer-lines
-  - Sinon : insère une <div class="zone-rep"> avant le bouton .bc
+  - diff-appro    → 6 lignes
+  - sans diff     → 4 lignes
 """
 
 import re
@@ -32,24 +39,113 @@ LINES_BY_LEVEL = {
 
 ANSWER_LINE = '    <span class="answer-line"></span>\n'
 
-ZONE_REP_PATTERN = re.compile(
-    r'(<div class="zone-rep">)\s*(<label>[^<]*</label>)?\s*(</div>)',
+# Regex : exo div (pas exo-header, exo-num, etc.)
+EXO_OPEN = re.compile(r'<div class="exo( [^"]+)?">')
+
+# Regex : bouton .bc
+BC_BTN = re.compile(r'\s*<button class="bc"[^>]*>Voir la correction</button>')
+
+# Nouveau toggle() à injecter en fin de fichier
+NEW_TOGGLE = (
+    'function toggle(btn){\n'
+    '  var c=btn.previousElementSibling.querySelector(\'.corr\');\n'
+    '  if(c.style.display===\'block\'){c.style.display=\'none\';'
+    'btn.textContent=\'Voir la correction\';}\n'
+    '  else{c.style.display=\'block\';'
+    'btn.textContent=\'Masquer la correction\';}\n'
+    '}'
+)
+
+OLD_TOGGLE = re.compile(
+    r'function toggle\(btn\)\{[^}]*\}',
     re.DOTALL
 )
 
-BC_BUTTON_PATTERN = re.compile(
-    r'(\s*<button class="bc"[^>]*>Voir la correction</button>)'
-)
+
+def div_end(text, start):
+    """Retourne la position après </div> fermant le <div> ouvert à start."""
+    depth = 0
+    pos = start
+    while pos < len(text):
+        o = text.find('<div', pos)
+        c = text.find('</div>', pos)
+        if c == -1:
+            return -1
+        if o != -1 and o < c:
+            depth += 1
+            pos = o + 4
+        else:
+            depth -= 1
+            end = c + 6
+            if depth == 0:
+                return end
+            pos = end
+    return -1
 
 
-def build_zone_rep(n_lines):
+def build_zone_rep(n_lines, corr_content):
+    """Construit la zone-rep avec les lignes de réponse et la correction intégrée."""
     lines = ''.join([ANSWER_LINE] * n_lines)
+    # Re-indenter corr_content de 2 espaces
+    corr_indented = '\n'.join('  ' + l if l.strip() else l
+                               for l in corr_content.splitlines())
     return (
         f'  <div class="zone-rep">\n'
         f'    <label>Mes calculs :</label>\n'
         f'{lines}'
+        f'{corr_indented}\n'
         f'  </div>\n'
     )
+
+
+def process_block(block, n_lines):
+    """
+    Transforme un bloc exercice :
+    - Extrait .corr depuis après le bouton
+    - Crée/met à jour zone-rep avec answer-lines + corr
+    - Supprime corr de sa position originale
+    - Déplace le bouton après zone-rep
+    Retourne le bloc transformé.
+    """
+    # 1. Trouver .corr dans le bloc
+    corr_start = block.find('<div class="corr">')
+    if corr_start == -1:
+        return block  # pas de correction, rien à faire
+
+    corr_end = div_end(block, corr_start)
+    if corr_end == -1:
+        return block
+
+    corr_content = block[corr_start:corr_end]
+
+    # 2. Trouver le bouton .bc (avant .corr)
+    btn_m = BC_BTN.search(block, 0, corr_start)
+    if not btn_m:
+        return block
+
+    btn_str = btn_m.group(0)
+
+    # 3. Construire la zone-rep
+    zone_rep = build_zone_rep(n_lines, corr_content)
+
+    # 4. Reconstruire le bloc :
+    #    tout avant zone-rep/bouton + zone-rep + bouton + tout après .corr
+    if '<div class="zone-rep">' in block[:btn_m.start()]:
+        # zone-rep existante : la remplacer
+        zr_start = block.find('<div class="zone-rep">')
+        zr_end = div_end(block, zr_start)
+        before = block[:zr_start]
+        after_corr = block[corr_end:]
+    else:
+        # pas de zone-rep : insérer avant le bouton
+        before = block[:btn_m.start()]
+        after_corr = block[corr_end:]
+
+    # Supprimer éventuels whitespace/newline entre corr et fin du bloc parent
+    after_corr = after_corr.lstrip('\n')
+
+    new_block = before + zone_rep + btn_str + '\n' + after_corr
+    return new_block
 
 
 def process_file(path):
@@ -61,22 +157,12 @@ def process_file(path):
         print(f'[skip] {path}')
         return
 
-    # Découper en blocs d'exercices pour traiter chaque exo indépendamment
-    # Stratégie : traiter le fichier bloc par bloc entre les <div class="exo ...">
-    # On itère sur les positions des ouvertures d'exo
-
     result = []
     pos = 0
-    # Correspond uniquement à <div class="exo"> ou <div class="exo diff-...">
-    # Exclut <div class="exo-header">, <div class="exo-num">, etc.
-    # ( [^"]+)? = groupe optionnel qui commence par un espace (donc pas exo-)
-    exo_open = re.compile(r'<div class="exo( [^"]+)?">')
 
-    for m in exo_open.finditer(content):
-        # Ajouter tout ce qui précède ce bloc
+    for m in EXO_OPEN.finditer(content):
         result.append(content[pos:m.start()])
 
-        # Déterminer le niveau
         classes = m.group(1) or ''
         if 'diff-socle' in classes:
             level = 'diff-socle'
@@ -88,40 +174,20 @@ def process_file(path):
             level = 'none'
 
         n_lines = LINES_BY_LEVEL[level]
-        zone_rep_html = build_zone_rep(n_lines)
 
-        # Trouver la fin de ce bloc exo (prochain <div class="exo ou fin de fichier)
-        next_m = exo_open.search(content, m.end())
+        # Délimiter le bloc de cet exercice
+        next_m = EXO_OPEN.search(content, m.end())
         end = next_m.start() if next_m else len(content)
         block = content[m.start():end]
 
-        # Cas 1 : zone-rep déjà présente → remplacer son contenu
-        if '<div class="zone-rep">' in block:
-            new_block = ZONE_REP_PATTERN.sub(
-                lambda _: (
-                    f'  <div class="zone-rep">\n'
-                    f'    <label>Mes calculs :</label>\n'
-                    f'{"".join([ANSWER_LINE] * n_lines)}'
-                    f'  </div>'
-                ),
-                block
-            )
-            result.append(new_block)
-        else:
-            # Cas 2 : pas de zone-rep → insérer avant le bouton .bc
-            new_block = BC_BUTTON_PATTERN.sub(
-                lambda m_bc: f'\n{zone_rep_html}{m_bc.group(1)}',
-                block,
-                count=1  # seulement le premier bouton du bloc
-            )
-            result.append(new_block)
-
+        result.append(process_block(block, n_lines))
         pos = end
 
-    # Ajouter le reste (après le dernier exo)
     result.append(content[pos:])
-
     new_content = ''.join(result)
+
+    # Mettre à jour toggle()
+    new_content = OLD_TOGGLE.sub(NEW_TOGGLE, new_content)
 
     if new_content == content:
         print(f'[WARN] aucun changement dans {path}')
@@ -149,7 +215,6 @@ def collect_files(arg):
             f'{arg}/*/exercices-capacites.html',
         ]
     else:
-        # Chemin direct vers un fichier
         return [arg] if os.path.isfile(arg) else []
 
     files = []
