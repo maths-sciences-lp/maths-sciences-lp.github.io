@@ -597,6 +597,36 @@ canvas.graf{display:block;margin:12px auto;border-radius:10px;border:2px solid #
   <div class="enonce">
     <span class="context-tag">🏃 Sport — Course à pied</span><br>
     La courbe ci-dessous représente la distance \(d\) (en km) parcourue par un jogger en fonction du temps \(t\) (en min).<br><br>
+    <div class="chart-wrap" style="max-width:480px;margin:12px auto">
+      <canvas id="chart-jogger"></canvas>
+    </div>
+    <script>
+    (function(){
+      var ctx = document.getElementById('chart-jogger').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [0,10,20,30,40,50,60],
+          datasets: [{
+            label: 'd (km)',
+            data: [0, 1.5, 3, 4, 5, 5.5, 6],
+            borderColor: '#0056b3',
+            backgroundColor: 'rgba(0,86,179,0.08)',
+            tension: 0.3,
+            pointRadius: 5,
+            pointBackgroundColor: '#0056b3'
+          }]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { title: { display: true, text: 't (min)' } },
+            y: { title: { display: true, text: 'd (km)' }, min: 0, max: 7 }
+          }
+        }
+      });
+    })();
+    </script>
     <table class="full">
       <tr><th>\(t\) (min)</th><td>0</td><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td><td>60</td></tr>
       <tr><th>\(d(t)\) (km)</th><td>0</td><td>1,5</td><td>3</td><td>4</td><td>5</td><td>5,5</td><td>6</td></tr>
