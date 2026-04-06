@@ -6,12 +6,11 @@ Structure produite :
   <div class="zone-rep">
     <label>Mes calculs :</label>
     <span class="answer-line"></span>  (× N selon niveau)
-    <div class="corr">...</div>        ← correction déplacée à l'intérieur
   </div>
   <button class="bc" ...>Voir la correction</button>
+  <div class="corr">...</div>
 
-toggle() mis à jour en conséquence :
-  var c = btn.previousElementSibling.querySelector('.corr');
+toggle() inchangé : btn.nextElementSibling
 
 Usage :
   python3 scripts/add_answer_lines.py maths/seconde/ch05
@@ -39,121 +38,44 @@ LINES_BY_LEVEL = {
 
 ANSWER_LINE = '    <span class="answer-line"></span>\n'
 
-# Regex : exo div (pas exo-header, exo-num, etc.)
+# Regex : exo div uniquement (pas exo-header, exo-num, etc.)
 EXO_OPEN = re.compile(r'<div class="exo( [^"]+)?">')
 
-# Regex : bouton .bc
-BC_BTN = re.compile(r'\s*<button class="bc"[^>]*>Voir la correction</button>')
-
-# Nouveau toggle() à injecter en fin de fichier
-NEW_TOGGLE = (
-    'function toggle(btn){\n'
-    '  var c=btn.previousElementSibling.querySelector(\'.corr\');\n'
-    '  if(c.style.display===\'block\'){c.style.display=\'none\';'
-    'btn.textContent=\'Voir la correction\';}\n'
-    '  else{c.style.display=\'block\';'
-    'btn.textContent=\'Masquer la correction\';}\n'
-    '}'
-)
-
-# Matche le bloc <script> contenant toggle() pour le remplacer entièrement
-OLD_TOGGLE = re.compile(
-    r'<script>\s*function toggle\(btn\)\{.*?\}\s*</script>',
+# Zone-rep existante (label vide, pas encore de answer-lines)
+ZONE_REP_PATTERN = re.compile(
+    r'<div class="zone-rep">\s*(<label>[^<]*</label>)?\s*</div>',
     re.DOTALL
 )
 
-
-def div_end(text, start):
-    """Retourne la position après </div> fermant le <div> ouvert à start."""
-    depth = 0
-    pos = start
-    while pos < len(text):
-        o = text.find('<div', pos)
-        c = text.find('</div>', pos)
-        if c == -1:
-            return -1
-        if o != -1 and o < c:
-            depth += 1
-            pos = o + 4
-        else:
-            depth -= 1
-            end = c + 6
-            if depth == 0:
-                return end
-            pos = end
-    return -1
+# Bouton .bc
+BC_BTN = re.compile(r'(\s*<button class="bc"[^>]*>Voir la correction</button>)')
 
 
-def build_zone_rep(n_lines, corr_content):
-    """Construit la zone-rep avec les lignes de réponse et la correction intégrée."""
+def build_zone_rep(n_lines):
     lines = ''.join([ANSWER_LINE] * n_lines)
-    # Re-indenter corr_content de 2 espaces
-    corr_indented = '\n'.join('  ' + l if l.strip() else l
-                               for l in corr_content.splitlines())
     return (
         f'  <div class="zone-rep">\n'
         f'    <label>Mes calculs :</label>\n'
         f'{lines}'
-        f'{corr_indented}\n'
         f'  </div>\n'
     )
 
 
 def process_block(block, n_lines):
-    """
-    Transforme un bloc exercice :
-    - Extrait .corr depuis après le bouton
-    - Crée/met à jour zone-rep avec answer-lines + corr
-    - Supprime corr de sa position originale
-    - Déplace le bouton après zone-rep
-    Retourne le bloc transformé.
-    """
-    # 1. Trouver .corr dans le bloc
-    corr_start = block.find('<div class="corr">')
-    if corr_start == -1:
-        return block  # pas de correction, rien à faire
+    zone_rep = build_zone_rep(n_lines)
 
-    corr_end = div_end(block, corr_start)
-    if corr_end == -1:
-        return block
-
-    corr_content = block[corr_start:corr_end]
-
-    # 2. Trouver le bouton .bc (avant .corr)
-    btn_m = BC_BTN.search(block, 0, corr_start)
-    if not btn_m:
-        return block
-
-    btn_str = btn_m.group(0)
-
-    # 3. Construire la zone-rep
-    zone_rep = build_zone_rep(n_lines, corr_content)
-
-    # 4. Reconstruire le bloc :
-    #    tout avant zone-rep/bouton + zone-rep + bouton + tout après .corr
-    if '<div class="zone-rep">' in block[:btn_m.start()]:
-        # zone-rep existante : la remplacer
-        zr_start = block.find('<div class="zone-rep">')
-        zr_end = div_end(block, zr_start)
-        before = block[:zr_start]
-        after_corr = block[corr_end:]
+    if '<div class="zone-rep">' in block:
+        # Remplacer zone-rep existante par version avec answer-lines
+        return ZONE_REP_PATTERN.sub(zone_rep.rstrip('\n'), block, count=1)
     else:
-        # pas de zone-rep : insérer avant le bouton
-        before = block[:btn_m.start()]
-        after_corr = block[corr_end:]
-
-    # Supprimer éventuels whitespace/newline entre corr et fin du bloc parent
-    after_corr = after_corr.lstrip('\n')
-
-    new_block = before + zone_rep + btn_str + '\n' + after_corr
-    return new_block
+        # Insérer zone-rep avant le premier bouton .bc
+        return BC_BTN.sub(f'\n{zone_rep}\\1', block, count=1)
 
 
 def process_file(path):
     with open(path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Déjà traité ?
     if '<span class="answer-line"></span>' in content:
         print(f'[skip] {path}')
         return
@@ -174,24 +96,15 @@ def process_file(path):
         else:
             level = 'none'
 
-        n_lines = LINES_BY_LEVEL[level]
-
-        # Délimiter le bloc de cet exercice
         next_m = EXO_OPEN.search(content, m.end())
         end = next_m.start() if next_m else len(content)
         block = content[m.start():end]
 
-        result.append(process_block(block, n_lines))
+        result.append(process_block(block, LINES_BY_LEVEL[level]))
         pos = end
 
     result.append(content[pos:])
     new_content = ''.join(result)
-
-    # Mettre à jour le bloc <script> contenant toggle()
-    new_content = OLD_TOGGLE.sub(
-        f'<script>\n{NEW_TOGGLE}\n</script>',
-        new_content
-    )
 
     if new_content == content:
         print(f'[WARN] aucun changement dans {path}')
