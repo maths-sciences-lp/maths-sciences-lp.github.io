@@ -29,8 +29,9 @@ Lister les fichiers présents dans le dossier du chapitre et vérifier :
 | `fiche.html` | Recommandé |
 | `qcm.html` | Recommandé |
 | `interro.html` | Recommandé |
-| `activite.html` | Optionnel |
-| `simulation.html` | Optionnel |
+| `activite.html` | Recommandé |
+| `exercices-capacites.html` | Recommandé |
+| `simulation.html` | Optionnel (info) |
 
 ### Étape 2 — Contenu non vide
 
@@ -53,13 +54,15 @@ Rappel des formulations correctes : installateur thermique, menuisier agenceur, 
 ## Audit : maths/premiere/ch05
 
 ### Fichiers
-- lecon.html .......... ✅ présent
-- exercices.html ...... ✅ présent
-- ds.html ............. ✅ présent
-- fiche.html .......... ⚠ MANQUANT
-- qcm.html ............ ⚠ MANQUANT
-- interro.html ........ ⚠ MANQUANT
-- activite.html ....... — (optionnel, absent)
+- lecon.html .................. ✅ présent
+- exercices.html .............. ✅ présent
+- ds.html ..................... ✅ présent
+- fiche.html .................. ⚠ MANQUANT
+- qcm.html .................... ⚠ MANQUANT
+- interro.html ................ ⚠ MANQUANT
+- activite.html ............... ✅ présent
+- exercices-capacites.html .... ⚠ MANQUANT
+- simulation.html ............. — (optionnel, absent)
 
 ### Contenu
 - lecon.html : ✅ contenu réel

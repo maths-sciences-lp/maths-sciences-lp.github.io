@@ -44,6 +44,9 @@ Vérifier la présence de chaque fichier attendu :
 | `fiche.html` | Recommandé |
 | `qcm.html` | Recommandé |
 | `interro.html` | Recommandé |
+| `activite.html` | Recommandé |
+| `exercices-capacites.html` | Recommandé |
+| `simulation.html` | Optionnel (info) |
 
 #### 2b. Visuels dans les pages d'exercices
 
@@ -77,9 +80,9 @@ Afficher un tableau synthétique, une ligne par chapitre :
 
 | Ch | Titre | Fichiers | Visuels exo | Diff | Sigles | Vide | Priorité |
 |---|---|---|---|---|---|---|---|
-| ch01 | Mesures et incertitudes | 6/6 ✅ | 2/8 ✅ | ✅ | ✅ | — | 🟢 |
-| ch02 | Signaux et images | 5/6 ⚠ fiche | 0/6 🔴 | ✅ | ✅ | — | 🔴 |
-| ch03 | Énergie | 6/6 ✅ | 1/10 🟡 | ⚠ | ✅ | — | 🟡 |
+| ch01 | Mesures et incertitudes | 8/8 ✅ | 2/8 ✅ | ✅ | ✅ | — | 🟢 |
+| ch02 | Signaux et images | 5/8 ⚠ fiche, activite, exo-cap | 0/6 🔴 | ✅ | ✅ | — | 🔴 |
+| ch03 | Énergie | 8/8 ✅ | 1/10 🟡 | ⚠ | ✅ | — | 🟡 |
 | ch04 | ... | ... | ... | ... | ... | ... | ... |
 ...
 
@@ -91,8 +94,9 @@ Afficher un tableau synthétique, une ligne par chapitre :
 ```
 
 #### Colonne "Fichiers"
-- Format : `X/6` (nombre de fichiers recommandés présents sur 6)
-- Indiquer lequel manque si < 6
+- Format : `X/8` (nombre de fichiers obligatoires + recommandés présents sur 8)
+- Indiquer lequel manque si < 8
+- `simulation.html` (optionnel) n'est pas compté dans le total mais signalé si présent
 
 #### Colonne "Visuels exo"
 - Format : `nb_visuels/nb_exercices`

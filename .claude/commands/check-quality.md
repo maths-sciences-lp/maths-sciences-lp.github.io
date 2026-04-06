@@ -112,6 +112,13 @@ Précisions :
 - Corrections dans `.corr` et masquées par défaut
 - Lignes `.answer-line` suffisantes pour chaque question
 
+#### activite.html
+
+- Bloc `.situation` ou problématique présente en introduction
+- Corrections dans `.corr` et masquées par défaut
+- Bouton Imprimer présent (`window.print()`)
+- Pas de `diff.js` (les activités ne sont pas différenciées)
+
 ### Étape 3 — Rapport
 
 Afficher un rapport structuré :
