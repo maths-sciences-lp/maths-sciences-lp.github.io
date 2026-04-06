@@ -312,8 +312,8 @@
   </div>
 
   <div class="att">
-    <span class="label label-att">Attention</span><br>
-    La formule \(R_{th} = e/(\lambda S)\) suppose un régime <em>permanent</em> (les températures ne varient pas dans le temps) et un matériau <em>homogène</em>.
+    <span class="label label-att">Attention — portée du modèle</span><br>
+    Dans ce chapitre, \(R_{th}\) désigne la résistance thermique d'une paroi pour une surface \(S\) donnée. La formule \(R_{th} = e/(\lambda S)\) modélise un transfert par <strong>conduction</strong> à travers une paroi <strong>homogène</strong>, en <strong>régime permanent</strong> (températures constantes dans le temps). Elle ne prend pas en compte les échanges avec l'air ni la géométrie complexe d'une paroi réelle.
   </div>
 
   <div class="mini-exo">
@@ -396,30 +396,29 @@
       On considère une journée d'hiver où la température intérieure est maintenue à 19&nbsp;°C
       et la température extérieure est de −1&nbsp;°C.
     </p>
+    <p style="font-size:.88em;color:#718096;font-style:italic">⚠ Modèle simplifié : on ne prend ici en compte que la conduction à travers la vitre seule, sans les échanges avec l'air. Les valeurs obtenues surestiment les pertes réelles d'une fenêtre.</p>
     <ol type="a">
       <li>Calculer la résistance thermique \(R_{th}\) de la vitre.</li>
-      <li>En déduire le flux thermique \(\Phi\) qui s'échappe en permanence par cette fenêtre.</li>
-      <li>Calculer l'énergie totale \(Q\) perdue par cette fenêtre en une journée complète (24&nbsp;heures). Donner le résultat en kWh et en MJ.</li>
-      <li>Sachant qu'un double vitrage avec lame d'argon de 16&nbsp;mm réduit le flux d'un facteur 10, quelle serait l'économie d'énergie sur une journée&nbsp;?</li>
+      <li>En déduire le flux thermique \(\Phi\) qui traverse cette vitre selon ce modèle.</li>
+      <li>Calculer l'énergie totale \(Q\) correspondante en une journée complète (24&nbsp;heures). Donner le résultat en kWh et en MJ.</li>
+      <li>En pratique, un double vitrage argon possède un coefficient global \(U \approx 1{,}4\,\text{W·m}^{-2}\text{·K}^{-1}\) et un simple vitrage \(U \approx 5{,}8\,\text{W·m}^{-2}\text{·K}^{-1}\). En utilisant la formule \(\Phi = U \times S \times \Delta T\), calculer le flux réel de chaque vitrage et comparer.</li>
     </ol>
     <button class="bc" onclick="this.nextElementSibling.style.display='block'">Voir la correction</button>
     <div class="corr">
-      <p><strong>a. Résistance thermique :</strong></p>
+      <p><strong>a. Résistance thermique (modèle simplifié) :</strong></p>
       \[ R_{th} = \frac{e}{\lambda \cdot S} = \frac{0{,}006}{1{,}0 \times 1{,}5} = \frac{0{,}006}{1{,}5} = 4 \times 10^{-3}\,\text{K/W} \]
-      <p><strong>b. Flux thermique :</strong></p>
+      <p><strong>b. Flux thermique (modèle simplifié) :</strong></p>
       \[ \Delta T = 19 - (-1) = 20\,\text{K} \]
       \[ \Phi = \frac{\Delta T}{R_{th}} = \frac{20}{4 \times 10^{-3}} = \mathbf{5\,000\,\text{W} = 5\,\text{kW}} \]
-      <p>Cette fenêtre perd 5&nbsp;kW en permanence — l'équivalent de cinq radiateurs électriques !</p>
-      <p><strong>c. Énergie perdue en 24 heures :</strong></p>
+      <p>Ce résultat, très élevé, illustre la limite du modèle : il ne tient compte que de la conduction pure dans le verre, sans les résistances d'échange avec l'air des deux côtés.</p>
+      <p><strong>c. Énergie en 24 heures (modèle simplifié) :</strong></p>
       \[ t = 24 \times 3\,600 = 86\,400\,\text{s} \]
       \[ Q = \Phi \times t = 5\,000 \times 86\,400 = 432\,000\,000\,\text{J} = \mathbf{432\,\text{MJ}} \]
       <p>En kWh : \(Q = 5\,\text{kW} \times 24\,\text{h} = \mathbf{120\,\text{kWh}}\)</p>
-      <p>C'est une consommation énorme pour une seule fenêtre !</p>
-      <p><strong>d. Économie avec double vitrage :</strong><br>
-      Le flux du double vitrage est \(\Phi_{DV} = 5\,000 / 10 = 500\,\text{W}\).<br>
-      Économie en 24 h : \(\Delta Q = (5\,000 - 500) \times 86\,400 = 388\,800\,000\,\text{J} \approx \mathbf{388\,\text{MJ}}\),
-      soit \(\mathbf{108\,\text{kWh}}\) économés par jour et par fenêtre.
-      </p>
+      <p><strong>d. Comparaison réaliste avec le coefficient U :</strong></p>
+      \[ \Phi_{\text{SV}} = U_{\text{SV}} \times S \times \Delta T = 5{,}8 \times 1{,}5 \times 20 = \mathbf{174\,\text{W}} \]
+      \[ \Phi_{\text{DV}} = U_{\text{DV}} \times S \times \Delta T = 1{,}4 \times 1{,}5 \times 20 = \mathbf{42\,\text{W}} \]
+      <p>Le double vitrage réduit fortement les déperditions (ici environ 4 fois moins). Ces valeurs réalistes sont bien plus faibles que le modèle simplifié, car le coefficient U inclut les échanges avec l'air et la structure complète de la fenêtre.</p>
     </div>
   </div>
 
@@ -444,7 +443,7 @@
 
   <div class="prop">
     <span class="label label-prop">Bois = bon isolant naturel</span><br>
-    Avec \(\lambda \approx 0{,}12\text{–}0{,}17\,\text{W·m}^{-1}\text{·K}^{-1}\), le bois est <strong>4 à 6 fois plus isolant que le verre</strong> et <strong>300 à 400 fois plus isolant que l’acier</strong>. C’est l’un des matériaux de construction les plus performants thermiquement.
+    Avec \(\lambda \approx 0{,}12\text{–}0{,}17\,\text{W·m}^{-1}\text{·K}^{-1}\), le bois est <strong>un bon isolant naturel</strong> : il est nettement plus isolant que le verre ou les métaux usuels (acier, aluminium). À épaisseur égale, le bois isole environ <strong>6 à 8 fois mieux que le verre</strong> et plusieurs centaines de fois mieux que l’acier.
   </div>
 
   <div class="ex">
@@ -481,21 +480,43 @@
   <h3>6.2 Vitrage : simple, double et triple vitrage</h3>
   <p>
     Un <strong>double vitrage</strong> est composé de deux vitres séparées par une lame de gaz (argon ou air).
-    Le gaz, très peu conducteur (\(\lambda_{\text{air}} = 0{,}025\,\text{W·m}^{-1}\text{·K}^{-1}\)), constitue l’essentiel de la résistance thermique du vitrage.
-    Le <strong>triple vitrage</strong> ajoute une troisième vitre pour encore mieux isoler, conformément à la <strong>RT 2020</strong> (réglementation thermique française).
+    La lame d’argon, très peu conductrice (\(\lambda_{\text{argon}} \approx 0{,}017\,\text{W·m}^{-1}\text{·K}^{-1}\)), améliore fortement l’isolation thermique par rapport à un simple vitrage.
+    Le <strong>triple vitrage</strong> ajoute une troisième vitre pour encore mieux isoler, dans le cadre des exigences actuelles de performance énergétique des bâtiments (<strong>RE2020</strong>).
   </p>
 
-  <h3>6.3 Calcul simplifié du flux à travers une fenêtre</h3>
+  <h3>6.3 Calcul du flux à travers une fenêtre — coefficient U</h3>
+  <p>En pratique, on caractérise la performance thermique d’une fenêtre par son <strong>coefficient global de transmission thermique</strong> \(U\) (en W·m<sup>−2</sup>·K<sup>−1</sup>). Ce coefficient tient compte de la conduction dans les matériaux, des échanges avec l’air et de la structure complète de la menuiserie.</p>
+
+  <div class="formule">
+    \( \Phi = U \times S \times \Delta T \)
+    <small>
+      \(U\) : coefficient global (W·m<sup>−2</sup>·K<sup>−1</sup>) —
+      \(S\) : surface (m²) —
+      \(\Delta T\) : écart de température (K ou °C)
+    </small>
+  </div>
+
+  <table style="margin:12px 0">
+    <tr><th>Type de vitrage</th><th>\(U\) typique (W·m<sup>−2</sup>·K<sup>−1</sup>)</th></tr>
+    <tr><td>Simple vitrage</td><td>≈ 5,8</td></tr>
+    <tr><td>Double vitrage air</td><td>≈ 2,9</td></tr>
+    <tr><td>Double vitrage argon</td><td>≈ 1,4</td></tr>
+    <tr><td>Triple vitrage</td><td>≈ 0,7 – 1,0</td></tr>
+  </table>
+
   <div class="meth">
     <span class="label label-meth">Exemple appliqué</span><br>
-    Une fenêtre simple vitrage (épaisseur \(e = 4\,\text{mm} = 0{,}004\,\text{m}\), \(\lambda_{\text{verre}} = 1\,\text{W·m}^{-1}\text{·K}^{-1}\), surface \(S = 1{,}2\,\text{m}^2\)).
-    La différence de température intérieur/extérieur est \(\Delta T = 20\,\text{K}\) (atelier à 20&nbsp;°C, extérieur à 0&nbsp;°C).<br><br>
-    <strong>1. Résistance thermique :</strong>
-    \[ R_{th} = \frac{e}{\lambda \cdot S} = \frac{0{,}004}{1 \times 1{,}2} \approx 3{,}3 \times 10^{-3}\,\text{K/W} \]
-    <strong>2. Flux thermique :</strong>
-    \[ \Phi = \frac{\Delta T}{R_{th}} = \frac{20}{3{,}3 \times 10^{-3}} \approx 6\,000\,\text{W} = 6\,\text{kW} \]
-    Une telle fenêtre perd environ <strong>6&nbsp;kW</strong> : autant que plusieurs radiateurs électriques !
-    Un double vitrage (lame d’argon de 16&nbsp;mm) réduit ce flux d’un facteur 10.
+    Une fenêtre de surface \(S = 1{,}2\,\text{m}^2\), avec \(\Delta T = 20\,\text{K}\) (atelier à 20&nbsp;°C, extérieur à 0&nbsp;°C).<br><br>
+    <strong>Simple vitrage (\(U = 5{,}8\,\text{W·m}^{-2}\text{·K}^{-1}\)) :</strong>
+    \[ \Phi_{\text{SV}} = 5{,}8 \times 1{,}2 \times 20 = \mathbf{139\,\text{W}} \]
+    <strong>Double vitrage argon (\(U = 1{,}4\,\text{W·m}^{-2}\text{·K}^{-1}\)) :</strong>
+    \[ \Phi_{\text{DV}} = 1{,}4 \times 1{,}2 \times 20 = \mathbf{34\,\text{W}} \]
+    Le double vitrage argon réduit fortement les déperditions par rapport au simple vitrage (ici environ 4 fois moins).
+  </div>
+
+  <div class="att">
+    <span class="label label-att">Limite du modèle</span><br>
+    Dans ce chapitre, on utilise des modèles simplifiés pour comprendre les transferts thermiques. Dans une situation réelle, les déperditions d’une fenêtre dépendent aussi du cadre, des lames d’air ou de gaz, des échanges avec l’air intérieur et extérieur, de la ventilation et de la structure complète de la menuiserie. Le coefficient \(U\) intègre l’ensemble de ces effets.
   </div>
 
   <!-- ============================================================ -->
@@ -553,7 +574,7 @@
       <li>Les trois modes sont : <strong>conduction</strong> (solides, contact), <strong>convection</strong> (fluides, déplacement) et <strong>rayonnement</strong> (ondes électromagnétiques, sans milieu).</li>
       <li>Le <strong>flux thermique</strong> \(\Phi\) (en W) est la puissance échangée : \(\Phi = Q/t\).</li>
       <li>La <strong>résistance thermique</strong> \(R_{th} = e/(\lambda S)\) mesure la capacité à isoler. Grand \(R_{th}\) = bon isolant.</li>
-      <li>Le <strong>bois</strong> est un excellent isolant naturel (\(\lambda \approx 0{,}12\,\text{W·m}^{-1}\text{·K}^{-1}\)), bien adapté aux menuiseries et à la RT&nbsp;2020.</li>
+      <li>Le <strong>bois</strong> est un bon isolant naturel (\(\lambda \approx 0{,}12\,\text{W·m}^{-1}\text{·K}^{-1}\)), nettement plus isolant que le verre ou les métaux usuels. Il est bien adapté aux menuiseries, en cohérence avec les exigences de la <strong>RE2020</strong>.</li>
     </ol>
   </div>
 
