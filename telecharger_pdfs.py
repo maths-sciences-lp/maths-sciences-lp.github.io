@@ -30,6 +30,13 @@ except ImportError:
     print("❌  Playwright non installé. Exécuter : pip3 install playwright && python3 -m playwright install chromium")
     sys.exit(1)
 
+# ── Vérification pypdf ────────────────────────────────────────
+try:
+    from pypdf import PdfWriter, PdfReader
+    PYPDF_OK = True
+except ImportError:
+    PYPDF_OK = False
+
 # ── Configuration ────────────────────────────────────────────
 ROOT = Path(__file__).parent.resolve()
 PDF_OUT = ROOT / "pdf" / "generated"
@@ -37,6 +44,10 @@ PDF_OUT = ROOT / "pdf" / "generated"
 # Pages à générer par défaut (types de fichiers par chapitre)
 DEFAULT_TYPES = ["lecon", "exercices", "ds", "fiche", "interro", "qcm",
                  "activite", "exercices-capacites", "simulation"]
+
+# Ordre pédagogique pour la fusion des PDF
+MERGE_ORDER = ["activite", "lecon", "exercices", "exercices-capacites",
+               "interro", "ds", "fiche", "qcm", "simulation"]
 
 # Sections à inclure par défaut
 DEFAULT_SECTIONS = [
@@ -95,8 +106,15 @@ FOOTER_HTML = """
 
 
 # ── Utilitaires nommage ──────────────────────────────────────
+def decode_html_entities(text: str) -> str:
+    """Décode les entités HTML (&ndash; → –, &eacute; → é, &#233; → é…)."""
+    import html
+    return html.unescape(text)
+
+
 def slugify(text: str) -> str:
     """Convertit un titre en slug ASCII minuscules avec tirets."""
+    text = decode_html_entities(text)
     text = unicodedata.normalize("NFKD", text)
     text = text.encode("ascii", "ignore").decode("ascii")
     text = text.lower()
@@ -122,6 +140,62 @@ def get_chapter_title(html_path: Path) -> str:
     except Exception:
         pass
     return ""
+
+
+# ── Fusion PDF d'un chapitre ──────────────────────────────────
+def merge_chapter_pdfs(ch_dir: Path) -> bool:
+    """Fusionne tous les PDFs d'un dossier chapitre en un fichier *-complet.pdf."""
+    if not PYPDF_OK:
+        print("  ⚠️  pypdf non installé. Exécuter : pip3 install pypdf")
+        return False
+
+    # Collecter les PDFs dans l'ordre pédagogique
+    pdfs = []
+    for t in MERGE_ORDER:
+        p = ch_dir / f"{t}.pdf"
+        if p.exists():
+            pdfs.append(p)
+    # Ajouter les PDFs non listés dans MERGE_ORDER (ordre alphabétique)
+    for p in sorted(ch_dir.glob("*.pdf")):
+        stem = p.stem
+        if stem not in MERGE_ORDER and not stem.endswith("-complet"):
+            pdfs.append(p)
+
+    if len(pdfs) < 2:
+        return False  # rien à fusionner
+
+    # Nom du fichier fusionné : reprend le nom du dossier + -complet.pdf
+    out = ch_dir / f"{ch_dir.name}-complet.pdf"
+    writer = PdfWriter()
+    for pdf in pdfs:
+        try:
+            reader = PdfReader(str(pdf))
+            for page in reader.pages:
+                writer.add_page(page)
+        except Exception as e:
+            print(f"     ⚠️  Erreur lecture {pdf.name} : {e}")
+    with open(out, "wb") as f:
+        writer.write(f)
+    size_kb = out.stat().st_size // 1024
+    print(f"  📎  {out.relative_to(PDF_OUT)}  ({size_kb} Ko, {len(pdfs)} fichiers)")
+    return True
+
+
+def merge_all(pdf_out: Path):
+    """Fusionne les PDFs de tous les chapitres dans pdf_out."""
+    if not PYPDF_OK:
+        print("❌  pypdf non installé. Exécuter : pip3 install pypdf")
+        return
+    print(f"\n{'═'*60}")
+    print(f"  Fusion PDF — Maths & Sciences LP")
+    print(f"{'═'*60}\n")
+    count = 0
+    for ch_dir in sorted(pdf_out.rglob("ch*")):
+        if ch_dir.is_dir() and any(ch_dir.glob("*.pdf")):
+            if merge_chapter_pdfs(ch_dir):
+                count += 1
+    print(f"\n  ✅  {count} chapitres fusionnés")
+    print(f"{'═'*60}\n")
 
 
 # ── Serveur HTTP local ────────────────────────────────────────
@@ -264,9 +338,18 @@ def main():
                         help="Afficher la liste des pages sans générer")
     parser.add_argument("--output-dir", default=str(PDF_OUT),
                         help="Dossier de sortie (défaut: pdf/generated/)")
+    parser.add_argument("--merge", action="store_true",
+                        help="Fusionner les PDFs de chaque chapitre en un fichier *-complet.pdf")
+    parser.add_argument("--merge-only", action="store_true",
+                        help="Fusionner sans regénérer les PDFs")
     args = parser.parse_args()
 
     pdf_out = Path(args.output_dir)
+
+    # ── Mode fusion uniquement ──
+    if args.merge_only:
+        merge_all(pdf_out)
+        return
 
     # ── Construire la liste des pages ──
     if args.file:
@@ -355,6 +438,9 @@ def main():
             print(f"       • {e}")
     print(f"  📁  {pdf_out}")
     print(f"{'═'*60}\n")
+
+    if args.merge:
+        merge_all(pdf_out)
 
 
 if __name__ == "__main__":
