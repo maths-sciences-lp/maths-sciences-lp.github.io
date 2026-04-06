@@ -727,66 +727,9 @@ var explications = {
   "a15": "V_cône = 1/3 × π × 25 × 12 = 100π ≈ 314 cm³. V_cylindre = π × 25 × 4 = 100π ≈ 314 cm³. Ils sont quasi égaux."
 };
 
-function corriger(formId, scoreId) {
-  var form = document.getElementById(formId);
-  var blocks = form.querySelectorAll('.q-block');
-  var score = 0;
-  var total = blocks.length;
-
-  blocks.forEach(function(block) {
-    var radios = block.querySelectorAll('input[type="radio"]');
-    var qName = radios.length > 0 ? radios[0].name : '';
-    var correct = block.getAttribute('data-correct');
-    var selected = block.querySelector('input[type="radio"]:checked');
-    var feedback = block.querySelector('.q-feedback');
-    var labels = block.querySelectorAll('.options label');
-
-    labels.forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
-
-    labels.forEach(function(l) {
-      var input = l.querySelector('input');
-      if (input.value === correct) l.classList.add('correct');
-    });
-
-    if (selected) {
-      if (selected.value === correct) {
-        score++;
-        feedback.className = 'q-feedback ok';
-        feedback.textContent = '✅ Bonne réponse ! ' + (explications[qName] || '');
-      } else {
-        selected.parentElement.classList.add('incorrect');
-        feedback.className = 'q-feedback ko';
-        feedback.textContent = '❌ Mauvaise réponse. ' + (explications[qName] || '');
-      }
-    } else {
-      feedback.className = 'q-feedback ko';
-      feedback.textContent = '⚠️ Pas de réponse. ' + (explications[qName] || '');
-    }
-  });
-
-  var scoreBox = document.getElementById(scoreId);
-  var pct = Math.round(score / total * 100);
-  scoreBox.textContent = 'Score : ' + score + ' / ' + total + ' (' + pct + ' %)';
-  scoreBox.className = 'score-box show ' + (pct >= 70 ? 'score-good' : pct >= 40 ? 'score-avg' : 'score-low');
-  scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-function reinitialiser(formId, scoreId) {
-  var form = document.getElementById(formId);
-  form.querySelectorAll('.q-block').forEach(function(block) {
-    block.querySelectorAll('.options label').forEach(function(l) { l.classList.remove('correct', 'incorrect'); });
-    block.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
-    var feedback = block.querySelector('.q-feedback');
-    feedback.className = 'q-feedback';
-    feedback.textContent = '';
-  });
-  var scoreBox = document.getElementById(scoreId);
-  scoreBox.className = 'score-box';
-  scoreBox.textContent = '';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 </script>
 <script src="../../../nav.js"></script>
 <script src="../../../diff.js"></script>
+<script src="../../../qcm.js"></script>
 </body>
 </html>
