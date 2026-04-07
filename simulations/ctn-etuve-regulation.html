@@ -72,6 +72,7 @@ td.actif{background:#fef9c3;font-weight:700}
 .badge-off{display:inline-block;background:#e2e8f0;color:#374151;padding:2px 10px;border-radius:12px;font-size:.78em;font-weight:700}
 .hl{font-weight:700;color:#6f42c1}
 </style>
+</head>
 <body>
 <header>
   <a href="../simulations.html">← Simulations</a>
@@ -223,11 +224,12 @@ td.actif{background:#fef9c3;font-weight:700}
 </div>
 
 <script>
-// CTN NTC 10kΩ, B=3950K
+// CTN R0 = 32 700 Ω à 0 °C (T0 = 273 K), B = 3950 K
+// Cohérent avec la leçon ch10 : T(K) = θ(°C) + 273
 function R_ctn(T_C) {
-  var T = T_C + 273.15;
-  var T0 = 298.15;
-  var R0 = 10000;
+  var T = T_C + 273;
+  var T0 = 273;
+  var R0 = 32700;
   var B = 3950;
   return R0 * Math.exp(B * (1/T - 1/T0)) / 1000;
 }
