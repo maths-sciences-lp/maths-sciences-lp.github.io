@@ -580,13 +580,9 @@
   <h2>4. Caractéristique R(T) d’une CTN</h2>
 
   <p>
-    La courbe ci-dessous représente l’évolution de la résistance d’une CTN typique en fonction de la température.
-    La résistance décroît fortement et de manière non linéaire : de près de <strong>33&nbsp;kΩ</strong> à 0&nbsp;°C à moins de <strong>1&nbsp;kΩ</strong> à 80&nbsp;°C.
+    La courbe R(T) présentée en <strong>section 3.2</strong> montre l’évolution typique de la résistance d’une CTN en fonction de la température.
+    La résistance décroît fortement et de manière non linéaire : de près de <strong>33&nbsp;kΩ</strong> à 0&nbsp;°C à moins de <strong>1&nbsp;kΩ</strong> à 80&nbsp;°C. En pratique, on utilise plutôt une <strong>table de correspondance R → T</strong> fournie par le fabricant (voir ci-dessous).
   </p>
-
-  <div class="chart-container">
-    <canvas id="ctnChart"></canvas>
-  </div>
 
   <div class="meth">
     <span class="label label-meth">Méthode — Utiliser la courbe R(T)</span>
@@ -719,6 +715,7 @@
 
   <!-- ============================================================ -->
   <!-- ============================================================ -->
+  <section class="no-print">
   <h2>8. Activités numériques</h2>
 
   <p>Ces simulations interactives prolongent le cours. Elles permettent de <strong>manipuler les capteurs virtuellement</strong> et d’observer leur comportement sans matériel physique.</p>
@@ -770,70 +767,10 @@
     </div>
 
   </div>
+  </section>
 
 </div><!-- /.c -->
 
-<script>
-(function(){
-  var labels = [];
-  var data   = [];
-  var R0 = 32700; // 32,7 kOhm a T0 = 0 degC
-  var T0 = 273;   // en K
-  var B  = 3950;  // constante en K
-  for(var t = 0; t <= 80; t += 5){
-    var T = t + 273;
-    var R = R0 * Math.exp(B * (1/T - 1/T0));
-    labels.push(t);
-    data.push(parseFloat((R / 1000).toFixed(2))); // en k-ohm
-  }
-  var ctx = document.getElementById('ctnChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'R\u00e9sistance (k\u03a9)',
-        data: data,
-        borderColor: '#6f42c1',
-        backgroundColor: 'rgba(111,66,193,0.08)',
-        borderWidth: 2.5,
-        pointRadius: 4,
-        pointBackgroundColor: '#6f42c1',
-        tension: 0.35,
-        fill: true
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        title: {
-          display: true,
-          text: 'Caract\u00e9ristique R(T) d\u2019une CTN typique',
-          color: '#2d3748',
-          font: { size: 13 }
-        },
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: function(ctx){ return ctx.parsed.y + ' k\u03a9'; }
-          }
-        }
-      },
-      scales: {
-        x: {
-          title: { display: true, text: 'Temp\u00e9rature (\u00b0C)', font: { size: 12 } }
-        },
-        y: {
-          title: { display: true, text: 'R\u00e9sistance R (k\u03a9)', font: { size: 12 } },
-          ticks: {
-            callback: function(v){ return v + ' k\u03a9'; }
-          }
-        }
-      }
-    }
-  });
-})();
-</script>
 <script>
 function toggle(btn){
   var c=btn.nextElementSibling;
