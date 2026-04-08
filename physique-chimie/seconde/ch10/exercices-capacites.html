@@ -16,7 +16,7 @@
 <header>
   <h1>Chapitre 10 – Exercices par capacités</h1>
   <p class="sous-titre">Température et capteurs thermiques &nbsp;|&nbsp; 2nde Bac Pro &nbsp;|&nbsp; Physique-Chimie</p>
-  <p class="maj">Dernière mise à jour : 8 avril 2026, 05:21</p>
+  <p class="maj">Dernière mise à jour : 8 avril 2026, 14:52</p>
 </header>
 
 <div class="objectifs">
@@ -315,8 +315,10 @@
     </div>
     <div>
       <p style="margin:0 0 6px;font-weight:600;color:var(--p)">Interpolation linéaire (entre deux points)</p>
-      <p style="margin:0;font-size:0.93em">Si on connaît deux points \((T_1,\,R_1)\) et \((T_2,\,R_2)\), on peut estimer \(T\) pour un \(R\) intermédiaire :</p>
-      <p style="margin:6px 0 0;font-size:0.93em">\[T = T_1 + \frac{R - R_1}{R_2 - R_1} \times (T_2 - T_1)\]</p>
+      <p style="margin:0;font-size:0.93em">Entre deux points \((T_1,\,R_1)\) et \((T_2,\,R_2)\), on calcule d'abord <strong>combien R varie pour chaque °C</strong> :</p>
+      <p style="margin:6px 0;font-size:0.93em">\[k = \dfrac{R_2 - R_1}{T_2 - T_1} \quad (\text{en } \Omega/\text{°C})\]</p>
+      <p style="margin:0;font-size:0.93em">Puis on applique ce coefficient pour toute température \(T\) intermédiaire :</p>
+      <p style="margin:6px 0 0;font-size:0.93em">\[R = R_1 + k \times (T - T_1)\]</p>
     </div>
   </div>
 </div>
@@ -397,8 +399,10 @@
     <ol type="a">
       <li>Lecture directe dans le tableau : 5 000 Ω → <strong>T = 40 °C</strong></li>
       <li>Lecture directe dans le tableau : 60 °C → <strong>R = 2 000 Ω</strong></li>
-      <li>Entre 40 °C (5 000 Ω) et 60 °C (2 000 Ω), 50 °C est au milieu de l'intervalle :
-        \[R(50°C) = 5\,000 + \frac{50-40}{60-40} \times (2\,000 - 5\,000) = 5\,000 + 0{,}5 \times (-3\,000) = \mathbf{3\,500\ \Omega}\]
+      <li>Entre 40 °C (5 000 Ω) et 60 °C (2 000 Ω) :
+        <p style="margin:4px 0">Coefficient : \(k = \dfrac{2\,000 - 5\,000}{60 - 40} = \dfrac{-3\,000}{20} = -150\ \Omega/\text{°C}\)</p>
+        <p style="margin:4px 0">(R diminue de 150 Ω chaque fois que T augmente de 1 °C.)</p>
+        <p style="margin:4px 0">À 50 °C : \(R = 5\,000 + (-150) \times (50 - 40) = 5\,000 - 1\,500 = \mathbf{3\,500\ \Omega}\)</p>
       </li>
     </ol>
   </div>
@@ -483,9 +487,11 @@
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <p><strong>Données :</strong> \(T_1 = 40\ °\text{C}\), \(R_1 = 5\,000\ \Omega\), \(T_2 = 60\ °\text{C}\), \(R_2 = 2\,000\ \Omega\), \(R = 3\,500\ \Omega\).</p>
-    <p>Application de la formule d'interpolation linéaire :</p>
-    <p>\[T = T_1 + \frac{R - R_1}{R_2 - R_1} \times (T_2 - T_1) = 40 + \frac{3\,500 - 5\,000}{2\,000 - 5\,000} \times (60 - 40)\]</p>
-    <p>\[T = 40 + \frac{-1\,500}{-3\,000} \times 20 = 40 + 0{,}5 \times 20 = \mathbf{50\ °\text{C}}\]</p>
+    <p><strong>Étape 1 — Coefficient</strong> : combien R varie-t-elle pour 1 °C ?</p>
+    <p>\[k = \dfrac{R_2 - R_1}{T_2 - T_1} = \dfrac{2\,000 - 5\,000}{60 - 40} = -150\ \Omega/\text{°C}\]</p>
+    <p><strong>Étape 2 — De R vers T</strong> : on sait que la résistance a baissé de \(5\,000 - 3\,500 = 1\,500\ \Omega\) par rapport à \(R_1\). À raison de \(150\ \Omega\) par °C, cela correspond à une hausse de température de :</p>
+    <p>\[\Delta T = \dfrac{1\,500}{150} = 10\ °\text{C}\]</p>
+    <p>Donc \(T = T_1 + \Delta T = 40 + 10 = \mathbf{50\ °\text{C}}\).</p>
   </div>
 </div>
 
