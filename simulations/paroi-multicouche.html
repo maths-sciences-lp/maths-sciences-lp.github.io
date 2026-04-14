@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Paroi multicouche — Résistance thermique et flux</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;line-height:1.6}
+header{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:30px 20px 24px;text-align:center;position:relative}
+header h1{font-size:1.55em;margin-bottom:4px}
+header p{font-size:.92em;opacity:.88}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:900px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px;margin-bottom:20px}
+.card h2{font-size:1.12em;color:#dc2626;margin-bottom:14px;border-bottom:2px solid #fee2e2;padding-bottom:8px}
+.row{display:flex;gap:20px;flex-wrap:wrap}
+.col{flex:1;min-width:280px}
+label{display:block;font-size:.88em;font-weight:600;color:#475569;margin:10px 0 4px}
+label:first-child{margin-top:0}
+input[type=range]{width:100%;accent-color:#dc2626}
+select{width:100%;padding:7px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:.9em;background:#fff}
+.val{font-size:.82em;color:#64748b;font-weight:400}
+
+/* Layer builder */
+.layer-row{display:flex;align-items:center;gap:8px;padding:10px;background:#fef2f2;border-radius:8px;margin-bottom:8px;flex-wrap:wrap;border-left:4px solid #dc2626}
+.layer-num{font-weight:700;color:#dc2626;font-size:.9em;min-width:65px}
+.layer-row select{width:auto;flex:1;min-width:140px}
+.layer-row input[type=range]{width:120px;flex:0 0 120px}
+.layer-r{font-size:.82em;color:#991b1b;font-weight:600;min-width:110px;text-align:right}
+.layer-thick{font-size:.82em;color:#64748b;min-width:55px;text-align:center}
+.btn{padding:7px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.85em;font-weight:600;transition:all .15s}
+.btn-add{background:#16a34a;color:#fff;margin-top:4px}.btn-add:hover{background:#15803d}
+.btn-del{background:#dc2626;color:#fff;padding:4px 10px;font-size:.8em}.btn-del:hover{background:#b91c1c}
+.layer-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+
+/* Presets */
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.btn-preset{background:#f1f5f9;color:#475569;border:1px solid #cbd5e1;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600;transition:all .15s}
+.btn-preset:hover{background:#e2e8f0;border-color:#94a3b8}
+
+/* Wall canvas */
+.wall-canvas-wrap{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin-bottom:10px}
+canvas{width:100%;display:block;border-radius:6px}
+
+/* Results */
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.res-box{background:#fef2f2;border-radius:8px;padding:12px 14px;text-align:center}
+.res-label{font-size:.76em;color:#64748b;text-transform:uppercase;letter-spacing:.03em}
+.res-value{font-size:1.15em;font-weight:700;color:#b91c1c}
+.res-unit{font-size:.75em;color:#64748b;font-weight:400}
+
+/* RE 2020 badge */
+.badge-re{display:inline-block;padding:6px 18px;border-radius:20px;font-weight:700;font-size:.95em;margin-top:8px;letter-spacing:.03em}
+.badge-ok{background:#dcfce7;color:#15803d;border:2px solid #22c55e}
+.badge-ko{background:#fee2e2;color:#b91c1c;border:2px solid #ef4444}
+.re-wrap{text-align:center;margin-top:12px}
+.re-note{font-size:.78em;color:#64748b;margin-top:4px}
+
+/* Formulas */
+.formulas{background:#f8fafc;border-left:4px solid #dc2626;padding:14px 16px;border-radius:0 8px 8px 0;margin-top:14px;font-size:.9em;line-height:1.8}
+
+/* Chart */
+.chart-container{height:220px;margin-top:10px}
+
+/* Context box */
+.context{background:linear-gradient(135deg,#fef2f2,#fff7ed);border:2px solid #dc2626;border-radius:10px;padding:16px 18px;font-size:.9em}
+.context strong{color:#b91c1c}
+
+@media(max-width:600px){
+  .row{flex-direction:column}
+  header h1{font-size:1.2em}
+  .results{grid-template-columns:1fr 1fr}
+  .layer-row{flex-direction:column;align-items:stretch}
+  .layer-row select{width:100%}
+  .layer-row input[type=range]{width:100%;flex:1}
+  .layer-r{text-align:left}
+  .presets{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../physique-chimie/seconde/ch11/lecon.html" class="btn-back">← Retour au cours</a>
+  <h1>Paroi multicouche — R&eacute;sistance thermique et flux</h1>
+  <p>Chapitre 11 — Transferts thermiques — 2nde Bac Pro</p>
+</header>
+
+<div class="container">
+
+<!-- EXPLANATION -->
+<div class="card">
+  <h2>Principe</h2>
+  <p style="font-size:.92em;color:#475569">
+    Construisez une paroi multicouche en ajoutant des mat&eacute;riaux et en r&eacute;glant leur &eacute;paisseur.
+    La simulation calcule la <strong>r&eacute;sistance thermique surfacique</strong> de chaque couche
+    (\(R = e / \lambda\)) et le <strong>flux thermique</strong> total qui traverse la paroi.
+  </p>
+  <div class="formulas">
+    <strong>Formules utilis&eacute;es :</strong><br>
+    R&eacute;sistance surfacique d'une couche : \( R_{\text{couche}} = \dfrac{e}{\lambda} \) &nbsp;(m<sup>2</sup>&middot;K/W)<br>
+    R&eacute;sistance totale : \( R_{\text{total}} = R_1 + R_2 + \cdots + R_n \)<br>
+    Flux thermique : \( \Phi = \dfrac{S \times \Delta T}{R_{\text{total}}} \) &nbsp;(W)
+  </div>
+</div>
+
+<!-- PRESETS -->
+<div class="card">
+  <h2>Configurations types</h2>
+  <div class="presets">
+    <button class="btn-preset" onclick="loadPreset('beton')">Mur b&eacute;ton nu</button>
+    <button class="btn-preset" onclick="loadPreset('ossature')">Ossature bois isol&eacute;e</button>
+    <button class="btn-preset" onclick="loadPreset('parpaing')">Mur parpaing + isolation</button>
+  </div>
+</div>
+
+<!-- MAIN PANEL -->
+<div class="card">
+  <h2>Construction de la paroi</h2>
+  <div class="row">
+    <!-- LEFT: Wall visualization -->
+    <div class="col">
+      <div class="wall-canvas-wrap">
+        <canvas id="cvWall" width="500" height="340"></canvas>
+      </div>
+    </div>
+    <!-- RIGHT: Layer builder -->
+    <div class="col">
+      <div id="layersPanel"></div>
+      <div class="layer-actions">
+        <button class="btn btn-add" id="btnAdd" onclick="addLayer()">+ Ajouter une couche</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PARAMETERS & RESULTS -->
+<div class="card">
+  <h2>Param&egrave;tres et r&eacute;sultats</h2>
+  <div class="row">
+    <div class="col">
+      <label>Temp&eacute;rature int&eacute;rieure T<sub>int</sub> <span class="val" id="vTint">20 &deg;C</span></label>
+      <input type="range" id="sTint" min="10" max="30" value="20" step="1" oninput="update()">
+
+      <label>Temp&eacute;rature ext&eacute;rieure T<sub>ext</sub> <span class="val" id="vText">0 &deg;C</span></label>
+      <input type="range" id="sText" min="-10" max="15" value="0" step="1" oninput="update()">
+
+      <label>Surface de la paroi S <span class="val" id="vS">10 m&sup2;</span></label>
+      <input type="range" id="sS" min="1" max="50" value="10" step="1" oninput="update()">
+    </div>
+    <div class="col">
+      <div class="results">
+        <div class="res-box">
+          <div class="res-label">R<sub>total</sub></div>
+          <div class="res-value" id="resR">&mdash;</div>
+          <div class="res-unit">m&sup2;&middot;K/W</div>
+        </div>
+        <div class="res-box">
+          <div class="res-label">Flux &Phi;</div>
+          <div class="res-value" id="resPhi">&mdash;</div>
+          <div class="res-unit">W</div>
+        </div>
+        <div class="res-box">
+          <div class="res-label">&Eacute;nergie annuelle</div>
+          <div class="res-value" id="resE">&mdash;</div>
+          <div class="res-unit">kWh/an</div>
+        </div>
+        <div class="res-box">
+          <div class="res-label">Co&ucirc;t annuel</div>
+          <div class="res-value" id="resCost">&mdash;</div>
+          <div class="res-unit">&euro;/an</div>
+        </div>
+      </div>
+
+      <!-- RE 2020 -->
+      <div class="re-wrap">
+        <div id="badgeRE"></div>
+        <div class="re-note">Seuil RE 2020 pour murs : R &ge; 4,0 m&sup2;&middot;K/W</div>
+      </div>
+
+      <!-- Dynamic formula -->
+      <div id="formulaDynamic" style="margin-top:14px;background:#fef2f2;border-radius:8px;padding:12px 14px;font-size:.88em"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHART -->
+<div class="card">
+  <h2>Contribution de chaque couche &agrave; R<sub>total</sub></h2>
+  <div class="chart-container">
+    <canvas id="chartR"></canvas>
+  </div>
+</div>
+
+<!-- CONTEXT -->
+<div class="card context">
+  <strong>Contexte professionnel :</strong> Un menuisier agenceur doit concevoir une cloison s&eacute;parant un atelier chauff&eacute; d'un local non chauff&eacute;. Il choisit les mat&eacute;riaux et les &eacute;paisseurs pour atteindre une r&eacute;sistance thermique suffisante et respecter les exigences de la RE 2020. Cette simulation permet de comparer diff&eacute;rentes compositions de paroi et d'&eacute;valuer les &eacute;conomies d'&eacute;nergie.
+</div>
+
+</div>
+
+<script>
+const materiaux = {
+  'BA13 (platre)':     { lambda: 0.32,  color: '#e2e8f0', pattern: 'plain' },
+  'Beton plein':       { lambda: 1.75,  color: '#94a3b8', pattern: 'dots' },
+  'Brique creuse':     { lambda: 0.50,  color: '#f97316', pattern: 'brick' },
+  'Verre':             { lambda: 1.00,  color: '#93c5fd', pattern: 'plain' },
+  'Chene':             { lambda: 0.18,  color: '#d4a96a', pattern: 'wood' },
+  'Pin / Sapin':       { lambda: 0.12,  color: '#f5e6cc', pattern: 'wood' },
+  'OSB':               { lambda: 0.13,  color: '#e8d5b7', pattern: 'wood' },
+  'Fibre de bois':     { lambda: 0.040, color: '#fbbf24', pattern: 'fiber' },
+  'Laine de verre':    { lambda: 0.035, color: '#fde68a', pattern: 'fiber' },
+  'Polystyrene (PSE)': { lambda: 0.035, color: '#d1d5db', pattern: 'dots' },
+  'Polyurethane':      { lambda: 0.023, color: '#fcd34d', pattern: 'plain' },
+  'Air immobile':      { lambda: 0.025, color: '#e0f2fe', pattern: 'plain' },
+  'Aluminium':         { lambda: 230,   color: '#cbd5e1', pattern: 'plain' },
+  'Acier':             { lambda: 50,    color: '#64748b', pattern: 'plain' }
+};
+
+const matNames = Object.keys(materiaux);
+
+let layers = [
+  { matIdx: 1, e: 200 }  // Beton plein, 200 mm
+];
+
+const MAX_LAYERS = 5;
+
+// ── Presets ──
+function loadPreset(name) {
+  if (name === 'beton') {
+    layers = [{ matIdx: 1, e: 200 }]; // Beton plein 200mm
+  } else if (name === 'ossature') {
+    layers = [
+      { matIdx: 0, e: 13 },   // BA13
+      { matIdx: 7, e: 145 },  // Fibre de bois
+      { matIdx: 6, e: 12 },   // OSB
+      { matIdx: 7, e: 60 },   // Fibre de bois
+      { matIdx: 5, e: 22 }    // Pin
+    ];
+  } else if (name === 'parpaing') {
+    layers = [
+      { matIdx: 0, e: 13 },   // BA13
+      { matIdx: 9, e: 100 },  // Polystyrene
+      { matIdx: 1, e: 200 }   // Beton plein (parpaing)
+    ];
+  }
+  renderLayers();
+  update();
+}
+
+// ── Layer management ──
+function addLayer() {
+  if (layers.length >= MAX_LAYERS) return;
+  layers.push({ matIdx: 8, e: 100 }); // Laine de verre 100mm
+  renderLayers();
+  update();
+}
+
+function removeLayer(i) {
+  if (layers.length <= 1) return;
+  layers.splice(i, 1);
+  renderLayers();
+  update();
+}
+
+function renderLayers() {
+  const panel = document.getElementById('layersPanel');
+  panel.innerHTML = '';
+  layers.forEach((l, i) => {
+    const row = document.createElement('div');
+    row.className = 'layer-row';
+    const mat = materiaux[matNames[l.matIdx]];
+    const R = (l.e / 1000) / mat.lambda;
+    row.innerHTML =
+      '<span class="layer-num">Couche ' + (i + 1) + '</span>' +
+      '<select onchange="layers[' + i + '].matIdx=this.selectedIndex;update()">' +
+        matNames.map(function(n, j) {
+          return '<option value="' + j + '"' + (j === l.matIdx ? ' selected' : '') + '>' +
+            n + ' (\u03BB=' + materiaux[n].lambda + ')' + '</option>';
+        }).join('') +
+      '</select>' +
+      '<input type="range" min="1" max="300" step="1" value="' + l.e + '" ' +
+        'oninput="layers[' + i + '].e=parseInt(this.value);update()">' +
+      '<span class="layer-thick" id="lt' + i + '">' + l.e + ' mm</span>' +
+      '<span class="layer-r" id="lr' + i + '">R = ' + R.toFixed(3) + '</span>' +
+      (layers.length > 1 ?
+        '<button class="btn btn-del" onclick="removeLayer(' + i + ')" title="Supprimer">\u00d7</button>' : '');
+    panel.appendChild(row);
+  });
+  document.getElementById('btnAdd').style.display = layers.length >= MAX_LAYERS ? 'none' : '';
+}
+
+// ── Chart setup ──
+const chartCtx = document.getElementById('chartR').getContext('2d');
+const chart = new Chart(chartCtx, {
+  type: 'bar',
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'R (m\u00b2\u00b7K/W)',
+      data: [],
+      backgroundColor: [],
+      borderColor: [],
+      borderWidth: 2,
+      borderRadius: 4
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            return 'R = ' + ctx.parsed.x.toFixed(3) + ' m\u00b2\u00b7K/W';
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        title: { display: true, text: 'R\u00e9sistance thermique R (m\u00b2\u00b7K/W)', font: { size: 12 } }
+      },
+      y: {
+        title: { display: false }
+      }
+    }
+  }
+});
+
+// ── Main update ──
+function update() {
+  const Tint = parseInt(document.getElementById('sTint').value);
+  const Text = parseInt(document.getElementById('sText').value);
+  const S = parseInt(document.getElementById('sS').value);
+  const dT = Tint - Text;
+
+  document.getElementById('vTint').textContent = Tint + ' \u00b0C';
+  document.getElementById('vText').textContent = Text + ' \u00b0C';
+  document.getElementById('vS').textContent = S + ' m\u00b2';
+
+  // Calculate R for each layer
+  let Rtotal = 0;
+  const layerData = [];
+  layers.forEach(function(l, i) {
+    const name = matNames[l.matIdx];
+    const mat = materiaux[name];
+    const e_m = l.e / 1000; // mm -> m
+    const R = e_m / mat.lambda;
+    Rtotal += R;
+    layerData.push({ name: name, e_mm: l.e, e_m: e_m, lambda: mat.lambda, R: R, color: mat.color });
+
+    // Update layer display
+    var lt = document.getElementById('lt' + i);
+    var lr = document.getElementById('lr' + i);
+    if (lt) lt.textContent = l.e + ' mm';
+    if (lr) lr.textContent = 'R = ' + R.toFixed(3);
+  });
+
+  // Flux
+  var Phi = dT > 0 ? S * dT / Rtotal : 0;
+
+  // Annual energy: 1500 h (10h/day x 150 days heating season)
+  var E_kWh = Phi * 1500 / 1000;
+
+  // Annual cost: 0.22 euro/kWh
+  var cost = E_kWh * 0.22;
+
+  // Display results
+  document.getElementById('resR').textContent = Rtotal.toFixed(3);
+  document.getElementById('resPhi').textContent = Phi < 1000 ? Phi.toFixed(1) : Math.round(Phi).toLocaleString('fr-FR');
+  document.getElementById('resE').textContent = E_kWh < 1000 ? E_kWh.toFixed(0) : Math.round(E_kWh).toLocaleString('fr-FR');
+  document.getElementById('resCost').textContent = cost.toFixed(0);
+
+  // RE 2020 badge
+  var badge = document.getElementById('badgeRE');
+  if (Rtotal >= 4.0) {
+    badge.innerHTML = '<span class="badge-re badge-ok">CONFORME RE 2020</span>';
+  } else {
+    badge.innerHTML = '<span class="badge-re badge-ko">NON CONFORME RE 2020</span>';
+  }
+
+  // Dynamic formula
+  updateFormula(layerData, Rtotal, S, dT, Phi);
+
+  // Chart
+  updateChart(layerData, Rtotal);
+
+  // Canvas
+  drawWall(layerData, Tint, Text, dT, Phi, Rtotal, S);
+}
+
+// ── Dynamic formula ──
+function updateFormula(layerData, Rtotal, S, dT, Phi) {
+  var parts = layerData.map(function(d, i) {
+    return 'R_' + (i + 1) + ' = \\frac{' + d.e_m.toFixed(3) + '}{' + d.lambda + '} = ' + d.R.toFixed(3);
+  });
+
+  var sumParts = layerData.map(function(d, i) { return d.R.toFixed(3); }).join(' + ');
+
+  var html = '<strong>Calcul d\u00e9taill\u00e9 :</strong><br>';
+  parts.forEach(function(p, i) {
+    html += '\\( ' + p + ' \\text{ m}^2\\text{\\cdot K/W} \\)<br>';
+  });
+  html += '\\( R_{\\text{total}} = ' + sumParts + ' = \\mathbf{' + Rtotal.toFixed(3) + '} \\text{ m}^2\\text{\\cdot K/W} \\)<br>';
+  if (dT > 0) {
+    html += '\\( \\Phi = \\frac{S \\times \\Delta T}{R_{\\text{total}}} = \\frac{' + S + ' \\times ' + dT + '}{' + Rtotal.toFixed(3) + '} = \\mathbf{' + Phi.toFixed(1) + '\\text{ W}} \\)';
+  }
+
+  document.getElementById('formulaDynamic').innerHTML = html;
+  if (window.MathJax && MathJax.typeset) {
+    MathJax.typeset([document.getElementById('formulaDynamic')]);
+  }
+}
+
+// ── Chart update ──
+function updateChart(layerData, Rtotal) {
+  chart.data.labels = layerData.map(function(d, i) {
+    return 'C' + (i + 1) + ' ' + d.name;
+  });
+  chart.data.datasets[0].data = layerData.map(function(d) { return d.R; });
+  chart.data.datasets[0].backgroundColor = layerData.map(function(d) { return d.color + 'cc'; });
+  chart.data.datasets[0].borderColor = layerData.map(function(d) { return d.color; });
+  chart.update();
+}
+
+// ── Canvas drawing ──
+function drawWall(layerData, Tint, Text, dT, Phi, Rtotal, S) {
+  var cv = document.getElementById('cvWall');
+  var ctx = cv.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var dispW = cv.clientWidth;
+  var dispH = Math.round(dispW * 340 / 500);
+  if (cv.width !== dispW * dpr || cv.height !== dispH * dpr) {
+    cv.width = dispW * dpr;
+    cv.height = dispH * dpr;
+    cv.style.height = dispH + 'px';
+    ctx.scale(dpr, dpr);
+  }
+  var w = dispW, h = dispH;
+  ctx.clearRect(0, 0, w, h);
+
+  var margin = 60;
+  var wallY = 40, wallH = h - 80;
+  var wallStartX = margin;
+  var wallEndX = w - margin;
+  var wallTotalW = wallEndX - wallStartX;
+
+  // ── Hot side gradient ──
+  var gradL = ctx.createLinearGradient(0, 0, wallStartX, 0);
+  gradL.addColorStop(0, '#fca5a5');
+  gradL.addColorStop(1, '#fef2f2');
+  ctx.fillStyle = gradL;
+  ctx.fillRect(0, wallY, wallStartX, wallH);
+
+  // ── Cold side gradient ──
+  var gradR = ctx.createLinearGradient(wallEndX, 0, w, 0);
+  gradR.addColorStop(0, '#dbeafe');
+  gradR.addColorStop(1, '#93c5fd');
+  ctx.fillStyle = gradR;
+  ctx.fillRect(wallEndX, wallY, w - wallEndX, wallH);
+
+  // ── Draw layers ──
+  var totalE = layerData.reduce(function(s, d) { return s + d.e_mm; }, 0);
+  var curX = wallStartX;
+
+  layerData.forEach(function(d, i) {
+    var layerW = (d.e_mm / totalE) * wallTotalW;
+
+    // Fill color
+    ctx.fillStyle = d.color;
+    ctx.fillRect(curX, wallY, layerW, wallH);
+
+    // Pattern overlay
+    drawPattern(ctx, materiaux[d.name].pattern, curX, wallY, layerW, wallH, d.color);
+
+    // Border
+    ctx.strokeStyle = '#475569';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(curX, wallY, layerW, wallH);
+
+    // Labels inside layer (only if wide enough)
+    if (layerW > 35) {
+      ctx.fillStyle = '#1e293b';
+      ctx.textAlign = 'center';
+      ctx.font = '10px "Segoe UI",sans-serif';
+      var cx = curX + layerW / 2;
+      var cy = wallY + wallH / 2;
+
+      // Abbreviate long names
+      var shortName = d.name.length > 14 ? d.name.substring(0, 12) + '..' : d.name;
+      ctx.fillText(shortName, cx, cy - 14);
+      ctx.fillText(d.e_mm + ' mm', cx, cy + 2);
+      ctx.font = '9px "Segoe UI",sans-serif';
+      ctx.fillStyle = '#64748b';
+      ctx.fillText('\u03BB=' + d.lambda, cx, cy + 16);
+      ctx.fillStyle = '#991b1b';
+      ctx.font = 'bold 9px "Segoe UI",sans-serif';
+      ctx.fillText('R=' + d.R.toFixed(3), cx, cy + 30);
+    }
+
+    curX += layerW;
+  });
+
+  // ── Hot / Cold labels ──
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 12px "Segoe UI",sans-serif';
+  ctx.fillStyle = '#b91c1c';
+  ctx.fillText('INT\u00c9RIEUR', wallStartX / 2, wallY + 18);
+  ctx.fillText(Tint + ' \u00b0C', wallStartX / 2, wallY + 34);
+
+  ctx.fillStyle = '#1d4ed8';
+  ctx.fillText('EXT\u00c9RIEUR', wallEndX + (w - wallEndX) / 2, wallY + 18);
+  ctx.fillText(Text + ' \u00b0C', wallEndX + (w - wallEndX) / 2, wallY + 34);
+
+  // ── Heat flow arrows ──
+  if (dT > 0) {
+    var arrowCount = Math.min(Math.max(Math.round(Phi / 200), 1), 7);
+    var arrowSpacing = wallH / (arrowCount + 1);
+    ctx.strokeStyle = '#ea580c';
+    ctx.fillStyle = '#ea580c';
+    ctx.lineWidth = Math.min(1.5 + Phi / 400, 4);
+
+    for (var i = 0; i < arrowCount; i++) {
+      var ay = wallY + arrowSpacing * (i + 1);
+      ctx.beginPath();
+      ctx.moveTo(wallStartX + 5, ay);
+      ctx.lineTo(wallEndX - 5, ay);
+      ctx.stroke();
+      // Arrowhead
+      ctx.beginPath();
+      ctx.moveTo(wallEndX - 5, ay);
+      ctx.lineTo(wallEndX - 13, ay - 4);
+      ctx.lineTo(wallEndX - 13, ay + 4);
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  // ── Top label ──
+  ctx.fillStyle = '#ea580c';
+  ctx.font = 'bold 12px "Segoe UI",sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('\u03A6 = ' + (Phi < 1000 ? Phi.toFixed(1) : Math.round(Phi)) + ' W', w / 2, wallY - 12);
+
+  // ── Bottom label ──
+  ctx.fillStyle = '#7c3aed';
+  ctx.font = 'bold 11px "Segoe UI",sans-serif';
+  ctx.fillText('\u0394T = ' + dT + ' \u00b0C  |  R total = ' + Rtotal.toFixed(3) + ' m\u00b2\u00b7K/W', w / 2, h - 6);
+
+  // ── Dimension line ──
+  var totalMM = layerData.reduce(function(s, d) { return s + d.e_mm; }, 0);
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 1;
+  var dimY = wallY + wallH + 12;
+  ctx.beginPath();
+  ctx.moveTo(wallStartX, dimY);
+  ctx.lineTo(wallEndX, dimY);
+  ctx.stroke();
+  // end ticks
+  ctx.beginPath();
+  ctx.moveTo(wallStartX, dimY - 4);
+  ctx.lineTo(wallStartX, dimY + 4);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(wallEndX, dimY - 4);
+  ctx.lineTo(wallEndX, dimY + 4);
+  ctx.stroke();
+  ctx.fillStyle = '#475569';
+  ctx.font = '10px "Segoe UI",sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(totalMM + ' mm total', w / 2, dimY + 14);
+}
+
+// ── Pattern drawing ──
+function drawPattern(ctx, pattern, x, y, w, h, baseColor) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(x, y, w, h);
+  ctx.clip();
+
+  if (pattern === 'brick') {
+    ctx.strokeStyle = '#c2410c';
+    ctx.lineWidth = 0.5;
+    var brickH = 12, brickW = 24;
+    for (var row = 0; row < Math.ceil(h / brickH); row++) {
+      var by = y + row * brickH;
+      ctx.beginPath();
+      ctx.moveTo(x, by);
+      ctx.lineTo(x + w, by);
+      ctx.stroke();
+      var offset = (row % 2) * (brickW / 2);
+      for (var col = 0; col < Math.ceil(w / brickW) + 1; col++) {
+        var bx = x + col * brickW + offset;
+        ctx.beginPath();
+        ctx.moveTo(bx, by);
+        ctx.lineTo(bx, by + brickH);
+        ctx.stroke();
+      }
+    }
+  } else if (pattern === 'fiber') {
+    ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+    ctx.lineWidth = 0.5;
+    for (var fy = y; fy < y + h; fy += 6) {
+      ctx.beginPath();
+      for (var fx = x; fx < x + w; fx += 4) {
+        var oy = fy + Math.sin((fx - x) * 0.3) * 2;
+        if (fx === x) ctx.moveTo(fx, oy);
+        else ctx.lineTo(fx, oy);
+      }
+      ctx.stroke();
+    }
+  } else if (pattern === 'wood') {
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+    ctx.lineWidth = 0.5;
+    for (var wy = y + 5; wy < y + h; wy += 10) {
+      ctx.beginPath();
+      ctx.moveTo(x, wy);
+      ctx.lineTo(x + w, wy + (Math.random() - 0.5) * 4);
+      ctx.stroke();
+    }
+  } else if (pattern === 'dots') {
+    ctx.fillStyle = 'rgba(0,0,0,0.08)';
+    for (var dy = y + 5; dy < y + h; dy += 10) {
+      for (var dx = x + 5; dx < x + w; dx += 10) {
+        ctx.beginPath();
+        ctx.arc(dx, dy, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+
+  ctx.restore();
+}
+
+// ── Resize handler ──
+var resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    // Force canvas resize
+    var cv = document.getElementById('cvWall');
+    cv.width = 0;
+    cv.height = 0;
+    update();
+  }, 100);
+});
+
+// ── Init ──
+renderLayers();
+update();
+</script>
+</body>
+</html>

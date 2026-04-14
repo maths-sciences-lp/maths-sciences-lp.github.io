@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Comparateur de vitrages — Performance thermique et cout</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;line-height:1.6}
+header{background:linear-gradient(135deg,#0056b3,#003d82);color:#fff;padding:30px 20px 24px;text-align:center;position:relative}
+header h1{font-size:1.55em;margin-bottom:4px}
+header p{font-size:.92em;opacity:.88}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.container{max-width:920px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px;margin-bottom:20px}
+.card h2{font-size:1.15em;color:#0056b3;margin-bottom:14px;border-bottom:2px solid #bee3f8;padding-bottom:8px}
+label{display:block;font-size:.88em;font-weight:600;color:#475569;margin:10px 0 4px}
+label:first-child{margin-top:0}
+input[type=range]{width:100%;accent-color:#0056b3}
+select{width:100%;padding:7px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:.9em;background:#fff}
+.val{font-size:.82em;color:#64748b;font-weight:400}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.summary-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;justify-content:center}
+.summary-box{background:#ebf5ff;border-radius:8px;padding:10px 16px;text-align:center;flex:1;min-width:120px}
+.summary-label{font-size:.78em;color:#64748b;text-transform:uppercase;letter-spacing:.03em}
+.summary-value{font-size:1.15em;font-weight:700;color:#0056b3}
+canvas{width:100%;display:block;border-radius:8px}
+.formule{background:#f0f7ff;border-left:4px solid #0056b3;padding:12px 16px;border-radius:0 8px 8px 0;font-size:.9em;margin-top:14px}
+.formule strong{color:#0056b3}
+.chart-container{height:320px;margin-top:10px}
+.frame-select{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.frame-btn{padding:6px 14px;border:2px solid #cbd5e1;border-radius:6px;cursor:pointer;font-size:.85em;font-weight:600;background:#fff;color:#475569;transition:all .15s}
+.frame-btn:hover{border-color:#0056b3;color:#0056b3}
+.frame-btn.active{background:#0056b3;color:#fff;border-color:#0056b3}
+.years-slider{margin-top:10px}
+.legend-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:10px;font-size:.85em}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-swatch{width:14px;height:14px;border-radius:3px;display:inline-block}
+.re2020{display:inline-block;font-size:.7em;padding:2px 6px;border-radius:4px;font-weight:700;margin-left:4px;vertical-align:middle}
+.re2020.ok{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.re2020.ko{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.context{background:linear-gradient(135deg,#ebf5ff,#f0fdf4);border:2px solid #0056b3;border-radius:10px;padding:16px 18px;font-size:.9em;margin-top:4px}
+.context strong{color:#003d82}
+@media(max-width:700px){
+  .row,.row3{grid-template-columns:1fr}
+  header h1{font-size:1.25em}
+  .summary-row{flex-direction:column}
+  .frame-select{justify-content:center}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="../physique-chimie/seconde/ch11/lecon.html" class="btn-back">← Retour au cours</a>
+  <h1>Comparateur de vitrages</h1>
+  <p>Performance thermique et cout | 2nde Bac Pro - Chapitre 11 : Transferts thermiques</p>
+</header>
+
+<div class="container">
+
+<!-- PARAMETERS -->
+<div class="card">
+  <h2>Parametres de la fenetre</h2>
+  <div class="row">
+    <div>
+      <label>Largeur de la fenetre <span class="val" id="vW">1.20 m</span></label>
+      <input type="range" id="sW" min="0.5" max="2.0" value="1.2" step="0.05" oninput="update()">
+
+      <label>Hauteur de la fenetre <span class="val" id="vH">1.40 m</span></label>
+      <input type="range" id="sH" min="0.5" max="2.5" value="1.4" step="0.05" oninput="update()">
+
+      <label>Nombre de fenetres <span class="val" id="vN">6</span></label>
+      <input type="range" id="sN" min="1" max="10" value="6" step="1" oninput="update()">
+    </div>
+    <div>
+      <label>Temperature interieure T<sub>int</sub> <span class="val" id="vTi">20 &#176;C</span></label>
+      <input type="range" id="sTi" min="15" max="25" value="20" step="0.5" oninput="update()">
+
+      <label>Temperature exterieure T<sub>ext</sub> <span class="val" id="vTe">0 &#176;C</span></label>
+      <input type="range" id="sTe" min="-10" max="10" value="0" step="0.5" oninput="update()">
+
+      <label>Type de chassis</label>
+      <div class="frame-select">
+        <button class="frame-btn" data-frame="bois" onclick="setFrame('bois')">Bois</button>
+        <button class="frame-btn active" data-frame="pvc" onclick="setFrame('pvc')">PVC</button>
+        <button class="frame-btn" data-frame="alu" onclick="setFrame('alu')">Aluminium</button>
+      </div>
+    </div>
+  </div>
+  <div class="summary-row">
+    <div class="summary-box">
+      <div class="summary-label">Surface 1 fenetre</div>
+      <div class="summary-value" id="rS1">1.68 m&sup2;</div>
+    </div>
+    <div class="summary-box">
+      <div class="summary-label">Surface totale vitree</div>
+      <div class="summary-value" id="rSt">10.08 m&sup2;</div>
+    </div>
+    <div class="summary-box">
+      <div class="summary-label">&Delta;T</div>
+      <div class="summary-value" id="rDT">20 &#176;C</div>
+    </div>
+  </div>
+</div>
+
+<!-- CANVAS VISUAL COMPARISON -->
+<div class="card">
+  <h2>Comparaison visuelle des vitrages</h2>
+  <p style="font-size:.85em;color:#64748b;margin-bottom:10px">Les fleches rouges representent le flux de chaleur traversant le vitrage. Plus les fleches sont grandes et nombreuses, plus les pertes thermiques sont importantes.</p>
+  <canvas id="cvMain" height="420"></canvas>
+
+  <div class="formule">
+    <strong>Formule :</strong>
+    &Phi; = U &times; S &times; &Delta;T &nbsp;(W) &nbsp;&nbsp;|&nbsp;&nbsp;
+    U : coefficient de transmission thermique (W/(m&sup2;&middot;K)) &nbsp;&nbsp;|&nbsp;&nbsp;
+    Pertes annuelles = &Phi; &times; heures de chauffe / 1000 &nbsp;(kWh)
+  </div>
+</div>
+
+<!-- COST CHART -->
+<div class="card">
+  <h2>Analyse economique : achat + energie</h2>
+  <div class="row">
+    <div>
+      <label>Horizon de calcul <span class="val" id="vYears">20 ans</span></label>
+      <input type="range" id="sYears" min="5" max="40" value="20" step="5" oninput="update()">
+    </div>
+    <div>
+      <label>Prix electricite <span class="val" id="vPrix">0.22 &#8364;/kWh</span></label>
+      <input type="range" id="sPrix" min="0.10" max="0.40" value="0.22" step="0.01" oninput="update()">
+    </div>
+  </div>
+  <div class="legend-row" style="margin-top:14px">
+    <div class="legend-item"><span class="legend-swatch" style="background:#93c5fd"></span> Cout achat (toutes fenetres)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#fca5a5"></span> Cout energie cumule</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#fbbf24"></span> Cout total</div>
+  </div>
+  <div class="chart-container">
+    <canvas id="chartCost"></canvas>
+  </div>
+</div>
+
+<!-- CONTEXT -->
+<div class="card context">
+  <strong>Contexte professionnel :</strong> Un menuisier agenceur doit conseiller un client sur le remplacement des fenetres d'une maison individuelle. Le choix du vitrage impacte a la fois le confort thermique et la facture energetique. La reglementation environnementale RE 2020 impose un coefficient U &le; 1,3 W/(m&sup2;&middot;K) pour les fenetres. Cette simulation permet de comparer les performances et les couts sur le long terme pour guider le choix.
+</div>
+
+</div>
+
+<script>
+// --- DATA ---
+const vitrages = [
+  { nom: 'Simple vitrage', U: 5.8, prix_bois: 400, prix_pvc: 250, prix_alu: 350, duree: 40, layers: [6], gaps: [], color: '#93c5fd' },
+  { nom: 'Double air', U: 2.9, prix_bois: 650, prix_pvc: 450, prix_alu: 550, duree: 35, layers: [4, 4], gaps: ['air'], color: '#60a5fa' },
+  { nom: 'Double argon', U: 1.4, prix_bois: 950, prix_pvc: 650, prix_alu: 750, duree: 35, layers: [4, 4], gaps: ['argon'], color: '#3b82f6' },
+  { nom: 'Triple vitrage', U: 0.8, prix_bois: 1350, prix_pvc: 950, prix_alu: 1100, duree: 35, layers: [4, 4, 4], gaps: ['argon', 'argon'], color: '#1d4ed8' }
+];
+
+let frameType = 'pvc';
+const heuresChauffe = 5000; // h/an (approx. 7 mois de chauffe)
+
+// --- CHART ---
+const chartCtx = document.getElementById('chartCost').getContext('2d');
+const chart = new Chart(chartCtx, {
+  type: 'bar',
+  data: {
+    labels: vitrages.map(v => v.nom),
+    datasets: [
+      { label: 'Cout achat', data: [], backgroundColor: '#93c5fdcc', borderColor: '#3b82f6', borderWidth: 1.5, borderRadius: 4 },
+      { label: 'Cout energie', data: [], backgroundColor: '#fca5a5cc', borderColor: '#ef4444', borderWidth: 1.5, borderRadius: 4 },
+      { label: 'Cout total', data: [], backgroundColor: '#fbbf24cc', borderColor: '#d97706', borderWidth: 1.5, borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) { return ctx.dataset.label + ' : ' + ctx.parsed.y.toFixed(0) + ' \u20ac'; }
+        }
+      }
+    },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: 'Cout (\u20ac)' }, ticks: { callback: v => v.toLocaleString('fr-FR') + ' \u20ac' } },
+      x: { title: { display: false } }
+    }
+  }
+});
+
+// --- ANIMATION ---
+let animPhase = 0;
+let animId = null;
+
+function setFrame(f) {
+  frameType = f;
+  document.querySelectorAll('.frame-btn').forEach(b => b.classList.toggle('active', b.dataset.frame === f));
+  update();
+}
+
+function getParams() {
+  const W = parseFloat(document.getElementById('sW').value);
+  const H = parseFloat(document.getElementById('sH').value);
+  const N = parseInt(document.getElementById('sN').value);
+  const Ti = parseFloat(document.getElementById('sTi').value);
+  const Te = parseFloat(document.getElementById('sTe').value);
+  const years = parseInt(document.getElementById('sYears').value);
+  const prixKwh = parseFloat(document.getElementById('sPrix').value);
+  const S1 = W * H;
+  const St = S1 * N;
+  const dT = Ti - Te;
+  return { W, H, N, Ti, Te, S1, St, dT, years, prixKwh };
+}
+
+function update() {
+  const p = getParams();
+
+  // Display values
+  document.getElementById('vW').textContent = p.W.toFixed(2) + ' m';
+  document.getElementById('vH').textContent = p.H.toFixed(2) + ' m';
+  document.getElementById('vN').textContent = p.N;
+  document.getElementById('vTi').textContent = p.Ti.toFixed(1) + ' \u00b0C';
+  document.getElementById('vTe').textContent = p.Te.toFixed(1) + ' \u00b0C';
+  document.getElementById('vYears').textContent = p.years + ' ans';
+  document.getElementById('vPrix').textContent = p.prixKwh.toFixed(2) + ' \u20ac/kWh';
+
+  document.getElementById('rS1').textContent = p.S1.toFixed(2) + ' m\u00b2';
+  document.getElementById('rSt').textContent = p.St.toFixed(2) + ' m\u00b2';
+  document.getElementById('rDT').textContent = p.dT.toFixed(1) + ' \u00b0C';
+
+  // Update chart
+  const priceKey = 'prix_' + frameType;
+  const achat = vitrages.map(v => v[priceKey] * p.N);
+  const energie = vitrages.map(v => {
+    const phi = v.U * p.St * p.dT;
+    const kwhAn = phi * heuresChauffe / 1000;
+    return kwhAn * p.prixKwh * p.years;
+  });
+  const total = achat.map((a, i) => a + energie[i]);
+
+  chart.data.datasets[0].data = achat;
+  chart.data.datasets[1].data = energie;
+  chart.data.datasets[2].data = total;
+  chart.update();
+}
+
+// --- CANVAS DRAWING ---
+function drawAll() {
+  const cv = document.getElementById('cvMain');
+  const ctx = cv.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const dispW = cv.clientWidth;
+  const dispH = 420;
+
+  if (cv.width !== dispW * dpr || cv.height !== dispH * dpr) {
+    cv.width = dispW * dpr;
+    cv.height = dispH * dpr;
+    cv.style.height = dispH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  const w = dispW, h = dispH;
+  ctx.clearRect(0, 0, w, h);
+
+  const p = getParams();
+  const padding = 12;
+  const colW = (w - padding * 5) / 4;
+  const maxU = 5.8;
+
+  vitrages.forEach((v, vi) => {
+    const x = padding + vi * (colW + padding);
+    const yTop = 60;
+    const colH = h - 110;
+
+    // Background card
+    ctx.fillStyle = '#f8fafc';
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    roundRect(ctx, x, yTop - 30, colW, colH + 60, 8);
+
+    // Title
+    ctx.fillStyle = '#1e293b';
+    ctx.font = 'bold ' + Math.min(13, colW / 10) + 'px "Segoe UI",sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(v.nom, x + colW / 2, yTop - 12);
+
+    // Draw window cross-section
+    const winX = x + colW * 0.15;
+    const winW = colW * 0.7;
+    const winY = yTop + 10;
+    const winH = colH * 0.45;
+
+    // Hot side (left)
+    const gradL = ctx.createLinearGradient(winX - 15, 0, winX, 0);
+    gradL.addColorStop(0, '#fca5a5');
+    gradL.addColorStop(1, '#fef2f2');
+    ctx.fillStyle = gradL;
+    ctx.fillRect(winX - 15, winY, 15, winH);
+
+    // Cold side (right)
+    const gradR = ctx.createLinearGradient(winX + winW, 0, winX + winW + 15, 0);
+    gradR.addColorStop(0, '#dbeafe');
+    gradR.addColorStop(1, '#93c5fd');
+    ctx.fillStyle = gradR;
+    ctx.fillRect(winX + winW, winY, 15, winH);
+
+    // Draw glass layers
+    const totalThickness = v.layers.reduce((s, l) => s + l, 0) + v.gaps.length * 12;
+    const scale = winW / totalThickness;
+    let curX = winX;
+
+    for (let li = 0; li < v.layers.length; li++) {
+      // Glass pane
+      const glassW = v.layers[li] * scale;
+      const glassGrad = ctx.createLinearGradient(curX, 0, curX + glassW, 0);
+      glassGrad.addColorStop(0, '#bfdbfe');
+      glassGrad.addColorStop(0.5, '#93c5fd');
+      glassGrad.addColorStop(1, '#bfdbfe');
+      ctx.fillStyle = glassGrad;
+      ctx.fillRect(curX, winY, glassW, winH);
+      ctx.strokeStyle = '#3b82f6';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(curX, winY, glassW, winH);
+      curX += glassW;
+
+      // Gas gap
+      if (li < v.gaps.length) {
+        const gapW = 12 * scale;
+        const isArgon = v.gaps[li] === 'argon';
+        ctx.fillStyle = isArgon ? '#e0f2fe' : '#f0f9ff';
+        ctx.fillRect(curX, winY, gapW, winH);
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 0.5;
+        ctx.setLineDash([3, 3]);
+        ctx.strokeRect(curX, winY, gapW, winH);
+        ctx.setLineDash([]);
+
+        // Gas label
+        ctx.save();
+        ctx.fillStyle = isArgon ? '#0369a1' : '#64748b';
+        ctx.font = Math.min(9, gapW * 0.8) + 'px "Segoe UI",sans-serif';
+        ctx.textAlign = 'center';
+        if (gapW > 8) {
+          ctx.translate(curX + gapW / 2, winY + winH / 2);
+          ctx.rotate(-Math.PI / 2);
+          ctx.fillText(isArgon ? 'Argon' : 'Air', 0, 3);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        ctx.restore();
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        curX += gapW;
+      }
+    }
+
+    // Frame (top and bottom)
+    ctx.fillStyle = frameType === 'bois' ? '#a16207' : frameType === 'pvc' ? '#e2e8f0' : '#94a3b8';
+    ctx.fillRect(winX - 4, winY - 6, winW + 8, 6);
+    ctx.fillRect(winX - 4, winY + winH, winW + 8, 6);
+    ctx.fillRect(winX - 4, winY - 6, 4, winH + 12);
+    ctx.fillRect(winX + winW, winY - 6, 4, winH + 12);
+    ctx.strokeStyle = '#475569';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(winX - 4, winY - 6, winW + 8, winH + 12);
+
+    // Animated heat arrows
+    const arrowIntensity = v.U / maxU;
+    const numArrows = Math.max(1, Math.round(arrowIntensity * 5));
+    const arrowMaxSize = arrowIntensity;
+    const arrowZoneY = winY + 5;
+    const arrowZoneH = winH - 10;
+
+    for (let ai = 0; ai < numArrows; ai++) {
+      const ay = arrowZoneY + (arrowZoneH / (numArrows + 1)) * (ai + 1);
+      const phase = animPhase + ai * 0.7;
+      const waveAmp = 3 * arrowMaxSize;
+      const arrowLen = winW * 0.7;
+      const arrowStartX = winX + winW * 0.15;
+
+      // Draw wavy arrow
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(220, 38, 38, ' + (0.3 + 0.5 * arrowMaxSize) + ')';
+      ctx.lineWidth = 1 + 2.5 * arrowMaxSize;
+      const segments = 20;
+      for (let si = 0; si <= segments; si++) {
+        const t = si / segments;
+        const px = arrowStartX + t * arrowLen;
+        const py = ay + Math.sin(phase + t * Math.PI * 3) * waveAmp;
+        if (si === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      // Arrowhead
+      const endX = arrowStartX + arrowLen;
+      const endY = ay + Math.sin(phase + Math.PI * 3) * waveAmp;
+      const headSize = 4 + 4 * arrowMaxSize;
+      ctx.fillStyle = 'rgba(220, 38, 38, ' + (0.4 + 0.5 * arrowMaxSize) + ')';
+      ctx.beginPath();
+      ctx.moveTo(endX + headSize, endY);
+      ctx.lineTo(endX - headSize * 0.5, endY - headSize * 0.6);
+      ctx.lineTo(endX - headSize * 0.5, endY + headSize * 0.6);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    // Info below window
+    const infoY = winY + winH + 30;
+    const lineH = 17;
+
+    // U value
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 12px "Segoe UI",sans-serif';
+    ctx.fillStyle = '#0056b3';
+    ctx.fillText('U = ' + v.U.toFixed(1) + ' W/(m\u00b2\u00b7K)', x + colW / 2, infoY);
+
+    // RE 2020 badge
+    const re2020 = v.U <= 1.3;
+    const badgeText = re2020 ? 'RE 2020 \u2713' : 'RE 2020 \u2717';
+    ctx.font = 'bold 9px "Segoe UI",sans-serif';
+    const badgeW = ctx.measureText(badgeText).width + 12;
+    ctx.fillStyle = re2020 ? '#dcfce7' : '#fee2e2';
+    roundRectFill(ctx, x + colW / 2 - badgeW / 2, infoY + 5, badgeW, 16, 4);
+    ctx.strokeStyle = re2020 ? '#86efac' : '#fca5a5';
+    ctx.lineWidth = 1;
+    roundRectStroke(ctx, x + colW / 2 - badgeW / 2, infoY + 5, badgeW, 16, 4);
+    ctx.fillStyle = re2020 ? '#166534' : '#991b1b';
+    ctx.fillText(badgeText, x + colW / 2, infoY + 17);
+
+    // Phi
+    const phi = v.U * p.St * p.dT;
+    ctx.font = '11px "Segoe UI",sans-serif';
+    ctx.fillStyle = '#dc2626';
+    ctx.fillText('\u03a6 = ' + phi.toFixed(0) + ' W', x + colW / 2, infoY + lineH * 2.2);
+
+    // Annual cost
+    const kwhAn = phi * heuresChauffe / 1000;
+    const coutAn = kwhAn * p.prixKwh;
+    ctx.fillStyle = '#a16207';
+    ctx.font = '11px "Segoe UI",sans-serif';
+    ctx.fillText(kwhAn.toFixed(0) + ' kWh/an', x + colW / 2, infoY + lineH * 3.2);
+    ctx.font = 'bold 12px "Segoe UI",sans-serif';
+    ctx.fillStyle = '#b45309';
+    ctx.fillText(coutAn.toFixed(0) + ' \u20ac/an', x + colW / 2, infoY + lineH * 4.2);
+
+    // Purchase price
+    const priceKey = 'prix_' + frameType;
+    ctx.font = '10px "Segoe UI",sans-serif';
+    ctx.fillStyle = '#64748b';
+    ctx.fillText(v[priceKey] + ' \u20ac/fen.', x + colW / 2, infoY + lineH * 5.2);
+  });
+
+  // Temperature labels at top
+  ctx.fillStyle = '#b91c1c';
+  ctx.font = 'bold 12px "Segoe UI",sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('\u25c0 Interieur (' + p.Ti.toFixed(1) + ' \u00b0C)', padding, 20);
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#1d4ed8';
+  ctx.fillText('Exterieur (' + p.Te.toFixed(1) + ' \u00b0C) \u25b6', w - padding, 20);
+
+  // Center arrow indicator
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#dc2626';
+  ctx.font = '11px "Segoe UI",sans-serif';
+  ctx.fillText('Flux de chaleur \u2192', w / 2, 38);
+
+  animPhase += 0.06;
+  animId = requestAnimationFrame(drawAll);
+}
+
+// --- UTILITY FUNCTIONS ---
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+}
+
+function roundRectFill(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function roundRectStroke(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+  ctx.stroke();
+}
+
+// --- INIT ---
+update();
+drawAll();
+</script>
+</body>
+</html>
