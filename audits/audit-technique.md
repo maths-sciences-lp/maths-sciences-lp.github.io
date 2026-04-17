@@ -1,7 +1,7 @@
 # Audit Technique
 
 **Date** : 2026-03-16
-**Derniere mise a jour** : 2026-03-25 (diff.js manquant sur 83 interro.html — correction globale)
+**Derniere mise a jour** : 2026-04-17 (audit page d'accueil + typo CLAUDE.md)
 **Perimetre** : HTML, CSS, JavaScript, chemins, accessibilite, simulations, performances
 **Nombre total de fichiers HTML audites** : 477 (191 maths, 180 physique-chimie, 63 simulations, 43 autres)
 
@@ -242,6 +242,8 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - **2026-03-25** : Corrige diff.js manquant sur 83 interro.html (tous niveaux et matieres : maths/seconde, maths/premiere, maths/terminale, physique-chimie/seconde, physique-chimie/premiere-iccer, physique-chimie/premiere-era, physique-chimie/terminale-iccer, physique-chimie/terminale-era). La differenciation pedagogique etait silencieusement cassee sur toutes les interrogations du site.
 - **2026-03-25** : Corrige print.css manquant sur physique-chimie/seconde/ch10/fiche.html
 - **2026-03-25** : Corrige lien retour interro.html ch10 (pc-2nde-mama → pc-2nde-pro)
+- **2026-04-17** : Audit page d'accueil (`index.html`) — compteur simulations 69 → 72 (hero + carte), ajout du timestamp `.maj` dans le header (regle #10), date « Chapitres en cours » calculee automatiquement (mois/annee courants), desambiguisation des ancres de nav (#card-maths / #card-pc au lieu de deux #disciplines identiques)
+- **2026-04-17** : Correction typo CLAUDE.md : `logicie.html` (fichier inexistant) → `logique.html` (fragment réellement présent dans les sommaires maths)
 
 ---
 

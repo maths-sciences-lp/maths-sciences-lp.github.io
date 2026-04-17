@@ -110,7 +110,7 @@ header p{margin:0;opacity:.85;font-size:.95em}
   </nav>
 
   <header id="main-header">
-    <div style="font-size:2.4em;margin-bottom:8px">⚡</div>
+    <div style="font-size:2.4em;margin-bottom:8px" aria-hidden="true">⚡</div>
     <h1>Automatismes – Mathématiques</h1>
     <p>Seconde, Première et Terminale Bac Professionnel</p>
     <div class="date" id="date-maj"></div>
@@ -119,8 +119,8 @@ header p{margin:0;opacity:.85;font-size:.95em}
   <!-- Pourquoi -->
   <details class="pourquoi">
     <summary style="cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between">
-      <h2 style="margin:0">Pourquoi s'entraîner aux automatismes ?</h2>
-      <span style="font-size:1.2em;color:#94a3b8;transition:transform .2s">▼</span>
+      <span style="font-weight:700;color:var(--p);font-size:1.1em">Pourquoi s'entraîner aux automatismes ?</span>
+      <span style="font-size:1.2em;color:#94a3b8;transition:transform .2s" aria-hidden="true">▼</span>
     </summary>
     <ul style="margin-top:12px">
       <li><strong>Gagner du temps</strong> lors des épreuves en reconnaissant immédiatement les situations classiques.</li>
@@ -134,14 +134,14 @@ header p{margin:0;opacity:.85;font-size:.95em}
   </details>
 
   <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-btn active-sec" data-tab="seconde" id="tab-seconde">Seconde</button>
-    <button class="tab-btn" data-tab="premiere" id="tab-premiere">Première</button>
-    <button class="tab-btn" data-tab="terminale" id="tab-terminale">Terminale</button>
+  <div class="tabs" role="tablist" aria-label="Niveau de classe">
+    <button class="tab-btn active-sec" data-tab="seconde" id="tab-seconde" role="tab" aria-selected="true" aria-controls="content-seconde">Seconde</button>
+    <button class="tab-btn" data-tab="premiere" id="tab-premiere" role="tab" aria-selected="false" aria-controls="content-premiere" tabindex="-1">Première</button>
+    <button class="tab-btn" data-tab="terminale" id="tab-terminale" role="tab" aria-selected="false" aria-controls="content-terminale" tabindex="-1">Terminale</button>
   </div>
 
   <!-- ==================== SECONDE ==================== -->
-  <div class="tab-content active" id="content-seconde">
+  <div class="tab-content active" id="content-seconde" role="tabpanel" aria-labelledby="tab-seconde">
     <h2 class="section-title" style="color:#0056b3;border-color:#0056b3">Les 6 thèmes – Seconde</h2>
     <div class="grid">
 
@@ -233,7 +233,7 @@ header p{margin:0;opacity:.85;font-size:.95em}
   </div>
 
   <!-- ==================== PREMIERE ==================== -->
-  <div class="tab-content" id="content-premiere">
+  <div class="tab-content" id="content-premiere" role="tabpanel" aria-labelledby="tab-premiere" hidden>
     <h2 class="section-title" style="color:#7c3aed;border-color:#7c3aed">Les 7 thèmes – Première</h2>
     <div class="grid">
 
@@ -339,7 +339,7 @@ header p{margin:0;opacity:.85;font-size:.95em}
   </div>
 
   <!-- ==================== TERMINALE ==================== -->
-  <div class="tab-content" id="content-terminale">
+  <div class="tab-content" id="content-terminale" role="tabpanel" aria-labelledby="tab-terminale" hidden>
     <h2 class="section-title" style="color:#0969da;border-color:#0969da">Les 8 thèmes – Terminale</h2>
     <div class="grid">
 
@@ -473,9 +473,10 @@ header p{margin:0;opacity:.85;font-size:.95em}
 
 <script>
 (function(){
-  var tabs = document.querySelectorAll('.tab-btn');
+  var tabs = Array.from(document.querySelectorAll('.tab-btn'));
   var contents = document.querySelectorAll('.tab-content');
   var header = document.getElementById('main-header');
+  var STORE_KEY = 'automatismes:niveau';
 
   var gradients = {
     seconde: 'linear-gradient(135deg,#0056b3,#2563eb)',
@@ -489,23 +490,49 @@ header p{margin:0;opacity:.85;font-size:.95em}
     terminale: 'active-ter'
   };
 
-  function switchTab(target){
+  function switchTab(target, focus){
     tabs.forEach(function(t){
-      t.className = 'tab-btn';
-      if(t.dataset.tab === target) t.classList.add(activeClasses[target]);
+      var isActive = t.dataset.tab === target;
+      t.className = 'tab-btn' + (isActive ? ' ' + activeClasses[target] : '');
+      t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      t.setAttribute('tabindex', isActive ? '0' : '-1');
+      if (isActive && focus) t.focus();
     });
     contents.forEach(function(c){
-      c.classList.remove('active');
-      if(c.id === 'content-' + target) c.classList.add('active');
+      var isActive = c.id === 'content-' + target;
+      c.classList.toggle('active', isActive);
+      if (isActive) { c.removeAttribute('hidden'); } else { c.setAttribute('hidden', ''); }
     });
     header.style.background = gradients[target];
+    try { localStorage.setItem(STORE_KEY, target); } catch(e) {}
   }
 
+  // Clic
   tabs.forEach(function(btn){
     btn.addEventListener('click', function(){
-      switchTab(this.dataset.tab);
+      switchTab(this.dataset.tab, false);
     });
   });
+
+  // Clavier (flèches ←/→, Home, End) — pattern ARIA tablist
+  var order = tabs.map(function(t){ return t.dataset.tab; });
+  document.querySelector('[role="tablist"]').addEventListener('keydown', function(e){
+    var current = tabs.findIndex(function(t){ return t.getAttribute('aria-selected') === 'true'; });
+    var next = -1;
+    if (e.key === 'ArrowRight') next = (current + 1) % order.length;
+    else if (e.key === 'ArrowLeft') next = (current - 1 + order.length) % order.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = order.length - 1;
+    if (next !== -1) { e.preventDefault(); switchTab(order[next], true); }
+  });
+
+  // Restauration du dernier onglet visité
+  try {
+    var saved = localStorage.getItem(STORE_KEY);
+    if (saved && order.indexOf(saved) !== -1 && saved !== 'seconde') {
+      switchTab(saved, false);
+    }
+  } catch(e) {}
 
   // Date dynamique
   var MOIS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];

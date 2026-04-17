@@ -100,8 +100,8 @@ Autres pages utilitaires à la racine :
 - `ccf-convocations.html` — Convocations CCF
 - `cv-eleve.html` — Générateur de CV élève
 - `lettre-motivation-parcoursup.html` — Aide à la rédaction Parcoursup
-- `python.html` — Page Python
-- `logicie.html` — Logiciels
+- `python.html` — Fragment Python (inclus dans les sommaires maths)
+- `logique.html` — Fragment Logique (inclus dans les sommaires maths)
 
 ### Section BTS (`maths/bts/`)
 
