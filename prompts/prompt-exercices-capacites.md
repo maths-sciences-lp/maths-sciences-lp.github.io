@@ -256,12 +256,12 @@ Avant de générer la page, toujours :
 
 1. **Reformuler la demande** : quel chapitre, quelle classe, quelle matière ?
 2. **Lire le fichier programme officiel (.md)** correspondant au niveau :
-   - Maths 2nde : `programme-maths-2nde-bac-pro.md`
-   - Maths 1ère : `programme_maths_premiere_bacpro.md`
-   - Maths Terminale : `programme-maths-terminale-bac-pro.md`
-   - PC 2nde : `programme-physique-chimie-2nde-bac-pro.md`
-   - PC 1ère : `programme_pc_premiere_bacpro.md`
-   - PC Terminale : `programme-physique-chimie-terminale-bac-pro.md`
+   - Maths 2nde : `pdf/programme-maths-2nde-bac-pro.md`
+   - Maths 1ère : `pdf/programme_maths_premiere_bacpro.md`
+   - Maths Terminale : `pdf/programme-maths-terminale-bac-pro.md`
+   - PC 2nde : `pdf/programme-physique-chimie-2nde-bac-pro.md`
+   - PC 1ère : `pdf/programme_pc_premiere_bacpro.md`
+   - PC Terminale : `pdf/programme-physique-chimie-terminale-bac-pro.md`
 3. **Extraire les capacités et connaissances** du tableau officiel pour le module concerné
 4. **Lire `lecon.html`** du chapitre pour identifier les notions enseignées
 5. **Vérifier que chaque capacité du programme** a au moins 2 exercices

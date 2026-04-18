@@ -2,6 +2,8 @@
 
 Ce prompt décrit les contextes professionnels à utiliser pour la classe de Seconde Bac Professionnel MAMA.
 
+**Source :** Vademecum 2nde MAMA — `pdf/vademecum-famille-des-metiers-de-l-agencement-de-la-menuiserie-et-de-l-ameublement-70002.pdf`
+
 MAMA signifie :
 Métiers de l'Agencement, de la Menuiserie et de l'Ameublement.
 

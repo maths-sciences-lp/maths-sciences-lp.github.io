@@ -2,7 +2,7 @@
 
 ## Filière : CAP SDG (Signalétique et Décors Graphiques)
 
-**Source :** Arrêté du 16 octobre 2007 — CAP métiers de l'enseigne et de la signalétique (NOR : MENE0768357A) — `pdf/referentiel-cap-enseigne-signaletique-2007.pdf`
+**Source :** Référentiel CAP SDG — `pdf/referentiel-cap-sdg.pdf`
 
 **Groupement maths :** 1 (a Géométrie)
 **Programme sciences :** commun à tous les CAP

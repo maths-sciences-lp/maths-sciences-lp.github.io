@@ -2,7 +2,7 @@
 
 ## Filière : CAP Monteur en Installations Thermiques
 
-**Source :** Référentiel CAP MIT — JO 10 mai 2018
+**Source :** Référentiel CAP MIT — JO 10 mai 2018 — `pdf/referentiel-cap-mit.pdf`
 
 ### Profil du titulaire
 

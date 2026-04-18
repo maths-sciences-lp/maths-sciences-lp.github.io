@@ -2,6 +2,8 @@
 
 Ce prompt décrit les contextes professionnels à utiliser lorsque tu génères du contenu pour la filière Terminale Bac Professionnel ICCER.
 
+**Source :** Référentiel Bac Pro ICCER — `pdf/referentiel-bcp-iccer.pdf`
+
 ICCER signifie :
 Installateur en Chauffage, Climatisation et Énergies Renouvelables.
 

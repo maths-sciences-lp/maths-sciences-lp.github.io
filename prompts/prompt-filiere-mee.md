@@ -2,7 +2,7 @@
 
 ## Filière : Bac Pro Maintenance et Efficacité Énergétique
 
-**Source :** Référentiel Bac Pro MEE — BO 2021
+**Source :** Référentiel Bac Pro MEE — BO 2021 — `pdf/referentiel-bcp-mee.pdf`
 **Groupements :** Maths B | PC 1 (même programme que ICCER)
 
 ### Profil du titulaire

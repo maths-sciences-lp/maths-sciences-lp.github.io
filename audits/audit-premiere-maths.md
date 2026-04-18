@@ -29,7 +29,7 @@
 | `interro.html` | 9/9 ✅ | 9/9 ✅ | ✅ 9/9 (3 niveaux, /20) |
 | `exercices-capacites.html` | 9/9 ✅ | 9/9 ✅ | N/A (pas de diff, filtrage comp.js) |
 
-**Ajout 2026-03-28 :** création des 9 pages `exercices-capacites.html` (~115 exercices, ~30 SVG). Conformité programme BO 2020 vérifiée. Capacités extraites du fichier `programme_maths_premiere_bacpro.md`.
+**Ajout 2026-03-28 :** création des 9 pages `exercices-capacites.html` (~115 exercices, ~30 SVG). Conformité programme BO 2020 vérifiée. Capacités extraites du fichier `pdf/programme_maths_premiere_bacpro.md`.
 
 ---
 

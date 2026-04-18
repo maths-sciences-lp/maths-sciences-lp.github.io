@@ -2,6 +2,7 @@
 
 ## Filière : CAP Ébéniste
 
+**Source :** Référentiel CAP Ébéniste — Arrêté du 27 février 2017 — `pdf/referentiel-cap-ebeniste.pdf`
 **Groupement maths :** 1 (a Géométrie)
 **Programme sciences :** commun à tous les CAP
 

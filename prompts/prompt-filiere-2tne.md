@@ -2,6 +2,8 @@
 
 Ce prompt décrit les contextes professionnels à utiliser pour la classe de Seconde Bac Professionnel TNE.
 
+**Source :** Vademecum 2nde TNE — `pdf/vademecum-famille-des-metiers-des-transitions-numerique-et-energetique-70029.pdf`
+
 TNE signifie :
 Métiers des Transitions Numérique et Énergétique.
 

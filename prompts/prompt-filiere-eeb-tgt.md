@@ -2,7 +2,7 @@
 
 ## Filières : Bac Pro EEB (Études et Économie du Bâtiment) et TGT (Technicien Géomètre Topographe)
 
-**Source :** Vademecum famille des métiers des études et de la modélisation numérique du bâtiment (2020) + Référentiel EEB (Annexe II) + Arrêté Bac Pro Géomètre (mars 2024)
+**Source :** Vademecum 2nde Bâtiment (`pdf/vademecum-...-batiment-68028.pdf`) + Référentiel EEB (`pdf/referentiel-bcp-eeb-activites.pdf`, `pdf/referentiel-bcp-eeb-certification.pdf`) + Référentiel Géomètre (`pdf/referentiel-bcp-geometre.pdf`)
 **Groupements :** Maths B (tous) | PC 3 (EEB) | PC 6 (TGT/Géomètre)
 **Seconde commune :** TNE (Métiers des Études et de la Modélisation Numérique du Bâtiment)
 

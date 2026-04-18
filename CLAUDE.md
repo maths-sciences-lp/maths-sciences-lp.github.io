@@ -18,6 +18,7 @@ Ce fichier est lu automatiquement par Claude Code à chaque session.
 ├── diff.js                     ← Toggle différenciation pédagogique (socle/standard/appro)
 ├── qcm.js                     ← Fonctions partagées pour les QCM interactifs
 ├── comp.js                    ← Filtrage par capacité (exercices-capacites.html)
+├── sujet.js                   ← Toggle Sujet A / Sujet B (interrogations)
 ├── index.html                  ← Page d'accueil
 ├── maths-*.html / pc-*.html    ← Pages sommaire par matière/niveau
 ├── maths/
@@ -101,6 +102,9 @@ Autres pages utilitaires à la racine :
 - `cv-eleve.html` — Générateur de CV élève
 - `lettre-motivation-parcoursup.html` — Aide à la rédaction Parcoursup
 - `python.html` — Page Python
+- `logique.html` — Logique et démonstration
+- `conseils-figures.html` — Conseils pour les figures géométriques
+- `cours-solutions.html` — Solutions de cours
 - `logicie.html` — Logiciels
 
 ### Section BTS (`maths/bts/`)
@@ -309,20 +313,25 @@ Avant de générer du contenu, consulter les fichiers dans `/prompts/` :
 | `prompts/prompt-simulation.md` | Structure d'une simulation interactive (4 types) |
 | `prompts/prompt-superviseur.md` | Prompt de supervision globale du projet |
 | `prompts/prompt-filiere-2mama.md` | Contextes pro Seconde MAMA (menuiserie/agencement) |
+| `prompts/prompt-filiere-2tne.md` | Contextes pro Seconde TNE (transitions numérique et énergétique) |
 | `prompts/prompt-filiere-premiere-era.md` | Contextes pro Première ERA-MA (bois/agencement) |
 | `prompts/prompt-filiere-premiere-iccer.md` | Contextes pro Première ICCER (chauffage/énergie) |
 | `prompts/prompt-filiere-era-ma.md` | Contextes pro Terminale ERA/MA (agencement/bois) |
 | `prompts/prompt-filiere-ticcer.md` | Contextes pro Terminale ICCER (chauffage/énergie) |
+| `prompts/prompt-filiere-mee.md` | Contextes pro MEE (maintenance énergétique) |
+| `prompts/prompt-filiere-eeb-tgt.md` | Contextes pro EEB / TGT (bâtiment, géomètre) |
 | `prompts/prompt-filiere-cap-mit.md` | Contextes pro CAP MIT (installations thermiques) |
 | `prompts/prompt-filiere-cap-ebeniste.md` | Contextes pro CAP Ébéniste (bois, mobilier) |
 | `prompts/prompt-filiere-cap-sdg.md` | Contextes pro CAP SDG (signalétique, décors graphiques) |
 | `prompts/prompt-filiere-bma-ebeniste.md` | Contextes pro BMA Ébéniste (ébénisterie d'art) |
 | `prompts/prompt-filiere-bma-arts-graphiques.md` | Contextes pro BMA Arts Graphiques option A (signalétique) |
-| `prompts/prompt-filiere-eeb-tgt.md` | Contextes pro EEB / TGT (bâtiment, géomètre) |
-| `prompts/prompt-filiere-mee.md` | Contextes pro MEE (maintenance énergétique) |
 | `prompts/prompt-bts.md` | Structure et règles pour les pages BTS maths |
+| `prompts/prompt-caplp-cours.md` | Prompt de préparation CAPLP maths-sciences |
 | `prompts/prompt-cours-universel.md` | Prompt LaTeX universel pour générer un livret de cours (Overleaf) |
 | `prompts/prompt-exercices-universel.md` | Prompt LaTeX universel pour générer un livret d'exercices avec corrections (Overleaf) |
+| `prompts/instructions-co-intervention-ICCER.md` | Instructions co-intervention maths/sciences ICCER |
+| `prompts/instructions-co-intervention-ERA.md` | Instructions co-intervention maths/sciences ERA |
+| `prompts/instructions-co-intervention-MA.md` | Instructions co-intervention maths/sciences MA |
 
 ### Règles contextes professionnels
 
@@ -359,9 +368,43 @@ Ces sigles sont des noms de formations scolaires, pas des métiers réels. Ils n
 
 ---
 
-## PROGRAMMES OFFICIELS
+## PROGRAMMES OFFICIELS ET RÉFÉRENTIELS
 
-Les PDF des programmes Bac Pro sont dans `/pdf/`.
+Le dossier `/pdf/` contient les programmes scolaires, référentiels de filières et documents officiels. Voir `pdf/README.md` pour l'inventaire complet.
+
+### Programmes scolaires (maths & sciences)
+
+- Maths Bac Pro : Seconde (2019), Première (2020), Terminale (2020)
+- PC Bac Pro : Seconde (2019), Première (2020), Terminale (2020)
+- CAP : maths (2019) + sciences (2019)
+- BMA : maths (2021) + PC (2021)
+- BTS : maths
+- Extractions `.md` exploitables : CAP, BMA, BTS, PC Seconde/Première/Terminale (6 groupements)
+
+### Référentiels de filières
+
+| Pôle | Filière | Fichier |
+|---|---|---|
+| **Énergie** | Bac Pro ICCER | `referentiel-bcp-iccer.pdf` |
+| | Bac Pro MEE | `referentiel-bcp-mee.pdf` |
+| | CAP MIT | `referentiel-cap-mit.pdf` |
+| **Bois** | Bac Pro TMA | `referentiel-bcp-tma.pdf` |
+| | Bac Pro ERA | `referentiel-bcp-era-reglement-examen.pdf` (réf. complet sur [Legifrance](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000023894109/)) |
+| | CAP Ébéniste | `referentiel-cap-ebeniste.pdf` |
+| | BMA Ébéniste | `referentiel-bma-ebeniste-annexe-*.pdf` (6 annexes) |
+| **Arts graphiques** | CAP SDG | `referentiel-cap-sdg.pdf` |
+| | BMA Arts Graphiques | `referentiel-bma-arts-graphiques.pdf` |
+| **Bâtiment** | Bac Pro EEB | `referentiel-bcp-eeb.pdf` (complet) + détails dans `eeb-activites.pdf` / `eeb-certification.pdf` |
+| | Bac Pro Géomètre (TGT) | `referentiel-bcp-geometre.pdf` |
+
+### Vademecums Seconde (familles de métiers)
+
+| Famille | Fichier | Débouchés |
+|---|---|---|
+| 2nde MAMA | `vademecum-...-agencement-...-70002.pdf` | → ERA, TMA |
+| 2nde TNE | `vademecum-...-transitions-...-70029.pdf` | → ICCER, MEE |
+| 2nde Bâtiment | `vademecum-...-batiment-68028.pdf` | → EEB, TGT |
+
 Vérifier les notions avant de créer du contenu : respecter les capacités attendues et ne pas introduire de hors-programme.
 
 ---
