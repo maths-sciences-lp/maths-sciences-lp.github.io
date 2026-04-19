@@ -19,6 +19,12 @@ Ce dossier contient les programmes scolaires, référentiels de filières et doc
 | `programme_bacpro_premiere_sciences_-_2020-2.pdf` | Programme PC Première Bac Pro |
 | `programme_bacpro_terminale_sciences_-_2020.pdf` | Programme PC Terminale Bac Pro |
 
+## Programmes PC Terminale Générale (Spécialité)
+
+| Fichier | Contenu |
+|---|---|
+| `programme-pc-terminale-generale-specialite.pdf` | Programme physique-chimie Terminale Générale (spécialité) |
+
 ## Programmes CAP
 
 | Fichier | Contenu |
