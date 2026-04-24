@@ -1,7 +1,7 @@
 # Plan d'amelioration — Chapitres de Seconde
 
 **Date** : 2026-03-17
-**Derniere mise a jour** : 2026-03-31
+**Derniere mise a jour** : 2026-04-22
 **Perimetre** : maths/seconde (14 ch.) + physique-chimie/seconde (14 ch.)
 
 ---
@@ -69,6 +69,33 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 - [ ] **PC 1ere ICCER** — Ajouter des mini-exercices dans les lecons (actuellement 0 `.exo` dans les lecons)
 - [ ] **PC Seconde** — Enrichir les situations professionnelles avec davantage de personnages/scenarios
 
+### PRIORITE 4 — Ratio visuels / exercices (releve 2026-04-22)
+
+La relecture detaillee Seconde Pro du 2026-04-22 a mis en evidence un deficit systematique de visuels dans les pages d'exercices. Objectif : atteindre au moins 0,5 visuel par exercice en maths et 25 % en PC.
+
+**Maths Seconde — cible = ratio ≥ 0,65**
+
+- [x] ~~**ch06 Inequations du 1er degre** (ratio 7/19 = 0,37 → critique)~~ → **2026-04-22** 7 SVG droites graduees recapitulatives ajoutees (Ex 3, 4, 6, 7, 20, 21, 27). Ratio 14/19 = 0,74.
+- [ ] **ch04 Probabilites et fluctuation** (6/15 = 0,40) : ajouter arbres de probabilites, diagrammes de fluctuation, histogrammes. Priorite haute.
+- [ ] **ch13 Theoreme de Thales** (8/19 = 0,42) : ajouter figures geometriques (configurations droites paralleles, triangles emboites, inversion). Priorite haute.
+- [ ] **ch03 Indicateurs statistiques** (6/12 = 0,50) : graphiques de distribution, boites a moustaches.
+- [ ] **ch07 Notion de fonction** (10/18 = 0,55) : schemas de correspondance, tableaux de valeurs illustres.
+- [ ] **ch08 Fonction lineaire** (9/18 = 0,50) : courbes representatives, triangles de pente.
+- [ ] **ch10 Fonction carre** (11/19 = 0,57) : paraboles, tableaux de signe visuels.
+- [ ] **ch14 Solides et volumes** (9/16 = 0,56) : vues eclatees de solides, patrons annotes.
+
+**PC Seconde — cible = ratio ≥ 25 %**
+
+- [ ] **ch11 Transferts thermiques** (6/80 = 7 % — pire ratio) : schemas conduction / convection / rayonnement, courbes T(t), diagrammes d'echanges thermiques. Priorite **critique**.
+- [ ] **ch01 Securite en laboratoire** (7/64 = 11 %) : pictogrammes GHS SVG, schemas EPI annotes, pictogrammes interdiction/obligation. Priorite haute.
+- [ ] **ch03 Loi d'Ohm** (8/72 = 11 %) : caracteristiques (U,I), schemas de circuits annotes.
+- [ ] **ch05 Mouvement et trajectoire** (8/64 = 12 %) : chronophotographies stylisees, vecteurs vitesse.
+- [ ] **ch08 Solutions chimiques** (8/72 = 11 %) : schemas dissolution/dilution, echelles de concentration.
+- [ ] **ch09 Caracteristiques d'un son** (8/62 = 13 %) : oscillogrammes, spectres, courbes sinusoidales.
+- [ ] **ch10 Temperature et capteurs** (8/72 = 11 %) : courbes etalonnage, schemas thermistance/PT100.
+- [ ] **ch12 Changements d'etat** (9/76 = 12 %) : diagrammes etat, courbes T(Q), paliers de changement d'etat.
+- [ ] **ch14 Lumiere et couleurs** (8/66 = 12 %) : synthese additive/soustractive, spectres, decomposition prisme.
+
 ---
 
 ## Organisation du travail
@@ -93,6 +120,7 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 
 ## Corrections realisees
 
+- **2026-04-22** : Relecture detaillee des 28 chapitres Seconde Pro (maths + PC). Tableau de bord publie dans `audit-global.md`. Chapitres prioritaires identifies (visuels insuffisants). **Enrichissement de `maths/seconde/ch06/exercices.html`** : 7 SVG droites graduees recapitulatives ajoutees aux corrections des exercices 3, 4, 6, 7, 20, 21, 27 (ratio visuels/exercices de 0,37 a 0,74). Timestamp mis a jour.
 - **2026-04-03** : Conversion UTF-8 complete PC Seconde — 80 fichiers modifies, 26 678 entites HTML converties (lecon, exercices, ds, fiche, qcm, interro, activite, ch01-ch14). Titres `<title>` uniformises (UTF-8 propre, format `Ch0X – Titre – 2nde Bac Pro`). Labels ch04/ch05 et badges niveaux maths verifies conformes.
 - **2026-03-31** : Audit complet des 28 chapitres Seconde Pro (14 maths + 14 PC). Structure 8 fichiers complete sur 100% des chapitres. Aucun probleme technique detecte (nav.js, print.css, styles.css, MathJax, themes couleur, diff.js, sigles interdits, liens sommaire).
 
@@ -105,3 +133,4 @@ Les corrections sont **toutes redigees**. Le chiffre "517 manquantes" etait une 
 | Phase 1 — Corrections techniques | Quasi complete (1 item CSS inline restant) | 2026-04-03 | 2026-04-03 |
 | Phase 2 — Ameliorations pedagogiques | Complete | 2026-04-03 | 2026-04-03 |
 | Phase 3 — Enrichissements | A faire | — | — |
+| Phase 4 — Visuels dans exercices | En cours (1/15 chapitres traites : maths ch06) | 2026-04-22 | — |

@@ -1,8 +1,8 @@
 # Audit Global du Site Pédagogique
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-04-06
-**Note** : compteur simulations corrigé (63 → 70) le 2026-04-06
+**Dernière mise à jour** : 2026-04-22
+**Note** : compteur simulations corrigé (63 → 70) le 2026-04-06 ; relecture Seconde Pro le 2026-04-22
 **Périmètre** : ensemble du site maths-sciences-lp.github.io
 
 ---
@@ -67,6 +67,34 @@ La **Seconde est la section modèle du site** — vérification exhaustive des e
 
 **Note (2026-03-21)** : les taux de corrections d'exercices antérieurs (41 % maths, 80 % PC) étaient sous-estimés car ils ne comptaient pas le format `<details>` + `<summary>`. La vérification exhaustive confirme **100 % de corrections présentes** dans les deux matières.
 
+### Relecture Seconde Pro (2026-04-22)
+
+Passage systématique sur les 28 chapitres Seconde (maths + PC) pour vérifier visuels, différenciation, sigles interdits et complétude.
+
+| Section | Chapitres | 🟢 OK | 🟡 À améliorer | 🔴 Critique | Fichiers | Diff | Sigles |
+|---|---|---|---|---|---|---|---|
+| maths/seconde | 14 | 7 | 6 | 1 (ch06 → corrigé) | 14/14 ✅ | 14/14 ✅ | 0 ✅ |
+| physique-chimie/seconde | 14 | 0 | 14 | 0 | 14/14 ✅ | 14/14 ✅ | 0 ✅ |
+
+**Points forts :**
+- Aucun fichier obligatoire manquant, différenciation systématique, aucun sigle interdit.
+
+**Point faible identifié :** ratio visuels/exercices systématiquement insuffisant.
+
+**Chapitres prioritaires :**
+
+| Chapitre | Ratio visuels | Statut |
+|---|---|---|
+| maths/seconde/ch06 Inéquations | 7/19 → 14/19 | ✅ corrigé 2026-04-22 |
+| physique-chimie/seconde/ch11 Transferts thermiques | 6/80 (7 %) | À traiter |
+| physique-chimie/seconde/ch01 Sécurité | 7/64 (11 %) | À traiter |
+| maths/seconde/ch04 Probabilités | 6/15 (40 %) | À traiter |
+| maths/seconde/ch13 Thalès | 8/19 (42 %) | À traiter |
+| maths/seconde/ch03, ch07, ch08, ch10 | 50–57 % | À traiter |
+| PC/seconde/ch03, ch05, ch08, ch09, ch10, ch12, ch14 | 11–15 % | À traiter |
+
+Détails et plan d'action : voir `audits/plan-amelioration-seconde.md`.
+
 ---
 
 ## Vérifications techniques (2026-03-21)
@@ -129,6 +157,7 @@ La majorité des occurrences sont dans des **commentaires HTML** et des **footer
 
 ## Corrections realisees
 
+- **2026-04-22** : Relecture détaillée des sections Seconde Pro (maths + PC, 28 chapitres). Tableau de bord publié, chapitres prioritaires identifiés. Enrichissement de `maths/seconde/ch06/exercices.html` (Inéquations) : 7 nouveaux SVG droites graduées récapitulatives ajoutés aux corrections des exercices 3, 4, 6, 7, 20, 21, 27. Ratio visuels/exercices de ch06 : 0,37 → 0,74.
 - **2026-03-21** : Audit global automatisé — inventaire 504 fichiers, vérifications techniques, recherche sigles interdits. Mise à jour complète du tableau de bord.
 - **2026-04-06** : Création `prompts/prompt-ds.md` (prompt complet pour les devoirs surveillés). Mise à jour de 4 prompts existants (`prompt-exercices.md`, `prompt-cours.md`, `prompt-qcm-interro.md`, `prompt-exercices-capacites.md`) : ajout règle "données uniquement", tableaux de données proactifs, références orphelines, règle animations Canvas. Skill `/check-quality` réécrit en revue IA pure (suppression des scripts `check_visuals.py`, `check_chapter_quality.py`, `count_svg.py`). Fix lien retour sommaire `physique-chimie/seconde/ch11/interro.html`.
 - **2026-03-21** : Vérification exhaustive des 28 chapitres exercices Seconde (maths + PC) — 0 erreur, 100 % corrections présentes.
@@ -142,7 +171,15 @@ La majorité des occurrences sont dans des **commentaires HTML** et des **footer
 
 ## Ameliorations restantes
 
+### Priorité haute
+- [ ] Enrichir `physique-chimie/seconde/ch11` (Transferts thermiques) — ratio visuels/exercices 7 % (cible ≥ 25 %) : ajouter schémas conduction/convection/rayonnement, courbes T°(t), diagrammes échanges thermiques.
+- [ ] Enrichir `physique-chimie/seconde/ch01` (Sécurité) — ratio 11 % : ajouter pictogrammes GHS et schémas EPI annotés.
+- [ ] Enrichir `maths/seconde/ch04` (Probabilités) — ratio 40 % : ajouter arbres de probabilités, diagrammes de fluctuation, histogrammes.
+- [ ] Enrichir `maths/seconde/ch13` (Thalès) — ratio 42 % : ajouter figures géométriques (configurations de Thalès, triangles).
+
 ### Priorité moyenne
+- [ ] Enrichir `maths/seconde/ch03, ch07, ch08, ch10` (ratio 50–57 %) : graphiques de distribution, courbes de fonctions, paraboles.
+- [ ] Enrichir `physique-chimie/seconde/ch03, ch05, ch08, ch09, ch10, ch12, ch14` (ratio 11–15 %) : circuits électriques annotés, diagrammes thermiques, schémas ondulatoires.
 - [ ] Corriger les ~90 sigles interdits dans les commentaires HTML et footers → `/check-sigles`
 - [ ] Clarifier le nombre de chapitres en physique-chimie/terminale-iccer (mettre à jour CLAUDE.md : ch01-ch08)
 
