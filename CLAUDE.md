@@ -105,6 +105,14 @@ Les pages sommaire existantes :
 - `pc-term-gpt2.html` / `pc-term-gpt4.html` / `pc-term-gpt5.html` — PC Terminale Gpts 2/4/5
 - `pc-cap.html` — PC CAP
 
+**Conventions communes aux pages sommaire** (à respecter / déployer) :
+
+- **Fil d'Ariane** : `<nav>` en haut de page avec deux niveaux (`Accueil › <Matière — Niveau Filière>`). La couleur du libellé courant doit utiliser la variable `var(--primary)` du thème de la page (jamais une couleur en dur incohérente avec le thème).
+- **Timestamp** `<p class="maj">` dans le `<header>` (règle #10) — au même titre que les pages chapitres.
+- **`<meta name="description">`** dans le `<head>` (1 phrase courte décrivant la matière + le niveau + la filière).
+- **Tous les liens vers les fichiers chapitres** (`activite.html`, `lecon.html`, `exercices.html`, `exercices-capacites.html`, `ds.html`, `fiche.html`, `qcm.html`, `interro.html`) avec un ordre uniforme.
+- **Liens « Simulation »** (classe `link-sim`) vers les simulations rattachées au chapitre, quand il y en a.
+
 Autres pages utilitaires à la racine :
 - `simulations.html` — Index des simulations interactives
 - `groupements.html` — Groupements de filières Bac Pro
@@ -545,8 +553,13 @@ Les audits dans `/audits/` sont le **tableau de bord central du projet**. Ils ne
 | `audits/audit-pedagogique-maths.md` | Détail pédagogique — cours de mathématiques |
 | `audits/audit-pedagogique-pc.md` | Détail pédagogique — cours de physique-chimie |
 | `audits/audit-exercices.md` | Corrections, DS, complétude, qualité |
+| `audits/audit-interros.md` | Interrogations écrites courtes (`interro.html`) |
 | `audits/audit-simulations.md` | Simulations interactives, ancrage pédagogique |
 | `audits/audit-uniformisation.md` | Uniformisation des formats et conventions |
+| `audits/audit-seconde.md` | Audit transverse niveau Seconde Bac Pro |
+| `audits/audit-premiere-maths.md` | Audit Première Bac Pro — mathématiques |
+| `audits/audit-terminale.md` | Audit transverse niveau Terminale Bac Pro |
+| `audits/audit-log.md` | Journal des audits (historique des passes) |
 | `audits/plan-amelioration-seconde.md` | Plan d'amélioration spécifique Seconde |
 
 ### Règle de mise à jour obligatoire

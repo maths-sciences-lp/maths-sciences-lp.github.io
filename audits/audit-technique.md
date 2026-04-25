@@ -1,7 +1,7 @@
 # Audit Technique
 
 **Date** : 2026-03-16
-**Derniere mise a jour** : 2026-04-17 (audit page d'accueil + typo CLAUDE.md)
+**Derniere mise a jour** : 2026-04-25 (audit pages sommaire + chapitres PC seconde)
 **Perimetre** : HTML, CSS, JavaScript, chemins, accessibilite, simulations, performances
 **Nombre total de fichiers HTML audites** : 477 (191 maths, 180 physique-chimie, 63 simulations, 43 autres)
 
@@ -215,6 +215,12 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 | 8 | Simulations non autonomes (nav.js) | MOYENNE | 26 | Non-conformite CLAUDE.md |
 | 9 | Tableaux sans `scope`/`caption` | BASSE | Generalise | Accessibilite reduite |
 | 10 | Boutons interactifs sans ARIA | BASSE | Generalise | Accessibilite reduite |
+| 12 | Fil d'Ariane absent sur les pages sommaire | MOYENNE | 18 | Navigation degradee |
+| 13 | Fil d'Ariane couleur incoherente sur `pc-2nde-pro.html` (#2da44e vert au lieu de --primary violet) | BASSE | 1 | Cosmetique |
+| 14 | Timestamp `<p class="maj">` absent sur les pages chapitres et sommaires | MOYENNE | ~97 PC seconde + 19 sommaires | Non-conformite regle #10 CLAUDE.md |
+| 15 | `<meta name="description">` absent sur les pages sommaire | BASSE | 19 | SEO degrade |
+| 16 | Label `Mes calculs :` inadapte aux questions qualitatives | BASSE | ~130 occurrences (activite.html) | UX/pedago |
+| 17 | Fonction `toggle()` redefinie en doublon dans `activite.html` (deja dans nav.js) | BASSE | 14+ activite.html | Code mort |
 
 ---
 
@@ -244,6 +250,39 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - **2026-03-25** : Corrige lien retour interro.html ch10 (pc-2nde-mama → pc-2nde-pro)
 - **2026-04-17** : Audit page d'accueil (`index.html`) — compteur simulations 69 → 72 (hero + carte), ajout du timestamp `.maj` dans le header (regle #10), date « Chapitres en cours » calculee automatiquement (mois/annee courants), desambiguisation des ancres de nav (#card-maths / #card-pc au lieu de deux #disciplines identiques)
 - **2026-04-17** : Correction typo CLAUDE.md : `logicie.html` (fichier inexistant) → `logique.html` (fragment réellement présent dans les sommaires maths)
+- **2026-04-25** : Audit comparatif des 19 pages sommaire (`pc-*`, `maths-*`) — verification 0 lien casse sur 18 pages testees, identification de bugs structurels recurrents (cf. problemes 12 a 17 ci-dessus). Pages des groupements en construction (gpt2/4/6 et term-gpt2/4/5) coherentes avec l'etat reel du dossier (pas de liens casses).
+
+---
+
+## Probleme 12-17 — Pages sommaire et chapitres PC seconde (audit 2026-04-25)
+
+### 12. Fil d'Ariane absent sur les pages sommaire (gravite : MOYENNE)
+
+Sur les 19 pages sommaire de la racine (`pc-*.html`, `maths-*.html`), seule `pc-2nde-pro.html` possede un fil d'Ariane (« Accueil › Physique-Chimie 2de Bac Pro MAMA »). Les 18 autres n'en ont pas. Convention a definir et a deployer.
+
+### 13. Couleur du fil d'Ariane incoherente sur `pc-2nde-pro.html` (gravite : BASSE)
+
+Ligne 129 : `<span style="color:#2da44e;font-weight:600">` (vert — theme ERA/CAP) alors que la page utilise le theme PC Seconde violet `--primary: #6f42c1`. Devrait etre `var(--primary)` ou `#6f42c1`.
+
+### 14. Timestamp `<p class="maj">` absent — non-conformite regle #10 (gravite : MOYENNE)
+
+La regle #10 de CLAUDE.md impose la presence d'un timestamp `<p class="maj">Dernière mise à jour : ...</p>` dans le `<header>` de chaque page. Comptage 2026-04-25 :
+- 14 chapitres PC seconde × 8 fichiers = 112 pages, dont **1 seule** avec timestamp (`physique-chimie/seconde/ch01/lecon.html`)
+- 19 pages sommaire racine : **0** avec timestamp (sauf `index.html` corrige en 2026-04-17)
+
+Total approximatif : **~97 pages PC seconde + 19 sommaires** sans timestamp.
+
+### 15. `<meta name="description">` absent sur les pages sommaire (gravite : BASSE)
+
+Aucune des 19 pages sommaire n'a de balise `<meta name="description">` ni `<meta name="author">`. Affecte le SEO et le partage social.
+
+### 16. Label `Mes calculs :` inadapte aux questions qualitatives (gravite : BASSE)
+
+Toutes les pages `activite.html` PC seconde utilisent le template `<label>Mes calculs :</label>` dans les zones de reponse, y compris pour des questions purement qualitatives (nommer un pictogramme, identifier un risque, rediger un memo…). Comptage : 8 a 10 occurrences par fichier × 14 chapitres = ~130 instances. Un label generique `Ma reponse :` serait plus approprie.
+
+### 17. Fonction `toggle()` redefinie en doublon dans `activite.html` (gravite : BASSE)
+
+Les pages `activite.html` definissent `function toggle(btn){...}` inline en fin de fichier, alors que `window.toggle` est deja defini globalement dans `nav.js` (ligne 544). Le doublon est inoffensif (test `typeof window.toggle !== 'function'` dans nav.js) mais constitue du code mort a supprimer.
 
 ---
 
@@ -278,3 +317,14 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - [ ] Creer un script de validation des chemins (lint HTML) pour detecter les chemins absolus
 - [ ] Centraliser les classes CSS repetees dans plusieurs simulations si applicable
 - [ ] Verifier la coherence des balises `<title>` sur l'ensemble du site
+
+### Priorite MOYENNE (audit 2026-04-25 — pages sommaire et chapitres)
+- [ ] Ajouter le timestamp `<p class="maj">` sur les ~97 pages chapitres PC seconde sans timestamp (regle #10)
+- [ ] Ajouter le timestamp `<p class="maj">` sur les 19 pages sommaire racine
+- [ ] Definir une convention « fil d'Ariane » et la deployer sur les 19 pages sommaire (probleme 12)
+- [ ] Corriger la couleur du fil d'Ariane sur `pc-2nde-pro.html` (probleme 13)
+
+### Priorite BASSE (audit 2026-04-25)
+- [ ] Ajouter `<meta name="description">` sur les 19 pages sommaire (probleme 15)
+- [ ] Remplacer `Mes calculs :` par `Ma reponse :` (ou label adapte) dans les `activite.html` (probleme 16)
+- [ ] Supprimer la redefinition `function toggle()` en doublon dans les `activite.html` (probleme 17)

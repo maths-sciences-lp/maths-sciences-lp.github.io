@@ -1,7 +1,7 @@
 # Audit Doublons & Uniformisation des ressources
 
 **Date** : 2026-03-18
-**Derniere mise a jour** : 2026-03-22
+**Derniere mise a jour** : 2026-04-25
 **Perimetre** : Uniformisation du schema de pages par chapitre (automatismes, QCM, interrogations, fiches)
 
 ---
@@ -175,6 +175,12 @@ subject/level/chNN/
 
 ### Priorite basse
 - [ ] Harmoniser le rendu MathJax (tex-mml-chtml vs tex-svg) sur toutes les pages
+
+### Priorite moyenne (audit 2026-04-25 — pages sommaire et activites)
+- [ ] Definir et deployer une convention « fil d'Ariane » uniforme sur les 19 pages sommaire racine (seule `pc-2nde-pro.html` en a un, mais avec une couleur incoherente)
+- [ ] Uniformiser la presence du timestamp `<p class="maj">` dans le `<header>` de toutes les pages chapitres (regle #10 CLAUDE.md). Etat 2026-04-25 : ~97/112 pages PC seconde sans timestamp ; 19/19 sommaires sans timestamp
+- [ ] Uniformiser le label des zones de reponse dans `activite.html` : remplacer `Mes calculs :` (inadapte aux questions qualitatives) par `Ma reponse :` ou un label adapte au cas par cas — ~130 occurrences
+- [ ] Supprimer la redefinition `function toggle()` en doublon dans les `activite.html` (deja defini dans nav.js)
 
 ---
 
