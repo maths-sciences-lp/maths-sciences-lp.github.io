@@ -216,11 +216,13 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 | 9 | Tableaux sans `scope`/`caption` | BASSE | Generalise | Accessibilite reduite |
 | 10 | Boutons interactifs sans ARIA | BASSE | Generalise | Accessibilite reduite |
 | 12 | Fil d'Ariane absent sur les pages sommaire | MOYENNE | 18 | Navigation degradee |
-| 13 | Fil d'Ariane couleur incoherente sur `pc-2nde-pro.html` (#2da44e vert au lieu de --primary violet) | BASSE | 1 | Cosmetique |
-| 14 | Timestamp `<p class="maj">` absent sur les pages chapitres et sommaires | MOYENNE | ~97 PC seconde + 19 sommaires | Non-conformite regle #10 CLAUDE.md |
+| ~~13~~ | ~~Fil d'Ariane couleur incoherente sur `pc-2nde-pro.html`~~ | ~~BASSE~~ | ~~1~~ | **CORRIGE 2026-04-25** |
+| 14 | ~~Timestamp `<p class="maj">` absent sur les pages chapitres PC seconde~~ | ~~MOYENNE~~ | ~~97~~ | **CORRIGE 2026-04-25 (PC seconde)** — reste 19 sommaires racine |
 | 15 | `<meta name="description">` absent sur les pages sommaire | BASSE | 19 | SEO degrade |
 | 16 | Label `Mes calculs :` inadapte aux questions qualitatives | BASSE | ~130 occurrences (activite.html) | UX/pedago |
-| 17 | Fonction `toggle()` redefinie en doublon dans `activite.html` (deja dans nav.js) | BASSE | 14+ activite.html | Code mort |
+| ~~17~~ | ~~Fonction `toggle()` redefinie en doublon dans 5 `activite.html` PC seconde~~ | ~~BASSE~~ | ~~5~~ | **CORRIGE 2026-04-25** — reste autres types de fichiers |
+| 18 | Lien casse `pc-2nde-mama.html` dans 13 `interro.html` PC seconde | HAUTE | ~~13~~ | **CORRIGE 2026-04-25** (etait masque par nav.js mais latent) |
+| 19 | HTML invalide `<div>` dans `<span class="partie-title">` dans 5 `ds.html` PC seconde | MOYENNE | ~~5~~ | **CORRIGE 2026-04-25** |
 
 ---
 
@@ -251,6 +253,11 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - **2026-04-17** : Audit page d'accueil (`index.html`) — compteur simulations 69 → 72 (hero + carte), ajout du timestamp `.maj` dans le header (regle #10), date « Chapitres en cours » calculee automatiquement (mois/annee courants), desambiguisation des ancres de nav (#card-maths / #card-pc au lieu de deux #disciplines identiques)
 - **2026-04-17** : Correction typo CLAUDE.md : `logicie.html` (fichier inexistant) → `logique.html` (fragment réellement présent dans les sommaires maths)
 - **2026-04-25** : Audit comparatif des 19 pages sommaire (`pc-*`, `maths-*`) — verification 0 lien casse sur 18 pages testees, identification de bugs structurels recurrents (cf. problemes 12 a 17 ci-dessus). Pages des groupements en construction (gpt2/4/6 et term-gpt2/4/5) coherentes avec l'etat reel du dossier (pas de liens casses).
+- **2026-04-25** : Ajout du timestamp `<p class="maj">` sur 97 pages chapitres PC seconde (regle #10) : 83 pages avec `<header>` standard + 14 fiche.html avec structure `<div class="fiche">`.
+- **2026-04-25** : Correction couleur fil d'Ariane sur `pc-2nde-pro.html` (#2da44e vert -> var(--primary) violet — coherence avec le theme PC Seconde).
+- **2026-04-25** : Suppression de la redefinition `function toggle()` en doublon dans 5 `activite.html` PC seconde (deja defini dans nav.js).
+- **2026-04-25** : Correction lien casse `pc-2nde-mama.html` (fichier inexistant) -> `pc-2nde-pro.html` dans 13 `interro.html` PC seconde (ch01-ch10, ch12-ch14). Le ch11 etait deja correct. nav.js masquait le lien `.nb` automatiquement, le bug etait latent.
+- **2026-04-25** : Correction HTML invalide `<div class="svg-wrap">` imbrique dans `<span class="partie-title">` (block dans inline) sur 5 `ds.html` PC seconde (ch01, ch03, ch04, ch13, ch14). Restructuration : SVG sorti hors du span, place avant le `<div class="partie-header">`.
 
 ---
 
@@ -319,12 +326,17 @@ Les pages `activite.html` definissent `function toggle(btn){...}` inline en fin 
 - [ ] Verifier la coherence des balises `<title>` sur l'ensemble du site
 
 ### Priorite MOYENNE (audit 2026-04-25 — pages sommaire et chapitres)
-- [ ] Ajouter le timestamp `<p class="maj">` sur les ~97 pages chapitres PC seconde sans timestamp (regle #10)
+- [x] Ajouter le timestamp `<p class="maj">` sur les ~97 pages chapitres PC seconde (corrige 2026-04-25)
 - [ ] Ajouter le timestamp `<p class="maj">` sur les 19 pages sommaire racine
 - [ ] Definir une convention « fil d'Ariane » et la deployer sur les 19 pages sommaire (probleme 12)
-- [ ] Corriger la couleur du fil d'Ariane sur `pc-2nde-pro.html` (probleme 13)
+- [x] Corriger la couleur du fil d'Ariane sur `pc-2nde-pro.html` (corrige 2026-04-25)
+- [x] Corriger HTML invalide `<div>` dans `<span class="partie-title">` dans 5 `ds.html` PC seconde (corrige 2026-04-25)
+
+### Priorite HAUTE (audit 2026-04-25)
+- [x] Corriger lien casse `pc-2nde-mama.html` -> `pc-2nde-pro.html` dans 13 `interro.html` PC seconde (corrige 2026-04-25)
 
 ### Priorite BASSE (audit 2026-04-25)
 - [ ] Ajouter `<meta name="description">` sur les 19 pages sommaire (probleme 15)
 - [ ] Remplacer `Mes calculs :` par `Ma reponse :` (ou label adapte) dans les `activite.html` (probleme 16)
-- [ ] Supprimer la redefinition `function toggle()` en doublon dans les `activite.html` (probleme 17)
+- [x] Supprimer la redefinition `function toggle()` en doublon dans 5 `activite.html` PC seconde (corrige 2026-04-25)
+- [ ] Verifier et nettoyer les autres redefinitions de `toggle()` dans exercices.html, ds.html, exercices-capacites.html (a faire si autorise)
