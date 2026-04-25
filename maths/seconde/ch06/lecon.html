@@ -63,7 +63,7 @@ details[open] summary{margin-bottom:6px}
     <span class="sp-label">Mission :</span><span>Lucie a un budget de 500 € pour acheter des lames de parquet à 12 € le m². Elle doit aussi payer 35 € de colle (forfait fixe). Elle veut savoir combien de m² elle peut commander au maximum.</span>
     <span class="sp-label">Question :</span><span>Quelle surface maximale peut-elle commander sans dépasser son budget ?</span>
   </div>
-  <p style="font-size:.82em;color:#92400e;margin:10px 0 0"><em>Ce problème sera résolu à la section 5 de ce chapitre.</em></p>
+  <p style="font-size:.82em;color:#92400e;margin:10px 0 0"><em>Ce problème sera résolu à la section 6 de ce chapitre.</em></p>
 </div>
 
 
@@ -358,9 +358,9 @@ une dimension minimale à respecter, une quantité à produire au minimum...</p>
   \[ 12x + 35 \leq 500 \]
   \[ 12x \leq 465 \]
   \[ x \leq \frac{465}{12} = 38{,}75 \]
-  Lucie peut commander au maximum <strong>38 m²</strong> (entier inférieur car on ne commande pas de fraction de m²).
+  Lucie peut commander au maximum <strong>38 m²</strong> (en pratique, Lucie peut commander au maximum 38,75 m² de parquet).
   <br>
-  Solution : \(x \in ]0 ; 38{,}75]\) — en pratique \(x \leq 38\) m².
+  Solution : \(x \in [0\,;\,38{,}75]\) — en pratique \(x \leq 38\) m².
 </div>
 
 <div class="ex">
@@ -482,7 +482,7 @@ une dimension minimale à respecter, une quantité à produire au minimum...</p>
 
 
 <!-- SIMULATIONS -->
-<h2>Visualiser graphiquement une inéquation</h2>
+<h3>Visualiser graphiquement une inéquation</h3>
 
 <p>
   Résoudre \(2x - 4 < 0\) revient à chercher pour quelles valeurs de \(x\) la droite \(f(x) = 2x - 4\) est <strong>en dessous</strong> de l'axe des abscisses (\(y = 0\)).
@@ -523,12 +523,12 @@ une dimension minimale à respecter, une quantité à produire au minimum...</p>
 
 <p style="font-size:.9em;color:#718096;text-align:center">Les barres <span style="color:#0056b3;font-weight:700">bleues</span> (en dessous de 0) indiquent les solutions : \(x &lt; 2\). Les barres <span style="color:#c53030;font-weight:700">rouges</span> indiquent où l'inéquation n'est pas vérifiée.</p>
 
-<h2>Animation — Droite graduée interactive</h2>
+<h3>Animation — Droite graduée interactive</h3>
 
 <p style="font-size:.9em;color:#718096">Règle les paramètres pour voir comment change l'ensemble solution d'une inéquation \(ax + b \leq c\) ou \(ax + b \geq c\).</p>
 
 <div class="ctrl-vis">
-  <label>a = <input type="range" id="ia" min="1" max="5" step="1" value="2"> <strong id="la2">2</strong></label>
+  <label>a = <input type="range" id="ia" min="-5" max="5" step="1" value="2"> <strong id="la2">2</strong></label>
   <label>b = <input type="range" id="ib" min="-8" max="8" step="1" value="-4"> <strong id="lb2">-4</strong></label>
   <label>c = <input type="range" id="ic" min="-5" max="10" step="1" value="0"> <strong id="lc2">0</strong></label>
   <label>Signe :
@@ -553,10 +553,13 @@ une dimension minimale à respecter, une quantité à produire au minimum...</p>
     const a=+ia.value,b=+ib.value,c=+ic.value,sign=isign.value;
     la2.textContent=a; lb2.textContent=b; lc2.textContent=c;
     // sol: ax+b ≤/≥ c → ax ≤/≥ c-b → x ≤/≥ (c-b)/a
+    // When a < 0, dividing flips the inequality direction
+    if(a===0){document.getElementById('resuIneq').textContent='a ne peut pas être 0';return;}
     const raw=(c-b)/a;
     const sol=Math.round(raw*100)/100;
-    const isLe=sign==='le'||sign==='lt';
-    const strict=sign==='lt'||sign==='gt';
+    let isLe=sign==='le'||sign==='lt';
+    let strict=sign==='lt'||sign==='gt';
+    if(a<0){isLe=!isLe; strict= sign==='lt'||sign==='gt';}
     ctx.clearRect(0,0,cv.width,cv.height);
     const W=cv.width,H=cv.height;
     // Draw number line
@@ -597,14 +600,18 @@ une dimension minimale à respecter, une quantité à produire au minimum...</p>
     ctx.fillText('x='+sol, solX, yc-16);
     // Result
     const signStr={le:'≤',lt:'<',ge:'≥',gt:'>'}[sign];
-    document.getElementById('resuIneq').textContent=`${a}x ${b>=0?'+'+b:b} ${signStr} ${c}  →  x ${signStr} ${sol}`;
+    // Determine the solution sign (flipped if a<0)
+    let solSign;
+    if(a<0){solSign={le:'≥',lt:'>',ge:'≤',gt:'<'}[sign];}
+    else{solSign=signStr;}
+    document.getElementById('resuIneq').textContent=`${a}x ${b>=0?'+'+b:b} ${signStr} ${c}  →  x ${solSign} ${sol}`;
   }
   [ia,ib,ic,isign].forEach(el=>el.addEventListener('input',draw));
   draw();
 })();
 </script>
 
-<h2>Simulations interactives</h2>
+<h3>Simulations interactives</h3>
 <p>Entraîne-toi avec les outils interactifs de ce chapitre :</p>
 <div>
   <a href="../../../simulations/inegalite.html" class="simu-link" target="_blank">📊 Inéquations sur la droite graduée</a>

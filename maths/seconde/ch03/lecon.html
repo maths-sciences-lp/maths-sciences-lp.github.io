@@ -79,16 +79,6 @@
   <strong>⚠ Attention :</strong> La moyenne est <em>sensible aux valeurs extrêmes</em>. La valeur 55 min tire la moyenne vers le haut.
 </div>
 
-<div class="mini-exo">
-  <strong>Application — Moyenne et médiane</strong>
-  <p>7 temps de déplacement (min) : 12, 15, 20, 18, 15, 25, 10. Calculer la moyenne et la médiane.</p>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
-  <div class="corr">
-    <strong>Moyenne :</strong> \(\bar{x} = \dfrac{12+15+20+18+15+25+10}{7} = \dfrac{115}{7} \approx 16{,}4\) min.<br><br>
-    <strong>Médiane :</strong> Triée : 10 · 12 · 15 · <strong>15</strong> · 18 · 20 · 25. N=7 impair, rang 4 → Me = <strong>15 min</strong>.
-  </div>
-</div>
-
 <h3>2.3 La médiane</h3>
 <div class="prop">
   <strong>Médiane (Me)</strong> : valeur qui partage la série triée en deux moitiés égales — 50&nbsp;% des valeurs sont ≤&nbsp;Me.
@@ -104,6 +94,16 @@
 <div class="ex">
   Série triée (\(N=12\), pair) : 18&nbsp;·&nbsp;20&nbsp;·&nbsp;22&nbsp;·&nbsp;25&nbsp;·&nbsp;27&nbsp;·&nbsp;<strong style="color:var(--p)">28</strong>&nbsp;·&nbsp;<strong style="color:var(--p)">30</strong>&nbsp;·&nbsp;32&nbsp;·&nbsp;35&nbsp;·&nbsp;40&nbsp;·&nbsp;45&nbsp;·&nbsp;55<br>
   Rangs 6 et 7 : 28 et 30. &nbsp;\(\;Me = \dfrac{28+30}{2} = \mathbf{29 \text{ min}}\)
+</div>
+
+<div class="mini-exo">
+  <strong>Application — Moyenne et médiane</strong>
+  <p>7 temps de déplacement (min) : 12, 15, 20, 18, 15, 25, 10. Calculer la moyenne et la médiane.</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <strong>Moyenne :</strong> \(\bar{x} = \dfrac{12+15+20+18+15+25+10}{7} = \dfrac{115}{7} \approx 16{,}4\) min.<br><br>
+    <strong>Médiane :</strong> Triée : 10 · 12 · 15 · <strong>15</strong> · 18 · 20 · 25. N=7 impair, rang 4 → Me = <strong>15 min</strong>.
+  </div>
 </div>
 
 <h3>2.4 Les quartiles Q₁ et Q₃</h3>
@@ -122,8 +122,8 @@
 </div>
 
 <div class="mini-exo">
-  <strong>Application — Quartiles et IQR</strong>
-  <p>10 durées triées (min) : 8, 12, 15, 18, 20, 22, 25, 28, 32, 40. Calculer Q₁, Me, Q₃ et l'IQR. Interpréter.</p>
+  <strong>Application — Quartiles et IQR (écart interquartile)</strong>
+  <p>10 durées triées (min) : 8, 12, 15, 18, 20, 22, 25, 28, 32, 40. Calculer Q₁, Me, Q₃ et l'IQR (écart interquartile). Interpréter.</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     N=10, pair. Me = (20+22)/2 = <strong>21 min</strong>.<br>
@@ -260,8 +260,8 @@
     data:{
       labels:['Int 1','Int 2','Int 3','Int 4','Int 5','Int 6','Int 7','Int 8','Int 9','Int 10'],
       datasets:[
-        {label:'Technicien A (x\u0305\u224830 min, \u03c3\u22481,6) — r\u00e9gulier',data:[28,30,29,31,28,30,29,32,27,30],backgroundColor:'rgba(0,86,179,0.65)',borderColor:'#0056b3',borderWidth:1,borderRadius:4},
-        {label:'Technicien B (x\u0305\u224833 min, \u03c3\u224816) — irr\u00e9gulier',data:[15,45,20,50,18,55,22,48,12,40],backgroundColor:'rgba(197,48,48,0.55)',borderColor:'#c53030',borderWidth:1,borderRadius:4}
+        {label:'Technicien A (x\u0305\u224829,4 min, \u03c3\u22481,4) — r\u00e9gulier',data:[28,30,29,31,28,30,29,32,27,30],backgroundColor:'rgba(0,86,179,0.65)',borderColor:'#0056b3',borderWidth:1,borderRadius:4},
+        {label:'Technicien B (x\u0305\u224832,5 min, \u03c3\u224815,7) — irr\u00e9gulier',data:[15,45,20,50,18,55,22,48,12,40],backgroundColor:'rgba(197,48,48,0.55)',borderColor:'#c53030',borderWidth:1,borderRadius:4}
       ]
     },
     options:{responsive:true,plugins:{legend:{position:'top'},title:{display:true,text:'Temps d\'intervention (min) \u2014 comparaison de r\u00e9gularit\u00e9',font:{size:13}}},scales:{y:{beginAtZero:true,title:{display:true,text:'Dur\u00e9e (min)'},max:65}}}
@@ -366,8 +366,8 @@
 
 <h3>Exemple 2 — Comparaison deux équipes</h3>
 <div class="ex">
-  <strong>Équipe A</strong> : 30, 32, 28, 31, 29, 33, 30, 27, 31, 29 &nbsp;→&nbsp; \(\bar{x}_A = 30\) min, \(\sigma_A \approx 1{,}6\) min<br>
-  <strong>Équipe B</strong> : 15, 45, 20, 50, 25, 55, 18, 48, 22, 42 &nbsp;→&nbsp; \(\bar{x}_B = 34\) min, \(\sigma_B \approx 15\) min<br><br>
+  <strong>Équipe A</strong> : 30, 32, 28, 31, 29, 33, 30, 27, 31, 29 &nbsp;→&nbsp; \(\bar{x}_A = 30\) min, \(\sigma_A \approx 1{,}7\) min<br>
+  <strong>Équipe B</strong> : 15, 45, 20, 50, 25, 55, 18, 48, 22, 42 &nbsp;→&nbsp; \(\bar{x}_B = 34\) min, \(\sigma_B \approx 14{,}5\) min<br><br>
   <strong>Conclusion :</strong> L’équipe A est plus rapide ET plus régulière. L’écart-type révèle une information que la moyenne seule ne suffit pas à donner.
 </div>
 
@@ -435,7 +435,7 @@
   <div class="txt">
     <strong>Mal identifier Q1 et Q3 (confusion sur la position)</strong><br>
     Q1 est la médiane de la première moitié de la série (25 % des données en dessous), Q3 est la médiane de la deuxième moitié (75 % en dessous). Certains élèves prennent le premier ou le dernier quart des valeurs sans appliquer la bonne méthode.<br>
-    <em>Conseil : pour une série de \(n\) valeurs triées, Q1 est à la position \(\frac{n+1}{4}\) et Q3 à la position \(\frac{3(n+1)}{4}\). En cas de doute, utiliser la calculatrice et vérifier.</em>
+    <em>Conseil : la méthode utilisée dans ce cours consiste à couper la série triée en deux moitiés, puis à prendre la médiane de chaque moitié (voir section 2.4). Une méthode alternative utilise les positions \(\frac{n+1}{4}\) et \(\frac{3(n+1)}{4}\), mais elle peut donner des résultats légèrement différents. En cas de doute, utiliser la calculatrice et vérifier.</em>
   </div>
 </div>
 
