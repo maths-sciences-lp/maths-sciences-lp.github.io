@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Automatismes sur les vecteurs du plan pour Premi&egrave;re Bac Pro &ndash; coordonn&eacute;es, somme, produit, norme, milieu, colin&eacute;arit&eacute;. QCM et exercices corrig&eacute;s.">
+<title>Automatismes – Vecteurs du plan – Premi&egrave;re Bac Pro</title>
+<script>MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}}</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--p:#7c3aed;--s:#2f855a;--d:#7c2d12;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);margin:0;padding:20px;line-height:1.7}
+.c{max-width:860px;margin:auto;background:#fff;padding:30px 35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:26px;padding-bottom:14px}
+.surtitre{margin:0 0 4px;color:#718096;font-size:.85em;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+h1{margin:0 0 5px;color:var(--p);font-size:1.55em}
+.sous-titre{margin:0;color:#718096;font-size:.88em}
+.nav-haut{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.nav-haut a{color:#1e3b6e;text-decoration:none;font-size:.83em;font-weight:700;padding:5px 11px;border-radius:6px;background:#ebf5ff;border:1px solid #bee3f8;transition:.15s}
+.nav-haut a:hover{background:#dbeafe}
+.fml{background:#ebf5ff;border:1.5px solid var(--p);border-radius:8px;padding:12px 18px;margin:14px 0;font-size:.94em}
+.fml-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:8px}
+@media(max-width:560px){.fml-grid{grid-template-columns:1fr}}
+.fml-row{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:5px 0;border-bottom:1px solid #bee3f8;align-items:center;font-size:.93em}
+.fml-row:last-child{border-bottom:none}
+.fml-f{font-weight:600;color:#1e3b6e}
+.fml-df{color:#1e40af}
+.alerte{background:#fffbeb;border-left:4px solid var(--o);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.9em}
+.bloc-niveau{border:2px solid #e2e8f0;border-radius:10px;margin:22px 0;overflow:hidden}
+.bloc-niveau-header{padding:11px 18px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:1em;border-bottom:1px solid #e2e8f0}
+.n1 .bloc-niveau-header{background:#d1fae5;color:#065f46;border-bottom-color:#a7f3d0}
+.n2 .bloc-niveau-header{background:#dbeafe;color:#1e40af;border-bottom-color:#93c5fd}
+.n3 .bloc-niveau-header{background:#f3e8ff;color:#6d28d9;border-bottom-color:#d8b4fe}
+.bloc-niveau-body{padding:16px 18px}
+.exo{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:13px 16px;margin:10px 0}
+.exo-q{margin:0 0 8px;font-weight:600;font-size:.97em}
+.exo-q .num{color:var(--p);margin-right:4px}
+details{margin-top:6px}
+details summary{cursor:pointer;color:#0056b3;font-size:.86em;font-weight:600;list-style:none;padding:3px 0;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary{display:flex;align-items:center;gap:4px}details summary::before{content:'▸'}
+details[open] summary::before{content:'▾'}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:9px 13px;border-radius:0 8px 8px 0;margin-top:8px;font-size:.91em;line-height:1.55}
+.corr b{color:#065f46}
+.qcm-opts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.qo{padding:6px 16px;border-radius:6px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.9em;transition:.15s;font-family:inherit}
+.qo:hover:not(:disabled){border-color:var(--p);background:#ebf5ff}
+.qo.ok{background:#d1fae5;border-color:var(--s);color:#065f46;font-weight:700}
+.qo.ko{background:#fee2e2;border-color:#dc2626;color:#991b1b}
+.qo:disabled{cursor:default}
+.fb{font-size:.85em;min-height:1.3em;font-weight:600;margin-top:3px}
+.fb.ok{color:var(--s)}.fb.ko{color:#dc2626}
+</style>
+<link rel="stylesheet" href="../print.css" media="print"></head>
+<body>
+<div class="c">
+
+  <nav class="nav-haut">
+    <a href="index.html">&larr; Automatismes</a>
+    <a href="../maths-1ere-pro.html">&nearr; Maths 1&egrave;re</a>
+  </nav>
+
+  <header>
+    <p class="surtitre">&#9889; Automatismes &ndash; Premi&egrave;re Bac Pro</p>
+    <h1>&#10145;&#65039; Vecteurs du plan</h1>
+    <p class="sous-titre">Mise &agrave; jour : 28 avril 2026</p>
+  </header>
+
+  <div class="alerte">
+    <strong>Objectif :</strong> Ma&icirc;triser les op&eacute;rations sur les vecteurs du plan (coordonn&eacute;es, somme, produit, norme, milieu, colin&eacute;arit&eacute;) et les appliquer dans des situations concr&egrave;tes.
+  </div>
+
+  <div class="fml">
+    <strong>&#128203; Formulaire &ndash; Vecteurs du plan</strong>
+    <div class="fml-grid" style="margin-top:10px">
+      <div class="fml-row"><span class="fml-f">\(\vec{AB}\begin{pmatrix}x_B-x_A\\y_B-y_A\end{pmatrix}\)</span><span class="fml-df">Vecteur AB</span></div>
+      <div class="fml-row"><span class="fml-f">\(\vec{u}+\vec{v}=\begin{pmatrix}x_1+x_2\\y_1+y_2\end{pmatrix}\)</span><span class="fml-df">Somme</span></div>
+      <div class="fml-row"><span class="fml-f">\(k\cdot\vec{u}=\begin{pmatrix}kx\\ky\end{pmatrix}\)</span><span class="fml-df">Produit</span></div>
+      <div class="fml-row"><span class="fml-f">\(\|\vec{u}\|=\sqrt{x^2+y^2}\)</span><span class="fml-df">Norme</span></div>
+      <div class="fml-row"><span class="fml-f">\(I\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)\)</span><span class="fml-df">Milieu</span></div>
+      <div class="fml-row"><span class="fml-f">\(\vec{u}\) et \(\vec{v}\) colin&eacute;aires \(\iff x_1 y_2 - x_2 y_1 = 0\)</span><span class="fml-df">Colin&eacute;arit&eacute;</span></div>
+    </div>
+    <p style="margin:8px 0 0;font-size:.9em;color:#1e3b6e"><strong>Rappel :</strong> \(\vec{AB}+\vec{BC}=\vec{AC}\) (relation de Chasles).</p>
+  </div>
+
+  <!-- ═══ NIVEAU 1 ═══ -->
+  <div class="bloc-niveau n1">
+    <div class="bloc-niveau-header">&#x1F7E2; Niveau 1 &mdash; Bases</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Quelles sont les coordonn&eacute;es du vecteur \(\vec{AB}\) avec \(A(1\,;\,3)\) et \(B(4\,;\,7)\) ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \((5\,;\,10)\)</button>
+          <button class="qo" onclick="qcm(this,true,'On calcule x_B &minus; x_A = 4 &minus; 1 = 3 et y_B &minus; y_A = 7 &minus; 3 = 4.')">B) \((3\,;\,4)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \((4\,;\,7)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \((-3\,;\,-4)\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Calculer \(\vec{u}+\vec{v}\) avec \(\vec{u}(2\,;\,-1)\) et \(\vec{v}(3\,;\,5)\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On additionne coordonn&eacute;e par coordonn&eacute;e :<br>
+          \(\vec{u}+\vec{v}=\begin{pmatrix}2+3\\-1+5\end{pmatrix}=\mathbf{(5\,;\,4)}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Le vecteur oppos&eacute; de \(\vec{u}(3\,;\,-2)\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \((3\,;\,2)\)</button>
+          <button class="qo" onclick="qcm(this,true,'Le vecteur oppos&eacute; de (3 ; &minus;2) est (&minus;3 ; 2) : on change le signe de chaque coordonn&eacute;e.')">B) \((-3\,;\,2)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \((2\,;\,-3)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \((-2\,;\,3)\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Calculer \(3\cdot\vec{u}\) pour \(\vec{u}(2\,;\,-4)\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On multiplie chaque coordonn&eacute;e par 3 :<br>
+          \(3\cdot\vec{u}=\begin{pmatrix}3\times 2\\3\times(-4)\end{pmatrix}=\mathbf{(6\,;\,-12)}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Le milieu de \(A(2\,;\,6)\) et \(B(8\,;\,4)\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \((6\,;\,10)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \((3\,;\,2)\)</button>
+          <button class="qo" onclick="qcm(this,true,'I = ((2+8)/2 ; (6+4)/2) = (10/2 ; 10/2) = (5 ; 5).')">C) \((5\,;\,5)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \((4\,;\,5)\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> Calculer la norme de \(\vec{u}(3\,;\,4)\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\|\vec{u}\|=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=\mathbf{5}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Relation de Chasles : \(\vec{AB}+\vec{BC}=\,\)&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'D\'apr&egrave;s la relation de Chasles, AB + BC = AC.')">A) \(\vec{AC}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(\vec{BA}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(\vec{CA}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\vec{0}\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) Coordonn&eacute;es de \(\vec{BA}\) si \(A(1\,;\,2)\), \(B(5\,;\,3)\) &nbsp;&nbsp; b) \(2\cdot(1\,;\,-3)=\,?\) &nbsp;&nbsp; c) \(\vec{u}+(-\vec{u})=\,?\) &nbsp;&nbsp; d) Milieu de \((0\,;\,0)\) et \((6\,;\,8)\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(\vec{BA}=\begin{pmatrix}1-5\\2-3\end{pmatrix}=\mathbf{(-4\,;\,-1)}\)<br>
+          b) \(2\cdot(1\,;\,-3)=\mathbf{(2\,;\,-6)}\)<br>
+          c) \(\vec{u}+(-\vec{u})=\mathbf{\vec{0}}\)<br>
+          d) \(\left(\dfrac{0+6}{2}\,;\,\dfrac{0+8}{2}\right)=\mathbf{(3\,;\,4)}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 2 ═══ -->
+  <div class="bloc-niveau n2">
+    <div class="bloc-niveau-header">&#x1F535; Niveau 2 &mdash; Entra&icirc;nement</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> On donne \(A(-1\,;\,3)\), \(B(2\,;\,-1)\), \(C(5\,;\,3)\). Calculer \(\vec{AB}\) et \(\vec{AC}\). Sont-ils colin&eacute;aires ?</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\vec{AB}=\begin{pmatrix}2-(-1)\\-1-3\end{pmatrix}=\begin{pmatrix}3\\-4\end{pmatrix}\)<br>
+          \(\vec{AC}=\begin{pmatrix}5-(-1)\\3-3\end{pmatrix}=\begin{pmatrix}6\\0\end{pmatrix}\)<br><br>
+          D&eacute;terminant : \(3\times 0-(-4)\times 6=0+24=24\neq 0\).<br>
+          <b>Les vecteurs ne sont pas colin&eacute;aires.</b>
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> \(\vec{u}(6\,;\,-3)\) et \(\vec{v}(-2\,;\,1)\) sont colin&eacute;aires car&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'D&eacute;terminant : 6 &times; 1 &minus; (&minus;3) &times; (&minus;2) = 6 &minus; 6 = 0. Les vecteurs sont bien colin&eacute;aires.')">A) \(6\times 1-(-3)\times(-2)=6-6=0\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(6\times(-2)-(-3)\times 1=0\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(6+(-3)=(-2)+1\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) Ils ne sont pas colin&eacute;aires</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Trouver les coordonn&eacute;es de \(D\) pour que \(ABCD\) soit un parall&eacute;logramme, avec \(A(1\,;\,1)\), \(B(4\,;\,2)\), \(C(5\,;\,5)\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(ABCD\) est un parall&eacute;logramme si \(\vec{AB}=\vec{DC}\).<br>
+          \(\vec{AB}=\begin{pmatrix}4-1\\2-1\end{pmatrix}=\begin{pmatrix}3\\1\end{pmatrix}\)<br><br>
+          \(\vec{DC}=\begin{pmatrix}5-x_D\\5-y_D\end{pmatrix}=\begin{pmatrix}3\\1\end{pmatrix}\)<br><br>
+          Donc \(5-x_D=3\) soit \(x_D=2\), et \(5-y_D=1\) soit \(y_D=4\).<br>
+          <b>\(D(2\,;\,4)\)</b>
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Quelle est la norme de \(\vec{u}(-5\,;\,12)\) ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 7</button>
+          <button class="qo" onclick="qcm(this,true,'||u|| = &radic;((&minus;5)&sup2; + 12&sup2;) = &radic;(25 + 144) = &radic;169 = 13.')">B) 13</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 17</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\sqrt{119}\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> V&eacute;rifier que les points \(A(1\,;\,2)\), \(B(3\,;\,6)\), \(C(5\,;\,10)\) sont align&eacute;s.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\vec{AB}=\begin{pmatrix}3-1\\6-2\end{pmatrix}=\begin{pmatrix}2\\4\end{pmatrix}\)<br>
+          \(\vec{AC}=\begin{pmatrix}5-1\\10-2\end{pmatrix}=\begin{pmatrix}4\\8\end{pmatrix}\)<br><br>
+          D&eacute;terminant : \(2\times 8-4\times 4=16-16=0\).<br>
+          <b>Les vecteurs sont colin&eacute;aires, donc A, B et C sont align&eacute;s.</b>
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> \(\vec{AB}+\vec{BA}=\,\)&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'BA est le vecteur oppos&eacute; de AB, donc leur somme est le vecteur nul.')">A) \(\vec{0}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(2\vec{AB}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(\vec{AA}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\vec{AB}\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Calculer \(2\vec{AB}-3\vec{AC}\) avec \(A(0\,;\,0)\), \(B(3\,;\,1)\), \(C(1\,;\,4)\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\vec{AB}=\begin{pmatrix}3\\1\end{pmatrix}\) et \(\vec{AC}=\begin{pmatrix}1\\4\end{pmatrix}\)<br><br>
+          \(2\vec{AB}=\begin{pmatrix}6\\2\end{pmatrix}\) et \(3\vec{AC}=\begin{pmatrix}3\\12\end{pmatrix}\)<br><br>
+          \(2\vec{AB}-3\vec{AC}=\begin{pmatrix}6-3\\2-12\end{pmatrix}=\mathbf{(3\,;\,-10)}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) Norme de \((0\,;\,7)\) &nbsp;&nbsp; b) D&eacute;terminant de \((2\,;\,3)\) et \((4\,;\,6)\) &nbsp;&nbsp; c) Milieu de \((-2\,;\,5)\) et \((4\,;\,-1)\) &nbsp;&nbsp; d) \(\vec{AB}\) si \(A(3\,;\,-1)\), \(B(3\,;\,4)\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(\|\vec{u}\|=\sqrt{0^2+7^2}=\sqrt{49}=\mathbf{7}\)<br>
+          b) \(2\times 6-3\times 4=12-12=\mathbf{0}\) (colin&eacute;aires)<br>
+          c) \(\left(\dfrac{-2+4}{2}\,;\,\dfrac{5+(-1)}{2}\right)=\mathbf{(1\,;\,2)}\)<br>
+          d) \(\vec{AB}=\begin{pmatrix}3-3\\4-(-1)\end{pmatrix}=\mathbf{(0\,;\,5)}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 3 ═══ -->
+  <div class="bloc-niveau n3">
+    <div class="bloc-niveau-header">&#x1F7E3; Niveau 3 &mdash; Automatisation</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> <em>Contexte pro &mdash;</em> Un menuisier d&eacute;place un meuble par une translation de vecteur \(\vec{u}(3\,;\,2)\) puis une translation de vecteur \(\vec{v}(-1\,;\,4)\).<br>
+        a) Quel est le vecteur d&eacute;placement total ?<br>
+        b) Quelle est la distance parcourue au total ?</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>a)</b> Le vecteur d&eacute;placement total est \(\vec{u}+\vec{v}=\begin{pmatrix}3+(-1)\\2+4\end{pmatrix}=\mathbf{(2\,;\,6)}\)<br><br>
+          <b>b)</b> La distance totale correspond &agrave; la norme du vecteur r&eacute;sultant :<br>
+          \(\|\vec{u}+\vec{v}\|=\sqrt{2^2+6^2}=\sqrt{4+36}=\sqrt{40}=2\sqrt{10}\approx\mathbf{6{,}3\text{ unit&eacute;s}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Les points \(A(1\,;\,1)\), \(B(4\,;\,3)\), \(C(7\,;\,5)\) sont-ils align&eacute;s ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'AB(3 ; 2) et AC(6 ; 4). D&eacute;terminant : 3 &times; 4 &minus; 2 &times; 6 = 12 &minus; 12 = 0. Les vecteurs sont colin&eacute;aires, donc les points sont align&eacute;s.')">A) Oui, \(\vec{AB}\) et \(\vec{AC}\) sont colin&eacute;aires</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) Non, le d&eacute;terminant est non nul</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Trouver \(k\) tel que \(\vec{u}(2\,;\,3)\) et \(\vec{v}(6\,;\,k)\) soient colin&eacute;aires.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          Condition de colin&eacute;arit&eacute; : \(x_1 y_2 - x_2 y_1 = 0\)<br>
+          \(2\times k - 6\times 3 = 0\)<br>
+          \(2k - 18 = 0\)<br>
+          \(2k = 18\)<br>
+          \(\mathbf{k = 9}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Le point \(M\) tel que \(\vec{AM}=2\vec{AB}\) avec \(A(1\,;\,2)\) et \(B(3\,;\,5)\) a pour coordonn&eacute;es&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \((6\,;\,10)\)</button>
+          <button class="qo" onclick="qcm(this,true,'AB = (2 ; 3), donc 2&middot;AB = (4 ; 6). M = A + 2&middot;AB = (1+4 ; 2+6) = (5 ; 8).')">B) \((5\,;\,8)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \((7\,;\,12)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \((3\,;\,5)\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> \(ABCD\) est un parall&eacute;logramme avec \(A(-1\,;\,0)\), \(B(3\,;\,2)\), \(D(1\,;\,4)\). Trouver les coordonn&eacute;es de \(C\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(ABCD\) parall&eacute;logramme \(\implies \vec{AB}=\vec{DC}\).<br>
+          \(\vec{AB}=\begin{pmatrix}3-(-1)\\2-0\end{pmatrix}=\begin{pmatrix}4\\2\end{pmatrix}\)<br><br>
+          \(\vec{DC}=\begin{pmatrix}x_C-1\\y_C-4\end{pmatrix}=\begin{pmatrix}4\\2\end{pmatrix}\)<br><br>
+          Donc \(x_C=1+4=5\) et \(y_C=4+2=6\).<br>
+          <b>\(C(5\,;\,6)\)</b>
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> On donne \(\vec{u}=\vec{AB}+\vec{AC}\) avec \(A(0\,;\,0)\), \(B(4\,;\,0)\), \(C(0\,;\,3)\). Que vaut \(\|\vec{u}\|\) ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'AB = (4 ; 0) et AC = (0 ; 3). u = (4 ; 3). ||u|| = &radic;(16 + 9) = &radic;25 = 5.')">A) 5</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) 7</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(\sqrt{7}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 25</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Montrer que le triangle \(ABC\) avec \(A(0\,;\,0)\), \(B(6\,;\,0)\), \(C(3\,;\,4)\) est isoc&egrave;le en \(C\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On calcule \(CA\) et \(CB\) :<br>
+          \(\vec{CA}=\begin{pmatrix}0-3\\0-4\end{pmatrix}=\begin{pmatrix}-3\\-4\end{pmatrix}\), donc \(CA=\sqrt{(-3)^2+(-4)^2}=\sqrt{9+16}=\sqrt{25}=\mathbf{5}\)<br><br>
+          \(\vec{CB}=\begin{pmatrix}6-3\\0-4\end{pmatrix}=\begin{pmatrix}3\\-4\end{pmatrix}\), donc \(CB=\sqrt{3^2+(-4)^2}=\sqrt{9+16}=\sqrt{25}=\mathbf{5}\)<br><br>
+          \(CA=CB=5\), donc <b>le triangle \(ABC\) est isoc&egrave;le en \(C\)</b>.
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre rapidement.<br>
+        a) D&eacute;terminant de \((1\,;\,2)\) et \((3\,;\,4)\) &nbsp;&nbsp; b) \(k\cdot(2\,;\,-5)=(-6\,;\,15)\), \(k=\,?\) &nbsp;&nbsp; c) \(\vec{AB}+\vec{BC}+\vec{CD}=\,?\) &nbsp;&nbsp; d) Norme de \((-3\,;\,4)\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(1\times 4-2\times 3=4-6=\mathbf{-2}\)<br>
+          b) \(k\times 2=-6\) donc \(k=\mathbf{-3}\)<br>
+          c) Par la relation de Chasles : \(\vec{AB}+\vec{BC}+\vec{CD}=\mathbf{\vec{AD}}\)<br>
+          d) \(\sqrt{(-3)^2+4^2}=\sqrt{9+16}=\sqrt{25}=\mathbf{5}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+
+  <nav class="nav-bas" aria-label="Retour automatismes" style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+    <a href="index.html" style="color:var(--p);text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&larr; Retour au menu des automatismes</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:#64748b;text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&uarr; Haut de page</a>
+  </nav>
+
+</div>
+
+<script src="qcm-auto.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>

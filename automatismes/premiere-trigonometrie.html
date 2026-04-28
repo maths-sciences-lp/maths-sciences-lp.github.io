@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Automatismes sur la trigonométrie pour Première Bac Pro – cosinus, sinus, tangente, valeurs remarquables, conversion degrés-radians. QCM et exercices corrigés.">
+<title>Automatismes – Trigonométrie – Première Bac Pro</title>
+<script>MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}}</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--p:#7c3aed;--s:#2f855a;--d:#7c2d12;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);margin:0;padding:20px;line-height:1.7}
+.c{max-width:860px;margin:auto;background:#fff;padding:30px 35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:26px;padding-bottom:14px}
+.surtitre{margin:0 0 4px;color:#718096;font-size:.85em;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+h1{margin:0 0 5px;color:var(--p);font-size:1.55em}
+.sous-titre{margin:0;color:#718096;font-size:.88em}
+.nav-haut{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.nav-haut a{color:#1e3b6e;text-decoration:none;font-size:.83em;font-weight:700;padding:5px 11px;border-radius:6px;background:#ebf5ff;border:1px solid #bee3f8;transition:.15s}
+.nav-haut a:hover{background:#dbeafe}
+.fml{background:#ebf5ff;border:1.5px solid var(--p);border-radius:8px;padding:12px 18px;margin:14px 0;font-size:.94em}
+.fml-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:8px}
+@media(max-width:560px){.fml-grid{grid-template-columns:1fr}}
+.fml-row{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:5px 0;border-bottom:1px solid #bee3f8;align-items:center;font-size:.93em}
+.fml-row:last-child{border-bottom:none}
+.fml-f{font-weight:600;color:#1e3b6e}
+.fml-df{color:#1e40af}
+.alerte{background:#fffbeb;border-left:4px solid var(--o);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.9em}
+.bloc-niveau{border:2px solid #e2e8f0;border-radius:10px;margin:22px 0;overflow:hidden}
+.bloc-niveau-header{padding:11px 18px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:1em;border-bottom:1px solid #e2e8f0}
+.n1 .bloc-niveau-header{background:#d1fae5;color:#065f46;border-bottom-color:#a7f3d0}
+.n2 .bloc-niveau-header{background:#dbeafe;color:#1e40af;border-bottom-color:#93c5fd}
+.n3 .bloc-niveau-header{background:#f3e8ff;color:#6d28d9;border-bottom-color:#d8b4fe}
+.bloc-niveau-body{padding:16px 18px}
+.exo{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:13px 16px;margin:10px 0}
+.exo-q{margin:0 0 8px;font-weight:600;font-size:.97em}
+.exo-q .num{color:var(--p);margin-right:4px}
+details{margin-top:6px}
+details summary{cursor:pointer;color:#0056b3;font-size:.86em;font-weight:600;list-style:none;padding:3px 0;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary{display:flex;align-items:center;gap:4px}details summary::before{content:'▸'}
+details[open] summary::before{content:'▾'}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:9px 13px;border-radius:0 8px 8px 0;margin-top:8px;font-size:.91em;line-height:1.55}
+.corr b{color:#065f46}
+.qcm-opts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.qo{padding:6px 16px;border-radius:6px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.9em;transition:.15s;font-family:inherit}
+.qo:hover:not(:disabled){border-color:var(--p);background:#ebf5ff}
+.qo.ok{background:#d1fae5;border-color:var(--s);color:#065f46;font-weight:700}
+.qo.ko{background:#fee2e2;border-color:#dc2626;color:#991b1b}
+.qo:disabled{cursor:default}
+.fb{font-size:.85em;min-height:1.3em;font-weight:600;margin-top:3px}
+.fb.ok{color:var(--s)}.fb.ko{color:#dc2626}
+</style>
+<link rel="stylesheet" href="../print.css" media="print"></head>
+<body>
+<div class="c">
+
+  <nav class="nav-haut">
+    <a href="index.html">&larr; Automatismes</a>
+    <a href="../maths-1ere-pro.html">&nearr; Maths 1&egrave;re</a>
+  </nav>
+
+  <header>
+    <p class="surtitre">&#9889; Automatismes &ndash; Premi&egrave;re Bac Pro</p>
+    <h1>&#128208; Trigonom&eacute;trie</h1>
+    <p class="sous-titre">Mise &agrave; jour : 28 avril 2026</p>
+  </header>
+
+  <div class="alerte">
+    <strong>Objectif :</strong> Ma&icirc;triser les rapports trigonom&eacute;triques (cosinus, sinus, tangente) dans le triangle rectangle, conna&icirc;tre les valeurs remarquables et savoir convertir degr&eacute;s/radians.
+  </div>
+
+  <div class="fml">
+    <strong>&#128203; Formulaire &ndash; Trigonom&eacute;trie</strong>
+    <div class="fml-grid" style="margin-top:10px">
+      <div class="fml-row"><span class="fml-f">\(\cos(\alpha)=\dfrac{\text{adjacent}}{\text{hypot&eacute;nuse}}\)</span><span class="fml-df">Cosinus</span></div>
+      <div class="fml-row"><span class="fml-f">\(\sin(\alpha)=\dfrac{\text{oppos&eacute;}}{\text{hypot&eacute;nuse}}\)</span><span class="fml-df">Sinus</span></div>
+      <div class="fml-row"><span class="fml-f">\(\tan(\alpha)=\dfrac{\text{oppos&eacute;}}{\text{adjacent}}\)</span><span class="fml-df">Tangente</span></div>
+      <div class="fml-row"><span class="fml-f">\(\cos^2(\alpha)+\sin^2(\alpha)=1\)</span><span class="fml-df">Relation fondamentale</span></div>
+      <div class="fml-row"><span class="fml-f">\(\tan(\alpha)=\dfrac{\sin(\alpha)}{\cos(\alpha)}\)</span><span class="fml-df">Lien tan / sin / cos</span></div>
+      <div class="fml-row"><span class="fml-f">\(180°=\pi\text{ rad}\)</span><span class="fml-df">Conversion</span></div>
+    </div>
+    <p style="margin:8px 0 0;font-size:.9em;color:#1e3b6e"><strong>Valeurs remarquables :</strong></p>
+    <table style="width:100%;border-collapse:collapse;margin-top:6px;font-size:.9em;text-align:center">
+      <tr style="background:#dbeafe"><th style="padding:4px 8px;border:1px solid #bee3f8">\(\alpha\)</th><th style="padding:4px 8px;border:1px solid #bee3f8">\(0°\)</th><th style="padding:4px 8px;border:1px solid #bee3f8">\(30°\)</th><th style="padding:4px 8px;border:1px solid #bee3f8">\(45°\)</th><th style="padding:4px 8px;border:1px solid #bee3f8">\(60°\)</th><th style="padding:4px 8px;border:1px solid #bee3f8">\(90°\)</th></tr>
+      <tr><td style="padding:4px 8px;border:1px solid #bee3f8;font-weight:600">\(\cos(\alpha)\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(1\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(\dfrac{\sqrt{3}}{2}\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(\dfrac{\sqrt{2}}{2}\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(\dfrac{1}{2}\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(0\)</td></tr>
+      <tr><td style="padding:4px 8px;border:1px solid #bee3f8;font-weight:600">\(\sin(\alpha)\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(0\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(\dfrac{1}{2}\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(\dfrac{\sqrt{2}}{2}\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(\dfrac{\sqrt{3}}{2}\)</td><td style="padding:4px 8px;border:1px solid #bee3f8">\(1\)</td></tr>
+    </table>
+  </div>
+
+  <!-- ═══ NIVEAU 1 ═══ -->
+  <div class="bloc-niveau n1">
+    <div class="bloc-niveau-header">&#x1F7E2; Niveau 1 &mdash; Bases</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> \(\cos(60°)=\ldots\)</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 0</button>
+          <button class="qo" onclick="qcm(this,true,'D\'apr&egrave;s le tableau des valeurs remarquables, cos(60&deg;) = 1/2 = 0,5.')">B) 0,5</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 1</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\dfrac{\sqrt{3}}{2}\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> \(\sin(30°)=\ldots\)</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 1</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(\dfrac{\sqrt{3}}{2}\)</button>
+          <button class="qo" onclick="qcm(this,true,'D\'apr&egrave;s le tableau des valeurs remarquables, sin(30&deg;) = 1/2 = 0,5.')">C) 0,5</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 0</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Convertir \(90°\) en radians.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On sait que \(180°=\pi\) rad, donc \(90°=\dfrac{180°}{2}=\dfrac{\pi}{2}\) rad.<br>
+          R&eacute;ponse : \(\mathbf{\dfrac{\pi}{2}}\) rad.
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Dans un triangle rectangle, le c&ocirc;t&eacute; oppos&eacute; &agrave; l'angle droit s'appelle&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) le c&ocirc;t&eacute; adjacent</button>
+          <button class="qo" onclick="qcm(this,true,'Le c&ocirc;t&eacute; oppos&eacute; &agrave; l\'angle droit est le plus grand c&ocirc;t&eacute; du triangle rectangle : c\'est l\'hypot&eacute;nuse.')">B) l'hypot&eacute;nuse</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) le c&ocirc;t&eacute; oppos&eacute;</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) la m&eacute;diane</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Compl&eacute;ter : \(\cos(\alpha) = \dfrac{\ldots}{\text{hypot&eacute;nuse}}\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\cos(\alpha) = \dfrac{\textbf{c&ocirc;t&eacute; adjacent}}{\text{hypot&eacute;nuse}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> \(\tan(45°)=\ldots\)</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'tan(45&deg;) = sin(45&deg;) / cos(45&deg;) = (&radic;2/2) / (&radic;2/2) = 1.')">A) 1</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) 0</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(\sqrt{2}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\dfrac{\sqrt{2}}{2}\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Convertir \(\dfrac{\pi}{3}\) rad en degr&eacute;s.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On sait que \(\pi\) rad \(= 180°\), donc \(\dfrac{\pi}{3}\) rad \(= \dfrac{180°}{3} = \mathbf{60°}\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) \(\sin(0°)\) &nbsp;&nbsp; b) \(\cos(90°)\) &nbsp;&nbsp; c) \(\sin(90°)\) &nbsp;&nbsp; d) \(\cos(0°)\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(\sin(0°)=\mathbf{0}\)<br>
+          b) \(\cos(90°)=\mathbf{0}\)<br>
+          c) \(\sin(90°)=\mathbf{1}\)<br>
+          d) \(\cos(0°)=\mathbf{1}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 2 ═══ -->
+  <div class="bloc-niveau n2">
+    <div class="bloc-niveau-header">&#x1F535; Niveau 2 &mdash; Entra&icirc;nement</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Dans un triangle rectangle, l'hypot&eacute;nuse mesure 10 cm et un angle vaut \(30°\). Calculer le c&ocirc;t&eacute; oppos&eacute; &agrave; cet angle.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On utilise \(\sin(30°)=\dfrac{\text{oppos&eacute;}}{\text{hypot&eacute;nuse}}\), donc :<br>
+          oppos&eacute; \(= \sin(30°)\times 10 = 0{,}5\times 10 = \mathbf{5\text{ cm}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Si \(\cos(\alpha)=0{,}6\) et \(\alpha\) est aigu, \(\sin(\alpha)=\ldots\)</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 0,4</button>
+          <button class="qo" onclick="qcm(this,true,'cos&sup2;(&alpha;) + sin&sup2;(&alpha;) = 1, donc sin&sup2;(&alpha;) = 1 &minus; 0,36 = 0,64, soit sin(&alpha;) = 0,8.')">B) 0,8</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 0,6</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 0,36</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Calculer \(\tan(60°)\) &agrave; partir de \(\sin(60°)\) et \(\cos(60°)\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\tan(60°)=\dfrac{\sin(60°)}{\cos(60°)}=\dfrac{\frac{\sqrt{3}}{2}}{\frac{1}{2}}=\sqrt{3}\approx\mathbf{1{,}73}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Convertir \(150°\) en radians.</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(\dfrac{3\pi}{4}\)</button>
+          <button class="qo" onclick="qcm(this,true,'150&deg; = 150 &times; &pi; / 180 = 5&pi; / 6.')">B) \(\dfrac{5\pi}{6}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(\dfrac{2\pi}{3}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\dfrac{7\pi}{6}\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Un toit a une pente de \(35°\). La longueur horizontale est de 6 m. Calculer la hauteur.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On utilise \(\tan(35°)=\dfrac{\text{hauteur}}{\text{longueur horizontale}}\), donc :<br>
+          hauteur \(= \tan(35°)\times 6 \approx 0{,}700\times 6 \approx \mathbf{4{,}20\text{ m}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> \(\cos^2(\alpha)+\sin^2(\alpha)=\ldots\)</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'C\'est la relation fondamentale de la trigonom&eacute;trie : cos&sup2;(&alpha;) + sin&sup2;(&alpha;) = 1.')">A) 1</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) 0</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 2</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\alpha\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Calculer l'angle \(\alpha\) sachant que \(\sin(\alpha)=0{,}5\) (\(\alpha\) aigu).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          D'apr&egrave;s le tableau des valeurs remarquables, \(\sin(30°)=0{,}5\).<br>
+          Donc \(\alpha=\mathbf{30°}\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) \(\sin(45°)\) &nbsp;&nbsp; b) \(\cos(30°)\) &nbsp;&nbsp; c) \(\tan(0°)\) &nbsp;&nbsp; d) Convertir \(45°\) en rad</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(\sin(45°)=\dfrac{\sqrt{2}}{2}\approx\mathbf{0{,}707}\)<br>
+          b) \(\cos(30°)=\dfrac{\sqrt{3}}{2}\approx\mathbf{0{,}866}\)<br>
+          c) \(\tan(0°)=\dfrac{\sin(0°)}{\cos(0°)}=\dfrac{0}{1}=\mathbf{0}\)<br>
+          d) \(45°=45\times\dfrac{\pi}{180}=\mathbf{\dfrac{\pi}{4}}\) rad
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 3 ═══ -->
+  <div class="bloc-niveau n3">
+    <div class="bloc-niveau-header">&#x1F7E3; Niveau 3 &mdash; Automatisation</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> <em>Contexte pro</em> &mdash; Un chevron de charpente fait un angle de \(40°\) avec l'horizontale. Sa longueur est de 5 m. Calculer la port&eacute;e horizontale et la hauteur.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          Port&eacute;e horizontale : \(\cos(40°)\times 5 \approx 0{,}766\times 5 \approx \mathbf{3{,}83\text{ m}}\)<br>
+          Hauteur : \(\sin(40°)\times 5 \approx 0{,}643\times 5 \approx \mathbf{3{,}21\text{ m}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Si \(\tan(\alpha)=\dfrac{3}{4}\) et \(\alpha\) est aigu, calculer \(\cos(\alpha)\).</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(\dfrac{3}{5}\)</button>
+          <button class="qo" onclick="qcm(this,true,'Si tan(&alpha;) = 3/4, on consid&egrave;re un triangle rectangle avec oppos&eacute; = 3, adjacent = 4. Par Pythagore, hypot&eacute;nuse = &radic;(9+16) = 5. Donc cos(&alpha;) = 4/5 = 0,8.')">B) \(\dfrac{4}{5}=0{,}8\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(\dfrac{5}{4}\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\dfrac{4}{3}\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> R&eacute;soudre \(\cos(x)=\dfrac{\sqrt{2}}{2}\) pour \(x\in[0°\,;\,180°]\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          D'apr&egrave;s le tableau, \(\cos(45°)=\dfrac{\sqrt{2}}{2}\).<br>
+          Sur \([0°\,;\,180°]\), le cosinus prend aussi cette valeur pour l'angle suppl&eacute;mentaire : \(180°-45°=135°\).<br>
+          Attention : \(\cos(135°)=-\dfrac{\sqrt{2}}{2}\neq\dfrac{\sqrt{2}}{2}\).<br>
+          Donc la seule solution est \(\mathbf{x=45°}\).<br><br>
+          <em>Remarque :</em> \(x=135°\) serait solution de \(\cos(x)=-\dfrac{\sqrt{2}}{2}\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Un escalier a une pente de \(38°\). Pour une hauteur de 3 m, la longueur du limon est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(\approx 3{,}81\) m</button>
+          <button class="qo" onclick="qcm(this,true,'sin(38&deg;) = hauteur / limon, donc limon = 3 / sin(38&deg;) &asymp; 3 / 0,616 &asymp; 4,87 m.')">B) \(\approx 4{,}87\) m</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(\approx 5{,}42\) m</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\approx 3{,}00\) m</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> V&eacute;rifier que \(\cos^2(30°)+\sin^2(30°)=1\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\cos^2(30°)+\sin^2(30°)=\left(\dfrac{\sqrt{3}}{2}\right)^2+\left(\dfrac{1}{2}\right)^2=\dfrac{3}{4}+\dfrac{1}{4}=\dfrac{4}{4}=\mathbf{1}\) &#10003;
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> Un conduit coud&eacute; fait un angle de \(60°\). Le d&eacute;calage horizontal sur 2 m de conduit est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(\approx 1{,}00\) m</button>
+          <button class="qo" onclick="qcm(this,true,'D&eacute;calage horizontal = sin(60&deg;) &times; 2 &asymp; 0,866 &times; 2 &asymp; 1,73 m.')">B) \(\approx 1{,}73\) m</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(\approx 2{,}00\) m</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(\approx 1{,}41\) m</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> D&eacute;terminer \(\sin(\alpha)\) sachant que \(\cos(\alpha)=\dfrac{3}{5}\) et que \(\alpha\) est aigu. En d&eacute;duire \(\tan(\alpha)\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\sin^2(\alpha)=1-\cos^2(\alpha)=1-\left(\dfrac{3}{5}\right)^2=1-\dfrac{9}{25}=\dfrac{16}{25}\)<br>
+          Comme \(\alpha\) est aigu, \(\sin(\alpha)=\dfrac{4}{5}=\mathbf{0{,}8}\).<br><br>
+          \(\tan(\alpha)=\dfrac{\sin(\alpha)}{\cos(\alpha)}=\dfrac{\frac{4}{5}}{\frac{3}{5}}=\mathbf{\dfrac{4}{3}}\approx 1{,}33\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre rapidement.<br>
+        a) \(\cos(180°)\) &nbsp;&nbsp; b) \(\sin\!\left(\dfrac{\pi}{6}\right)\) &nbsp;&nbsp; c) \(\tan(90°)\) est-il d&eacute;fini ? &nbsp;&nbsp; d) Convertir \(\dfrac{2\pi}{3}\) en degr&eacute;s</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(\cos(180°)=\mathbf{-1}\)<br>
+          b) \(\sin\!\left(\dfrac{\pi}{6}\right)=\sin(30°)=\mathbf{\dfrac{1}{2}}=0{,}5\)<br>
+          c) \(\tan(90°)\) n'est <b>pas d&eacute;fini</b> car \(\cos(90°)=0\) (division par z&eacute;ro)<br>
+          d) \(\dfrac{2\pi}{3}\) rad \(=\dfrac{2\times 180°}{3}=\mathbf{120°}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+
+  <nav class="nav-bas" aria-label="Retour automatismes" style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+    <a href="index.html" style="color:var(--p);text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&larr; Retour au menu des automatismes</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:#64748b;text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&uarr; Haut de page</a>
+  </nav>
+
+</div>
+
+<script src="qcm-auto.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>
