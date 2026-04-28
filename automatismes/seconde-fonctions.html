@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Automatismes sur la notion de fonction pour Seconde Bac Pro – image, antécédent, fonction affine, coefficient directeur, tableau de variations. QCM et exercices corrigés.">
+<title>Automatismes – Notion de fonction – Seconde Bac Pro</title>
+<script>MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}}</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--p:#0056b3;--s:#2f855a;--d:#7c2d12;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);margin:0;padding:20px;line-height:1.7}
+.c{max-width:860px;margin:auto;background:#fff;padding:30px 35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:26px;padding-bottom:14px}
+.surtitre{margin:0 0 4px;color:#718096;font-size:.85em;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+h1{margin:0 0 5px;color:var(--p);font-size:1.55em}
+.sous-titre{margin:0;color:#718096;font-size:.88em}
+.nav-haut{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.nav-haut a{color:#1e3b6e;text-decoration:none;font-size:.83em;font-weight:700;padding:5px 11px;border-radius:6px;background:#ebf5ff;border:1px solid #bee3f8;transition:.15s}
+.nav-haut a:hover{background:#dbeafe}
+.fml{background:#ebf5ff;border:1.5px solid var(--p);border-radius:8px;padding:12px 18px;margin:14px 0;font-size:.94em}
+.fml-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:8px}
+@media(max-width:560px){.fml-grid{grid-template-columns:1fr}}
+.fml-row{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:5px 0;border-bottom:1px solid #bee3f8;align-items:center;font-size:.93em}
+.fml-row:last-child{border-bottom:none}
+.fml-f{font-weight:600;color:#1e3b6e}
+.fml-df{color:#1e40af}
+.alerte{background:#fffbeb;border-left:4px solid var(--o);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.9em}
+.bloc-niveau{border:2px solid #e2e8f0;border-radius:10px;margin:22px 0;overflow:hidden}
+.bloc-niveau-header{padding:11px 18px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:1em;border-bottom:1px solid #e2e8f0}
+.n1 .bloc-niveau-header{background:#d1fae5;color:#065f46;border-bottom-color:#a7f3d0}
+.n2 .bloc-niveau-header{background:#dbeafe;color:#1e40af;border-bottom-color:#93c5fd}
+.n3 .bloc-niveau-header{background:#f3e8ff;color:#6d28d9;border-bottom-color:#d8b4fe}
+.bloc-niveau-body{padding:16px 18px}
+.exo{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:13px 16px;margin:10px 0}
+.exo-q{margin:0 0 8px;font-weight:600;font-size:.97em}
+.exo-q .num{color:var(--p);margin-right:4px}
+details{margin-top:6px}
+details summary{cursor:pointer;color:#0056b3;font-size:.86em;font-weight:600;list-style:none;padding:3px 0;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary{display:flex;align-items:center;gap:4px}details summary::before{content:'▸'}
+details[open] summary::before{content:'▾'}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:9px 13px;border-radius:0 8px 8px 0;margin-top:8px;font-size:.91em;line-height:1.55}
+.corr b{color:#065f46}
+.qcm-opts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.qo{padding:6px 16px;border-radius:6px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.9em;transition:.15s;font-family:inherit}
+.qo:hover:not(:disabled){border-color:var(--p);background:#ebf5ff}
+.qo.ok{background:#d1fae5;border-color:var(--s);color:#065f46;font-weight:700}
+.qo.ko{background:#fee2e2;border-color:#dc2626;color:#991b1b}
+.qo:disabled{cursor:default}
+.fb{font-size:.85em;min-height:1.3em;font-weight:600;margin-top:3px}
+.fb.ok{color:var(--s)}.fb.ko{color:#dc2626}
+</style>
+<link rel="stylesheet" href="../print.css" media="print"></head>
+<body>
+<div class="c">
+
+  <nav class="nav-haut">
+    <a href="index.html">&larr; Automatismes</a>
+    <a href="../maths-2nde-mama.html">&nearr; Maths 2nde</a>
+  </nav>
+
+  <header>
+    <p class="surtitre">&#9889; Automatismes &ndash; Seconde Bac Pro</p>
+    <h1>&#128200; Notion de fonction</h1>
+    <p class="sous-titre">Mise &agrave; jour : 28 avril 2026</p>
+  </header>
+
+  <div class="alerte">
+    <strong>Objectif :</strong> Lire et exploiter une fonction (image, ant&eacute;c&eacute;dent, coefficient directeur, tableau de variations) dans diff&eacute;rents registres (formule, tableau, graphique).
+  </div>
+
+  <div class="fml">
+    <strong>&#128203; Formulaire &ndash; Notion de fonction</strong>
+    <div class="fml-grid" style="margin-top:10px">
+      <div class="fml-row"><span class="fml-f">\(f(x)\) = image de \(x\) par \(f\)</span><span class="fml-df">Image</span></div>
+      <div class="fml-row"><span class="fml-f">\(x\) est ant&eacute;c&eacute;dent de \(y\) si \(f(x)=y\)</span><span class="fml-df">Ant&eacute;c&eacute;dent</span></div>
+      <div class="fml-row"><span class="fml-f">\(a=\dfrac{y_B-y_A}{x_B-x_A}\)</span><span class="fml-df">Coefficient directeur</span></div>
+      <div class="fml-row"><span class="fml-f">\(f(x)=ax+b\)</span><span class="fml-df">Fonction affine</span></div>
+      <div class="fml-row"><span class="fml-f">\(f(x)=ax\)</span><span class="fml-df">Fonction lin&eacute;aire</span></div>
+    </div>
+    <p style="margin:8px 0 0;font-size:.9em;color:#1e3b6e"><strong>Rappel :</strong> Un point \(A(x_A\,;\,y_A)\) appartient &agrave; la courbe de \(f\) si et seulement si \(f(x_A)=y_A\).</p>
+  </div>
+
+  <!-- ═══ NIVEAU 1 ═══ -->
+  <div class="bloc-niveau n1">
+    <div class="bloc-niveau-header">&#x1F7E2; Niveau 1 &mdash; Bases</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Quelle est l'abscisse du point \(A(3\,;\,2)\) ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 2</button>
+          <button class="qo" onclick="qcm(this,true,'Dans A(3 ; 2), la premi&egrave;re coordonn&eacute;e est l\'abscisse : 3.')">B) 3</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 5</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 1</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Si \(f(2)=7\), que vaut l'image de 2 par \(f\) ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 2</button>
+          <button class="qo" onclick="qcm(this,true,'Par d&eacute;finition, f(2) = 7 signifie que l\'image de 2 par f est 7.')">B) 7</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 9</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 5</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> On donne \(f(x)=2x+1\). Calculer \(f(3)\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On remplace \(x\) par 3 :<br>
+          \(f(3)=2\times 3+1=6+1=\mathbf{7}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Si \(f(x)=5\), alors \(x\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) l'image de 5</button>
+          <button class="qo" onclick="qcm(this,true,'Si f(x) = 5, alors x est un ant&eacute;c&eacute;dent de 5 par f.')">B) un ant&eacute;c&eacute;dent de 5</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) le coefficient directeur</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) l'ordonn&eacute;e &agrave; l'origine</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> On donne \(f(x)=3x-2\). Compl&eacute;ter le tableau de valeurs pour \(x=-1\,;\,0\,;\,1\,;\,2\,;\,3\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(f(-1)=3\times(-1)-2=-3-2=\mathbf{-5}\)<br>
+          \(f(0)=3\times 0-2=0-2=\mathbf{-2}\)<br>
+          \(f(1)=3\times 1-2=3-2=\mathbf{1}\)<br>
+          \(f(2)=3\times 2-2=6-2=\mathbf{4}\)<br>
+          \(f(3)=3\times 3-2=9-2=\mathbf{7}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> Le point \(A(2\,;\,5)\) appartient-il &agrave; la courbe de \(f(x)=2x+1\) ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'f(2) = 2 &times; 2 + 1 = 5. On obtient bien 5, donc A(2 ; 5) appartient &agrave; la courbe.')">A) Oui</button>
+          <button class="qo" onclick="qcm(this,false,'Calculez f(2) et comparez avec l\'ordonn&eacute;e du point.')">B) Non</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Dans \(f(4)=9\), le nombre 9 est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) un ant&eacute;c&eacute;dent de 4</button>
+          <button class="qo" onclick="qcm(this,true,'f(4) = 9 signifie que 9 est l\'image de 4 par f.')">B) l'image de 4 par \(f\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) l'abscisse du point</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) le coefficient directeur</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) \(f(0)\) pour \(f(x)=5x-3\) &nbsp;&nbsp; b) Image de 1 par \(g(x)=x^2+1\) &nbsp;&nbsp; c) Si \(h(x)=2x\) et \(h(x)=10\), trouver \(x\) &nbsp;&nbsp; d) Ordonn&eacute;e du point \((3\,;\,?)\) sur \(y=x+4\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(f(0)=5\times 0-3=\mathbf{-3}\)<br>
+          b) \(g(1)=1^2+1=1+1=\mathbf{2}\)<br>
+          c) \(2x=10\) donc \(x=\mathbf{5}\)<br>
+          d) \(y=3+4=\mathbf{7}\), le point est \((3\,;\,7)\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 2 ═══ -->
+  <div class="bloc-niveau n2">
+    <div class="bloc-niveau-header">&#x1F535; Niveau 2 &mdash; Entra&icirc;nement</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Calculer le coefficient directeur de la droite passant par \(A(1\,;\,3)\) et \(B(3\,;\,7)\).</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'a = (7 &minus; 3) / (3 &minus; 1) = 4 / 2 = 2.')">A) 2</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) 4</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 3</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 0,5</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> D&eacute;terminer \(f(x)=ax+b\) sachant que \(f(0)=3\) et \(f(2)=7\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(f(0)=a\times 0+b=b=3\), donc \(b=3\).<br>
+          \(f(2)=2a+3=7\), donc \(2a=4\), soit \(a=2\).<br>
+          Conclusion : \(\mathbf{f(x)=2x+3}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Si \(a&gt;0\) dans \(f(x)=ax+b\), la fonction est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'Quand le coefficient directeur a est positif, la fonction affine est croissante.')">A) croissante</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) d&eacute;croissante</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) constante</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) on ne peut pas savoir</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Une fonction \(f\) est croissante sur \([0\,;\,3]\), atteint un maximum de 5 en \(x=3\), puis est d&eacute;croissante sur \([3\,;\,6]\) avec un minimum de 1 en \(x=6\). &Eacute;tablir le tableau de variations de \(f\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          Tableau de variations :<br>
+          &bull; \(x\) varie de 0 &agrave; 3 puis de 3 &agrave; 6.<br>
+          &bull; \(f\) est <b>croissante</b> sur \([0\,;\,3]\) : \(f\) monte jusqu'&agrave; \(f(3)=\mathbf{5}\) (maximum).<br>
+          &bull; \(f\) est <b>d&eacute;croissante</b> sur \([3\,;\,6]\) : \(f\) descend jusqu'&agrave; \(f(6)=\mathbf{1}\) (minimum).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> La courbe d'une fonction \(f\) passe par le point de coordonn&eacute;es \((2\,;\,3)\). Que vaut \(f(2)\) ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 2</button>
+          <button class="qo" onclick="qcm(this,true,'Si la courbe passe par (2 ; 3), alors f(2) = 3.')">B) 3</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 5</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 1</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> R&eacute;soudre graphiquement \(f(x)=4\) quand \(f(x)=2x-2\) (trouver \(x\)).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On r&eacute;sout \(2x-2=4\) :<br>
+          \(2x=6\)<br>
+          \(x=\mathbf{3}\)<br>
+          Graphiquement, on trace la droite \(y=4\) et on lit l'abscisse du point d'intersection avec la courbe de \(f\) : on trouve \(x=3\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Parmi les fonctions suivantes, laquelle est une fonction lin&eacute;aire ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'f(x) = 3x est de la forme f(x) = ax : c\'est une fonction lin&eacute;aire.')">A) \(f(x)=3x\)</button>
+          <button class="qo" onclick="qcm(this,false,'g(x) = 2x + 1 est une fonction affine (b &ne; 0).')">B) \(g(x)=2x+1\)</button>
+          <button class="qo" onclick="qcm(this,false,'h(x) = x&sup2; n\'est ni affine ni lin&eacute;aire.')">C) \(h(x)=x^2\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(k(x)=5\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) Coefficient directeur si \(A(0\,;\,1)\) et \(B(2\,;\,5)\) &nbsp;&nbsp; b) \(f(x)=-x+3\), \(f\) est croissante ou d&eacute;croissante ? &nbsp;&nbsp; c) Image de \(-2\) par \(f(x)=x^2\) &nbsp;&nbsp; d) \(f(x)=4x\), \(f(5)=\,?\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(a=\dfrac{5-1}{2-0}=\dfrac{4}{2}=\mathbf{2}\)<br>
+          b) \(a=-1&lt;0\), donc \(f\) est <b>d&eacute;croissante</b><br>
+          c) \(f(-2)=(-2)^2=\mathbf{4}\)<br>
+          d) \(f(5)=4\times 5=\mathbf{20}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 3 ═══ -->
+  <div class="bloc-niveau n3">
+    <div class="bloc-niveau-header">&#x1F7E3; Niveau 3 &mdash; Automatisation</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Une fonction \(f\) est d&eacute;finie sur \([0\,;\,7]\). Elle admet un minimum &eacute;gal &agrave; \(-1\) atteint en \(x=2\) et un maximum &eacute;gal &agrave; 4 atteint en \(x=5\). D&eacute;terminer les extremums globaux de \(f\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          &bull; Le <b>minimum global</b> de \(f\) est \(\mathbf{-1}\), atteint en \(x=2\).<br>
+          &bull; Le <b>maximum global</b> de \(f\) est \(\mathbf{4}\), atteint en \(x=5\).<br>
+          Ainsi, pour tout \(x\in[0\,;\,7]\), on a \(-1\leq f(x)\leq 4\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> R&eacute;soudre \(f(x)=0\) pour \(f(x)=3x-6\).</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(x=-2\)</button>
+          <button class="qo" onclick="qcm(this,true,'3x &minus; 6 = 0, donc 3x = 6, soit x = 2.')">B) \(x=2\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(x=3\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(x=6\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Un artisan menuisier facture ses interventions selon la formule \(f(x)=45x+80\) o&ugrave; \(x\) est le nombre d'heures de travail.<br>
+        a) Calculer le co&ucirc;t pour 6 heures de travail.<br>
+        b) Combien d'heures peut-il travailler pour un budget de 350 &euro; ?</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>a)</b> \(f(6)=45\times 6+80=270+80=\mathbf{350\text{ &euro;}}\)<br><br>
+          <b>b)</b> On r&eacute;sout \(45x+80=350\) :<br>
+          \(45x=350-80=270\)<br>
+          \(x=\dfrac{270}{45}=\mathbf{6\text{ heures}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Une fonction \(f\) est d&eacute;croissante sur \([0\,;\,3]\) puis croissante sur \([3\,;\,6]\). Quel tableau de variations correspond ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) croissante sur \([0\,;\,3]\), d&eacute;croissante sur \([3\,;\,6]\)</button>
+          <button class="qo" onclick="qcm(this,true,'La fonction descend de 0 &agrave; 3 (d&eacute;croissante), puis remonte de 3 &agrave; 6 (croissante). Le minimum est atteint en x = 3.')">B) d&eacute;croissante sur \([0\,;\,3]\), croissante sur \([3\,;\,6]\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) croissante sur \([0\,;\,6]\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) d&eacute;croissante sur \([0\,;\,6]\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> On consid&egrave;re \(f(x)=-x^2+4\). R&eacute;soudre graphiquement \(f(x)&lt;3\). D&eacute;crire la m&eacute;thode et donner l'intervalle solution.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>M&eacute;thode :</b> on trace la courbe de \(f(x)=-x^2+4\) et la droite horizontale \(y=3\). On cherche les zones o&ugrave; la courbe est <em>en dessous</em> de cette droite.<br><br>
+          On r&eacute;sout d'abord \(-x^2+4=3\) :<br>
+          \(-x^2=-1\), donc \(x^2=1\), soit \(x=-1\) ou \(x=1\).<br><br>
+          La parabole est en dessous de \(y=3\) pour \(x&lt;-1\) ou \(x&gt;1\).<br>
+          Donc \(\mathbf{f(x)&lt;3}\) pour \(x\in\,]-\infty\,;\,-1[\,\cup\,]1\,;\,+\infty[\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> D&eacute;terminer le coefficient directeur de la droite passant par \((-1\,;\,4)\) et \((3\,;\,-2)\).</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 2</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(-1\)</button>
+          <button class="qo" onclick="qcm(this,true,'a = (&minus;2 &minus; 4) / (3 &minus; (&minus;1)) = &minus;6 / 4 = &minus;1,5.')">C) \(-1{,}5\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(1{,}5\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> La distance d'arr&ecirc;t d'un v&eacute;hicule (en m&egrave;tres) est mod&eacute;lis&eacute;e par \(d(v)=0{,}005v^2+0{,}2v\) o&ugrave; \(v\) est la vitesse en km/h.<br>
+        a) Calculer \(d(50)\).<br>
+        b) Calculer \(d(90)\).<br>
+        c) Interpr&eacute;ter les r&eacute;sultats.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>a)</b> \(d(50)=0{,}005\times 50^2+0{,}2\times 50=0{,}005\times 2\,500+10=12{,}5+10=\mathbf{22{,}5\text{ m}}\)<br><br>
+          <b>b)</b> \(d(90)=0{,}005\times 90^2+0{,}2\times 90=0{,}005\times 8\,100+18=40{,}5+18=\mathbf{58{,}5\text{ m}}\)<br><br>
+          <b>c)</b> &Agrave; 50 km/h, la distance d'arr&ecirc;t est de 22,5 m. &Agrave; 90 km/h, elle est de 58,5 m, soit plus du double. La vitesse a &eacute;t&eacute; multipli&eacute;e par 1,8, mais la distance d'arr&ecirc;t a &eacute;t&eacute; multipli&eacute;e par 2,6. Cela montre que <b>la distance d'arr&ecirc;t augmente beaucoup plus vite que la vitesse</b>, &agrave; cause du terme en \(v^2\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre rapidement.<br>
+        a) \(f(x)=2x+1\), r&eacute;soudre \(f(x)=0\) &nbsp;&nbsp; b) \(g(x)=-3x+9\), \(g\) croissante ou d&eacute;croissante ? &nbsp;&nbsp; c) Coefficient directeur si points \((0\,;\,-2)\) et \((4\,;\,6)\) &nbsp;&nbsp; d) Extremum de \(f(x)=-x^2+4\) ?</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(2x+1=0\), donc \(2x=-1\), soit \(x=\mathbf{-0{,}5}\)<br>
+          b) \(a=-3&lt;0\), donc \(g\) est <b>d&eacute;croissante</b><br>
+          c) \(a=\dfrac{6-(-2)}{4-0}=\dfrac{8}{4}=\mathbf{2}\)<br>
+          d) \(f(x)=-x^2+4\) est une parabole tourn&eacute;e vers le bas, donc elle admet un <b>maximum</b> en \(x=0\) : \(f(0)=\mathbf{4}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+
+  <nav class="nav-bas" aria-label="Retour automatismes" style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+    <a href="index.html" style="color:var(--p);text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&larr; Retour au menu des automatismes</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:#64748b;text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&uarr; Haut de page</a>
+  </nav>
+
+</div>
+
+<script src="qcm-auto.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>
