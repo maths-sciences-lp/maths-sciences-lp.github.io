@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Automatismes sur les statistiques à deux variables pour Terminale Bac Pro – point moyen, droite d'ajustement, interpolation, extrapolation. QCM et exercices corrigés.">
+<title>Automatismes – Statistiques à deux variables – Terminale Bac Pro</title>
+<script>MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}}</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--p:#0f3460;--s:#2f855a;--d:#0c2340;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);margin:0;padding:20px;line-height:1.7}
+.c{max-width:860px;margin:auto;background:#fff;padding:30px 35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:26px;padding-bottom:14px}
+.surtitre{margin:0 0 4px;color:#718096;font-size:.85em;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+h1{margin:0 0 5px;color:var(--p);font-size:1.55em}
+.sous-titre{margin:0;color:#718096;font-size:.88em}
+.nav-haut{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.nav-haut a{color:#0c2340;text-decoration:none;font-size:.83em;font-weight:700;padding:5px 11px;border-radius:6px;background:#e8f0fe;border:1px solid #93c5fd;transition:.15s}
+.nav-haut a:hover{background:#dbeafe}
+.fml{background:#e8f0fe;border:1.5px solid var(--p);border-radius:8px;padding:12px 18px;margin:14px 0;font-size:.94em}
+.fml ul{margin:6px 0 0;padding-left:18px}.fml li{margin-bottom:4px}
+.fml-f{font-weight:600;color:#0c2340}
+.alerte{background:#fffbeb;border-left:4px solid var(--o);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.9em}
+.bloc-niveau{border:2px solid #e2e8f0;border-radius:10px;margin:22px 0;overflow:hidden}
+.bloc-niveau-header{padding:11px 18px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:1em;border-bottom:1px solid #e2e8f0}
+.n1 .bloc-niveau-header{background:#d1fae5;color:#065f46;border-bottom-color:#a7f3d0}
+.n2 .bloc-niveau-header{background:#dbeafe;color:#1e40af;border-bottom-color:#93c5fd}
+.n3 .bloc-niveau-header{background:#f3e8ff;color:#6d28d9;border-bottom-color:#d8b4fe}
+.bloc-niveau-body{padding:16px 18px}
+.exo{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:13px 16px;margin:10px 0}
+.exo-q{margin:0 0 8px;font-weight:600;font-size:.97em}
+.exo-q .num{color:var(--p);margin-right:4px}
+details{margin-top:6px}
+details summary{cursor:pointer;color:#0c2340;font-size:.86em;font-weight:600;list-style:none;padding:3px 0;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary{display:flex;align-items:center;gap:4px}details summary::before{content:'▸'}
+details[open] summary::before{content:'▾'}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:9px 13px;border-radius:0 8px 8px 0;margin-top:8px;font-size:.91em;line-height:1.55}
+.corr b{color:#065f46}
+.qcm-opts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.qo{padding:6px 16px;border-radius:6px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.9em;transition:.15s;font-family:inherit}
+.qo:hover:not(:disabled){border-color:var(--p);background:#e8f0fe}
+.qo.ok{background:#d1fae5;border-color:var(--s);color:#065f46;font-weight:700}
+.qo.ko{background:#fee2e2;border-color:#dc2626;color:#991b1b}
+.qo:disabled{cursor:default}
+.fb{font-size:.85em;min-height:1.3em;font-weight:600;margin-top:3px}
+.fb.ok{color:var(--s)}.fb.ko{color:#dc2626}
+</style>
+<link rel="stylesheet" href="../print.css" media="print"></head>
+<body>
+<div class="c">
+
+  <nav class="nav-haut">
+    <a href="index.html">&larr; Automatismes</a>
+    <a href="../maths-term-iccer.html">&nearr; Maths Term. ICCER (Grpt 1)</a>
+    <a href="../maths-term-erama.html">&nearr; Maths Term. ERA-MA (Grpt 3)</a>
+  </nav>
+
+  <header>
+    <p class="surtitre">&#9889; Automatismes &ndash; Terminale Bac Pro</p>
+    <h1>&#128202; Statistiques &agrave; deux variables</h1>
+    <p class="sous-titre">Mise &agrave; jour : 28 avril 2026</p>
+  </header>
+
+  <div class="alerte">
+    <strong>Objectif :</strong> Calculer un point moyen, d&eacute;terminer une droite d&rsquo;ajustement affine, et utiliser cette droite pour interpoler ou extrapoler des donn&eacute;es.
+  </div>
+
+  <div class="fml">
+    <strong>&#128203; Formulaire &ndash; Statistiques &agrave; deux variables</strong>
+    <ul>
+      <li><span class="fml-f">Point moyen :</span> \(G(\bar{x}\,;\,\bar{y})\) o&ugrave; \(\bar{x}=\dfrac{\sum x_i}{n}\) et \(\bar{y}=\dfrac{\sum y_i}{n}\)</li>
+      <li><span class="fml-f">Droite d&rsquo;ajustement affine :</span> \(y=ax+b\)</li>
+      <li><span class="fml-f">Coefficient directeur (moindres carr&eacute;s) :</span> \(a=\dfrac{\displaystyle\sum (x_i-\bar{x})(y_i-\bar{y})}{\displaystyle\sum (x_i-\bar{x})^2}\)</li>
+      <li><span class="fml-f">Ordonn&eacute;e &agrave; l&rsquo;origine :</span> \(b=\bar{y}-a\bar{x}\)</li>
+      <li><span class="fml-f">Interpolation :</span> estimer \(y\) pour un \(x\) <em>dans</em> la plage des donn&eacute;es</li>
+      <li><span class="fml-f">Extrapolation :</span> estimer \(y\) pour un \(x\) <em>hors</em> de la plage des donn&eacute;es (prudence&nbsp;!)</li>
+    </ul>
+  </div>
+
+  <!-- ═══ NIVEAU 1 ═══ -->
+  <div class="bloc-niveau n1">
+    <div class="bloc-niveau-header">&#x1F7E2; Niveau 1 &mdash; Bases</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Un nuage de points montre une tendance globalement croissante. La corr&eacute;lation est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'Si le nuage monte globalement, la corr&eacute;lation est positive (les deux variables augmentent ensemble).')">A) positive</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) n&eacute;gative</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) nulle</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) on ne peut pas savoir</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Calculer le point moyen \(G\) pour les donn&eacute;es : \(x=\{2\,;\,4\,;\,6\,;\,8\,;\,10\}\) et \(y=\{5\,;\,9\,;\,14\,;\,18\,;\,24\}\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(\bar{x}=\dfrac{2+4+6+8+10}{5}=\dfrac{30}{5}=\mathbf{6}\)<br><br>
+          \(\bar{y}=\dfrac{5+9+14+18+24}{5}=\dfrac{70}{5}=\mathbf{14}\)<br><br>
+          Donc \(\mathbf{G(6\,;\,14)}\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> La variable explicative est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'La variable explicative est la variable x, celle que l\'on choisit pour expliquer les variations de y.')">A) la variable \(x\) (celle qu&rsquo;on choisit)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) la variable \(y\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) le coefficient directeur</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) le point moyen</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Une droite d&rsquo;ajustement passe par \((0\,;\,3)\) et \((10\,;\,23)\). D&eacute;terminer son coefficient directeur \(a\) et son ordonn&eacute;e &agrave; l&rsquo;origine \(b\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(a=\dfrac{23-3}{10-0}=\dfrac{20}{10}=\mathbf{2}\)<br><br>
+          La droite passe par \((0\,;\,3)\), donc \(b=\mathbf{3}\).<br><br>
+          La droite d&rsquo;ajustement est \(y=2x+3\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Si la droite d&rsquo;ajustement est \(y=1{,}5x+10\), l&rsquo;estimation pour \(x=20\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 30</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) 35</button>
+          <button class="qo" onclick="qcm(this,true,'y = 1,5 &times; 20 + 10 = 30 + 10 = 40.')">C) 40</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 50</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> Les donn&eacute;es vont de \(x=0\) &agrave; \(x=50\). On utilise la droite d&rsquo;ajustement pour estimer \(y\) pour \(x=30\), puis pour \(x=80\). Distinguer interpolation et extrapolation.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          &bull; Pour \(x=30\) : \(30\) est <em>dans</em> la plage \([0\,;\,50]\), c&rsquo;est une <b>interpolation</b>.<br><br>
+          &bull; Pour \(x=80\) : \(80\) est <em>hors</em> de la plage \([0\,;\,50]\), c&rsquo;est une <b>extrapolation</b>.<br><br>
+          L&rsquo;extrapolation est plus risqu&eacute;e car le mod&egrave;le peut ne plus &ecirc;tre valable en dehors de la plage des donn&eacute;es.
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> &laquo;&nbsp;Le point moyen appartient toujours &agrave; la droite d&rsquo;ajustement.&nbsp;&raquo;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'Par construction (m&eacute;thode des moindres carr&eacute;s), la droite d\'ajustement passe toujours par le point moyen G.')">A) Vrai</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) Faux</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) Point moyen de \(x=\{1\,;\,3\,;\,5\}\), \(y=\{2\,;\,6\,;\,10\}\) &nbsp;&nbsp; b) \(y=3x+5\), \(y(4)=\,?\) &nbsp;&nbsp; c) Si \(a&gt;0\), corr&eacute;lation ? &nbsp;&nbsp; d) \(y=-2x+100\), \(y(0)=\,?\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(\bar{x}=\dfrac{1+3+5}{3}=3\), \(\bar{y}=\dfrac{2+6+10}{3}=6\), donc \(\mathbf{G(3\,;\,6)}\)<br>
+          b) \(y=3\times 4+5=12+5=\mathbf{17}\)<br>
+          c) Si \(a&gt;0\), la corr&eacute;lation est <b>positive</b><br>
+          d) \(y=-2\times 0+100=\mathbf{100}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 2 ═══ -->
+  <div class="bloc-niveau n2">
+    <div class="bloc-niveau-header">&#x1F535; Niveau 2 &mdash; Entra&icirc;nement</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Donn&eacute;es : ann&eacute;es \(x=\{0\,;\,1\,;\,2\,;\,3\,;\,4\}\) (depuis 2020), production \(y=\{100\,;\,115\,;\,128\,;\,143\,;\,160\}\) (tonnes).<br>
+        a) Calculer le point moyen \(G\).<br>
+        b) D&eacute;terminer la droite passant par \(G\) et \((0\,;\,100)\).<br>
+        c) Estimer la production en 2026.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>a)</b> \(\bar{x}=\dfrac{0+1+2+3+4}{5}=\dfrac{10}{5}=2\)<br>
+          \(\bar{y}=\dfrac{100+115+128+143+160}{5}=\dfrac{646}{5}=129{,}2\)<br>
+          Donc \(\mathbf{G(2\,;\,129{,}2)}\).<br><br>
+          <b>b)</b> La droite passe par \((0\,;\,100)\) et \(G(2\,;\,129{,}2)\).<br>
+          \(a=\dfrac{129{,}2-100}{2-0}=\dfrac{29{,}2}{2}=14{,}6\)<br>
+          \(b=100\) (ordonn&eacute;e &agrave; l&rsquo;origine).<br>
+          Droite : \(\mathbf{y=14{,}6x+100}\).<br><br>
+          <b>c)</b> En 2026, \(x=6\).<br>
+          \(y=14{,}6\times 6+100=87{,}6+100=\mathbf{187{,}6\text{ tonnes}}\).<br>
+          C&rsquo;est une <b>extrapolation</b> (hors de la plage \([0\,;\,4]\)).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> La droite d&rsquo;ajustement \(y=12x+50\) mod&eacute;lise un co&ucirc;t de production. Le coefficient 12 repr&eacute;sente&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) le co&ucirc;t fixe</button>
+          <button class="qo" onclick="qcm(this,true,'Le coefficient directeur 12 repr&eacute;sente l\'augmentation du co&ucirc;t par unit&eacute; produite, c\'est le co&ucirc;t marginal.')">B) le co&ucirc;t marginal (augmentation par unit&eacute;)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) le co&ucirc;t total</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) le b&eacute;n&eacute;fice</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> V&eacute;rifier que le point \((5\,;\,37)\) appartient &agrave; la droite \(y=7x+2\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On calcule \(y\) pour \(x=5\) :<br>
+          \(y=7\times 5+2=35+2=37\)<br><br>
+          On obtient bien \(37\), qui est l&rsquo;ordonn&eacute;e du point. Donc <b>oui</b>, le point \((5\,;\,37)\) appartient &agrave; la droite \(y=7x+2\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Pour un ajustement de qualit&eacute;, les points du nuage doivent &ecirc;tre&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) &eacute;loign&eacute;s de la droite</button>
+          <button class="qo" onclick="qcm(this,true,'Plus les points sont proches de la droite, meilleur est l\'ajustement (r proche de 1 ou &minus;1).')">B) proches de la droite</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) align&eacute;s verticalement</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) dispers&eacute;s au hasard</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Contexte pro &mdash; Consommation de colle \(y\) (en kg) selon la surface \(x\) (en m&sup2;) : \(x=\{10\,;\,20\,;\,30\,;\,40\,;\,50\}\), \(y=\{2{,}5\,;\,4{,}8\,;\,7{,}2\,;\,9{,}8\,;\,12{,}1\}\).<br>
+        a) Calculer le point moyen \(G\).<br>
+        b) La droite passant par \(G\) et \((10\,;\,2{,}5)\) est \(y=0{,}24x+0{,}1\). Estimer la consommation pour \(x=35\) m&sup2;.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>a)</b> \(\bar{x}=\dfrac{10+20+30+40+50}{5}=\dfrac{150}{5}=30\)<br>
+          \(\bar{y}=\dfrac{2{,}5+4{,}8+7{,}2+9{,}8+12{,}1}{5}=\dfrac{36{,}4}{5}=7{,}28\)<br>
+          Donc \(\mathbf{G(30\,;\,7{,}28)}\).<br><br>
+          <b>b)</b> Pour \(x=35\) :<br>
+          \(y=0{,}24\times 35+0{,}1=8{,}4+0{,}1=\mathbf{8{,}5\text{ kg}}\).<br>
+          C&rsquo;est une <b>interpolation</b> (35 est dans la plage \([10\,;\,50]\)).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> Extrapoler loin des donn&eacute;es est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) toujours fiable</button>
+          <button class="qo" onclick="qcm(this,true,'Plus on s\'&eacute;loigne de la plage des donn&eacute;es, plus le mod&egrave;le risque de ne plus &ecirc;tre valable.')">B) risqu&eacute; car le mod&egrave;le peut ne plus &ecirc;tre valable</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) impossible math&eacute;matiquement</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) plus pr&eacute;cis que l&rsquo;interpolation</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Donn&eacute;es de temp&eacute;rature : heure \(x=\{8\,;\,10\,;\,12\,;\,14\,;\,16\}\), temp&eacute;rature \(T=\{12\,;\,16\,;\,21\,;\,23\,;\,20\}\). Cette relation est-elle bien mod&eacute;lis&eacute;e par une droite ? Justifier.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>Non</b>, un ajustement affine n&rsquo;est pas adapt&eacute;.<br><br>
+          La temp&eacute;rature <b>augmente</b> de 8 h &agrave; 14 h (de 12 &agrave; 23), puis <b>redescend</b> &agrave; 16 h (20).<br><br>
+          La tendance n&rsquo;est pas monotone : le nuage de points ne suit pas une droite mais plut&ocirc;t une courbe (parabole). Un ajustement lin&eacute;aire ne rendrait pas compte de cette inversion de tendance.
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) Point moyen de \(x=\{0\,;\,2\,;\,4\}\), \(y=\{10\,;\,16\,;\,22\}\) &nbsp;&nbsp; b) \(y=5x+3\), \(x\) quand \(y=28\) ? &nbsp;&nbsp; c) Pente de la droite passant par \((2\,;\,8)\) et \((6\,;\,20)\) &nbsp;&nbsp; d) \(b\) si la droite passe par \(G(3\,;\,15)\) et \(a=4\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(\bar{x}=\dfrac{0+2+4}{3}=2\), \(\bar{y}=\dfrac{10+16+22}{3}=16\), donc \(\mathbf{G(2\,;\,16)}\)<br>
+          b) \(5x+3=28\), \(5x=25\), \(x=\mathbf{5}\)<br>
+          c) \(a=\dfrac{20-8}{6-2}=\dfrac{12}{4}=\mathbf{3}\)<br>
+          d) \(b=\bar{y}-a\bar{x}=15-4\times 3=15-12=\mathbf{3}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 3 ═══ -->
+  <div class="bloc-niveau n3">
+    <div class="bloc-niveau-header">&#x1F7E3; Niveau 3 &mdash; Automatisation</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Changement de variable &mdash; Donn&eacute;es : \(x=\{1\,;\,2\,;\,3\,;\,4\,;\,5\}\), \(y=\{3\,;\,12\,;\,27\,;\,48\,;\,75\}\). La relation n&rsquo;est pas affine. Poser \(X=x^2\) et v&eacute;rifier que \(y=3X\) est un bon mod&egrave;le.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On calcule \(X=x^2\) pour chaque valeur :<br>
+          \(X=\{1\,;\,4\,;\,9\,;\,16\,;\,25\}\)<br><br>
+          On v&eacute;rifie \(y=3X\) :<br>
+          &bull; \(x=1\) : \(3\times 1=3\) &#10003;<br>
+          &bull; \(x=2\) : \(3\times 4=12\) &#10003;<br>
+          &bull; \(x=3\) : \(3\times 9=27\) &#10003;<br>
+          &bull; \(x=4\) : \(3\times 16=48\) &#10003;<br>
+          &bull; \(x=5\) : \(3\times 25=75\) &#10003;<br><br>
+          Le mod&egrave;le \(\mathbf{y=3x^2}\) convient parfaitement. Le changement de variable \(X=x^2\) a permis de se ramener &agrave; une relation lin&eacute;aire \(y=3X\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Un changement de variable \(X=\ln(x)\) transforme un mod&egrave;le logarithmique en&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'Si y = a&middot;ln(x) + b, on pose X = ln(x) et on obtient y = aX + b, un mod&egrave;le affine.')">A) mod&egrave;le affine \(y=aX+b\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) mod&egrave;le exponentiel</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) mod&egrave;le quadratique</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) mod&egrave;le p&eacute;riodique</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Contexte pro &mdash; Production de meubles \(x\) et co&ucirc;t total \(y\) (en &euro;) : \(x=\{5\,;\,10\,;\,15\,;\,20\,;\,25\}\), \(y=\{850\,;\,1\,400\,;\,1\,950\,;\,2\,500\,;\,3\,050\}\).<br>
+        a) Montrer que le co&ucirc;t est affine.<br>
+        b) D&eacute;terminer la droite.<br>
+        c) En d&eacute;duire le co&ucirc;t fixe et le co&ucirc;t variable unitaire.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>a)</b> On calcule les accroissements :<br>
+          De \(x=5\) &agrave; \(x=10\) : \(\Delta y=1\,400-850=550\), \(\Delta x=5\), taux \(=\dfrac{550}{5}=110\).<br>
+          De \(x=10\) &agrave; \(x=15\) : \(\Delta y=550\), taux \(=110\).<br>
+          De \(x=15\) &agrave; \(x=20\) : \(\Delta y=550\), taux \(=110\).<br>
+          De \(x=20\) &agrave; \(x=25\) : \(\Delta y=550\), taux \(=110\).<br>
+          Le taux d&rsquo;accroissement est <b>constant</b> : la relation est bien affine.<br><br>
+          <b>b)</b> \(a=110\). On utilise le point \((5\,;\,850)\) :<br>
+          \(850=110\times 5+b\), donc \(b=850-550=300\).<br>
+          Droite : \(\mathbf{y=110x+300}\).<br><br>
+          <b>c)</b> Le <b>co&ucirc;t fixe</b> est \(b=\mathbf{300\text{ &euro;}}\) (co&ucirc;t quand \(x=0\)).<br>
+          Le <b>co&ucirc;t variable unitaire</b> est \(a=\mathbf{110\text{ &euro;/meuble}}\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Le coefficient de corr&eacute;lation \(r\) est proche de \(-1\). Cela signifie&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) faible corr&eacute;lation</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) forte corr&eacute;lation lin&eacute;aire positive</button>
+          <button class="qo" onclick="qcm(this,true,'r proche de &minus;1 indique une forte corr&eacute;lation lin&eacute;aire n&eacute;gative : quand x augmente, y diminue de fa&ccedil;on quasi lin&eacute;aire.')">C) forte corr&eacute;lation lin&eacute;aire n&eacute;gative</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) absence de relation</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Usure d&rsquo;un outil : heures \(x=\{0\,;\,100\,;\,200\,;\,300\,;\,400\}\), &eacute;paisseur \(y=\{5{,}0\,;\,4{,}2\,;\,3{,}5\,;\,2{,}7\,;\,2{,}0\}\) (en mm).<br>
+        a) D&eacute;terminer le point moyen \(G\).<br>
+        b) D&eacute;terminer la droite d&rsquo;ajustement passant par \(G\) et \((0\,;\,5)\).<br>
+        c) Estimer quand l&rsquo;&eacute;paisseur atteindra 1 mm.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          <b>a)</b> \(\bar{x}=\dfrac{0+100+200+300+400}{5}=\dfrac{1\,000}{5}=200\)<br>
+          \(\bar{y}=\dfrac{5{,}0+4{,}2+3{,}5+2{,}7+2{,}0}{5}=\dfrac{17{,}4}{5}=3{,}48\)<br>
+          Donc \(\mathbf{G(200\,;\,3{,}48)}\).<br><br>
+          <b>b)</b> La droite passe par \((0\,;\,5)\) et \(G(200\,;\,3{,}48)\).<br>
+          \(a=\dfrac{3{,}48-5}{200-0}=\dfrac{-1{,}52}{200}=-0{,}0076\)<br>
+          \(b=5\) (ordonn&eacute;e &agrave; l&rsquo;origine).<br>
+          Droite : \(\mathbf{y=-0{,}0076x+5}\).<br><br>
+          <b>c)</b> On r&eacute;sout \(y=1\) :<br>
+          \(-0{,}0076x+5=1\)<br>
+          \(-0{,}0076x=-4\)<br>
+          \(x=\dfrac{4}{0{,}0076}\approx\mathbf{526\text{ heures}}\).<br>
+          C&rsquo;est une extrapolation (au-del&agrave; de 400 h).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> Si \(r^2=0{,}98\), le mod&egrave;le affine explique&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 2 % de la variance</button>
+          <button class="qo" onclick="qcm(this,true,'r&sup2; = 0,98 signifie que le mod&egrave;le affine explique 98 % de la variance des donn&eacute;es. L\'ajustement est excellent.')">B) 98 % de la variance des donn&eacute;es</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 49 % de la variance</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) rien du tout</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Mod&egrave;le exponentiel &mdash; Donn&eacute;es : \(t=\{0\,;\,1\,;\,2\,;\,3\,;\,4\}\), \(N=\{100\,;\,150\,;\,225\,;\,338\,;\,506\}\). Poser \(Y=\ln(N)\) et v&eacute;rifier que \(Y\) est affine en \(t\). En d&eacute;duire la relation \(N=100\times 1{,}5^t\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On calcule \(Y=\ln(N)\) :<br>
+          &bull; \(t=0\) : \(Y=\ln(100)\approx 4{,}605\)<br>
+          &bull; \(t=1\) : \(Y=\ln(150)\approx 5{,}011\)<br>
+          &bull; \(t=2\) : \(Y=\ln(225)\approx 5{,}416\)<br>
+          &bull; \(t=3\) : \(Y=\ln(338)\approx 5{,}823\)<br>
+          &bull; \(t=4\) : \(Y=\ln(506)\approx 6{,}227\)<br><br>
+          Les accroissements \(\Delta Y\) sont quasi constants (\(\approx 0{,}405\)), donc \(Y\) est bien affine en \(t\).<br><br>
+          On a \(Y\approx 0{,}405t+4{,}605\), soit \(\ln(N)\approx \ln(1{,}5)\cdot t+\ln(100)\).<br>
+          D&rsquo;o&ugrave; \(\ln(N)=\ln(100\times 1{,}5^t)\), et donc \(\mathbf{N=100\times 1{,}5^t}\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre rapidement.<br>
+        a) Point moyen de \(x=\{0\,;\,5\,;\,10\}\), \(y=\{20\,;\,35\,;\,50\}\) &nbsp;&nbsp; b) Co&ucirc;t fixe si \(y=25x+500\) &nbsp;&nbsp; c) \(r\) proche de 0 signifie ? &nbsp;&nbsp; d) \(y=-0{,}5x+10\), \(x\) quand \(y=0\) ?</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(\bar{x}=\dfrac{0+5+10}{3}=5\), \(\bar{y}=\dfrac{20+35+50}{3}=35\), donc \(\mathbf{G(5\,;\,35)}\)<br>
+          b) Le co&ucirc;t fixe est \(b=\mathbf{500}\)<br>
+          c) \(r\) proche de 0 signifie <b>pas de corr&eacute;lation lin&eacute;aire</b><br>
+          d) \(-0{,}5x+10=0\), \(0{,}5x=10\), \(x=\mathbf{20}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+
+  <nav class="nav-bas" aria-label="Retour automatismes" style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+    <a href="index.html" style="color:var(--p);text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&larr; Retour au menu des automatismes</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:#64748b;text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&uarr; Haut de page</a>
+  </nav>
+
+</div>
+
+<script src="qcm-auto.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>

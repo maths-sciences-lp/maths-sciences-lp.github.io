@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Automatismes sur les fonctions polynômes de degré 3 pour Terminale Bac Pro – dérivée, extremums, factorisation, point d'inflexion. QCM et exercices corrigés.">
+<title>Automatismes – Fonctions polynômes de degré 3 – Terminale Bac Pro</title>
+<script>MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}}</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--p:#0f3460;--s:#2f855a;--d:#7c2d12;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);margin:0;padding:20px;line-height:1.7}
+.c{max-width:860px;margin:auto;background:#fff;padding:30px 35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:26px;padding-bottom:14px}
+.surtitre{margin:0 0 4px;color:#718096;font-size:.85em;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+h1{margin:0 0 5px;color:var(--p);font-size:1.55em}
+.sous-titre{margin:0;color:#718096;font-size:.88em}
+.nav-haut{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.nav-haut a{color:#1e3b6e;text-decoration:none;font-size:.83em;font-weight:700;padding:5px 11px;border-radius:6px;background:#ebf5ff;border:1px solid #bee3f8;transition:.15s}
+.nav-haut a:hover{background:#dbeafe}
+.fml{background:#ebf5ff;border:1.5px solid var(--p);border-radius:8px;padding:12px 18px;margin:14px 0;font-size:.94em}
+.fml-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:8px}
+@media(max-width:560px){.fml-grid{grid-template-columns:1fr}}
+.fml-row{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:5px 0;border-bottom:1px solid #bee3f8;align-items:center;font-size:.93em}
+.fml-row:last-child{border-bottom:none}
+.fml-f{font-weight:600;color:#1e3b6e}
+.fml-df{color:#1e40af}
+.alerte{background:#fffbeb;border-left:4px solid var(--o);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.9em}
+.bloc-niveau{border:2px solid #e2e8f0;border-radius:10px;margin:22px 0;overflow:hidden}
+.bloc-niveau-header{padding:11px 18px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:1em;border-bottom:1px solid #e2e8f0}
+.n1 .bloc-niveau-header{background:#d1fae5;color:#065f46;border-bottom-color:#a7f3d0}
+.n2 .bloc-niveau-header{background:#dbeafe;color:#1e40af;border-bottom-color:#93c5fd}
+.n3 .bloc-niveau-header{background:#f3e8ff;color:#6d28d9;border-bottom-color:#d8b4fe}
+.bloc-niveau-body{padding:16px 18px}
+.exo{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:13px 16px;margin:10px 0}
+.exo-q{margin:0 0 8px;font-weight:600;font-size:.97em}
+.exo-q .num{color:var(--p);margin-right:4px}
+details{margin-top:6px}
+details summary{cursor:pointer;color:#0056b3;font-size:.86em;font-weight:600;list-style:none;padding:3px 0;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary{display:flex;align-items:center;gap:4px}details summary::before{content:'▸'}
+details[open] summary::before{content:'▾'}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:9px 13px;border-radius:0 8px 8px 0;margin-top:8px;font-size:.91em;line-height:1.55}
+.corr b{color:#065f46}
+.qcm-opts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.qo{padding:6px 16px;border-radius:6px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.9em;transition:.15s;font-family:inherit}
+.qo:hover:not(:disabled){border-color:var(--p);background:#ebf5ff}
+.qo.ok{background:#d1fae5;border-color:var(--s);color:#065f46;font-weight:700}
+.qo.ko{background:#fee2e2;border-color:#dc2626;color:#991b1b}
+.qo:disabled{cursor:default}
+.fb{font-size:.85em;min-height:1.3em;font-weight:600;margin-top:3px}
+.fb.ok{color:var(--s)}.fb.ko{color:#dc2626}
+</style>
+<link rel="stylesheet" href="../print.css" media="print"></head>
+<body>
+<div class="c">
+
+  <nav class="nav-haut">
+    <a href="index.html">&larr; Automatismes</a>
+    <a href="../maths-tle-mama.html">&nearr; Maths Term.</a>
+  </nav>
+
+  <header>
+    <p class="surtitre">&#9889; Automatismes &ndash; Terminale Bac Pro</p>
+    <h1>&#128200; Fonctions polyn&ocirc;mes de degr&eacute; 3</h1>
+    <p class="sous-titre">Mise &agrave; jour : 28 avril 2026</p>
+  </header>
+
+  <div class="alerte">
+    <strong>Objectif :</strong> Ma&icirc;triser les fonctions polyn&ocirc;mes de degr&eacute; 3 : d&eacute;river, &eacute;tudier les variations, factoriser, d&eacute;terminer les extremums locaux et le point d'inflexion.
+  </div>
+
+  <div class="fml">
+    <strong>&#128203; Formulaire &ndash; Polyn&ocirc;mes de degr&eacute; 3</strong>
+    <div class="fml-grid" style="margin-top:10px">
+      <div class="fml-row"><span class="fml-f">\(f(x)=ax^3+bx^2+cx+d\)</span><span class="fml-df">Forme g&eacute;n&eacute;rale</span></div>
+      <div class="fml-row"><span class="fml-f">\(f'(x)=3ax^2+2bx+c\)</span><span class="fml-df">D&eacute;riv&eacute;e</span></div>
+      <div class="fml-row"><span class="fml-f">R&eacute;soudre \(f'(x)=0\) (2nd degr&eacute;)</span><span class="fml-df">Extremums locaux</span></div>
+      <div class="fml-row"><span class="fml-f">\(f''(x)=0\), soit \(x=-\dfrac{b}{3a}\)</span><span class="fml-df">Point d'inflexion</span></div>
+      <div class="fml-row"><span class="fml-f">Si \(f(r)=0\), factoriser par \((x-r)\)</span><span class="fml-df">Racine &eacute;vidente</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 1 ═══ -->
+  <div class="bloc-niveau n1">
+    <div class="bloc-niveau-header">&#x1F7E2; Niveau 1 &mdash; Bases</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Le degr&eacute; de \(f(x)=2x^3-x^2+4x-7\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 2</button>
+          <button class="qo" onclick="qcm(this,true,'La plus grande puissance de x est 3, donc le degr&eacute; est 3.')">B) 3</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 4</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 7</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Calculer \(f(2)\) pour \(f(x)=x^3-3x^2+2x+1\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On remplace \(x\) par 2 :<br>
+          \(f(2)=2^3-3\times 2^2+2\times 2+1=8-12+4+1=\mathbf{1}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> La d&eacute;riv&eacute;e de \(f(x)=x^3\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(f'(x)=x^2\)</button>
+          <button class="qo" onclick="qcm(this,true,'La d&eacute;riv&eacute;e de x&sup3; est 3x&sup2;.')">B) \(f'(x)=3x^2\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(f'(x)=3x^3\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(f'(x)=2x\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> D&eacute;river \(f(x)=2x^3-6x^2+5x-1\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On d&eacute;rive terme &agrave; terme :<br>
+          \(f'(x)=3\times 2x^2-2\times 6x+5=\mathbf{6x^2-12x+5}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Le coefficient dominant de \(f(x)=-3x^3+x^2-4\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'Le coefficient dominant est celui du terme de plus haut degr&eacute; : &minus;3.')">A) \(-3\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(1\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(-4\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(3\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> Calculer \(f(0)\) et \(f(1)\) pour \(f(x)=x^3-2x^2-x+2\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(f(0)=0^3-2\times 0^2-0+2=\mathbf{2}\)<br>
+          \(f(1)=1^3-2\times 1^2-1+2=1-2-1+2=\mathbf{0}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Si \(f(1)=0\), alors \((x-1)\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) une racine de \(f'(x)\)</button>
+          <button class="qo" onclick="qcm(this,true,'Si f(1) = 0, alors 1 est racine de f et on peut factoriser f(x) par (x &minus; 1).')">B) un facteur de \(f(x)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) la d&eacute;riv&eacute;e de \(f\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) le point d'inflexion</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) Degr&eacute; de \(5x^3-x\) &nbsp;&nbsp; b) \(f'(x)\) si \(f(x)=4x^3\) &nbsp;&nbsp; c) \(f(-1)\) pour \(f(x)=x^3\) &nbsp;&nbsp; d) Coefficient de \(x^2\) dans \(3x^3-7x^2+x\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) Degr&eacute; \(\mathbf{3}\)<br>
+          b) \(f'(x)=3\times 4x^2=\mathbf{12x^2}\)<br>
+          c) \(f(-1)=(-1)^3=\mathbf{-1}\)<br>
+          d) Le coefficient de \(x^2\) est \(\mathbf{-7}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 2 ═══ -->
+  <div class="bloc-niveau n2">
+    <div class="bloc-niveau-header">&#x1F535; Niveau 2 &mdash; Entra&icirc;nement</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Soit \(f(x)=x^3-4x\). Calculer \(f'(x)\), r&eacute;soudre \(f'(x)=0\) et dresser le tableau de variations.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(f'(x)=3x^2-4\)<br>
+          \(f'(x)=0 \Leftrightarrow 3x^2=4 \Leftrightarrow x^2=\dfrac{4}{3} \Leftrightarrow x=\pm\dfrac{2}{\sqrt{3}}\approx\pm 1{,}15\)<br><br>
+          <b>Tableau de variations :</b><br>
+          &bull; \(f\) est <b>croissante</b> sur \(\left]-\infty\,;\,-\dfrac{2}{\sqrt{3}}\right]\)<br>
+          &bull; \(f\) admet un <b>maximum local</b> en \(x=-\dfrac{2}{\sqrt{3}}\)<br>
+          &bull; \(f\) est <b>d&eacute;croissante</b> sur \(\left[-\dfrac{2}{\sqrt{3}}\,;\,\dfrac{2}{\sqrt{3}}\right]\)<br>
+          &bull; \(f\) admet un <b>minimum local</b> en \(x=\dfrac{2}{\sqrt{3}}\)<br>
+          &bull; \(f\) est <b>croissante</b> sur \(\left[\dfrac{2}{\sqrt{3}}\,;\,+\infty\right[\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> \(f(x)=x^3-6x^2+11x-6\). On v&eacute;rifie que \(f(1)=0\). Donc \(f(x)=(x-1)\times\ldots\)</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \((x^2-5x+3)\)</button>
+          <button class="qo" onclick="qcm(this,true,'On divise par (x &minus; 1) : f(x) = (x &minus; 1)(x&sup2; &minus; 5x + 6) = (x &minus; 1)(x &minus; 2)(x &minus; 3).')">B) \((x^2-5x+6)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \((x^2-6x+6)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \((x^2+5x-6)\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Factoriser \(f(x)=x^3-x\) en utilisant la mise en facteur.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On factorise par \(x\) :<br>
+          \(f(x)=x(x^2-1)\)<br>
+          On reconna&icirc;t une diff&eacute;rence de deux carr&eacute;s :<br>
+          \(f(x)=x(x-1)(x+1)\)<br><br>
+          <b>Racines :</b> \(x=0\), \(x=1\), \(x=-1\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Le point d'inflexion de \(f(x)=x^3-3x^2+2\) est en \(x=\ldots\)</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(x=0\)</button>
+          <button class="qo" onclick="qcm(this,true,'f&prime;&prime;(x) = 6x &minus; 6 = 0, donc x = 1. Le point d\'inflexion est en x = 1.')">B) \(x=1\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(x=2\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(x=3\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Soit \(f(x)=-x^3+3x^2+9x-27\). V&eacute;rifier que \(x=3\) est racine, puis factoriser.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(f(3)=-27+27+27-27=\mathbf{0}\) &nbsp; &#10003; \(x=3\) est bien racine.<br><br>
+          On factorise par \((x-3)\) :<br>
+          \(f(x)=-(x^3-3x^2-9x+27)\)<br>
+          \(=-(x-3)(x^2-9)\)<br>
+          \(=-(x-3)(x-3)(x+3)\)<br>
+          \(\mathbf{f(x)=-(x-3)^2(x+3)}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> \(f(x)=x^3\) admet pour point d'inflexion&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'f&prime;&prime;(x) = 6x = 0, donc x = 0. f(0) = 0. Le point d\'inflexion est (0 ; 0).')">A) \((0\,;\,0)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \((1\,;\,1)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \((-1\,;\,-1)\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) Il n'en a pas</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Soit \(f(x)=2x^3-3x^2-12x+10\). Calculer \(f'(x)\), r&eacute;soudre \(f'(x)=0\) et identifier les extremums locaux.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(f'(x)=6x^2-6x-12=6(x^2-x-2)=6(x-2)(x+1)\)<br><br>
+          \(f'(x)=0 \Leftrightarrow x=-1\) ou \(x=2\).<br><br>
+          &bull; En \(x=-1\) : \(f(-1)=2(-1)-3(1)-12(-1)+10=-2-3+12+10=\mathbf{17}\) &rarr; <b>maximum local</b><br>
+          &bull; En \(x=2\) : \(f(2)=2(8)-3(4)-12(2)+10=16-12-24+10=\mathbf{-10}\) &rarr; <b>minimum local</b>
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) \(f'(x)\) si \(f(x)=x^3+x\) &nbsp;&nbsp; b) \(f(2)\) pour \(f(x)=x^3-8\) &nbsp;&nbsp; c) Nombre de racines max d'un polyn&ocirc;me de degr&eacute; 3 &nbsp;&nbsp; d) \(f''(x)\) si \(f(x)=x^3-6x^2\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(f'(x)=3x^2+1=\mathbf{3x^2+1}\)<br>
+          b) \(f(2)=8-8=\mathbf{0}\)<br>
+          c) Un polyn&ocirc;me de degr&eacute; 3 admet au plus \(\mathbf{3}\) racines<br>
+          d) \(f'(x)=3x^2-12x\), donc \(f''(x)=\mathbf{6x-12}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 3 ═══ -->
+  <div class="bloc-niveau n3">
+    <div class="bloc-niveau-header">&#x1F7E3; Niveau 3 &mdash; Automatisation</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> <em>Contexte pro &mdash;</em> Le volume d'une bo&icirc;te ouverte d&eacute;coup&eacute;e dans une plaque de 20&times;30&nbsp;cm est \(V(x)=x(20-2x)(30-2x)=4x^3-100x^2+600x\). D&eacute;river, trouver les extremums, d&eacute;terminer \(x\) pour le volume maximal.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(V'(x)=12x^2-200x+600\)<br><br>
+          On r&eacute;sout \(V'(x)=0\) :<br>
+          \(\Delta=(-200)^2-4\times 12\times 600=40\,000-28\,800=11\,200\)<br>
+          \(\sqrt{11\,200}\approx 105{,}83\)<br><br>
+          \(x_1=\dfrac{200-105{,}83}{24}\approx\mathbf{3{,}92\text{ cm}}\) &nbsp; (valeur retenue, dans \(]0\,;\,10[\))<br>
+          \(x_2=\dfrac{200+105{,}83}{24}\approx 12{,}74\text{ cm}\) &nbsp; (hors domaine)<br><br>
+          Le volume est <b>maximal</b> pour \(x\approx 3{,}92\) cm.
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> \(f(x)=x^3-7x+6\). On sait que \(f(1)=0\) et \(f(2)=0\). La troisi&egrave;me racine est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(x=3\)</button>
+          <button class="qo" onclick="qcm(this,true,'La somme des racines vaut 0 (pas de terme en x&sup2;). Donc la troisi&egrave;me racine est 0 &minus; 1 &minus; 2 = &minus;3.')">B) \(x=-3\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(x=-6\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(x=6\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> &Eacute;tudier les variations de \(f(x)=x^3-12x+16\). Donner le tableau de variations complet.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(f'(x)=3x^2-12=3(x^2-4)=3(x-2)(x+2)\)<br>
+          \(f'(x)=0 \Leftrightarrow x=-2\) ou \(x=2\).<br><br>
+          &bull; \(f(-2)=(-8)-12\times(-2)+16=-8+24+16=\mathbf{32}\) &rarr; <b>maximum local</b><br>
+          &bull; \(f(2)=8-24+16=\mathbf{0}\) &rarr; <b>minimum local</b><br><br>
+          <b>Tableau de variations :</b><br>
+          &bull; \(f\) <b>croissante</b> sur \(]-\infty\,;\,-2]\)<br>
+          &bull; \(f(-2)=32\) (maximum local)<br>
+          &bull; \(f\) <b>d&eacute;croissante</b> sur \([-2\,;\,2]\)<br>
+          &bull; \(f(2)=0\) (minimum local)<br>
+          &bull; \(f\) <b>croissante</b> sur \([2\,;\,+\infty[\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Le co&ucirc;t de production est \(C(x)=0{,}1x^3-3x^2+50x+200\). Le co&ucirc;t marginal \(C'(x)\) pour \(x=10\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 10 &euro;</button>
+          <button class="qo" onclick="qcm(this,true,'C&prime;(x) = 0,3x&sup2; &minus; 6x + 50. C&prime;(10) = 0,3 &times; 100 &minus; 60 + 50 = 30 &minus; 60 + 50 = 20 &euro;.')">B) 20 &euro;</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 30 &euro;</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 50 &euro;</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> R&eacute;soudre \(x^3-4x^2+x+6=0\). (Tester \(x=-1\).)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(f(-1)=(-1)^3-4(-1)^2+(-1)+6=-1-4-1+6=\mathbf{0}\) &nbsp; &#10003;<br><br>
+          On factorise par \((x+1)\) :<br>
+          \(f(x)=(x+1)(x^2-5x+6)\)<br>
+          \(=(x+1)(x-2)(x-3)\)<br><br>
+          <b>Solutions :</b> \(x=-1\), \(x=2\), \(x=3\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> La d&eacute;riv&eacute;e seconde \(f''(x)=6x-12\) s'annule en \(x=2\). C'est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) un maximum local</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) un minimum local</button>
+          <button class="qo" onclick="qcm(this,true,'Quand f&prime;&prime;(x) = 0, on a un point d\'inflexion : la courbe change de concavit&eacute;.')">C) un point d'inflexion</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) une racine de \(f\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> <em>Contexte pro &mdash;</em> Le d&eacute;bit d'eau dans une canalisation est \(d(t)=-t^3+9t^2-15t+50\) (L/min) sur \([0\,;\,6]\). &Eacute;tudier les variations et d&eacute;terminer quand le d&eacute;bit est maximal.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(d'(t)=-3t^2+18t-15=-3(t^2-6t+5)=-3(t-1)(t-5)\)<br>
+          \(d'(t)=0 \Leftrightarrow t=1\) ou \(t=5\).<br><br>
+          &bull; \(d(0)=50\)<br>
+          &bull; \(d(1)=-1+9-15+50=\mathbf{43}\) &rarr; <b>minimum local</b><br>
+          &bull; \(d(5)=-125+225-75+50=\mathbf{75}\) &rarr; <b>maximum local</b><br>
+          &bull; \(d(6)=-216+324-90+50=\mathbf{68}\)<br><br>
+          Sur \([0\,;\,6]\), le d&eacute;bit est <b>maximal en \(t=5\)</b> avec \(d(5)=75\) L/min.
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre rapidement.<br>
+        a) \(f'(x)\) si \(f(x)=-x^3+6x^2\) &nbsp;&nbsp; b) \(f(0)\) pour \(f(x)=2x^3-5x+7\) &nbsp;&nbsp; c) \(f''(x)\) si \(f'(x)=12x^2-6x+1\) &nbsp;&nbsp; d) Racine &eacute;vidente de \(x^3-8\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(f'(x)=-3x^2+12x=\mathbf{-3x^2+12x}\)<br>
+          b) \(f(0)=0-0+7=\mathbf{7}\)<br>
+          c) \(f''(x)=24x-6=\mathbf{24x-6}\)<br>
+          d) \(x^3-8=0 \Leftrightarrow x^3=8 \Leftrightarrow x=\mathbf{2}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+
+  <nav class="nav-bas" aria-label="Retour automatismes" style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+    <a href="index.html" style="color:var(--p);text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&larr; Retour au menu des automatismes</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:#64748b;text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&uarr; Haut de page</a>
+  </nav>
+
+</div>
+
+<script src="qcm-auto.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>

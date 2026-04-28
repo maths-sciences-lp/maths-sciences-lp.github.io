@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Automatismes sur les suites g&eacute;om&eacute;triques pour Terminale Bac Pro – raison, terme g&eacute;n&eacute;ral, somme, convergence, int&eacute;r&ecirc;ts compos&eacute;s. QCM et exercices corrig&eacute;s.">
+<title>Automatismes – Suites g&eacute;om&eacute;triques – Terminale Bac Pro</title>
+<script>MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}}</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--p:#0f3460;--s:#2f855a;--d:#7c2d12;--o:#d97706;--t:#2d3748}
+body{font-family:'Segoe UI',sans-serif;background:#f8fafc;color:var(--t);margin:0;padding:20px;line-height:1.7}
+.c{max-width:860px;margin:auto;background:#fff;padding:30px 35px;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header{text-align:center;border-bottom:3px solid var(--p);margin-bottom:26px;padding-bottom:14px}
+.surtitre{margin:0 0 4px;color:#718096;font-size:.85em;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+h1{margin:0 0 5px;color:var(--p);font-size:1.55em}
+.sous-titre{margin:0;color:#718096;font-size:.88em}
+.nav-haut{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.nav-haut a{color:#1e3b6e;text-decoration:none;font-size:.83em;font-weight:700;padding:5px 11px;border-radius:6px;background:#ebf5ff;border:1px solid #bee3f8;transition:.15s}
+.nav-haut a:hover{background:#dbeafe}
+.fml{background:#ebf5ff;border:1.5px solid var(--p);border-radius:8px;padding:12px 18px;margin:14px 0;font-size:.94em}
+.fml-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:8px}
+@media(max-width:560px){.fml-grid{grid-template-columns:1fr}}
+.fml-row{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:5px 0;border-bottom:1px solid #bee3f8;align-items:center;font-size:.93em}
+.fml-row:last-child{border-bottom:none}
+.fml-f{font-weight:600;color:#1e3b6e}
+.fml-df{color:#1e40af}
+.alerte{background:#fffbeb;border-left:4px solid var(--o);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.9em}
+.bloc-niveau{border:2px solid #e2e8f0;border-radius:10px;margin:22px 0;overflow:hidden}
+.bloc-niveau-header{padding:11px 18px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:1em;border-bottom:1px solid #e2e8f0}
+.n1 .bloc-niveau-header{background:#d1fae5;color:#065f46;border-bottom-color:#a7f3d0}
+.n2 .bloc-niveau-header{background:#dbeafe;color:#1e40af;border-bottom-color:#93c5fd}
+.n3 .bloc-niveau-header{background:#f3e8ff;color:#6d28d9;border-bottom-color:#d8b4fe}
+.bloc-niveau-body{padding:16px 18px}
+.exo{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:13px 16px;margin:10px 0}
+.exo-q{margin:0 0 8px;font-weight:600;font-size:.97em}
+.exo-q .num{color:var(--p);margin-right:4px}
+details{margin-top:6px}
+details summary{cursor:pointer;color:#0056b3;font-size:.86em;font-weight:600;list-style:none;padding:3px 0;user-select:none}
+details summary::-webkit-details-marker{display:none}
+details summary{display:flex;align-items:center;gap:4px}details summary::before{content:'▸'}
+details[open] summary::before{content:'▾'}
+.corr{background:#f0fff4;border-left:4px solid var(--s);padding:9px 13px;border-radius:0 8px 8px 0;margin-top:8px;font-size:.91em;line-height:1.55}
+.corr b{color:#065f46}
+.qcm-opts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.qo{padding:6px 16px;border-radius:6px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.9em;transition:.15s;font-family:inherit}
+.qo:hover:not(:disabled){border-color:var(--p);background:#ebf5ff}
+.qo.ok{background:#d1fae5;border-color:var(--s);color:#065f46;font-weight:700}
+.qo.ko{background:#fee2e2;border-color:#dc2626;color:#991b1b}
+.qo:disabled{cursor:default}
+.fb{font-size:.85em;min-height:1.3em;font-weight:600;margin-top:3px}
+.fb.ok{color:var(--s)}.fb.ko{color:#dc2626}
+</style>
+<link rel="stylesheet" href="../print.css" media="print"></head>
+<body>
+<div class="c">
+
+  <nav class="nav-haut">
+    <a href="index.html">&larr; Automatismes</a>
+    <a href="../maths-term-mama.html">&nearr; Maths Term.</a>
+  </nav>
+
+  <header>
+    <p class="surtitre">Automatismes &ndash; Terminale Bac Pro</p>
+    <h1>&#128260; Suites g&eacute;om&eacute;triques</h1>
+    <p class="sous-titre">Mise &agrave; jour : 28 avril 2026</p>
+  </header>
+
+  <div class="alerte">
+    <strong>Objectif :</strong> Ma&icirc;triser les suites g&eacute;om&eacute;triques : identifier la raison, calculer un terme, utiliser la formule de la somme, &eacute;tudier la convergence et appliquer aux int&eacute;r&ecirc;ts compos&eacute;s.
+  </div>
+
+  <div class="fml">
+    <strong>&#128203; Formulaire &ndash; Suites g&eacute;om&eacute;triques</strong>
+    <div class="fml-grid" style="margin-top:10px">
+      <div class="fml-row"><span class="fml-f">\(u_{n+1}=q\times u_n\)</span><span class="fml-df">D&eacute;finition (chaque terme = pr&eacute;c&eacute;dent &times; raison \(q\))</span></div>
+      <div class="fml-row"><span class="fml-f">\(u_n=u_1\times q^{n-1}\)</span><span class="fml-df">Terme g&eacute;n&eacute;ral (ou \(u_n=u_0\times q^n\) si on part de \(u_0\))</span></div>
+      <div class="fml-row"><span class="fml-f">\(S_n=u_1\times\dfrac{1-q^n}{1-q}\) si \(q\neq 1\)</span><span class="fml-df">Somme des \(n\) premiers termes</span></div>
+      <div class="fml-row"><span class="fml-f">Si \(|q|&lt;1\) : converge vers 0</span><span class="fml-df">Convergence</span></div>
+      <div class="fml-row"><span class="fml-f">Si \(q&gt;1\) : diverge vers \(+\infty\)</span><span class="fml-df">Divergence</span></div>
+      <div class="fml-row"><span class="fml-f">Si \(0&lt;q&lt;1\) : suite d&eacute;croissante vers 0</span><span class="fml-df">Sens de variation</span></div>
+      <div class="fml-row"><span class="fml-f">Si \(q&gt;1\) : suite croissante</span><span class="fml-df">Sens de variation</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 1 ═══ -->
+  <div class="bloc-niveau n1">
+    <div class="bloc-niveau-header">&#x1F7E2; Niveau 1 &mdash; Bases</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> La suite 2, 6, 18, 54 est g&eacute;om&eacute;trique de raison&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(q=2\)</button>
+          <button class="qo" onclick="qcm(this,true,'6 &divide; 2 = 3, 18 &divide; 6 = 3, 54 &divide; 18 = 3. La raison est q = 3.')">B) \(q=3\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(q=4\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(q=6\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Calculer \(u_4\) pour \(u_1=5\) et \(q=2\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On utilise la formule \(u_n=u_1\times q^{n-1}\) :<br>
+          \(u_4=5\times 2^{4-1}=5\times 2^3=5\times 8=\mathbf{40}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> La suite 100, 50, 25, 12{,}5 est g&eacute;om&eacute;trique de raison&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(q=2\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(q=0{,}25\)</button>
+          <button class="qo" onclick="qcm(this,true,'50 &divide; 100 = 0,5 ; 25 &divide; 50 = 0,5 ; 12,5 &divide; 25 = 0,5. La raison est q = 0,5.')">C) \(q=0{,}5\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(q=-0{,}5\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> Donner les 5 premiers termes de la suite g&eacute;om&eacute;trique \(u_1=3\), \(q=4\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          \(u_1=3\)<br>
+          \(u_2=3\times 4=12\)<br>
+          \(u_3=12\times 4=48\)<br>
+          \(u_4=48\times 4=192\)<br>
+          \(u_5=192\times 4=768\)<br>
+          Les 5 premiers termes sont : \(\mathbf{3\,;\,12\,;\,48\,;\,192\,;\,768}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Si \(q=0{,}8\) (donc \(|q|&lt;1\)), la suite&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) diverge vers \(+\infty\)</button>
+          <button class="qo" onclick="qcm(this,true,'Quand |q| < 1, la suite g&eacute;om&eacute;trique converge vers 0.')">B) converge vers 0</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) est constante</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) diverge vers \(-\infty\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> V&eacute;rifier si la suite 4, 8, 16, 32, 64 est g&eacute;om&eacute;trique. Donner \(q\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On calcule les rapports successifs :<br>
+          \(\dfrac{8}{4}=2\) ; \(\dfrac{16}{8}=2\) ; \(\dfrac{32}{16}=2\) ; \(\dfrac{64}{32}=2\)<br>
+          Le rapport est constant, donc la suite est <b>g&eacute;om&eacute;trique</b> de raison \(\mathbf{q=2}\).
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> \(u_n=1\,000\times 0{,}9^n\). Que vaut \(u_0\) ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'u_0 = 1 000 &times; 0,9^0 = 1 000 &times; 1 = 1 000.')">A) 1 000</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) 900</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 0</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 100</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) \(u_3\) si \(u_1=10\), \(q=3\) &nbsp;&nbsp; b) Raison de 1, \(\frac{1}{2}\), \(\frac{1}{4}\), \(\frac{1}{8}\) &nbsp;&nbsp; c) \(u_1\times q^2=u_{\,?}\) &nbsp;&nbsp; d) Suite \(1,\,-2,\,4,\,-8\) : \(q=\,?\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(u_3=u_1\times q^2=10\times 3^2=10\times 9=\mathbf{90}\)<br>
+          b) \(\dfrac{1/2}{1}=\mathbf{\dfrac{1}{2}}\), la raison est \(q=\dfrac{1}{2}\)<br>
+          c) \(u_1\times q^2=u_1\times q^{3-1}=\mathbf{u_3}\)<br>
+          d) \(\dfrac{-2}{1}=-2\), la raison est \(\mathbf{q=-2}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 2 ═══ -->
+  <div class="bloc-niveau n2">
+    <div class="bloc-niveau-header">&#x1F535; Niveau 2 &mdash; Entra&icirc;nement</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> Un capital de 5 000 &euro; est plac&eacute; &agrave; 3 % par an (int&eacute;r&ecirc;ts compos&eacute;s). &Eacute;crire \(u_n\) le capital apr&egrave;s \(n\) ann&eacute;es. Calculer \(u_5\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          Chaque ann&eacute;e, le capital est multipli&eacute; par \(1{,}03\).<br>
+          \(\mathbf{u_n=5\,000\times 1{,}03^n}\)<br><br>
+          \(u_5=5\,000\times 1{,}03^5=5\,000\times 1{,}159\,274\ldots\approx\mathbf{5\,796{,}37\text{ &euro;}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Une machine perd 15 % de sa valeur chaque ann&eacute;e. La raison de la suite est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(q=0{,}15\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(q=1{,}15\)</button>
+          <button class="qo" onclick="qcm(this,true,'Perdre 15 % revient &agrave; garder 85 % de la valeur, donc q = 1 &minus; 0,15 = 0,85.')">C) \(q=0{,}85\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(q=-0{,}15\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> \(u_1=200\), \(q=0{,}5\). Calculer \(S_4=u_1+u_2+u_3+u_4\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          On utilise la formule \(S_n=u_1\times\dfrac{1-q^n}{1-q}\) :<br>
+          \(S_4=200\times\dfrac{1-0{,}5^4}{1-0{,}5}=200\times\dfrac{1-0{,}0625}{0{,}5}=200\times\dfrac{0{,}9375}{0{,}5}=200\times 1{,}875=\mathbf{375}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> \(u_n=8\times 3^n\). \(u_0=8\), \(u_1=24\), \(u_2=\,?\)</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 48</button>
+          <button class="qo" onclick="qcm(this,true,'u_2 = 8 &times; 3&sup2; = 8 &times; 9 = 72.')">B) 72</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 64</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 96</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> Un arbre perd 20 % de ses feuilles chaque semaine en automne. Il en a 50 000 au d&eacute;part. Combien en reste-t-il apr&egrave;s 3 semaines ?</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          Perdre 20 % = garder 80 %, donc \(q=0{,}8\).<br>
+          \(u_3=50\,000\times 0{,}8^3=50\,000\times 0{,}512=\mathbf{25\,600\text{ feuilles}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> Trouver \(q\) sachant que \(u_1=4\) et \(u_4=108\).</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,true,'u_4 = u_1 &times; q&sup3;, donc 108 = 4 &times; q&sup3;, soit q&sup3; = 27, d\'o&ugrave; q = 3.')">A) \(q=3\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(q=9\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) \(q=27\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(q=4\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> La population de bact&eacute;ries double toutes les heures. Il y en a 500 au d&eacute;part. &Eacute;crire \(u_n\) et calculer \(u_8\).</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          La population double chaque heure, donc \(q=2\).<br>
+          \(\mathbf{u_n=500\times 2^n}\)<br><br>
+          \(u_8=500\times 2^8=500\times 256=\mathbf{128\,000\text{ bact&eacute;ries}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre mentalement.<br>
+        a) \(u_5\) si \(u_1=1\), \(q=10\) &nbsp;&nbsp; b) \(1\,000\times 0{,}9^2=\,?\) &nbsp;&nbsp; c) Somme \(1+2+4+8\) &nbsp;&nbsp; d) \(q\) si \(u_1=6\), \(u_2=18\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(u_5=1\times 10^{5-1}=10^4=\mathbf{10\,000}\)<br>
+          b) \(1\,000\times 0{,}81=\mathbf{810}\)<br>
+          c) \(1+2+4+8=\mathbf{15}\)<br>
+          d) \(q=\dfrac{u_2}{u_1}=\dfrac{18}{6}=\mathbf{3}\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ NIVEAU 3 ═══ -->
+  <div class="bloc-niveau n3">
+    <div class="bloc-niveau-header">&#x1F7E3; Niveau 3 &mdash; Automatisation</div>
+    <div class="bloc-niveau-body">
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q1.</span> <em>Contexte pro</em> &mdash; Un menuisier ach&egrave;te une machine &agrave; 25 000 &euro;. Elle se d&eacute;pr&eacute;cie de 12 % par an. &Eacute;crire \(V_n\) la valeur apr&egrave;s \(n\) ans. Apr&egrave;s combien d'ann&eacute;es la valeur passe-t-elle sous 10 000 &euro; ?</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          Perdre 12 % = garder 88 %, donc \(q=0{,}88\).<br>
+          \(\mathbf{V_n=25\,000\times 0{,}88^n}\)<br><br>
+          On cherche \(n\) tel que \(25\,000\times 0{,}88^n&lt;10\,000\), soit \(0{,}88^n&lt;0{,}4\).<br>
+          Par t&acirc;tonnement :<br>
+          &bull; \(n=7\) : \(0{,}88^7\approx 0{,}409\) &rarr; encore au-dessus<br>
+          &bull; \(n=8\) : \(0{,}88^8\approx 0{,}360\) &rarr; en dessous<br>
+          <b>R&eacute;ponse : apr&egrave;s 8 ans</b>, la valeur passe sous 10 000 &euro;.
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q2.</span> Un emprunt de 10 000 &euro; &agrave; 5 % par an. Apr&egrave;s 3 ans sans remboursement, la dette est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) 11 500 &euro;</button>
+          <button class="qo" onclick="qcm(this,true,'10 000 &times; 1,05&sup3; = 10 000 &times; 1,157 625 = 11 576,25 &euro;.')">B) 11 576{,}25 &euro;</button>
+          <button class="qo" onclick="qcm(this,false,'')">C) 10 500 &euro;</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) 15 000 &euro;</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q3.</span> Calculer \(S=1+3+9+27+81+243\) en utilisant la formule de la somme.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          C'est une suite g&eacute;om&eacute;trique de premier terme \(u_1=1\), de raison \(q=3\) et de 6 termes.<br>
+          \(S=1\times\dfrac{1-3^6}{1-3}=\dfrac{1-729}{-2}=\dfrac{-728}{-2}=\mathbf{364}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q4.</span> \(u_n=2\,000\times 0{,}95^n\) mod&eacute;lise le nombre de d&eacute;fauts sur une cha&icirc;ne de production. Au bout de combien de p&eacute;riodes le nombre passe-t-il sous 1 000 ?</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) \(n=10\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) \(n=12\)</button>
+          <button class="qo" onclick="qcm(this,true,'On r&eacute;sout 0,95^n < 0,5. Par t&acirc;tonnement : 0,95^13 &approx; 0,513 et 0,95^14 &approx; 0,488. Donc n = 14.')">C) \(n=14\)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) \(n=20\)</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q5.</span> <em>Contexte pro</em> &mdash; Un installateur thermique propose un contrat d'entretien &agrave; 200 &euro;/an augmentant de 5 % par an. Calculer le co&ucirc;t total sur 5 ans.</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          Les co&ucirc;ts annuels forment une suite g&eacute;om&eacute;trique : \(u_1=200\), \(q=1{,}05\).<br>
+          \(S_5=200\times\dfrac{1-1{,}05^5}{1-1{,}05}=200\times\dfrac{1-1{,}276\,282}{-0{,}05}=200\times\dfrac{-0{,}276\,282}{-0{,}05}\)<br>
+          \(S_5=200\times 5{,}525\,6\approx\mathbf{1\,105{,}13\text{ &euro;}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q6.</span> La suite \(u_n=(-2)^n\) est&hellip;</p>
+        <div class="qcm-opts">
+          <button class="qo" onclick="qcm(this,false,'')">A) croissante</button>
+          <button class="qo" onclick="qcm(this,false,'')">B) d&eacute;croissante</button>
+          <button class="qo" onclick="qcm(this,true,'Les termes alternent en signe : 1, &minus;2, 4, &minus;8, 16&hellip; La suite n\'est ni croissante ni d&eacute;croissante.')">C) ni croissante ni d&eacute;croissante (elle alterne en signe)</button>
+          <button class="qo" onclick="qcm(this,false,'')">D) constante</button>
+        </div>
+        <p class="fb" aria-live="polite"></p>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q7.</span> Un entrepreneur place 1 000 &euro; chaque ann&eacute;e pendant 10 ans &agrave; 4 % compos&eacute;s. Quel est le capital total ?</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          C'est une somme de suite g&eacute;om&eacute;trique (chaque versement fructifie) :<br>
+          \(S=1\,000\times\dfrac{1{,}04^{10}-1}{0{,}04}\)<br>
+          \(1{,}04^{10}\approx 1{,}480\,24\)<br>
+          \(S=1\,000\times\dfrac{0{,}480\,24}{0{,}04}=1\,000\times 12{,}006=\mathbf{12\,006\text{ &euro;}}\)
+        </div>
+        </details>
+      </div>
+
+      <div class="exo">
+        <p class="exo-q"><span class="num">Q8.</span> Flash-calcul : r&eacute;pondre rapidement.<br>
+        a) \(5\,000\times 1{,}02^3\) arrondi &agrave; l'euro &nbsp;&nbsp; b) Raison si \(u_3=16\), \(u_1=4\) &nbsp;&nbsp; c) \(0{,}9^{10}\approx\,?\) &nbsp;&nbsp; d) Suite convergente si \(|q|\,\ldots\,1\)</p>
+        <details><summary>Voir la r&eacute;ponse</summary>
+        <div class="corr">
+          a) \(5\,000\times 1{,}02^3=5\,000\times 1{,}061\,208=\mathbf{5\,306\text{ &euro;}}\)<br>
+          b) \(u_3=u_1\times q^2\), donc \(16=4\times q^2\), \(q^2=4\), \(\mathbf{q=2}\)<br>
+          c) \(0{,}9^{10}\approx\mathbf{0{,}349}\)<br>
+          d) Suite convergente si \(|q|\,\mathbf{&lt;}\,1\)
+        </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
+
+  <nav class="nav-bas" aria-label="Retour automatismes" style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+    <a href="index.html" style="color:var(--p);text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&larr; Retour au menu des automatismes</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:#64748b;text-decoration:none;font-size:.9em;font-weight:700;padding:8px 18px;border-radius:8px;background:rgba(0,0,0,.03);border:1px solid #e2e8f0">&uarr; Haut de page</a>
+  </nav>
+
+</div>
+
+<script src="qcm-auto.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>
