@@ -1,8 +1,8 @@
 # Audit Simulations Interactives
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-04-05 (métadonnées complétées, orphelines référencées)
-**Périmètre** : dossier `simulations/` — 70 fichiers HTML
+**Dernière mise à jour** : 2026-04-28 (audit des 11 nouvelles simulations ajoutées depuis le 2026-04-05)
+**Périmètre** : dossier `simulations/` — 78 fichiers HTML
 **Méthode** : Lecture et analyse de l'ensemble des simulations, vérification du référencement depuis les pages de cours, analyse de la couverture par chapitre, audit technique approfondi (autonomie, responsive, accessibilité, qualité JS).
 
 ---
@@ -148,6 +148,29 @@
 | 57 | `effet-joule.html` | Échauffement d'un conducteur | 1ère ICCER Ch02 | **Oui** | Bonne |
 | 58 | `serre.html` | Effet de serre | Tle ERA Ch03 | **Oui** | Bonne |
 
+### Nouvelles simulations ajoutées depuis 2026-04-05 (11 simulations)
+
+| # | Fichier | Notion illustrée | Niveau / Chapitre cible | Listée `simulations.html` | Référencée en cours | Pertinence |
+|---|---|---|---|---|---|---|
+| 71 | `anisotropie-bois.html` | Mouvements hygroscopiques du bois (L, T, R) | 1ère ICCER/ERA (menuiserie/agencement) | Non | Non — **orpheline** | Bonne |
+| 72 | `calepinage.html` | Optimisation de découpe de panneaux | 2nde Bac Pro / agencement | Non | Non — **orpheline** | Bonne |
+| 73 | `ccf-bac-rangement.html` | Optimisation V(x) = x(30−2x)² (CCF Maths) | Terminale Bac Pro (CCF Maths) | Non | Non — **orpheline** | Bonne |
+| 74 | `comparateur-vitrages.html` | Coefficient U et coût énergétique (vitrages) | 2nde Bac Pro Ch11 (transferts thermiques) | Non | **Oui** (`pc/seconde/ch11/lecon`) | Très bonne |
+| 75 | `ctn-etuve-regulation.html` | Régulation tout-ou-rien d'étuve (CTN, R(T)) | 2nde Bac Pro Ch10 (capteurs thermiques) | **Oui** | **Oui** (`pc/seconde/ch10/lecon`) | Très bonne |
+| 76 | `ctn-pt100-comparaison.html` | Comparaison CTN vs Pt100 | 2nde Bac Pro Ch10 (capteurs thermiques) | **Oui** | **Oui** (`pc/seconde/ch10/lecon`) | Très bonne |
+| 77 | `dilatation-parquet.html` | Dilatation thermique du parquet (ΔL = α L₀ ΔT) | 1ère ICCER/ERA (menuiserie) | Non | Non — **orpheline** | Bonne |
+| 78 | `eclairage-atelier.html` | Éclairement E = Φ/S, norme NF EN 12464-1 | 2nde Bac Pro / atelier | Non | Non — **orpheline** | Bonne |
+| 79 | `escalier-blondel.html` | Loi de Blondel 2h + g ∈ [600 ; 660 mm] | 2nde Bac Pro / agencement | Non | Non — **orpheline** | Bonne |
+| 80 | `paroi-multicouche.html` | Résistance thermique R = e/λ, flux Φ = S·ΔT/R | 2nde Bac Pro Ch11 (transferts thermiques) | Non | **Oui** (`pc/seconde/ch11/lecon`) | Très bonne |
+| 81 | `presse-hydraulique.html` | Principe de Pascal, F₂/F₁ = S₂/S₁ | Bac Pro (mécanique des fluides) | Non | Non — **orpheline** | Bonne |
+
+**Bilan** : 2 nouvelles pleinement intégrées (CTN), 2 référencées en cours mais absentes de `simulations.html` (comparateur-vitrages, paroi-multicouche), **7 orphelines** sans aucun lien (anisotropie-bois, calepinage, ccf-bac-rangement, dilatation-parquet, eclairage-atelier, escalier-blondel, presse-hydraulique).
+
+**Conformité technique** :
+- Autonomie (pas de nav.js/styles.css du site) : **11/11** ✓
+- Responsive (`@media`) : **11/11** ✓
+- Accessibilité (`aria-label` sur canvas/SVG) : **0/11** ❌
+
 ### ~~Simulations sans niveau ni chapitre~~ — RECLASSÉES
 
 ~~7 simulations étaient non attribuées.~~
@@ -203,13 +226,15 @@ Simulations PC Seconde confirmées **modernes** : `circuit-electrique.html`, `si
 
 Simulations **non vérifiées** (potentiellement anciennes, à auditer) : `debit.html`, `effet-joule.html`, `equations.html`, `gaz.html`, `graphe-equation.html`, `inegalite.html`, `moteur.html`, `oxydoreduction.html`, `pile-electrochimique.html`, `pression.html`, `puissance.html`, `rayonnement.html`, `redressement.html`, `son.html`, `sources-lumineuses.html`, `traceur.html`, `transformateur.html`, `transmission-info.html`, `vitesse-acceleration.html`.
 
-### 4. 8 simulations non responsives (sans @media)
+### 4. 10 simulations non responsives (sans @media)
 
 **Gravité : FAIBLE**
 
-`balance.html`, `equations.html`, `graphe-equation.html`, `inegalite.html`, `melangeur.html`, `modeles-atome.html`, `redressement.html`, `traceur.html`
+`attenuation-sonore.html`, `balance.html`, `debit-fluide.html`, `equations.html`, `graphe-equation.html`, `inegalite.html`, `melangeur.html`, `modeles-atome.html`, `redressement.html`, `traceur.html`
 
 **Mise à jour 2026-03-17** : Parmi les simulations PC Seconde, seul `modeles-atome.html` manque de `@media` queries (utilise CSS Grid mais sans breakpoint explicite). Toutes les autres simulations PC Seconde sont bien responsives.
+
+**Mise à jour 2026-04-28** : `attenuation-sonore.html` et `debit-fluide.html` ajoutées à la liste (manquaient déjà dans l'audit précédent). Les 11 nouvelles simulations 2026-04-28 sont **toutes responsives**.
 
 ### ~~5. 12 simulations avec métadonnées incomplètes~~ — CORRIGÉ
 
@@ -246,7 +271,30 @@ Simulations corrigées :
 
 **Points positifs** : bon contraste de couleurs, navigation clavier possible via sliders et boutons.
 
-**Fichiers concernés** : les 64 simulations (problème transversal).
+**Fichiers concernés** : 73 simulations sur 78 (problème transversal). Seule `trigonometrie.html` (corrigée 2026-03-31) possède des `aria-label`. Les 11 nouvelles simulations 2026-04-28 sont également concernées.
+
+### 8. Nouvelles simulations 2026-04-28 partiellement intégrées (NOUVEAU)
+
+**Gravité : MOYENNE**
+
+**Découvert le 2026-04-28** : 11 simulations ont été ajoutées au dossier `simulations/` depuis la dernière mise à jour (2026-04-05). Sur ces 11 nouvelles simulations :
+
+- **2 pleinement intégrées** : `ctn-etuve-regulation.html` et `ctn-pt100-comparaison.html` (listées dans `simulations.html` + référencées depuis `pc/seconde/ch10/lecon.html`).
+- **2 référencées en cours mais absentes de `simulations.html`** : `comparateur-vitrages.html` et `paroi-multicouche.html` (référencées depuis `pc/seconde/ch11/lecon.html` et `pc-2nde-pro.html`).
+- **7 totalement orphelines** (ni listées dans `simulations.html`, ni référencées en cours) :
+  - `anisotropie-bois.html` — 1ère ICCER/ERA (menuiserie)
+  - `calepinage.html` — 2nde Bac Pro (agencement)
+  - `ccf-bac-rangement.html` — Terminale Bac Pro (CCF Maths)
+  - `dilatation-parquet.html` — 1ère ICCER/ERA (menuiserie)
+  - `eclairage-atelier.html` — 2nde Bac Pro (atelier)
+  - `escalier-blondel.html` — 2nde Bac Pro (agencement)
+  - `presse-hydraulique.html` — Bac Pro (mécanique des fluides)
+
+**Impact** : Les simulations orphelines ne sont pas découvrables par les élèves. Le travail de création est dilué.
+
+**Actions recommandées** :
+1. Ajouter les 9 simulations manquantes (toutes sauf les 2 CTN) dans `simulations.html` avec catégorisation appropriée.
+2. Référencer les 7 orphelines depuis les pages `lecon.html` correspondantes au niveau/chapitre identifié.
 
 **Actions recommandées** :
 - Ajouter `aria-label` sur chaque `<canvas>` et `<svg>` (description du contenu visuel)
@@ -299,6 +347,7 @@ Simulations corrigées :
 - **2026-03-19** : Bilan Seconde — 32 simulations couvrent la Seconde (15 maths + 17 PC), couvrant 27/28 chapitres (seul PC ch01 Sécurité sans simulation). En plus, maths/seconde/ch05 et ch06 disposent de simulation.html intégrées dans le chapitre.
 - **2026-03-31** : Audit approfondi de `trigonometrie.html` (Maths Terminale Ch07) — 7 corrections : ajout `</head>` manquant (HTML invalide), correction arc d'angle pour α > 180°, correction bug marqueurs Chart.js (points invisibles car format `{x,y}` incompatible avec axe catégoriel), ajout aria-label sur canvas et `for` sur labels, extension affichage symbolique radians (17 angles remarquables au lieu de 5), surbrillance dynamique du tableau des angles remarquables, repositionnement labels sin/cos selon le quadrant.
 - **2026-04-05** : Audit complet des 70 simulations par chapitre. Métadonnées (niveau + chapitre) ajoutées dans 11 simulations : `atome-couches`, `atome`, `concentration`, `equations`, `melangeur`, `modeles-atome`, `ohm`, `refraction`, `signal-alternatif`, `traceur`, `attenuation-sonore`. Simulations orphelines liées depuis les leçons : `balance.html` → maths/seconde/ch05 ; `debit-fluide.html` → pc/terminale-iccer/ch06 ; `chaleur.html` → pc/premiere-iccer/ch04 + premiere-era/ch04 ; `gaz.html` + `boyle-mariotte.html` → pc/premiere-iccer/ch07 + premiere-era/ch07 ; `attenuation-sonore.html` → pc/terminale-era/ch08. Périmètre mis à jour : 70 simulations (vs 64 à la dernière mise à jour). (Maths Terminale Ch07) — 7 corrections : ajout `</head>` manquant (HTML invalide), correction arc d'angle pour α > 180°, correction bug marqueurs Chart.js (points invisibles car format `{x,y}` incompatible avec axe catégoriel), ajout aria-label sur canvas et `for` sur labels, extension affichage symbolique radians (17 angles remarquables au lieu de 5), surbrillance dynamique du tableau des angles remarquables, repositionnement labels sin/cos selon le quadrant.
+- **2026-04-28** : Audit des 11 nouvelles simulations ajoutées depuis le 2026-04-05 (`anisotropie-bois`, `calepinage`, `ccf-bac-rangement`, `comparateur-vitrages`, `ctn-etuve-regulation`, `ctn-pt100-comparaison`, `dilatation-parquet`, `eclairage-atelier`, `escalier-blondel`, `paroi-multicouche`, `presse-hydraulique`). Constats : 11/11 autonomes (pas de nav.js/styles.css), 11/11 responsives (`@media`), 0/11 avec `aria-label`. Référencement : 2 pleinement intégrées (CTN), 2 référencées en cours sans être listées (comparateur-vitrages, paroi-multicouche), 7 totalement orphelines. Périmètre mis à jour : 78 simulations (vs 70 au 2026-04-05).
 
 ---
 
@@ -309,11 +358,13 @@ Simulations corrigées :
 - [x] Compléter les métadonnées des 12 simulations incomplètes (2026-04-05)
 - [x] Rattacher les 7 simulations sans niveau/chapitre à leur chapitre (atome→ch07, ohm→ch03, melangeur→ch14, traceur→ch05/ch10, 2026-03-16)
 - [x] Vérifier `simulations.html` — les 70 simulations y sont déjà toutes listées (2026-04-05)
+- [ ] **Lier les 7 nouvelles simulations orphelines** (2026-04-28) à leurs leçons : `anisotropie-bois` (1ère ICCER/ERA menuiserie), `dilatation-parquet` (1ère ICCER/ERA menuiserie), `calepinage` (2nde Bac Pro agencement), `escalier-blondel` (2nde Bac Pro agencement), `eclairage-atelier` (2nde Bac Pro), `presse-hydraulique` (Bac Pro mécanique des fluides), `ccf-bac-rangement` (Tle Bac Pro CCF Maths)
+- [ ] **Ajouter les 9 nouvelles simulations dans `simulations.html`** : `anisotropie-bois`, `calepinage`, `ccf-bac-rangement`, `comparateur-vitrages`, `dilatation-parquet`, `eclairage-atelier`, `escalier-blondel`, `paroi-multicouche`, `presse-hydraulique`
 
 ### Priorité moyenne
 - [x] Retirer `nav.js` des 26 simulations non conformes (2026-03-16)
-- [ ] Ajouter des `aria-label` sur les canvas/SVG et associer les sliders à des `<label>` (accessibilité — 64 simulations)
-- [ ] Ajouter des media queries aux 8 simulations non responsives (dont `modeles-atome.html` pour PC Seconde)
+- [ ] Ajouter des `aria-label` sur les canvas/SVG et associer les sliders à des `<label>` (accessibilité — 73 simulations)
+- [ ] Ajouter des media queries aux 10 simulations non responsives (dont `modeles-atome.html` pour PC Seconde, `attenuation-sonore.html`, `debit-fluide.html`)
 - [ ] Créer des simulations pour maths/première (1 seule pour 9 chapitres)
 - [ ] Créer des simulations pour PC/première-ERA (1 seule pour 10 chapitres)
 
@@ -330,16 +381,16 @@ Simulations corrigées :
 
 | Indicateur | Valeur |
 |---|---|
-| Nombre total de simulations | **70** |
-| Référencées depuis un cours | **70** (100 %) |
-| Orphelines | **0** (0 %) |
-| Listées dans `simulations.html` | **70** (100 %) |
+| Nombre total de simulations | **78** |
+| Référencées depuis un cours | **73** (94 %) |
+| Orphelines | **7** (9 %) — toutes nouvelles 2026-04-28 (anisotropie-bois, calepinage, ccf-bac-rangement, dilatation-parquet, eclairage-atelier, escalier-blondel, presse-hydraulique) |
+| Listées dans `simulations.html` | **69** (88 %) — manquent 9 nouvelles |
 | Sans niveau/chapitre | **0** (0 %) |
 | Avec métadonnées incomplètes | **0** (0 %) — corrigé 2026-04-05 |
 | ~~Incluant `nav.js` (non-conforme)~~ | **0** (corrigé 2026-03-16) |
-| Sans media query | **8** (13 %) — dont 1 seule en PC Seconde |
+| Sans media query | **10** (13 %) — dont 1 seule en PC Seconde |
 | Template ancien (à revérifier) | **~19** (estimation révisée, PC Seconde = 0) |
-| Sans `aria-label` (accessibilité) | **63** (98 %) — problème transversal (trigonometrie.html corrigée) |
+| Sans `aria-label` (accessibilité) | **73** sur celles ayant canvas/SVG — problème transversal (seule trigonometrie.html corrigée) |
 
 ### Répartition par section
 
@@ -372,7 +423,7 @@ Simulations corrigées :
 
 | Critère | Résultat |
 |---|---|
-| Simulations listées | **64/64** (100 %) |
+| Simulations listées | **69/78** (88 %) — 9 nouvelles 2026-04-28 à ajouter |
 | Liens fonctionnels | ✅ Tous valides |
 | Filtrage par niveau | ✅ JavaScript (Tous / Tle / 1ère / 2nde) |
 | 6 catégories thématiques | ✅ Maths, Électricité, Thermique, Mécanique, Chimie, Signaux & Optique |
@@ -390,8 +441,9 @@ Simulations corrigées :
 
 ### Priorités
 1. ~~**Référencement**~~ ✅ **FAIT** (2026-03-16) : 64 simulations liées à 79+ pages de cours.
-2. **Accessibilité** (effort moyen) : ajouter aria-label sur canvas/SVG et labels sur sliders (64 fichiers).
-3. **Métadonnées** (effort faible) : compléter les 12 simulations hors PC Seconde avec informations manquantes.
-4. **Couverture** (effort important) : créer des simulations pour maths/première et PC/première-ERA.
-5. **Responsive** (effort faible) : ajouter @media à 8 simulations (dont `modeles-atome.html`).
-6. **Harmonisation visuelle** (effort moyen) : vérifier et migrer les ~19 simulations hors PC Seconde potentiellement anciennes.
+2. **Référencement des nouvelles 2026-04-28** (effort faible) : lier 7 simulations orphelines à leur leçon et ajouter 9 simulations dans `simulations.html`.
+3. **Accessibilité** (effort moyen) : ajouter aria-label sur canvas/SVG et labels sur sliders (73 fichiers).
+4. ~~**Métadonnées**~~ ✅ **FAIT** (2026-04-05) : 11 simulations corrigées.
+5. **Couverture** (effort important) : créer des simulations pour maths/première et PC/première-ERA.
+6. **Responsive** (effort faible) : ajouter @media à 10 simulations (dont `modeles-atome.html`, `attenuation-sonore.html`, `debit-fluide.html`).
+7. **Harmonisation visuelle** (effort moyen) : vérifier et migrer les ~19 simulations hors PC Seconde potentiellement anciennes.
