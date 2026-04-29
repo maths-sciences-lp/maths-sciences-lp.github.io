@@ -949,10 +949,48 @@ body.show-sujet-b .sujet-a { display: none !important; }
 }
 
 /* ── Media queries ── */
+
+/* Tablette */
+@media (max-width: 800px) {
+  /* Tableaux : permet le scroll horizontal sans casser la mise en page */
+  table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* Canvas, SVG : shrink à la largeur du container */
+  canvas, svg { max-width: 100%; height: auto; }
+}
+
+/* Mobile */
 @media (max-width: 600px) {
   body { padding: 12px; }
   .c, .container { padding: 18px; }
   .grid2, .two-col, .deux-col, .qcm-grid { grid-template-columns: 1fr; }
   .card-grid { grid-template-columns: 1fr; }
   .info-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Titres lisibles sur mobile */
+  h1 { font-size: 1.35em; line-height: 1.25; }
+  h2 { font-size: 1.05em; }
+  h3 { font-size: .98em; }
+
+  /* Tables avec font plus petite pour les cas courants */
+  table th, table td { padding: 6px 8px; font-size: .88em; }
+
+  /* Boutons / liens : taille minimale tactile (44 px conseillée) */
+  .bc, .nb, .nav-link, button.btn, .btn { min-height: 36px; padding: 8px 12px; }
+
+  /* Inputs : éviter zoom auto iOS (16 px minimum) */
+  input[type=text], input[type=number], input[type=email], textarea, select { font-size: 16px; }
+
+  /* Cartes et encadrés : padding plus serré */
+  .def, .prop, .att, .meth, .retenir, .ex, .exo, .situation, .objectifs { padding: 10px 12px; }
+
+  /* MathJax : éviter le débordement horizontal */
+  mjx-container { max-width: 100%; overflow-x: auto; }
+}
+
+/* Très petit mobile */
+@media (max-width: 380px) {
+  body { padding: 8px; }
+  .c, .container { padding: 14px; }
+  h1 { font-size: 1.2em; }
+  .info-grid { grid-template-columns: 1fr; }
 }

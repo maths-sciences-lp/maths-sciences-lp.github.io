@@ -1,7 +1,7 @@
 # Audit Technique
 
 **Date** : 2026-03-16
-**Derniere mise a jour** : 2026-04-17 (audit page d'accueil + typo CLAUDE.md)
+**Derniere mise a jour** : 2026-04-30 (audit complet + 17 fix HTML + 10 sims mobile + relecture prompts)
 **Perimetre** : HTML, CSS, JavaScript, chemins, accessibilite, simulations, performances
 **Nombre total de fichiers HTML audites** : 477 (191 maths, 180 physique-chimie, 63 simulations, 43 autres)
 
@@ -278,3 +278,52 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - [ ] Creer un script de validation des chemins (lint HTML) pour detecter les chemins absolus
 - [ ] Centraliser les classes CSS repetees dans plusieurs simulations si applicable
 - [ ] Verifier la coherence des balises `<title>` sur l'ensemble du site
+
+---
+
+## Session du 2026-04-30 — Audit complet & corrections
+
+### Axe 1 : Liens cassés
+**0 référence cassée** vers `simulations/X.html` détectée parmi les 1190+ pages (audit automatisé).
+
+### Axe 2 : Structure HTML — 17 pages corrigées
+
+Pattern récurrent : la balise `<div class="c">` (conteneur principal) n'était pas fermée avant `</body>`, causant un déséquilibre `<div>` / `</div>` de 1.
+
+**Fichiers corrigés** :
+- 4 fichiers PC (interros et DS Bac Pro 1ère et Terminale ICCER/ERA)
+- 13 fichiers Maths (DS, exercices-capacites, interros sur Seconde, Première, Terminale)
+- Cas spéciaux : `terminale-era/ch01/ds.html` (extra `</div>` retiré), `terminale/ch04/interro.html` (3 closes ajoutés pour les 3 sections diff-socle/standard/appro mal fermées)
+
+Vérification : 17/17 fichiers maintenant balanced.
+
+### Axe 3 : Animations simulations (déjà documenté ailleurs)
+Voir `audit-simulations.md` — bug memory leak corrigé dans `modeles-atome.html` (pattern génération propre).
+
+### Axe 4 : Audit mobile
+
+**Ajouts dans `styles.css`** :
+- Nouveau breakpoint @media (max-width: 800px) pour tablette : tables et canvas/SVG responsive
+- Améliorations du breakpoint mobile (max-width: 600px) :
+  - Titres h1/h2/h3 lisibles
+  - Padding des cartes pédagogiques resserré
+  - Inputs avec font-size 16 px (anti-zoom auto iOS)
+  - Boutons taille tactile minimum (36 px)
+  - MathJax : `overflow-x: auto` pour éviter débordement
+- Nouveau breakpoint @media (max-width: 380px) pour très petits écrans
+
+**10 simulations corrigées** : ajout de `canvas{max-width:100%;height:auto}` dans le `<style>` inline de :
+- moteur, gaz, transmission-info, pile-electrochimique, debit, effet-joule,
+  transformateur, pression, chaleur, vitesse-acceleration
+
+Avant le fix, ces simulations avaient des canvas de 820 px qui débordaient sur écrans < 600 px.
+
+### Axe 5 : Relecture des prompts
+30 prompts dans `/prompts/` audités. Conclusion : 0 référence cassée vers fichier ou PDF (les classes inline mentionnées sont normales pour les pages spécifiques). Prompts cohérents avec l'état actuel du site.
+
+### Bilan global session
+- **17 pages HTML structurellement corrigées**
+- **10 simulations PC mobile-responsive**
+- **3 nouveaux breakpoints** dans styles.css (tablette, mobile, very small)
+- **0 lien cassé** restant
+- **30 prompts** validés cohérents
