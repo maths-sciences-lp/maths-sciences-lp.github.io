@@ -480,3 +480,69 @@ Vérification : le `<script>` est bien à la ligne 133, **après** le `<canvas i
 1. **Phase 1 — Conformité** (immédiat) : corriger les 2 simulations non-autonomes
 2. **Phase 2 — Accessibilité** : ajouter `aria-label` sur canvas/SVG des 68 simulations restantes
 3. **Phase 3 — Cohérence visuelle** (optionnel) : harmoniser palettes pour chimie / électricité (PC Seconde déjà OK)
+
+---
+
+## Audit pages utilitaires racine — 2026-04-29
+
+**Périmètre** : 8 pages utilitaires à la racine
+- `index.html` (accueil), `simulations.html` (catalogue)
+- `cv-eleve.html`, `lettre-motivation-parcoursup.html` (générateurs)
+- `groupements.html`, `ccf-convocations.html`
+- `python.html`, `logique.html` (modules transversaux)
+
+### Bug critique trouvé et corrigé : `python.html` et `logique.html`
+
+**Problème** : ces deux fichiers étaient des **fragments HTML** (sans `<!DOCTYPE>`, `<html>`, `<head>`, `<body>`) mais étaient liés depuis 4 sommaires Maths comme pages standalone (`<a href="python.html">`). À l'ouverture directe dans le navigateur, la page s'affichait sans styles, sans navigation, sans titre.
+
+**Fichiers concernés** :
+- `python.html` (41 lignes de fragment)
+- `logique.html` (38 lignes de fragment)
+
+**Correction** : enveloppés en pages HTML complètes avec :
+- DOCTYPE + structure html/head/body
+- Lien vers `styles.css` et `print.css`
+- Header standardisé avec sous-titre
+- Inclusion de `nav.js` (pour le toggle des corrections)
+- Conservation du contenu pédagogique original
+- Nettoyage : caractères HTML entities (`&eacute;` → `é`) et négatifs (`-1` → `−1`)
+
+### Audit des autres pages utilitaires
+
+| Page | Typos | ℜ | Sigles abusifs | Structure | Statut |
+|---|---|---|---|---|---|
+| `index.html` | 0 | 0 | 0 | OK | ✅ |
+| `simulations.html` | 0 (faux positif sur nom de fichier `polynome3.html`) | 0 | 0 | OK | ✅ |
+| `cv-eleve.html` | 0 | 0 | 0 | OK | ✅ |
+| `lettre-motivation-parcoursup.html` | 0 | 0 | 0 (sigles ICCER/ERA présents mais dans titres/labels uniquement, métiers réels utilisés dans le contenu) | OK | ✅ |
+| `groupements.html` | 0 | 0 | 0 | OK | ✅ |
+| `ccf-convocations.html` | 0 | 0 | 0 | OK | ✅ |
+
+### Audit co-intervention (38 pages) — 2026-04-29
+
+**Périmètre** : `co-intervention/co-intervention-*.html` (37 séances + 1 index)
+
+**Audit mécanique** : 0 typos, 0 ℜ utilisé, 0 sigle utilisé comme métier, toutes les pages incluent nav.js + styles.css + print.css.
+
+**Audit scientifique** (spot-check sur 5 fichiers représentatifs) :
+- `co-intervention-chimie-combustion-ICCER.html` : énergie utile 24 × 8 × 180 = 34 560 kWh ✓ ; coût 32 914 × 0,12 = 3 950 € ✓
+- `co-intervention-thermo-cop-pac-ICCER.html` : COP = Qc/W ✓ ; W = 12/3 = 4 kW ✓
+- `co-intervention-fluides-debit-ICCER.html` : 1,2/3 600 = 3,33×10⁻⁴ ✓ ; D = √(4S/π) = 20,6 mm ✓
+- `co-intervention-statique-moments.html` : M = F × d = 30 × 0,25 = 7,5 N·m ✓
+- `co-intervention-thermique-resistance.html` : R = e/λ = 0,20/1,75 ≈ 0,11 ✓
+
+**Petite imprécision** détectée (non bloquante) :
+- `co-intervention-thermique-deperditions.html:154` : `P_chauf = 990 W` arrondi à `1,0 kW` pour le coût mensuel → coût affiché 48 € au lieu de 47,52 € (écart de 1 %, acceptable pédagogiquement).
+
+**Verdict** : qualité scientifique excellente, aucune correction nécessaire.
+
+### Récap final de la session 2026-04-29
+
+| Section | Fichiers audités | Bugs trouvés | Corrigés |
+|---|---|---|---|
+| Simulations | 78 | 2 (autonomie) + 1 (code mort) | 3 ✅ |
+| Co-intervention | 38 | 0 | — |
+| Pages utilitaires racine | 8 | 2 (fragments HTML) | 2 ✅ |
+| **TOTAL** | **124** | **5** | **5** |
+
+Total : **5 bugs corrigés**, 0 erreur scientifique restante détectée.
