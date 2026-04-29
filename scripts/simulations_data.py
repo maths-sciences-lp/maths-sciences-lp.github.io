@@ -33,12 +33,6 @@ SIMULATIONS = {
         "description": "Lance des expériences aléatoires (dés, pièces, urnes) un grand nombre de fois et observe la fluctuation des fréquences autour de la probabilité théorique. Visualise la loi des grands nombres en action.",
         "tags": ["Fréquence", "Probabilité", "Loi des grands nombres"],
     },
-    "entrainement.html": {
-        "title": "Entraînement — Équations du premier degré",
-        "icon": "⚖️",
-        "description": "Série d'équations du premier degré tirées au hasard, avec correction étape par étape. Travaille la résolution à ton rythme, avec feedback immédiat.",
-        "tags": ["Entraînement", "Équations", "1er degré"],
-    },
     "equations.html": {
         "title": "Résolveur d'équations",
         "icon": "🧮",
@@ -563,10 +557,10 @@ CHAPTER_SIMS = {
         },
     },
     "maths/seconde/ch05": {
-        "sims": ["entrainement.html", "equations.html"],
+        "sims": ["balance.html", "equations.html"],
         "pedagogy": {
-            "entrainement.html": "Pour s'entraîner sans sortir le cahier : la simulation génère des équations à la volée, avec correction immédiate. Idéal en autonomie ou en remédiation.",
-            "equations.html": "Quand tu bloques sur une équation : entre-la et regarde la résolution étape par étape. Sert de modèle de rédaction pour tes propres copies.",
+            "balance.html": "Métaphore de la balance : ce qu'on fait à un membre, on doit le faire à l'autre. Idéal pour saisir l'idée d'équilibre avant la manipulation algébrique.",
+            "equations.html": "Saisis ton équation et observe la résolution étape par étape avec exemples préchargés (cas standard, négatif, décimaux, deux membres). Sert aussi de modèle de rédaction pour tes propres copies.",
         },
     },
     "maths/seconde/ch06": {

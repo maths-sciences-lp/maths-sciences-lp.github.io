@@ -161,7 +161,7 @@
     </div>
 
     <script>
-        let animationFrames = [];
+        let currentGen = 0;  // Génération courante : invalide les anciennes animations sans accumuler d'IDs
 
         const models = {
             dalton: {
@@ -196,8 +196,8 @@
             const desc = document.getElementById('desc-box');
             const context = document.getElementById('history-context');
             
-            animationFrames.forEach(id => cancelAnimationFrame(id));
-            animationFrames = [];
+            currentGen++;  // Invalide toutes les animations en cours (pas besoin d'accumuler des IDs)
+            const myGen = currentGen;
             
             document.querySelectorAll('.btn-model').forEach(b => b.classList.remove('active'));
             document.getElementById('btn-' + modelId).classList.add('active');
@@ -226,21 +226,21 @@
             else if (modelId === 'rutherford') {
                 area.innerHTML = '<div class="nucleus"></div>';
                 for(let i=0; i<3; i++) {
-                    createAnimatedElectron(area, 80 + i*35, true);
+                    createAnimatedElectron(area, 80 + i*35, true, myGen);
                 }
             }
             else if (modelId === 'bohr') {
                 area.innerHTML = '<div class="nucleus"></div>';
-                createBohrOrbit(area, 100, 2);
-                createBohrOrbit(area, 180, 4);
+                createBohrOrbit(area, 100, 2, myGen);
+                createBohrOrbit(area, 180, 4, myGen);
             }
             else if (modelId === 'quantique') {
                 area.innerHTML = '<div class="quantum-cloud"></div><div class="nucleus"></div>';
-                createQuantumEffect(area);
+                createQuantumEffect(area, myGen);
             }
         }
 
-        function createAnimatedElectron(parent, radius, randomOrbit) {
+        function createAnimatedElectron(parent, radius, randomOrbit, gen) {
             const e = document.createElement('div');
             e.className = 'electron';
             parent.appendChild(e);
@@ -249,18 +249,19 @@
             const tilt = randomOrbit ? (Math.random() * 360) : 0;
 
             function animate() {
+                if (gen !== currentGen) return; // Génération obsolète, on s'arrête
                 angle += speed;
                 const x = Math.cos(angle) * radius;
                 const y = Math.sin(angle) * (randomOrbit ? radius * 0.35 : radius);
                 const rotatedX = x * Math.cos(tilt) - y * Math.sin(tilt);
                 const rotatedY = x * Math.sin(tilt) + y * Math.cos(tilt);
                 e.style.transform = `translate(${rotatedX}px, ${rotatedY}px)`;
-                animationFrames.push(requestAnimationFrame(animate));
+                requestAnimationFrame(animate);
             }
             animate();
         }
 
-        function createBohrOrbit(parent, size, count) {
+        function createBohrOrbit(parent, size, count, gen) {
             const orbit = document.createElement('div');
             orbit.className = 'orbit';
             orbit.style.width = size + 'px';
@@ -274,16 +275,17 @@
                 orbit.appendChild(e);
                 let angle = (i * 2 * Math.PI) / count;
                 function animate() {
+                    if (gen !== currentGen) return; // Génération obsolète
                     angle += 0.02;
                     e.style.left = (radius + Math.cos(angle) * radius - 3) + 'px';
                     e.style.top = (radius + Math.sin(angle) * radius - 3) + 'px';
-                    animationFrames.push(requestAnimationFrame(animate));
+                    requestAnimationFrame(animate);
                 }
                 animate();
             }
         }
 
-        function createQuantumEffect(parent) {
+        function createQuantumEffect(parent, gen) {
             const electrons = [];
             for(let i=0; i<15; i++) {
                 const e = document.createElement('div');
@@ -296,17 +298,18 @@
             }
 
             function animate() {
+                if (gen !== currentGen) return; // Génération obsolète
                 electrons.forEach(obj => {
                     obj.timer--;
                     if(obj.timer <= 0) {
                         const angle = Math.random() * Math.PI * 2;
-                        const dist = Math.abs(normalRandom() * 80); 
+                        const dist = Math.abs(normalRandom() * 80);
                         obj.el.style.transform = `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`;
                         obj.el.style.opacity = Math.random() * 0.8;
                         obj.timer = 5 + Math.random() * 20;
                     }
                 });
-                animationFrames.push(requestAnimationFrame(animate));
+                requestAnimationFrame(animate);
             }
             function normalRandom() {
                 let u = 0, v = 0;

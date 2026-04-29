@@ -1,767 +1,876 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratoire Virtuel - Maths Sciences</title>
-    <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        header { background-color: #28a745; color: white; padding: 30px; text-align: center; border-radius: 10px; margin-bottom: 30px; position: relative; }
-        .btn-accueil { position: absolute; left: 20px; top: 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 5px 15px; border-radius: 5px; font-size: 0.9em; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Catalogue des simulations interactives</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="print.css" media="print">
+<style>
+:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
 
-        /* Filtres */
-        .filtres { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; align-items: center; }
-        .filtre-label { font-weight: 600; margin-right: 5px; }
-        .btn-filtre { padding: 6px 15px; border-radius: 20px; border: 2px solid #ccc; background: white; cursor: pointer; font-size: 0.9em; transition: 0.2s; }
-        .btn-filtre.active, .btn-filtre:hover { background: #28a745; color: white; border-color: #28a745; }
-        .sep { width: 1px; background: #ddd; height: 30px; }
+.sim-hero{
+  background:linear-gradient(135deg,#0969da,#0a4f9c);
+  color:#fff;border-radius:14px;padding:30px 28px;margin:18px 0 24px;
+  text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.12)
+}
+.sim-hero h1{margin:0 0 8px;color:#fff;font-size:1.8em}
+.sim-hero p{opacity:.92;font-size:1em;margin:0 0 14px}
+.sim-hero .stats{display:flex;justify-content:center;gap:22px;font-size:.92em;opacity:.92;flex-wrap:wrap}
+.sim-hero .stats span::before{content:"• ";opacity:.6}
+.sim-hero .stats span:first-child::before{content:""}
 
-        /* Sections thème */
-        .theme-section { margin-bottom: 35px; }
-        .theme-titre {
-            display: flex; align-items: center; gap: 12px;
-            padding: 10px 16px; border-radius: 8px; margin-bottom: 15px;
-            font-size: 1.15em; font-weight: 700; color: white;
-        }
-        .theme-elec   { background: #6f42c1; }
-        .theme-thermo { background: #e67e22; }
-        .theme-meca   { background: #0284c7; }
-        .theme-chimie { background: #b45309; }
-        .theme-signal { background: #0f766e; }
-        .theme-maths  { background: #1976d2; }
+.search-bar{
+  display:flex;gap:10px;margin:0 0 22px;flex-wrap:wrap;align-items:center
+}
+.search-bar input{
+  flex:1;min-width:200px;padding:10px 16px;border:2px solid #e2e8f0;
+  border-radius:8px;font-size:1em;font-family:inherit;outline:none;transition:border-color .15s
+}
+.search-bar input:focus{border-color:#0969da}
+.filter-tags{display:flex;gap:6px;flex-wrap:wrap}
+.filter-tag{
+  background:#fff;border:1.5px solid #cbd5e1;color:#334155;
+  padding:6px 14px;border-radius:18px;cursor:pointer;font-size:.85em;
+  font-weight:600;transition:all .15s
+}
+.filter-tag:hover{border-color:#0969da}
+.filter-tag.active{background:#0969da;color:#fff;border-color:#0969da}
+.filter-tag.cat-Mathématiques.active{background:#1976d2;border-color:#1976d2}
+.filter-tag.cat-Électricité.active{background:#eab308;border-color:#eab308;color:#1e293b}
+.filter-tag.cat-Mécanique.active{background:#0284c7;border-color:#0284c7}
+.filter-tag.cat-Fluides.active{background:#0891b2;border-color:#0891b2}
+.filter-tag.cat-Thermique.active{background:#e67e22;border-color:#e67e22}
+.filter-tag.cat-Chimie.active{background:#6f42c1;border-color:#6f42c1}
+.filter-tag.cat-Optique{}
 
-        /* Cartes */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
-        .card {
-            background: white; border-radius: 12px; padding: 18px;
-            text-align: center; box-shadow: 0 3px 8px rgba(0,0,0,0.07);
-            border: 1px solid #eee; transition: transform 0.2s, box-shadow 0.2s;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
-        .icon { font-size: 36px; margin-bottom: 10px; }
-        .badge-niveau {
-            display: inline-block; padding: 2px 10px; border-radius: 20px;
-            font-size: 0.72em; font-weight: bold; margin-bottom: 10px;
-            text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .badge-term { background: #ede9fe; color: #6d28d9; }
-        .badge-1ere { background: #dcfce7; color: #166534; }
-        .badge-2nde { background: #dbeafe; color: #1d4ed8; }
-        .card h3 { font-size: 1em; margin: 0 0 6px 0; }
-        .card p { font-size: 0.85em; color: #666; margin: 0 0 14px 0; flex-grow: 1; }
+.cat{margin:24px 0}
+.cat-title{
+  margin:0 0 14px;color:var(--cat-color);font-size:1.15em;font-weight:700;
+  display:flex;align-items:center;gap:10px;border:none;padding:0
+}
+.cat-title::before{
+  content:"";width:5px;height:1.2em;background:var(--cat-color);border-radius:3px
+}
+.cat-count{
+  background:var(--cat-color);color:#fff;border-radius:12px;padding:2px 10px;
+  font-size:.7em;font-weight:600
+}
 
-        .btn-lancer {
-            display: block; padding: 9px;
-            border-radius: 6px; text-decoration: none;
-            font-weight: bold; color: white; font-size: 0.9em;
-            transition: opacity 0.15s;
-        }
-        .btn-lancer:hover { opacity: 0.85; }
-        .btn-elec   { background: #6f42c1; }
-        .btn-thermo { background: #e67e22; }
-        .btn-meca   { background: #0284c7; }
-        .btn-chimie { background: #b45309; }
-        .btn-signal { background: #0f766e; }
-        .btn-maths  { background: #1976d2; }
-    </style>
+.sim-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px
+}
+
+.sim-card{
+  display:flex;text-decoration:none;color:inherit;
+  background:#fff;border:1px solid #e2e8f0;border-radius:10px;
+  padding:14px 16px;gap:12px;align-items:flex-start;
+  transition:all .15s ease
+}
+.sim-card:hover{
+  border-color:var(--cat-color);transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,0,0,.08)
+}
+.sim-icon{
+  flex-shrink:0;width:44px;height:44px;border-radius:8px;
+  background:rgba(0,0,0,.04);
+  display:flex;align-items:center;justify-content:center;font-size:1.3em
+}
+.sim-body{flex:1;min-width:0}
+.sim-body h3{
+  margin:0 0 4px;color:var(--cat-color);font-size:.98em;font-weight:700;
+  border:none;padding:0
+}
+.sim-body p{
+  margin:0 0 6px;font-size:.82em;color:#475569;line-height:1.45;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden
+}
+.sim-tags{display:flex;gap:4px;flex-wrap:wrap}
+.sim-tags .tag{
+  background:rgba(0,0,0,.04);color:#475569;padding:1px 7px;
+  border-radius:4px;font-size:.7em;font-weight:600
+}
+
+.no-results{
+  text-align:center;padding:40px 20px;color:#64748b;font-size:.95em;
+  background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px
+}
+
+@media(max-width:600px){
+  .sim-hero h1{font-size:1.35em}
+  .sim-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <a href="index.html" class="btn-accueil">← Accueil</a>
-        <h1>⚙️ Laboratoire Virtuel</h1>
-        <p>Simulations interactives — Maths & Physique-Chimie</p>
-    </header>
+<div class="c">
+<a href="index.html" class="nb">← Accueil</a>
 
-    <!-- Filtres niveau -->
-    <div class="filtres">
-        <span class="filtre-label">Niveau :</span>
-        <button class="btn-filtre active" onclick="filtrer('tous', this)">Tous</button>
-        <button class="btn-filtre" onclick="filtrer('term', this)">Terminale Pro</button>
-        <button class="btn-filtre" onclick="filtrer('1ere', this)">1ère Pro</button>
-        <button class="btn-filtre" onclick="filtrer('2nde', this)">2nde Pro</button>
-    </div>
-
-    <!-- ═══════════════ ÉLECTRICITÉ ═══════════════ -->
-    <div class="theme-section" data-theme="elec">
-        <div class="theme-titre theme-elec">⚡ Électricité</div>
-        <div class="grid">
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🔌</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch02</span>
-                    <h3>Grandeurs Électriques</h3>
-                    <p>Circuit interactif — P = U × I, loi des nœuds, série et parallèle.</p>
-                </div>
-                <a href="simulations/circuit-electrique.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">⚡</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch03</span>
-                    <h3>Loi d'Ohm</h3>
-                    <p>Laboratoire virtuel multi-séries — U = R × I, graphique et mesures.</p>
-                </div>
-                <a href="simulations/ohm.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📟</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch04</span>
-                    <h3>Signal Alternatif</h3>
-                    <p>Oscilloscope virtuel — u(t) = Umax·sin(2πft), période, fréquence, Ueff.</p>
-                </div>
-                <a href="simulations/signal-alternatif.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔋</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch01</span>
-                    <h3>Puissance Électrique</h3>
-                    <p>Triangle des puissances P, Q, S et facteur cos(φ).</p>
-                </div>
-                <a href="simulations/puissance.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔄</div>
-                    <span class="badge-niveau badge-term">Terminale ERA · Ch01</span>
-                    <h3>Transformateur</h3>
-                    <p>Rapport de transformation N₂/N₁, pertes en ligne P = R·I².</p>
-                </div>
-                <a href="simulations/transformateur.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔌</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch01</span>
-                    <h3>Déphasage & Triangle</h3>
-                    <p>Courbes u(t)/i(t) animées, déphasage φ, triangle P/Q/S et facteur cos φ.</p>
-                </div>
-                <a href="simulations/dephasage.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔌</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch02</span>
-                    <h3>Redressement du Courant</h3>
-                    <p>Demi-alternance et pont de Graetz — conversion AC/DC.</p>
-                </div>
-                <a href="simulations/redressement.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">⚙️</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch03</span>
-                    <h3>Moteur Électrique</h3>
-                    <p>Champ tournant, vitesse synchrone et glissement.</p>
-                </div>
-                <a href="simulations/moteur.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🌡️</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>CTN — Thermostat d'étuve</h3>
-                    <p>Régulation de température avec capteur CTN — seuil, hystérésis, graphique R(T).</p>
-                </div>
-                <a href="simulations/ctn-etuve-regulation.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📊</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>CTN vs Pt100</h3>
-                    <p>Comparaison interactive CTN et Pt100 — courbes R(T), linéarité, sensibilité.</p>
-                </div>
-                <a href="simulations/ctn-pt100-comparaison.html" class="btn-lancer btn-elec">Lancer →</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ═══════════════ THERMIQUE ═══════════════ -->
-    <div class="theme-section" data-theme="thermo">
-        <div class="theme-titre theme-thermo">🌡️ Thermique</div>
-        <div class="grid">
-            <div class="card" data-niveau="1ere">
-                <div>
-                    <div class="icon">🔥</div>
-                    <span class="badge-niveau badge-1ere">1ère Pro · Ch03</span>
-                    <h3>Combustion</h3>
-                    <p>Complète/incomplète — danger CO, bilan énergétique, équation équilibrée.</p>
-                </div>
-                <a href="simulations/combustion.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="1ere">
-                <div>
-                    <div class="icon">🧱</div>
-                    <span class="badge-niveau badge-1ere">1ère ERA · Ch05</span>
-                    <h3>Conductance Thermique</h3>
-                    <p>G = λS/e — mur composite, résistance thermique, coût énergétique.</p>
-                </div>
-                <a href="simulations/conductance-thermique.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🔥</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch11</span>
-                    <h3>Transferts Thermiques</h3>
-                    <p>Conduction, convection, rayonnement — 3 modes animés et équilibre thermique.</p>
-                </div>
-                <a href="simulations/transferts-thermiques.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🫧</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch12</span>
-                    <h3>Courbe de Chauffage</h3>
-                    <p>Courbe T = f(t) avec paliers de fusion et d'ébullition — eau, paraffine, colle.</p>
-                </div>
-                <a href="simulations/changement-etat.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🌡️</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch04</span>
-                    <h3>Rayonnement Thermique</h3>
-                    <p>Loi de Wien, corps noir, Stefan-Boltzmann, effet de serre.</p>
-                </div>
-                <a href="simulations/rayonnement.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🌍</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch04</span>
-                    <h3>Effet de Serre</h3>
-                    <p>Simulation animée — rayonnements solaire et IR, atmosphère, bilan énergétique.</p>
-                </div>
-                <a href="simulations/serre.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔥</div>
-                    <span class="badge-niveau badge-term">Terminale</span>
-                    <h3>Effet Joule</h3>
-                    <p>P = R·I² — échauffement d'un conducteur, puissance dissipée, énergie thermique.</p>
-                </div>
-                <a href="simulations/effet-joule.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">♨️</div>
-                    <span class="badge-niveau badge-term">Terminale</span>
-                    <h3>Énergie Thermique</h3>
-                    <p>Q = m·c·ΔT — chaleur massique, comparaison des matériaux, montée en température.</p>
-                </div>
-                <a href="simulations/chaleur.html" class="btn-lancer btn-thermo">Lancer →</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ═══════════════ MÉCANIQUE ═══════════════ -->
-    <div class="theme-section" data-theme="meca">
-        <div class="theme-titre theme-meca">💧 Mécanique</div>
-        <div class="grid">
-            <div class="card" data-niveau="1ere">
-                <div>
-                    <div class="icon">⚖️</div>
-                    <span class="badge-niveau badge-1ere">1ère Pro · Ch06</span>
-                    <h3>Moments et Rotation</h3>
-                    <p>M = F × d — levier, équilibre en rotation, condition ΣM = 0.</p>
-                </div>
-                <a href="simulations/moments.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="1ere">
-                <div>
-                    <div class="icon">🏊</div>
-                    <span class="badge-niveau badge-1ere">1ère ICCER · Ch08</span>
-                    <h3>Force d'Archimède</h3>
-                    <p>FA = ρ·V·g — flottaison, poussée, pourcentage immergé.</p>
-                </div>
-                <a href="simulations/archimede.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🏃</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Mouvement et Trajectoire</h3>
-                    <p>Chronophotographie, 3 trajectoires, graphique d-t en temps réel — v = d/t.</p>
-                </div>
-                <a href="simulations/mouvement.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">⚖️</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch06</span>
-                    <h3>Forces et Équilibre</h3>
-                    <p>Plan incliné, vecteurs forces, composantes — P = m × g, condition d'équilibre.</p>
-                </div>
-                <a href="simulations/forces.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🚗</div>
-                    <span class="badge-niveau badge-term">Terminale ERA · Ch04</span>
-                    <h3>Vitesse et Accélération</h3>
-                    <p>Cinématique v(t), x(t), a(t) — mouvement accéléré, décéléré, uniforme.</p>
-                </div>
-                <a href="simulations/vitesse-acceleration.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🏊</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch05</span>
-                    <h3>Pression dans un Fluide</h3>
-                    <p>P = P₀ + ρgh — paradoxe hydrostatique, Pascal.</p>
-                </div>
-                <a href="simulations/pression.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🌊</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch06</span>
-                    <h3>Débit Volumique</h3>
-                    <p>Qv = S·v — équation de continuité, remplissage.</p>
-                </div>
-                <a href="simulations/debit.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">💨</div>
-                    <span class="badge-niveau badge-term">Terminale</span>
-                    <h3>Pression des Gaz</h3>
-                    <p>Boyle-Mariotte P·V = cste · Gay-Lussac P/T = cste — lois des gaz parfaits.</p>
-                </div>
-                <a href="simulations/gaz.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔧</div>
-                    <span class="badge-niveau badge-term">Terminale</span>
-                    <h3>Loi de Boyle-Mariotte</h3>
-                    <p>P × V = constante — TP numérique avec cylindre, mesures et graphiques P(V) et P(1/V).</p>
-                </div>
-                <a href="simulations/boyle-mariotte.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🚿</div>
-                    <span class="badge-niveau badge-term">Terminale ICCER · Ch06</span>
-                    <h3>Débit et vitesse d'un fluide</h3>
-                    <p>Qv = S·v — canalisation, branches, norme de vitesse (0,5–1,5 m/s), continuité.</p>
-                </div>
-                <a href="simulations/debit-fluide.html" class="btn-lancer btn-meca">Lancer →</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ═══════════════ CHIMIE ═══════════════ -->
-    <div class="theme-section" data-theme="chimie">
-        <div class="theme-titre theme-chimie">🧪 Chimie</div>
-        <div class="grid">
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">⚛️</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
-                    <h3>Constructeur d'Atomes</h3>
-                    <p>Protons, neutrons, électrons — construisez votre atome.</p>
-                </div>
-                <a href="simulations/atome.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🌀</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
-                    <h3>Couches Électroniques</h3>
-                    <p>Remplissage des couches K, L, M.</p>
-                </div>
-                <a href="simulations/atome-couches.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🧪</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
-                    <h3>Modèles de l'Atome</h3>
-                    <p>Dalton, Thomson, Rutherford, Bohr — évolution historique.</p>
-                </div>
-                <a href="simulations/modeles-atome.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🔗</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
-                    <h3>Liaisons Chimiques</h3>
-                    <p>Covalente vs ionique — partage et transfert d'électrons, molécules courantes.</p>
-                </div>
-                <a href="simulations/liaisons-chimiques.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🧫</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch08</span>
-                    <h3>Solutions et Concentration</h3>
-                    <p>Cm = m/V — dissolution, dilution C₁V₁ = C₂V₂, saturation.</p>
-                </div>
-                <a href="simulations/concentration.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🎨</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch14</span>
-                    <h3>Mélangeur de Couleurs</h3>
-                    <p>Synthèse additive RVB.</p>
-                </div>
-                <a href="simulations/melangeur.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔬</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch07</span>
-                    <h3>Oxydoréduction</h3>
-                    <p>Pile galvanique, FEM, couples redox, protection des métaux.</p>
-                </div>
-                <a href="simulations/oxydoreduction.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔋</div>
-                    <span class="badge-niveau badge-term">Terminale ERA · Ch02</span>
-                    <h3>Pile Électrochimique</h3>
-                    <p>Cellule galvanique, FEM, réactions aux électrodes, types de batteries.</p>
-                </div>
-                <a href="simulations/pile-electrochimique.html" class="btn-lancer btn-chimie">Lancer →</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ═══════════════ SIGNAUX & OPTIQUE ═══════════════ -->
-    <div class="theme-section" data-theme="signal">
-        <div class="theme-titre theme-signal">📡 Signaux & Optique</div>
-        <div class="grid">
-            <div class="card" data-niveau="1ere">
-                <div>
-                    <div class="icon">🌈</div>
-                    <span class="badge-niveau badge-1ere">1ère Pro · Ch09-10</span>
-                    <h3>Spectre Électromagnétique</h3>
-                    <p>Radio → gamma — c = λf, applications, zoom visible, énergie E = hf.</p>
-                </div>
-                <a href="simulations/ondes-em.html" class="btn-lancer btn-signal">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🔊</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch09</span>
-                    <h3>Caractéristiques d'un Son</h3>
-                    <p>Fréquence, amplitude, spectre, échelle dB atelier — v = d/t, λ = v/f.</p>
-                </div>
-                <a href="simulations/son-2nde.html" class="btn-lancer btn-signal">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">💡</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch13</span>
-                    <h3>Réflexion et Réfraction</h3>
-                    <p>Lois de Descartes — n₁·sin(i₁) = n₂·sin(i₂), réflexion totale.</p>
-                </div>
-                <a href="simulations/refraction.html" class="btn-lancer btn-signal">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">💡</div>
-                    <span class="badge-niveau badge-term">Terminale ERA · Ch06</span>
-                    <h3>Sources Lumineuses</h3>
-                    <p>Incandescence, fluocompacte, LED — efficacité, spectre, coût sur 10 ans.</p>
-                </div>
-                <a href="simulations/sources-lumineuses.html" class="btn-lancer btn-signal">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">📶</div>
-                    <span class="badge-niveau badge-term">Terminale ERA · Ch07</span>
-                    <h3>Transmission de l'Information</h3>
-                    <p>Échantillonnage, théorème de Shannon, quantification, signal numérique.</p>
-                </div>
-                <a href="simulations/transmission-info.html" class="btn-lancer btn-signal">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔊</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch08</span>
-                    <h3>Signal Sonore</h3>
-                    <p>Oscilloscope virtuel — fréquence, amplitude, longueur d'onde, écho.</p>
-                </div>
-                <a href="simulations/son.html" class="btn-lancer btn-signal">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔇</div>
-                    <span class="badge-niveau badge-term">Terminale ERA · Ch08</span>
-                    <h3>Atténuation sonore</h3>
-                    <p>L<sub>transmis</sub> = L<sub>incident</sub> − R — cloisons, isolants, norme bureau (50 dB), EPI.</p>
-                </div>
-                <a href="simulations/attenuation-sonore.html" class="btn-lancer btn-signal">Lancer →</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ═══════════════ MATHÉMATIQUES ═══════════════ -->
-    <div class="theme-section" data-theme="maths">
-        <div class="theme-titre theme-maths">📐 Mathématiques</div>
-        <div class="grid">
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📊</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch01</span>
-                    <h3>Proportionnalité</h3>
-                    <p>y = k·x, pourcentages, réductions — tableau et graphique dynamiques.</p>
-                </div>
-                <a href="simulations/proportionnalite.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📊</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch02-03</span>
-                    <h3>Statistiques</h3>
-                    <p>Diagrammes, moyenne, médiane, quartiles, boîte à moustaches.</p>
-                </div>
-                <a href="simulations/statistiques.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🎲</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch04</span>
-                    <h3>Probabilités</h3>
-                    <p>Lancer de dé/pièce — fluctuation des fréquences et loi des grands nombres.</p>
-                </div>
-                <a href="simulations/probabilites.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🟰</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Résolution d'Équations</h3>
-                    <p>Résoudre pas à pas ax + b = c.</p>
-                </div>
-                <a href="simulations/equations.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">⚖️</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Balance des Équations</h3>
-                    <p>Opérations sur les deux membres — résolution interactive.</p>
-                </div>
-                <a href="simulations/balance.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📈</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Résolution Graphique</h3>
-                    <p>Intersection de y = ax+b et y = c — la solution, c'est l'abscisse !</p>
-                </div>
-                <a href="simulations/graphe-equation.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📏</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Inéquations</h3>
-                    <p>Solutions sur la droite graduée — test de valeurs.</p>
-                </div>
-                <a href="simulations/inegalite.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">🏋️</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Entraînement – Équations</h3>
-                    <p>Mode libre + Quiz 10 questions + difficulté adaptative.</p>
-                </div>
-                <a href="simulations/entrainement.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📐</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch05</span>
-                    <h3>Entraînement – Inéquations</h3>
-                    <p>Mode libre + Quiz 10 questions + difficulté adaptative.</p>
-                </div>
-                <a href="simulations/entrainement-ineq.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">⚙️</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch07</span>
-                    <h3>Machine à Fonctions</h3>
-                    <p>Entrée x → machine → sortie f(x). Table de valeurs et graphique.</p>
-                </div>
-                <a href="simulations/fonction-machine.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📈</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch08-09</span>
-                    <h3>Fonctions Linéaire & Affine</h3>
-                    <p>f(x) = ax + b — pente, ordonnée à l'origine, intersection de deux droites.</p>
-                </div>
-                <a href="simulations/droite-affine.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📈</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch10</span>
-                    <h3>Fonctions du 2nd Degré</h3>
-                    <p>Parabole — sommet, axe de symétrie, paramètres a, b, c.</p>
-                </div>
-                <a href="simulations/traceur.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📐</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch11</span>
-                    <h3>Figures Planes</h3>
-                    <p>Périmètres et aires — rectangle, triangle, cercle, trapèze, parallélogramme.</p>
-                </div>
-                <a href="simulations/figures-planes.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📏</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch12</span>
-                    <h3>Théorème de Pythagore</h3>
-                    <p>a² + b² = c² — triangle rectangle, carrés sur les côtés, vérification.</p>
-                </div>
-                <a href="simulations/pythagore.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📐</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch13</span>
-                    <h3>Théorème de Thalès</h3>
-                    <p>Configuration de Thalès — rapports de segments, facteur d'échelle.</p>
-                </div>
-                <a href="simulations/thales.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="2nde">
-                <div>
-                    <div class="icon">📦</div>
-                    <span class="badge-niveau badge-2nde">2nde Pro · Ch14</span>
-                    <h3>Solides et Volumes</h3>
-                    <p>Cube, pavé, cylindre, cône, pyramide, sphère — volumes et agrandissement k³.</p>
-                </div>
-                <a href="simulations/solides.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="1ere">
-                <div>
-                    <div class="icon">📈</div>
-                    <span class="badge-niveau badge-1ere">1ère Pro · Ch06</span>
-                    <h3>Fonction Dérivée</h3>
-                    <p>Tangente, sécante, signe de f'(x), tableau de variations.</p>
-                </div>
-                <a href="simulations/derivee.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">📊</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch01</span>
-                    <h3>Statistiques à deux variables</h3>
-                    <p>Nuage de points, droite de régression, coefficient de corrélation r.</p>
-                </div>
-                <a href="simulations/stats-2var.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔢</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch03</span>
-                    <h3>Suites Numériques</h3>
-                    <p>Suites arithmétiques et géométriques — termes, sommes, convergence.</p>
-                </div>
-                <a href="simulations/suites.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">📈</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch04</span>
-                    <h3>Polynôme degré 3</h3>
-                    <p>Courbe ax³+bx²+cx+d — racines, extrema, point d'inflexion, dérivée.</p>
-                </div>
-                <a href="simulations/polynome3.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">📈</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch05</span>
-                    <h3>Exponentielle et Logarithme</h3>
-                    <p>Fonctions exp et log — base variable, propriétés, symétrie.</p>
-                </div>
-                <a href="simulations/exp-log.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">➡️</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch06</span>
-                    <h3>Vecteurs</h3>
-                    <p>Addition, soustraction, k·u, norme, colinéarité — opérations vectorielles.</p>
-                </div>
-                <a href="simulations/vecteurs.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🔵</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch07</span>
-                    <h3>Trigonométrie</h3>
-                    <p>Cercle trigonométrique — sin, cos, tan, angles remarquables.</p>
-                </div>
-                <a href="simulations/trigonometrie.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">📐</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch08</span>
-                    <h3>Calcul Intégral</h3>
-                    <p>Aire sous la courbe — méthode des rectangles, ∫f(x)dx.</p>
-                </div>
-                <a href="simulations/integrale.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">🌀</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch10</span>
-                    <h3>Nombres Complexes</h3>
-                    <p>Plan complexe, module, argument, opérations z+w et z×w.</p>
-                </div>
-                <a href="simulations/complexes.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-            <div class="card" data-niveau="term">
-                <div>
-                    <div class="icon">📐</div>
-                    <span class="badge-niveau badge-term">Terminale · Ch11</span>
-                    <h3>Produit Scalaire</h3>
-                    <p>u·v = ||u||·||v||·cos(θ) — orthogonalité, projection, angle.</p>
-                </div>
-                <a href="simulations/scalaire.html" class="btn-lancer btn-maths">Lancer →</a>
-            </div>
-        </div>
-    </div>
+<div class="sim-hero">
+  <h1>🔬 Catalogue des simulations interactives</h1>
+  <p>Manipule, explore et apprends avec 82 simulations en ligne</p>
+  <div class="stats">
+    <span>82 simulations</span>
+    <span>8 domaines</span>
+    <span>Bac Pro · CAP · BTS</span>
+  </div>
 </div>
 
-<script>
-function filtrer(niveau, btn) {
-    document.querySelectorAll('.btn-filtre').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        card.style.display = (niveau === 'tous' || card.dataset.niveau === niveau) ? '' : 'none';
-    });
-    document.querySelectorAll('.theme-section').forEach(section => {
-        const visibles = [...section.querySelectorAll('.card')].filter(c => c.style.display !== 'none');
-        section.style.display = visibles.length === 0 ? 'none' : '';
-    });
-}
-</script>
+<div class="search-bar">
+  <input type="search" id="search" placeholder="🔍 Rechercher (titre, mot-clé, sujet…)" aria-label="Rechercher une simulation">
+  <div class="filter-tags" id="filter-tags">
+    <button class="filter-tag active" data-filter="all" onclick="setFilter('all')">Toutes</button>
+    <button class="filter-tag cat-Mathématiques" data-filter="Mathématiques" onclick="setFilter('Mathématiques')">Mathématiques</button><button class="filter-tag cat-Électricité" data-filter="Électricité" onclick="setFilter('Électricité')">Électricité</button><button class="filter-tag cat-Mécanique" data-filter="Mécanique" onclick="setFilter('Mécanique')">Mécanique</button><button class="filter-tag cat-Fluides" data-filter="Fluides" onclick="setFilter('Fluides')">Fluides</button><button class="filter-tag cat-Thermique" data-filter="Thermique" onclick="setFilter('Thermique')">Thermique</button><button class="filter-tag cat-Chimie" data-filter="Chimie" onclick="setFilter('Chimie')">Chimie</button><button class="filter-tag cat-Optique_&amp;_Ondes" data-filter="Optique &amp; Ondes" onclick="setFilter('Optique &amp; Ondes')">Optique &amp; Ondes</button><button class="filter-tag cat-Sécurité_&amp;_pratique" data-filter="Sécurité &amp; pratique" onclick="setFilter('Sécurité &amp; pratique')">Sécurité &amp; pratique</button>
+  </div>
+</div>
+
+<div id="no-results" class="no-results" style="display:none">
+  Aucune simulation ne correspond à ta recherche.
+</div>
+
+<section class="cat" data-cat="Mathématiques" style="--cat-color:#1976d2;--cat-color-dark:#0a4f9c">
+  <h2 class="cat-title">Mathématiques <span class="cat-count">29</span></h2>
+  <div class="sim-grid">
+    <a href="simulations/proportionnalite.html" class="sim-card" data-search="proportionnalité et pourcentages manipule des situations de proportionnalité (recettes, prix, mélanges) et observe le coefficient en action. calcule des pourcentages, des augmentations et des réductions sur des cas concrets. coefficient règle de trois pourcentages">
+      <div class="sim-icon">📐</div>
+      <div class="sim-body">
+        <h3>Proportionnalité et pourcentages</h3>
+        <p>Manipule des situations de proportionnalité (recettes, prix, mélanges) et observe le coefficient en action. Calcule des pourcentages, des augmentations et des réductions sur des cas concrets.</p>
+        <div class="sim-tags"><span class="tag">Coefficient</span><span class="tag">Règle de trois</span><span class="tag">Pourcentages</span></div>
+      </div>
+    </a>
+    <a href="simulations/statistiques.html" class="sim-card" data-search="statistiques — diagrammes et indicateurs saisis une série statistique et visualise instantanément l'histogramme, le diagramme en bâtons et les indicateurs (moyenne, médiane, étendue). modifie les valeurs pour observer leur effet sur les indicateurs. moyenne médiane diagrammes">
+      <div class="sim-icon">📊</div>
+      <div class="sim-body">
+        <h3>Statistiques — Diagrammes et indicateurs</h3>
+        <p>Saisis une série statistique et visualise instantanément l'histogramme, le diagramme en bâtons et les indicateurs (moyenne, médiane, étendue). Modifie les valeurs pour observer leur effet sur les indicateurs.</p>
+        <div class="sim-tags"><span class="tag">Moyenne</span><span class="tag">Médiane</span><span class="tag">Diagrammes</span></div>
+      </div>
+    </a>
+    <a href="simulations/probabilites.html" class="sim-card" data-search="probabilités et fluctuation des fréquences lance des expériences aléatoires (dés, pièces, urnes) un grand nombre de fois et observe la fluctuation des fréquences autour de la probabilité théorique. visualise la loi des grands nombres en action. fréquence probabilité loi des grands nombres">
+      <div class="sim-icon">🎲</div>
+      <div class="sim-body">
+        <h3>Probabilités et fluctuation des fréquences</h3>
+        <p>Lance des expériences aléatoires (dés, pièces, urnes) un grand nombre de fois et observe la fluctuation des fréquences autour de la probabilité théorique. Visualise la loi des grands nombres en action.</p>
+        <div class="sim-tags"><span class="tag">Fréquence</span><span class="tag">Probabilité</span><span class="tag">Loi des grands nombres</span></div>
+      </div>
+    </a>
+    <a href="simulations/balance.html" class="sim-card" data-search="balance et masse volumique pèse différents matériaux et calcule leur masse volumique ρ = m/v. compare la densité de matériaux courants (bois, fer, plastique, eau). masse volumique densité ρ = m/v">
+      <div class="sim-icon">⚖️</div>
+      <div class="sim-body">
+        <h3>Balance et masse volumique</h3>
+        <p>Pèse différents matériaux et calcule leur masse volumique ρ = m/V. Compare la densité de matériaux courants (bois, fer, plastique, eau).</p>
+        <div class="sim-tags"><span class="tag">Masse volumique</span><span class="tag">Densité</span><span class="tag">ρ = m/V</span></div>
+      </div>
+    </a>
+    <a href="simulations/equations.html" class="sim-card" data-search="résolveur d'équations saisis une équation et observe sa résolution détaillée, étape par étape, avec justification de chaque opération. résolution étapes justification">
+      <div class="sim-icon">🧮</div>
+      <div class="sim-body">
+        <h3>Résolveur d'équations</h3>
+        <p>Saisis une équation et observe sa résolution détaillée, étape par étape, avec justification de chaque opération.</p>
+        <div class="sim-tags"><span class="tag">Résolution</span><span class="tag">Étapes</span><span class="tag">Justification</span></div>
+      </div>
+    </a>
+    <a href="simulations/graphe-equation.html" class="sim-card" data-search="résolution graphique d'équations résous f(x) = k graphiquement en cherchant les points d'intersection de la courbe avec une droite horizontale. outil idéal pour comprendre l'idée de solution graphique. intersection lecture graphique solutions">
+      <div class="sim-icon">📊</div>
+      <div class="sim-body">
+        <h3>Résolution graphique d'équations</h3>
+        <p>Résous f(x) = k graphiquement en cherchant les points d'intersection de la courbe avec une droite horizontale. Outil idéal pour comprendre l'idée de solution graphique.</p>
+        <div class="sim-tags"><span class="tag">Intersection</span><span class="tag">Lecture graphique</span><span class="tag">Solutions</span></div>
+      </div>
+    </a>
+    <a href="simulations/entrainement-ineq.html" class="sim-card" data-search="entraînement — inéquations série d'inéquations du premier degré avec correction. insiste sur le changement de sens lors de la division par un nombre négatif. inéquations entraînement sens d'inégalité">
+      <div class="sim-icon">≤</div>
+      <div class="sim-body">
+        <h3>Entraînement — Inéquations</h3>
+        <p>Série d'inéquations du premier degré avec correction. Insiste sur le changement de sens lors de la division par un nombre négatif.</p>
+        <div class="sim-tags"><span class="tag">Inéquations</span><span class="tag">Entraînement</span><span class="tag">Sens d'inégalité</span></div>
+      </div>
+    </a>
+    <a href="simulations/inegalite.html" class="sim-card" data-search="inéquations sur la droite graduée représente l'ensemble solution d'une inéquation sur la droite graduée. manipule les bornes et observe l'effet sur l'intervalle solution. droite graduée intervalles solutions">
+      <div class="sim-icon">↔️</div>
+      <div class="sim-body">
+        <h3>Inéquations sur la droite graduée</h3>
+        <p>Représente l'ensemble solution d'une inéquation sur la droite graduée. Manipule les bornes et observe l'effet sur l'intervalle solution.</p>
+        <div class="sim-tags"><span class="tag">Droite graduée</span><span class="tag">Intervalles</span><span class="tag">Solutions</span></div>
+      </div>
+    </a>
+    <a href="simulations/fonction-machine.html" class="sim-card" data-search="la machine à fonctions une machine reçoit une valeur d'entrée x et renvoie une valeur de sortie f(x). choisis la fonction (linéaire, affine, carrée…) et observe le lien entre x et son image. image antécédent fonction">
+      <div class="sim-icon">⚙️</div>
+      <div class="sim-body">
+        <h3>La machine à fonctions</h3>
+        <p>Une machine reçoit une valeur d'entrée x et renvoie une valeur de sortie f(x). Choisis la fonction (linéaire, affine, carrée…) et observe le lien entre x et son image.</p>
+        <div class="sim-tags"><span class="tag">Image</span><span class="tag">Antécédent</span><span class="tag">Fonction</span></div>
+      </div>
+    </a>
+    <a href="simulations/droite-affine.html" class="sim-card" data-search="fonctions linéaire et affine trace une droite y = mx + p en faisant varier la pente m et l'ordonnée à l'origine p. visualise l'effet de chaque coefficient sur l'allure de la droite. pente ordonnée à l'origine droite">
+      <div class="sim-icon">📈</div>
+      <div class="sim-body">
+        <h3>Fonctions linéaire et affine</h3>
+        <p>Trace une droite y = mx + p en faisant varier la pente m et l'ordonnée à l'origine p. Visualise l'effet de chaque coefficient sur l'allure de la droite.</p>
+        <div class="sim-tags"><span class="tag">Pente</span><span class="tag">Ordonnée à l'origine</span><span class="tag">Droite</span></div>
+      </div>
+    </a>
+    <a href="simulations/traceur.html" class="sim-card" data-search="traceur de fonction du second degré trace la parabole y = ax² + bx + c et fais varier a, b, c avec des curseurs. observe le sommet, l'axe de symétrie, les racines et l'effet de chaque coefficient. parabole sommet discriminant">
+      <div class="sim-icon">📉</div>
+      <div class="sim-body">
+        <h3>Traceur de fonction du second degré</h3>
+        <p>Trace la parabole y = ax² + bx + c et fais varier a, b, c avec des curseurs. Observe le sommet, l'axe de symétrie, les racines et l'effet de chaque coefficient.</p>
+        <div class="sim-tags"><span class="tag">Parabole</span><span class="tag">Sommet</span><span class="tag">Discriminant</span></div>
+      </div>
+    </a>
+    <a href="simulations/figures-planes.html" class="sim-card" data-search="figures planes — périmètres et aires manipule les dimensions des figures usuelles (carré, rectangle, triangle, cercle, trapèze) et observe l'évolution du périmètre et de l'aire en temps réel. périmètre aire figures usuelles">
+      <div class="sim-icon">▲</div>
+      <div class="sim-body">
+        <h3>Figures planes — Périmètres et aires</h3>
+        <p>Manipule les dimensions des figures usuelles (carré, rectangle, triangle, cercle, trapèze) et observe l'évolution du périmètre et de l'aire en temps réel.</p>
+        <div class="sim-tags"><span class="tag">Périmètre</span><span class="tag">Aire</span><span class="tag">Figures usuelles</span></div>
+      </div>
+    </a>
+    <a href="simulations/pythagore.html" class="sim-card" data-search="théorème de pythagore fais varier les côtés d'un triangle rectangle et vérifie l'égalité a² + b² = c². une démonstration visuelle par les aires permet de comprendre pourquoi c'est vrai. triangle rectangle hypoténuse démonstration">
+      <div class="sim-icon">📐</div>
+      <div class="sim-body">
+        <h3>Théorème de Pythagore</h3>
+        <p>Fais varier les côtés d'un triangle rectangle et vérifie l'égalité a² + b² = c². Une démonstration visuelle par les aires permet de comprendre pourquoi c'est vrai.</p>
+        <div class="sim-tags"><span class="tag">Triangle rectangle</span><span class="tag">Hypoténuse</span><span class="tag">Démonstration</span></div>
+      </div>
+    </a>
+    <a href="simulations/thales.html" class="sim-card" data-search="théorème de thalès configure une situation classique de thalès (triangles emboîtés ou opposés par le sommet) et observe les rapports de longueurs égaux. calcule la longueur inconnue. triangles semblables rapports configuration">
+      <div class="sim-icon">△</div>
+      <div class="sim-body">
+        <h3>Théorème de Thalès</h3>
+        <p>Configure une situation classique de Thalès (triangles emboîtés ou opposés par le sommet) et observe les rapports de longueurs égaux. Calcule la longueur inconnue.</p>
+        <div class="sim-tags"><span class="tag">Triangles semblables</span><span class="tag">Rapports</span><span class="tag">Configuration</span></div>
+      </div>
+    </a>
+    <a href="simulations/solides.html" class="sim-card" data-search="solides usuels — volumes et agrandissement manipule les dimensions des solides courants (pavé, cylindre, cône, sphère, pyramide) et observe le volume en temps réel. étudie l'effet d'un agrandissement de coefficient k sur le volume (×k³). volume solides agrandissement">
+      <div class="sim-icon">🧊</div>
+      <div class="sim-body">
+        <h3>Solides usuels — Volumes et agrandissement</h3>
+        <p>Manipule les dimensions des solides courants (pavé, cylindre, cône, sphère, pyramide) et observe le volume en temps réel. Étudie l'effet d'un agrandissement de coefficient k sur le volume (×k³).</p>
+        <div class="sim-tags"><span class="tag">Volume</span><span class="tag">Solides</span><span class="tag">Agrandissement</span></div>
+      </div>
+    </a>
+    <a href="simulations/stats-2var.html" class="sim-card" data-search="statistiques à deux variables saisis un nuage de points (x, y) et trace la droite d'ajustement par moindres carrés. calcule le coefficient de corrélation et fais des prévisions par interpolation/extrapolation. nuage de points régression corrélation">
+      <div class="sim-icon">📈</div>
+      <div class="sim-body">
+        <h3>Statistiques à deux variables</h3>
+        <p>Saisis un nuage de points (x, y) et trace la droite d'ajustement par moindres carrés. Calcule le coefficient de corrélation et fais des prévisions par interpolation/extrapolation.</p>
+        <div class="sim-tags"><span class="tag">Nuage de points</span><span class="tag">Régression</span><span class="tag">Corrélation</span></div>
+      </div>
+    </a>
+    <a href="simulations/suites.html" class="sim-card" data-search="suites numériques génère les termes d'une suite arithmétique ou géométrique en faisant varier le premier terme et la raison. trace le nuage de points (n, uₙ) et observe le sens de variation. arithmétique géométrique sens de variation">
+      <div class="sim-icon">⋯</div>
+      <div class="sim-body">
+        <h3>Suites numériques</h3>
+        <p>Génère les termes d'une suite arithmétique ou géométrique en faisant varier le premier terme et la raison. Trace le nuage de points (n, uₙ) et observe le sens de variation.</p>
+        <div class="sim-tags"><span class="tag">Arithmétique</span><span class="tag">Géométrique</span><span class="tag">Sens de variation</span></div>
+      </div>
+    </a>
+    <a href="simulations/derivee.html" class="sim-card" data-search="fonction dérivée et tangente trace la courbe d'une fonction et la tangente en un point que tu déplaces. observe le lien entre le signe de la dérivée et le sens de variation de la fonction. tangente sens de variation nombre dérivé">
+      <div class="sim-icon">ƒ′</div>
+      <div class="sim-body">
+        <h3>Fonction dérivée et tangente</h3>
+        <p>Trace la courbe d'une fonction et la tangente en un point que tu déplaces. Observe le lien entre le signe de la dérivée et le sens de variation de la fonction.</p>
+        <div class="sim-tags"><span class="tag">Tangente</span><span class="tag">Sens de variation</span><span class="tag">Nombre dérivé</span></div>
+      </div>
+    </a>
+    <a href="simulations/trigonometrie.html" class="sim-card" data-search="trigonométrie manipule un triangle rectangle (angles, côtés) ou le cercle trigonométrique. visualise sin, cos et tan d'un angle aigu, et résous des problèmes de hauteur, de pente ou de chevron. sin / cos / tan cercle triangle rectangle">
+      <div class="sim-icon">📐</div>
+      <div class="sim-body">
+        <h3>Trigonométrie</h3>
+        <p>Manipule un triangle rectangle (angles, côtés) ou le cercle trigonométrique. Visualise sin, cos et tan d'un angle aigu, et résous des problèmes de hauteur, de pente ou de chevron.</p>
+        <div class="sim-tags"><span class="tag">sin / cos / tan</span><span class="tag">Cercle</span><span class="tag">Triangle rectangle</span></div>
+      </div>
+    </a>
+    <a href="simulations/polynome3.html" class="sim-card" data-search="fonctions polynômes de degré 3 trace y = ax³ + bx² + cx + d en faisant varier les quatre coefficients. visualise le tableau de variations, les extremums locaux et le lien avec la dérivée f'(x) = 3ax² + 2bx + c. cubique extremums dérivée">
+      <div class="sim-icon">ƒ(x)</div>
+      <div class="sim-body">
+        <h3>Fonctions polynômes de degré 3</h3>
+        <p>Trace y = ax³ + bx² + cx + d en faisant varier les quatre coefficients. Visualise le tableau de variations, les extremums locaux et le lien avec la dérivée f'(x) = 3ax² + 2bx + c.</p>
+        <div class="sim-tags"><span class="tag">Cubique</span><span class="tag">Extremums</span><span class="tag">Dérivée</span></div>
+      </div>
+    </a>
+    <a href="simulations/exp-log.html" class="sim-card" data-search="fonctions exponentielle et logarithme compare les courbes de eˣ et ln(x) sur un même graphique. manipule les paramètres pour modéliser une décroissance radioactive, un séchage ou une capitalisation continue. exponentielle logarithme modélisation">
+      <div class="sim-icon">eˣ</div>
+      <div class="sim-body">
+        <h3>Fonctions exponentielle et logarithme</h3>
+        <p>Compare les courbes de eˣ et ln(x) sur un même graphique. Manipule les paramètres pour modéliser une décroissance radioactive, un séchage ou une capitalisation continue.</p>
+        <div class="sim-tags"><span class="tag">Exponentielle</span><span class="tag">Logarithme</span><span class="tag">Modélisation</span></div>
+      </div>
+    </a>
+    <a href="simulations/vecteurs.html" class="sim-card" data-search="vecteurs construis et combine des vecteurs dans le plan. visualise la somme, la multiplication par un scalaire, la colinéarité et la décomposition selon une base. somme colinéarité coordonnées">
+      <div class="sim-icon">→</div>
+      <div class="sim-body">
+        <h3>Vecteurs</h3>
+        <p>Construis et combine des vecteurs dans le plan. Visualise la somme, la multiplication par un scalaire, la colinéarité et la décomposition selon une base.</p>
+        <div class="sim-tags"><span class="tag">Somme</span><span class="tag">Colinéarité</span><span class="tag">Coordonnées</span></div>
+      </div>
+    </a>
+    <a href="simulations/integrale.html" class="sim-card" data-search="calcul intégral — aires sous courbe choisis une fonction et un intervalle, puis observe l'aire sous la courbe. compare avec l'évaluation par primitive f(b) − f(a) et avec une approximation par rectangles. aire primitive théorème fondamental">
+      <div class="sim-icon">∫</div>
+      <div class="sim-body">
+        <h3>Calcul intégral — Aires sous courbe</h3>
+        <p>Choisis une fonction et un intervalle, puis observe l'aire sous la courbe. Compare avec l'évaluation par primitive F(b) − F(a) et avec une approximation par rectangles.</p>
+        <div class="sim-tags"><span class="tag">Aire</span><span class="tag">Primitive</span><span class="tag">Théorème fondamental</span></div>
+      </div>
+    </a>
+    <a href="simulations/complexes.html" class="sim-card" data-search="nombres complexes place un nombre complexe z = a + ib dans le plan. calcule son module, son argument, son conjugué et observe l'effet géométrique de l'addition et de la multiplication. module argument plan complexe">
+      <div class="sim-icon">ℂ</div>
+      <div class="sim-body">
+        <h3>Nombres complexes</h3>
+        <p>Place un nombre complexe z = a + ib dans le plan. Calcule son module, son argument, son conjugué et observe l'effet géométrique de l'addition et de la multiplication.</p>
+        <div class="sim-tags"><span class="tag">Module</span><span class="tag">Argument</span><span class="tag">Plan complexe</span></div>
+      </div>
+    </a>
+    <a href="simulations/scalaire.html" class="sim-card" data-search="produit scalaire manipule deux vecteurs dans le plan et calcule leur produit scalaire par les trois méthodes (norme/angle, coordonnées, projection). vérifie l'orthogonalité. orthogonalité angle projection">
+      <div class="sim-icon">·</div>
+      <div class="sim-body">
+        <h3>Produit scalaire</h3>
+        <p>Manipule deux vecteurs dans le plan et calcule leur produit scalaire par les trois méthodes (norme/angle, coordonnées, projection). Vérifie l'orthogonalité.</p>
+        <div class="sim-tags"><span class="tag">Orthogonalité</span><span class="tag">Angle</span><span class="tag">Projection</span></div>
+      </div>
+    </a>
+    <a href="simulations/calculs-numeriques.html" class="sim-card" data-search="calculs numériques quatre outils : conversions d'unités (longueur, masse, volume, temps), notation scientifique, priorités opératoires, arrondi avec décimales ou chiffres significatifs. chaque outil affiche les étapes pour comprendre le raisonnement. conversions notation scientifique arrondi">
+      <div class="sim-icon">🧮</div>
+      <div class="sim-body">
+        <h3>Calculs numériques</h3>
+        <p>Quatre outils : conversions d'unités (longueur, masse, volume, temps), notation scientifique, priorités opératoires, arrondi avec décimales ou chiffres significatifs. Chaque outil affiche les étapes pour comprendre le raisonnement.</p>
+        <div class="sim-tags"><span class="tag">Conversions</span><span class="tag">Notation scientifique</span><span class="tag">Arrondi</span></div>
+      </div>
+    </a>
+    <a href="simulations/combinatoire.html" class="sim-card" data-search="combinatoire et dénombrement calcule des factorielles, arrangements (avec ordre) et combinaisons (sans ordre). visualise le triangle de pascal interactif avec mise en évidence du coefficient binomial sélectionné. permutations combinaisons triangle de pascal">
+      <div class="sim-icon">🔢</div>
+      <div class="sim-body">
+        <h3>Combinatoire et dénombrement</h3>
+        <p>Calcule des factorielles, arrangements (avec ordre) et combinaisons (sans ordre). Visualise le triangle de Pascal interactif avec mise en évidence du coefficient binomial sélectionné.</p>
+        <div class="sim-tags"><span class="tag">Permutations</span><span class="tag">Combinaisons</span><span class="tag">Triangle de Pascal</span></div>
+      </div>
+    </a>
+    <a href="simulations/probabilites-conditionnelles.html" class="sim-card" data-search="probabilités conditionnelles — arbre pondéré arbre pondéré à 2 niveaux avec 4 scénarios (test médical, contrôle qualité, urnes, personnalisé). calcule en temps réel les probabilités jointes, la probabilité totale et applique la formule de bayes. arbre pondéré bayes probabilités totales">
+      <div class="sim-icon">🌳</div>
+      <div class="sim-body">
+        <h3>Probabilités conditionnelles — Arbre pondéré</h3>
+        <p>Arbre pondéré à 2 niveaux avec 4 scénarios (test médical, contrôle qualité, urnes, personnalisé). Calcule en temps réel les probabilités jointes, la probabilité totale et applique la formule de Bayes.</p>
+        <div class="sim-tags"><span class="tag">Arbre pondéré</span><span class="tag">Bayes</span><span class="tag">Probabilités totales</span></div>
+      </div>
+    </a>
+    <a href="simulations/matrices.html" class="sim-card" data-search="matrices et systèmes linéaires trois outils : addition et multiplication de matrices (dimensions modifiables), calcul de déterminant 2×2, résolution d'un système 2×2 par la méthode de cramer avec affichage des étapes. opérations déterminant cramer">
+      <div class="sim-icon">🔲</div>
+      <div class="sim-body">
+        <h3>Matrices et systèmes linéaires</h3>
+        <p>Trois outils : addition et multiplication de matrices (dimensions modifiables), calcul de déterminant 2×2, résolution d'un système 2×2 par la méthode de Cramer avec affichage des étapes.</p>
+        <div class="sim-tags"><span class="tag">Opérations</span><span class="tag">Déterminant</span><span class="tag">Cramer</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="cat" data-cat="Électricité" style="--cat-color:#eab308;--cat-color-dark:#a16207">
+  <h2 class="cat-title">Électricité <span class="cat-count">10</span></h2>
+  <div class="sim-grid">
+    <a href="simulations/circuit-electrique.html" class="sim-card" data-search="grandeurs électriques et circuits construis un circuit en série ou en parallèle, branche un voltmètre et un ampèremètre, et mesure les tensions et intensités. découvre les lois d'unicité et d'additivité. tension intensité série / parallèle">
+      <div class="sim-icon">🔌</div>
+      <div class="sim-body">
+        <h3>Grandeurs électriques et circuits</h3>
+        <p>Construis un circuit en série ou en parallèle, branche un voltmètre et un ampèremètre, et mesure les tensions et intensités. Découvre les lois d'unicité et d'additivité.</p>
+        <div class="sim-tags"><span class="tag">Tension</span><span class="tag">Intensité</span><span class="tag">Série / Parallèle</span></div>
+      </div>
+    </a>
+    <a href="simulations/ohm.html" class="sim-card" data-search="loi d'ohm — laboratoire virtuel trace la caractéristique u = f(i) d'un dipôle ohmique et vérifie expérimentalement la proportionnalité u = r × i. identifie la résistance comme pente de la droite. résistance caractéristique proportionnalité">
+      <div class="sim-icon">Ω</div>
+      <div class="sim-body">
+        <h3>Loi d'Ohm — Laboratoire virtuel</h3>
+        <p>Trace la caractéristique U = f(I) d'un dipôle ohmique et vérifie expérimentalement la proportionnalité U = R × I. Identifie la résistance comme pente de la droite.</p>
+        <div class="sim-tags"><span class="tag">Résistance</span><span class="tag">Caractéristique</span><span class="tag">Proportionnalité</span></div>
+      </div>
+    </a>
+    <a href="simulations/signal-alternatif.html" class="sim-card" data-search="signal alternatif — oscilloscope virtuel visualise une tension sinusoïdale sur un oscilloscope virtuel. mesure l'amplitude, la période, la fréquence, et compare valeur efficace et valeur maximale. sinusoïde période valeur efficace">
+      <div class="sim-icon">∿</div>
+      <div class="sim-body">
+        <h3>Signal alternatif — Oscilloscope virtuel</h3>
+        <p>Visualise une tension sinusoïdale sur un oscilloscope virtuel. Mesure l'amplitude, la période, la fréquence, et compare valeur efficace et valeur maximale.</p>
+        <div class="sim-tags"><span class="tag">Sinusoïde</span><span class="tag">Période</span><span class="tag">Valeur efficace</span></div>
+      </div>
+    </a>
+    <a href="simulations/puissance.html" class="sim-card" data-search="puissance électrique calcule la puissance d'un appareil à partir de u et i, puis l'énergie consommée sur une durée donnée. compare en kwh et en joules, et calcule le coût au tarif edf. p = ui kwh coût">
+      <div class="sim-icon">⚡</div>
+      <div class="sim-body">
+        <h3>Puissance électrique</h3>
+        <p>Calcule la puissance d'un appareil à partir de U et I, puis l'énergie consommée sur une durée donnée. Compare en kWh et en joules, et calcule le coût au tarif EDF.</p>
+        <div class="sim-tags"><span class="tag">P = UI</span><span class="tag">kWh</span><span class="tag">Coût</span></div>
+      </div>
+    </a>
+    <a href="simulations/transformateur.html" class="sim-card" data-search="transformateur et transport d'énergie manipule un transformateur idéal (rapport de transformation, conservation de la puissance) et comprends pourquoi le transport en très haute tension réduit les pertes joule. transformateur très haute tension pertes joule">
+      <div class="sim-icon">🔁</div>
+      <div class="sim-body">
+        <h3>Transformateur et transport d'énergie</h3>
+        <p>Manipule un transformateur idéal (rapport de transformation, conservation de la puissance) et comprends pourquoi le transport en très haute tension réduit les pertes Joule.</p>
+        <div class="sim-tags"><span class="tag">Transformateur</span><span class="tag">Très haute tension</span><span class="tag">Pertes Joule</span></div>
+      </div>
+    </a>
+    <a href="simulations/effet-joule.html" class="sim-card" data-search="effet joule observe la dissipation thermique p_j = r × i² dans un conducteur. visualise pourquoi doubler le courant multiplie les pertes par quatre. pertes r × i² dissipation">
+      <div class="sim-icon">🔥</div>
+      <div class="sim-body">
+        <h3>Effet Joule</h3>
+        <p>Observe la dissipation thermique P_J = R × I² dans un conducteur. Visualise pourquoi doubler le courant multiplie les pertes par quatre.</p>
+        <div class="sim-tags"><span class="tag">Pertes</span><span class="tag">R × I²</span><span class="tag">Dissipation</span></div>
+      </div>
+    </a>
+    <a href="simulations/redressement.html" class="sim-card" data-search="redressement du courant suis le signal d'une tension alternative à travers un pont de graetz, puis un filtrage par condensateur. compare la valeur moyenne avant et après lissage. pont de graetz condensateur tension moyenne">
+      <div class="sim-icon">⚡↘</div>
+      <div class="sim-body">
+        <h3>Redressement du courant</h3>
+        <p>Suis le signal d'une tension alternative à travers un pont de Graetz, puis un filtrage par condensateur. Compare la valeur moyenne avant et après lissage.</p>
+        <div class="sim-tags"><span class="tag">Pont de Graetz</span><span class="tag">Condensateur</span><span class="tag">Tension moyenne</span></div>
+      </div>
+    </a>
+    <a href="simulations/dephasage.html" class="sim-card" data-search="déphasage et triangle des puissances visualise le déphasage entre tension et courant dans un circuit alternatif. décompose la puissance en active (p), réactive (q) et apparente (s), et observe le facteur de puissance cos φ. déphasage p, q, s cos φ">
+      <div class="sim-icon">△⚡</div>
+      <div class="sim-body">
+        <h3>Déphasage et triangle des puissances</h3>
+        <p>Visualise le déphasage entre tension et courant dans un circuit alternatif. Décompose la puissance en active (P), réactive (Q) et apparente (S), et observe le facteur de puissance cos φ.</p>
+        <div class="sim-tags"><span class="tag">Déphasage</span><span class="tag">P, Q, S</span><span class="tag">cos φ</span></div>
+      </div>
+    </a>
+    <a href="simulations/moteur.html" class="sim-card" data-search="moteur électrique manipule un moteur asynchrone : vitesse synchrone, glissement, couple. calcule le rendement à partir de la puissance absorbée et de la puissance utile. vitesse synchrone rendement couple">
+      <div class="sim-icon">⚙️</div>
+      <div class="sim-body">
+        <h3>Moteur électrique</h3>
+        <p>Manipule un moteur asynchrone : vitesse synchrone, glissement, couple. Calcule le rendement à partir de la puissance absorbée et de la puissance utile.</p>
+        <div class="sim-tags"><span class="tag">Vitesse synchrone</span><span class="tag">Rendement</span><span class="tag">Couple</span></div>
+      </div>
+    </a>
+    <a href="simulations/transmission-info.html" class="sim-card" data-search="transmettre l'information module et démodule un signal en bande passante. compare transmissions analogique et numérique, et observe les effets de l'atténuation et du bruit. modulation numérique bande passante">
+      <div class="sim-icon">📡</div>
+      <div class="sim-body">
+        <h3>Transmettre l'information</h3>
+        <p>Module et démodule un signal en bande passante. Compare transmissions analogique et numérique, et observe les effets de l'atténuation et du bruit.</p>
+        <div class="sim-tags"><span class="tag">Modulation</span><span class="tag">Numérique</span><span class="tag">Bande passante</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="cat" data-cat="Mécanique" style="--cat-color:#0284c7;--cat-color-dark:#0369a1">
+  <h2 class="cat-title">Mécanique <span class="cat-count">4</span></h2>
+  <div class="sim-grid">
+    <a href="simulations/mouvement.html" class="sim-card" data-search="mouvement et trajectoire observe le déplacement d'un objet et identifie le type de mouvement : rectiligne uniforme, accéléré, décéléré, circulaire. mesure la vitesse moyenne et la vitesse instantanée. trajectoire mru vitesse">
+      <div class="sim-icon">🏃</div>
+      <div class="sim-body">
+        <h3>Mouvement et trajectoire</h3>
+        <p>Observe le déplacement d'un objet et identifie le type de mouvement : rectiligne uniforme, accéléré, décéléré, circulaire. Mesure la vitesse moyenne et la vitesse instantanée.</p>
+        <div class="sim-tags"><span class="tag">Trajectoire</span><span class="tag">MRU</span><span class="tag">Vitesse</span></div>
+      </div>
+    </a>
+    <a href="simulations/forces.html" class="sim-card" data-search="forces et équilibre applique des forces (poids, tension, frottement) sur un solide et étudie l'équilibre. décompose une force selon ses composantes et vérifie la 1ʳᵉ loi de newton. équilibre newton décomposition">
+      <div class="sim-icon">💪</div>
+      <div class="sim-body">
+        <h3>Forces et équilibre</h3>
+        <p>Applique des forces (poids, tension, frottement) sur un solide et étudie l'équilibre. Décompose une force selon ses composantes et vérifie la 1ʳᵉ loi de Newton.</p>
+        <div class="sim-tags"><span class="tag">Équilibre</span><span class="tag">Newton</span><span class="tag">Décomposition</span></div>
+      </div>
+    </a>
+    <a href="simulations/vitesse-acceleration.html" class="sim-card" data-search="vitesse et accélération suis un mobile en mouvement rectiligne et trace les graphiques v(t) et a(t). distingue mouvement uniforme, uniformément accéléré et décéléré. mru / mrua décélération graphique v(t)">
+      <div class="sim-icon">🚗</div>
+      <div class="sim-body">
+        <h3>Vitesse et accélération</h3>
+        <p>Suis un mobile en mouvement rectiligne et trace les graphiques v(t) et a(t). Distingue mouvement uniforme, uniformément accéléré et décéléré.</p>
+        <div class="sim-tags"><span class="tag">MRU / MRUA</span><span class="tag">Décélération</span><span class="tag">Graphique v(t)</span></div>
+      </div>
+    </a>
+    <a href="simulations/moments.html" class="sim-card" data-search="moments d'une force et équilibre en rotation place des forces sur un solide pouvant tourner autour d'un axe (balance, levier, grue). calcule les moments m = f × d et vérifie l'équilibre par σm = 0. bras de levier couple équilibre">
+      <div class="sim-icon">⚙️</div>
+      <div class="sim-body">
+        <h3>Moments d'une force et équilibre en rotation</h3>
+        <p>Place des forces sur un solide pouvant tourner autour d'un axe (balance, levier, grue). Calcule les moments M = F × d et vérifie l'équilibre par ΣM = 0.</p>
+        <div class="sim-tags"><span class="tag">Bras de levier</span><span class="tag">Couple</span><span class="tag">Équilibre</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="cat" data-cat="Fluides" style="--cat-color:#0891b2;--cat-color-dark:#155e75">
+  <h2 class="cat-title">Fluides <span class="cat-count">7</span></h2>
+  <div class="sim-grid">
+    <a href="simulations/pression.html" class="sim-card" data-search="pression dans un fluide étudie la pression à différentes profondeurs dans un fluide (p = ρgh). convertis entre pa, hpa et bar, et applique le principe de pascal. p = f/s hauteur d'eau pascal">
+      <div class="sim-icon">📏</div>
+      <div class="sim-body">
+        <h3>Pression dans un fluide</h3>
+        <p>Étudie la pression à différentes profondeurs dans un fluide (P = ρgh). Convertis entre Pa, hPa et bar, et applique le principe de Pascal.</p>
+        <div class="sim-tags"><span class="tag">P = F/S</span><span class="tag">Hauteur d'eau</span><span class="tag">Pascal</span></div>
+      </div>
+    </a>
+    <a href="simulations/archimede.html" class="sim-card" data-search="force d'archimède plonge des objets de différentes densités dans plusieurs fluides. mesure la poussée f_a = ρ × v × g et prévois si l'objet flotte, coule ou reste entre deux eaux. poussée densité flottabilité">
+      <div class="sim-icon">🛟</div>
+      <div class="sim-body">
+        <h3>Force d'Archimède</h3>
+        <p>Plonge des objets de différentes densités dans plusieurs fluides. Mesure la poussée F_A = ρ × V × g et prévois si l'objet flotte, coule ou reste entre deux eaux.</p>
+        <div class="sim-tags"><span class="tag">Poussée</span><span class="tag">Densité</span><span class="tag">Flottabilité</span></div>
+      </div>
+    </a>
+    <a href="simulations/presse-hydraulique.html" class="sim-card" data-search="presse hydraulique manipule deux pistons de surfaces différentes reliés par un fluide. vérifie la conservation de la pression et calcule le facteur d'amplification de la force. pascal amplification pistons">
+      <div class="sim-icon">🔧</div>
+      <div class="sim-body">
+        <h3>Presse hydraulique</h3>
+        <p>Manipule deux pistons de surfaces différentes reliés par un fluide. Vérifie la conservation de la pression et calcule le facteur d'amplification de la force.</p>
+        <div class="sim-tags"><span class="tag">Pascal</span><span class="tag">Amplification</span><span class="tag">Pistons</span></div>
+      </div>
+    </a>
+    <a href="simulations/debit.html" class="sim-card" data-search="débit d'un fluide manipule un fluide circulant dans une canalisation. calcule le débit volumique qv = v/t et le débit massique qm = ρ × qv. débit volumique débit massique conservation">
+      <div class="sim-icon">💧</div>
+      <div class="sim-body">
+        <h3>Débit d'un fluide</h3>
+        <p>Manipule un fluide circulant dans une canalisation. Calcule le débit volumique Qv = V/t et le débit massique Qm = ρ × Qv.</p>
+        <div class="sim-tags"><span class="tag">Débit volumique</span><span class="tag">Débit massique</span><span class="tag">Conservation</span></div>
+      </div>
+    </a>
+    <a href="simulations/debit-fluide.html" class="sim-card" data-search="débit et équation de continuité étudie le passage d'un fluide d'une section s₁ à une section s₂. vérifie l'équation de continuité s₁v₁ = s₂v₂ et applique-la au dimensionnement d'un réseau. continuité vitesse section">
+      <div class="sim-icon">🌊</div>
+      <div class="sim-body">
+        <h3>Débit et équation de continuité</h3>
+        <p>Étudie le passage d'un fluide d'une section S₁ à une section S₂. Vérifie l'équation de continuité S₁v₁ = S₂v₂ et applique-la au dimensionnement d'un réseau.</p>
+        <div class="sim-tags"><span class="tag">Continuité</span><span class="tag">Vitesse</span><span class="tag">Section</span></div>
+      </div>
+    </a>
+    <a href="simulations/boyle-mariotte.html" class="sim-card" data-search="loi de boyle-mariotte comprime ou dilate un gaz à température constante et observe la relation p × v = constante. adapte le protocole à un compresseur ou à un vase d'expansion. gaz parfait p × v isotherme">
+      <div class="sim-icon">🎈</div>
+      <div class="sim-body">
+        <h3>Loi de Boyle-Mariotte</h3>
+        <p>Comprime ou dilate un gaz à température constante et observe la relation P × V = constante. Adapte le protocole à un compresseur ou à un vase d'expansion.</p>
+        <div class="sim-tags"><span class="tag">Gaz parfait</span><span class="tag">P × V</span><span class="tag">Isotherme</span></div>
+      </div>
+    </a>
+    <a href="simulations/gaz.html" class="sim-card" data-search="gaz parfait — influence de la température fais varier la température, le volume ou la quantité d'un gaz et observe l'effet sur la pression. visualise pv = nrt et le mouvement des molécules. pv = nrt agitation mole">
+      <div class="sim-icon">♨️</div>
+      <div class="sim-body">
+        <h3>Gaz parfait — Influence de la température</h3>
+        <p>Fais varier la température, le volume ou la quantité d'un gaz et observe l'effet sur la pression. Visualise PV = nRT et le mouvement des molécules.</p>
+        <div class="sim-tags"><span class="tag">PV = nRT</span><span class="tag">Agitation</span><span class="tag">Mole</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="cat" data-cat="Thermique" style="--cat-color:#e67e22;--cat-color-dark:#92400e">
+  <h2 class="cat-title">Thermique <span class="cat-count">11</span></h2>
+  <div class="sim-grid">
+    <a href="simulations/chaleur.html" class="sim-card" data-search="température et énergie thermique mesure l'élévation de température d'un corps en lui apportant une énergie. distingue chaleur (transfert d'énergie) et température (état d'agitation). q = mcδt chaleur capacité">
+      <div class="sim-icon">🌡️</div>
+      <div class="sim-body">
+        <h3>Température et énergie thermique</h3>
+        <p>Mesure l'élévation de température d'un corps en lui apportant une énergie. Distingue chaleur (transfert d'énergie) et température (état d'agitation).</p>
+        <div class="sim-tags"><span class="tag">Q = mcΔT</span><span class="tag">Chaleur</span><span class="tag">Capacité</span></div>
+      </div>
+    </a>
+    <a href="simulations/transferts-thermiques.html" class="sim-card" data-search="transferts thermiques et équilibre met en contact deux corps à températures différentes et observe la mise en équilibre. identifie les trois modes de transfert (conduction, convection, rayonnement). conduction convection équilibre">
+      <div class="sim-icon">♨️</div>
+      <div class="sim-body">
+        <h3>Transferts thermiques et équilibre</h3>
+        <p>Met en contact deux corps à températures différentes et observe la mise en équilibre. Identifie les trois modes de transfert (conduction, convection, rayonnement).</p>
+        <div class="sim-tags"><span class="tag">Conduction</span><span class="tag">Convection</span><span class="tag">Équilibre</span></div>
+      </div>
+    </a>
+    <a href="simulations/changement-etat.html" class="sim-card" data-search="courbe de chauffage — changements d'état chauffe un corps pur ou un mélange et trace t = f(t). observe les paliers de fusion et d'ébullition pour le corps pur, et leur absence pour un mélange. fusion ébullition palier">
+      <div class="sim-icon">🧊</div>
+      <div class="sim-body">
+        <h3>Courbe de chauffage — Changements d'état</h3>
+        <p>Chauffe un corps pur ou un mélange et trace T = f(t). Observe les paliers de fusion et d'ébullition pour le corps pur, et leur absence pour un mélange.</p>
+        <div class="sim-tags"><span class="tag">Fusion</span><span class="tag">Ébullition</span><span class="tag">Palier</span></div>
+      </div>
+    </a>
+    <a href="simulations/conductance-thermique.html" class="sim-card" data-search="conductance thermique et isolation compare l'efficacité d'isolation de différents matériaux (laine de verre, polystyrène, bois, béton). manipule λ et l'épaisseur pour minimiser le flux thermique. λ (lambda) isolation flux">
+      <div class="sim-icon">🏠</div>
+      <div class="sim-body">
+        <h3>Conductance thermique et isolation</h3>
+        <p>Compare l'efficacité d'isolation de différents matériaux (laine de verre, polystyrène, bois, béton). Manipule λ et l'épaisseur pour minimiser le flux thermique.</p>
+        <div class="sim-tags"><span class="tag">λ (lambda)</span><span class="tag">Isolation</span><span class="tag">Flux</span></div>
+      </div>
+    </a>
+    <a href="simulations/paroi-multicouche.html" class="sim-card" data-search="paroi multicouche construis une paroi composée (placo, isolant, brique, parement) et calcule la résistance thermique totale r = σ rᵢ. visualise l'évolution de la température en chaque point. résistance r multicouche profil de t">
+      <div class="sim-icon">🧱</div>
+      <div class="sim-body">
+        <h3>Paroi multicouche</h3>
+        <p>Construis une paroi composée (placo, isolant, brique, parement) et calcule la résistance thermique totale R = Σ Rᵢ. Visualise l'évolution de la température en chaque point.</p>
+        <div class="sim-tags"><span class="tag">Résistance R</span><span class="tag">Multicouche</span><span class="tag">Profil de T</span></div>
+      </div>
+    </a>
+    <a href="simulations/comparateur-vitrages.html" class="sim-card" data-search="comparateur de vitrages compare simple, double et triple vitrage selon leurs coefficients ug. calcule les pertes thermiques annuelles et le retour sur investissement. ug vitrage pertes">
+      <div class="sim-icon">🪟</div>
+      <div class="sim-body">
+        <h3>Comparateur de vitrages</h3>
+        <p>Compare simple, double et triple vitrage selon leurs coefficients Ug. Calcule les pertes thermiques annuelles et le retour sur investissement.</p>
+        <div class="sim-tags"><span class="tag">Ug</span><span class="tag">Vitrage</span><span class="tag">Pertes</span></div>
+      </div>
+    </a>
+    <a href="simulations/rayonnement.html" class="sim-card" data-search="rayonnement thermique étudie l'émission d'un corps chauffé selon sa température. applique la loi de wien (λmax = 2,898 × 10⁻³ / t) pour relier température et longueur d'onde maximale d'émission. loi de wien spectre émission">
+      <div class="sim-icon">🌞</div>
+      <div class="sim-body">
+        <h3>Rayonnement thermique</h3>
+        <p>Étudie l'émission d'un corps chauffé selon sa température. Applique la loi de Wien (λmax = 2,898 × 10⁻³ / T) pour relier température et longueur d'onde maximale d'émission.</p>
+        <div class="sim-tags"><span class="tag">Loi de Wien</span><span class="tag">Spectre</span><span class="tag">Émission</span></div>
+      </div>
+    </a>
+    <a href="simulations/serre.html" class="sim-card" data-search="effet de serre modélise les échanges entre le soleil, la terre et l'atmosphère. fais varier la concentration des gaz à effet de serre et observe l'équilibre thermique de la planète. ges albedo bilan radiatif">
+      <div class="sim-icon">🌍</div>
+      <div class="sim-body">
+        <h3>Effet de serre</h3>
+        <p>Modélise les échanges entre le Soleil, la Terre et l'atmosphère. Fais varier la concentration des gaz à effet de serre et observe l'équilibre thermique de la planète.</p>
+        <div class="sim-tags"><span class="tag">GES</span><span class="tag">Albedo</span><span class="tag">Bilan radiatif</span></div>
+      </div>
+    </a>
+    <a href="simulations/dilatation-parquet.html" class="sim-card" data-search="dilatation thermique du parquet calcule la dilatation d'un parquet bois selon la variation de température et d'humidité. comprends pourquoi un joint de dilatation périphérique est obligatoire. dilatation coefficient joint">
+      <div class="sim-icon">📏</div>
+      <div class="sim-body">
+        <h3>Dilatation thermique du parquet</h3>
+        <p>Calcule la dilatation d'un parquet bois selon la variation de température et d'humidité. Comprends pourquoi un joint de dilatation périphérique est obligatoire.</p>
+        <div class="sim-tags"><span class="tag">Dilatation</span><span class="tag">Coefficient</span><span class="tag">Joint</span></div>
+      </div>
+    </a>
+    <a href="simulations/ctn-etuve-regulation.html" class="sim-card" data-search="régulation d'étuve avec ctn pilote une étuve avec une ctn comme capteur. règle un seuil de température et observe le comportement du système (tout-ou-rien, hystérésis). régulation seuil hystérésis">
+      <div class="sim-icon">🔬</div>
+      <div class="sim-body">
+        <h3>Régulation d'étuve avec CTN</h3>
+        <p>Pilote une étuve avec une CTN comme capteur. Règle un seuil de température et observe le comportement du système (tout-ou-rien, hystérésis).</p>
+        <div class="sim-tags"><span class="tag">Régulation</span><span class="tag">Seuil</span><span class="tag">Hystérésis</span></div>
+      </div>
+    </a>
+    <a href="simulations/ctn-pt100-comparaison.html" class="sim-card" data-search="capteurs de température : ctn vs pt100 compare deux capteurs : la ctn (résistance qui diminue avec t) et la pt100 (résistance qui augmente linéairement). trace r = f(t) et identifie le capteur adapté. ctn pt100 caractéristique">
+      <div class="sim-icon">🌡️</div>
+      <div class="sim-body">
+        <h3>Capteurs de température : CTN vs Pt100</h3>
+        <p>Compare deux capteurs : la CTN (résistance qui diminue avec T) et la Pt100 (résistance qui augmente linéairement). Trace R = f(T) et identifie le capteur adapté.</p>
+        <div class="sim-tags"><span class="tag">CTN</span><span class="tag">Pt100</span><span class="tag">Caractéristique</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="cat" data-cat="Chimie" style="--cat-color:#6f42c1;--cat-color-dark:#553c9a">
+  <h2 class="cat-title">Chimie <span class="cat-count">8</span></h2>
+  <div class="sim-grid">
+    <a href="simulations/atome.html" class="sim-card" data-search="constructeur d'atomes et d'ions construis n'importe quel atome de la table périodique en ajoutant protons, neutrons et électrons. la simulation indique en temps réel l'élément, le nombre de masse, la charge et la stabilité. composition ions tableau périodique">
+      <div class="sim-icon">⚛️</div>
+      <div class="sim-body">
+        <h3>Constructeur d'atomes et d'ions</h3>
+        <p>Construis n'importe quel atome de la table périodique en ajoutant protons, neutrons et électrons. La simulation indique en temps réel l'élément, le nombre de masse, la charge et la stabilité.</p>
+        <div class="sim-tags"><span class="tag">Composition</span><span class="tag">Ions</span><span class="tag">Tableau périodique</span></div>
+      </div>
+    </a>
+    <a href="simulations/atome-couches.html" class="sim-card" data-search="configuration électronique visualise la répartition des électrons sur les couches k, l, m des 18 premiers éléments. la simulation respecte la règle du remplissage en commençant par la couche la plus proche du noyau. couches k-l-m stabilité règle de l'octet">
+      <div class="sim-icon">🌀</div>
+      <div class="sim-body">
+        <h3>Configuration électronique</h3>
+        <p>Visualise la répartition des électrons sur les couches K, L, M des 18 premiers éléments. La simulation respecte la règle du remplissage en commençant par la couche la plus proche du noyau.</p>
+        <div class="sim-tags"><span class="tag">Couches K-L-M</span><span class="tag">Stabilité</span><span class="tag">Règle de l'octet</span></div>
+      </div>
+    </a>
+    <a href="simulations/modeles-atome.html" class="sim-card" data-search="histoire du modèle de l'atome parcours interactif des cinq grands modèles : dalton, thomson, rutherford, bohr et le modèle quantique. chaque modèle est animé avec les arguments expérimentaux qui ont conduit à le rejeter ou à l'améliorer. histoire des sciences démarche scientifique">
+      <div class="sim-icon">📜</div>
+      <div class="sim-body">
+        <h3>Histoire du modèle de l'atome</h3>
+        <p>Parcours interactif des cinq grands modèles : Dalton, Thomson, Rutherford, Bohr et le modèle quantique. Chaque modèle est animé avec les arguments expérimentaux qui ont conduit à le rejeter ou à l'améliorer.</p>
+        <div class="sim-tags"><span class="tag">Histoire des sciences</span><span class="tag">Démarche scientifique</span></div>
+      </div>
+    </a>
+    <a href="simulations/liaisons-chimiques.html" class="sim-card" data-search="liaisons chimiques forme des molécules en associant des atomes selon les règles de liaison. distingue liaisons covalente, ionique et observe la formation des doublets liants et non liants. covalente ionique doublets">
+      <div class="sim-icon">⛓️</div>
+      <div class="sim-body">
+        <h3>Liaisons chimiques</h3>
+        <p>Forme des molécules en associant des atomes selon les règles de liaison. Distingue liaisons covalente, ionique et observe la formation des doublets liants et non liants.</p>
+        <div class="sim-tags"><span class="tag">Covalente</span><span class="tag">Ionique</span><span class="tag">Doublets</span></div>
+      </div>
+    </a>
+    <a href="simulations/concentration.html" class="sim-card" data-search="solutions chimiques et concentration prépare une solution par dissolution ou par dilution. manipule la concentration en masse cm = m/v et la dilution c₁v₁ = c₂v₂ avec un protocole interactif. cm = m/v dilution protocole">
+      <div class="sim-icon">🧪</div>
+      <div class="sim-body">
+        <h3>Solutions chimiques et concentration</h3>
+        <p>Prépare une solution par dissolution ou par dilution. Manipule la concentration en masse Cm = m/V et la dilution C₁V₁ = C₂V₂ avec un protocole interactif.</p>
+        <div class="sim-tags"><span class="tag">Cm = m/V</span><span class="tag">Dilution</span><span class="tag">Protocole</span></div>
+      </div>
+    </a>
+    <a href="simulations/oxydoreduction.html" class="sim-card" data-search="oxydoréduction met en présence un métal et une solution d'ions. observe les échanges d'électrons, identifie l'oxydant et le réducteur, et écris la demi-équation et l'équation bilan. oxydant réducteur couple">
+      <div class="sim-icon">🔄</div>
+      <div class="sim-body">
+        <h3>Oxydoréduction</h3>
+        <p>Met en présence un métal et une solution d'ions. Observe les échanges d'électrons, identifie l'oxydant et le réducteur, et écris la demi-équation et l'équation bilan.</p>
+        <div class="sim-tags"><span class="tag">Oxydant</span><span class="tag">Réducteur</span><span class="tag">Couple</span></div>
+      </div>
+    </a>
+    <a href="simulations/pile-electrochimique.html" class="sim-card" data-search="pile électrochimique construis une pile (daniell ou autre) en associant deux couples redox. mesure la tension, identifie l'anode et la cathode, et observe la migration des ions. anode / cathode tension couples">
+      <div class="sim-icon">🔋</div>
+      <div class="sim-body">
+        <h3>Pile électrochimique</h3>
+        <p>Construis une pile (Daniell ou autre) en associant deux couples redox. Mesure la tension, identifie l'anode et la cathode, et observe la migration des ions.</p>
+        <div class="sim-tags"><span class="tag">Anode / Cathode</span><span class="tag">Tension</span><span class="tag">Couples</span></div>
+      </div>
+    </a>
+    <a href="simulations/combustion.html" class="sim-card" data-search="combustion du carbone et des hydrocarbures équilibre les équations de combustion (méthane, propane, butane) en ajustant les coefficients stœchiométriques. compare combustion complète et incomplète, et observe les produits formés. équation bilan ch₄ / c₃h₈ combustion">
+      <div class="sim-icon">🔥</div>
+      <div class="sim-body">
+        <h3>Combustion du carbone et des hydrocarbures</h3>
+        <p>Équilibre les équations de combustion (méthane, propane, butane) en ajustant les coefficients stœchiométriques. Compare combustion complète et incomplète, et observe les produits formés.</p>
+        <div class="sim-tags"><span class="tag">Équation bilan</span><span class="tag">CH₄ / C₃H₈</span><span class="tag">Combustion</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="cat" data-cat="Optique &amp; Ondes" style="--cat-color:#c026d3;--cat-color-dark:#86198f">
+  <h2 class="cat-title">Optique &amp; Ondes <span class="cat-count">8</span></h2>
+  <div class="sim-grid">
+    <a href="simulations/refraction.html" class="sim-card" data-search="réflexion et réfraction de la lumière envoie un rayon lumineux à l'interface entre deux milieux et observe la réflexion et la réfraction. vérifie la loi de snell-descartes et identifie l'angle limite. snell-descartes indice angle limite">
+      <div class="sim-icon">🔬</div>
+      <div class="sim-body">
+        <h3>Réflexion et réfraction de la lumière</h3>
+        <p>Envoie un rayon lumineux à l'interface entre deux milieux et observe la réflexion et la réfraction. Vérifie la loi de Snell-Descartes et identifie l'angle limite.</p>
+        <div class="sim-tags"><span class="tag">Snell-Descartes</span><span class="tag">Indice</span><span class="tag">Angle limite</span></div>
+      </div>
+    </a>
+    <a href="simulations/sources-lumineuses.html" class="sim-card" data-search="sources lumineuses compare les spectres d'émission de différentes sources : soleil, ampoule à incandescence, néon, led. distingue spectre continu et spectre de raies. spectre led raies">
+      <div class="sim-icon">💡</div>
+      <div class="sim-body">
+        <h3>Sources lumineuses</h3>
+        <p>Compare les spectres d'émission de différentes sources : soleil, ampoule à incandescence, néon, LED. Distingue spectre continu et spectre de raies.</p>
+        <div class="sim-tags"><span class="tag">Spectre</span><span class="tag">LED</span><span class="tag">Raies</span></div>
+      </div>
+    </a>
+    <a href="simulations/melangeur.html" class="sim-card" data-search="mélangeur rvb mélange les trois lumières primaires (rouge, vert, bleu) en synthèse additive. reproduis les couleurs secondaires (cyan, magenta, jaune) et le blanc. rvb synthèse additive couleurs">
+      <div class="sim-icon">🎨</div>
+      <div class="sim-body">
+        <h3>Mélangeur RVB</h3>
+        <p>Mélange les trois lumières primaires (rouge, vert, bleu) en synthèse additive. Reproduis les couleurs secondaires (cyan, magenta, jaune) et le blanc.</p>
+        <div class="sim-tags"><span class="tag">RVB</span><span class="tag">Synthèse additive</span><span class="tag">Couleurs</span></div>
+      </div>
+    </a>
+    <a href="simulations/eclairage-atelier.html" class="sim-card" data-search="éclairage d'atelier dimensionne l'éclairage d'un atelier selon la surface et la tâche à réaliser. calcule l'éclairement (lux) et compare différents types de luminaires. éclairement lux atelier">
+      <div class="sim-icon">🔦</div>
+      <div class="sim-body">
+        <h3>Éclairage d'atelier</h3>
+        <p>Dimensionne l'éclairage d'un atelier selon la surface et la tâche à réaliser. Calcule l'éclairement (lux) et compare différents types de luminaires.</p>
+        <div class="sim-tags"><span class="tag">Éclairement</span><span class="tag">Lux</span><span class="tag">Atelier</span></div>
+      </div>
+    </a>
+    <a href="simulations/son.html" class="sim-card" data-search="signal sonore génère un signal sonore et étudie sa fréquence, sa période et son intensité. calcule le niveau sonore en décibels l = 10 × log(i/i₀). fréquence décibels intensité">
+      <div class="sim-icon">🎵</div>
+      <div class="sim-body">
+        <h3>Signal sonore</h3>
+        <p>Génère un signal sonore et étudie sa fréquence, sa période et son intensité. Calcule le niveau sonore en décibels L = 10 × log(I/I₀).</p>
+        <div class="sim-tags"><span class="tag">Fréquence</span><span class="tag">Décibels</span><span class="tag">Intensité</span></div>
+      </div>
+    </a>
+    <a href="simulations/son-2nde.html" class="sim-card" data-search="caractéristiques d'un son manipule un son virtuel : modifie la fréquence (hauteur), l'amplitude (volume) et la forme (timbre). visualise simultanément la forme d'onde et le spectre. hauteur volume timbre">
+      <div class="sim-icon">🔊</div>
+      <div class="sim-body">
+        <h3>Caractéristiques d'un son</h3>
+        <p>Manipule un son virtuel : modifie la fréquence (hauteur), l'amplitude (volume) et la forme (timbre). Visualise simultanément la forme d'onde et le spectre.</p>
+        <div class="sim-tags"><span class="tag">Hauteur</span><span class="tag">Volume</span><span class="tag">Timbre</span></div>
+      </div>
+    </a>
+    <a href="simulations/attenuation-sonore.html" class="sim-card" data-search="atténuation sonore étudie l'affaiblissement d'un son à travers une paroi (loi de masse) ou par distance. calcule l'indice d'affaiblissement r en db et compare différents matériaux acoustiques. loi de masse affaiblissement acoustique">
+      <div class="sim-icon">🔇</div>
+      <div class="sim-body">
+        <h3>Atténuation sonore</h3>
+        <p>Étudie l'affaiblissement d'un son à travers une paroi (loi de masse) ou par distance. Calcule l'indice d'affaiblissement R en dB et compare différents matériaux acoustiques.</p>
+        <div class="sim-tags"><span class="tag">Loi de masse</span><span class="tag">Affaiblissement</span><span class="tag">Acoustique</span></div>
+      </div>
+    </a>
+    <a href="simulations/ondes-em.html" class="sim-card" data-search="spectre électromagnétique parcours le spectre des ondes em : ondes radio, micro-ondes, infrarouge, visible, uv, x, gamma. pour chaque domaine : longueur d'onde, fréquence, applications. λ = c/f spectre applications">
+      <div class="sim-icon">📡</div>
+      <div class="sim-body">
+        <h3>Spectre électromagnétique</h3>
+        <p>Parcours le spectre des ondes EM : ondes radio, micro-ondes, infrarouge, visible, UV, X, gamma. Pour chaque domaine : longueur d'onde, fréquence, applications.</p>
+        <div class="sim-tags"><span class="tag">λ = c/f</span><span class="tag">Spectre</span><span class="tag">Applications</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="cat" data-cat="Sécurité &amp; pratique" style="--cat-color:#dc2626;--cat-color-dark:#991b1b">
+  <h2 class="cat-title">Sécurité &amp; pratique <span class="cat-count">5</span></h2>
+  <div class="sim-grid">
+    <a href="simulations/securite-laboratoire.html" class="sim-card" data-search="sécurité en laboratoire et en atelier quatre modules : pictogrammes sgh (signification, exemples), quiz epi selon les situations professionnelles, dispositifs de protection électrique (fusible, disjoncteur, différentiel, terre), échelle des niveaux sonores avec seuils réglementaires. sgh epi risques chimiques">
+      <div class="sim-icon">⚠️</div>
+      <div class="sim-body">
+        <h3>Sécurité en laboratoire et en atelier</h3>
+        <p>Quatre modules : pictogrammes SGH (signification, exemples), quiz EPI selon les situations professionnelles, dispositifs de protection électrique (fusible, disjoncteur, différentiel, terre), échelle des niveaux sonores avec seuils réglementaires.</p>
+        <div class="sim-tags"><span class="tag">SGH</span><span class="tag">EPI</span><span class="tag">Risques chimiques</span></div>
+      </div>
+    </a>
+    <a href="simulations/anisotropie-bois.html" class="sim-card" data-search="anisotropie du bois visualise les trois directions du bois (radiale, tangentielle, longitudinale) et leurs comportements différents face à l'humidité, au retrait et aux contraintes. bois retrait directions">
+      <div class="sim-icon">🌳</div>
+      <div class="sim-body">
+        <h3>Anisotropie du bois</h3>
+        <p>Visualise les trois directions du bois (radiale, tangentielle, longitudinale) et leurs comportements différents face à l'humidité, au retrait et aux contraintes.</p>
+        <div class="sim-tags"><span class="tag">Bois</span><span class="tag">Retrait</span><span class="tag">Directions</span></div>
+      </div>
+    </a>
+    <a href="simulations/calepinage.html" class="sim-card" data-search="calepinage place des éléments (carreaux, panneaux, briques) sur une surface en respectant les contraintes de pose. calcule le métré et les chutes. pose métré chutes">
+      <div class="sim-icon">▦</div>
+      <div class="sim-body">
+        <h3>Calepinage</h3>
+        <p>Place des éléments (carreaux, panneaux, briques) sur une surface en respectant les contraintes de pose. Calcule le métré et les chutes.</p>
+        <div class="sim-tags"><span class="tag">Pose</span><span class="tag">Métré</span><span class="tag">Chutes</span></div>
+      </div>
+    </a>
+    <a href="simulations/ccf-bac-rangement.html" class="sim-card" data-search="ccf — rangement (pse) étude de cas de rangement d'atelier appliquant les principes d'ergonomie et de prévention des risques. pse ergonomie ccf">
+      <div class="sim-icon">📦</div>
+      <div class="sim-body">
+        <h3>CCF — Rangement (PSE)</h3>
+        <p>Étude de cas de rangement d'atelier appliquant les principes d'ergonomie et de prévention des risques.</p>
+        <div class="sim-tags"><span class="tag">PSE</span><span class="tag">Ergonomie</span><span class="tag">CCF</span></div>
+      </div>
+    </a>
+    <a href="simulations/escalier-blondel.html" class="sim-card" data-search="escalier — formule de blondel dimensionne un escalier (giron, hauteur de marche, échappée) en respectant la formule de blondel : 2h + g ≈ 64 cm. vérifie la conformité aux normes de construction. blondel giron marches">
+      <div class="sim-icon">🪜</div>
+      <div class="sim-body">
+        <h3>Escalier — Formule de Blondel</h3>
+        <p>Dimensionne un escalier (giron, hauteur de marche, échappée) en respectant la formule de Blondel : 2h + g ≈ 64 cm. Vérifie la conformité aux normes de construction.</p>
+        <div class="sim-tags"><span class="tag">Blondel</span><span class="tag">Giron</span><span class="tag">Marches</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+</div>
 <script src="nav.js"></script>
+<script>
+let activeFilter = 'all';
+let activeQuery = '';
+
+function setFilter(name) {
+  activeFilter = name;
+  document.querySelectorAll('.filter-tag').forEach(t => {
+    t.classList.toggle('active', t.dataset.filter === name);
+  });
+  applyFilters();
+}
+
+function applyFilters() {
+  const query = activeQuery.trim().toLowerCase();
+  let total = 0, visible = 0;
+  document.querySelectorAll('.cat').forEach(cat => {
+    const matchCat = activeFilter === 'all' || cat.dataset.cat === activeFilter;
+    let any = false;
+    cat.querySelectorAll('.sim-card').forEach(card => {
+      total++;
+      const matchQ = !query || card.dataset.search.includes(query);
+      const show = matchCat && matchQ;
+      card.style.display = show ? '' : 'none';
+      if (show) { any = true; visible++; }
+    });
+    cat.style.display = any ? '' : 'none';
+  });
+  document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
+}
+
+document.getElementById('search').addEventListener('input', e => {
+  activeQuery = e.target.value;
+  applyFilters();
+});
+</script>
 </body>
 </html>
