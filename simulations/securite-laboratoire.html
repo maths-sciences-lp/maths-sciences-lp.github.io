@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sécurité en laboratoire et en atelier — Simulation</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f4f9;color:#1e293b;padding:20px;line-height:1.55}
+.container{max-width:920px;margin:0 auto}
+header{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:25px 25px 22px;border-radius:10px 10px 0 0;position:relative;text-align:center}
+header h1{font-size:1.5em;margin-bottom:4px}
+header p{opacity:.92;font-size:.95em}
+.btn-back{position:absolute;left:15px;top:15px;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:5px 12px;border-radius:5px;font-size:.85em;transition:background .2s}
+.btn-back:hover{background:rgba(255,255,255,.35)}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px;margin-bottom:18px}
+.card.standalone{border-radius:10px;margin-top:20px}
+.intro{background:#fee2e2;border-left:4px solid #dc2626;padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:0;font-size:.95em}
+.intro strong{color:#991b1b}
+.first-card{border-radius:0 0 10px 10px}
+.tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid #fecaca;flex-wrap:wrap;background:#fff;border-radius:10px 10px 0 0;padding:0 4px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.tab{flex:1;min-width:140px;padding:14px 12px;cursor:pointer;border:none;background:none;font-size:.95em;color:#991b1b;font-weight:600;border-bottom:3px solid transparent;transition:all .2s}
+.tab.active{color:#dc2626;border-bottom-color:#dc2626;background:#fef2f2}
+.tab:hover{background:#fff5f5}
+.tool{display:none}
+.tool.active{display:block}
+
+/* Pictogrammes SGH */
+.picto-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:18px}
+.picto-card{background:#fff;border:2px solid #fecaca;border-radius:10px;padding:14px;cursor:pointer;text-align:center;transition:all .15s}
+.picto-card:hover{border-color:#dc2626;transform:translateY(-2px);box-shadow:0 4px 12px rgba(220,38,38,.15)}
+.picto-card.active{border-color:#dc2626;background:#fef2f2;box-shadow:0 4px 12px rgba(220,38,38,.25)}
+.picto-svg{width:80px;height:80px;margin:0 auto 8px;display:block}
+.picto-name{font-weight:700;font-size:.85em;color:#991b1b}
+.picto-detail{background:#fef2f2;border:2px solid #fecaca;border-radius:10px;padding:18px;margin-top:18px;display:none}
+.picto-detail.visible{display:block}
+.picto-detail h3{color:#991b1b;font-size:1.1em;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.picto-detail h3 svg{width:50px;height:50px;flex-shrink:0}
+.picto-detail .desc{font-size:.92em;line-height:1.6;margin-bottom:10px}
+.picto-detail .examples{background:#fff;border-radius:6px;padding:10px 14px;font-size:.88em;color:#475569;border-left:3px solid #dc2626}
+.picto-detail .examples strong{color:#991b1b}
+
+/* EPI quiz */
+.quiz-question{background:#fef2f2;border-radius:10px;padding:18px;margin-bottom:14px}
+.quiz-question .scenario{font-weight:600;color:#991b1b;margin-bottom:12px;font-size:1em}
+.quiz-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.epi-option{background:#fff;border:2px solid #fecaca;border-radius:8px;padding:10px 8px;cursor:pointer;text-align:center;font-size:.88em;font-weight:600;color:#475569;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.epi-option:hover{border-color:#dc2626}
+.epi-option.selected{border-color:#dc2626;background:#fef2f2}
+.epi-option.correct{border-color:#16a34a;background:#dcfce7;color:#15803d}
+.epi-option.wrong{border-color:#dc2626;background:#fee2e2;color:#991b1b}
+.epi-option .icon{font-size:1.8em}
+.btn-check{background:#dc2626;color:#fff;border:none;padding:10px 22px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.95em;margin-top:12px;transition:background .2s}
+.btn-check:hover{background:#991b1b}
+.feedback{margin-top:12px;padding:12px 16px;border-radius:8px;font-size:.92em;display:none}
+.feedback.ok{background:#dcfce7;color:#15803d;display:block;border-left:4px solid #16a34a}
+.feedback.no{background:#fee2e2;color:#991b1b;display:block;border-left:4px solid #dc2626}
+
+/* Protection électrique */
+.elec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.elec-device{background:#fff;border:2px solid #fecaca;border-radius:10px;padding:14px}
+.elec-device h3{color:#991b1b;margin-bottom:8px;font-size:1em;display:flex;align-items:center;gap:8px}
+.elec-device h3::before{font-size:1.4em}
+.elec-device p{font-size:.88em;color:#475569;line-height:1.5;margin-bottom:6px}
+.elec-device .protect{background:#fef2f2;padding:8px 12px;border-radius:6px;font-size:.85em;color:#991b1b;font-weight:600;margin-top:8px}
+.elec-device .protect strong{color:#dc2626}
+
+/* Niveaux sonores */
+.sound-meter{position:relative;height:24px;background:linear-gradient(to right,#dcfce7 0%,#fef9c3 30%,#fed7aa 60%,#fecaca 80%,#dc2626 100%);border-radius:12px;margin:14px 0;overflow:hidden}
+.sound-marker{position:absolute;top:-4px;width:4px;height:32px;background:#1e293b;border-radius:2px;transition:left .3s}
+.sound-control{display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
+.sound-control input{flex:1;min-width:200px;accent-color:#dc2626}
+.sound-control .val{min-width:80px;text-align:center;font-weight:700;color:#dc2626;font-family:monospace;background:#fef2f2;padding:6px 12px;border-radius:6px}
+.sound-info{background:#fef2f2;border-left:4px solid #dc2626;padding:14px 18px;border-radius:0 8px 8px 0;margin-top:14px;font-size:.95em}
+.sound-info strong{color:#991b1b}
+.sound-zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:14px;font-size:.84em}
+.zone{padding:8px 12px;border-radius:8px;text-align:center;font-weight:600}
+.zone.safe{background:#dcfce7;color:#15803d}
+.zone.warn{background:#fef9c3;color:#854d0e}
+.zone.danger{background:#fed7aa;color:#9a3412}
+.zone.severe{background:#fecaca;color:#991b1b}
+
+@media(max-width:600px){
+  .container{padding:0}
+  header h1{font-size:1.25em}
+  .tab{font-size:.85em;padding:10px 8px}
+  .picto-svg{width:60px;height:60px}
+  .quiz-options{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <a href="../simulations.html" class="btn-back">← Retour</a>
+  <h1>⚠️ Sécurité en laboratoire et en atelier</h1>
+  <p>2nde Bac Pro / CAP · Pictogrammes SGH · EPI · Risques électriques et sonores</p>
+</header>
+
+<div class="card first-card intro">
+  <strong>À explorer :</strong> 4 modules pour identifier les risques et les protections en laboratoire/atelier. Clique sur un pictogramme pour voir sa signification, associe les EPI aux situations, découvre les dispositifs de protection électrique, et observe l'échelle des niveaux sonores avec les seuils réglementaires.
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab active" data-tab="picto" onclick="setTab('picto')">⚠️ Pictogrammes SGH</button>
+  <button class="tab" data-tab="epi" onclick="setTab('epi')">🥽 Quiz EPI</button>
+  <button class="tab" data-tab="elec" onclick="setTab('elec')">⚡ Sécurité électrique</button>
+  <button class="tab" data-tab="son" onclick="setTab('son')">🔊 Niveaux sonores</button>
+</div>
+
+<!-- ── Pictogrammes SGH ───────────────────────────── -->
+<div class="tool active" id="tool-picto">
+  <div class="card">
+    <p style="font-size:.92em;color:#475569;margin-bottom:14px">Les <strong>pictogrammes SGH</strong> (Système Général Harmonisé) signalent les dangers d'un produit chimique. On les retrouve sur les étiquettes des produits, les fiches de données de sécurité (FDS) et les emballages. Cliquez sur un pictogramme pour voir les détails.</p>
+
+    <div class="picto-grid" id="picto-grid"></div>
+
+    <div class="picto-detail" id="picto-detail"></div>
+  </div>
+</div>
+
+<!-- ── EPI Quiz ──────────────────────────────────── -->
+<div class="tool" id="tool-epi">
+  <div class="card">
+    <p style="font-size:.92em;color:#475569;margin-bottom:14px">Pour chaque situation, quels <strong>équipements de protection individuelle (EPI)</strong> sont nécessaires ? Sélectionne tous ceux qui s'appliquent puis valide.</p>
+
+    <div id="quiz-container"></div>
+
+    <button class="btn-check" onclick="resetQuiz()">↺ Recommencer le quiz</button>
+  </div>
+</div>
+
+<!-- ── Sécurité électrique ───────────────────────── -->
+<div class="tool" id="tool-elec">
+  <div class="card">
+    <p style="font-size:.92em;color:#475569;margin-bottom:14px">Trois dispositifs de protection contre les risques électriques en atelier ou à la maison.</p>
+
+    <div class="elec-grid">
+      <div class="elec-device">
+        <h3>🔥 Fusible</h3>
+        <p>Filament métallique qui fond au-delà d'un certain courant. Une fois fondu, il faut le remplacer.</p>
+        <p><strong>Protège contre :</strong> les surintensités (court-circuit, surcharge).</p>
+        <div class="protect"><strong>Calibre typique :</strong> 10 A, 16 A, 20 A pour le résidentiel</div>
+      </div>
+
+      <div class="elec-device">
+        <h3>🔧 Disjoncteur magnéto-thermique</h3>
+        <p>Coupe automatiquement le circuit quand le courant dépasse le calibre. Réarmable d'un simple geste.</p>
+        <p><strong>Protège contre :</strong> les surintensités (court-circuit, surcharge prolongée).</p>
+        <div class="protect"><strong>Avantage :</strong> réutilisable, plus pratique que le fusible</div>
+      </div>
+
+      <div class="elec-device">
+        <h3>⚡ Interrupteur différentiel</h3>
+        <p>Compare le courant qui entre et celui qui sort. Coupe en quelques millisecondes si une fuite (vers la terre via un humain) est détectée.</p>
+        <p><strong>Protège contre :</strong> les électrocutions (contacts indirects).</p>
+        <div class="protect"><strong>Sensibilité :</strong> 30 mA en habitat (norme NF C 15-100)</div>
+      </div>
+
+      <div class="elec-device" style="border-color:#16a34a">
+        <h3 style="color:#15803d">🌍 Mise à la terre</h3>
+        <p>Conducteur reliant la masse métallique des appareils à la terre. Évacue les courants de défaut directement vers le sol.</p>
+        <p><strong>Protège contre :</strong> l'électrisation par contact avec un appareil défectueux.</p>
+        <div class="protect" style="background:#dcfce7;color:#15803d"><strong>Indispensable</strong> en complément du différentiel</div>
+      </div>
+    </div>
+
+    <div style="background:#fef2f2;border:2px solid #fca5a5;border-radius:10px;padding:14px 18px;margin-top:14px;font-size:.92em">
+      <strong style="color:#991b1b">⚠️ Règle d'or :</strong> avant toute intervention sur un circuit électrique, <strong>couper le courant au disjoncteur</strong>, <strong>verrouiller</strong> et <strong>vérifier l'absence de tension</strong> (VAT) avec un multimètre.
+    </div>
+  </div>
+</div>
+
+<!-- ── Niveaux sonores ──────────────────────────── -->
+<div class="tool" id="tool-son">
+  <div class="card">
+    <p style="font-size:.92em;color:#475569;margin-bottom:14px">Le <strong>niveau sonore</strong> se mesure en décibels (dB). Plus il est élevé, plus l'exposition prolongée endommage l'audition. Déplace le curseur pour comparer différentes situations.</p>
+
+    <div class="sound-control">
+      <input type="range" id="dB" min="0" max="140" step="1" value="60" oninput="updateSound()" aria-label="Niveau sonore en décibels">
+      <span class="val" id="dBval">60 dB</span>
+    </div>
+
+    <div class="sound-meter">
+      <div class="sound-marker" id="sound-marker" style="left:42%"></div>
+    </div>
+
+    <div class="sound-info" id="sound-info"></div>
+
+    <div class="sound-zones">
+      <div class="zone safe">0–60 dB<br>Sans risque</div>
+      <div class="zone warn">60–80 dB<br>Inconfort</div>
+      <div class="zone danger">80–85 dB<br>Surveillance</div>
+      <div class="zone severe">≥ 85 dB<br>EPI obligatoires</div>
+    </div>
+
+    <div style="background:#fef2f2;border-left:4px solid #dc2626;padding:14px 18px;border-radius:0 8px 8px 0;margin-top:14px;font-size:.92em">
+      <strong style="color:#991b1b">📢 Réglementation :</strong>
+      <ul style="margin:8px 0 0 20px;line-height:1.7">
+        <li><strong>80 dB</strong> sur 8h : surveillance médicale, EPI mis à disposition</li>
+        <li><strong>85 dB</strong> sur 8h : <strong>EPI obligatoires</strong> (bouchons, casque)</li>
+        <li><strong>87 dB</strong> sur 8h : limite à ne jamais dépasser, même avec EPI</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ─── Pictogrammes SGH ───
+const PICTOS = [
+  {
+    id: 'flam', name: 'Inflammable',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><path d="M50 25 C 35 35 30 50 35 60 C 35 50 45 45 45 50 C 45 60 50 65 55 65 C 55 55 60 50 60 55 C 60 65 55 70 50 70 C 60 75 65 65 65 55 C 65 45 60 40 55 35 C 55 40 50 45 50 35 C 50 30 50 25 50 25 Z" fill="#1e293b"/></svg>`,
+    desc: "Produit qui s'enflamme facilement (gaz, liquide, solide). Peut prendre feu en présence d'une étincelle, d'une flamme ou par friction.",
+    examples: "Essence, alcool, butane, propane, white-spirit, vernis, certaines colles"
+  },
+  {
+    id: 'tox', name: 'Toxique',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><circle cx="50" cy="42" r="14" fill="none" stroke="#1e293b" stroke-width="3"/><path d="M50 28 L50 22 M50 56 L50 62" stroke="#1e293b" stroke-width="3"/><circle cx="44" cy="40" r="3" fill="#1e293b"/><circle cx="56" cy="40" r="3" fill="#1e293b"/><path d="M44 50 Q50 46 56 50" stroke="#1e293b" stroke-width="2" fill="none"/><path d="M30 70 L70 70 L60 80 L40 80 Z" fill="#1e293b"/></svg>`,
+    desc: "Produit qui peut provoquer des effets graves voire mortels par ingestion, inhalation ou contact cutané, même en faible quantité.",
+    examples: "Méthanol, certains pesticides, métaux lourds (Pb, Hg), monoxyde de carbone"
+  },
+  {
+    id: 'cor', name: 'Corrosif',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><path d="M30 35 Q35 30 38 32 L42 50 L36 60 L48 65 Z" fill="#1e293b"/><path d="M55 30 L70 35 Q72 38 70 42 L62 55 L70 60 Z" fill="#1e293b"/><path d="M28 70 Q40 75 50 70 Q60 75 72 72" stroke="#1e293b" stroke-width="2" fill="none"/></svg>`,
+    desc: "Produit qui détruit les tissus vivants (peau, yeux) et attaque les métaux. Acides forts et bases fortes en font partie.",
+    examples: "Acide chlorhydrique, soude (NaOH), eau de Javel concentrée, acide sulfurique"
+  },
+  {
+    id: 'sgh-irr', name: 'Irritant / nocif',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="6" fill="#1e293b"/><path d="M50 50 L75 25 M50 50 L25 25 M50 50 L75 75 M50 50 L25 75 M50 50 L88 50 M50 50 L12 50 M50 50 L50 12 M50 50 L50 88" stroke="#1e293b" stroke-width="3"/></svg>`,
+    desc: "Produit qui irrite les yeux, la peau et les voies respiratoires. Ingestion : risque de nausées et autres effets aigus.",
+    examples: "Détergents domestiques, ammoniaque, certains solvants, javel diluée"
+  },
+  {
+    id: 'env', name: 'Dangereux pour l\'environnement',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><path d="M20 60 Q35 50 50 60 Q65 50 80 60 L80 75 L20 75 Z" fill="#1e293b"/><path d="M60 30 Q55 40 65 35 Q70 25 60 30 Z M40 28 Q50 25 50 35 Q40 38 40 28 Z" fill="#1e293b"/><circle cx="32" cy="38" r="2" fill="#1e293b"/></svg>`,
+    desc: "Produit toxique pour les organismes aquatiques, les sols, ou la couche d'ozone. Ne jamais déverser à l'évier.",
+    examples: "Solvants chlorés, peintures, hydrocarbures, certains pesticides"
+  },
+  {
+    id: 'oxy', name: 'Comburant',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><circle cx="50" cy="55" r="13" fill="none" stroke="#1e293b" stroke-width="3"/><path d="M50 25 L42 45 L58 45 Z" fill="#1e293b"/><path d="M30 35 L35 50 M70 35 L65 50 M50 70 Q40 80 35 80 M50 70 Q60 80 65 80" stroke="#1e293b" stroke-width="2" fill="none"/></svg>`,
+    desc: "Produit qui peut intensifier un incendie en libérant de l'oxygène. Ne jamais le stocker près de produits inflammables.",
+    examples: "Eau oxygénée concentrée, permanganate de potassium, nitrates, oxygène pur"
+  },
+  {
+    id: 'gas', name: 'Gaz sous pression',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><rect x="38" y="22" width="24" height="56" rx="6" fill="none" stroke="#1e293b" stroke-width="3"/><rect x="44" y="14" width="12" height="14" fill="#1e293b"/><path d="M42 40 L58 40 M42 50 L58 50 M42 60 L58 60" stroke="#1e293b" stroke-width="2"/></svg>`,
+    desc: "Récipient sous pression qui peut exploser en cas de chauffage. Les gaz liquéfiés (propane) provoquent aussi des brûlures par le froid.",
+    examples: "Bouteilles de propane, butane, oxygène médical, azote liquide"
+  },
+  {
+    id: 'expl', name: 'Explosif',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><path d="M50 18 L55 35 L72 30 L62 45 L80 50 L60 55 L70 70 L52 65 L48 82 L42 65 L25 70 L35 55 L18 50 L35 45 L25 30 L42 35 Z" fill="#1e293b"/></svg>`,
+    desc: "Produit qui explose au contact d'une étincelle, d'une flamme, d'un choc ou par échauffement.",
+    examples: "Nitroglycérine, peroxydes organiques, certains feux d'artifice, poudres"
+  },
+  {
+    id: 'health', name: 'Effets graves sur la santé',
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" fill="#fff" stroke="#dc2626" stroke-width="6" transform="rotate(45 50 50)"/><circle cx="50" cy="42" r="12" fill="none" stroke="#1e293b" stroke-width="3"/><path d="M40 35 L60 35 M40 45 L60 45" stroke="#1e293b" stroke-width="2"/><path d="M30 60 Q50 75 70 60 L66 80 L34 80 Z" fill="#1e293b"/></svg>`,
+    desc: "Produit cancérogène, mutagène, reprotoxique (CMR), sensibilisant respiratoire ou toxique pour des organes spécifiques.",
+    examples: "Amiante, benzène, formaldéhyde, certains solvants, fumées de tabac"
+  }
+];
+
+function setTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+  document.querySelectorAll('.tool').forEach(s => s.classList.toggle('active', s.id === 'tool-' + name));
+}
+
+function buildPictoGrid() {
+  const grid = document.getElementById('picto-grid');
+  PICTOS.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'picto-card';
+    card.dataset.id = p.id;
+    card.innerHTML = `<div class="picto-svg">${p.svg}</div><div class="picto-name">${p.name}</div>`;
+    card.onclick = () => showPicto(p);
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `Pictogramme ${p.name}`);
+    grid.appendChild(card);
+  });
+  // Sélection initiale
+  showPicto(PICTOS[0]);
+}
+
+function showPicto(p) {
+  document.querySelectorAll('.picto-card').forEach(c => c.classList.toggle('active', c.dataset.id === p.id));
+  const detail = document.getElementById('picto-detail');
+  detail.innerHTML = `
+    <h3>${p.svg.replace('width="80" height="80"', '')} ${p.name}</h3>
+    <p class="desc">${p.desc}</p>
+    <div class="examples"><strong>Exemples :</strong> ${p.examples}</div>
+  `;
+  detail.classList.add('visible');
+}
+
+// ─── EPI Quiz ───
+const EPIS = [
+  { id: 'glasses', name: 'Lunettes', icon: '🥽' },
+  { id: 'gloves', name: 'Gants', icon: '🧤' },
+  { id: 'mask', name: 'Masque', icon: '😷' },
+  { id: 'apron', name: 'Blouse', icon: '🥼' },
+  { id: 'helmet', name: 'Casque', icon: '⛑️' },
+  { id: 'shoes', name: 'Chaussures sécurité', icon: '🥾' },
+  { id: 'earplugs', name: 'Bouchons / casque anti-bruit', icon: '🎧' },
+  { id: 'visor', name: 'Visière', icon: '👁️' }
+];
+
+const QUESTIONS = [
+  {
+    scenario: "Vous manipulez de l'acide sulfurique pour préparer un bain de décapage en menuiserie.",
+    correct: ['glasses', 'gloves', 'apron']
+  },
+  {
+    scenario: "Vous utilisez une scie circulaire de chantier en atelier (niveau sonore : 95 dB).",
+    correct: ['glasses', 'earplugs', 'shoes']
+  },
+  {
+    scenario: "Vous appliquez un vernis solvant dans une cabine de finition.",
+    correct: ['gloves', 'mask', 'apron']
+  },
+  {
+    scenario: "Vous travaillez en hauteur sur un chantier de plomberie chauffagiste.",
+    correct: ['helmet', 'shoes', 'gloves']
+  }
+];
+
+let quizState = [];
+
+function buildQuiz() {
+  const c = document.getElementById('quiz-container');
+  c.innerHTML = '';
+  quizState = QUESTIONS.map(() => ({ selected: [], checked: false }));
+  QUESTIONS.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-question';
+    div.dataset.idx = i;
+    let opts = '<div class="quiz-options">';
+    EPIS.forEach(e => {
+      opts += `<button type="button" class="epi-option" data-epi="${e.id}" onclick="toggleEPI(${i},'${e.id}')"><span class="icon">${e.icon}</span><span>${e.name}</span></button>`;
+    });
+    opts += '</div>';
+    div.innerHTML = `<div class="scenario">Situation ${i + 1} : ${q.scenario}</div>${opts}<button class="btn-check" onclick="checkAnswer(${i})">Valider ma sélection</button><div class="feedback" id="fb-${i}"></div>`;
+    c.appendChild(div);
+  });
+}
+
+function toggleEPI(qIdx, epiId) {
+  if (quizState[qIdx].checked) return;
+  const sel = quizState[qIdx].selected;
+  const pos = sel.indexOf(epiId);
+  if (pos >= 0) sel.splice(pos, 1);
+  else sel.push(epiId);
+  const btn = document.querySelector(`.quiz-question[data-idx="${qIdx}"] .epi-option[data-epi="${epiId}"]`);
+  btn.classList.toggle('selected');
+}
+
+function checkAnswer(qIdx) {
+  const q = QUESTIONS[qIdx];
+  const sel = quizState[qIdx].selected;
+  quizState[qIdx].checked = true;
+  const fb = document.getElementById('fb-' + qIdx);
+  const correctSet = new Set(q.correct);
+  const selSet = new Set(sel);
+  const missing = q.correct.filter(c => !selSet.has(c));
+  const extra = sel.filter(s => !correctSet.has(s));
+  document.querySelectorAll(`.quiz-question[data-idx="${qIdx}"] .epi-option`).forEach(btn => {
+    const id = btn.dataset.epi;
+    btn.classList.remove('selected');
+    if (correctSet.has(id)) btn.classList.add('correct');
+    else if (selSet.has(id)) btn.classList.add('wrong');
+  });
+  if (missing.length === 0 && extra.length === 0) {
+    fb.className = 'feedback ok';
+    fb.innerHTML = `✅ Parfait ! Tous les EPI nécessaires sont sélectionnés, sans excédent.`;
+  } else {
+    let msg = '';
+    if (missing.length) msg += `⚠️ EPI manquants : <strong>${missing.map(id => EPIS.find(e => e.id === id).name).join(', ')}</strong>.<br>`;
+    if (extra.length) msg += `❌ EPI superflus pour cette situation : <strong>${extra.map(id => EPIS.find(e => e.id === id).name).join(', ')}</strong>.`;
+    fb.className = 'feedback no';
+    fb.innerHTML = msg;
+  }
+}
+
+function resetQuiz() {
+  buildQuiz();
+}
+
+// ─── Niveaux sonores ───
+const SOUND_DESCRIPTIONS = [
+  { max: 30, label: '🤫 Bibliothèque', desc: 'Très calme, aucun risque.' },
+  { max: 50, label: '🏠 Conversation à voix basse', desc: 'Confort sonore standard.' },
+  { max: 65, label: '🗨️ Conversation normale', desc: 'Pas de gêne, aucun risque auditif.' },
+  { max: 75, label: '🚗 Trafic routier', desc: 'Inconfort possible si exposition prolongée.' },
+  { max: 80, label: '🛠️ Atelier de menuiserie (machines à l\'arrêt)', desc: 'Vigilance recommandée.' },
+  { max: 85, label: '🪚 Aspirateur, ponceuse', desc: 'EPI mis à disposition (réglementation 80 dB).' },
+  { max: 95, label: '⚙️ Scie circulaire, perceuse', desc: '⚠️ EPI obligatoires au-delà de 85 dB.' },
+  { max: 105, label: '🔥 Tronçonneuse, marteau-piqueur', desc: 'Dangereux. Limite à 87 dB d\'exposition équivalente sur 8h.' },
+  { max: 120, label: '✈️ Avion au décollage à 100 m', desc: 'Seuil de douleur. Lésions immédiates possibles.' },
+  { max: 140, label: '💥 Détonation, marteau-pilon', desc: 'Lésions auditives immédiates et permanentes.' }
+];
+
+function updateSound() {
+  const v = parseInt(document.getElementById('dB').value);
+  document.getElementById('dBval').textContent = v + ' dB';
+  document.getElementById('sound-marker').style.left = (v / 140 * 100) + '%';
+  const info = SOUND_DESCRIPTIONS.find(s => v <= s.max);
+  document.getElementById('sound-info').innerHTML = `<strong>${info.label}</strong><br>${info.desc}`;
+}
+
+// ─── Init ───
+buildPictoGrid();
+buildQuiz();
+updateSound();
+</script>
+</body>
+</html>

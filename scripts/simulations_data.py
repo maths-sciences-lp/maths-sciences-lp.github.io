@@ -499,6 +499,12 @@ SIMULATIONS = {
     },
 
     # ─── PHASE 2 — Nouvelles simulations (2026-04-29) ────────────────────────
+    "securite-laboratoire.html": {
+        "title": "Sécurité en laboratoire et en atelier",
+        "icon": "⚠️",
+        "description": "Quatre modules : pictogrammes SGH (signification, exemples), quiz EPI selon les situations professionnelles, dispositifs de protection électrique (fusible, disjoncteur, différentiel, terre), échelle des niveaux sonores avec seuils réglementaires.",
+        "tags": ["SGH", "EPI", "Risques chimiques"],
+    },
     "calculs-numeriques.html": {
         "title": "Calculs numériques",
         "icon": "🧮",
@@ -1323,7 +1329,24 @@ CHAPTER_SIMS = {
         },
     },
 
-    # Maths LGT Terminale ch13 — Loi binomiale (compléter avec proba conditionnelles)
+
+    # PC Seconde ch01 — Sécurité en laboratoire et en atelier
+    "physique-chimie/seconde/ch01": {
+        "sims": ["securite-laboratoire.html"],
+        "pedagogy": {
+            "securite-laboratoire.html": "Identifie les pictogrammes SGH des produits couramment utilisés en atelier (vernis, colles, solvants), associe les EPI aux situations rencontrées (manipulation de produits, machines bruyantes, travaux en hauteur), et découvre les dispositifs de protection électrique avant ton premier TP.",
+        },
+    },
+
+    # PC CAP ch01 — Sécurité en laboratoire et en atelier
+    "physique-chimie/cap/ch01": {
+        "sims": ["securite-laboratoire.html"],
+        "pedagogy": {
+            "securite-laboratoire.html": "Apprends à reconnaître rapidement les pictogrammes SGH avant chaque manipulation. Les bons EPI et les protections électriques sont la base de tout métier industriel ou de chantier.",
+        },
+    },
+
+        # Maths LGT Terminale ch13 — Loi binomiale (compléter avec proba conditionnelles)
     # [déjà présent avec probabilites.html — on l'enrichit]
 
     # Maths Terminale ch02 (déjà mappé à probabilites.html — on l'enrichit avec conditionnelles)
