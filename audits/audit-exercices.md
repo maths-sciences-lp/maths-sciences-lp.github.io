@@ -686,17 +686,19 @@ Audit ciblé sur les leçons (chapitres signalés en jaune) :
 
 **Pattern identifié** : `<div class="c">` non fermé avant `</body>` (manquant `</div>`)
 
-| Section | Fichiers concernés |
+| Section | Fichiers concernés (commit 58c6c9e6) |
 |---|---|
-| PC ICCER | ch07/interro.html, ch02 ERA/interro.html |
-| PC ERA | ch01-04/ds.html (4 fichiers) |
-| PC ICCER | ch02/interro.html |
-| Maths Seconde | 4 fichiers (capacités/ds/interro) |
-| Maths Première | 3 fichiers |
-| Maths Terminale | 3 fichiers (dont ch04/interro.html — 3 closes manquants) |
-| Maths Term ERA | ch01/ds.html — 1 close en trop (corrigé) |
+| PC 1ère ICCER | ch07/interro.html |
+| PC 1ère ERA | ch02/interro.html |
+| PC Term ICCER | ch02/interro.html |
+| PC Term ERA | ch01/ds.html (1 close en trop retiré), ch03/ds.html, ch04/ds.html |
+| Maths Seconde | ch01/exercices-capacites.html, ch05/exercices-capacites.html |
+| Maths Première | ch08/exercices-capacites.html |
+| Maths Terminale | ch04/exercices-capacites.html, ch04/interro.html (**3 closes manquants** — diff-socle/standard/appro), ch05/exercices-capacites.html, ch06/exercices-capacites.html, ch08/ds.html, ch10/ds.html, ch10/exercices-capacites.html, ch11/exercices-capacites.html |
 
-**Effet** : pages désormais valides W3C, pas d'effet visuel mais correction nécessaire pour l'accessibilité et le rendu mobile.
+**Total** : 6 PC + 11 Maths = 17 fichiers. Vérification : opens=closes sur les 17.
+
+**Effet** : pages désormais structurellement saines, pas d'effet visuel mais correction nécessaire pour l'accessibilité et le rendu mobile.
 
 ### Page catalogue + index chapitre (2026-04-29)
 
