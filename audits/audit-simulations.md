@@ -1,9 +1,13 @@
 # Audit Simulations Interactives
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-04-29 (audit qualité approfondi Opus — vérification manuelle bugs / conformité)
-**Périmètre** : dossier `simulations/` — 78 fichiers HTML
+**Dernière mise à jour** : 2026-05-01 (recensement total + référencement 8 simulations bois/agencement ; 2026-04-29 audit qualité approfondi Opus)
+**Périmètre** : dossier `simulations/` — **78 fichiers HTML** (vs 70 documenté précédemment)
 **Méthode** : Lecture et analyse de l'ensemble des simulations, vérification du référencement depuis les pages de cours, analyse de la couverture par chapitre, audit technique approfondi (autonomie, responsive, accessibilité, qualité JS).
+
+**Note 2026-04-30** : 8 nouvelles simulations ajoutées depuis le précédent comptage, dont 8 simulations bois/agencement créées les 24 avril : `presse-hydraulique.html`, `paroi-multicouche.html`, `escalier-blondel.html`, `eclairage-atelier.html`, `dilatation-parquet.html`, `comparateur-vitrages.html`, `calepinage.html`, `anisotropie-bois.html`, plus `ctn-pt100-comparaison.html` et `ctn-etuve-regulation.html` (7 avril).
+
+**Référencement (Phase 1, 2026-04-30)** : les 8 simulations bois/agencement ont été ajoutées dans `simulations.html` (sections Thermique, Mécanique, Signaux & Optique, Mathématiques) avec badges niveau et chapitre. Les 2 simulations CTN/PT100 étaient déjà référencées. Liens depuis les leçons posés pour 3 sims clés des classes en cours : `paroi-multicouche` et `comparateur-vitrages` → 1ère ERA ch05 ; `presse-hydraulique` → 1ère ERA ch07. **À finaliser** : liaison de `escalier-blondel`, `calepinage`, `dilatation-parquet`, `anisotropie-bois`, `eclairage-atelier` depuis les leçons / activités correspondantes (2nde MAMA principalement).
 
 ---
 

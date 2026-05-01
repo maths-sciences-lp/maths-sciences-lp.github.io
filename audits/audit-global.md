@@ -1,7 +1,8 @@
 # Audit Global du Site Pédagogique
 
 **Date** : 2026-03-16
-**Dernière mise à jour** : 2026-04-30 (audit complet + couverture simulations 100% + index par chapitre)
+**Dernière mise à jour** : 2026-05-01 (Phase 4 visuels Seconde TERMINÉE 15/15 + Phase 1 quick wins — 30/04 audit complet + couverture simulations 100% + index par chapitre)
+**Note** : compteur simulations corrigé (63 → 70 → 78 → 82) ; cible chapitre Bac Pro = 8 types (lecon, exercices, ds, fiche, qcm, interro, exercices-capacites, activite)
 **Périmètre** : ensemble du site maths-sciences-lp.github.io
 
 ---
@@ -10,7 +11,7 @@
 
 | Indicateur | Valeur |
 |---|---|
-| Pages HTML totales | **~1190** |
+| Pages HTML totales | **~1 190** |
 | Sections (matière/niveau) | **12** (Maths Seconde, 1ère, Terminale, LGT Term, CAP, BTS · PC Seconde, 1ère ICCER, 1ère ERA, Term ICCER, Term ERA, CAP) |
 | Chapitres couverts | **138** |
 | **Pages d'accueil par chapitre** (`index.html`) | **138** ✅ (créées avril 2026) |
@@ -21,9 +22,11 @@
 | Sommaires cliquables (titres → index) | **13/13** ✅ |
 | Objectifs injectés sur pages-ressources | **544 pages** |
 | Aria-label sur canvas/SVG | **114 ajoutés** (a11y WCAG 2.1) |
-| Sigles interdits (contenu) | **0** (corrigés en mars/avril) |
+| Sigles interdits (contenu) | **0** (corrigés en mars/avril ; +1 résiduel `maths/terminale/ch10/qcm.html` reformulé 2026-04-30) |
 | Pages HTML structurellement saines | **100%** (17 fixes balance divs) |
 | Mobile responsive | **3 breakpoints** (380/600/800 px) |
+| **Phase 4 visuels Seconde Pro (relevé 22/04)** | **15/15 chapitres traités** (clôture 01/05) — 68 SVG ajoutés sur les exercices.html |
+| Stubs BTS | **29** (placeholders « en cours de rédaction ») |
 
 ### Couverture par section (avril 2026)
 
@@ -167,6 +170,14 @@ La majorité des occurrences sont dans des **commentaires HTML** et des **footer
 
 ## Corrections realisees
 
+- **2026-04-30** : Audit total du site — recensement complet (1 103 fichiers HTML, 84 chapitres Bac Pro × 8 types = 672 fichiers, 14 chapitres CAP, 25 chapitres BTS, 15 chapitres LGT, 14 chapitres groupements PC, 78 simulations, 21 automatismes, 38 co-interventions). Constats : 0 chemin absolu résiduel, 0 chapitre Bac Pro stub, 1 sigle ICCER en contenu (maths/terminale/ch10/qcm.html), entités HTML résiduelles dans ~125 fichiers (CAP, BTS, PC première/terminale), timestamp `.maj` déployé sur 82/1 103 fichiers seulement (≈7 %), 1 leçon sans mini-exo (`physique-chimie/premiere-era/ch10/lecon.html`).
+- **2026-04-30** : **Phase 1 — Quick wins** : (A) sigle « Contexte ICCER » dans `maths/terminale/ch10/qcm.html` ligne 529 reformulé en « Application en installation thermique » → 0 sigle interdit en contenu sur l'ensemble du site. (B) 3 mini-exo `.mini-exo` ajoutés dans `physique-chimie/premiere-era/ch10/lecon.html` (vitesse du son dans le bois, longueur d'onde aspirateur, addition de niveaux sonores) → toutes les leçons Bac Pro ont désormais des mini-exo. (C) 8 simulations bois/agencement référencées dans `simulations.html` (presse-hydraulique, paroi-multicouche, escalier-blondel, eclairage-atelier, dilatation-parquet, comparateur-vitrages, calepinage, anisotropie-bois) + 3 liens ajoutés depuis les leçons (1ère ERA ch05 et ch07).
+- **2026-04-30** : **Phase 2 — Enrichissement visuels Seconde Pro** : (E) `maths/seconde/ch04/exercices.html` (Probabilités) — 6 SVG ajoutés dans les corrections : tableau 6×6 des sommes de deux dés (Ex 13), courbe de convergence f → p de la loi des grands nombres (Ex 22), arbre de probabilités à 2 niveaux fiabilité d'une machine (Ex 23), droites graduées d'intervalle de fluctuation pour panneaux conformes (Ex 25), pour pièce truquée (Ex 27), arbre 2 épreuves contrôle panneaux solaires (Ex 29). Ratio visuels/exos : 19 % → **39 %**. (F) `maths/seconde/ch13/exercices.html` (Thalès) — 6 SVG ajoutés : ombre piquet/pylône avec rayons solaires (Ex 13), comparaison cas parallèle/non parallèle réciproque (Ex 14), configuration papillon avec longueurs (Ex 15), triangle Thalès complet AD/AB/AE/AC/DE/BC (Ex 19), triangle après résolution équation x (Ex 23), triangle problème 2 étapes (Ex 22). Ratio : 18 % → **31 %**. Timestamp `.maj` mis à jour.
+- **2026-05-01** : **Phase 2 (suite) — Enrichissement visuels PC Seconde Pro** : (H) `physique-chimie/seconde/ch11/exercices.html` (Transferts thermiques) — 6 SVG ajoutés dans les corrections : 3 schémas illustrés conduction/convection/rayonnement (Ex 1), diagramme barres logarithmique des conductivités thermiques (Ex 5), comparaison flux 2 panneaux bois vs verre (Ex 17), schéma atelier avant/après isolation avec flèches de flux (Ex 19), comparaison cadre fenêtre bois vs aluminium (Ex 22), coupe double vitrage + schéma équivalent R en série (Ex 25). Ratio visuels/exos : 10 % → **25 %** (cible atteinte). (I) `physique-chimie/seconde/ch01/exercices.html` (Sécurité) — 5 SVG ajoutés : 6 pictogrammes EPI avec libellés (Ex 2), échelle des niveaux sonores avec seuils 85 dB et 120 dB (Ex 8), 3 bacs de tri DDS/recyclage/ordures (Ex 9), schéma installation électrique compteur+DJ+DDR (Ex 14), tableau des 5 classes de laser (Ex 17). Ratio : 16 % → **31 %**. Timestamp `.maj` mis à jour.
+- **2026-05-01** : **Phase 2 (suite, vague 2)** : (K) `physique-chimie/seconde/ch03/exercices.html` (Loi d'Ohm) — 5 SVG ajoutés : 3 pistolets à colle en parallèle (Ex 6), 2 lampes 60 Ω en parallèle avec lois de Kirchhoff (Ex 11), choix du fusible (Ex 13), schéma circuit mixte série+parallèle (Ex 20), caractéristique U(I) non linéaire d'une lampe à incandescence vs droite ohmique (Ex 19). Ratio 17 % → **31 %**. (L) `maths/seconde/ch07/exercices.html` (Notion de fonction) — 5 SVG ajoutés : graphe C(x) = 8x+20 avec lecture antécédents (Ex 11), schéma flèches image vs antécédent ensemble départ → arrivée (Ex 6), graphe avec lecture image (vert montant) et antécédent (rouge horizontal) (Ex 7), facture d'eau f(x)=4x+10 avec abonnement (Ex 9), graphe E(t)=2t avec antécédent t≈3,5 h (Ex 16). Ratio 12 % → **25 %**. (M) `physique-chimie/seconde/ch05/exercices.html` (Mouvement) — 3 SVG ajoutés : chronophotographie 5 positions équidistantes avec vecteurs vitesse identiques (Ex 4), piste d'athlétisme 400 m vue de dessus avec lignes droites + virages circulaires (Ex 11), comparaison 3 chronophotographies uniforme/accéléré/décéléré (Ex 14). Ratio 19 % → **28 %**. Timestamps `.maj` mis à jour.
+- **2026-05-01** : **Relecture critique des 33 SVG ajoutés en Phase 2** — 7 corrections appliquées : ch07 Ex 7 (alignement points/graduations), ch07 Ex 11 (graduations Y linéaires), ch07 Ex 9 (droite étendue), ch13 Ex 14 cas 2 (E placé sur AC), ch13 Ex 15 (papillon à l'échelle 1u=8px), ch04 Ex 22 (graduations linéaires + 4 points), ch01 Ex 8 (graduations 30/60 + zones colorées). 26 SVG vérifiés sans correction nécessaire.
+- **2026-05-01** : **Phase 2 (vague 3)** : (P) `physique-chimie/seconde/ch10/exercices.html` (Température) — 4 SVG ajoutés : double échelle Celsius/Kelvin avec 6 repères (Ex 1), placement de 5 températures sur échelle (azote, hiver, eau, corps, étuve) (Ex 8), plages de fonctionnement des 6 capteurs CTN/CTP/LM35/Pt100/thermocouple/IR (Ex 11), courbe R(T) d'une CTN avec seuil 8 kΩ (Ex 14). Ratio 11 % → **30 %**. (Q) `physique-chimie/seconde/ch12/exercices.html` (Changements d'état) — 3 SVG ajoutés : courbe T(t) annotée avec 3 phases (Ex 3), schéma fusion glace E=m×L_f (Ex 4), schéma vaporisation eau dans bois E=m×L_v (Ex 5). Ratio 12 % → **23 %**. (R) `maths/seconde/ch10/exercices.html` (Fonction carré) — 5 SVG ajoutés : parabole avec variations (Ex 4), résolution graphique x²=k avec 4 droites horizontales (Ex 7), aire de cadres 10 cm vs 20 cm × 4 (Ex 9), trajectoire ballon h(t)=−t²+4 (Ex 11), distance de freinage v² avec effet quadratique (Ex 14). Ratio 19 % → **30 %**.
+- **2026-05-01** : **Phase 2 vague 4 — clôture Phase 4 du plan d'amélioration Seconde** : (T) `maths/seconde/ch03/exercices.html` (Indicateurs stats) — 3 SVG : comparaison étendue 2 séries A/B (Ex 5), boîte à moustaches Q1/Me/Q3 + IQR (Ex 4), distribution autour moyenne avec fuseau ±σ (Ex 7). Ratio 20 % → 30 %. (U) `maths/seconde/ch08/exercices.html` (Fonction linéaire) — 1 SVG : droite f(x)=5x avec lecture antécédents (Ex 13). (V) `maths/seconde/ch14/exercices.html` (Solides) — 1 SVG : agrandissement pavé 10×6×4 → 20×12×8 montrant V × 2³ = 8 (Ex 5). (W) `physique-chimie/seconde/ch08/exercices.html` (Solutions) — 1 SVG : échelle pH avec placement des produits d'atelier et zones de danger (Ex 5). (X) `physique-chimie/seconde/ch09/exercices.html` (Son) — 1 SVG : oscillogramme diapason 5 oscillations sur 11,4 ms (Ex 22). (Y) `physique-chimie/seconde/ch14/exercices.html` (Lumière) — 1 SVG : spectre visible 380-780 nm avec 6 couleurs placées (Ex 7). **Phase 4 : 15/15 chapitres complétés, 60+8 = 68 SVG ajoutés au total**.
 - **2026-04-22** : Relecture détaillée des sections Seconde Pro (maths + PC, 28 chapitres). Tableau de bord publié, chapitres prioritaires identifiés. Enrichissement de `maths/seconde/ch06/exercices.html` (Inéquations) : 7 nouveaux SVG droites graduées récapitulatives ajoutés aux corrections des exercices 3, 4, 6, 7, 20, 21, 27. Ratio visuels/exercices de ch06 : 0,37 → 0,74.
 - **2026-03-21** : Audit global automatisé — inventaire 504 fichiers, vérifications techniques, recherche sigles interdits. Mise à jour complète du tableau de bord.
 - **2026-04-06** : Création `prompts/prompt-ds.md` (prompt complet pour les devoirs surveillés). Mise à jour de 4 prompts existants (`prompt-exercices.md`, `prompt-cours.md`, `prompt-qcm-interro.md`, `prompt-exercices-capacites.md`) : ajout règle "données uniquement", tableaux de données proactifs, références orphelines, règle animations Canvas. Skill `/check-quality` réécrit en revue IA pure (suppression des scripts `check_visuals.py`, `check_chapter_quality.py`, `count_svg.py`). Fix lien retour sommaire `physique-chimie/seconde/ch11/interro.html`.
@@ -181,11 +192,18 @@ La majorité des occurrences sont dans des **commentaires HTML** et des **footer
 
 ## Ameliorations restantes
 
-### Priorité haute
-- [ ] Enrichir `physique-chimie/seconde/ch11` (Transferts thermiques) — ratio visuels/exercices 7 % (cible ≥ 25 %) : ajouter schémas conduction/convection/rayonnement, courbes T°(t), diagrammes échanges thermiques.
-- [ ] Enrichir `physique-chimie/seconde/ch01` (Sécurité) — ratio 11 % : ajouter pictogrammes GHS et schémas EPI annotés.
-- [ ] Enrichir `maths/seconde/ch04` (Probabilités) — ratio 40 % : ajouter arbres de probabilités, diagrammes de fluctuation, histogrammes.
-- [ ] Enrichir `maths/seconde/ch13` (Thalès) — ratio 42 % : ajouter figures géométriques (configurations de Thalès, triangles).
+### Priorité haute (chantiers structurels — relevé 2026-04-30)
+- [ ] **BTS** — compléter les 7 chapitres sans exercices ni DS (ch19–ch25) + créer les fiche/qcm/interro/exercices-capacites pour les 25 chapitres
+- [ ] **LGT Terminale** — créer exercices/ds/fiche/qcm/interro pour les 15 chapitres (actuellement lecon + exercices-capacites uniquement)
+- [ ] **Groupements PC** — créer ds.html pour les 14 chapitres gpt 2/4/5/6 + qcm/interro/exercices-capacites
+- [x] ~~Corriger l'unique sigle interdit dans contenu : `maths/terminale/ch10/qcm.html:529` (« Contexte ICCER »)~~ → **fait 2026-04-30** (« Application en installation thermique »)
+- [ ] Convertir les entités HTML résiduelles → UTF-8 dans les ~125 fichiers identifiés (CAP 56, BTS 19, PC première-iccer 19, terminale-iccer/era 34, premiere-era 10, premiere maths 11)
+
+### Priorité haute (audit Seconde Pro 2026-04-22)
+- [x] ~~Enrichir `physique-chimie/seconde/ch11` (Transferts thermiques)~~ → **fait 2026-05-01** : 6 SVG (3 modes illustrés, conductivités log, R bois vs verre, atelier isolation, fenêtre bois vs alu, coupe double vitrage). Ratio 10 % → 25 %.
+- [x] ~~Enrichir `physique-chimie/seconde/ch01` (Sécurité)~~ → **fait 2026-05-01** : 5 SVG (6 EPI illustrés, échelle dB, bacs tri, installation électrique disjoncteurs, classes laser). Ratio 16 % → 31 %.
+- [x] ~~Enrichir `maths/seconde/ch04` (Probabilités)~~ → **fait 2026-04-30** : 6 SVG ajoutés (tableau dés, convergence f→p, 2 arbres, 2 droites graduées intervalles), ratio 19 % → 39 %
+- [x] ~~Enrichir `maths/seconde/ch13` (Thalès)~~ → **fait 2026-04-30** : 6 SVG ajoutés (ombre soleil, 2 cas réciproque, papillon, 3 triangles Thalès), ratio 18 % → 31 %
 
 ### Priorité moyenne
 - [ ] Enrichir `maths/seconde/ch03, ch07, ch08, ch10` (ratio 50–57 %) : graphiques de distribution, courbes de fonctions, paraboles.
@@ -201,3 +219,5 @@ La majorité des occurrences sont dans des **commentaires HTML** et des **footer
 - [ ] Corriger le placement des labels `.label-def` dans PC/seconde/ch04 et ch05
 - [ ] Compléter les 29 pages BTS stub (exercices et DS)
 - [ ] Mettre en place un script de vérification automatique (CI)
+- [ ] Déployer le timestamp `.maj` (règle CLAUDE.md n°10) sur les sections où il manque (PC première/terminale, CAP) — actuellement 82/1 103 fichiers (≈7 %)
+- [x] ~~Ajouter mini-exo manquant dans `physique-chimie/premiere-era/ch10/lecon.html`~~ → **fait 2026-04-30** (3 mini-exo : poutre chêne, aspirateur, addition niveaux)

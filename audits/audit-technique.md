@@ -1,9 +1,9 @@
 # Audit Technique
 
 **Date** : 2026-03-16
-**Derniere mise a jour** : 2026-04-30 (audit complet + 17 fix HTML + 10 sims mobile + relecture prompts)
+**Derniere mise a jour** : 2026-04-30 (audit total + 17 fix HTML + 10 sims mobile + relecture prompts + actualisation des compteurs)
 **Perimetre** : HTML, CSS, JavaScript, chemins, accessibilite, simulations, performances
-**Nombre total de fichiers HTML audites** : 477 (191 maths, 180 physique-chimie, 63 simulations, 43 autres)
+**Nombre total de fichiers HTML** : **1 103** (maths/seconde 114, maths/premiere 72, maths/terminale 88, maths/lgt-terminale 30, maths/cap 56, maths/bts 61, PC seconde 112, PC premiere-iccer 80, PC premiere-era 80, PC premiere-gpt 16, PC terminale-iccer 64, PC terminale-era 65, PC terminale-gpt 40, PC cap 56, simulations 78, automatismes 21, co-intervention 38, racine ~30)
 
 ---
 
@@ -244,6 +244,8 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - **2026-03-25** : Corrige lien retour interro.html ch10 (pc-2nde-mama → pc-2nde-pro)
 - **2026-04-17** : Audit page d'accueil (`index.html`) — compteur simulations 69 → 72 (hero + carte), ajout du timestamp `.maj` dans le header (regle #10), date « Chapitres en cours » calculee automatiquement (mois/annee courants), desambiguisation des ancres de nav (#card-maths / #card-pc au lieu de deux #disciplines identiques)
 - **2026-04-17** : Correction typo CLAUDE.md : `logicie.html` (fichier inexistant) → `logique.html` (fragment réellement présent dans les sommaires maths)
+- **2026-04-30** : Audit technique total — verification automatisee : nav.js et print.css presents dans 100 % des pages de cours (testees sur maths/seconde, maths/premiere, maths/terminale, physique-chimie/seconde) ; 0 chemin absolu residuel (`src="/nav.js"`, `href="/nav.css"`, `src="/diff.js"`) ; diff.js correctement absent des leçon.html ; diff.js present dans 98/130 exercices.html (CAP/BTS exclus par design), 98/116 ds.html, 84/98 qcm.html, 91/98 interro.html. Compteur simulations actualise : **78 fichiers** (vs 70). Entites HTML residuelles dans 125 fichiers (CAP, BTS, PC premiere/terminale, premiere maths) — Seconde et LGT propres. Sigles interdits dans contenu : 1 occurrence detectee (`maths/terminale/ch10/qcm.html:529` « Contexte ICCER »).
+- **2026-04-30** : **Phase 1 quick wins** appliquee : sigle ICCER reformulé (0 sigle interdit en contenu), 3 mini-exo ajoutes dans pc/premiere-era/ch10/lecon.html (toutes les leçons Bac Pro ont desormais des mini-exo), 8 simulations bois/agencement referencees dans `simulations.html` + 3 liens ajoutes depuis pc/premiere-era/ch05 et ch07. Timestamp `.maj` ajoute sur les 4 fichiers modifies (compteur passe de 82 a 86/1 103).
 
 ---
 
@@ -278,6 +280,12 @@ Le site repose sur des liens `<a>` et boutons `<button>` standards, naturellemen
 - [ ] Creer un script de validation des chemins (lint HTML) pour detecter les chemins absolus
 - [ ] Centraliser les classes CSS repetees dans plusieurs simulations si applicable
 - [ ] Verifier la coherence des balises `<title>` sur l'ensemble du site
+
+### Releve 2026-04-30 (audit total)
+- [ ] Convertir entites HTML → UTF-8 dans les ~125 fichiers identifies : CAP (28 maths + 28 PC), BTS (19), PC premiere-iccer (19), PC terminale-iccer (17), PC terminale-era (17), PC premiere-era (10), maths premiere (11), maths terminale (1)
+- [x] ~~Reformuler `maths/terminale/ch10/qcm.html:529` « Contexte ICCER »~~ → **fait 2026-04-30**
+- [ ] Deployer le timestamp `.maj` (regle CLAUDE.md n°10) sur les sections actuellement a 0 % : PC premiere-iccer, PC premiere-era, PC terminale-iccer, PC terminale-era, PC cap, maths premiere — couverture actuelle 102/1 103 (~9 %)
+- [x] ~~Ajouter mini-exo manquant dans `physique-chimie/premiere-era/ch10/lecon.html`~~ → **fait 2026-04-30** (3 mini-exo)
 
 ---
 
