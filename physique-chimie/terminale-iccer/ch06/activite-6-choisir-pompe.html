@@ -39,8 +39,9 @@
   </ul>
 </div>
 
-<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
-  💡 Cette activité prolonge la <a href="lecon.html">leçon</a> sur le débit en introduisant la notion de <strong>HMT</strong> (vue plus en détail au chapitre suivant) et de <strong>point de fonctionnement</strong>, vocabulaire utilisé en bureau d'études CVC.
+<p style="margin:8px 0;padding:10px 14px;background:#fef3c7;border-left:4px solid #b45309;font-size:.9em">
+  ⚠️ <strong>Notion anticipée — hors du strict programme du chapitre 6.</strong><br>
+  Cette activité prolonge la <a href="lecon.html">leçon</a> sur le débit en introduisant la notion de <strong>HMT</strong> (hauteur manométrique) et de <strong>point de fonctionnement pompe/circuit</strong>. Ces notions ne sont pas explicitement dans le chapitre 6 (programme officiel PC Term Pro Gpt 1) — elles relèvent plutôt du chapitre 7 (pression dans un fluide en mouvement) ou du référentiel professionnel ICCER. <strong>À utiliser comme activité-pont</strong> entre ch06 et ch07, ou en <strong>co-intervention</strong> avec l'enseignement professionnel.
 </p>
 
 <!-- ===== SITUATION ===== -->
@@ -216,8 +217,17 @@
       <circle class="besoin" cx="101" cy="320" r="7"/>
       <line stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 3" x1="101" y1="380" x2="101" y2="320"/>
       <line stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 3" x1="70" y1="320" x2="101" y2="320"/>
-      <text class="lblO" x="116" y="316">point besoin</text>
+      <text class="lblO" x="116" y="316">point BESOIN</text>
       <text class="lblO" x="116" y="328">(0,30 m³/h ; 1,5 mCE)</text>
+
+      <!-- Point de fonctionnement réel pompe B ∩ circuit (0,34 m³/h ; 1,9 mCE) → (105; 304) -->
+      <circle class="pf" cx="105" cy="304" r="6"/>
+      <text class="lblB" x="116" y="296">PF réel pompe B</text>
+      <text class="lblB" x="116" y="284">(0,34 m³/h ; 1,9 mCE)</text>
+
+      <!-- Point de fonctionnement réel pompe C ∩ circuit (0,60 m³/h ; 6,0 mCE) → (132; 140) -->
+      <circle fill="#7c3aed" stroke="#fff" stroke-width="2" cx="132" cy="140" r="6"/>
+      <text class="lblP" x="148" y="135">PF réel pompe C : (0,60 ; 6,0)</text>
 
       <!-- Légende -->
       <g transform="translate(80 50)">
@@ -278,18 +288,24 @@
   </ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p>L'intersection se situe à environ <strong>Q ≈ 0,30 m³/h</strong> et <strong>HMT ≈ 1,5 mCE</strong>.</p>
-    <p>Autrement dit, la pompe B passe <strong>exactement</strong> par le point besoin du circuit : elle est dimensionnée juste comme il faut.</p>
+    <p>L'intersection se situe à environ <strong>Q ≈ 0,34 m³/h</strong> et <strong>HMT ≈ 1,9 mCE</strong> (point bleu sur le graphique).</p>
+    <p><strong>Attention à la nuance importante :</strong></p>
+    <ul>
+      <li>Le <strong>point besoin</strong> (orange) est calculé par le bureau d'études : c'est ce qu'il <em>faudrait</em> idéalement avoir (0,30 m³/h ; 1,5 mCE).</li>
+      <li>Le <strong>point de fonctionnement réel</strong> (bleu) est l'intersection de la courbe pompe et de la courbe circuit : c'est ce que la pompe va <em>vraiment</em> fournir une fois installée (0,34 m³/h ; 1,9 mCE).</li>
+    </ul>
+    <p>Ici, la pompe B fournit légèrement plus que le besoin : <strong>+13 % de débit, +27 % de pression</strong>. C'est <strong>acceptable</strong> et même favorable : on a une petite marge de sécurité (utile si le circuit s'encrasse avec le temps et que les pertes de charge augmentent). Tant que le PF réel reste proche du besoin, la pompe est bien dimensionnée.</p>
+    <p><em>Une pompe ne passe presque jamais exactement par le point besoin théorique : on accepte une tolérance de l'ordre de ±20 %.</em></p>
   </div>
 </div>
 
-<div class="exo">
-  <h2>Question 4 <span class="badge-blue">VAL</span> – Pompe C est-elle un meilleur choix ?</h2>
+<div class="exo diff-appro">
+  <h2>Question 4 <span class="badge-blue">VAL</span> – Pompe C est-elle un meilleur choix ? <span class="tag-appro">Approfondissement</span></h2>
   <p>Lucas se dit : « Plus puissant = mieux, je prends la pompe C par sécurité. » Critique cette idée.</p>
   <p>Indiquer où se situerait approximativement le point de fonctionnement avec la pompe C, et ce que cela impliquerait pour l'installation.</p>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p>Avec la pompe C, le point de fonctionnement se situerait à un débit beaucoup plus élevé (≈ 0,55 m³/h) car la courbe pompe C est très haute. Ce surdimensionnement aurait plusieurs conséquences <strong>négatives</strong> :</p>
+    <p>Avec la pompe C, le point de fonctionnement réel (point violet sur le graphique) se situe à environ <strong>(0,60 m³/h ; 6,0 mCE)</strong> — soit le double du débit souhaité et 4 fois la pression nécessaire. Ce surdimensionnement aurait plusieurs conséquences <strong>négatives</strong> :</p>
     <ul>
       <li><strong>Vitesse trop élevée</strong> dans les canalisations → bruit, érosion accélérée du cuivre.</li>
       <li><strong>Consommation électrique plus que doublée</strong> : 180 W contre 80 W (en fonctionnement permanent 24h/24, c'est ≈ 880 kWh/an d'écart, soit ~150 €/an de surcoût).</li>
@@ -352,5 +368,6 @@
 
 </div>
 <script src="../../../nav.js"></script>
+<script src="../../../diff.js"></script>
 </body>
 </html>
