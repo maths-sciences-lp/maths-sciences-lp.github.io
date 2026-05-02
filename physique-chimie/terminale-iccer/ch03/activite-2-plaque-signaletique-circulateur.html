@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Activité 2 – Lecture plaque signalétique d'un circulateur – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.plaque{background:linear-gradient(135deg,#475569,#334155);color:#fff;padding:20px;border-radius:10px;margin:14px auto;max-width:540px;box-shadow:0 6px 16px rgba(0,0,0,.25);font-family:'Menlo','Consolas',monospace}
+.plaque h3{color:#fff;border:none;font-family:Arial,sans-serif;margin-top:0;font-size:1.15em;border-bottom:1px solid #94a3b8;padding-bottom:8px}
+.plaque-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dotted #64748b;font-size:.93em}
+.plaque-row span:first-child{color:#cbd5e1}
+.plaque-row span:last-child{color:#fef3c7;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 2 – Lecture de plaque signalétique d'un circulateur de chauffage <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 3 – Moteur électrique | Terminale Bac Pro (Grpt 1) | Physique – Électromécanique | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier les grandeurs électriques et mécaniques figurant sur une plaque signalétique</li>
+    <li>Calculer un rendement et une puissance utile à partir des données nominales</li>
+    <li>Vérifier la compatibilité d'un moteur avec une installation existante</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a> §I-II (convertisseur électromécanique, bilan de puissance), §VII (lecture plaque).
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – remplacer un circulateur grillé</h2>
+  <p><em>Adrien, plombier chauffagiste, intervient en urgence chez un client : le circulateur de la chaudière à gaz est en panne. Plus de chauffage dans la maison. Adrien démonte la pompe et lit la plaque signalétique pour commander un modèle de remplacement compatible.</em></p>
+
+  <h3>La plaque signalétique relevée par Adrien</h3>
+  <div class="plaque">
+    <h3>⚙ GRUNDFOS UPS 25-60 — Circulateur chaudière</h3>
+    <div class="plaque-row"><span>Modèle</span><span>UPS 25-60 130</span></div>
+    <div class="plaque-row"><span>N° série</span><span>96281375 / 0822</span></div>
+    <div class="plaque-row"><span>Tension nominale U</span><span>230 V ~</span></div>
+    <div class="plaque-row"><span>Fréquence f</span><span>50 Hz</span></div>
+    <div class="plaque-row"><span>Intensité nominale I</span><span>0,40 A</span></div>
+    <div class="plaque-row"><span>Puissance électrique P (max)</span><span>90 W</span></div>
+    <div class="plaque-row"><span>Vitesse de rotation n</span><span>2 600 tr/min</span></div>
+    <div class="plaque-row"><span>Indice de protection</span><span>IP 44</span></div>
+    <div class="plaque-row"><span>Classe d'isolation</span><span>Classe H</span></div>
+    <div class="plaque-row"><span>Cos φ nominal</span><span>0,98</span></div>
+    <div class="plaque-row"><span>Température max fluide</span><span>110 °C</span></div>
+    <div class="plaque-row"><span>Pression max</span><span>10 bar</span></div>
+  </div>
+
+  <p><strong>Information complémentaire :</strong> ce type de circulateur a un rendement électromécanique typique de l'ordre de <strong>η = 0,55</strong> (puissance utile / puissance électrique).</p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment Adrien peut-il vérifier que le circulateur est bien adapté à l'installation et calculer sa puissance utile à partir de la plaque ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Identifier sur la plaque les grandeurs électriques et mécaniques. Compléter :</p>
+  <table>
+    <thead><tr><th>Grandeur</th><th>Symbole</th><th>Valeur</th><th>Unité</th></tr></thead>
+    <tbody>
+      <tr><td>Tension d'alimentation</td><td>U</td><td>……</td><td>……</td></tr>
+      <tr><td>Intensité nominale</td><td>I</td><td>……</td><td>……</td></tr>
+      <tr><td>Fréquence du réseau</td><td>f</td><td>……</td><td>……</td></tr>
+      <tr><td>Puissance électrique absorbée</td><td>P</td><td>……</td><td>……</td></tr>
+      <tr><td>Vitesse de rotation</td><td>n</td><td>……</td><td>……</td></tr>
+      <tr><td>Facteur de puissance</td><td>cos φ</td><td>……</td><td>……</td></tr>
+    </tbody>
+  </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <tbody>
+        <tr><td>U</td><td>230</td><td>V</td></tr>
+        <tr><td>I</td><td>0,40</td><td>A</td></tr>
+        <tr><td>f</td><td>50</td><td>Hz</td></tr>
+        <tr><td>P</td><td>90</td><td>W</td></tr>
+        <tr><td>n</td><td>2 600</td><td>tr/min</td></tr>
+        <tr><td>cos φ</td><td>0,98</td><td>(sans unité)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Vérifier la cohérence entre la puissance affichée et le calcul P = U × I × cos φ.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P<sub>calc</sub> = U × I × cos φ = 230 × 0,40 × 0,98 = <strong>90,2 W</strong></p>
+    <p>Cohérent avec les 90 W affichés sur la plaque ✓.</p>
+    <p>Le facteur de puissance proche de 1 (0,98) indique que le moteur est de type <strong>monophasé à condensateur permanent</strong>, optimisé pour cos φ.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la <strong>puissance utile</strong> (mécanique) P<sub>u</sub> fournie par le moteur, sachant que η = P<sub>u</sub> / P et que η = 0,55.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P<sub>u</sub> = η × P = 0,55 × 90 = <strong>49,5 W ≈ 50 W</strong></p>
+    <p>Sur les 90 W consommés au réseau, seulement 50 W servent à faire tourner la roue. Les 40 W restants sont perdus en chaleur dans les bobinages et les frottements.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>L'installation de ce client est alimentée en <strong>monophasé 230 V / 50 Hz</strong>. Le circulateur est-il compatible ? Justifier brièvement à partir de la plaque.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Oui, le circulateur est compatible. Il est conçu pour <strong>230 V (monophasé) à 50 Hz</strong>, exactement le standard du réseau résidentiel français.</p>
+    <p>Le symbole « ~ » à côté de 230 V indique que c'est du courant alternatif (par opposition à « = » qui indiquerait du DC).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Comprendre l'<strong>indice de protection IP 44</strong>. Expliquer ce que cela signifie et pourquoi c'est important pour un circulateur de chauffage.</p>
+  <p><em>Aide : IP XY — X = protection contre les solides (poussière), Y = protection contre les liquides (eau). 0 = aucune protection, 6 = protection totale.</em></p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>4</strong> (premier chiffre) : protégé contre les corps solides supérieurs à 1 mm (outils, fils métalliques, petits insectes).</li>
+      <li><strong>4</strong> (deuxième chiffre) : protégé contre les projections d'eau de toutes directions (mais pas l'immersion).</li>
+    </ul>
+    <p>C'est important car un circulateur est installé dans une chaufferie où :</p>
+    <ul>
+      <li>Il peut y avoir des fuites d'eau (joint qui suinte) → IP44 protège contre les éclaboussures.</li>
+      <li>L'environnement est poussiéreux → la poussière ne peut pas pénétrer dans le moteur.</li>
+    </ul>
+    <p>Pour une installation extérieure (jets d'eau directe), il faudrait du IP 65 ou IP 67.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Le client demande à Adrien le <strong>coût annuel d'énergie</strong> du circulateur. Le chauffage fonctionne 8 mois par an, 16 h/jour.</p>
+  <p>Calculer la consommation annuelle en kWh et le coût au tarif EDF de 0,20 €/kWh.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Durée : 8 mois × 30 jours × 16 h = <strong>3 840 h/an</strong></li>
+      <li>E = P × t = 90 × 3 840 = 345 600 Wh = <strong>≈ 346 kWh/an</strong></li>
+      <li>Coût = 346 × 0,20 = <strong>≈ 69 €/an</strong></li>
+    </ul>
+    <p>C'est non négligeable : un circulateur classique 90 W consomme près de 70 €/an. Les modèles modernes à <strong>vitesse variable (étiquette EEI ≤ 0,23)</strong> consomment 4 fois moins (≈ 25 W moyen) et amortissent leur surcoût en 3-4 ans.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 4–5 lignes l'<strong>explication d'Adrien</strong> au client, qui :</p>
+  <ul>
+    <li>confirme la compatibilité du circulateur de remplacement</li>
+    <li>indique sa puissance utile et son rendement</li>
+    <li>suggère une amélioration énergétique possible</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>Le circulateur Grundfos UPS 25-60 que je remplace est parfaitement compatible avec votre installation (230 V monophasé, 50 Hz). Il consomme 90 W au réseau pour fournir environ 50 W de puissance utile à la roue (rendement 55 %), ce qui correspond à environ 70 € d'électricité par an pendant la saison de chauffe.</em></p>
+    <p><em>Pour information, les <strong>circulateurs à vitesse variable</strong> récents (étiquette EEI ≤ 0,23) consomment 3 à 4 fois moins. Leur surcoût (~ 200 €) est amorti en 3-4 ans, et ils sont plus silencieux. Si vous souhaitez les comparer, je peux vous faire un devis.</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Plaque signalétique</strong> = carte d'identité du moteur. Doit toujours être lue avant tout remplacement.</li>
+    <li><strong>Grandeurs clés :</strong> U, I, f, P, n, cos φ, indice IP.</li>
+    <li><strong>Rendement</strong> η = P<sub>u</sub> / P. Pour un circulateur classique, η ≈ 0,5 à 0,6. Pour un circulateur à vitesse variable moderne, η ≈ 0,7 à 0,8.</li>
+    <li><strong>Indice IP :</strong> XY avec X = solides, Y = liquides. IP44 = chaufferie standard ; IP65 = extérieur exposé.</li>
+    <li><strong>Énergie annuelle d'un circulateur 90 W :</strong> ~ 350 kWh/an, soit ~ 70 €/an. Réductible à 20 €/an avec un modèle à vitesse variable.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Activité 3 – Économies d'un variateur de fréquence – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 3 – Économies d'énergie avec un variateur de fréquence <span style="font-size:.55em;color:#7c2d12;font-weight:600">FICHE TECHNIQUE</span></h1>
+  <p class="sous-titre">Chapitre 3 – Moteur électrique | Terminale Bac Pro (Grpt 1) | Physique – Électromécanique | ⏱ 40 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre le rôle d'un variateur de fréquence sur un moteur asynchrone</li>
+    <li>Lire une courbe de profil de charge horaire</li>
+    <li>Calculer les économies d'énergie réalisées par la variation de vitesse</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a> §IV (moteur asynchrone), §XII (focus variateur de fréquence). La fréquence de rotation d'un moteur asynchrone est proportionnelle à la fréquence d'alimentation : n ∝ f.
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – moderniser une pompe primaire de chauffage</h2>
+  <p><em>Pierre, technicien CVC chez un installateur, est mandaté pour étudier la pose d'un variateur de fréquence sur la pompe primaire d'un réseau de chauffage collectif (immeuble de 24 logements). Aujourd'hui, la pompe tourne à plein régime 24h/24 alors que les besoins varient fortement selon l'heure.</em></p>
+
+  <h3>Document 1 — Schéma de principe d'un variateur</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 720 200" style="max-width:720px;display:block;margin:0 auto" role="img" aria-label="Schéma : entrée 230V AC à 50Hz fixe, variateur de fréquence (contient redresseur, bus DC, onduleur), sortie AC à fréquence variable, moteur asynchrone, charge mécanique. Le variateur ajuste la fréquence pour réguler la vitesse.">
+      <defs>
+        <style>
+          .blk{fill:#fff;stroke:#1e40af;stroke-width:2}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .lblB{font:600 11px sans-serif;text-anchor:middle;fill:#1d4ed8}
+          .lbl{font:11px sans-serif;text-anchor:middle;fill:#1a202c}
+          .ac{stroke:#dc2626;stroke-width:2.5;fill:none}
+          .red{fill:#fef3c7;stroke:#b45309;stroke-width:1.8}
+          .moteur{fill:#dcfce7;stroke:#16a34a;stroke-width:2}
+        </style>
+      </defs>
+
+      <text class="ti" x="360" y="22">Variateur de fréquence : ajuster la fréquence pour ajuster la vitesse</text>
+
+      <rect class="blk" x="20" y="80" width="100" height="50" rx="6"/>
+      <text class="lblB" x="70" y="105">Réseau</text>
+      <text class="lblB" x="70" y="120">230 V / 50 Hz</text>
+
+      <line class="ac" x1="120" y1="105" x2="170" y2="105" marker-end="url(#aArr)"/>
+
+      <!-- Variateur (contient 3 sous-blocs) -->
+      <rect x="170" y="60" width="280" height="100" fill="#f1f5f9" stroke="#475569" stroke-width="2" stroke-dasharray="5 4" rx="8"/>
+      <text class="lbl" x="310" y="78" font-style="italic" fill="#475569">Variateur de fréquence</text>
+
+      <rect class="red" x="180" y="90" width="80" height="50" rx="4"/>
+      <text class="lbl" x="220" y="110" font-weight="bold" fill="#92400e">Redresseur</text>
+      <text class="lbl" x="220" y="124" fill="#92400e" font-size="9">AC → DC</text>
+
+      <rect class="red" x="270" y="90" width="80" height="50" rx="4"/>
+      <text class="lbl" x="310" y="110" font-weight="bold" fill="#92400e">Bus DC</text>
+      <text class="lbl" x="310" y="124" fill="#92400e" font-size="9">condensateur</text>
+
+      <rect class="red" x="360" y="90" width="80" height="50" rx="4"/>
+      <text class="lbl" x="400" y="110" font-weight="bold" fill="#92400e">Onduleur</text>
+      <text class="lbl" x="400" y="124" fill="#92400e" font-size="9">DC → AC variable</text>
+
+      <line class="ac" x1="450" y1="105" x2="510" y2="105" marker-end="url(#aArr)"/>
+      <text class="lbl" x="480" y="95" fill="#b91c1c" font-weight="bold" font-size="10">f variable</text>
+      <text class="lbl" x="480" y="120" fill="#b91c1c" font-size="9">(ex. 30 Hz)</text>
+
+      <rect class="moteur" x="510" y="80" width="100" height="50" rx="6"/>
+      <text class="lblB" x="560" y="105" fill="#15803d">Moteur</text>
+      <text class="lblB" x="560" y="120" fill="#15803d">asynchrone</text>
+
+      <line stroke="#1f2937" stroke-width="3" x1="610" y1="105" x2="650" y2="105"/>
+      <circle cx="670" cy="105" r="20" fill="#94a3b8" stroke="#1f2937" stroke-width="1.5"/>
+      <text class="lbl" x="670" y="108" font-size="9" fill="#fff" font-weight="bold">POMPE</text>
+
+      <text x="360" y="180" text-anchor="middle" font-size="11" fill="#475569" font-style="italic">Le variateur permet de faire varier la vitesse de rotation entre 0 et 100 % du nominal en ajustant la fréquence f.</text>
+
+      <defs>
+        <marker id="aArr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+          <polygon points="0,0 9,4.5 0,9" fill="#dc2626"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Profil de charge horaire de l'immeuble</h3>
+  <p>Pierre relève la consommation thermique horaire moyenne de l'immeuble en hiver. Le profil typique sur 24 h :</p>
+
+  <div class="svg-wrap" style="margin:12px 0">
+    <svg width="100%" viewBox="0 0 600 280" style="max-width:600px;display:block;margin:0 auto" role="img" aria-label="Profil de besoin de chauffage sur 24h : très bas la nuit (15-20%), pic le matin 6-9h (90%), milieu de journée modéré (50%), pic le soir 18-22h (95%), redescend la nuit. La pompe sans variateur tourne à 100% en permanence (ligne droite en haut), avec variateur elle suit le profil.">
+      <defs>
+        <style>
+          .ax{stroke:#1a202c;stroke-width:1.5}
+          .gd{stroke:#cbd5e1;stroke-width:.6}
+          .besoin{fill:#fbbf24;opacity:.4}
+          .besoinL{stroke:#d97706;stroke-width:2.5;fill:none}
+          .sansVar{stroke:#dc2626;stroke-width:2.5;fill:none;stroke-dasharray:6 4}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="300" y="20">Profil de besoin de chauffage — 24 h en hiver</text>
+
+      <!-- mapping x: 0h→60, 24h→570 (510px = 24h, 21,25 px/h)
+                 y: 0%→230, 100%→50 (180px = 100%, 1.8 px/%) -->
+
+      <!-- Grilles -->
+      <g class="gd">
+        <line x1="60" y1="50" x2="570" y2="50"/>
+        <line x1="60" y1="95" x2="570" y2="95"/>
+        <line x1="60" y1="140" x2="570" y2="140"/>
+        <line x1="60" y1="185" x2="570" y2="185"/>
+      </g>
+
+      <line class="ax" x1="60" y1="230" x2="580" y2="230"/>
+      <line class="ax" x1="60" y1="40" x2="60" y2="230"/>
+
+      <!-- Y graduations -->
+      <g class="lbl" text-anchor="end">
+        <text x="55" y="234">0</text>
+        <text x="55" y="189">25</text>
+        <text x="55" y="144">50</text>
+        <text x="55" y="99">75</text>
+        <text x="55" y="54">100</text>
+      </g>
+      <text class="lbl" x="20" y="135" transform="rotate(-90 20 135)" text-anchor="middle">Charge (% du nominal)</text>
+
+      <!-- X graduations (heures) -->
+      <g class="lbl" text-anchor="middle">
+        <text x="60" y="248">0h</text>
+        <text x="145" y="248">4h</text>
+        <text x="230" y="248">8h</text>
+        <text x="315" y="248">12h</text>
+        <text x="400" y="248">16h</text>
+        <text x="485" y="248">20h</text>
+        <text x="570" y="248">24h</text>
+      </g>
+      <text class="lbl" x="300" y="265" text-anchor="middle">Heure</text>
+
+      <!-- Profil de besoin (jaune/orange) - approximation par segments
+           0-5h : 15%   y=200
+           5-7h : montée 15→90
+           7-9h : pic 90  y=68
+           9-12h : descente 90→55
+           12-17h : 55  y=131
+           17-19h : montée 55→95
+           19-22h : pic 95  y=59
+           22-24h : descente 95→20 -->
+      <path class="besoin" d="M 60 230 L 60 203 L 145 203 L 170 95 L 230 68 L 295 113 L 360 131 L 420 95 L 485 59 L 530 95 L 570 194 L 570 230 Z"/>
+      <path class="besoinL" d="M 60 203 L 145 203 L 170 95 L 230 68 L 295 113 L 360 131 L 420 95 L 485 59 L 530 95 L 570 194"/>
+
+      <!-- Sans variateur : ligne droite à 100% -->
+      <line class="sansVar" x1="60" y1="50" x2="570" y2="50"/>
+
+      <!-- Légende -->
+      <g transform="translate(75 35)">
+        <line x1="0" y1="5" x2="20" y2="5" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6 4"/>
+        <text class="lbl" x="25" y="9" fill="#b91c1c">Sans variateur (100% en permanence)</text>
+        <line x1="280" y1="5" x2="300" y2="5" stroke="#d97706" stroke-width="2.5"/>
+        <text class="lbl" x="305" y="9" fill="#92400e">Avec variateur (suit le besoin)</text>
+      </g>
+
+    </svg>
+  </div>
+
+  <h3>Document 3 — Caractéristiques de la pompe</h3>
+  <ul>
+    <li>Moteur asynchrone triphasé 400 V / 50 Hz, P<sub>nominale</sub> = <strong>1,5 kW</strong></li>
+    <li>Vitesse nominale n<sub>nom</sub> = 1 450 tr/min</li>
+    <li>Coût d'achat du variateur (1,5 kW) : <strong>650 €</strong></li>
+    <li>Coût de pose : 350 €</li>
+    <li>Tarif EDF : 0,18 €/kWh</li>
+    <li>Saison de chauffe : <strong>240 jours/an</strong> (8 mois)</li>
+  </ul>
+
+  <p><strong>Information clé :</strong> pour une pompe centrifuge, la <strong>loi cubique</strong> donne P<sub>élec</sub>(charge) ≈ P<sub>nom</sub> × (charge/100)³. Réduire la vitesse de moitié divise la consommation électrique par 8.</p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Combien Pierre fera-t-il économiser au syndicat de copropriété en équipant la pompe d'un variateur de fréquence, et au bout de combien de temps l'investissement sera-t-il rentabilisé ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>D'après le document 1, citer les <strong>3 sous-fonctions</strong> internes d'un variateur de fréquence et le rôle de chacune.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol>
+      <li><strong>Redresseur :</strong> convertit l'AC du réseau (50 Hz fixe) en DC.</li>
+      <li><strong>Bus DC (condensateur) :</strong> stabilise et filtre la tension continue intermédiaire.</li>
+      <li><strong>Onduleur :</strong> reconvertit le DC en AC à <strong>fréquence variable</strong> (de quelques Hz à 50 Hz, voire plus). C'est cette fréquence variable qui contrôle la vitesse du moteur.</li>
+    </ol>
+    <p>Un variateur de fréquence est donc une <strong>chaîne « redressement + onduleur »</strong> avec un onduleur intelligent capable de produire n'importe quelle fréquence.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la consommation annuelle de la pompe <strong>sans variateur</strong> (fonctionnement à 100 % en permanence pendant la saison de chauffe).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Durée de chauffe : 240 j × 24 h = <strong>5 760 h</strong></li>
+      <li>E<sub>sans</sub> = P × t = 1,5 × 5 760 = <strong>8 640 kWh/an</strong></li>
+      <li>Coût annuel : 8 640 × 0,18 = <strong>1 555 €/an</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>D'après le profil horaire (doc 2), la <strong>charge moyenne sur 24 h</strong> est estimée à 55 %. En appliquant la loi cubique, calculer la puissance moyenne consommée <strong>avec variateur</strong>, puis la consommation annuelle.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Loi cubique : P<sub>moyenne</sub> ≈ P<sub>nom</sub> × (0,55)³ = 1,5 × 0,166 ≈ <strong>0,25 kW</strong></p>
+    <p>E<sub>avec</sub> = 0,25 × 5 760 = <strong>1 440 kWh/an</strong></p>
+    <p>Coût annuel : 1 440 × 0,18 = <strong>≈ 260 €/an</strong></p>
+    <p>Note : la loi cubique est une <strong>approximation</strong> valable pour les pompes centrifuges. Le calcul exact passerait par une intégration heure par heure du profil, mais on retient l'ordre de grandeur.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Calculer l'<strong>économie annuelle</strong> et le <strong>retour sur investissement</strong> du variateur (coût total = variateur + pose).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Économie annuelle : 1 555 − 260 = <strong>1 295 €/an</strong></li>
+      <li>Coût total investissement : 650 + 350 = <strong>1 000 €</strong></li>
+      <li>Retour sur investissement : 1 000 / 1 295 ≈ <strong>0,77 an ≈ 9 mois</strong></li>
+    </ul>
+    <p>Investissement amorti en moins d'1 an. Sur 10 ans, gain net ≈ 12 000 €.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi la <strong>loi cubique</strong> rend-elle le variateur si rentable ? Que se passerait-il avec une charge à <strong>30 %</strong> au lieu de 100 % ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La loi cubique signifie qu'une <strong>petite réduction de vitesse provoque une grosse réduction de consommation</strong>.</p>
+    <p>À 30 % de vitesse : P/P<sub>nom</sub> = (0,30)³ = <strong>0,027 ≈ 3 %</strong> seulement.</p>
+    <p>Autrement dit, en faisant tourner la pompe à 30 % de sa vitesse, on consomme <strong>33 fois moins d'électricité</strong> ! C'est ce qui rend les variateurs très rentables : la nuit, quand le besoin est de 15-20 %, la pompe consomme moins de 1 % de sa puissance nominale.</p>
+    <p>Pour comparer : si la consommation était proportionnelle à la vitesse (loi linéaire), réduire la vitesse de moitié diviserait la conso par 2 seulement (au lieu de 8 avec la loi cubique).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes la <strong>recommandation de Pierre au syndicat</strong> de copropriété, qui chiffre les économies et le retour sur investissement.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>Note au syndic — Modernisation pompe primaire — 2 mai 2026.</em></p>
+    <p><em>L'installation actuelle fait fonctionner la pompe primaire à 100 % en permanence pendant la saison de chauffe (5 760 h/an), pour une consommation de 8 640 kWh/an et un coût de 1 555 €/an. En réalité, le besoin de chauffage varie fortement sur 24 h (15 % la nuit, 95 % en pointe), avec une moyenne de 55 %.</em></p>
+    <p><em>Je propose d'équiper la pompe d'un <strong>variateur de fréquence</strong> qui ajustera automatiquement la vitesse au besoin. Grâce à la loi cubique propre aux pompes centrifuges, la consommation tombe à environ 1 440 kWh/an (260 €/an), soit une <strong>économie de 1 295 €/an</strong>. Coût d'investissement : 1 000 € (matériel + pose), <strong>amorti en moins de 9 mois</strong>. Sur 10 ans, gain net ≈ 12 000 €.</em></p>
+    <p><em>Bénéfices secondaires : démarrage progressif (moins d'usure), moins de bruit, pilotage à distance possible. Recommandation favorable.</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Variateur de fréquence</strong> = redresseur + onduleur. Il permet d'alimenter un moteur asynchrone à fréquence variable, donc à vitesse variable.</li>
+    <li><strong>Vitesse moteur asynchrone :</strong> proportionnelle à la fréquence d'alimentation. n ∝ f.</li>
+    <li><strong>Loi cubique</strong> (pompes centrifuges, ventilateurs) : P/P<sub>nom</sub> = (charge/100)³. Réduire la vitesse de moitié divise la consommation par 8.</li>
+    <li><strong>Rentabilité typique</strong> en chauffage collectif : variateur amorti en 6 à 18 mois.</li>
+    <li><strong>Bénéfices secondaires :</strong> démarrage progressif (moins d'usure mécanique), moins de bruit, pilotage à distance possible.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

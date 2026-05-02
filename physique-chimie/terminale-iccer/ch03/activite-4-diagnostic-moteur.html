@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Activité 4 – Diagnostic d'un moteur qui ne démarre pas – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.indice{background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #b45309;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0}
+.indice-head{font-weight:700;color:#7c2d12;margin-bottom:6px;font-size:.95em}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 4 – Diagnostic d'un moteur de pompe qui ne démarre pas <span style="font-size:.55em;color:#b91c1c;font-weight:600">DIAGNOSTIC</span></h1>
+  <p class="sous-titre">Chapitre 3 – Moteur électrique | Terminale Bac Pro (Grpt 1) | Physique – Électromécanique | ⏱ 35 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre la structure d'un moteur asynchrone monophasé à condensateur permanent</li>
+    <li>Croiser des indices (mesures, plaque, symptômes) pour identifier une panne</li>
+    <li>Distinguer plusieurs causes possibles d'un moteur qui ne démarre pas</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a> §IV (moteur asynchrone), §XIII (maintenance préventive). Le condensateur permanent est indispensable au démarrage des moteurs asynchrones monophasés.
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – la pompe de surface ne tourne plus</h2>
+  <p><em>Karim, plombier installateur, est appelé en urgence chez un client : la pompe de surface qui alimente la maison en eau de puits ne fonctionne plus. Quand on la met en route, on entend un <strong>bourdonnement</strong>, mais l'arbre ne tourne pas. Karim doit diagnostiquer la panne.</em></p>
+
+  <h3>Indice 1 — La plaque signalétique du moteur</h3>
+  <table>
+    <thead><tr><th>Caractéristique</th><th>Valeur</th></tr></thead>
+    <tbody>
+      <tr><td>Type</td><td>Moteur asynchrone <strong>monophasé</strong> à condensateur permanent</td></tr>
+      <tr><td>Tension U</td><td>230 V ~</td></tr>
+      <tr><td>Fréquence f</td><td>50 Hz</td></tr>
+      <tr><td>Intensité nominale I<sub>n</sub></td><td>4,8 A</td></tr>
+      <tr><td>Puissance P</td><td>0,75 kW (1 ch)</td></tr>
+      <tr><td>Vitesse n</td><td>2 850 tr/min</td></tr>
+      <tr><td>cos φ</td><td>0,90</td></tr>
+      <tr><td>Condensateur de marche</td><td><strong>16 µF / 450 V</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Indice 2 — Schéma simplifié du moteur monophasé à condensateur permanent</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 600 240" style="max-width:600px;display:block;margin:0 auto" role="img" aria-label="Schéma d'un moteur asynchrone monophasé à condensateur permanent. Réseau 230V monophasé alimente 2 enroulements en parallèle : un enroulement principal direct, et un enroulement auxiliaire en série avec un condensateur de 16 microfarads. Le condensateur crée un déphasage qui permet le démarrage.">
+      <defs>
+        <style>
+          .wire{stroke:#1f2937;stroke-width:2;fill:none}
+          .bobine{fill:none;stroke:#0969da;stroke-width:2.5}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .lbl{font:11px sans-serif;text-anchor:middle;fill:#1a202c}
+          .lblB{font:600 11px sans-serif;text-anchor:middle;fill:#1d4ed8}
+          .lblR{font:700 12px sans-serif;text-anchor:middle;fill:#b91c1c}
+        </style>
+      </defs>
+      <text class="ti" x="300" y="22">Moteur asynchrone monophasé à condensateur permanent</text>
+
+      <!-- Source AC -->
+      <circle cx="60" cy="120" r="20" fill="none" stroke="#1f2937" stroke-width="2"/>
+      <path d="M 50 120 Q 55 110 60 120 T 70 120" stroke="#1f2937" stroke-width="1.5" fill="none"/>
+      <text class="lbl" x="60" y="155" fill="#475569">230 V ~</text>
+
+      <!-- Lignes principales -->
+      <line class="wire" x1="80" y1="120" x2="120" y2="120"/>
+      <line class="wire" x1="120" y1="120" x2="120" y2="60"/>
+      <line class="wire" x1="120" y1="120" x2="120" y2="180"/>
+
+      <!-- Branche 1 : enroulement principal -->
+      <line class="wire" x1="120" y1="60" x2="220" y2="60"/>
+      <path class="bobine" d="M 220 60 Q 240 45 260 60 Q 280 75 300 60 Q 320 45 340 60 Q 360 75 380 60"/>
+      <line class="wire" x1="380" y1="60" x2="480" y2="60"/>
+      <text class="lblB" x="300" y="42">Enroulement PRINCIPAL</text>
+
+      <!-- Branche 2 : enroulement auxiliaire + condensateur -->
+      <line class="wire" x1="120" y1="180" x2="200" y2="180"/>
+      <!-- Condensateur (2 traits parallèles) -->
+      <line class="wire" x1="200" y1="170" x2="200" y2="190"/>
+      <line class="wire" x1="210" y1="170" x2="210" y2="190"/>
+      <line class="wire" x1="210" y1="180" x2="240" y2="180"/>
+      <text class="lbl" x="205" y="208" fill="#dc2626" font-weight="bold">C = 16 µF</text>
+
+      <path class="bobine" d="M 240 180 Q 260 165 280 180 Q 300 195 320 180 Q 340 165 360 180 Q 380 195 400 180"/>
+      <line class="wire" x1="400" y1="180" x2="480" y2="180"/>
+      <text class="lblB" x="320" y="220">Enroulement AUXILIAIRE</text>
+
+      <!-- Connexions sortie -->
+      <line class="wire" x1="480" y1="60" x2="480" y2="180"/>
+      <line class="wire" x1="480" y1="120" x2="540" y2="120"/>
+
+      <!-- Symbole moteur -->
+      <circle cx="555" cy="120" r="20" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text class="lbl" x="555" y="124" font-size="14" font-weight="bold" fill="#15803d">M</text>
+      <text class="lbl" x="555" y="155" fill="#15803d">moteur</text>
+
+      <!-- Légende -->
+      <text x="300" y="232" text-anchor="middle" font-size="11" fill="#475569" font-style="italic">Le condensateur crée un déphasage qui produit un champ tournant nécessaire au démarrage.</text>
+    </svg>
+  </div>
+
+  <h3>Indice 3 — Mesures électriques de Karim</h3>
+  <p>Karim débranche la pompe de la prise et fait ces mesures à froid :</p>
+  <table>
+    <thead><tr><th>Mesure</th><th>Valeur attendue</th><th>Valeur mesurée</th></tr></thead>
+    <tbody>
+      <tr><td>Continuité enroulement principal</td><td>quelques ohms (3 à 8 Ω)</td><td>5,4 Ω ✓</td></tr>
+      <tr><td>Continuité enroulement auxiliaire</td><td>quelques ohms (8 à 20 Ω)</td><td>14,2 Ω ✓</td></tr>
+      <tr><td>Capacité du condensateur</td><td>16 µF (± 5 %)</td><td><strong>0,3 µF ✗</strong></td></tr>
+      <tr><td>Continuité bobinage de la masse</td><td>infinie (isolé)</td><td>∞ ✓</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Indice 4 — Symptômes observés par le client</h3>
+  <div class="indice">
+    <div class="indice-head">🔍 Témoignage client</div>
+    <p>« Quand je mets la pompe en marche, j'entends un <strong>bourdonnement</strong>, comme un grondement. Le moteur chauffe rapidement et se coupe au bout de 30 secondes (sécurité thermique). Si je fais tourner l'arbre <strong>à la main</strong> au moment où je mets en route, alors la pompe redémarre et fonctionne ! »</p>
+  </div>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quel est le composant défaillant ? Comment Karim peut-il identifier la panne en croisant la plaque, les mesures, le schéma et le symptôme ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>D'après l'indice 1, quel est le <strong>type</strong> de moteur ? Quel est le <strong>rôle du condensateur</strong> dans ce type de moteur ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Type :</strong> moteur asynchrone <strong>monophasé à condensateur permanent</strong>.</p>
+    <p><strong>Rôle du condensateur :</strong> dans un moteur asynchrone, il faut un champ tournant pour que le rotor démarre. Avec un seul enroulement alimenté en monophasé, on a un champ alternatif (qui pulse) mais pas tournant — le moteur ne peut pas démarrer.</p>
+    <p>Le condensateur crée un <strong>déphasage entre le courant principal et le courant auxiliaire</strong>. Cela donne un champ tournant qui permet le démarrage. En fonctionnement normal, le condensateur reste en circuit (« permanent ») et améliore aussi le rendement.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>Comparer les valeurs <strong>attendues</strong> et <strong>mesurées</strong> dans l'indice 3. Quelle anomalie majeure détectes-tu ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Une seule anomalie ressort : la <strong>capacité du condensateur</strong>.</p>
+    <ul>
+      <li>Valeur attendue : 16 µF (± 5 %, donc entre 15,2 et 16,8 µF)</li>
+      <li>Valeur mesurée : <strong>0,3 µF</strong> — soit environ 50 fois plus faible.</li>
+    </ul>
+    <p>Les enroulements sont sains (résistances dans la fourchette normale, pas de fuite à la masse). C'est <strong>uniquement le condensateur</strong> qui est défaillant.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi un condensateur <strong>défaillant</strong> empêche-t-il le moteur de démarrer ? Comment expliquer le « bourdonnement » et le fait que le moteur démarre quand on le lance manuellement ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Avec un condensateur HS, presque aucun courant ne passe dans l'enroulement auxiliaire. Il n'y a donc <strong>plus de champ tournant</strong>, seulement un champ qui pulse dans l'enroulement principal.</p>
+    <ul>
+      <li><strong>Bourdonnement :</strong> le champ pulsé fait vibrer le rotor à la fréquence du réseau (50 Hz). On entend un grondement caractéristique.</li>
+      <li><strong>Échauffement rapide :</strong> le courant passe en permanence dans l'enroulement principal sans produire de rotation. Toute l'énergie est dissipée en chaleur. La sécurité thermique coupe en 30 s pour protéger le moteur.</li>
+      <li><strong>Démarrage manuel possible :</strong> si on lance l'arbre à la main, on crée la rotation initiale. Le champ pulsé du principal est alors « entraîné » dans ce sens et continue de faire tourner le rotor (loi de l'induction). C'est un signe quasi certain d'un condensateur de démarrage défaillant.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Dresser un <strong>diagnostic complet</strong> avec :</p>
+  <ul>
+    <li>la cause de la panne</li>
+    <li>le composant à remplacer</li>
+    <li>les caractéristiques précises de la pièce de rechange</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Cause :</strong> le condensateur permanent du moteur est <strong>HS</strong> (claqué ou desséché par vieillissement).</p>
+    <p><strong>Composant à remplacer :</strong> condensateur de marche moteur monophasé.</p>
+    <p><strong>Caractéristiques :</strong></p>
+    <ul>
+      <li>Capacité : <strong>16 µF</strong> (lue sur la plaque)</li>
+      <li>Tension : <strong>≥ 450 V</strong> (souvent on prend 450 ou 500 V, jamais moins)</li>
+      <li>Type : condensateur de marche permanente (avec borniers à cosses)</li>
+      <li>Tolérance ±5 %</li>
+    </ul>
+    <p>Coût : ≈ 8 à 15 €. Remplacement en 5 minutes (déconnecter la prise, ouvrir le bornier, dévisser, remplacer).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Une fois le condensateur remplacé, le moteur fonctionne à nouveau. Karim mesure I = 4,5 A en fonctionnement normal. Calculer la puissance électrique consommée et comparer à la valeur de la plaque (P = 0,75 kW).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P = U × I × cos φ = 230 × 4,5 × 0,90 = <strong>931 W ≈ 0,93 kW</strong></p>
+    <p>La puissance mesurée (0,93 kW) est légèrement supérieure à la puissance de plaque (0,75 kW). C'est <strong>cohérent</strong> car :</p>
+    <ul>
+      <li>La pompe a peut-être à vaincre une charge mécanique élevée (puisage profond, longueur de canalisation)</li>
+      <li>Il y a une marge de sécurité et le moteur peut consommer jusqu'à 1,2 fois sa puissance nominale en régime permanent.</li>
+    </ul>
+    <p>L'intensité reste sous la valeur nominale (4,5 A &lt; 4,8 A), donc tout est OK.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger le <strong>compte-rendu d'intervention</strong> de Karim en 5 lignes (diagnostic, pièce remplacée, conseils préventifs).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>Compte-rendu d'intervention — Pompe de surface — 2 mai 2026.</em></p>
+    <p><em>Symptôme : moteur monophasé qui ronronne sans tourner, démarre quand on lance l'arbre à la main, sécurité thermique qui se déclenche. Diagnostic : <strong>condensateur permanent défaillant</strong> (capacité mesurée 0,3 µF au lieu de 16 µF nominal). Sans condensateur, il n'y a pas de champ tournant pour démarrer le rotor.</em></p>
+    <p><em>Intervention : remplacement du condensateur 16 µF / 450 V (12 € pièce, 5 min de pose). Test : moteur démarre instantanément, intensité 4,5 A (sous la nominale 4,8 A), pompe opérationnelle.</em></p>
+    <p><em>Prévention : les condensateurs de moteur ont une durée de vie de 10 à 15 ans. Symptômes annonciateurs : démarrages plus difficiles, échauffement anormal. Je recommande un contrôle visuel annuel du bornier (oxydation des cosses).</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Moteur asynchrone monophasé à condensateur :</strong> deux enroulements (principal + auxiliaire), le condensateur crée le déphasage qui produit le champ tournant.</li>
+    <li><strong>Symptôme typique d'un condensateur HS :</strong> bourdonnement sans rotation, échauffement rapide, démarrage possible si lancé à la main.</li>
+    <li><strong>Test au capacimètre :</strong> mesurer la capacité hors tension. Une valeur très inférieure à la nominale = condensateur HS.</li>
+    <li><strong>Choix du remplacement :</strong> respecter strictement la capacité (en µF) et prendre une tension ≥ celle d'origine.</li>
+    <li><strong>Durée de vie</strong> : 10 à 15 ans typiques. Composant le plus fréquemment défaillant des moteurs monophasés.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
