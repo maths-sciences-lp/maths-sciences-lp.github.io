@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Activité 2 – Remplissage d'un ballon ECS – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 2 – Remplissage d'un ballon d'eau chaude sanitaire</h1>
+  <p class="sous-titre">Chapitre 6 – Transport de masse et de volume par un fluide | Terminale Bac Pro (Grpt 1) | Physique – Mécanique des fluides | ⏱ 25 min</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Convertir un débit volumique entre L/min et m³/s</li>
+    <li>Utiliser la relation \(t = \dfrac{V}{Q_v}\) pour calculer une durée de remplissage</li>
+    <li>Comparer plusieurs débits dans un contexte professionnel</li>
+  </ul>
+</div>
+
+<!-- ===== SITUATION PRO ===== -->
+<div class="situation">
+  <h2>Situation professionnelle</h2>
+  <p><em>Karim, plombier chauffagiste, remplace le ballon d'eau chaude sanitaire (ECS) chez un client. Le nouveau ballon a une capacité de <strong>200 L</strong>. Karim doit choisir l'arrivée d'eau froide à connecter : robinet d'arrêt général (DN15) ou nourrice du collecteur (DN12). Pour ne pas faire attendre le client, il veut que le ballon soit plein le plus vite possible.</em></p>
+
+  <h3>Données techniques — débits mesurés</h3>
+  <table>
+    <thead>
+      <tr><th>Source d'eau</th><th>Diamètre intérieur</th><th>Débit mesuré</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Robinet d'arrêt général</td><td>DN15</td><td>15 L/min</td></tr>
+      <tr><td>Nourrice du collecteur</td><td>DN12</td><td>9 L/min</td></tr>
+      <tr><td>Robinet de jardin (référence)</td><td>DN20</td><td>22 L/min</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Données complémentaires :</strong></p>
+  <ul>
+    <li>Volume du ballon : \(V = 200\) L = \(0{,}200\) m³</li>
+    <li>1 L/min = \(1{,}667 \times 10^{-5}\) m³/s</li>
+    <li>1 m³ = 1 000 L</li>
+  </ul>
+
+  <!-- Schéma simple ballon + tuyau -->
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 460 220" style="max-width:460px;display:block;margin:0 auto" role="img" aria-label="Schéma d'un ballon d'eau chaude sanitaire 200 L avec une arrivée d'eau froide en bas et une sortie d'eau chaude en haut, vanne de remplissage et compteur de volume">
+      <defs>
+        <style>
+          .ballon{fill:#dbeafe;stroke:#1d4ed8;stroke-width:2.5}
+          .pipe-froid{stroke:#0284c7;stroke-width:6;stroke-linecap:round;fill:none}
+          .pipe-chaud{stroke:#dc2626;stroke-width:6;stroke-linecap:round;fill:none}
+          .vanne{fill:#fbbf24;stroke:#92400e;stroke-width:1.8}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblb{font:600 11px sans-serif;fill:#0c4a6e;text-anchor:middle}
+          .lblr{font:600 11px sans-serif;fill:#b91c1c;text-anchor:middle}
+          .ti{font:700 12px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="230" y="20">Ballon ECS — remplissage en eau froide</text>
+      <!-- Ballon -->
+      <rect class="ballon" x="160" y="40" width="140" height="160" rx="14"/>
+      <text class="lbl" x="230" y="115" text-anchor="middle" font-weight="bold" font-size="14">BALLON ECS</text>
+      <text class="lbl" x="230" y="135" text-anchor="middle">V = 200 L</text>
+      <text class="lbl" x="230" y="150" text-anchor="middle" font-style="italic">(0,200 m³)</text>
+      <!-- Niveau d'eau symbolique -->
+      <rect x="165" y="85" width="130" height="110" fill="#bfdbfe" opacity="0.5"/>
+      <!-- Arrivée eau froide -->
+      <line class="pipe-froid" x1="20" y1="180" x2="160" y2="180"/>
+      <text class="lblb" x="80" y="172">Arrivée eau froide</text>
+      <text class="lblb" x="80" y="200">Q_v (L/min)</text>
+      <polygon points="120,176 132,180 120,184" fill="#0284c7"/>
+      <!-- Vanne -->
+      <circle class="vanne" cx="155" cy="180" r="9"/>
+      <text class="lbl" x="155" y="184" text-anchor="middle" font-size="9" fill="#7c2d12">⚙</text>
+      <!-- Sortie eau chaude -->
+      <line class="pipe-chaud" x1="300" y1="60" x2="430" y2="60"/>
+      <text class="lblr" x="370" y="52">Sortie eau chaude</text>
+      <text class="lblr" x="370" y="80">vers logement</text>
+      <polygon points="410,56 422,60 410,64" fill="#dc2626"/>
+    </svg>
+  </div>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle source d'eau Karim doit-il connecter pour remplir le ballon ECS le plus rapidement, et combien de temps faudra-t-il dans chaque cas ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Identifier les trois grandeurs physiques en jeu dans cette situation : le <strong>volume</strong>, le <strong>débit volumique</strong> et la <strong>durée</strong>.</p>
+  <p>Pour chacune, donner :</p>
+  <ul>
+    <li>son symbole</li>
+    <li>son unité SI</li>
+    <li>une unité usuelle utilisée par les plombiers</li>
+  </ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Grandeur</th><th>Symbole</th><th>Unité SI</th><th>Unité usuelle</th></tr></thead>
+      <tbody>
+        <tr><td>Volume</td><td>\(V\)</td><td>m³</td><td>L (1 m³ = 1 000 L)</td></tr>
+        <tr><td>Débit volumique</td><td>\(Q_v\)</td><td>m³/s</td><td>L/min ou L/h</td></tr>
+        <tr><td>Durée</td><td>\(t\)</td><td>s</td><td>min ou h</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Convertir les trois débits en m³/s en complétant le tableau.</p>
+  <p><em>Aide : 1 L/min = \(\dfrac{1 \times 10^{-3}\,\text{m}^3}{60\,\text{s}} \approx 1{,}667 \times 10^{-5}\) m³/s.</em></p>
+  <table>
+    <thead><tr><th>Source</th><th>Débit (L/min)</th><th>Débit (m³/s)</th></tr></thead>
+    <tbody>
+      <tr><td>Robinet général (DN15)</td><td>15</td><td>……</td></tr>
+      <tr><td>Nourrice (DN12)</td><td>9</td><td>……</td></tr>
+      <tr><td>Robinet jardin (DN20)</td><td>22</td><td>……</td></tr>
+    </tbody>
+  </table>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>On multiplie le débit en L/min par \(1{,}667 \times 10^{-5}\) pour obtenir des m³/s :</p>
+    <ul>
+      <li>DN15 : \(15 \times 1{,}667 \times 10^{-5} = 2{,}50 \times 10^{-4}\) m³/s</li>
+      <li>DN12 : \(9 \times 1{,}667 \times 10^{-5} = 1{,}50 \times 10^{-4}\) m³/s</li>
+      <li>DN20 : \(22 \times 1{,}667 \times 10^{-5} = 3{,}67 \times 10^{-4}\) m³/s</li>
+    </ul>
+    <p>Astuce mentale : le débit en m³/h s'obtient en divisant le débit en L/min par 16,67. Et 1 m³/h ≈ 16,67 L/min.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>La relation entre le volume \(V\), le débit \(Q_v\) et la durée \(t\) est :</p>
+  <div class="formule-box">\[ V = Q_v \times t \quad \Longleftrightarrow \quad t = \dfrac{V}{Q_v} \]</div>
+  <p>Calculer le temps de remplissage du ballon (200 L) pour les <strong>trois</strong> sources d'eau, <strong>en minutes</strong>.</p>
+  <p><em>Astuce : si on raisonne en L/min, on peut directement faire \(t\,(\text{min}) = \dfrac{V\,(\text{L})}{Q_v\,(\text{L/min})}\), sans passer par les m³/s.</em></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>En unités cohérentes (L et L/min, ce qui donne directement des minutes) :</p>
+    <ul>
+      <li>DN15 : \(t = \dfrac{200}{15} \approx \mathbf{13{,}3\,\text{min}}\) (13 min 20 s)</li>
+      <li>DN12 : \(t = \dfrac{200}{9} \approx \mathbf{22{,}2\,\text{min}}\) (22 min 12 s)</li>
+      <li>DN20 : \(t = \dfrac{200}{22} \approx \mathbf{9{,}1\,\text{min}}\) (9 min 6 s)</li>
+    </ul>
+    <p>Vérification en SI pour DN15 : \(t = \dfrac{0{,}200}{2{,}50 \times 10^{-4}} = 800\,\text{s} = 13{,}3\,\text{min}\) ✓</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Karim n'a pas accès au robinet de jardin. Entre les deux sources disponibles dans la maison (DN15 et DN12), laquelle doit-il choisir ? <strong>Justifier en deux phrases.</strong></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Karim doit connecter le <strong>robinet d'arrêt général (DN15)</strong> : son débit (15 L/min) est plus important que celui de la nourrice (9 L/min). Le ballon sera rempli en environ 13 minutes au lieu de 22 minutes — il gagne presque <strong>9 minutes</strong> sur l'intervention.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>Karim raisonne ainsi : « Si je doublais le diamètre du tuyau, le débit doublerait aussi. » Cette affirmation est-elle correcte ?</p>
+  <p><em>Indice : la section d'un tuyau circulaire est \(S = \pi \times \left(\dfrac{d}{2}\right)^2\). À pression constante dans le réseau, le débit est approximativement proportionnel à la section.</em></p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Non, l'affirmation est <strong>fausse</strong>. Si le diamètre est multiplié par 2, la <strong>section</strong> est multipliée par 4 (car \(S \propto d^2\)). À pression égale, le débit est donc multiplié par environ 4, pas par 2.</p>
+    <p>Vérification avec les valeurs : DN20 a un diamètre 1,67 fois plus grand que DN12 (20/12). On s'attendrait à un débit environ \(1{,}67^2 \approx 2{,}8\) fois plus grand. Effectivement : \(22 / 9 \approx 2{,}4\) — proche de 2,8, l'écart vient des pertes de charge réelles dans les tuyaux.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Le volume d'eau utilisé pour la première douche après l'installation est de 60 L à 40 °C. Le ballon a stocké de l'eau à 60 °C.</p>
+  <p>Combien de temps faudra-t-il pour que le ballon récupère son niveau plein, en utilisant le robinet général (15 L/min) ?</p>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le ballon doit récupérer 60 L. Avec un débit de 15 L/min :</p>
+    <p>\(t = \dfrac{60}{15} = \mathbf{4\,\text{min}}\)</p>
+    <p>Note : c'est le temps de remplissage, pas le temps pour atteindre la température de consigne (qui dépend de la puissance de la résistance électrique du ballon).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger une courte note (3 phrases) à destination de l'apprenti de Karim, expliquant la <strong>règle pratique</strong> à utiliser pour estimer rapidement un temps de remplissage. Inclure :</p>
+  <ul>
+    <li>la formule à mémoriser</li>
+    <li>le piège des unités</li>
+    <li>un ordre de grandeur (volume ÷ débit pour un ballon courant)</li>
+  </ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Pour estimer rapidement le temps de remplissage d'un ballon ou d'un récipient, retiens la formule \(t = V / Q_v\) : il suffit de diviser le volume par le débit. Attention aux unités : si tu veux un temps en minutes, il faut un volume en litres et un débit en L/min — mélanger les unités est l'erreur la plus fréquente. Pour un ballon ECS standard de 200 L sur un robinet général à 15 L/min, compte environ <strong>13 à 15 minutes</strong> de remplissage.</p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Relation fondamentale :</strong> \(V = Q_v \times t\) — volume, débit, durée.</li>
+    <li><strong>Conversion clé :</strong> 1 L/min = \(1{,}667 \times 10^{-5}\) m³/s ; 1 m³/h ≈ 16,67 L/min.</li>
+    <li><strong>Cohérence des unités :</strong> raisonner toujours en unités cohérentes (L et L/min, ou m³ et m³/s) pour éviter les erreurs.</li>
+    <li><strong>Effet du diamètre :</strong> doubler le diamètre quadruple la section (et environ le débit) — \(S \propto d^2\).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
