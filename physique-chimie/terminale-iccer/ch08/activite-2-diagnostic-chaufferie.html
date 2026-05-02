@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Activité 2 – Diagnostic acoustique d'une chaufferie collective – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 2 – Diagnostic acoustique d'une chaufferie collective <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 8 – Propagation d'un signal sonore | Terminale Bac Pro (Grpt 1) | Physique – Acoustique | ⏱ 35 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Lire des mesures de niveau acoustique en dB</li>
+    <li>Comprendre l'addition logarithmique des sources sonores</li>
+    <li>Évaluer l'atténuation d'un bruit avec la distance</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a>. Niveau acoustique en dB (échelle logarithmique). 2 sources identiques = +3 dB ; doubler la distance = −6 dB.
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – locataires gênés par la chaufferie</h2>
+  <p><em>Yasmine, technicienne acousticienne en bureau d'études CVC, est mandatée par un syndic d'immeuble. Les locataires du 1ᵉʳ étage, situés juste au-dessus de la chaufferie en sous-sol, se plaignent d'un bruit de fond permanent. Le syndic veut savoir si le bruit respecte la réglementation et, le cas échéant, comment le réduire.</em></p>
+
+  <h3>Document 1 — Configuration de la chaufferie</h3>
+  <ul>
+    <li>Chaufferie en sous-sol abritant : 2 chaudières gaz (modèle De Dietrich), 3 circulateurs, 1 ventilateur d'extraction</li>
+    <li>Volume : 80 m². Plafond béton 30 cm</li>
+    <li>1ᵉʳ étage : appartements en plein milieu de la dalle, donc à environ 4 m de hauteur de la chaufferie</li>
+  </ul>
+
+  <h3>Document 2 — Mesures de Yasmine au sonomètre dans la chaufferie</h3>
+  <table>
+    <thead><tr><th>Source mesurée seule à 1 m</th><th>Niveau (dB)</th></tr></thead>
+    <tbody>
+      <tr><td>Chaudière #1 en marche</td><td>62 dB</td></tr>
+      <tr><td>Chaudière #2 en marche</td><td>62 dB</td></tr>
+      <tr><td>Circulateur 1 (eau de chauffage)</td><td>56 dB</td></tr>
+      <tr><td>Circulateur 2 (ECS bouclage)</td><td>53 dB</td></tr>
+      <tr><td>Circulateur 3 (départ logements)</td><td>56 dB</td></tr>
+      <tr><td>Ventilateur d'extraction</td><td>58 dB</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 3 — Règles de calcul acoustique</h3>
+  <ul>
+    <li><strong>Addition de 2 sources identiques :</strong> niveau +3 dB. Exemple : 60 dB + 60 dB = 63 dB (et non 120 dB).</li>
+    <li><strong>Addition de 2 sources différentes :</strong> on ne peut pas additionner directement les dB. Règle approchée : si l'écart est &gt; 10 dB, le plus petit est négligé.</li>
+    <li><strong>Atténuation avec la distance</strong> (en champ libre) : doublement de la distance = − 6 dB. Avec une dalle béton 30 cm : atténuation supplémentaire ≈ 35 dB.</li>
+    <li><strong>Échelle de référence :</strong>
+      <table>
+        <thead><tr><th>Niveau (dB)</th><th>Exemple</th><th>Sensation</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>Seuil d'audition</td><td>Inaudible</td></tr>
+          <tr><td>30</td><td>Chuchotement</td><td>Très calme</td></tr>
+          <tr><td>40</td><td>Bibliothèque, chambre la nuit</td><td>Calme</td></tr>
+          <tr><td>55</td><td>Bureau, conversation normale</td><td>Animé</td></tr>
+          <tr><td>70</td><td>Aspirateur, voiture en ville</td><td>Fort</td></tr>
+          <tr><td>85</td><td>Tondeuse, tronçonneuse</td><td>Seuil de risque auditif</td></tr>
+          <tr><td>100</td><td>Concert rock</td><td>Dangereux &gt; 15 min</td></tr>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+
+  <h3>Document 4 — Réglementation</h3>
+  <ul>
+    <li><strong>Norme NF S 31-010 :</strong> bruit reçu dans un appartement (pièce de vie) ≤ <strong>30 dB la nuit</strong>, 35 dB le jour.</li>
+    <li>Au-dessus : trouble du voisinage caractérisé.</li>
+  </ul>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Le niveau sonore reçu dans les appartements du 1ᵉʳ étage respecte-t-il la réglementation NF S 31-010 (≤ 30 dB la nuit) ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Citer les <strong>3 grandeurs</strong> caractéristiques d'une onde sonore et leurs unités. Donner la relation qui les lie.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>Fréquence f</strong> en Hz (hertz) : nombre d'oscillations par seconde.</li>
+      <li><strong>Période T</strong> en s (seconde) : durée d'une oscillation. T = 1/f.</li>
+      <li><strong>Longueur d'onde λ</strong> en m : distance parcourue en 1 période. λ = c × T = c/f où c est la vitesse du son.</li>
+    </ul>
+    <p>Ordres de grandeur : c ≈ 340 m/s dans l'air à 20 °C, c ≈ 1 500 m/s dans l'eau.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le niveau total dans la chaufferie, en additionnant les 6 sources. Utiliser les règles d'addition logarithmique :</p>
+  <ol type="a">
+    <li>2 chaudières à 62 dB chacune</li>
+    <li>3 circulateurs à 56 + 53 + 56 dB</li>
+    <li>1 ventilateur à 58 dB</li>
+  </ol>
+  <p><em>Aide : 2 sources identiques = +3 dB. Pour les sources différentes, la table d'addition logarithmique donne :</em></p>
+  <table>
+    <thead><tr><th>Différence (dB)</th><th>À ajouter au plus fort</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>+3 dB</td></tr>
+      <tr><td>1</td><td>+2,5 dB</td></tr>
+      <tr><td>2</td><td>+2,1 dB</td></tr>
+      <tr><td>3</td><td>+1,8 dB</td></tr>
+      <tr><td>4-5</td><td>+1,5 dB</td></tr>
+      <tr><td>6-9</td><td>+1 dB</td></tr>
+      <tr><td>≥ 10</td><td>+0 dB (négligeable)</td></tr>
+    </tbody>
+  </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>(a) <strong>2 chaudières :</strong> 62 + 62 = 62 + 3 = <strong>65 dB</strong> (sources identiques)</p>
+    <p>(b) <strong>3 circulateurs :</strong> on combine 2 par 2.</p>
+    <ul>
+      <li>56 + 56 = 59 dB (sources identiques, +3)</li>
+      <li>59 + 53 = écart 6 dB → 59 + 1 = <strong>60 dB</strong></li>
+    </ul>
+    <p>(c) Combiner ces 3 groupes :</p>
+    <ul>
+      <li>65 dB (chaudières) + 60 dB (circulateurs) : écart 5 dB → 65 + 1,5 = 66,5 dB</li>
+      <li>66,5 + 58 dB (ventilateur) : écart 8,5 dB → 66,5 + 1 = <strong>67,5 dB</strong></li>
+    </ul>
+    <p><strong>Niveau total dans la chaufferie ≈ 67,5 dB</strong> (équivalent au bruit d'un aspirateur léger).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le niveau atteint dans l'appartement du 1ᵉʳ étage à <strong>4 m</strong> au-dessus de la chaufferie, en tenant compte :</p>
+  <ul>
+    <li>de l'atténuation par la distance (champ libre, doublement de distance = −6 dB depuis 1 m)</li>
+    <li>de l'atténuation par la dalle béton (≈ 35 dB)</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Atténuation par la distance, de 1 m à 4 m : on double 2 fois (1 m → 2 m → 4 m), donc <strong>−6 dB × 2 = −12 dB</strong>.</p>
+    <p>Atténuation par la dalle béton : −35 dB.</p>
+    <p>Niveau dans l'appartement = 67,5 − 12 − 35 = <strong>20,5 dB</strong></p>
+    <p>Ce niveau est <strong>en-dessous</strong> du seuil de 30 dB nuit, donc en théorie réglementaire.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Pourtant, les locataires se plaignent. <strong>Pourquoi</strong> peuvent-ils percevoir un bruit alors que la mesure semble réglementaire ? Lister 3 causes possibles.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Plusieurs facteurs possibles, à investiguer :</p>
+    <ol>
+      <li><strong>Vibrations transmises par la structure</strong> (bruit solidien) : les pompes et chaudières fixées rigidement à la dalle transmettent leurs vibrations qui se propagent dans le béton — ce n'est pas le son aérien mais une vibration mécanique. Solution : poser des supports antivibratiles (silentblocs).</li>
+      <li><strong>Fréquences basses</strong> (20-100 Hz) : les pompes émettent surtout des basses fréquences peu atténuées par la dalle béton (l'atténuation 35 dB est une moyenne, mais bien moindre pour les graves). C'est ce qui crée l'effet « bruit de fond » caractéristique.</li>
+      <li><strong>Bruit nocturne perçu</strong> : la nuit, le bruit de fond ambiant baisse à 25-30 dB ; même un faible bruit (20 dB) devient relativement audible et gênant pour s'endormir.</li>
+      <li><strong>Conduits de cheminée / ventilation</strong> : le son peut « contourner » la dalle en passant par les conduits techniques verticaux.</li>
+    </ol>
+    <p>L'analyse acoustique simple en dB(A) ne suffit pas : il faut une analyse en bandes de fréquences et une enquête sur les transmissions solidiennes.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Yasmine propose 3 actions pour réduire le bruit. Pour chacune, identifier <strong>quel mécanisme physique</strong> elle traite.</p>
+  <ol type="a">
+    <li>Installer des silentblocs sous chaque pompe et chaudière</li>
+    <li>Capoter les pompes les plus bruyantes</li>
+    <li>Doubler le plafond béton avec une couche de laine de roche acoustique</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>(a) <strong>Silentblocs :</strong> traitent la <strong>transmission par les solides</strong>. Les vibrations de la pompe sont amorties dans l'élastomère du silentbloc avant d'atteindre la dalle. Gain typique : −10 à −15 dB sur les basses fréquences.</li>
+      <li>(b) <strong>Capotage :</strong> traite l'<strong>émission acoustique aérienne</strong>. Une enveloppe insonorisée enferme la source bruyante. Gain typique : −10 à −20 dB.</li>
+      <li>(c) <strong>Doublage acoustique :</strong> traite la <strong>transmission aérienne par la dalle</strong>. La laine de roche absorbe et amortit les vibrations dans le matériau. Gain typique : −5 à −10 dB.</li>
+    </ul>
+    <p>Les 3 actions sont <strong>complémentaires</strong> : elles attaquent des chemins acoustiques différents.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes le <strong>compte-rendu d'intervention</strong> de Yasmine au syndic.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>Diagnostic acoustique chaufferie — 2 mai 2026.</em></p>
+    <p><em>Niveau total mesuré dans la chaufferie : 67,5 dB (équivalent à un aspirateur). Niveau calculé dans les appartements du 1ᵉʳ étage : ~ 20 dB en théorie, en-dessous du seuil réglementaire (30 dB nuit). Cependant, les plaintes des locataires sont compatibles avec une <strong>transmission solidienne (vibrations)</strong> non captée par la mesure aérienne, et avec les <strong>basses fréquences</strong> mal atténuées par la dalle.</em></p>
+    <p><em>Recommandations classées par priorité :</em></p>
+    <ol>
+      <li><em>Silentblocs sous toutes les pompes et chaudières (le plus efficace, ≈ 1 500 € de matériel + pose) — traite les vibrations.</em></li>
+      <li><em>Capotage acoustique des 2 pompes les plus bruyantes (≈ 800 €).</em></li>
+      <li><em>Si insuffisant : doublage du plafond avec 80 mm de laine de roche acoustique (≈ 4 000 €).</em></li>
+    </ol>
+    <p><em>Mesures de contrôle à refaire 1 mois après les travaux.</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Échelle des dB :</strong> logarithmique. 2 sources identiques = +3 dB (pas +6). Doublement de distance en champ libre = −6 dB.</li>
+    <li><strong>Réglementation</strong> bruit transmis dans un appartement : ≤ 30 dB la nuit, ≤ 35 dB le jour (NF S 31-010).</li>
+    <li><strong>3 chemins acoustiques</strong> à distinguer : aérien (par l'air), solidien (par les structures, vibrations), parasites (conduits techniques).</li>
+    <li><strong>Atténuation par dalle béton 30 cm</strong> : ≈ 35 dB en moyenne, mais bien moins pour les basses fréquences (20-100 Hz).</li>
+    <li><strong>Solutions standard</strong> en chaufferie : silentblocs (vibrations) + capotage (aérien) + doublage isolant (mixte).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

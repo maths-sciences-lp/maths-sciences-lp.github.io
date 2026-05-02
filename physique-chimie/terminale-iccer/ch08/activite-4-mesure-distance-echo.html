@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Activité 4 – Mesure de distance par écho – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 4 – Mesure de distance par écho — du sonar au radar de recul <span style="font-size:.55em;color:#059669;font-weight:600">ÉTUDE DE CAS</span></h1>
+  <p class="sous-titre">Chapitre 8 – Propagation d'un signal sonore | Terminale Bac Pro (Grpt 1) | Physique – Acoustique | ⏱ 35 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Utiliser la relation distance = vitesse × temps</li>
+    <li>Calculer une distance à partir d'un temps d'écho aller-retour</li>
+    <li>Comparer les vitesses du son dans différents milieux (air, eau, métal)</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a>. Vitesse du son selon le milieu. Distance d'un obstacle = (c × Δt) / 2 pour un aller-retour.
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – 3 applications du même principe physique</h2>
+  <p><em>De la chauve-souris au sous-marin, en passant par le radar de recul des voitures, le même principe physique est utilisé : envoyer une onde, mesurer le temps que met l'écho à revenir, en déduire la distance. C'est l'écholocation. Étude de 3 cas concrets.</em></p>
+
+  <h3>Document 1 — Le principe</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 600 220" style="max-width:600px;display:block;margin:0 auto" role="img" aria-label="Schéma du principe d'écholocation : un émetteur émet une onde sonore qui se propage à vitesse c, atteint un obstacle à distance d, et un écho revient à l'émetteur. Le temps total aller-retour est noté delta-t. La distance se calcule par d = c*delta-t/2.">
+      <defs>
+        <style>
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .lbl{font:11px sans-serif;text-anchor:middle;fill:#1a202c}
+          .lblB{font:600 11px sans-serif;text-anchor:middle;fill:#1d4ed8}
+          .lblR{font:700 11px sans-serif;text-anchor:middle;fill:#b91c1c}
+          .onde-aller{stroke:#0969da;stroke-width:2;fill:none}
+          .onde-retour{stroke:#dc2626;stroke-width:2;fill:none;stroke-dasharray:5 3}
+        </style>
+      </defs>
+      <text class="ti" x="300" y="22">Principe de l'écholocation</text>
+
+      <!-- Émetteur (gauche) -->
+      <rect x="40" y="80" width="60" height="60" fill="#dbeafe" stroke="#1e40af" stroke-width="2" rx="6"/>
+      <text class="lbl" x="70" y="105" font-weight="bold" fill="#1d4ed8">ÉMETTEUR</text>
+      <text class="lbl" x="70" y="120" font-size="9" fill="#475569">+ récepteur</text>
+      <text class="lbl" x="70" y="160" fill="#475569" font-style="italic">t = 0 : émission</text>
+      <text class="lbl" x="70" y="172" fill="#475569" font-style="italic">t = Δt : réception écho</text>
+
+      <!-- Onde aller (bleue) -->
+      <path class="onde-aller" d="M 100 110 Q 200 90 300 110 Q 400 130 480 110" marker-end="url(#aArrB)"/>
+      <text class="lblB" x="290" y="80">→ onde émise (vitesse c)</text>
+
+      <!-- Onde retour (rouge pointillée) -->
+      <path class="onde-retour" d="M 480 130 Q 400 150 300 130 Q 200 110 100 130" marker-end="url(#aArrR)"/>
+      <text class="lblR" x="290" y="170">← écho (vitesse c)</text>
+
+      <!-- Obstacle (droite) -->
+      <rect x="490" y="60" width="60" height="100" fill="#94a3b8" stroke="#1f2937" stroke-width="2"/>
+      <text class="lbl" x="520" y="115" font-weight="bold" fill="#fff">OBSTACLE</text>
+
+      <!-- Cote distance d -->
+      <line x1="100" y1="200" x2="490" y2="200" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="100" y1="195" x2="100" y2="205" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="490" y1="195" x2="490" y2="205" stroke="#dc2626" stroke-width="1.5"/>
+      <text class="lblR" x="295" y="194">d (distance à mesurer)</text>
+
+      <defs>
+        <marker id="aArrB" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+          <polygon points="0,0 9,4.5 0,9" fill="#0969da"/>
+        </marker>
+        <marker id="aArrR" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+          <polygon points="0,0 9,4.5 0,9" fill="#dc2626"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <p>L'onde parcourt 2d (aller + retour) en Δt. Donc :</p>
+  <p style="text-align:center;font-weight:bold">\(d = \dfrac{c \times \Delta t}{2}\)</p>
+
+  <h3>Document 2 — Vitesses du son selon le milieu</h3>
+  <table>
+    <thead><tr><th>Milieu</th><th>Vitesse du son c (m/s)</th></tr></thead>
+    <tbody>
+      <tr><td>Air à 0 °C</td><td>331</td></tr>
+      <tr><td>Air à 20 °C</td><td>343</td></tr>
+      <tr><td>Eau douce (20 °C)</td><td>1 480</td></tr>
+      <tr><td>Eau de mer (15 °C)</td><td>1 520</td></tr>
+      <tr><td>Acier</td><td>5 000</td></tr>
+    </tbody>
+  </table>
+  <p><em>Le son va globalement plus vite dans les solides que dans les liquides, et plus vite dans les liquides que dans les gaz.</em></p>
+
+  <h3>Document 3 — 3 applications</h3>
+  <ul>
+    <li><strong>Cas A — Radar de recul automobile :</strong> émetteur ultrason (40 kHz) sur le pare-chocs. La voiture mesure Δt = 5 ms à un mur derrière. À quelle distance se trouve le mur ? (air à 20 °C)</li>
+    <li><strong>Cas B — Sondeur de pêche :</strong> un bateau mesure la profondeur du fond marin avec un sondeur ultrasons (200 kHz). L'écho revient en Δt = 80 ms. (eau de mer 15 °C)</li>
+    <li><strong>Cas C — Détecteur de fuite par ultrasons :</strong> un plombier utilise un détecteur ultrasonique pour repérer une fuite cachée derrière un mur. L'appareil capte un signal à 39 kHz émis par la fuite. Quelle est la longueur d'onde ?</li>
+  </ul>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment calcule-t-on une distance par écho, et pourquoi cette technique fonctionne-t-elle aussi bien dans 3 contextes différents (voiture, mer, mur) ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Donner la relation entre distance d, vitesse c et durée Δt aller-retour. Pourquoi divise-t-on par 2 ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Relation : \(d = \dfrac{c \times \Delta t}{2}\)</p>
+    <p>On divise par 2 car le son parcourt 2 fois la distance d (aller + retour). En Δt, le son parcourt c × Δt = 2d, donc d = (c × Δt) / 2.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span> – Cas A : radar de recul</h2>
+  <p>Calculer la distance entre la voiture et le mur arrière. (Δt = 5 ms = 0,005 s ; c<sub>air,20°C</sub> = 343 m/s)</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>d = (c × Δt) / 2 = (343 × 0,005) / 2 = 1,715 / 2 = <strong>0,86 m ≈ 86 cm</strong></p>
+    <p>Cohérent : le radar bipe « danger » au-dessous de 30 cm. À 86 cm on entend un bip lent, ce qui correspond à un mur encore à distance de manœuvre.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span> – Cas B : sondeur de pêche</h2>
+  <p>Calculer la profondeur du fond marin sous le bateau. (Δt = 80 ms = 0,080 s ; c<sub>eau de mer</sub> = 1 520 m/s)</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>d = (c × Δt) / 2 = (1 520 × 0,080) / 2 = 121,6 / 2 = <strong>60,8 m</strong></p>
+    <p>Le bateau pêche au-dessus d'un fond marin à 61 m de profondeur — typique d'une zone côtière.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span> – Cas C : détecteur de fuite</h2>
+  <p>Un détecteur ultrasonique capte un signal à f = 39 kHz émis par une fuite (bruit ultra-aigu causé par l'air qui s'échappe sous pression).</p>
+  <p>Calculer la longueur d'onde λ de ce signal dans l'air à 20 °C.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>λ = c / f = 343 / 39 000 = 0,0088 m = <strong>0,88 cm = 8,8 mm</strong></p>
+    <p>Cette très courte longueur d'onde permet une <strong>très bonne directivité</strong> du détecteur : il « entend » la fuite uniquement quand il est pointé vers elle, ce qui permet de la localiser précisément derrière le mur.</p>
+    <p>Pour comparaison, à 1 kHz (cri humain), λ = 34 cm — le son va dans toutes les directions et ne permet pas de localisation précise.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi tous ces appareils utilisent-ils des <strong>ultrasons</strong> (&gt; 20 kHz) plutôt que des sons audibles ? Donner 3 raisons.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol>
+      <li><strong>Inaudibles pour l'humain</strong> : un radar de recul qui beep en 1 kHz à chaque mesure (10 fois/seconde) serait insupportable. À 40 kHz, on n'entend rien.</li>
+      <li><strong>Courte longueur d'onde = bonne directivité</strong> : à 40 kHz, λ ≈ 8 mm. L'onde se propage en faisceau étroit, ce qui permet de localiser précisément l'obstacle.</li>
+      <li><strong>Faible interférence</strong> avec le bruit ambiant : il y a peu de sources naturelles d'ultrasons à 40 kHz, donc le signal écho est facile à distinguer.</li>
+      <li>(Bonus) <strong>Faible distance possible</strong> : λ courte permet de détecter même de petits obstacles (5 mm de différence de marche d'onde sont mesurables avec λ = 8 mm, ce serait impossible avec λ = 30 cm).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Un dispositif similaire est-il imaginable dans le <strong>vide</strong> (par exemple sur la Lune) ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Non, impossible.</strong> Le son est une onde mécanique : il a besoin d'un milieu matériel (gaz, liquide, solide) pour se propager. Dans le vide spatial, il n'y a pas de molécules pour transmettre les vibrations.</p>
+    <p>Pour mesurer une distance dans le vide, on utilise donc des <strong>ondes électromagnétiques</strong> (lumière, radar) :</p>
+    <ul>
+      <li><strong>LIDAR</strong> sur les rovers martiens (impulsion laser, mesure du temps de retour)</li>
+      <li><strong>Radar</strong> sur les satellites pour mesurer l'altitude au-dessus du sol</li>
+      <li><strong>GPS</strong> qui calcule la distance à 4 satellites par mesure de temps de propagation des ondes radio</li>
+    </ul>
+    <p>Mêmes principes physiques (d = c × t/2), mais avec c = vitesse de la lumière (3 × 10⁸ m/s) au lieu du son.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une <strong>synthèse</strong> qui répond à la problématique : comment l'écholocation fonctionne et pourquoi elle est si universelle ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>L'<strong>écholocation</strong> est une technique simple qui exploite la propagation finie du son dans un milieu : on émet un « bip » et on mesure le temps que met l'écho à revenir. Comme le son parcourt 2 fois la distance d (aller + retour), on calcule simplement <strong>d = (c × Δt) / 2</strong>, en utilisant la vitesse du son dans le milieu adapté (343 m/s dans l'air, 1 520 m/s dans l'eau de mer, 5 000 m/s dans l'acier).</em></p>
+    <p><em>Cette méthode est universelle car elle s'adapte à tous les milieux : l'air pour les radars de recul (~ 1 m), l'eau pour les sondeurs marins (~ 100 m), les solides pour les détecteurs de défauts dans les soudures industrielles. Les chauves-souris et les dauphins l'ont inventée des millions d'années avant nous.</em></p>
+    <p><em>Tous ces appareils utilisent des <strong>ultrasons</strong> (&gt; 20 kHz) : inaudibles pour l'humain, faisceau étroit pour bien viser, peu d'interférences. Dans le vide, il faut passer aux ondes électromagnétiques (LIDAR, radar) — même principe, vitesse différente.</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Distance par écho :</strong> d = (c × Δt) / 2. Diviser par 2 car aller + retour.</li>
+    <li><strong>Vitesses du son à connaître :</strong> air ≈ 340 m/s, eau ≈ 1 500 m/s, acier ≈ 5 000 m/s.</li>
+    <li><strong>Le son ne se propage pas dans le vide</strong> (il faut un milieu matériel). Dans le vide : ondes EM (lumière, radar).</li>
+    <li><strong>Ultrasons (&gt; 20 kHz) :</strong> inaudibles, courte λ donc directivité forte, peu d'interférences. Idéaux pour l'écholocation technique.</li>
+    <li><strong>Applications :</strong> radar de recul, sondeur de pêche, détecteur de fuite, échographie médicale, contrôle non destructif (CND) en industrie.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
