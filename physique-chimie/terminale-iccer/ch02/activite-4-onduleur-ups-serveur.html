@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité 4 – Choisir un onduleur UPS pour serveur – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.fiche{background:#f8fafc;border:2px solid #1e40af;border-radius:10px;padding:0;margin:14px 0;box-shadow:0 4px 12px rgba(0,0,0,.1);overflow:hidden}
+.fiche-header{background:linear-gradient(135deg,#1e40af 0%,#3b82f6 100%);color:#fff;padding:14px 20px}
+.fiche-header h3{margin:0;color:#fff;border:none;font-size:1.1em}
+.fiche-header .ref{font-size:.82em;opacity:.9;margin-top:4px}
+.fiche-body{padding:16px 20px}
+.fiche-row{display:flex;justify-content:space-between;border-bottom:1px dashed #cbd5e1;padding:6px 0;font-size:.92em}
+.fiche-row:last-child{border-bottom:none}
+.fiche-row span:first-child{color:#475569}
+.fiche-row span:last-child{font-weight:600;color:#1e3a8a;font-family:'Menlo','Consolas',monospace}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 4 – Choisir un onduleur UPS pour serveur d'entreprise <span style="font-size:.55em;color:#7c2d12;font-weight:600">FICHE TECHNIQUE</span></h1>
+  <p class="sous-titre">Chapitre 2 – Conversion alternatif ↔ continu | Terminale Bac Pro (Grpt 1) | Physique – Électricité | ⏱ 40 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre le principe d'un onduleur UPS : double conversion AC → DC (charge batterie) puis DC → AC (alimentation des appareils)</li>
+    <li>Lire et comparer 3 fiches techniques d'onduleurs constructeur</li>
+    <li>Choisir le modèle adapté à un cahier des charges (puissance, autonomie, type d'onde)</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a> §7 (l'onduleur). Un UPS combine un redresseur (charge la batterie) et un onduleur (alimente l'équipement quand le réseau coupe).
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – Léa protège son serveur d'entreprise</h2>
+  <p><em>Léa, administratrice système d'une PME de 20 salariés, doit choisir un <strong>onduleur UPS</strong> (Uninterruptible Power Supply) pour protéger le serveur informatique de l'entreprise. Une coupure de courant brutale endommagerait les disques durs et perdrait des données. L'UPS prend le relais sur batterie pendant quelques minutes, le temps que les serveurs s'éteignent proprement.</em></p>
+
+  <h3>Le principe d'un UPS — schéma bloc</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 720 240" style="max-width:720px;display:block;margin:0 auto" role="img" aria-label="Schéma bloc d'un onduleur UPS : entrée 230V AC réseau, redresseur, batterie 12V DC, onduleur, sortie 230V AC vers serveur. En cas de coupure réseau, la batterie alimente l'onduleur seul.">
+      <defs>
+        <style>
+          .blk{fill:#fff;stroke:#1e40af;stroke-width:2;rx:6}
+          .red{fill:#fef3c7;stroke:#b45309;stroke-width:1.8}
+          .battery{fill:#dcfce7;stroke:#16a34a;stroke-width:2}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .lblB{font:600 11px sans-serif;text-anchor:middle;fill:#1d4ed8}
+          .lbl{font:11px sans-serif;text-anchor:middle;fill:#1a202c}
+          .ac{stroke:#dc2626;stroke-width:2.5;fill:none}
+          .dc{stroke:#0969da;stroke-width:2.5;fill:none}
+          .switch{stroke:#ea580c;stroke-width:2;fill:none;stroke-dasharray:5 3}
+        </style>
+      </defs>
+      <text class="ti" x="360" y="22">Architecture d'un onduleur UPS « online double conversion »</text>
+
+      <!-- Bloc UPS encadré -->
+      <rect x="120" y="50" width="500" height="140" fill="#f8fafc" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 4" rx="8"/>
+      <text class="lbl" x="370" y="70" font-style="italic" fill="#475569">Boîtier UPS</text>
+
+      <!-- Entrée -->
+      <rect class="blk" x="20" y="100" width="100" height="50" rx="6"/>
+      <text class="lblB" x="70" y="125">Réseau</text>
+      <text class="lblB" x="70" y="140">230 V AC</text>
+
+      <line class="ac" x1="120" y1="125" x2="160" y2="125" marker-end="url(#aArr)"/>
+
+      <!-- Redresseur -->
+      <rect class="red" x="160" y="100" width="100" height="50" rx="4"/>
+      <text class="lbl" x="210" y="125" font-weight="bold" fill="#92400e">Redresseur</text>
+      <text class="lbl" x="210" y="140" fill="#92400e" font-size="9">AC → DC</text>
+
+      <line class="dc" x1="260" y1="125" x2="320" y2="125" marker-end="url(#dArr)"/>
+
+      <!-- Batterie -->
+      <rect class="battery" x="320" y="100" width="100" height="50" rx="4"/>
+      <text class="lbl" x="370" y="125" font-weight="bold" fill="#15803d">Batterie</text>
+      <text class="lbl" x="370" y="140" fill="#15803d" font-size="9">12 V DC</text>
+
+      <line class="dc" x1="420" y1="125" x2="480" y2="125" marker-end="url(#dArr)"/>
+
+      <!-- Onduleur -->
+      <rect class="red" x="480" y="100" width="100" height="50" rx="4"/>
+      <text class="lbl" x="530" y="125" font-weight="bold" fill="#92400e">Onduleur</text>
+      <text class="lbl" x="530" y="140" fill="#92400e" font-size="9">DC → AC</text>
+
+      <line class="ac" x1="580" y1="125" x2="620" y2="125" marker-end="url(#aArr)"/>
+
+      <!-- Sortie -->
+      <rect class="blk" x="620" y="100" width="80" height="50" rx="6"/>
+      <text class="lblB" x="660" y="125">Serveur</text>
+      <text class="lblB" x="660" y="140">230 V AC</text>
+
+      <!-- Annotations couleur courant -->
+      <text class="lbl" x="140" y="92" fill="#b91c1c" font-weight="bold">AC</text>
+      <text class="lbl" x="290" y="92" fill="#1d4ed8" font-weight="bold">DC</text>
+      <text class="lbl" x="450" y="92" fill="#1d4ed8" font-weight="bold">DC</text>
+      <text class="lbl" x="600" y="92" fill="#b91c1c" font-weight="bold">AC</text>
+
+      <!-- Légende -->
+      <text x="360" y="215" text-anchor="middle" font-size="11" fill="#475569" font-style="italic">L'UPS « online double conversion » fait passer en permanence le courant par le redresseur puis par l'onduleur</text>
+      <text x="360" y="230" text-anchor="middle" font-size="11" fill="#475569" font-style="italic">→ en cas de coupure, la batterie alimente directement l'onduleur, sans interruption.</text>
+
+      <defs>
+        <marker id="aArr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+          <polygon points="0,0 9,4.5 0,9" fill="#dc2626"/>
+        </marker>
+        <marker id="dArr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+          <polygon points="0,0 9,4.5 0,9" fill="#0969da"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>Cahier des charges de l'entreprise de Léa</h3>
+  <ul>
+    <li>1 serveur Dell PowerEdge → consommation moyenne : <strong>250 W</strong> en charge</li>
+    <li>2 disques durs externes RAID → 25 W chacun</li>
+    <li>1 switch réseau → 30 W</li>
+    <li>Autonomie minimale demandée : <strong>10 minutes</strong> (temps d'arrêt propre des serveurs)</li>
+    <li>Onde de sortie : <strong>sinusoïdale pure</strong> exigée (les alimentations à découpage modernes peuvent être perturbées par une onde « pseudo-sinusoïdale »)</li>
+    <li>Budget plafonné à 1 200 € HT</li>
+  </ul>
+
+  <h3>3 modèles disponibles chez les fournisseurs</h3>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0">
+
+    <div class="fiche">
+      <div class="fiche-header">
+        <h3>UPS A — APC Back-UPS 700</h3>
+        <div class="ref">Réf. APC BR700ELCD</div>
+      </div>
+      <div class="fiche-body">
+        <div class="fiche-row"><span>Puissance apparente</span><span>700 VA</span></div>
+        <div class="fiche-row"><span>Puissance active</span><span>410 W</span></div>
+        <div class="fiche-row"><span>Onde de sortie</span><span>Pseudo-sinusoïdale</span></div>
+        <div class="fiche-row"><span>Autonomie à 250 W</span><span>~ 6 min</span></div>
+        <div class="fiche-row"><span>Topologie</span><span>Off-line</span></div>
+        <div class="fiche-row"><span>Prix indicatif</span><span>140 €</span></div>
+      </div>
+    </div>
+
+    <div class="fiche">
+      <div class="fiche-header">
+        <h3>UPS B — Eaton 5SC 1500</h3>
+        <div class="ref">Réf. EATON 5SC1500i</div>
+      </div>
+      <div class="fiche-body">
+        <div class="fiche-row"><span>Puissance apparente</span><span>1 500 VA</span></div>
+        <div class="fiche-row"><span>Puissance active</span><span>1 050 W</span></div>
+        <div class="fiche-row"><span>Onde de sortie</span><span>Sinusoïdale pure</span></div>
+        <div class="fiche-row"><span>Autonomie à 300 W</span><span>~ 15 min</span></div>
+        <div class="fiche-row"><span>Topologie</span><span>Line-interactive</span></div>
+        <div class="fiche-row"><span>Prix indicatif</span><span>650 €</span></div>
+      </div>
+    </div>
+
+    <div class="fiche">
+      <div class="fiche-header">
+        <h3>UPS C — APC Smart-UPS 3000</h3>
+        <div class="ref">Réf. APC SRT3000XLI</div>
+      </div>
+      <div class="fiche-body">
+        <div class="fiche-row"><span>Puissance apparente</span><span>3 000 VA</span></div>
+        <div class="fiche-row"><span>Puissance active</span><span>2 700 W</span></div>
+        <div class="fiche-row"><span>Onde de sortie</span><span>Sinusoïdale pure</span></div>
+        <div class="fiche-row"><span>Autonomie à 300 W</span><span>~ 60 min</span></div>
+        <div class="fiche-row"><span>Topologie</span><span>Online double conversion</span></div>
+        <div class="fiche-row"><span>Prix indicatif</span><span>1 950 €</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quel modèle d'onduleur Léa doit-elle choisir pour respecter le cahier des charges (puissance, autonomie 10 min, onde sinusoïdale pure, budget 1 200 €) ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Identifier sur le schéma bloc les <strong>4 éléments</strong> internes d'un UPS et expliquer brièvement le rôle de chacun.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol>
+      <li><strong>Redresseur (AC → DC)</strong> : convertit le 230 V alternatif du réseau en courant continu pour charger la batterie.</li>
+      <li><strong>Batterie</strong> (12 V DC) : stocke l'énergie pour prendre le relais en cas de coupure.</li>
+      <li><strong>Onduleur (DC → AC)</strong> : reconvertit le courant continu de la batterie en 230 V alternatif pour alimenter le serveur.</li>
+      <li><strong>Commutateur (interne au boîtier)</strong> : bascule automatiquement entre alimentation par le réseau et alimentation par la batterie en cas de coupure.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la <strong>puissance totale</strong> consommée par les équipements informatiques à protéger (en W).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P<sub>totale</sub> = 250 (serveur) + 2 × 25 (disques) + 30 (switch) = 250 + 50 + 30 = <strong>330 W</strong></p>
+    <p>L'UPS choisi devra fournir au moins 330 W en continu pendant la coupure.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Pour chacun des 3 modèles, vérifier s'il respecte ou non chaque critère du cahier des charges. Compléter le tableau (✓ ou ✗) :</p>
+  <table>
+    <thead>
+      <tr><th>Critère</th><th>UPS A</th><th>UPS B</th><th>UPS C</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Puissance ≥ 330 W</td><td>……</td><td>……</td><td>……</td></tr>
+      <tr><td>Autonomie ≥ 10 min</td><td>……</td><td>……</td><td>……</td></tr>
+      <tr><td>Onde sinusoïdale pure</td><td>……</td><td>……</td><td>……</td></tr>
+      <tr><td>Prix ≤ 1 200 € HT</td><td>……</td><td>……</td><td>……</td></tr>
+      <tr><td>RESPECT GLOBAL</td><td>……</td><td>……</td><td>……</td></tr>
+    </tbody>
+  </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead>
+        <tr><th>Critère</th><th>UPS A (Back-UPS 700)</th><th>UPS B (Eaton 5SC 1500)</th><th>UPS C (Smart-UPS 3000)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Puissance ≥ 330 W</td><td>✓ (410 W)</td><td>✓ (1 050 W)</td><td>✓ (2 700 W)</td></tr>
+        <tr><td>Autonomie ≥ 10 min</td><td>✗ (~ 6 min à 250 W)</td><td>✓ (~ 15 min)</td><td>✓ (~ 60 min)</td></tr>
+        <tr><td>Onde sinusoïdale pure</td><td>✗ (pseudo-sinusoïdale)</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Prix ≤ 1 200 € HT</td><td>✓ (140 €)</td><td>✓ (650 €)</td><td>✗ (1 950 €)</td></tr>
+        <tr><td><strong>RESPECT GLOBAL</strong></td><td>✗</td><td>✓</td><td>✗ (budget)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi est-il <strong>important</strong> que l'onde de sortie soit sinusoïdale pure pour un serveur, alors qu'une onde pseudo-sinusoïdale serait suffisante pour une lampe ou un grille-pain ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Les <strong>alimentations à découpage</strong> modernes (comme celles d'un serveur, d'un PC ou d'un onduleur photovoltaïque domestique) sont conçues pour fonctionner avec une <strong>vraie sinusoïde</strong>. Elles utilisent un système de correction du facteur de puissance (PFC) qui peut entrer en conflit avec une onde « pseudo-sinusoïdale » faite d'escaliers — résultat : surchauffe, instabilité, redémarrage intempestif, voire destruction des composants.</p>
+    <p>Pour des appareils <strong>résistifs ou simples</strong> (lampe, grille-pain, vieux ventilateur), une onde pseudo-sinusoïdale est sans danger.</p>
+    <p>Règle pratique : pour un équipement informatique professionnel, <strong>toujours exiger une onde sinusoïdale pure</strong>, même si c'est plus cher.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Quelle <strong>puissance apparente</strong> S (en VA) faut-il prévoir si le facteur de puissance des équipements est de 0,7 ? Comparer aux puissances apparentes des 3 UPS.</p>
+  <p><em>Aide : S = P / cos φ</em></p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>S = 330 / 0,7 ≈ <strong>471 VA</strong></p>
+    <p>Comparaison :</p>
+    <ul>
+      <li>UPS A : 700 VA → suffisant en S ✓</li>
+      <li>UPS B : 1 500 VA → largement suffisant ✓</li>
+      <li>UPS C : 3 000 VA → très largement suffisant ✓</li>
+    </ul>
+    <p>Note : la puissance apparente VA est souvent plus élevée que la puissance active W (rapport ≈ 1/cos φ). Les fabricants annoncent les VA, mais c'est le W qui compte pour l'autonomie.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes la note de Léa à son responsable IT, qui justifie son choix d'UPS.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>Note interne — Choix UPS serveur — 2 mai 2026.</em></p>
+    <p><em>Pour protéger notre serveur (consommation totale 330 W), je recommande l'achat de l'<strong>onduleur Eaton 5SC 1500</strong> (650 € HT). C'est le seul des 3 modèles évalués qui respecte simultanément les 4 critères du cahier des charges : puissance suffisante (1 050 W &gt; 330 W), autonomie 15 min (&gt; 10 min requis), onde sinusoïdale pure (compatible avec les alimentations à découpage modernes du serveur) et prix sous le plafond budgétaire (650 € &lt; 1 200 €).</em></p>
+    <p><em>L'UPS A (140 €) est insuffisant en autonomie et son onde pseudo-sinusoïdale risque d'endommager le serveur. L'UPS C (1 950 €) dépasse le budget pour une autonomie qui n'est pas nécessaire (60 min).</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>UPS = double conversion :</strong> redresseur AC → DC pour charger la batterie + onduleur DC → AC pour alimenter le matériel.</li>
+    <li><strong>3 topologies :</strong> off-line (basique, basculement avec bref hiatus), line-interactive (régule la tension), online double conversion (sortie toujours générée par l'onduleur, pas de hiatus).</li>
+    <li><strong>Onde sinusoïdale pure</strong> obligatoire pour les équipements informatiques modernes (alimentations à découpage avec PFC).</li>
+    <li><strong>Choix d'un UPS</strong> = vérifier 4 critères : puissance ≥ besoin, autonomie ≥ minimum requis, onde compatible, prix dans le budget.</li>
+    <li><strong>Distinction VA / W :</strong> la puissance apparente (VA) est annoncée par les fabricants, mais c'est la puissance active (W) qui détermine l'autonomie réelle.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

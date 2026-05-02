@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité 2 – Diagnostic d'une alimentation PC en panne – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.osc{background:#0f172a;border-radius:6px;padding:10px;margin:6px 0}
+.osc-title{color:#22c55e;font:600 11px monospace;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 2 – Diagnostic d'une alimentation PC en panne <span style="font-size:.55em;color:#b91c1c;font-weight:600">DIAGNOSTIC</span></h1>
+  <p class="sous-titre">Chapitre 2 – Conversion alternatif ↔ continu | Terminale Bac Pro (Grpt 1) | Physique – Électricité | ⏱ 35 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier les 4 étapes d'une chaîne de conversion AC → DC (transformateur, redressement, filtrage, régulation)</li>
+    <li>Associer un oscillogramme à une étape de la chaîne</li>
+    <li>Diagnostiquer un composant défaillant à partir d'un signal anormal</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a> §2-3 (redressement diode/pont), §5 (filtrage condensateur).
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – un PC qui s'allume puis s'éteint</h2>
+  <p><em>Camille, technicienne en maintenance informatique chez un revendeur, reçoit un PC de bureau qui s'allume une fraction de seconde puis s'éteint. Elle suspecte l'alimentation. Elle ouvre le boîtier, branche son oscilloscope sur 4 points de mesure de l'alimentation et compare les signaux à ceux d'une alimentation neuve.</em></p>
+
+  <h3>Schéma de l'alimentation (sortie 12 V continu pour la carte mère)</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 720 200" style="max-width:720px;display:block;margin:0 auto" role="img" aria-label="Chaîne de conversion d'une alimentation PC : entrée 230V AC alternatif, transformateur abaisseur, pont de diodes (redressement), condensateur (filtrage), régulateur (sortie 12V DC continu). 4 points de test TP1 à TP4 marqués sur le schéma.">
+      <defs>
+        <style>
+          .blk{fill:#fff;stroke:#1e40af;stroke-width:2.2;rx:6}
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblB{font:600 11px sans-serif;fill:#1d4ed8;text-anchor:middle}
+          .lblR{font:700 11px sans-serif;fill:#b91c1c;text-anchor:middle}
+          .pin{fill:#fef3c7;stroke:#b45309;stroke-width:1.5}
+          .wire{stroke:#1f2937;stroke-width:2;fill:none}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="360" y="20">Chaîne de conversion AC → DC d'une alimentation PC</text>
+
+      <!-- Blocs -->
+      <rect class="blk" x="40" y="70" width="100" height="60" rx="6"/>
+      <text class="lblB" x="90" y="93">Réseau</text>
+      <text class="lblB" x="90" y="108">230 V ~</text>
+      <text class="lbl" x="90" y="122" fill="#475569">50 Hz</text>
+
+      <rect class="blk" x="180" y="70" width="100" height="60" rx="6"/>
+      <text class="lblB" x="230" y="93">Transformateur</text>
+      <text class="lblB" x="230" y="108">abaisseur</text>
+      <text class="lbl" x="230" y="122" fill="#475569">230 → 12 V</text>
+
+      <rect class="blk" x="320" y="70" width="100" height="60" rx="6"/>
+      <text class="lblB" x="370" y="93">Pont de</text>
+      <text class="lblB" x="370" y="108">diodes</text>
+      <text class="lbl" x="370" y="122" fill="#475569">redressement</text>
+
+      <rect class="blk" x="460" y="70" width="100" height="60" rx="6"/>
+      <text class="lblB" x="510" y="93">Condensateur</text>
+      <text class="lblB" x="510" y="108">de filtrage</text>
+      <text class="lbl" x="510" y="122" fill="#475569">lissage</text>
+
+      <rect class="blk" x="600" y="70" width="100" height="60" rx="6"/>
+      <text class="lblB" x="650" y="93">Régulateur</text>
+      <text class="lblB" x="650" y="108">12 V DC</text>
+      <text class="lbl" x="650" y="122" fill="#475569">→ carte mère</text>
+
+      <!-- Liaisons + points de test -->
+      <line class="wire" x1="140" y1="100" x2="180" y2="100"/>
+      <circle class="pin" cx="160" cy="100" r="9"/>
+      <text class="lblR" x="160" y="155">TP1</text>
+
+      <line class="wire" x1="280" y1="100" x2="320" y2="100"/>
+      <circle class="pin" cx="300" cy="100" r="9"/>
+      <text class="lblR" x="300" y="155">TP2</text>
+
+      <line class="wire" x1="420" y1="100" x2="460" y2="100"/>
+      <circle class="pin" cx="440" cy="100" r="9"/>
+      <text class="lblR" x="440" y="155">TP3</text>
+
+      <line class="wire" x1="560" y1="100" x2="600" y2="100"/>
+      <circle class="pin" cx="580" cy="100" r="9"/>
+      <text class="lblR" x="580" y="155">TP4</text>
+
+      <text class="lbl" x="160" y="173" fill="#7c2d12">230 V AC</text>
+      <text class="lbl" x="300" y="173" fill="#7c2d12">12 V AC</text>
+      <text class="lbl" x="440" y="173" fill="#7c2d12">redressé</text>
+      <text class="lbl" x="580" y="173" fill="#7c2d12">filtré</text>
+    </svg>
+  </div>
+
+  <h3>Oscillogrammes relevés par Camille (sur la machine en panne)</h3>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0">
+
+    <!-- Oscillogramme TP2 : AC sinusoïdal -->
+    <div class="osc">
+      <div class="osc-title">📊 TP2 — sortie transformateur (CH1, 5 V/div, 5 ms/div)</div>
+      <svg width="100%" viewBox="0 0 280 140" role="img" aria-label="Oscillogramme TP2 : sinusoïde régulière d'amplitude 12 V, fréquence 50 Hz">
+        <rect width="280" height="140" fill="#0f172a"/>
+        <g stroke="#22c55e" stroke-width=".5" opacity=".25">
+          <line x1="0" y1="35" x2="280" y2="35"/>
+          <line x1="0" y1="70" x2="280" y2="70"/>
+          <line x1="0" y1="105" x2="280" y2="105"/>
+          <line x1="56" y1="0" x2="56" y2="140"/>
+          <line x1="112" y1="0" x2="112" y2="140"/>
+          <line x1="168" y1="0" x2="168" y2="140"/>
+          <line x1="224" y1="0" x2="224" y2="140"/>
+        </g>
+        <line x1="0" y1="70" x2="280" y2="70" stroke="#22c55e" stroke-width="1"/>
+        <!-- Sinusoïde -->
+        <path d="M 0 70 Q 28 15 56 70 T 112 70 T 168 70 T 224 70 T 280 70" stroke="#22c55e" stroke-width="2" fill="none"/>
+        <text x="270" y="12" text-anchor="end" fill="#22c55e" font="9px monospace">CH1: 5V</text>
+      </svg>
+    </div>
+
+    <!-- Oscillogramme TP3 : signal redressé pulsatoire (sans condensateur car HS) -->
+    <div class="osc">
+      <div class="osc-title">📊 TP3 — sortie pont de diodes (CH1, 5 V/div, 5 ms/div)</div>
+      <svg width="100%" viewBox="0 0 280 140" role="img" aria-label="Oscillogramme TP3 : signal redressé double alternance, alternances positives sinusoïdales successives sans lissage">
+        <rect width="280" height="140" fill="#0f172a"/>
+        <g stroke="#22c55e" stroke-width=".5" opacity=".25">
+          <line x1="0" y1="35" x2="280" y2="35"/>
+          <line x1="0" y1="70" x2="280" y2="70"/>
+          <line x1="0" y1="105" x2="280" y2="105"/>
+          <line x1="56" y1="0" x2="56" y2="140"/>
+          <line x1="112" y1="0" x2="112" y2="140"/>
+          <line x1="168" y1="0" x2="168" y2="140"/>
+          <line x1="224" y1="0" x2="224" y2="140"/>
+        </g>
+        <line x1="0" y1="105" x2="280" y2="105" stroke="#22c55e" stroke-width="1"/>
+        <!-- Redressement double alternance : alternances positives successives -->
+        <path d="M 0 105 Q 14 40 28 105 Q 42 40 56 105 Q 70 40 84 105 Q 98 40 112 105 Q 126 40 140 105 Q 154 40 168 105 Q 182 40 196 105 Q 210 40 224 105 Q 238 40 252 105 Q 266 40 280 105" stroke="#22c55e" stroke-width="2" fill="none"/>
+        <text x="270" y="12" text-anchor="end" fill="#22c55e" font="9px monospace">CH1: 5V</text>
+      </svg>
+    </div>
+
+    <!-- Oscillogramme TP4 : signal filtré ATTENDU (trait pointillé) vs MESURÉ (anormal) -->
+    <div class="osc" style="grid-column:1 / -1">
+      <div class="osc-title">📊 TP4 — sortie condensateur (CH1, 5 V/div, 5 ms/div) — ⚠ MESURÉ vs ATTENDU</div>
+      <svg width="100%" viewBox="0 0 580 160" role="img" aria-label="Oscillogramme TP4 : tracé attendu en pointillés blancs (signal continu lisse à 11 V) vs tracé mesuré en jaune (signal très ondulé identique au TP3, le condensateur ne lisse plus)">
+        <rect width="580" height="160" fill="#0f172a"/>
+        <g stroke="#22c55e" stroke-width=".5" opacity=".25">
+          <line x1="0" y1="40" x2="580" y2="40"/>
+          <line x1="0" y1="80" x2="580" y2="80"/>
+          <line x1="0" y1="120" x2="580" y2="120"/>
+          <line x1="58" y1="0" x2="58" y2="160"/>
+          <line x1="116" y1="0" x2="116" y2="160"/>
+          <line x1="174" y1="0" x2="174" y2="160"/>
+          <line x1="232" y1="0" x2="232" y2="160"/>
+          <line x1="290" y1="0" x2="290" y2="160"/>
+          <line x1="348" y1="0" x2="348" y2="160"/>
+          <line x1="406" y1="0" x2="406" y2="160"/>
+          <line x1="464" y1="0" x2="464" y2="160"/>
+          <line x1="522" y1="0" x2="522" y2="160"/>
+        </g>
+        <line x1="0" y1="120" x2="580" y2="120" stroke="#22c55e" stroke-width="1"/>
+
+        <!-- ATTENDU : ligne droite presque horizontale à y=42 (≈ 11 V continu avec faible ondulation) -->
+        <path d="M 0 42 Q 29 38 58 42 Q 87 38 116 42 Q 145 38 174 42 Q 203 38 232 42 Q 261 38 290 42 Q 319 38 348 42 Q 377 38 406 42 Q 435 38 464 42 Q 493 38 522 42 Q 551 38 580 42" stroke="#fff" stroke-width="1.5" fill="none" stroke-dasharray="5 4" opacity=".7"/>
+        <text x="180" y="32" fill="#fff" font="9px monospace" opacity=".8">ATTENDU (alim neuve) : ~11 V continu, ondulation 0,5 V</text>
+
+        <!-- MESURÉ : signal anormal très ondulé (identique à TP3) -->
+        <path d="M 0 120 Q 14 50 29 120 Q 43 50 58 120 Q 72 50 87 120 Q 101 50 116 120 Q 130 50 145 120 Q 159 50 174 120 Q 188 50 203 120 Q 217 50 232 120 Q 246 50 261 120 Q 275 50 290 120 Q 304 50 319 120 Q 333 50 348 120 Q 362 50 377 120 Q 391 50 406 120 Q 420 50 435 120 Q 449 50 464 120 Q 478 50 493 120 Q 507 50 522 120 Q 536 50 551 120 Q 565 50 580 120" stroke="#fbbf24" stroke-width="2" fill="none"/>
+        <text x="180" y="153" fill="#fbbf24" font="9px monospace">MESURÉ (machine en panne) : signal très ondulé, comme le TP3 !</text>
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment Camille peut-elle identifier le composant défaillant à partir des oscillogrammes mesurés ? Quelle pièce doit-elle remplacer pour que l'alimentation refonctionne ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Identifier les <strong>4 grandes étapes</strong> de la chaîne de conversion AC → DC d'une alimentation PC à partir du schéma. Compléter :</p>
+  <ol type="a">
+    <li>Étape 1 : ……</li>
+    <li>Étape 2 : ……</li>
+    <li>Étape 3 : ……</li>
+    <li>Étape 4 : ……</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ol type="a">
+      <li><strong>Transformation</strong> de tension par le transformateur (230 V → 12 V), tout en restant alternatif.</li>
+      <li><strong>Redressement</strong> du signal alternatif en pulsé positif par le pont de diodes.</li>
+      <li><strong>Filtrage</strong> du signal redressé par le condensateur (lissage : on supprime l'ondulation).</li>
+      <li><strong>Régulation</strong> à la tension exacte (12 V DC stable) par un régulateur intégré.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>À quel point de mesure (TP1, TP2, TP3 ou TP4) correspondent les oscillogrammes ci-dessus ? Justifier en décrivant la forme du signal.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>Oscillogramme 1</strong> = TP2 (sortie transformateur) : sinusoïde régulière (alternance positive et négative). Signal alternatif d'amplitude réduite (≈ 12 V crête).</li>
+      <li><strong>Oscillogramme 2</strong> = TP3 (sortie pont de diodes) : signal redressé double alternance — toutes les alternances sont positives, le signal « rebondit » sur 0 sans descendre au négatif.</li>
+      <li><strong>Oscillogramme 3</strong> = TP4 (après condensateur) : <strong>devrait</strong> être quasi-continu (presque plat à 11 V) — c'est ce que montre le tracé en pointillés blancs (cas alim. neuve). Mais le tracé jaune mesuré ressemble à TP3, pas à un signal lissé.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Le signal mesuré au point TP4 est <strong>anormal</strong>. Décrire en une phrase la différence entre ce qui est attendu et ce qui est mesuré.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le signal attendu en TP4 est <strong>quasi-continu</strong> (faible ondulation autour de 11 V), alors que le signal mesuré est <strong>fortement ondulé</strong> (oscillation de 0 à 12 V), identique en allure à celui du TP3 — comme si l'étape de filtrage n'avait <strong>aucun effet</strong> sur le signal.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>D'après l'analyse précédente, quel composant est <strong>défaillant</strong> ? Expliquer son rôle normalement et ce qui se passe quand il est HS (« hors service »).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le composant défaillant est le <strong>condensateur de filtrage</strong>.</p>
+    <ul>
+      <li><strong>Rôle normal :</strong> il se charge pendant les pics du signal redressé et se décharge pendant les creux, ce qui « lisse » la tension. Le signal en sortie devient quasi-continu.</li>
+      <li><strong>S'il est HS</strong> (souvent claqué ou desséché par le vieillissement) : il ne peut plus stocker de charge. Le signal n'est plus filtré et reste pulsé comme à la sortie du pont de diodes. La carte mère reçoit une tension qui s'effondre toutes les 10 ms et se coupe immédiatement → c'est exactement le symptôme « PC qui s'allume puis s'éteint ».</li>
+    </ul>
+    <p>Les condensateurs « gonflés » sont la panne la plus courante des alimentations PC anciennes (5 à 10 ans).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Sur l'oscillogramme de TP2, on lit une amplitude crête-à-crête de 24 V (12 V au-dessus de 0, 12 V en-dessous). Calculer la <strong>tension efficace</strong> au secondaire du transformateur, en utilisant la relation \(U_\text{eff} = \dfrac{U_\text{max}}{\sqrt{2}}\).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>U<sub>max</sub> = 12 V (amplitude au-dessus de 0).</p>
+    <p>U<sub>eff</sub> = 12 / √2 ≈ <strong>8,5 V</strong></p>
+    <p>C'est la tension affichée par un multimètre en mode AC sur le secondaire du transformateur.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes le compte-rendu d'intervention de Camille avec :</p>
+  <ul>
+    <li>le diagnostic (composant défaillant)</li>
+    <li>le justificatif (oscillogramme anormal)</li>
+    <li>la pièce à remplacer + ordre de prix indicatif (un condensateur électrolytique 1000 µF / 25 V coûte 1 à 3 €)</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>Compte-rendu d'intervention — PC client M. X — 2 mai 2026.</em></p>
+    <p><em>Symptôme : le PC s'allume une fraction de seconde puis s'éteint immédiatement. Diagnostic : le condensateur de filtrage de l'alimentation interne est défaillant. Vérification au TP4 (oscilloscope) : le signal en sortie est aussi ondulé que le signal redressé en TP3, alors qu'il devrait être presque continu — preuve que le condensateur ne stocke plus de charge.</em></p>
+    <p><em>Solution : remplacer le condensateur électrolytique 1 000 µF / 25 V par un modèle équivalent (~ 2 €). Si plusieurs condensateurs sont visiblement « gonflés » sur la carte (signe de vieillissement), changer toute l'alimentation (~ 30–50 €).</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Chaîne AC → DC :</strong> 4 étapes — transformateur (changer la tension) → pont de diodes (redresser) → condensateur (filtrer) → régulateur (stabiliser).</li>
+    <li><strong>Forme des signaux :</strong> sinusoïdal au TP2 → pulsé positif au TP3 → quasi-continu au TP4.</li>
+    <li><strong>Panne fréquente :</strong> condensateur de filtrage HS = signal en TP4 reste ondulé. Symptôme typique : le PC s'allume puis s'éteint.</li>
+    <li><strong>Tension efficace :</strong> U<sub>eff</sub> = U<sub>max</sub> / √2 pour un signal sinusoïdal.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

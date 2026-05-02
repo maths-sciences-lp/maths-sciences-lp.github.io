@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité 3 – Recharge d'un véhicule électrique – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 3 – Comprendre la recharge d'un véhicule électrique <span style="font-size:.55em;color:#059669;font-weight:600">ÉTUDE DOCUMENTAIRE</span></h1>
+  <p class="sous-titre">Chapitre 2 – Conversion alternatif ↔ continu | Terminale Bac Pro (Grpt 1) | Physique – Électricité | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre pourquoi un véhicule électrique nécessite une conversion AC → DC pour se recharger</li>
+    <li>Distinguer charge lente (AC) et charge rapide (DC), et localiser le redresseur dans chaque cas</li>
+    <li>Calculer une durée de charge selon la puissance du chargeur</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a> §1-3 (redressement), §7 (onduleur). Cette activité applique la conversion AC → DC à un cas industriel concret du quotidien.
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – un client perplexe au garage</h2>
+  <p><em>Matteo, conseiller commercial dans une concession Renault, doit expliquer à un client comment recharger sa nouvelle Megane E-Tech 100 % électrique. Le client est perdu : « Pourquoi y a-t-il deux types de prises de charge ? Pourquoi à la maison c'est lent et sur l'autoroute c'est rapide ? Que fait exactement la borne ? »</em></p>
+
+  <h3>Document 1 — La batterie d'un VE est en courant continu</h3>
+  <p>Une batterie de véhicule électrique stocke l'énergie en <strong>courant continu</strong> (DC). Pour la Megane E-Tech : tension nominale 400 V DC, capacité 60 kWh.</p>
+
+  <p>Le réseau électrique français fournit du <strong>courant alternatif</strong> (AC) à 230 V (monophasé, prises domestiques) ou 400 V (triphasé, bornes professionnelles).</p>
+
+  <p style="background:#fef3c7;padding:8px 12px;border-radius:6px;border-left:3px solid #b45309">
+  ⚠️ <strong>Pour recharger une batterie, il faut donc convertir l'AC du réseau en DC stockable.</strong> C'est exactement le rôle d'un <strong>redresseur</strong>.
+  </p>
+
+  <h3>Document 2 — Deux modes de charge — où est le redresseur ?</h3>
+
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 720 340" style="max-width:720px;display:block;margin:0 auto" role="img" aria-label="Comparaison de 2 modes de charge VE. Mode AC (charge lente) : le réseau 230V AC arrive à la borne qui transmet directement l'AC à la voiture, et le redresseur AC vers DC est intégré dans la voiture. Mode DC rapide : la borne contient un redresseur puissant qui convertit le 400V triphasé AC en 400V DC, et envoie directement du DC à la batterie.">
+      <defs>
+        <style>
+          .blk{fill:#fff;stroke:#1e40af;stroke-width:2}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .lblB{font:600 11px sans-serif;text-anchor:middle;fill:#1d4ed8}
+          .lbl{font:11px sans-serif;text-anchor:middle;fill:#1a202c}
+          .ac{stroke:#dc2626;stroke-width:2.5;fill:none}
+          .dc{stroke:#0969da;stroke-width:2.5;fill:none}
+          .red{fill:#fef3c7;stroke:#b45309;stroke-width:1.8}
+          .battery{fill:#dcfce7;stroke:#16a34a;stroke-width:2}
+          .car{fill:#cbd5e1;stroke:#1f2937;stroke-width:1.5}
+        </style>
+      </defs>
+
+      <!-- =============== MODE AC (charge lente) =============== -->
+      <text class="ti" x="360" y="22">MODE AC — Charge lente domestique (Wallbox 7,4 kW)</text>
+
+      <rect class="blk" x="20" y="40" width="100" height="60" rx="6"/>
+      <text class="lblB" x="70" y="65">Réseau</text>
+      <text class="lblB" x="70" y="80">230 V ~ AC</text>
+
+      <line class="ac" x1="120" y1="70" x2="180" y2="70" marker-end="url(#aArr)"/>
+      <text class="lbl" x="150" y="60" fill="#b91c1c" font-weight="bold">AC</text>
+
+      <rect class="blk" x="180" y="40" width="100" height="60" rx="6"/>
+      <text class="lblB" x="230" y="65">Wallbox</text>
+      <text class="lblB" x="230" y="80">(transit AC)</text>
+
+      <line class="ac" x1="280" y1="70" x2="360" y2="70" marker-end="url(#aArr)"/>
+      <text class="lbl" x="320" y="60" fill="#b91c1c" font-weight="bold">AC</text>
+
+      <!-- Voiture avec redresseur EMBARQUÉ -->
+      <rect class="car" x="360" y="35" width="320" height="70" rx="8"/>
+      <text class="lbl" x="520" y="50" font-weight="bold" fill="#1f2937">VOITURE — Megane E-Tech</text>
+
+      <rect class="red" x="380" y="55" width="100" height="40" rx="4"/>
+      <text class="lbl" x="430" y="71" font-weight="bold" fill="#92400e">Redresseur</text>
+      <text class="lbl" x="430" y="85" fill="#92400e" font-size="9">embarqué (OBC)</text>
+
+      <line class="dc" x1="480" y1="75" x2="540" y2="75" marker-end="url(#dArr)"/>
+      <text class="lbl" x="510" y="65" fill="#1d4ed8" font-weight="bold">DC</text>
+
+      <rect class="battery" x="540" y="55" width="120" height="40" rx="4"/>
+      <text class="lbl" x="600" y="71" font-weight="bold" fill="#15803d">Batterie</text>
+      <text class="lbl" x="600" y="85" fill="#15803d" font-size="9">400 V DC, 60 kWh</text>
+
+      <text class="lbl" x="430" y="125" fill="#7c2d12" font-style="italic">redresseur dans la voiture</text>
+      <text class="lbl" x="600" y="125" fill="#7c2d12" font-weight="bold">~ 8 h pour 100 %</text>
+
+      <!-- Séparateur -->
+      <line x1="0" y1="155" x2="720" y2="155" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"/>
+
+      <!-- =============== MODE DC RAPIDE =============== -->
+      <text class="ti" x="360" y="180">MODE DC RAPIDE — Borne autoroute Ionity / Tesla Supercharger (50 à 350 kW)</text>
+
+      <rect class="blk" x="20" y="200" width="100" height="60" rx="6"/>
+      <text class="lblB" x="70" y="225">Réseau triphasé</text>
+      <text class="lblB" x="70" y="240">400 V ~ AC</text>
+
+      <line class="ac" x1="120" y1="230" x2="180" y2="230" marker-end="url(#aArr)"/>
+      <text class="lbl" x="150" y="220" fill="#b91c1c" font-weight="bold">AC</text>
+
+      <!-- Borne avec redresseur INTÉGRÉ -->
+      <rect class="blk" x="180" y="195" width="180" height="80" rx="6"/>
+      <text class="lblB" x="270" y="218">Borne DC rapide</text>
+      <rect class="red" x="200" y="232" width="140" height="35" rx="4"/>
+      <text class="lbl" x="270" y="248" font-weight="bold" fill="#92400e">Redresseur</text>
+      <text class="lbl" x="270" y="262" fill="#92400e" font-size="9">de forte puissance</text>
+
+      <line class="dc" x1="360" y1="235" x2="430" y2="235" marker-end="url(#dArr)"/>
+      <text class="lbl" x="395" y="225" fill="#1d4ed8" font-weight="bold">DC</text>
+
+      <!-- Voiture (sans redresseur actif) -->
+      <rect class="car" x="430" y="200" width="250" height="70" rx="8"/>
+      <text class="lbl" x="555" y="218" font-weight="bold" fill="#1f2937">VOITURE</text>
+      <text class="lbl" x="500" y="245" fill="#475569" font-size="9">redresseur</text>
+      <text class="lbl" x="500" y="258" fill="#475569" font-size="9">embarqué</text>
+      <text class="lbl" x="500" y="271" fill="#475569" font-size="9">contourné</text>
+      <rect class="battery" x="555" y="225" width="115" height="40" rx="4"/>
+      <text class="lbl" x="612" y="241" font-weight="bold" fill="#15803d">Batterie</text>
+      <text class="lbl" x="612" y="255" fill="#15803d" font-size="9">DC direct</text>
+
+      <text class="lbl" x="270" y="285" fill="#7c2d12" font-style="italic">redresseur dans la borne</text>
+      <text class="lbl" x="555" y="290" fill="#7c2d12" font-weight="bold">~ 30 min pour 80 %</text>
+
+      <defs>
+        <marker id="aArr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <polygon points="0,0 10,5 0,10" fill="#dc2626"/>
+        </marker>
+        <marker id="dArr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <polygon points="0,0 10,5 0,10" fill="#0969da"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>Document 3 — Spécifications constructeur (Megane E-Tech)</h3>
+  <table>
+    <thead>
+      <tr><th>Mode de charge</th><th>Puissance max (P)</th><th>Localisation du redresseur</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Prise domestique 230 V (monophasé)</td><td>2,3 kW</td><td>Dans la voiture (OBC)</td></tr>
+      <tr><td>Wallbox 230 V monophasé</td><td>7,4 kW</td><td>Dans la voiture (OBC)</td></tr>
+      <tr><td>Wallbox 400 V triphasé</td><td>22 kW</td><td>Dans la voiture (OBC)</td></tr>
+      <tr><td>Borne DC rapide (CCS Combo 2)</td><td>130 kW</td><td>Dans la borne</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Pourquoi existe-t-il deux types de charge (AC lente et DC rapide), et quelle est la différence physique entre les deux ? Comment Matteo peut-il l'expliquer simplement à son client ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Pour chaque élément ci-dessous, indiquer s'il fournit / utilise du courant alternatif (AC) ou continu (DC) :</p>
+  <ul>
+    <li>(a) Réseau électrique français : ……</li>
+    <li>(b) Batterie de la voiture : ……</li>
+    <li>(c) Sortie d'une Wallbox 7,4 kW (vers le câble) : ……</li>
+    <li>(d) Sortie d'une borne DC rapide (vers le câble) : ……</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>(a) Réseau : <strong>AC</strong> (230 V monophasé ou 400 V triphasé)</li>
+      <li>(b) Batterie : <strong>DC</strong> (400 V continu)</li>
+      <li>(c) Sortie Wallbox : <strong>AC</strong> (la borne ne fait que transmettre, pas convertir)</li>
+      <li>(d) Sortie borne DC : <strong>DC</strong> (la borne contient le redresseur)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>D'après le schéma du document 2, où se trouve le <strong>redresseur</strong> dans chacun des deux modes de charge ? Pourquoi cette différence d'emplacement ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>Mode AC (charge lente) :</strong> le redresseur est <strong>embarqué dans la voiture</strong> (appelé OBC, On-Board Charger). La borne envoie de l'AC, et la voiture le convertit en DC pour la batterie.</li>
+      <li><strong>Mode DC rapide :</strong> le redresseur est <strong>dans la borne</strong> (qui est très grande, climatisée, refroidie). Elle convertit l'AC du réseau en DC et envoie directement du DC à la voiture (le redresseur embarqué est court-circuité).</li>
+    </ul>
+    <p><strong>Pourquoi cette différence :</strong> un redresseur de 130 kW pèse plusieurs dizaines de kg et dégage beaucoup de chaleur. On ne peut pas le mettre dans une voiture (encombrement, poids). Le redresseur embarqué fait au max 22 kW. Pour aller plus vite, on déporte le redresseur dans la borne sur le bord de l'autoroute.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le temps nécessaire pour recharger complètement la batterie (60 kWh, vide à pleine) selon le mode de charge :</p>
+  <p><em>Aide : t (h) = E (kWh) / P (kW)</em></p>
+  <table>
+    <thead><tr><th>Mode</th><th>P (kW)</th><th>Temps (h)</th></tr></thead>
+    <tbody>
+      <tr><td>Prise domestique</td><td>2,3</td><td>……</td></tr>
+      <tr><td>Wallbox monophasée</td><td>7,4</td><td>……</td></tr>
+      <tr><td>Wallbox triphasée</td><td>22</td><td>……</td></tr>
+      <tr><td>Borne DC rapide</td><td>130</td><td>……</td></tr>
+    </tbody>
+  </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Prise domestique : t = 60 / 2,3 ≈ <strong>26 h</strong> (toute une journée + nuit)</li>
+      <li>Wallbox monophasée : t = 60 / 7,4 ≈ <strong>8,1 h</strong> (une nuit)</li>
+      <li>Wallbox triphasée : t = 60 / 22 ≈ <strong>2,7 h</strong></li>
+      <li>Borne DC rapide : t = 60 / 130 ≈ <strong>0,46 h ≈ 28 min</strong></li>
+    </ul>
+    <p>En réalité, sur une borne DC, on s'arrête souvent à 80 % (la dernière partie de la charge ralentit pour préserver la batterie). 80 % en environ 25 min.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi la charge AC monophasée est-elle <strong>limitée à 7,4 kW</strong> environ, alors que la charge DC peut monter à 130 kW ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Plusieurs raisons cumulatives :</p>
+    <ul>
+      <li><strong>Limitation du réseau monophasé domestique :</strong> à 230 V, pour atteindre 7,4 kW il faut déjà 32 A. C'est la limite habituelle d'un disjoncteur résidentiel.</li>
+      <li><strong>Limitation du redresseur embarqué :</strong> il doit être petit, léger, et ne pas chauffer. Il est conçu pour 7,4 kW (parfois 22 kW en triphasé).</li>
+      <li><strong>Limitation thermique du câble :</strong> un câble de recharge à 130 kW serait extrêmement gros — sauf s'il est <strong>refroidi par liquide</strong>, ce qui est le cas des câbles DC rapide.</li>
+    </ul>
+    <p>La charge DC rapide contourne ces 3 limites en <strong>déportant tout dans la borne</strong> (qui peut être grosse, refroidie, alimentée en triphasé puissant) et en utilisant un câble spécialisé.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger l'<strong>explication de Matteo au client</strong>, en 6-8 lignes, qui répond à la problématique et utilise un langage simple (le client n'est pas électricien).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>Votre Megane stocke son énergie dans une batterie en courant continu (comme les piles de votre télécommande, mais en plus puissant). Le réseau électrique, lui, fournit du courant alternatif (qui change de sens 50 fois par seconde). Pour recharger la voiture, il faut donc <strong>transformer l'alternatif du réseau en continu pour la batterie</strong> — c'est le rôle d'un appareil appelé redresseur.</em></p>
+    <p><em>Il y a deux solutions, selon où on installe ce redresseur :</em></p>
+    <ul>
+      <li><em><strong>Solution 1 — chez vous (charge lente, AC) :</strong> votre voiture contient un petit redresseur embarqué. La borne murale fait juste passer le courant. Comme le redresseur de la voiture est compact (~ 7 kW), la charge prend une nuit.</em></li>
+      <li><em><strong>Solution 2 — bornes autoroute (charge rapide, DC) :</strong> on déporte le redresseur dans une grosse armoire sur le bord de la route. Il est beaucoup plus puissant (130 kW), peut chauffer librement, et envoie directement du courant continu à votre batterie. La charge prend 30 min.</em></li>
+    </ul>
+    <p><em>Pour les courts trajets quotidiens, la borne maison suffit largement. Vous prendrez les bornes rapides seulement pour les longs voyages.</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Batterie = courant continu (DC) ; réseau = courant alternatif (AC).</strong> Un redresseur est donc indispensable pour recharger.</li>
+    <li><strong>Charge AC lente :</strong> redresseur dans la voiture (OBC, ~ 7 à 22 kW). Borne simple. Charge en heures.</li>
+    <li><strong>Charge DC rapide :</strong> redresseur dans la borne (50 à 350 kW). Câble refroidi. Charge en minutes.</li>
+    <li><strong>Ordre de grandeur :</strong> recharge complète d'un VE 60 kWh — 26 h sur prise domestique, 8 h Wallbox, 30 min DC rapide.</li>
+    <li><strong>Lien avec le programme :</strong> ces 2 modes illustrent la fonction « redressement AC → DC » vue dans la leçon, dans un contexte industriel actuel.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
