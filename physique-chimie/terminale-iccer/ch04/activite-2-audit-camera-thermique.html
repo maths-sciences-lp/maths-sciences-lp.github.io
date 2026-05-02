@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch04 – Activité 2 – Audit caméra thermique d'une maison – Terminale ICCER</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 2 – Audit caméra thermique d'une maison <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 4 – Rayonnement thermique et effet de serre | Terminale Bac Pro (Grpt 1) | Physique – Thermique | ⏱ 35 min</p>
+  <p class="maj">Dernière mise à jour : 2 mai 2026, 18:42</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Interpréter des images de caméra thermique (thermogrammes)</li>
+    <li>Identifier les zones de déperdition d'un bâtiment</li>
+    <li>Hiérarchiser les travaux de rénovation énergétique</li>
+  </ul>
+</div>
+
+<p style="margin:8px 0;padding:8px 12px;background:#fef3c7;border-left:3px solid #b45309;font-size:.9em">
+  💡 Notions centrales : <a href="lecon.html">leçon</a> §1-2 (rayonnement thermique, IR), §4 (caméra thermique). Plus un objet est chaud, plus il rayonne d'énergie infrarouge.
+</p>
+
+<!-- ===== SITUATION ===== -->
+<div class="situation">
+  <h2>Situation – le client veut savoir où isoler en priorité</h2>
+  <p><em>Léa, technicienne en énergétique du bâtiment, fait l'audit d'une maison de 1985 mal isolée. Le client veut rénover mais a un budget limité (15 000 €) : il faut donc identifier les pertes les plus importantes pour traiter en priorité. Léa utilise une caméra thermique professionnelle (FLIR E4) et photographie les façades de la maison par −2 °C extérieur (chauffage à 19 °C intérieur).</em></p>
+
+  <h3>Document 1 — Principe de la caméra thermique</h3>
+  <p>Une caméra thermique mesure le <strong>rayonnement infrarouge</strong> émis par chaque point de la scène. Elle transforme cette mesure en image colorée :</p>
+  <ul>
+    <li><strong>Bleu / violet</strong> : zones froides (peu de rayonnement, donc bien isolées vues de l'extérieur)</li>
+    <li><strong>Vert / jaune</strong> : températures intermédiaires (zones moyennement isolées)</li>
+    <li><strong>Rouge / blanc</strong> : zones chaudes (rayonnement important, donc fuites thermiques !)</li>
+  </ul>
+
+  <p>Sur une <strong>photo extérieure</strong>, plus une zone apparaît <strong>chaude</strong> (rouge/blanc), plus l'isolation est mauvaise (la chaleur s'échappe vers l'extérieur).</p>
+
+  <h3>Document 2 — Thermogrammes des 4 façades</h3>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:14px 0">
+
+    <!-- Façade 1 - Mur Sud -->
+    <div>
+      <p style="text-align:center;margin:0 0 4px;font-weight:600;color:#1e40af">Façade Sud (mur béton, isolation 5 cm laine)</p>
+      <div class="svg-wrap">
+        <svg width="100%" viewBox="0 0 280 200" role="img" aria-label="Thermogramme façade Sud : mur globalement en bleu/vert (16-18°C), zones rouges autour des fenêtres (20-22°C indiquant des ponts thermiques), petite zone blanche au coin du toit (24°C)">
+          <defs>
+            <linearGradient id="sudGrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#1e3a8a"/>
+              <stop offset="50%" stop-color="#0ea5e9"/>
+              <stop offset="100%" stop-color="#0284c7"/>
+            </linearGradient>
+          </defs>
+          <rect width="280" height="200" fill="url(#sudGrad)"/>
+          <!-- Toit (zone chaude) -->
+          <polygon points="20,40 140,5 260,40 260,30 140,0 20,30" fill="#ef4444" opacity=".7"/>
+          <!-- Fenêtres (zones jaunes/rouges = ponts thermiques) -->
+          <rect x="60" y="80" width="40" height="50" fill="#f59e0b" opacity=".75"/>
+          <rect x="180" y="80" width="40" height="50" fill="#f59e0b" opacity=".75"/>
+          <!-- Cadres (rouges = fuites) -->
+          <rect x="58" y="78" width="44" height="3" fill="#dc2626"/>
+          <rect x="58" y="130" width="44" height="3" fill="#dc2626"/>
+          <rect x="178" y="78" width="44" height="3" fill="#dc2626"/>
+          <rect x="178" y="130" width="44" height="3" fill="#dc2626"/>
+          <!-- Porte -->
+          <rect x="125" y="135" width="30" height="55" fill="#fbbf24" opacity=".7"/>
+          <rect x="123" y="133" width="34" height="3" fill="#dc2626"/>
+          <!-- Coin sup gauche : zone très chaude (pont thermique) -->
+          <ellipse cx="35" cy="45" rx="20" ry="12" fill="#fff" opacity=".7"/>
+          <!-- Légende température -->
+          <text x="10" y="195" font="9px monospace" fill="#fff">−2 °C ext.</text>
+          <text x="270" y="195" font="9px monospace" fill="#fff" text-anchor="end">19 °C int.</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Façade 2 - Mur Nord -->
+    <div>
+      <p style="text-align:center;margin:0 0 4px;font-weight:600;color:#1e40af">Façade Nord (mur béton, isolation 5 cm laine)</p>
+      <div class="svg-wrap">
+        <svg width="100%" viewBox="0 0 280 200" role="img" aria-label="Thermogramme façade Nord : mur globalement bleu (15-17°C, bien froid donc OK), grande zone blanche/rouge sur tout le pignon Nord-Ouest (mur très chaud, mauvaise isolation)">
+          <defs>
+            <linearGradient id="nordGrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#1e3a8a"/>
+              <stop offset="100%" stop-color="#0284c7"/>
+            </linearGradient>
+          </defs>
+          <rect width="280" height="200" fill="url(#nordGrad)"/>
+          <!-- Toit ok -->
+          <polygon points="20,40 140,5 260,40" fill="#3b82f6" opacity=".7"/>
+          <!-- Pignon Ouest très chaud -->
+          <rect x="0" y="35" width="50" height="160" fill="#ef4444" opacity=".75"/>
+          <rect x="0" y="60" width="50" height="100" fill="#fff" opacity=".5"/>
+          <text x="25" y="115" font="10px monospace" fill="#fff" text-anchor="middle" font-weight="bold">↑ 22°C</text>
+          <!-- Fenêtre -->
+          <rect x="100" y="85" width="35" height="45" fill="#fbbf24" opacity=".75"/>
+          <rect x="98" y="83" width="39" height="3" fill="#dc2626"/>
+          <text x="10" y="195" font="9px monospace" fill="#fff">−2 °C ext.</text>
+          <text x="270" y="195" font="9px monospace" fill="#fff" text-anchor="end">19 °C int.</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Toiture -->
+    <div>
+      <p style="text-align:center;margin:0 0 4px;font-weight:600;color:#1e40af">Toiture (combles non isolés)</p>
+      <div class="svg-wrap">
+        <svg width="100%" viewBox="0 0 280 200" role="img" aria-label="Thermogramme toiture : tuiles globalement très chaudes (rouge/jaune partout), surtout au faîtage (blanc), avec quelques zones plus sombres autour des points de fixation. Toiture clairement non isolée.">
+          <defs>
+            <linearGradient id="toitGrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#fbbf24"/>
+              <stop offset="50%" stop-color="#ef4444"/>
+              <stop offset="100%" stop-color="#dc2626"/>
+            </linearGradient>
+          </defs>
+          <rect width="280" height="200" fill="url(#toitGrad)"/>
+          <!-- Faîtage blanc/chaud -->
+          <rect x="0" y="0" width="280" height="40" fill="#fff" opacity=".6"/>
+          <!-- Quelques nuances pour faire "tuiles" -->
+          <g opacity=".15">
+            <line x1="0" y1="60" x2="280" y2="60" stroke="#7f1d1d" stroke-width="1"/>
+            <line x1="0" y1="100" x2="280" y2="100" stroke="#7f1d1d" stroke-width="1"/>
+            <line x1="0" y1="140" x2="280" y2="140" stroke="#7f1d1d" stroke-width="1"/>
+          </g>
+          <text x="140" y="105" font="11px monospace" fill="#fff" text-anchor="middle" font-weight="bold">↑ 24-26°C — TRÈS CHAUD</text>
+          <text x="10" y="195" font="9px monospace" fill="#fff">−2 °C ext.</text>
+          <text x="270" y="195" font="9px monospace" fill="#fff" text-anchor="end">19 °C int.</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Plancher bas + sol -->
+    <div>
+      <p style="text-align:center;margin:0 0 4px;font-weight:600;color:#1e40af">Plancher bas (sur vide sanitaire)</p>
+      <div class="svg-wrap">
+        <svg width="100%" viewBox="0 0 280 200" role="img" aria-label="Thermogramme plancher : sol partiellement bleu mais avec zones jaunes près des murs et autour des canalisations. Pertes modérées au sol.">
+          <defs>
+            <linearGradient id="planGrad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#0284c7"/>
+              <stop offset="100%" stop-color="#1e3a8a"/>
+            </linearGradient>
+          </defs>
+          <rect width="280" height="200" fill="url(#planGrad)"/>
+          <!-- Murs (chauds car bien chauffés) -->
+          <rect x="0" y="0" width="280" height="20" fill="#f59e0b" opacity=".5"/>
+          <!-- Quelques zones plus chaudes près des murs -->
+          <rect x="0" y="20" width="40" height="180" fill="#fbbf24" opacity=".4"/>
+          <rect x="240" y="20" width="40" height="180" fill="#fbbf24" opacity=".4"/>
+          <!-- Tuyau visible (chaud) -->
+          <rect x="100" y="60" width="80" height="8" fill="#ef4444" opacity=".6"/>
+          <text x="140" y="120" font="10px monospace" fill="#fff" text-anchor="middle" font-weight="bold">15-17°C</text>
+          <text x="10" y="195" font="9px monospace" fill="#fff">−2 °C ext.</text>
+          <text x="270" y="195" font="9px monospace" fill="#fff" text-anchor="end">19 °C int.</text>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>Document 3 — Tableau de répartition typique des pertes thermiques d'une maison ancienne</h3>
+  <table>
+    <thead><tr><th>Élément</th><th>Part des pertes</th><th>Coût rénovation typique</th></tr></thead>
+    <tbody>
+      <tr><td>Toiture / combles</td><td>25 à 30 %</td><td>40 à 80 €/m² (laine soufflée)</td></tr>
+      <tr><td>Murs extérieurs</td><td>20 à 25 %</td><td>120 à 250 €/m² (ITE)</td></tr>
+      <tr><td>Fenêtres / portes</td><td>10 à 15 %</td><td>500 à 900 €/fenêtre</td></tr>
+      <tr><td>Plancher bas / vide sanitaire</td><td>7 à 10 %</td><td>40 à 80 €/m²</td></tr>
+      <tr><td>Ponts thermiques + ventilation</td><td>20 à 25 %</td><td>variable</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> En partant des thermogrammes, comment Léa peut-elle hiérarchiser les travaux de rénovation pour optimiser le budget de 15 000 € du client ?
+</div>
+
+<!-- ===== QUESTIONS ===== -->
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Que mesure une caméra thermique ? Pourquoi voit-on la chaleur en couleurs alors qu'on ne la voit pas à l'œil nu ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Une caméra thermique mesure le <strong>rayonnement infrarouge</strong> (IR) émis par chaque objet. Tout objet à une température au-dessus du zéro absolu émet de l'IR ; cette émission est <strong>invisible à l'œil nu</strong> (l'œil humain ne capte que la lumière visible, longueurs d'onde 0,4 à 0,8 µm).</p>
+    <p>La caméra capte les longueurs d'onde de 7 à 14 µm (IR thermique) avec un capteur spécialisé, et <strong>traduit l'intensité IR en couleurs visibles</strong>. C'est une « traduction visuelle » d'un phénomène invisible.</p>
+    <p>Plus un objet est chaud, plus il rayonne (loi de Stefan-Boltzmann : P ∝ T⁴). La caméra rend la différence visible.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>D'après les 4 thermogrammes, classer les éléments du bâtiment du <strong>plus déperditif</strong> au <strong>moins déperditif</strong>. Justifier en une phrase pour chaque.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Classement (du pire au meilleur) :</p>
+    <ol>
+      <li><strong>Toiture</strong> (24-26 °C, blanc/jaune sur tout le toit) : combles non isolés, perte massive — la chaleur monte.</li>
+      <li><strong>Mur Nord pignon</strong> (22 °C, zone blanche) : isolation très dégradée ou pont thermique majeur sur ce mur exposé au vent froid.</li>
+      <li><strong>Fenêtres et portes Sud</strong> (jaune/rouge sur les cadres) : ponts thermiques aux jonctions cadre/mur.</li>
+      <li><strong>Plancher bas</strong> (15-17 °C, surtout bleu) : pertes modérées, sauf près des canalisations.</li>
+      <li><strong>Mur Sud</strong> (bleu/vert, hors fenêtres) : globalement OK, isolation des 5 cm de laine fonctionne correctement sur cette façade.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>D'après le tableau des pertes typiques (doc 3), si la maison a 100 m² de toiture et 15 fenêtres, calculer un budget approximatif pour :</p>
+  <ol type="a">
+    <li>Isoler les combles (laine soufflée à 60 €/m²)</li>
+    <li>Remplacer les 15 fenêtres (700 €/fenêtre)</li>
+    <li>Faire une ITE (Isolation Thermique par l'Extérieur) sur 120 m² de mur Nord à 180 €/m²</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>(a) Combles : 100 × 60 = <strong>6 000 €</strong></li>
+      <li>(b) Fenêtres : 15 × 700 = <strong>10 500 €</strong></li>
+      <li>(c) ITE Nord : 120 × 180 = <strong>21 600 €</strong></li>
+    </ul>
+    <p>Total des 3 actions : 38 100 €. Budget client = 15 000 € → on ne peut pas tout faire.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Avec un budget de 15 000 €, quelle <strong>combinaison de travaux</strong> Léa doit-elle proposer pour <strong>maximiser l'économie d'énergie</strong> ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Recommandation prioritaire :</strong></p>
+    <ol>
+      <li><strong>Isolation des combles</strong> : 6 000 € pour ~ 25-30 % des pertes éliminées. Ratio coût/efficacité imbattable. C'est le geste #1 en rénovation énergétique.</li>
+      <li><strong>Remplacement des fenêtres</strong> : 10 500 € pour ~ 10-15 % des pertes éliminées. Cher au m² mais essentiel pour traiter les ponts thermiques visibles sur les thermogrammes.</li>
+    </ol>
+    <p><strong>Total : 16 500 €</strong> — légèrement au-dessus du budget mais éligible aux aides (MaPrimeRénov', éco-PTZ) qui ramènent à ~ 13 000 € net.</p>
+    <p>L'<strong>ITE du mur Nord</strong> (21 600 €) est techniquement la priorité physique mais nécessite un budget plus important. À programmer pour la phase 2 (5 ans plus tard).</p>
+    <p>Action différée : remplacement des fenêtres si encore en simple vitrage. Sinon, préférer l'ITE.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5–6 lignes le <strong>compte-rendu d'audit</strong> à remettre au client.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>Audit thermique — Maison de 1985 — 2 mai 2026.</em></p>
+    <p><em>L'analyse à la caméra thermique révèle 3 zones critiques par ordre d'importance : (1) la <strong>toiture</strong> apparaît partout en rouge/blanc à 24-26 °C, signe que les combles ne sont pas isolés ; (2) le <strong>pignon Nord</strong> présente une grande zone très chaude indiquant une dégradation de l'isolation ou un pont thermique majeur ; (3) toutes les <strong>fenêtres</strong> ont des cadres rouges (ponts thermiques aux jonctions).</em></p>
+    <p><em>Recommandation phase 1 (budget 15 000 €) : isolation des combles (~ 6 000 €) + remplacement des fenêtres (~ 10 500 €), pour traiter ~ 40 % des pertes. Avec les aides (MaPrimeRénov', éco-PTZ), reste à charge ≈ 13 000 €. Phase 2 à 5 ans : ITE du mur Nord (~ 22 000 €) pour traiter le pignon dégradé. Économie attendue après phase 1 : <strong>30 à 40 % sur la facture de chauffage</strong>.</em></p>
+  </div>
+</div>
+
+<!-- ===== A RETENIR ===== -->
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Caméra thermique :</strong> capte le rayonnement IR (7 à 14 µm) et le traduit en image colorée. Bleu = froid (bien isolé) ; rouge = chaud (mal isolé).</li>
+    <li><strong>Loi de Stefan-Boltzmann :</strong> P ∝ T⁴. Un faible écart de température produit un grand écart de rayonnement, ce qui rend la caméra très sensible.</li>
+    <li><strong>Ordres de grandeur des pertes :</strong> combles ~25-30 %, murs ~20-25 %, fenêtres ~10-15 %, plancher ~7-10 %, ponts thermiques + ventilation ~20-25 %.</li>
+    <li><strong>Priorité de rénovation :</strong> toujours commencer par l'isolation des combles (rapport coût/efficacité optimal).</li>
+    <li><strong>Aides disponibles :</strong> MaPrimeRénov', éco-PTZ, CEE — peuvent réduire le coût de 30 à 50 %.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
