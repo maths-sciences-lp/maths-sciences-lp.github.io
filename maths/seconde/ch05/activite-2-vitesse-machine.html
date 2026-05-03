@@ -1,51 +1,284 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch05 – Activité 2 – Régler la vitesse d'une machine – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Activité 2 – Régler la vitesse d'une scie à panneaux – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Régler une scie à vitesse de coupe – 2nde MAMA <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 5 – Équations 1er degré | 2nde Bac Pro MAMA | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul><li>Modéliser un problème par une équation</li><li>Résoudre ax + b = c</li></ul></div>
+<header>
+  <h1>Activité 2 – Régler la vitesse d'une scie à panneaux <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 5 – Équations du 1er degré | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – choisir le bon régime</h2>
-<p><em>Pour la coupe d'un panneau, le constructeur indique : la vitesse linéaire de coupe v (m/s) est liée à la vitesse de rotation N (tr/min) par v = 0,002 × N (lame de Ø 240 mm).</em></p>
-<p>On veut une vitesse de coupe de v = 60 m/s pour le bois feuillu.</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Modéliser une situation pro par une équation du 1er degré</li>
+    <li>Résoudre ax + b = c avec démarche correcte</li>
+    <li>Vérifier la cohérence d'une solution avec les contraintes physiques</li>
+    <li>Lire un graphique vitesse-régime pour anticiper un calcul</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – atelier de menuiserie, scie à panneaux</h2>
+  <p><em>Tu es apprenti menuisier dans l'atelier. Le chef demande de couper des panneaux en bois feuillu (chêne) sur la scie à format. Le constructeur indique sur la fiche technique :</em></p>
+
+  <div style="background:#fff;padding:12px 16px;border-radius:8px;border:1px solid #cbd5e1;margin:14px 0">
+    <p style="font-family:'Courier New',monospace;margin:4px 0"><strong>📋 Fiche machine — scie à panneaux Felder K 700</strong></p>
+    <p style="margin:4px 0">• Lame circulaire Ø 240 mm</p>
+    <p style="margin:4px 0">• Vitesse de coupe : <strong>v = 0,0125 × N</strong> (en m/s)</p>
+    <p style="margin:4px 0">avec N = vitesse de rotation (en tr/min)</p>
+    <p style="margin:4px 0">• Régimes possibles : 1 200 / 2 400 / 3 600 / 4 800 tr/min</p>
+    <p style="margin:4px 0">• Régime maximal autorisé : 5 000 tr/min</p>
+  </div>
+
+  <h3>Vitesses de coupe recommandées par essence</h3>
+  <table>
+    <thead>
+      <tr><th>Matériau</th><th>v conseillée (m/s)</th><th>Conséquences si trop bas</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mélaminé / panneau aggloméré</td><td>30</td><td>Éclats sur les chants</td></tr>
+      <tr><td>Bois feuillu (chêne, hêtre)</td><td>45</td><td>Brûlures, lame qui « broute »</td></tr>
+      <tr><td>Bois résineux (sapin, pin)</td><td>60</td><td>Coupe rugueuse</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document — graphique vitesse / régime</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Graphique de la vitesse de coupe v en fonction du régime N. Droite passant par l'origine, pente 0,0125. Trois zones colorées : mélaminé (vert, v=30), feuillu (orange, v=45), résineux (rouge, v=60). Limite machine à N=5000.">
+      <defs>
+        <style>
+          .ax{stroke:#1a202c;stroke-width:1.5}
+          .gd{stroke:#cbd5e1;stroke-width:.6}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">Vitesse de coupe v en fonction du régime N</text>
+
+      <!-- Y : 0 m/s → 240, 75 m/s → 50. 1 m/s = 2,53 px. v=30 → 164, v=45 → 126, v=60 → 88, v=75 → 50 -->
+      <g class="gd">
+        <line x1="60" y1="50" x2="500" y2="50"/>
+        <line x1="60" y1="88" x2="500" y2="88"/>
+        <line x1="60" y1="126" x2="500" y2="126"/>
+        <line x1="60" y1="164" x2="500" y2="164"/>
+        <line x1="60" y1="202" x2="500" y2="202"/>
+        <line x1="60" y1="240" x2="500" y2="240"/>
+      </g>
+      <line class="ax" x1="60" y1="240" x2="510" y2="240"/>
+      <line class="ax" x1="60" y1="40" x2="60" y2="240"/>
+
+      <!-- Y graduations -->
+      <g class="lbl" text-anchor="end">
+        <text x="55" y="244">0</text>
+        <text x="55" y="206">15</text>
+        <text x="55" y="168">30</text>
+        <text x="55" y="130">45</text>
+        <text x="55" y="92">60</text>
+        <text x="55" y="54">75</text>
+      </g>
+      <text class="lblA" x="20" y="145" transform="rotate(-90 20 145)" text-anchor="middle">v (m/s)</text>
+
+      <!-- X : 0 → 60, 6000 tr/min → 480. 1000 tr/min = 70 px -->
+      <g class="lbl" text-anchor="middle">
+        <text x="60" y="258">0</text>
+        <text x="200" y="258">2 000</text>
+        <text x="340" y="258">4 000</text>
+        <text x="480" y="258">6 000</text>
+      </g>
+      <text class="lblA" x="270" y="275" text-anchor="middle">N (tr/min)</text>
+
+      <!-- Zones colorées horizontales -->
+      <rect x="60" y="155" width="440" height="20" fill="#86efac" opacity=".35"/>
+      <text x="495" y="170" class="lbl" fill="#15803d" font-weight="bold" text-anchor="end">v = 30 (mélaminé)</text>
+
+      <rect x="60" y="115" width="440" height="20" fill="#fdba74" opacity=".35"/>
+      <text x="495" y="130" class="lbl" fill="#c2410c" font-weight="bold" text-anchor="end">v = 45 (feuillu)</text>
+
+      <rect x="60" y="78" width="440" height="20" fill="#fca5a5" opacity=".35"/>
+      <text x="495" y="93" class="lbl" fill="#b91c1c" font-weight="bold" text-anchor="end">v = 60 (résineux)</text>
+
+      <!-- Droite v = 0,0125 N : de (0,240) à (6000, 240 - 6000*0,0125*2,53) = (480, 240-189,75) = (480, 50,25) -->
+      <line x1="60" y1="240" x2="480" y2="50" stroke="#0056b3" stroke-width="2.5"/>
+
+      <!-- Limite machine N=5000 -->
+      <line x1="410" y1="40" x2="410" y2="240" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <text x="410" y="38" class="lbl" fill="#dc2626" font-weight="bold" text-anchor="middle">N max</text>
+
+      <!-- Points repère -->
+      <circle cx="228" cy="164" r="4" fill="#15803d"/>
+      <circle cx="312" cy="126" r="4" fill="#c2410c"/>
+      <circle cx="396" cy="88" r="4" fill="#b91c1c"/>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §2 (résolution de ax = b) et §3 (mise en équation d'un problème).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Quelle vitesse N régler ?</div>
+  <strong>Problématique :</strong> Pour chaque essence de bois, à quel régime N régler la scie ? Le régime maximal autorisé est-il toujours suffisant ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Résoudre 0,002 × N = 60.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>N = 60 / 0,002 = <strong>30 000 tr/min</strong></p>
-<p>Régler la machine sur ce régime.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Que représentent les variables N et v dans la formule v = 0,0125 × N ? Préciser leurs unités.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>• N : <strong>vitesse de rotation</strong> de la lame (tours par minute, tr/min).</p>
+    <p>• v : <strong>vitesse linéaire de coupe</strong> au bord de la lame (mètres par seconde, m/s).</p>
+    <p>La relation est <strong>linéaire</strong> : si N double, v double aussi (proportionnalité, coefficient 0,0125).</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Pour un bois résineux, la vitesse de coupe doit être 80 m/s. Quelle nouvelle vitesse N ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>N = 80 / 0,002 = <strong>40 000 tr/min</strong>.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Pour couper du <strong>mélaminé</strong> (v = 30 m/s), résoudre l'équation 0,0125 × N = 30 pour trouver le régime à régler.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>0,0125 × N = 30</p>
+    <p>N = 30 / 0,0125 = <strong>2 400 tr/min</strong></p>
+    <p>C'est un régime disponible sur la machine. ✓ Régler le sélecteur sur 2 400.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>La machine a une limite à 25 000 tr/min. Que faire pour le feuillu ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>À 25 000 tr/min : v = 0,002 × 25 000 = 50 m/s. Insuffisant pour le feuillu (60 demandé).</p>
-<p>Solutions : (a) lame plus grande (240 → 300 mm augmente v à régime égal) ; (b) accepter v = 50 m/s mais vitesse d'avance réduite ; (c) machine plus puissante.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Pour couper du <strong>bois feuillu</strong> (v = 45 m/s), quelle vitesse N régler ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>0,0125 × N = 45 → N = 45 / 0,0125 = <strong>3 600 tr/min</strong>.</p>
+    <p>Régime disponible : 3 600 ✓.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Équation 1er degré :</strong> ax = b → x = b/a (si a ≠ 0).</li>
-<li><strong>Application :</strong> tout réglage qui suit une loi proportionnelle (vitesse, dosage, prix).</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Pour couper du <strong>résineux</strong> (v = 60 m/s), quelle vitesse N faut-il ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>0,0125 × N = 60 → N = 60 / 0,0125 = <strong>4 800 tr/min</strong>.</p>
+    <p>Régime disponible : 4 800 ✓. Toujours dans la zone autorisée (N max = 5 000).</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>Imaginons une lame plus grande (Ø 300 mm) où la formule devient v = 0,0157 × N. Pour le résineux (v = 60 m/s), peut-on encore régler la scie sans dépasser la limite N max = 5 000 tr/min ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>0,0157 × N = 60 → N = 60 / 0,0157 ≈ <strong>3 822 tr/min</strong>.</p>
+    <p>3 822 &lt; 5 000 ✓. Donc oui, on peut.</p>
+    <p><strong>Observation pro :</strong> à vitesse de coupe v fixée, une <strong>lame plus grande nécessite un régime N plus faible</strong>. C'est physique : plus le diamètre est grand, plus chaque tour parcourt de distance.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Avec la lame d'origine (formule v = 0,0125 × N), si je règle la scie sur le régime 1 200 tr/min, quelle vitesse de coupe vais-je obtenir ? Cette vitesse permet-elle de couper du résineux ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>v = 0,0125 × 1 200 = <strong>15 m/s</strong>.</p>
+    <p>15 &lt; 60 → <strong>insuffisant pour le résineux</strong>. La coupe sera trop lente, le bois va « brûler » (échauffement par frottement) et la finition sera très médiocre.</p>
+    <p>Ce régime conviendrait éventuellement à du plastique tendre ou à un démarrage prudent, pas du bois standard.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">VAL</span></h2>
+  <p>L'apprenti propose : « Je règle toujours sur 4 800 tr/min, comme ça pas besoin de chercher : la coupe sera rapide pour tout. » Que penser de ce raisonnement ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Raisonnement faux et dangereux.</strong></p>
+    <p>À 4 800 tr/min, v = 60 m/s. Pour le mélaminé (v conseillé : 30 m/s), c'est <strong>2 fois trop rapide</strong> :</p>
+    <ul>
+      <li>la lame chauffe excessivement → tassement et déformation</li>
+      <li>les bords du panneau s'éclatent et s'écaillent (perte qualité)</li>
+      <li>usure prématurée des dents de lame (économique)</li>
+      <li>risque de projection violente d'éclats (sécurité)</li>
+    </ul>
+    <p>La vitesse de coupe est un <strong>réglage à adapter au matériau</strong>. Toujours consulter la fiche technique avant.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Tu dois afficher dans l'atelier un <strong>tableau de réglages rapides</strong> pour les apprentis. Compléter ce tableau et le mettre en forme :</p>
+  <table>
+    <thead>
+      <tr><th>Matériau</th><th>v à atteindre (m/s)</th><th>Régime à régler N (tr/min)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mélaminé</td><td>30</td><td>...</td></tr>
+      <tr><td>Feuillu</td><td>45</td><td>...</td></tr>
+      <tr><td>Résineux</td><td>60</td><td>...</td></tr>
+    </tbody>
+  </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead>
+        <tr><th>Matériau</th><th>v (m/s)</th><th>N (tr/min)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mélaminé</td><td>30</td><td>2 400</td></tr>
+        <tr><td>Feuillu</td><td>45</td><td>3 600</td></tr>
+        <tr><td>Résineux</td><td>60</td><td>4 800</td></tr>
+      </tbody>
+    </table>
+    <p>Tableau à plastifier et accrocher à côté du sélecteur de régime de la machine. C'est un livrable pro typique : utile, simple, immédiatement applicable.</p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>L'atelier reçoit une commande de bois exotique (palissandre) où la vitesse conseillée est <strong>v = 38 m/s</strong>. Quel régime régler ? Pourquoi ce résultat doit-il alerter l'apprenti, et que faire ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>0,0125 × N = 38 → N = 38 / 0,0125 = <strong>3 040 tr/min</strong>.</p>
+    <p><strong>Alerte :</strong> 3 040 tr/min n'est <strong>pas un régime disponible</strong> sur la machine (1 200 / 2 400 / 3 600 / 4 800).</p>
+    <p>Solutions :</p>
+    <ul>
+      <li>Choisir le régime <strong>le plus proche en-dessous</strong> : 2 400 tr/min (v = 30 m/s) — coupe un peu lente mais sécurisée.</li>
+      <li>Compenser par une <strong>vitesse d'avance plus douce</strong> du panneau pour ne pas surcharger la lame.</li>
+      <li>Avertir le chef d'atelier : peut-être faut-il une lame différente.</li>
+    </ul>
+    <p>Ne jamais « bricoler » entre deux régimes en forçant — sécurité d'abord.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Équation du 1er degré :</strong> ax = b → x = b/a (si a ≠ 0).</li>
+    <li><strong>Mise en équation :</strong> identifier l'inconnue (ici N), poser la relation (ici v = 0,0125 × N), résoudre.</li>
+    <li><strong>Vérifier la cohérence :</strong> la solution doit respecter les contraintes physiques (régimes disponibles, limite max).</li>
+    <li><strong>Application pro :</strong> tout réglage suivant une loi proportionnelle (vitesse, dosage, prix, débit).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

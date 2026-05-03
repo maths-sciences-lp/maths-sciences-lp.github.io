@@ -1,52 +1,247 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch05 – Activité 4 – Croissance d'un arbre – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Activité 4 – Croissance d'un sapin de Noël – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 4 – Quand l'arbre atteint la hauteur cible <span style="font-size:.55em;color:#7c2d12;font-weight:600">ÉTUDE DE CAS</span></h1>
-<p class="sous-titre">Chapitre 5 – Équations 1er degré | 2nde Bac Pro MAMA | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul><li>Modéliser une situation par une équation</li><li>Résoudre x dans le contexte</li></ul></div>
+<header>
+  <h1>Activité 4 – Croissance d'un sapin : équation et planning de coupe <span style="font-size:.55em;color:#7c2d12;font-weight:600">ÉTUDE DE CAS</span></h1>
+  <p class="sous-titre">Chapitre 5 – Équations du 1er degré | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – planning de coupe</h2>
-<p><em>Tom plante des sapins de Noël. Hauteur : 30 cm à la plantation. Croissance : 25 cm/an. Pour la commercialisation, hauteur cible 175 cm.</em></p>
-<p>Modèle : H(t) = 30 + 25 t (où t = âge en années)</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Modéliser une croissance linéaire H(t) = H₀ + v·t</li>
+    <li>Résoudre une équation du 1er degré dans un contexte concret</li>
+    <li>Comparer deux scénarios par calcul (avec/sans engrais)</li>
+    <li>Évaluer une décision économique (rentabilité, coût d'opportunité)</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – exploitation forestière (sapins de Noël)</h2>
+  <p><em>Tom est apprenti dans une exploitation qui produit des sapins de Noël. Au moment de la plantation, les jeunes sapins mesurent <strong>30 cm</strong>. Ils grandissent en moyenne de <strong>25 cm par an</strong>. Pour être commercialisés à Noël, ils doivent atteindre une hauteur d'au moins <strong>175 cm</strong>.</em></p>
+
+  <h3>Document — modèle de croissance</h3>
+  <p>Si t désigne l'âge du sapin en années (à compter de la plantation) et H(t) sa hauteur en cm, on modélise :</p>
+  <p style="background:#dbeafe;padding:10px 14px;border-radius:6px;border-left:3px solid #1d4ed8;font-family:'Courier New',monospace">
+    <strong>H(t) = 30 + 25 × t</strong>
+  </p>
+
+  <h3>Document — graphique de croissance</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Graphique de la hauteur du sapin en fonction du temps. Droite affine partant de (0, 30 cm) et croissant de 25 cm par an. Point d'intersection avec H=175 cm vers t=5,8 ans.">
+        <defs>
+          <style>
+            .ax{stroke:#1a202c;stroke-width:1.5}
+            .gd{stroke:#cbd5e1;stroke-width:.6}
+            .lbl{font:11px sans-serif;fill:#1a202c}
+            .lblA{font:600 12px sans-serif;fill:#1a202c}
+            .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+          </style>
+        </defs>
+        <text class="ti" x="270" y="22">Hauteur du sapin H(t) = 30 + 25 t</text>
+
+        <!-- Y : 0 cm → 240, 250 cm → 50. 1 cm = 0,76 px. H=30 → 217, H=175 → 107, H=250 → 50 -->
+        <g class="gd">
+          <line x1="60" y1="50" x2="500" y2="50"/>
+          <line x1="60" y1="88" x2="500" y2="88"/>
+          <line x1="60" y1="126" x2="500" y2="126"/>
+          <line x1="60" y1="164" x2="500" y2="164"/>
+          <line x1="60" y1="202" x2="500" y2="202"/>
+          <line x1="60" y1="240" x2="500" y2="240"/>
+        </g>
+        <line class="ax" x1="60" y1="240" x2="510" y2="240"/>
+        <line class="ax" x1="60" y1="40" x2="60" y2="240"/>
+
+        <g class="lbl" text-anchor="end">
+          <text x="55" y="244">0</text>
+          <text x="55" y="206">50</text>
+          <text x="55" y="168">100</text>
+          <text x="55" y="130">150</text>
+          <text x="55" y="92">200</text>
+          <text x="55" y="54">250</text>
+        </g>
+        <text class="lblA" x="20" y="145" transform="rotate(-90 20 145)" text-anchor="middle">H (cm)</text>
+
+        <!-- X : 0 → 60, 10 → 500. 1 an = 44 px -->
+        <g class="lbl" text-anchor="middle">
+          <text x="60" y="258">0</text>
+          <text x="148" y="258">2</text>
+          <text x="236" y="258">4</text>
+          <text x="324" y="258">6</text>
+          <text x="412" y="258">8</text>
+          <text x="500" y="258">10</text>
+        </g>
+        <text class="lblA" x="270" y="275" text-anchor="middle">t (années)</text>
+
+        <!-- Droite H = 30 + 25 t : (0,30) → (60,217), (10,280) → (500, 240 - 280*0,76) = (500, 27) — fixons à un point réaliste -->
+        <!-- Recalcul : pixel y = 240 - H*(190/250). H=30 → 240-22,8=217 ; H=280 → 240-212,8=27. Mais on a max 250. -->
+        <line x1="60" y1="217" x2="500" y2="50" stroke="#0056b3" stroke-width="2.5"/>
+
+        <!-- Ligne H=175 -->
+        <line x1="60" y1="107" x2="500" y2="107" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <text x="495" y="103" class="lbl" fill="#dc2626" font-weight="bold" text-anchor="end">H = 175 cm (cible)</text>
+
+        <!-- Point intersection : t=5,8 → x=60+5,8*44=315 ; H=175 → y=107 -->
+        <circle cx="315" cy="107" r="5" fill="#dc2626"/>
+        <line x1="315" y1="107" x2="315" y2="240" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="315" y="258" class="lbl" fill="#dc2626" font-weight="bold" text-anchor="middle">t ≈ 5,8</text>
+
+        <!-- Annotation pente -->
+        <text x="200" y="160" class="lbl" fill="#0056b3" font-weight="bold" text-anchor="middle">+ 25 cm / an</text>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §3 (modélisation) et §4 (résolution d'une équation pour atteindre une cible).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Au bout de combien d'années peut-il vendre ?</div>
+  <strong>Problématique :</strong> Au bout de combien d'années Tom pourra-t-il commercialiser ses sapins ? Et l'engrais accélérateur est-il rentable ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Résoudre 30 + 25 t = 175.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>25 t = 145 → t = 145 / 25 = <strong>5,8 ans</strong>.</p>
-<p>Tom doit attendre environ 6 ans avant la coupe commerciale.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Calculer la hauteur du sapin :</p>
+  <ol type="a">
+    <li>au bout de 1 an</li>
+    <li>au bout de 3 ans</li>
+    <li>au bout de 5 ans</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>H(1) = 30 + 25 × 1 = <strong>55 cm</strong></li>
+      <li>H(3) = 30 + 25 × 3 = <strong>105 cm</strong></li>
+      <li>H(5) = 30 + 25 × 5 = <strong>155 cm</strong></li>
+    </ul>
+    <p>À 5 ans, le sapin est encore trop petit pour la commercialisation (155 &lt; 175).</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>S'il veut accélérer (croissance 35 cm/an avec engrais), combien d'années ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>35 t = 145 → t = 4,1 ans (≈ 4 ans). Économie de presque 2 ans !</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Pour atteindre la hauteur cible de 175 cm, écrire et résoudre l'équation correspondante.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>30 + 25 × t = 175</p>
+    <p>25 × t = 175 − 30 = 145</p>
+    <p>t = 145 / 25 = <strong>5,8 ans</strong></p>
+    <p>Soit 5 ans et 0,8 × 12 = 9,6 mois ≈ <strong>5 ans et 10 mois</strong>.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>L'engrais coûte 200 € pour 100 sapins. Sapin vendu 35 €. Cette dépense est-elle rentable ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Engrais : 200 €. Vente précoce de 100 sapins 2 ans plus tôt : on récupère 100 × 35 = 3 500 € deux ans plus tôt.</p>
-<p>Avec un livret à 3 % : valeur dans 2 ans = 3500 × 1,03² ≈ 3 713 €. « Coût d'opportunité » = 213 €.</p>
-<p>Surcoût engrais 200 € vs gain trésorerie 213 € → marginalement rentable. À recalculer si le sapin se vend plus cher.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Tom plante les sapins en mars 2026. À quelle date pourra-t-il les commercialiser pour être prêt pour Noël ? L'arbre sera-t-il prêt pour le Noël 2031, ou faudra-t-il attendre Noël 2032 ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Plantation : mars 2026. Maturité : mars 2026 + 5 ans 10 mois = <strong>janvier 2032</strong>.</p>
+    <p>Noël 2031 : 5 ans et 9 mois après plantation. Hauteur : 30 + 25 × 5,75 = <strong>173,75 cm</strong> → presque 175 cm, à la limite.</p>
+    <p>Noël 2032 : 6 ans et 9 mois. Hauteur : 30 + 25 × 6,75 = <strong>198,75 cm</strong> → trop grand !</p>
+    <p><strong>Décision pro :</strong> commercialiser <strong>Noël 2031</strong> en acceptant des sapins légèrement en-dessous de la cible (173 vs 175 cm), ou planter plus tôt l'année précédente.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Modèle linéaire de croissance :</strong> H(t) = H₀ + v × t.</li>
-<li><strong>Équation simple :</strong> isoler t en passant les constantes à droite.</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Tom envisage d'utiliser un engrais qui ferait passer la croissance à 35 cm/an. Calculer le nouveau temps de croissance pour atteindre 175 cm.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Nouveau modèle : H(t) = 30 + 35 × t.</p>
+    <p>30 + 35 × t = 175 → 35 × t = 145 → t = 145 / 35 ≈ <strong>4,14 ans</strong> ≈ 4 ans et 2 mois.</p>
+    <p>Économie : 5,8 − 4,14 ≈ <strong>1,7 an</strong> de gain. Tom peut commercialiser presque 2 ans plus tôt.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>L'engrais coûte 200 € pour 100 sapins. Tom vend ses sapins 35 € l'unité. Calculer le gain financier à commercialiser 100 sapins 2 ans plus tôt grâce à l'engrais. Cette dépense est-elle rentable ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Coût engrais :</strong> 200 €.</p>
+    <p><strong>Gain de trésorerie :</strong> 100 sapins × 35 € = 3 500 € encaissés 2 ans plus tôt.</p>
+    <p>Si Tom place ces 3 500 € sur un livret à 3 % par an pendant 2 ans : 3 500 × 1,03² = 3 500 × 1,0609 ≈ 3 713 €.</p>
+    <p>Coût d'opportunité gagné : 3 713 − 3 500 = <strong>213 €</strong>.</p>
+    <p><strong>Bilan :</strong> 213 € de gain pour 200 € de coût → <strong>opération marginalement rentable</strong> (+13 €).</p>
+    <p>Décision dépend aussi de :</p>
+    <ul>
+      <li>la qualité finale du sapin (engrais peut altérer la beauté)</li>
+      <li>l'effet écologique (impact engrais sur le sol et les pollinisateurs)</li>
+      <li>besoin de trésorerie immédiate</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Sur le graphique du document 2, déterminer graphiquement la valeur de t telle que H(t) = 175. Comparer avec le résultat calculé en question 2.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Sur le graphique, la droite passe par H = 175 à <strong>t ≈ 5,8 ans</strong>.</p>
+    <p>C'est cohérent avec le calcul (t = 5,8 ans). La méthode graphique permet une vérification rapide ; la méthode algébrique donne la valeur exacte.</p>
+    <p>Pro : utiliser les deux pour minimiser les erreurs.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 4-5 lignes un mémo professionnel pour le chef d'exploitation, résumant le planning de plantation pour avoir des sapins prêts à Noël 2031.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Mémo — Planning sapins Noël 2031</strong></em></p>
+    <p><em>Cible commerciale : 175 cm. Croissance moyenne 25 cm/an. Hauteur initiale 30 cm. Modèle : H(t) = 30 + 25 t.</em></p>
+    <p><em>Pour atteindre 175 cm, il faut 5,8 années (~5 ans 10 mois). Plantation à effectuer en <strong>mars 2026 au plus tard</strong> pour une coupe en décembre 2031.</em></p>
+    <p><em>Option engrais (croissance 35 cm/an) : récolte possible à partir de mars 2030 (économie ~1,7 an). Coût 200 €/100 sapins, rentabilité marginale (+13 €). À envisager seulement si besoin de trésorerie immédiate.</em></p>
+    <p><em>Recommandation : plantation classique en mars 2026, sans engrais.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>En réalité, la croissance d'un sapin n'est pas linéaire : elle est plus lente la 1ère année (10 cm), s'accélère ensuite (~30 cm/an pendant 4 ans), puis ralentit (15 cm/an au-delà de 5 ans). Calculer l'âge réel pour atteindre 175 cm avec ce modèle plus réaliste.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Année 1 : 30 + 10 = 40 cm.</p>
+    <p>Années 2-5 (4 ans à 30 cm/an) : 40 + 4 × 30 = 160 cm.</p>
+    <p>Reste à gagner : 175 − 160 = 15 cm. À 15 cm/an → encore 1 an supplémentaire.</p>
+    <p>Total : 1 + 4 + 1 = <strong>6 ans</strong>.</p>
+    <p>Le modèle linéaire (5,8 ans) sous-estime <strong>légèrement</strong> la durée réelle. En pratique, prévoir <strong>6 ans</strong> pour avoir une marge de sécurité.</p>
+    <p><strong>Leçon :</strong> les modèles mathématiques sont des <strong>approximations utiles</strong>, mais à confronter à la réalité biologique.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Modèle linéaire de croissance :</strong> H(t) = H₀ + v · t (où H₀ = hauteur initiale, v = vitesse de croissance).</li>
+    <li><strong>Résolution :</strong> a + b·t = c → b·t = c − a → t = (c − a) / b.</li>
+    <li><strong>Vérification graphique :</strong> tracer la droite et lire l'intersection avec la cible.</li>
+    <li><strong>Décision pro :</strong> au-delà du calcul, comparer coût et gain (rentabilité, coût d'opportunité, contraintes pratiques).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

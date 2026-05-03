@@ -1,45 +1,242 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch05 – Activité 3 – Recette et équation – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Activité 3 – Diluer une teinte (équation et mélange) – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 3 – Quel diluant ajouter ? <span style="font-size:.55em;color:#7c2d12;font-weight:600">ÉTUDE DE CAS</span></h1>
-<p class="sous-titre">Chapitre 5 – Équations 1er degré | 2nde Bac Pro MAMA | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul><li>Modéliser un problème de mélange par une équation</li><li>Résoudre une équation à inconnue dans les 2 membres</li></ul></div>
+<header>
+  <h1>Activité 3 – Diluer une teinte : combien de diluant ajouter ? <span style="font-size:.55em;color:#7c2d12;font-weight:600">ÉTUDE DE CAS</span></h1>
+  <p class="sous-titre">Chapitre 5 – Équations du 1er degré | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – diluer une teinte</h2>
-<p><em>Léa a 800 mL de teinte concentrée (60 % de pigment). Elle veut une teinte à 25 % en ajoutant du diluant pur (0 % pigment). Quelle quantité de diluant x ajouter ?</em></p>
-<p>Bilan pigment : 800 × 0,60 = (800 + x) × 0,25</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Modéliser un problème de mélange par une équation</li>
+    <li>Utiliser le principe de conservation de la matière</li>
+    <li>Résoudre une équation avec parenthèses</li>
+    <li>Vérifier la cohérence de la solution avec une situation réelle</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – atelier de finition (lasure et teinte)</h2>
+  <p><em>Tu es apprenti en menuiserie. Léa, ta tutrice, doit teinter un meuble en chêne. Elle reçoit un bidon de teinte concentrée à 60 % de pigment, mais le client demande une teinte plus claire, à 25 % de pigment, pour un effet « bois patiné ». Léa doit donc <strong>diluer</strong> sa teinte concentrée avec du diluant pur (0 % de pigment).</em></p>
+
+  <h3>Données du problème</h3>
+  <table>
+    <thead>
+      <tr><th>Produit</th><th>Volume</th><th>Concentration en pigment</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Teinte concentrée (départ)</td><td>800 mL</td><td>60 % (0,60)</td></tr>
+      <tr><td>Diluant pur à ajouter</td><td>x mL (inconnu)</td><td>0 %</td></tr>
+      <tr><td>Mélange final voulu</td><td>(800 + x) mL</td><td>25 % (0,25)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Schéma du mélange</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 600 220" style="max-width:600px;display:block;margin:0 auto" role="img" aria-label="Schéma : un bidon de teinte concentrée 800 mL à 60% pigment, plus un bidon diluant x mL à 0%, donne un bidon mélange (800+x) mL à 25%.">
+        <defs>
+          <style>
+            .b{stroke:#1a202c;stroke-width:1.5;fill:none}
+            .lbl{font:12px sans-serif;fill:#1a202c}
+            .lblA{font:600 13px sans-serif;fill:#1a202c}
+            .ti{font:700 14px sans-serif;text-anchor:middle;fill:#0056b3}
+          </style>
+        </defs>
+        <text class="ti" x="300" y="22">Bilan du mélange (conservation du pigment)</text>
+
+        <!-- Bidon 1 : teinte concentrée -->
+        <rect class="b" x="40" y="60" width="100" height="120" fill="#92400e" opacity=".6"/>
+        <rect class="b" x="40" y="60" width="100" height="120" fill="none"/>
+        <text class="lblA" x="90" y="55" text-anchor="middle">Concentré</text>
+        <text class="lbl" x="90" y="100" text-anchor="middle" fill="#fff" font-weight="bold">800 mL</text>
+        <text class="lbl" x="90" y="120" text-anchor="middle" fill="#fff">à 60 %</text>
+        <text class="lbl" x="90" y="160" text-anchor="middle" fill="#fff" font-weight="bold">480 mL</text>
+        <text class="lbl" x="90" y="175" text-anchor="middle" fill="#fff">pigment</text>
+        <text class="lbl" x="90" y="200" text-anchor="middle">(connu)</text>
+
+        <!-- Plus -->
+        <text class="ti" x="180" y="125" font-size="32" fill="#1a202c">+</text>
+
+        <!-- Bidon 2 : diluant -->
+        <rect class="b" x="220" y="60" width="100" height="120" fill="#dbeafe"/>
+        <text class="lblA" x="270" y="55" text-anchor="middle">Diluant</text>
+        <text class="lbl" x="270" y="100" text-anchor="middle" font-weight="bold">x mL</text>
+        <text class="lbl" x="270" y="120" text-anchor="middle">à 0 %</text>
+        <text class="lbl" x="270" y="160" text-anchor="middle" font-weight="bold">0 mL</text>
+        <text class="lbl" x="270" y="175" text-anchor="middle">pigment</text>
+        <text class="lbl" x="270" y="200" text-anchor="middle" fill="#dc2626">(inconnu)</text>
+
+        <!-- = -->
+        <text class="ti" x="360" y="125" font-size="28" fill="#1a202c">=</text>
+
+        <!-- Bidon 3 : mélange final -->
+        <rect class="b" x="400" y="60" width="160" height="120" fill="#fbbf24" opacity=".5"/>
+        <rect class="b" x="400" y="60" width="160" height="120" fill="none"/>
+        <text class="lblA" x="480" y="55" text-anchor="middle">Mélange final</text>
+        <text class="lbl" x="480" y="100" text-anchor="middle" font-weight="bold">(800 + x) mL</text>
+        <text class="lbl" x="480" y="120" text-anchor="middle">à 25 %</text>
+        <text class="lbl" x="480" y="160" text-anchor="middle" font-weight="bold">0,25 × (800+x)</text>
+        <text class="lbl" x="480" y="175" text-anchor="middle">mL pigment</text>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §3 (mise en équation) et §4 (équations avec parenthèses).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Quelle quantité de diluant ajouter pour passer de 60 % à 25 % de pigment ?</div>
+  <strong>Problématique :</strong> Combien de mL de diluant ajouter pour passer de 60 % à 25 % de pigment dans la teinte ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Résoudre l'équation 480 = 0,25 × (800 + x).</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>800 × 0,60 = 480 (quantité de pigment, qui ne change pas car on n'ajoute que du diluant pur).</p>
-<p>480 = 0,25 × (800 + x)</p>
-<p>480 / 0,25 = 800 + x → 1 920 = 800 + x → x = <strong>1 120 mL</strong></p>
-<p>Vérification : 800 + 1 120 = 1 920 mL total. Pigment = 480 mL. Pourcentage = 480/1 920 = 25 % ✓</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Quelle est la quantité totale de pigment dans le bidon de teinte concentrée au départ ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Quantité de pigment = volume × concentration = 800 × 0,60 = <strong>480 mL</strong>.</p>
+    <p>Cette quantité <strong>ne va pas changer</strong> car le diluant ajouté ne contient pas de pigment. C'est le principe de <strong>conservation du pigment</strong>.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-blue">VAL</span></h2>
-<p>Léa a un bidon vide de 1 500 mL. Suffisant ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Volume total final : 1 920 mL. Le bidon de 1 500 mL est <strong>insuffisant</strong>.</p>
-<p>Soit elle prend un bidon de 2 L, soit elle dilue la moitié du concentré (400 mL → 960 mL final, OK pour le bidon).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">APP</span></h2>
+  <p>Si on ajoute x mL de diluant, exprimer en fonction de x :</p>
+  <ol type="a">
+    <li>le volume total du mélange final ;</li>
+    <li>la quantité de pigment dans le mélange final (en utilisant la concentration de 25 %).</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a. Volume final : 800 + x (mL).</p>
+    <p>b. Pigment final = volume final × concentration finale = <strong>0,25 × (800 + x)</strong> (mL).</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Mélange/dilution :</strong> conservation de la matière. Quantité avant = quantité après.</li>
-<li><strong>Modéliser → équation → résoudre.</strong> Toujours vérifier la solution.</li></ul></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Écrire l'équation traduisant la conservation du pigment, puis la résoudre pour trouver x.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le pigment de départ = pigment d'arrivée :</p>
+    <p>480 = 0,25 × (800 + x)</p>
+    <p>480 = 200 + 0,25 × x</p>
+    <p>480 − 200 = 0,25 × x</p>
+    <p>280 = 0,25 × x</p>
+    <p>x = 280 / 0,25 = <strong>1 120 mL</strong></p>
+    <p><strong>Réponse :</strong> Léa doit ajouter 1 120 mL (= 1,12 L) de diluant.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Vérifier la solution : recalculer la concentration en pigment du mélange final pour s'assurer qu'elle vaut bien 25 %.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Volume final : 800 + 1 120 = <strong>1 920 mL</strong>.</p>
+    <p>Pigment : 480 mL (inchangé).</p>
+    <p>Concentration : 480 / 1 920 = 0,25 = <strong>25 %</strong> ✓</p>
+    <p>La solution est correcte.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>Léa a un bidon vide de 1,5 L à disposition. Pourra-t-elle y mettre le mélange final ? Si non, que proposer ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Volume final : 1 920 mL = 1,92 L. Bidon disponible : 1,5 L.</p>
+    <p><strong>Bidon insuffisant</strong> (1,5 &lt; 1,92).</p>
+    <p>Solutions :</p>
+    <ul>
+      <li>Prendre un <strong>bidon de 2 L</strong> (2 000 mL ≥ 1 920).</li>
+      <li>Ou diluer seulement <strong>la moitié du concentré</strong> (400 mL × 0,60 = 240 mL pigment ; final 960 mL ≤ 1 500 ✓). Mais il restera 400 mL de concentré non utilisé.</li>
+    </ul>
+    <p>Le choix dépend du besoin de production. Pro : prévoir le contenant <em>avant</em> de commencer le mélange.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Le client change d'avis et veut finalement une teinte à <strong>40 %</strong>, en repartant des 800 mL de concentré à 60 %. Quelle quantité y mL de diluant ajouter ? Comparer avec le résultat précédent.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>480 = 0,40 × (800 + y)</p>
+    <p>480 / 0,40 = 800 + y → 1 200 = 800 + y → y = <strong>400 mL</strong>.</p>
+    <p>Comparaison : pour 25 % il fallait 1 120 mL ; pour 40 % il faut 400 mL. <strong>Plus la teinte voulue est foncée (proche du concentré), moins on ajoute de diluant.</strong> Logique.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Le client demande maintenant une teinte à 70 %. Que se passe-t-il en résolvant l'équation ? Conclusion ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>480 = 0,70 × (800 + z)</p>
+    <p>480 / 0,70 ≈ 685,7 = 800 + z → z ≈ <strong>−114,3 mL</strong></p>
+    <p>Solution <strong>négative</strong>. <strong>Impossible physiquement</strong> : on ne peut pas « ajouter une quantité négative de diluant » (= retirer du diluant alors qu'il n'y en a pas).</p>
+    <p><strong>Interprétation :</strong> on ne peut pas <em>concentrer</em> en ajoutant du diluant (logique). 70 % &gt; 60 % → impossible par dilution. Pour obtenir 70 %, il faudrait <strong>évaporer</strong> du diluant ou <strong>ajouter du pigment pur</strong>.</p>
+    <p>Toujours <strong>vérifier la cohérence physique</strong> d'une solution mathématique avec la situation réelle.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 4 lignes le mode opératoire que Léa doit suivre pour préparer la teinte à 25 %.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>1. Préparer un bidon vide d'au moins 2 L et un récipient gradué.</em></p>
+    <p><em>2. Verser les 800 mL de teinte concentrée à 60 % dans le bidon.</em></p>
+    <p><em>3. Mesurer 1 120 mL (= 1,12 L) de diluant pur et l'ajouter au bidon.</em></p>
+    <p><em>4. Bien remuer 30 secondes pour homogénéiser. Étiqueter : « Teinte 25 % — date du jour ». Stocker au sec.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Léa s'aperçoit qu'elle a déjà commencé à diluer : 200 mL de diluant ont été ajoutés. Combien faut-il maintenant en ajouter de plus pour obtenir les 25 % visés au final ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Total nécessaire : 1 120 mL de diluant. Déjà ajouté : 200 mL.</p>
+    <p>Reste à ajouter : 1 120 − 200 = <strong>920 mL</strong>.</p>
+    <p>Vérification : pigment toujours 480 mL ; volume final 800 + 200 + 920 = 1 920 mL ; concentration 480/1920 = 25 % ✓.</p>
+    <p>Ce type de raisonnement est utile en atelier où l'on travaille « en continu » et où l'on n'a pas toujours commencé proprement la mesure.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Mélange / dilution :</strong> conservation de la matière. Quantité de la substance de départ = quantité après mélange.</li>
+    <li><strong>Démarche :</strong> identifier ce qui se conserve → exprimer chaque côté en fonction de l'inconnue → équation → résolution → <strong>vérification physique</strong>.</li>
+    <li><strong>Équation avec parenthèses :</strong> a × (b + x) = c → développer ou diviser par a, puis isoler x.</li>
+    <li><strong>Solution négative :</strong> à interpréter comme une <strong>impossibilité physique</strong>, jamais comme une réponse valide.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
