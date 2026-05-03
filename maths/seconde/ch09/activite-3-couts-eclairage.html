@@ -1,47 +1,266 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch09 – Activité 3 – Coût d'éclairage atelier – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Activité 3 – Coût d'éclairage : LED vs néon – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 3 – Coût mensuel de l'éclairage <span style="font-size:.55em;color:#7c2d12;font-weight:600">ÉTUDE DE CAS</span></h1>
-<p class="sous-titre">Chapitre 9 – Fonction affine | 2nde Bac Pro MAMA | ⏱ 25 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="situation"><h2>Situation – éclairage LED vs néon</h2>
-<p><em>Une menuiserie compare 2 systèmes d'éclairage atelier (consommation différente, abonnement EDF identique 12 €/mois) :</em></p>
-<ul><li><strong>LED :</strong> coût total = 12 + 0,06 h €/mois (où h = heures d'usage)</li>
-<li><strong>Néon :</strong> coût total = 12 + 0,15 h €/mois</li></ul></div>
+<header>
+  <h1>Activité 3 – Coût d'éclairage de l'atelier : LED vs néon <span style="font-size:.55em;color:#7c2d12;font-weight:600">ÉTUDE DE CAS</span></h1>
+  <p class="sous-titre">Chapitre 9 – Fonction affine | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer le coût pour 220 h/mois (atelier ouvert 11 h × 20 j) avec chaque système.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>LED : 12 + 0,06 × 220 = 12 + 13,20 = <strong>25,20 €</strong></p>
-<p>Néon : 12 + 0,15 × 220 = 12 + 33 = <strong>45 €</strong></p>
-<p>Économie LED : 19,80 €/mois.</p>
-</div></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comparer 2 fonctions affines partageant la même ordonnée à l'origine</li>
+    <li>Comprendre l'effet de la pente sur le coût total</li>
+    <li>Calculer un retour sur investissement</li>
+    <li>Représenter graphiquement deux droites parallèles ou non</li>
+  </ul>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Sur 1 an, économie ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>19,80 × 12 = <strong>237,60 €/an</strong>. Investir dans des LED (~ 200 €) est rentable en 1 an.</p>
-</div></div>
+<div class="situation">
+  <h2>Situation – moderniser l'éclairage de l'atelier</h2>
+  <p><em>Karim, gérant d'une menuiserie, doit décider de l'éclairage de son atelier (300 m²). Deux options :</em></p>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Que représentent les 12 € identiques dans les 2 cas ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>L'<strong>abonnement EDF</strong> mensuel, fixe quelle que soit la consommation. Indépendant du choix des ampoules.</p>
-<p>Seul le coefficient (0,06 vs 0,15) dépend du système. C'est lui qui fait la différence.</p>
-</div></div>
+  <div style="background:#fff;padding:12px 16px;border-radius:8px;border:1px solid #cbd5e1;margin:14px 0">
+    <p style="margin:6px 0">💡 <strong>Option LED</strong> : panneaux LED moderne 30 W</p>
+    <p style="margin:6px 0">• Coût installation : 800 € (achat + pose)</p>
+    <p style="margin:6px 0">• Consommation par heure : 0,06 €/h</p>
+    <p style="margin:6px 0">• Durée de vie : ~ 50 000 h (≈ 20 ans à 7 h/jour)</p>
+    <p style="margin:6px 0; margin-top:10px">💡 <strong>Option Néon</strong> : tubes fluorescents standards</p>
+    <p style="margin:6px 0">• Coût installation : 200 € (déjà en place pour partie)</p>
+    <p style="margin:6px 0">• Consommation par heure : 0,15 €/h</p>
+    <p style="margin:6px 0">• Durée de vie : ~ 10 000 h (≈ 4 ans à 7 h/jour)</p>
+  </div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Affines avec même b :</strong> seules les pentes diffèrent. La moins pentue gagne dès la 1ʳᵉ unité.</li></ul></div>
+  <p>L'abonnement EDF est de <strong>12 €/mois</strong>, identique dans les deux cas. On note h le nombre d'heures d'éclairage utilisé dans le mois.</p>
 
-</div><script src="../../../nav.js"></script></body></html>
+  <h3>Document — graphique des coûts mensuels</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Graphique des coûts mensuels selon les heures d'éclairage. Deux droites partant de 12€ à h=0, pente 0,06€/h pour LED (verte) et 0,15€/h pour néon (rouge).">
+        <defs>
+          <style>
+            .ax{stroke:#1a202c;stroke-width:1.5}
+            .gd{stroke:#cbd5e1;stroke-width:.6}
+            .lbl{font:11px sans-serif;fill:#1a202c}
+            .lblA{font:600 12px sans-serif;fill:#1a202c}
+            .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+          </style>
+        </defs>
+        <text class="ti" x="270" y="22">Coût mensuel selon les heures d'éclairage</text>
+
+        <!-- Y : 0 → 240, 60 → 50. 1 € = 3,17 px. 12 → 202, 25,2 → 160, 45 → 97 -->
+        <g class="gd">
+          <line x1="60" y1="50" x2="500" y2="50"/>
+          <line x1="60" y1="113" x2="500" y2="113"/>
+          <line x1="60" y1="177" x2="500" y2="177"/>
+          <line x1="60" y1="240" x2="500" y2="240"/>
+        </g>
+        <line class="ax" x1="60" y1="240" x2="510" y2="240"/>
+        <line class="ax" x1="60" y1="40" x2="60" y2="240"/>
+
+        <g class="lbl" text-anchor="end">
+          <text x="55" y="244">0</text>
+          <text x="55" y="181">20</text>
+          <text x="55" y="117">40</text>
+          <text x="55" y="54">60</text>
+        </g>
+        <text class="lblA" x="20" y="145" transform="rotate(-90 20 145)" text-anchor="middle">Coût (€)</text>
+
+        <!-- X : 0 → 60, 300 h → 500. 50 h = 73,3 px -->
+        <g class="lbl" text-anchor="middle">
+          <text x="60" y="258">0</text>
+          <text x="133" y="258">50</text>
+          <text x="206" y="258">100</text>
+          <text x="280" y="258">150</text>
+          <text x="353" y="258">200</text>
+          <text x="426" y="258">250</text>
+          <text x="500" y="258">300</text>
+        </g>
+        <text class="lblA" x="270" y="275" text-anchor="middle">Heures d'éclairage / mois</text>
+
+        <!-- Droite LED : f_LED(h) = 12 + 0,06h. h=0 → y=202. h=300 → 30€ → y=145 -->
+        <line x1="60" y1="202" x2="500" y2="145" stroke="#15803d" stroke-width="2.5"/>
+        <text x="495" y="138" class="lbl" fill="#15803d" font-weight="bold" text-anchor="end">LED (0,06€/h)</text>
+
+        <!-- Droite Néon : f_néon(h) = 12 + 0,15h. h=0 → y=202. h=300 → 57€ → y=240-180,7=59 -->
+        <line x1="60" y1="202" x2="500" y2="59" stroke="#dc2626" stroke-width="2.5"/>
+        <text x="495" y="51" class="lbl" fill="#dc2626" font-weight="bold" text-anchor="end">Néon (0,15€/h)</text>
+
+        <!-- Point commun ordonnée -->
+        <circle cx="60" cy="202" r="5" fill="#7c3aed"/>
+        <text x="78" y="206" class="lbl" fill="#7c3aed" font-weight="bold">b = 12€ commun</text>
+
+        <!-- Économie à 220h -->
+        <line x1="382" y1="240" x2="382" y2="40" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="382" y="258" class="lbl" fill="#94a3b8" text-anchor="middle">220h</text>
+        <circle cx="382" cy="160" r="3.5" fill="#15803d"/>
+        <circle cx="382" cy="98" r="3.5" fill="#dc2626"/>
+        <text x="395" y="130" class="lbl" fill="#7c3aed" font-weight="bold">↕ 19,80€</text>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §3 (signification de a et b) et §4 (comparaison de deux fonctions affines).</em></p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quel système d'éclairage est le plus économique pour Karim, et combien de temps faut-il pour rentabiliser le surcoût d'installation des LED ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Pour h heures d'éclairage par mois, écrire les fonctions affines représentant le coût mensuel total :</p>
+  <ol type="a">
+    <li>f_LED(h) pour les LED</li>
+    <li>f_néon(h) pour les néons</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a. f_LED(h) = 12 + 0,06 × h (abonnement + énergie LED).</p>
+    <p>b. f_néon(h) = 12 + 0,15 × h (abonnement + énergie néon).</p>
+    <p>Les deux fonctions ont la <strong>même ordonnée à l'origine (12 €)</strong> mais des <strong>pentes différentes</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>L'atelier est ouvert 11 h/jour, 20 jours par mois (h = 220 h/mois). Calculer le coût mensuel pour chaque option et l'économie réalisée avec les LED.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f_LED(220) = 12 + 0,06 × 220 = 12 + 13,20 = <strong>25,20 €/mois</strong>.</p>
+    <p>f_néon(220) = 12 + 0,15 × 220 = 12 + 33 = <strong>45 €/mois</strong>.</p>
+    <p>Économie LED : 45 − 25,20 = <strong>19,80 €/mois</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'économie réalisée sur une année (12 mois) en passant aux LED.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Économie annuelle : 19,80 × 12 = <strong>237,60 €/an</strong>.</p>
+    <p>Sur 5 ans : 1 188 €. Sur 10 ans : 2 376 €. Effet cumulé important.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi les deux fonctions ont-elles le même 12 € en ordonnée à l'origine ? Et pourquoi seules les pentes diffèrent ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Les <strong>12 €</strong> représentent l'<strong>abonnement EDF</strong> mensuel, fixe et indépendant du système d'éclairage choisi (lié au compteur, pas à la consommation).</p>
+    <p>Les <strong>pentes différentes</strong> (0,06 vs 0,15 €/h) viennent du fait que les LED consomment <strong>2,5 fois moins d'énergie</strong> par heure que les néons.</p>
+    <p><strong>Sur le graphique :</strong> deux droites qui partent du même point (h=0, y=12) mais la droite LED monte moins vite. Elles ne sont <strong>pas parallèles</strong> — la différence se creuse avec le temps.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>L'installation LED coûte 800 € (vs 200 € pour les néons), soit un surcoût initial de 600 €. Calculer le temps nécessaire pour rentabiliser ce surcoût grâce aux économies d'énergie.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Surcoût LED : 800 − 200 = <strong>600 €</strong>.</p>
+    <p>Économie mensuelle : 19,80 €.</p>
+    <p>Temps de retour : 600 / 19,80 ≈ <strong>30,3 mois ≈ 2 ans et 6 mois</strong>.</p>
+    <p>Au-delà de 2,5 ans, les LED sont <strong>plus rentables</strong> que les néons. Sur la durée de vie LED (20 ans), le gain net est très significatif.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Calculer le coût total cumulé sur <strong>10 ans</strong> pour chaque option (en tenant compte des installations et de l'usage). Hypothèse : les néons doivent être remplacés tous les 4 ans (200 €/remplacement).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>LED sur 10 ans :</strong></p>
+    <ul>
+      <li>Installation : 800 € (1 fois)</li>
+      <li>Énergie : 25,20 × 12 × 10 = 3 024 €</li>
+      <li><strong>Total : 3 824 €</strong></li>
+    </ul>
+    <p><strong>Néon sur 10 ans :</strong></p>
+    <ul>
+      <li>Installation initiale : 200 € + 2 remplacements (à 4 ans et 8 ans) : 2 × 200 = 400 € → total 600 €</li>
+      <li>Énergie : 45 × 12 × 10 = 5 400 €</li>
+      <li><strong>Total : 6 000 €</strong></li>
+    </ul>
+    <p>Économie LED sur 10 ans : 6 000 − 3 824 = <strong>2 176 €</strong>.</p>
+    <p>Conclusion : <strong>les LED sont gagnantes à long terme</strong>, pas seulement énergétiquement mais aussi économiquement (en tenant compte des remplacements).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">VAL</span></h2>
+  <p>Si Karim n'utilise son atelier que 80 h/mois (= mi-temps), calculer le coût pour chaque option et l'économie. Le passage aux LED reste-t-il rentable ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f_LED(80) = 12 + 4,80 = <strong>16,80 €/mois</strong>.</p>
+    <p>f_néon(80) = 12 + 12 = <strong>24 €/mois</strong>.</p>
+    <p>Économie : 7,20 €/mois = 86,40 €/an.</p>
+    <p>Temps de retour pour le surcoût 600 € : 600 / 7,20 ≈ <strong>83 mois ≈ 7 ans</strong>.</p>
+    <p>Encore rentable à long terme (durée LED 20 ans), mais retour sur investissement <strong>nettement plus lent</strong>. À considérer aussi : impact écologique, qualité d'éclairage.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes la recommandation pour Karim, en justifiant sur les calculs réalisés.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Recommandation — éclairage atelier menuiserie</strong></em></p>
+    <p><em>Pour un usage à temps plein (220 h/mois), opter pour les <strong>LED</strong> est clairement gagnant :</em></p>
+    <ul><em>
+      <li>économie 19,80 €/mois = 237 €/an</li>
+      <li>retour sur investissement en 2,5 ans</li>
+      <li>économie cumulée 2 176 € sur 10 ans</li>
+    </em></ul>
+    <p><em>Pour un usage occasionnel (80 h/mois), retour sur investissement plus long (7 ans) mais reste rentable et plus écologique. <strong>Recommandation : choisir les LED</strong>, en se renseignant aussi sur les aides aux entreprises pour la transition énergétique (CEE).</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Karim peut bénéficier d'une aide de l'État (« Coup de pouce CEE éclairage ») de 300 € pour passer aux LED. Recalculer le temps de retour sur investissement à temps plein avec cette aide.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Surcoût LED net : 600 − 300 = <strong>300 €</strong>.</p>
+    <p>Temps de retour : 300 / 19,80 ≈ <strong>15,2 mois ≈ 1 an 3 mois</strong>.</p>
+    <p>Avec l'aide, le retour est <strong>2 fois plus rapide</strong>. Très bon argument pour décider tout de suite.</p>
+    <p>Toujours se renseigner sur les <strong>aides disponibles</strong> avant un investissement énergétique : CEE, MaPrimeRénov', aides régionales pour artisans, etc.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Fonctions affines avec même b :</strong> deux droites issues du même point, mais avec des pentes différentes. La pente la plus douce gagne dès la 1ʳᵉ unité.</li>
+    <li><strong>Comparer 2 systèmes :</strong> calculer le coût total à divers volumes d'usage, ne pas se fier au seul prix d'achat.</li>
+    <li><strong>Retour sur investissement (ROI) :</strong> surcoût initial / économie périodique. À comparer à la durée de vie de l'équipement.</li>
+    <li><strong>Décision pro :</strong> intégrer aides publiques, durée de vie, qualité, impact écologique — pas seulement le prix.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

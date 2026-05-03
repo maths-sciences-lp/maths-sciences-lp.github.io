@@ -1,47 +1,268 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch09 – Activité 2 – Tarif d'un taxi – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Activité 2 – Tarif d'un taxi : fonction affine – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Tarif d'un taxi (fonction affine) <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 9 – Fonction affine | 2nde Bac Pro MAMA | ⏱ 25 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul><li>Identifier ordonnée à l'origine et coefficient directeur d'une fonction affine</li></ul></div>
+<header>
+  <h1>Activité 2 – Tarif d'un taxi : découvrir la fonction affine <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 9 – Fonction affine | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – facture taxi</h2>
-<p><em>Un taxi facture : 4 € de prise en charge + 1,80 €/km. Soit f(x) = 1,80 x + 4, où x = nb de km.</em></p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier les paramètres d'une fonction affine f(x) = ax + b</li>
+    <li>Reconnaître ordonnée à l'origine et coefficient directeur</li>
+    <li>Calculer image et antécédent</li>
+    <li>Distinguer fonction affine et fonction linéaire</li>
+  </ul>
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Coût pour 12 km ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>f(12) = 1,80 × 12 + 4 = 21,60 + 4 = <strong>25,60 €</strong>.</p>
-</div></div>
+<div class="situation">
+  <h2>Situation – tarification d'une course de taxi</h2>
+  <p><em>Léa, jeune apprentie agenceuse, doit livrer un échantillon urgent à un client. Elle décide de prendre un taxi. Le tarif affiché est :</em></p>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Pour 50 € (budget), combien de km au max ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>1,80 x + 4 ≤ 50 → 1,80 x ≤ 46 → x ≤ <strong>25,5 km</strong>.</p>
-</div></div>
+  <div style="background:#fff;padding:12px 16px;border-radius:8px;border:1px solid #cbd5e1;margin:14px 0">
+    <p style="margin:6px 0">🚖 <strong>Tarif Taxi Centre Bourg</strong></p>
+    <p style="margin:6px 0">• Prise en charge : <strong>4,00 €</strong> (montant fixe au démarrage)</p>
+    <p style="margin:6px 0">• Tarif kilométrique : <strong>1,80 €/km</strong> parcouru</p>
+    <p style="margin:6px 0">• Tarif final : f(x) = 1,80 × x + 4, où x = nb de km</p>
+  </div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">ANA</span></h2>
-<p>Représente que représente 4 ? 1,80 ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>4 = ordonnée à l'origine = prix « pour 0 km » (la prise en charge).</p>
-<p>1,80 = coefficient directeur (pente) = prix par km supplémentaire.</p>
-<p>Différence avec linéaire : la droite ne passe PAS par 0 (à 0 km, on paie déjà 4 €).</p>
-</div></div>
+  <h3>Document — graphique du tarif en fonction de la distance</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Graphique de la fonction affine f(x) = 1,80x + 4. Droite partant de l'ordonnée 4€ à 0 km, croissant à 1,80€/km. Comparaison avec une droite linéaire 1,80x partant de 0.">
+        <defs>
+          <style>
+            .ax{stroke:#1a202c;stroke-width:1.5}
+            .gd{stroke:#cbd5e1;stroke-width:.6}
+            .lbl{font:11px sans-serif;fill:#1a202c}
+            .lblA{font:600 12px sans-serif;fill:#1a202c}
+            .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+          </style>
+        </defs>
+        <text class="ti" x="270" y="22">Tarif taxi : f(x) = 1,80 × x + 4</text>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Affine :</strong> f(x) = ax + b. <strong>a</strong> = pente, <strong>b</strong> = ordonnée à l'origine.</li>
-<li><strong>Si b = 0</strong> → fonction linéaire (cas particulier).</li></ul></div>
+        <!-- Y : 0 → 240, 50 € → 50. 1 € = 3,8 px. 4 → 224,8, 25,60 → 142,7, 50 → 50 -->
+        <g class="gd">
+          <line x1="60" y1="50" x2="500" y2="50"/>
+          <line x1="60" y1="98" x2="500" y2="98"/>
+          <line x1="60" y1="145" x2="500" y2="145"/>
+          <line x1="60" y1="192" x2="500" y2="192"/>
+          <line x1="60" y1="240" x2="500" y2="240"/>
+        </g>
+        <line class="ax" x1="60" y1="240" x2="510" y2="240"/>
+        <line class="ax" x1="60" y1="40" x2="60" y2="240"/>
 
-</div><script src="../../../nav.js"></script></body></html>
+        <g class="lbl" text-anchor="end">
+          <text x="55" y="244">0</text>
+          <text x="55" y="196">12,5</text>
+          <text x="55" y="149">25</text>
+          <text x="55" y="102">37,5</text>
+          <text x="55" y="54">50</text>
+        </g>
+        <text class="lblA" x="20" y="145" transform="rotate(-90 20 145)" text-anchor="middle">Tarif (€)</text>
+
+        <!-- X : 0 → 60, 25 km → 500. 1 km = 17,6 px -->
+        <g class="lbl" text-anchor="middle">
+          <text x="60" y="258">0</text>
+          <text x="148" y="258">5</text>
+          <text x="236" y="258">10</text>
+          <text x="324" y="258">15</text>
+          <text x="412" y="258">20</text>
+          <text x="500" y="258">25</text>
+        </g>
+        <text class="lblA" x="270" y="275" text-anchor="middle">Distance (km)</text>
+
+        <!-- Droite affine f(x) = 1,80x + 4. (0,4) → (60, 225) ; (25, 49) → (500, 240-186=54) -->
+        <line x1="60" y1="225" x2="500" y2="54" stroke="#0056b3" stroke-width="2.5"/>
+        <text x="490" y="46" class="lbl" fill="#0056b3" font-weight="bold">f(x) = 1,80x + 4</text>
+
+        <!-- Droite linéaire en pointillé : g(x) = 1,80x. (0,0) → (60, 240) ; (25, 45) → (500, 240-171=69) -->
+        <line x1="60" y1="240" x2="500" y2="69" stroke="#15803d" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <text x="495" y="78" class="lbl" fill="#15803d" font-weight="bold" text-anchor="end">linéaire 1,80x</text>
+
+        <!-- Annotation ordonnée à l'origine -->
+        <circle cx="60" cy="225" r="4" fill="#dc2626"/>
+        <text x="78" y="229" class="lbl" fill="#dc2626" font-weight="bold">b = 4 (prise en charge)</text>
+
+        <!-- Pente -->
+        <text x="220" y="170" class="lbl" fill="#7c3aed" font-weight="bold" text-anchor="middle">pente a = 1,80 €/km</text>
+
+        <!-- Point repère 12 km -->
+        <line x1="271" y1="143" x2="271" y2="240" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="60" y1="143" x2="271" y2="143" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 2"/>
+        <circle cx="271" cy="143" r="4" fill="#dc2626"/>
+        <text x="271" y="258" class="lbl" fill="#dc2626" text-anchor="middle">12 km</text>
+        <text x="55" y="141" class="lbl" fill="#dc2626" text-anchor="end">25,60</text>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §1 (définition fonction affine) et §3 (sens géométrique des coefficients).</em></p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment représente-t-on un tarif avec un forfait fixe + un coût variable ? Et qu'est-ce qui distingue une fonction affine d'une fonction linéaire ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Calculer le coût de la course pour différentes distances :</p>
+  <ol type="a">
+    <li>0 km</li>
+    <li>1 km</li>
+    <li>5 km</li>
+    <li>12 km</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>0 km : f(0) = 1,80 × 0 + 4 = <strong>4 €</strong> (prise en charge seule)</li>
+      <li>1 km : f(1) = 1,80 + 4 = <strong>5,80 €</strong></li>
+      <li>5 km : f(5) = 9 + 4 = <strong>13 €</strong></li>
+      <li>12 km : f(12) = 21,60 + 4 = <strong>25,60 €</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">APP</span></h2>
+  <p>Que signifie le résultat f(0) = 4 € en pratique ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Si on monte dans le taxi sans rouler (0 km), on paie quand même 4 €.</p>
+    <p>C'est la <strong>prise en charge</strong> : montant minimum facturé même pour 0 km. Cela couvre le démarrage du compteur, le déplacement vers le client, etc.</p>
+    <p>Sur le graphique, c'est l'<strong>ordonnée à l'origine</strong> : intersection de la droite avec l'axe vertical.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Léa a un budget de 50 €. Quelle distance maximale peut-elle parcourir ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>1,80 × x + 4 ≤ 50</p>
+    <p>1,80 × x ≤ 46</p>
+    <p>x ≤ 46 / 1,80 ≈ <strong>25,55 km</strong>.</p>
+    <p>Léa peut parcourir au maximum 25,5 km. Si la distance prévue est de 22 km, elle est dans le budget (f(22) = 39,60 + 4 = 43,60 €).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Que représentent géométriquement et économiquement les nombres 4 et 1,80 dans la formule f(x) = 1,80 x + 4 ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>4 (= b, ordonnée à l'origine)</strong></p>
+    <ul>
+      <li>Géométriquement : point où la droite coupe l'axe des prix (axe vertical).</li>
+      <li>Économiquement : prise en charge fixe (€), payée même à 0 km.</li>
+    </ul>
+    <p><strong>1,80 (= a, coefficient directeur ou pente)</strong></p>
+    <ul>
+      <li>Géométriquement : pente de la droite (« pour 1 km de plus → 1,80 € en plus »).</li>
+      <li>Économiquement : prix unitaire au km parcouru (€/km).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Comparer la fonction affine f(x) = 1,80 x + 4 et la fonction linéaire g(x) = 1,80 x. En quoi diffèrent-elles ? Sur le graphique ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Différences :</p>
+    <ul>
+      <li><strong>Linéaire g</strong> : passe par l'origine (0 ; 0). Pas de forfait.</li>
+      <li><strong>Affine f</strong> : ordonnée à l'origine = 4 (≠ 0). La droite est <strong>« décalée vers le haut »</strong> de 4 unités par rapport à g.</li>
+    </ul>
+    <p>Sur le graphique, les deux droites ont la <strong>même pente</strong> (donc parallèles), mais f est partout 4 € plus haute que g.</p>
+    <p>La <strong>fonction linéaire est un cas particulier</strong> de la fonction affine (avec b = 0).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Un autre taxi (Taxi Express) propose : 6 € de prise en charge + 1,50 €/km. Pour 15 km, comparer les deux taxis.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Centre Bourg pour 15 km : 1,80 × 15 + 4 = 27 + 4 = <strong>31 €</strong>.</p>
+    <p>Express pour 15 km : 1,50 × 15 + 6 = 22,50 + 6 = <strong>28,50 €</strong>.</p>
+    <p>Express moins cher de 2,50 €.</p>
+    <p>Le seuil de bascule : 1,80 x + 4 = 1,50 x + 6 → 0,30 x = 2 → x = 6,67 km. Au-delà de 6,67 km, Express gagne.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>À la sortie d'un concert, le taxi applique un tarif de nuit majoré : prise en charge à 6 €, tarif km à 2,40 €. Calculer pour Léa (12 km) la différence avec le tarif jour.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Tarif nuit : f_nuit(x) = 2,40 × x + 6.</p>
+    <p>f_nuit(12) = 28,80 + 6 = <strong>34,80 €</strong>.</p>
+    <p>Différence avec tarif jour (25,60 €) : 34,80 − 25,60 = <strong>9,20 € de plus</strong> (+ 36 %).</p>
+    <p>Sur un graphique, la droite « tarif nuit » a une pente plus forte (2,40 vs 1,80) et une ordonnée plus haute (6 vs 4) → toujours au-dessus du tarif jour.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 4 lignes une fiche pratique pour Léa : comment estimer rapidement le coût d'une course de taxi en fonction de la distance ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Estimer une course de taxi (Centre Bourg, tarif jour)</strong></em></p>
+    <p><em>Formule simple : <strong>4 € + 1,80 €/km</strong>. Multiplier la distance par 1,80, puis ajouter 4.</em></p>
+    <p><em>Exemples : 5 km → 13 €, 10 km → 22 €, 15 km → 31 €, 20 km → 40 €.</em></p>
+    <p><em>Tarif de nuit (22h-6h) : prendre <strong>+50 % environ</strong> sur le résultat. Toujours vérifier le compteur en montant et exiger un reçu en descendant.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Léa fait 3 trajets par semaine en taxi (10 km chacun). Calculer le coût hebdomadaire, mensuel (4 semaines), et annuel. Si elle achète une voiture (coût total 4 500 €/an, dont assurance, carburant, amortissement), à partir de combien de trajets/semaine est-ce rentable ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Coût d'un trajet 10 km : 22 €. 3 trajets/semaine : 66 €/semaine = 264 €/mois = <strong>3 432 €/an</strong>.</p>
+    <p>Voiture (4 500 €/an) : actuellement <strong>plus cher</strong> que le taxi.</p>
+    <p>Seuil de rentabilité : voiture < taxi quand n trajets/semaine × 22 × 52 ≥ 4 500 → n ≥ 4 500 / (22 × 52) ≈ <strong>3,93 → 4 trajets/semaine</strong>.</p>
+    <p>Si Léa monte à 4 trajets/semaine (= 88 €/sem), la voiture devient marginalement rentable. Au-delà (5+/semaine), nettement plus avantageuse.</p>
+    <p>À considérer aussi : flexibilité (taxi 24/7 vs voiture stationnement), entretien, sécurité, environnement.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Fonction affine :</strong> f(x) = ax + b, où a et b sont des constantes.</li>
+    <li><strong>a (coefficient directeur, pente) :</strong> taux d'évolution unitaire (ici €/km).</li>
+    <li><strong>b (ordonnée à l'origine) :</strong> valeur fixe à 0 (ici prise en charge).</li>
+    <li><strong>Graphique :</strong> droite qui ne passe <strong>pas</strong> par l'origine (sauf cas particulier b = 0).</li>
+    <li><strong>Cas particulier :</strong> si b = 0, on retrouve la fonction linéaire (proportionnalité).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
