@@ -1,69 +1,275 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch07 – Activité 4 – Modéliser la production – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Activité 4 – Modéliser une production par une fonction – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 4 – Modéliser une production par une fonction <span style="font-size:.55em;color:#7c3aed;font-weight:600">PROJET DOCUMENTAIRE</span></h1>
-<p class="sous-titre">Chapitre 7 – Notion de fonction | 2nde Bac Pro MAMA | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul><li>Reconnaître une situation modélisable par une fonction</li><li>Distinguer plusieurs types de fonctions selon le contexte</li></ul></div>
+<header>
+  <h1>Activité 4 – Modéliser une production par une fonction <span style="font-size:.55em;color:#7c3aed;font-weight:600">PROJET DOCUMENTAIRE</span></h1>
+  <p class="sous-titre">Chapitre 7 – Notion de fonction | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – grandeurs et fonctions</h2>
-<p><em>Dans la vie d'un atelier, beaucoup de grandeurs « dépendent » d'autres. C'est ce qu'on appelle une fonction.</em></p>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Reconnaître une situation modélisable par une fonction</li>
+    <li>Identifier les variables d'entrée et de sortie</li>
+    <li>Distinguer les types de fonctions courants (linéaire, affine, carrée, cube)</li>
+    <li>Comprendre la condition « unicité » de la définition d'une fonction</li>
+  </ul>
+</div>
 
-<table><thead><tr><th>Grandeur dépendante</th><th>de</th><th>Type</th></tr></thead>
-<tbody>
-<tr><td>Coût matières (€)</td><td>quantité achetée (m³)</td><td>linéaire</td></tr>
-<tr><td>Facture EDF (€)</td><td>consommation (kWh)</td><td>affine (charge fixe + variable)</td></tr>
-<tr><td>Aire d'un panneau carré (m²)</td><td>côté (m)</td><td>carré (puissance 2)</td></tr>
-<tr><td>Décibels d'un son</td><td>distance source (m)</td><td>logarithme (décroissance)</td></tr>
-<tr><td>Durée de coupe (min)</td><td>nombre de pièces</td><td>linéaire</td></tr>
-</tbody></table></div>
+<div class="situation">
+  <h2>Situation – le mot « fonction » est partout dans l'atelier</h2>
+  <p><em>Dans la vie d'un atelier de menuiserie, beaucoup de grandeurs « dépendent » d'autres. Le coût des matériaux dépend de la quantité achetée. La facture d'électricité dépend de la consommation. La surface d'un panneau dépend de ses dimensions. Cette dépendance s'appelle une <strong>fonction</strong> en mathématiques.</em></p>
+
+  <h3>Document 1 — exemples de fonctions dans le métier</h3>
+  <table>
+    <thead>
+      <tr><th>Grandeur en sortie</th><th>dépend de…</th><th>Formule</th><th>Type</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Coût matières (€)</td><td>quantité achetée x (m³)</td><td>C(x) = 250 x</td><td>Linéaire</td></tr>
+      <tr><td>Facture EDF (€)</td><td>consommation x (kWh)</td><td>F(x) = 12 + 0,18 x</td><td>Affine</td></tr>
+      <tr><td>Aire d'un panneau carré (m²)</td><td>côté c (m)</td><td>A(c) = c²</td><td>Carré</td></tr>
+      <tr><td>Volume d'un cube (m³)</td><td>côté c (m)</td><td>V(c) = c³</td><td>Cube</td></tr>
+      <tr><td>Aire d'un disque (m²)</td><td>rayon r (m)</td><td>A(r) = π r²</td><td>Carré</td></tr>
+      <tr><td>Période d'un pendule (s)</td><td>longueur L (m)</td><td>T(L) = 2π√(L/g)</td><td>Racine carrée</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 — graphiques typiques selon le type de fonction</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 600 250" style="max-width:600px;display:block;margin:0 auto" role="img" aria-label="4 mini-graphiques montrant les allures typiques : linéaire (droite passant par origine), affine (droite décalée), carrée (parabole), cube (courbe en S).">
+        <defs>
+          <style>
+            .ax{stroke:#1a202c;stroke-width:1}
+            .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+            .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+            .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+          </style>
+        </defs>
+
+        <!-- Subplot 1 : Linéaire -->
+        <g>
+          <text class="ti" x="75" y="20">Linéaire</text>
+          <line class="ax" x1="20" y1="180" x2="130" y2="180"/>
+          <line class="ax" x1="30" y1="40" x2="30" y2="180"/>
+          <line x1="30" y1="180" x2="130" y2="60" stroke="#15803d" stroke-width="2.5"/>
+          <text x="75" y="220" class="lblA">f(x) = ax</text>
+          <text x="75" y="235" class="lbl">passe par 0</text>
+        </g>
+
+        <!-- Subplot 2 : Affine -->
+        <g transform="translate(150, 0)">
+          <text class="ti" x="75" y="20">Affine</text>
+          <line class="ax" x1="20" y1="180" x2="130" y2="180"/>
+          <line class="ax" x1="30" y1="40" x2="30" y2="180"/>
+          <line x1="30" y1="140" x2="130" y2="50" stroke="#0056b3" stroke-width="2.5"/>
+          <circle cx="30" cy="140" r="3" fill="#0056b3"/>
+          <text x="75" y="220" class="lblA">f(x) = ax + b</text>
+          <text x="75" y="235" class="lbl">droite décalée</text>
+        </g>
+
+        <!-- Subplot 3 : Carré -->
+        <g transform="translate(300, 0)">
+          <text class="ti" x="75" y="20">Carré</text>
+          <line class="ax" x1="20" y1="180" x2="130" y2="180"/>
+          <line class="ax" x1="75" y1="40" x2="75" y2="180"/>
+          <path d="M 30,80 Q 75,180 120,80" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+          <text x="75" y="220" class="lblA">f(x) = x²</text>
+          <text x="75" y="235" class="lbl">parabole</text>
+        </g>
+
+        <!-- Subplot 4 : Cube -->
+        <g transform="translate(450, 0)">
+          <text class="ti" x="75" y="20">Cube</text>
+          <line class="ax" x1="20" y1="180" x2="130" y2="180"/>
+          <line class="ax" x1="75" y1="40" x2="75" y2="180"/>
+          <path d="M 30,160 C 60,140 90,120 120,55" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+          <text x="75" y="220" class="lblA">f(x) = x³</text>
+          <text x="75" y="235" class="lbl">croissance rapide</text>
+        </g>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §1 (définition d'une fonction) et §5 (différents types de fonctions).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Comment reconnaître une fonction et son type ?</div>
+  <strong>Problématique :</strong> Comment reconnaître une fonction dans une situation concrète et identifier son type pour pouvoir prédire son comportement ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-green">APP</span></h2>
-<p>Définir avec tes propres mots ce qu'est une fonction.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Une fonction f associe à chaque valeur x d'une grandeur d'entrée, une <strong>unique valeur</strong> f(x) d'une grandeur de sortie.</p>
-<p>« Pour chaque x, un seul y. »</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Avec tes mots, donner une définition de ce qu'est une fonction. Donner un exemple tiré de l'atelier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Une fonction f associe à chaque valeur d'entrée x une <strong>unique</strong> valeur de sortie notée f(x).</p>
+    <p>Règle clé : <strong>« Pour chaque x, une seule valeur f(x). »</strong></p>
+    <p><strong>Exemple atelier :</strong> à chaque quantité de bois achetée (m³), correspond <strong>un seul</strong> coût (€). Ce n'est pas le contraire (le même coût peut correspondre à plusieurs quantités si on change de fournisseur).</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-blue">ANA</span></h2>
-<p>Pour chaque exemple, identifier la « variable d'entrée » x et la « variable de sortie » f(x).</p>
-<ol type="a">
-<li>Coût d'une commande : 35 € le mètre carré de stratifié.</li>
-<li>Aire d'un disque de rayon r.</li>
-<li>Volume d'un cube de côté c.</li>
-</ol>
-<ul class="lignes-reponse"><li</li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<ul>
-<li>(a) x = surface (m²), f(x) = 35 x € (linéaire).</li>
-<li>(b) x = r (rayon), f(x) = π r² (carré).</li>
-<li>(c) x = c (côté), f(x) = c³ (cube).</li>
-</ul>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>Pour chacune de ces situations, identifier la variable d'entrée x, la variable de sortie f(x), et le type de fonction (linéaire, affine, carré, cube) :</p>
+  <ol type="a">
+    <li>Coût d'une commande de stratifié à 35 €/m².</li>
+    <li>Aire d'un disque de rayon r.</li>
+    <li>Volume d'un cube de côté c.</li>
+    <li>Salaire mensuel = 1 500 € fixe + 5 €/heure supplémentaire.</li>
+    <li>Périmètre d'un carré de côté c.</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>a. x = surface (m²), f(x) = 35 x €, <strong>linéaire</strong>.</li>
+      <li>b. x = r, f(r) = π r², <strong>carré</strong>.</li>
+      <li>c. x = c, f(c) = c³, <strong>cube</strong>.</li>
+      <li>d. x = heures sup, f(x) = 1 500 + 5 x, <strong>affine</strong>.</li>
+      <li>e. x = c, f(c) = 4 c, <strong>linéaire</strong>.</li>
+    </ul>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Pourquoi y = ±√x n'est pas une fonction (au sens classique) ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Pour x = 4 par exemple, on aurait y = +2 OU y = −2. <strong>2 valeurs de sortie pour 1 entrée</strong>. Ce n'est pas une fonction.</p>
-<p>Pour que ça en soit une, il faut choisir : f(x) = +√x est une fonction (une seule sortie positive pour chaque entrée).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">VAL</span></h2>
+  <p>Le calcul y = ±√x est-il une fonction ? Pourquoi ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Non, ce n'est pas une fonction.</strong> Pour x = 4, on obtiendrait y = +2 OU y = −2 → <strong>deux valeurs de sortie pour une seule entrée</strong>, ce qui contredit la définition.</p>
+    <p>Pour avoir une fonction, on doit choisir : f(x) = +√x (racine carrée principale) est une fonction (une seule sortie par entrée).</p>
+    <p>De même, le cercle x² + y² = 1 n'est pas une fonction y = f(x) : pour x = 0, y peut valoir +1 ou −1.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Fonction :</strong> à chaque x, une seule valeur f(x).</li>
-<li><strong>Types courants :</strong> linéaire (f(x)=ax), affine (ax+b), carré (x²), cube (x³), inverse (1/x).</li>
-<li><strong>Modéliser</strong> = identifier le type de fonction qui décrit le mieux le phénomène.</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Karim achète 1,5 m³ de chêne à 250 €/m³. Calculer le coût C(1,5). Si le prix passe à 280 €/m³, calculer C(2). Quel type de fonction décrit ce coût en fonction du volume ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>C(1,5) = 250 × 1,5 = <strong>375 €</strong>.</p>
+    <p>Avec le nouveau prix : C(2) = 280 × 2 = <strong>560 €</strong>.</p>
+    <p>Le coût est de la forme C(x) = p × x → <strong>fonction linéaire</strong> (passe par l'origine, proportionnelle).</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Karim fabrique des panneaux carrés. Calculer l'aire pour des côtés de 0,5 m, 1 m, 1,5 m, 2 m. Comment évolue l'aire quand le côté double ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>A(c) = c².</p>
+    <ul>
+      <li>A(0,5) = 0,25 m²</li>
+      <li>A(1) = 1 m²</li>
+      <li>A(1,5) = 2,25 m²</li>
+      <li>A(2) = 4 m²</li>
+    </ul>
+    <p>De 1 m à 2 m : c double, mais A est multipliée par <strong>4</strong> (= 2²). Pour la fonction carrée, doubler l'entrée multiplie la sortie par 4.</p>
+    <p><strong>Conséquence pratique :</strong> un panneau « deux fois plus grand » coûte 4 fois plus de matière première.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Même question pour le volume d'un cube de côté c. Comment évolue le volume quand le côté double ? Donner un exemple métier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V(c) = c³.</p>
+    <ul>
+      <li>V(1) = 1 m³</li>
+      <li>V(2) = 8 m³ (× 8 !)</li>
+    </ul>
+    <p>Doubler le côté multiplie le volume par <strong>8</strong> (= 2³). Évolution rapide.</p>
+    <p><strong>Exemple métier :</strong> une caisse de 2 m × 2 m × 2 m contient 8 fois plus de marchandises qu'une caisse de 1 m × 1 m × 1 m. C'est pour ça que les conteneurs de transport gagnent énormément en capacité quand on les agrandit légèrement.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">REA</span></h2>
+  <p>Pour les 6 fonctions du document 1, déterminer dans chaque cas si on peut tracer le graphique sous forme de droite, de parabole, ou autre.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Fonction</th><th>Type</th><th>Graphique</th></tr></thead>
+      <tbody>
+        <tr><td>C(x) = 250 x</td><td>Linéaire</td><td>Droite passant par 0</td></tr>
+        <tr><td>F(x) = 12 + 0,18 x</td><td>Affine</td><td>Droite ne passant pas par 0 (ordonnée 12)</td></tr>
+        <tr><td>A(c) = c²</td><td>Carré</td><td>Parabole (uniquement c ≥ 0)</td></tr>
+        <tr><td>V(c) = c³</td><td>Cube</td><td>Courbe en S (cubique)</td></tr>
+        <tr><td>A(r) = π r²</td><td>Carré</td><td>Parabole (uniquement r ≥ 0)</td></tr>
+        <tr><td>T(L) = 2π√(L/g)</td><td>Racine</td><td>Courbe « racine » (croissance ralentie)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une note pédagogique pour expliquer à un nouveau apprenti ce qu'est une fonction et comment l'utiliser dans le métier de menuisier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Note — La fonction, outil quotidien du menuisier</strong></em></p>
+    <p><em>Quand une grandeur dépend d'une autre, on parle de fonction. Exemple : le coût d'un chêne dépend du volume acheté. La formule C(x) = 250 x exprime ce lien.</em></p>
+    <p><em>Connaître les types courants te permet de prédire le comportement :</em></p>
+    <ul><em>
+      <li><strong>Linéaire :</strong> double la quantité → double le coût (proportionnel)</li>
+      <li><strong>Carré :</strong> double le côté → 4 fois plus de surface</li>
+      <li><strong>Cube :</strong> double le côté → 8 fois plus de volume</li>
+    </em></ul>
+    <p><em>Dans tes devis, vérifie toujours le type de relation : un client qui demande « deux fois plus grand » paiera souvent <strong>plus de deux fois plus cher</strong>. Bien expliquer évite les malentendus.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Pour souffler dans une cuve cubique, le temps t (s) suit : t = V / Q où V est le volume (m³) et Q le débit (m³/s = 0,1). Pour des cubes de côté 1 m, 2 m, 3 m, calculer t. Quelle est la nature de la fonction t(c) ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V = c³, donc t(c) = c³ / 0,1 = 10 c³.</p>
+    <ul>
+      <li>c = 1 : t = 10 s</li>
+      <li>c = 2 : t = 80 s (1 min 20)</li>
+      <li>c = 3 : t = 270 s (4 min 30)</li>
+    </ul>
+    <p>t(c) est une <strong>fonction cube</strong>. Tripler le côté multiplie le temps par 27.</p>
+    <p><strong>Implication métier :</strong> la peinture industrielle au pistolet d'une grande pièce prend bien plus longtemps qu'on ne croit. À chiffrer correctement dans les devis sinon perte d'argent.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Fonction :</strong> à chaque entrée x, <strong>une seule</strong> valeur f(x).</li>
+    <li><strong>Types courants :</strong> linéaire f(x) = ax (passe par 0), affine ax + b, carré x², cube x³, racine √x, inverse 1/x.</li>
+    <li><strong>Reconnaître le type :</strong> regarder la formule (puissance de x), ou tester si « 2x → 2y » (linéaire), « 2x → 4y » (carré), « 2x → 8y » (cube).</li>
+    <li><strong>Modéliser, c'est choisir le bon type</strong> de fonction qui décrit le mieux la situation réelle.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

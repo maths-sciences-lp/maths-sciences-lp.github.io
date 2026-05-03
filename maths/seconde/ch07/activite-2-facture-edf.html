@@ -1,50 +1,281 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch07 – Activité 2 – Lire une facture EDF – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Activité 2 – Lire une facture EDF (image et antécédent) – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Lire une fonction « tarif EDF » <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 7 – Notion de fonction | 2nde Bac Pro MAMA | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul><li>Identifier une fonction par sa formule</li><li>Calculer une image et un antécédent</li></ul></div>
+<header>
+  <h1>Activité 2 – Lire une facture EDF : image et antécédent <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 7 – Notion de fonction | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – facture mensuelle</h2>
-<p><em>Le coût de l'électricité est : C(x) = 12 + 0,18 x où x est la consommation en kWh, et C(x) le coût en €.</em></p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier une fonction par sa formule</li>
+    <li>Calculer une image f(a) et trouver un antécédent</li>
+    <li>Lire et interpréter un graphique de fonction</li>
+    <li>Distinguer parties fixe et variable d'une fonction affine</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – ouverture d'un atelier de menuiserie</h2>
+  <p><em>Karim vient d'ouvrir son atelier de menuiserie. EDF lui a transmis le contrat « Tarif Bleu Pro Base » avec ces éléments :</em></p>
+
+  <div style="background:#fff;padding:12px 16px;border-radius:8px;border:1px solid #cbd5e1;margin:14px 0">
+    <p style="margin:6px 0">📋 <strong>Contrat EDF — Tarif Bleu Pro Base (puissance 9 kVA)</strong></p>
+    <p style="margin:6px 0">• Abonnement : <strong>12 €/mois</strong></p>
+    <p style="margin:6px 0">• Prix de l'énergie : <strong>0,18 €/kWh consommé</strong></p>
+    <p style="margin:6px 0">• Coût mensuel : C(x) = 12 + 0,18 × x (en €), où x = consommation en kWh</p>
+  </div>
+
+  <h3>Document — relevés de consommation des 6 derniers mois</h3>
+  <table>
+    <thead>
+      <tr><th>Mois</th><th>Conso (kWh)</th><th>Coût (€)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Janvier</td><td>500</td><td>?</td></tr>
+      <tr><td>Février</td><td>420</td><td>?</td></tr>
+      <tr><td>Mars</td><td>350</td><td>?</td></tr>
+      <tr><td>Avril</td><td>200</td><td>?</td></tr>
+      <tr><td>Mai</td><td>?</td><td>60</td></tr>
+      <tr><td>Juin</td><td>?</td><td>40</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document — graphique du coût en fonction de la consommation</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Graphique du coût en fonction de la consommation. Droite affine partant de (0, 12€) et croissant à 0,18€/kWh. Points repère : 350 kWh → 75€, et 60€ → 267 kWh.">
+        <defs>
+          <style>
+            .ax{stroke:#1a202c;stroke-width:1.5}
+            .gd{stroke:#cbd5e1;stroke-width:.6}
+            .lbl{font:11px sans-serif;fill:#1a202c}
+            .lblA{font:600 12px sans-serif;fill:#1a202c}
+            .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+          </style>
+        </defs>
+        <text class="ti" x="270" y="22">Coût total C(x) = 12 + 0,18 × x</text>
+
+        <!-- Y : 0 € → 240, 120 € → 50. 1 € = 1,58 px. 12 → 221, 60 → 145, 75 → 121, 102 → 78,5, 120 → 50 -->
+        <g class="gd">
+          <line x1="60" y1="50" x2="500" y2="50"/>
+          <line x1="60" y1="98" x2="500" y2="98"/>
+          <line x1="60" y1="145" x2="500" y2="145"/>
+          <line x1="60" y1="193" x2="500" y2="193"/>
+          <line x1="60" y1="240" x2="500" y2="240"/>
+        </g>
+        <line class="ax" x1="60" y1="240" x2="510" y2="240"/>
+        <line class="ax" x1="60" y1="40" x2="60" y2="240"/>
+
+        <g class="lbl" text-anchor="end">
+          <text x="55" y="244">0</text>
+          <text x="55" y="197">30</text>
+          <text x="55" y="149">60</text>
+          <text x="55" y="102">90</text>
+          <text x="55" y="54">120</text>
+        </g>
+        <text class="lblA" x="20" y="145" transform="rotate(-90 20 145)" text-anchor="middle">C (€)</text>
+
+        <!-- X : 0 → 60, 700 → 500. 100 kWh = 63 px -->
+        <g class="lbl" text-anchor="middle">
+          <text x="60" y="258">0</text>
+          <text x="186" y="258">200</text>
+          <text x="312" y="258">400</text>
+          <text x="438" y="258">600</text>
+        </g>
+        <text class="lblA" x="270" y="275" text-anchor="middle">x (kWh)</text>
+
+        <!-- Droite : (0, 12) → (60, 221) ; (700, 138) → (500, 240-138*1,58) = (500, 22). On limite à (700, 138) → (500, 22) cap à graph -->
+        <line x1="60" y1="221" x2="500" y2="22" stroke="#0056b3" stroke-width="2.5"/>
+
+        <!-- Point (350, 75) → x=60+350*0,63=280,5 ; y=240-75*1,58=121,5 -->
+        <circle cx="280" cy="121" r="5" fill="#dc2626"/>
+        <line x1="280" y1="121" x2="280" y2="240" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="60" y1="121" x2="280" y2="121" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="280" y="115" class="lbl" fill="#dc2626" font-weight="bold" text-anchor="middle">75 €</text>
+        <text x="280" y="258" class="lbl" fill="#dc2626" text-anchor="middle">350 kWh</text>
+
+        <!-- Point (267, 60) → x=60+267*0,63=228,2 ; y=240-60*1,58=145,2 -->
+        <circle cx="228" cy="145" r="5" fill="#15803d"/>
+        <line x1="228" y1="145" x2="228" y2="240" stroke="#15803d" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="60" y1="145" x2="228" y2="145" stroke="#15803d" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="55" y="143" class="lbl" fill="#15803d" font-weight="bold" text-anchor="end">60</text>
+
+        <!-- Annotation ordonnée à l'origine -->
+        <circle cx="60" cy="221" r="4" fill="#7c3aed"/>
+        <text x="78" y="225" class="lbl" fill="#7c3aed" font-weight="bold">12€ (abonnement)</text>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §2 (image, antécédent) et §3 (lecture graphique).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Pour 350 kWh, combien je paie ? Pour 60 €, combien j'ai consommé ?</div>
+  <strong>Problématique :</strong> Comment calculer le coût mensuel pour une consommation donnée (image), et comment retrouver la consommation à partir d'un montant facturé (antécédent) ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer C(350). (Image)</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>C(350) = 12 + 0,18 × 350 = 12 + 63 = <strong>75 €</strong></p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Pour la formule C(x) = 12 + 0,18 × x, expliquer en français ce que représente :</p>
+  <ol type="a">
+    <li>la variable x</li>
+    <li>la fonction C(x)</li>
+    <li>le nombre 12</li>
+    <li>le nombre 0,18</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a. <strong>x</strong> : variable d'entrée = quantité d'électricité consommée dans le mois (en kWh).</p>
+    <p>b. <strong>C(x)</strong> : valeur de sortie de la fonction = coût mensuel total à payer (en €).</p>
+    <p>c. <strong>12</strong> : abonnement mensuel fixe (€), payé même si on ne consomme rien (= ordonnée à l'origine).</p>
+    <p>d. <strong>0,18</strong> : prix d'un kWh consommé (€/kWh) = pente de la droite, taux d'évolution.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Trouver x tel que C(x) = 60. (Antécédent)</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>12 + 0,18 x = 60 → 0,18 x = 48 → x = 48/0,18 ≈ <strong>267 kWh</strong></p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le coût mensuel pour les consommations des 4 premiers mois du tableau (image) :</p>
+  <ol type="a">
+    <li>C(500) en janvier</li>
+    <li>C(420) en février</li>
+    <li>C(350) en mars</li>
+    <li>C(200) en avril</li>
+  </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>C(500) = 12 + 0,18 × 500 = 12 + 90 = <strong>102 €</strong></li>
+      <li>C(420) = 12 + 0,18 × 420 = 12 + 75,6 = <strong>87,60 €</strong></li>
+      <li>C(350) = 12 + 0,18 × 350 = 12 + 63 = <strong>75 €</strong></li>
+      <li>C(200) = 12 + 0,18 × 200 = 12 + 36 = <strong>48 €</strong></li>
+    </ul>
+    <p>Plus la consommation est forte (hiver), plus la facture grossit. Comportement linéaire.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Que représente le 12 dans la formule ? Le 0,18 ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p><strong>12 €</strong> = abonnement (charge fixe payée même sans consommation).</p>
-<p><strong>0,18 €/kWh</strong> = prix par unité consommée (charge variable).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Pour les mois de mai et juin, on connaît le coût mais pas la consommation. Trouver l'antécédent par C, c'est-à-dire la valeur de x telle que C(x) = 60 € puis C(x) = 40 €.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Mai (60 €) :</strong> 12 + 0,18 × x = 60 → 0,18 x = 48 → x = 48 / 0,18 ≈ <strong>267 kWh</strong>.</p>
+    <p><strong>Juin (40 €) :</strong> 12 + 0,18 × x = 40 → 0,18 x = 28 → x = 28 / 0,18 ≈ <strong>156 kWh</strong>.</p>
+    <p>L'été (juin) consomme moins (pas de chauffage électrique). Logique.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Image f(a) :</strong> valeur de f en x = a.</li>
-<li><strong>Antécédent :</strong> valeur(s) de x tel(s) que f(x) = b.</li>
-<li><strong>Fonction affine :</strong> f(x) = ax + b. a = pente (taux variable), b = ordonnée à l'origine (charge fixe).</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">APP</span></h2>
+  <p>Que vaut C(0) ? Que signifie ce résultat ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>C(0) = 12 + 0,18 × 0 = <strong>12 €</strong>.</p>
+    <p>Même sans consommation (atelier fermé tout le mois), Karim paie 12 € : c'est <strong>l'abonnement minimum</strong>.</p>
+    <p>Sur le graphique, c'est l'<strong>ordonnée à l'origine</strong> de la droite (point d'intersection avec l'axe vertical).</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Sur le graphique fourni, repérer (sans calcul) le coût pour 400 kWh. Vérifier ensuite par calcul.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Lecture graphique : pour x = 400 kWh, on monte verticalement jusqu'à la droite et on lit le coût ≈ <strong>84 €</strong>.</p>
+    <p>Vérification par calcul : C(400) = 12 + 0,18 × 400 = 12 + 72 = <strong>84 €</strong>. ✓</p>
+    <p>La lecture graphique est rapide pour estimer ; le calcul donne la valeur exacte.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Karim hésite à passer aux heures creuses (HC) où l'abonnement passerait à 14 €/mois mais le kWh à 0,15 €. Calculer le seuil de consommation à partir duquel cette nouvelle offre serait plus avantageuse.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Nouvelle fonction : C_HC(x) = 14 + 0,15 × x.</p>
+    <p>HC moins cher : 14 + 0,15 x &lt; 12 + 0,18 x → 14 − 12 &lt; 0,18 x − 0,15 x → 2 &lt; 0,03 x → x &gt; 2 / 0,03 ≈ <strong>67 kWh</strong>.</p>
+    <p>Au-delà de 67 kWh par mois, l'offre HC est moins chère. C'est très bas → l'offre HC est <strong>quasiment toujours rentable</strong> pour un atelier qui consomme régulièrement.</p>
+    <p>⚠️ Attention : « heures creuses » impose de consommer la nuit ou le week-end. Pas adapté à un atelier qui travaille uniquement en journée. Bien lire les conditions.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Karim envisage d'installer des panneaux solaires qui couvriraient 60 % de sa consommation moyenne (350 kWh/mois) — donc il ne consommera plus que 40 % auprès d'EDF. Calculer son nouveau coût mensuel et l'économie réalisée.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Nouvelle conso EDF : 350 × 0,40 = <strong>140 kWh</strong>.</p>
+    <p>Coût : C(140) = 12 + 0,18 × 140 = 12 + 25,20 = <strong>37,20 €/mois</strong>.</p>
+    <p>Coût avant : 75 €/mois. Économie : 75 − 37,20 = <strong>37,80 €/mois</strong> ≈ 454 €/an.</p>
+    <p>Si l'installation solaire coûte 6 000 €, retour sur investissement ≈ 6 000 / 454 ≈ <strong>13 ans</strong>. Long, mais panneau garanti 20-25 ans.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Compléter le tableau de la situation en y intégrant tous les calculs précédents, et présenter un récapitulatif annuel des dépenses d'électricité.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Mois</th><th>Conso (kWh)</th><th>Coût (€)</th></tr></thead>
+      <tbody>
+        <tr><td>Janvier</td><td>500</td><td>102</td></tr>
+        <tr><td>Février</td><td>420</td><td>87,60</td></tr>
+        <tr><td>Mars</td><td>350</td><td>75</td></tr>
+        <tr><td>Avril</td><td>200</td><td>48</td></tr>
+        <tr><td>Mai</td><td>267</td><td>60</td></tr>
+        <tr><td>Juin</td><td>156</td><td>40</td></tr>
+      </tbody>
+    </table>
+    <p>Total semestre 1 : 102 + 87,60 + 75 + 48 + 60 + 40 = <strong>412,60 €</strong>.</p>
+    <p>Estimation annuelle (2 semestres ≈ symétriques) : <strong>~ 800 €/an</strong> à budgétiser.</p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>EDF augmente le tarif de 5 % début 2027. La nouvelle formule devient C'(x) = 12 × 1,05 + 0,18 × 1,05 × x = 12,60 + 0,189 x. Calculer la nouvelle facture pour la consommation moyenne de Karim (350 kWh) et la perte annuelle.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>C'(350) = 12,60 + 0,189 × 350 = 12,60 + 66,15 = <strong>78,75 €/mois</strong>.</p>
+    <p>Surcoût mensuel : 78,75 − 75 = 3,75 €. Perte annuelle : 3,75 × 12 = <strong>45 €/an</strong>.</p>
+    <p>Sur 5 ans (avec hausses cumulées) : ~250 € — significatif. Argument supplémentaire pour passer aux panneaux solaires (immune aux hausses tarifaires sur sa propre prod).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Image f(a) :</strong> valeur de f en x = a. Calcul direct par substitution.</li>
+    <li><strong>Antécédent :</strong> valeur(s) de x telle(s) que f(x) = b. Résolution d'équation.</li>
+    <li><strong>Fonction affine :</strong> f(x) = ax + b. <em>a</em> = pente / coefficient directeur (taux), <em>b</em> = ordonnée à l'origine (valeur fixe).</li>
+    <li><strong>Sur un graphique :</strong> image = lecture verticale ; antécédent = lecture horizontale.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
