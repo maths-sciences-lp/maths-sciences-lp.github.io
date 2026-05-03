@@ -1,48 +1,252 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch11 – Activité 4 – Comparer 2 salles d'atelier – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch11 – Activité 4 – Comparer 2 ateliers : surface, périmètre et prix au m² – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 4 – Comparer la surface de 2 salles <span style="font-size:.55em;color:#7c3aed;font-weight:600">ÉTUDE DE CAS</span></h1>
-<p class="sous-titre">Chapitre 11 – Aires et périmètres | 2nde Bac Pro MAMA | ⏱ 25 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="situation"><h2>Situation – choix d'un local</h2>
-<p><em>Anaïs cherche un atelier. 2 locaux disponibles :</em></p>
-<ul><li><strong>A :</strong> rectangulaire 8 m × 6 m. Loyer 600 €/mois.</li>
-<li><strong>B :</strong> en L : 10 m × 5 m moins 4 m × 2 m (zone non utilisable). Loyer 580 €/mois.</li></ul></div>
+<header>
+  <h1>Activité 4 – Comparer 2 ateliers : surface, périmètre et prix au m² <span style="font-size:.55em;color:#7c3aed;font-weight:600">ÉTUDE DE CAS</span></h1>
+  <p class="sous-titre">Chapitre 11 – Aires et périmètres | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer les surfaces utiles A et B.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>A : 8 × 6 = <strong>48 m²</strong>.</p>
-<p>B : 10 × 5 − 4 × 2 = 50 − 8 = <strong>42 m²</strong>.</p>
-</div></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer surface et périmètre de figures simples et complexes</li>
+    <li>Comparer plusieurs locaux par le critère « prix au m² »</li>
+    <li>Comprendre que le moins cher en valeur absolue n'est pas forcément le mieux</li>
+    <li>Intégrer la praticité de la forme dans la décision</li>
+  </ul>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Calculer le prix au m² de chaque local.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>A : 600 / 48 = <strong>12,50 €/m²/mois</strong>.</p>
-<p>B : 580 / 42 ≈ <strong>13,81 €/m²/mois</strong>.</p>
-</div></div>
+<div class="situation">
+  <h2>Situation – Anaïs cherche un atelier à louer</h2>
+  <p><em>Anaïs, jeune artisane menuisière, doit choisir entre deux locaux dans la même zone d'activités. Les loyers sont proches mais les surfaces et les formes diffèrent. Elle doit faire un calcul rationnel avant de signer.</em></p>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Lequel choisir et pourquoi ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Local <strong>A</strong> est plus avantageux : moins cher au m² (12,50 vs 13,81 €), plus grande surface utile, forme rectangulaire pratique.</p>
-<p>B paraît moins cher en valeur absolue (580 vs 600 €) mais offre moins de surface ET avec une forme contraignante (le L gêne le placement des machines).</p>
-</div></div>
+  <h3>Document — plans des 2 locaux</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Comparaison de 2 locaux. Local A : rectangle 8m x 6m, vert. Local B : forme en L (10m x 5m moins un coin de 4m x 2m), rouge.">
+        <defs>
+          <style>
+            .b{stroke:#1a202c;stroke-width:1.5}
+            .lbl{font:11px sans-serif;fill:#1a202c}
+            .lblA{font:600 13px sans-serif;fill:#1a202c}
+            .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+          </style>
+        </defs>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Comparer 2 locaux :</strong> ramener au prix au m². Évite le piège du « moins cher en valeur absolue ».</li>
-<li><strong>Forme rectangulaire</strong> souvent préférable à un L pour un atelier (placement libre des machines).</li></ul></div>
+        <!-- Local A -->
+        <text class="ti" x="135" y="25">Local A — rectangle</text>
 
-</div><script src="../../../nav.js"></script></body></html>
+        <!-- Échelle 1m=20px. 8×6 → 160×120. Centrer x=55, y=60 -->
+        <rect class="b" x="55" y="60" width="160" height="120" fill="#86efac" opacity=".5"/>
+        <text x="135" y="115" class="lblA" text-anchor="middle">8 m × 6 m</text>
+        <text x="135" y="135" class="lbl" text-anchor="middle" font-weight="bold">A = 48 m²</text>
+        <text x="135" y="155" class="lbl" text-anchor="middle">600 €/mois</text>
+
+        <text x="135" y="55" class="lbl" text-anchor="middle">8 m</text>
+        <text x="50" y="120" class="lbl" text-anchor="end">6 m</text>
+
+        <!-- Local B en L -->
+        <text class="ti" x="405" y="25">Local B — forme en L</text>
+
+        <!-- Échelle 1m=15px. 10×5 → 150×75. moins 4×2 → 60×30 dans le coin haut-droit -->
+        <rect class="b" x="295" y="80" width="150" height="75" fill="#fca5a5" opacity=".5"/>
+        <!-- Découpe (coin haut-droit) -->
+        <rect class="b" x="385" y="80" width="60" height="30" fill="#fff" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3 2"/>
+
+        <text x="370" y="135" class="lblA" text-anchor="middle">L : 10×5 − 4×2</text>
+        <text x="370" y="152" class="lbl" text-anchor="middle" font-weight="bold">A = 42 m²</text>
+        <text x="370" y="170" class="lbl" text-anchor="middle">580 €/mois</text>
+
+        <text x="370" y="75" class="lbl" text-anchor="middle">10 m</text>
+        <text x="290" y="120" class="lbl" text-anchor="end">5 m</text>
+        <text x="415" y="95" class="lbl" fill="#dc2626" text-anchor="middle">poteau</text>
+        <text x="415" y="108" class="lbl" fill="#dc2626" text-anchor="middle">4×2 m</text>
+
+        <text x="290" y="200" class="lbl" fill="#dc2626" text-anchor="start">⚠ zone du poteau d'angle</text>
+        <text x="290" y="215" class="lbl" fill="#dc2626" text-anchor="start">    non utilisable (4 m × 2 m)</text>
+    </svg>
+  </div>
+
+  <h3>Document — synthèse comparative</h3>
+  <table>
+    <thead>
+      <tr><th></th><th>Local A</th><th>Local B</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Forme</td><td>Rectangulaire</td><td>En L (poteau)</td></tr>
+      <tr><td>Dimensions</td><td>8 m × 6 m</td><td>10 × 5 (moins 4 × 2)</td></tr>
+      <tr><td>Surface utile</td><td>?</td><td>?</td></tr>
+      <tr><td>Loyer</td><td>600 €/mois</td><td>580 €/mois</td></tr>
+      <tr><td>Prix au m²</td><td>?</td><td>?</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §1 (aire d'un rectangle), §3 (figure complexe) et §4 (notion de « prix au m² »).</em></p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quel local choisir entre A et B, en tenant compte du prix réel au mètre carré utilisable ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la surface utile du local A.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>S_A = 8 × 6 = <strong>48 m²</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la surface utile du local B (en forme de L) par décomposition.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Méthode soustraction : grand rectangle moins le coin du poteau.</p>
+    <p>S_B = (10 × 5) − (4 × 2) = 50 − 8 = <strong>42 m²</strong>.</p>
+    <p>La zone du poteau (4 × 2 = 8 m²) n'est pas utilisable pour le travail (passage, circulation).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le prix au m² mensuel pour chaque local. Quel local est le plus cher au m² ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Local A : 600 / 48 = <strong>12,50 €/m²/mois</strong>.</p>
+    <p>Local B : 580 / 42 = <strong>13,81 €/m²/mois</strong>.</p>
+    <p><strong>Local B est plus cher au m²</strong> (de 1,31 €), bien que son loyer total soit inférieur.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi le « prix au m² » est-il un critère plus pertinent que le « prix total » pour comparer 2 locaux ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le prix total brut ne tient pas compte de ce qu'on paie réellement. Le prix au m² <strong>normalise</strong> la comparaison.</p>
+    <p>Exemple ici : B coûte 20 € de moins que A en valeur absolue → on pourrait croire qu'il est plus avantageux. Mais B offre 6 m² de moins → en réalité, on paie <strong>plus cher la surface qu'on utilise</strong>.</p>
+    <p>C'est le piège du <strong>« moins cher en valeur absolue mais plus cher au m² »</strong>. À éviter.</p>
+    <p>Le prix au m² est un standard immobilier : on l'utilise aussi pour les ventes, les bureaux, les commerces, etc.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Calculer le périmètre de chaque local. Pour chacun, en quoi cela peut-il influencer le coût d'aménagement (peinture, plinthes, étagères murales) ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Périmètre A</strong> : 2 × (8 + 6) = <strong>28 m</strong>.</p>
+    <p><strong>Périmètre B</strong> : on suit le contour du L. Il vaut le périmètre du grand rectangle = 2 × (10 + 5) = <strong>30 m</strong> (le « décrochement » du L ne change pas le périmètre car ce qui rentre ressort).</p>
+    <p>Conséquences pour l'aménagement :</p>
+    <ul>
+      <li>Plinthes et peintures murales : B coûte 30/28 ≈ 7 % de plus.</li>
+      <li>Étagères murales : B a plus de longueur de murs (potentiellement plus de rangement).</li>
+      <li>Mais B a un poteau au milieu → mauvaise circulation.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>En tenant compte des aspects pratiques (forme, circulation, placement des machines), lequel des deux locaux conseiller à Anaïs ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Local A</strong> est nettement plus avantageux :</p>
+    <ul>
+      <li>Moins cher au m² (12,50 vs 13,81 €) → meilleur rapport qualité/prix</li>
+      <li>Plus grande surface utile (48 vs 42 m²) → 6 m² gagnés</li>
+      <li>Forme rectangulaire pure → placement libre des machines, circulation aisée</li>
+      <li>Pas de poteau qui crée des angles morts</li>
+    </ul>
+    <p>Le local B paraît attractif au premier regard (loyer plus bas), mais le calcul rationnel et l'analyse pratique démontrent que A est meilleur sur tous les critères.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Le propriétaire du local B accepte de baisser le loyer si Anaïs négocie. Quel loyer maximal pour B (à 42 m²) afin que son prix au m² soit identique à celui de A ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Pour avoir le même prix au m² (12,50 €/m²) :</p>
+    <p>Loyer B max = 12,50 × 42 = <strong>525 €/mois</strong>.</p>
+    <p>Soit une baisse de 580 − 525 = 55 €/mois → 660 €/an.</p>
+    <p>Anaïs devra <strong>négocier au moins 525 €</strong> pour rendre B équivalent à A. Mais B reste handicapé par la forme en L.</p>
+    <p>Argument de négociation : « le poteau gêne, je perds 8 m² → la valeur réelle du local est inférieure ». Possible aussi de demander plus (ex. 480 €) si B veut vraiment louer.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes la note de synthèse à présenter au comptable d'Anaïs justifiant le choix du local.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Note — Choix d'atelier (Anaïs)</strong></em></p>
+    <p><em>Comparaison de deux locaux :</em></p>
+    <table>
+      <thead><tr><th>Local</th><th>Surface</th><th>Loyer</th><th>Prix/m²</th></tr></thead>
+      <tbody>
+        <tr><td>A (rectangle 8×6)</td><td>48 m²</td><td>600 €</td><td><strong>12,50 €/m²</strong></td></tr>
+        <tr><td>B (L 10×5−4×2)</td><td>42 m²</td><td>580 €</td><td>13,81 €/m²</td></tr>
+      </tbody>
+    </table>
+    <p><em>Local A présente un meilleur rapport surface/prix, une forme rectangulaire pratique, et 6 m² supplémentaires. Loyer total +20 €/mois mais 1,31 €/m² de moins. <strong>Choix : Local A.</strong> Bail 3-6-9 envisagé pour stabiliser le coût immobilier.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Sur 9 ans (durée du bail commercial 3-6-9), comparer le coût total des deux locaux (sans changement de loyer). Lequel est globalement le moins cher ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Coût total sur 9 ans = loyer mensuel × 12 × 9 = loyer × 108.</p>
+    <ul>
+      <li>Local A : 600 × 108 = <strong>64 800 €</strong></li>
+      <li>Local B : 580 × 108 = <strong>62 640 €</strong></li>
+    </ul>
+    <p>Différence : 2 160 € en faveur de B (sur 9 ans).</p>
+    <p><strong>Mais</strong> en termes de <strong>productivité</strong>, A offre 6 m² supplémentaires :</p>
+    <ul>
+      <li>Si Anaïs valorise 6 m² par 50 €/m²/mois en activité productive (= chiffre d'affaires généré), elle gagne 6 × 50 × 108 = <strong>32 400 €</strong> en CA supplémentaire sur 9 ans avec A.</li>
+      <li>Beaucoup plus que les 2 160 € d'économie sur B.</li>
+    </ul>
+    <p>Conclusion : sur le moyen-long terme, <strong>A reste gagnant</strong>. Toujours raisonner en termes de productivité, pas seulement de coût.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Comparer 2 locaux :</strong> ramener tout au <strong>prix au m²</strong>. Évite le piège du « moins cher en valeur absolue ».</li>
+    <li><strong>Forme rectangulaire</strong> souvent préférable à un L pour un atelier (placement libre des machines, circulation, sécurité).</li>
+    <li><strong>Décomposition d'une figure :</strong> par soustraction (grande aire − petite aire) ou par addition (somme de plusieurs rectangles).</li>
+    <li><strong>Décision pro :</strong> intégrer aussi la praticité, la productivité potentielle, la flexibilité long terme.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

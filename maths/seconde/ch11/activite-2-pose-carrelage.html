@@ -1,46 +1,223 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch11 – Activité 2 – Devis pose carrelage – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch11 – Activité 2 – Devis pose carrelage : aire d'une figure en L – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Devis pose carrelage <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 11 – Aires et périmètres | 2nde Bac Pro MAMA | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="situation"><h2>Situation – cuisine en L</h2>
-<p><em>Pour la cuisine d'un client, on doit poser du carrelage sur une surface en L : un grand rectangle 5 m × 4 m moins un petit rectangle 2 m × 1,5 m (réservé pour l'îlot central).</em></p>
-<p>Carrelage : 35 €/m² posé.</p></div>
+<header>
+  <h1>Activité 2 – Devis pose carrelage : aire d'une cuisine en L <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 11 – Aires et périmètres | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer la surface à carreler.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>S = 5×4 − 2×1,5 = 20 − 3 = <strong>17 m²</strong>.</p>
-</div></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer l'aire d'une figure complexe par décomposition</li>
+    <li>Calculer le périmètre d'une figure (pour les plinthes)</li>
+    <li>Appliquer une marge de pertes pour un devis pro</li>
+    <li>Établir un devis détaillé chiffré</li>
+  </ul>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Coût total ? Avec 10 % de pertes (coupes, casse), quelle surface acheter ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Surface à acheter : 17 × 1,10 = <strong>18,7 m² → 19 m²</strong> (arrondi sup).</p>
-<p>Coût total : 19 × 35 = <strong>665 €</strong>.</p>
-</div></div>
+<div class="situation">
+  <h2>Situation – chantier d'agencement de cuisine</h2>
+  <p><em>Tania, technicienne d'agencement, a remporté un contrat de pose de carrelage dans une cuisine en L (forme typique des cuisines avec îlot central). Elle doit établir un devis pour le client.</em></p>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Calculer aussi le périmètre des plinthes (2 m de hauteur sur les 3 murs sans îlot ; périmètre = côtés extérieurs).</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Périmètre extérieur du grand rectangle : 2(5+4) = 18 m. Plinthes posées sur ~ 18 m linéaires.</p>
-<p>(On ne pose pas de plinthe contre l'îlot.)</p>
-</div></div>
+  <h3>Document — plan de la cuisine</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Plan d'une cuisine en L. Grand rectangle 5m x 4m représenté en bleu clair (à carreler), avec un petit rectangle 2m x 1,5m découpé en haut à droite (îlot central, non carrelé).">
+        <defs>
+          <style>
+            .b{stroke:#1a202c;stroke-width:1.5}
+            .lbl{font:11px sans-serif;fill:#1a202c}
+            .lblA{font:600 12px sans-serif;fill:#1a202c}
+            .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+          </style>
+        </defs>
+        <text class="ti" x="270" y="22">Plan cuisine — surface à carreler en bleu</text>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Aire d'une figure complexe :</strong> décomposer en rectangles, ajouter ou soustraire.</li>
-<li><strong>Marge de 10 %</strong> à prévoir pour pertes (coupes, casse).</li></ul></div>
+        <!-- Échelle : 1 m = 60 px. Cuisine 5 m × 4 m : 300 × 240 px. Centrer : x : 60 → 360, y : 50 → 250. Hauteur réduite -->
+        <!-- Ajusté : 1 m = 50 px. Cuisine 5 × 4 : 250 × 200 px. -->
 
-</div><script src="../../../nav.js"></script></body></html>
+        <!-- Rectangle global (cuisine 5m × 4m) -->
+        <rect class="b" x="80" y="50" width="375" height="200" fill="#dbeafe" opacity=".5"/>
+
+        <!-- Îlot central : 2m × 1,5m, en haut à droite. 2*75=150 px, 1,5*50=75 px -->
+        <rect class="b" x="305" y="50" width="150" height="75" fill="#fff" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="380" y="92" class="lbl" fill="#dc2626" font-weight="bold" text-anchor="middle">îlot central</text>
+        <text x="380" y="106" class="lbl" fill="#dc2626" text-anchor="middle">(non carrelé)</text>
+
+        <!-- Cotes -->
+        <text x="267" y="270" class="lblA" text-anchor="middle">5 m</text>
+        <line x1="80" y1="262" x2="455" y2="262" stroke="#1a202c" stroke-width="1"/>
+        <text x="65" y="155" class="lblA" text-anchor="end" transform="rotate(-90 60 155)">4 m</text>
+
+        <text x="380" y="40" class="lbl" text-anchor="middle">2 m</text>
+        <text x="463" y="92" class="lbl" text-anchor="start">1,5 m</text>
+
+        <!-- Indication zone à carreler -->
+        <text x="180" y="155" class="lblA" fill="#0056b3" font-weight="bold" text-anchor="middle">Zone à carreler</text>
+        <text x="180" y="172" class="lbl" fill="#0056b3" text-anchor="middle">(forme en L)</text>
+    </svg>
+  </div>
+
+  <h3>Document — éléments du devis</h3>
+  <table>
+    <thead>
+      <tr><th>Poste</th><th>Tarif</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Carrelage fourni et posé</td><td>35 €/m²</td></tr>
+      <tr><td>Plinthes (15 cm de hauteur, faïence)</td><td>12 €/m linéaire</td></tr>
+      <tr><td>Marge pour pertes (coupes, casse)</td><td>10 % en plus</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §1 (aire et périmètre des rectangles) et §3 (décomposition d'une figure complexe).</em></p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle est la surface exacte à carreler ? Quelle quantité de carrelage commander (avec marge de pertes) ? Quel est le coût total du devis ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'aire de la cuisine totale (rectangle 5 m × 4 m).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Aire = longueur × largeur = 5 × 4 = <strong>20 m²</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'aire occupée par l'îlot central (rectangle 2 m × 1,5 m).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Aire îlot = 2 × 1,5 = <strong>3 m²</strong>.</p>
+    <p>Cette surface ne sera pas carrelée (l'îlot est posé à même la dalle).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la surface à carreler (en forme de L) en utilisant les résultats précédents.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Méthode : <strong>aire totale moins aire de l'îlot</strong>.</p>
+    <p>S = 20 − 3 = <strong>17 m²</strong>.</p>
+    <p>C'est le principe de décomposition / soustraction pour les figures complexes.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">APP</span></h2>
+  <p>Tania doit appliquer une marge de 10 % pour les pertes (coupes, casse, joints). Quelle surface de carrelage doit-elle commander ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Surface à commander = 17 × (1 + 0,10) = 17 × 1,10 = <strong>18,7 m²</strong>.</p>
+    <p>En pratique, on arrondit toujours à l'entier supérieur : <strong>19 m²</strong> (ou par boîte si le carrelage est vendu par boîtes de 1 m²).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le coût du carrelage (sans plinthes pour le moment), pour 19 m² au tarif de 35 €/m² posé.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Coût carrelage = 19 × 35 = <strong>665 €</strong>.</p>
+    <p>Comprend la pose et les matériaux (carrelage + colle + joints).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Pour les plinthes, on les pose <strong>uniquement sur les 4 côtés extérieurs</strong> (les côtés contre l'îlot ne reçoivent pas de plinthe). Calculer la longueur totale de plinthes nécessaires (= périmètre extérieur du rectangle 5×4).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Périmètre extérieur = 2 × (longueur + largeur) = 2 × (5 + 4) = 2 × 9 = <strong>18 m</strong>.</p>
+    <p>Tania doit prévoir 18 m linéaires de plinthes.</p>
+    <p>Avec une marge de 10 % : 18 × 1,1 ≈ 20 m → arrondi à 20 m de plinthes commandées.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le coût des plinthes (20 m à 12 €/m), puis le coût total du devis (carrelage + plinthes).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Coût plinthes = 20 × 12 = <strong>240 €</strong>.</p>
+    <p>Coût total HT = 665 + 240 = <strong>905 €</strong>.</p>
+    <p>Avec TVA à 10 % (taux artisanal pour rénovation), TTC = 905 × 1,10 = <strong>995,50 €</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Présenter le devis complet à transmettre au client (présentation soignée, détaillée).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>DEVIS — Pose carrelage cuisine en L</strong></em></p>
+    <p><em>Client : M./Mme [Nom] | Date : [Date] | Réf. devis 2026-XXX</em></p>
+    <table>
+      <thead><tr><th>Désignation</th><th>Quantité</th><th>P.U.</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Carrelage fourni et posé (avec marge 10 %)</td><td>19 m²</td><td>35 €/m²</td><td>665 €</td></tr>
+        <tr><td>Plinthes faïence assorties (4 côtés)</td><td>20 m</td><td>12 €/m</td><td>240 €</td></tr>
+        <tr><td colspan="3"><strong>Total HT</strong></td><td><strong>905 €</strong></td></tr>
+        <tr><td colspan="3">TVA 10 %</td><td>90,50 €</td></tr>
+        <tr><td colspan="3"><strong>Total TTC</strong></td><td><strong>995,50 €</strong></td></tr>
+      </tbody>
+    </table>
+    <p><em>Délai de réalisation : 3 jours. Validité du devis : 30 jours. Acompte : 30 % à la commande.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Le client demande des carreaux de 30 × 30 cm. Combien de carreaux faut-il pour les 17 m² (sans marge) ? Et combien avec la marge de 10 % ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>1 carreau de 30 × 30 cm = 0,30 × 0,30 = 0,09 m².</p>
+    <p>Pour 17 m² : 17 / 0,09 ≈ <strong>189 carreaux</strong>.</p>
+    <p>Avec marge 10 % : 189 × 1,1 ≈ <strong>208 carreaux</strong>.</p>
+    <p>En général, on arrondit au nombre de boîtes pleines (ex. boîtes de 12 carreaux : 18 boîtes = 216 carreaux).</p>
+    <p><strong>Note pratique :</strong> avec des carreaux carrés, dans une pièce non rectangulaire (en L), il y a beaucoup de coupes → la marge réelle peut atteindre 15 % voire 20 % pour des motifs complexes. Toujours surdimensionner en cas de doute.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Aire d'un rectangle :</strong> A = L × l.</li>
+    <li><strong>Périmètre d'un rectangle :</strong> P = 2 × (L + l).</li>
+    <li><strong>Aire d'une figure complexe :</strong> décomposer en figures simples, ajouter ou soustraire les aires.</li>
+    <li><strong>Marge en chantier :</strong> toujours prévoir 10 % de plus pour les pertes (coupes, casse, joints).</li>
+    <li><strong>Devis pro :</strong> détailler quantité, prix unitaire, total HT, TVA, total TTC.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
