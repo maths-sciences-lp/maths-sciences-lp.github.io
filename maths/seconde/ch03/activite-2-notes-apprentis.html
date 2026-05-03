@@ -1,59 +1,270 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch03 – Activité 2 – Notes d'apprentis – 2nde MAMA</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Activité 2 – Notes d'apprentis et quartiles – 2nde Bac Pro MAMA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0056b3;--p-bg:#ebf5ff;--p-border:#bee3f8}</style>
-</head><body><div class="c"><a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Comprendre les notes des apprentis <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 3 – Indicateurs statistiques | 2nde Bac Pro MAMA | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 10:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-2nde-mama.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul><li>Calculer médiane et quartiles</li><li>Interpréter une série de notes</li></ul></div>
+<header>
+  <h1>Activité 2 – Comprendre les notes des apprentis avec les quartiles <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 3 – Indicateurs statistiques | 2nde Bac Pro MAMA | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:00</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – bilan formation</h2>
-<p><em>Sami, formateur, fait le bilan des 12 apprentis menuisiers. Notes finales /20 :</em></p>
-<p>8, 10, 11, 12, 12, 13, 14, 14, 15, 16, 17, 18</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer médiane et quartiles d'une série de données</li>
+    <li>Identifier des groupes d'élèves selon leur niveau</li>
+    <li>Calculer l'écart interquartile</li>
+    <li>Utiliser les statistiques pour des décisions pédagogiques</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – bilan formation au CFA de Bordeaux</h2>
+  <p><em>Sami, formateur en CFA (Centre de Formation d'Apprentis) en menuiserie, doit faire le bilan de fin d'année de ses 12 apprentis. Pour adapter sa pédagogie l'année prochaine, il veut identifier 3 groupes : ceux en difficulté, ceux dans la moyenne, et ceux qui progressent vite. Les outils statistiques (médiane, quartiles) vont l'aider.</em></p>
+
+  <h3>Document 1 — Notes finales des 12 apprentis (sur 20)</h3>
+  <p>Notes triées par ordre croissant :</p>
+  <p style="text-align:center;font-family:monospace;font-size:1.1em;background:#f8fafc;padding:10px;border-radius:6px">
+  8 ; 10 ; 11 ; 12 ; 12 ; 13 ; 14 ; 14 ; 15 ; 16 ; 17 ; 18
+  </p>
+
+  <h3>Document 2 — Définitions</h3>
+  <ul>
+    <li><strong>Médiane (Me)</strong> : valeur qui partage la série triée en 2 parties égales. 50 % des données sont ≤ Me, 50 % sont ≥ Me.</li>
+    <li><strong>1ᵉʳ quartile (Q1)</strong> : valeur sous laquelle se trouvent au moins 25 % des données.</li>
+    <li><strong>3ᵉ quartile (Q3)</strong> : valeur sous laquelle se trouvent au moins 75 % des données.</li>
+    <li><strong>Écart interquartile (IQR)</strong> = Q3 − Q1 : mesure de dispersion centrée (50 % des élèves « du milieu »).</li>
+  </ul>
+
+  <h3>Document 3 — Méthode de calcul (12 valeurs)</h3>
+  <ul>
+    <li>Médiane : moyenne des 6ᵉ et 7ᵉ valeurs (= au milieu de 12).</li>
+    <li>Q1 : 3ᵉ valeur (≈ 25 % de 12 = 3).</li>
+    <li>Q3 : 9ᵉ valeur (≈ 75 % de 12 = 9).</li>
+  </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §2 (médiane et quartiles) et §3 (écart interquartile).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Quels apprentis sont en difficulté, dans la moyenne, en avance ?</div>
+  <strong>Problématique :</strong> Comment Sami peut-il identifier les 3 groupes d'apprentis (en difficulté, dans la moyenne, en avance) à l'aide des quartiles, et quelle pédagogie adapter à chaque groupe ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer la médiane Me, le 1er quartile Q1, le 3e quartile Q3.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>12 notes triées. Médiane = moyenne des 6e et 7e = (13+14)/2 = <strong>13,5</strong>.</p>
-<p>Q1 = 3e valeur = <strong>11</strong> (25 % en dessous).</p>
-<p>Q3 = 9e valeur = <strong>15</strong> (75 % en dessous, 25 % au-dessus).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la médiane Me de la série.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>12 notes (nombre pair). Médiane = moyenne des 6ᵉ et 7ᵉ valeurs.</p>
+    <p>6ᵉ valeur = 13 ; 7ᵉ valeur = 14.</p>
+    <p>Me = (13 + 14) / 2 = <strong>13,5</strong></p>
+    <p>Interprétation : la moitié des apprentis a une note ≤ 13,5.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-blue">ANA</span></h2>
-<p>Identifier les 3 groupes d'apprentis (en difficulté Q1, dans la moyenne, en avance Q3).</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<ul>
-<li><strong>En difficulté</strong> (notes &lt; Q1 = 11) : 8, 10. <strong>3 apprentis</strong> (sur 12 = 25 %).</li>
-<li><strong>Dans la moyenne</strong> (Q1 ≤ note ≤ Q3) : 11, 12, 12, 13, 14, 14, 15. <strong>6 apprentis</strong>.</li>
-<li><strong>En avance</strong> (notes &gt; Q3 = 15) : 16, 17, 18. <strong>3 apprentis</strong>.</li>
-</ul>
-<p>Cohérent avec la définition des quartiles (25/50/25 %).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer Q1 (1ᵉʳ quartile) et Q3 (3ᵉ quartile).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Q1 = 3ᵉ valeur de la série triée = <strong>11</strong></p>
+    <p>Q3 = 9ᵉ valeur = <strong>15</strong></p>
+    <p>Interprétations :</p>
+    <ul>
+      <li>25 % des apprentis ont ≤ 11 (en difficulté)</li>
+      <li>75 % des apprentis ont ≤ 15 ; donc 25 % ont &gt; 15 (en avance)</li>
+    </ul>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Pour le formateur, quelle action prioritaire ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Soutien individualisé pour le quartile bas (≤ Q1) : exercices de remédiation, accompagnement renforcé.</p>
-<p>Pour le haut quartile (≥ Q3) : leur proposer des défis supplémentaires (concours, projets approfondis).</p>
-<p>Le « gros » de la classe est dans la moyenne (Q1-Q3) — formation standard convient.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'écart interquartile IQR = Q3 − Q1.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>IQR = 15 − 11 = <strong>4 points</strong>.</p>
+    <p>Cela signifie que les 50 % d'apprentis « du milieu » (entre Q1 et Q3) ont des notes étalées sur 4 points seulement. La classe est plutôt homogène dans son centre.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Médiane :</strong> partage la série en 2 (50/50).</li>
-<li><strong>Quartiles :</strong> Q1 (25 %), Me (50 %), Q3 (75 %). Partagent en 4 groupes égaux.</li>
-<li><strong>Écart interquartile :</strong> Q3 − Q1, mesure la dispersion centrale.</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Visualiser la répartition sur un axe gradué et identifier les 3 groupes :</p>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 600 240" style="max-width:600px;display:block;margin:0 auto" role="img" aria-label="Axe gradué de 0 à 20. 12 points représentant les 12 apprentis avec leurs notes (8, 10, 11, 12, 12, 13, 14, 14, 15, 16, 17, 18). Q1 à 11 (en rouge), médiane à 13,5 (en vert), Q3 à 15 (en orange). Zones colorées : difficulté (≤Q1), moyenne (Q1-Q3), avance (≥Q3).">
+      <defs>
+        <style>
+          .ax{stroke:#1a202c;stroke-width:1.5}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0056b3}
+        </style>
+      </defs>
+      <text class="ti" x="300" y="22">Répartition des 12 apprentis (notes / 20)</text>
 
-</div><script src="../../../nav.js"></script></body></html>
+      <!-- Axe horizontal de 5 à 20. x = 60 → 5 ; x = 540 → 20. 32 px par unité -->
+      <!-- Zones colorées -->
+      <rect x="60" y="100" width="192" height="40" fill="#fee2e2" opacity=".7"/>
+      <rect x="252" y="100" width="128" height="40" fill="#fef3c7" opacity=".7"/>
+      <rect x="380" y="100" width="160" height="40" fill="#dcfce7" opacity=".7"/>
+
+      <!-- Annotations zones -->
+      <text x="156" y="92" class="lblA" text-anchor="middle" fill="#b91c1c">En difficulté</text>
+      <text x="156" y="155" class="lbl" text-anchor="middle" fill="#7f1d1d">25 % (3 apprentis)</text>
+      <text x="316" y="92" class="lblA" text-anchor="middle" fill="#92400e">Niveau moyen</text>
+      <text x="316" y="155" class="lbl" text-anchor="middle" fill="#7c2d12">50 % (6 apprentis)</text>
+      <text x="460" y="92" class="lblA" text-anchor="middle" fill="#15803d">En avance</text>
+      <text x="460" y="155" class="lbl" text-anchor="middle" fill="#14532d">25 % (3 apprentis)</text>
+
+      <!-- Axe -->
+      <line class="ax" x1="60" y1="180" x2="550" y2="180"/>
+      <g>
+        <line x1="60" y1="175" x2="60" y2="185" stroke="#1a202c"/>
+        <text x="60" y="200" class="lbl" text-anchor="middle">5</text>
+        <line x1="156" y1="175" x2="156" y2="185" stroke="#1a202c"/>
+        <text x="156" y="200" class="lbl" text-anchor="middle">8</text>
+        <line x1="252" y1="175" x2="252" y2="185" stroke="#1a202c"/>
+        <text x="252" y="200" class="lbl" text-anchor="middle">11</text>
+        <line x1="348" y1="175" x2="348" y2="185" stroke="#1a202c"/>
+        <text x="348" y="200" class="lbl" text-anchor="middle">14</text>
+        <line x1="444" y1="175" x2="444" y2="185" stroke="#1a202c"/>
+        <text x="444" y="200" class="lbl" text-anchor="middle">17</text>
+        <line x1="540" y1="175" x2="540" y2="185" stroke="#1a202c"/>
+        <text x="540" y="200" class="lbl" text-anchor="middle">20</text>
+      </g>
+      <text x="300" y="220" class="lblA" text-anchor="middle">Notes (sur 20)</text>
+
+      <!-- Points : x = 60 + (note - 5) × 32 -->
+      <!-- 8 : 156 ; 10 : 220 ; 11 : 252 ; 12 : 284 ; 13 : 316 ; 14 : 348 ; 15 : 380 ; 16 : 412 ; 17 : 444 ; 18 : 476 -->
+      <circle cx="156" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="220" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="252" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="284" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="284" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="316" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="348" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="348" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="380" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="412" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="444" cy="120" r="6" fill="#0056b3"/>
+      <circle cx="476" cy="120" r="6" fill="#0056b3"/>
+
+      <!-- Q1, Médiane, Q3 -->
+      <line x1="252" y1="50" x2="252" y2="180" stroke="#dc2626" stroke-width="2"/>
+      <text x="252" y="44" class="lblA" text-anchor="middle" fill="#b91c1c">Q1 = 11</text>
+
+      <line x1="332" y1="50" x2="332" y2="180" stroke="#15803d" stroke-width="2.5" stroke-dasharray="5 3"/>
+      <text x="332" y="44" class="lblA" text-anchor="middle" fill="#15803d">Me = 13,5</text>
+
+      <line x1="380" y1="50" x2="380" y2="180" stroke="#ea580c" stroke-width="2"/>
+      <text x="380" y="44" class="lblA" text-anchor="middle" fill="#c2410c">Q3 = 15</text>
+    </svg>
+  </div>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>En difficulté</strong> (notes &lt; Q1 = 11) : <strong>3 apprentis</strong> (notes 8, 10, ~11). Soit 25 %.</li>
+      <li><strong>Niveau moyen</strong> (Q1 ≤ note ≤ Q3) : <strong>6 apprentis</strong> (notes 11, 12, 12, 13, 14, 14, 15). Soit 50 %.</li>
+      <li><strong>En avance</strong> (notes &gt; Q3 = 15) : <strong>3 apprentis</strong> (notes 16, 17, 18). Soit 25 %.</li>
+    </ul>
+    <p>Cette répartition 25/50/25 est par construction des quartiles. C'est très utile pour identifier les 3 groupes pédagogiques.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>Pour chaque groupe, proposer une action pédagogique adaptée.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>Groupe en difficulté (Q1 ≤) :</strong> soutien individualisé, exercices de remédiation sur les bases (mesures, calcul de surfaces simples), travail en petit groupe, accompagnement renforcé.</li>
+      <li><strong>Groupe moyen (Q1 à Q3) :</strong> formation standard du référentiel, alternance théorie/pratique. Pas de surcharge.</li>
+      <li><strong>Groupe en avance (≥ Q3) :</strong> projets d'approfondissement (concours « Un des Meilleurs Apprentis de France »), responsabilités d'aide aux camarades, prépa BTS.</li>
+    </ul>
+    <p>Cette différenciation pédagogique permet à chacun de progresser à son rythme.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la moyenne de la classe et comparer à la médiane.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Somme = 8+10+11+12+12+13+14+14+15+16+17+18 = 160</p>
+    <p>Moyenne = 160 / 12 ≈ <strong>13,3</strong></p>
+    <p>Médiane = 13,5. La moyenne est très proche de la médiane → la classe est <strong>équilibrée</strong> (pas de valeur extrême qui biaise la moyenne).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Sami compare cette classe à une autre où Q1 = 7 et Q3 = 17 (donc IQR = 10). Comment qualifier cette autre classe ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>IQR = 10 (vs 4 dans la 1ʳᵉ classe) → classe <strong>très hétérogène</strong>. L'écart entre les meilleurs et les moins bons (parmi les 50 % du milieu) est 2,5 fois plus grand.</p>
+    <p>Conséquence pédagogique : il sera plus difficile de proposer un cours « adapté à tous » dans cette classe. La différenciation devient cruciale.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes le <strong>bilan statistique</strong> que Sami peut transmettre au directeur du CFA.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em>📋 <strong>Bilan classe Menuiserie 2nde CFA — Année 2025-2026 (n=12)</strong></em></p>
+    <p><em>Indicateurs : moyenne 13,3 / médiane 13,5 / Q1 = 11 / Q3 = 15 / IQR = 4 / min 8 / max 18.</em></p>
+    <p><em>La classe est globalement <strong>homogène et de bon niveau</strong> (moyenne ≈ médiane, IQR modéré). 3 apprentis en difficulté nécessitent un soutien personnalisé, 6 sont dans la moyenne (parcours standard), 3 sont en avance et peuvent être proposés au concours UMAF.</em></p>
+    <p><em>Aucune note &lt; 8, aucune au-dessus de 18 — pas de cas extrême. Recommandation : maintenir le format de cours actuel + activités différenciées.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">VAL</span></h2>
+  <p>Sami récupère un nouvel apprenti qui a obtenu 4/20 à un test de positionnement. Comment évoluent Q1, Me et Q3 ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Nouvelle série triée (13 valeurs) : 4 ; 8 ; 10 ; 11 ; 12 ; 12 ; 13 ; 14 ; 14 ; 15 ; 16 ; 17 ; 18.</p>
+    <p>Médiane : 7ᵉ valeur (au milieu de 13) = <strong>13</strong> (au lieu de 13,5).</p>
+    <p>Q1 : 4ᵉ valeur (≈ 25 % de 13) = <strong>11</strong> (inchangé).</p>
+    <p>Q3 : 10ᵉ valeur (≈ 75 % de 13) = <strong>15</strong> (inchangé).</p>
+    <p>Conclusion : Q1 et Q3 ont une grande <strong>robustesse</strong> aux valeurs extrêmes. Médiane légèrement décalée. Moyenne fortement tirée vers le bas (≈ 12,6 au lieu de 13,3).</p>
+    <p>C'est l'avantage des quartiles : ils restent stables même avec des valeurs aberrantes.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Médiane Me :</strong> partage la série en 2 (50 %/50 %).</li>
+    <li><strong>Quartiles Q1 et Q3 :</strong> partagent en 4 groupes égaux (25 %/25 %/25 %/25 %).</li>
+    <li><strong>Écart interquartile</strong> IQR = Q3 − Q1 : mesure la dispersion centrale (50 % du milieu).</li>
+    <li><strong>Robustesse :</strong> Me, Q1, Q3 sont peu sensibles aux valeurs extrêmes (contrairement à la moyenne).</li>
+    <li><strong>Application pédagogique :</strong> identifier les groupes (Q1 = en difficulté, ≥ Q3 = en avance) pour adapter l'enseignement.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
