@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité 2 – Probabilités d'un test médical – Term Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head><body>
+<div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header><h1>Activité 2 – Le paradoxe du test médical positif <span style="font-size:.55em;color:#7c3aed;font-weight:600">ÉTUDE DE CAS</span></h1>
+<p class="sous-titre">Chapitre 2 – Probabilités | Terminale Bac Pro | ⏱ 35 min</p>
+<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+
+<div class="objectifs"><strong>Objectifs :</strong><ul>
+<li>Construire un arbre de probabilité à partir de pourcentages</li>
+<li>Calculer une probabilité conditionnelle</li>
+<li>Comprendre le paradoxe des faux positifs</li></ul></div>
+
+<div class="situation"><h2>Situation – test sérologique d'une maladie rare</h2>
+<p><em>Léa passe un test pour une maladie qui touche <strong>1 personne sur 1 000</strong> dans la population. Le test est très bon : <strong>99 % de sensibilité</strong> (détecte 99 % des malades) et <strong>99 % de spécificité</strong> (98 % des non-malades sont déclarés sains... donc 1 % de faux positifs).</em></p>
+<p>Léa reçoit un résultat <strong>positif</strong>. Elle est inquiète : « J'ai 99 % de chances d'être malade ? » C'est faux. Calculons.</p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+<strong>Problématique :</strong> Sachant que le test est positif, quelle est la probabilité réelle que Léa soit malade ?</div>
+
+<div class="exo">
+<h2>Question 1 <span class="badge-yellow">REA</span></h2>
+<p>Sur une population de 100 000 personnes, calculer le nombre attendu de :</p>
+<ol type="a"><li>Malades</li><li>Sains</li><li>Tests positifs (parmi les malades)</li><li>Tests positifs (parmi les sains, faux positifs)</li></ol>
+<ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<ul>
+<li>Malades : 100 000 × 0,001 = <strong>100</strong></li>
+<li>Sains : 100 000 − 100 = <strong>99 900</strong></li>
+<li>Vrais positifs (malades testés +) : 100 × 0,99 = <strong>99</strong></li>
+<li>Faux positifs (sains testés +) : 99 900 × 0,01 = <strong>999</strong></li>
+</ul>
+<p>Total positifs = 99 + 999 = <strong>1 098</strong>. Sur ces 1 098 positifs, seulement 99 sont vraiment malades.</p>
+</div></div>
+
+<div class="exo">
+<h2>Question 2 <span class="badge-yellow">REA</span></h2>
+<p>Calculer la probabilité que Léa soit réellement malade sachant que son test est positif : P(malade | test+).</p>
+<ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>P(malade | test+) = nb vrais positifs / nb total positifs = 99 / 1 098 ≈ <strong>0,090 = 9,0 %</strong></p>
+<p><strong>Surprise !</strong> Léa n'a que <strong>9 %</strong> de chances d'être réellement malade, malgré un test positif. Et 91 % de chances d'être saine (faux positif).</p>
+</div></div>
+
+<div class="exo">
+<h2>Question 3 <span class="badge-blue">VAL</span></h2>
+<p>Pourquoi le résultat est-il si différent de l'intuition initiale (« 99 % de chances ») ?</p>
+<ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>L'intuition « 99 % » confond <strong>P(test+ | malade)</strong> = 99 % avec <strong>P(malade | test+)</strong> ≈ 9 %.</p>
+<p>Quand la maladie est <strong>rare</strong> (1/1000), il y a beaucoup plus de sains que de malades. Donc même un faible taux de faux positifs (1 %) génère un grand nombre de faux positifs en valeur absolue (999 vs 99 vrais positifs).</p>
+<p>C'est le <strong>théorème de Bayes</strong>. C'est pourquoi les médecins demandent souvent un <strong>second test</strong> de confirmation après un premier positif. Et c'est pourquoi on ne dépiste massivement que les maladies fréquentes ou graves.</p>
+</div></div>
+
+<div class="exo">
+<h2>Question 4 <span class="badge-yellow">COM</span></h2>
+<p>Rédiger en 4 lignes ce que le médecin doit dire à Léa.</p>
+<ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+<button class="bc" onclick="toggle(this)">Voir un exemple</button>
+<div class="corr">
+<p><em>Léa, votre test est positif mais pas de panique. Cette maladie est rare (1 personne sur 1 000). Notre test, malgré ses excellentes performances (99/99), donne 1 % de faux positifs sur les non-malades. Or les non-malades sont 1000 fois plus nombreux que les malades. Conséquence : la majorité des positifs (91 %) sont en réalité <strong>faux positifs</strong>. Vous avez donc 9 % de probabilité d'être malade, 91 % d'être saine. On va faire un second test de confirmation.</em></p>
+</div></div>
+
+<div class="retenir"><strong>À retenir</strong>
+<ul><li><strong>Probabilité conditionnelle :</strong> P(A|B) = P(A∩B)/P(B). Sens « probabilité de A sachant B ».</li>
+<li><strong>Théorème de Bayes :</strong> permet de « renverser » une probabilité conditionnelle. P(M|+) ≠ P(+|M).</li>
+<li><strong>Maladie rare + test imparfait :</strong> les faux positifs dominent les vrais positifs. Un test positif ne signifie pas malade.</li>
+<li><strong>Bonne pratique :</strong> second test de confirmation, étude de la prévalence avant interpretation.</li></ul></div>
+
+</div><script src="../../../nav.js"></script></body></html>

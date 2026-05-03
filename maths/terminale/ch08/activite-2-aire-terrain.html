@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Activité 2 – Aire d'un terrain irrégulier – Term Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header><h1>Activité 2 – Aire d'un terrain à bord irrégulier <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+<p class="sous-titre">Chapitre 8 – Calcul intégral | Terminale Bac Pro | ⏱ 35 min</p>
+<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+
+<div class="objectifs"><strong>Objectifs :</strong><ul>
+<li>Calculer une aire à l'aide de l'intégrale</li>
+<li>Comprendre la méthode des trapèzes (approximation numérique)</li></ul></div>
+
+<div class="situation"><h2>Situation – géomètre, mesure de parcelle</h2>
+<p><em>Imène, géomètre, doit mesurer l'aire d'une parcelle de terrain bordée par une rivière sinueuse. Elle relève la distance de la rivière à la limite Nord (rectiligne) tous les 5 m :</em></p>
+<table>
+<thead><tr><th>x (m)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th><th>30</th></tr></thead>
+<tbody><tr><td>y (m)</td><td>20</td><td>22</td><td>25</td><td>21</td><td>18</td><td>15</td><td>10</td></tr></tbody></table>
+<p>L'aire est l'intégrale de y(x) sur [0, 30].</p></div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+<strong>Problématique :</strong> Comment estimer l'aire de la parcelle ?</div>
+
+<div class="exo"><h2>Question 1 <span class="badge-blue">ANA</span></h2>
+<p>Pourquoi la formule classique « base × hauteur » ne suffit pas ici ?</p>
+<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>La hauteur y varie le long du terrain (rivière sinueuse). Pas une forme géométrique simple. Il faut <strong>intégrer</strong> y(x) sur l'intervalle [0, 30].</p>
+</div></div>
+
+<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
+<p>Méthode des trapèzes : aire ≈ Σ (y_i + y_{i+1}) / 2 × Δx. Calculer l'aire approximative.</p>
+<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>Δx = 5 m. 6 trapèzes :</p>
+<ul>
+<li>(20+22)/2 × 5 = 105</li>
+<li>(22+25)/2 × 5 = 117,5</li>
+<li>(25+21)/2 × 5 = 115</li>
+<li>(21+18)/2 × 5 = 97,5</li>
+<li>(18+15)/2 × 5 = 82,5</li>
+<li>(15+10)/2 × 5 = 62,5</li>
+</ul>
+<p>Aire totale ≈ 105 + 117,5 + 115 + 97,5 + 82,5 + 62,5 = <strong>580 m²</strong></p>
+</div></div>
+
+<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
+<p>Imène veut une précision meilleure. Que doit-elle faire ?</p>
+<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>Réduire le pas Δx (mesurer tous les 2 m au lieu de tous les 5 m). La méthode des trapèzes converge vers la vraie intégrale quand Δx → 0.</p>
+<p>Pour un terrain typique de cette taille, la précision suffisante est obtenue avec Δx ≈ 1 m, ce qui donne ≤ 1 % d'erreur.</p>
+</div></div>
+
+<div class="retenir"><strong>À retenir</strong>
+<ul><li><strong>Intégrale = aire sous la courbe.</strong> ∫_a^b f(x) dx.</li>
+<li><strong>Méthode des trapèzes :</strong> approximation numérique. Aire ≈ Σ (y_i + y_{i+1})/2 × Δx.</li>
+<li><strong>Plus Δx est petit, plus l'estimation est précise.</strong></li></ul></div>
+
+</div><script src="../../../nav.js"></script></body></html>

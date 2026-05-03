@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Activité 3 – Population de poissons – Term Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header><h1>Activité 3 – Population de poissons d'un étang <span style="font-size:.55em;color:#7c3aed;font-weight:600">ÉTUDE DE CAS</span></h1>
+<p class="sous-titre">Chapitre 3 – Suites numériques | Terminale Bac Pro | ⏱ 30 min</p>
+<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+
+<div class="objectifs"><strong>Objectifs :</strong><ul>
+<li>Étudier une suite récurrente issue d'un modèle biologique</li>
+<li>Identifier une limite et son interprétation</li>
+<li>Comprendre l'effet d'une pêche annuelle sur l'équilibre</li></ul></div>
+
+<div class="situation"><h2>Situation – gestion durable d'un étang</h2>
+<p><em>Sami, gestionnaire d'un étang de pêche, modélise la population de carpes. Sans intervention, elle augmente de 10 % par an grâce à la reproduction, mais l'étang ne peut pas dépasser 5 000 individus (saturation des ressources).</em></p>
+<p>Modèle : \(P_{n+1} = P_n + 0{,}10 P_n (1 - P_n / 5000)\) (modèle logistique discret)</p>
+<p>L'étang contient actuellement P₀ = 800 carpes. Sami pêche 200 carpes par an (vendues aux pêcheurs).</p>
+<p>Modèle avec pêche : \(P_{n+1} = P_n + 0{,}10 P_n (1 - P_n / 5000) - 200\)</p></div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+<strong>Problématique :</strong> La gestion de Sami (pêche 200/an) est-elle durable ?</div>
+
+<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
+<p>Calculer P₁, P₂ (sans pêche pour commencer, modèle naturel).</p>
+<ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>P₁ = 800 + 0,10 × 800 × (1 − 800/5000) = 800 + 80 × 0,84 = 800 + 67,2 = <strong>867</strong></p>
+<p>P₂ = 867 + 0,10 × 867 × (1 − 867/5000) = 867 + 86,7 × 0,827 = <strong>939</strong></p>
+<p>La population croît rapidement quand elle est loin de la capacité maximale.</p>
+</div></div>
+
+<div class="exo"><h2>Question 2 <span class="badge-blue">ANA</span></h2>
+<p>Sans pêche, vers quelle valeur tend P quand n grandit ?</p>
+<ul class="lignes-reponse"><li></li><li></li><li</li><li></li><li></li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>À l'équilibre, P_{n+1} = P_n, donc 0,10 P (1 − P/5000) = 0 → P = 0 ou P = 5 000.</p>
+<p>P₀ = 800 ≠ 0 et &lt; 5 000, donc P tend vers <strong>5 000 (capacité de l'étang)</strong>.</p>
+<p>Cohérent avec l'intuition : sans pêche ni prédateurs, la population sature à la capacité du milieu.</p>
+</div></div>
+
+<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
+<p>Avec pêche de 200/an, calculer P₁ et P₂. Que se passe-t-il à long terme (à tester sur tableur) ?</p>
+<ul class="lignes-reponse"><li></li><li></li><li</li><li></li><li</li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>P₁ = 867 − 200 = <strong>667</strong>. P₂ = 667 + 0,10 × 667 × (1 − 667/5000) − 200 = 725 − 200 = <strong>525</strong>.</p>
+<p>La population baisse ! À long terme, elle s'effondre : P → 0 vers l'année 5-6. <strong>Pêche non durable.</strong></p>
+<p>Pour être durable, la pêche annuelle doit être ≤ <strong>croissance naturelle</strong> au point d'équilibre. Calcul : maximum de 0,10 × P × (1 − P/5000) atteint à P = 2 500 → croissance max = 125 individus/an.</p>
+<p>Conclusion : <strong>Sami devrait pêcher au maximum 125 carpes/an</strong>, pas 200.</p>
+</div></div>
+
+<div class="retenir"><strong>À retenir</strong>
+<ul><li><strong>Modèle logistique :</strong> u_{n+1} = u_n + r·u_n·(1 − u_n/K). K = capacité du milieu.</li>
+<li><strong>Pêche/exploitation durable :</strong> ne pas dépasser la croissance naturelle au point d'équilibre.</li>
+<li><strong>Maximum durable :</strong> ~ 1/4 de la croissance brute du milieu (atteint à P = K/2).</li></ul></div>
+
+</div><script src="../../../nav.js"></script></body></html>

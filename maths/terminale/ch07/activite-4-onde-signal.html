@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Activité 4 – Modélisation d'un signal sinusoïdal – Term Bac Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<header><h1>Activité 4 – Modéliser une tension sinusoïdale <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+<p class="sous-titre">Chapitre 7 – Trigonométrie | Terminale Bac Pro | ⏱ 30 min</p>
+<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+
+<div class="objectifs"><strong>Objectifs :</strong><ul>
+<li>Comprendre la fonction sinusoïdale du courant alternatif</li>
+<li>Identifier amplitude, période, fréquence</li>
+<li>Calculer une valeur efficace</li></ul></div>
+
+<div class="situation"><h2>Situation – mesure d'une tension secteur</h2>
+<p><em>Charlotte, électronicienne, branche un oscilloscope sur la prise EDF (230 V). Elle observe :</em></p>
+<ul>
+<li>Une sinusoïde d'<strong>amplitude crête U_max = 325 V</strong></li>
+<li>Une <strong>période T = 20 ms</strong></li>
+</ul>
+<p>Modèle : <strong>u(t) = U_max × sin(2π × f × t)</strong> avec f = 1/T (fréquence en Hz)</p></div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+<strong>Problématique :</strong> Comment retrouver les 230 V « efficaces » alors qu'on observe une amplitude crête de 325 V ?</div>
+
+<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
+<p>Calculer la fréquence f du courant.</p>
+<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>f = 1/T = 1/(20 × 10⁻³) = <strong>50 Hz</strong> ✓ (norme française).</p>
+</div></div>
+
+<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
+<p>Calculer la valeur de u à t = 5 ms (quart de période). Justifier.</p>
+<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>u(5 ms) = 325 × sin(2π × 50 × 0,005) = 325 × sin(π/2) = 325 × 1 = <strong>325 V</strong></p>
+<p>À T/4, l'argument du sinus vaut π/2 (90°), donc u atteint son maximum.</p>
+</div></div>
+
+<div class="exo"><h2>Question 3 <span class="badge-yellow">REA</span></h2>
+<p>La <strong>valeur efficace</strong> d'une sinusoïde est U_eff = U_max / √2. Calculer U_eff. Cohérent avec « 230 V » ?</p>
+<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p>U_eff = 325 / √2 = 325 / 1,414 ≈ <strong>230 V</strong> ✓</p>
+<p>Le « 230 V » noté sur les prises est la valeur efficace, pas la valeur crête. La valeur crête vaut 325 V !</p>
+<p>Significance : c'est la valeur efficace qui est équivalente à un courant continu pour la dissipation de chaleur (c'est elle qui chauffe les radiateurs).</p>
+</div></div>
+
+<div class="exo"><h2>Question 4 <span class="badge-blue">VAL</span></h2>
+<p>Pourquoi les radiateurs et chauffe-eaux ne se soucient pas de la sinusoïdalité — alors que les LED le font ?</p>
+<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
+<button class="bc" onclick="toggle(this)">Voir la correction</button>
+<div class="corr">
+<p><strong>Charges résistives</strong> (radiateur, chauffe-eau, ampoule incandescente) : seule la puissance moyenne dissipée compte. P = U_eff × I_eff. Peu importe la forme exacte de la tension.</p>
+<p><strong>Charges électroniques</strong> (LED, alimentations à découpage, ordinateurs) : utilisent la forme sinusoïdale spécifiquement. Une onde « pseudo-sinus » pourrait endommager le PFC.</p>
+<p>D'où l'importance des onduleurs <strong>« sinusoïde pure »</strong> pour le matériel informatique.</p>
+</div></div>
+
+<div class="retenir"><strong>À retenir</strong>
+<ul><li><strong>Sinusoïde :</strong> u(t) = U_max × sin(2π·f·t). 3 paramètres : amplitude, fréquence, phase.</li>
+<li><strong>U_eff = U_max / √2</strong> pour une sinusoïde pure. C'est la valeur affichée sur les prises (230 V).</li>
+<li><strong>50 Hz</strong> en Europe, 60 Hz aux USA.</li></ul></div>
+
+</div><script src="../../../nav.js"></script></body></html>
