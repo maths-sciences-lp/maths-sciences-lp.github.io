@@ -1,64 +1,244 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Ch09 – Activité 4 – Croissance exponentielle d'une épidémie – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 4 – Pourquoi une épidémie explose <span style="font-size:.55em;color:#7c3aed;font-weight:600">PROJET DOCUMENTAIRE</span></h1>
-<p class="sous-titre">Chapitre 9 – Fonctions ln et exponentielle | Terminale Bac Pro | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Comprendre une croissance exponentielle dans un contexte santé publique</li>
-<li>Saisir l'importance du R₀ (taux de reproduction)</li></ul></div>
+<header>
+  <h1>Activité 4 – Pourquoi une épidémie explose : R₀ et exponentielle <span style="font-size:.55em;color:#7c3aed;font-weight:600">PROJET DOCUMENTAIRE</span></h1>
+  <p class="sous-titre">Chapitre 9 – Fonction ln et exponentielle népérienne | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – début de pandémie</h2>
-<p><em>Une nouvelle maladie apparaît. Au jour 0, 1 personne est infectée. Chaque malade contamine en moyenne <strong>2,5 personnes (R₀ = 2,5)</strong> en une semaine, puis guérit.</em></p>
-<p>Modèle simplifié : N(s) = 2,5^s où s est le nombre de semaines.</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre une croissance exponentielle en santé publique</li>
+    <li>Maîtriser la notion de R₀ (taux de reproduction)</li>
+    <li>Identifier le seuil épidémiologique R = 1</li>
+    <li>Calculer le seuil d'immunité collective</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – début d'une épidémie</h2>
+  <p><em>Une nouvelle maladie infectieuse apparaît. Au jour 0, 1 personne est infectée. Chaque malade contamine en moyenne <strong>R₀ = 2,5 personnes</strong> en une semaine, puis guérit (ou meurt). Que va-t-il se passer ?</em></p>
+
+  <h3>Document — modèle simplifié de propagation</h3>
+  <div style="background:#dbeafe;padding:10px 14px;border-radius:6px;border-left:3px solid #1d4ed8;margin:14px 0;text-align:center">
+    <p style="font-size:1.1em"><strong>N(s) = N₀ × R₀^s</strong></p>
+    <p>N(s) = nombre d'infectés à la semaine s. R₀ = taux de reproduction.</p>
+  </div>
+
+  <h3>Document — comparaison sans/avec mesures</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 260" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="2 courbes : R₀=2,5 explose exponentiellement, R₀=0,9 décroît vers 0. Échelle logarithmique nécessaire pour visualiser les deux.">
+      <defs>
+        <style>
+          .ax{stroke:#1a202c;stroke-width:1.5}
+          .gd{stroke:#cbd5e1;stroke-width:.6}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">Évolution selon R₀ (échelle log)</text>
+
+      <g class="gd">
+        <line x1="60" y1="50" x2="500" y2="50"/>
+        <line x1="60" y1="98" x2="500" y2="98"/>
+        <line x1="60" y1="145" x2="500" y2="145"/>
+        <line x1="60" y1="193" x2="500" y2="193"/>
+        <line x1="60" y1="220" x2="500" y2="220"/>
+      </g>
+      <line class="ax" x1="60" y1="220" x2="510" y2="220"/>
+      <line class="ax" x1="60" y1="40" x2="60" y2="225"/>
+
+      <g class="lbl" text-anchor="end">
+        <text x="55" y="54">10⁶</text>
+        <text x="55" y="98">10⁴</text>
+        <text x="55" y="145">10²</text>
+        <text x="55" y="193">1</text>
+      </g>
+      <text class="lblA" x="20" y="135" transform="rotate(-90 20 135)" text-anchor="middle">N infectés</text>
+
+      <g class="lbl" text-anchor="middle">
+        <text x="60" y="240">0</text>
+        <text x="170" y="240">5</text>
+        <text x="280" y="240">10</text>
+        <text x="390" y="240">15</text>
+        <text x="500" y="240">20</text>
+      </g>
+      <text class="lblA" x="270" y="255" text-anchor="middle">Semaines</text>
+
+      <!-- R₀=2,5 : 1, 2.5⁵=98, 2.5¹⁰=9537, 2.5¹⁵=931323. log10 → 0, 2, 4, 6 → y_pixel = 220-y*48/2 -->
+      <!-- y(0)=193, y(5)=193-2*24=145, y(10)=193-4*24=97, y(15)=193-5,97*24=50, y(20)=tronqué -->
+      <line x1="60" y1="193" x2="500" y2="40" stroke="#dc2626" stroke-width="2.5"/>
+      <text x="490" y="35" class="lbl" fill="#dc2626" font-weight="bold" text-anchor="end">R₀ = 2,5 (EXPLOSION)</text>
+
+      <!-- R₀=0,9 : démarre N₀=1000=10³ → log=3 → y=193-3*24=121. Décroît -->
+      <line x1="60" y1="121" x2="500" y2="200" stroke="#15803d" stroke-width="2.5"/>
+      <text x="490" y="195" class="lbl" fill="#15803d" font-weight="bold" text-anchor="end">R₀ = 0,9 (extinction)</text>
+
+      <!-- Seuil R=1 (constant) -->
+      <line x1="60" y1="121" x2="500" y2="121" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3 2"/>
+      <text x="495" y="118" class="lbl" fill="#7c3aed" font-weight="bold" text-anchor="end">R=1 (équilibre)</text>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité approfondit les notions du cours §3 (suite exponentielle) et §6 (modélisation épidémiologique).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Combien de personnes infectées après 5 semaines ? Et 15 semaines ? Que se passe-t-il si on ramène R₀ à 0,9 par les gestes barrières ?</div>
+  <strong>Problématique :</strong> Combien d'infectés après 15 semaines avec R₀ = 2,5 ? Et que se passe-t-il avec gestes barrières (R = 0,9) ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer N(5), N(10), N(15) avec R₀ = 2,5.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<ul>
-<li>N(5) = 2,5⁵ ≈ <strong>98</strong> infectés</li>
-<li>N(10) = 2,5¹⁰ ≈ <strong>9 537</strong></li>
-<li>N(15) = 2,5¹⁵ ≈ <strong>931 323</strong></li>
-</ul>
-<p>En 15 semaines, on passe de 1 à près de 1 million ! C'est la <strong>puissance terrifiante</strong> de la croissance exponentielle.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer N(5), N(10), N(15) avec R₀ = 2,5 et N₀ = 1.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>N(5) = 2,5⁵ ≈ <strong>98 infectés</strong></li>
+      <li>N(10) = 2,5¹⁰ ≈ <strong>9 537 infectés</strong></li>
+      <li>N(15) = 2,5¹⁵ ≈ <strong>931 323 infectés</strong> ≈ près d'1 million !</li>
+    </ul>
+    <p>En 15 semaines, on passe de 1 à près de 1 million d'infectés. C'est la <strong>puissance terrifiante</strong> de la croissance exponentielle.</p>
+    <p>Toute la population française (~67 M) serait infectée en 20 semaines à ce rythme.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Avec gestes barrières, R₀ = 0,9 (chaque malade contamine moins d'une personne). Calculer N(5), N(10) avec N(0) = 1 000 (population déjà infectée au départ).</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<ul>
-<li>N(5) = 1 000 × 0,9⁵ = 1 000 × 0,59 ≈ <strong>590</strong></li>
-<li>N(10) = 1 000 × 0,9¹⁰ = 1 000 × 0,349 ≈ <strong>349</strong></li>
-</ul>
-<p>L'épidémie <strong>recule</strong>. À long terme, N → 0. Les gestes barrières sont efficaces.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Avec mesures sanitaires (gestes barrières, masques, distance), R passe à 0,9. Calculer N(5), N(10) à partir de N₀ = 1 000 (épidémie en cours).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>N(5) = 1 000 × 0,9⁵ = 1 000 × 0,590 ≈ <strong>590</strong></li>
+      <li>N(10) = 1 000 × 0,9¹⁰ = 1 000 × 0,349 ≈ <strong>349</strong></li>
+    </ul>
+    <p>L'épidémie <strong>recule</strong>. À long terme, N → 0. Les gestes barrières sont efficaces.</p>
+    <p>Le pic est atteint au moment où R passe sous 1 (= moment où le nombre d'infectés cesse de croître).</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Quelle est la valeur seuil de R₀ qui sépare explosion et extinction ? Pourquoi les autorités sanitaires donnent un objectif R &lt; 1 ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Seuil = <strong>R = 1</strong>. Si R &gt; 1 : croissance exponentielle. Si R = 1 : stabilité. Si R &lt; 1 : décroissance exponentielle (extinction).</p>
-<p>L'objectif R &lt; 1 correspond à une <strong>extinction garantie</strong> de l'épidémie. Les mesures (distanciation, masques, vaccins) visent à diviser R₀ par les contacts évités.</p>
-<p>Effet de la vaccination : si 60 % de la population est immune et R₀ = 2,5, R effectif = 2,5 × 0,40 = 1,0 → seuil. C'est l'<strong>immunité collective</strong>.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">VAL</span></h2>
+  <p>Quelle est la valeur seuil de R qui sépare explosion et extinction de l'épidémie ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Seuil = R = 1</strong>.</p>
+    <ul>
+      <li>R &gt; 1 : croissance exponentielle (explosion).</li>
+      <li>R = 1 : nombre d'infectés stable (chaque malade contamine 1 nouveau, en moyenne).</li>
+      <li>R &lt; 1 : décroissance exponentielle (extinction).</li>
+    </ul>
+    <p>L'objectif des autorités sanitaires est <strong>R &lt; 1</strong> pour faire reculer l'épidémie.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Croissance exponentielle :</strong> N(t) = N₀ × R^t. Si R &gt; 1, explosion ; R &lt; 1, extinction.</li>
-<li><strong>Seuil épidémiologique :</strong> R = 1.</li>
-<li><strong>Immunité collective :</strong> seuil = 1 − 1/R₀. Pour R₀ = 2,5 → 60 % d'immunisés nécessaires.</li>
-<li><strong>L'humain a du mal à intuiter l'exponentiel</strong> — d'où la nécessité de mesures précoces, avant que les chiffres « explosent ».</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>L'« immunité collective » est atteinte quand R passe sous 1 grâce à l'immunisation (vaccin ou guérison). Calculer le seuil pour R₀ = 2,5.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Si une fraction p de la population est immunisée, R effectif = R₀ × (1 − p).</p>
+    <p>Pour R = 1 : R₀ × (1 − p) = 1 → 1 − p = 1/R₀ → <strong>p = 1 − 1/R₀</strong>.</p>
+    <p>Pour R₀ = 2,5 : p = 1 − 1/2,5 = 0,6 → <strong>60 %</strong> de la population doit être immunisée.</p>
+    <p>Pour R₀ = 5 (rougeole) : p = 80 %. Pour R₀ = 12 (variole) : p = 92 %.</p>
+    <p>Plus une maladie est contagieuse, plus le seuil d'immunité collective est élevé.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Pour la rougeole (R₀ ≈ 15), combien faut-il vacciner pour bloquer l'épidémie ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>p = 1 − 1/15 ≈ 0,933 → <strong>93,3 %</strong> de couverture vaccinale.</p>
+    <p>C'est très élevé ! Difficile à atteindre dans une population entière.</p>
+    <p>Conséquence : la rougeole est l'une des maladies les plus difficiles à éradiquer. Toute baisse de la couverture vaccinale (mouvements anti-vaccins) entraîne des épidémies (cas en France 2018-2020).</p>
+    <p>L'OMS demande une couverture &gt; 95 % pour éviter les épidémies de rougeole.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi est-il difficile pour le grand public de comprendre la croissance exponentielle ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Notre cerveau est <strong>câblé pour la pensée linéaire</strong> (« si 1 fait X, 10 font 10X »). L'exponentielle dépasse notre intuition.</p>
+    <p>Exemples emblématiques :</p>
+    <ul>
+      <li>Au COVID-19, début 2020, beaucoup minimisaient « il y a juste quelques cas en Italie ». 4 semaines plus tard : 60 000 cas.</li>
+      <li>Légende du grain de riz sur l'échiquier : 2⁶⁴ ≈ 18 milliards de milliards de grains → impossible à honorer.</li>
+      <li>Pliage d'une feuille de papier 50 fois : épaisseur supérieure à la distance Terre-Soleil.</li>
+    </ul>
+    <p>Conséquence santé publique : <strong>les mesures doivent être prises tôt</strong>, avant que les chiffres ne semblent dramatiques. Trop tard = catastrophe.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une note de communication pour expliquer l'urgence des mesures sanitaires en début d'épidémie.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Pourquoi agir maintenant ? La maths de la propagation</strong></em></p>
+    <p><em>Quand un virus a un R₀ = 2,5, chaque semaine multiplie les cas par 2,5. En 5 semaines : 100 cas. En 10 semaines : 10 000. En 15 semaines : <strong>1 million</strong>.</em></p>
+    <p><em>Si on attend que les cas « explosent visiblement », il est <strong>déjà trop tard</strong> : les hôpitaux saturent, les morts grimpent. Les mesures doivent être prises <strong>quand les chiffres semblent encore petits</strong>.</em></p>
+    <p><em>L'objectif : ramener R sous 1 (gestes barrières + tests + isolement) → l'épidémie recule au lieu d'exploser. C'est la maths qui guide la politique sanitaire, pas l'intuition.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Le modèle SIR (Susceptibles, Infectés, Rétablis) est plus réaliste. Il intègre l'épuisement des « personnes à infecter ». Quelle est la différence avec notre modèle simple ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Modèle simple N(s) = R₀^s : croissance illimitée → irréaliste à long terme (impossible d'avoir plus de cas que la population totale).</p>
+    <p>Modèle SIR :</p>
+    <ul>
+      <li>S(t) : susceptibles (non-infectés, non-immunisés)</li>
+      <li>I(t) : infectés</li>
+      <li>R(t) : rétablis (immunisés ou décédés)</li>
+      <li>S + I + R = N (population totale)</li>
+    </ul>
+    <p>SIR donne une <strong>courbe en cloche</strong> pour I(t) : montée exponentielle, pic, descente exponentielle. Plus de S à infecter → l'épidémie s'éteint.</p>
+    <p>C'est le modèle utilisé par les épidémiologistes pendant le COVID-19 pour prédire les pics et planifier les hôpitaux.</p>
+    <p>Variantes plus complexes : SEIR (avec exposés non-infectieux), SIRD (avec décès), SIR avec âge, etc.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Croissance exponentielle :</strong> N(t) = N₀ × R^t. Si R &gt; 1, explosion ; R &lt; 1, extinction.</li>
+    <li><strong>Seuil épidémiologique :</strong> R = 1.</li>
+    <li><strong>Immunité collective :</strong> seuil = 1 − 1/R₀. Pour R₀ = 2,5 → 60 % d'immunisés nécessaires.</li>
+    <li><strong>L'humain a du mal à intuiter l'exponentiel</strong> — d'où la nécessité de mesures précoces.</li>
+    <li><strong>Modèles épidémiologiques :</strong> SIR (cloche), SEIR (avec incubation), variantes complexes.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

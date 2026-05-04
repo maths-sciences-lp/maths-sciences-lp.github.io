@@ -1,63 +1,237 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch09 – Activité 2 – Loi de refroidissement de Newton – Term Bac Pro</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch09 – Activité 2 – Refroidissement d'un café (loi de Newton) – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Refroidissement d'un café (loi de Newton) <span style="font-size:.55em;color:#7c3aed;font-weight:600">ÉTUDE DE CAS</span></h1>
-<p class="sous-titre">Chapitre 9 – Fonctions ln et exponentielle | Terminale Bac Pro | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Modéliser un phénomène par une exponentielle décroissante</li>
-<li>Calculer un temps à partir d'une température</li></ul></div>
+<header>
+  <h1>Activité 2 – Refroidissement d'un café (loi de Newton) <span style="font-size:.55em;color:#7c3aed;font-weight:600">ÉTUDE DE CAS</span></h1>
+  <p class="sous-titre">Chapitre 9 – Fonction ln et exponentielle népérienne | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – température de service idéale</h2>
-<p><em>Anaïs, restauratrice, sert un café à 85 °C dans une salle à 20 °C. Le café se refroidit selon la <strong>loi de Newton</strong> :</em></p>
-<p><strong>T(t) = 20 + 65 × e^(−0,03 t)</strong> où T en °C et t en minutes.</p>
-<p>(20 °C = température de la salle ; 65 °C = écart initial)</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Modéliser un phénomène par une exponentielle décroissante</li>
+    <li>Calculer une image et un antécédent par une fonction exponentielle</li>
+    <li>Utiliser le logarithme népérien pour résoudre une équation exponentielle</li>
+    <li>Comprendre la notion d'asymptote horizontale</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – température de service idéale d'un café</h2>
+  <p><em>Anaïs, restauratrice, sert un café à 85 °C dans une salle à 20 °C. Elle veut savoir combien de temps avant que le café atteigne la température idéale de dégustation (60 °C).</em></p>
+
+  <h3>Document — loi de refroidissement de Newton</h3>
+  <div style="background:#dbeafe;padding:10px 14px;border-radius:6px;border-left:3px solid #1d4ed8;margin:14px 0;text-align:center">
+    <p style="font-size:1.1em"><strong>T(t) = 20 + 65 × e^(−0,03 t)</strong></p>
+    <p>T en °C, t en minutes. 20 °C = température ambiante, 65 °C = écart initial.</p>
+  </div>
+
+  <h3>Document — courbe de refroidissement</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 260" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Courbe exponentielle décroissante : température 85°C qui décroît asymptotiquement vers 20°C. Repère 60°C atteint à t≈16 min.">
+      <defs>
+        <style>
+          .ax{stroke:#1a202c;stroke-width:1.5}
+          .gd{stroke:#cbd5e1;stroke-width:.6}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">T(t) = 20 + 65 × e^(−0,03 t)</text>
+
+      <g class="gd">
+        <line x1="60" y1="50" x2="500" y2="50"/>
+        <line x1="60" y1="98" x2="500" y2="98"/>
+        <line x1="60" y1="145" x2="500" y2="145"/>
+        <line x1="60" y1="193" x2="500" y2="193"/>
+        <line x1="60" y1="220" x2="500" y2="220"/>
+      </g>
+      <line class="ax" x1="60" y1="220" x2="510" y2="220"/>
+      <line class="ax" x1="60" y1="40" x2="60" y2="225"/>
+
+      <g class="lbl" text-anchor="end">
+        <text x="55" y="54">100</text>
+        <text x="55" y="98">75</text>
+        <text x="55" y="145">50</text>
+        <text x="55" y="193">25</text>
+        <text x="55" y="223">0</text>
+      </g>
+      <text class="lblA" x="20" y="135" transform="rotate(-90 20 135)" text-anchor="middle">T (°C)</text>
+
+      <g class="lbl" text-anchor="middle">
+        <text x="60" y="240">0</text>
+        <text x="170" y="240">15</text>
+        <text x="280" y="240">30</text>
+        <text x="390" y="240">45</text>
+        <text x="500" y="240">60</text>
+      </g>
+      <text class="lblA" x="270" y="255" text-anchor="middle">t (min)</text>
+
+      <!-- Asymptote 20°C → y = 220 - 20 * (220-50)/100 = 220 - 34 = 186. Recalcul échelle : 0°C=220, 100°C=50. 1°C = 1.7 px. 20°C → 220-34=186. 60°C → 220-102=118. 85°C → 220-144,5=75,5 -->
+      <line x1="60" y1="186" x2="500" y2="186" stroke="#15803d" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="495" y="183" class="lbl" fill="#15803d" font-weight="bold" text-anchor="end">asymptote 20°C</text>
+
+      <!-- Courbe T(t) -->
+      <path d="M 60,75 Q 130,90 170,118 Q 250,150 350,175 Q 430,182 500,186" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+
+      <!-- Points clés -->
+      <circle cx="60" cy="75" r="5" fill="#dc2626"/>
+      <text x="60" y="68" class="lbl" fill="#dc2626" font-weight="bold" text-anchor="middle">85°C (départ)</text>
+
+      <circle cx="178" cy="118" r="5" fill="#7c3aed"/>
+      <text x="180" y="111" class="lbl" fill="#7c3aed" font-weight="bold">60°C à t≈16</text>
+
+      <line x1="178" y1="118" x2="178" y2="220" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3 2"/>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §3 (fonction exponentielle) et §5 (résolution d'équation avec ln).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Combien de temps pour que le café atteigne 60 °C (température idéale de dégustation) ?</div>
+  <strong>Problématique :</strong> Combien de temps pour que le café atteigne 60 °C (température idéale de dégustation) ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer T(0), T(10), T(30).</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<ul>
-<li>T(0) = 20 + 65 × 1 = <strong>85 °C</strong> ✓</li>
-<li>T(10) = 20 + 65 × e^(−0,3) = 20 + 65 × 0,741 = 20 + 48,2 = <strong>68 °C</strong></li>
-<li>T(30) = 20 + 65 × e^(−0,9) = 20 + 65 × 0,407 = 20 + 26,4 = <strong>46 °C</strong> (déjà tiède)</li>
-</ul>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer T(0), T(10), T(30) (température au moment du service, après 10 min, après 30 min).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>T(0) = 20 + 65 × e⁰ = 20 + 65 × 1 = <strong>85 °C</strong> ✓ (cohérent avec le service)</li>
+      <li>T(10) = 20 + 65 × e^(−0,3) = 20 + 65 × 0,741 = 20 + 48,2 = <strong>68 °C</strong></li>
+      <li>T(30) = 20 + 65 × e^(−0,9) = 20 + 65 × 0,407 = 20 + 26,4 = <strong>46 °C</strong> (tiède)</li>
+    </ul>
+    <p>Le café perd ~ 17 °C en 10 min, ~ 22 °C en 20 min de plus.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Résoudre T(t) = 60 °C avec ln.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>20 + 65 × e^(−0,03 t) = 60</p>
-<p>65 × e^(−0,03 t) = 40 → e^(−0,03 t) = 40/65 = 0,615</p>
-<p>−0,03 t = ln(0,615) ≈ −0,486</p>
-<p>t = 0,486 / 0,03 ≈ <strong>16 minutes</strong></p>
-<p>Anaïs doit servir le café environ 16 min avant que le client commence à déguster.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Résoudre T(t) = 60 °C en utilisant ln.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>20 + 65 × e^(−0,03 t) = 60</p>
+    <p>65 × e^(−0,03 t) = 40 → e^(−0,03 t) = 40 / 65 = 0,615</p>
+    <p>−0,03 t = ln(0,615) ≈ −0,486</p>
+    <p>t = 0,486 / 0,03 ≈ <strong>16 minutes</strong>.</p>
+    <p>Anaïs doit servir le café environ 16 min avant que le client commence à déguster — ou laisser le client patienter 16 min.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Pourquoi la température n'atteint-elle jamais 20 °C selon le modèle ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>T(t) = 20 + 65 × e^(−0,03 t). Quand t → ∞, e^(−0,03 t) → 0 mais reste &gt; 0.</p>
-<p>Donc T(t) → 20 °C par valeur supérieure, sans jamais l'atteindre. C'est une <strong>asymptote horizontale</strong>.</p>
-<p>En pratique, après 2-3 heures, T est à &lt; 1 °C de la salle, indistinguable. Le modèle reste utile.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi la température n'atteint-elle jamais 20 °C selon le modèle ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>T(t) = 20 + 65 × e^(−0,03 t). Quand t → ∞, e^(−0,03 t) → 0 mais reste strictement &gt; 0.</p>
+    <p>Donc T(t) → 20 °C par valeur supérieure, mais sans jamais l'atteindre. C'est une <strong>asymptote horizontale</strong>.</p>
+    <p>En pratique : après 2-3 heures, T est à moins de 1 °C de la salle, indistinguable thermiquement. Le modèle reste très utile.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Loi de Newton (refroidissement) :</strong> T(t) = T_amb + (T_0 − T_amb) × e^(−kt).</li>
-<li><strong>Résoudre exp(...) = c :</strong> appliquer ln des deux côtés.</li>
-<li><strong>Asymptote :</strong> e^(−kt) → 0 à l'infini, mais jamais nul.</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>À quelle température sera le café après 1 heure (60 min) ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>T(60) = 20 + 65 × e^(−0,03 × 60) = 20 + 65 × e^(−1,8) = 20 + 65 × 0,165 = 20 + 10,7 ≈ <strong>30,7 °C</strong>.</p>
+    <p>Le café est nettement froid après 1 h. À jeter ou à réchauffer.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Si la salle est à 5 °C (terrasse hivernale), comment évolue le modèle ? Recalculer le temps pour atteindre 60 °C.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Nouveau modèle : T(t) = 5 + 80 × e^(−0,03 t) (départ 85°C, asymptote 5°C, écart 80°C).</p>
+    <p>Pour T = 60 : 5 + 80 × e^(−0,03 t) = 60 → e^(−0,03 t) = 55/80 = 0,6875.</p>
+    <p>−0,03 t = ln(0,6875) ≈ −0,375 → t ≈ <strong>12,5 min</strong>.</p>
+    <p>En terrasse froide, le café atteint 60°C plus vite (12,5 min) qu'en salle (16 min). <strong>Plus l'écart de température est grand, plus le refroidissement est rapide</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Application criminologique : la loi de Newton est utilisée pour estimer l'heure de la mort à partir de la température corporelle. Si on trouve un corps à 32 °C dans une pièce à 20 °C (corps initial 37 °C, k = 0,015 par minute), depuis combien de temps la personne est-elle décédée ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Modèle : T(t) = 20 + 17 × e^(−0,015 t) (écart initial 17°C).</p>
+    <p>32 = 20 + 17 × e^(−0,015 t) → e^(−0,015 t) = 12/17 = 0,706.</p>
+    <p>−0,015 t = ln(0,706) ≈ −0,348 → t ≈ <strong>23 min</strong>.</p>
+    <p>Hmm, 23 min seulement ? Le coefficient k réel est plus petit (~ 0,01-0,008/min) → temps réel ~ 35-45 min.</p>
+    <p>En criminologie, c'est la <strong>« règle de Henssge »</strong> qui ajuste la loi de Newton avec des facteurs : poids, vêtements, ventilation. Précision ~ ± 30 min sur les premières heures, beaucoup moins après.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une note pour le serveur d'un restaurant : timing recommandé pour servir un café chaud.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Mémo serveur — Service du café (zone confort)</strong></em></p>
+    <ul><em>
+      <li><strong>0-10 min après service :</strong> trop chaud (85→68°C), risque de brûlure.</li>
+      <li><strong>10-20 min :</strong> zone idéale (68→55°C), saveurs optimales.</li>
+      <li><strong>20-30 min :</strong> tiède (55→46°C), goût altéré.</li>
+      <li><strong>&gt;30 min :</strong> froid (&lt;46°C), à reservir.</li>
+    </em></ul>
+    <p><em>Conseil : servir au moment où le client a la cuillère à la main → laisser 5-10 min de refroidissement avant que la première gorgée soit prise.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>La loi de Newton du refroidissement décrit un grand nombre de phénomènes physiques. Citer 3 autres applications.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>Décharge d'un condensateur</strong> : V(t) = V₀ × e^(−t/RC) (électronique).</li>
+      <li><strong>Dilution d'un médicament dans le sang</strong> : C(t) = C₀ × e^(−kt).</li>
+      <li><strong>Désintégration radioactive</strong> : N(t) = N₀ × e^(−λt).</li>
+      <li><strong>Atténuation d'un son dans l'air</strong> : I(d) = I₀ × e^(−αd).</li>
+      <li><strong>Croissance bactérienne en phase de stagnation</strong> : N(t) = N_max − (N_max − N₀) × e^(−kt).</li>
+    </ul>
+    <p>L'exponentielle décroissante est <strong>universelle</strong> dès qu'il y a une « relaxation vers un équilibre ». C'est l'un des modèles les plus utilisés en physique.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Loi de Newton (refroidissement) :</strong> T(t) = T_amb + (T_0 − T_amb) × e^(−kt).</li>
+    <li><strong>Résolution e^x = c :</strong> appliquer ln des deux côtés. x = ln(c).</li>
+    <li><strong>Asymptote :</strong> e^(−kt) → 0 à l'infini, mais jamais nul.</li>
+    <li><strong>Plus l'écart de température est grand, plus le refroidissement est rapide.</strong></li>
+    <li><strong>Universalité :</strong> applications en chimie (dilutions), physique (RC), médecine (médicaments), criminologie.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
