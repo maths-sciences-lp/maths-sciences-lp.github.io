@@ -1,76 +1,222 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Ch08 – Activité 4 – Newton et la naissance du calcul intégral – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 4 – Newton, Leibniz et la naissance du calcul intégral <span style="font-size:.55em;color:#7c3aed;font-weight:600">PROJET DOCUMENTAIRE</span></h1>
-<p class="sous-titre">Chapitre 8 – Calcul intégral | Terminale Bac Pro | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Comprendre l'origine historique du calcul intégral</li>
-<li>Saisir le théorème fondamental de l'analyse</li></ul></div>
+<header>
+  <h1>Activité 4 – Newton, Leibniz et la naissance du calcul intégral <span style="font-size:.55em;color:#7c3aed;font-weight:600">PROJET DOCUMENTAIRE</span></h1>
+  <p class="sous-titre">Chapitre 8 – Calcul intégral | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – les premiers calculs d'aires</h2>
-<p>Avant Newton et Leibniz (XVIIᵉ siècle), on calculait des aires en additionnant des polygones inscrits dans la courbe (méthode d'Archimède, IIIᵉ siècle av. JC). Très laborieux.</p>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre l'origine historique du calcul intégral</li>
+    <li>Saisir le théorème fondamental de l'analyse</li>
+    <li>Maîtriser la notation des intégrales et primitives</li>
+    <li>Apprécier la portée du calcul intégral en physique et ingénierie</li>
+  </ul>
+</div>
 
-<h3>Document 1 — Le saut de génie</h3>
-<p>En 1665-1670, indépendamment, <strong>Isaac Newton</strong> (Angleterre) et <strong>Gottfried Leibniz</strong> (Allemagne) découvrent le « théorème fondamental » :</p>
-<p style="background:#f0fff4;padding:10px;border-left:3px solid #15803d;margin:10px 0">
-<strong>L'intégration est l'opération inverse de la dérivation.</strong> Si F est une primitive de f, alors ∫_a^b f(x) dx = F(b) − F(a).
-</p>
-<p>D'un coup, on n'a plus besoin de découper la courbe en polygones : il suffit de connaître une primitive.</p>
+<div class="situation">
+  <h2>Situation – les premiers calculs d'aires</h2>
+  <p><em>Avant Newton et Leibniz (XVIIᵉ siècle), on calculait des aires en additionnant des polygones inscrits dans la courbe (méthode d'Archimède, IIIᵉ siècle av. J.-C.). Très laborieux : pour calculer l'aire sous une parabole, Archimède a écrit des dizaines de pages de démonstration.</em></p>
 
-<h3>Document 2 — Exemple historique</h3>
-<p>Calculer ∫₀^1 x² dx (aire sous la parabole y = x² entre 0 et 1).</p>
-<ul>
-<li>Méthode d'Archimède (IIIᵉ siècle av. JC) : démontre que l'aire vaut 1/3 par découpage en bandes infinies. Tour de force.</li>
-<li>Méthode de Newton (1670) : F(x) = x³/3 est primitive de f(x) = x². Donc l'aire = F(1) − F(0) = 1/3 − 0 = 1/3. <strong>En 3 lignes.</strong></li>
-</ul></div>
+  <h3>Document 1 — Le saut de génie</h3>
+  <p>En 1665-1670, indépendamment, <strong>Isaac Newton</strong> (Angleterre, 1642-1727) et <strong>Gottfried Leibniz</strong> (Allemagne, 1646-1716) découvrent le « <strong>théorème fondamental de l'analyse</strong> » :</p>
+
+  <div style="background:#dcfce7;padding:10px 14px;border-radius:6px;border-left:3px solid #15803d;margin:14px 0">
+    <p><strong>L'intégration est l'opération inverse de la dérivation.</strong></p>
+    <p style="text-align:center;font-size:1.1em">Si F est une primitive de f, alors :</p>
+    <p style="text-align:center;font-size:1.2em"><strong>∫_a^b f(x) dx = F(b) − F(a)</strong></p>
+  </div>
+
+  <p>D'un coup, on n'a plus besoin de découper la courbe en polygones : il suffit de connaître une <strong>primitive</strong>.</p>
+
+  <h3>Document 2 — Querelle Newton vs Leibniz</h3>
+  <p>Newton et Leibniz ont chacun découvert le calcul intégral indépendamment, à quelques années d'intervalle. Une querelle célèbre s'est déclenchée pour savoir qui était le premier. La Royal Society britannique a même formé un comité (en 1712) pour trancher en faveur de Newton — mais le comité était dirigé par... Newton lui-même !</p>
+  <p>Aujourd'hui, on attribue le mérite aux <strong>deux</strong>. C'est la <strong>notation de Leibniz</strong> (∫, dx) qui s'est imposée pour sa simplicité, et non celle de Newton (notation par fluxions, points sur les variables).</p>
+
+  <h3>Document 3 — Exemple historique : aire sous y = x²</h3>
+  <table>
+    <thead>
+      <tr><th>Méthode</th><th>Approche</th><th>Difficulté</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Archimède (250 av. J.-C.)</td><td>Découpage en triangles infinis, démonstration géométrique</td><td>Plusieurs pages, cas spécifique</td></tr>
+      <tr><td>Newton/Leibniz (1670)</td><td>Primitive F(x) = x³/3 → ∫₀^1 x² dx = F(1) − F(0) = 1/3</td><td>3 lignes, méthode universelle</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité approfondit les notions du cours §2 (théorème fondamental) avec une dimension historique et culturelle.</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Comment Newton a-t-il révolutionné le calcul d'aires ?</div>
+  <strong>Problématique :</strong> Comment Newton a-t-il révolutionné le calcul d'aires, et pourquoi cette découverte est-elle considérée comme l'une des plus importantes de l'histoire ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer ∫₁^3 x dx en utilisant le théorème fondamental.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Primitive de x : F(x) = x²/2.</p>
-<p>∫₁^3 x dx = F(3) − F(1) = 9/2 − 1/2 = <strong>4</strong></p>
-<p>Vérification géométrique : aire d'un trapèze (bases 1 et 3, hauteur 2) = (1+3)/2 × 2 = 4 ✓.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Définir avec tes mots ce qu'est une « primitive » d'une fonction.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Une primitive F d'une fonction f est une fonction <strong>dont la dérivée donne f</strong> : F'(x) = f(x).</p>
+    <p>Exemples :</p>
+    <ul>
+      <li>F(x) = x²/2 est primitive de f(x) = x (car (x²/2)' = x).</li>
+      <li>F(x) = x³/3 est primitive de f(x) = x².</li>
+      <li>F(x) = sin(x) est primitive de f(x) = cos(x).</li>
+    </ul>
+    <p>Une fonction a une <strong>infinité de primitives</strong> qui diffèrent par une constante : F(x) + C est aussi primitive (la dérivée de C est 0).</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Calculer ∫₀^2 (3x² + 2) dx.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Primitive : F(x) = x³ + 2x.</p>
-<p>∫₀^2 (3x² + 2) dx = F(2) − F(0) = (8 + 4) − 0 = <strong>12</strong></p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer ∫₁^3 x dx en utilisant le théorème fondamental.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Primitive de x : F(x) = x²/2.</p>
+    <p>∫₁^3 x dx = F(3) − F(1) = 9/2 − 1/2 = 8/2 = <strong>4</strong>.</p>
+    <p>Vérification géométrique : aire sous y = x entre x = 1 et x = 3 = aire d'un trapèze (bases 1 et 3, hauteur 2) = (1 + 3)/2 × 2 = 4. ✓</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">ANA</span></h2>
-<p>Pourquoi cette découverte est-elle considérée comme l'une des plus grandes de l'histoire des maths ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Le calcul intégral permet de :</p>
-<ul>
-<li><strong>Résoudre les équations différentielles</strong> (mécanique, électrique, chimique, populations...)</li>
-<li><strong>Modéliser tout phénomène cumulatif</strong> : trajectoire d'une fusée, charge d'un condensateur, croissance d'une population.</li>
-<li>Toute la <strong>physique moderne</strong> repose dessus (Newton lui-même utilise l'intégration pour démontrer les lois de Kepler).</li>
-<li>Tous les outils numériques modernes (météo, simulation, IA) utilisent des intégrations à grande échelle.</li>
-</ul>
-<p>Sans le calcul intégral, pas d'ingénierie moderne. C'est l'outil le plus puissant des maths appliquées.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer ∫₀^2 (3x² + 2) dx.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Primitive de 3x² : x³. Primitive de 2 : 2x.</p>
+    <p>F(x) = x³ + 2x.</p>
+    <p>∫₀^2 (3x² + 2) dx = F(2) − F(0) = (8 + 4) − (0 + 0) = <strong>12</strong>.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Théorème fondamental de l'analyse :</strong> ∫_a^b f(x) dx = F(b) − F(a) où F est primitive de f.</li>
-<li><strong>Découverte indépendante :</strong> Newton (1665) et Leibniz (1675).</li>
-<li><strong>Notation actuelle :</strong> celle de Leibniz (∫, dx). Newton utilisait des points (notation fluxion).</li>
-<li><strong>Outil universel</strong> de la physique et de l'ingénierie moderne.</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer ∫₀^π sin(x) dx (aire sous une demi-onde sinusoïdale).</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Primitive de sin(x) : F(x) = −cos(x).</p>
+    <p>∫₀^π sin(x) dx = −cos(π) − (−cos(0)) = −(−1) − (−1) = 1 + 1 = <strong>2</strong>.</p>
+    <p>L'aire sous une demi-onde sinusoïdale d'amplitude 1 vaut exactement 2. Joli résultat exact, sans calcul approché.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi le théorème de Newton-Leibniz est-il si puissant comparé à la méthode d'Archimède ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Méthode d'Archimède : pour <strong>chaque courbe</strong>, démonstration géométrique spécifique, pages de calculs, demande des intuitions astucieuses.</p>
+    <p>Méthode de Newton-Leibniz :</p>
+    <ul>
+      <li><strong>Universelle</strong> : marche pour toute fonction continue.</li>
+      <li><strong>Mécanique</strong> : il suffit d'appliquer la formule, pas de démonstration ad hoc.</li>
+      <li><strong>Rapide</strong> : 3 lignes au lieu de 30 pages.</li>
+      <li><strong>Programmable</strong> : un ordinateur peut intégrer automatiquement.</li>
+    </ul>
+    <p>C'est la différence entre artisanat (Archimède, génial mais long) et industrie (Newton, méthodique et reproductible).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi cette découverte est-elle considérée comme l'une des plus grandes de l'histoire des mathématiques ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le calcul intégral (et différentiel) permet de :</p>
+    <ul>
+      <li><strong>Résoudre les équations différentielles</strong> (mécanique, électrique, chimique, populations...)</li>
+      <li><strong>Modéliser tout phénomène cumulatif</strong> : trajectoire d'une fusée, charge d'un condensateur, croissance d'une population, propagation d'une épidémie.</li>
+      <li>Toute la <strong>physique moderne</strong> repose dessus (Newton lui-même l'utilise pour démontrer les lois de Kepler des planètes).</li>
+      <li>Tous les outils numériques modernes (météo, simulation, IA, finance) utilisent des intégrations à grande échelle.</li>
+    </ul>
+    <p>Sans le calcul intégral, <strong>pas d'ingénierie moderne</strong>. C'est l'outil le plus puissant des maths appliquées.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">VAL</span></h2>
+  <p>Citer 3 applications concrètes du calcul intégral dans la vie professionnelle.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>Mécanique :</strong> calcul d'une distance parcourue à partir d'une vitesse variable (intégrale de v(t) sur [0, T]).</li>
+      <li><strong>Électricité :</strong> charge d'un condensateur Q = ∫ I(t) dt.</li>
+      <li><strong>Acoustique :</strong> énergie d'un signal sonore = intégrale du carré de l'amplitude.</li>
+      <li><strong>Bâtiment :</strong> volume d'un bassin, capacité d'un réservoir.</li>
+      <li><strong>Économie :</strong> revenu cumulé sur une période, surplus du consommateur.</li>
+      <li><strong>Médecine :</strong> dose totale délivrée par un médicament dans le sang (intégrale de la concentration).</li>
+    </ul>
+    <p>Aucun ingénieur ne peut travailler sans intégration. Métiers où on l'utilise tous les jours : ingénieur calcul, mécanicien des fluides, automaticien, électronicien, climatologue, bio-statisticien.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une présentation pour un panneau d'exposition « Newton, Leibniz et la révolution du calcul intégral ».</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>NEWTON & LEIBNIZ — La révolution du calcul intégral (XVIIᵉ siècle)</strong></em></p>
+    <p><em>En 1670, Isaac Newton et Gottfried Leibniz découvrent indépendamment l'un des plus grands résultats des mathématiques :</em></p>
+    <p style="text-align:center"><em><strong>« L'intégration est l'opération inverse de la dérivation »</strong></em></p>
+    <p><em>D'un coup, le calcul d'aires (jusque-là réservé aux génies comme Archimède) devient accessible à n'importe quel étudiant. Cela ouvre la voie à la physique moderne (lois de Newton, mécanique céleste, électromagnétisme), à l'ingénierie (chaudronnerie, aéronautique), et aujourd'hui à l'IA et la simulation numérique.</em></p>
+    <p><em>Notation utilisée : ∫ (Leibniz). Une querelle de paternité a duré 50 ans, mais l'humanité y a gagné un outil universel.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>L'intégrale ∫₀^∞ e^(−x²) dx (fonction de Gauss, célèbre en statistique) vaut √π / 2. Ce calcul est impossible sans techniques avancées. Pourquoi est-il si important ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La fonction f(x) = e^(−x²) ne possède pas de primitive « élémentaire » exprimable avec les fonctions usuelles (sin, cos, exp, log...). C'est un cas où Newton-Leibniz ne s'applique pas directement.</p>
+    <p>Mais on sait calculer son intégrale par d'autres méthodes (passage en 2D, coordonnées polaires) : ∫₀^∞ e^(−x²) dx = √π / 2.</p>
+    <p><strong>Importance :</strong></p>
+    <ul>
+      <li>Cette intégrale est au cœur de la <strong>loi normale</strong> en statistique (« courbe de Gauss »).</li>
+      <li>Utilisée en physique quantique (équation de Schrödinger), en thermodynamique (distribution de Maxwell-Boltzmann), en finance (modèles de Black-Scholes).</li>
+      <li>Sans cette valeur, on ne pourrait pas normaliser les courbes de probabilités.</li>
+    </ul>
+    <p>Belle leçon : <strong>même quand le théorème fondamental ne s'applique pas</strong>, les mathématiques savent calculer (par méthodes plus avancées : analyse complexe, séries, transformées).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Théorème fondamental de l'analyse :</strong> ∫_a^b f(x) dx = F(b) − F(a) où F est primitive de f.</li>
+    <li><strong>Découverte indépendante :</strong> Newton (1665) et Leibniz (1675).</li>
+    <li><strong>Notation actuelle :</strong> celle de Leibniz (∫, dx). Newton utilisait des points (notation fluxion).</li>
+    <li><strong>Outil universel</strong> de la physique et de l'ingénierie moderne. Sans intégrale, pas de moderne.</li>
+    <li><strong>Limites :</strong> certaines fonctions n'ont pas de primitive élémentaire (e^(−x²)) → méthodes avancées.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

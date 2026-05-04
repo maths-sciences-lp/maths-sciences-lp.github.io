@@ -1,57 +1,245 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch08 – Activité 3 – Volume d'une coupe de champagne – Term Bac Pro</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Activité 3 – Volume d'un solide de révolution (coupe de champagne) – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 3 – Volume d'un solide de révolution <span style="font-size:.55em;color:#7c2d12;font-weight:600">ÉTUDE DE CAS</span></h1>
-<p class="sous-titre">Chapitre 8 – Calcul intégral | Terminale Bac Pro | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Calculer un volume par intégration (solide de révolution)</li>
-<li>Comparer un calcul intégral à une formule géométrique</li></ul></div>
+<header>
+  <h1>Activité 3 – Volume d'un solide de révolution : coupe de champagne <span style="font-size:.55em;color:#7c2d12;font-weight:600">ÉTUDE DE CAS</span></h1>
+  <p class="sous-titre">Chapitre 8 – Calcul intégral | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – fabricant de verres</h2>
-<p><em>Une coupe de champagne a la forme d'un cône. La hauteur intérieure h = 12 cm, le rayon supérieur R = 4 cm. On veut calculer son volume.</em></p>
-<p>Si on place le cône avec sa pointe à l'origine, la fonction qui décrit le rayon à hauteur y est : <strong>r(y) = (R/h) × y = y/3</strong></p>
-<p>Volume par intégration : V = ∫₀^h π × r(y)² dy</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer un volume par intégration (solide de révolution)</li>
+    <li>Comparer un calcul intégral à une formule géométrique connue</li>
+    <li>Interpréter le résultat dans un contexte concret</li>
+    <li>Comprendre la généralisation à des formes complexes</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – fabricant de coupes de champagne</h2>
+  <p><em>Un atelier de souffleurs de verre produit des coupes à champagne en forme de cône. Hauteur intérieure h = 12 cm, rayon supérieur R = 4 cm. On veut calculer le volume exact pour proposer une « coupe pleine = 20 cL » sur le carton de vente.</em></p>
+
+  <h3>Document — modélisation du cône</h3>
+  <p>On place le cône avec sa pointe à l'origine, axe Y vertical. Le rayon r à la hauteur y est :</p>
+  <div style="background:#dbeafe;padding:10px 14px;border-radius:6px;border-left:3px solid #1d4ed8;margin:14px 0;text-align:center">
+    <p><strong>r(y) = (R/h) × y = y/3</strong> (car R/h = 4/12 = 1/3)</p>
+    <p>Volume par intégration : <strong>V = ∫₀^h π × r(y)² dy</strong></p>
+  </div>
+
+  <h3>Document — schéma du cône</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Cône (verre) en coupe : pointe en bas (origine), hauteur 12 cm, rayon supérieur 4 cm. Disques infinitésimaux pour l'intégration.">
+      <defs>
+        <style>
+          .b{stroke:#1a202c;stroke-width:1.5}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">Coupe de champagne (cône) — calcul de volume</text>
+
+      <!-- Axe Y vertical (cm). 1 cm = 15 px. Origine en bas (270, 240). Sommet en (270, 60) -->
+      <line class="b" x1="270" y1="245" x2="270" y2="50" stroke-dasharray="3 2"/>
+      <text x="278" y="50" class="lbl">y</text>
+
+      <!-- Cône (vue 2D) : sommet bas (270, 240) → R=4 cm = 60 px en haut (210, 60) et (330, 60) -->
+      <line class="b" x1="270" y1="240" x2="210" y2="60" stroke-width="2.5"/>
+      <line class="b" x1="270" y1="240" x2="330" y2="60" stroke-width="2.5"/>
+
+      <!-- Bord supérieur (ouverture) -->
+      <ellipse cx="270" cy="60" rx="60" ry="10" fill="#fde68a" opacity=".5" stroke="#1a202c" stroke-width="1.5"/>
+
+      <!-- Niveaux internes (disques infinitésimaux) -->
+      <ellipse cx="270" cy="100" rx="46.7" ry="7" fill="none" stroke="#dc2626" stroke-width="1" stroke-dasharray="2 2"/>
+      <ellipse cx="270" cy="140" rx="33.3" ry="5" fill="none" stroke="#dc2626" stroke-width="1" stroke-dasharray="2 2"/>
+      <ellipse cx="270" cy="180" rx="20" ry="3" fill="none" stroke="#dc2626" stroke-width="1" stroke-dasharray="2 2"/>
+
+      <!-- Annotations -->
+      <text x="335" y="65" class="lblA" font-weight="bold">R = 4 cm</text>
+      <text x="278" y="240" class="lbl">y = 0</text>
+      <text x="278" y="60" class="lbl">y = 12</text>
+
+      <text x="60" y="100" class="lbl" fill="#dc2626">disque infinitésimal :</text>
+      <text x="60" y="115" class="lbl" fill="#dc2626">aire = π × r(y)²</text>
+      <text x="60" y="130" class="lbl" fill="#dc2626">épaisseur = dy</text>
+
+      <!-- Pied du verre -->
+      <line class="b" x1="270" y1="240" x2="270" y2="265" stroke-width="2"/>
+      <line class="b" x1="245" y1="265" x2="295" y2="265" stroke-width="2"/>
+
+      <!-- Formule -->
+      <text x="450" y="150" class="lblA" font-weight="bold">V = ∫₀^12 π × (y/3)² dy</text>
+      <text x="450" y="170" class="lbl">= π/9 × ∫₀^12 y² dy</text>
+      <text x="450" y="190" class="lbl">= π/9 × [y³/3]₀^12</text>
+      <text x="450" y="210" class="lbl" font-weight="bold" fill="#0969da">≈ 201 cm³ = 20 cL</text>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §4 (volume d'un solide de révolution) et §5 (intégration de polynômes).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Quel est le volume théorique d'une coupe de champagne ?</div>
+  <strong>Problématique :</strong> Quel est le volume théorique d'une coupe de champagne, et comment l'obtenir par intégration ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer V = ∫₀^12 π × (y/3)² dy.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>V = π/9 × ∫₀^12 y² dy = π/9 × [y³/3]₀^12 = π/9 × 12³/3 = π/9 × 576 = π × 64 ≈ <strong>201 cm³ ≈ 20 cL</strong></p>
-<p>Une coupe de champagne pleine = environ 200 mL (la moitié d'un verre).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Pourquoi peut-on calculer le volume d'un cône en sommant des disques infinitésimaux ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le cône est un <strong>solide de révolution</strong> : il s'obtient en faisant tourner une droite (génératrice du cône) autour de l'axe Y.</p>
+    <p>À chaque hauteur y, la coupe horizontale du cône est un <strong>disque</strong> de rayon r(y).</p>
+    <p>Aire d'un disque : π × r(y)².</p>
+    <p>Volume infinitésimal d'une « tranche » : π × r(y)² × dy (cylindre infiniment fin).</p>
+    <p>Volume total = somme de toutes ces tranches = <strong>intégrale</strong> ∫₀^h π × r(y)² dy.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-blue">ANA</span></h2>
-<p>Vérifier avec la formule classique du cône : V = (1/3) × π × R² × h.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>V = (1/3) × π × 4² × 12 = (1/3) × π × 192 = 64 π ≈ 201 cm³ ✓</p>
-<p>L'intégration donne le même résultat que la formule classique. C'est rassurant !</p>
-<p>L'intérêt du calcul intégral : permet de calculer le volume de <strong>n'importe quelle forme</strong>, pas seulement les cônes.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer V = ∫₀^12 π × (y/3)² dy.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V = ∫₀^12 π × (y² / 9) dy = (π/9) × ∫₀^12 y² dy.</p>
+    <p>Primitive de y² est y³/3. Donc ∫₀^12 y² dy = [y³/3]₀^12 = 12³/3 − 0 = 1 728/3 = 576.</p>
+    <p>V = (π/9) × 576 = 64 × π ≈ <strong>201 cm³</strong>.</p>
+    <p>Conversion : 201 cm³ = <strong>20,1 cL</strong>.</p>
+    <p>Une coupe de champagne pleine = environ 200 mL (= la moitié d'un verre standard).</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>En réalité une coupe est rarement remplie à ras bord. Quel volume si on remplit jusqu'à 8 cm ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>V = ∫₀^8 π (y/3)² dy = π/9 × 8³/3 = 512π/27 ≈ <strong>59,6 cm³ ≈ 6 cL</strong></p>
-<p>Une coupe correctement servie (1/3 de la hauteur ?) → 30 % du volume théorique. Adapter la quantité commandée par bouteille.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">VAL</span></h2>
+  <p>Vérifier avec la formule classique du cône : V = (1/3) × π × R² × h.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V = (1/3) × π × 4² × 12 = (1/3) × π × 16 × 12 = 64 × π ≈ <strong>201 cm³</strong>. ✓</p>
+    <p>L'intégration donne le même résultat que la formule classique. C'est rassurant !</p>
+    <p><strong>Intérêt du calcul intégral :</strong> permet de calculer le volume de <strong>n'importe quelle forme</strong> de révolution, pas seulement les cônes ou cylindres. Application : verres complexes, bouteilles, vases.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Solide de révolution :</strong> V = ∫_a^b π × r(y)² dy.</li>
-<li><strong>Cône :</strong> V = (1/3) π R² h. <strong>Cylindre :</strong> V = π R² h. <strong>Sphère :</strong> V = (4/3) π R³.</li>
-<li><strong>Calcul intégral</strong> permet aussi des formes non standard (verre cocktail, vase, bouteille).</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>En réalité, une coupe est rarement remplie à ras bord. Calculer le volume si on remplit jusqu'à 8 cm de hauteur.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V = ∫₀^8 π × (y/3)² dy = (π/9) × ∫₀^8 y² dy = (π/9) × [y³/3]₀^8 = (π/9) × 512/3 = 512π/27.</p>
+    <p>V ≈ 59,6 cm³ ≈ <strong>6 cL</strong>.</p>
+    <p>Comparaison : la coupe ne contient que 6 cL au lieu de 20 cL → 30 % de la capacité totale.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Pour une bouteille de champagne (75 cL), combien de coupes pleines (20 cL) peut-on servir ? Et de coupes « 6 cL » ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Bouteille = 75 cL.</p>
+    <ul>
+      <li>Coupes pleines (20 cL) : 75 / 20 = <strong>3,75 → 3 coupes pleines</strong> (avec 15 cL restants).</li>
+      <li>Coupes « 6 cL » : 75 / 6 = <strong>12,5 → 12 coupes</strong>.</li>
+    </ul>
+    <p>Pour un service classique en réception : 6 cL × 12 personnes = bouteille épuisée. Donc <strong>1 bouteille pour 10-12 invités</strong>.</p>
+    <p>Pour un mariage avec 100 invités : prévoir au moins 10 bouteilles (avec marge : 12-15 bouteilles).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Calculer le volume d'une flûte de champagne (forme cylindrique élancée) : hauteur h = 20 cm, rayon r = 2,5 cm. Comparer à la coupe.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Volume du cylindre : V = π × r² × h = π × 2,5² × 20 = π × 6,25 × 20 = 125 × π ≈ <strong>393 cm³ = 39 cL</strong>.</p>
+    <p>Comparaison : flûte 39 cL vs coupe 20 cL → <strong>flûte 2× plus grande</strong>.</p>
+    <p>C'est pourquoi on sert une flûte à moitié (≈ 19 cL) et une coupe complète (≈ 20 cL) → quantité comparable, mais expérience visuelle différente.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">VAL</span></h2>
+  <p>Le client (restaurateur) demande au fabricant : « 1 bouteille = combien de mes coupes pleines ? » Pourquoi est-ce une donnée commerciale critique ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>1 bouteille (75 cL) / 1 coupe (20 cL) = <strong>3,75 coupes/bouteille</strong>.</p>
+    <p>Donnée critique pour :</p>
+    <ul>
+      <li><strong>Tarification</strong> : si on vend la coupe 8 € et la bouteille 30 €, marge brute par bouteille (gérée par coupes) = 8 × 3,75 = 30 € (jamais plus).</li>
+      <li><strong>Approvisionnement</strong> : pour une soirée 100 personnes (1 coupe/personne), prévoir 27 bouteilles.</li>
+      <li><strong>Stocks</strong> : ne pas confondre nombre de coupes et nombre de bouteilles dans le stock.</li>
+    </ul>
+    <p>En restauration de luxe, ce calcul peut représenter des marges significatives.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une fiche commerciale pour le carton de vente des coupes (volume affiché).</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Coupe à champagne « Tradition » — Caractéristiques</strong></em></p>
+    <ul><em>
+      <li>Forme : conique classique</li>
+      <li>Hauteur : 12 cm | Rayon supérieur : 4 cm</li>
+      <li><strong>Capacité : 20 cL</strong> (200 mL)</li>
+      <li>Service recommandé : 6 cL (= 1/3 de la coupe, 8 cm de hauteur de remplissage)</li>
+      <li>Coupes par bouteille (75 cL) : <strong>3-4 coupes pleines</strong> ou 12 coupes servies.</li>
+    </em></ul>
+    <p><em>Verre soufflé bouche, lavable lave-vaisselle. Fabriqué en France.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Une carafe en forme d'olive (ellipsoïde tronqué) modélisée par r(y) = 5 × √(1 − (y − 10)² / 100) entre y = 0 et y = 20. Calculer son volume par intégration.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V = ∫₀^20 π × r(y)² dy = ∫₀^20 π × 25 × (1 − (y−10)² / 100) dy.</p>
+    <p>= 25π × [y − (y−10)³ / 300]₀^20</p>
+    <p>= 25π × [(20 − 1000/300) − (0 − (−1000)/300)]</p>
+    <p>= 25π × [(20 − 3,33) − (0 + 3,33)]</p>
+    <p>= 25π × 13,33 ≈ <strong>1 047 cm³ = 1,05 L</strong>.</p>
+    <p>Volume comparable à une bouteille de vin standard (75 cL). Carafe adaptée à servir une bouteille en aérant le vin.</p>
+    <p>Sans calcul intégral, ce volume serait très difficile à obtenir (forme complexe, pas de formule directe).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Solide de révolution :</strong> V = ∫_a^b π × r(y)² dy (somme de disques infinitésimaux).</li>
+    <li><strong>Cône :</strong> V = (1/3) π R² h. <strong>Cylindre :</strong> V = π R² h. <strong>Sphère :</strong> V = (4/3) π R³.</li>
+    <li><strong>Calcul intégral</strong> permet aussi de calculer le volume de formes non standard (verres design, vases, bouteilles).</li>
+    <li><strong>Application :</strong> verrerie, plasturgie, design industriel, chaudronnerie.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

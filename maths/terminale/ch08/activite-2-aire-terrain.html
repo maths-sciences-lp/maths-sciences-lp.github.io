@@ -1,65 +1,284 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch08 – Activité 2 – Aire d'un terrain irrégulier – Term Bac Pro</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch08 – Activité 2 – Aire d'un terrain irrégulier (méthode des trapèzes) – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Aire d'un terrain à bord irrégulier <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 8 – Calcul intégral | Terminale Bac Pro | ⏱ 35 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Calculer une aire à l'aide de l'intégrale</li>
-<li>Comprendre la méthode des trapèzes (approximation numérique)</li></ul></div>
+<header>
+  <h1>Activité 2 – Aire d'un terrain à bord irrégulier (méthode des trapèzes) <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 8 – Calcul intégral | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – géomètre, mesure de parcelle</h2>
-<p><em>Imène, géomètre, doit mesurer l'aire d'une parcelle de terrain bordée par une rivière sinueuse. Elle relève la distance de la rivière à la limite Nord (rectiligne) tous les 5 m :</em></p>
-<table>
-<thead><tr><th>x (m)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th><th>30</th></tr></thead>
-<tbody><tr><td>y (m)</td><td>20</td><td>22</td><td>25</td><td>21</td><td>18</td><td>15</td><td>10</td></tr></tbody></table>
-<p>L'aire est l'intégrale de y(x) sur [0, 30].</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre l'intégrale comme aire sous la courbe</li>
+    <li>Calculer une aire par la méthode des trapèzes (approximation numérique)</li>
+    <li>Évaluer la précision de l'approximation</li>
+    <li>Appliquer cette méthode à un cas réel d'arpentage</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – géomètre mesurant une parcelle</h2>
+  <p><em>Imène, géomètre, doit mesurer l'aire d'une parcelle agricole bordée d'un côté par une rivière sinueuse. La parcelle est délimitée :</em></p>
+  <ul>
+    <li>Au Nord : une limite rectiligne (route)</li>
+    <li>À l'Est et l'Ouest : limites perpendiculaires</li>
+    <li>Au Sud : la rivière (sinueuse)</li>
+  </ul>
+
+  <p><em>Imène mesure la « profondeur » de la parcelle (distance de la route au bord de la rivière) tous les 5 m, sur 30 m de long :</em></p>
+
+  <table>
+    <thead>
+      <tr><th>Distance x (m)</th><th>0</th><th>5</th><th>10</th><th>15</th><th>20</th><th>25</th><th>30</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Profondeur y (m)</td><td>20</td><td>22</td><td>25</td><td>21</td><td>18</td><td>15</td><td>10</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document — schéma de la parcelle</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 280" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Parcelle avec bord supérieur rectiligne, bord inférieur sinueux suivant la profondeur mesurée. 7 piquets verticaux à 0, 5, 10, 15, 20, 25, 30 m. La méthode des trapèzes assemble 6 trapèzes.">
+      <defs>
+        <style>
+          .b{stroke:#1a202c;stroke-width:1.5}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">Parcelle vue de dessus (méthode des trapèzes)</text>
+
+      <!-- Échelle : 1 m horizontal = 14 px ; 1 m vertical = 6 px. Origine en bas à gauche -->
+      <!-- Route (haut) -->
+      <line x1="60" y1="40" x2="500" y2="40" stroke="#7c2d12" stroke-width="3"/>
+      <text x="60" y="35" class="lbl" fill="#7c2d12">route (rectiligne)</text>
+
+      <!-- Profondeurs : y_pixels = 40 + y * 6. y=20 → 160. y=25 → 190. y=10 → 100 -->
+      <!-- Points : (60, 160), (133, 172), (206, 190), (279, 166), (352, 148), (425, 130), (498, 100) -->
+
+      <!-- Rivière sinueuse (en bas) -->
+      <path d="M 60,160 L 133,172 L 206,190 L 279,166 L 352,148 L 425,130 L 498,100" stroke="#3b82f6" stroke-width="2.5" fill="none"/>
+      <text x="500" y="115" class="lbl" fill="#3b82f6" text-anchor="end">rivière</text>
+
+      <!-- Trapèzes (zone hachurée) -->
+      <polygon points="60,40 60,160 133,172 133,40" fill="#fef3c7" stroke="#1a202c" stroke-width="1"/>
+      <polygon points="133,40 133,172 206,190 206,40" fill="#fde68a" stroke="#1a202c" stroke-width="1"/>
+      <polygon points="206,40 206,190 279,166 279,40" fill="#fbbf24" stroke="#1a202c" stroke-width="1"/>
+      <polygon points="279,40 279,166 352,148 352,40" fill="#f59e0b" stroke="#1a202c" stroke-width="1"/>
+      <polygon points="352,40 352,148 425,130 425,40" fill="#d97706" stroke="#1a202c" stroke-width="1"/>
+      <polygon points="425,40 425,130 498,100 498,40" fill="#b45309" stroke="#1a202c" stroke-width="1"/>
+
+      <!-- Réafficher la rivière dessus -->
+      <path d="M 60,160 L 133,172 L 206,190 L 279,166 L 352,148 L 425,130 L 498,100" stroke="#3b82f6" stroke-width="2.5" fill="none"/>
+
+      <!-- Piquets verticaux -->
+      <line x1="60" y1="40" x2="60" y2="160" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="133" y1="40" x2="133" y2="172" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="206" y1="40" x2="206" y2="190" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="279" y1="40" x2="279" y2="166" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="352" y1="40" x2="352" y2="148" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="425" y1="40" x2="425" y2="130" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="498" y1="40" x2="498" y2="100" stroke="#dc2626" stroke-width="1.5"/>
+
+      <!-- Profondeurs annotées -->
+      <text x="60" y="175" class="lbl" text-anchor="middle">20</text>
+      <text x="133" y="187" class="lbl" text-anchor="middle">22</text>
+      <text x="206" y="205" class="lbl" text-anchor="middle">25</text>
+      <text x="279" y="181" class="lbl" text-anchor="middle">21</text>
+      <text x="352" y="163" class="lbl" text-anchor="middle">18</text>
+      <text x="425" y="145" class="lbl" text-anchor="middle">15</text>
+      <text x="498" y="115" class="lbl" text-anchor="middle">10</text>
+
+      <!-- Distances -->
+      <g class="lbl" text-anchor="middle">
+        <text x="60" y="225">0</text>
+        <text x="133" y="225">5</text>
+        <text x="206" y="225">10</text>
+        <text x="279" y="225">15</text>
+        <text x="352" y="225">20</text>
+        <text x="425" y="225">25</text>
+        <text x="498" y="225">30</text>
+      </g>
+      <text class="lblA" x="270" y="245" text-anchor="middle">x (m)</text>
+    </svg>
+  </div>
+
+  <h3>Document — méthode des trapèzes</h3>
+  <p>Pour estimer l'aire de la parcelle, on découpe en trapèzes successifs :</p>
+  <p style="text-align:center"><strong>Aire ≈ Σ (y_i + y_(i+1)) / 2 × Δx</strong></p>
+  <p>Plus Δx est petit, plus l'approximation est précise (convergence vers l'intégrale exacte).</p>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §1 (intégrale comme aire) et §3 (méthode des trapèzes).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Comment estimer l'aire de la parcelle ?</div>
+  <strong>Problématique :</strong> Comment estimer l'aire d'un terrain à bord irrégulier (sans formule géométrique exacte) ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-blue">ANA</span></h2>
-<p>Pourquoi la formule classique « base × hauteur » ne suffit pas ici ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>La hauteur y varie le long du terrain (rivière sinueuse). Pas une forme géométrique simple. Il faut <strong>intégrer</strong> y(x) sur l'intervalle [0, 30].</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">APP</span></h2>
+  <p>Pourquoi la formule classique « base × hauteur » ne s'applique-t-elle pas ici ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La parcelle n'est <strong>pas un rectangle</strong> car la rivière est sinueuse. La hauteur y varie tout le long.</p>
+    <p>Il faut donc <strong>intégrer</strong> la fonction y(x) sur l'intervalle [0 ; 30] m :</p>
+    <p style="text-align:center">A = ∫₀³⁰ y(x) dx</p>
+    <p>Mais on ne connaît y(x) qu'en 7 points discrets (relevés terrain). On va donc <strong>approximer</strong> l'intégrale.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Méthode des trapèzes : aire ≈ Σ (y_i + y_{i+1}) / 2 × Δx. Calculer l'aire approximative.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Δx = 5 m. 6 trapèzes :</p>
-<ul>
-<li>(20+22)/2 × 5 = 105</li>
-<li>(22+25)/2 × 5 = 117,5</li>
-<li>(25+21)/2 × 5 = 115</li>
-<li>(21+18)/2 × 5 = 97,5</li>
-<li>(18+15)/2 × 5 = 82,5</li>
-<li>(15+10)/2 × 5 = 62,5</li>
-</ul>
-<p>Aire totale ≈ 105 + 117,5 + 115 + 97,5 + 82,5 + 62,5 = <strong>580 m²</strong></p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">APP</span></h2>
+  <p>Donner la formule de l'aire d'un trapèze de bases b₁, b₂ et hauteur h.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Aire d'un trapèze = (b₁ + b₂) / 2 × h.</p>
+    <p>Dans notre cas : b₁ et b₂ sont les profondeurs y_i et y_(i+1), et h est l'écart Δx = 5 m.</p>
+    <p>D'où l'aire d'un trapèze = (y_i + y_(i+1)) / 2 × Δx.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Imène veut une précision meilleure. Que doit-elle faire ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li></li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Réduire le pas Δx (mesurer tous les 2 m au lieu de tous les 5 m). La méthode des trapèzes converge vers la vraie intégrale quand Δx → 0.</p>
-<p>Pour un terrain typique de cette taille, la précision suffisante est obtenue avec Δx ≈ 1 m, ce qui donne ≤ 1 % d'erreur.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'aire de la parcelle par la méthode des trapèzes (6 trapèzes).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Δx = 5 m. 6 trapèzes :</p>
+    <ul>
+      <li>T₁ = (20 + 22) / 2 × 5 = 21 × 5 = <strong>105 m²</strong></li>
+      <li>T₂ = (22 + 25) / 2 × 5 = 23,5 × 5 = <strong>117,5 m²</strong></li>
+      <li>T₃ = (25 + 21) / 2 × 5 = 23 × 5 = <strong>115 m²</strong></li>
+      <li>T₄ = (21 + 18) / 2 × 5 = 19,5 × 5 = <strong>97,5 m²</strong></li>
+      <li>T₅ = (18 + 15) / 2 × 5 = 16,5 × 5 = <strong>82,5 m²</strong></li>
+      <li>T₆ = (15 + 10) / 2 × 5 = 12,5 × 5 = <strong>62,5 m²</strong></li>
+    </ul>
+    <p>Aire totale ≈ 105 + 117,5 + 115 + 97,5 + 82,5 + 62,5 = <strong>580 m²</strong>.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Intégrale = aire sous la courbe.</strong> ∫_a^b f(x) dx.</li>
-<li><strong>Méthode des trapèzes :</strong> approximation numérique. Aire ≈ Σ (y_i + y_{i+1})/2 × Δx.</li>
-<li><strong>Plus Δx est petit, plus l'estimation est précise.</strong></li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Imène veut une précision meilleure. Comment faire ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Réduire le pas Δx :</p>
+    <ul>
+      <li>Mesurer tous les <strong>2 m</strong> au lieu de tous les 5 m → 15 trapèzes au lieu de 6.</li>
+      <li>Ou tous les <strong>1 m</strong> → 30 trapèzes.</li>
+    </ul>
+    <p>Plus Δx est petit, plus la ligne brisée des « tops de trapèzes » se rapproche de la vraie courbe sinueuse.</p>
+    <p>La méthode des trapèzes <strong>converge vers la vraie intégrale</strong> quand Δx → 0.</p>
+    <p>Pour cette parcelle, un pas de 1 m donne une précision de l'ordre de 1 %, suffisante pour le cadastre.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Estimer l'erreur de la méthode actuelle (Δx = 5 m) sachant que pour une fonction lisse, l'erreur est de l'ordre de 1 % par unité de Δx (ordre de grandeur).</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Avec Δx = 5 m sur une parcelle de 30 m : erreur estimée ~ 5 % sur l'aire.</p>
+    <p>Aire réelle probablement entre 580 ± 30 m² → fourchette [550 ; 610 m²].</p>
+    <p>Pour une transaction immobilière, c'est une marge importante (+/- 5 %).</p>
+    <p>Pour le cadastre français, on demande une précision &lt; 0,5 %. Imène devra refaire les mesures plus fines avec Δx = 0,5 ou 1 m.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Si la rivière était modélisée par y(x) = 25 − 0,5 x (droite décroissante), calculer l'aire exacte par formule. Comparer à la méthode des trapèzes.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Aire d'un trapèze (formule directe) : (y(0) + y(30)) / 2 × 30 = (25 + 10) / 2 × 30 = 17,5 × 30 = <strong>525 m²</strong>.</p>
+    <p>(Calcul exact = intégrale de fonction affine = formule trapèze appliquée à la totalité.)</p>
+    <p>Méthode des trapèzes (Δx = 5) sur cette même fonction donnerait <strong>exactement 525 m²</strong> (la méthode est exacte pour les fonctions linéaires).</p>
+    <p>L'erreur n'apparaît que pour des fonctions courbes (cas réel de la rivière sinueuse).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Une autre méthode est la « méthode de Simpson » qui utilise des paraboles au lieu de trapèzes. Pourquoi est-elle plus précise ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La méthode des trapèzes utilise des <strong>segments de droite</strong> entre les points relevés.</p>
+    <p>La méthode de Simpson utilise des <strong>arcs de parabole</strong> (3 points → 1 parabole).</p>
+    <p>Avantage : les paraboles épousent mieux les courbes lisses → erreur d'ordre supérieur (Δx⁴ au lieu de Δx² pour les trapèzes).</p>
+    <p>Pour la même précision, Simpson nécessite 5 à 10 fois moins de points relevés. Très utilisée en analyse numérique professionnelle (logiciels topo, CAO).</p>
+    <p>Mais Simpson est plus complexe à appliquer manuellement → on apprend la méthode des trapèzes en lycée car plus simple.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une note pour le client (propriétaire) sur l'aire mesurée et la précision.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Note d'expertise — Mesure de la parcelle bordée par la rivière</strong></em></p>
+    <p><em>Méthode appliquée : <strong>relevés tous les 5 m, méthode des trapèzes</strong>. 6 sections successives mesurées.</em></p>
+    <p><em>Aire estimée : <strong>580 m²</strong> (incertitude ~ ± 5 %, soit fourchette 550-610 m²).</em></p>
+    <p><em>Pour un usage cadastral, une précision &lt; 1 % est requise → relevés fins tous les 1 m. Coût supplémentaire : 200 € pour ce niveau de précision.</em></p>
+    <p><em>L'aire totale du terrain (avec autres mesures) sera fournie au plus tard sous 5 jours après les nouvelles mesures.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Pour la fonction y(x) = √(625 − x²) (1/4 de cercle de rayon 25), calculer l'aire par méthode des trapèzes (Δx = 5) sur [0 ; 25]. Comparer à l'aire exacte du quart de disque.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Aire exacte du quart de disque : π × 25² / 4 = <strong>490,87 m²</strong>.</p>
+    <p>Méthode des trapèzes :</p>
+    <ul>
+      <li>y(0)=25, y(5)=24,5, y(10)=22,9, y(15)=20, y(20)=15, y(25)=0.</li>
+      <li>T₁ = (25+24,5)/2 × 5 = 123,75</li>
+      <li>T₂ = (24,5+22,9)/2 × 5 = 118,5</li>
+      <li>T₃ = (22,9+20)/2 × 5 = 107,3</li>
+      <li>T₄ = (20+15)/2 × 5 = 87,5</li>
+      <li>T₅ = (15+0)/2 × 5 = 37,5</li>
+    </ul>
+    <p>Total : ≈ <strong>474,5 m²</strong>.</p>
+    <p>Écart avec valeur exacte : 490,87 − 474,5 = <strong>16 m² (3,3 %)</strong> en sous-estimation.</p>
+    <p>La méthode des trapèzes <strong>sous-estime</strong> les courbes concaves (l'arc passe au-dessus de la corde).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Intégrale = aire sous la courbe :</strong> ∫_a^b f(x) dx.</li>
+    <li><strong>Méthode des trapèzes :</strong> approximation numérique. Aire ≈ Σ (y_i + y_(i+1)) / 2 × Δx.</li>
+    <li><strong>Précision :</strong> plus Δx est petit, plus l'estimation est précise (convergence vers la vraie aire).</li>
+    <li><strong>Méthodes plus avancées :</strong> Simpson (paraboles, plus précis), méthodes adaptatives (logiciels).</li>
+    <li><strong>Application :</strong> arpentage, surfaces irrégulières, intégration numérique en physique/ingénierie.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
