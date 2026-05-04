@@ -1,57 +1,244 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch10 – Activité 2 – Circuit RLC en courant alternatif – Term Bac Pro</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 – Activité 2 – Impédance d'un circuit RLC – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Impédance d'un circuit RLC <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 10 – Nombres complexes | Terminale Bac Pro | ⏱ 35 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Modéliser une impédance par un nombre complexe</li>
-<li>Calculer module et argument</li>
-<li>Comprendre le déphasage tension/courant</li></ul></div>
+<header>
+  <h1>Activité 2 – Impédance d'un circuit RLC en alternatif <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 10 – Nombres complexes | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – électronicien diagnostique un circuit</h2>
-<p><em>Hugo, électronicien, étudie un circuit RLC série alimenté en 50 Hz : R = 100 Ω, bobine L = 0,3 H (X_L = Lω = 94,2 Ω), condensateur C = 30 µF (X_C = 1/(Cω) = 106 Ω).</em></p>
-<p>L'<strong>impédance complexe</strong> du circuit est : Z = R + j(X_L − X_C) = 100 + j(94,2 − 106) = <strong>100 − 11,8 j</strong></p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Modéliser une impédance électrique par un nombre complexe</li>
+    <li>Calculer module et argument d'un complexe</li>
+    <li>Interpréter physiquement le déphasage tension/courant</li>
+    <li>Comprendre l'utilité des complexes en électrotechnique</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – électronicien diagnostique un circuit</h2>
+  <p><em>Hugo, électronicien, étudie un circuit RLC série alimenté en 230 V / 50 Hz, comprenant une résistance R, une bobine L (inductance) et un condensateur C. En courant continu, on additionne les résistances. Mais en alternatif, les bobines et condensateurs introduisent des « réactances » qui compliquent le calcul. C'est là que les nombres complexes deviennent indispensables.</em></p>
+
+  <h3>Document — composants du circuit</h3>
+  <table>
+    <thead>
+      <tr><th>Composant</th><th>Valeur</th><th>Réactance à 50 Hz</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>R (résistance)</td><td>100 Ω</td><td>R = 100 Ω (pas de réactance)</td></tr>
+      <tr><td>L (bobine)</td><td>0,3 H</td><td>X_L = L × ω = 0,3 × 100π ≈ 94,2 Ω</td></tr>
+      <tr><td>C (condensateur)</td><td>30 µF</td><td>X_C = 1/(C × ω) = 1/(30×10⁻⁶ × 100π) ≈ 106 Ω</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document — formule de l'impédance complexe</h3>
+  <div style="background:#dbeafe;padding:10px 14px;border-radius:6px;border-left:3px solid #1d4ed8;margin:14px 0;text-align:center">
+    <p style="font-size:1.1em"><strong>Z = R + j × (X_L − X_C)</strong></p>
+    <p>Avec j² = −1 (notation des électroniciens, équivalente à i des mathématiciens)</p>
+    <p>Pour notre circuit : Z = 100 + j × (94,2 − 106) = <strong>100 − 11,8 j</strong></p>
+  </div>
+
+  <h3>Document — représentation dans le plan complexe</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 240" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Plan complexe : Z = 100 - 11,8j représenté comme un point. Module |Z| = 100,7. Argument -6,7°.">
+      <defs>
+        <style>
+          .ax{stroke:#1a202c;stroke-width:1.5}
+          .gd{stroke:#cbd5e1;stroke-width:.6}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">Plan complexe : Z = 100 − 11,8 j</text>
+
+      <!-- Axes : Re horizontal, Im vertical -->
+      <line class="ax" x1="60" y1="120" x2="510" y2="120"/>
+      <line class="ax" x1="180" y1="40" x2="180" y2="220"/>
+
+      <text x="510" y="115" class="lbl" font-weight="bold">Re (Ω)</text>
+      <text x="180" y="35" class="lbl" font-weight="bold" text-anchor="middle">Im (Ω)</text>
+
+      <!-- Graduations -->
+      <g class="lbl" text-anchor="middle">
+        <text x="180" y="138">0</text>
+        <text x="280" y="138">50</text>
+        <text x="380" y="138">100</text>
+        <text x="480" y="138">150</text>
+      </g>
+      <g class="lbl" text-anchor="end">
+        <text x="175" y="80">+50</text>
+        <text x="175" y="160">−25</text>
+        <text x="175" y="200">−50</text>
+      </g>
+
+      <!-- Z = 100 - 11,8j → x = 380 (100*2), y = 120 + 11,8*0,8 ≈ 130. Échelle Im plus serrée pour visibilité -->
+      <circle cx="380" cy="142" r="6" fill="#dc2626"/>
+      <text x="385" y="158" class="lblA" fill="#dc2626" font-weight="bold">Z (100; −11,8)</text>
+
+      <!-- Vecteur OZ -->
+      <line x1="180" y1="120" x2="380" y2="142" stroke="#0969da" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="270" y="123" class="lblA" fill="#0969da" font-weight="bold">|Z| ≈ 100,7</text>
+
+      <!-- Argument -->
+      <path d="M 220,120 A 30,30 0 0,0 222,123" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+      <text x="225" y="135" class="lbl" fill="#7c3aed" font-weight="bold">≈ −6,7°</text>
+
+      <defs>
+        <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#0969da"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §1 (forme algébrique a + bj) et §3 (module, argument).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Quel est le module et l'argument de Z ? Que représentent-ils physiquement ?</div>
+  <strong>Problématique :</strong> Quel est le module et l'argument de Z, et que représentent-ils physiquement ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer |Z| (module).</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>|Z| = √(100² + 11,8²) = √(10 000 + 139) = √10 139 ≈ <strong>100,7 Ω</strong></p>
-<p>Le module |Z| représente la <strong>résistance apparente</strong> du circuit en courant alternatif. C'est ce qu'on mesure avec un multimètre en mode AC.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le module |Z| de l'impédance.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Pour Z = a + bj, |Z| = √(a² + b²).</p>
+    <p>|Z| = √(100² + (−11,8)²) = √(10 000 + 139) = √10 139 ≈ <strong>100,7 Ω</strong>.</p>
+    <p>Le module |Z| représente la <strong>résistance apparente</strong> du circuit en courant alternatif. C'est ce qu'on mesure avec un multimètre en mode AC.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Calculer arg(Z) (argument).</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>arg(Z) = arctan(−11,8 / 100) ≈ −6,7°</p>
-<p>L'argument de Z représente le <strong>déphasage</strong> entre la tension et le courant. Ici, la tension est en retard de 6,7° par rapport au courant (cas capacitif dominant).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'argument arg(Z) de l'impédance.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>arg(Z) = arctan(b/a) si a &gt; 0.</p>
+    <p>arg(Z) = arctan(−11,8 / 100) = arctan(−0,118) ≈ <strong>−6,7°</strong>.</p>
+    <p>L'argument représente le <strong>déphasage</strong> (en radians ou degrés) entre la tension et le courant. Ici, la tension est en retard de 6,7° par rapport au courant (cas capacitif dominant car X_C &gt; X_L).</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Si la tension efficace est U = 230 V, calculer l'intensité I.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>I = U / |Z| = 230 / 100,7 ≈ <strong>2,28 A</strong></p>
-<p>Le facteur de puissance : cos(arg Z) = cos(−6,7°) ≈ 0,99 (très bon, presque résistif).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Si la tension efficace est U = 230 V, calculer l'intensité efficace I.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Loi d'Ohm en alternatif (avec impédance) : I = U / |Z|.</p>
+    <p>I = 230 / 100,7 ≈ <strong>2,28 A</strong>.</p>
+    <p>Avec un courant continu de 230 V à travers une résistance pure de 100 Ω : I = 2,30 A. Très proche.</p>
+    <p>L'effet du déphasage est minime ici car cos(arg Z) ≈ 1.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Impédance complexe :</strong> Z = R + j(X_L − X_C). j² = −1.</li>
-<li><strong>Module |Z| :</strong> résistance apparente (Ohm). I = U/|Z|.</li>
-<li><strong>Argument arg(Z) :</strong> déphasage tension/courant. cos(arg Z) = facteur de puissance.</li>
-<li><strong>Résonance :</strong> si X_L = X_C, alors Z = R, déphasage 0, courant max.</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">APP</span></h2>
+  <p>Calculer le facteur de puissance cos(arg Z) du circuit. Pourquoi est-il important en électrotechnique ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>cos(arg Z) = cos(−6,7°) ≈ <strong>0,993</strong> (presque 1).</p>
+    <p>Le facteur de puissance est le rapport entre puissance active (utile, kW) et puissance apparente (totale, kVA).</p>
+    <p>P_active = U × I × cos(φ) = 230 × 2,28 × 0,993 ≈ <strong>521 W</strong> (chauffe résistance).</p>
+    <p>P_apparente = U × I = 525 VA. La compagnie d'électricité facture la P_apparente, donc un mauvais cos(φ) coûte cher (pénalités EDF si cos &lt; 0,93 en industrie).</p>
+    <p>Solution : ajouter des condensateurs de compensation pour ramener cos(φ) → 1.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>À quelle fréquence f₀ aurait-on X_L = X_C (résonance) ? Donner la formule de Thomson.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>X_L = X_C → L × ω = 1 / (C × ω) → L × C × ω² = 1 → ω = 1 / √(LC).</p>
+    <p>f₀ = 1 / (2π × √(LC)) = 1 / (2π × √(0,3 × 30 × 10⁻⁶)) = 1 / (2π × √(9 × 10⁻⁶)) = 1 / (2π × 0,003) ≈ <strong>53 Hz</strong>.</p>
+    <p>(Formule de Thomson, fondamentale en oscillations).</p>
+    <p>À 50 Hz, on n'est pas exactement à la résonance (53 Hz), d'où le petit déphasage.</p>
+    <p>Si on était à 53 Hz exactement : Z = R = 100 Ω, déphasage 0, courant maximum 2,30 A.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi utilise-t-on les nombres complexes en électrotechnique ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Les complexes simplifient massivement les calculs en alternatif :</p>
+    <ul>
+      <li>Une <strong>tension sinusoïdale</strong> u(t) = U_max × sin(ωt + φ) est représentée par un complexe U = U_max × e^(jφ).</li>
+      <li>Les opérations de <strong>dérivation/intégration</strong> deviennent des multiplications par jω ou divisions par jω.</li>
+      <li>Les lois de Kirchhoff (additions de tensions/courants) restent valides avec les complexes.</li>
+    </ul>
+    <p>Sans complexes : équations différentielles longues à résoudre.</p>
+    <p>Avec complexes : algèbre simple sur des nombres.</p>
+    <p>C'est l'une des plus belles applications « pratiques » d'un concept mathématique abstrait (j² = −1).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une note technique pour le client : diagnostic du circuit et recommandations.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Diagnostic — Circuit RLC série (R = 100 Ω, L = 0,3 H, C = 30 µF, 50 Hz)</strong></em></p>
+    <ul><em>
+      <li><strong>Impédance :</strong> Z = 100 − 11,8 j → |Z| = 100,7 Ω.</li>
+      <li><strong>Déphasage :</strong> −6,7° (légèrement capacitif).</li>
+      <li><strong>Courant absorbé :</strong> 2,28 A sous 230 V.</li>
+      <li><strong>Facteur de puissance :</strong> 0,993 (excellent, conforme aux normes EDF).</li>
+      <li><strong>Recommandation :</strong> circuit conforme. Pour optimiser au maximum, ajuster L à 0,32 H pour atteindre la résonance à 50 Hz pile.</li>
+    </em></ul>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>L'industrie utilise massivement les filtres RLC. Pour un filtre passe-bas à f₀ = 1 kHz, calculer la valeur de L sachant qu'on impose C = 1 µF.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Formule de Thomson : f₀ = 1 / (2π √(LC)) = 1 000 Hz.</p>
+    <p>√(LC) = 1 / (2π × 1 000) ≈ 1,59 × 10⁻⁴.</p>
+    <p>LC = 2,53 × 10⁻⁸. Avec C = 10⁻⁶ : L = 2,53 × 10⁻² = <strong>25,3 mH</strong>.</p>
+    <p>Cette inductance se trouve dans le commerce sous forme de bobines compactes.</p>
+    <p>Application : filtres de cross-over haut-parleurs hi-fi, anti-parasites alimentations, accord radio, équipements industriels (CEM).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Impédance complexe :</strong> Z = R + j × (X_L − X_C). j² = −1 (en électronique, j à la place de i).</li>
+    <li><strong>Module |Z| :</strong> résistance apparente (Ω). I = U / |Z|.</li>
+    <li><strong>Argument arg(Z) :</strong> déphasage tension/courant. cos(arg Z) = facteur de puissance.</li>
+    <li><strong>Résonance :</strong> X_L = X_C, soit ω₀ = 1/√(LC) (formule de Thomson).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
