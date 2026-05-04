@@ -3,276 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch01 – Activité – Énergie et puissance électrique | Première ERA-MA (Grpt 3)</title>
+<title>Ch01 – Activité – Énergie et puissance électrique – PC 1ère ERA-MA</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
-<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac}</style>
+<style>:root{--p:#2da44e;--p-bg:#f0fff4;--p-border:#86efac;--s:#0ea5e9}</style>
 </head>
 <body>
 <div class="c">
 <a href="../../../pc-1ere-erama.html" class="nb">← RETOUR SOMMAIRE ERA-MA (Grpt 3)</a>
 
 <header>
-  <h1>Activité – Comparer la consommation des machines d'un atelier</h1>
-  <p class="sous-titre">Chapitre 1 | Première Bac Pro ERA-MA (Grpt 3) | Physique – Électricité | ⏱ 35 min</p>
+  <h1>Activité – Comparer la consommation des machines d'un atelier <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 1 | Première Bac Pro ERA-MA (Grpt 3) | Physique – Électricité | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 16:00</p>
 </header>
 <button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
 <div class="objectifs">
   <strong>Objectifs :</strong>
   <ul>
-    <li>Découvrir la différence entre puissance et énergie électrique</li>
+    <li>Distinguer puissance et énergie électrique</li>
     <li>Appliquer les relations \(P = U \times I\) et \(E = P \times t\)</li>
     <li>Convertir des unités (W, kW, J, kWh)</li>
     <li>Calculer le coût d'utilisation d'une machine électrique</li>
   </ul>
 </div>
 
-<!-- DOCUMENT D'ACCROCHE -->
 <div class="situation">
-  <h2>Situation professionnelle</h2>
+  <h2>Situation – facture d'électricité élevée à l'atelier</h2>
   <p><em>M. Garnier est ébéniste dans son atelier de fabrication de mobilier sur mesure, à Annecy. Chaque mois, il reçoit une facture d'électricité élevée et souhaite identifier les machines qui consomment le plus d'énergie. Il relève les caractéristiques de ses quatre machines principales sur leurs plaques signalétiques.</em></p>
 
+  <h3>Document 1 — Plaques signalétiques relevées par M. Garnier</h3>
   <table>
-    <tr>
-      <th>Machine</th>
-      <th>Tension (V)</th>
-      <th>Intensité (A)</th>
-      <th>Puissance indiquée (W)</th>
-      <th>Utilisation quotidienne (h)</th>
-    </tr>
-    <tr>
-      <td>Raboteuse-dégauchisseuse</td>
-      <td>230</td>
-      <td>13,0</td>
-      <td>2 990</td>
-      <td>2,0</td>
-    </tr>
-    <tr>
-      <td>Défonceuse (toupie portative)</td>
-      <td>230</td>
-      <td>7,0</td>
-      <td>1 610</td>
-      <td>1,5</td>
-    </tr>
-    <tr>
-      <td>Ponceuse orbitale</td>
-      <td>230</td>
-      <td>2,8</td>
-      <td>650</td>
-      <td>3,0</td>
-    </tr>
-    <tr>
-      <td>Aspirateur à copeaux</td>
-      <td>230</td>
-      <td>6,5</td>
-      <td>1 500</td>
-      <td>5,0</td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Machine</th>
+        <th>Tension U (V)</th>
+        <th>Intensité I (A)</th>
+        <th>Puissance P (W)</th>
+        <th>Utilisation (h/jour)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Raboteuse-dégauchisseuse</td><td>230</td><td>13,0</td><td>2 990</td><td>2,0</td></tr>
+      <tr><td>Défonceuse (toupie portative)</td><td>230</td><td>7,0</td><td>1 610</td><td>1,5</td></tr>
+      <tr><td>Ponceuse orbitale</td><td>230</td><td>2,8</td><td>650</td><td>3,0</td></tr>
+      <tr><td>Aspirateur à copeaux</td><td>230</td><td>6,5</td><td>1 500</td><td>5,0</td></tr>
+    </tbody>
   </table>
 
-  <p><strong>Tarif EDF :</strong> 0,18 €/kWh</p>
-  <p><strong>Relevé compteur :</strong> lundi matin : 12 456 kWh — vendredi soir : 12 518 kWh (5 jours ouvrés)</p>
+  <h3>Document 2 — Schéma d'une plaque signalétique type</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 220" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Représentation d'une plaque signalétique de machine : modèle, tension 230V, intensité 13A, puissance 2990W, fréquence 50Hz, classe d'isolation, marquage CE.">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#2da44e}
+          .key{font:600 12px monospace;fill:#dc2626;text-anchor:start}
+          .val{font:600 14px monospace;fill:#1a202c;text-anchor:end}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="20">Plaque signalétique : ce qu'elle nous apprend</text>
+
+      <!-- Plaque -->
+      <rect x="120" y="40" width="300" height="160" fill="#f1f5f9" stroke="#1a202c" stroke-width="2"/>
+      <rect x="130" y="50" width="280" height="20" fill="#1f2937"/>
+      <text x="270" y="64" class="lbl" fill="#fff" font-weight="700">RABOTEUSE TYPE BS-150 – HOLZSTAR</text>
+
+      <text class="key" x="140" y="95">U =</text>
+      <text class="val" x="395" y="95">230 V</text>
+
+      <text class="key" x="140" y="120">I =</text>
+      <text class="val" x="395" y="120">13,0 A</text>
+
+      <text class="key" x="140" y="145">P =</text>
+      <text class="val" x="395" y="145">2 990 W</text>
+
+      <text class="key" x="140" y="170">f =</text>
+      <text class="val" x="395" y="170">50 Hz</text>
+
+      <text class="key" x="140" y="195">classe</text>
+      <text class="val" x="395" y="195">II ⏃</text>
+
+      <!-- Symboles CE -->
+      <text x="55" y="135" font-size="20" font-weight="700">CE</text>
+      <text x="50" y="155" class="lbl">conformité UE</text>
+
+      <!-- Annotations -->
+      <text x="450" y="95" class="lbl" text-anchor="start" fill="#dc2626">tension</text>
+      <text x="450" y="120" class="lbl" text-anchor="start" fill="#dc2626">intensité</text>
+      <text x="450" y="145" class="lbl" text-anchor="start" fill="#dc2626">puissance</text>
+      <text x="450" y="170" class="lbl" text-anchor="start" fill="#dc2626">fréquence</text>
+    </svg>
+  </div>
+
+  <h3>Document 3 — Tarif et relevé compteur</h3>
+  <ul>
+    <li><strong>Tarif EDF :</strong> 0,18 €/kWh (Tarif Bleu Pro)</li>
+    <li><strong>Relevé compteur Linky :</strong> lundi matin 12 456 kWh — vendredi soir 12 518 kWh (5 jours ouvrés)</li>
+  </ul>
+
+  <h3>Document 4 — Formules clés</h3>
+  <ul>
+    <li>Puissance : <strong>P = U × I</strong> (W = V × A)</li>
+    <li>Énergie : <strong>E = P × t</strong> (J = W × s, ou kWh = kW × h)</li>
+    <li>Coût : <strong>C = E × tarif</strong> (€)</li>
+    <li>Conversion : <strong>1 kWh = 3,6 × 10⁶ J = 3,6 MJ</strong></li>
+  </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §2 (puissance électrique) et §3 (énergie et coût) de la leçon Ch01.</em></p>
 </div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
   <strong>Problématique :</strong> La machine la plus puissante de l'atelier est-elle nécessairement celle qui coûte le plus cher en électricité chaque jour ?
 </div>
 
-<!-- QUESTIONS -->
-
 <div class="exo">
-<h2>Question 1 <span class="badge-green">APP</span></h2>
-<p>a) En lisant le tableau, identifier quelle machine possède la <strong>puissance</strong> la plus élevée.</p>
-<p>b) Identifier quelle machine est utilisée le <strong>plus longtemps</strong> chaque jour.</p>
-<p>c) D'après vous, la machine la plus puissante est-elle forcément celle qui consomme le plus d'énergie ? Justifier brièvement.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>a) La machine la plus puissante est la <strong>raboteuse-dégauchisseuse</strong> avec une puissance de 2 990 W.</p>
-<p>b) La machine utilisée le plus longtemps est l'<strong>aspirateur à copeaux</strong> avec 5 heures d'utilisation par jour.</p>
-<p>c) Pas forcément. L'énergie consommée dépend à la fois de la puissance <em>et</em> du temps d'utilisation. Une machine peu puissante mais utilisée longtemps peut consommer plus d'énergie qu'une machine très puissante utilisée peu de temps.</p>
-</div>
-</div>
-
-<div class="exo">
-<h2>Question 2 <span class="badge-green">APP</span></h2>
-<p>Pour la défonceuse, la plaque signalétique indique : 230 V – 7,0 A.</p>
-<p>a) Que représente la valeur 230 V ?</p>
-<p>b) Que représente la valeur 7,0 A ?</p>
-<p>c) À l'aide de la relation \(P = U \times I\), vérifier que la puissance de la défonceuse est bien 1 610 W.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>a) 230 V est la <strong>tension</strong> d'alimentation de la défonceuse (tension du secteur), exprimée en volts (V).</p>
-<p>b) 7,0 A est l'<strong>intensité</strong> du courant électrique qui traverse la défonceuse, exprimée en ampères (A).</p>
-<p>c) \(P = U \times I = 230 \times 7{,}0 = 1\,610\) W. La valeur correspond bien à celle indiquée sur la plaque. ✓</p>
-</div>
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>a) En lisant le tableau (Document 1), identifier la machine la plus <strong>puissante</strong>.</p>
+  <p>b) Identifier la machine utilisée le <strong>plus longtemps</strong> chaque jour.</p>
+  <p>c) D'après vous, la machine la plus puissante est-elle forcément celle qui consomme le plus d'énergie ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) La machine la plus puissante est la <strong>raboteuse-dégauchisseuse</strong> avec une puissance de 2 990 W.</p>
+    <p>b) La machine utilisée le plus longtemps est l'<strong>aspirateur à copeaux</strong> avec 5 heures d'utilisation par jour.</p>
+    <p>c) Pas forcément. L'énergie consommée dépend à la fois de la puissance <em>et</em> du temps d'utilisation : <strong>E = P × t</strong>. Une machine peu puissante mais utilisée longtemps peut consommer plus d'énergie qu'une machine très puissante utilisée peu de temps.</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 3 <span class="badge-blue">REA</span></h2>
-<p>Calculer l'énergie consommée par chaque machine <strong>en une journée</strong>, en utilisant la formule \(E = P \times t\).</p>
-<p>Compléter le tableau ci-dessous. Exprimer la puissance en <strong>kW</strong> et le résultat en <strong>kWh</strong>.</p>
-<p><em>Rappel : pour obtenir l'énergie en kWh, exprimer P en kW et t en heures.</em></p>
-
-<table>
-  <tr>
-    <th>Machine</th>
-    <th>P (kW)</th>
-    <th>t (h)</th>
-    <th>E = P × t (kWh)</th>
-  </tr>
-  <tr>
-    <td>Raboteuse-dégauchisseuse</td>
-    <td>…</td>
-    <td>2,0</td>
-    <td>…</td>
-  </tr>
-  <tr>
-    <td>Défonceuse</td>
-    <td>…</td>
-    <td>1,5</td>
-    <td>…</td>
-  </tr>
-  <tr>
-    <td>Ponceuse orbitale</td>
-    <td>…</td>
-    <td>3,0</td>
-    <td>…</td>
-  </tr>
-  <tr>
-    <td>Aspirateur à copeaux</td>
-    <td>…</td>
-    <td>5,0</td>
-    <td>…</td>
-  </tr>
-</table>
-
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<table>
-  <tr>
-    <th>Machine</th>
-    <th>P (kW)</th>
-    <th>t (h)</th>
-    <th>E = P × t (kWh)</th>
-  </tr>
-  <tr>
-    <td>Raboteuse-dégauchisseuse</td>
-    <td>2,990</td>
-    <td>2,0</td>
-    <td>\(2{,}990 \times 2{,}0 = 5{,}98\) kWh</td>
-  </tr>
-  <tr>
-    <td>Défonceuse</td>
-    <td>1,610</td>
-    <td>1,5</td>
-    <td>\(1{,}610 \times 1{,}5 = 2{,}42\) kWh</td>
-  </tr>
-  <tr>
-    <td>Ponceuse orbitale</td>
-    <td>0,650</td>
-    <td>3,0</td>
-    <td>\(0{,}650 \times 3{,}0 = 1{,}95\) kWh</td>
-  </tr>
-  <tr>
-    <td>Aspirateur à copeaux</td>
-    <td>1,500</td>
-    <td>5,0</td>
-    <td>\(1{,}500 \times 5{,}0 = 7{,}50\) kWh</td>
-  </tr>
-</table>
-<p><strong>Total journalier :</strong> \(5{,}98 + 2{,}42 + 1{,}95 + 7{,}50 = 17{,}85\) kWh</p>
-</div>
+  <h2>Question 2 <span class="badge-green">APP</span></h2>
+  <p>Pour la défonceuse, la plaque signalétique indique : 230 V – 7,0 A.</p>
+  <p>a) Que représente la valeur 230 V ? Que représente la valeur 7,0 A ?</p>
+  <p>b) À l'aide de la relation P = U × I, vérifier que la puissance de la défonceuse est bien 1 610 W.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) <strong>230 V</strong> est la <strong>tension</strong> d'alimentation de la défonceuse (tension efficace du secteur 230 V/50 Hz), exprimée en volts (V).</p>
+    <p><strong>7,0 A</strong> est l'<strong>intensité</strong> du courant qui traverse la défonceuse en pleine charge, exprimée en ampères (A).</p>
+    <p>b) P = U × I = 230 × 7,0 = <strong>1 610 W</strong>. La valeur correspond bien à celle indiquée sur la plaque ✓.</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 4 <span class="badge-blue">REA</span></h2>
-<p>Convertir l'énergie consommée par la raboteuse-dégauchisseuse en une journée <strong>en joules (J)</strong>.</p>
-<p><em>Rappel : \(1 \text{ kWh} = 3{,}6 \times 10^6 \text{ J}\).</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>L'énergie de la raboteuse est \(E = 5{,}98\) kWh.</p>
-\[ E = 5{,}98 \times 3{,}6 \times 10^6 = 21{,}53 \times 10^6 \text{ J} = 21\,530\,000 \text{ J} \approx 21{,}5 \text{ MJ} \]
-<p>On peut aussi calculer directement : \(E = P \times t = 2\,990 \times (2 \times 3\,600) = 2\,990 \times 7\,200 = 21\,528\,000\) J. ✓</p>
-</div>
-</div>
-
-<div class="exo">
-<h2>Question 5 <span class="badge-blue">REA</span></h2>
-<p>Calculer le <strong>coût quotidien</strong> d'utilisation de chaque machine, sachant que le tarif est de 0,18 €/kWh.</p>
-<p>Quelle est la <strong>dépense totale quotidienne</strong> pour l'ensemble des quatre machines ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<table>
-  <tr><th>Machine</th><th>E (kWh/jour)</th><th>Coût = E × 0,18 (€)</th></tr>
-  <tr><td>Raboteuse-dégauchisseuse</td><td>5,98</td><td>\(5{,}98 \times 0{,}18 = 1{,}08\) €</td></tr>
-  <tr><td>Défonceuse</td><td>2,42</td><td>\(2{,}42 \times 0{,}18 = 0{,}44\) €</td></tr>
-  <tr><td>Ponceuse orbitale</td><td>1,95</td><td>\(1{,}95 \times 0{,}18 = 0{,}35\) €</td></tr>
-  <tr><td>Aspirateur à copeaux</td><td>7,50</td><td>\(7{,}50 \times 0{,}18 = 1{,}35\) €</td></tr>
-</table>
-<p><strong>Dépense totale quotidienne :</strong> \(1{,}08 + 0{,}44 + 0{,}35 + 1{,}35 = 3{,}22\) € par jour.</p>
-</div>
-</div>
-
-<div class="exo">
-<h2>Question 6 <span class="badge-blue">ANA</span></h2>
-<p>a) D'après vos calculs, quelle machine consomme le <strong>plus d'énergie</strong> par jour ? Est-ce la même que la machine la plus puissante ?</p>
-<p>b) Expliquer pourquoi l'aspirateur à copeaux, qui n'est pas la machine la plus puissante, est celle qui coûte le plus cher en électricité.</p>
-<p>c) Classer les quatre machines de la plus économe à la plus coûteuse.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>a) La machine qui consomme le plus d'énergie par jour est l'<strong>aspirateur à copeaux</strong> (7,50 kWh). Ce n'est pas la machine la plus puissante (la raboteuse est plus puissante avec 2 990 W).</p>
-<p>b) L'aspirateur à copeaux est utilisé <strong>5 heures par jour</strong>, soit beaucoup plus longtemps que les autres machines. Même si sa puissance (1 500 W) est inférieure à celle de la raboteuse, sa durée d'utilisation plus longue fait que son énergie consommée est plus importante. Cela illustre que l'énergie dépend du <strong>produit</strong> \(E = P \times t\) : les deux grandeurs comptent.</p>
-<p>c) Classement du moins au plus coûteux : ponceuse (0,35 €) → défonceuse (0,44 €) → raboteuse (1,08 €) → aspirateur (1,35 €).</p>
-</div>
+  <h2>Question 3 <span class="badge-blue">REA</span></h2>
+  <p>Calculer l'énergie consommée par chaque machine <strong>en une journée</strong>, en utilisant la formule E = P × t. Exprimer P en kW et t en heures pour obtenir E en kWh.</p>
+  <table>
+    <thead>
+      <tr><th>Machine</th><th>P (kW)</th><th>t (h)</th><th>E = P × t (kWh)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Raboteuse-dégauchisseuse</td><td>…</td><td>2,0</td><td>…</td></tr>
+      <tr><td>Défonceuse</td><td>…</td><td>1,5</td><td>…</td></tr>
+      <tr><td>Ponceuse orbitale</td><td>…</td><td>3,0</td><td>…</td></tr>
+      <tr><td>Aspirateur à copeaux</td><td>…</td><td>5,0</td><td>…</td></tr>
+    </tbody>
+  </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Machine</th><th>P (kW)</th><th>t (h)</th><th>E (kWh)</th></tr></thead>
+      <tbody>
+        <tr><td>Raboteuse-dégauchisseuse</td><td>2,990</td><td>2,0</td><td>2,990 × 2,0 = <strong>5,98</strong></td></tr>
+        <tr><td>Défonceuse</td><td>1,610</td><td>1,5</td><td>1,610 × 1,5 = <strong>2,42</strong></td></tr>
+        <tr><td>Ponceuse orbitale</td><td>0,650</td><td>3,0</td><td>0,650 × 3,0 = <strong>1,95</strong></td></tr>
+        <tr><td>Aspirateur à copeaux</td><td>1,500</td><td>5,0</td><td>1,500 × 5,0 = <strong>7,50</strong></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Total journalier :</strong> 5,98 + 2,42 + 1,95 + 7,50 = <strong>17,85 kWh</strong>.</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 7 <span class="badge-green">VAL</span></h2>
-<p>Le relevé du compteur électrique de l'atelier indique :</p>
-<ul>
-  <li>Lundi matin : 12 456 kWh</li>
-  <li>Vendredi soir : 12 518 kWh</li>
-</ul>
-<p>a) Calculer l'énergie totale consommée par l'atelier pendant ces 5 jours.</p>
-<p>b) Calculer l'énergie théorique des 4 machines sur 5 jours (à partir de vos résultats de la question 3).</p>
-<p>c) Comparer les deux valeurs. Expliquer l'écart éventuel.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>a) Énergie lue au compteur : \(E = 12\,518 - 12\,456 = 62\) kWh sur 5 jours.</p>
-<p>b) Énergie théorique des 4 machines : \(17{,}85 \times 5 = 89{,}25\) kWh.</p>
-<p>c) On constate un <strong>écart</strong> : le compteur indique 62 kWh, ce qui est inférieur aux 89,25 kWh théoriques. Cela peut s'expliquer par le fait que les machines ne fonctionnent pas forcément à pleine puissance en continu, ou que les durées d'utilisation réelles sont inférieures à celles estimées. En revanche, le compteur mesure aussi d'autres appareils (éclairage, chauffage...). L'important est que le compteur donne la consommation <strong>réelle</strong>, tandis que le calcul \(E = P \times t\) donne une estimation à puissance maximale.</p>
-</div>
+  <h2>Question 4 <span class="badge-blue">REA</span></h2>
+  <p>Convertir l'énergie consommée par la raboteuse-dégauchisseuse en une journée <strong>en joules (J)</strong>.</p>
+  <p><em>Rappel : 1 kWh = 3,6 × 10⁶ J.</em></p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'énergie de la raboteuse est E = 5,98 kWh.</p>
+    <p>E = 5,98 × 3,6 × 10⁶ = 21,53 × 10⁶ J = <strong>21 530 000 J ≈ 21,5 MJ</strong>.</p>
+    <p>Vérification directe : E = P × t = 2 990 × (2 × 3 600) = 2 990 × 7 200 = 21 528 000 J ✓.</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 8 <span class="badge-yellow">COM</span></h2>
-<p>M. Garnier souhaite réduire sa facture d'électricité. En vous appuyant sur vos résultats, rédigez <strong>trois conseils</strong> concrets pour diminuer la consommation d'énergie de l'atelier.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Exemples de conseils :</p>
-<ol>
-  <li><strong>Réduire le temps d'utilisation de l'aspirateur à copeaux :</strong> ne le faire fonctionner que lorsqu'une machine produit effectivement des copeaux, et non en continu toute la journée. C'est la machine qui coûte le plus cher en énergie.</li>
-  <li><strong>Éteindre les machines inutilisées :</strong> ne pas laisser tourner la raboteuse ou la défonceuse à vide entre deux pièces. Une machine allumée consomme de l'énergie même si elle ne travaille pas.</li>
-  <li><strong>Investir dans des machines plus économes :</strong> remplacer les machines anciennes par des modèles plus récents à meilleur rendement énergétique, ou installer un variateur de vitesse sur l'aspirateur pour adapter sa puissance au besoin réel.</li>
-</ol>
-</div>
+  <h2>Question 5 <span class="badge-blue">REA</span></h2>
+  <p>Calculer le <strong>coût quotidien</strong> d'utilisation de chaque machine (tarif 0,18 €/kWh) et la dépense totale.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Machine</th><th>E (kWh)</th><th>Coût (€)</th></tr></thead>
+      <tbody>
+        <tr><td>Raboteuse</td><td>5,98</td><td>5,98 × 0,18 = <strong>1,08 €</strong></td></tr>
+        <tr><td>Défonceuse</td><td>2,42</td><td>2,42 × 0,18 = <strong>0,44 €</strong></td></tr>
+        <tr><td>Ponceuse orbitale</td><td>1,95</td><td>1,95 × 0,18 = <strong>0,35 €</strong></td></tr>
+        <tr><td>Aspirateur à copeaux</td><td>7,50</td><td>7,50 × 0,18 = <strong>1,35 €</strong></td></tr>
+      </tbody>
+    </table>
+    <p><strong>Dépense totale quotidienne :</strong> 1,08 + 0,44 + 0,35 + 1,35 = <strong>3,22 € par jour</strong>.</p>
+    <p>Sur l'année (220 jours ouvrés) : 3,22 × 220 = <strong>708 €/an</strong> rien que pour ces 4 machines.</p>
+  </div>
 </div>
 
-<!-- SYNTHÈSE -->
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>a) Quelle machine consomme le plus d'énergie par jour ? Est-ce la même que la machine la plus puissante ?</p>
+  <p>b) Expliquer pourquoi l'aspirateur à copeaux, qui n'est pas la machine la plus puissante, est celle qui coûte le plus cher.</p>
+  <p>c) Classer les quatre machines de la moins à la plus coûteuse.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) La machine la plus consommatrice par jour est l'<strong>aspirateur à copeaux</strong> (7,50 kWh). Ce <strong>n'est pas</strong> la machine la plus puissante (la raboteuse l'est, avec 2 990 W vs 1 500 W).</p>
+    <p>b) L'aspirateur est utilisé <strong>5 h/jour</strong>, plus longtemps que les autres. Bien que sa puissance (1 500 W) soit inférieure à celle de la raboteuse (2 990 W), sa durée d'utilisation plus longue conduit à une énergie totale plus importante. C'est l'illustration directe de E = P × t : <strong>les deux grandeurs comptent</strong>.</p>
+    <p>c) Du moins au plus coûteux : ponceuse (0,35 €) → défonceuse (0,44 €) → raboteuse (1,08 €) → aspirateur (1,35 €).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">VAL</span></h2>
+  <p>Le relevé du compteur Linky de l'atelier indique : lundi matin 12 456 kWh, vendredi soir 12 518 kWh.</p>
+  <p>a) Calculer l'énergie totale consommée par l'atelier sur 5 jours.</p>
+  <p>b) Calculer l'énergie théorique des 4 machines sur 5 jours.</p>
+  <p>c) Comparer. Expliquer l'écart éventuel.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) Énergie compteur : 12 518 − 12 456 = <strong>62 kWh sur 5 jours</strong>.</p>
+    <p>b) Énergie théorique : 17,85 × 5 = <strong>89,25 kWh sur 5 jours</strong>.</p>
+    <p>c) Écart : 89,25 − 62 = 27,25 kWh (compteur 30 % en dessous du calcul théorique).</p>
+    <p>Explications possibles :</p>
+    <ul>
+      <li>Les machines ne tournent pas à pleine puissance en continu (régime moyen ≠ régime nominal de la plaque).</li>
+      <li>Les durées réelles sont légèrement inférieures aux estimations (pauses, attentes).</li>
+      <li>Mais le compteur mesure aussi <strong>l'éclairage, le chauffage, les autres prises</strong> → il pourrait être supérieur si on n'avait que les machines.</li>
+    </ul>
+    <p>Le compteur donne la consommation <strong>réelle</strong>, le calcul P × t une <strong>borne haute théorique</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>M. Garnier souhaite réduire sa facture d'électricité. En vous appuyant sur les calculs, rédiger 3 conseils concrets pour diminuer la consommation de l'atelier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <ol>
+      <li><strong>Réduire le temps d'aspiration :</strong> ne faire fonctionner l'aspirateur à copeaux que lorsqu'une machine produit effectivement des copeaux (commande couplée). Économie potentielle : 30-50 % de son énergie.</li>
+      <li><strong>Éteindre les machines inutilisées :</strong> ne pas laisser tourner la raboteuse ou la défonceuse à vide entre deux pièces. Une machine allumée consomme de l'énergie même si elle ne travaille pas (cf. effet de la veille).</li>
+      <li><strong>Investir dans des machines plus économes :</strong> remplacer les machines anciennes par des modèles à variateur de vitesse, ou installer un variateur de fréquence sur l'aspirateur pour adapter sa puissance au besoin réel.</li>
+    </ol>
+    <p>Économie attendue : 15-25 % de la facture, soit ~ 100-200 €/an pour cet atelier.</p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>L'aspirateur à copeaux passe en moyenne 50 % du temps en aspiration faible et 50 % en aspiration forte. Sa puissance moyenne est-elle plutôt 750 W ou 1 500 W ? Quelle économie réelle obtient-on en l'éteignant 50 % du temps ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'aspirateur fonctionne « tout ou rien » dans le scénario : 50 % à pleine puissance (1 500 W) + 50 % éteint (0 W). Sur la durée :</p>
+    <p>Énergie sur 5 h : 1 500 × 2,5 = <strong>3 750 Wh = 3,75 kWh</strong> (au lieu de 7,50 kWh estimés).</p>
+    <p>Économie : 3,75 kWh × 0,18 = <strong>0,68 €/jour</strong>, soit 0,68 × 220 = <strong>149 €/an</strong> rien qu'avec un meilleur usage.</p>
+    <p>Si on installe un <strong>variateur de fréquence</strong> qui adapte la puissance entre 600 et 1 500 W selon les besoins, puissance moyenne ~ 900 W → 900 × 5 / 1 000 = 4,5 kWh/jour → 0,81 €/jour.</p>
+    <p>Le commentaire général : l'énergie ne dépend pas seulement de la <strong>puissance nominale</strong> mais de la <strong>puissance réellement utilisée pendant le temps d'usage</strong>. C'est ce qu'on appelle l'<strong>énergie spécifique</strong>.</p>
+  </div>
+</div>
+
 <div class="retenir">
   <strong>À retenir</strong>
   <ul>
-    <li><strong>Puissance électrique :</strong> \(P = U \times I\) — elle se mesure en <strong>watts (W)</strong>. C'est la vitesse de consommation d'énergie (grandeur instantanée).</li>
-    <li><strong>Énergie électrique :</strong> \(E = P \times t\) — elle se mesure en <strong>joules (J)</strong> ou en <strong>kilowattheures (kWh)</strong>. C'est la quantité totale consommée sur une durée.</li>
-    <li><strong>Conversion :</strong> \(1 \text{ kWh} = 3{,}6 \times 10^6 \text{ J}\)</li>
-    <li>Pour obtenir E en kWh directement : exprimer P en <strong>kW</strong> et t en <strong>heures</strong>.</li>
-    <li>La machine qui consomme le plus d'énergie n'est pas forcément la plus puissante : tout dépend aussi du <strong>temps d'utilisation</strong>.</li>
+    <li><strong>Puissance :</strong> P = U × I (en watts, W). C'est la <em>vitesse</em> de consommation d'énergie (instantanée).</li>
+    <li><strong>Énergie :</strong> E = P × t (en joules J, ou kilowattheures kWh). C'est la <em>quantité totale</em> consommée sur une durée.</li>
+    <li><strong>Conversion :</strong> 1 kWh = 3,6 × 10⁶ J = 3,6 MJ.</li>
+    <li><strong>Coût :</strong> C = E × tarif (€). Tarif EDF Bleu Pro 2026 ≈ 0,18 €/kWh.</li>
+    <li><strong>Pour réduire la facture :</strong> agir sur P (machines économes) <em>et</em> sur t (durée d'utilisation). E = P × t : les deux comptent.</li>
   </ul>
-</div>
-
-<div style="margin-top:30px;padding-top:18px;border-top:1px solid #e2e8f0;text-align:center;color:#718096;font-size:.82em">
-  Première Bac Pro ERA-MA – Groupement 3 | Physique-Chimie – Chapitre 1 – Activité | maths-sciences-lp.github.io
 </div>
 
 </div>
