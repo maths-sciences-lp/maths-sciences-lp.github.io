@@ -1,64 +1,237 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Ch11 – Activité 4 – Projection vectorielle (escalator) – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 4 – Projection vectorielle (escalator) <span style="font-size:.55em;color:#7c3aed;font-weight:600">ÉTUDE DE CAS</span></h1>
-<p class="sous-titre">Chapitre 11 – Produit scalaire | Terminale Bac Pro | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Calculer une projection orthogonale</li>
-<li>Décomposer un vecteur en composantes utile et inutile</li></ul></div>
+<header>
+  <h1>Activité 4 – Projection vectorielle : forces sur un escalator <span style="font-size:.55em;color:#7c3aed;font-weight:600">ÉTUDE DE CAS</span></h1>
+  <p class="sous-titre">Chapitre 11 – Produit scalaire | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – installation d'un escalator</h2>
-<p><em>Tania, technicienne en agencement de centres commerciaux, calcule les forces sur un escalator incliné à 30°. Le moteur exerce une force \(\vec{F}\) parallèle à la pente, de norme 800 N. On veut décomposer cette force en composante horizontale et composante verticale.</em></p>
-<p>Vecteur force : F⃗ = (F·cos 30° ; F·sin 30°) = (693 ; 400) N (axe x horizontal, y vertical)</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer une projection orthogonale d'un vecteur</li>
+    <li>Décomposer un vecteur en composantes utile et inutile</li>
+    <li>Comprendre la notion d'énergie utile vs gaspillée</li>
+    <li>Évaluer un compromis ingénierie (efficacité vs sécurité)</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – installation d'un escalator</h2>
+  <p><em>Tania, technicienne en agencement de centres commerciaux, calcule les forces sur un escalator incliné à 30°. Le moteur exerce une force F⃗ parallèle à la pente, de norme 800 N. On veut décomposer cette force pour comprendre l'efficacité énergétique du système.</em></p>
+
+  <h3>Document — schéma de la décomposition</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 240" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Escalator incliné à 30°. Force F=800N parallèle à la pente. Décomposition en F_x horizontale (693N) et F_y verticale (400N).">
+      <defs>
+        <style>
+          .b{stroke:#1a202c;stroke-width:1.5}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">Escalator 30° — décomposition de la force F = 800 N</text>
+
+      <!-- Sol -->
+      <line x1="60" y1="200" x2="500" y2="200" stroke="#7c2d12" stroke-width="3"/>
+
+      <!-- Escalator (rampe inclinée 30°) -->
+      <line x1="100" y1="200" x2="380" y2="40" stroke="#1a202c" stroke-width="3"/>
+
+      <!-- Vecteur F (le long de la rampe, 30°) -->
+      <!-- Du point milieu (240, 120) vers le haut, longueur 100 px → fin (240+100*cos30, 120-100*sin30) = (327, 70) -->
+      <line x1="180" y1="155" x2="267" y2="105" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arr)"/>
+      <text x="280" y="100" class="lblA" fill="#dc2626" font-weight="bold">F = 800 N</text>
+
+      <!-- Composantes -->
+      <!-- F_x horizontal : (180, 155) → (267, 155) -->
+      <line x1="180" y1="155" x2="267" y2="155" stroke="#15803d" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arr2)"/>
+      <text x="220" y="170" class="lbl" fill="#15803d" font-weight="bold">F_x = 693 N</text>
+
+      <!-- F_y vertical : (267, 155) → (267, 105) -->
+      <line x1="267" y1="155" x2="267" y2="105" stroke="#0969da" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arr3)"/>
+      <text x="280" y="135" class="lbl" fill="#0969da" font-weight="bold">F_y = 400 N</text>
+
+      <!-- Angle 30° -->
+      <path d="M 130,200 A 25,25 0 0,0 150,189" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+      <text x="155" y="195" class="lbl" fill="#7c3aed" font-weight="bold">30°</text>
+
+      <!-- Personnages -->
+      <circle cx="220" cy="135" r="6" fill="#fbbf24"/>
+      <circle cx="220" cy="125" r="4" fill="#fbbf24"/>
+      <text x="200" y="145" class="lbl">usager</text>
+    </svg>
+  </div>
+
+  <h3>Document — formules</h3>
+  <div style="background:#dbeafe;padding:10px 14px;border-radius:6px;border-left:3px solid #1d4ed8;margin:14px 0">
+    <p>Pour un vecteur F⃗ de norme F incliné d'un angle α par rapport à l'horizontale :</p>
+    <p style="text-align:center"><strong>F_x = F × cos(α)</strong> (composante horizontale)</p>
+    <p style="text-align:center"><strong>F_y = F × sin(α)</strong> (composante verticale)</p>
+    <p>Vérification : ||F⃗|| = √(F_x² + F_y²) = F (Pythagore).</p>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §3 (projection sur un axe) et §5 (composantes d'un vecteur).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Quelles parts de la force monte les usagers (verticale) et les déplace horizontalement ?</div>
+  <strong>Problématique :</strong> Quelle proportion de la force du moteur sert vraiment à monter les usagers (composante verticale) ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer la composante horizontale F_x et verticale F_y de la force.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<ul>
-<li>F_x = F × cos(30°) = 800 × 0,866 ≈ <strong>693 N</strong> (composante horizontale, déplace les gens en avant)</li>
-<li>F_y = F × sin(30°) = 800 × 0,5 = <strong>400 N</strong> (composante verticale, monte les gens)</li>
-</ul>
-<p>Vérification : ||F|| = √(693² + 400²) = √(480 249 + 160 000) = √640 249 ≈ 800 N ✓</p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la composante horizontale F_x et la composante verticale F_y de la force F = 800 N inclinée à 30°.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>F_x = F × cos(30°) = 800 × 0,866 = <strong>693 N</strong> (composante horizontale, déplace les gens en avant).</li>
+      <li>F_y = F × sin(30°) = 800 × 0,5 = <strong>400 N</strong> (composante verticale, monte les gens contre la gravité).</li>
+    </ul>
+    <p>Vérification : √(693² + 400²) = √(480 249 + 160 000) = √640 249 ≈ 800,2 N ≈ F ✓.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-blue">ANA</span></h2>
-<p>L'usager veut surtout monter (composante verticale). Quelle proportion de l'énergie sert vraiment à le monter ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Composante « utile » (verticale) : 400 N. Composante « inutile » horizontale : 693 N.</p>
-<p>Proportion utile : 400 / 800 = 50 % (= sin 30° pour pente à 30°).</p>
-<p>Plus la pente est raide, plus la composante verticale est grande, plus l'efficacité énergétique est haute. Pour un ascenseur (90°) : 100 % utile.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>L'usager veut surtout monter (composante verticale qui combat la gravité). Quelle proportion de l'énergie sert vraiment à le monter ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Composante « utile » (verticale) : 400 N.</p>
+    <p>Composante « inutile pour la montée » (horizontale) : 693 N.</p>
+    <p>Proportion utile : 400 / 800 = <strong>50 %</strong> (= sin 30°).</p>
+    <p>Donc seule la moitié de la force du moteur sert à élever réellement les usagers.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Un escalator typique a une pente de 30°. Pourquoi pas plus raide pour économiser de l'énergie ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Contraintes :</p>
-<ul>
-<li><strong>Sécurité :</strong> au-delà de 30-35°, les usagers (surtout enfants/personnes âgées) risquent de tomber. La norme NF EN 115-1 limite à 30° max usuel.</li>
-<li><strong>Confort :</strong> sensation de basculement difficile au-delà.</li>
-<li><strong>Bagages, poussettes :</strong> impossible à raideur supérieure.</li>
-</ul>
-<p>L'ascenseur (90°) est plus économe énergétiquement, mais plus cher à installer et limité en débit (file d'attente). L'escalator est un compromis débit/sécurité, pas énergie.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">APP</span></h2>
+  <p>Pour un escalator à 45° (plus raide), quelle proportion serait utile ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>F_y = F × sin(45°) = 800 × 0,707 = <strong>566 N</strong>.</p>
+    <p>Proportion : 566 / 800 = <strong>70,7 %</strong> (= sin 45°).</p>
+    <p>Plus la pente est raide, plus la composante verticale est grande, plus l'efficacité énergétique est haute.</p>
+    <p>Cas limites :</p>
+    <ul>
+      <li>0° (tapis horizontal) : 0 % utile pour monter.</li>
+      <li>90° (ascenseur) : 100 % utile.</li>
+    </ul>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Décomposition d'un vecteur :</strong> sur 2 axes orthogonaux x, y.</li>
-<li><strong>Composantes :</strong> F_x = F cos α, F_y = F sin α (par rapport à l'horizontale).</li>
-<li><strong>Énergie utile :</strong> seule la composante alignée au mouvement « voulu » compte.</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi un escalator typique est-il à 30° et non plus raide pour économiser de l'énergie ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Contraintes <strong>autres qu'énergétiques</strong> :</p>
+    <ul>
+      <li><strong>Sécurité :</strong> au-delà de 30-35°, les usagers (surtout enfants, personnes âgées) risquent de tomber. La norme NF EN 115-1 limite à 30° max en usuel.</li>
+      <li><strong>Confort :</strong> sensation de basculement difficile au-delà.</li>
+      <li><strong>Bagages, poussettes, valises :</strong> impossibles à monter en sécurité au-delà de 30°.</li>
+      <li><strong>Place au sol :</strong> un escalator à 30° prend plus de longueur horizontale qu'un à 45°, mais c'est un choix architectural standard.</li>
+    </ul>
+    <p>L'<strong>ascenseur (90°)</strong> est le plus économe énergétiquement, mais plus cher à installer et limité en débit (1 cabine = 1-2 personnes/min vs 60-100/min pour un escalator).</p>
+    <p>L'escalator est un compromis <strong>débit / sécurité / confort</strong>, pas énergétique. Le surcoût énergétique est accepté.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Pour transporter 60 personnes/minute (poids moyen 75 kg) sur 4 m de hauteur, calculer la puissance moteur nécessaire (P = F × v, v vitesse de l'escalator ≈ 0,5 m/s).</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Force pour soulever 60 personnes (poids total 4 500 kg) : poids = 4 500 × 9,81 ≈ 44 145 N.</p>
+    <p>Mais 60 personnes ne sont pas toutes sur l'escalator simultanément. Si la durée du trajet est 4/0,5 × 2 (= aller + retour pas tous présents) ≈ 16 secondes, et 1 personne par seconde monte → ~16 personnes simultanées sur le ruban. Poids ~ 1 200 kg.</p>
+    <p>Force verticale : 1 200 × 9,81 ≈ 11 770 N. Avec inclinaison 30° : F nécessaire = 11 770 / sin(30°) = 23 540 N.</p>
+    <p>Puissance : P = F × v = 23 540 × 0,5 ≈ <strong>11,8 kW</strong>.</p>
+    <p>Avec rendement moteur 80 % : puissance électrique consommée ~ 15 kW. Comparable à 5 fers à repasser.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>L'escalator fonctionne 14 h/jour, 365 j/an. Calculer la consommation annuelle (à 0,18 €/kWh).</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Énergie annuelle : 15 kW × 14 h/j × 365 j/an = <strong>76 650 kWh/an</strong>.</p>
+    <p>Coût : 76 650 × 0,18 = <strong>13 800 €/an</strong>.</p>
+    <p>Sur 20 ans (durée de vie escalator) : 276 000 €. C'est l'argument pour les escalators à <strong>variation de vitesse</strong> qui ralentissent ou s'arrêtent quand personne ne les utilise.</p>
+    <p>Économie possible : -50 % à -70 % sur la consommation. ROI rapide pour les centres commerciaux.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une note technique pour le maître d'ouvrage (centre commercial) sur le choix de l'escalator vs ascenseur.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Note — Escalator vs ascenseur (centre commercial)</strong></em></p>
+    <table>
+      <thead><tr><th>Critère</th><th>Escalator 30°</th><th>Ascenseur</th></tr></thead>
+      <tbody>
+        <tr><td>Énergie utile</td><td>50 %</td><td>100 %</td></tr>
+        <tr><td>Débit</td><td>60-100 pers/min</td><td>5-15 pers/min</td></tr>
+        <tr><td>Coût installation</td><td>50-80 k€</td><td>30-50 k€</td></tr>
+        <tr><td>Adapté PMR</td><td>Non</td><td>Oui</td></tr>
+      </tbody>
+    </table>
+    <p><em><strong>Recommandation :</strong> escalator pour le débit principal, ascenseur en complément pour PMR et chariots. Investir dans une variation de vitesse (économie énergie 50-70 %).</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>La projection orthogonale est aussi utilisée pour calculer le travail réel d'une force. Si une voiture roule horizontalement et qu'on lui applique une force inclinée à 60° du sol, quel pourcentage du travail va à la propulsion ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Composante horizontale (utile pour propulser) : F × cos(60°) = F × 0,5 = <strong>50 %</strong>.</p>
+    <p>50 % du travail est utile, 50 % est « gaspillé » en composante verticale (qui ne fait pas avancer la voiture).</p>
+    <p>Cas extrêmes :</p>
+    <ul>
+      <li>α = 0° (force horizontale alignée) : 100 % efficace.</li>
+      <li>α = 30° : cos 30° = 87 % efficace.</li>
+      <li>α = 45° : 71 % efficace.</li>
+      <li>α = 90° (force verticale) : 0 % efficace pour propulser horizontalement.</li>
+    </ul>
+    <p>C'est pourquoi en mécanique, on cherche toujours à <strong>aligner</strong> la force avec le déplacement souhaité (poussée d'avion, propulsion fusée).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Décomposition d'un vecteur :</strong> sur 2 axes orthogonaux x, y (généralisable en 3D).</li>
+    <li><strong>Composantes :</strong> F_x = F cos(α), F_y = F sin(α) (par rapport à l'horizontale).</li>
+    <li><strong>Énergie utile :</strong> seule la composante alignée au mouvement « voulu » compte.</li>
+    <li><strong>Compromis ingénierie :</strong> ce qui est optimal énergétiquement n'est pas toujours optimal globalement (sécurité, confort, coût).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

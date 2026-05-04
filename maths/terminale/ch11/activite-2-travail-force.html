@@ -1,57 +1,236 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch11 – Activité 2 – Travail d'une force – Term Bac Pro</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch11 – Activité 2 – Travail d'une force par produit scalaire – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 2 – Calcul du travail d'une force par produit scalaire <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 11 – Produit scalaire | Terminale Bac Pro | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Comprendre la notion de produit scalaire</li>
-<li>Calculer le travail d'une force selon l'angle</li></ul></div>
+<header>
+  <h1>Activité 2 – Calcul du travail d'une force par produit scalaire <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 11 – Produit scalaire | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – pousser un caisse oblique</h2>
-<p><em>Romain, déménageur, pousse une caisse de 100 kg sur 10 m. Il applique une force de 200 N inclinée de 30° vers le bas (poussée diagonale).</em></p>
-<p>Le <strong>travail</strong> de la force \(\vec{F}\) sur un déplacement \(\vec{d}\) est le <strong>produit scalaire</strong> :</p>
-<p style="text-align:center"><strong>W = \(\vec{F} \cdot \vec{d}\) = ||F⃗|| × ||d⃗|| × cos(α)</strong></p>
-<p>où α est l'angle entre F⃗ et d⃗. W en joules (J).</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre la notion de produit scalaire</li>
+    <li>Calculer le travail d'une force selon l'angle</li>
+    <li>Identifier les cas particuliers (α = 0°, 90°, 180°)</li>
+    <li>Optimiser une situation pratique de déplacement</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – Romain le déménageur</h2>
+  <p><em>Romain, déménageur, doit pousser une caisse de 100 kg sur 10 m de distance. Il applique une force de 200 N. Quel travail effectue-t-il selon l'angle de poussée ?</em></p>
+
+  <h3>Document — formule du travail</h3>
+  <div style="background:#dbeafe;padding:10px 14px;border-radius:6px;border-left:3px solid #1d4ed8;margin:14px 0;text-align:center">
+    <p style="font-size:1.1em"><strong>W = F⃗ · d⃗ = ||F⃗|| × ||d⃗|| × cos(α)</strong></p>
+    <p>où α est l'angle entre la force et le déplacement, W en joules (J).</p>
+  </div>
+
+  <h3>Document — schéma de la situation</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 240" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Caisse poussée horizontalement avec force F=200N à 30° vers le bas. Déplacement 10m horizontal. Angle entre F et d.">
+      <defs>
+        <style>
+          .b{stroke:#1a202c;stroke-width:1.5}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">Force inclinée 30° vs déplacement horizontal</text>
+
+      <!-- Sol -->
+      <line x1="60" y1="180" x2="500" y2="180" stroke="#7c2d12" stroke-width="3"/>
+
+      <!-- Caisse (rectangle) -->
+      <rect class="b" x="100" y="130" width="60" height="50" fill="#fbbf24"/>
+      <text x="130" y="160" class="lbl" text-anchor="middle">100 kg</text>
+
+      <!-- Vecteur F (force inclinée 30° vers le bas) -->
+      <line x1="100" y1="100" x2="173" y2="142" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arr)"/>
+      <text x="115" y="100" class="lblA" fill="#dc2626" font-weight="bold">F = 200 N</text>
+      <text x="135" y="115" class="lbl" fill="#dc2626">α = 30°</text>
+
+      <!-- Vecteur d (déplacement horizontal) -->
+      <line x1="160" y1="200" x2="450" y2="200" stroke="#15803d" stroke-width="2.5" marker-end="url(#arr2)"/>
+      <text x="305" y="220" class="lblA" fill="#15803d" font-weight="bold">d = 10 m</text>
+
+      <!-- Angle -->
+      <path d="M 145,142 A 20,20 0 0,0 155,150" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+      <text x="170" y="135" class="lbl" fill="#7c3aed" font-weight="bold">30°</text>
+
+      <!-- Composantes (en pointillé) -->
+      <line x1="173" y1="142" x2="173" y2="180" stroke="#1a202c" stroke-width="1" stroke-dasharray="3 2"/>
+      <text x="180" y="170" class="lbl">F_y</text>
+      <line x1="100" y1="180" x2="173" y2="180" stroke="#1a202c" stroke-width="1" stroke-dasharray="3 2"/>
+      <text x="135" y="195" class="lbl">F_x = 200 cos 30°</text>
+
+      <defs>
+        <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/>
+        </marker>
+        <marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#15803d"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §1 (produit scalaire) et §3 (application au travail d'une force).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Romain « gaspille »-t-il de l'énergie en poussant à 30° au lieu d'horizontal ?</div>
+  <strong>Problématique :</strong> Romain « gaspille »-t-il de l'énergie en poussant en diagonale plutôt qu'horizontalement ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer le travail W de la force F = 200 N sur le déplacement d = 10 m, angle α = 30°.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>W = 200 × 10 × cos(30°) = 2 000 × 0,866 ≈ <strong>1 732 J</strong></p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le travail W de la force F = 200 N sur le déplacement d = 10 m, à l'angle α = 30°.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>W = F × d × cos(α) = 200 × 10 × cos(30°) = 2 000 × 0,866 ≈ <strong>1 732 J</strong>.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Si Romain poussait horizontalement (α = 0°), avec la même force 200 N, quel serait le travail ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>W = 200 × 10 × cos(0°) = 200 × 10 × 1 = <strong>2 000 J</strong></p>
-<p>Le travail est maximal quand F⃗ est aligné avec d⃗.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Si Romain poussait horizontalement (α = 0°), avec la même force 200 N, quel serait le travail ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>W = 200 × 10 × cos(0°) = 200 × 10 × 1 = <strong>2 000 J</strong>.</p>
+    <p>Le travail est <strong>maximal</strong> quand F⃗ est aligné avec d⃗.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-blue">VAL</span></h2>
-<p>Pousser obliquement, est-ce vraiment du « gaspillage » ? Pourquoi les déménageurs poussent souvent en diagonale vers le bas ?</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Effectivement, mathématiquement, on perd 268 J (13 %) en travail utile. Mais la composante verticale vers le bas <strong>augmente la pression sur le sol</strong>, donc l'<strong>adhérence</strong> et donc le <strong>frottement</strong>.</p>
-<p>Pour une <strong>caisse trop légère</strong> (qui glisse) : pousser horizontal ou même légèrement vers le haut diminue les frottements → plus efficace.</p>
-<p>Pour un <strong>réfrigérateur lourd qui ne glisse pas</strong> : la diagonale n'aide pas pour le travail, mais aide à <strong>diriger</strong> et stabiliser.</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">APP</span></h2>
+  <p>Quelle est la perte de travail utile entre le cas oblique (30°) et horizontal (0°) ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Perte : 2 000 − 1 732 = <strong>268 J</strong>, soit 13 % du travail.</p>
+    <p>Ce travail « perdu » correspond à la composante verticale de la force qui ne contribue pas au déplacement horizontal.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Produit scalaire :</strong> u⃗·v⃗ = ||u|| × ||v|| × cos(α). Donne un nombre (pas un vecteur).</li>
-<li><strong>Travail d'une force :</strong> W = F⃗·d⃗.</li>
-<li><strong>Cas particuliers :</strong> α = 0° → W max ; α = 90° → W = 0 (force perpendiculaire au mouvement) ; α = 180° → W &lt; 0 (force qui freine).</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">VAL</span></h2>
+  <p>Pourtant, les déménageurs poussent souvent en diagonale vers le bas. Pourquoi ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Mathématiquement, on perd 268 J (13 %) en travail utile. Mais la composante verticale vers le bas a 2 effets :</p>
+    <ul>
+      <li>Augmente la <strong>pression au sol</strong>, donc l'<strong>adhérence</strong>, donc les <strong>frottements</strong>.</li>
+      <li>Stabilise la caisse (l'empêche de basculer).</li>
+    </ul>
+    <p><strong>Pour une caisse trop légère</strong> (qui glisse facilement) : pousser horizontal ou légèrement vers le haut diminue les frottements → plus efficace.</p>
+    <p><strong>Pour une caisse lourde et stable</strong> : pousser horizontal est optimal énergétiquement.</p>
+    <p><strong>Pour un meuble qui résiste</strong> (frottement secs) : la diagonale aide à le déplacer en augmentant la force normale.</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Si Romain pousse perpendiculairement au déplacement (α = 90°), quel travail ? Pourquoi ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>W = 200 × 10 × cos(90°) = 200 × 10 × 0 = <strong>0 J</strong>.</p>
+    <p>Aucun travail ! La force perpendiculaire ne fait pas avancer la caisse.</p>
+    <p>Exemples physiques :</p>
+    <ul>
+      <li>La gravité sur un objet roulant horizontalement → travail nul.</li>
+      <li>La force centripète sur une voiture en virage → travail nul (perpendiculaire au mouvement instantané).</li>
+    </ul>
+    <p>Cette propriété (cos 90° = 0) est essentielle en physique pour distinguer forces « actives » et forces « passives ».</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Si Romain freine la caisse (force opposée au déplacement, α = 180°), calculer W. Que signifie un travail négatif ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>W = 200 × 10 × cos(180°) = 200 × 10 × (−1) = <strong>−2 000 J</strong>.</p>
+    <p>Travail <strong>négatif</strong> : la force « consomme » l'énergie cinétique de la caisse au lieu de l'augmenter.</p>
+    <p>C'est le cas du frottement quand on pousse, ou des freins d'une voiture qui ralentit.</p>
+    <p>Énergie cinétique perdue → généralement transformée en chaleur (frottements).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Avec une force de 250 N à 45°, quel travail sur 10 m ? Comparer aux 1 732 J du cas précédent.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>W = 250 × 10 × cos(45°) = 2 500 × 0,707 ≈ <strong>1 768 J</strong>.</p>
+    <p>Légèrement plus que 1 732 J (+ 36 J).</p>
+    <p>Compromis : la force est plus grande (250 vs 200), mais l'angle est moins favorable (45° vs 30°). Les deux effets se compensent presque.</p>
+    <p>Pour optimiser : à effort F constant, l'angle optimal est <strong>α = 0°</strong> (poussée horizontale). En pratique, on choisit l'angle selon la stabilité et l'ergonomie.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes des conseils pratiques pour un nouveau déménageur (économie de force).</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Conseils ergonomiques au déménageur</strong></em></p>
+    <ol><em>
+      <li><strong>Pousser horizontalement</strong> = travail maximal pour effort donné. Optimal énergétiquement.</li>
+      <li><strong>Pousser légèrement vers le bas</strong> (15-30°) = utile pour augmenter l'adhérence sur sol glissant.</li>
+      <li><strong>Pousser vers le haut</strong> (15-30° vers le haut) = utile pour caisse trop lourde, réduire les frottements.</li>
+      <li><strong>Tirer plutôt que pousser</strong> sur sol fragile (parquet) → moins de pression au sol, moins de rayures.</li>
+      <li><strong>Travailler à 2</strong> sur les charges &gt; 50 kg, avec coordination.</li>
+    </em></ol>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Calcul du produit scalaire par les coordonnées : si F⃗ = (3 ; 4) N et d⃗ = (5 ; 0) m, calculer F⃗·d⃗ par les 2 méthodes. Quel angle α ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Méthode 1 (composantes) : F⃗·d⃗ = F_x × d_x + F_y × d_y = 3 × 5 + 4 × 0 = <strong>15 J</strong>.</p>
+    <p>Méthode 2 (norme + angle) : ||F⃗|| = √(9 + 16) = 5 N. ||d⃗|| = 5 m.</p>
+    <p>F⃗·d⃗ = ||F⃗|| × ||d⃗|| × cos α = 25 × cos α.</p>
+    <p>D'où cos α = 15 / 25 = 0,6 → <strong>α = 53°</strong> (= arctan(4/3), triplet pythagoricien).</p>
+    <p>Les 2 méthodes donnent 15 J. La 1ère est plus rapide en pratique (pas besoin de mesurer l'angle), la 2ème est plus intuitive géométriquement.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Produit scalaire :</strong> u⃗ · v⃗ = ||u⃗|| × ||v⃗|| × cos(α). Donne un nombre (pas un vecteur).</li>
+    <li><strong>Par composantes :</strong> u⃗ · v⃗ = u_x × v_x + u_y × v_y.</li>
+    <li><strong>Travail d'une force :</strong> W = F⃗ · d⃗ (en joules).</li>
+    <li><strong>Cas particuliers :</strong> α = 0° → W max ; α = 90° → W = 0 (force perpendiculaire) ; α = 180° → W &lt; 0 (force qui freine).</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

@@ -1,63 +1,233 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch11 – Activité 3 – Angle entre 2 plans (charpente) – Term Bac Pro</title>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch11 – Activité 3 – Angle entre deux pans de toiture – Term Bac Pro</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<link rel="stylesheet" href="../../../styles.css"><link rel="stylesheet" href="../../../print.css" media="print">
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
-</head><body><div class="c"><a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
-<header><h1>Activité 3 – Angle entre deux pans de toiture <span style="font-size:.55em;color:#7c2d12;font-weight:600">SITUATION PRO</span></h1>
-<p class="sous-titre">Chapitre 11 – Produit scalaire | Terminale Bac Pro | ⏱ 30 min</p>
-<p class="maj">Dernière mise à jour : 3 mai 2026, 09:00</p></header>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-term-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
 
-<div class="objectifs"><strong>Objectifs :</strong><ul>
-<li>Calculer un angle entre 2 vecteurs avec le produit scalaire</li>
-<li>Application concrète à la charpente</li></ul></div>
+<header>
+  <h1>Activité 3 – Angle entre 2 pans de toiture (charpente 4 pans) <span style="font-size:.55em;color:#7c2d12;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 11 – Produit scalaire | Terminale Bac Pro | Mathématiques | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 4 mai 2026, 11:30</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
 
-<div class="situation"><h2>Situation – charpente à 4 pans</h2>
-<p><em>Sébastien, charpentier, conçoit une toiture à 4 pans. 2 pans adjacents se rencontrent en une arête. Pour fabriquer la pièce de jonction, il a besoin de connaître l'angle dièdre entre ces 2 pans.</em></p>
-<p>Les 2 vecteurs normaux aux pans (perpendiculaires aux toits) sont :</p>
-<ul>
-<li>Pan Sud : \(\vec{n_1}\) = (0 ; 0,5 ; 1) (incliné vers le Sud)</li>
-<li>Pan Est : \(\vec{n_2}\) = (0,5 ; 0 ; 1) (incliné vers l'Est)</li>
-</ul>
-<p>L'angle entre les pans = π − angle entre les normales.</p>
-<p>Formule : cos(α) = \(\vec{n_1} \cdot \vec{n_2}\) / (||n_1|| × ||n_2||)</p></div>
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer un angle entre 2 vecteurs avec le produit scalaire</li>
+    <li>Manipuler les coordonnées dans l'espace (3D)</li>
+    <li>Appliquer à la conception de charpente 4 pans</li>
+    <li>Comprendre la notion d'angle dièdre</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – charpente à 4 pans</h2>
+  <p><em>Sébastien, charpentier, conçoit une toiture à 4 pans (« en pavillon ») pour une maison carrée. 2 pans adjacents se rencontrent en une arête saillante (= « arête de noulet »). Pour fabriquer la pièce de jonction (chevron d'arêtier), il a besoin de connaître l'<strong>angle dièdre</strong> entre ces 2 pans.</em></p>
+
+  <h3>Document — schéma de la toiture 4 pans</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 240" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Toiture 4 pans en perspective : 4 surfaces triangulaires se rejoignant à un sommet central. Vue aérienne montrant les 4 arêtes diagonales reliant les coins.">
+      <defs>
+        <style>
+          .b{stroke:#1a202c;stroke-width:1.5}
+          .lbl{font:11px sans-serif;fill:#1a202c}
+          .lblA{font:600 12px sans-serif;fill:#1a202c}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="22">Toit en pavillon (4 pans) — vue 3D</text>
+
+      <!-- Pavillon : 4 sommets de la base + 1 sommet central -->
+      <!-- Base carrée : (170, 200), (370, 200), (430, 130), (230, 130) (perspective) -->
+      <!-- Sommet central : (300, 50) -->
+
+      <!-- Pans -->
+      <polygon points="170,200 370,200 300,50" fill="#fde68a" opacity=".7" stroke="#1a202c" stroke-width="1.5"/>
+      <polygon points="370,200 430,130 300,50" fill="#fbbf24" opacity=".7" stroke="#1a202c" stroke-width="1.5"/>
+      <polygon points="430,130 230,130 300,50" fill="#f59e0b" opacity=".7" stroke="#1a202c" stroke-width="1.5"/>
+      <polygon points="230,130 170,200 300,50" fill="#d97706" opacity=".7" stroke="#1a202c" stroke-width="1.5"/>
+
+      <!-- Étiquettes des pans -->
+      <text x="270" y="180" class="lbl" font-weight="bold" text-anchor="middle">Pan Sud</text>
+      <text x="380" y="130" class="lbl" font-weight="bold" text-anchor="middle">Pan Est</text>
+      <text x="270" y="105" class="lbl" font-weight="bold" text-anchor="middle">Pan Nord</text>
+      <text x="200" y="160" class="lbl" font-weight="bold" text-anchor="middle">Pan Ouest</text>
+
+      <!-- Arête (jonction Sud-Est en rouge) -->
+      <line x1="370" y1="200" x2="300" y2="50" stroke="#dc2626" stroke-width="3"/>
+      <text x="350" y="135" class="lbl" fill="#dc2626" font-weight="bold">arête (chevron)</text>
+
+      <!-- Indication de l'angle dièdre -->
+      <text x="50" y="60" class="lbl" font-weight="bold">Question :</text>
+      <text x="50" y="78" class="lbl">Quel angle</text>
+      <text x="50" y="93" class="lbl">entre les 2 pans</text>
+      <text x="50" y="108" class="lbl">qui se rencontrent</text>
+      <text x="50" y="123" class="lbl">à l'arête rouge ?</text>
+    </svg>
+  </div>
+
+  <h3>Document — vecteurs normaux aux pans</h3>
+  <p>Les 2 vecteurs normaux (perpendiculaires aux toits, dirigés vers l'extérieur) sont donnés par :</p>
+  <ul>
+    <li>Pan Sud : <strong>n₁⃗ = (0 ; 0,5 ; 1)</strong> (vers Sud + haut)</li>
+    <li>Pan Est : <strong>n₂⃗ = (0,5 ; 0 ; 1)</strong> (vers Est + haut)</li>
+  </ul>
+  <p>Pour calculer l'angle entre les 2 pans :</p>
+  <div style="background:#dbeafe;padding:10px 14px;border-radius:6px;border-left:3px solid #1d4ed8;margin:14px 0;text-align:center">
+    <p><strong>cos(α) = (n₁⃗ · n₂⃗) / (||n₁⃗|| × ||n₂⃗||)</strong></p>
+  </div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité réinvestit les notions du cours §2 (produit scalaire en 3D) et §4 (angle entre 2 vecteurs).</em></p>
+</div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-<strong>Problématique :</strong> Quel est l'angle entre les 2 pans ?</div>
+  <strong>Problématique :</strong> Quel est l'angle dièdre entre les 2 pans, pour pouvoir fabriquer la pièce d'arêtier ?
+</div>
 
-<div class="exo"><h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer le produit scalaire \(\vec{n_1} \cdot \vec{n_2}\).</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>\(\vec{n_1} \cdot \vec{n_2}\) = 0×0,5 + 0,5×0 + 1×1 = 0 + 0 + 1 = <strong>1</strong></p>
-</div></div>
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le produit scalaire n₁⃗ · n₂⃗.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Pour des vecteurs en 3D, u⃗ · v⃗ = u_x × v_x + u_y × v_y + u_z × v_z.</p>
+    <p>n₁⃗ · n₂⃗ = 0 × 0,5 + 0,5 × 0 + 1 × 1 = 0 + 0 + 1 = <strong>1</strong>.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 2 <span class="badge-yellow">REA</span></h2>
-<p>Calculer ||n_1|| et ||n_2||.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>||n_1|| = √(0 + 0,25 + 1) = √1,25 ≈ 1,118</p>
-<p>||n_2|| = √(0,25 + 0 + 1) = √1,25 ≈ 1,118</p>
-</div></div>
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer les normes ||n₁⃗|| et ||n₂⃗||.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>||n₁⃗|| = √(0² + 0,5² + 1²) = √(0 + 0,25 + 1) = √1,25 ≈ <strong>1,118</strong>.</p>
+    <p>||n₂⃗|| = √(0,5² + 0² + 1²) = √1,25 ≈ <strong>1,118</strong>.</p>
+    <p>Mêmes normes, par symétrie de la configuration.</p>
+  </div>
+</div>
 
-<div class="exo"><h2>Question 3 <span class="badge-yellow">REA</span></h2>
-<p>En déduire l'angle α entre les normales, puis l'angle dièdre β = 180° − α.</p>
-<ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>cos(α) = 1 / (1,118 × 1,118) = 1 / 1,25 = 0,800</p>
-<p>α = arccos(0,800) ≈ <strong>36,9°</strong> (angle entre les normales)</p>
-<p>Angle dièdre entre les 2 pans : β = 180° − 36,9° ≈ <strong>143°</strong></p>
-<p>Pour fabriquer la pièce d'arête, Sébastien sait maintenant qu'elle doit former un angle de 143° (un toit légèrement plat à la jonction).</p>
-</div></div>
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer cos(α) puis l'angle α entre les 2 vecteurs normaux.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>cos(α) = (n₁⃗ · n₂⃗) / (||n₁⃗|| × ||n₂⃗||) = 1 / (1,118 × 1,118) = 1 / 1,25 = <strong>0,800</strong>.</p>
+    <p>α = arccos(0,800) ≈ <strong>36,9°</strong>.</p>
+    <p>C'est l'angle entre les 2 normales aux pans.</p>
+  </div>
+</div>
 
-<div class="retenir"><strong>À retenir</strong>
-<ul><li><strong>Produit scalaire 3D :</strong> u·v = u₁v₁ + u₂v₂ + u₃v₃.</li>
-<li><strong>Angle :</strong> cos(α) = (u·v) / (||u|| × ||v||).</li>
-<li><strong>Vecteurs orthogonaux :</strong> u·v = 0.</li>
-<li><strong>Application :</strong> géométrie 3D, charpentes, modélisation 3D, cristallographie.</li></ul></div>
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">APP</span></h2>
+  <p>L'angle dièdre β entre les 2 pans est complémentaire (β = 180° − α). Le calculer.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>β = 180° − 36,9° = <strong>143,1°</strong>.</p>
+    <p>L'angle dièdre entre les 2 pans est de 143°.</p>
+    <p>(C'est un angle obtus car les pans s'évasent vers l'extérieur. Sur un toit plus pentu, l'angle serait plus aigu.)</p>
+  </div>
+</div>
 
-</div><script src="../../../nav.js"></script></body></html>
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>Pour fabriquer le chevron d'arêtier, Sébastien doit le couper avec quel angle d'onglet (par rapport à la verticale) ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le chevron d'arêtier épouse les 2 pans. Sa coupe d'onglet est à la <strong>moitié</strong> de l'angle dièdre :</p>
+    <p>Angle d'onglet = β / 2 = 143,1 / 2 ≈ <strong>71,5°</strong> par rapport à l'horizontale (ou 18,5° par rapport à la verticale).</p>
+    <p>Ces angles précis évitent les fuites et donnent une jonction esthétique. Sébastien règle sa scie radiale ou son onglet à 71,5° pour les coupes.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Si la pente des pans était plus forte (n₁⃗ = (0 ; 1 ; 1) au lieu de (0 ; 0,5 ; 1)), recalculer l'angle dièdre.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>n₁⃗ · n₂⃗ = 0 × 1 + 1 × 0 + 1 × 1 = 1 (inchangé pour cet exemple symétrique).</p>
+    <p>||n₁⃗|| = √(0 + 1 + 1) = √2 ≈ 1,414.</p>
+    <p>cos(α) = 1 / (1,414 × 1,414) = 1 / 2 = 0,5 → α = 60°.</p>
+    <p>β = 180° − 60° = <strong>120°</strong>.</p>
+    <p>Toit plus pentu → angle dièdre plus aigu (120° vs 143°). C'est cohérent : plus les pans sont raides, plus ils se rapprochent et l'arête est plus marquée.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">VAL</span></h2>
+  <p>Pourquoi cette méthode du produit scalaire est-elle utile pour le charpentier ?</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Avantages :</p>
+    <ul>
+      <li><strong>Calcul rapide</strong> à partir des plans (les architectes fournissent les vecteurs normaux dans les fichiers DWG/IFC).</li>
+      <li><strong>Précis :</strong> la coupe à 71,5° plutôt qu'à 70° fait toute la différence pour l'étanchéité.</li>
+      <li><strong>Adaptable :</strong> toute géométrie (pavillon, mansart, toiture courbe) peut être calculée.</li>
+      <li><strong>Simulation 3D :</strong> les logiciels de CAO (SketchUp, AutoCAD, Cadwork) utilisent ces calculs en interne.</li>
+    </ul>
+    <p>Sans le produit scalaire, le charpentier travaillerait par essais et erreurs → bois gaspillé, fuites possibles.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes une fiche métier : utilité du produit scalaire en charpente.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Fiche métier — Produit scalaire en charpente</strong></em></p>
+    <p><em>Le produit scalaire permet de calculer rapidement et précisément les angles entre 2 surfaces (pans de toit, façades, escaliers...).</em></p>
+    <ul><em>
+      <li><strong>Données nécessaires :</strong> les vecteurs normaux aux 2 surfaces (à lire sur le plan).</li>
+      <li><strong>Formule :</strong> cos(α) = (n₁ · n₂) / (||n₁|| × ||n₂||).</li>
+      <li><strong>Angle dièdre :</strong> β = 180° − α (pour 2 surfaces qui s'évasent).</li>
+      <li><strong>Coupe d'onglet :</strong> β / 2 par rapport à l'horizontale.</li>
+    </em></ul>
+    <p><em>Vérification : utiliser un logiciel de CAO (Cadwork, AutoCAD) pour double-check les angles avant la coupe.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Sur un toit asymétrique : pan Sud (n₁ = (0 ; 0,5 ; 1)) et pan Est (n₂ = (0,8 ; 0 ; 1)). Recalculer l'angle dièdre.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li</li><li</li><li</li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>n₁ · n₂ = 0 × 0,8 + 0,5 × 0 + 1 × 1 = 1.</p>
+    <p>||n₁|| = √1,25 ≈ 1,118. ||n₂|| = √(0,64 + 0 + 1) = √1,64 ≈ 1,281.</p>
+    <p>cos(α) = 1 / (1,118 × 1,281) = 1 / 1,432 ≈ 0,698 → α ≈ 45,7°.</p>
+    <p>β = 180° − 45,7° = <strong>134,3°</strong>.</p>
+    <p>Asymétrie : angle légèrement différent de 143° (cas symétrique). En pratique, le charpentier doit calculer chaque arête séparément si les pans n'ont pas la même pente.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Produit scalaire en 3D :</strong> u⃗ · v⃗ = u_x v_x + u_y v_y + u_z v_z.</li>
+    <li><strong>Angle entre 2 vecteurs :</strong> cos(α) = (u⃗ · v⃗) / (||u⃗|| × ||v⃗||).</li>
+    <li><strong>Vecteurs orthogonaux :</strong> u⃗ · v⃗ = 0.</li>
+    <li><strong>Angle dièdre :</strong> calculé à partir des vecteurs normaux. β = 180° − α (pour 2 surfaces qui s'évasent).</li>
+    <li><strong>Application :</strong> charpente, géométrie 3D, modélisation, cristallographie, robotique.</li>
+  </ul>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
