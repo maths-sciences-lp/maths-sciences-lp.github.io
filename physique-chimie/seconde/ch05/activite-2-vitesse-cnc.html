@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Activité 2 – Vitesse de la tête CNC – 2nde Bac Pro MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd;--s:#0ea5e9}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 2 – Vitesse d'avance d'une fraiseuse CNC <span style="font-size:.55em;color:#6f42c1;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 5 – Mouvement et trajectoire | 2nde Bac Pro MAMA | Physique-Chimie | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer une vitesse moyenne en m/s, m/min et km/h</li>
+    <li>Convertir entre les unités de vitesse</li>
+    <li>Choisir la vitesse d'avance optimale d'une CNC selon le matériau</li>
+    <li>Estimer un temps d'usinage</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – usinage d'un panneau de cuisine</h2>
+  <p><em>Théo, opérateur CNC chez <strong>Cuisines & Compagnie</strong> à Saint-Étienne, doit programmer la fraiseuse à commande numérique pour usiner les emplacements de poignées sur 12 portes de placards. Chaque trajectoire fait 2,40 m de longueur. Il doit choisir la vitesse d'avance F (en mm/min) qui optimise la productivité sans abîmer le matériau.</em></p>
+
+  <h3>Document 1 – Vitesses d'avance recommandées par le fabricant</h3>
+  <table>
+    <thead><tr><th>Matériau</th><th>F max (mm/min)</th><th>Qualité de coupe</th></tr></thead>
+    <tbody>
+      <tr><td>MDF 19 mm (panneau prévu)</td><td>3 000</td><td>Très propre jusqu'à 3 000 mm/min</td></tr>
+      <tr><td>Mélaminé 19 mm</td><td>2 400</td><td>Au-delà : éclats sur les chants</td></tr>
+      <tr><td>Bois massif (chêne)</td><td>1 800</td><td>Limite anti-éclats</td></tr>
+      <tr><td>Plexiglas</td><td>1 200</td><td>Au-delà : surchauffe et fonte</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 – Conversions entre unités</h3>
+  <ul>
+    <li>1 m = 1 000 mm · 1 min = 60 s · 1 h = 60 min = 3 600 s</li>
+    <li>1 m/s = 60 m/min = 3,6 km/h</li>
+    <li>1 mm/min = 1/60 mm/s ≈ 0,01667 mm/s</li>
+  </ul>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle vitesse d'avance Théo doit-il programmer pour usiner les 12 portes en MDF dans le minimum de temps tout en garantissant une coupe propre ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p><strong>a)</strong> Définir la vitesse moyenne v et donner sa formule.</p>
+  <p><strong>b)</strong> Quelle est l'unité SI de la vitesse ?</p>
+  <p><strong>c)</strong> Pourquoi la vitesse d'avance F sur une CNC est-elle exprimée en mm/min plutôt qu'en m/s ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> Vitesse moyenne = distance parcourue ÷ durée mise pour la parcourir : \(v = d/t\).</p>
+    <p><strong>b)</strong> L'unité SI est le <strong>mètre par seconde (m/s)</strong>.</p>
+    <p><strong>c)</strong> En usinage, les déplacements sont petits (quelques cm à quelques m) sur des durées longues (minutes). Travailler en mm/min donne des valeurs lisibles (1 800 mm/min) plutôt que des fractions (0,03 m/s). C'est une convention métier.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Convertir 3 000 mm/min en :</p>
+  <p><strong>a)</strong> mm/s</p>
+  <p><strong>b)</strong> m/s</p>
+  <p><strong>c)</strong> m/min</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> 3 000 mm/min = 3 000 / 60 = <strong>50 mm/s</strong></p>
+    <p><strong>b)</strong> 50 mm/s = <strong>0,050 m/s</strong> (5 cm/s)</p>
+    <p><strong>c)</strong> 3 000 mm/min = 3 m/min</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Pour une trajectoire de 2,40 m à 3 000 mm/min, calculer le temps d'usinage par porte.</p>
+  <p><em>\(t = d / v\)</em></p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>d = 2,40 m = 2 400 mm. v = 3 000 mm/min.</p>
+    <p>\(t = \dfrac{2\,400}{3\,000} = 0{,}80 \text{ min} = \mathbf{48 \text{ s}}\)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le temps total pour usiner les 12 portes (en additionnant temps d'usinage et 15 s de chargement/déchargement par porte).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Temps par porte : usinage 48 s + chargement 15 s = 63 s.</p>
+    <p>Pour 12 portes : 12 × 63 = 756 s = <strong>12 min 36 s</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Théo se demande s'il peut gagner du temps en augmentant F à 4 000 mm/min.</p>
+  <p><strong>a)</strong> Selon le document 1, est-ce possible pour le MDF ?</p>
+  <p><strong>b)</strong> Quel risque y a-t-il à dépasser la vitesse recommandée ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> Non. Le fabricant indique une <strong>limite à 3 000 mm/min</strong> pour le MDF. Au-delà, la qualité de coupe se dégrade (surchauffe de l'outil, éclats sur les bords, finition rugueuse).</p>
+    <p><strong>b)</strong> Risques : éclatement des fibres du MDF, usure prématurée de la fraise, échauffement du moteur de broche, vibrations qui perturbent la trajectoire programmée.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Pour une commande de 12 portes en mélaminé (au lieu de MDF), Théo doit baisser F à 2 400 mm/min. Recalculer :</p>
+  <p><strong>a)</strong> Le temps d'usinage par porte</p>
+  <p><strong>b)</strong> Le temps total (avec 15 s de chargement par porte)</p>
+  <p><strong>c)</strong> Le temps perdu par rapport au MDF</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> t = 2 400 / 2 400 = 1 min = <strong>60 s</strong> par porte.</p>
+    <p><strong>b)</strong> Total = 12 × (60 + 15) = 12 × 75 = 900 s = <strong>15 min</strong>.</p>
+    <p><strong>c)</strong> Temps perdu : 15 − 12,6 = 2,4 min ≈ 2 min 24 s. Sur une grosse commande de 200 portes, le mélaminé prend 800 s de plus que le MDF, soit ≈ 13 min.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Un commercial vient présenter une nouvelle fraiseuse plus rapide : F max = 6 000 mm/min sur MDF avec « qualité industrielle ».</p>
+  <p>La machine coûte 25 000 €. Le tarif horaire facturé par Théo est de 60 €/h. La machine actuelle traite 12 portes en 12 min 36 s. La nouvelle ferait la même tâche à 6 000 mm/min.</p>
+  <p>Calculer le gain de temps par série de 12 portes, et estimer le retour sur investissement si Théo traite 1 000 séries/an.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Nouveau temps usinage par porte : 2 400/6 000 = 0,4 min = 24 s. Total série : 12 × (24 + 15) = 468 s = 7 min 48 s.</p>
+    <p>Gain par série : 12,6 − 7,8 = <strong>4,8 min ≈ 5 min</strong>.</p>
+    <p>Sur 1 000 séries : 5 000 min ≈ 83 h économisées par an. À 60 €/h : 4 980 €/an de gain de productivité.</p>
+    <p>Retour sur investissement : 25 000 / 4 980 ≈ <strong>5 ans</strong>. Acceptable pour une machine d'une durée de vie de ≥ 10 ans.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Rédiger en 4-5 lignes la note de Théo à son chef de production, justifiant la vitesse choisie pour la commande MDF + le compromis qualité/productivité.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>« Pour la commande des 12 portes en MDF, je programme la fraiseuse à <strong>F = 3 000 mm/min</strong>, vitesse maximale recommandée par le constructeur. Le temps d'usinage par porte est de 48 s, soit 12 min 36 s pour les 12 portes (incluant les 15 s de chargement/déchargement par pièce). Augmenter la vitesse au-delà dégraderait la qualité de coupe (éclats, finition rugueuse) et userait prématurément la fraise. Pour les commandes en mélaminé, je redescends à 2 400 mm/min (≈ 2,5 min de plus pour 12 portes), mais la qualité reste impeccable. »</p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>La fraiseuse de Théo a aussi une <strong>vitesse de rotation de la broche</strong> de 18 000 tours/min et un diamètre de fraise de 12 mm. Calculer la vitesse linéaire (vitesse de coupe en m/min) à la pointe de la fraise. Pourquoi cette vitesse est-elle importante ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Périmètre de la fraise : π × 12 mm ≈ 37,7 mm = 0,0377 m. À 18 000 tr/min :</p>
+    <p>\(V_c = 0{,}0377 \times 18\,000 \approx \mathbf{679 \text{ m/min}}\)</p>
+    <p>Cette vitesse de coupe (Vc) détermine la qualité de l'usinage : trop faible, l'outil arrache la matière ; trop élevée, l'outil chauffe et brûle le bois. Pour le MDF, on recommande Vc = 600-800 m/min : la valeur calculée est dans la fourchette.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Vitesse moyenne :</strong> \(v = d/t\). Unité SI : m/s.</li>
+    <li><strong>Conversions :</strong> 1 m/s = 60 m/min = 3,6 km/h ; 1 mm/min = 1/60 mm/s.</li>
+    <li><strong>Temps de parcours :</strong> \(t = d/v\). Vérifier la cohérence des unités avant de calculer.</li>
+    <li>En usinage, on parle de <strong>vitesse d'avance F</strong> (en mm/min) et <strong>vitesse de coupe Vc</strong> (en m/min).</li>
+    <li>Augmenter la vitesse gagne du temps mais peut dégrader la qualité ou user prématurément l'outil.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §3 (Vitesse moyenne), §7 (Applications en atelier) et §8 (Mouvement circulaire) de la leçon Ch05.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
