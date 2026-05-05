@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Activité 2 – Prix du chêne et corrélation – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité 2 – Prix du chêne et coefficient de corrélation <span style="font-size:.55em;color:#0969da;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 1 — Statistique à deux variables | 1ère Bac Pro | Mathématiques | ⏱ 35 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer le coefficient de corrélation r</li>
+    <li>Tracer une droite d'ajustement par la méthode des moindres carrés</li>
+    <li>Faire une prévision (interpolation et extrapolation)</li>
+    <li>Choisir un fournisseur de matière première</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – analyse du prix du chêne sur 8 ans</h2>
+  <p><em>Léa, gérante de <strong>Menuiserie Lefèvre</strong> à Reims, doit anticiper l'évolution du prix du chêne pour ses devis. Elle a relevé le prix moyen du m³ de chêne sur 8 années consécutives.</em></p>
+
+  <h3>Document 1 – Prix moyen du m³ de chêne</h3>
+  <table>
+    <thead><tr><th>Année (rang x)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead>
+    <tbody>
+      <tr><td>Prix y (€/m³)</td><td>620</td><td>645</td><td>680</td><td>700</td><td>740</td><td>770</td><td>810</td><td>840</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 – Formules clés</h3>
+  <ul>
+    <li>Point moyen G(x̄ ; ȳ).</li>
+    <li>Droite de régression de y en x : y = a x + b passant par G.</li>
+    <li>Coefficient de corrélation r ∈ [−1 ; 1]. |r| proche de 1 = forte corrélation linéaire.</li>
+  </ul>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Léa peut-elle prédire le prix du chêne pour l'année prochaine et faire un devis fiable ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer x̄ et ȳ, les coordonnées du point moyen G.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>x̄ = (1+2+3+4+5+6+7+8) / 8 = 36/8 = <strong>4,5</strong></p>
+    <p>ȳ = (620+645+680+700+740+770+810+840) / 8 = 5 805/8 ≈ <strong>725,6 €</strong></p>
+    <p>G(4,5 ; 725,6).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>À l'aide d'une calculatrice ou d'un tableur, calculer l'équation de la droite de régression y = a x + b et le coefficient r.</p>
+  <p><em>Indication : pour une droite passant par G, y − ȳ = a (x − x̄), avec a = covariance(x,y)/variance(x).</em></p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Avec les calculs (calculatrice mode stat 2 var) :</p>
+    <p>a ≈ <strong>32,1</strong> ; b ≈ <strong>581</strong></p>
+    <p>Équation : <strong>y ≈ 32,1 x + 581</strong></p>
+    <p>r ≈ <strong>0,997</strong>. Très proche de 1 : forte corrélation positive.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Que signifie un coefficient r = 0,997 ? Que représente le coefficient a = 32,1 ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>r = 0,997 : la corrélation linéaire est <strong>très forte et positive</strong>. Le modèle linéaire est très bien adapté.</p>
+    <p>a = 32,1 €/an : le prix du m³ de chêne <strong>augmente d'environ 32 € chaque année</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Estimer le prix pour l'année 9 (interpolation à un an de l'intervalle).</p>
+  <p>Estimer le prix pour l'année 15 (extrapolation lointaine).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Année 9 : y = 32,1 × 9 + 581 = 870 €/m³.</p>
+    <p>Année 15 : y = 32,1 × 15 + 581 ≈ 1 063 €/m³.</p>
+    <p>L'estimation à 1 an est <strong>fiable</strong>. À 7 ans, c'est de l'<strong>extrapolation lointaine</strong> — moins fiable car d'autres facteurs peuvent intervenir (crise économique, écologie, marché bois).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Léa fait son devis 2026 (année 9). Sa marge habituelle sur le bois est de 25 %. Calculer le prix de vente du m³.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Prix de vente = 870 × 1,25 = <strong>1 087,50 €/m³</strong>.</p>
+    <p>Pour un meuble nécessitant 0,5 m³ de chêne : 1 087,50 × 0,5 ≈ 544 € de matière première.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Un autre fournisseur (Pologne) propose le chêne à 720 €/m³ pour 2026. Léa devrait-elle changer ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Économie potentielle : 870 − 720 = 150 €/m³, soit 17 % de baisse.</p>
+    <p>Mais à comparer : qualité (essence garantie ?), délai (transport plus long), bilan carbone, traçabilité (label PEFC ?), risque taux de change, fiabilité du fournisseur.</p>
+    <p>Décision = pas seulement économique. Tester avec une petite commande avant d'engager un volume important.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Si la corrélation reste de 0,997, à quelle année prévoit-on un prix de 1 000 €/m³ ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>1 000 = 32,1 x + 581 → 32,1 x = 419 → x = 419 / 32,1 ≈ <strong>13,1</strong>.</p>
+    <p>Soit fin de l'année 13. Le seuil 1 000 €/m³ sera franchi vers la 13<sup>e</sup> année (5 ans après la dernière mesure).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Léa rédige le rapport de prévision pour son comité de gestion. 5 lignes max.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Prévision prix chêne — Menuiserie Lefèvre</strong><br>
+      • Tendance 8 ans : croissance linéaire forte (r = 0,997, +32 €/m³/an).<br>
+      • Modèle : y = 32,1 x + 581 (avec x = rang d'année).<br>
+      • <strong>Prévision année 9 : 870 €/m³</strong> (à intégrer dans les devis 2026).<br>
+      • Si tendance maintenue : seuil 1 000 €/m³ atteint vers année 13.<br>
+      • Action : sécuriser des contrats long terme avec fournisseurs et étudier alternatives (Pologne −17 %).
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Si l'inflation dépasse les prévisions et que le prix réel en année 9 est de 920 €/m³ (au lieu des 870 prédits), quel est l'écart relatif ? Faut-il revoir le modèle ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Écart : (920 − 870) / 870 × 100 ≈ <strong>5,7 %</strong>.</p>
+    <p>Pour un modèle de prévision à 1 an, un écart de 5-6 % est <strong>acceptable</strong>. Plusieurs causes possibles : variation imprévue du marché, événement économique exceptionnel.</p>
+    <p>Action : intégrer la nouvelle donnée et recalculer le modèle pour les prévisions futures. Si écart répété, revoir le modèle (peut-être passer à une croissance non linéaire).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Le coefficient de corrélation r mesure la force de la liaison linéaire entre x et y.</li>
+    <li>|r| proche de 1 : très forte corrélation. r = 0 : aucune corrélation linéaire.</li>
+    <li>La droite de régression y = a x + b passe toujours par G(x̄ ; ȳ).</li>
+    <li>Interpolation (dans la plage des données) : fiable. Extrapolation : à utiliser avec prudence.</li>
+    <li>Le coefficient a est la pente : variation de y par unité de x.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (Nuage de points), §2 (Ajustement affine) et §3 (Coefficient de corrélation) de la leçon Ch01.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Activité 4 – Ventes de mobilier et saison – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité 4 – Ventes mensuelles d'un magasin de meubles <span style="font-size:.55em;color:#0969da;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 1 — Statistique à deux variables | 1ère Bac Pro | Mathématiques | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier une corrélation faible ou inexistante</li>
+    <li>Comprendre les biais d'interprétation</li>
+    <li>Compléter une régression par une analyse qualitative</li>
+    <li>Décider d'une stratégie commerciale</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – ventes mensuelles d'une enseigne de meubles</h2>
+  <p><em>Marc, directeur d'<strong>Espace Bois</strong> à Reims, suit le chiffre d'affaires mensuel de sa boutique. Il croise ces ventes avec la température moyenne extérieure pour voir si la météo influence les achats de meubles.</em></p>
+
+  <h3>Document 1 – Ventes 2025 et températures</h3>
+  <table>
+    <thead><tr><th>Mois</th><th>Janv</th><th>Févr</th><th>Mars</th><th>Avril</th><th>Mai</th><th>Juin</th><th>Juill</th><th>Août</th><th>Sept</th><th>Oct</th><th>Nov</th><th>Déc</th></tr></thead>
+    <tbody>
+      <tr><td>T (°C)</td><td>3</td><td>5</td><td>9</td><td>12</td><td>16</td><td>20</td><td>23</td><td>22</td><td>18</td><td>13</td><td>7</td><td>4</td></tr>
+      <tr><td>Ventes (k€)</td><td>52</td><td>48</td><td>45</td><td>40</td><td>38</td><td>35</td><td>30</td><td>28</td><td>42</td><td>50</td><td>58</td><td>65</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Y a-t-il une corrélation entre la température et les ventes de meubles ? Comment l'expliquer ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">ANA</span></h2>
+  <p>Tracer le nuage de points (T en abscisse, ventes en ordonnée). Décrire la forme du nuage.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le nuage est <strong>très dispersé</strong>, sans alignement clair. On voit que les ventes sont fortes en hiver (grand froid) ET en automne (températures moyennes). Pas de tendance linéaire évidente.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer x̄, ȳ et r à la calculatrice.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>x̄ ≈ 12,7 °C ; ȳ ≈ 44,3 k€.</p>
+    <p>r ≈ <strong>−0,82</strong>. Corrélation négative assez forte.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Marc conclut hâtivement : « Quand il fait chaud, on vend moins. Donc la chaleur fait baisser les ventes ! »</p>
+  <p>Discuter cette interprétation. Citer 3 facteurs alternatifs qui pourraient expliquer la corrélation.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'interprétation est trop rapide. Trois facteurs alternatifs :</p>
+    <ol>
+      <li><strong>Saisonnalité commerciale</strong> : les achats de meubles sont concentrés sur l'automne/hiver (rentrée scolaire, préparation Noël, soldes d'hiver, Black Friday). En été, on est en vacances.</li>
+      <li><strong>Périodes de soldes</strong> : janvier et juillet sont des soldes officiels. La promotion attire les clients indépendamment de la météo.</li>
+      <li><strong>Aménagement intérieur saisonnier</strong> : on a tendance à rénover/équiper son intérieur quand il fait froid (on y passe plus de temps), pas quand il fait chaud.</li>
+    </ol>
+    <p>La chaleur n'est donc <strong>pas la cause</strong>. C'est un cas typique de corrélation sans causalité directe : un troisième facteur (la saison) cause à la fois la baisse de température ET la hausse des ventes.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Un économiste propose de regarder à la place la <strong>baisse des températures par rapport à la moyenne locale</strong> (anomalie). Pourquoi serait-ce mieux ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'anomalie thermique élimine l'effet saisonnier classique : un janvier doux (anomalie positive) vs un janvier rigoureux (anomalie négative) à comparer aux ventes. On peut alors voir si la météo influe vraiment <strong>indépendamment de la saison</strong>.</p>
+    <p>Si la corrélation disparaît avec cette nouvelle variable, c'était bien un faux lien. Si elle persiste, l'effet est réel.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Marc veut prédire les ventes pour janvier 2026 (T prévue : 5 °C). Le modèle linéaire est-il fiable ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Avec r = −0,82, le modèle linéaire <strong>n'est pas idéal</strong>. Il vaut mieux comparer aux ventes de janvier des années précédentes (analyse temporelle plus fiable) et regarder la saisonnalité.</p>
+    <p>Estimation par modèle linéaire : a ≈ −1,55 ; b ≈ 64. Ventes prédites : −1,55 × 5 + 64 = 56,2 k€.</p>
+    <p>Estimation par historique de janvier : 52 k€. Les deux méthodes donnent des résultats voisins.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Comparer les ventes 2 mois consécutifs avec les saisons :</p>
+  <p>Décembre (4 °C, 65 k€) et juin (20 °C, 35 k€).</p>
+  <p>Calculer le rapport des ventes (déc/juin).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>65 / 35 ≈ <strong>1,86</strong>. Décembre vend presque 2 fois plus que juin.</p>
+    <p>Cette saisonnalité forte est typique du commerce de meubles. Marc devrait adapter ses stocks et ses équipes en conséquence.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Marc envisage de fermer le magasin 2 semaines en juillet (mois le plus calme). Calculer l'économie de salaire et de loyer (15 k€ pour 2 semaines), à comparer aux ventes manquées.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Ventes en juillet : 30 k€ par mois → 15 k€ pour 2 semaines.</p>
+    <p>Marge typique = 30 % → marge perdue : 15 × 0,30 = 4,5 k€.</p>
+    <p>Économie : 15 k€. Bilan net : 15 − 4,5 = <strong>+10,5 k€ d'économie</strong>.</p>
+    <p>Fermer 2 semaines en juillet est <strong>rentable</strong>. Bonus : repos pour les équipes.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Rédiger en 5 lignes les recommandations stratégiques de Marc pour 2026.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Plan commercial 2026 — Espace Bois</strong><br>
+      • Saisonnalité forte : 1,86× plus de ventes en hiver qu'en été.<br>
+      • <strong>Pic novembre-décembre</strong> : renforcer équipes (+2 vendeurs CDD), stock élevé, opérations Black Friday + soldes Noël.<br>
+      • <strong>Creux juin-août</strong> : congés équipes, fermeture 2 semaines juillet (+10,5 k€), travaux d'entretien magasin.<br>
+      • Pas de causalité météo → arrêter les promotions « anti-canicule » (peu efficaces).<br>
+      • Préparer la rentrée septembre (back to school) qui amorce la reprise saisonnière.
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Pour mieux modéliser, Marc pourrait utiliser une <strong>moyenne mobile sur 3 mois</strong>. Calculer cette moyenne pour mars (= moy de fév-mars-avril). Pourquoi est-ce utile ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Moyenne mobile mars = (48 + 45 + 40) / 3 ≈ <strong>44,3 k€</strong>.</p>
+    <p>La moyenne mobile <strong>lisse les variations</strong>, fait apparaître la tendance globale en éliminant le bruit ponctuel. Très utile en finance et économie pour visualiser une tendance dans des données bruitées.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Une corrélation peut être <strong>fausse</strong> : un facteur tiers explique le lien apparent.</li>
+    <li>Toujours questionner les <strong>causalités</strong> avant de conclure.</li>
+    <li>Pour le commerce, la <strong>saisonnalité</strong> est souvent le facteur dominant.</li>
+    <li>Les <strong>moyennes mobiles</strong> aident à voir les tendances longues en lissant les variations.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (Nuage de points), §2 (Ajustement affine) et §3 (Coefficient de corrélation) de la leçon Ch01.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

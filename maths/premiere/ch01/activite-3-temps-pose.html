@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch01 – Activité 3 – Temps de pose et expérience – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité 3 – Productivité et expérience d'un poseur <span style="font-size:.55em;color:#0969da;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 1 — Statistique à deux variables | 1ère Bac Pro | Mathématiques | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Réaliser un nuage de points et identifier sa forme</li>
+    <li>Reconnaître une corrélation positive ou négative</li>
+    <li>Calculer une équation de droite et l'interpréter</li>
+    <li>Distinguer corrélation et causalité</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – temps de pose d'une porte d'entrée</h2>
+  <p><em>Le chef de chantier de <strong>Pose & Volume</strong> à Brest analyse les performances de ses poseurs. Il a relevé pour 8 ouvriers le nombre d'années d'expérience x et le temps moyen pour poser une porte d'entrée standard y (en min).</em></p>
+
+  <h3>Document 1 – Données</h3>
+  <table>
+    <thead><tr><th>Ouvrier</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th></tr></thead>
+    <tbody>
+      <tr><td>Expérience x (ans)</td><td>1</td><td>2</td><td>3</td><td>5</td><td>7</td><td>10</td><td>15</td><td>20</td></tr>
+      <tr><td>Temps y (min)</td><td>105</td><td>92</td><td>85</td><td>76</td><td>68</td><td>62</td><td>55</td><td>52</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> L'expérience d'un poseur permet-elle réellement de réduire son temps de pose ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">ANA</span></h2>
+  <p>Décrire l'évolution du temps y en fonction de l'expérience x. La corrélation est-elle positive ou négative ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le temps <strong>diminue</strong> quand l'expérience augmente. Corrélation <strong>négative</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>À la calculatrice, calculer x̄, ȳ, l'équation y = a x + b et r.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>x̄ = (1+2+3+5+7+10+15+20) / 8 = 63/8 = <strong>7,875</strong></p>
+    <p>ȳ = (105+92+85+76+68+62+55+52) / 8 = 595/8 ≈ <strong>74,4 min</strong></p>
+    <p>a ≈ <strong>−2,5</strong> ; b ≈ <strong>94</strong></p>
+    <p>r ≈ <strong>−0,93</strong> (forte corrélation négative).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Que représente le coefficient a = −2,5 ? Et le coefficient b = 94 ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a = −2,5 min/an : chaque année d'expérience supplémentaire fait <strong>gagner en moyenne 2,5 min</strong> sur la pose d'une porte.</p>
+    <p>b = 94 min : temps théorique pour un débutant (x = 0). Mais cette valeur est extrapolée.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Estimer le temps de pose pour un ouvrier ayant 12 ans d'expérience.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>y = −2,5 × 12 + 94 = 64 min. (Estimation : <strong>environ 1 h</strong>.)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Selon le modèle linéaire, à 40 ans d'expérience, on aurait y = −6 min. Est-ce possible ?</p>
+  <p>Que peut-on en conclure sur les limites du modèle linéaire ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>y = −6 min est <strong>physiquement impossible</strong> (un temps de pose ne peut pas être négatif).</p>
+    <p>Le modèle linéaire est valable seulement dans une <strong>plage limitée</strong>. À un moment donné, l'expérience n'apporte plus de gain (palier), voire la productivité baisse avec l'âge. Le vrai modèle serait une courbe asymptotique vers une valeur minimale (~ 45-50 min). C'est pour ça qu'il ne faut pas faire d'extrapolation au-delà de la plage des données.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Le chef de chantier conclut : « Donc embaucher des ouvriers expérimentés permet d'aller plus vite. C'est la cause ! »</p>
+  <p>L'argument est-il toujours valable ? Discuter le lien entre <strong>corrélation</strong> et <strong>causalité</strong>.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'argument tient ici car la <strong>cause physique est plausible</strong> : un ouvrier expérimenté connaît mieux les outils et les techniques.</p>
+    <p>Mais en général, <strong>corrélation ≠ causalité</strong>. Exemple classique : il y a une corrélation entre les ventes de glaces et les noyades. Pas parce que les glaces causent les noyades, mais parce que les deux sont liées à la <strong>chaleur</strong>.</p>
+    <p>Pour confirmer la causalité, il faut un protocole expérimental ou une analyse plus poussée. Une simple corrélation peut être trompeuse.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>L'entreprise propose un programme de formation continue (5 jours / 2 ans) qui ferait gagner 5 min de plus par ouvrier.</p>
+  <p>Si l'entreprise pose 1 200 portes/an, calculer le temps total économisé par an. Le programme coûte 8 000 €/ouvrier (8 ouvriers).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Économie par porte : 5 min. Sur 1 200 portes : 6 000 min = 100 h/an.</p>
+    <p>Coût horaire d'un poseur : ≈ 35 €/h. Économie financière : 100 × 35 = <strong>3 500 €/an</strong>.</p>
+    <p>Coût formation : 8 × 8 000 = 64 000 € (1 fois). ROI : 64 000 / 3 500 ≈ <strong>18 ans</strong>.</p>
+    <p>Le ROI est très long. La formation se justifie surtout pour la qualité de pose (moins de SAV) et la motivation des équipes, pas par le seul gain de temps.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Rédiger en 5 lignes les conclusions de l'étude au comité de pilotage.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Étude productivité poseurs — Pose & Volume</strong><br>
+      • L'expérience est <strong>fortement corrélée au temps de pose</strong> (r = −0,93).<br>
+      • Modèle linéaire (y = −2,5 x + 94) valable jusqu'à 20 ans d'expérience.<br>
+      • Au-delà : effet de plateau (le temps ne descend pas indéfiniment).<br>
+      • <strong>Recommandation 1</strong> : encourager le mentorat senior/junior pour accélérer la formation des débutants.<br>
+      • <strong>Recommandation 2</strong> : la formation continue se justifie pour la qualité, pas seulement la rapidité (ROI temps long).
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Le chef de chantier veut tester si le « jour de la semaine » influence le temps de pose. Comment vérifier statistiquement cette hypothèse ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Méthode : enregistrer le temps de pose chaque jour de la semaine pour le même ouvrier sur plusieurs mois. Comparer les <strong>moyennes par jour</strong>. Si écart significatif (test ANOVA, en mathématiques niveau supérieur), il y a effet du jour.</p>
+    <p>Hypothèses possibles : lundi (reprise) et vendredi (fatigue) seraient plus lents. À tester sur le terrain. Ce serait un cas où la corrélation s'observe sans causalité directe (la fatigue cumulée sur la semaine).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Corrélation positive : x augmente, y augmente. Négative : x augmente, y diminue.</li>
+    <li>r négatif (proche de −1) : forte corrélation négative.</li>
+    <li>Le modèle linéaire est valable dans la plage des données ; au-delà, il faut être prudent.</li>
+    <li><strong>Corrélation ≠ causalité</strong> : il faut analyser le mécanisme physique avant de conclure.</li>
+    <li>L'extrapolation est risquée surtout loin de la plage observée.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (Nuage de points), §2 (Ajustement) et §3 (Corrélation) de la leçon Ch01.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
