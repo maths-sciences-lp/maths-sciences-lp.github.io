@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch14 – Activité 4 – Photodétecteur de sécurité – 2nde Bac Pro MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd;--s:#0ea5e9}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 4 – Cellule photoélectrique de sécurité <span style="font-size:.55em;color:#6f42c1;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 14 – Lumière, couleurs et photodétecteurs | 2nde Bac Pro MAMA | Physique-Chimie | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre le principe d'un photodétecteur</li>
+    <li>Lire la caractéristique I = f(éclairement) d'une photorésistance ou photodiode</li>
+    <li>Choisir un capteur pour une application atelier</li>
+    <li>Régler un seuil de détection</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – installer une barrière immatérielle sur la scie</h2>
+  <p><em>Karim, technicien chez <strong>SafeWood</strong> à Cholet, doit installer une barrière immatérielle sur la zone dangereuse d'une scie à panneaux. Cette barrière utilise des cellules photodétectrices : si un opérateur ou un objet coupe le faisceau infrarouge, la scie s'arrête immédiatement.</em></p>
+
+  <h3>Document 1 – Caractéristique d'une photorésistance LDR</h3>
+  <table>
+    <thead><tr><th>Éclairement (lux)</th><th>Résistance (kΩ)</th></tr></thead>
+    <tbody>
+      <tr><td>0 (obscurité)</td><td>1 000</td></tr>
+      <tr><td>10</td><td>50</td></tr>
+      <tr><td>100</td><td>5</td></tr>
+      <tr><td>1 000</td><td>0,5</td></tr>
+      <tr><td>10 000</td><td>0,05</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 – Principe de fonctionnement</h3>
+  <ul>
+    <li>L'émetteur envoie un faisceau IR continu.</li>
+    <li>Le récepteur (photorésistance ou photodiode) reçoit ce faisceau et a une faible résistance (= mode « passant »).</li>
+    <li>Si le faisceau est interrompu (passage d'une main), R augmente brutalement → l'automate détecte le changement et coupe la scie.</li>
+  </ul>
+
+  <h3>Document 3 – Types de photodétecteurs</h3>
+  <table>
+    <thead><tr><th>Type</th><th>Réponse</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td>Photorésistance LDR</td><td>R varie avec éclairement</td><td>Détection éclairage ambiant</td></tr>
+      <tr><td>Photodiode</td><td>Génère un courant proportionnel à I</td><td>Mesure rapide</td></tr>
+      <tr><td>Phototransistor</td><td>Amplifie le signal</td><td>Barrière de sécurité</td></tr>
+      <tr><td>Cellule photovoltaïque</td><td>Génère électricité</td><td>Panneaux solaires</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment Karim peut-il régler le seuil de la photorésistance pour que la scie s'arrête dès qu'un objet coupe le faisceau ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p><strong>a)</strong> Que mesure une photorésistance ?</p>
+  <p><strong>b)</strong> Sa résistance varie-t-elle dans le même sens que l'éclairement ou en sens inverse ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> Une photorésistance mesure l'<strong>éclairement</strong> : sa résistance varie selon la quantité de lumière reçue.</p>
+    <p><strong>b)</strong> En sens inverse : plus il y a de lumière, plus R diminue. C'est une <strong>caractéristique non linéaire</strong> (logarithmique).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>Vérifier sur le tableau que multiplier l'éclairement par 10 divise R par 10 (loi en puissance).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>10 lux → R = 50 kΩ ; 100 lux → R = 5 kΩ → ratio /10 ✔</p>
+    <p>100 lux → R = 5 ; 1 000 lux → R = 0,5 → /10 ✔</p>
+    <p>1 000 → 10 000 : 0,5 → 0,05 → /10 ✔</p>
+    <p>Confirmé : la LDR suit approximativement \(R = K / E\) (loi inversement proportionnelle).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Karim place la cellule à 50 cm de l'émetteur IR. L'éclairement reçu est de 1 000 lux quand le faisceau est libre. Quelle est R en mode passant ?</p>
+  <p>Quand un objet (main, planche) interrompt le faisceau, l'éclairement chute à ≈ 100 lux (lumière ambiante seulement). Quelle est R alors ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Faisceau libre (1 000 lux) :</strong> R = <strong>0,5 kΩ = 500 Ω</strong>.</p>
+    <p><strong>Faisceau coupé (100 lux ambiant) :</strong> R = <strong>5 kΩ = 5 000 Ω</strong>.</p>
+    <p>La résistance varie d'un facteur 10 (passage à 5 kΩ) → l'automate détecte facilement le changement.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>L'automate déclenche la coupure si R &gt; 2 kΩ (seuil). Cette valeur est-elle bien choisie ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le seuil de 2 kΩ est entre R(faisceau libre) = 0,5 kΩ et R(coupé) = 5 kΩ. C'est <strong>bien dans la bonne plage</strong>.</p>
+    <p>Plus précisément, on choisit en général un seuil à mi-chemin (en log) : √(0,5 × 5) ≈ 1,58 kΩ. Le seuil 2 kΩ est correct.</p>
+    <p>Si seuil trop bas : déclenchements intempestifs (ex : passage d'un nuage). Si trop haut : risque de ne pas détecter rapidement → danger.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi utiliser un faisceau <strong>infrarouge</strong> et non visible ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Avantages de l'infrarouge :</p>
+    <ul>
+      <li><strong>Invisible</strong> à l'œil → ne gêne pas l'opérateur, ne pollue pas l'éclairage.</li>
+      <li><strong>Insensible aux variations de lumière ambiante</strong> : la cellule peut être configurée pour ne réagir qu'à l'IR (filtre optique).</li>
+      <li><strong>Plus puissant</strong> : on peut envoyer beaucoup d'IR sans danger pour les yeux (contrairement à un laser visible puissant).</li>
+      <li><strong>Modulé</strong> : on peut envoyer l'IR en pulses (clignotement à 38 kHz typique) pour distinguer du bruit ambiant.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Karim vient lire qu'une <strong>photodiode</strong> serait plus rapide qu'une LDR. Pourquoi est-ce important pour une barrière de sécurité ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Une LDR a un temps de réponse de l'ordre de <strong>10-100 ms</strong> (lent). Une photodiode répond en <strong>moins d'1 µs</strong> (10 000 fois plus rapide).</p>
+    <p>Pour la sécurité : si une main passe à 1 m/s à travers le faisceau, la LDR détecte avec un retard pouvant atteindre 100 ms → la main aurait eu le temps de parcourir 10 cm. Avec une photodiode, le retard est négligeable.</p>
+    <p>Pour une barrière de sécurité, on utilise <strong>obligatoirement des photodiodes ou phototransistors</strong>. Les LDR sont réservées à la mesure d'ambiance lumineuse (allumage automatique de l'éclairage).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Le système doit aussi s'autotester : si l'émetteur tombe en panne, le récepteur ne reçoit plus rien → la scie doit s'arrêter.</p>
+  <p>Est-ce le cas avec ce système ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Oui : si l'émetteur tombe en panne, le récepteur cesse de recevoir l'IR → R augmente → seuil dépassé → coupure de la scie.</p>
+    <p>C'est un principe de <strong>sécurité positive</strong> (« fail-safe ») : en cas de défaut, le système se met automatiquement en sécurité. C'est obligatoire pour les barrières immatérielles homologuées (norme EN ISO 13849-1, niveau de performance PL = e ou d).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Karim rédige la fiche d'installation et de test de la barrière immatérielle. 5 lignes max.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Barrière immatérielle scie — SafeWood</strong><br>
+      • Émetteur IR + récepteur photodiode placés à 50 cm de chaque côté de la zone.<br>
+      • Faisceau libre : R ≈ 0,5 kΩ (mode passant) — Faisceau coupé : R ≥ 5 kΩ (alarme).<br>
+      • Seuil automate : 2 kΩ. Coupure scie en &lt; 1 ms.<br>
+      • <strong>Test mensuel</strong> : interrompre volontairement le faisceau → vérifier coupure scie.<br>
+      • Sécurité positive : panne émetteur = scie arrêtée. Conforme EN ISO 13849-1.
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Comparer le rôle de la photorésistance dans 2 contextes : (1) capteur crépusculaire d'éclairage public, (2) barrière de sécurité. Pourquoi le 1er accepte une LDR mais pas le 2e ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Capteur crépusculaire :</strong> détecte la nuit pour allumer l'éclairage. Variations lentes (heures), pas critique sur la milliseconde. <strong>LDR convient parfaitement</strong> (peu cher, fiable, suffisant).</p>
+    <p><strong>Barrière de sécurité :</strong> détecte un obstacle en quelques ms. Doit être très rapide et fiable. <strong>LDR insuffisante</strong> → photodiode ou phototransistor obligatoires.</p>
+    <p>Bon principe : choisir le capteur en fonction du temps de réponse requis et du niveau de criticité.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Un <strong>photodétecteur</strong> convertit la lumière en signal électrique.</li>
+    <li><strong>LDR</strong> : R varie avec l'éclairement (R = K/E approx).</li>
+    <li><strong>Photodiode / phototransistor</strong> : très rapides, pour applications critiques (sécurité).</li>
+    <li>Les <strong>barrières immatérielles</strong> utilisent un faisceau IR + récepteur photodiode.</li>
+    <li>Principe de <strong>sécurité positive</strong> : en cas de défaut, le système s'arrête (fail-safe).</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §5 (Les photodétecteurs) et §6 (Éclairement et flux lumineux) de la leçon Ch14.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
