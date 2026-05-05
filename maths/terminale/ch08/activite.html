@@ -7,7 +7,8 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
-<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
 </head>
 <body>
 <div class="c">
@@ -15,6 +16,7 @@
 <header>
   <h1>Activité — Calcul intégral</h1>
   <p class="sous-titre">Chapitre 8 &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 35 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
 </header>
 <button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button><div class="objectifs">
   <strong>Objectifs :</strong>
@@ -30,6 +32,30 @@
   <p><em>Ébéniste : Émilie Bonnet — atelier <strong>Bonnet Ébénisterie</strong>, Rodez.</em></p>
   <p>Émilie crée des pièces de bois cintrées dont la section transversale est délimitée par la courbe \(f(x) = -x^2 + 4\) (en cm) et l'axe des abscisses, pour \(x \in [-2\,;\,2]\).</p>
   <p>Elle veut calculer la <strong>section</strong> (aire en cm²) de cette pièce pour estimer la quantité de matière.</p>
+
+  <h3>Section du profil bois cintré</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="max-width:380px;width:100%;height:auto">
+      <line x1="40" y1="200" x2="340" y2="200" stroke="#475569" stroke-width="1.5" marker-end="url(#axx2)"/>
+      <line x1="190" y1="220" x2="190" y2="20" stroke="#475569" stroke-width="1.5" marker-end="url(#axx2)"/>
+      <defs><marker id="axx2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#475569"/></marker></defs>
+      <text x="335" y="220" font-size="11" fill="#475569">x</text>
+      <text x="195" y="20" font-size="11" fill="#475569">y</text>
+
+      <text x="190" y="215" font-size="10" fill="#64748b">0</text>
+      <text x="100" y="215" font-size="10" fill="#64748b" text-anchor="middle">−2</text>
+      <text x="280" y="215" font-size="10" fill="#64748b">2</text>
+      <text x="200" y="65" font-size="10" fill="#64748b">4</text>
+
+      <path d="M 100 200 Q 190 -40 280 200 Z" fill="#dbeafe" stroke="#0969da" stroke-width="2"/>
+      <text x="190" y="160" text-anchor="middle" font-size="13" fill="#0969da" font-weight="700">𝒜 = 32/3 cm²</text>
+      <text x="190" y="180" text-anchor="middle" font-size="11" fill="#0c4a6e">≈ 10,67 cm²</text>
+
+      <line x1="100" y1="200" x2="100" y2="208" stroke="#475569"/>
+      <line x1="280" y1="200" x2="280" y2="208" stroke="#475569"/>
+    </svg>
+    <p style="font-size:.85em;color:#64748b;margin:6px 0 0">L'intégrale ∫₋₂² f(x) dx donne l'aire de la zone bleue : c'est la section transversale de la pièce.</p>
+  </div>
 </div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
@@ -43,6 +69,7 @@
     <li>Où la courbe coupe-t-elle l'axe des abscisses ? (Résous \(f(x) = 0\).)</li>
     <li>La courbe est-elle au-dessus ou en dessous de l'axe sur \([-2\,;\,2]\) ?</li>
   </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <ol type="a">
@@ -62,6 +89,7 @@
     <li>Rappelle la méthode : que vaut \(\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x\) en fonction de \(F\) ?</li>
   </ol>
   <div class="meth"><strong>Primitives usuelles :</strong> \(\displaystyle\int x^n\,\mathrm{d}x = \dfrac{x^{n+1}}{n+1}\) &nbsp;|&nbsp; \(\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x = F(b) - F(a)\)</div>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <ol type="a">
@@ -74,6 +102,7 @@
 <div class="exo">
   <h2>Question 3 &nbsp;<span class="badge-green">REA</span></h2>
   <p>Calcule la section de la pièce en appliquant \(\mathcal{A} = F(2) - F(-2)\).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     \(F(2) = -\dfrac{8}{3} + 8 = \dfrac{-8 + 24}{3} = \dfrac{16}{3}\)<br><br>
@@ -89,6 +118,7 @@
     <li>\(\displaystyle\int_{0}^{3} (2x + 1)\,\mathrm{d}x\)</li>
     <li>\(\displaystyle\int_{1}^{4} x^2\,\mathrm{d}x\)</li>
   </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <ol type="a">
@@ -106,12 +136,25 @@
     <li>Calcule la valeur moyenne de \(f\) sur \([-2\,;\,2]\).</li>
     <li>Interprète ce résultat : que représente-t-il pour la pièce en bois ?</li>
   </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <ol type="a">
       <li>\(\overline{f} = \dfrac{1}{2-(-2)} \times \dfrac{32}{3} = \dfrac{1}{4} \times \dfrac{32}{3} = \dfrac{32}{12} = \dfrac{8}{3} \approx 2{,}67\,\text{cm}\)</li>
       <li>La hauteur moyenne de la section est d'environ <strong>2,67 cm</strong>. C'est comme si la pièce avait un profil rectangulaire de 4 cm × 2,67 cm de même aire.</li>
     </ol>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>La pièce d'Émilie mesure 50 cm de longueur (perpendiculairement à la section). Calculer le volume total de bois utilisé. Si le bois pèse 700 kg/m³, quelle est la masse de la pièce ? (Attention aux unités.)</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Volume = section × longueur = \(\dfrac{32}{3} \text{ cm}^2 \times 50 \text{ cm} = \dfrac{1600}{3} \text{ cm}^3 \approx 533 \text{ cm}^3\).</p>
+    <p>Conversion : 533 cm³ = 533 × 10⁻⁶ m³ = 5,33 × 10⁻⁴ m³.</p>
+    <p>Masse = volume × masse volumique = \(5{,}33 \times 10^{-4} \times 700 \approx \mathbf{0{,}37 \text{ kg}}\) (370 g).</p>
   </div>
 </div>
 
@@ -124,6 +167,7 @@
     <li>Primitives : \(\displaystyle\int x^n\,\mathrm{d}x = \dfrac{x^{n+1}}{n+1}\) &nbsp;|&nbsp; \(\displaystyle\int k\,\mathrm{d}x = kx\)</li>
     <li>Valeur moyenne : \(\overline{f} = \dfrac{1}{b-a}\displaystyle\int_{a}^{b} f(x)\,\mathrm{d}x\)</li>
   </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (Primitive), §2 (Calcul intégral) et §3 (Aire sous une courbe et valeur moyenne) de la leçon CH08.</em></p>
 </div>
 <div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch08 →</a></div>
 </div>

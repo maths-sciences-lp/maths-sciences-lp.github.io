@@ -7,7 +7,8 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
-<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
 </head>
 <body>
 <div class="c">
@@ -15,6 +16,7 @@
 <header>
   <h1>Activité — Probabilités conditionnelles</h1>
   <p class="sous-titre">Chapitre 2 &nbsp;|&nbsp; Terminale Bac Pro &nbsp;|&nbsp; Mathématiques &nbsp;|&nbsp; ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
 </header>
 <button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button><div class="objectifs">
   <strong>Objectifs :</strong>
@@ -38,6 +40,39 @@
   </table>
   <p style="margin-top:10px">Un panneau est tiré au hasard dans le stock. On note :<br>
   \(A\) : « le panneau vient du fournisseur A » &nbsp;|&nbsp; \(D\) : « le panneau est défectueux »</p>
+
+  <h3>Arbre pondéré</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" style="max-width:480px;width:100%;height:auto">
+      <circle cx="40" cy="140" r="6" fill="#1e3a8a"/>
+      <text x="40" y="120" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="700">Ω</text>
+
+      <line x1="46" y1="138" x2="180" y2="80" stroke="#1e3a8a" stroke-width="2"/>
+      <line x1="46" y1="142" x2="180" y2="200" stroke="#1e3a8a" stroke-width="2"/>
+      <text x="100" y="100" font-size="11" fill="#0969da" font-weight="600">P(A) = 0,60</text>
+      <text x="100" y="190" font-size="11" fill="#0969da" font-weight="600">P(Ā) = 0,40</text>
+
+      <circle cx="190" cy="80" r="6" fill="#0969da"/>
+      <text x="200" y="84" font-size="12" font-weight="700" fill="#0969da">A</text>
+      <circle cx="190" cy="200" r="6" fill="#0969da"/>
+      <text x="200" y="204" font-size="12" font-weight="700" fill="#0969da">Ā (B)</text>
+
+      <line x1="200" y1="76" x2="340" y2="40" stroke="#0969da" stroke-width="1.5"/>
+      <line x1="200" y1="84" x2="340" y2="120" stroke="#0969da" stroke-width="1.5"/>
+      <line x1="200" y1="196" x2="340" y2="160" stroke="#0969da" stroke-width="1.5"/>
+      <line x1="200" y1="204" x2="340" y2="240" stroke="#0969da" stroke-width="1.5"/>
+      <text x="260" y="50" font-size="10" fill="#dc2626">P_A(D)=0,05</text>
+      <text x="260" y="115" font-size="10" fill="#16a34a">P_A(D̄)=0,95</text>
+      <text x="260" y="155" font-size="10" fill="#dc2626">P_Ā(D)=0,12</text>
+      <text x="260" y="237" font-size="10" fill="#16a34a">P_Ā(D̄)=0,88</text>
+
+      <text x="350" y="44" font-size="11" fill="#dc2626" font-weight="700">D : 0,030</text>
+      <text x="350" y="124" font-size="11" fill="#16a34a" font-weight="700">D̄ : 0,570</text>
+      <text x="350" y="164" font-size="11" fill="#dc2626" font-weight="700">D : 0,048</text>
+      <text x="350" y="244" font-size="11" fill="#16a34a" font-weight="700">D̄ : 0,352</text>
+    </svg>
+    <p style="font-size:.85em;color:#64748b;margin:6px 0 0">Sur chaque chemin, on multiplie les probabilités conditionnelles. La somme des 4 issues vaut 1.</p>
+  </div>
 </div>
 
 <div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
@@ -51,6 +86,7 @@
     <li>Quelle est la probabilité qu'un panneau du fournisseur A soit défectueux ? Note-la \(P_A(D)\).</li>
     <li>Même question pour le fournisseur B : \(P_{\overline{A}}(D) = \,?\)</li>
   </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <ol type="a">
@@ -66,6 +102,7 @@
   <p>Construis l'<strong>arbre de probabilités</strong> à deux niveaux (fournisseur → état).</p>
   <p>Pour chaque branche terminale, calcule la probabilité de l'issue.</p>
   <div class="meth"><strong>Règle :</strong> probabilité d'une issue = produit des probabilités sur le chemin.</div>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <pre style="background:#f8fafc;padding:12px;border-radius:8px;font-size:.9em">
@@ -83,6 +120,7 @@ Fournisseur B (0,40) ──→ Défectueux D    (0,12) → 0,40 × 0,12 = 0,048
   <h2>Question 3 &nbsp;<span class="badge-green">REA</span></h2>
   <p>Calcule la probabilité qu'un panneau tiré au hasard soit <strong>défectueux</strong> (formule des probabilités totales).</p>
   <div class="meth">\(P(D) = P(A) \times P_A(D) + P(\overline{A}) \times P_{\overline{A}}(D)\)</div>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     \(P(D) = 0{,}60 \times 0{,}05 + 0{,}40 \times 0{,}12 = 0{,}030 + 0{,}048 = 0{,}078\)<br>
@@ -95,6 +133,7 @@ Fournisseur B (0,40) ──→ Défectueux D    (0,12) → 0,40 × 0,12 = 0,048
   <p>Clara découvre qu'un panneau est défectueux. Elle veut savoir de quel fournisseur il vient.</p>
   <p>Calcule la probabilité que ce panneau défectueux vienne du fournisseur A : \(P_D(A)\).</p>
   <div class="meth">\(P_D(A) = \dfrac{P(A \cap D)}{P(D)}\)</div>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     \(P(A \cap D) = 0{,}030\) (branche A → D de l'arbre)<br>
@@ -110,12 +149,24 @@ Fournisseur B (0,40) ──→ Défectueux D    (0,12) → 0,40 × 0,12 = 0,048
     <li>Combien de panneaux défectueux s'attend-elle à recevoir en moyenne ?</li>
     <li>Le fournisseur B réduit son taux de défauts à 8 %. Recalcule \(P(D)\).</li>
   </ol>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <ol type="a">
       <li>\(500 \times 0{,}078 = 39\) panneaux défectueux attendus.</li>
       <li>\(P(D) = 0{,}60 \times 0{,}05 + 0{,}40 \times 0{,}08 = 0{,}030 + 0{,}032 = 0{,}062 = 6{,}2\,\%\)</li>
     </ol>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Clara veut limiter les défauts à 5 % au total dans son stock. Elle peut choisir la part p du fournisseur A (les 1−p restants viendront de B). Sachant que A produit 5 % de défauts et B 12 %, quelle proportion p minimale doit-elle commander chez A pour atteindre cet objectif ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>On cherche p tel que : \(0{,}05 \cdot p + 0{,}12 \cdot (1-p) = 0{,}05\). Soit \(0{,}05 p + 0{,}12 - 0{,}12 p = 0{,}05\), donc \(-0{,}07 p = -0{,}07\), donc \(p = 1\).</p>
+    <p>Avec ces taux, il faudrait commander 100 % chez A : impossible si on veut conserver les 2 fournisseurs. Clara doit donc soit baisser le taux de B, soit accepter un objectif moins strict (par exemple 6 % donne \(p \approx 0{,}86\), soit 86 % chez A et 14 % chez B).</p>
   </div>
 </div>
 
@@ -127,6 +178,7 @@ Fournisseur B (0,40) ──→ Défectueux D    (0,12) → 0,40 × 0,12 = 0,048
     <li><strong>Probabilités composées :</strong> \(P(A \cap B) = P(A) \times P_A(B)\)</li>
     <li><strong>Probabilités totales :</strong> \(P(D) = P(A)\cdot P_A(D) + P(\overline{A})\cdot P_{\overline{A}}(D)\)</li>
   </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (Probabilités conditionnelles), §2 (Arbre pondéré) et §3 (Probabilités totales) de la leçon Ch02.</em></p>
 </div>
 <div class="nav-footer"><a href="lecon.html" class="nav-btn">Cours Ch02 →</a></div>
 </div>
