@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ch05 – Acoustique – Activité – CAP PC</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch05 – Activité – Évaluation du bruit en atelier – PC CAP</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
@@ -11,25 +11,85 @@
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-cap.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-cap.html" class="nb">← RETOUR SOMMAIRE CAP</a>
+
 <header>
-  <h1>Activité — Ch05 : Acoustique</h1>
-  <p class="sous-titre">CAP | Physique-Chimie | Activité de découverte</p>
+  <h1>Activité – Évaluation du bruit en atelier de menuiserie <span style="font-size:.55em;color:#b91c1c;font-weight:600">DIAGNOSTIC</span></h1>
+  <p class="sous-titre">Chapitre 5 – Acoustique | CAP | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 18:00</p>
 </header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Mesurer un niveau sonore en dB avec un sonomètre</li>
+    <li>Lire une période sur un oscillogramme et calculer la fréquence (f = 1/T)</li>
+    <li>Distinguer son grave / aigu, infrasons / ultrasons</li>
+    <li>Connaître les seuils légaux Code du travail (85 dB, 87 dB)</li>
+    <li>Hiérarchiser les mesures de prévention (collective &gt; individuelle)</li>
+  </ul>
+</div>
 
 <div class="situation">
-  <h3>Situation professionnelle — Évaluation du bruit en atelier de menuiserie</h3>
-  <p>La responsable de l'atelier doit rédiger le document unique d'évaluation des risques (DUER). Elle mesure les niveaux sonores de chaque machine et cherche à identifier les postes qui nécessitent des protections auditives obligatoires. Elle dispose d'un sonomètre et d'un oscilloscope.</p>
-</div>
+  <h2>Situation – rédiger le DUER d'un atelier de menuiserie</h2>
+  <p><em>La responsable de l'atelier doit rédiger le Document Unique d'Évaluation des Risques (DUER). Elle mesure les niveaux sonores de chaque machine et cherche à identifier les postes qui nécessitent des protections auditives obligatoires. Elle dispose d'un sonomètre et d'un oscilloscope.</em></p>
 
-<div style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-  <strong>Problématique :</strong> Comment caractériser les sons produits en atelier et décider des mesures de prévention adaptées ?
-</div>
+  <h3>Document 1 — Échelle des niveaux sonores</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 180" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Échelle de 0 à 140 dB : conversation 60, scie 100, douleur 120. Zones colorées vert (sûr), jaune (à surveiller), rouge (danger).">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#6f42c1}
+          .val{font:600 11px sans-serif;fill:#dc2626;text-anchor:middle}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="20">Échelle des niveaux sonores et seuils</text>
 
-<h2>Document 1 — Mesures sonomètre</h2>
-<div class="ex">
+      <!-- Barre dégradée -->
+      <rect x="40" y="40" width="200" height="20" fill="#22c55e"/>
+      <rect x="240" y="40" width="80" height="20" fill="#fbbf24"/>
+      <rect x="320" y="40" width="100" height="20" fill="#f97316"/>
+      <rect x="420" y="40" width="80" height="20" fill="#dc2626"/>
+
+      <!-- Graduations -->
+      <g class="lbl">
+        <text x="40" y="80">0</text>
+        <text x="100" y="80">20</text>
+        <text x="160" y="80">50</text>
+        <text x="240" y="80">85</text>
+        <text x="300" y="80">100</text>
+        <text x="380" y="80">115</text>
+        <text x="460" y="80">130</text>
+        <text x="500" y="80">140</text>
+      </g>
+
+      <!-- Repères -->
+      <line x1="240" y1="40" x2="240" y2="100" stroke="#dc2626" stroke-width="1"/>
+      <text x="240" y="110" class="val">85 dB</text>
+      <text x="240" y="125" class="lbl">EPI obligatoire</text>
+
+      <line x1="380" y1="40" x2="380" y2="100" stroke="#dc2626" stroke-width="2"/>
+      <text x="380" y="110" class="val">120 dB</text>
+      <text x="380" y="125" class="lbl">Seuil douleur</text>
+
+      <!-- Exemples -->
+      <text x="160" y="160" class="lbl">conversation</text>
+      <text x="160" y="172" class="lbl">~ 60 dB</text>
+
+      <text x="320" y="160" class="lbl">scie circulaire</text>
+      <text x="320" y="172" class="lbl">~ 100 dB</text>
+
+      <text x="460" y="160" class="lbl">avion décollage</text>
+      <text x="460" y="172" class="lbl">130 dB</text>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Mesures du sonomètre</h3>
   <table>
-    <thead><tr><th>Machine</th><th>Niveau mesuré (dB)</th><th>Durée quotidienne</th></tr></thead>
+    <thead><tr><th>Machine</th><th>Niveau (dB)</th><th>Durée quotidienne</th></tr></thead>
     <tbody>
       <tr><td>Scie à ruban</td><td>88</td><td>3 h</td></tr>
       <tr><td>Ponceuse orbitale</td><td>82</td><td>4 h</td></tr>
@@ -38,68 +98,240 @@
       <tr><td>Travail manuel (ciseau, maillet)</td><td>65</td><td>2 h</td></tr>
     </tbody>
   </table>
-</div>
 
-<h2>Document 2 — Oscillogramme d'un son de la scie circulaire</h2>
-<div class="ex">
-  <p>Réglages oscilloscope : base de temps 0,5 ms/div.</p>
-  <p>Sur l'écran, on mesure une période de 2,4 divisions horizontales.</p>
-</div>
+  <h3>Document 3 — Oscillogramme d'un son de la scie circulaire</h3>
+  <ul>
+    <li>Réglages oscilloscope : base de temps <strong>0,5 ms/div</strong>.</li>
+    <li>Sur l'écran, on mesure une période de <strong>2,4 divisions horizontales</strong>.</li>
+  </ul>
 
-<h2>Document 3 — Données matériaux d'isolation</h2>
-<div class="ex">
+  <h3>Document 4 — Matériaux d'isolation acoustique</h3>
   <table>
     <thead><tr><th>Matériau</th><th>Atténuation</th></tr></thead>
     <tbody>
-      <tr><td>Panneau de mousse acoustique (5 cm)</td><td>18 dB</td></tr>
-      <tr><td>Laine de roche (10 cm)</td><td>30 dB</td></tr>
-      <tr><td>Plots anti-vibrations (caoutchouc)</td><td>12 dB</td></tr>
+      <tr><td>Panneau de mousse acoustique (5 cm)</td><td>−18 dB</td></tr>
+      <tr><td>Laine de roche (10 cm)</td><td>−30 dB</td></tr>
+      <tr><td>Plots anti-vibrations (caoutchouc)</td><td>−12 dB</td></tr>
+      <tr><td>Bouchons d'oreilles SNR</td><td>−25 à −30 dB</td></tr>
     </tbody>
   </table>
+
+  <h3>Document 5 — Seuils Code du travail</h3>
+  <ul>
+    <li>VAI (Valeur d'Action Inférieure) : <strong>80 dB</strong> → EPI à disposition.</li>
+    <li>VLE (Valeur Limite d'Exposition) : <strong>87 dB</strong> → EPI obligatoire.</li>
+    <li>Seuil de danger « 8 h/jour » : <strong>85 dB</strong>.</li>
+    <li>Seuil de douleur : <strong>120 dB</strong>.</li>
+    <li>Domaine audible : <strong>20 Hz à 20 000 Hz</strong>. &lt; 20 Hz = infrasons. &gt; 20 000 Hz = ultrasons.</li>
+  </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (caractérisation d'un son), §2 (niveau sonore en dB) et §3 (prévention des risques auditifs) de la leçon Ch05.</em></p>
 </div>
 
-<h2>Questions</h2>
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment caractériser les sons d'un atelier et décider des mesures de prévention adaptées ?
+</div>
+
 <div class="exo">
-  <h3>Partie A — Analyse des niveaux sonores</h3>
-  <ol>
-    <li>Pour chaque machine du document 1, indiquez si la protection auditive est obligatoire (> 85 dB), recommandée (80 à 85 dB) ou non nécessaire (< 80 dB).</li>
-    <li>Quelle machine présente le risque le plus élevé ? Justifiez.</li>
-    <li>Seuil de douleur = 120 dB. La scie circulaire (103 dB) peut-elle provoquer des lésions immédiates ?</li>
-  </ol>
-
-  <h3>Partie B — Caractérisation du son de la scie</h3>
-  <ol start="4">
-    <li>Calculez la période \(T\) du son de la scie circulaire à partir des données du document 2.</li>
-    <li>Calculez la fréquence \(f\) de ce son. Ce son est-il grave ou aigu ?</li>
-    <li>Ce son appartient-il au domaine audible ? Ou aux infrasons/ultrasons ?</li>
-  </ol>
-
-  <h3>Partie C — Solutions d'isolation</h3>
-  <ol start="7">
-    <li>La scie circulaire est placée dans une cabine insonorisée avec de la laine de roche (30 dB). Quel niveau sonore sort de la cabine ?</li>
-    <li>Des plots anti-vibrations (12 dB) sont ajoutés sous la machine. Quel niveau total est atténué si les deux solutions sont combinées ?</li>
-    <li>Comparez les solutions collectives (isolation cabine) et la solution individuelle (bouchons d'oreilles, 30 dB). Quelle est la différence fondamentale dans la démarche de prévention ?</li>
-  </ol>
-
+  <h2>Question 1 <span class="badge-blue">ANA</span></h2>
+  <p>Pour chaque machine du Doc 2, indiquer si la protection auditive est <strong>obligatoire</strong> (≥ 85 dB), <strong>recommandée</strong> (80-85 dB) ou <strong>non nécessaire</strong> (&lt; 80 dB).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <strong>Correction :</strong><br>
-    <strong>A1.</strong> Scie à ruban (88 dB) : obligatoire / Ponceuse (82 dB) : recommandée / Scie circulaire (103 dB) : obligatoire / Toupie (97 dB) : obligatoire / Manuel (65 dB) : non nécessaire.<br>
-    <strong>A2.</strong> Scie circulaire (103 dB) : niveau le plus élevé, donc risque le plus fort.<br>
-    <strong>A3.</strong> Non, 103 dB < 120 dB (seuil de douleur). Mais l'exposition prolongée est dangereuse sans protection.<br>
-    <strong>B4.</strong> \(T = 2{,}4 × 0{,}5 = 1{,}2\) ms = 0,0012 s.<br>
-    <strong>B5.</strong> \(f = 1/0{,}0012 \approx 833\) Hz. Son médium (ni très grave ni très aigu).<br>
-    <strong>B6.</strong> 833 Hz est entre 20 et 20 000 Hz → domaine audible.<br>
-    <strong>C7.</strong> 103 − 30 = 73 dB (< 85 dB : sécuritaire).<br>
-    <strong>C8.</strong> 30 + 12 = 42 dB d'atténuation totale → 103 − 42 = 61 dB (très confortable).<br>
-    <strong>C9.</strong> Solutions collectives : réduisent le niveau pour TOUS les travailleurs sans action individuelle. Solution individuelle : dépend du port correct de l'EPI. La hiérarchie des mesures de prévention privilégie la réduction à la source.
+    <table>
+      <thead><tr><th>Machine</th><th>dB</th><th>EPI ?</th></tr></thead>
+      <tbody>
+        <tr><td>Scie à ruban</td><td>88</td><td>🔴 Obligatoire</td></tr>
+        <tr><td>Ponceuse orbitale</td><td>82</td><td>🟡 Recommandée</td></tr>
+        <tr><td>Scie circulaire</td><td>103</td><td>🔴 Obligatoire</td></tr>
+        <tr><td>Toupie</td><td>97</td><td>🔴 Obligatoire</td></tr>
+        <tr><td>Travail manuel</td><td>65</td><td>🟢 Non nécessaire</td></tr>
+      </tbody>
+    </table>
+    <p>3 machines sur 5 nécessitent des EPI auditifs obligatoires.</p>
   </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>Quelle machine présente le risque le plus élevé ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La <strong>scie circulaire (103 dB)</strong> a le niveau sonore le plus élevé → risque le plus fort.</p>
+    <p>Sans EPI, durée d'exposition max ~ 15 min/jour seulement (Code du travail). En réalité, la scie circulaire fonctionne 2 h/jour → la dose sonore reçue est <strong>8× supérieure à la limite</strong> sans protection. EPI absolument obligatoires.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">VAL</span></h2>
+  <p>Seuil de douleur = 120 dB. La scie circulaire (103 dB) peut-elle provoquer des lésions immédiates ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Non : 103 dB &lt; 120 dB → pas de lésion immédiate.</p>
+    <p>Mais l'<strong>exposition prolongée sans protection</strong> est dangereuse : les cellules ciliées de l'oreille interne sont progressivement détruites, et la perte est <strong>irréversible</strong> (pas de régénération).</p>
+    <p>Symptômes à long terme : acouphènes, difficulté à comprendre la voix dans le bruit, surdité progressive.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la période T du son de la scie circulaire à partir du Doc 3.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>T = 2,4 divisions × 0,5 ms/div = <strong>1,2 ms = 0,0012 s</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la fréquence f = 1/T de ce son. Ce son est-il grave ou aigu ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f = 1 / T = 1 / 0,0012 ≈ <strong>833 Hz</strong>.</p>
+    <p>833 Hz est dans le <strong>médium</strong> (ni très grave ni très aigu). À titre de comparaison : voix masculine ~ 150 Hz, voix féminine ~ 250 Hz, La₃ du diapason = 440 Hz, sifflement aigu &gt; 2 000 Hz.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Ce son appartient-il au domaine audible ? Ou aux infrasons / ultrasons ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Domaine audible : 20 Hz à 20 000 Hz. Or 20 ≤ 833 ≤ 20 000.</p>
+    <p>→ Le son de la scie circulaire est <strong>audible</strong> par l'oreille humaine ✓.</p>
+    <p>(Infrasons &lt; 20 Hz : exemple tremblements de terre. Ultrasons &gt; 20 000 Hz : échographie médicale, sonar, télécommandes)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">REA</span></h2>
+  <p>La scie circulaire est placée dans une cabine insonorisée avec laine de roche (atténuation −30 dB). Quel niveau sonore sort de la cabine ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Niveau atténué = 103 − 30 = <strong>73 dB</strong>.</p>
+    <p>73 dB &lt; 85 dB → <strong>sécuritaire</strong> pour les autres travailleurs autour de la cabine. Pas d'EPI requis pour eux.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">REA</span></h2>
+  <p>Des plots anti-vibrations (−12 dB) sont ajoutés sous la machine. Quel niveau total est atténué si les 2 solutions sont combinées (laine + plots) ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Atténuation totale : 30 + 12 = <strong>42 dB</strong> (en première approximation, les atténuations s'additionnent).</p>
+    <p>Niveau résiduel : 103 − 42 = <strong>61 dB</strong>. Très confortable, équivalent d'une conversation normale.</p>
+    <p>NB : en réalité, les atténuations ne s'additionnent pas exactement (logique logarithmique), mais à l'ordre 1 c'est une bonne approximation.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-blue">ANA</span></h2>
+  <p>Comparer les solutions <strong>collectives</strong> (cabine, plots) et la solution <strong>individuelle</strong> (bouchons d'oreilles, −30 dB). Quelle est la différence fondamentale dans la démarche de prévention ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Solutions collectives</strong> (cabine, plots, capotage) :</p>
+    <ul>
+      <li>Réduisent le niveau sonore <strong>pour tous les travailleurs</strong> en même temps.</li>
+      <li>Pas d'action individuelle requise (port d'EPI, oubli possible).</li>
+      <li>Couvrent aussi les visiteurs, stagiaires, livreurs.</li>
+      <li>Investissement initial plus élevé mais durable.</li>
+    </ul>
+    <p><strong>Solution individuelle</strong> (bouchons, casque) :</p>
+    <ul>
+      <li>Dépend du <strong>port correct et systématique</strong> de l'EPI par chaque salarié.</li>
+      <li>Risque de non-port (oubli, inconfort).</li>
+      <li>Coût modeste (5-50 €/salarié).</li>
+    </ul>
+    <p>La <strong>hiérarchie des mesures de prévention</strong> (Code du travail R4321-1) impose :</p>
+    <ol>
+      <li>D'abord : éliminer le risque à la source (machine moins bruyante).</li>
+      <li>Sinon : protection collective (cabine, capotage).</li>
+      <li>En dernier : protection individuelle (EPI).</li>
+    </ol>
+    <p>La protection individuelle ne doit être qu'un <strong>complément</strong>, jamais la solution principale.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 10 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger la fiche DUER (Document Unique d'Évaluation des Risques) pour le risque bruit de cet atelier. Mentionner :</p>
+  <ul>
+    <li>les sources de risque</li>
+    <li>les mesures de prévention recommandées (collectives et individuelles)</li>
+    <li>la formation du personnel</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>DUER — Risque bruit — Atelier de menuiserie</strong></em></p>
+    <p><em><strong>Sources de risque :</strong></em></p>
+    <ul>
+      <li><em>Scie circulaire (103 dB), Toupie (97 dB), Scie à ruban (88 dB) → niveaux dépassant 85 dB.</em></li>
+      <li><em>Exposition cumulée quotidienne ~ 6 h aux machines bruyantes.</em></li>
+    </ul>
+    <p><em><strong>Mesures de prévention :</strong></em></p>
+    <ol>
+      <li><em><strong>Collectives</strong> (priorité) : cabine insonorisée pour la scie circulaire (laine roche 10 cm + plots anti-vibrations) → 103 → 61 dB. Capotage du moteur de la toupie.</em></li>
+      <li><em><strong>Individuelles</strong> (complément) : bouchons d'oreilles SNR 25 à disposition + casques anti-bruit pour postes &gt; 90 dB. Renouvellement gratuit par l'employeur.</em></li>
+      <li><em><strong>Organisationnelles</strong> : limitation du temps d'exposition, rotation des postes, signalétique « zone bruit » obligatoire.</em></li>
+    </ol>
+    <p><em><strong>Formation et suivi :</strong> formation initiale des salariés au risque auditif (R4434), audiogramme annuel par la médecine du travail, mise à jour DUER tous les ans.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi un même son peut-il sembler plus fort ou plus faible selon la fréquence, à niveau dB égal ? Que mesure réellement le sonomètre pondéré « A » ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'oreille humaine n'est pas <strong>uniformément sensible</strong> à toutes les fréquences :</p>
+    <ul>
+      <li>20 Hz (très grave) : à peine audible (faut être très intense).</li>
+      <li>1 000-4 000 Hz : sensibilité maximale (cri, sifflement).</li>
+      <li>15 000-20 000 Hz (très aigu) : à peine audible chez l'adulte.</li>
+    </ul>
+    <p>Un sonomètre brut mesure tous les sons à égalité (en dB physiques). Or un bruit de 80 dB à 50 Hz n'est pas perçu pareil qu'un 80 dB à 2 000 Hz.</p>
+    <p>La <strong>pondération A</strong> applique un filtre qui imite la sensibilité de l'oreille. Le résultat est noté <strong>dB(A)</strong> : c'est ce que le cerveau « entend » réellement.</p>
+    <p>En réglementation française et européenne, on utilise <strong>toujours les dB(A)</strong>. Tous les seuils mentionnés (85 dB, 87 dB, 120 dB) sont en dB(A), même si on note souvent juste « dB ».</p>
+    <p>Ordres de grandeur en dB(A) :</p>
+    <table>
+      <thead><tr><th>Niveau</th><th>Exemple</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>Seuil d'audition (chambre anéchoïque)</td></tr>
+        <tr><td>30</td><td>Chambre à coucher la nuit</td></tr>
+        <tr><td>50</td><td>Conversation normale</td></tr>
+        <tr><td>70</td><td>Aspirateur</td></tr>
+        <tr><td>85</td><td>Trafic dense</td></tr>
+        <tr><td>100</td><td>Tronçonneuse, scie circulaire</td></tr>
+        <tr><td>120</td><td>Concert au premier rang, seuil de douleur</td></tr>
+        <tr><td>140</td><td>Décollage avion à 50 m</td></tr>
+      </tbody>
+    </table>
+    <p>Pour le DUER : exiger systématiquement des mesures en <strong>LAeq dB(A)</strong> sur 8 h (niveau équivalent moyen).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Période :</strong> T = durée d'un cycle (s ou ms). <strong>Fréquence :</strong> f = 1 / T (Hz). 1 cycle/s = 1 Hz.</li>
+    <li><strong>Domaine audible :</strong> 20 Hz à 20 000 Hz. &lt; 20 Hz = infrasons. &gt; 20 000 Hz = ultrasons.</li>
+    <li><strong>Niveau sonore :</strong> mesuré en décibels (dB) avec un sonomètre. Dépend de l'amplitude du son.</li>
+    <li><strong>Seuils Code du travail :</strong> 80 dB (VAI, EPI à dispo), 85 dB (danger), 87 dB (VLE, EPI obligatoires), 120 dB (douleur).</li>
+    <li><strong>Hiérarchie des mesures de prévention :</strong> 1️⃣ supprimer la source, 2️⃣ protection collective (cabine), 3️⃣ EPI individuels.</li>
+  </ul>
 </div>
 
 </div>
 <script src="../../../nav.js"></script>
-<script>
-function toggle(btn){var c=btn.nextElementSibling;if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}else{c.style.display='block';btn.textContent='Masquer la correction';}}
-</script>
 </body>
 </html>

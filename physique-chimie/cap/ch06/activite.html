@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ch06 – Thermique – Activité – CAP PC</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Activité – Étuve, Pt100 et brasure à l'étain – PC CAP</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
@@ -11,95 +11,276 @@
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-cap.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-cap.html" class="nb">← RETOUR SOMMAIRE CAP</a>
+
 <header>
-  <h1>Activité — Ch06 : Thermique</h1>
-  <p class="sous-titre">CAP | Physique-Chimie | Activité de découverte</p>
+  <h1>Activité – Mesure de température et brasure à l'étain <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 6 – Thermique | CAP | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 18:15</p>
 </header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Lire une courbe de chauffe / refroidissement</li>
+    <li>Convertir des températures (°C ↔ K)</li>
+    <li>Utiliser une sonde Pt100 (R = 100 + 0,385 θ)</li>
+    <li>Identifier un palier de changement d'état</li>
+    <li>Distinguer corps pur et mélange par leur courbe de fusion</li>
+  </ul>
+</div>
 
 <div class="situation">
-  <h3>Situation professionnelle — Séchage de pièces vernies en ébénisterie</h3>
-  <p>Un ébéniste utilise une étuve pour accélérer le séchage de pièces vernies. Il branche un capteur de température (sonde Pt100) pour surveiller la montée en température, observe la courbe obtenue sur un enregistreur et ajuste les réglages de l'étuve. Il réalise également une brasure à l'étain pour assembler deux pièces métalliques.</p>
-</div>
+  <h2>Situation – séchage de pièces vernies et brasure à l'étain</h2>
+  <p><em>Un ébéniste utilise une étuve pour accélérer le séchage de pièces vernies. Il branche un capteur de température (sonde Pt100) pour surveiller la montée en température, observe la courbe obtenue sur un enregistreur et ajuste les réglages de l'étuve. Il réalise également une brasure à l'étain pour assembler deux pièces métalliques.</em></p>
 
-<div style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-  <strong>Problématique :</strong> Comment mesurer la température avec un capteur électrique et analyser les changements d'état lors d'une opération de brasure ?
-</div>
+  <h3>Document 1 — Schéma de la courbe de chauffe de l'étuve</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 200" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Courbe T(t) : montée 20→60°C de 0 à 5 min, plateau à 60°C, chute à 45°C à t=10 min, remontée.">
+      <defs>
+        <style>
+          .ax{stroke:#1a202c;stroke-width:1.2;fill:none}
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#6f42c1}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="20">Courbe de température dans l'étuve</text>
 
-<h2>Document 1 — Courbe de l'étuve</h2>
-<div class="ex">
-  <p>L'enregistreur trace la température en fonction du temps lors de la mise en chauffe de l'étuve :</p>
+      <!-- Axes -->
+      <line class="ax" x1="60" y1="160" x2="500" y2="160"/>
+      <line class="ax" x1="60" y1="40" x2="60" y2="160"/>
+
+      <!-- Graduations Y -->
+      <line class="ax" x1="55" y1="160" x2="60" y2="160"/><text x="50" y="164" class="lbl" text-anchor="end">20</text>
+      <line class="ax" x1="55" y1="120" x2="60" y2="120"/><text x="50" y="124" class="lbl" text-anchor="end">40</text>
+      <line class="ax" x1="55" y1="80" x2="60" y2="80"/><text x="50" y="84" class="lbl" text-anchor="end">60</text>
+      <line class="ax" x1="55" y1="50" x2="60" y2="50"/><text x="50" y="54" class="lbl" text-anchor="end">80</text>
+      <text x="30" y="100" class="lblA" transform="rotate(-90 30 100)">T (°C)</text>
+
+      <!-- Graduations X -->
+      <text x="60" y="180" class="lbl">0</text>
+      <text x="170" y="180" class="lbl">5</text>
+      <text x="280" y="180" class="lbl">10</text>
+      <text x="390" y="180" class="lbl">15</text>
+      <text x="500" y="180" class="lbl">20</text>
+      <text x="270" y="195" class="lblA">t (min)</text>
+
+      <!-- Courbe : montée 0→5min de 20 à 60 -->
+      <line x1="60" y1="160" x2="170" y2="80" stroke="#dc2626" stroke-width="2.5"/>
+      <text x="115" y="115" class="lblA" fill="#dc2626">chauffe</text>
+
+      <!-- Plateau 5→10 -->
+      <line x1="170" y1="80" x2="280" y2="80" stroke="#15803d" stroke-width="2.5"/>
+      <text x="225" y="70" class="lblA" fill="#15803d">consigne 60 °C</text>
+
+      <!-- Chute ouverture porte -->
+      <line x1="280" y1="80" x2="290" y2="110" stroke="#0ea5e9" stroke-width="2.5"/>
+      <text x="320" y="100" class="lbl" fill="#0ea5e9">ouverture porte</text>
+
+      <!-- Remontée -->
+      <line x1="290" y1="110" x2="320" y2="80" stroke="#dc2626" stroke-width="2.5"/>
+
+      <!-- Plateau 320→500 -->
+      <line x1="320" y1="80" x2="500" y2="80" stroke="#15803d" stroke-width="2.5"/>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Sonde Pt100 (capteur de température platine)</h3>
   <ul>
-    <li>De 0 à 5 min : montée de 20 °C à 60 °C</li>
-    <li>De 5 à 20 min : stabilisation à 60 °C (thermostat en action)</li>
-    <li>À t = 10 min : ouverture de la porte → chute à 45 °C puis remontée à 60 °C</li>
+    <li>Résistance à 0 °C : <strong>R<sub>0</sub> = 100 Ω</strong>.</li>
+    <li>Variation : <strong>+ 0,385 Ω par °C</strong>.</li>
+    <li>Plage d'utilisation : −200 °C à +850 °C.</li>
+    <li>Formule : <strong>R = 100 + 0,385 × θ</strong> (θ en °C).</li>
   </ul>
-</div>
 
-<h2>Document 2 — Données de la sonde Pt100</h2>
-<div class="ex">
-  <p>Sonde platine Pt100 :</p>
+  <h3>Document 3 — Courbe de refroidissement d'un fil d'étain pur</h3>
   <ul>
-    <li>Résistance à 0 °C : R₀ = 100 Ω</li>
-    <li>Variation : +0,385 Ω par degré Celsius</li>
-    <li>Plage : −200 °C à +850 °C</li>
+    <li>De 300 °C à 232 °C : refroidissement régulier (état <strong>liquide</strong>).</li>
+    <li>À 232 °C : <strong>palier de 3 min</strong> à température constante.</li>
+    <li>Sous 232 °C : refroidissement régulier (état <strong>solide</strong>).</li>
   </ul>
-</div>
 
-<h2>Document 3 — Brasure à l'étain</h2>
-<div class="ex">
-  <p>Courbe de refroidissement d'un fil d'étain pur fondu :</p>
+  <h3>Document 4 — Données utiles</h3>
   <ul>
-    <li>De 300 °C à 232 °C : refroidissement régulier (état liquide)</li>
-    <li>À 232 °C : palier de 3 min (température constante)</li>
-    <li>Sous 232 °C : refroidissement régulier (état solide)</li>
+    <li>Conversion : T(K) = T(°C) + 273.</li>
+    <li>3 modes de transfert thermique : conduction, convection, rayonnement.</li>
   </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (température et conversions), §2 (capteurs Pt100/CTN) et §3 (changements d'état) de la leçon Ch06.</em></p>
 </div>
 
-<h2>Questions</h2>
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment mesurer la température avec un capteur électrique et analyser un changement d'état lors d'une brasure ?
+</div>
+
 <div class="exo">
-  <h3>Partie A — Analyse de la courbe de l'étuve</h3>
-  <ol>
-    <li>Identifiez les deux phases de la courbe de 0 à 20 min (document 1). Pour chaque phase, décrivez le comportement de la température.</li>
-    <li>À t = 10 min, la température chute quand on ouvre la porte. Quel mode de transfert thermique explique l'entrée de l'air froid ? Justifiez.</li>
-    <li>Convertissez 60 °C en kelvins. Cette température est-elle dans la plage d'utilisation de la sonde Pt100 ?</li>
-  </ol>
-
-  <h3>Partie B — Capteur Pt100</h3>
-  <ol start="4">
-    <li>Calculez la résistance de la sonde Pt100 à 60 °C en utilisant les données du document 2.</li>
-    <li>L'enregistreur lit R = 107,7 Ω. Calculez la température mesurée.</li>
-    <li>Comparez la Pt100 et la CTN : pour laquelle la résistance augmente-t-elle avec la température ?</li>
-  </ol>
-
-  <h3>Partie C — Analyse de la brasure</h3>
-  <ol start="7">
-    <li>Sur la courbe du document 3, identifiez le palier et expliquez ce qu'il représente physiquement.</li>
-    <li>Pendant le palier, l'étain reçoit-il ou cède-t-il de la chaleur ? (indice : il refroidit, donc…)</li>
-    <li>Ce résultat est-il caractéristique d'un corps pur ou d'un mélange ? Justifiez.</li>
-    <li>La brasure terminée, l'assemblage est plongé dans l'eau à 20 °C. Expliquez le phénomène d'équilibre thermique qui s'ensuit.</li>
-  </ol>
-
+  <h2>Question 1 <span class="badge-blue">ANA</span></h2>
+  <p>Identifier les 2 phases de la courbe de l'étuve de 0 à 20 min. Décrire le comportement de la température dans chaque phase.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <strong>Correction :</strong><br>
-    <strong>A1.</strong> Phase 1 (0–5 min) : montée en température (chauffage). Phase 2 (5–20 min) : stabilisation à 60 °C (le thermostat régule).<br>
-    <strong>A2.</strong> Convection : l'air froid (plus dense) pénètre par le bas et l'air chaud sort par le haut. Le déplacement du fluide transporte l'énergie thermique.<br>
-    <strong>A3.</strong> 60 + 273 = 333 K. Oui, très largement dans la plage (−200 à +850 °C).<br>
-    <strong>B4.</strong> \(R = 100 + 60 × 0{,}385 = 123{,}1\) Ω.<br>
-    <strong>B5.</strong> \(107{,}7 = 100 + \theta × 0{,}385\) → \(\theta = 7{,}7/0{,}385 = 20\) °C.<br>
-    <strong>B6.</strong> La Pt100 : la résistance augmente (coefficient positif). La CTN : la résistance diminue (coefficient négatif).<br>
-    <strong>C7.</strong> Le palier à 232 °C correspond à la solidification : l'étain passe de liquide à solide à température constante.<br>
-    <strong>C8.</strong> L'étain cède de la chaleur à l'environnement (il refroidit). La chaleur libérée maintient la température constante pendant la solidification.<br>
-    <strong>C9.</strong> Corps pur (étain pur) : palier net à température constante. Un mélange n'aurait pas de palier.<br>
-    <strong>C10.</strong> L'assemblage chaud (> 232 °C au départ) cède de la chaleur à l'eau froide (20 °C). L'eau se réchauffe, l'assemblage refroidit, jusqu'à équilibre thermique à une température intermédiaire.
+    <p><strong>Phase 1 (0 à 5 min) :</strong> montée en température, de 20 °C à 60 °C. Étuve en chauffe maximale.</p>
+    <p><strong>Phase 2 (5 à 20 min) :</strong> stabilisation à 60 °C (température de consigne). Le <strong>thermostat régule</strong> en alternant chauffe et arrêt pour maintenir 60 °C.</p>
+    <p>Note : à t = 10 min, ouverture de la porte → chute brève à 45 °C, puis remontée à 60 °C en quelques minutes.</p>
   </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>À t = 10 min, la température chute quand on ouvre la porte. Quel mode de transfert thermique explique cela ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Convection</strong> : l'ouverture de la porte permet à l'<strong>air froid extérieur</strong> (plus dense) de pénétrer par le bas et à l'<strong>air chaud intérieur</strong> de sortir par le haut. C'est un déplacement du fluide (air) qui transporte l'énergie thermique hors de l'étuve.</p>
+    <p>(La conduction à travers les parois et le rayonnement par la porte ouverte jouent un rôle mineur dans cette chute brutale.)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Convertir 60 °C en kelvins. Cette T est-elle dans la plage d'utilisation de la Pt100 ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>T(K) = T(°C) + 273 = 60 + 273 = <strong>333 K</strong>.</p>
+    <p>Plage Pt100 : −200 à +850 °C, soit 73 K à 1 123 K. La valeur 333 K (60 °C) est largement dans cette plage ✓.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la résistance de la Pt100 à 60 °C avec R = 100 + 0,385 × θ.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>R = 100 + 0,385 × 60 = 100 + 23,1 = <strong>123,1 Ω</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>L'enregistreur lit R = 107,7 Ω. Calculer la température mesurée.</p>
+  <p>Méthode : isoler θ dans R = 100 + 0,385 × θ.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>R = 100 + 0,385 × θ → 107,7 − 100 = 0,385 × θ → 7,7 = 0,385 × θ.</p>
+    <p>θ = 7,7 / 0,385 = <strong>20 °C</strong>.</p>
+    <p>L'enregistreur indique donc 20 °C (température ambiante de l'atelier).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Comparer la Pt100 et la CTN : pour laquelle la résistance augmente-t-elle avec la température ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Pt100</strong> (résistance de platine) : R augmente quand T augmente → coefficient <strong>positif</strong> (PTC = Positive Temperature Coefficient).</p>
+    <p><strong>CTN</strong> (Coefficient de Température Négatif, semi-conducteur) : R diminue quand T augmente → coefficient <strong>négatif</strong> (NTC).</p>
+    <p>Usages :</p>
+    <ul>
+      <li>Pt100 : précis, stable, large plage. Utilisé en industrie, métrologie, étuve.</li>
+      <li>CTN (thermistance) : moins cher, plage limitée. Utilisé dans les appareils ménagers, fours, climatisation.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Sur la courbe du Doc 3, identifier le palier et expliquer ce qu'il représente physiquement.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le palier à <strong>232 °C</strong> (durée 3 min) correspond à la <strong>solidification de l'étain</strong> : passage de l'état liquide à l'état solide.</p>
+    <p>Pendant un changement d'état, la température reste constante car toute l'énergie libérée sert à <strong>changer la structure cristalline</strong> (réorganiser les atomes).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-blue">VAL</span></h2>
+  <p>Pendant le palier, l'étain reçoit-il ou cède-t-il de la chaleur ? (indice : il refroidit, donc…)</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'étain <strong>cède</strong> de la chaleur à l'environnement (il refroidit). Cette chaleur libérée s'appelle <strong>chaleur latente de solidification</strong>.</p>
+    <p>Tant qu'il reste de l'étain liquide, toute la chaleur cédée sert à transformer du liquide en solide → la T reste constante. Une fois tout solidifié, la T peut continuer de baisser.</p>
+    <p>Inversement, lors de la fusion (chauffage), l'étain <strong>absorbe</strong> de la chaleur sans changer de température.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-blue">VAL</span></h2>
+  <p>Ce résultat (palier net à T constante) est-il caractéristique d'un corps pur ou d'un mélange ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li</li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>C'est caractéristique d'un <strong>corps pur</strong> (étain pur) : la solidification se fait à température bien définie (ici 232 °C), avec un <strong>palier net</strong>.</p>
+    <p>Un <strong>mélange</strong> (alliage, solution) <strong>n'aurait pas de palier net</strong> : la T baisserait progressivement pendant la solidification (sur une plage de quelques degrés). C'est utile pour identifier la pureté d'une substance (méthode de banc Kofler en chimie).</p>
+    <p>Application : la <strong>brasure tendre</strong> classique utilise un alliage Sn-Pb (60/40) qui fond entre 183 et 188 °C (pas de palier strict). Pour des soudures précises, on utilise des alliages eutectiques (1 seule température de fusion).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 10 <span class="badge-blue">ANA</span></h2>
+  <p>La brasure terminée, l'assemblage est plongé dans l'eau à 20 °C. Expliquer le phénomène d'équilibre thermique.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L'assemblage chaud (~ 232 °C au moment de plonger) <strong>cède</strong> de la chaleur à l'eau froide (20 °C).</p>
+    <p>Évolution :</p>
+    <ul>
+      <li>L'assemblage refroidit (sa T baisse).</li>
+      <li>L'eau se réchauffe (sa T monte).</li>
+      <li>Le transfert continue jusqu'à <strong>équilibre thermique</strong> : T<sub>assemblage</sub> = T<sub>eau</sub>.</li>
+    </ul>
+    <p>La température finale dépend des masses, des capacités thermiques et de la T initiale. Souvent ~ 25-30 °C dans ce cas (peu de métal dans beaucoup d'eau).</p>
+    <p>Loi de la calorimétrie : Q<sub>cédé par l'assemblage</sub> = Q<sub>reçu par l'eau</sub> (à l'équilibre, en système isolé).</p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi les anciens thermomètres au mercure sont-ils interdits depuis 2009 en Europe ? Par quoi ont-ils été remplacés ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li</li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Les thermomètres au mercure sont interdits depuis le <strong>3 avril 2009</strong> (directive européenne 2007/51/CE) à cause des risques :</p>
+    <ol>
+      <li><strong>Toxicité du mercure :</strong> métal lourd qui s'accumule dans le système nerveux. Vapeurs toxiques si le thermomètre se casse.</li>
+      <li><strong>Pollution :</strong> 1 thermomètre cassé contamine 5 000 m³ d'air. Bioaccumulation dans la chaîne alimentaire (poissons).</li>
+      <li><strong>Convention de Minamata</strong> (2013) : 130 pays s'engagent à supprimer le mercure de tous les usages domestiques.</li>
+    </ol>
+    <p>Remplacements modernes :</p>
+    <table>
+      <thead><tr><th>Type</th><th>Plage</th><th>Précision</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td>Thermomètre au gallium</td><td>−40 à +110 °C</td><td>± 0,1 °C</td><td>Médecine</td></tr>
+        <tr><td>Thermomètre numérique CTN</td><td>−10 à +50 °C</td><td>± 0,1 °C</td><td>Médecine, ambiance</td></tr>
+        <tr><td>Thermomètre IR sans contact</td><td>−50 à +500 °C</td><td>± 1 °C</td><td>Industrie, médecine</td></tr>
+        <tr><td>Sonde Pt100</td><td>−200 à +850 °C</td><td>± 0,1 °C</td><td>Industrie, métrologie</td></tr>
+        <tr><td>Thermocouple K (Ni-Cr/Ni-Al)</td><td>−200 à +1 200 °C</td><td>± 1 °C</td><td>Fours, four à pyrolyse</td></tr>
+      </tbody>
+    </table>
+    <p>Pour le CAP : on travaille principalement avec des sondes Pt100 (industrie), des thermocouples K (fours haute température) ou des thermomètres IR sans contact (rapides, sécurisés).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Conversion :</strong> T(K) = T(°C) + 273. T(°C) = T(K) − 273.</li>
+    <li><strong>Capteurs de température :</strong> Pt100 (R augmente avec T), CTN (R diminue avec T).</li>
+    <li><strong>Changement d'état d'un corps pur</strong> = palier de température. La chaleur sert à changer l'état (chaleur latente).</li>
+    <li><strong>Corps pur</strong> : palier net (1 seule T). <strong>Mélange</strong> : pas de palier (plage de T).</li>
+    <li><strong>Équilibre thermique :</strong> 2 corps en contact échangent de la chaleur jusqu'à T identique.</li>
+    <li><strong>Solidification de l'étain pur</strong> : 232 °C. Brasure tendre Sn-Pb 60/40 : 183-188 °C.</li>
+  </ul>
 </div>
 
 </div>
 <script src="../../../nav.js"></script>
-<script>
-function toggle(btn){var c=btn.nextElementSibling;if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}else{c.style.display='block';btn.textContent='Masquer la correction';}}
-</script>
 </body>
 </html>
