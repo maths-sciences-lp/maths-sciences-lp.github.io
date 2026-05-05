@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité 4 – Loi binomiale en menuiserie – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité 4 – Échantillonnage et schéma de Bernoulli <span style="font-size:.55em;color:#0969da;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 2 — Probabilités | 1ère Bac Pro | Mathématiques | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Identifier un schéma de Bernoulli (épreuve à 2 issues répétée)</li>
+    <li>Calculer une probabilité dans un schéma de Bernoulli</li>
+    <li>Utiliser un tableur pour estimer une probabilité</li>
+    <li>Décider d'un plan de contrôle qualité</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – contrôle d'une commande de charnières</h2>
+  <p><em>Hugo, gérant de <strong>Mob'Style 33</strong> à Bordeaux, reçoit une caisse de 50 charnières. Le fournisseur garantit 95 % de pièces conformes. Hugo veut estimer la probabilité d'avoir <strong>exactement 3 charnières défectueuses</strong> dans la caisse.</em></p>
+
+  <h3>Document 1 – Schéma de Bernoulli</h3>
+  <p>On répète n fois une épreuve à 2 issues : succès (probabilité p) ou échec (1−p), de manière indépendante.</p>
+  <p>Probabilité d'obtenir exactement k succès :</p>
+  <p style="text-align:center;font-size:1.05em">\(P(X = k) = \binom{n}{k} \times p^k \times (1-p)^{n-k}\)</p>
+
+  <h3>Document 2 – Coefficient binomial</h3>
+  <p>\(\binom{n}{k}\) = nombre de façons de choisir k objets parmi n. Lecture sur calculatrice : touche nCr ou Combinaison(n, k).</p>
+  <p>Exemples : C(50, 0) = 1 ; C(50, 1) = 50 ; C(50, 3) = 19 600.</p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Combien de charnières défectueuses Hugo peut-il s'attendre à recevoir, et avec quelle probabilité ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Identifier les paramètres du schéma de Bernoulli pour ce contrôle :</p>
+  <p>n = ? · p (probabilité d'une charnière défectueuse) = ? · q = ? · X = ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>n = 50 (nombre de charnières dans la caisse).</p>
+    <p>p = 0,05 (5 % de défauts garantis par le fournisseur).</p>
+    <p>q = 1 − p = 0,95.</p>
+    <p>X = nombre de charnières défectueuses dans la caisse (variable aléatoire).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer P(X = 3) : probabilité d'avoir exactement 3 charnières défectueuses.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(X = 3) = C(50, 3) × 0,05³ × 0,95⁴⁷</p>
+    <p>= 19 600 × 1,25 × 10⁻⁴ × 0,0888</p>
+    <p>≈ <strong>0,2199 = 22 %</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer P(X = 0), P(X = 1), P(X = 2). Quelle est la valeur la plus probable ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(X = 0) = 0,95⁵⁰ ≈ <strong>0,077</strong> (7,7 %)</p>
+    <p>P(X = 1) = 50 × 0,05 × 0,95⁴⁹ ≈ <strong>0,202</strong> (20,2 %)</p>
+    <p>P(X = 2) = 1 225 × 0,0025 × 0,95⁴⁸ ≈ <strong>0,261</strong> (26,1 %)</p>
+    <p>Le plus probable : X = 2 (≈ 26 %). On s'attend à recevoir <strong>2 charnières défectueuses</strong> en moyenne sur 50.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer P(X ≤ 3) (probabilité d'avoir au plus 3 défectueuses).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(X ≤ 3) = P(X = 0) + P(X = 1) + P(X = 2) + P(X = 3)</p>
+    <p>= 0,077 + 0,202 + 0,261 + 0,220 = <strong>0,760 = 76 %</strong>.</p>
+    <p>Il y a 76 % de chances qu'Hugo trouve au plus 3 défectueuses.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Calculer l'<strong>espérance</strong> E(X) = n × p (nombre moyen de défauts).</p>
+  <p>Comparer à la valeur la plus probable trouvée à la question 3.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>E(X) = 50 × 0,05 = <strong>2,5</strong>. En moyenne, on attend 2,5 défectueuses (à arrondir vers 2 ou 3).</p>
+    <p>Cohérent avec la valeur la plus probable (2). L'espérance et le mode (= valeur la plus probable) sont voisins pour la loi binomiale.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Hugo refuse la caisse si elle contient <strong>plus de 5 défectueuses</strong>. Calculer P(X ≥ 6).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(X ≥ 6) = 1 − P(X ≤ 5).</p>
+    <p>P(X = 4) ≈ 0,136 ; P(X = 5) ≈ 0,066.</p>
+    <p>P(X ≤ 5) ≈ 0,077 + 0,202 + 0,261 + 0,220 + 0,136 + 0,066 ≈ 0,962.</p>
+    <p>P(X ≥ 6) ≈ 1 − 0,962 = <strong>0,038 ≈ 3,8 %</strong>.</p>
+    <p>Risque très faible que Hugo doive refuser la caisse.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Hugo reçoit 100 caisses de 50 charnières dans l'année. Combien de caisses risque-t-il de devoir refuser ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(refus) = 0,038.</p>
+    <p>Nombre de caisses refusées attendu : 100 × 0,038 ≈ <strong>4 caisses/an</strong>.</p>
+    <p>Hugo doit prévoir 4 retours produits par an, soit ≈ 1 retour tous les 3 mois. À gérer dans les délais et stocks.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Hugo rédige son cahier des charges qualité. 5 lignes max.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Charte qualité — caisses de charnières (50 pcs)</strong><br>
+      • Garantie fournisseur : 95 % de pièces conformes (p = 5 % de défaut).<br>
+      • <strong>Espérance défauts par caisse</strong> : 2,5 (loi binomiale n=50, p=0,05).<br>
+      • Acceptation : ≤ 5 défauts/caisse · Refus : ≥ 6 défauts.<br>
+      • <strong>Probabilité de refus</strong> : 3,8 % → 4 caisses refusées par an (sur 100).<br>
+      • Si plus de 4 caisses refusées en 1 an : revoir le contrat avec le fournisseur (taux de défaut réel &gt; 5 %).
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Si Hugo veut être plus exigeant et accepter une caisse seulement si elle a ≤ 2 défauts, calculer P(acceptation).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(X ≤ 2) = 0,077 + 0,202 + 0,261 = <strong>0,540 = 54 %</strong>.</p>
+    <p>Hugo refuserait alors 46 % des caisses → 46 caisses/an au lieu de 4. Trop élevé. Il devrait soit négocier un meilleur fournisseur (p &lt; 3 %), soit assouplir son seuil.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Loi binomiale</strong> B(n, p) : nombre de succès dans n épreuves de Bernoulli indépendantes.</li>
+    <li>P(X = k) = C(n, k) × p^k × (1−p)^(n−k).</li>
+    <li>Espérance : E(X) = n × p (valeur moyenne attendue).</li>
+    <li>Variance : V(X) = n × p × (1−p).</li>
+    <li>Application industrielle : contrôle qualité par échantillonnage.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §4 (Loi binomiale) de la leçon Ch02.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

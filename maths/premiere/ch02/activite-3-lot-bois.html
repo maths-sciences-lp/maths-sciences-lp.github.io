@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité 3 – Échantillonnage d'un lot de bois – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité 3 – Probabilité d'un défaut sur un lot de planches <span style="font-size:.55em;color:#0969da;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 2 — Probabilités | 1ère Bac Pro | Mathématiques | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer une probabilité d'événement composé</li>
+    <li>Distinguer événements compatibles / incompatibles</li>
+    <li>Calculer P(A ∪ B) avec la formule</li>
+    <li>Décider d'accepter ou refuser un lot</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – contrôle d'un lot de planches</h2>
+  <p><em>Sophie, contrôleuse à la <strong>Scierie du Morvan</strong> à Autun, contrôle un lot de 200 planches de chêne. Elle classe chaque planche selon 2 critères : présence de nœuds (N) et présence de taches (T).</em></p>
+
+  <h3>Document 1 – Résultats du contrôle</h3>
+  <table>
+    <thead><tr><th></th><th>Nœuds</th><th>Sans nœuds</th><th>Total</th></tr></thead>
+    <tbody>
+      <tr><td>Taches</td><td>15</td><td>20</td><td>35</td></tr>
+      <tr><td>Sans taches</td><td>40</td><td>125</td><td>165</td></tr>
+      <tr><td>Total</td><td>55</td><td>145</td><td>200</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 – Notations</h3>
+  <ul>
+    <li>N : « la planche a des nœuds ».</li>
+    <li>T : « la planche a des taches ».</li>
+    <li>P(A ∪ B) = P(A) + P(B) − P(A ∩ B) (formule des probabilités).</li>
+  </ul>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle est la probabilité qu'une planche tirée au hasard ait au moins un défaut (nœud ou tache) ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer P(N), P(T), P(N ∩ T) à partir du tableau.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(N) = 55/200 = <strong>0,275</strong> (27,5 %)</p>
+    <p>P(T) = 35/200 = <strong>0,175</strong> (17,5 %)</p>
+    <p>P(N ∩ T) = 15/200 = <strong>0,075</strong> (7,5 %)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer P(N ∪ T) = probabilité d'au moins un défaut.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(N ∪ T) = P(N) + P(T) − P(N ∩ T) = 0,275 + 0,175 − 0,075 = <strong>0,375</strong> (37,5 %).</p>
+    <p>Vérification : (15 + 40 + 20)/200 = 75/200 = 0,375 ✔</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la probabilité qu'une planche soit <strong>parfaite</strong> (sans nœud ni tache).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(parfaite) = P(N̄ ∩ T̄) = 125/200 = <strong>0,625</strong>.</p>
+    <p>Ou : 1 − P(au moins un défaut) = 1 − 0,375 = 0,625 ✔</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Le client n'accepte que les planches sans tache (les nœuds sont tolérables car esthétiques). Quelle proportion de planches sont vendables ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Sans tache : P(T̄) = 165/200 = <strong>0,825 = 82,5 %</strong> des planches.</p>
+    <p>Sur 200 planches, 165 sont vendables au client. Les 35 avec taches partent en second choix (vendu moins cher).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Sophie tire une planche au hasard. Sachant qu'elle a des nœuds, quelle est la probabilité qu'elle ait aussi des taches ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P_N(T) = P(N ∩ T) / P(N) = 0,075 / 0,275 ≈ <strong>0,273 = 27,3 %</strong>.</p>
+    <p>Parmi les planches à nœuds, 27 % ont aussi des taches.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Les événements N et T sont-ils <strong>indépendants</strong> ?</p>
+  <p><em>N et T indépendants ⇔ P(N ∩ T) = P(N) × P(T)</em></p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(N) × P(T) = 0,275 × 0,175 ≈ 0,048.</p>
+    <p>P(N ∩ T) = 0,075.</p>
+    <p>0,048 ≠ 0,075 → <strong>N et T ne sont pas indépendants</strong>. Il y a une association : les planches à nœuds ont tendance à avoir aussi des taches (probablement même origine de défaut, ex. mauvais arbre).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Le prix : 50 €/planche pour les parfaites, 30 € pour les premières classes (sans tache mais avec nœuds), 15 € pour les autres. Calculer la valeur du lot.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Parfaites (125) × 50 = 6 250 €</p>
+    <p>Sans taches mais à nœuds (40) × 30 = 1 200 €</p>
+    <p>Avec taches (35) × 15 = 525 €</p>
+    <p>Total : <strong>7 975 €</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Sophie rédige le bordereau de tri du lot. 5 lignes max.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Bordereau de tri — Lot 200 planches chêne</strong><br>
+      • Catégorie A (parfaites) : <strong>125 planches</strong> à 50 €/p — 6 250 €<br>
+      • Catégorie B (1<sup>er</sup> choix, sans tache) : 40 planches à 30 €/p — 1 200 €<br>
+      • Catégorie C (avec tache) : 35 planches à 15 €/p — 525 €<br>
+      • Valeur totale du lot : <strong>7 975 € HT</strong><br>
+      • Note : les défauts nœuds + taches sont corrélés. Examiner l'origine du bois (arbre, parcelle).
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Si l'entreprise traite 50 lots/an de 200 planches, calculer le chiffre d'affaires annuel sur ces planches.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>50 × 7 975 ≈ <strong>398 750 €/an</strong>. Soit ≈ 400 k€ HT de CA sur cette gamme de produits.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Probabilité d'union</strong> : P(A ∪ B) = P(A) + P(B) − P(A ∩ B).</li>
+    <li>Si A et B incompatibles : P(A ∩ B) = 0 → P(A ∪ B) = P(A) + P(B).</li>
+    <li><strong>Indépendance</strong> : P(A ∩ B) = P(A) × P(B).</li>
+    <li>Probabilité conditionnelle : P_A(B) = P(A ∩ B) / P(A).</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (Probabilités) et §3 (Événements) de la leçon Ch02.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

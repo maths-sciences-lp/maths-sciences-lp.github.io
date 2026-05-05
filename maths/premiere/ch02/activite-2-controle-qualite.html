@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité 2 – Contrôle qualité avec arbre – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité 2 – Contrôle qualité de portes – 1ère Pro <span style="font-size:.55em;color:#0969da;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 2 — Probabilités | 1ère Bac Pro | Mathématiques | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Construire un arbre pondéré</li>
+    <li>Appliquer la formule des probabilités totales</li>
+    <li>Calculer une probabilité conditionnelle</li>
+    <li>Décider d'une stratégie qualité</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – contrôle qualité dans une menuiserie</h2>
+  <p><em>Karim, contrôleur qualité chez <strong>PorteBois 31</strong> à Toulouse, doit analyser la production des 3 lignes de fabrication de portes intérieures. Les portes sont contrôlées en sortie : conformes ou défectueuses.</em></p>
+
+  <h3>Document 1 – Production et taux de défaut</h3>
+  <table>
+    <thead><tr><th>Ligne</th><th>Part de production</th><th>Taux de défaut</th></tr></thead>
+    <tbody>
+      <tr><td>L1 (machine récente)</td><td>50 %</td><td>2 %</td></tr>
+      <tr><td>L2 (machine ancienne)</td><td>30 %</td><td>5 %</td></tr>
+      <tr><td>L3 (manuelle artisans)</td><td>20 %</td><td>1 %</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 – Notations</h3>
+  <ul>
+    <li>L1, L2, L3 : événements « la porte vient de la ligne i ».</li>
+    <li>D : « la porte est défectueuse ».</li>
+    <li>Probabilité conditionnelle P_L1(D) = 0,02 : sachant L1, prob de défaut = 2 %.</li>
+  </ul>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle est la probabilité qu'une porte choisie au hasard soit défectueuse ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>Donner les probabilités P(L1), P(L2), P(L3) sous forme décimale.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(L1) = 0,50 ; P(L2) = 0,30 ; P(L3) = 0,20.</p>
+    <p>Vérification : 0,50 + 0,30 + 0,20 = 1 ✔</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Construire l'arbre pondéré (3 branches L1/L2/L3, puis 2 sous-branches D/D̄ pour chacune).</p>
+  <p>Calculer la probabilité de chaque branche terminale.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Chemin</th><th>P</th></tr></thead>
+      <tbody>
+        <tr><td>L1 ∩ D</td><td>0,50 × 0,02 = <strong>0,010</strong></td></tr>
+        <tr><td>L1 ∩ D̄</td><td>0,50 × 0,98 = 0,490</td></tr>
+        <tr><td>L2 ∩ D</td><td>0,30 × 0,05 = <strong>0,015</strong></td></tr>
+        <tr><td>L2 ∩ D̄</td><td>0,30 × 0,95 = 0,285</td></tr>
+        <tr><td>L3 ∩ D</td><td>0,20 × 0,01 = <strong>0,002</strong></td></tr>
+        <tr><td>L3 ∩ D̄</td><td>0,20 × 0,99 = 0,198</td></tr>
+      </tbody>
+    </table>
+    <p>Total : 0,010 + 0,490 + 0,015 + 0,285 + 0,002 + 0,198 = 1,000 ✔</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer P(D), la probabilité qu'une porte tirée au hasard soit défectueuse (formule des probabilités totales).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(D) = P(L1) × P_L1(D) + P(L2) × P_L2(D) + P(L3) × P_L3(D)</p>
+    <p>= 0,010 + 0,015 + 0,002 = <strong>0,027 = 2,7 %</strong></p>
+    <p>Sur 1 000 portes, environ 27 sont défectueuses.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Karim trouve une porte défectueuse. Quelle est la probabilité qu'elle vienne de L2 ?</p>
+  <p><em>Formule de Bayes : P_D(L2) = P(L2 ∩ D) / P(D)</em></p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P_D(L2) = 0,015 / 0,027 ≈ <strong>0,556 = 55,6 %</strong>.</p>
+    <p>Plus de la moitié des portes défectueuses viennent de L2 ! Pourtant L2 ne représente que 30 % de la production.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Calculer P_D(L1) et P_D(L3). Que constate Karim ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P_D(L1) = 0,010 / 0,027 ≈ 37 %.</p>
+    <p>P_D(L3) = 0,002 / 0,027 ≈ 7,4 %.</p>
+    <p>L2 (37 % de la production) génère 55,6 % des défauts. L3 (20 % de la production, mais 7,4 % des défauts) est très performante. Karim doit cibler L2 en priorité pour améliorer la qualité globale.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>L'entreprise produit 5 000 portes/an. Combien de portes défectueuses sont produites par chaque ligne et au total ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>L1 défauts : 5 000 × 0,010 = 50 portes.</p>
+    <p>L2 défauts : 5 000 × 0,015 = 75 portes.</p>
+    <p>L3 défauts : 5 000 × 0,002 = 10 portes.</p>
+    <p>Total : <strong>135 portes défectueuses/an</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Une porte défectueuse coûte 80 € (rebut + retouche). Calculer le coût annuel total puis le coût après amélioration de L2 (taux ramené à 2 %).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Coût actuel : 135 × 80 = <strong>10 800 €/an</strong>.</p>
+    <p>Si L2 passe à 2 % : nouvelles défauts L2 = 5 000 × 0,30 × 0,02 = 30 (au lieu de 75).</p>
+    <p>Total nouveaux défauts : 50 + 30 + 10 = 90 portes. Coût : 7 200 €/an. <strong>Économie : 3 600 €/an</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Karim présente son analyse au directeur. Rédiger en 5 lignes les recommandations.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Audit qualité — PorteBois 31</strong><br>
+      • Taux de défaut global : 2,7 % (135 portes/an, coût 10 800 €/an).<br>
+      • <strong>L2 (machine ancienne)</strong> est responsable de <strong>55,6 % des défauts</strong> alors qu'elle ne produit que 30 % des portes.<br>
+      • Action prioritaire : maintenance/remplacement de L2 (objectif 2 % de défaut).<br>
+      • Économie attendue : 3 600 €/an (justifie investissement de ≈ 15-20 k€).<br>
+      • L3 (artisans) est exemplaire (taux 1 %) : valoriser leur expertise par la formation des opérateurs L1/L2.
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Si Karim échantillonne 100 portes, quelle est la probabilité (estimée) de trouver au moins 1 défectueuse ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(aucune défectueuse en 100 tirages) = (0,973)¹⁰⁰ ≈ 0,065.</p>
+    <p>P(au moins 1) = 1 − 0,065 ≈ <strong>93,5 %</strong>. Quasi certain de trouver au moins 1 défectueuse en échantillonnant 100 portes.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Arbre pondéré</strong> : multiplier les probabilités le long d'un chemin.</li>
+    <li><strong>Probabilités totales</strong> : P(D) = Σ P(Li) × P_Li(D).</li>
+    <li><strong>Probabilité conditionnelle</strong> (Bayes) : P_D(Li) = P(Li ∩ D) / P(D).</li>
+    <li>L'analyse a posteriori (Bayes) permet d'identifier la source la plus problématique.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (Probabilités), §2 (Arbre) et §3 (Probabilités totales) de la leçon Ch02.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
