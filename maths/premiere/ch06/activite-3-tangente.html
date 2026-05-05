@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Activité 3 – Tangente et nombre dérivé – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité 3 – Tangente à une courbe et vitesse instantanée <span style="font-size:.55em;color:#0969da;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 6 — Dérivée | 1ère Bac Pro | Mathématiques | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Calculer le nombre dérivé en un point</li>
+    <li>Trouver l'équation de la tangente</li>
+    <li>Interpréter graphiquement la dérivée</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – position d'une tête de découpe CNC</h2>
+  <p><em>La position d'une tête de découpe CNC en fonction du temps est : f(t) = t³ − 6t² + 9t (t en s, f en cm).</em></p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle est la vitesse instantanée à t = 1 s, et l'équation de la tangente à la courbe en ce point ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer f'(t).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f'(t) = 3t² − 12t + 9.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer f(1) et f'(1) (vitesse instantanée à t = 1 s).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f(1) = 1 − 6 + 9 = <strong>4 cm</strong>.</p>
+    <p>f'(1) = 3 − 12 + 9 = <strong>0 cm/s</strong>. Tête immobile à t = 1 s.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Donner l'équation de la tangente en t = 1.</p>
+  <p><em>Formule : y = f'(a)(t − a) + f(a).</em></p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>y = 0 × (t − 1) + 4 = <strong>4</strong>.</p>
+    <p>La tangente est horizontale au niveau y = 4. C'est un sommet (maximum local) de la courbe.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer f(3) et f'(3).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f(3) = 27 − 54 + 27 = <strong>0 cm</strong>. f'(3) = 27 − 36 + 9 = <strong>0 cm/s</strong>.</p>
+    <p>Autre extremum (minimum) à t = 3 s, position 0 cm.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Étudier le signe de f'(t) sur [0 ; 4].</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f'(t) = 3(t² − 4t + 3) = 3(t − 1)(t − 3).</p>
+    <p>f'(t) &gt; 0 sur [0 ; 1[ et ]3 ; 4]. f'(t) &lt; 0 sur ]1 ; 3[.</p>
+    <p>f croissante puis décroissante puis croissante.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Trouver la vitesse maximale et minimale sur [0 ; 4].</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f'(t) = 3t² − 12t + 9. Sommet (point extrême) : f''(t) = 6t − 12 = 0 → t = 2.</p>
+    <p>f'(2) = 12 − 24 + 9 = −3 cm/s (vitesse min, négative).</p>
+    <p>f'(0) = 9 cm/s, f'(4) = 9 cm/s (vitesse max aux bornes).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Donner l'équation de la tangente en t = 0.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>f(0) = 0. f'(0) = 9.</p>
+    <p>Tangente : y = 9(t − 0) + 0 = <strong>9 t</strong>.</p>
+    <p>Au début, la tête se déplace à 9 cm/s.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Décrire le mouvement de la tête de découpe en 4 lignes.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Mouvement tête CNC f(t) = t³−6t²+9t</strong><br>
+      • t = 0 à 1 s : avance vite (9→0 cm/s) jusqu'à 4 cm.<br>
+      • t = 1 à 3 s : <strong>recul</strong> (vitesse négative, retour à 0 cm).<br>
+      • t = 3 à 4 s : nouvelle avance.<br>
+      • Mouvement complexe : trajet en aller-retour, typique d'une opération de fraisage en passes.
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Calculer la distance totale parcourue (pas la position finale, mais la somme des avances et reculs).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Aller [0 ; 1] : +4 cm. Retour [1 ; 3] : f(1) − f(3) = 4 − 0 = 4 cm. Aller [3 ; 4] : f(4) − f(3) = (64 − 96 + 36) − 0 = 4 cm.</p>
+    <p>Total : 4 + 4 + 4 = <strong>12 cm parcourus</strong>. (Position finale : 4 cm.)</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Le <strong>nombre dérivé f'(a)</strong> est la pente de la tangente à la courbe au point d'abscisse a.</li>
+    <li>Tangente en (a ; f(a)) : y = f'(a)(x − a) + f(a).</li>
+    <li>Si f'(a) = 0, la tangente est horizontale (extremum local possible).</li>
+    <li>Vitesse instantanée = dérivée de la position par rapport au temps.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (Nombre dérivé) et §2 (Tangente) de la leçon Ch06.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch06 – Activité 4 – Extremum d'une fonction – 1ère Pro</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-1ere-pro.html" class="nb">← Retour au sommaire</a>
+
+<header>
+  <h1>Activité 4 – Volume optimal d'une boîte sans couvercle <span style="font-size:.55em;color:#0969da;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 6 — Dérivée | 1ère Bac Pro | Mathématiques | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Modéliser un problème d'optimisation par une fonction</li>
+    <li>Étudier les variations à l'aide de la dérivée</li>
+    <li>Trouver l'extremum optimal</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – fabrication d'une boîte sans couvercle</h2>
+  <p><em>Une plaque de bois carrée de 30 cm de côté est utilisée pour fabriquer une boîte sans couvercle : on découpe 4 carrés identiques de côté x aux 4 coins, puis on plie pour former la boîte.</em></p>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle valeur de x donne le volume maximal de la boîte ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">ANA</span></h2>
+  <p>Donner l'expression du volume V(x) de la boîte (longueur, largeur, hauteur).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Base carrée de côté 30 − 2x. Hauteur = x.</p>
+    <p>V(x) = x × (30 − 2x)² = x × (900 − 120x + 4x²) = 4x³ − 120x² + 900x.</p>
+    <p>Domaine : 0 &lt; x &lt; 15.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer V'(x).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V'(x) = 12x² − 240x + 900 = 12(x² − 20x + 75).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Résoudre V'(x) = 0.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>x² − 20x + 75 = 0. Δ = 400 − 300 = 100. √Δ = 10.</p>
+    <p>x_1 = (20 − 10)/2 = 5 ; x_2 = (20 + 10)/2 = 15 (rejeté car borne).</p>
+    <p><strong>x = 5 cm</strong> est la solution dans le domaine.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Étudier le signe de V'(x) sur ]0 ; 15[.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V'(x) = 12(x − 5)(x − 15).</p>
+    <p>Pour 0 &lt; x &lt; 5 : V' &gt; 0 (V croissante).</p>
+    <p>Pour 5 &lt; x &lt; 15 : V' &lt; 0 (V décroissante).</p>
+    <p>x = 5 est un <strong>maximum</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer V(5) (volume maximal).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V(5) = 5 × (30 − 10)² = 5 × 400 = <strong>2 000 cm³ = 2 L</strong>.</p>
+    <p>La boîte optimale fait 5 × 20 × 20 cm.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Calculer V(3) et V(7). Comparer.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V(3) = 3 × (30 − 6)² = 3 × 576 = 1 728 cm³.</p>
+    <p>V(7) = 7 × (30 − 14)² = 7 × 256 = 1 792 cm³.</p>
+    <p>Tous deux inférieurs au max V(5) = 2 000.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Pour une plaque de 60 cm de côté (au lieu de 30), recalculer x optimal et V_max.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V(x) = x(60 − 2x)². V'(x) = 12x² − 480x + 3 600 = 12(x² − 40x + 300).</p>
+    <p>Δ = 1 600 − 1 200 = 400. x = (40 − 20)/2 = <strong>10 cm</strong>.</p>
+    <p>V(10) = 10 × 1 600 = <strong>16 000 cm³ = 16 L</strong>.</p>
+    <p>x optimal = 1/6 du côté de la plaque (résultat général).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Rédiger en 3-4 lignes la fiche de fabrication.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Boîte volume max — plaque 30×30 cm</strong><br>
+      • Découper 4 carrés de <strong>5 × 5 cm</strong> aux 4 coins.<br>
+      • Plier vers le haut : boîte 5 × 20 × 20 cm.<br>
+      • <strong>Volume max : 2 000 cm³ = 2 litres</strong>.<br>
+      • Méthode : étude de fonction V(x) avec dérivée annulée à x = 5 (maximum).
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Pour une plaque rectangulaire L × l, comment trouver x optimal ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>V(x) = x (L − 2x)(l − 2x). V'(x) = 12x² − 4(L+l)x + Ll. Annuler V'(x) → équation du 2<sup>nd</sup> degré.</p>
+    <p>Pour la plaque carrée (L = l), x = l/6. Pour 2L = l (rectangle 60 × 30 par ex.), résoudre l'équation.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Pour optimiser : exprimer la grandeur en fonction d'une variable, dériver, résoudre f'(x) = 0.</li>
+    <li>Étudier le signe de f' pour conclure (max ou min).</li>
+    <li>Vérifier que la solution est dans le domaine valide.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §3 (Variations) et §4 (Optimisation) de la leçon Ch06.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
