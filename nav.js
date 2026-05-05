@@ -13,6 +13,22 @@
  *   /physique-chimie/terminale-iccer/ch01/exercices.html
  *   /simulations/equations.html
  */
+/* ── Fonction toggle globale pour boutons « Voir la correction » ──── */
+/* Définie AVANT toute IIFE pour qu'elle soit toujours disponible,    */
+/* y compris sur les activités à nom non standard (activite-2-…, etc.) */
+if (typeof window.toggle !== 'function') {
+  window.toggle = function (btn) {
+    var c = btn.nextElementSibling;
+    if (c.style.display === 'block') {
+      c.style.display = 'none';
+      btn.textContent = 'Voir la correction';
+    } else {
+      c.style.display = 'block';
+      btn.textContent = 'Masquer la correction';
+    }
+  };
+}
+
 (function () {
   'use strict';
 
@@ -539,19 +555,7 @@
   /* ── Chargement de nav.css ─────────────────────────────────────────── */
   injectCss();
 
-/* ── Fonction toggle globale pour boutons « Voir la correction » ──── */
-  if (typeof window.toggle !== 'function') {
-    window.toggle = function (btn) {
-      var c = btn.nextElementSibling;
-      if (c.style.display === 'block') {
-        c.style.display = 'none';
-        btn.textContent = 'Voir la correction';
-      } else {
-        c.style.display = 'block';
-        btn.textContent = 'Masquer la correction';
-      }
-    };
-  }
+  /* (toggle défini en début de fichier, hors IIFE) */
 
 })();
 
