@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch04 – Activité – Diagnostic thermique d'une maison – Première ICCER</title>
+<title>Ch04 – Activité – Diagnostic thermique d'une maison – PC 1ère ICCER</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
@@ -11,50 +11,101 @@
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-1ere-iccer.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE ICCER (Grpt 1)</a>
 
 <header>
-  <h1>Activité – Diagnostiquer les pertes de chaleur d'une maison</h1>
-  <p class="sous-titre">Chapitre 4 | Première Bac Pro (Grpt 1) | Physique-Chimie | ⏱ 35 min</p>
+  <h1>Activité – Diagnostiquer les pertes de chaleur d'une maison <span style="font-size:.55em;color:#b91c1c;font-weight:600">DIAGNOSTIC</span></h1>
+  <p class="sous-titre">Chapitre 4 | Première Bac Pro ICCER (Grpt 1) | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 14:45</p>
 </header>
 <button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
 <div class="objectifs">
   <strong>Objectifs :</strong>
   <ul>
-    <li>Identifier les trois modes de transfert thermique : conduction, convection, rayonnement</li>
+    <li>Identifier les 3 modes de transfert thermique : conduction, convection, rayonnement</li>
     <li>Associer chaque mode à des situations concrètes dans un bâtiment</li>
-    <li>Utiliser la relation \(Q = m \times c \times \Delta\theta\) pour calculer une perte thermique</li>
-    <li>Comparer les propriétés isolantes de différents matériaux</li>
+    <li>Utiliser la relation Q = m × c × Δθ pour calculer une perte thermique</li>
+    <li>Comparer les propriétés isolantes de différents matériaux (λ)</li>
     <li>Proposer des améliorations pour réduire les pertes de chaleur</li>
   </ul>
 </div>
 
-<!-- ===== DOCUMENT D'ACCROCHE ===== -->
 <div class="situation">
-  <h2>Situation professionnelle</h2>
-  <p>
-    <em>Inès, technicienne en installation thermique chez <strong>DiagTherm+</strong> à Lyon, réalise un diagnostic des pertes de chaleur d'un pavillon construit en 1985. Elle utilise une <strong>caméra thermique</strong> pour repérer les zones de déperdition. Le propriétaire se plaint de factures de chauffage élevées malgré un chauffage récent.</em>
-  </p>
+  <h2>Situation – diagnostic thermique d'un pavillon de 1985</h2>
+  <p><em>Inès, technicienne en installation thermique chez DiagTherm+ à Lyon, réalise un diagnostic des pertes de chaleur d'un pavillon construit en 1985. Elle utilise une caméra thermique pour repérer les zones de déperdition. Le propriétaire se plaint de factures de chauffage élevées malgré un chauffage récent.</em></p>
 
-  <h3>Document 1 — Relevés de la caméra thermique (face extérieure du pavillon)</h3>
-  <p>La caméra thermique affiche les températures de surface en fausses couleurs. Plus la surface est chaude à l'extérieur, plus la chaleur s'échappe de l'intérieur.</p>
+  <h3>Document 1 — Schéma du pavillon avec zones de déperdition</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 220" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Schéma du pavillon : toiture (30% pertes), murs (25%), fenêtres (15%), sol (10%), ventilation (20%). Air chaud monte vers la toiture, fenêtre simple vitrage = forte déperdition.">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .val{font:600 11px sans-serif;fill:#dc2626;text-anchor:middle}
+        </style>
+        <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/></marker>
+      </defs>
+      <text class="ti" x="270" y="20">Pertes thermiques d'un pavillon non isolé (1985)</text>
+
+      <!-- Pavillon -->
+      <polygon points="80,160 80,80 270,30 460,80 460,160" fill="#fef3c7" stroke="#1a202c" stroke-width="1.5"/>
+      <line x1="80" y1="160" x2="460" y2="160" stroke="#1a202c"/>
+      <rect x="80" y="160" width="380" height="20" fill="#a16207"/>
+
+      <!-- Pertes toiture -->
+      <line x1="180" y1="55" x2="180" y2="20" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="270" y1="30" x2="270" y2="0" stroke="#dc2626" stroke-width="3" marker-end="url(#arr)"/>
+      <line x1="360" y1="55" x2="360" y2="20" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="270" y="50" class="val">Toiture 30 %</text>
+
+      <!-- Pertes murs -->
+      <line x1="80" y1="120" x2="55" y2="120" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="460" y1="120" x2="485" y2="120" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="40" y="110" class="val">Murs</text>
+      <text x="40" y="125" class="val">25 %</text>
+
+      <!-- Fenêtres -->
+      <rect x="130" y="100" width="40" height="40" fill="#bae6fd" stroke="#1a202c"/>
+      <text x="150" y="155" class="lbl">simple vitrage</text>
+      <text x="150" y="92" class="val">15 %</text>
+      <rect x="350" y="100" width="40" height="40" fill="#dcfce7" stroke="#1a202c"/>
+      <text x="370" y="155" class="lbl">double vitrage</text>
+
+      <!-- Sol -->
+      <line x1="200" y1="180" x2="200" y2="200" stroke="#0ea5e9" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="200" y="215" class="val">Sol 10 %</text>
+
+      <!-- Ventilation -->
+      <text x="500" y="185" class="val">Vent.</text>
+      <text x="500" y="200" class="val">20 %</text>
+
+      <!-- Intérieur 20°C, extérieur 3°C -->
+      <text x="270" y="100" class="lblA">20 °C int.</text>
+      <text x="270" y="115" class="lbl">Tair ext = 3 °C</text>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Relevés de la caméra thermique (faces extérieures)</h3>
+  <p>Plus la surface est chaude à l'extérieur, plus la chaleur s'échappe de l'intérieur.</p>
   <table>
-    <thead><tr><th>Zone du pavillon</th><th>Température extérieure de surface</th><th>Couleur sur la caméra</th><th>Observation</th></tr></thead>
+    <thead><tr><th>Zone</th><th>T<sub>surface ext.</sub> (°C)</th><th>Couleur caméra</th><th>Observation</th></tr></thead>
     <tbody>
-      <tr><td>Mur nord (béton, sans isolation)</td><td>11,5 °C</td><td>Orange</td><td>Chaleur traverse le mur</td></tr>
-      <tr><td>Mur sud (béton + 8 cm de laine de verre)</td><td>5,2 °C</td><td>Bleu</td><td>Bien isolé</td></tr>
-      <tr><td>Fenêtre simple vitrage (salon)</td><td>14,8 °C</td><td>Rouge vif</td><td>Forte déperdition</td></tr>
-      <tr><td>Fenêtre double vitrage (chambre)</td><td>6,1 °C</td><td>Bleu-vert</td><td>Peu de déperdition</td></tr>
-      <tr><td>Toiture (combles non isolés)</td><td>13,2 °C</td><td>Rouge</td><td>Air chaud monte vers le toit</td></tr>
-      <tr><td>Jonction mur/toiture (pont thermique)</td><td>15,6 °C</td><td>Rouge vif</td><td>Point faible majeur</td></tr>
-      <tr><td>Sol (dalle béton sur terre-plein)</td><td>4,8 °C</td><td>Bleu foncé</td><td>Faible déperdition</td></tr>
+      <tr><td>Mur nord (béton, sans isolation)</td><td>11,5</td><td>Orange</td><td>Chaleur traverse</td></tr>
+      <tr><td>Mur sud (béton + 8 cm laine de verre)</td><td>5,2</td><td>Bleu</td><td>Bien isolé ✓</td></tr>
+      <tr><td>Fenêtre simple vitrage (salon)</td><td>14,8</td><td>Rouge vif</td><td>Forte déperdition</td></tr>
+      <tr><td>Fenêtre double vitrage (chambre)</td><td>6,1</td><td>Bleu-vert</td><td>Peu de déperdition ✓</td></tr>
+      <tr><td>Toiture (combles non isolés)</td><td>13,2</td><td>Rouge</td><td>Air chaud monte</td></tr>
+      <tr><td>Jonction mur/toiture (pont thermique)</td><td>15,6</td><td>Rouge vif</td><td>Point faible majeur</td></tr>
+      <tr><td>Sol (dalle béton sur terre-plein)</td><td>4,8</td><td>Bleu foncé</td><td>Faible déperdition ✓</td></tr>
     </tbody>
   </table>
-  <p><em>Température extérieure de l'air : 3 °C. Température intérieure du pavillon : 20 °C.</em></p>
+  <p>T<sub>air ext.</sub> = 3 °C, T<sub>air int.</sub> = 20 °C, ΔT = 17 °C.</p>
 
-  <h3>Document 2 — Répartition des pertes de chaleur (pavillon non isolé type 1985)</h3>
+  <h3>Document 3 — Répartition des pertes (pavillon non isolé type 1985)</h3>
   <table>
-    <thead><tr><th>Zone</th><th>Part des pertes totales</th></tr></thead>
+    <thead><tr><th>Zone</th><th>% des pertes totales</th></tr></thead>
     <tbody>
       <tr><td>Toiture / combles</td><td>30 %</td></tr>
       <tr><td>Murs</td><td>25 %</td></tr>
@@ -64,9 +115,9 @@
     </tbody>
   </table>
 
-  <h3>Document 3 — Conductivité thermique de quelques matériaux</h3>
+  <h3>Document 4 — Conductivité thermique des matériaux</h3>
   <table>
-    <thead><tr><th>Matériau</th><th>\(\lambda\) en W/(m·K)</th><th>Type</th></tr></thead>
+    <thead><tr><th>Matériau</th><th>λ (W/m·K)</th><th>Type</th></tr></thead>
     <tbody>
       <tr><td>Cuivre</td><td>390</td><td>Excellent conducteur</td></tr>
       <tr><td>Béton</td><td>1,7</td><td>Conducteur moyen</td></tr>
@@ -78,213 +129,211 @@
     </tbody>
   </table>
 
-  <h3>Document 4 — Données pour le calcul thermique</h3>
-  <table>
-    <thead><tr><th>Grandeur</th><th>Valeur</th></tr></thead>
-    <tbody>
-      <tr><td>Capacité thermique massique de l'air</td><td>\(c = 1\,005\) J/(kg·°C)</td></tr>
-      <tr><td>Masse d'air dans le pavillon (volume 250 m³)</td><td>\(m = 300\) kg</td></tr>
-      <tr><td>Capacité thermique massique du béton</td><td>\(c = 880\) J/(kg·°C)</td></tr>
-      <tr><td>Masse du mur nord (épaisseur 20 cm, surface 15 m²)</td><td>\(m = 7\,200\) kg</td></tr>
-    </tbody>
-  </table>
+  <h3>Document 5 — Données pour le calcul thermique</h3>
+  <ul>
+    <li>c<sub>air</sub> = 1 005 J/(kg·°C) ; masse d'air pavillon (V = 250 m³) : m = 300 kg.</li>
+    <li>c<sub>béton</sub> = 880 J/(kg·°C) ; masse mur nord (e = 20 cm, S = 15 m²) : m = 7 200 kg.</li>
+    <li>Formule : Q = m × c × Δθ.</li>
+    <li>Pertes annuelles totales estimées : 15 000 kWh/an. Tarif gaz : 0,10 €/kWh.</li>
+  </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (modes de transfert), §2 (conductivité λ) et §3 (Q = mcΔθ) de la leçon Ch04.</em></p>
 </div>
 
-<div class="objectifs" style="border-left:4px solid #f59e0b;background:#fffbeb;margin:1.2em 0;padding:1em 1.2em;border-radius:6px">
-  <strong>Problématique</strong>
-  <p style="margin:.5em 0 0">Comment identifier les principales sources de pertes de chaleur dans ce pavillon ? Quels modes de transfert thermique sont en jeu, et quelles améliorations Inès peut-elle recommander pour réduire les factures de chauffage ?</p>
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment identifier les principales sources de pertes de chaleur, et quelles améliorations Inès peut-elle recommander pour réduire les factures de chauffage ?
 </div>
-
-<!-- ===== QUESTIONS ===== -->
 
 <div class="exo">
   <h2>Question 1 <span class="badge-green">APP</span></h2>
-  <p>À partir du document 1, <strong>relever</strong> :</p>
-  <p>a) La zone qui présente la température extérieure de surface la plus élevée. Quelle est cette température ?</p>
-  <p>b) La zone qui présente la température extérieure de surface la plus basse. Quelle est cette température ?</p>
-  <p>c) Que signifie une température de surface élevée à l'extérieur d'un mur en hiver ?</p>
+  <p>À partir du Doc 2, relever :</p>
+  <p>a) La zone avec la T<sub>surface ext.</sub> la plus élevée. Quelle valeur ?</p>
+  <p>b) La zone avec la T<sub>surface ext.</sub> la plus basse. Quelle valeur ?</p>
+  <p>c) Que signifie une T<sub>surface ext.</sub> élevée en hiver ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p>a) La zone avec la température la plus élevée est la <strong>jonction mur/toiture (pont thermique)</strong> à <strong>15,6 °C</strong>.</p>
-    <p>b) La zone avec la température la plus basse est le <strong>sol (dalle béton sur terre-plein)</strong> à <strong>4,8 °C</strong>.</p>
-    <p>c) Une température de surface élevée à l'extérieur d'un mur en hiver signifie que la <strong>chaleur intérieure traverse la paroi et s'échappe vers l'extérieur</strong>. Plus la surface extérieure est chaude, plus les pertes de chaleur sont importantes.</p>
+    <p>a) Plus chaude : <strong>jonction mur/toiture (pont thermique) à 15,6 °C</strong>.</p>
+    <p>b) Plus froide : <strong>sol (dalle sur terre-plein) à 4,8 °C</strong>.</p>
+    <p>c) Une T<sub>surface ext.</sub> élevée en hiver = la chaleur intérieure traverse la paroi et s'échappe vers l'extérieur. Plus la surface est chaude à l'extérieur, plus les <strong>pertes de chaleur sont importantes</strong>.</p>
   </div>
 </div>
 
 <div class="exo">
   <h2>Question 2 <span class="badge-blue">ANA</span></h2>
-  <p>Les trois modes de transfert thermique sont : la <strong>conduction</strong>, la <strong>convection</strong> et le <strong>rayonnement</strong>.</p>
-  <p>Pour chacune des situations suivantes observées dans le pavillon, <strong>identifier</strong> le mode de transfert thermique principal :</p>
+  <p>Pour chaque situation, identifier le mode de transfert thermique principal (conduction, convection, rayonnement).</p>
   <p>a) La chaleur traverse le mur nord en béton de l'intérieur vers l'extérieur.</p>
   <p>b) L'air chaud du salon monte vers les combles non isolés par la trappe du grenier mal fermée.</p>
-  <p>c) En se plaçant devant la fenêtre simple vitrage, Inès ressent le froid à distance, sans toucher la vitre.</p>
+  <p>c) Devant la fenêtre simple vitrage, Inès ressent le froid à distance, sans toucher la vitre.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <p>a) <strong>Conduction</strong> : la chaleur se transmet à travers le béton, de proche en proche, sans déplacement de matière (le mur est un solide).</p>
-    <p>b) <strong>Convection (naturelle)</strong> : l'air chaud, moins dense, monte et s'échappe par la trappe vers les combles. C'est un déplacement de matière (fluide = air).</p>
-    <p>c) <strong>Rayonnement</strong> : le corps d'Inès (chaud) émet un rayonnement infrarouge vers la vitre froide. Elle ressent une sensation de froid car elle perd de l'énergie par rayonnement vers la surface froide, sans contact direct.</p>
+    <p>b) <strong>Convection (naturelle)</strong> : l'air chaud, moins dense, monte et s'échappe par la trappe vers les combles. Déplacement de matière (fluide = air).</p>
+    <p>c) <strong>Rayonnement</strong> : le corps d'Inès (chaud) émet un rayonnement infrarouge vers la vitre froide. Elle perd de l'énergie par rayonnement → sensation de froid à distance, sans contact.</p>
   </div>
 </div>
 
 <div class="exo">
   <h2>Question 3 <span class="badge-blue">ANA</span></h2>
-  <p><strong>Expliquer</strong> chacun des trois modes de transfert thermique en complétant le tableau ci-dessous.</p>
+  <p>Compléter le tableau récapitulatif des 3 modes de transfert.</p>
   <table>
-    <thead>
-      <tr><th>Mode</th><th>Définition (avec vos mots)</th><th>Support nécessaire</th><th>Déplacement de matière ?</th><th>Exemple dans le pavillon</th></tr>
-    </thead>
+    <thead><tr><th>Mode</th><th>Définition</th><th>Support</th><th>Déplacement matière ?</th><th>Ex. dans le pavillon</th></tr></thead>
     <tbody>
-      <tr><td><strong>Conduction</strong></td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-      <tr><td><strong>Convection</strong></td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-      <tr><td><strong>Rayonnement</strong></td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+      <tr><td>Conduction</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+      <tr><td>Convection</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+      <tr><td>Rayonnement</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
     </tbody>
   </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
     <table>
-      <thead>
-        <tr><th>Mode</th><th>Définition</th><th>Support nécessaire</th><th>Déplacement de matière ?</th><th>Exemple dans le pavillon</th></tr>
-      </thead>
+      <thead><tr><th>Mode</th><th>Définition</th><th>Support</th><th>Matière ?</th><th>Exemple</th></tr></thead>
       <tbody>
-        <tr>
-          <td><strong>Conduction</strong></td>
-          <td>Transfert de chaleur à travers un matériau, de proche en proche, par vibration des atomes</td>
-          <td>Solide (surtout)</td>
-          <td>Non</td>
-          <td>Chaleur traversant le mur en béton, chaleur traversant la vitre</td>
-        </tr>
-        <tr>
-          <td><strong>Convection</strong></td>
-          <td>Transfert de chaleur par déplacement d'un fluide (liquide ou gaz). Le fluide chaud monte, le froid descend</td>
-          <td>Fluide (liquide ou gaz)</td>
-          <td>Oui</td>
-          <td>Air chaud montant vers les combles, courants d'air par les fuites</td>
-        </tr>
-        <tr>
-          <td><strong>Rayonnement</strong></td>
-          <td>Transfert de chaleur par ondes électromagnétiques (infrarouge), sans contact ni support matériel</td>
-          <td>Aucun (se propage dans le vide)</td>
-          <td>Non</td>
-          <td>Chaleur rayonnée par la fenêtre, énergie solaire traversant les vitres</td>
-        </tr>
+        <tr><td><strong>Conduction</strong></td><td>Transfert à travers un matériau, de proche en proche, par vibration des atomes.</td><td>Solide surtout</td><td>Non</td><td>Mur, vitre.</td></tr>
+        <tr><td><strong>Convection</strong></td><td>Transfert par déplacement d'un fluide. L'air chaud monte, le froid descend.</td><td>Fluide (gaz, liquide)</td><td>Oui</td><td>Air montant vers combles.</td></tr>
+        <tr><td><strong>Rayonnement</strong></td><td>Transfert par ondes électromagnétiques (infrarouge), sans contact.</td><td>Aucun (vide possible)</td><td>Non</td><td>Soleil, infrarouge fenêtre.</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
 <div class="exo">
-  <h2>Question 4 <span class="badge-green">REA</span></h2>
-  <p>On souhaite estimer l'énergie perdue lorsque l'air intérieur du pavillon se refroidit de 20 °C à 17 °C à cause des fuites d'air (convection).</p>
-  <p>On utilise la relation : \(Q = m \times c \times \Delta\theta\)</p>
-  <p>avec \(Q\) l'énergie thermique (en J), \(m\) la masse (en kg), \(c\) la capacité thermique massique (en J/(kg·°C)) et \(\Delta\theta = \theta_{\text{finale}} - \theta_{\text{initiale}}\) la variation de température (en °C).</p>
-  <p>a) <strong>Identifier</strong> les valeurs de \(m\), \(c\) et \(\Delta\theta\) à partir du document 4.</p>
-  <p>b) <strong>Calculer</strong> l'énergie \(Q\) perdue. Exprimer le résultat en joules puis en kilojoules.</p>
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>L'air intérieur du pavillon se refroidit de 20 °C à 17 °C à cause des fuites d'air (convection).</p>
+  <p>a) Identifier m, c, Δθ à partir du Doc 5.</p>
+  <p>b) Calculer Q avec Q = m × c × Δθ. Exprimer en J et kJ.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p>a) D'après le document 4 :</p>
-    <ul>
-      <li>\(m = 300\) kg (masse d'air dans le pavillon)</li>
-      <li>\(c = 1\,005\) J/(kg·°C) (capacité thermique massique de l'air)</li>
-      <li>\(\Delta\theta = 17 - 20 = -3\) °C (refroidissement de 3 °C)</li>
-    </ul>
-    <p>b) Calcul :</p>
-    <p>\[Q = m \times c \times \Delta\theta = 300 \times 1\,005 \times (-3) = -904\,500 \text{ J}\]</p>
-    <p>Le signe négatif indique que le pavillon <strong>perd</strong> de l'énergie.</p>
-    <p>\[|Q| = 904\,500 \text{ J} = \mathbf{904{,}5 \text{ kJ}}\]</p>
-    <p>Le pavillon perd environ <strong>905 kJ</strong> d'énergie thermique lorsque l'air intérieur se refroidit de 3 °C.</p>
+    <p>a) m = 300 kg ; c = 1 005 J/(kg·°C) ; Δθ = 17 − 20 = −3 °C.</p>
+    <p>b) Q = 300 × 1 005 × (−3) = <strong>−904 500 J ≈ −904,5 kJ</strong>.</p>
+    <p>Le signe négatif indique que le pavillon <strong>perd</strong> ~ 905 kJ d'énergie quand l'air intérieur se refroidit de 3 °C.</p>
   </div>
 </div>
 
 <div class="exo">
   <h2>Question 5 <span class="badge-blue">ANA</span></h2>
-  <p>À l'aide du document 3, <strong>comparer</strong> les matériaux isolants disponibles.</p>
-  <p>a) Classer les trois isolants du tableau (laine de verre, polystyrène expansé, mousse polyuréthane) du <strong>moins performant au plus performant</strong>. Justifier à l'aide de la valeur de \(\lambda\).</p>
-  <p>b) Le mur nord est en béton (\(\lambda = 1{,}7\)). Calculer le rapport \(\dfrac{\lambda_{\text{béton}}}{\lambda_{\text{laine de verre}}}\). Que signifie ce résultat ?</p>
-  <p>c) Pourquoi le double vitrage est-il plus isolant que le simple vitrage ? Quel rôle joue la lame d'air entre les deux vitres ?</p>
+  <p>Comparer les matériaux isolants du Doc 4.</p>
+  <p>a) Classer les 3 isolants synthétiques (laine de verre, polystyrène, mousse PU) du moins au plus performant.</p>
+  <p>b) Calculer λ<sub>béton</sub> / λ<sub>laine de verre</sub>. Interpréter.</p>
+  <p>c) Pourquoi le double vitrage est-il plus isolant que le simple vitrage ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p>a) Classement du moins performant au plus performant (plus \(\lambda\) est petit, meilleur est l'isolant) :</p>
+    <p>a) Du moins au plus performant (plus λ petit, mieux isolant) :</p>
     <ol>
-      <li>Laine de verre : \(\lambda = 0{,}035\) W/(m·K)</li>
-      <li>Polystyrène expansé : \(\lambda = 0{,}032\) W/(m·K)</li>
-      <li><strong>Mousse polyuréthane : \(\lambda = 0{,}025\) W/(m·K)</strong> (meilleur isolant)</li>
+      <li>Laine de verre : λ = 0,035 W/(m·K)</li>
+      <li>Polystyrène expansé : λ = 0,032</li>
+      <li><strong>Mousse polyuréthane : λ = 0,025</strong> (le meilleur)</li>
     </ol>
-    <p>b) \(\dfrac{\lambda_{\text{béton}}}{\lambda_{\text{laine de verre}}} = \dfrac{1{,}7}{0{,}035} \approx \mathbf{49}\)</p>
-    <p>Le béton conduit la chaleur environ <strong>49 fois mieux</strong> que la laine de verre. Cela signifie que sans isolation, le mur en béton laisse passer énormément de chaleur.</p>
-    <p>c) Le double vitrage emprisonne une <strong>lame d'air immobile</strong> entre les deux vitres. L'air immobile est un excellent isolant (\(\lambda = 0{,}026\)). Cette couche d'air freine considérablement le transfert par conduction, ce qui réduit les pertes de chaleur à travers la fenêtre.</p>
+    <p>b) λ<sub>béton</sub> / λ<sub>laine de verre</sub> = 1,7 / 0,035 ≈ <strong>49</strong>. Le béton conduit la chaleur ~ 49 fois mieux que la laine de verre. Sans isolation, énormément de chaleur passe par le mur.</p>
+    <p>c) Le double vitrage emprisonne une <strong>lame d'air immobile</strong> entre les 2 vitres. L'air immobile est un excellent isolant (λ = 0,026). Cette couche d'air freine la conduction → réduit fortement les pertes.</p>
   </div>
 </div>
 
 <div class="exo">
-  <h2>Question 6 <span class="badge-green">VAL</span></h2>
-  <p>D'après le document 2, les pertes par la toiture représentent 30 % des pertes totales et les pertes par les murs 25 %.</p>
-  <p>a) Si les pertes totales du pavillon sont estimées à 15 000 kWh par an, <strong>calculer</strong> les pertes annuelles (en kWh) dues à la toiture et aux murs.</p>
-  <p>b) Après isolation des combles (laine de verre 30 cm), les pertes par la toiture sont réduites à 5 % du total. <strong>Calculer</strong> l'économie d'énergie réalisée (en kWh).</p>
-  <p>c) Le prix du gaz est de 0,10 euro/kWh. <strong>Estimer</strong> l'économie annuelle en euros réalisée grâce à l'isolation des combles.</p>
+  <h2>Question 6 <span class="badge-blue">VAL</span></h2>
+  <p>Pertes annuelles totales : 15 000 kWh/an.</p>
+  <p>a) Calculer les pertes par toiture et par murs.</p>
+  <p>b) Après isolation des combles (laine de verre 30 cm), les pertes toiture passent à 5 % du total. Calculer l'économie en kWh/an.</p>
+  <p>c) Au tarif gaz 0,10 €/kWh, quelle économie €/an ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p>a) Pertes par la toiture : \(15\,000 \times 0{,}30 = \mathbf{4\,500 \text{ kWh/an}}\)</p>
-    <p>Pertes par les murs : \(15\,000 \times 0{,}25 = \mathbf{3\,750 \text{ kWh/an}}\)</p>
-    <p>b) Après isolation, pertes par la toiture : \(15\,000 \times 0{,}05 = 750\) kWh/an.</p>
-    <p>Économie : \(4\,500 - 750 = \mathbf{3\,750 \text{ kWh/an}}\)</p>
-    <p>c) Économie financière : \(3\,750 \times 0{,}10 = \mathbf{375 \text{ euros par an}}\)</p>
-    <p>L'isolation des combles permet d'économiser environ <strong>375 euros par an</strong> sur la facture de gaz.</p>
+    <p>a) Toiture : 15 000 × 0,30 = <strong>4 500 kWh/an</strong>. Murs : 15 000 × 0,25 = <strong>3 750 kWh/an</strong>.</p>
+    <p>b) Après isolation : 15 000 × 0,05 = 750 kWh/an. Économie : 4 500 − 750 = <strong>3 750 kWh/an</strong>.</p>
+    <p>c) Économie financière : 3 750 × 0,10 = <strong>375 €/an</strong>.</p>
+    <p>L'isolation des combles est rentable : coût pose ~ 2 500 € → retour ~ 7 ans, puis bénéfice net pendant 30 ans (durée de vie isolant).</p>
   </div>
 </div>
 
 <div class="exo">
   <h2>Question 7 <span class="badge-blue">ANA</span></h2>
-  <p>D'après le document 2, le renouvellement d'air (ventilation et fuites) représente 20 % des pertes.</p>
-  <p>a) Par quel mode de transfert thermique ces pertes se produisent-elles principalement ?</p>
-  <p>b) <strong>Expliquer</strong> pourquoi la toiture (30 %) perd plus de chaleur que le sol (10 %), en lien avec le mode de transfert identifié.</p>
+  <p>Le renouvellement d'air représente 20 % des pertes.</p>
+  <p>a) Par quel mode de transfert principal ?</p>
+  <p>b) Pourquoi la toiture (30 %) perd-elle plus que le sol (10 %) ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <p>a) Les pertes par renouvellement d'air se produisent principalement par <strong>convection</strong> : l'air chaud intérieur est remplacé par de l'air froid extérieur (ventilation, infiltrations par les joints des fenêtres et des portes).</p>
-    <p>b) La toiture perd beaucoup plus de chaleur que le sol car, par <strong>convection naturelle</strong>, l'air chaud est moins dense et <strong>monte vers le plafond et la toiture</strong>. L'air chaud s'accumule sous le toit, ce qui augmente la différence de température entre l'intérieur et l'extérieur au niveau de la toiture. Au contraire, le sol est en contact avec de l'air plus frais (l'air froid descend), ce qui réduit les échanges thermiques par cette paroi.</p>
+    <p>a) Les pertes par renouvellement d'air sont par <strong>convection</strong> : l'air chaud intérieur est remplacé par de l'air froid extérieur (ventilation, infiltrations par joints).</p>
+    <p>b) Par <strong>convection naturelle</strong>, l'air chaud (moins dense) <strong>monte vers le plafond et la toiture</strong>. L'air chaud s'accumule sous le toit → augmente la différence de T et donc les pertes au niveau de la toiture.</p>
+    <p>Inversement, l'air froid descend → le sol est en contact avec l'air le plus frais de la pièce → moins d'écart, moins de pertes.</p>
+    <p>C'est aussi pourquoi un faux plafond et une isolation des combles sont plus efficaces qu'une isolation du sol pour le confort thermique.</p>
   </div>
 </div>
 
 <div class="exo">
   <h2>Question 8 <span class="badge-yellow">COM</span></h2>
-  <p>Inès doit rédiger son <strong>rapport de diagnostic thermique</strong> pour le propriétaire.</p>
-  <p>En vous appuyant sur les résultats de la caméra thermique et les analyses précédentes, <strong>rédiger</strong> 4 recommandations d'amélioration, en précisant pour chacune :</p>
+  <p>Inès rédige son rapport de diagnostic thermique. Rédiger 4 recommandations en précisant pour chacune :</p>
   <ul>
     <li>la zone concernée</li>
     <li>le mode de transfert thermique à combattre</li>
     <li>la solution proposée</li>
   </ul>
-  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
   <div class="corr">
-    <p>Exemple de recommandations :</p>
+    <p><em><strong>Rapport de diagnostic thermique — Pavillon 1985, propriétaire X</strong></em></p>
     <ol>
-      <li><strong>Isolation des combles</strong> (toiture, 30 % des pertes) : poser 30 cm de laine de verre ou de mousse polyuréthane dans les combles pour réduire les pertes par <strong>conduction</strong> à travers la toiture. Priorité n°1.</li>
-      <li><strong>Isolation du mur nord</strong> (mur, 11,5 °C en surface) : ajouter une isolation thermique par l'intérieur ou l'extérieur (laine de verre ou polystyrène) pour freiner la <strong>conduction</strong> à travers le béton.</li>
-      <li><strong>Remplacement de la fenêtre simple vitrage</strong> (salon, 14,8 °C en surface) : installer du double vitrage avec lame d'air ou d'argon pour réduire les pertes par <strong>conduction</strong> et <strong>rayonnement</strong> à travers la vitre.</li>
-      <li><strong>Traitement du pont thermique</strong> (jonction mur/toiture, 15,6 °C) : ajouter un isolant à la jonction pour supprimer cette zone de fuite de chaleur par <strong>conduction</strong>. Ce point faible est la source de déperdition la plus intense détectée par la caméra.</li>
+      <li><em><strong>Isolation des combles</strong> (toiture, 30 % des pertes) : poser 30 cm de laine de verre dans les combles → réduire la <strong>conduction</strong> à travers la toiture. Priorité n°1, gain ~ 375 €/an.</em></li>
+      <li><em><strong>Isolation du mur nord</strong> (T<sub>surface</sub> 11,5 °C) : ITE (Isolation Thermique Extérieure) 12 cm de laine de roche → freiner la <strong>conduction</strong> à travers le béton.</em></li>
+      <li><em><strong>Remplacement de la fenêtre simple vitrage</strong> (T<sub>surface</sub> 14,8 °C) : double vitrage Low-E à argon → réduire la <strong>conduction</strong> et le <strong>rayonnement</strong> infrarouge.</em></li>
+      <li><em><strong>Traitement du pont thermique</strong> jonction mur/toiture (T<sub>surface</sub> 15,6 °C, le pire point) : ajout d'isolant en jonction → supprimer cette zone de fuite par <strong>conduction</strong>.</em></li>
     </ol>
   </div>
 </div>
 
-<!-- ===== À RETENIR ===== -->
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Comment fonctionne concrètement une caméra thermique comme celle d'Inès ? Pourquoi peut-elle « voir » la chaleur dans le noir ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Tout corps émet un <strong>rayonnement infrarouge</strong> dont l'intensité augmente avec sa température (loi de Planck / Stefan-Boltzmann).</p>
+    <p>Pour les températures de la vie courante (0 à 100 °C), ce rayonnement est dans l'<strong>infrarouge lointain</strong>, longueurs d'onde 8-14 µm. Invisible à l'œil humain (qui voit 400-700 nm), mais détectable par un capteur spécial.</p>
+    <p>Une caméra thermique :</p>
+    <ol>
+      <li><strong>Capteur microbolométrique</strong> (matrice de 320×240 ou 640×480 pixels) : chaque pixel est un mini-thermomètre détectant l'IR.</li>
+      <li>Le capteur mesure la température de chaque point du champ de vision.</li>
+      <li>Le logiciel attribue une <strong>fausse couleur</strong> à chaque T (bleu = froid, rouge = chaud).</li>
+      <li>L'image affichée est une « carte thermique » de la scène.</li>
+    </ol>
+    <p>Différence avec la vision nocturne classique :</p>
+    <ul>
+      <li><strong>Vision nocturne (caméra IR proche)</strong> : amplifie la lumière visible faible (et un peu d'IR proche). A besoin d'un peu de lumière ambiante. Voir aussi infrarouge à LED actives.</li>
+      <li><strong>Caméra thermique</strong> : détecte la chaleur émise par les objets eux-mêmes. Fonctionne dans le noir total, dans la fumée, ne peut pas voir à travers le verre (le verre bloque l'IR lointain).</li>
+    </ul>
+    <p>Applications professionnelles :</p>
+    <ul>
+      <li><strong>Diagnostic thermique de bâtiment</strong> (Inès) : 200-2 000 € la caméra.</li>
+      <li><strong>Pompiers</strong> : voir à travers la fumée pour localiser les victimes.</li>
+      <li><strong>Maintenance industrielle</strong> : détecter un roulement qui chauffe avant la panne.</li>
+      <li><strong>Médecine</strong> : détection de cancer, inflammations.</li>
+      <li><strong>Astronomie</strong> : télescopes IR (James Webb).</li>
+      <li><strong>Militaire</strong> : vision de nuit, détection de troupes.</li>
+    </ul>
+    <p>Pour Inès : un diagnostic thermique professionnel à la caméra coûte 200-500 € au client, et permet d'identifier précisément les zones à isoler en priorité — investissement très rentable.</p>
+  </div>
+</div>
+
 <div class="retenir">
   <strong>À retenir</strong>
   <ul>
-    <li>Il existe <strong>trois modes de transfert thermique</strong> :
+    <li><strong>3 modes de transfert thermique :</strong>
       <ul>
-        <li><strong>Conduction</strong> : transfert à travers un matériau solide, sans déplacement de matière (ex. : chaleur traversant un mur).</li>
-        <li><strong>Convection</strong> : transfert par déplacement d'un fluide — l'air chaud monte, l'air froid descend (ex. : air chaud s'échappant par les combles).</li>
-        <li><strong>Rayonnement</strong> : transfert par ondes électromagnétiques, sans support matériel (ex. : chaleur du Soleil, radiateur infrarouge).</li>
+        <li><strong>Conduction</strong> : à travers un solide, sans déplacement de matière (mur, vitre).</li>
+        <li><strong>Convection</strong> : par déplacement d'un fluide (air chaud monte, air froid descend).</li>
+        <li><strong>Rayonnement</strong> : par ondes EM (infrarouge), sans support matériel.</li>
       </ul>
     </li>
-    <li>La relation \(Q = m \times c \times \Delta\theta\) permet de calculer l'énergie thermique échangée.</li>
-    <li>La <strong>conductivité thermique</strong> \(\lambda\) (en W/(m·K)) caractérise la capacité d'un matériau à conduire la chaleur. Plus \(\lambda\) est faible, meilleur est l'isolant.</li>
-    <li>L'isolation thermique vise à <strong>réduire les transferts par conduction</strong> en utilisant des matériaux à faible \(\lambda\) (laine de verre, polystyrène, mousse polyuréthane).</li>
+    <li><strong>Énergie thermique :</strong> Q = m × c × Δθ.</li>
+    <li><strong>Conductivité λ</strong> (W/m·K) : plus faible = meilleur isolant. Béton 1,7 ; laine de verre 0,035 ; mousse PU 0,025.</li>
+    <li><strong>Isolation</strong> : vise à réduire les transferts par conduction (matériaux à faible λ).</li>
+    <li><strong>Pertes typiques pavillon non isolé :</strong> toiture 30 %, murs 25 %, ventilation 20 %, fenêtres 15 %, sol 10 %. Priorité = combles.</li>
   </ul>
 </div>
-
-<footer>
-  <p>Première Bac Pro (Grpt 1) – Physique-Chimie – Chapitre 4 | maths-sciences-lp.github.io</p>
-</footer>
 
 </div>
 <script src="../../../nav.js"></script>

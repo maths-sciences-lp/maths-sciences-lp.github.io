@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch01 – Activité – Comparer des systèmes de chauffage – Première ICCER</title>
+<title>Ch01 – Activité – Comparer 3 systèmes de chauffage – PC 1ère ICCER</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
@@ -11,319 +11,310 @@
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-1ere-iccer.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE ICCER (Grpt 1)</a>
 
 <header>
-  <h1>Activité – Comparer la consommation de systèmes de chauffage</h1>
-  <p class="sous-titre">Chapitre 1 | Première Bac Pro (Grpt 1) | Physique – Électricité | ⏱ 35 min</p>
+  <h1>Activité – Comparer la consommation de 3 systèmes de chauffage <span style="font-size:.55em;color:#7c2d12;font-weight:600">FICHE TECHNIQUE</span></h1>
+  <p class="sous-titre">Chapitre 1 | Première Bac Pro ICCER (Grpt 1) | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 14:00</p>
 </header>
 <button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
 <div class="objectifs">
   <strong>Objectifs :</strong>
   <ul>
     <li>Lire la puissance sur la plaque signalétique d'un appareil</li>
-    <li>Découvrir la relation \(P = U \times I\) et calculer l'énergie \(E = P \times t\)</li>
-    <li>Convertir des joules en kilowattheures</li>
-    <li>Estimer le coût de fonctionnement d'un appareil et comparer des systèmes</li>
+    <li>Appliquer P = U × I et E = P × t</li>
+    <li>Convertir J ↔ Wh ↔ kWh</li>
+    <li>Calculer rendement η et coefficient de performance (COP)</li>
+    <li>Comparer 3 systèmes de chauffage (radiateur, PAC, chaudière gaz)</li>
   </ul>
 </div>
 
-<!-- ===== DOCUMENT D'ACCROCHE ===== -->
 <div class="situation">
-  <h2>Situation professionnelle</h2>
-  <p>
-    <em>Karim est technicien chauffagiste chez <strong>ThermoSud</strong>, une entreprise d'installation thermique à Montpellier.</em>
-  </p>
-  <p>
-    Un client souhaite chauffer sa maison de 90 m² et hésite entre trois systèmes. Karim relève les informations sur les plaques signalétiques de chaque appareil et prépare une étude comparative pour conseiller le client.
-  </p>
+  <h2>Situation – conseiller un client sur le choix d'un chauffage</h2>
+  <p><em>Karim est technicien chauffagiste chez ThermoSud, une entreprise d'installation thermique à Montpellier. Un client souhaite chauffer sa maison de 90 m² et hésite entre 3 systèmes. Karim relève les informations sur les plaques signalétiques de chaque appareil et prépare une étude comparative.</em></p>
 
-  <h3>Plaques signalétiques relevées</h3>
+  <h3>Document 1 — Schéma de comparaison des 3 systèmes</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 220" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Schéma : 3 systèmes de chauffage. Radiateur électrique 2000W → 1900W (η=95%). PAC 1200W électrique + énergie air extérieur → 4200W (COP=3,5). Chaudière gaz 12000W combustion + 150W électrique → 9000W (η=75%).">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .val{font:600 11px sans-serif;fill:#dc2626;text-anchor:middle}
+          .ok{font:600 11px sans-serif;fill:#15803d;text-anchor:middle}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="20">Energie consommée → restituée — 3 technologies</text>
 
+      <!-- Radiateur -->
+      <rect x="20" y="60" width="140" height="120" fill="#fef3c7" stroke="#1a202c"/>
+      <text x="90" y="80" class="lblA">Radiateur élec.</text>
+      <text x="90" y="110" class="val">2 000 W</text>
+      <text x="90" y="125" class="lbl">électrique</text>
+      <text x="90" y="155" class="ok">→ 1 900 W</text>
+      <text x="90" y="170" class="lbl">η = 95 %</text>
+
+      <!-- PAC -->
+      <rect x="180" y="60" width="170" height="120" fill="#dbeafe" stroke="#1a202c"/>
+      <text x="265" y="80" class="lblA">Pompe à chaleur</text>
+      <text x="265" y="105" class="val">1 200 W élec.</text>
+      <text x="265" y="120" class="lbl">+ air extérieur</text>
+      <text x="265" y="135" class="lbl">3 000 W</text>
+      <text x="265" y="160" class="ok">→ 4 200 W</text>
+      <text x="265" y="175" class="lbl">COP = 3,5</text>
+
+      <!-- Chaudière -->
+      <rect x="370" y="60" width="150" height="120" fill="#fee2e2" stroke="#1a202c"/>
+      <text x="445" y="80" class="lblA">Chaudière gaz</text>
+      <text x="445" y="105" class="val">12 000 W gaz</text>
+      <text x="445" y="120" class="lbl">+ 150 W élec.</text>
+      <text x="445" y="155" class="ok">→ 9 000 W</text>
+      <text x="445" y="170" class="lbl">η = 75 %</text>
+
+      <text x="270" y="200" class="lbl">Énergie consommée (entrée) → Chaleur restituée (sortie)</text>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Plaques signalétiques relevées par Karim</h3>
   <table>
-    <thead>
-      <tr>
-        <th>Appareil</th>
-        <th>Tension (V)</th>
-        <th>Puissance électrique consommée (W)</th>
-        <th>Puissance thermique restituée (W)</th>
-        <th>Durée de fonctionnement par jour (h)</th>
-      </tr>
-    </thead>
+    <thead><tr><th>Appareil</th><th>U (V)</th><th>P électrique consommée (W)</th><th>P thermique restituée (W)</th><th>Durée / jour (h)</th></tr></thead>
     <tbody>
-      <tr>
-        <td><strong>Radiateur électrique</strong> (convecteur)</td>
-        <td>230</td>
-        <td>2 000</td>
-        <td>1 900</td>
-        <td>10</td>
-      </tr>
-      <tr>
-        <td><strong>Pompe à chaleur air/eau</strong> (PAC)</td>
-        <td>230</td>
-        <td>1 200</td>
-        <td>4 200</td>
-        <td>8</td>
-      </tr>
-      <tr>
-        <td><strong>Chaudière gaz à condensation</strong></td>
-        <td>230</td>
-        <td>150 <br><small>(circulateur + électronique)</small></td>
-        <td>9 000 <br><small>(combustion gaz)</small></td>
-        <td>6</td>
-      </tr>
+      <tr><td><strong>Radiateur électrique</strong> (convecteur)</td><td>230</td><td>2 000</td><td>1 900</td><td>10</td></tr>
+      <tr><td><strong>Pompe à chaleur air/eau</strong> (PAC)</td><td>230</td><td>1 200</td><td>4 200</td><td>8</td></tr>
+      <tr><td><strong>Chaudière gaz à condensation</strong></td><td>230</td><td>150 (circulateur + électronique)</td><td>9 000 (combustion gaz)</td><td>6</td></tr>
     </tbody>
   </table>
 
-  <p><strong>Tarif électricité :</strong> 0,22 €/kWh &nbsp;|&nbsp; <strong>Tarif gaz :</strong> 0,09 €/kWh (PCI)</p>
-  <p><strong>Consommation gaz de la chaudière :</strong> 12 kWh de gaz par heure de fonctionnement.</p>
-</div>
-
-<div class="objectifs" style="border-left:4px solid #f59e0b;background:#fffbeb;margin:1.2em 0;padding:1em 1.2em;border-radius:6px">
-  <strong>Problématique</strong>
-  <p style="margin:.5em 0 0">Karim doit conseiller son client sur le système de chauffage le plus adapté. Quel appareil consomme le moins d'énergie électrique ? Lequel est le plus rentable sur le plan économique ? Le plus efficace énergétiquement ?</p>
-</div>
-
-<!-- ===== QUESTIONS ===== -->
-
-<!-- Question 1 -->
-<div class="exo">
-<h2>Question 1 <span class="badge-green">APP</span></h2>
-<p><strong>a)</strong> Relever la puissance électrique consommée par chaque appareil.</p>
-<p><strong>b)</strong> Quel est l'appareil qui consomme le plus de puissance électrique ? Lequel en consomme le moins ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><strong>a)</strong> D'après le tableau :</p>
+  <h3>Document 3 — Tarifs et consommations</h3>
   <ul>
-    <li>Radiateur électrique : \(P = 2\,000\) W</li>
-    <li>Pompe à chaleur : \(P = 1\,200\) W</li>
-    <li>Chaudière gaz : \(P = 150\) W (uniquement pour le circulateur et l'électronique)</li>
+    <li>Tarif électricité : <strong>0,22 €/kWh</strong></li>
+    <li>Tarif gaz (PCI) : <strong>0,09 €/kWh</strong></li>
+    <li>Consommation gaz de la chaudière : <strong>12 kWh de gaz par heure de fonctionnement</strong></li>
   </ul>
-  <p><strong>b)</strong> Le radiateur électrique consomme le plus de puissance électrique (2 000 W). La chaudière gaz en consomme le moins (150 W), car l'essentiel de son énergie provient de la combustion du gaz.</p>
-</div>
-</div>
 
-<!-- Question 2 -->
-<div class="exo">
-<h2>Question 2 <span class="badge-green">APP</span></h2>
-<p>Pour le radiateur électrique, la tension est \(U = 230\) V et la puissance est \(P = 2\,000\) W.</p>
-<p>Calculer l'intensité du courant \(I\) qui traverse le radiateur en utilisant la relation \(P = U \times I\).</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>On cherche \(I\). La relation \(P = U \times I\) donne :</p>
-  <p>\[I = \frac{P}{U} = \frac{2\,000}{230} \approx 8{,}7 \text{ A}\]</p>
-  <p>Le radiateur est traversé par un courant d'environ 8,7 A.</p>
-</div>
-</div>
-
-<!-- Question 3 -->
-<div class="exo">
-<h2>Question 3 <span class="badge-blue">REA</span></h2>
-<p>Calculer l'énergie électrique consommée par jour par chaque appareil, en utilisant la formule \(E = P \times t\).</p>
-<p>Exprimer le résultat en <strong>wattheures (Wh)</strong>.</p>
-<p><em>Rappel : si \(P\) est en W et \(t\) en h, alors \(E\) est en Wh.</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>On applique \(E = P \times t\) pour chaque appareil :</p>
+  <h3>Document 4 — Formules clés</h3>
   <ul>
-    <li><strong>Radiateur :</strong> \(E = 2\,000 \times 10 = 20\,000\) Wh</li>
-    <li><strong>PAC :</strong> \(E = 1\,200 \times 8 = 9\,600\) Wh</li>
-    <li><strong>Chaudière gaz :</strong> \(E = 150 \times 6 = 900\) Wh (consommation électrique uniquement)</li>
+    <li>Puissance : P = U × I (W)</li>
+    <li>Énergie : E = P × t (Wh ou kWh)</li>
+    <li>Coût : Coût = E × tarif (€)</li>
+    <li>Rendement : η = P<sub>utile</sub> / P<sub>consommée</sub> (entre 0 et 1)</li>
+    <li>COP : COP = P<sub>thermique</sub> / P<sub>électrique</sub> (peut être &gt; 1 pour une PAC)</li>
   </ul>
-</div>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (P = U × I), §2 (E = P × t) et §3 (rendement et COP) de la leçon Ch01.</em></p>
 </div>
 
-<!-- Question 4 -->
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quel système de chauffage Karim doit-il recommander à son client : le moins cher à l'achat, le moins cher à l'usage, ou le plus efficace énergétiquement ?
+</div>
+
 <div class="exo">
-<h2>Question 4 <span class="badge-blue">REA</span></h2>
-<p>Convertir chaque énergie en <strong>kilowattheures (kWh)</strong>.</p>
-<p><em>Rappel : 1 kWh = 1 000 Wh.</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>On divise par 1 000 pour passer de Wh à kWh :</p>
-  <ul>
-    <li><strong>Radiateur :</strong> \(E = \dfrac{20\,000}{1\,000} = 20\) kWh</li>
-    <li><strong>PAC :</strong> \(E = \dfrac{9\,600}{1\,000} = 9{,}6\) kWh</li>
-    <li><strong>Chaudière gaz :</strong> \(E = \dfrac{900}{1\,000} = 0{,}9\) kWh (électricité seulement)</li>
-  </ul>
-  <p><em>Astuce :</em> on obtient le même résultat directement en exprimant \(P\) en kW : par exemple, pour le radiateur, \(E = 2{,}0 \times 10 = 20\) kWh.</p>
-</div>
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>a) Relever la puissance électrique consommée par chaque appareil.</p>
+  <p>b) Quel appareil consomme le plus de puissance électrique ? Lequel en consomme le moins ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) D'après le tableau :</p>
+    <ul>
+      <li>Radiateur électrique : P = <strong>2 000 W</strong>.</li>
+      <li>Pompe à chaleur : P = <strong>1 200 W</strong>.</li>
+      <li>Chaudière gaz : P = <strong>150 W</strong> (circulateur + électronique seulement).</li>
+    </ul>
+    <p>b) Le <strong>radiateur électrique</strong> consomme le plus de puissance électrique (2 000 W). La <strong>chaudière gaz</strong> en consomme le moins (150 W), car l'essentiel de son énergie provient de la combustion du gaz.</p>
+  </div>
 </div>
 
-<!-- Question 5 -->
 <div class="exo">
-<h2>Question 5 <span class="badge-blue">REA</span></h2>
-<p>Calculer le <strong>coût électrique journalier</strong> de chaque appareil au tarif de 0,22 €/kWh.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>On multiplie l'énergie (en kWh) par le tarif :</p>
-  <ul>
-    <li><strong>Radiateur :</strong> Coût = \(20 \times 0{,}22 = 4{,}40\) €/jour</li>
-    <li><strong>PAC :</strong> Coût = \(9{,}6 \times 0{,}22 = 2{,}11\) €/jour</li>
-    <li><strong>Chaudière gaz (électricité) :</strong> Coût = \(0{,}9 \times 0{,}22 = 0{,}20\) €/jour</li>
-  </ul>
-</div>
+  <h2>Question 2 <span class="badge-green">APP</span></h2>
+  <p>Pour le radiateur électrique : U = 230 V, P = 2 000 W. Calculer l'intensité I avec P = U × I.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P = U × I, donc I = P / U.</p>
+    <p>I = 2 000 / 230 ≈ <strong>8,7 A</strong>.</p>
+    <p>Le radiateur est traversé par un courant d'environ 8,7 A. Avec un disjoncteur 16 A, on peut brancher 1 seul radiateur (ou 2 maxi sur le même circuit).</p>
+  </div>
 </div>
 
-<!-- Question 6 -->
 <div class="exo">
-<h2>Question 6 <span class="badge-blue">REA</span></h2>
-<p>La chaudière gaz consomme 12 kWh de gaz par heure de fonctionnement, au tarif de 0,09 €/kWh.</p>
-<p>Calculer le <strong>coût total journalier</strong> de la chaudière (gaz + électricité).</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><strong>Coût du gaz :</strong></p>
-  <p>Énergie gaz = \(12 \times 6 = 72\) kWh/jour</p>
-  <p>Coût gaz = \(72 \times 0{,}09 = 6{,}48\) €/jour</p>
-  <p><strong>Coût total chaudière :</strong></p>
-  <p>Coût total = coût gaz + coût électricité = \(6{,}48 + 0{,}20 = 6{,}68\) €/jour</p>
-</div>
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'énergie électrique consommée par jour par chaque appareil avec E = P × t. Exprimer en Wh.</p>
+  <p>Rappel : si P est en W et t en h, alors E est en Wh.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li><strong>Radiateur :</strong> E = 2 000 × 10 = <strong>20 000 Wh</strong>.</li>
+      <li><strong>PAC :</strong> E = 1 200 × 8 = <strong>9 600 Wh</strong>.</li>
+      <li><strong>Chaudière gaz :</strong> E = 150 × 6 = <strong>900 Wh</strong> (consommation électrique seulement).</li>
+    </ul>
+  </div>
 </div>
 
-<!-- Question 7 -->
 <div class="exo">
-<h2>Question 7 <span class="badge-blue">ANA</span></h2>
-<p>Compléter le tableau récapitulatif puis comparer les trois systèmes.</p>
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Convertir chaque énergie en kWh. Rappel : 1 kWh = 1 000 Wh.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>On divise par 1 000 :</p>
+    <ul>
+      <li>Radiateur : 20 000 / 1 000 = <strong>20 kWh</strong>.</li>
+      <li>PAC : 9 600 / 1 000 = <strong>9,6 kWh</strong>.</li>
+      <li>Chaudière gaz : 900 / 1 000 = <strong>0,9 kWh</strong> (électricité seulement).</li>
+    </ul>
+    <p><em>Astuce :</em> on obtient le même résultat directement en exprimant P en kW : pour le radiateur, E = 2,0 × 10 = 20 kWh.</p>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Appareil</th>
-      <th>Puissance thermique restituée (W)</th>
-      <th>Coût journalier total (€)</th>
-      <th>Rendement ou COP</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Radiateur électrique</td>
-      <td>1 900</td>
-      <td>...</td>
-      <td>\(\eta = \dfrac{P_{\text{utile}}}{P_{\text{consommée}}} = ...\)</td>
-    </tr>
-    <tr>
-      <td>PAC</td>
-      <td>4 200</td>
-      <td>...</td>
-      <td>\(\text{COP} = \dfrac{P_{\text{thermique}}}{P_{\text{électrique}}} = ...\)</td>
-    </tr>
-    <tr>
-      <td>Chaudière gaz</td>
-      <td>9 000</td>
-      <td>...</td>
-      <td>\(\eta = \dfrac{P_{\text{utile}}}{P_{\text{gaz}}} = ...\)</td>
-    </tr>
-  </tbody>
-</table>
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le coût électrique journalier de chaque appareil (tarif 0,22 €/kWh).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Coût = E × tarif :</p>
+    <ul>
+      <li>Radiateur : 20 × 0,22 = <strong>4,40 €/jour</strong>.</li>
+      <li>PAC : 9,6 × 0,22 = <strong>2,11 €/jour</strong>.</li>
+      <li>Chaudière (élec.) : 0,9 × 0,22 = <strong>0,20 €/jour</strong>.</li>
+    </ul>
+  </div>
+</div>
 
-<p><strong>a)</strong> Quel appareil a le meilleur rendement (ou COP) ?</p>
-<p><strong>b)</strong> Quel appareil a le coût journalier le plus faible ?</p>
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>La chaudière consomme 12 kWh de gaz/h, à 0,09 €/kWh. Calculer le coût total journalier de la chaudière (gaz + électricité).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Énergie gaz : 12 × 6 = <strong>72 kWh/jour</strong>.</p>
+    <p>Coût gaz : 72 × 0,09 = <strong>6,48 €/jour</strong>.</p>
+    <p>Coût total chaudière : 6,48 + 0,20 = <strong>6,68 €/jour</strong>.</p>
+  </div>
+</div>
 
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Compléter le tableau récapitulatif et calculer le rendement (ou COP) de chaque appareil.</p>
   <table>
-    <thead>
-      <tr>
-        <th>Appareil</th>
-        <th>Puissance thermique (W)</th>
-        <th>Coût journalier (€)</th>
-        <th>Rendement / COP</th>
-      </tr>
-    </thead>
+    <thead><tr><th>Appareil</th><th>P thermique (W)</th><th>Coût total/jour</th><th>Rendement / COP</th></tr></thead>
     <tbody>
-      <tr>
-        <td>Radiateur électrique</td>
-        <td>1 900</td>
-        <td>4,40 €</td>
-        <td>\(\eta = \dfrac{1\,900}{2\,000} = 0{,}95 = 95\;\%\)</td>
-      </tr>
-      <tr>
-        <td>PAC</td>
-        <td>4 200</td>
-        <td>2,11 €</td>
-        <td>\(\text{COP} = \dfrac{4\,200}{1\,200} = 3{,}5\)</td>
-      </tr>
-      <tr>
-        <td>Chaudière gaz</td>
-        <td>9 000</td>
-        <td>6,68 €</td>
-        <td>\(\eta = \dfrac{9\,000}{12\,000} = 0{,}75 = 75\;\%\) <br><small>(rendement sur PCI du gaz ; \(P_{\text{gaz}} = 12\) kWh/h = 12 000 W)</small></td>
-      </tr>
+      <tr><td>Radiateur électrique</td><td>1 900</td><td>…</td><td>η = P<sub>utile</sub> / P<sub>cons.</sub> = …</td></tr>
+      <tr><td>PAC</td><td>4 200</td><td>…</td><td>COP = P<sub>therm.</sub> / P<sub>élec.</sub> = …</td></tr>
+      <tr><td>Chaudière gaz</td><td>9 000</td><td>…</td><td>η = P<sub>utile</sub> / P<sub>gaz</sub> = …</td></tr>
     </tbody>
   </table>
-  <p><strong>a)</strong> La pompe à chaleur a le meilleur COP (3,5) : elle restitue 3,5 fois plus d'énergie thermique qu'elle ne consomme d'énergie électrique.</p>
-  <p><strong>b)</strong> La PAC a le coût journalier le plus faible (2,11 €/jour), devant le radiateur (4,40 €) et la chaudière gaz (6,68 €).</p>
-</div>
+  <p>a) Quel appareil a le meilleur rendement (ou COP) ?</p>
+  <p>b) Quel appareil a le coût journalier le plus faible ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Appareil</th><th>P therm.</th><th>Coût/jour</th><th>η ou COP</th></tr></thead>
+      <tbody>
+        <tr><td>Radiateur</td><td>1 900 W</td><td>4,40 €</td><td>η = 1 900 / 2 000 = <strong>0,95 = 95 %</strong></td></tr>
+        <tr><td>PAC</td><td>4 200 W</td><td>2,11 €</td><td>COP = 4 200 / 1 200 = <strong>3,5</strong></td></tr>
+        <tr><td>Chaudière gaz</td><td>9 000 W</td><td>6,68 €</td><td>η = 9 000 / 12 000 = <strong>0,75 = 75 %</strong></td></tr>
+      </tbody>
+    </table>
+    <p>a) La <strong>PAC a le meilleur COP (3,5)</strong> : elle restitue 3,5 fois plus d'énergie thermique qu'elle ne consomme d'électricité.</p>
+    <p>b) La <strong>PAC a le coût journalier le plus faible (2,11 €)</strong>, devant le radiateur (4,40 €) et la chaudière gaz (6,68 €).</p>
+  </div>
 </div>
 
-<!-- Question 8 -->
 <div class="exo">
-<h2>Question 8 <span class="badge-green">VAL</span></h2>
-<p>Le client de Karim reçoit sa facture d'électricité annuelle. Elle indique une consommation totale de <strong>7 300 kWh</strong> pour 365 jours.</p>
-<p><strong>a)</strong> Calculer la consommation électrique moyenne par jour.</p>
-<p><strong>b)</strong> Comparer avec la consommation journalière du radiateur électrique (question 4). Ce résultat est-il cohérent sachant que le chauffage ne fonctionne pas toute l'année ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><strong>a)</strong> Consommation moyenne par jour :</p>
-  <p>\[\frac{7\,300}{365} = 20 \text{ kWh/jour}\]</p>
-  <p><strong>b)</strong> Le radiateur consomme 20 kWh/jour, ce qui correspond exactement à la moyenne quotidienne de la facture. Cependant, le chauffage ne fonctionne qu'environ 6 mois par an (180 jours). En hiver, la consommation réelle est donc bien supérieure à 20 kWh/jour (chauffage + autres appareils). En été, elle est nettement inférieure (pas de chauffage). Le résultat est cohérent en ordre de grandeur.</p>
-</div>
+  <h2>Question 8 <span class="badge-blue">VAL</span></h2>
+  <p>Le client reçoit sa facture annuelle d'électricité : <strong>7 300 kWh sur 365 jours</strong>.</p>
+  <p>a) Calculer la consommation électrique moyenne par jour.</p>
+  <p>b) Comparer avec la consommation journalière du radiateur (Q4). Cohérent sachant que le chauffage ne fonctionne pas toute l'année ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) Conso moyenne : 7 300 / 365 = <strong>20 kWh/jour</strong>.</p>
+    <p>b) Le radiateur consomme 20 kWh/jour, exactement la moyenne quotidienne de la facture.</p>
+    <p>Mais le chauffage ne fonctionne qu'environ 6 mois par an (~ 180 jours). En hiver, la conso réelle est donc bien supérieure à 20 kWh/jour (chauffage + autres). En été, nettement inférieure. Ordre de grandeur cohérent ✓.</p>
+  </div>
 </div>
 
-<!-- Question 9 -->
 <div class="exo">
-<h2>Question 9 <span class="badge-blue">ANA</span></h2>
-<p>La pompe à chaleur restitue 4 200 W de chaleur en ne consommant que 1 200 W d'électricité.</p>
-<p><strong>a)</strong> D'où vient l'énergie supplémentaire ?</p>
-<p><strong>b)</strong> Pourquoi dit-on que la PAC est plus « efficace » que le radiateur électrique, alors que le radiateur a un rendement de 95 % ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><strong>a)</strong> La pompe à chaleur puise de l'énergie thermique dans l'air extérieur (ou le sol, ou l'eau). Elle utilise l'électricité pour faire fonctionner un compresseur qui « pompe » la chaleur de l'extérieur vers l'intérieur. L'énergie supplémentaire (4 200 - 1 200 = 3 000 W) provient de l'environnement.</p>
-  <p><strong>b)</strong> Le rendement de 95 % du radiateur signifie qu'il convertit 95 % de l'électricité en chaleur, mais il ne peut jamais dépasser 100 %. La PAC, grâce à son principe de fonctionnement (cycle thermodynamique), produit plus de chaleur qu'elle ne consomme d'électricité (COP = 3,5, soit 350 % d'efficacité apparente). Elle est donc bien plus efficace pour chauffer, même si le radiateur a un bon rendement.</p>
-</div>
+  <h2>Question 9 <span class="badge-blue">ANA</span></h2>
+  <p>La PAC restitue 4 200 W de chaleur en consommant seulement 1 200 W d'électricité.</p>
+  <p>a) D'où vient l'énergie supplémentaire ?</p>
+  <p>b) Pourquoi dit-on que la PAC est plus « efficace » que le radiateur, alors que le radiateur a un rendement de 95 % ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) La PAC <strong>puise de l'énergie thermique dans l'air extérieur</strong> (ou le sol, ou l'eau). Elle utilise l'électricité pour faire fonctionner un compresseur qui « pompe » la chaleur de l'extérieur vers l'intérieur.</p>
+    <p>L'énergie supplémentaire (4 200 − 1 200 = <strong>3 000 W</strong>) provient de l'environnement.</p>
+    <p>b) Le rendement 95 % du radiateur signifie qu'il convertit 95 % de l'électricité en chaleur, mais il ne peut <strong>jamais dépasser 100 %</strong> (principe de conservation).</p>
+    <p>La PAC, grâce à son <strong>cycle thermodynamique</strong>, produit plus de chaleur qu'elle ne consomme d'électricité (COP = 3,5, soit 350 % d'efficacité apparente). Elle est donc bien plus efficace pour chauffer.</p>
+  </div>
 </div>
 
-<!-- Question 10 -->
 <div class="exo">
-<h2>Question 10 <span class="badge-yellow">COM</span></h2>
-<p>Rédiger, en 3 à 5 phrases, la recommandation que Karim pourrait faire à son client. Préciser :</p>
-<ul>
-  <li>Le système recommandé et pourquoi</li>
-  <li>L'estimation du coût journalier</li>
-  <li>Un avantage environnemental</li>
-</ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><em>Exemple de rédaction :</em></p>
-  <p>« Pour votre maison de 90 m², je vous recommande l'installation d'une <strong>pompe à chaleur air/eau</strong>. Ce système offre le meilleur rapport entre la chaleur produite et l'énergie consommée, avec un COP de 3,5. Votre coût journalier de chauffage serait d'environ <strong>2,11 €</strong>, soit deux fois moins qu'un radiateur électrique et trois fois moins qu'une chaudière gaz. De plus, la PAC utilise principalement l'énergie renouvelable de l'air extérieur, ce qui réduit les émissions de CO₂ par rapport à une chaudière à gaz. »</p>
-</div>
+  <h2>Question 10 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes la recommandation que Karim pourrait faire à son client. Préciser :</p>
+  <ul>
+    <li>le système recommandé et pourquoi</li>
+    <li>l'estimation du coût journalier</li>
+    <li>un avantage environnemental</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Recommandation — système de chauffage maison 90 m²</strong></em></p>
+    <p><em>Pour votre maison, je vous recommande l'installation d'une <strong>pompe à chaleur air/eau</strong>. Ce système offre le meilleur rapport entre la chaleur produite et l'énergie consommée, avec un COP de 3,5.</em></p>
+    <p><em>Votre coût journalier de chauffage serait d'environ <strong>2,11 €</strong>, soit <strong>2× moins qu'un radiateur électrique</strong> (4,40 €) et <strong>3× moins qu'une chaudière gaz</strong> (6,68 €).</em></p>
+    <p><em>De plus, la PAC utilise principalement l'énergie renouvelable de l'air extérieur, réduisant les émissions de CO₂ par rapport à une chaudière à gaz. Investissement initial plus élevé (~ 12 000 € vs 3 000 € radiateurs), mais rentabilisé en 5-7 ans.</em></p>
+  </div>
 </div>
 
-<!-- ===== À RETENIR ===== -->
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Comment fonctionne concrètement une pompe à chaleur ? Quels sont les facteurs qui font varier son COP au cours de l'année ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Une PAC fonctionne sur le <strong>cycle thermodynamique</strong> en 4 étapes :</p>
+    <ol>
+      <li><strong>Évaporateur</strong> (extérieur) : un fluide frigorigène à très basse T (~ −5 °C) capte la chaleur de l'air extérieur (10-15 °C) → s'évapore.</li>
+      <li><strong>Compresseur</strong> (consomme l'électricité) : le gaz est comprimé → sa température monte fortement (60-80 °C).</li>
+      <li><strong>Condenseur</strong> (intérieur) : le gaz chaud cède sa chaleur à l'eau de chauffage → se liquéfie.</li>
+      <li><strong>Détendeur</strong> : la pression du liquide chute → sa T retombe à −5 °C → retour à l'étape 1.</li>
+    </ol>
+    <p>Le COP n'est <strong>pas constant</strong> au cours de l'année :</p>
+    <table>
+      <thead><tr><th>Saison</th><th>T extérieure</th><th>COP typique</th></tr></thead>
+      <tbody>
+        <tr><td>Mi-saison (printemps/automne)</td><td>15 °C</td><td>4,5-5,0</td></tr>
+        <tr><td>Hiver doux</td><td>5 °C</td><td>3,5-4,0</td></tr>
+        <tr><td>Hiver froid</td><td>0 °C</td><td>2,5-3,0</td></tr>
+        <tr><td>Grand froid</td><td>−10 °C</td><td>1,5-2,0 (moins efficace)</td></tr>
+        <tr><td>Au-delà de −15 °C</td><td>−15 °C</td><td>~ 1 (inefficace, résistance électrique secours)</td></tr>
+      </tbody>
+    </table>
+    <p>D'où l'importance de l'indice <strong>SCOP</strong> (Seasonal COP) qui est la moyenne sur l'année. Un SCOP de 3,5 est considéré comme bon en France.</p>
+    <p>Pour Karim : il doit toujours préciser au client le SCOP et non juste le COP nominal du fabricant. Et anticiper qu'en zones très froides (montagne), une PAC sol-eau ou eau-eau (T source plus stable) est préférable à une air-eau.</p>
+  </div>
+</div>
+
 <div class="retenir">
   <strong>À retenir</strong>
   <ul>
-    <li>La <strong>puissance électrique</strong> se calcule avec : \(P = U \times I\) (en watts, W).</li>
-    <li>L'<strong>énergie électrique</strong> se calcule avec : \(E = P \times t\).</li>
-    <li>En <strong>joules</strong> : \(P\) en W et \(t\) en s. En <strong>kWh</strong> : \(P\) en kW et \(t\) en h.</li>
-    <li>\(1 \text{ kWh} = 3{,}6 \times 10^6 \text{ J}\)</li>
-    <li>Le <strong>rendement</strong> d'un appareil : \(\eta = \dfrac{P_{\text{utile}}}{P_{\text{totale}}}\) (compris entre 0 et 1).</li>
-    <li>Le <strong>COP</strong> d'une pompe à chaleur peut être supérieur à 1, car elle puise de l'énergie dans l'environnement.</li>
+    <li><strong>Puissance électrique :</strong> P = U × I (en watts).</li>
+    <li><strong>Énergie électrique :</strong> E = P × t. En Wh : P en W et t en h. En kWh : P en kW et t en h.</li>
+    <li><strong>Conversion :</strong> 1 kWh = 3,6 × 10⁶ J = 1 000 Wh.</li>
+    <li><strong>Rendement :</strong> η = P<sub>utile</sub> / P<sub>consommée</sub> (entre 0 et 1).</li>
+    <li><strong>COP d'une PAC</strong> peut être &gt; 1 (typiquement 2,5-4) car la pompe à chaleur puise de l'énergie dans l'environnement extérieur.</li>
   </ul>
 </div>
 
-<footer>
-  <p>Première Bac Pro (Grpt 1) | Physique-Chimie – Chapitre 1 | maths-sciences-lp.github.io</p>
-</footer>
-
 </div>
 <script src="../../../nav.js"></script>
-<script>
-function toggle(btn){
-  const c=btn.nextElementSibling;
-  if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}
-  else{c.style.display='block';btn.textContent='Masquer la correction';}
-}
-</script>
 </body>
 </html>

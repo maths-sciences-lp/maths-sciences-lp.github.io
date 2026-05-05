@@ -3,245 +3,283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch05 – Activite – Vitesse et acceleration – Premiere ICCER</title>
+<title>Ch05 – Activité – Démarrage d'un circulateur – PC 1ère ICCER</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
-<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.toggle-corr{cursor:pointer}
-</style>
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE</a>
+<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE ICCER (Grpt 1)</a>
 
 <header>
-  <h1>Activite – Demarrage d'un circulateur de chauffage</h1>
-  <p class="sous-titre">Chapitre 5 – Vitesse et acceleration | Premiere Bac Pro (Grpt 1) | Physique – Mecanique | &#9201; 35 min</p>
+  <h1>Activité – Démarrage d'un circulateur de chauffage <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 5 – Vitesse et accélération | Première Bac Pro ICCER (Grpt 1) | Physique – Mécanique | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 15:00</p>
 </header>
 <button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
 <div class="objectifs">
   <strong>Objectifs :</strong>
   <ul>
-    <li>Decouvrir les notions de vitesse moyenne et d'acceleration</li>
-    <li>Distinguer un mouvement accelere d'un mouvement uniforme a partir d'un tableau de mesures et d'un graphique</li>
-    <li>Utiliser les relations \(v = \dfrac{d}{\Delta t}\) et \(a = \dfrac{\Delta v}{\Delta t}\)</li>
+    <li>Découvrir les notions de vitesse moyenne et d'accélération</li>
+    <li>Distinguer mouvement accéléré et mouvement uniforme</li>
+    <li>Utiliser v = d / Δt et a = Δv / Δt</li>
+    <li>Tracer et analyser un graphique v(t)</li>
+    <li>Vérifier la conformité d'un dispositif (cahier des charges fabricant)</li>
   </ul>
 </div>
 
-<!-- ===== DOCUMENT D'ACCROCHE ===== -->
 <div class="situation">
-  <h2>Situation professionnelle</h2>
-  <p><em>Karim est technicien de maintenance dans l'entreprise ThermoConfort, specialisee dans l'entretien de chaufferies collectives a Grenoble. Lors d'une visite de maintenance preventive, il surveille le demarrage d'un circulateur (pompe de circulation) qui met en mouvement le fluide caloporteur dans le circuit de chauffage.</em></p>
+  <h2>Situation – maintenance préventive d'une chaufferie collective</h2>
+  <p><em>Karim est technicien de maintenance dans l'entreprise ThermoConfort, spécialisée dans l'entretien de chaufferies collectives à Grenoble. Lors d'une visite de maintenance préventive, il surveille le démarrage d'un circulateur (pompe de circulation) qui met en mouvement le fluide caloporteur dans le circuit de chauffage.</em></p>
 
-  <p>A l'aide d'un debitmetre a ultrasons, Karim releve la vitesse du fluide dans la canalisation a intervalles reguliers pendant les 20 premieres secondes apres la mise en marche du circulateur.</p>
+  <h3>Document 1 — Schéma du circulateur et du circuit</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 200" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Schéma : chaudière, circulateur (pompe), circuit de 120 m, radiateurs, débitmètre à ultrasons mesure la vitesse du fluide.">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .val{font:600 11px sans-serif;fill:#dc2626;text-anchor:middle}
+        </style>
+        <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/></marker>
+      </defs>
+      <text class="ti" x="270" y="20">Circuit fermé : chaudière → circulateur → radiateurs → retour</text>
 
-  <h3>Tableau de mesures</h3>
-  <table style="width:100%;border-collapse:collapse;font-size:.92em;margin:10px 0">
-    <tr style="background:var(--p);color:#fff">
-      <th style="padding:6px;border:1px solid #cbd5e1">Temps t (s)</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">0</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">2</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">4</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">6</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">8</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">10</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">12</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">14</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">16</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">18</th>
-      <th style="padding:6px;border:1px solid #cbd5e1">20</th>
-    </tr>
-    <tr>
-      <td style="padding:6px;border:1px solid #cbd5e1;font-weight:600">Vitesse v (m/s)</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,15</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,30</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,45</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,60</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,75</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,75</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,75</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,75</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,75</td>
-      <td style="padding:6px;border:1px solid #cbd5e1;text-align:center">0,75</td>
-    </tr>
+      <!-- Chaudière -->
+      <rect x="40" y="80" width="80" height="60" fill="#fbbf24" stroke="#1a202c"/>
+      <text x="80" y="115" class="lblA">CHAUDIÈRE</text>
+      <text x="80" y="160" class="lbl">90 °C</text>
+
+      <!-- Circulateur (pompe) -->
+      <circle cx="160" cy="110" r="20" fill="#dc2626" stroke="#1a202c"/>
+      <text x="160" y="115" class="lbl" fill="#fff" font-weight="700">P</text>
+      <text x="160" y="155" class="lbl">circulateur</text>
+      <text x="160" y="170" class="val">v = 0,75 m/s</text>
+
+      <!-- Conduits -->
+      <line x1="120" y1="110" x2="140" y2="110" stroke="#dc2626" stroke-width="4"/>
+      <line x1="180" y1="110" x2="500" y2="110" stroke="#dc2626" stroke-width="4" marker-end="url(#arr)"/>
+
+      <!-- Radiateurs -->
+      <rect x="280" y="60" width="50" height="30" fill="#dbeafe" stroke="#1a202c"/>
+      <text x="305" y="80" class="lbl">rad. 1</text>
+      <line x1="305" y1="90" x2="305" y2="110" stroke="#dc2626" stroke-width="4"/>
+
+      <rect x="380" y="60" width="50" height="30" fill="#dbeafe" stroke="#1a202c"/>
+      <text x="405" y="80" class="lbl">rad. 2</text>
+      <line x1="405" y1="90" x2="405" y2="110" stroke="#dc2626" stroke-width="4"/>
+
+      <!-- Retour froid -->
+      <line x1="500" y1="110" x2="500" y2="160" stroke="#0ea5e9" stroke-width="4"/>
+      <line x1="500" y1="160" x2="80" y2="160" stroke="#0ea5e9" stroke-width="4"/>
+      <line x1="80" y1="160" x2="80" y2="140" stroke="#0ea5e9" stroke-width="4"/>
+      <text x="270" y="180" class="lbl">circuit retour 60 °C — longueur totale 120 m</text>
+
+      <!-- Débitmètre -->
+      <rect x="220" y="100" width="35" height="20" fill="#fef3c7" stroke="#1a202c"/>
+      <text x="237" y="113" class="lbl">débit</text>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Mesures du débitmètre à ultrasons</h3>
+  <p>Vitesse du fluide dans la canalisation, mesurée toutes les 2 secondes pendant 20 s après mise en marche.</p>
+  <table>
+    <thead><tr><th>t (s)</th><th>0</th><th>2</th><th>4</th><th>6</th><th>8</th><th>10</th><th>12</th><th>14</th><th>16</th><th>18</th><th>20</th></tr></thead>
+    <tbody>
+      <tr><td><strong>v (m/s)</strong></td><td>0</td><td>0,15</td><td>0,30</td><td>0,45</td><td>0,60</td><td>0,75</td><td>0,75</td><td>0,75</td><td>0,75</td><td>0,75</td><td>0,75</td></tr>
+    </tbody>
   </table>
 
-  <p><strong>Donnees complementaires :</strong></p>
-  <ul style="font-size:.93em">
-    <li>Le circuit de chauffage a une longueur totale de 120 m.</li>
-    <li>Le diametre interieur de la canalisation est de 32 mm.</li>
-    <li>La vitesse de regime (vitesse constante) recommandee par le fabricant est comprise entre 0,5 et 1,0 m/s.</li>
-  </ul>
-</div>
-
-<div class="objectifs" style="border-left:4px solid #f59e0b;background:#fffbeb;margin:1.2em 0;padding:1em 1.2em;border-radius:6px">
-  <strong>Problématique</strong>
-  <p style="margin:.5em 0 0">Comment Karim peut-il caractériser le démarrage du circulateur à partir de ses mesures ? Le circulateur atteint-il une vitesse de régime conforme aux recommandations du fabricant, et en combien de temps ?</p>
-</div>
-
-<!-- ===== QUESTIONS ===== -->
-
-<div class="exo">
-<h2>Question 1 <span class="badge-green">APP</span></h2>
-<p><strong>a)</strong> Identifier les deux grandeurs physiques mesurees par Karim dans le tableau.</p>
-<p><strong>b)</strong> Preciser l'unite de chacune de ces grandeurs.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><strong>a)</strong> Les deux grandeurs mesurees sont :</p>
+  <h3>Document 3 — Données complémentaires</h3>
   <ul>
-    <li>le <strong>temps</strong> t</li>
-    <li>la <strong>vitesse</strong> v du fluide dans la canalisation</li>
+    <li>Longueur totale du circuit : 120 m.</li>
+    <li>Diamètre intérieur de la canalisation : 32 mm.</li>
+    <li>Vitesse de régime recommandée par le fabricant : <strong>0,5 à 1,0 m/s</strong>.</li>
+    <li>Formules : v = d / Δt ; a = Δv / Δt.</li>
   </ul>
-  <p><strong>b)</strong> Le temps est mesure en <strong>secondes</strong> (s) et la vitesse en <strong>metres par seconde</strong> (m/s).</p>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (vitesse v = d/Δt), §2 (accélération a = Δv/Δt) et §3 (mouvement uniforme et uniformément accéléré) de la leçon Ch05.</em></p>
 </div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment Karim peut-il caractériser le démarrage du circulateur, et le fonctionnement est-il conforme aux recommandations du fabricant ?
 </div>
 
 <div class="exo">
-<h2>Question 2 <span class="badge-blue">ANA</span></h2>
-<p>En observant le tableau de mesures, identifier <strong>deux phases</strong> distinctes dans le comportement du fluide. Pour chaque phase, preciser :</p>
-<ul>
-  <li>l'intervalle de temps correspondant ;</li>
-  <li>ce qui arrive a la vitesse (augmente, diminue ou reste constante).</li>
-</ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><strong>Phase 1 : de t = 0 s a t = 10 s</strong></p>
-  <p>La vitesse <strong>augmente</strong> regulierement : elle passe de 0 m/s a 0,75 m/s. C'est la phase d'<strong>acceleration</strong> (demarrage du circulateur).</p>
-  <p><strong>Phase 2 : de t = 10 s a t = 20 s</strong></p>
-  <p>La vitesse <strong>reste constante</strong> a 0,75 m/s. C'est la phase de <strong>regime permanent</strong> (vitesse constante).</p>
-</div>
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>a) Identifier les 2 grandeurs physiques mesurées par Karim.</p>
+  <p>b) Préciser l'unité de chacune.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) Les 2 grandeurs sont : le <strong>temps t</strong> et la <strong>vitesse v</strong> du fluide dans la canalisation.</p>
+    <p>b) Temps en <strong>secondes (s)</strong>, vitesse en <strong>mètres par seconde (m/s)</strong>.</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 3 <span class="badge-green">REA</span></h2>
-<p>Tracer le graphique de la vitesse en fonction du temps \(v(t)\) sur le repere ci-dessous.</p>
-<p><em>Indications :</em></p>
-<ul>
-  <li>Axe horizontal : temps t (s), de 0 a 20 s</li>
-  <li>Axe vertical : vitesse v (m/s), de 0 a 1,0 m/s</li>
-  <li>Placer les 11 points du tableau, puis les relier</li>
-</ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>Le graphique obtenu comporte :</p>
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>En observant le tableau, identifier 2 phases distinctes. Pour chacune, préciser :</p>
   <ul>
-    <li>une <strong>droite croissante</strong> de t = 0 s a t = 10 s (les points sont alignes) ;</li>
-    <li>une <strong>droite horizontale</strong> de t = 10 s a t = 20 s, a v = 0,75 m/s.</li>
+    <li>l'intervalle de temps</li>
+    <li>ce qui arrive à la vitesse (augmente, diminue, constante)</li>
   </ul>
-  <p>La courbe forme un profil en « rampe puis plateau ».</p>
-</div>
-</div>
-
-<div class="exo">
-<h2>Question 4 <span class="badge-blue">ANA</span></h2>
-<p>A partir du graphique trace a la question 3 :</p>
-<p><strong>a)</strong> Quelle est la forme de la courbe pendant la phase 1 (0 a 10 s) ? Que peut-on en deduire sur le type de mouvement ?</p>
-<p><strong>b)</strong> Quelle est la forme de la courbe pendant la phase 2 (10 a 20 s) ? Quel est le type de mouvement correspondant ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><strong>a)</strong> Pendant la phase 1, la courbe \(v(t)\) est une <strong>droite croissante</strong>. Cela signifie que la vitesse augmente regulierement : c'est un <strong>mouvement rectiligne uniformement accelere</strong> (MRUA).</p>
-  <p><strong>b)</strong> Pendant la phase 2, la courbe \(v(t)\) est une <strong>droite horizontale</strong>. La vitesse ne change pas : c'est un <strong>mouvement rectiligne uniforme</strong> (MRU).</p>
-</div>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Phase 1 : t = 0 à 10 s</strong>. La vitesse <strong>augmente</strong> régulièrement de 0 à 0,75 m/s. C'est la phase d'<strong>accélération</strong> (démarrage).</p>
+    <p><strong>Phase 2 : t = 10 à 20 s</strong>. La vitesse <strong>reste constante</strong> à 0,75 m/s. C'est la phase de <strong>régime permanent</strong>.</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 5 <span class="badge-green">REA</span></h2>
-<p>Calculer l'acceleration du fluide pendant la phase de demarrage (de t = 0 s a t = 10 s) en utilisant la relation :</p>
-\[ a = \frac{\Delta v}{\Delta t} = \frac{v_f - v_i}{t_f - t_i} \]
-<p><strong>Donnees :</strong> \(v_i = 0\) m/s, \(v_f = 0{,}75\) m/s, \(t_i = 0\) s, \(t_f = 10\) s.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>Application numerique :</p>
-  \[ a = \frac{v_f - v_i}{t_f - t_i} = \frac{0{,}75 - 0}{10 - 0} = \frac{0{,}75}{10} = 0{,}075 \text{ m/s}^2 \]
-  <p>L'acceleration du fluide pendant le demarrage est de <strong>0,075 m/s&sup2;</strong>.</p>
-  <p>Cela signifie que chaque seconde, la vitesse du fluide augmente de 0,075 m/s.</p>
-</div>
-</div>
-
-<div class="exo">
-<h2>Question 6 <span class="badge-green">REA</span></h2>
-<p>Verifier ce resultat en calculant l'acceleration entre t = 2 s et t = 6 s.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>Entre t = 2 s et t = 6 s :</p>
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Tracer le graphique v(t) sur un repère.</p>
+  <p>Indications :</p>
   <ul>
-    <li>\(v_i = 0{,}15\) m/s (a t = 2 s)</li>
-    <li>\(v_f = 0{,}45\) m/s (a t = 6 s)</li>
-    <li>\(\Delta t = 6 - 2 = 4\) s</li>
+    <li>Axe horizontal : t (s), de 0 à 20 s.</li>
+    <li>Axe vertical : v (m/s), de 0 à 1,0 m/s.</li>
+    <li>Placer les 11 points du tableau, puis les relier.</li>
   </ul>
-  \[ a = \frac{0{,}45 - 0{,}15}{4} = \frac{0{,}30}{4} = 0{,}075 \text{ m/s}^2 \]
-  <p>On retrouve bien la meme valeur : <strong>a = 0,075 m/s&sup2;</strong>. L'acceleration est constante pendant toute la phase de demarrage, ce qui confirme le mouvement uniformement accelere.</p>
-</div>
-</div>
-
-<div class="exo">
-<h2>Question 7 <span class="badge-blue">ANA</span></h2>
-<p>Quelle est la valeur de l'acceleration pendant la phase 2 (de t = 10 s a t = 20 s) ? Justifier la reponse.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>Pendant la phase 2, la vitesse est constante : \(v = 0{,}75\) m/s a chaque instant.</p>
-  \[ a = \frac{\Delta v}{\Delta t} = \frac{0{,}75 - 0{,}75}{20 - 10} = \frac{0}{10} = 0 \text{ m/s}^2 \]
-  <p>L'acceleration est <strong>nulle</strong>. C'est logique : dans un mouvement uniforme, la vitesse ne change pas, donc l'acceleration vaut zero.</p>
-</div>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le graphique obtenu comporte :</p>
+    <ul>
+      <li>Une <strong>droite croissante</strong> de t = 0 s à t = 10 s (les points sont alignés).</li>
+      <li>Une <strong>droite horizontale</strong> de t = 10 s à t = 20 s, à v = 0,75 m/s.</li>
+    </ul>
+    <p>La courbe forme un profil en « rampe puis plateau ».</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 8 <span class="badge-green">VAL</span></h2>
-<p><strong>a)</strong> Verifier que la vitesse de regime du fluide (0,75 m/s) est bien dans la plage recommandee par le fabricant.</p>
-<p><strong>b)</strong> Verifier la coherence des unites dans le calcul de l'acceleration : montrer que \(\dfrac{\text{m/s}}{\text{s}}\) donne bien des m/s&sup2;.</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><strong>a)</strong> Le fabricant recommande une vitesse entre 0,5 et 1,0 m/s. La vitesse de regime mesuree est 0,75 m/s. On a bien :</p>
-  \[ 0{,}5 \leq 0{,}75 \leq 1{,}0 \]
-  <p>La vitesse est <strong>conforme</strong> aux recommandations.</p>
-  <p><strong>b)</strong> Verification des unites :</p>
-  \[ a = \frac{\Delta v}{\Delta t} \quad \Rightarrow \quad [a] = \frac{\text{m/s}}{\text{s}} = \frac{\text{m}}{\text{s} \times \text{s}} = \frac{\text{m}}{\text{s}^2} = \text{m/s}^2 \]
-  <p>Les unites sont bien coherentes : l'acceleration s'exprime en <strong>m/s&sup2;</strong> (metres par seconde au carre).</p>
-</div>
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>À partir du graphique :</p>
+  <p>a) Quelle est la forme de la courbe pendant la phase 1 ? Type de mouvement ?</p>
+  <p>b) Quelle est la forme de la courbe pendant la phase 2 ? Type de mouvement ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) Phase 1 : la courbe v(t) est une <strong>droite croissante</strong>. La vitesse augmente régulièrement → <strong>mouvement rectiligne uniformément accéléré (MRUA)</strong>.</p>
+    <p>b) Phase 2 : la courbe v(t) est une <strong>droite horizontale</strong>. La vitesse ne change pas → <strong>mouvement rectiligne uniforme (MRU)</strong>.</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 9 <span class="badge-green">REA</span></h2>
-<p>En regime permanent, le fluide circule a 0,75 m/s dans le circuit de 120 m. Calculer la duree necessaire pour que le fluide fasse un tour complet du circuit.</p>
-<p><em>Rappel :</em> \(\Delta t = \dfrac{d}{v}\)</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  \[ \Delta t = \frac{d}{v} = \frac{120}{0{,}75} = 160 \text{ s} \]
-  <p>Le fluide met <strong>160 secondes</strong> (soit 2 min 40 s) pour parcourir les 120 m du circuit.</p>
-</div>
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer l'accélération du fluide pendant le démarrage (t = 0 à 10 s) avec a = (v<sub>f</sub> − v<sub>i</sub>) / (t<sub>f</sub> − t<sub>i</sub>).</p>
+  <p>Données : v<sub>i</sub> = 0 m/s, v<sub>f</sub> = 0,75 m/s, t<sub>i</sub> = 0 s, t<sub>f</sub> = 10 s.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a = (0,75 − 0) / (10 − 0) = 0,75 / 10 = <strong>0,075 m/s²</strong>.</p>
+    <p>Chaque seconde, la vitesse augmente de 0,075 m/s.</p>
+  </div>
 </div>
 
 <div class="exo">
-<h2>Question 10 <span class="badge-yellow">COM</span></h2>
-<p>Karim doit rediger une note pour le gestionnaire de l'immeuble. En 2 a 3 phrases, expliquer :</p>
-<ul>
-  <li>pourquoi la vitesse du fluide doit etre suffisante (ni trop faible, ni trop elevee) ;</li>
-  <li>quel est l'interet pour le confort des habitants.</li>
-</ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><em>Exemple de redaction :</em></p>
-  <p>La vitesse du fluide caloporteur dans les canalisations doit etre suffisante pour assurer un bon transport de chaleur vers les radiateurs. Si la vitesse est trop faible, le fluide perd trop de chaleur en chemin et les radiateurs ne chauffent pas assez. Si la vitesse est trop elevee, cela genere du bruit dans les canalisations et augmente la consommation electrique du circulateur. La vitesse mesuree de 0,75 m/s est conforme aux recommandations du fabricant, ce qui garantit un chauffage efficace et silencieux pour les habitants.</p>
-</div>
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Vérifier ce résultat en calculant l'accélération entre t = 2 s et t = 6 s.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Entre t = 2 s et t = 6 s : v<sub>i</sub> = 0,15 m/s, v<sub>f</sub> = 0,45 m/s, Δt = 4 s.</p>
+    <p>a = (0,45 − 0,15) / 4 = 0,30 / 4 = <strong>0,075 m/s²</strong>.</p>
+    <p>On retrouve la même valeur ✓. L'accélération est constante pendant toute la phase de démarrage → confirmation du <strong>MRUA</strong>.</p>
+  </div>
 </div>
 
-<!-- ===== SYNTHESE ===== -->
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Quelle est la valeur de l'accélération pendant la phase 2 (t = 10 à 20 s) ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Phase 2 : v est constante (0,75 m/s à chaque instant).</p>
+    <p>a = Δv / Δt = (0,75 − 0,75) / (20 − 10) = 0 / 10 = <strong>0 m/s²</strong>.</p>
+    <p>L'accélération est <strong>nulle</strong>. Logique : dans un mouvement uniforme, la vitesse ne change pas → a = 0.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-blue">VAL</span></h2>
+  <p>a) Vérifier que la vitesse de régime (0,75 m/s) est dans la plage recommandée par le fabricant.</p>
+  <p>b) Vérifier la cohérence des unités : montrer que (m/s) / s donne bien des m/s².</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) Plage recommandée : 0,5 à 1,0 m/s. La vitesse mesurée 0,75 m/s vérifie 0,5 ≤ 0,75 ≤ 1,0 → <strong>conforme ✓</strong>.</p>
+    <p>b) Vérification des unités : a = Δv / Δt → [a] = (m/s) / s = m / (s × s) = <strong>m/s²</strong>. Cohérent ✓.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-yellow">REA</span></h2>
+  <p>En régime permanent, le fluide circule à 0,75 m/s dans le circuit de 120 m. Calculer la durée pour faire un tour complet du circuit.</p>
+  <p>Rappel : Δt = d / v.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Δt = 120 / 0,75 = <strong>160 s = 2 min 40 s</strong>.</p>
+    <p>Le fluide met 2 min 40 s pour parcourir les 120 m du circuit. C'est le temps de boucle du chauffage.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 10 <span class="badge-yellow">COM</span></h2>
+  <p>Karim doit rédiger une note pour le gestionnaire de l'immeuble. Expliquer en 3-4 phrases :</p>
+  <ul>
+    <li>pourquoi la vitesse du fluide doit être ni trop faible, ni trop élevée</li>
+    <li>l'intérêt pour le confort des habitants</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Note maintenance circulateur — chaufferie résidence X</strong></em></p>
+    <p><em>La vitesse du fluide caloporteur dans les canalisations doit être suffisante pour assurer un bon transport de chaleur vers les radiateurs. Si la vitesse est <strong>trop faible</strong>, le fluide perd trop de chaleur en chemin et les radiateurs ne chauffent pas assez. Si la vitesse est <strong>trop élevée</strong>, cela génère du <strong>bruit</strong> dans les canalisations (sifflements) et augmente la consommation électrique du circulateur.</em></p>
+    <p><em>La vitesse mesurée de <strong>0,75 m/s est conforme</strong> aux recommandations du fabricant (0,5 à 1,0 m/s). L'installation fonctionne correctement, garantissant un chauffage efficace et silencieux pour les habitants.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi un démarrage progressif (MRUA) du circulateur est-il préférable à un démarrage brutal ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Un démarrage brutal (passage instantané de 0 à 0,75 m/s) provoquerait :</p>
+    <ol>
+      <li><strong>Coup de bélier</strong> : onde de pression qui peut endommager les joints, soudures, raccords. Risque de fuite.</li>
+      <li><strong>Pic de courant</strong> dans le moteur du circulateur (jusqu'à 5-7× le courant nominal au démarrage), risque de griller le moteur ou faire déclencher le disjoncteur.</li>
+      <li><strong>Bruit</strong> brutal dans les canalisations (sifflement, claquement), inconfort pour les habitants.</li>
+      <li><strong>Usure prématurée</strong> du circulateur et de la mécanique du moteur.</li>
+    </ol>
+    <p>Solutions techniques :</p>
+    <ul>
+      <li><strong>Variateur de vitesse</strong> (VFD) : module la vitesse du moteur progressivement, montée en 5-30 secondes (comme dans le cas de Karim, 10 s).</li>
+      <li><strong>Démarreur progressif</strong> : limite le pic de courant.</li>
+      <li><strong>Vase d'expansion</strong> : absorbe les coups de bélier.</li>
+    </ul>
+    <p>Économie : un circulateur avec variateur consomme 30-50 % d'électricité en moins qu'un circulateur classique (sa vitesse s'adapte aux besoins). Norme européenne EuP 2015 : tous les circulateurs neufs doivent avoir un IEE (Indice d'Efficacité Énergétique) ≤ 0,23 → variateur quasi obligatoire.</p>
+    <p>Pour Karim : recommander à son client de moderniser les vieux circulateurs (souvent de 1990) qui consomment 80-200 W en permanence vs 20-40 W pour les modèles récents = économie ~ 100 €/an par circulateur.</p>
+  </div>
+</div>
+
 <div class="retenir">
   <strong>À retenir</strong>
   <ul>
-    <li>La <strong>vitesse</strong> mesure la rapidite d'un deplacement : \(v = \dfrac{d}{\Delta t}\) (en m/s).</li>
-    <li>L'<strong>acceleration</strong> mesure la rapidite de variation de la vitesse : \(a = \dfrac{\Delta v}{\Delta t} = \dfrac{v_f - v_i}{\Delta t}\) (en m/s&sup2;).</li>
-    <li>Un <strong>mouvement uniforme</strong> a une vitesse constante (\(a = 0\)) : le graphe \(v(t)\) est une droite horizontale.</li>
-    <li>Un <strong>mouvement uniformement accelere</strong> a une vitesse qui augmente regulierement (\(a > 0\), constante) : le graphe \(v(t)\) est une droite croissante.</li>
-    <li>Sur un graphe \(v(t)\), l'acceleration correspond a la <strong>pente</strong> de la droite.</li>
+    <li><strong>Vitesse :</strong> v = d / Δt (en m/s).</li>
+    <li><strong>Accélération :</strong> a = Δv / Δt = (v<sub>f</sub> − v<sub>i</sub>) / Δt (en m/s²).</li>
+    <li><strong>Mouvement uniforme :</strong> v constante, a = 0. Graphe v(t) = droite horizontale.</li>
+    <li><strong>Mouvement uniformément accéléré (MRUA) :</strong> a constante &gt; 0, v augmente régulièrement. Graphe v(t) = droite croissante.</li>
+    <li>Sur un graphe v(t), <strong>l'accélération = pente</strong> de la droite.</li>
   </ul>
 </div>
-
-<footer style="margin-top:40px;padding:16px 0;border-top:1px solid #e2e8f0;font-size:.82em;color:#718096;text-align:center">
-  Premiere Bac Pro ICCER – Groupement 1 | Physique-Chimie – Chapitre 5 – Activite | maths-sciences-lp.github.io
-</footer>
 
 </div>
 <script src="../../../nav.js"></script>
