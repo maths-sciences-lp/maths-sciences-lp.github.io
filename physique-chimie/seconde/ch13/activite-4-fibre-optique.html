@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch13 – Activité 4 – Fibre optique – 2nde Bac Pro MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd;--s:#0ea5e9}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 4 – Fibre optique pour CNC en réseau <span style="font-size:.55em;color:#6f42c1;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 13 – Réflexion, réfraction et signaux lumineux | 2nde Bac Pro MAMA | Physique-Chimie | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre le principe de la fibre optique (réflexion totale interne)</li>
+    <li>Calculer la durée de propagation d'un signal lumineux</li>
+    <li>Comparer fibre vs câble cuivre</li>
+    <li>Choisir la fibre adaptée à une installation</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – relier le bureau aux machines CNC en fibre</h2>
+  <p><em>Sébastien, technicien réseau chez <strong>Atelier 21</strong> à Dijon, doit installer un réseau permettant de transférer les fichiers de découpe (DXF) du bureau aux 4 machines CNC (200 m de distance). Il hésite entre cuivre Ethernet et fibre optique.</em></p>
+
+  <h3>Document 1 – Principe de la fibre optique</h3>
+  <ul>
+    <li>Une fibre optique est composée d'un <strong>cœur</strong> (n_cœur ≈ 1,49) entouré d'une <strong>gaine</strong> (n_gaine ≈ 1,46).</li>
+    <li>La lumière entre dans le cœur et subit des <strong>réflexions totales internes</strong> à l'interface cœur/gaine.</li>
+    <li>Elle se propage ainsi sur de longues distances quasi sans pertes.</li>
+  </ul>
+
+  <h3>Document 2 – Comparaison cuivre vs fibre</h3>
+  <table>
+    <thead><tr><th>Critère</th><th>Cuivre Cat6</th><th>Fibre optique monomode</th></tr></thead>
+    <tbody>
+      <tr><td>Débit max</td><td>1 Gbit/s</td><td>10-100 Gbit/s</td></tr>
+      <tr><td>Distance max sans répéteur</td><td>100 m</td><td>40 km</td></tr>
+      <tr><td>Sensibilité aux interférences</td><td>Forte (moteurs)</td><td>Aucune</td></tr>
+      <tr><td>Coût (200 m installé)</td><td>≈ 800 €</td><td>≈ 1 800 €</td></tr>
+      <tr><td>Vitesse signal dans le câble</td><td>≈ 0,7 c</td><td>≈ 0,67 c</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 3 – Données utiles</h3>
+  <ul>
+    <li>Vitesse de la lumière dans le vide : c = 3 × 10⁸ m/s.</li>
+    <li>Vitesse dans la fibre : v = c/n = c/1,49 ≈ 2,01 × 10⁸ m/s.</li>
+    <li>Distance bureau ↔ CNC : 200 m.</li>
+  </ul>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle solution Sébastien doit-il retenir pour le réseau de l'atelier ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p><strong>a)</strong> Qu'est-ce qu'une fibre optique ?</p>
+  <p><strong>b)</strong> Comment la lumière reste-t-elle confinée dans la fibre ?</p>
+  <p><strong>c)</strong> Quelle est la formule reliant la vitesse de la lumière dans un milieu à son indice n ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> Une fibre optique est un fil de verre très fin (∅ ≈ 125 µm) qui transporte la lumière sur de grandes distances.</p>
+    <p><strong>b)</strong> Par <strong>réflexion totale interne</strong> à l'interface cœur/gaine. L'indice du cœur étant supérieur à celui de la gaine, la lumière qui frappe l'interface à grand angle est totalement réfléchie.</p>
+    <p><strong>c)</strong> v = c/n. Plus l'indice est grand, plus la lumière est ralentie.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la vitesse de la lumière dans le cœur de fibre (n = 1,49).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>v = c/n = 3 × 10⁸ / 1,49 ≈ <strong>2,01 × 10⁸ m/s</strong> (≈ 200 000 km/s).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la durée de propagation d'un signal sur 200 m de fibre.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>t = d/v = 200 / (2,01 × 10⁸) ≈ <strong>1,0 × 10⁻⁶ s = 1 µs</strong>.</p>
+    <p>1 microseconde pour parcourir 200 m. C'est imperceptible.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Calculer l'angle limite à l'interface cœur/gaine, sachant que :</p>
+  <p>sin(i_limite) = n_gaine / n_cœur = 1,46 / 1,49.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>sin(i_limite) = 1,46 / 1,49 ≈ 0,9799 → i_limite ≈ <strong>78,5°</strong>.</p>
+    <p>Tout rayon arrivant sous un angle ≥ 78,5° par rapport à la normale (donc presque parallèle à l'axe de la fibre) sera totalement réfléchi. C'est ce qui permet la propagation guidée.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi une fibre optique est-elle préférable au cuivre dans un atelier avec des machines lourdes (moteurs, soudures à arc) ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Les machines à fort courant (moteurs, postes à souder) génèrent des <strong>parasites électromagnétiques</strong>. Ces parasites perturbent les câbles cuivre et peuvent corrompre les données ou provoquer des erreurs de transmission.</p>
+    <p>La fibre optique transporte la lumière, qui n'est <strong>pas affectée par les champs électromagnétiques</strong>. Elle est donc immunisée à ces parasites. Aussi, la fibre est sûre car elle n'introduit pas de masse électrique entre les bâtiments (pas de risque de court-circuit ou foudre).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Si Sébastien doit transférer un fichier de 1 Go (1 gigaoctet = 8 × 10⁹ bits), calculer le temps de transfert :</p>
+  <p><strong>a)</strong> Sur cuivre 1 Gbit/s.</p>
+  <p><strong>b)</strong> Sur fibre 10 Gbit/s.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> Cuivre 1 Gbit/s : t = 8 × 10⁹ / 10⁹ = <strong>8 s</strong>.</p>
+    <p><strong>b)</strong> Fibre 10 Gbit/s : t = 8 × 10⁹ / 10¹⁰ = <strong>0,8 s</strong>.</p>
+    <p>La fibre est 10 fois plus rapide. Pour des transferts fréquents de gros fichiers DXF (parfois 500 Mo), c'est appréciable.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Sébastien hésite. Sur 200 m, le cuivre ne pose pas de problème de distance (limite 100 m → pas tout à fait : 200 m demande 1 répéteur).</p>
+  <p>Quelle solution choisir ? Détailler le raisonnement.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Critères en faveur de la fibre :</strong></p>
+    <ul>
+      <li>Distance 200 m sans répéteur (cuivre exigerait un répéteur intermédiaire ou 2 segments).</li>
+      <li>Immunité aux parasites des machines.</li>
+      <li>Évolutivité (fibre déjà compatible 10 Gbit/s pour les futures machines).</li>
+      <li>Plus longue durée de vie (peu sensible à la corrosion).</li>
+    </ul>
+    <p><strong>Critère pour le cuivre :</strong> coût moins cher (≈ 1 000 € de moins).</p>
+    <p>Décision recommandée : <strong>fibre optique</strong>. Le surcoût est largement compensé par la fiabilité et l'évolutivité sur 10-20 ans.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Sébastien rédige son rapport de décision. 5 lignes max.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Choix réseau atelier 200 m bureau↔CNC</strong><br>
+      • Solution retenue : <strong>fibre optique monomode 10 Gbit/s</strong>.<br>
+      • Coût installation : ≈ 1 800 € (cuivre 800 € mais nécessiterait répéteur).<br>
+      • Avantages décisifs : immunité aux parasites des moteurs/onduleurs, distance 40 km sans répéteur, débit évolutif.<br>
+      • Temps de transfert d'un DXF de 500 Mo : ≈ 0,4 s contre 4 s en cuivre 1 Gbit/s.<br>
+      • <strong>Investissement amorti</strong> sur la durée de vie de l'installation (≥ 20 ans) et permet la modernisation future de l'atelier.
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Sur une fibre transcontinentale Paris-New York (≈ 6 000 km), calculer le temps de propagation. Comparer avec un satellite à 36 000 km de la Terre (geostationnaire).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Fibre Paris-NY : t = 6 × 10⁶ / (2 × 10⁸) = <strong>30 ms</strong> (en réalité ≈ 70 ms à cause des routages).</p>
+    <p>Satellite (aller-retour) : 2 × 36 000 × 10³ / (3 × 10⁸) = 240 ms = <strong>0,24 s</strong> (uniquement la propagation).</p>
+    <p>La fibre transatlantique est <strong>8 fois plus rapide</strong> que le satellite ! C'est pourquoi les serveurs financiers utilisent des fibres dédiées (« lignes propres ») pour le trading haute fréquence où chaque milliseconde compte.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Une <strong>fibre optique</strong> guide la lumière par réflexion totale interne (cœur n_c &gt; gaine n_g).</li>
+    <li>Vitesse dans la fibre : v = c/n ≈ 2 × 10⁸ m/s.</li>
+    <li>Avantages : très haut débit, longues distances, immunité électromagnétique.</li>
+    <li>Inconvénient : coût d'installation plus élevé que le cuivre.</li>
+    <li>Application : Internet, télécommunications, réseaux industriels exigeants.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §4 (Réflexion totale interne) et §5 (Signaux lumineux et fibres optiques) de la leçon Ch13.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
