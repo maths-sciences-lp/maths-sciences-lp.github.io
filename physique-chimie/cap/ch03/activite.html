@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ch03 – Mécanique – Activité – CAP PC</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch03 – Activité – Mouvement et forces sur un chantier – PC CAP</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
@@ -11,95 +11,278 @@
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-cap.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-cap.html" class="nb">← RETOUR SOMMAIRE CAP</a>
+
 <header>
-  <h1>Activité — Ch03 : Mécanique</h1>
-  <p class="sous-titre">CAP | Physique-Chimie | Activité de découverte</p>
+  <h1>Activité – Mouvement et forces : transport de panneaux <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 3 – Mécanique | CAP | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 17:30</p>
 </header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Décrire un mouvement (trajectoire, vitesse)</li>
+    <li>Distinguer mouvement uniforme et uniformément ralenti</li>
+    <li>Calculer une vitesse v = d/t</li>
+    <li>Calculer un poids P = m × g</li>
+    <li>Représenter et analyser des forces (équilibre)</li>
+    <li>Choisir un référentiel d'étude</li>
+  </ul>
+</div>
 
 <div class="situation">
-  <h3>Situation professionnelle — Transport de matériaux sur chantier</h3>
-  <p>Un artisan menuisier agenceur doit transporter des panneaux de bois de son camion à l'intérieur du chantier à l'aide d'un chariot élévateur. Il doit organiser les déplacements en tenant compte des distances, des charges et des contraintes de sécurité (levage, équilibre).</p>
-</div>
+  <h2>Situation – transport de panneaux sur chantier</h2>
+  <p><em>Un artisan menuisier-agenceur doit transporter des panneaux de bois de son camion à l'intérieur du chantier à l'aide d'un chariot élévateur. Il doit organiser les déplacements en tenant compte des distances, des charges et des contraintes de sécurité (levage, équilibre).</em></p>
 
-<div style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-  <strong>Problématique :</strong> Comment décrire et analyser le mouvement d'un objet, et comment représenter les forces qui agissent sur lui ?
-</div>
+  <h3>Document 1 — Schéma du chronométrage</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 160" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Chronophotographie : positions du chariot toutes les 2 s, points équidistants → mouvement uniforme.">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#6f42c1}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="20">Chronophotographie : positions toutes les 2 s</text>
 
-<h2>Document 1 — Plan du chantier</h2>
-<div class="ex">
-  <p>Distance camion → entrée bâtiment : 24 m<br>
-  Distance entrée → zone de stockage A : 15 m (couloir droit)<br>
-  Distance entrée → zone B : 30 m (couloir avec virage)<br>
-  Le chariot se déplace à 0,8 m/s en ligne droite et ralentit dans les virages.</p>
-</div>
+      <line x1="40" y1="100" x2="500" y2="100" stroke="#1a202c" stroke-width="1"/>
 
-<h2>Document 2 — Chronophotographie du chariot</h2>
-<div class="ex">
-  <p>Une caméra prend une photo toutes les 2 s. Les positions successives du chariot dans le couloir droit sont :</p>
+      <!-- 5 positions équidistantes -->
+      <circle cx="60" cy="100" r="6" fill="#0969da"/>
+      <text x="60" y="125" class="lbl">0 m</text>
+      <text x="60" y="80" class="lbl">t=0</text>
+
+      <circle cx="160" cy="100" r="6" fill="#0969da"/>
+      <text x="160" y="125" class="lbl">1,6 m</text>
+      <text x="160" y="80" class="lbl">t=2 s</text>
+
+      <circle cx="260" cy="100" r="6" fill="#0969da"/>
+      <text x="260" y="125" class="lbl">3,2 m</text>
+      <text x="260" y="80" class="lbl">t=4 s</text>
+
+      <circle cx="360" cy="100" r="6" fill="#0969da"/>
+      <text x="360" y="125" class="lbl">4,8 m</text>
+      <text x="360" y="80" class="lbl">t=6 s</text>
+
+      <circle cx="460" cy="100" r="6" fill="#0969da"/>
+      <text x="460" y="125" class="lbl">6,4 m</text>
+      <text x="460" y="80" class="lbl">t=8 s</text>
+
+      <text x="270" y="150" class="lblA" fill="#15803d">Points équidistants → vitesse constante (MRU)</text>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Plan du chantier</h3>
+  <ul>
+    <li>Distance camion → entrée bâtiment : <strong>24 m</strong>.</li>
+    <li>Distance entrée → zone de stockage A : <strong>15 m</strong> (couloir droit).</li>
+    <li>Distance entrée → zone B : <strong>30 m</strong> (couloir avec virage).</li>
+    <li>Le chariot se déplace à <strong>0,8 m/s</strong> en ligne droite et ralentit dans les virages.</li>
+  </ul>
+
+  <h3>Document 3 — Données des matériaux à transporter</h3>
   <table>
-    <thead><tr><th>Photo</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
-    <tbody>
-      <tr><td>Position (m)</td><td>0</td><td>1,6</td><td>3,2</td><td>4,8</td><td>6,4</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<h2>Document 3 — Données des matériaux</h2>
-<div class="ex">
-  <table>
-    <thead><tr><th>Panneau</th><th>Masse (kg)</th><th>Poids (N)</th></tr></thead>
+    <thead><tr><th>Panneau</th><th>Masse (kg)</th><th>Poids P = m × g (N)</th></tr></thead>
     <tbody>
       <tr><td>Contreplaqué 18 mm (2,5 × 1,2 m)</td><td>22</td><td>à calculer</td></tr>
       <tr><td>MDF 25 mm (2,5 × 1,2 m)</td><td>35</td><td>à calculer</td></tr>
       <tr><td>Panneau massif chêne</td><td>48</td><td>à calculer</td></tr>
     </tbody>
   </table>
-  <p>On prend \(g = 9{,}8\) N/kg.</p>
+  <p>g = 9,8 N/kg.</p>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (vitesse, mouvement), §2 (forces et poids) et §3 (référentiel) de la leçon Ch03.</em></p>
 </div>
 
-<h2>Questions</h2>
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment décrire le mouvement d'un objet et représenter les forces qui agissent sur lui ?
+</div>
+
 <div class="exo">
-  <h3>Partie A — Analyse du mouvement</h3>
-  <ol>
-    <li>D'après le document 2, calculez les distances parcourues entre chaque photo consécutive. Que constatez-vous ?</li>
-    <li>Calculez la vitesse du chariot à partir des données de la chronophotographie.</li>
-    <li>Quelle est la nature du mouvement du chariot dans le couloir droit ? Justifiez.</li>
-    <li>Dans un virage, la vitesse diminue régulièrement. Quel type de mouvement est-ce ? Que verrait-on sur une chronophotographie ?</li>
-  </ol>
-
-  <h3>Partie B — Forces et poids</h3>
-  <ol start="5">
-    <li>Calculez le poids de chacun des trois panneaux.</li>
-    <li>Tous les panneaux sont empilés sur le chariot, qui ne bouge pas. Quelle est la charge totale en newtons ?</li>
-    <li>Le chariot soulève les panneaux verticalement à vitesse constante. Représentez schématiquement les forces exercées sur l'ensemble des panneaux (poids et force de levage). Ces deux forces sont-elles en équilibre ? Justifiez.</li>
-  </ol>
-
-  <h3>Partie C — Référentiel</h3>
-  <ol start="8">
-    <li>Pendant le transport, par rapport au sol de l'atelier : le panneau est-il en mouvement ? Et par rapport au chariot ?</li>
-    <li>Choisir un référentiel adapté est essentiel. Proposez un référentiel pour étudier le mouvement du chariot dans l'atelier.</li>
-  </ol>
-
+  <h2>Question 1 <span class="badge-blue">ANA</span></h2>
+  <p>D'après le Doc 1, calculer les distances parcourues entre chaque photo consécutive. Que constate-t-on ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <strong>Correction :</strong><br>
-    <strong>A1.</strong> Distances : 1,6 − 0 = 1,6 m ; 3,2 − 1,6 = 1,6 m ; etc. Les distances sont constantes (1,6 m à chaque intervalle).<br>
-    <strong>A2.</strong> \(v = 1{,}6/2 = 0{,}8\) m/s. Cohérent avec le document 1.<br>
-    <strong>A3.</strong> Mouvement rectiligne uniforme : trajectoire droite et vitesse constante.<br>
-    <strong>A4.</strong> Mouvement uniformément ralenti. Chronophotographie : points de plus en plus rapprochés.<br>
-    <strong>B5.</strong> Contreplaqué : \(22 × 9{,}8 = 215{,}6\) N / MDF : \(35 × 9{,}8 = 343\) N / Chêne : \(48 × 9{,}8 = 470{,}4\) N.<br>
-    <strong>B6.</strong> Total : \(215{,}6 + 343 + 470{,}4 = 1029\) N.<br>
-    <strong>B7.</strong> Poids : 1029 N vertical vers le bas. Force de levage : 1029 N vertical vers le haut. Même droite d'action, sens opposés, même valeur → équilibre.<br>
-    <strong>C8.</strong> Par rapport au sol : en mouvement. Par rapport au chariot : immobile.<br>
-    <strong>C9.</strong> Référentiel terrestre (le sol de l'atelier).
+    <ul>
+      <li>0 → 1,6 m : 1,6 m</li>
+      <li>1,6 → 3,2 m : 1,6 m</li>
+      <li>3,2 → 4,8 m : 1,6 m</li>
+      <li>4,8 → 6,4 m : 1,6 m</li>
+    </ul>
+    <p>Les distances entre chaque photo sont <strong>constantes : 1,6 m</strong>. La vitesse est donc constante.</p>
   </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la vitesse du chariot à partir de la chronophotographie (entre 2 photos consécutives, t = 2 s).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>v = d / t = 1,6 / 2 = <strong>0,8 m/s</strong>.</p>
+    <p>Cohérent avec la valeur annoncée dans le Doc 2 ✓.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Quelle est la nature du mouvement du chariot dans le couloir droit ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le mouvement est <strong>rectiligne uniforme (MRU)</strong> :</p>
+    <ul>
+      <li><strong>Rectiligne</strong> : trajectoire en ligne droite (couloir droit).</li>
+      <li><strong>Uniforme</strong> : vitesse constante (0,8 m/s).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Dans un virage, la vitesse diminue régulièrement. Quel type de mouvement est-ce ? Que verrait-on sur une chronophotographie ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Mouvement <strong>uniformément ralenti</strong> (ou décéléré) : la vitesse diminue régulièrement.</p>
+    <p>Sur une chronophotographie, on verrait des <strong>points de plus en plus rapprochés</strong> (le chariot avance moins entre 2 photos consécutives).</p>
+    <p>Si on accélérait, ce serait l'inverse : points de plus en plus écartés (mouvement uniformément accéléré).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le poids P = m × g de chacun des 3 panneaux (g = 9,8 N/kg).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Contreplaqué : P = 22 × 9,8 = <strong>215,6 N</strong>.</li>
+      <li>MDF : P = 35 × 9,8 = <strong>343 N</strong>.</li>
+      <li>Chêne : P = 48 × 9,8 = <strong>470,4 N</strong>.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Tous les panneaux sont empilés sur le chariot, qui ne bouge pas. Quelle est la charge totale en newtons ? Et la masse totale en kg ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Poids total : 215,6 + 343 + 470,4 = <strong>1 029 N</strong>.</p>
+    <p>Masse totale : 22 + 35 + 48 = <strong>105 kg</strong>.</p>
+    <p>Soit l'équivalent d'1,5 personnes adultes. Charge importante mais à la portée d'un chariot élévateur standard (capacité 500-2 500 kg).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Le chariot soulève les panneaux verticalement à vitesse constante. Représenter schématiquement les 2 forces : poids et force de levage. Sont-elles en équilibre ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Schéma :</p>
+    <ul>
+      <li>Poids P = 1 029 N : vertical, sens vers le bas, appliqué au centre de gravité de la pile.</li>
+      <li>Force de levage F = 1 029 N : verticale, sens vers le haut, appliquée par les fourches du chariot.</li>
+    </ul>
+    <p>Les 2 forces sont :</p>
+    <ul>
+      <li>Sur la <strong>même droite d'action</strong> (verticale).</li>
+      <li>De <strong>sens opposés</strong>.</li>
+      <li>De <strong>même intensité</strong> (1 029 N).</li>
+    </ul>
+    <p>→ Elles sont en <strong>équilibre</strong> (somme des forces nulle). C'est ce qui permet au levage à vitesse constante (vitesse = 0 ou v = constante).</p>
+    <p>Si F &gt; P : la pile accélère vers le haut. Si F &lt; P : la pile descend.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-blue">VAL</span></h2>
+  <p>Pendant le transport :</p>
+  <p>a) Par rapport au sol de l'atelier, le panneau est-il en mouvement ?</p>
+  <p>b) Par rapport au chariot, le panneau est-il en mouvement ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) Par rapport au sol : <strong>en mouvement</strong> (le panneau se déplace avec le chariot).</p>
+    <p>b) Par rapport au chariot : <strong>immobile</strong> (le panneau ne bouge pas par rapport au chariot puisqu'il est posé dessus).</p>
+    <p>Conclusion : <strong>le mouvement dépend du référentiel choisi</strong>. Un même objet peut être en mouvement par rapport à un référentiel et immobile par rapport à un autre.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-blue">VAL</span></h2>
+  <p>Choisir un référentiel adapté est essentiel. Proposer un référentiel pour étudier le mouvement du chariot dans l'atelier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le bon référentiel pour étudier le mouvement du chariot dans l'atelier est le <strong>référentiel terrestre</strong> (le sol de l'atelier).</p>
+    <p>Pourquoi : c'est par rapport au sol que le chariot avance, qu'on mesure les distances et qu'on détecte la vitesse. Le sol est immobile sur la durée de l'expérience.</p>
+    <p>Pour des mouvements à plus grande échelle (avion, satellite), on utilise d'autres référentiels (géocentrique, héliocentrique).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 10 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 4-5 lignes une consigne de sécurité à afficher dans l'atelier sur le transport de charges.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Sécurité — transport de panneaux</strong></em></p>
+    <ol>
+      <li><em><strong>Ne pas dépasser la capacité du chariot</strong> (500-2 500 kg selon modèle, vérifier la plaque).</em></li>
+      <li><em><strong>Centrer la charge</strong> sur les fourches : un déséquilibre provoque le basculement (couple de basculement).</em></li>
+      <li><em>Avancer en <strong>marche arrière</strong> avec une charge haute (visibilité).</em></li>
+      <li><em>Vitesse <strong>≤ 5 km/h</strong> en intérieur, ralentir avant les virages (mouvement uniformément ralenti).</em></li>
+      <li><em>Port d'<strong>EPI obligatoires</strong> : casque, chaussures de sécurité (NF EN ISO 20345 S3), gants.</em></li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi un chariot élévateur peut-il basculer en avant si la charge est trop éloignée du mât ? Quel principe physique est en jeu ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Un chariot élévateur peut basculer en avant à cause du <strong>moment de basculement</strong> : M = F × d (force × bras de levier).</p>
+    <p>Architecture :</p>
+    <ul>
+      <li>Le pivot de basculement est l'<strong>essieu avant</strong> (les roues avant).</li>
+      <li>La <strong>charge</strong> sur les fourches crée un moment de basculement <strong>vers l'avant</strong>.</li>
+      <li>Le <strong>contrepoids arrière</strong> du chariot (souvent une fonte de 500-2 000 kg à l'arrière) crée un moment <strong>vers l'arrière</strong> qui stabilise.</li>
+    </ul>
+    <p>Bilan : tant que M<sub>contrepoids</sub> &gt; M<sub>charge</sub>, le chariot est stable. Si la charge est trop éloignée des fourches ou trop lourde, M<sub>charge</sub> &gt; M<sub>contrepoids</sub> → <strong>basculement en avant</strong>. Accidents fréquents en logistique.</p>
+    <p>Solutions :</p>
+    <ol>
+      <li><strong>Centrer la charge</strong> au plus près du mât (réduire d).</li>
+      <li>Vérifier le <strong>diagramme de charge</strong> du chariot (capacité réduite si charge éloignée).</li>
+      <li><strong>Ne pas relever</strong> la charge en avançant (le centre de gravité monte → instabilité accrue).</li>
+      <li>Sur sol incliné, <strong>monter en marche avant</strong>, descendre en marche arrière (toujours charge en haut).</li>
+    </ol>
+    <p>Réglementation : tout chariot élévateur nécessite un <strong>CACES</strong> (Certificat d'Aptitude à la Conduite En Sécurité), formation obligatoire renouvelée tous les 5 ans (R489).</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Vitesse :</strong> v = d / t (m/s ou km/h). 1 m/s = 3,6 km/h.</li>
+    <li><strong>Mouvement rectiligne uniforme (MRU) :</strong> trajectoire droite + vitesse constante. Chronophoto = points équidistants.</li>
+    <li><strong>Mouvement uniformément accéléré / ralenti :</strong> vitesse augmente / diminue régulièrement. Chronophoto = points de + en + écartés / rapprochés.</li>
+    <li><strong>Poids :</strong> P = m × g (N = kg × N/kg). g ≈ 9,8 N/kg.</li>
+    <li><strong>Équilibre :</strong> 2 forces opposées de même intensité s'annulent. La somme totale des forces est nulle (même droite d'action, sens opposés).</li>
+    <li><strong>Référentiel :</strong> repère fixe par rapport auquel on étudie le mouvement (en CAP : référentiel terrestre).</li>
+  </ul>
 </div>
 
 </div>
 <script src="../../../nav.js"></script>
-<script>
-function toggle(btn){var c=btn.nextElementSibling;if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}else{c.style.display='block';btn.textContent='Masquer la correction';}}
-</script>
 </body>
 </html>

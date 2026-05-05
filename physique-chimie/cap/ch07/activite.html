@@ -2,96 +2,298 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ch07 – Optique – Activité – CAP PC</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch07 – Activité – Optique : éclairage atelier signalétique – PC CAP</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
 <style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd}</style>
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-cap.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-cap.html" class="nb">← RETOUR SOMMAIRE CAP</a>
+
 <header>
-  <h1>Activité — Ch07 : Optique</h1>
-  <p class="sous-titre">CAP | Physique-Chimie | Activité de découverte</p>
+  <h1>Activité – Optique : aménager un atelier de signalétique <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 7 – Optique | CAP | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 18:30</p>
 </header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Choisir une température de couleur d'éclairage adaptée</li>
+    <li>Comprendre la synthèse additive des couleurs (RVB)</li>
+    <li>Appliquer les lois de la réflexion (laser sur miroir)</li>
+    <li>Comprendre la réfraction (loi de Snell-Descartes)</li>
+    <li>Connaître la réflexion totale (fibre optique)</li>
+    <li>Identifier les risques optiques (laser, UV) et les EPI associés</li>
+  </ul>
+</div>
 
 <div class="situation">
-  <h3>Situation professionnelle — Mise en lumière d'un atelier de signalétique</h3>
-  <p>Un atelier de signalétique doit être réaménagé. Le responsable doit choisir les luminaires adaptés au travail de précision sur les couleurs (impression, découpe, pose de vinyle) et installer un laser de niveau pour l'alignement des panneaux. Il doit aussi former l'équipe aux risques optiques liés aux outils utilisés.</p>
-</div>
+  <h2>Situation – réaménagement d'un atelier de signalétique</h2>
+  <p><em>Un atelier de signalétique doit être réaménagé. Le responsable doit choisir les luminaires adaptés au travail de précision sur les couleurs (impression, découpe, pose de vinyle) et installer un laser de niveau pour l'alignement des panneaux. Il doit aussi former l'équipe aux risques optiques liés aux outils utilisés.</em></p>
 
-<div style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-  <strong>Problématique :</strong> Comment les lois de l'optique (réflexion, réfraction, spectre de la lumière) s'appliquent-elles dans les outils et la sécurité d'un atelier de signalétique ?
-</div>
+  <h3>Document 1 — Spectre visible et synthèse additive</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 180" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Spectre visible 400-800 nm avec couleurs. Synthèse additive RGB : rouge + vert + bleu = blanc.">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#6f42c1}
+        </style>
+        <linearGradient id="vis" x1="0%" x2="100%">
+          <stop offset="0%" stop-color="#7c3aed"/>
+          <stop offset="20%" stop-color="#3b82f6"/>
+          <stop offset="40%" stop-color="#10b981"/>
+          <stop offset="60%" stop-color="#fbbf24"/>
+          <stop offset="80%" stop-color="#f97316"/>
+          <stop offset="100%" stop-color="#dc2626"/>
+        </linearGradient>
+      </defs>
+      <text class="ti" x="270" y="20">Spectre visible et synthèse additive RVB</text>
 
-<h2>Document 1 — Catalogue luminaires</h2>
-<div class="ex">
+      <rect x="40" y="40" width="200" height="20" fill="url(#vis)" stroke="#1a202c"/>
+      <text x="40" y="80" class="lbl">400 nm</text>
+      <text x="140" y="80" class="lbl">600 nm</text>
+      <text x="240" y="80" class="lbl">800 nm</text>
+      <text x="40" y="100" class="lbl">violet</text>
+      <text x="140" y="100" class="lbl">vert</text>
+      <text x="240" y="100" class="lbl">rouge</text>
+      <text x="140" y="115" class="lblA">Visible (400-800 nm)</text>
+
+      <!-- 3 cercles RVB -->
+      <circle cx="370" cy="80" r="35" fill="#dc2626" fill-opacity="0.7"/>
+      <circle cx="420" cy="80" r="35" fill="#22c55e" fill-opacity="0.7"/>
+      <circle cx="395" cy="115" r="35" fill="#0ea5e9" fill-opacity="0.7"/>
+
+      <text x="395" y="100" class="lbl" fill="#fff" font-weight="700">BLANC</text>
+      <text x="395" y="170" class="lblA">Synthèse additive RVB</text>
+
+      <text x="350" y="60" class="lbl">R</text>
+      <text x="440" y="60" class="lbl">V</text>
+      <text x="395" y="155" class="lbl">B</text>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Catalogue des luminaires</h3>
   <table>
-    <thead><tr><th>Luminaire</th><th>Type</th><th>Température de couleur</th><th>Spectre</th></tr></thead>
+    <thead><tr><th>Luminaire</th><th>Type</th><th>T<sub>couleur</sub></th><th>Spectre</th></tr></thead>
     <tbody>
-      <tr><td>Tube fluorescent standard</td><td>Continu</td><td>3000 K (blanc chaud)</td><td>Manque de bleu et vert</td></tr>
-      <tr><td>LED blanc froid</td><td>Continu</td><td>5000 K (blanc froid)</td><td>Proche lumière du jour</td></tr>
-      <tr><td>LED RGB variable</td><td>Continu</td><td>Variable (1800–6500 K)</td><td>Synthèse additive RVB</td></tr>
-      <tr><td>Lampe UV 365 nm</td><td>Quasi-monochromatique</td><td>Invisible</td><td>Ultraviolets</td></tr>
+      <tr><td>Tube fluorescent standard</td><td>Continu (avec pics)</td><td>3 000 K (blanc chaud)</td><td>Manque de bleu/vert</td></tr>
+      <tr><td>LED blanc froid</td><td>Continu</td><td>5 000 K (blanc froid)</td><td>Proche lumière du jour</td></tr>
+      <tr><td>LED RVB variable</td><td>Continu</td><td>Variable 1 800-6 500 K</td><td>Synthèse additive R+V+B</td></tr>
+      <tr><td>Lampe UV 365 nm</td><td>Quasi-monochromatique</td><td>Invisible</td><td>UV-A (sécurité requise)</td></tr>
     </tbody>
   </table>
+
+  <h3>Document 3 — Données du laser de niveau</h3>
+  <ul>
+    <li>Laser de niveau rotatif, <strong>classe 2</strong>.</li>
+    <li>Longueur d'onde : <strong>λ = 650 nm</strong> (rouge visible).</li>
+    <li>Fonctionnement : un miroir tournant à 45° réfléchit le faisceau pour créer un plan à 360°.</li>
+    <li>Précision angulaire : ± 0,3 mm sur 10 m.</li>
+  </ul>
+
+  <h3>Document 4 — Indice de réfraction du plexiglas (PMMA)</h3>
+  <ul>
+    <li>Indice de réfraction du plexiglas : <strong>n = 1,49</strong>.</li>
+    <li>Indice de l'air : n = 1,00.</li>
+    <li>Loi de Snell-Descartes : n<sub>1</sub> × sin(i<sub>1</sub>) = n<sub>2</sub> × sin(i<sub>2</sub>).</li>
+    <li>Si n<sub>2</sub> &gt; n<sub>1</sub> (entrée dans milieu plus dense) : i<sub>2</sub> &lt; i<sub>1</sub> (rayon se rapproche de la normale).</li>
+  </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (lumière, spectre, couleurs), §2 (réflexion, réfraction) et §3 (sécurité optique) de la leçon Ch07.</em></p>
 </div>
 
-<h2>Document 2 — Données techniques laser de niveau</h2>
-<div class="ex">
-  <p>Laser de niveau rotatif, classe 2, longueur d'onde 650 nm (rouge visible).<br>
-  Fonctionnement : un miroir tournant à 45° réfléchit le faisceau horizontal pour créer un plan à 360°.<br>
-  Précision angulaire : ±0,3 mm sur 10 m.</p>
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment les lois de l'optique s'appliquent-elles dans l'éclairage et la sécurité d'un atelier de signalétique ?
 </div>
 
-<h2>Document 3 — Indice de réfraction du plexiglas</h2>
-<div class="ex">
-  <p>Le plexiglas (PMMA) a un indice de réfraction n = 1,49. Un panneau de signalétique en plexiglas est éclairé avec un angle d'incidence de 50° par rapport à la normale.</p>
-</div>
-
-<h2>Questions</h2>
 <div class="exo">
-  <h3>Partie A — Choix de l'éclairage</h3>
-  <ol>
-    <li>D'après le document 1, quel luminaire est le plus adapté pour travailler les couleurs en signalétique ? Justifiez en lien avec le spectre de la lumière blanche.</li>
-    <li>Pourquoi un éclairage à 3000 K (blanc chaud) est-il déconseillé pour choisir les teintes d'une encre d'impression ?</li>
-    <li>L'éclairage LED RGB est réglé sur 100 % Rouge, 100 % Vert, 0 % Bleu. Quelle couleur perçoit-on ? D'où vient ce résultat (loi de synthèse additive) ?</li>
-  </ol>
-
-  <h3>Partie B — Laser de niveau</h3>
-  <ol start="4">
-    <li>D'après le document 2, le faisceau laser horizontal frappe un miroir à 45°. Quel est l'angle de réflexion ? Dans quelle direction repart le faisceau ?</li>
-    <li>Le faisceau laser de 650 nm est-il dans le spectre visible ? De quelle couleur est-il ?</li>
-    <li>Citez deux règles de sécurité spécifiques au laser de niveau sur chantier.</li>
-  </ol>
-
-  <h3>Partie C — Réfraction dans le plexiglas</h3>
-  <ol start="7">
-    <li>Le rayon lumineux passe de l'air (n = 1,00) dans le plexiglas (n = 1,49). Le rayon se rapproche-t-il ou s'éloigne-t-il de la normale ? Justifiez.</li>
-    <li>Un peintre en lettres travaille au dos d'un panneau en plexiglas : le rayon lumineux issu de la peinture sort du plexiglas vers l'air. Que se passe-t-il à l'angle par rapport à la normale (plus grand ou plus petit qu'à l'intérieur) ?</li>
-    <li>La signalétique lumineuse utilise des fibres optiques. Le principe repose sur la réflexion totale interne (le rayon ne sort pas du matériau). Ce phénomène se produit-il quand la lumière passe d'un milieu très réfringent vers un milieu moins réfringent ? Oui/Non, et pourquoi ?</li>
-  </ol>
-
+  <h2>Question 1 <span class="badge-blue">VAL</span></h2>
+  <p>D'après le Doc 2, quel luminaire est le plus adapté pour travailler les couleurs en signalétique ? Justifier en lien avec le spectre de la lumière blanche.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <strong>Correction :</strong><br>
-    <strong>A1.</strong> LED blanc froid (5000 K, proche lumière du jour) : spectre complet qui restitue fidèlement toutes les couleurs des encres.<br>
-    <strong>A2.</strong> Un éclairage à 3000 K est trop jaune (pauvre en bleu et vert) : il fausse la perception des teintes, notamment les bleus et verts des encres d'impression.<br>
-    <strong>A3.</strong> Rouge + Vert = Jaune (synthèse additive). Sans bleu, on obtient la couleur jaune.<br>
-    <strong>B4.</strong> Angle de réflexion = angle d'incidence = 45°. Le faisceau repart perpendiculairement à sa direction initiale (90° de déviation au total) → plan vertical.<br>
-    <strong>B5.</strong> 650 nm est entre 620 et 780 nm → rouge visible.<br>
-    <strong>B6.</strong> Ne jamais regarder dans le faisceau / ne jamais pointer vers des personnes (même classe 2).<br>
-    <strong>C7.</strong> Air → plexiglas (n plus élevé) : le rayon se rapproche de la normale. L'angle de réfraction est plus petit que 50°.<br>
-    <strong>C8.</strong> Plexiglas → air (n plus faible) : le rayon s'éloigne de la normale. L'angle de réfraction est plus grand que dans le plexiglas.<br>
-    <strong>C9.</strong> Oui : quand la lumière va d'un milieu très réfringent vers un milieu moins réfringent (ex. verre → air), l'angle de réfraction augmente. Au-delà d'un angle critique, il n'y a plus de réfraction → réflexion totale interne. C'est le principe des fibres optiques.
+    <p>La <strong>LED blanc froid (5 000 K, proche lumière du jour)</strong> est la plus adaptée. Son spectre est <strong>continu et complet</strong> sur toutes les longueurs d'onde (400-800 nm), ce qui restitue fidèlement toutes les couleurs des encres et matériaux.</p>
+    <p>Préférable encore : LED avec <strong>IRC ≥ 90</strong> (Indice de Rendu des Couleurs) pour le rendu artistique.</p>
   </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi un éclairage à 3 000 K (blanc chaud) est-il déconseillé pour choisir les teintes d'une encre d'impression ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Un éclairage à 3 000 K est <strong>trop jaune-orangé</strong> (pauvre en bleu et en vert). Conséquences :</p>
+    <ul>
+      <li>Les <strong>bleus et verts</strong> des encres apparaissent fades, voire grisâtres.</li>
+      <li>Les <strong>jaunes et oranges</strong> sont sur-saturés.</li>
+      <li>Une couleur jugée parfaite sous 3 000 K paraîtra différente une fois le panneau exposé à la lumière du jour.</li>
+    </ul>
+    <p>Pour le travail de précision sur les couleurs (validation de teintes, BAT, retouche photo), on utilise des <strong>cabines de visualisation D65</strong> (6 500 K, simulation lumière du jour standard).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>L'éclairage LED RVB est réglé sur 100 % Rouge, 100 % Vert, 0 % Bleu. Quelle couleur perçoit-on ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Rouge + Vert = <strong>Jaune</strong> (synthèse additive).</p>
+    <p>Loi de la synthèse additive RVB :</p>
+    <ul>
+      <li>R + V = Jaune</li>
+      <li>R + B = Magenta (rose)</li>
+      <li>V + B = Cyan (bleu-vert)</li>
+      <li>R + V + B = Blanc</li>
+    </ul>
+    <p>C'est le principe utilisé par tous les écrans (TV, smartphone, ordinateur) pour afficher des millions de couleurs avec seulement 3 LED (R, V, B).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Le faisceau laser horizontal frappe un miroir à 45°. Quel est l'angle de réflexion ? Dans quelle direction repart le faisceau ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>D'après la <strong>loi de la réflexion</strong> : angle de réflexion = angle d'incidence = <strong>45°</strong>.</p>
+    <p>Le faisceau repart à 45° de l'autre côté de la normale, soit <strong>perpendiculairement à sa direction initiale</strong> (déviation totale 90°).</p>
+    <p>En pratique : le faisceau horizontal devient vertical (vers le haut ou vers le bas selon orientation du miroir). C'est ainsi que le laser de niveau rotatif crée un plan à 360°.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>Le faisceau laser de 650 nm est-il dans le spectre visible ? De quelle couleur est-il ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Visible : 400 à 800 nm. Or 650 nm ∈ [400 ; 800].</p>
+    <p>650 nm correspond à la couleur <strong>rouge</strong>. Le faisceau du laser de niveau est rouge visible.</p>
+    <p>Note : il existe aussi des lasers verts (532 nm, plus visibles à la lumière du jour, mais plus chers) pour les chantiers en extérieur.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-yellow">COM</span></h2>
+  <p>Citer 3 règles de sécurité spécifiques au laser de niveau sur chantier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <ol>
+      <li><strong>Ne jamais regarder dans le faisceau</strong>, même de loin. Lésion rétinienne possible (laser classe 2 : sécurité par réflexe de clignement, mais durée d'exposition &gt; 0,25 s = danger).</li>
+      <li><strong>Ne jamais pointer le laser vers une personne</strong>, ni vers des miroirs ou surfaces réfléchissantes (le faisceau réfléchi est tout aussi dangereux).</li>
+      <li><strong>Couper le laser</strong> dès que la mesure est terminée. Ne pas le laisser allumé à proximité d'enfants ou de visiteurs.</li>
+      <li>Porter des <strong>lunettes de protection laser</strong> spécifiques (filtre adapté à la λ) pour les tâches longues.</li>
+      <li>Vérifier la <strong>classe</strong> du laser : classe 1 (sûr), classe 2 (réflexe palpébral suffisant), classe 3R/3B (lunettes obligatoires), classe 4 (industriel, dangereux).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-blue">ANA</span></h2>
+  <p>Le rayon lumineux passe de l'air (n = 1,00) dans le plexiglas (n = 1,49). Le rayon se rapproche-t-il ou s'éloigne-t-il de la normale ? Justifier.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>D'après la loi de Snell-Descartes : n<sub>1</sub> × sin(i<sub>1</sub>) = n<sub>2</sub> × sin(i<sub>2</sub>).</p>
+    <p>n<sub>plexiglas</sub> &gt; n<sub>air</sub> → on entre dans un milieu <strong>plus dense optiquement</strong>.</p>
+    <p>→ Le rayon <strong>se rapproche de la normale</strong> (i<sub>2</sub> &lt; i<sub>1</sub>).</p>
+    <p>Calcul : sin(i<sub>2</sub>) = (n<sub>1</sub>/n<sub>2</sub>) × sin(i<sub>1</sub>) = (1,00 / 1,49) × sin(50°) = 0,67 × 0,77 ≈ 0,51 → i<sub>2</sub> ≈ 31°. Plus petit que les 50° d'entrée ✓.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-blue">ANA</span></h2>
+  <p>Un peintre en lettres travaille au dos d'un panneau plexiglas : un rayon issu de la peinture sort du plexiglas vers l'air. Que se passe-t-il à l'angle (plus grand ou plus petit qu'à l'intérieur) ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>On passe du plexiglas (n = 1,49) à l'air (n = 1,00) → on sort vers un milieu <strong>moins dense optiquement</strong>.</p>
+    <p>→ Le rayon <strong>s'éloigne de la normale</strong> (i<sub>sortie</sub> &gt; i<sub>intérieur</sub>).</p>
+    <p>C'est l'effet inverse de la Q7 (en sens inverse, l'effet s'inverse aussi).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-blue">VAL</span></h2>
+  <p>Les fibres optiques utilisent la réflexion totale interne (le rayon ne sort pas du matériau). Ce phénomène se produit-il quand la lumière passe d'un milieu très réfringent vers un milieu moins réfringent ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Oui</strong>, la réflexion totale ne se produit que dans ce sens (milieu dense → milieu moins dense).</p>
+    <p>Mécanisme :</p>
+    <ol>
+      <li>Quand la lumière passe d'un milieu très réfringent à un milieu moins réfringent, le rayon réfracté s'écarte de la normale (Q8).</li>
+      <li>Si l'angle d'incidence augmente, l'angle de réfraction augmente aussi.</li>
+      <li>Au-delà d'un <strong>angle critique</strong> (i<sub>c</sub>), le rayon réfracté serait à 90° de la normale → physiquement impossible.</li>
+      <li>→ Toute la lumière est <strong>réfléchie</strong> (réflexion totale interne, pas de réfraction).</li>
+    </ol>
+    <p>Pour le couple verre/air (n = 1,5/1) : i<sub>c</sub> ≈ 42°. Toute lumière incidente à plus de 42° (côté verre) reste piégée.</p>
+    <p>Application : <strong>fibres optiques</strong>. La lumière rebondit des milliers de fois sur les parois et progresse sur des kilomètres sans s'échapper. Utilisé en télécommunications (Internet, FTTH) et signalétique lumineuse (panneaux décoratifs à fibre optique).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 10 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger en 5 lignes les recommandations d'aménagement pour le responsable de l'atelier (éclairage + sécurité optique).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Recommandations — atelier signalétique</strong></em></p>
+    <p><em><strong>Éclairage :</strong> installer des LED <strong>blanc froid 5 000 K</strong> avec IRC ≥ 90 sur les postes de travail couleur. Pour la validation finale des teintes, utiliser une <strong>cabine D65 (6 500 K)</strong>. Éviter les fluorescents 3 000 K qui faussent les couleurs.</em></p>
+    <p><em><strong>Laser de niveau :</strong> utiliser un laser classe 2 (650 nm rouge ou 532 nm vert), former l'équipe aux règles de sécurité (jamais regarder dans le faisceau, jamais pointer vers une personne, couper après usage).</em></p>
+    <p><em><strong>UV 365 nm :</strong> port de <strong>lunettes anti-UV</strong> obligatoire pour toute exposition. Limiter le temps d'exposition. Bannir l'usage à mains nues.</em></p>
+    <p><em>Affichage des consignes de sécurité optique à côté de chaque outil. Formation initiale obligatoire pour tout nouvel employé.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi voit-on un coucher de soleil rouge alors qu'à midi le soleil paraît jaune-blanc ? Quel phénomène optique est en jeu ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le phénomène en jeu est la <strong>diffusion Rayleigh</strong> : les molécules de l'atmosphère (azote, oxygène) diffusent davantage les longueurs d'onde courtes (bleu, violet) que les longues (orange, rouge).</p>
+    <p>Loi : intensité diffusée ∝ 1 / λ⁴. Le bleu (450 nm) est diffusé environ <strong>10 fois plus</strong> que le rouge (650 nm).</p>
+    <p>Conséquences :</p>
+    <ol>
+      <li><strong>Ciel bleu à midi</strong> : la lumière bleue du soleil est diffusée dans toutes les directions par l'atmosphère. On voit ce bleu diffusé venir de partout.</li>
+      <li><strong>Coucher de soleil rouge</strong> : à l'horizon, la lumière du soleil traverse une <strong>épaisseur d'atmosphère bien plus grande</strong> (environ 30× plus). Toute la lumière bleue/verte est diffusée et perdue. Il ne reste que le rouge/orange qui parvient à nos yeux.</li>
+      <li><strong>Ciel rouge en cas de pollution / poussière / éruption volcanique</strong> : les particules en suspension diffusent encore plus → coucher de soleil très rouge (Tambora 1815, Krakatoa 1883, Pinatubo 1991).</li>
+    </ol>
+    <p>Application en signalétique :</p>
+    <ul>
+      <li>Les <strong>panneaux de signalisation routière</strong> (rouge stop) sont visibles de loin car le rouge est <strong>moins diffusé</strong> par l'atmosphère.</li>
+      <li>Les <strong>feux de brouillard</strong> sont jaune-orangé pour la même raison.</li>
+      <li>Les <strong>feux arrière de voiture</strong> sont rouges (1) pour distinguer arrière/avant et (2) pour la portée à travers brouillard / pluie.</li>
+    </ul>
+    <p>Le ciel de Mars apparaît rougeâtre car son atmosphère contient plus de poussière de fer (oxydé en rouge). Belle illustration des lois de l'optique.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Lumière visible :</strong> 400 à 800 nm (violet → rouge). λ &lt; 400 nm : UV. λ &gt; 800 nm : IR.</li>
+    <li><strong>Synthèse additive RVB</strong> : R + V + B = blanc. R + V = jaune ; R + B = magenta ; V + B = cyan.</li>
+    <li><strong>Température de couleur :</strong> 3 000 K (chaud), 4 000 K (neutre), 5 000-6 500 K (lumière du jour, idéale pour couleurs).</li>
+    <li><strong>Loi de la réflexion :</strong> angle de réflexion = angle d'incidence (par rapport à la normale).</li>
+    <li><strong>Loi de Snell-Descartes :</strong> n<sub>1</sub> sin(i<sub>1</sub>) = n<sub>2</sub> sin(i<sub>2</sub>). Milieu plus dense → rayon se rapproche de la normale.</li>
+    <li><strong>Réflexion totale</strong> : se produit en passant d'un milieu dense à un milieu moins dense, au-delà de l'angle critique. Principe des fibres optiques.</li>
+    <li><strong>Sécurité optique :</strong> ne jamais regarder dans un faisceau laser, lunettes anti-UV obligatoires.</li>
+  </ul>
 </div>
 
 </div>
 <script src="../../../nav.js"></script>
-<script>
-function toggle(btn){var c=btn.nextElementSibling;if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}else{c.style.display='block';btn.textContent='Masquer la correction';}}
-</script>
 </body>
 </html>

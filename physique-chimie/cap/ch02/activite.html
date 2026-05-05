@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ch02 – Électricité – Activité – CAP PC</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch02 – Activité – Diagnostic d'un radiateur électrique – PC CAP</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
@@ -11,83 +11,254 @@
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-cap.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-cap.html" class="nb">← RETOUR SOMMAIRE CAP</a>
+
 <header>
-  <h1>Activité — Ch02 : Électricité</h1>
-  <p class="sous-titre">CAP | Physique-Chimie | Activité de découverte</p>
+  <h1>Activité – Diagnostic d'un radiateur électrique en panne <span style="font-size:.55em;color:#b91c1c;font-weight:600">DIAGNOSTIC</span></h1>
+  <p class="sous-titre">Chapitre 2 – Électricité | CAP | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 17:15</p>
 </header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Lire une plaque signalétique d'appareil électrique</li>
+    <li>Appliquer la loi d'Ohm U = R × I et P = U × I</li>
+    <li>Utiliser un multimètre (voltmètre, ampèremètre, ohmmètre)</li>
+    <li>Distinguer tension continue (DC) et alternative (AC)</li>
+    <li>Diagnostiquer une panne par mesures comparatives</li>
+  </ul>
+</div>
 
 <div class="situation">
-  <h3>Situation professionnelle — Diagnostic d'un circuit de chauffage</h3>
-  <p>Un technicien de maintenance est appelé dans un atelier de menuiserie : le radiateur électrique d'appoint ne chauffe plus normalement. Il dispose d'un multimètre et doit identifier la cause du problème en mesurant les grandeurs électriques du circuit.</p>
-</div>
+  <h2>Situation – diagnostic d'un radiateur d'appoint</h2>
+  <p><em>Un technicien de maintenance est appelé dans un atelier de menuiserie : le radiateur électrique d'appoint ne chauffe plus normalement. Il dispose d'un multimètre et doit identifier la cause du problème en mesurant les grandeurs électriques du circuit.</em></p>
 
-<div style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
-  <strong>Problématique :</strong> Comment utiliser la loi d'Ohm et les appareils de mesure pour diagnostiquer un circuit électrique ?
-</div>
+  <h3>Document 1 — Schéma du diagnostic au multimètre</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 200" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Schéma : radiateur 1500 W branché sur 230 V, multimètre mesure tension (V), intensité (A) et résistance (Ω).">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#6f42c1}
+          .val{font:600 11px sans-serif;fill:#dc2626;text-anchor:middle}
+        </style>
+      </defs>
+      <text class="ti" x="270" y="20">Diagnostic d'un radiateur au multimètre</text>
 
-<h2>Document 1 — Plaque signalétique du radiateur</h2>
-<div class="ex">
-  <p>Radiateur à inertie — Réf. RAD-1500<br>
-  Alimentation : <strong>230 V ~ 50 Hz</strong><br>
-  Puissance nominale : <strong>1500 W</strong><br>
-  Intensité nominale : <strong>6,5 A</strong><br>
-  Résistance de l'élément chauffant (à froid) : <strong>35,4 Ω</strong>
-  </p>
-</div>
+      <!-- Prise secteur -->
+      <rect x="40" y="80" width="60" height="60" fill="#e0e7ff" stroke="#1a202c"/>
+      <circle cx="60" cy="105" r="3" fill="#1a202c"/>
+      <circle cx="80" cy="105" r="3" fill="#1a202c"/>
+      <text x="70" y="155" class="lbl">prise 230 V</text>
 
-<h2>Document 2 — Mesures effectuées par le technicien</h2>
-<div class="ex">
+      <!-- Câble -->
+      <line x1="100" y1="100" x2="200" y2="100" stroke="#dc2626" stroke-width="2"/>
+      <line x1="100" y1="120" x2="200" y2="120" stroke="#0ea5e9" stroke-width="2"/>
+
+      <!-- Radiateur (élément chauffant = résistance) -->
+      <rect x="200" y="80" width="120" height="60" fill="#fbbf24" stroke="#1a202c"/>
+      <text x="260" y="105" class="lblA">RADIATEUR</text>
+      <text x="260" y="120" class="lbl">élément chauffant</text>
+      <text x="260" y="135" class="val">R = 35,4 Ω (neuf)</text>
+      <text x="260" y="160" class="val">P = 1 500 W</text>
+
+      <!-- Multimètre -->
+      <rect x="380" y="50" width="120" height="120" fill="#1f2937" stroke="#1a202c"/>
+      <rect x="395" y="65" width="90" height="30" fill="#22c55e"/>
+      <text x="440" y="85" class="lbl" fill="#000" font-weight="700">228 V AC</text>
+      <text x="440" y="115" class="lbl" fill="#fff">3,2 A AC</text>
+      <text x="440" y="135" class="lbl" fill="#fff">71 Ω</text>
+      <text x="440" y="185" class="lbl">multimètre</text>
+
+      <!-- Sondes -->
+      <line x1="200" y1="100" x2="380" y2="80" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 2"/>
+      <line x1="320" y1="120" x2="380" y2="120" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="3 2"/>
+    </svg>
+  </div>
+
+  <h3>Document 2 — Plaque signalétique du radiateur</h3>
+  <ul>
+    <li>Référence : RAD-1500</li>
+    <li>Alimentation : <strong>230 V ~ 50 Hz</strong></li>
+    <li>Puissance nominale : <strong>P = 1 500 W</strong></li>
+    <li>Intensité nominale : <strong>I = 6,5 A</strong></li>
+    <li>Résistance de l'élément chauffant (neuf, à froid) : <strong>R = 35,4 Ω</strong></li>
+  </ul>
+
+  <h3>Document 3 — Mesures réalisées par le technicien</h3>
   <table>
     <thead><tr><th>Mesure</th><th>Instrument</th><th>Valeur mesurée</th></tr></thead>
     <tbody>
       <tr><td>Tension aux bornes du radiateur</td><td>Voltmètre (mode AC)</td><td>228 V</td></tr>
       <tr><td>Intensité dans le circuit</td><td>Ampèremètre (mode AC)</td><td>3,2 A</td></tr>
-      <tr><td>Résistance de l'élément (hors tension)</td><td>Ohmmètre</td><td>71 Ω</td></tr>
+      <tr><td>Résistance (hors tension)</td><td>Ohmmètre</td><td>71 Ω</td></tr>
     </tbody>
   </table>
+
+  <h3>Document 4 — Formules clés</h3>
+  <ul>
+    <li>Loi d'Ohm : <strong>U = R × I</strong>, soit I = U/R et R = U/I.</li>
+    <li>Puissance : <strong>P = U × I</strong>.</li>
+    <li>Tension efficace / max : U<sub>max</sub> = U<sub>eff</sub> × √2 ≈ U<sub>eff</sub> × 1,41.</li>
+    <li>Période : T = 1/f.</li>
+  </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (loi d'Ohm), §2 (P = U×I) et §3 (tension AC/DC) de la leçon Ch02.</em></p>
 </div>
 
-<h2>Questions</h2>
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment utiliser la loi d'Ohm et le multimètre pour diagnostiquer la panne d'un radiateur électrique ?
+</div>
+
 <div class="exo">
-  <h3>Partie A — Vérification des caractéristiques nominales</h3>
-  <ol>
-    <li>D'après la plaque signalétique, vérifiez par le calcul que l'intensité nominale est bien 6,5 A. (Utilisez \(I = U/R\) avec les valeurs nominales.)</li>
-    <li>Vérifiez aussi avec la relation \(P = U \times I\) : trouvez-vous bien 1500 W ?</li>
-  </ol>
-
-  <h3>Partie B — Analyse du problème</h3>
-  <ol start="3">
-    <li>Comparez la résistance mesurée (71 Ω) à la résistance nominale (35,4 Ω). Que constatez-vous ?</li>
-    <li>Utilisez la loi d'Ohm avec la résistance mesurée et la tension mesurée pour calculer l'intensité réelle. Comparez à la valeur mesurée (3,2 A).</li>
-    <li>Le radiateur chauffe-t-il normalement ? Quel est le problème probable ? (l'élément chauffant est-il en bon état ?)</li>
-  </ol>
-
-  <h3>Partie C — Tension continue et alternative</h3>
-  <ol start="6">
-    <li>Le technicien passe le multimètre en mode DC (continu) au lieu de AC (alternatif) pour mesurer la tension du secteur. Quelle valeur affichera-t-il ? Expliquez.</li>
-    <li>La fréquence du secteur est 50 Hz. Quelle est la période \(T\) du signal ?</li>
-    <li>Calculez la tension maximale du secteur sachant que \(U_{\text{eff}} = 228\) V.</li>
-  </ol>
-
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>D'après la plaque signalétique, vérifier par le calcul que l'intensité nominale est bien 6,5 A. Utiliser I = U/R avec U = 230 V et R = 35,4 Ω.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
   <button class="bc" onclick="toggle(this)">Voir la correction</button>
   <div class="corr">
-    <strong>Correction :</strong><br>
-    <strong>A1.</strong> \(I = U/R = 230/35{,}4 \approx 6{,}5\) A. Cohérent avec la plaque.<br>
-    <strong>A2.</strong> \(P = 230 × 6{,}5 = 1495 \approx 1500\) W. Cohérent.<br>
-    <strong>B3.</strong> La résistance mesurée (71 Ω) est environ le double de la valeur nominale (35,4 Ω). L'élément chauffant est dégradé.<br>
-    <strong>B4.</strong> \(I = U/R = 228/71 \approx 3{,}2\) A. Cohérent avec la mesure.<br>
-    <strong>B5.</strong> Non, le radiateur ne chauffe pas normalement. Sa résistance a augmenté (dégradation partielle de l'élément chauffant), réduisant l'intensité et donc la puissance dissipée. L'élément chauffant doit être remplacé.<br>
-    <strong>C6.</strong> En mode DC, le multimètre afficherait une valeur proche de 0 V car la tension du secteur est alternative (valeur moyenne nulle sur un cycle).<br>
-    <strong>C7.</strong> \(T = 1/f = 1/50 = 0{,}02\) s = 20 ms.<br>
-    <strong>C8.</strong> \(U_{\max} = 228 × 1{,}41 \approx 322\) V.
+    <p>I = U / R = 230 / 35,4 ≈ <strong>6,5 A</strong>. Cohérent avec la plaque ✓.</p>
   </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>Vérifier avec P = U × I : trouve-t-on bien 1 500 W ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P = U × I = 230 × 6,5 = <strong>1 495 W ≈ 1 500 W</strong>. Cohérent ✓.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Comparer la résistance mesurée (71 Ω) à la résistance nominale (35,4 Ω). Que constate-t-on ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>R<sub>mesurée</sub> / R<sub>nominale</sub> = 71 / 35,4 ≈ <strong>2</strong>.</p>
+    <p>La résistance mesurée est environ <strong>le double</strong> de la résistance nominale. L'élément chauffant est <strong>dégradé</strong> (oxydation, fissure interne, dépôt isolant).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Avec la loi d'Ohm, calculer l'intensité réelle (U = 228 V mesurée, R = 71 Ω mesurée). Comparer à la valeur du multimètre (3,2 A).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>I = U / R = 228 / 71 ≈ <strong>3,2 A</strong>. Cohérent avec la mesure du multimètre ✓.</p>
+    <p>Les 3 mesures (V, A, Ω) sont cohérentes entre elles : la loi d'Ohm est respectée. Le diagnostic est fiable.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">VAL</span></h2>
+  <p>Le radiateur chauffe-t-il normalement ? Quel est le problème probable ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Calcul de la puissance réelle : P<sub>réelle</sub> = U × I = 228 × 3,2 = <strong>730 W</strong> au lieu de 1 500 W nominaux.</p>
+    <p>Le radiateur chauffe à <strong>49 % de sa puissance nominale</strong> → moitié moins de chaleur.</p>
+    <p><strong>Diagnostic :</strong> l'élément chauffant est <strong>dégradé</strong>. Sa résistance a doublé (35,4 → 71 Ω) à cause :</p>
+    <ul>
+      <li>D'une <strong>oxydation interne</strong> (le filament a noirci).</li>
+      <li>Ou d'une <strong>fissure partielle</strong> qui réduit la section conductrice.</li>
+      <li>Ou d'un <strong>dépôt isolant</strong> (calcaire, dépôt minéral).</li>
+    </ul>
+    <p><strong>Solution :</strong> remplacer l'élément chauffant (50-100 €) ou le radiateur entier si pièce non trouvable.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Le technicien passe le multimètre en mode DC (continu) au lieu de AC (alternatif) pour mesurer la tension du secteur. Quelle valeur affichera-t-il ? Expliquer.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>En mode DC, le multimètre afficherait <strong>~ 0 V</strong> (ou une valeur erratique très faible).</p>
+    <p>Pourquoi ? La tension du secteur est <strong>alternative</strong> (sinusoïdale) : sa valeur moyenne sur un cycle est nulle. Le mode DC mesure la moyenne → 0.</p>
+    <p>Pour mesurer une tension alternative, il faut absolument se mettre en mode <strong>AC</strong> (qui mesure la valeur efficace = √(moyenne du carré) ≈ 230 V).</p>
+    <p>Erreur fréquente d'apprenti ! Toujours vérifier le mode du multimètre avant de mesurer.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">REA</span></h2>
+  <p>La fréquence du secteur est 50 Hz. Quelle est la période T du signal ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>T = 1 / f = 1 / 50 = <strong>0,02 s = 20 ms</strong>.</p>
+    <p>Le secteur fait 50 cycles complets par seconde, soit 1 cycle toutes les 20 ms.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la tension maximale du secteur sachant que U<sub>eff</sub> = 228 V. Rappel : U<sub>max</sub> = U<sub>eff</sub> × √2 ≈ U<sub>eff</sub> × 1,41.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>U<sub>max</sub> = 228 × 1,41 ≈ <strong>322 V</strong>.</p>
+    <p>La tension du secteur oscille entre +322 V et −322 V à 50 Hz. La valeur efficace 228 V (≈ 230 V nominal) est ce qui produit la même puissance qu'un courant continu de 228 V → c'est cette valeur qu'on utilise dans P = U × I.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger le compte-rendu de diagnostic du technicien (5-6 lignes) à destination du client.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Compte-rendu de diagnostic — radiateur RAD-1500</strong></em></p>
+    <p><em><strong>Constat :</strong> le radiateur chauffe à 730 W au lieu de 1 500 W (49 % seulement de sa puissance). Cause : élément chauffant dégradé.</em></p>
+    <p><em><strong>Mesures :</strong> tension OK (228 V), résistance anormalement élevée (71 Ω vs 35,4 Ω nominaux) → confirme la dégradation par doublement de la résistance.</em></p>
+    <p><em><strong>Recommandation :</strong> remplacement de l'élément chauffant (devis ~ 80 € pièce + 60 € main d'œuvre = 140 €) ou achat d'un radiateur neuf à inertie (200-400 €) avec meilleur rendement énergétique.</em></p>
+    <p><em>Sécurité : couper l'alimentation avant intervention. Risque incendie si on continue à utiliser le radiateur défectueux.</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Pourquoi le réseau électrique français utilise-t-il un courant alternatif (50 Hz) plutôt qu'un courant continu ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le choix de l'alternatif vs continu remonte à la « guerre des courants » de la fin du XIXᵉ siècle : <strong>Edison (continu)</strong> contre <strong>Tesla (alternatif)</strong>.</p>
+    <p>Tesla a gagné. Pourquoi ?</p>
+    <ol>
+      <li><strong>Transformation de tension facile</strong> : avec un transformateur, on peut élever ou abaisser la tension d'un courant alternatif sans pertes (à 99 % de rendement). Indispensable pour transporter sur de longues distances. Avec du continu, c'était impossible jusqu'aux années 1970 (technologie HVDC moderne).</li>
+      <li><strong>Pertes Joule réduites</strong> : en élevant la tension à 400 000 V pour le transport, on divise par 10 000 les pertes Joule (P<sub>J</sub> = R × I²) par rapport à un transport à 230 V.</li>
+      <li><strong>Moteurs simples</strong> : les moteurs asynchrones (sans balais, robustes) fonctionnent uniquement en alternatif.</li>
+      <li><strong>Fréquence 50 Hz</strong> : compromis entre vitesse des moteurs (qui dépend de f), taille des transformateurs (plus f est haute, plus ils sont compacts) et... éviter le scintillement des ampoules à incandescence (au-delà de 30 Hz, l'œil ne voit plus le clignotement).</li>
+    </ol>
+    <p>Aujourd'hui :</p>
+    <ul>
+      <li><strong>Transport longue distance</strong> : alternatif 400 kV/225 kV (lignes RTE).</li>
+      <li><strong>Distribution</strong> : alternatif 230 V/400 V (Enedis).</li>
+      <li><strong>Très longues distances ou interconnexions sous-marines</strong> : on revient au continu HVDC (Haute Tension à Courant Continu) car &gt; 1 000 km, l'alternatif a trop de pertes (effet capacitif des câbles).</li>
+      <li><strong>Électronique, batteries, panneaux solaires</strong> : continu (DC) à basse tension.</li>
+    </ul>
+    <p>Pour le CAP : on travaille presque toujours en <strong>alternatif 230 V/50 Hz</strong> sur le secteur. Le multimètre doit être en mode AC pour mesurer correctement.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Loi d'Ohm :</strong> U = R × I (V = Ω × A). Soit I = U/R et R = U/I.</li>
+    <li><strong>Puissance électrique :</strong> P = U × I (W).</li>
+    <li><strong>Multimètre :</strong> voltmètre (en parallèle), ampèremètre (en série), ohmmètre (hors tension !). Mode AC pour le secteur.</li>
+    <li><strong>Tension du secteur :</strong> U<sub>eff</sub> = 230 V, U<sub>max</sub> = 325 V, f = 50 Hz, T = 20 ms.</li>
+    <li><strong>Diagnostic d'une panne :</strong> comparer mesures réelles aux valeurs nominales (plaque signalétique).</li>
+  </ul>
 </div>
 
 </div>
 <script src="../../../nav.js"></script>
-<script>
-function toggle(btn){var c=btn.nextElementSibling;if(c.style.display==='block'){c.style.display='none';btn.textContent='Voir la correction';}else{c.style.display='block';btn.textContent='Masquer la correction';}}
-</script>
 </body>
 </html>
