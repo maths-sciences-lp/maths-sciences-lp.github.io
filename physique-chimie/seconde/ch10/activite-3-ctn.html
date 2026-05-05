@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 – Activité 3 – CTN et caractéristique R(T) – 2nde Bac Pro MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd;--s:#0ea5e9}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 3 – La sonde CTN d'un sécheur à bois <span style="font-size:.55em;color:#6f42c1;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 10 – Température et capteurs thermiques | 2nde Bac Pro MAMA | Physique-Chimie | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Comprendre le fonctionnement d'une thermistance CTN</li>
+    <li>Lire une caractéristique R(T)</li>
+    <li>Calibrer un capteur à partir de mesures</li>
+    <li>Vérifier le bon fonctionnement d'un capteur</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – maintenance d'un séchoir à bois</h2>
+  <p><em>Lila, technicienne chez <strong>Scierie du Vercors</strong> à Grenoble, doit vérifier le capteur CTN qui régule la température du séchoir. Le capteur est branché à un automate qui asservit le brûleur. Si la sonde dérive, le bois sèche trop ou pas assez.</em></p>
+
+  <h3>Document 1 – Caractéristique R(T) du capteur CTN B57164</h3>
+  <table>
+    <thead><tr><th>T (°C)</th><th>R (kΩ)</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>32,7</td></tr>
+      <tr><td>20</td><td>12,5</td></tr>
+      <tr><td>40</td><td>5,3</td></tr>
+      <tr><td>60</td><td>2,5</td></tr>
+      <tr><td>80</td><td>1,3</td></tr>
+      <tr><td>100</td><td>0,7</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 – CTN (coefficient de température négatif)</h3>
+  <p>Une CTN est une thermistance dont la <strong>résistance diminue quand la température augmente</strong>. Elle est utilisée comme capteur de température dans les applications industrielles (sécheurs, fours, chaudières).</p>
+  <p>Le constructeur fournit la table R(T) ou la formule de Steinhart-Hart pour convertir une mesure de R en température T.</p>
+
+  <h3>Document 3 – Mesures de Lila au multimètre</h3>
+  <table>
+    <thead><tr><th>Phase du séchoir</th><th>R mesurée</th><th>T affichée par l'automate</th></tr></thead>
+    <tbody>
+      <tr><td>Cycle « doux » initial</td><td>5,3 kΩ</td><td>40 °C</td></tr>
+      <tr><td>Cycle « accéléré »</td><td>1,3 kΩ</td><td>80 °C</td></tr>
+      <tr><td>Mesure suspecte</td><td>2,0 kΩ</td><td>72 °C</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> La sonde CTN du séchoir fonctionne-t-elle correctement, ou bien dérive-t-elle ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-blue">ANA</span></h2>
+  <p>D'après le tableau R(T), comment varie la résistance R quand la température T augmente ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La résistance <strong>diminue</strong> quand la température augmente. Par exemple, R passe de 32,7 kΩ à 0 °C à 0,7 kΩ à 100 °C, soit un facteur 47 en moins.</p>
+    <p>C'est la définition d'une CTN (Coefficient de Température Négatif).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>D'après le tableau, déterminer la température correspondant à R = 5,3 kΩ et à R = 1,3 kΩ.</p>
+  <p>Comparer aux températures affichées par l'automate.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>R = 5,3 kΩ → T = 40 °C ✔ (correspond à l'automate)</p>
+    <p>R = 1,3 kΩ → T = 80 °C ✔ (correspond à l'automate)</p>
+    <p>Le capteur fonctionne correctement aux 2 points de mesure normaux.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Pour la mesure suspecte (R = 2,0 kΩ, T affichée = 72 °C), déterminer la température réelle attendue d'après le tableau (par interpolation entre 60 °C et 80 °C).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>R = 2,0 kΩ se trouve entre les valeurs à 60 °C (2,5 kΩ) et 80 °C (1,3 kΩ).</p>
+    <p>Interpolation linéaire :</p>
+    <p>(2,5 − 2,0) / (2,5 − 1,3) = 0,5 / 1,2 ≈ 0,42</p>
+    <p>T ≈ 60 + 0,42 × 20 = 60 + 8,3 = <strong>68,3 °C</strong>.</p>
+    <p>L'automate affiche 72 °C → écart de +3,7 °C par rapport à la valeur réelle.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Quel est l'écart relatif (en %) entre la température affichée et la température réelle ?</p>
+  <p>Cet écart est-il acceptable pour un séchoir à bois ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Écart absolu : 72 − 68,3 = 3,7 °C. Écart relatif : 3,7 / 68,3 × 100 ≈ <strong>5,4 %</strong>.</p>
+    <p>Pour un séchoir à bois (où on régule typiquement à ±2 °C près), un écart de 3,7 °C peut perturber le cycle de séchage. Au-delà de 5 °C d'écart, le séchage devient inégal et peut causer des fissures.</p>
+    <p>Conclusion : le capteur dérive légèrement, à recalibrer ou remplacer.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-yellow">REA</span></h2>
+  <p>Lila trace la courbe R(T) sur papier log (vertical). Sur cette courbe, la relation devient linéaire.</p>
+  <p>Calculer le rapport R(0°C) / R(100°C).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>R(0°C) / R(100°C) = 32,7 / 0,7 ≈ <strong>47</strong>.</p>
+    <p>La résistance varie d'un facteur 47 entre 0 et 100 °C. C'est une caractéristique très sensible : un petit changement de température produit un grand changement de résistance, ce qui rend la CTN parfaite comme capteur.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>La CTN est branchée sur un pont diviseur avec une résistance fixe de 10 kΩ et une tension d'alimentation 5 V. La tension Vs aux bornes de la CTN se calcule par : Vs = 5 × R / (R + 10) avec R en kΩ.</p>
+  <p>Calculer Vs à 0 °C, à 40 °C et à 80 °C.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>0 °C : Vs = 5 × 32,7 / (32,7 + 10) = 5 × 0,766 = <strong>3,83 V</strong></p>
+    <p>40 °C : Vs = 5 × 5,3 / 15,3 = <strong>1,73 V</strong></p>
+    <p>80 °C : Vs = 5 × 1,3 / 11,3 = <strong>0,58 V</strong></p>
+    <p>Vs <strong>diminue</strong> quand T augmente, ce qui est cohérent avec la diminution de R.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Lila propose 2 actions :</p>
+  <ul>
+    <li>A : recalibrer le capteur dans le logiciel de l'automate (gratuit).</li>
+    <li>B : remplacer le capteur par un neuf (45 € + 30 min de pose).</li>
+  </ul>
+  <p>Quelle action choisir si l'écart est de 4 °C ? S'il est de 12 °C ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Écart 4 °C :</strong> Action A — recalibrer suffit. Le capteur est encore fonctionnel mais légèrement dérivé.</p>
+    <p><strong>Écart 12 °C :</strong> Action B — remplacer. Au-delà de 10 °C, le capteur est manifestement défaillant. La calibration ne corrigerait que ponctuellement, mais la sonde pourrait dériver davantage à d'autres températures.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Rédiger le rapport d'intervention de Lila (4 lignes max).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Contrôle CTN B57164 — séchoir Vercors</strong><br>
+      • Mesures : R = 5,3 kΩ à 40 °C ✔, R = 1,3 kΩ à 80 °C ✔, R = 2,0 kΩ avec affichage 72 °C alors que valeur réelle 68,3 °C.<br>
+      • <strong>Diagnostic :</strong> légère dérive du capteur (≈ 3,7 °C, soit 5 %).<br>
+      • <strong>Action :</strong> recalibration logicielle effectuée. Capteur opérationnel.<br>
+      • <strong>Suivi :</strong> nouveau contrôle dans 3 mois pour vérifier stabilité.
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>La sonde Pt100 (à coefficient positif) a une caractéristique linéaire : R = 100 × (1 + 0,00385 × T) en Ω. À 80 °C, calculer R(Pt100). Pourquoi est-elle préférée pour les hautes températures ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>R(Pt100, 80°C) = 100 × (1 + 0,00385 × 80) = 100 × 1,308 = <strong>130,8 Ω</strong>.</p>
+    <p>La Pt100 a une variation linéaire et faible (de 100 à 138,5 Ω entre 0 et 100 °C, facteur 1,4 seulement). Avantages :</p>
+    <ul>
+      <li>Très précise (±0,1 °C possible).</li>
+      <li>Stable jusqu'à 600 °C (bien plus haut que la CTN limitée à ≈ 150 °C).</li>
+      <li>Linéaire = facile à interpréter.</li>
+    </ul>
+    <p>Inconvénient : moins sensible que la CTN aux variations près de la température ambiante. La Pt100 est utilisée pour fours, chaudières industrielles. La CTN pour électronique grand public, électroménager, séchoirs domestiques.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>Une <strong>CTN</strong> est une thermistance dont R diminue quand T augmente.</li>
+    <li>La table R(T) ou la formule Steinhart-Hart permet de convertir R en T.</li>
+    <li>L'<strong>interpolation linéaire</strong> permet d'estimer T entre deux valeurs du tableau.</li>
+    <li>Une dérive du capteur se voit dans l'écart entre la T mesurée et la T théorique.</li>
+    <li>Les capteurs Pt100 sont plus précis et stables que les CTN, mais plus chers.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §3 (Capteurs de température) et §4 (Caractéristique R(T) d'une CTN) de la leçon Ch10.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>

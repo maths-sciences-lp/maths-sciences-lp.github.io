@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ch10 – Activité 2 – Thermomètre infrarouge – 2nde Bac Pro MAMA</title>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#6f42c1;--p-bg:#f5f0ff;--p-border:#c4b5fd;--s:#0ea5e9}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../pc-2nde-pro.html" class="nb">← RETOUR SOMMAIRE</a>
+
+<header>
+  <h1>Activité 2 – Mesurer la température avec un thermomètre IR <span style="font-size:.55em;color:#6f42c1;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 10 – Température et capteurs thermiques | 2nde Bac Pro MAMA | Physique-Chimie | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Convertir entre °C, °F et K</li>
+    <li>Choisir le thermomètre adapté à une mesure (contact, IR, sonde)</li>
+    <li>Identifier les sources d'erreur d'une mesure</li>
+    <li>Diagnostiquer un défaut par la température</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – contrôle thermique des moteurs CNC</h2>
+  <p><em>Karim, technicien de maintenance chez <strong>BoisTech 76</strong> au Havre, fait sa tournée hebdomadaire de contrôle thermique. Il utilise un thermomètre infrarouge à visée laser pour vérifier que les moteurs et roulements des machines CNC ne surchauffent pas.</em></p>
+
+  <h3>Document 1 – Mesures relevées</h3>
+  <table>
+    <thead><tr><th>Élément</th><th>T mesurée (°C)</th><th>T max admise</th></tr></thead>
+    <tbody>
+      <tr><td>Moteur broche scie 1</td><td>52</td><td>70 °C</td></tr>
+      <tr><td>Moteur broche scie 2</td><td>78</td><td>70 °C</td></tr>
+      <tr><td>Roulement axe X CNC</td><td>43</td><td>60 °C</td></tr>
+      <tr><td>Coffret électrique</td><td>38</td><td>50 °C</td></tr>
+      <tr><td>Aspirateur copeaux</td><td>61</td><td>65 °C</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Document 2 – Échelles de température</h3>
+  <ul>
+    <li>Échelle Celsius (°C) : 0 °C = glace fondante, 100 °C = eau bouillante (1 atm).</li>
+    <li>Échelle Fahrenheit (°F) — usage US : T(°F) = 1,8 × T(°C) + 32.</li>
+    <li>Échelle Kelvin (K) — SI : T(K) = T(°C) + 273,15. Le zéro absolu (0 K = −273,15 °C).</li>
+  </ul>
+
+  <h3>Document 3 – Types de thermomètres</h3>
+  <ul>
+    <li>À contact (sonde Pt100, thermocouple) : précision ±0,5 °C, lent, contact requis.</li>
+    <li>Infrarouge (laser) : sans contact, rapide, précision ±2 °C, dépend de l'émissivité du matériau.</li>
+    <li>À mercure ou alcool : robuste, peu cher, pas pour températures &gt; 100 °C en industrie.</li>
+  </ul>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Karim peut-il identifier les éléments en surchauffe parmi les machines de l'atelier ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Convertir les températures suivantes :</p>
+  <p><strong>a)</strong> 52 °C en K et en °F.</p>
+  <p><strong>b)</strong> 70 °F en °C.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>a)</strong> 52 °C = 52 + 273 = <strong>325 K</strong>. En °F : 1,8 × 52 + 32 = <strong>125,6 °F</strong>.</p>
+    <p><strong>b)</strong> 70 °F = (70 − 32) / 1,8 = 38 / 1,8 ≈ <strong>21 °C</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-blue">ANA</span></h2>
+  <p>D'après les mesures, quel(s) élément(s) sont en surchauffe ? Que doit faire Karim ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>Moteur scie 1 : 52 ≤ 70 → OK</li>
+      <li><strong>Moteur scie 2 : 78 &gt; 70 → SURCHAUFFE</strong></li>
+      <li>Roulement : 43 ≤ 60 → OK</li>
+      <li>Coffret : 38 ≤ 50 → OK</li>
+      <li>Aspirateur : 61 ≤ 65 → OK (mais limite, à surveiller)</li>
+    </ul>
+    <p><strong>Action :</strong> arrêter immédiatement la scie 2, vérifier la ventilation, le refroidissement, l'usure des roulements. Risque de grillage du moteur si on continue.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-blue">ANA</span></h2>
+  <p>Le thermomètre IR de Karim a une précision de ±2 °C. Pour la scie 2 (mesure 78 °C), quelle est la fourchette réelle de température ?</p>
+  <p>Le moteur est-il forcément en surchauffe ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Fourchette : 78 − 2 = 76 °C à 78 + 2 = 80 °C. Donc T réelle ∈ [76 ; 80] °C.</p>
+    <p>Même au minimum (76 °C), on dépasse la limite de 70 °C. <strong>Surchauffe confirmée.</strong></p>
+    <p>Pour les valeurs limites (aspirateur à 61 vs limite 65), la précision peut faire douter : la mesure pourrait être réellement 59 ou 63 °C. Il vaut mieux faire une seconde mesure ou utiliser une sonde de contact pour confirmer.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Karim mesure les machines à différentes distances. Le thermomètre IR a un <strong>champ de vision (D:S = 12:1)</strong> : à 12 cm de distance, il mesure la moyenne d'un disque de 1 cm de diamètre.</p>
+  <p>À 60 cm, sur quel diamètre la mesure se fait-elle ? Pourquoi est-il important de viser au plus près ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Ratio D:S = 12:1. À 60 cm : diamètre = 60/12 = <strong>5 cm</strong>.</p>
+    <p>À 60 cm, le thermomètre mesure la moyenne d'un disque de 5 cm. Si on vise un petit point chaud (3 cm), on inclut aussi des zones plus froides autour → mesure faussée plus basse que la vraie. Pour mesurer précisément un roulement, il faut s'approcher à 12-20 cm pour viser un disque de 1-1,5 cm.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Le thermomètre IR fonctionne par <strong>émissivité</strong>. Réglée à ε = 0,95 (par défaut). Le moteur de scie 2 est en métal poli (ε réelle = 0,3).</p>
+  <p>La mesure de 78 °C est-elle fiable ? Pourquoi ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Non, la mesure n'est <strong>pas fiable</strong>. Le thermomètre IR suppose ε = 0,95, mais le métal poli a ε = 0,3 : il rayonne très peu. Le thermomètre <strong>sous-estime</strong> alors la vraie température (parfois de 30 à 50 °C !). La vraie température pourrait être 100 °C ou plus.</p>
+    <p><strong>Solution</strong> : coller un morceau de ruban adhésif noir mat (ε ≈ 0,95) sur la surface, attendre l'équilibre thermique 30 s, puis viser le ruban. Ou régler manuellement l'émissivité à 0,3 sur le thermomètre.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Pour confirmer la surchauffe de la scie 2, Karim utilise une <strong>sonde de contact Pt100</strong>. Quels sont les avantages et inconvénients par rapport à l'IR ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Pt100 (sonde de contact) :</strong></p>
+    <ul>
+      <li>+ Précision : ±0,5 °C</li>
+      <li>+ Indépendant de l'émissivité du matériau</li>
+      <li>− Lent (30 s d'équilibre thermique)</li>
+      <li>− Contact requis (machine arrêtée, accès difficile)</li>
+      <li>− Risque pour l'opérateur (proximité de pièces chaudes)</li>
+    </ul>
+    <p>Conclusion : utiliser l'IR pour le balayage rapide, et la Pt100 pour confirmer une anomalie.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Karim mesure régulièrement le moteur scie 1 :</p>
+  <table>
+    <thead><tr><th>Date</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th></tr></thead>
+    <tbody>
+      <tr><td>T (°C)</td><td>52</td><td>54</td><td>57</td><td>61</td><td>65</td></tr>
+    </tbody>
+  </table>
+  <p>Que constate-t-il ? Quelle action prendre ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La température <strong>monte régulièrement</strong> (+13 °C en 5 jours). Si la tendance continue, la limite 70 °C sera atteinte vers le mardi suivant.</p>
+    <p><strong>Action :</strong> programmer une maintenance préventive avant que la machine ne tombe en panne. Vérifier la ventilation, nettoyer le radiateur du moteur, contrôler la lubrification des roulements. Mieux vaut agir maintenant qu'attendre l'arrêt forcé.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Rédiger le compte-rendu d'intervention de Karim (5 lignes max).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Tournée thermique hebdo — Atelier BoisTech 76</strong><br>
+      • 5 éléments contrôlés au thermomètre IR.<br>
+      • <strong>Anomalie :</strong> Moteur scie 2 = 78 °C (limite 70 °C). Confirmé Pt100 = 80 °C → ARRÊT.<br>
+      • Tendance moteur scie 1 : +13 °C en 5 j → maintenance préventive programmée mercredi prochain.<br>
+      • Aspirateur copeaux à 61 °C : à surveiller (limite 65 °C).<br>
+      • Recommandation : nettoyage radiateurs + contrôle ventilateurs sur tout le parc machine.
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Karim entend parler d'une <strong>caméra thermique</strong> (≈ 800 €) qui visualise toute une scène en couleurs (rouge = chaud, bleu = froid). Quel intérêt par rapport au thermomètre IR ponctuel ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>La caméra thermique :</p>
+    <ul>
+      <li>Visualise <strong>simultanément</strong> tous les points chauds d'une zone (gain de temps).</li>
+      <li>Détecte des anomalies invisibles au thermomètre ponctuel (ex : un seul roulement chaud parmi plusieurs).</li>
+      <li>Permet de comparer une zone normale à une zone anormale.</li>
+    </ul>
+    <p>L'investissement de 800 € est rapidement amorti pour un atelier qui doit faire des contrôles fréquents. C'est l'outil de référence en maintenance industrielle aujourd'hui.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li><strong>Échelles :</strong> °C, °F (US), K (SI). T(K) = T(°C) + 273.</li>
+    <li><strong>Thermomètre IR :</strong> rapide, sans contact, mais sensible à l'émissivité.</li>
+    <li><strong>Sonde Pt100 / thermocouple :</strong> précis, contact obligatoire, indépendant du matériau.</li>
+    <li>Toujours indiquer <strong>l'incertitude</strong> de la mesure (± précision).</li>
+    <li>En maintenance, surveiller les <strong>tendances</strong> (évolution dans le temps), pas uniquement les valeurs absolues.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §1 (La température), §2 (Mesure de la température) et §5 (Applications industrielles) de la leçon Ch10.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
