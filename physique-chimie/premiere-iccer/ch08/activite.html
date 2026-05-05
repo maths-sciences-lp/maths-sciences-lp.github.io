@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch08 – Activité – La force d'Archimède – 1re ICCER</title>
+<title>Ch08 – Activité – Force d'Archimède : pourquoi les bulles remontent – PC 1ère ICCER</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
@@ -11,220 +11,270 @@
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-1ere-iccer.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE ICCER (Grpt 1)</a>
 
 <header>
-  <h1>Activité – Pourquoi les bulles d'air remontent-elles ?</h1>
-  <p class="sous-titre">Chapitre 8 | Première Bac Pro (Grpt 1) | Physique-Chimie | ⏱ 30 min</p>
+  <h1>Activité – Pourquoi les bulles d'air remontent-elles ? <span style="font-size:.55em;color:#0891b2;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Chapitre 8 | Première Bac Pro ICCER (Grpt 1) | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 15:45</p>
 </header>
 <button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
 <div class="objectifs">
   <strong>Objectifs :</strong>
   <ul>
-    <li>Découvrir la force d'Archimède : \(F_A = \rho_{\text{fluide}} \times g \times V\)</li>
-    <li>Comparer le poids et la poussée d'Archimède pour prévoir si un objet flotte ou coule</li>
+    <li>Découvrir la force d'Archimède : F<sub>A</sub> = ρ<sub>fluide</sub> × g × V</li>
+    <li>Comparer poids et poussée d'Archimède pour prévoir flottaison ou coulage</li>
     <li>Comprendre pourquoi les bulles d'air remontent dans un circuit de chauffage</li>
+    <li>Justifier l'utilité de la purge des radiateurs</li>
   </ul>
 </div>
 
-<!-- DOCUMENT D'ACCROCHE -->
 <div class="situation">
-  <h2>Situation professionnelle</h2>
-  <p><em>Nadia, technicienne chauffagiste chez ThermoPlus à Grenoble, effectue la maintenance d'un circuit de chauffage central. Lors de la purge d'un radiateur, elle observe des bulles d'air qui remontent à la surface de l'eau. Elle doit aussi vérifier des composants stockés dans un bac d'eau lors d'un test d'étanchéité.</em></p>
-  <p>Nadia dispose de trois objets qu'elle plonge dans un bac rempli d'eau pour tester leur comportement :</p>
+  <h2>Situation – maintenance d'un circuit de chauffage</h2>
+  <p><em>Nadia, technicienne chauffagiste chez ThermoPlus à Grenoble, effectue la maintenance d'un circuit de chauffage central. Lors de la purge d'un radiateur, elle observe des bulles d'air qui remontent à la surface de l'eau. Elle doit aussi tester l'étanchéité de composants stockés dans un bac d'eau.</em></p>
 
+  <h3>Document 1 — Schéma de la force d'Archimède</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 220" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Schéma : objet immergé dans l'eau, poids vers le bas, poussée d'Archimède vers le haut. Cas du flotteur (FA > P → flotte) et du raccord cuivre (P > FA → coule).">
+      <defs>
+        <style>
+          .lbl{font:11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 12px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+          .val{font:600 11px sans-serif;fill:#dc2626;text-anchor:middle}
+          .ok{font:600 11px sans-serif;fill:#15803d;text-anchor:middle}
+        </style>
+        <marker id="arrR" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/></marker>
+        <marker id="arrG" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#15803d"/></marker>
+      </defs>
+      <text class="ti" x="270" y="20">Force d'Archimède = poussée du fluide vers le haut</text>
+
+      <!-- Bac d'eau -->
+      <rect x="60" y="50" width="180" height="140" fill="#bae6fd" stroke="#1a202c"/>
+      <text x="150" y="40" class="lbl">cas 1 : flotte</text>
+
+      <!-- Flotteur (cas 1) -->
+      <rect x="125" y="70" width="50" height="40" fill="#fef3c7" stroke="#1a202c"/>
+      <text x="150" y="95" class="lbl">flotteur</text>
+      <line x1="150" y1="120" x2="150" y2="145" stroke="#dc2626" stroke-width="2" marker-end="url(#arrR)"/>
+      <text x="150" y="160" class="val">P (faible)</text>
+      <line x1="150" y1="100" x2="150" y2="65" stroke="#15803d" stroke-width="3" marker-end="url(#arrG)"/>
+      <text x="150" y="55" class="ok">F_A &gt; P ✓</text>
+
+      <!-- Bac d'eau cas 2 -->
+      <rect x="300" y="50" width="180" height="140" fill="#bae6fd" stroke="#1a202c"/>
+      <text x="390" y="40" class="lbl">cas 2 : coule</text>
+
+      <!-- Cuivre (cas 2) -->
+      <rect x="380" y="160" width="20" height="20" fill="#a16207" stroke="#1a202c"/>
+      <text x="390" y="155" class="lbl">cuivre</text>
+      <line x1="390" y1="180" x2="390" y2="195" stroke="#dc2626" stroke-width="3" marker-end="url(#arrR)"/>
+      <text x="430" y="190" class="val">P (gros)</text>
+      <line x1="390" y1="160" x2="390" y2="140" stroke="#15803d" stroke-width="1.5" marker-end="url(#arrG)"/>
+      <text x="430" y="150" class="ok">F_A (petit)</text>
+      <text x="390" y="125" class="val">P &gt; F_A ❌</text>
+
+      <text x="270" y="210" class="lbl">F_A = ρ_fluide × g × V_immergé</text>
+    </svg>
+  </div>
+
+  <h3>Document 2 — 3 objets testés par Nadia</h3>
   <table>
-    <thead>
-      <tr><th>Objet</th><th>Masse \(m\) (g)</th><th>Volume \(V\) (cm³)</th><th>Matériau</th></tr>
-    </thead>
+    <thead><tr><th>Objet</th><th>Masse m (g)</th><th>Volume V (cm³)</th><th>Matériau</th></tr></thead>
     <tbody>
-      <tr><td>A — Flotteur de niveau</td><td>5</td><td>200</td><td>Polystyrène</td></tr>
-      <tr><td>B — Raccord de cuivre</td><td>178</td><td>20</td><td>Cuivre</td></tr>
-      <tr><td>C — Bouchon plastique</td><td>46</td><td>50</td><td>PVC</td></tr>
+      <tr><td><strong>A</strong> — Flotteur de niveau</td><td>5</td><td>200</td><td>Polystyrène</td></tr>
+      <tr><td><strong>B</strong> — Raccord cuivre</td><td>178</td><td>20</td><td>Cuivre</td></tr>
+      <tr><td><strong>C</strong> — Bouchon plastique</td><td>46</td><td>50</td><td>PVC</td></tr>
     </tbody>
   </table>
 
-  <p><strong>Données :</strong></p>
+  <h3>Document 3 — Données et formules</h3>
   <ul>
-    <li>Masse volumique de l'eau : \(\rho_{\text{eau}} = 1\,000 \text{ kg/m}^3\)</li>
-    <li>Masse volumique de l'air : \(\rho_{\text{air}} = 1{,}2 \text{ kg/m}^3\)</li>
-    <li>Intensité de la pesanteur : \(g = 9{,}81 \text{ N/kg}\)</li>
-    <li>Volume d'une bulle d'air dans le radiateur : \(V_{\text{bulle}} = 0{,}5 \text{ cm}^3\)</li>
-    <li>Conversion : \(1 \text{ cm}^3 = 10^{-6} \text{ m}^3\) ; \(1 \text{ g} = 10^{-3} \text{ kg}\)</li>
+    <li>Masse volumique de l'eau : ρ<sub>eau</sub> = 1 000 kg/m³.</li>
+    <li>Masse volumique de l'air : ρ<sub>air</sub> = 1,2 kg/m³.</li>
+    <li>Intensité de la pesanteur : g = 9,81 N/kg.</li>
+    <li>Volume d'une bulle d'air dans un radiateur : V<sub>bulle</sub> = 0,5 cm³.</li>
+    <li>Conversions : 1 cm³ = 10⁻⁶ m³ ; 1 g = 10⁻³ kg.</li>
+    <li>Formules : P = m × g ; F<sub>A</sub> = ρ<sub>fluide</sub> × g × V<sub>immergé</sub>.</li>
   </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (poids et poussée), §2 (force d'Archimède) et §3 (flottaison) de la leçon Ch08.</em></p>
 </div>
 
-<div class="objectifs" style="border-left:4px solid #f59e0b;background:#fffbeb;margin:1.2em 0;padding:1em 1.2em;border-radius:6px">
-  <strong>Problématique</strong>
-  <p style="margin:.5em 0 0">Pourquoi les bulles d'air remontent-elles dans le circuit de chauffage et comment déterminer si les composants testés par Nadia flottent ou coulent ?</p>
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Pourquoi les bulles d'air remontent-elles dans le circuit de chauffage et comment prévoir si un objet flotte ou coule ?
 </div>
 
-<!-- QUESTION 1 -->
 <div class="exo">
-<h2>Question 1 <span class="badge-yellow">REA</span></h2>
-<p>Calculer le poids \(P = m \times g\) de chacun des trois objets A, B et C. Exprimer les résultats en newton (N).</p>
-<p><em>Attention : convertir d'abord les masses en kg.</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p><strong>Objet A</strong> (flotteur) : \(m_A = 5 \text{ g} = 0{,}005 \text{ kg}\)</p>
-\[P_A = 0{,}005 \times 9{,}81 = 0{,}049 \text{ N}\]
-
-<p><strong>Objet B</strong> (raccord cuivre) : \(m_B = 178 \text{ g} = 0{,}178 \text{ kg}\)</p>
-\[P_B = 0{,}178 \times 9{,}81 = 1{,}75 \text{ N}\]
-
-<p><strong>Objet C</strong> (bouchon PVC) : \(m_C = 46 \text{ g} = 0{,}046 \text{ kg}\)</p>
-\[P_C = 0{,}046 \times 9{,}81 = 0{,}451 \text{ N}\]
-</div>
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer le poids P = m × g de chacun des 3 objets. Exprimer en N.</p>
+  <p>Attention : convertir m en kg.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Objet A</strong> : m = 5 g = 0,005 kg → P<sub>A</sub> = 0,005 × 9,81 = <strong>0,049 N</strong>.</p>
+    <p><strong>Objet B</strong> : m = 178 g = 0,178 kg → P<sub>B</sub> = 0,178 × 9,81 = <strong>1,75 N</strong>.</p>
+    <p><strong>Objet C</strong> : m = 46 g = 0,046 kg → P<sub>C</sub> = 0,046 × 9,81 = <strong>0,451 N</strong>.</p>
+  </div>
 </div>
 
-<!-- QUESTION 2 -->
 <div class="exo">
-<h2>Question 2 <span class="badge-green">APP</span></h2>
-<p>Lorsqu'un objet est totalement immergé dans l'eau, le volume d'eau qu'il déplace est égal au volume de l'objet.</p>
-<p>Relever dans le tableau le volume de chaque objet. Quel objet déplace le plus grand volume d'eau ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<ul>
-  <li>Objet A (flotteur) : \(V_A = 200 \text{ cm}^3\)</li>
-  <li>Objet B (raccord cuivre) : \(V_B = 20 \text{ cm}^3\)</li>
-  <li>Objet C (bouchon PVC) : \(V_C = 50 \text{ cm}^3\)</li>
-</ul>
-<p>L'objet A (flotteur en polystyrène) déplace le plus grand volume d'eau : 200 cm³.</p>
-</div>
+  <h2>Question 2 <span class="badge-green">APP</span></h2>
+  <p>Lorsqu'un objet est totalement immergé, le volume d'eau déplacé = volume de l'objet.</p>
+  <p>Relever le volume de chaque objet. Lequel déplace le plus grand volume d'eau ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <ul>
+      <li>A : V<sub>A</sub> = 200 cm³.</li>
+      <li>B : V<sub>B</sub> = 20 cm³.</li>
+      <li>C : V<sub>C</sub> = 50 cm³.</li>
+    </ul>
+    <p>L'objet <strong>A (flotteur en polystyrène)</strong> déplace le plus grand volume d'eau (200 cm³).</p>
+  </div>
 </div>
 
-<!-- QUESTION 3 -->
 <div class="exo">
-<h2>Question 3 <span class="badge-yellow">REA</span></h2>
-<p>La force d'Archimède (poussée du fluide vers le haut) se calcule par :</p>
-\[F_A = \rho_{\text{fluide}} \times g \times V_{\text{immergé}}\]
-<p>Calculer la force d'Archimède exercée par l'eau sur chacun des trois objets (supposés totalement immergés).</p>
-<p><em>Rappel : convertir les volumes en m³ avant de calculer.</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p><strong>Objet A</strong> : \(V_A = 200 \text{ cm}^3 = 200 \times 10^{-6} = 2 \times 10^{-4} \text{ m}^3\)</p>
-\[F_{A,A} = 1\,000 \times 9{,}81 \times 2 \times 10^{-4} = 1{,}96 \text{ N}\]
-
-<p><strong>Objet B</strong> : \(V_B = 20 \text{ cm}^3 = 20 \times 10^{-6} = 2 \times 10^{-5} \text{ m}^3\)</p>
-\[F_{A,B} = 1\,000 \times 9{,}81 \times 2 \times 10^{-5} = 0{,}196 \text{ N}\]
-
-<p><strong>Objet C</strong> : \(V_C = 50 \text{ cm}^3 = 50 \times 10^{-6} = 5 \times 10^{-5} \text{ m}^3\)</p>
-\[F_{A,C} = 1\,000 \times 9{,}81 \times 5 \times 10^{-5} = 0{,}491 \text{ N}\]
-</div>
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la force d'Archimède F<sub>A</sub> = ρ × g × V exercée par l'eau sur chaque objet (totalement immergé).</p>
+  <p>Convertir V en m³ avant de calculer.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p><strong>Objet A</strong> : V<sub>A</sub> = 200 × 10⁻⁶ = 2 × 10⁻⁴ m³.</p>
+    <p>F<sub>A,A</sub> = 1 000 × 9,81 × 2 × 10⁻⁴ = <strong>1,96 N</strong>.</p>
+    <p><strong>Objet B</strong> : V<sub>B</sub> = 2 × 10⁻⁵ m³.</p>
+    <p>F<sub>A,B</sub> = 1 000 × 9,81 × 2 × 10⁻⁵ = <strong>0,196 N</strong>.</p>
+    <p><strong>Objet C</strong> : V<sub>C</sub> = 5 × 10⁻⁵ m³.</p>
+    <p>F<sub>A,C</sub> = 1 000 × 9,81 × 5 × 10⁻⁵ = <strong>0,491 N</strong>.</p>
+  </div>
 </div>
 
-<!-- QUESTION 4 -->
 <div class="exo">
-<h2>Question 4 <span class="badge-blue">ANA</span></h2>
-<p>Compléter le tableau récapitulatif ci-dessous, puis comparer \(P\) et \(F_A\) pour chaque objet. Indiquer si l'objet flotte ou coule.</p>
-
-<table>
-  <thead>
-    <tr><th>Objet</th><th>Poids \(P\) (N)</th><th>Poussée \(F_A\) (N)</th><th>Comparaison</th><th>Flotte ou coule ?</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>A — Flotteur</td><td>...</td><td>...</td><td>\(P \, ... \, F_A\)</td><td>...</td></tr>
-    <tr><td>B — Raccord cuivre</td><td>...</td><td>...</td><td>\(P \, ... \, F_A\)</td><td>...</td></tr>
-    <tr><td>C — Bouchon PVC</td><td>...</td><td>...</td><td>\(P \, ... \, F_A\)</td><td>...</td></tr>
-  </tbody>
-</table>
-
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<table>
-  <thead>
-    <tr><th>Objet</th><th>Poids \(P\) (N)</th><th>Poussée \(F_A\) (N)</th><th>Comparaison</th><th>Flotte ou coule ?</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>A — Flotteur</td><td>0,049</td><td>1,96</td><td>\(P < F_A\)</td><td><strong>Flotte</strong></td></tr>
-    <tr><td>B — Raccord cuivre</td><td>1,75</td><td>0,196</td><td>\(P > F_A\)</td><td><strong>Coule</strong></td></tr>
-    <tr><td>C — Bouchon PVC</td><td>0,451</td><td>0,491</td><td>\(P < F_A\)</td><td><strong>Flotte</strong></td></tr>
-  </tbody>
-</table>
-<p>Quand la poussée d'Archimède est supérieure au poids, l'objet remonte vers la surface (il flotte). Quand le poids est supérieur à la poussée, l'objet descend (il coule).</p>
-</div>
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Compléter le tableau récapitulatif. Comparer P et F<sub>A</sub>. L'objet flotte-t-il ou coule-t-il ?</p>
+  <table>
+    <thead><tr><th>Objet</th><th>P (N)</th><th>F<sub>A</sub> (N)</th><th>Comparaison</th><th>Flotte/coule</th></tr></thead>
+    <tbody>
+      <tr><td>A — Flotteur</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+      <tr><td>B — Cuivre</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+      <tr><td>C — PVC</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+    </tbody>
+  </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Objet</th><th>P</th><th>F<sub>A</sub></th><th>Comparaison</th><th>Bilan</th></tr></thead>
+      <tbody>
+        <tr><td>A — Flotteur</td><td>0,049 N</td><td>1,96 N</td><td>P &lt; F<sub>A</sub></td><td>✅ <strong>Flotte</strong></td></tr>
+        <tr><td>B — Cuivre</td><td>1,75 N</td><td>0,196 N</td><td>P &gt; F<sub>A</sub></td><td>❌ <strong>Coule</strong></td></tr>
+        <tr><td>C — PVC</td><td>0,451 N</td><td>0,491 N</td><td>P &lt; F<sub>A</sub></td><td>✅ <strong>Flotte</strong></td></tr>
+      </tbody>
+    </table>
+    <p>Quand F<sub>A</sub> &gt; P : l'objet remonte (flotte). Quand P &gt; F<sub>A</sub> : l'objet descend (coule).</p>
+  </div>
 </div>
 
-<!-- QUESTION 5 -->
 <div class="exo">
-<h2>Question 5 <span class="badge-blue">ANA</span></h2>
-<p>En observant les résultats de la question 4, formuler la condition générale pour qu'un objet flotte dans un fluide. Compléter la phrase :</p>
-<p><em>« Un objet flotte dans un fluide si ... »</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Un objet flotte dans un fluide si la <strong>force d'Archimède est supérieure au poids</strong> de l'objet, c'est-à-dire si \(F_A > P\).</p>
-<p>Cela revient à dire que l'objet flotte si sa <strong>masse volumique est inférieure</strong> à celle du fluide (\(\rho_{\text{objet}} < \rho_{\text{fluide}}\)).</p>
-<p>Vérification avec le bouchon PVC : \(\rho_C = \dfrac{m_C}{V_C} = \dfrac{0{,}046}{5 \times 10^{-5}} = 920 \text{ kg/m}^3 < 1\,000 \text{ kg/m}^3\). Il flotte bien.</p>
-</div>
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Formuler la condition générale pour qu'un objet flotte. Compléter : « Un objet flotte dans un fluide si … »</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Un objet flotte si la <strong>force d'Archimède est supérieure au poids</strong> : F<sub>A</sub> &gt; P.</p>
+    <p>Cela revient à : sa <strong>masse volumique est inférieure à celle du fluide</strong> : ρ<sub>objet</sub> &lt; ρ<sub>fluide</sub>.</p>
+    <p>Vérification PVC : ρ<sub>C</sub> = m / V = 0,046 / (5 × 10⁻⁵) = <strong>920 kg/m³</strong> &lt; 1 000 kg/m³ → flotte ✓.</p>
+  </div>
 </div>
 
-<!-- QUESTION 6 -->
 <div class="exo">
-<h2>Question 6 <span class="badge-yellow">REA</span></h2>
-<p>Nadia observe une bulle d'air de volume \(V_{\text{bulle}} = 0{,}5 \text{ cm}^3\) emprisonnée dans un radiateur rempli d'eau.</p>
-<p><strong>a)</strong> Calculer le poids de la bulle d'air.</p>
-<p><strong>b)</strong> Calculer la force d'Archimède exercée par l'eau sur cette bulle.</p>
-<p><strong>c)</strong> Comparer \(P\) et \(F_A\). Que va faire la bulle ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>\(V_{\text{bulle}} = 0{,}5 \text{ cm}^3 = 0{,}5 \times 10^{-6} = 5 \times 10^{-7} \text{ m}^3\)</p>
-
-<p><strong>a)</strong> Masse de la bulle d'air :</p>
-\[m = \rho_{\text{air}} \times V = 1{,}2 \times 5 \times 10^{-7} = 6 \times 10^{-7} \text{ kg}\]
-\[P = m \times g = 6 \times 10^{-7} \times 9{,}81 = 5{,}9 \times 10^{-6} \text{ N}\]
-
-<p><strong>b)</strong> Force d'Archimède exercée par l'eau :</p>
-\[F_A = \rho_{\text{eau}} \times g \times V = 1\,000 \times 9{,}81 \times 5 \times 10^{-7} = 4{,}9 \times 10^{-3} \text{ N}\]
-
-<p><strong>c)</strong> Comparaison : \(F_A = 4{,}9 \times 10^{-3} \text{ N} \gg P = 5{,}9 \times 10^{-6} \text{ N}\)</p>
-<p>La poussée d'Archimède est environ <strong>830 fois plus grande</strong> que le poids de la bulle. La bulle d'air remonte vigoureusement vers le haut. C'est parce que \(\rho_{\text{air}} = 1{,}2 \text{ kg/m}^3\) est beaucoup plus petite que \(\rho_{\text{eau}} = 1\,000 \text{ kg/m}^3\).</p>
-</div>
+  <h2>Question 6 <span class="badge-yellow">REA</span></h2>
+  <p>Bulle d'air dans le radiateur : V = 0,5 cm³ = 5 × 10⁻⁷ m³.</p>
+  <p>a) Calculer le poids P de la bulle d'air (m = ρ<sub>air</sub> × V).</p>
+  <p>b) Calculer la force d'Archimède F<sub>A</sub> exercée par l'eau.</p>
+  <p>c) Comparer P et F<sub>A</sub>. Que va faire la bulle ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) m = ρ<sub>air</sub> × V = 1,2 × 5 × 10⁻⁷ = 6 × 10⁻⁷ kg.</p>
+    <p>P = m × g = 6 × 10⁻⁷ × 9,81 ≈ <strong>5,9 × 10⁻⁶ N</strong>.</p>
+    <p>b) F<sub>A</sub> = ρ<sub>eau</sub> × g × V = 1 000 × 9,81 × 5 × 10⁻⁷ ≈ <strong>4,9 × 10⁻³ N</strong>.</p>
+    <p>c) F<sub>A</sub> / P = 4,9 × 10⁻³ / (5,9 × 10⁻⁶) ≈ <strong>830</strong>. La poussée d'Archimède est ~ 830× plus grande que le poids → la bulle remonte vigoureusement.</p>
+    <p>Pourquoi ? Parce que ρ<sub>air</sub> = 1,2 kg/m³ ≪ ρ<sub>eau</sub> = 1 000 kg/m³.</p>
+  </div>
 </div>
 
-<!-- QUESTION 7 -->
 <div class="exo">
-<h2>Question 7 <span class="badge-green">VAL</span></h2>
-<p>Nadia plonge le bouchon PVC (objet C) dans le bac d'eau. Elle observe qu'il flotte en dépassant légèrement de la surface.</p>
-<p>Calculer la fraction immergée du bouchon à l'équilibre en utilisant :</p>
-\[\frac{V_{\text{immergé}}}{V_{\text{total}}} = \frac{\rho_{\text{objet}}}{\rho_{\text{fluide}}}\]
-<p>Est-ce cohérent avec l'observation de Nadia ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>Masse volumique du bouchon PVC :</p>
-\[\rho_C = \frac{m_C}{V_C} = \frac{0{,}046}{5 \times 10^{-5}} = 920 \text{ kg/m}^3\]
-<p>Fraction immergée :</p>
-\[\frac{V_{\text{imm}}}{V_{\text{total}}} = \frac{920}{1\,000} = 0{,}92 = 92\%\]
-<p>Le bouchon est immergé à 92 % et ne dépasse que de 8 % hors de l'eau. C'est cohérent avec l'observation de Nadia : le bouchon flotte en dépassant <strong>légèrement</strong> de la surface.</p>
-</div>
+  <h2>Question 7 <span class="badge-blue">VAL</span></h2>
+  <p>Le bouchon PVC flotte en dépassant légèrement de la surface. Calculer la fraction immergée à l'équilibre :</p>
+  <p style="text-align:center">V<sub>immergé</sub> / V<sub>total</sub> = ρ<sub>objet</sub> / ρ<sub>fluide</sub></p>
+  <p>Cohérent avec l'observation ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>ρ<sub>C</sub> = m / V = 0,046 / (5 × 10⁻⁵) = <strong>920 kg/m³</strong>.</p>
+    <p>Fraction immergée : V<sub>imm</sub> / V<sub>total</sub> = 920 / 1 000 = <strong>0,92 = 92 %</strong>.</p>
+    <p>Le bouchon est immergé à <strong>92 %</strong> et ne dépasse que de 8 % hors de l'eau. Cohérent avec « flotte légèrement » ✓.</p>
+    <p>C'est aussi pourquoi un iceberg ne montre que 10 % de sa hauteur (ρ<sub>glace</sub> = 920 kg/m³, ρ<sub>eau de mer</sub> = 1 025 kg/m³ → 90 % immergé).</p>
+  </div>
 </div>
 
-<!-- QUESTION 8 -->
 <div class="exo">
-<h2>Question 8 <span class="badge-red">COM</span></h2>
-<p>Nadia doit expliquer à un apprenti pourquoi il est important de <strong>purger les radiateurs</strong> en début de saison de chauffe.</p>
-<p>En utilisant les résultats de la question 6, rédiger une explication en 3 ou 4 phrases qui décrit :</p>
-<ul>
-  <li>pourquoi l'air remonte dans le radiateur ;</li>
-  <li>où se concentre l'air dans le radiateur ;</li>
-  <li>pourquoi il faut l'évacuer.</li>
-</ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-<p>L'air emprisonné dans un circuit de chauffage rempli d'eau est beaucoup moins dense que l'eau (1,2 kg/m³ contre 1 000 kg/m³). La poussée d'Archimède pousse les bulles d'air vers le haut : elles remontent et se concentrent dans la <strong>partie haute des radiateurs</strong>.</p>
-<p>Cet air forme une poche qui empêche l'eau chaude de circuler correctement dans le haut du radiateur : celui-ci reste froid en partie haute. La purge consiste à ouvrir la vis de purge (située en haut du radiateur) pour évacuer l'air piégé et permettre à l'eau chaude de remplir tout le radiateur, rétablissant ainsi un chauffage efficace.</p>
-</div>
+  <h2>Question 8 <span class="badge-yellow">COM</span></h2>
+  <p>Nadia explique à un apprenti pourquoi il faut purger les radiateurs. Rédiger un paragraphe (3-4 phrases) qui décrit :</p>
+  <ul>
+    <li>pourquoi l'air remonte dans le radiateur</li>
+    <li>où se concentre l'air</li>
+    <li>pourquoi il faut l'évacuer</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Pourquoi purger les radiateurs ?</strong></em></p>
+    <p><em>L'air emprisonné dans un circuit de chauffage rempli d'eau est beaucoup moins dense que l'eau (1,2 kg/m³ contre 1 000 kg/m³). La <strong>poussée d'Archimède pousse les bulles d'air vers le haut</strong> : elles remontent et se concentrent dans la partie haute des radiateurs.</em></p>
+    <p><em>Cette poche d'air empêche l'eau chaude de circuler correctement dans le haut du radiateur → il reste <strong>froid en partie haute</strong>. La purge consiste à ouvrir la vis de purge (en haut du radiateur) pour évacuer l'air et permettre à l'eau chaude de remplir tout le radiateur.</em></p>
+    <p><em>À faire <strong>1 à 2 fois par an</strong> (début de saison de chauffe). Économie estimée : 5-10 % sur la facture si tous les radiateurs sont bien purgés.</em></p>
+  </div>
 </div>
 
-<!-- SYNTHÈSE -->
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Comment fonctionne un sous-marin pour pouvoir plonger et remonter à volonté, sachant qu'il pèse plusieurs milliers de tonnes ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Un sous-marin moderne pèse 8 000 à 20 000 tonnes. Son volume V étant fixe (coque rigide), comment fait-il pour avoir tantôt P &gt; F<sub>A</sub> (descend), tantôt P &lt; F<sub>A</sub> (remonte) ?</p>
+    <p><strong>Solution : modifier la masse</strong> en remplissant ou vidangeant des <strong>ballasts</strong> (réservoirs).</p>
+    <p>Architecture :</p>
+    <ol>
+      <li><strong>Ballasts</strong> : compartiments entre les coques interne et externe, ouvrables sur la mer. Volume total : ~ 25 % du volume du sous-marin.</li>
+      <li><strong>Pour plonger</strong> : ouverture des purges en haut des ballasts → l'air s'échappe par bulles, l'eau de mer entre par le bas → la masse augmente → P &gt; F<sub>A</sub> → descente.</li>
+      <li><strong>Pour remonter</strong> : on injecte de l'air comprimé (stocké dans des bouteilles) dans les ballasts → l'eau ressort par le bas → la masse diminue → F<sub>A</sub> &gt; P → remontée.</li>
+      <li><strong>Pour rester à profondeur constante</strong> : équilibre P = F<sub>A</sub> (densité moyenne du sous-marin = densité de l'eau de mer).</li>
+    </ol>
+    <p>Application numérique :</p>
+    <ul>
+      <li>Sous-marin de 9 000 t, V = 9 000 m³ (densité moyenne 1 000 kg/m³, comme l'eau).</li>
+      <li>Pour descendre, il fait entrer 100 m³ d'eau (= 100 t) → masse passe à 9 100 t, mais V reste 9 000 m³ (l'eau remplit l'extérieur).</li>
+      <li>F<sub>A</sub> = ρ × g × V = 1 025 × 9,81 × 9 000 ≈ 9,05 × 10⁷ N → équivalent 9 040 t.</li>
+      <li>P = m × g = 9 100 × 9 810 ≈ 8,93 × 10⁷ N → 9 100 t.</li>
+      <li>P &gt; F<sub>A</sub> → le sous-marin coule lentement.</li>
+    </ul>
+    <p>Bonus : un poisson utilise le même principe avec sa <strong>vessie natatoire</strong> qu'il gonfle ou dégonfle pour contrôler sa profondeur. Ingénieux !</p>
+    <p>Pour Nadia : le même principe physique permet d'utiliser une <strong>bouteille d'expansion</strong> dans un circuit de chauffage : elle absorbe les variations de volume de l'eau qui chauffe (1 m³ d'eau gagne ~ 4 % de volume entre 20 °C et 80 °C).</p>
+  </div>
+</div>
+
 <div class="retenir">
   <strong>À retenir</strong>
   <ul>
-    <li>Tout corps plongé dans un fluide subit une <strong>force d'Archimède</strong> verticale, dirigée vers le haut :
-    \[F_A = \rho_{\text{fluide}} \times g \times V_{\text{immergé}}\]</li>
-    <li>Un corps <strong>flotte</strong> si \(F_A > P\), c'est-à-dire si \(\rho_{\text{objet}} < \rho_{\text{fluide}}\)</li>
-    <li>Un corps <strong>coule</strong> si \(P > F_A\), c'est-à-dire si \(\rho_{\text{objet}} > \rho_{\text{fluide}}\)</li>
-    <li>Le <strong>principe d'Archimède</strong> : la force d'Archimède est égale au poids du fluide déplacé par l'objet</li>
-    <li>Application : les bulles d'air remontent dans un radiateur car \(\rho_{\text{air}} \ll \rho_{\text{eau}}\)</li>
+    <li>Tout corps plongé dans un fluide subit une <strong>force d'Archimède</strong> verticale, dirigée vers le haut : <strong>F<sub>A</sub> = ρ<sub>fluide</sub> × g × V<sub>immergé</sub></strong>.</li>
+    <li>Un corps <strong>flotte</strong> si F<sub>A</sub> &gt; P, c'est-à-dire si ρ<sub>objet</sub> &lt; ρ<sub>fluide</sub>.</li>
+    <li>Un corps <strong>coule</strong> si P &gt; F<sub>A</sub>, c'est-à-dire si ρ<sub>objet</sub> &gt; ρ<sub>fluide</sub>.</li>
+    <li><strong>Principe d'Archimède :</strong> la force d'Archimède est égale au poids du fluide déplacé.</li>
+    <li><strong>Application :</strong> les bulles d'air remontent dans les radiateurs (ρ<sub>air</sub> ≪ ρ<sub>eau</sub>) → purge nécessaire.</li>
   </ul>
 </div>
 

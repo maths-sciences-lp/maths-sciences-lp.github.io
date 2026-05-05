@@ -3,262 +3,320 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ch10 – Activité – Ondes électromagnétiques – 1re ICCER</title>
+<title>Ch10 – Activité – Thermographie et ondes électromagnétiques – PC 1ère ICCER</title>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../../../styles.css">
 <link rel="stylesheet" href="../../../print.css" media="print">
-<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}
-.camera-data{background:#1e293b;color:#f1f5f9;border-radius:10px;padding:18px 22px;margin:18px 0;font-family:'Courier New',monospace;font-size:.9em}
-.camera-data h3{color:#38bdf8;margin:0 0 12px 0;text-align:center;font-size:1.05em;border-bottom:1px solid #475569;padding-bottom:8px}
-.camera-data table{width:100%;border-collapse:collapse}
-.camera-data td,.camera-data th{padding:5px 10px;text-align:center;border:1px solid #475569}
-.camera-data th{color:#38bdf8;font-weight:600}
-.zone-rouge{color:#ef4444;font-weight:700}
-.zone-orange{color:#f97316;font-weight:700}
-.zone-jaune{color:#eab308;font-weight:700}
-.zone-verte{color:#22c55e;font-weight:700}
-.zone-bleue{color:#3b82f6;font-weight:700}
-.spectre-resume{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:12px 0}
-.spectre-resume div{text-align:center;padding:8px;border-radius:6px;font-size:.85em;font-weight:600}
-</style>
+<style>:root{--p:#0969da;--p-bg:#dbeafe;--p-border:#93c5fd}</style>
 </head>
 <body>
 <div class="c">
-<a href="../../../pc-1ere-iccer.html" class="nb">← Retour au sommaire</a>
+<a href="../../../pc-1ere-iccer.html" class="nb">← RETOUR SOMMAIRE ICCER (Grpt 1)</a>
 
 <header>
-  <h1>Activité – Thermographie et ondes électromagnétiques</h1>
-  <p class="sous-titre">Chapitre 10 – Ondes électromagnétiques | 1<sup>re</sup> Bac Pro (Grpt 1) | Physique-Chimie | &#9201; 30 min</p>
+  <h1>Activité – Thermographie et ondes électromagnétiques <span style="font-size:.55em;color:#b91c1c;font-weight:600">DIAGNOSTIC</span></h1>
+  <p class="sous-titre">Chapitre 10 – Ondes électromagnétiques | Première Bac Pro ICCER (Grpt 1) | Physique-Chimie | ⏱ 50 min</p>
+  <p class="maj">Dernière mise à jour : 5 mai 2026, 16:15</p>
 </header>
 <button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
 <div class="objectifs">
   <strong>Objectifs :</strong>
   <ul>
     <li>Découvrir le spectre des ondes électromagnétiques</li>
-    <li>Utiliser la relation \(c = \lambda \times f\)</li>
-    <li>Comprendre les applications professionnelles de l'infrarouge et de l'ultraviolet</li>
+    <li>Utiliser la relation c = λ × f</li>
+    <li>Distinguer UV, visible, IR par leur λ et f</li>
+    <li>Comprendre les applications pro de l'IR (thermographie) et des UV (fuites)</li>
+    <li>Hiérarchiser les travaux de rénovation à partir d'un diagnostic thermique</li>
   </ul>
 </div>
 
-<!-- ===== DOCUMENT D'ACCROCHE ===== -->
 <div class="situation">
-  <h2>Situation professionnelle</h2>
-  <p><em>Sami est technicien de maintenance énergétique chez <strong>DiagTherm SARL</strong>, à Lyon. Il réalise un diagnostic thermique d'un pavillon pour repérer les déperditions de chaleur à l'aide d'une <strong>caméra infrarouge</strong>. Par ailleurs, il utilise aussi une <strong>lampe UV</strong> pour détecter les fuites de fluide frigorigène dans un circuit de climatisation (le traceur fluorescent réagit aux UV).</em></p>
+  <h2>Situation – diagnostic thermique d'un pavillon avec caméra IR</h2>
+  <p><em>Sami est technicien de maintenance énergétique chez DiagTherm SARL à Lyon. Il réalise un diagnostic thermique d'un pavillon pour repérer les déperditions de chaleur à l'aide d'une caméra infrarouge. Par ailleurs, il utilise aussi une lampe UV pour détecter les fuites de fluide frigorigène dans un circuit de climatisation (le traceur fluorescent réagit aux UV).</em></p>
 
-  <p><strong>Données – Spectre électromagnétique :</strong></p>
-  <table>
-    <thead>
-      <tr><th>Domaine</th><th>Longueur d'onde \(\lambda\)</th><th>Fréquence \(f\)</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Rayons gamma</td><td>&lt; 0,01 nm</td><td>&gt; 3 × 10<sup>19</sup> Hz</td></tr>
-      <tr><td>Rayons X</td><td>0,01 nm – 10 nm</td><td>3 × 10<sup>16</sup> – 3 × 10<sup>19</sup> Hz</td></tr>
-      <tr><td>Ultraviolets (UV)</td><td>10 nm – 400 nm</td><td>7,5 × 10<sup>14</sup> – 3 × 10<sup>16</sup> Hz</td></tr>
-      <tr><td>Visible</td><td>400 nm – 800 nm</td><td>3,75 × 10<sup>14</sup> – 7,5 × 10<sup>14</sup> Hz</td></tr>
-      <tr><td>Infrarouge (IR)</td><td>800 nm – 1 mm</td><td>3 × 10<sup>11</sup> – 3,75 × 10<sup>14</sup> Hz</td></tr>
-      <tr><td>Micro-ondes</td><td>1 mm – 30 cm</td><td>10<sup>9</sup> – 3 × 10<sup>11</sup> Hz</td></tr>
-      <tr><td>Ondes radio</td><td>&gt; 30 cm</td><td>&lt; 10<sup>9</sup> Hz</td></tr>
-    </tbody>
-  </table>
+  <h3>Document 1 — Spectre électromagnétique avec applications pro</h3>
+  <div class="svg-wrap" style="margin:14px 0">
+    <svg width="100%" viewBox="0 0 540 200" style="max-width:540px;display:block;margin:0 auto" role="img" aria-label="Spectre EM avec UV (lampe fuites), visible (œil humain), IR (caméra thermique), micro-ondes (Wi-Fi).">
+      <defs>
+        <style>
+          .lbl{font:10px sans-serif;fill:#1a202c;text-anchor:middle}
+          .lblA{font:600 11px sans-serif;fill:#1a202c;text-anchor:middle}
+          .ti{font:700 13px sans-serif;text-anchor:middle;fill:#0969da}
+        </style>
+        <linearGradient id="vis" x1="0%" x2="100%">
+          <stop offset="0%" stop-color="#7c3aed"/>
+          <stop offset="20%" stop-color="#3b82f6"/>
+          <stop offset="40%" stop-color="#10b981"/>
+          <stop offset="60%" stop-color="#fbbf24"/>
+          <stop offset="80%" stop-color="#f97316"/>
+          <stop offset="100%" stop-color="#dc2626"/>
+        </linearGradient>
+      </defs>
+      <text class="ti" x="270" y="20">Spectre EM et applications professionnelles</text>
 
-  <p style="margin-top:14px"><strong>Données – Relevés de la caméra thermique :</strong></p>
-  <div class="camera-data">
-    <h3>FLIR E60 – Rapport thermographique</h3>
-    <table>
-      <thead>
-        <tr><th>Zone du bâtiment</th><th>Température (°C)</th><th>Couleur à l'écran</th><th>Interprétation</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Mur isolé (façade sud)</td><td>8,2</td><td class="zone-bleue">Bleu</td><td>Bonne isolation</td></tr>
-        <tr><td>Fenêtre simple vitrage</td><td>18,5</td><td class="zone-rouge">Rouge</td><td>Forte déperdition</td></tr>
-        <tr><td>Coffre de volet roulant</td><td>15,3</td><td class="zone-orange">Orange</td><td>Pont thermique</td></tr>
-        <tr><td>Mur non isolé (pignon)</td><td>14,1</td><td class="zone-jaune">Jaune</td><td>Déperdition modérée</td></tr>
-        <tr><td>Toiture isolée</td><td>6,5</td><td class="zone-bleue">Bleu</td><td>Bonne isolation</td></tr>
-        <tr><td>Jonction mur/toiture</td><td>16,8</td><td class="zone-orange">Orange</td><td>Pont thermique</td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top:8px;font-size:.85em;color:#94a3b8">Caméra IR – Plage de détection : \(\lambda\) = 7,5 à 13 μm | Température extérieure : 5 °C</p>
+      <rect x="40" y="80" width="460" height="20" fill="#f1f5f9" stroke="#1a202c"/>
+      <text x="80" y="73" class="lblA">radio</text>
+      <text x="160" y="73" class="lblA">micro</text>
+      <text x="220" y="73" class="lblA">IR</text>
+      <rect x="270" y="80" width="40" height="20" fill="url(#vis)"/>
+      <text x="290" y="73" class="lblA">visible</text>
+      <text x="350" y="73" class="lblA">UV</text>
+      <text x="420" y="73" class="lblA">X</text>
+      <text x="480" y="73" class="lblA">γ</text>
+
+      <text x="40" y="120" class="lbl">λ : 1 km</text>
+      <text x="180" y="120" class="lbl">10 cm</text>
+      <text x="290" y="120" class="lbl">600 nm</text>
+      <text x="380" y="120" class="lbl">100 nm</text>
+      <text x="490" y="120" class="lbl">10⁻¹² m</text>
+
+      <line x1="170" y1="100" x2="170" y2="135" stroke="#0ea5e9" stroke-width="1.5"/>
+      <text x="170" y="148" class="lbl" fill="#0ea5e9">Wi-Fi 2,4 GHz</text>
+
+      <line x1="240" y1="100" x2="240" y2="135" stroke="#dc2626" stroke-width="1.5"/>
+      <text x="240" y="148" class="lbl" fill="#dc2626">caméra IR (10 µm)</text>
+      <text x="240" y="160" class="lbl" fill="#dc2626">thermographie</text>
+
+      <line x1="295" y1="100" x2="295" y2="180" stroke="#10b981" stroke-width="1.5"/>
+      <text x="295" y="180" class="lbl" fill="#10b981">œil humain</text>
+
+      <line x1="360" y1="100" x2="360" y2="135" stroke="#7c3aed" stroke-width="1.5"/>
+      <text x="360" y="148" class="lbl" fill="#7c3aed">UV 365 nm</text>
+      <text x="360" y="160" class="lbl" fill="#7c3aed">détection fuites</text>
+
+      <text x="40" y="195" class="lbl">← λ grande, énergie faible</text>
+      <text x="500" y="195" class="lbl" text-anchor="end">énergie élevée →</text>
+    </svg>
   </div>
 
-  <p><strong>Donnée :</strong> Vitesse de la lumière dans le vide : \(c = 3 \times 10^{8} \text{ m/s}\)</p>
-</div>
-
-<div class="objectifs" style="border-left:4px solid #f59e0b;background:#fffbeb;margin:1.2em 0;padding:1em 1.2em;border-radius:6px">
-  <strong>Problématique</strong>
-  <p style="margin:.5em 0 0">Comment Sami peut-il utiliser les ondes électromagnétiques (infrarouge, ultraviolet) pour diagnostiquer les déperditions thermiques et détecter les fuites de fluide frigorigène ? Quelles caractéristiques physiques (longueur d'onde, fréquence) distinguent ces rayonnements dans le spectre électromagnétique ?</p>
-</div>
-
-<!-- ===== QUESTIONS ===== -->
-
-<!-- Q1 -->
-<div class="exo">
-<h2>Question 1 <span class="badge-green">APP</span></h2>
-<p>À l'aide du tableau du spectre électromagnétique :</p>
-<p>a) Classer les domaines du spectre par ordre de <strong>longueur d'onde croissante</strong> (du plus petit au plus grand).</p>
-<p>b) Dans quel domaine se situe la caméra de Sami, qui détecte des rayonnements de longueur d'onde comprise entre 7,5 μm et 13 μm ?</p>
-<p><em>Rappel : 1 μm = 10<sup>−6</sup> m = 1 000 nm.</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>a) Par ordre de \(\lambda\) croissante : <strong>Rayons gamma → Rayons X → UV → Visible → Infrarouge → Micro-ondes → Ondes radio</strong></p>
-  <p>b) La plage 7,5 μm à 13 μm correspond à 7 500 nm à 13 000 nm. D'après le tableau, l'infrarouge va de 800 nm à 1 mm (= 1 000 000 nm). La caméra détecte donc des rayonnements dans le domaine <strong>infrarouge (IR)</strong>.</p>
-</div>
-</div>
-
-<!-- Q2 -->
-<div class="exo">
-<h2>Question 2 <span class="badge-green">APP</span></h2>
-<p>La lampe UV utilisée par Sami pour détecter les fuites émet un rayonnement de longueur d'onde \(\lambda = 365 \text{ nm}\).</p>
-<p>a) Dans quel domaine du spectre se situe ce rayonnement ?</p>
-<p>b) Ce rayonnement est-il <strong>visible</strong> par l'oeil humain ?</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>a) \(\lambda = 365 \text{ nm}\). D'après le tableau, le domaine UV va de 10 nm à 400 nm. Ce rayonnement se situe donc dans le domaine <strong>ultraviolet (UV)</strong>.</p>
-  <p>b) Non, ce rayonnement n'est <strong>pas visible</strong> par l'oeil humain. Le domaine visible commence à 400 nm (violet). À 365 nm, on est en dessous de cette limite.</p>
-</div>
-</div>
-
-<!-- Q3 -->
-<div class="exo">
-<h2>Question 3 <span class="badge-blue">REA</span></h2>
-<p>Calculer la <strong>fréquence</strong> \(f\) du rayonnement UV de la lampe (\(\lambda = 365 \text{ nm}\)).</p>
-<p><em>Rappel : \(c = \lambda \times f\), donc \(f = \dfrac{c}{\lambda}\). Attention : convertir \(\lambda\) en mètres !</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>Conversion : \(\lambda = 365 \text{ nm} = 365 \times 10^{-9} \text{ m} = 3{,}65 \times 10^{-7} \text{ m}\)</p>
-  \[f = \frac{c}{\lambda} = \frac{3 \times 10^{8}}{3{,}65 \times 10^{-7}} = 8{,}22 \times 10^{14} \text{ Hz}\]
-  <p>La fréquence du rayonnement UV est d'environ \(8{,}22 \times 10^{14} \text{ Hz}\), soit environ <strong>822 THz</strong>.</p>
-</div>
-</div>
-
-<!-- Q4 -->
-<div class="exo">
-<h2>Question 4 <span class="badge-blue">REA</span></h2>
-<p>La caméra infrarouge de Sami détecte des rayonnements de longueur d'onde moyenne \(\lambda = 10 \text{ } \mu\text{m}\).</p>
-<p>Calculer la <strong>fréquence</strong> correspondante.</p>
-<p><em>Rappel : 1 μm = 10<sup>−6</sup> m.</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>Conversion : \(\lambda = 10 \text{ } \mu\text{m} = 10 \times 10^{-6} \text{ m} = 10^{-5} \text{ m}\)</p>
-  \[f = \frac{c}{\lambda} = \frac{3 \times 10^{8}}{10^{-5}} = 3 \times 10^{13} \text{ Hz}\]
-  <p>La fréquence est de \(3 \times 10^{13} \text{ Hz}\), soit <strong>30 THz</strong>.</p>
-</div>
-</div>
-
-<!-- Q5 -->
-<div class="exo">
-<h2>Question 5 <span class="badge-blue">ANA</span></h2>
-<p>Expliquer pourquoi une <strong>caméra infrarouge</strong> permet de détecter les zones de déperdition thermique d'un bâtiment.</p>
-<p><em>Indice : tout corps dont la température est supérieure à −273 °C émet des rayonnements infrarouges. Plus il est chaud, plus il en émet.</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>Tout objet émet des <strong>rayonnements infrarouges</strong> dont l'intensité dépend de sa température : plus un objet est chaud, plus il émet d'infrarouges.</p>
-  <p>Les zones où la chaleur s'échappe du bâtiment (mauvaise isolation, ponts thermiques, fenêtres) présentent une <strong>température de surface plus élevée</strong> côté extérieur. Elles émettent donc davantage d'infrarouges.</p>
-  <p>La caméra capte ces différences et les traduit en <strong>couleurs</strong> (rouge/orange = chaud = déperdition ; bleu = froid = bonne isolation), ce qui permet de visualiser les zones de perte de chaleur.</p>
-</div>
-</div>
-
-<!-- Q6 -->
-<div class="exo">
-<h2>Question 6 <span class="badge-blue">ANA</span></h2>
-<p>À l'aide du tableau du spectre et des résultats des questions 3 et 4, comparer les propriétés de l'infrarouge, de l'ultraviolet et du visible en complétant le tableau suivant :</p>
-<table>
-  <thead>
-    <tr><th>Propriété</th><th>Ultraviolet (UV)</th><th>Visible</th><th>Infrarouge (IR)</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Plage de \(\lambda\)</td><td>...</td><td>...</td><td>...</td></tr>
-    <tr><td>Visible par l'oeil ?</td><td>...</td><td>...</td><td>...</td></tr>
-    <tr><td>Fréquence</td><td>... (haute/moyenne/basse)</td><td>...</td><td>...</td></tr>
-    <tr><td>Énergie</td><td>... (haute/moyenne/basse)</td><td>...</td><td>...</td></tr>
-    <tr><td>Application pro</td><td>...</td><td>...</td><td>...</td></tr>
-  </tbody>
-</table>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
+  <h3>Document 2 — Tableau du spectre électromagnétique</h3>
   <table>
-    <thead>
-      <tr><th>Propriété</th><th>Ultraviolet (UV)</th><th>Visible</th><th>Infrarouge (IR)</th></tr>
-    </thead>
+    <thead><tr><th>Domaine</th><th>Longueur d'onde λ</th><th>Fréquence f</th></tr></thead>
     <tbody>
-      <tr><td>Plage de \(\lambda\)</td><td>10 nm – 400 nm</td><td>400 nm – 800 nm</td><td>800 nm – 1 mm</td></tr>
-      <tr><td>Visible par l'oeil ?</td><td>Non</td><td>Oui</td><td>Non</td></tr>
-      <tr><td>Fréquence</td><td>Haute</td><td>Moyenne</td><td>Basse (par rapport aux UV/visible)</td></tr>
-      <tr><td>Énergie</td><td>Haute</td><td>Moyenne</td><td>Basse</td></tr>
-      <tr><td>Application pro</td><td>Détection de fuites (fluorescence)</td><td>Éclairage, vision</td><td>Thermographie, détection de chaleur</td></tr>
+      <tr><td>Rayons gamma</td><td>&lt; 0,01 nm</td><td>&gt; 3 × 10¹⁹ Hz</td></tr>
+      <tr><td>Rayons X</td><td>0,01 – 10 nm</td><td>3 × 10¹⁶ – 3 × 10¹⁹ Hz</td></tr>
+      <tr><td>Ultraviolets (UV)</td><td>10 – 400 nm</td><td>7,5 × 10¹⁴ – 3 × 10¹⁶ Hz</td></tr>
+      <tr><td>Visible</td><td>400 – 800 nm</td><td>3,75 × 10¹⁴ – 7,5 × 10¹⁴ Hz</td></tr>
+      <tr><td>Infrarouge (IR)</td><td>800 nm – 1 mm</td><td>3 × 10¹¹ – 3,75 × 10¹⁴ Hz</td></tr>
+      <tr><td>Micro-ondes</td><td>1 mm – 30 cm</td><td>10⁹ – 3 × 10¹¹ Hz</td></tr>
+      <tr><td>Ondes radio</td><td>&gt; 30 cm</td><td>&lt; 10⁹ Hz</td></tr>
     </tbody>
   </table>
-  <p><strong>Remarque :</strong> plus la longueur d'onde est courte (fréquence élevée), plus l'onde transporte d'énergie.</p>
-</div>
+
+  <h3>Document 3 — Rapport thermographique de Sami (caméra FLIR E60)</h3>
+  <table>
+    <thead><tr><th>Zone du bâtiment</th><th>Température (°C)</th><th>Couleur</th><th>Interprétation</th></tr></thead>
+    <tbody>
+      <tr><td>Mur isolé (façade sud)</td><td>8,2</td><td>🟦 Bleu</td><td>Bonne isolation</td></tr>
+      <tr><td>Fenêtre simple vitrage</td><td>18,5</td><td>🟥 Rouge</td><td>Forte déperdition</td></tr>
+      <tr><td>Coffre de volet roulant</td><td>15,3</td><td>🟧 Orange</td><td>Pont thermique</td></tr>
+      <tr><td>Mur non isolé (pignon)</td><td>14,1</td><td>🟨 Jaune</td><td>Déperdition modérée</td></tr>
+      <tr><td>Toiture isolée</td><td>6,5</td><td>🟦 Bleu</td><td>Bonne isolation</td></tr>
+      <tr><td>Jonction mur/toiture</td><td>16,8</td><td>🟧 Orange</td><td>Pont thermique</td></tr>
+    </tbody>
+  </table>
+  <p>Plage de détection caméra IR : λ = 7,5 à 13 µm. T<sub>extérieure</sub> = 5 °C.</p>
+
+  <h3>Document 4 — Données utiles</h3>
+  <ul>
+    <li>Vitesse de la lumière dans le vide : c = 3 × 10⁸ m/s.</li>
+    <li>Conversions : 1 nm = 10⁻⁹ m ; 1 µm = 10⁻⁶ m ; 1 GHz = 10⁹ Hz.</li>
+    <li>Loi : <strong>c = λ × f</strong> donc f = c/λ et λ = c/f.</li>
+  </ul>
+
+  <p style="font-size:.9em;color:#475569"><em>📚 Cette activité s'appuie sur §1 (spectre EM), §2 (loi c = λ × f), §3 (applications IR/UV/micro-ondes) de la leçon Ch10.</em></p>
 </div>
 
-<!-- Q7 -->
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Comment Sami peut-il utiliser les ondes EM (IR, UV) pour diagnostiquer les déperditions thermiques et détecter les fuites de fluide ?
+</div>
+
 <div class="exo">
-<h2>Question 7 <span class="badge-blue">REA</span></h2>
-<p>D'après le relevé de la caméra thermique :</p>
-<p>a) Quelle zone du bâtiment présente la <strong>plus forte déperdition</strong> thermique ? Justifier avec la température relevée.</p>
-<p>b) Quelles zones ont une <strong>bonne isolation</strong> ? Comment le voit-on sur l'image thermique ?</p>
-<p>c) Proposer un <strong>ordre de priorité</strong> des travaux de rénovation énergétique (de la zone la plus urgente à la moins urgente).</p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>a) La <strong>fenêtre simple vitrage</strong> présente la plus forte déperdition : sa température de surface extérieure est de <strong>18,5 °C</strong> (couleur rouge), alors que la température extérieure est de 5 °C. La chaleur traverse massivement la fenêtre.</p>
-  <p>b) Le <strong>mur isolé</strong> (8,2 °C, bleu) et la <strong>toiture isolée</strong> (6,5 °C, bleu) ont une bonne isolation. Leur température de surface est proche de la température extérieure (5 °C), ce qui signifie que peu de chaleur traverse. Sur l'image, ces zones apparaissent en bleu.</p>
-  <p>c) Ordre de priorité des travaux (température décroissante, donc déperdition décroissante) :</p>
-  <ol>
-    <li>Fenêtre simple vitrage (18,5 °C) → remplacement par double vitrage</li>
-    <li>Jonction mur/toiture (16,8 °C) → traitement du pont thermique</li>
-    <li>Coffre de volet roulant (15,3 °C) → isolation du coffre</li>
-    <li>Mur non isolé (14,1 °C) → isolation par l'extérieur ou l'intérieur</li>
-  </ol>
-</div>
+  <h2>Question 1 <span class="badge-green">APP</span></h2>
+  <p>À l'aide du Doc 2 :</p>
+  <p>a) Classer les domaines du spectre par ordre de λ croissante.</p>
+  <p>b) Dans quel domaine se situe la caméra IR de Sami (λ = 7,5 à 13 µm) ?</p>
+  <p>Rappel : 1 µm = 10⁻⁶ m = 1 000 nm.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) Du plus petit au plus grand λ : <strong>γ → X → UV → Visible → IR → Micro-ondes → Radio</strong>.</p>
+    <p>b) λ = 7,5 à 13 µm = 7 500 à 13 000 nm. L'IR va de 800 nm à 1 mm = 1 000 000 nm. Donc la caméra détecte l'<strong>infrarouge (IR)</strong>.</p>
+  </div>
 </div>
 
-<!-- Q8 -->
 <div class="exo">
-<h2>Question 8 <span class="badge-green">VAL</span></h2>
-<p>Le technicien de maintenance énergétique de Sami utilise aussi un <strong>thermostat connecté</strong> qui communique en wifi à la fréquence \(f = 2{,}4 \text{ GHz}\).</p>
-<p>a) Calculer la longueur d'onde de ce signal wifi.</p>
-<p>b) Vérifier que cette valeur est cohérente avec le domaine des micro-ondes du spectre.</p>
-<p><em>Rappel : 1 GHz = 10<sup>9</sup> Hz.</em></p>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p>a) Conversion : \(f = 2{,}4 \text{ GHz} = 2{,}4 \times 10^{9} \text{ Hz}\)</p>
-  \[\lambda = \frac{c}{f} = \frac{3 \times 10^{8}}{2{,}4 \times 10^{9}} = 0{,}125 \text{ m} = 12{,}5 \text{ cm}\]
-  <p>b) Le domaine des micro-ondes va de 1 mm à 30 cm. La valeur \(\lambda = 12{,}5 \text{ cm}\) est bien comprise dans cet intervalle : le résultat est <strong>cohérent</strong>. Le wifi utilise bien des micro-ondes.</p>
-</div>
+  <h2>Question 2 <span class="badge-green">APP</span></h2>
+  <p>La lampe UV de Sami émet à λ = 365 nm.</p>
+  <p>a) Dans quel domaine du spectre ?</p>
+  <p>b) Ce rayonnement est-il visible à l'œil humain ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) λ = 365 nm. UV = 10 à 400 nm. Donc <strong>ultraviolet (UV)</strong>.</p>
+    <p>b) Non, <strong>pas visible</strong>. Le visible commence à 400 nm. À 365 nm, on est dans l'UV proche.</p>
+  </div>
 </div>
 
-<!-- Q9 -->
 <div class="exo">
-<h2>Question 9 <span class="badge-yellow">COM</span></h2>
-<p>Rédiger un court paragraphe (5 à 8 lignes) expliquant à un client les <strong>applications professionnelles</strong> des ondes électromagnétiques utilisées lors d'un diagnostic thermique. Mentionner au moins :</p>
-<ul>
-  <li>L'infrarouge et la caméra thermique</li>
-  <li>L'ultraviolet et la détection de fuites</li>
-  <li>Les micro-ondes et la communication sans fil</li>
-</ul>
-<button class="bc" onclick="toggle(this)">Voir la correction</button>
-<div class="corr">
-  <p><em>Exemple de réponse :</em></p>
-  <p>Lors d'un diagnostic thermique, le technicien utilise plusieurs types d'ondes électromagnétiques. La <strong>caméra infrarouge</strong> détecte les rayonnements infrarouges émis par les surfaces du bâtiment : les zones chaudes (mauvaise isolation, ponts thermiques) apparaissent en rouge/orange, tandis que les zones bien isolées restent en bleu. Cela permet de localiser précisément les déperditions de chaleur. Pour les installations de climatisation, une <strong>lampe UV</strong> est utilisée pour détecter les fuites de fluide frigorigène : un traceur fluorescent ajouté au circuit devient visible sous la lumière ultraviolette. Enfin, les données de diagnostic peuvent être transmises par <strong>wifi</strong> (micro-ondes à 2,4 GHz) vers un ordinateur ou un smartphone, permettant un suivi à distance et la rédaction rapide du rapport.</p>
-</div>
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la fréquence f du rayonnement UV (λ = 365 nm).</p>
+  <p>Rappel : f = c / λ. Convertir λ en m.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>λ = 365 × 10⁻⁹ m = 3,65 × 10⁻⁷ m.</p>
+    <p>f = c / λ = (3 × 10⁸) / (3,65 × 10⁻⁷) ≈ <strong>8,22 × 10¹⁴ Hz ≈ 822 THz</strong>.</p>
+  </div>
 </div>
 
-<!-- ===== À RETENIR ===== -->
+<div class="exo">
+  <h2>Question 4 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer la fréquence pour la caméra IR (λ moyenne = 10 µm). Rappel : 1 µm = 10⁻⁶ m.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>λ = 10 × 10⁻⁶ = 10⁻⁵ m.</p>
+    <p>f = c / λ = (3 × 10⁸) / 10⁻⁵ = <strong>3 × 10¹³ Hz = 30 THz</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Expliquer pourquoi une caméra infrarouge permet de détecter les déperditions thermiques d'un bâtiment.</p>
+  <p>Indice : tout corps dont T &gt; −273 °C émet des IR. Plus il est chaud, plus il émet d'IR.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Tout objet émet des <strong>rayonnements infrarouges</strong> dont l'intensité dépend de sa température : <strong>plus un objet est chaud, plus il émet d'IR</strong>.</p>
+    <p>Les zones où la chaleur s'échappe du bâtiment (mauvaise isolation, ponts thermiques, fenêtres) ont une <strong>température de surface plus élevée</strong> côté extérieur. Elles émettent donc davantage d'IR.</p>
+    <p>La caméra capte ces différences et les traduit en <strong>couleurs</strong> (rouge/orange = chaud = déperdition ; bleu = froid = bonne isolation), permettant de visualiser les zones de pertes.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Comparer UV / Visible / IR en complétant le tableau.</p>
+  <table>
+    <thead><tr><th>Propriété</th><th>UV</th><th>Visible</th><th>IR</th></tr></thead>
+    <tbody>
+      <tr><td>Plage λ</td><td>…</td><td>…</td><td>…</td></tr>
+      <tr><td>Visible à l'œil ?</td><td>…</td><td>…</td><td>…</td></tr>
+      <tr><td>Énergie</td><td>…</td><td>…</td><td>…</td></tr>
+      <tr><td>Application pro</td><td>…</td><td>…</td><td>…</td></tr>
+    </tbody>
+  </table>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <table>
+      <thead><tr><th>Propriété</th><th>UV</th><th>Visible</th><th>IR</th></tr></thead>
+      <tbody>
+        <tr><td>Plage λ</td><td>10 – 400 nm</td><td>400 – 800 nm</td><td>800 nm – 1 mm</td></tr>
+        <tr><td>Visible à l'œil ?</td><td>Non</td><td>✅ Oui</td><td>Non</td></tr>
+        <tr><td>Énergie</td><td>Haute</td><td>Moyenne</td><td>Basse</td></tr>
+        <tr><td>Application pro</td><td>Détection fuites (fluorescence), désinfection</td><td>Éclairage, vision</td><td>Thermographie, détection chaleur, télécommandes</td></tr>
+      </tbody>
+    </table>
+    <p>Plus λ est courte (f élevée), plus l'énergie de l'onde est grande.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-yellow">REA</span></h2>
+  <p>D'après le rapport thermographique (Doc 3) :</p>
+  <p>a) Quelle zone présente la plus forte déperdition ? Justifier.</p>
+  <p>b) Quelles zones ont une bonne isolation ?</p>
+  <p>c) Proposer un ordre de priorité des travaux (de l'urgent au moins urgent).</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) <strong>Fenêtre simple vitrage : 18,5 °C (rouge)</strong>. Plus forte déperdition. La chaleur traverse massivement.</p>
+    <p>b) <strong>Mur isolé (8,2 °C, bleu) et toiture isolée (6,5 °C, bleu)</strong>. T proches de l'extérieur (5 °C) → peu de chaleur traverse.</p>
+    <p>c) Ordre de priorité (T décroissante = déperdition décroissante) :</p>
+    <ol>
+      <li>Fenêtre simple vitrage (18,5 °C) → remplacement par double vitrage Low-E.</li>
+      <li>Jonction mur/toiture (16,8 °C) → traitement du pont thermique.</li>
+      <li>Coffre de volet roulant (15,3 °C) → isolation du coffre.</li>
+      <li>Mur non isolé (14,1 °C) → ITE (isolation thermique extérieure).</li>
+    </ol>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-blue">VAL</span></h2>
+  <p>Sami utilise aussi un thermostat connecté en Wi-Fi à f = 2,4 GHz.</p>
+  <p>a) Calculer λ du signal Wi-Fi.</p>
+  <p>b) Vérifier que c'est cohérent avec le domaine des micro-ondes.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>a) f = 2,4 × 10⁹ Hz.</p>
+    <p>λ = c / f = (3 × 10⁸) / (2,4 × 10⁹) = <strong>0,125 m = 12,5 cm</strong>.</p>
+    <p>b) Micro-ondes : 1 mm à 30 cm. Or 12,5 cm ∈ [1 mm ; 30 cm]. <strong>Cohérent ✓</strong>. Le Wi-Fi utilise bien des micro-ondes.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 9 <span class="badge-yellow">COM</span></h2>
+  <p>Rédiger un paragraphe (5-8 lignes) à destination d'un client expliquant les applications professionnelles des ondes EM lors d'un diagnostic. Mentionner :</p>
+  <ul>
+    <li>l'IR et la caméra thermique</li>
+    <li>les UV et la détection de fuites</li>
+    <li>les micro-ondes et la communication sans fil</li>
+  </ul>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir un exemple</button>
+  <div class="corr">
+    <p><em><strong>Note explicative — applications des ondes EM en diagnostic thermique</strong></em></p>
+    <p><em>Lors d'un diagnostic thermique, le technicien utilise plusieurs types d'ondes électromagnétiques. La <strong>caméra infrarouge</strong> détecte les rayonnements IR émis par les surfaces du bâtiment : les zones chaudes (mauvaise isolation, ponts thermiques) apparaissent en rouge/orange, les zones bien isolées en bleu. Cela permet de localiser précisément les déperditions de chaleur.</em></p>
+    <p><em>Pour les installations de climatisation, une <strong>lampe UV</strong> (365 nm) détecte les fuites de fluide frigorigène : un traceur fluorescent ajouté au circuit devient visible sous UV. Enfin, les données du diagnostic peuvent être transmises par <strong>Wi-Fi</strong> (micro-ondes 2,4 GHz, λ = 12,5 cm) vers un ordinateur ou smartphone pour générer rapidement le rapport.</em></p>
+    <p><em>Coût d'un diagnostic complet : 200-500 €. Investissement vite rentabilisé par les économies générées par les travaux de rénovation (souvent 1 000-3 000 €/an).</em></p>
+  </div>
+</div>
+
+<div class="exo" style="background:#fef3c7;border:1px solid #b45309">
+  <h2>🚀 Pour aller plus loin <span class="badge-blue">ANA</span></h2>
+  <p>Quels sont les <strong>dangers</strong> des ondes électromagnétiques selon leur fréquence ? Pourquoi certaines sont-elles bénignes et d'autres mortelles ?</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Le danger d'une onde EM dépend de son <strong>énergie par photon</strong>, qui augmente avec la fréquence (E = h × f). On distingue :</p>
+    <table>
+      <thead><tr><th>Type</th><th>Fréquence</th><th>Énergie</th><th>Danger</th></tr></thead>
+      <tbody>
+        <tr><td>Ondes radio, micro-ondes</td><td>10⁶-10¹¹ Hz</td><td>Faible</td><td>✅ Sans danger (sauf échauffement à très forte puissance, ex. four à micro-ondes)</td></tr>
+        <tr><td>Infrarouge</td><td>10¹¹-10¹⁴ Hz</td><td>Faible</td><td>✅ Sans danger (sauf brûlure à très forte intensité)</td></tr>
+        <tr><td>Visible</td><td>10¹⁴-10¹⁵ Hz</td><td>Moyenne</td><td>✅ Sans danger (lumière du soleil)</td></tr>
+        <tr><td>UV-A (proche)</td><td>10¹⁵-10¹⁶ Hz</td><td>Modérée</td><td>⚠ Bronzage, vieillissement de peau</td></tr>
+        <tr><td>UV-B, UV-C</td><td>10¹⁵-10¹⁶ Hz</td><td>Élevée</td><td>⚠⚠ <strong>Brûlures, cancer de la peau, dégâts ADN</strong></td></tr>
+        <tr><td>Rayons X</td><td>10¹⁶-10¹⁹ Hz</td><td>Très élevée</td><td>⚠⚠⚠ <strong>Cancer, mutations</strong> (radiologie médicale = exposition contrôlée)</td></tr>
+        <tr><td>Rayons γ (gamma)</td><td>&gt; 10¹⁹ Hz</td><td>Extrême</td><td>☠ <strong>Mortels</strong> (radioactivité, accident Tchernobyl, radiothérapie ciblée)</td></tr>
+      </tbody>
+    </table>
+    <p>Frontière critique : autour de 10¹⁵ Hz (UV-B). En dessous : ondes <strong>non-ionisantes</strong> (peuvent chauffer mais pas casser les molécules). Au-dessus : ondes <strong>ionisantes</strong> (cassent les liaisons chimiques, abîment l'ADN).</p>
+    <p>Pour Sami :</p>
+    <ul>
+      <li>Caméra IR : sans danger.</li>
+      <li>Lampe UV-A 365 nm : peu dangereuse en usage professionnel court (lunettes UV recommandées pour exposition prolongée).</li>
+      <li>Wi-Fi : controverse mais consensus scientifique : <strong>sans danger</strong> aux niveaux résidentiels (puissance &lt; 100 mW).</li>
+    </ul>
+    <p>Mythe à déconstruire : « les ondes Wi-Fi cuisent le cerveau ». Faux : la puissance est 1 000× plus faible qu'un four à micro-ondes (1 000 W) à 1 mètre. Le téléphone collé à l'oreille (1 W) pose plus question, d'où la recommandation oreillette.</p>
+  </div>
+</div>
+
 <div class="retenir">
   <strong>À retenir</strong>
   <ul>
-    <li><strong>Relation fondamentale :</strong> \(c = \lambda \times f\)   avec \(c = 3 \times 10^{8} \text{ m/s}\)</li>
-    <li><strong>Formules dérivées :</strong> \(\lambda = \dfrac{c}{f}\)   et   \(f = \dfrac{c}{\lambda}\)</li>
-    <li><strong>Spectre électromagnétique</strong> (par \(\lambda\) croissante) : Gamma → Rayons X → UV → <strong>Visible</strong> → IR → Micro-ondes → Ondes radio</li>
-    <li><strong>Infrarouge (IR) :</strong> émis par tout corps chaud → utilisé en <strong>thermographie</strong> pour détecter les déperditions thermiques</li>
-    <li><strong>Ultraviolet (UV) :</strong> provoque la <strong>fluorescence</strong> → utilisé pour détecter les fuites</li>
-    <li><strong>Unités :</strong> \(\lambda\) en m  |  \(f\) en Hz  |  \(c\) en m/s  |  1 nm = \(10^{-9}\) m  |  1 μm = \(10^{-6}\) m</li>
+    <li><strong>Relation fondamentale :</strong> c = λ × f, avec c = 3 × 10⁸ m/s.</li>
+    <li><strong>Spectre EM (par λ croissante) :</strong> γ → X → UV → Visible → IR → Micro-ondes → Radio.</li>
+    <li>Plus λ est courte (f élevée), plus l'onde est <strong>énergétique</strong>.</li>
+    <li><strong>Infrarouge :</strong> émis par tout corps chaud → utilisé en thermographie pour détecter les déperditions.</li>
+    <li><strong>Ultraviolet :</strong> provoque la fluorescence → détection de fuites (climatisation, eau, gaz).</li>
+    <li><strong>Micro-ondes :</strong> Wi-Fi (2,4 GHz, λ = 12,5 cm), four (2,45 GHz), 4G/5G.</li>
   </ul>
 </div>
-
-<footer>
-  <p>Première Bac Pro ICCER – Groupement 1 | Physique-Chimie – Chapitre 10 | maths-sciences-lp.github.io</p>
-</footer>
 
 </div>
 <script src="../../../nav.js"></script>
