@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ch02 – Activité 3 – Défaut sur installation – CAP Maths</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../print.css" media="print">
+<style>:root{--p:#b45309;--p-bg:#fffbeb;--p-border:#fde68a}
+.bonus{background:#fef3c7;border-left:4px solid #f59e0b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}</style>
+</head>
+<body>
+<div class="c">
+<a href="../../../maths-cap.html" class="nb">← Retour au sommaire</a>
+<header>
+  <h1>Activité 3 – Probabilité de panne sur une installation <span style="font-size:.55em;color:#b45309;font-weight:600">SITUATION PRO</span></h1>
+  <p class="sous-titre">Ch02 — Probabilités | CAP | Mathématiques | ⏱ 30 min</p>
+  <p class="maj">Dernière mise à jour : 6 mai 2026, format manuel scolaire</p>
+</header>
+<button onclick="window.print()" style="margin:10px 0;padding:8px 18px;border:1px solid #ccc;border-radius:6px;background:#f8fafc;cursor:pointer;font-size:.9em;font-weight:600">🖨️ Imprimer cette activité</button>
+
+<div class="objectifs">
+  <strong>Objectifs :</strong>
+  <ul>
+    <li>Lire un tableau croisé</li>
+    <li>Calculer P(A et B), P(A ou B)</li>
+    <li>Distinguer événements compatibles/incompatibles</li>
+  </ul>
+</div>
+
+<div class="situation">
+  <h2>Situation – maintenance de chaudières</h2>
+  <p><em>Sur 200 chaudières en maintenance, on a relevé deux types de pannes : électrique (E) ou hydraulique (H).</em></p>
+  <table>
+    <thead><tr><th></th><th>E</th><th>Pas E</th><th>Total</th></tr></thead>
+    <tbody>
+      <tr><td>H</td><td>15</td><td>25</td><td>40</td></tr>
+      <tr><td>Pas H</td><td>30</td><td>130</td><td>160</td></tr>
+      <tr><td>Total</td><td>45</td><td>155</td><td>200</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="objectifs" style="border-left:4px solid var(--p);background:var(--p-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0">
+  <strong>Problématique :</strong> Quelle est la probabilité qu'une chaudière au hasard ait une panne (de n'importe quel type) ?
+</div>
+
+<div class="exo">
+  <h2>Question 1 <span class="badge-yellow">REA</span></h2>
+  <p>Calculer P(E) et P(H).</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(E) = 45/200 = 0,225 = 22,5 %.</p>
+    <p>P(H) = 40/200 = 0,20 = 20 %.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 2 <span class="badge-yellow">REA</span></h2>
+  <p>P(E et H) = ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(E ∩ H) = 15/200 = <strong>0,075 = 7,5 %</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 3 <span class="badge-yellow">REA</span></h2>
+  <p>P(E ou H) = ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(E ∪ H) = P(E) + P(H) − P(E ∩ H) = 0,225 + 0,20 − 0,075 = <strong>0,35 = 35 %</strong>.</p>
+    <p>Vérification : (15+30+25)/200 = 70/200 = 0,35 ✔</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 4 <span class="badge-blue">ANA</span></h2>
+  <p>Combien de chaudières sans aucune panne ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>200 − 70 = <strong>130 chaudières</strong>. P(aucune panne) = 130/200 = 0,65 = 65 %.</p>
+    <p>(Tableau direct : 130 ✔)</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 5 <span class="badge-blue">ANA</span></h2>
+  <p>Sachant qu'une chaudière a une panne électrique, quelle est la probabilité qu'elle ait aussi une panne hydraulique ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P_E(H) = P(E ∩ H) / P(E) = 0,075 / 0,225 = <strong>1/3 ≈ 33 %</strong>.</p>
+    <p>1/3 des chaudières en panne électrique ont aussi une panne hydraulique.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 6 <span class="badge-blue">ANA</span></h2>
+  <p>Les événements E et H sont-ils indépendants ?</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>P(E) × P(H) = 0,225 × 0,20 = 0,045.</p>
+    <p>P(E ∩ H) = 0,075 ≠ 0,045 → <strong>non indépendants</strong>.</p>
+    <p>Souvent les pannes E et H ont une cause commune (ex : surchauffe qui détériore à la fois la pompe et l'électronique).</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 7 <span class="badge-green">VAL</span></h2>
+  <p>Une intervention coûte 80 € (panne simple) ou 130 € (double panne). Calculer le coût moyen par chaudière en panne.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Pannes simples : 70 − 15 = 55 chaudières × 80 = 4 400 €.</p>
+    <p>Doubles pannes : 15 × 130 = 1 950 €.</p>
+    <p>Total : 6 350 €. Moyenne par chaudière en panne : 6 350 / 70 ≈ <strong>91 €</strong>.</p>
+  </div>
+</div>
+
+<div class="exo">
+  <h2>Question 8 <span class="badge-red">COM</span></h2>
+  <p>Synthétiser les chiffres clés.</p>
+  <ul class="lignes-reponse"><li></li><li></li><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p style="background:#fef3c7;border:2px solid #f59e0b;padding:14px;border-radius:6px">
+      <strong>Bilan SAV chaudières (200 unités)</strong><br>
+      • 35 % en panne ; 22,5 % E ; 20 % H ; 7,5 % E+H.<br>
+      • Coût moyen intervention : 91 €/chaudière en panne.<br>
+      • Causes E et H non indépendantes → analyse mécanique commune.<br>
+      • Action : maintenance préventive sur surchauffe (cause potentielle commune).
+    </p>
+  </div>
+</div>
+
+<div class="bonus">
+  <strong>Pour aller plus loin (bonus)</strong>
+  <p>Si l'entreprise installe un sécheur d'air sur ses chaudières, on espère réduire l'humidité et donc les pannes hydrauliques de 50 %. Recalculer la probabilité d'avoir au moins 1 panne après installation.</p>
+  <ul class="lignes-reponse"><li></li><li></li></ul>
+  <button class="bc" onclick="toggle(this)">Voir la correction</button>
+  <div class="corr">
+    <p>Nouveau P(H) ≈ 10 %. Si P(E ∩ H) baisse aussi de 50 % : 3,75 %.</p>
+    <p>P(E ∪ H) = 22,5 + 10 − 3,75 = <strong>28,75 %</strong> au lieu de 35 %. Gain de 6 points.</p>
+  </div>
+</div>
+
+<div class="retenir">
+  <strong>À retenir</strong>
+  <ul>
+    <li>P(A ∪ B) = P(A) + P(B) − P(A ∩ B).</li>
+    <li>Indépendance : P(A ∩ B) = P(A) × P(B).</li>
+    <li>Lecture d'un tableau croisé : faciliter le calcul des probabilités.</li>
+  </ul>
+  <p style="margin-top:10px"><em>📚 Cette activité s'appuie sur §3 (Événements) et §4 (Tableaux) de la leçon Ch02.</em></p>
+</div>
+
+</div>
+<script src="../../../nav.js"></script>
+</body>
+</html>
