@@ -258,12 +258,7 @@
     <text x="54" y="54" font-size="10" fill="#333">4</text>
     <!-- Origine -->
     <text x="57" y="183" font-size="10" fill="#333">O</text>
-    <!-- Droite f(x)=2x+1 : y=2x+1, origine=(70,170), 1 unit x=40px, 1 unit y=30px -->
-    <!-- x=0 → y=1 → pixel (70, 170-1*30)=(70,140) -->
-    <!-- x=4 → y=9 → pixel (70+4*40, 170-9*30)=(230, 170-270) hors zone → limiter -->
-    <!-- x=0 → (70,140), x=3 → (70+120, 170-7*30)=(190, 170-210)=(190,-40) hors zone -->
-    <!-- Ajuster : x=0→(70,140), x=2→(150,110-60=...): y=2*2+1=5 → (150, 170-5*30)=(150,20) -->
-    <!-- Tracer de x=0 (70,140) à x=2 (150, 170-150=20) -->
+    <!-- Droite f(x)=2x+1 : x=0→(70,140), x=2→(150,20) -->
     <line x1="70" y1="140" x2="150" y2="20" stroke="#0056b3" stroke-width="2.5"/>
     <!-- Points remarquables -->
     <circle cx="70" cy="140" r="4" fill="#0056b3"/>
@@ -697,13 +692,10 @@
       <text x="14" y="74" font-size="10" fill="#333">3</text>
       <text x="14" y="34" font-size="10" fill="#333">4</text>
       <text x="20" y="205" font-size="10" fill="#333">O</text>
-      <!-- y = x + 1 : (0,1)→(30,150) ; (4,5)→(190,-10) hors zone ; (3,4)→(150,30) -->
-      <line x1="30" y1="150" x2="190" y2="-10" stroke="#0056b3" stroke-width="2.5" clip-path="url(#clip1)"/>
+      <!-- y = x + 1 : (0,1)→(30,150) ; (3,4)→(150,30) (limité à la zone visible) -->
+      <line x1="30" y1="150" x2="170" y2="10" stroke="#0056b3" stroke-width="2.5"/>
       <!-- y = -x + 5 : (0,5)→(30,-10) hors zone ; (5,0)→(230,190) ; (1,4)→(70,30) -->
       <line x1="30" y1="-10" x2="230" y2="190" stroke="#c53030" stroke-width="2.5"/>
-      <!-- Clip pour garder dans zone -->
-      <defs><clipPath id="clip1"><rect x="20" y="0" width="250" height="200"/></clipPath></defs>
-      <line x1="30" y1="150" x2="170" y2="10" stroke="#0056b3" stroke-width="2.5"/>
       <!-- Point d'intersection masqué — l'élève doit le trouver -->
       <!-- Labels droites -->
       <text x="148" y="22" font-size="11" fill="#0056b3" font-style="italic">y = x + 1</text>
@@ -813,7 +805,6 @@
       </li>
     </ol>
   </div>
-</div>
 </div>
 
 <div class="exo">
